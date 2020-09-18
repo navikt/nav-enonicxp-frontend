@@ -6,7 +6,7 @@ import { TransportPageSchema } from './transport-page-schema';
 import { ContentListSchema } from './content-list-schema';
 import { PageListSchema } from './page-list-schema';
 import { MainArticleSchema } from './main-article-schema';
-import { EnonicRef } from '../../utils/enonic-ref';
+import { EnonicId } from '../../utils/enonic-id';
 
 export enum ContentType {
     Site = 'portal:site',
@@ -30,13 +30,11 @@ export type ContentTypeSchemas =
     | MainArticleSchema;
 
 export type GlobalSchema = {
-    _id: EnonicRef;
-    _path: EnonicRef;
+    _id: EnonicId;
+    _path: EnonicId;
     createdTime: string;
     modifiedTime: string;
     displayName: string;
     type: ContentType;
     data: object;
 };
-
-export type IdToContent = { [key: string]: ContentTypeSchemas | null };

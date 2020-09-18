@@ -1,6 +1,5 @@
-import { ContentType, ContentTypeSchemas } from '../types/schemas/_schemas';
-import { SectionPagePropsProxy } from '../types/schemas/section-page-schema';
-import { EnonicRef, isEnonicId } from './enonic-ref';
+import { ContentTypeSchemas } from '../types/schemas/_schemas';
+import { EnonicId } from './enonic-id';
 
 const xpServiceUrl = process.env.XP_SERVICE_URL;
 
@@ -15,47 +14,34 @@ const getTargetIfRedirect = (contentData: ContentTypeSchemas) => {
     }
 };
 
-export const fetchContentIfEnonicId = <T>(value: any): T => {
-    return typeof value === 'string' && isEnonicId(value)
-        ? fetchEnonicContent<T>(value)
-        : value;
-};
-
-export const fetchContentArray = async <T>(
-    content: EnonicRef[]
+export const fetchContentFromIdArray = async <T>(
+    ids: EnonicId[]
 ): Promise<T[]> => {
     const data: T[] = [];
 
-    for await (const [key, value] of Object.entries(content)) {
-        data[key] = await fetchContentIfEnonicId<T>(value);
+    for await (const [key, value] of Object.entries(ids)) {
+        data[key] = await fetchContent<T>(value);
     }
 
     return data;
 };
 
-export const fetchEnonicContent = <T>(idOrPath: string): Promise<T> =>
+export const fetchContent = <T>(idOrPath: string): Promise<T> =>
     fetch(`${xpServiceUrl}/sitecontent?id=${idOrPath}`)
         .then((res) => res.json())
         .catch(console.error);
 
-export const fetchEnonicPage = async (idOrPath: string): Promise<any> => {
+export const fetchPageContent = async (
+    idOrPath: string
+): Promise<ContentTypeSchemas> => {
     console.log('id or path:', idOrPath);
-    const content: ContentTypeSchemas = await fetch(
-        `${xpServiceUrl}/sitecontent?id=${idOrPath}`
-    )
-        .then((res) => res.json())
-        .catch(console.error);
+    const content = await fetchContent<ContentTypeSchemas>(idOrPath);
 
     const redirectTarget = getTargetIfRedirect(content);
 
     if (redirectTarget) {
-        return fetchEnonicPage(redirectTarget);
+        return fetchPageContent(redirectTarget);
     }
 
-    switch (content.type) {
-        case ContentType.SectionPage:
-            return await SectionPagePropsProxy(content);
-        default:
-            return content as ContentTypeSchemas;
-    }
+    return content;
 };

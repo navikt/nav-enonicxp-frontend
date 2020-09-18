@@ -1,9 +1,9 @@
 import { ContentType, GlobalSchema } from './_schemas';
-import { EnonicRef } from '../../utils/enonic-ref';
+import { EnonicId } from '../../utils/enonic-id';
 
 export interface ContentListSchema extends GlobalSchema {
     type: ContentType.ContentList;
     data: {
-        sectionContents: EnonicRef[];
+        sectionContents: EnonicId[];
     };
 }

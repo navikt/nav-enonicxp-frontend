@@ -1,6 +1,6 @@
 import { prototypeBasePath, enonicBasePath } from './config';
 
-export type EnonicRef = string;
+export type EnonicId = string;
 
 const isUUID = (id: string) =>
     RegExp(

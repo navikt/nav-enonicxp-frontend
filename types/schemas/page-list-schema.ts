@@ -1,10 +1,10 @@
 import { ContentType, GlobalSchema } from './_schemas';
-import { EnonicRef } from '../../utils/enonic-ref';
+import { EnonicId } from '../../utils/enonic-id';
 
 export interface PageListSchema extends GlobalSchema {
     type: ContentType.PageList;
     data: {
         ingress?: string;
-        sectionContents?: EnonicRef[];
+        sectionContents?: EnonicId[];
     };
 }

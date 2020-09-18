@@ -1,8 +1,8 @@
-import { EnonicRef } from '../utils/enonic-ref';
+import { EnonicId } from '../utils/enonic-id';
 
 export type LenkeData = {
     url: string;
     lenketekst: string;
     label?: string;
-    enonicId?: EnonicRef;
+    enonicId?: EnonicId;
 };

@@ -1,8 +1,8 @@
 import React from 'react';
-import { routerQueryToEnonicPath } from '../utils/enonic-ref';
+import { routerQueryToEnonicPath } from '../utils/enonic-id';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import ContentComponentMapper from '../components/content-component-mapper/ContentComponentMapper';
-import { fetchEnonicPage } from '../utils/fetch-content';
+import { fetchPageContent } from '../utils/fetch-content';
 import { ContentTypeSchemas } from '../types/schemas/_schemas';
 
 type Props = {
@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const enonicPath = routerQueryToEnonicPath(
         context?.params?.pathRouter || ''
     );
-    const content = await fetchEnonicPage(enonicPath);
+    const content = await fetchPageContent(enonicPath);
 
     console.log('fetched content:', content);
 

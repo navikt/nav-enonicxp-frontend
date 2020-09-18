@@ -1,7 +1,7 @@
 import React, { Dispatch, useEffect, useState, Fragment } from 'react';
 import { ContentTypeSchemas } from '../../types/schemas/_schemas';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
-import { appPathToEnonicPath, isNavnoPath } from '../../utils/enonic-ref';
+import { appPathToEnonicPath, isNavnoPath } from '../../utils/enonic-id';
 import Link from 'next/link';
 
 // TODO: flytt dette til en enonic-service?
