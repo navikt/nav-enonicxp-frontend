@@ -15,7 +15,7 @@ const parseLegacyHtml = (htmlString: string) => {
                 isEnonicPath(attribs.href)
             ) {
                 return (
-                    <Link href={attribs.href}>
+                    <Link href={attribs.href} passHref={true}>
                         <a {...attribs} className={attribs?.class}>
                             {children && domToReact(children)}
                         </a>

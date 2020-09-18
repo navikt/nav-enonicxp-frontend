@@ -40,7 +40,7 @@ const LenkepanelPluss = ({
             onClick={onClick}
             linkCreator={(props) =>
                 isInternalUrl ? (
-                    <Link href={props.href}>
+                    <Link href={props.href} passHref={true}>
                         <a {...props} />
                     </Link>
                 ) : (

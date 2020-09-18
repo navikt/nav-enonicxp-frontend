@@ -48,5 +48,11 @@ export const LenkeNavNo = ({
         </a>
     );
 
-    return isInternalLink ? <Link href={_href}>{link}</Link> : link;
+    return isInternalLink ? (
+        <Link href={_href} passHref={true}>
+            {link}
+        </Link>
+    ) : (
+        link
+    );
 };
