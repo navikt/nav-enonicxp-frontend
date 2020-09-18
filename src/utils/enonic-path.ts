@@ -1,4 +1,4 @@
-import { enonicContentBasePath } from '../config';
+export const enonicContentBasePath = '/www.nav.no';
 
 export type EnonicContentRef = string;
 

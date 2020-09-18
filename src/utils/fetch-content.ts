@@ -1,6 +1,6 @@
 import { ContentType, ContentTypeSchemas } from '../types/schemas/_schemas';
 import { contentToComponentMap } from '../components/content-component-mapper/ContentComponentMapper';
-import { enonicContentBasePath } from '../config';
+import { enonicContentBasePath } from './enonic-path';
 
 const xpServiceUrl = process.env.XP_SERVICE_URL;
 const xpBaseUrl = process.env.XP_BASE_URL;
@@ -10,7 +10,7 @@ const getTargetIfRedirect = (contentData: ContentTypeSchemas) => {
         case 'portal:site':
             return '/www.nav.no/forsiden';
         case 'no.nav.navno:internal-link':
-            return contentData.data.target;
+            return contentData.data.target._path;
         default:
             return null;
     }

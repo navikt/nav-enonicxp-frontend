@@ -21,8 +21,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     return {
         props: {
-            content: content || '',
+            content: content,
         },
+        revalidate: 1,
     };
 };
 
