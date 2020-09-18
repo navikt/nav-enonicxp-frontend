@@ -27,7 +27,10 @@ class DocumentWithDecorator extends Document {
                         className="navno-dekorator"
                         role="main"
                     />
-                    <div id="decorator-env" data-src={`${decoratorUrl}/env`} />
+                    <div
+                        id="decorator-env"
+                        data-src={`${decoratorUrl}/env?chatbot=true`}
+                    />
                     <script src={`${decoratorUrl}/client.js`} />
                     <NextScript />
                 </body>

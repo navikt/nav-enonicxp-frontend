@@ -6,6 +6,7 @@ import {
 } from '../../../types/schemas/_schemas';
 import { LenkepanelVertical } from '../lenkepanel-vertical/LenkepanelVertical';
 import { Normaltekst } from 'nav-frontend-typografi';
+import './TableContents.less';
 
 type TableData = {
     url: string;
@@ -56,15 +57,14 @@ const getLinkData = (
 
 type Props = {
     tableContents: ContentTypeSchemas[];
-    cssBlock: string;
 };
 
-export const TableContents = ({ tableContents, cssBlock }: Props) => {
-    const bem = BEM(cssBlock);
+export const TableContents = ({ tableContents }: Props) => {
+    const bem = BEM('table-contents');
 
     return (
         tableContents?.length > 0 && (
-            <div className={bem('table-contents')}>
+            <div className={bem()}>
                 {tableContents.map((content) => {
                     const link = getLinkData(content);
 
@@ -74,7 +74,7 @@ export const TableContents = ({ tableContents, cssBlock }: Props) => {
                                 href={link.url}
                                 tittel={link.tittel}
                                 key={content._id}
-                                className={bem('table-item')}
+                                className={bem('item')}
                             >
                                 <Normaltekst>{link.children}</Normaltekst>
                             </LenkepanelVertical>

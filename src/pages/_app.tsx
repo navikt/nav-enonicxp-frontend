@@ -4,7 +4,7 @@ import '../global.less';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     return (
-        <div className={'content-wrapper'}>
+        <div className={'content-wrapper'} id={'maincontent'}>
             <Component {...pageProps} />
         </div>
     );

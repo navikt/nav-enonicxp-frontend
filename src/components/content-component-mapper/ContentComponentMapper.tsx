@@ -6,10 +6,12 @@ import { useRouter } from 'next/router';
 import { enonicPathToAppPath } from '../../utils/enonic-path';
 import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import Head from 'next/head';
+import { TransportPage } from '../page-components/transport-page/TransportPage';
 
 export const contentToComponentMap = {
     [ContentType.NotImplemented]: LegacyHtml,
     [ContentType.SectionPage]: SectionPage,
+    [ContentType.TransportPage]: TransportPage,
 };
 
 type Props = {

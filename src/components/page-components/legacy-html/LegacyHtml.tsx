@@ -7,22 +7,8 @@ import Link from 'next/link';
 
 // TODO: flytt dette til en enonic-service?
 const parseLegacyHtml = (htmlString: string) => {
-    const options = {
-        replace: ({ name, attribs, children, parent }: DomElement) => {
-            if (name === 'html' || name === 'body') {
-                return <>{children && domToReact(children, options)}</>;
-            }
-
-            if (
-                name === 'head' ||
-                name === 'script' ||
-                (parent?.name === 'body' && attribs?.id !== 'page-top') ||
-                (parent?.attribs?.id === 'page-top' &&
-                    attribs?.id !== 'maincontent')
-            ) {
-                return <Fragment />;
-            }
-
+    const linkOptions = {
+        replace: ({ name, attribs, children }: DomElement) => {
             if (
                 name?.toLowerCase() === 'a' &&
                 attribs?.href &&
@@ -35,6 +21,26 @@ const parseLegacyHtml = (htmlString: string) => {
                         </a>
                     </Link>
                 );
+            }
+        },
+    };
+
+    const options = {
+        replace: ({ name, attribs, children, parent }: DomElement) => {
+            if (
+                name === 'html' ||
+                name === 'body' ||
+                attribs?.id === 'page-top' ||
+                attribs?.class === 'content-page'
+            ) {
+                return <>{children && domToReact(children, options)}</>;
+            } else if (
+                parent?.attribs?.id === 'maincontent' &&
+                attribs?.class.includes('maincontent')
+            ) {
+                return <>{children && domToReact(children, linkOptions)}</>;
+            } else {
+                return <Fragment />;
             }
         },
     };

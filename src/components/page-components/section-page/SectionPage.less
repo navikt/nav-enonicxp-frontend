@@ -15,24 +15,6 @@
         margin-top: 2rem;
     }
 
-    &__table-contents {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
-        width: 100%;
-    }
-
-    &__table-item {
-        text-align: start;
-        width: calc(percentage(1 / @numCols) - @margin);
-        margin-bottom: @margin;
-        padding: 1.5rem;
-        &:not(:nth-child(@{numCols}n)) {
-            margin-right: @margin;
-        }
-    }
-
     &__content-lists {
         display: flex;
         justify-content: center;

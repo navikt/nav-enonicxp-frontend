@@ -1,11 +1,11 @@
 import React from 'react';
-import { Sidetittel } from 'nav-frontend-typografi';
+import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import { SectionPageSchema } from '../../../types/schemas/section-page-schema';
 import TableContents from '../../sub-components/table-contents/TableContents';
 import { BEM } from '../../../utils/bem';
 import { LenkepanelListe } from '../../sub-components/lenkepanel-liste/LenkepanelListe';
 import { ContentListLenkeliste } from '../../sub-components/content-list/ContentListLenkeliste';
-import { Nyheter } from '../../sub-components/nyheter/Nyheter';
+import { LenkeNavNo } from '../../sub-components/lenke-navno/LenkeNavNo';
 import './SectionPage.less';
 
 export const SectionPage = (props: SectionPageSchema) => {
@@ -29,9 +29,7 @@ export const SectionPage = (props: SectionPageSchema) => {
             <Sidetittel className={bem('tittel')}>
                 {props.displayName}
             </Sidetittel>
-            {tableContents && (
-                <TableContents tableContents={tableContents} cssBlock={bem()} />
-            )}
+            {tableContents && <TableContents tableContents={tableContents} />}
             {(panelsHeading || panelItems) && (
                 <LenkepanelListe
                     title={panelsHeading}
@@ -40,7 +38,7 @@ export const SectionPage = (props: SectionPageSchema) => {
                 />
             )}
             {(ntkContents || newsContents || scContents) && (
-                <div className={'section-page__content-lists'}>
+                <div className={bem('content-lists')}>
                     {ntkContents && (
                         <ContentListLenkeliste
                             content={ntkContents}
@@ -49,11 +47,27 @@ export const SectionPage = (props: SectionPageSchema) => {
                         />
                     )}
                     {newsContents?.data?.sectionContents?.length > 0 && (
-                        <Nyheter
-                            newsContents={newsContents}
-                            nrNews={nrNews}
-                            moreNewsUrl={moreNewsUrl}
-                        />
+                        <div
+                            className={`${bem('content-list')} ${bem(
+                                'nyheter'
+                            )}`}
+                        >
+                            <ContentListLenkeliste
+                                content={newsContents}
+                                maxItems={nrNews}
+                                showDateLabel={true}
+                                sorted={true}
+                            />
+                            {moreNewsUrl && (
+                                <LenkeNavNo
+                                    href={moreNewsUrl}
+                                    className={bem('flere-nyheter')}
+                                    withChevron={false}
+                                >
+                                    <Normaltekst>{'Flere nyheter'}</Normaltekst>
+                                </LenkeNavNo>
+                            )}
+                        </div>
                     )}
                     {scContents && (
                         <ContentListLenkeliste
