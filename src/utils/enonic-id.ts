@@ -1,4 +1,4 @@
-import { prototypeBasePath, enonicBasePath } from './config';
+import { prototypeBasePath, enonicBasePath } from '../config';
 
 export type EnonicId = string;
 
@@ -18,7 +18,7 @@ export const enonicPathToAppPath = (enonicPath: string) =>
     `${prototypeBasePath}${enonicPath.split(enonicBasePath)[1] || ''}`;
 
 export const isNavnoPath = (path: string) =>
-    /(nav.no|^)(\/no|\/en|\/se)/.test(path);
+    /(nav.no|^)(\/no|\/en|\/se|\/nav.no)/.test(path);
 
 export const routerQueryToEnonicPath = (routerQuery: string | string[]) => {
     const queryPath =

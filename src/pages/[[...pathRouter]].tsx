@@ -19,8 +19,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     );
     const content = await fetchPageContent(enonicPath);
 
-    console.log('fetched content:', content);
-
     return {
         props: {
             content: (content as ContentTypeSchemas) || '',

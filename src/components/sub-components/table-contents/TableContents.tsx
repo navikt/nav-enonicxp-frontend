@@ -1,11 +1,11 @@
 import React from 'react';
-import { LenkepanelVertical } from '../../../components/lenkepanel/lenkepanel-vertical/LenkepanelVertical';
-import { EnonicRef } from '../../../utils/enonic-ref';
+import { BEM } from '../../../utils/bem';
 import {
     ContentType,
     ContentTypeSchemas,
 } from '../../../types/schemas/_schemas';
-import { useContent } from '../../../hooks/useContent';
+import { LenkepanelVertical } from '../lenkepanel-vertical/LenkepanelVertical';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 type TableData = {
     url: string;
@@ -55,31 +55,35 @@ const getLinkData = (
 };
 
 type Props = {
-    tableContentIds: EnonicRef[];
-    className: string;
+    tableContents: ContentTypeSchemas[];
+    cssBlock: string;
 };
 
-export const TableContents = ({ tableContentIds, className }: Props) => {
-    const tableData = useContent({ ids: tableContentIds });
+export const TableContents = ({ tableContents, cssBlock }: Props) => {
+    const bem = BEM(cssBlock);
 
-    return tableData?.length ? (
-        <div className={`${className}__table-contents`}>
-            {tableData.map((content) => {
-                const link = getLinkData(content);
+    return (
+        tableContents?.length > 0 && (
+            <div className={bem('table-contents')}>
+                {tableContents.map((content) => {
+                    const link = getLinkData(content);
 
-                return (
-                    link && (
-                        <LenkepanelVertical
-                            url={link.url}
-                            tittel={link.tittel}
-                            key={content._id}
-                            className={`${className}__table-item`}
-                        >
-                            <>{link.children}</>
-                        </LenkepanelVertical>
-                    )
-                );
-            })}
-        </div>
-    ) : null;
+                    return (
+                        link && (
+                            <LenkepanelVertical
+                                url={link.url}
+                                tittel={link.tittel}
+                                key={content._id}
+                                className={bem('table-item')}
+                            >
+                                <Normaltekst>{link.children}</Normaltekst>
+                            </LenkepanelVertical>
+                        )
+                    );
+                })}
+            </div>
+        )
+    );
 };
+
+export default TableContents;

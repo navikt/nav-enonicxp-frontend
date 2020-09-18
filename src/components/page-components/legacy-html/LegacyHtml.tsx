@@ -1,7 +1,8 @@
-import React, { Dispatch, useEffect, useState, Fragment } from 'react';
-import { ContentTypeSchemas } from '../../types/schemas/_schemas';
+import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
-import { appPathToEnonicPath, isNavnoPath } from '../../utils/enonic-id';
+import { appPathToEnonicPath, isNavnoPath } from '../../../utils/enonic-id';
+import { NotImplementedSchema } from '../../../types/schemas/not-implemented-schema';
+import './LegacyStyle.less';
 import Link from 'next/link';
 
 // TODO: flytt dette til en enonic-service?
@@ -33,8 +34,10 @@ const parseLegacyHtml = (htmlString: string) => {
                         .filter((_, i, a) => i === a.length - 1)[0]
                 );
                 return (
-                    <Link {...attribs} className={attribs?.class}>
-                        {children && domToReact(children)}
+                    <Link href={attribs.href}>
+                        <a {...attribs} className={attribs?.class}>
+                            {children && domToReact(children)}
+                        </a>
                     </Link>
                 );
             }
@@ -50,8 +53,12 @@ const parseLegacyHtml = (htmlString: string) => {
     return <>{htmlParsed}</>;
 };
 
-export const LegacyHtml = (contentData: ContentTypeSchemas) => {
-    return <div className={'legacy-container'}>{parseLegacyHtml(html)}</div>;
+export const LegacyHtml = (contentData: NotImplementedSchema) => {
+    return (
+        <div className={'legacy-container'}>
+            {parseLegacyHtml(contentData.data.html)}
+        </div>
+    );
 };
 
 export default LegacyHtml;

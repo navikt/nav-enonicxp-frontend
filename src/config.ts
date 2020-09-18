@@ -1,4 +1,4 @@
-export const prototypeBasePath = '/person/navno-frontend-prototype';
+export const prototypeBasePath = '';
 export const apiBasePath = `${prototypeBasePath}/api`;
 export const enonicBasePath = '/www.nav.no';
 

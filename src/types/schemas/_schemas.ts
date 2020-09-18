@@ -7,8 +7,10 @@ import { ContentListSchema } from './content-list-schema';
 import { PageListSchema } from './page-list-schema';
 import { MainArticleSchema } from './main-article-schema';
 import { EnonicId } from '../../utils/enonic-id';
+import { NotImplementedSchema } from './not-implemented-schema';
 
 export enum ContentType {
+    NotImplemented,
     Site = 'portal:site',
     InternalLink = 'no.nav.navno:internal-link',
     ExternalLink = 'no.nav.navno:external-link',
@@ -20,6 +22,7 @@ export enum ContentType {
 }
 
 export type ContentTypeSchemas =
+    | NotImplementedSchema
     | PortalSiteSchema
     | ExternalLinkSchema
     | InternalLinkSchema

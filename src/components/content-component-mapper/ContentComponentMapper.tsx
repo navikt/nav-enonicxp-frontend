@@ -1,6 +1,12 @@
 import React from 'react';
 import { ContentType, ContentTypeSchemas } from '../../types/schemas/_schemas';
-import { SectionPage } from '../section-page/SectionPage';
+import { SectionPage } from '../page-components/section-page/SectionPage';
+import LegacyHtml from '../page-components/legacy-html/LegacyHtml';
+
+export const contentToComponentMap = {
+    [ContentType.SectionPage]: SectionPage,
+    [ContentType.NotImplemented]: LegacyHtml,
+};
 
 type Props = {
     contentData: ContentTypeSchemas | undefined;
@@ -11,12 +17,9 @@ const ContentComponentMapper = ({ contentData }: Props) => {
         return null;
     }
 
-    switch (contentData.type) {
-        case ContentType.SectionPage:
-            return <SectionPage {...contentData} />;
-        default:
-            return <>{contentData.type}</>;
-    }
+    const Component = contentToComponentMap[contentData.type];
+
+    return <Component {...contentData} />;
 };
 
 export default ContentComponentMapper;

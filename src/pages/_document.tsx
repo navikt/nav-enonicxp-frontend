@@ -18,25 +18,23 @@ class DocumentWithDecorator extends Document {
                         rel="stylesheet"
                     />
                 </Head>
-                <title>test</title>
                 <body>
-                    <section
+                    <div
                         id="decorator-header"
                         className="navno-dekorator"
                         role="main"
-                    ></section>
-                    <Main />
-                    <NextScript />
-                    <section
+                    />
+                    <div className="app">
+                        <Main />
+                    </div>
+                    <div
                         id="decorator-footer"
                         className="navno-dekorator"
                         role="main"
-                    ></section>
-                    <div
-                        id="decorator-env"
-                        data-src={`${decoratorUrl}/env`}
-                    ></div>
-                    <script src={`${decoratorUrl}/client.js`}></script>
+                    />
+                    <div id="decorator-env" data-src={`${decoratorUrl}/env`} />
+                    <script src={`${decoratorUrl}/client.js`} />
+                    <NextScript />
                 </body>
             </Html>
         );

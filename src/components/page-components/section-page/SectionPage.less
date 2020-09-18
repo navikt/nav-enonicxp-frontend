@@ -11,7 +11,7 @@
         margin-bottom: 2rem;
     }
 
-    .transport-page {
+    &__panels {
         margin-top: 2rem;
     }
 
@@ -35,13 +35,16 @@
 
     &__content-lists {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         margin-top: 2rem;
         width: 100%;
     }
 
     &__content-list {
-        width: calc(percentage(1 / @numCols) - 1rem);
+        width: calc(percentage(1 / @numCols));
+        &:not(:nth-child(@{numCols}n)) {
+            margin-right: @margin;
+        }
     }
 
     &__nyheter {
