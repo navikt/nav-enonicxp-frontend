@@ -71,7 +71,7 @@ export const TableContents = ({ tableContents, cssBlock }: Props) => {
                     return (
                         link && (
                             <LenkepanelVertical
-                                url={link.url}
+                                href={link.url}
                                 tittel={link.tittel}
                                 key={content._id}
                                 className={bem('table-item')}

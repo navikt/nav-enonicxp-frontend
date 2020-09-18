@@ -2,10 +2,11 @@ import React from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import { enonicPathToAppPath, isEnonicPath } from '../../../utils/enonic-path';
+import Link from 'next/link';
 import './LenkepanelPluss.less';
 
 export type LenkepanelProps = {
-    url: string;
+    href: string;
     tittel: string;
     ikon?: React.ReactElement;
     separator?: boolean;
@@ -16,7 +17,7 @@ export type LenkepanelProps = {
 };
 
 const LenkepanelPluss = ({
-    url,
+    href,
     tittel,
     ikon,
     separator,
@@ -25,15 +26,25 @@ const LenkepanelPluss = ({
     onClick,
     children,
 }: LenkepanelProps) => {
-    const isInternalUrl = isEnonicPath(url);
+    const isInternalUrl = isEnonicPath(href);
+    const _href = isInternalUrl ? enonicPathToAppPath(href) : href;
 
     return (
         <LenkepanelBase
-            href={isInternalUrl ? enonicPathToAppPath(url) : url}
+            href={_href}
             className={`lenkepanel-pluss ${className || ''}`}
             id={id}
             border={true}
             onClick={onClick}
+            linkCreator={(props) =>
+                isInternalUrl ? (
+                    <Link href={props.href}>
+                        <a {...props} />
+                    </Link>
+                ) : (
+                    <a {...props} />
+                )
+            }
         >
             <div className={'lenkepanel-pluss__innhold'}>
                 {ikon}

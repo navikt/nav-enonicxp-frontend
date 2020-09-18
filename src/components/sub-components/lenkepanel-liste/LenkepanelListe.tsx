@@ -32,7 +32,7 @@ export const LenkepanelListe = ({
                 <div className={bem('items')}>
                     {items.map((item) => (
                         <LenkepanelPluss
-                            url={item.url.text || ''}
+                            href={item.url.text || ''}
                             tittel={item.title}
                             className={bem('item')}
                             key={item.title}

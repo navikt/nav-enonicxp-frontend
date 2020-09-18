@@ -30,7 +30,10 @@ export const fetchPageContent = async (
     idOrPath: string,
     didRedirect: boolean = false
 ): Promise<ContentTypeSchemas> => {
-    const content = await fetchContent(idOrPath);
+    const content = {
+        ...(await fetchContent(idOrPath)),
+        didRedirect: didRedirect,
+    };
 
     const redirectTarget = getTargetIfRedirect(content);
 
@@ -43,11 +46,10 @@ export const fetchPageContent = async (
         const html = await fetchHtml(path);
         return {
             ...content,
-            didRedirect: didRedirect,
             type: ContentType.NotImplemented,
             data: { html: html || undefined },
         };
     }
 
-    return { ...content, didRedirect: didRedirect };
+    return content;
 };
