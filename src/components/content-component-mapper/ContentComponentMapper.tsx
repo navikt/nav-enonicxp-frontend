@@ -19,10 +19,10 @@ const ContentComponentMapper = ({ contentData }: Props) => {
 
     // Ensures the url displayed in the browser is correct after static redirection
     useEffect(() => {
-        if (!contentData?._path) {
+        if (!contentData?.didRedirect) {
             return;
         }
-        router.push(enonicPathToAppPath(contentData._path), undefined, {
+        router.replace(enonicPathToAppPath(contentData._path), undefined, {
             shallow: true,
         });
     }, [contentData]);

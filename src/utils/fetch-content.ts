@@ -27,14 +27,15 @@ export const fetchContent = (idOrPath: string): Promise<ContentTypeSchemas> =>
         .catch(console.error);
 
 export const fetchPageContent = async (
-    idOrPath: string
+    idOrPath: string,
+    didRedirect: boolean = false
 ): Promise<ContentTypeSchemas> => {
     const content = await fetchContent(idOrPath);
 
     const redirectTarget = getTargetIfRedirect(content);
 
     if (redirectTarget) {
-        return fetchPageContent(redirectTarget);
+        return fetchPageContent(redirectTarget, true);
     }
 
     if (!contentToComponentMap[content.type]) {
@@ -42,10 +43,11 @@ export const fetchPageContent = async (
         const html = await fetchHtml(path);
         return {
             ...content,
+            didRedirect: didRedirect,
             type: ContentType.NotImplemented,
             data: { html: html || undefined },
         };
     }
 
-    return content;
+    return { ...content, didRedirect: didRedirect };
 };

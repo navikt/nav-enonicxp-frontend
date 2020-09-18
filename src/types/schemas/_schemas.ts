@@ -39,5 +39,6 @@ export type GlobalSchema = {
     modifiedTime: string;
     displayName: string;
     type: ContentType;
+    didRedirect?: boolean;
     data: object;
 };
