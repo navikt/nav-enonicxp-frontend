@@ -12,4 +12,8 @@ const withTranspileModules = require('next-transpile-modules')(
     navFrontendModuler
 );
 
-module.exports = withTranspileModules(withLess({}));
+module.exports = withTranspileModules(
+    withLess({
+        basePath: process.env.APP_BASE_PATH,
+    })
+);

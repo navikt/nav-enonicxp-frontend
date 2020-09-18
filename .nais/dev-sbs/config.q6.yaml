@@ -1,0 +1,42 @@
+---
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  name: navno-frontend
+  namespace: {{namespace}}
+  labels:
+    team: personbruker
+spec:
+  image: {{image}}:{{version}}
+  team: personbruker
+  port: 8080
+  liveness:
+    path: /person/navno-frontend/internal/isAlive
+    initialDelay: 10
+  readiness:
+    path: /person/navno-frontend/internal/isReady
+    initialDelay: 10
+  ingresses:
+  {{#each ingresses as |url|}}
+    - {{url}}
+  {{/each}}
+  env:
+    - name: APP_PORT
+      value: "8080"
+    - name: APP_BASE_PATH
+      value: /person/navno-frontend
+    - name: DECORATOR_URL
+      value: https://www-q6.nav.no/dekoratoren
+    - name: XP_BASE_URL
+      value: https://www-q6.nav.no
+    - name: XP_SERVICE_URL
+      value: https://www-q6.nav.no/_/service/no.nav.navno
+  replicas:
+    min: 2
+    max: 4
+  resources:
+    limits:
+      cpu: '3'
+      memory: 768Mi
+    requests:
+      memory: 512Mi

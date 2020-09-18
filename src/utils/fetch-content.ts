@@ -1,7 +1,6 @@
 import { ContentType, ContentTypeSchemas } from '../types/schemas/_schemas';
-import { EnonicId } from './enonic-id';
 import { contentToComponentMap } from '../components/content-component-mapper/ContentComponentMapper';
-import { enonicBasePath } from '../config';
+import { enonicContentBasePath } from '../config';
 
 const xpServiceUrl = process.env.XP_SERVICE_URL;
 const xpBaseUrl = process.env.XP_BASE_URL;
@@ -22,18 +21,6 @@ const fetchHtml = async (path: string): Promise<string | void> =>
         .then((res) => res.text())
         .catch(console.error);
 
-export const fetchContentFromIdArray = async <T>(
-    ids: EnonicId[]
-): Promise<T[]> => {
-    const data: T[] = [];
-
-    for await (const [key, value] of Object.entries(ids)) {
-        data[key] = await fetchContent(value);
-    }
-
-    return data;
-};
-
 export const fetchContent = (idOrPath: string): Promise<ContentTypeSchemas> =>
     fetch(`${xpServiceUrl}/sitecontent?id=${idOrPath}`)
         .then((res) => res.json())
@@ -51,7 +38,7 @@ export const fetchPageContent = async (
     }
 
     if (!contentToComponentMap[content.type]) {
-        const path = content._path.replace(enonicBasePath, '');
+        const path = content._path.replace(enonicContentBasePath, '');
         const html = await fetchHtml(path);
         return {
             ...content,

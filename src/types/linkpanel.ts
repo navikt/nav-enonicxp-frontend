@@ -1,4 +1,4 @@
-import { EnonicId } from '../utils/enonic-id';
+import { EnonicContentRef } from '../utils/enonic-path';
 
 export type LinkPanel = {
     title: string;
@@ -6,6 +6,6 @@ export type LinkPanel = {
     spanning?: boolean;
     url: {
         text?: string;
-        ref?: EnonicId;
+        ref?: EnonicContentRef;
     };
 };

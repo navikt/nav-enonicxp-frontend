@@ -1,7 +1,7 @@
 import React from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
-import { enonicPathToAppPath, isNavnoPath } from '../../../utils/enonic-id';
+import { enonicPathToAppPath, isEnonicPath } from '../../../utils/enonic-path';
 import './LenkepanelPluss.less';
 
 export type LenkepanelProps = {
@@ -25,7 +25,7 @@ const LenkepanelPluss = ({
     onClick,
     children,
 }: LenkepanelProps) => {
-    const isInternalUrl = isNavnoPath(url);
+    const isInternalUrl = isEnonicPath(url);
 
     return (
         <LenkepanelBase

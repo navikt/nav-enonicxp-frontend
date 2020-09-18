@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
-import { appPathToEnonicPath, isNavnoPath } from '../../../utils/enonic-id';
+import { isEnonicPath } from '../../../utils/enonic-path';
 import { NotImplementedSchema } from '../../../types/schemas/not-implemented-schema';
 import './LegacyStyle.less';
 import Link from 'next/link';
@@ -26,13 +26,8 @@ const parseLegacyHtml = (htmlString: string) => {
             if (
                 name?.toLowerCase() === 'a' &&
                 attribs?.href &&
-                isNavnoPath(attribs.href)
+                isEnonicPath(attribs.href)
             ) {
-                const enonicPath = appPathToEnonicPath(
-                    attribs.href
-                        .split('nav.no')
-                        .filter((_, i, a) => i === a.length - 1)[0]
-                );
                 return (
                     <Link href={attribs.href}>
                         <a {...attribs} className={attribs?.class}>

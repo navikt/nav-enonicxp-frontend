@@ -1,10 +1,10 @@
-import { EnonicId } from '../../utils/enonic-id';
+import { EnonicContentRef } from '../../utils/enonic-path';
 import { ContentType, GlobalSchema } from './_schemas';
 
 export interface InternalLinkSchema extends GlobalSchema {
     type: ContentType.InternalLink;
     data: {
         description?: string;
-        target: EnonicId;
+        target: EnonicContentRef;
     };
 }

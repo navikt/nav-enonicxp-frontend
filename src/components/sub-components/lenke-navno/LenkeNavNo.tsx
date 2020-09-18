@@ -1,7 +1,7 @@
 import React from 'react';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
-import { enonicPathToAppPath, isNavnoPath } from '../../../utils/enonic-id';
+import { enonicPathToAppPath, isEnonicPath } from '../../../utils/enonic-path';
 import Link from 'next/link';
 import { BEM } from '../../../utils/bem';
 import './LenkeNavNo.less';
@@ -26,7 +26,7 @@ export const LenkeNavNo = ({
     children,
 }: Props) => {
     const bem = BEM('navno-lenke');
-    const isInternalLink = isNavnoPath(href);
+    const isInternalLink = isEnonicPath(href);
     const _href = isInternalLink ? enonicPathToAppPath(href) : href;
 
     const link = (

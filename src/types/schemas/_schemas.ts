@@ -6,7 +6,7 @@ import { TransportPageSchema } from './transport-page-schema';
 import { ContentListSchema } from './content-list-schema';
 import { PageListSchema } from './page-list-schema';
 import { MainArticleSchema } from './main-article-schema';
-import { EnonicId } from '../../utils/enonic-id';
+import { EnonicContentRef } from '../../utils/enonic-path';
 import { NotImplementedSchema } from './not-implemented-schema';
 
 export enum ContentType {
@@ -33,8 +33,8 @@ export type ContentTypeSchemas =
     | MainArticleSchema;
 
 export type GlobalSchema = {
-    _id: EnonicId;
-    _path: EnonicId;
+    _id: EnonicContentRef;
+    _path: EnonicContentRef;
     createdTime: string;
     modifiedTime: string;
     displayName: string;
