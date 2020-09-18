@@ -8,9 +8,10 @@ Object.keys(packageJson.dependencies).forEach((key) => {
     }
 });
 
-const withTranspileModules = require('next-transpile-modules')(
-    navFrontendModuler
-);
+const withTranspileModules = require('next-transpile-modules')([
+    ...navFrontendModuler,
+    '@navikt/nav-dekoratoren-moduler',
+]);
 
 module.exports = withTranspileModules(
     withLess({
