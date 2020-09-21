@@ -35,8 +35,8 @@ jobs:
           cat > .nais/vars.yaml <<EOF
           namespace: q6
           ingresses:
-            - https://navno-frontend.nais.oera-q.local
-            - https://www-q6.nav.no/person/navno-frontend
+            - https://xp-frontend.nais.oera-q.local
+            - https://www-q6.nav.no/person/xp-frontend
           image: $IMAGE_REGISTRY/$IMAGE_NAME
           version: $IMAGE_VERSION
           EOF

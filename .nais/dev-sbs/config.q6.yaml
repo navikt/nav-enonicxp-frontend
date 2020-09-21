@@ -11,10 +11,10 @@ spec:
   team: personbruker
   port: 8080
   liveness:
-    path: /person/navno-frontend/internal/isAlive
+    path: /person/xp-frontend/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /person/navno-frontend/internal/isReady
+    path: /person/xp-frontend/internal/isReady
     initialDelay: 10
   ingresses:
   {{#each ingresses as |url|}}
@@ -24,7 +24,7 @@ spec:
     - name: APP_PORT
       value: "8080"
     - name: APP_BASE_PATH
-      value: /person/navno-frontend
+      value: /person/xp-frontend
     - name: APP_BASE_URL
       value: https://www-q6.nav.no
     - name: DECORATOR_URL
