@@ -16,7 +16,13 @@ const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
 };
 
 const timeoutPromise = (timeout: number): Promise<any> =>
-    new Promise((res, rej) => setTimeout(rej, timeout, 'request timed out'));
+    new Promise((res) =>
+        setTimeout(
+            () =>
+                res({ ok: false, status: 408, statusText: 'Request Timeout' }),
+            timeout
+        )
+    );
 
 export const fetchHtml = (path: string): Promise<string | void> =>
     Promise.race([
