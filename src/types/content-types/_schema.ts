@@ -8,6 +8,7 @@ import { NotImplementedProps } from './not-implemented-props';
 import { PageListProps } from './page-list-props';
 import { MainArticleProps } from './main-article-props';
 import { SiteProps } from './site-props';
+import { ErrorProps } from './error-props';
 
 export enum ContentType {
     NotImplemented,
@@ -24,6 +25,7 @@ export enum ContentType {
 
 export type ContentTypeSchema =
     | NotImplementedProps
+    | ErrorProps
     | SiteProps
     | ExternalLinkProps
     | InternalLinkProps

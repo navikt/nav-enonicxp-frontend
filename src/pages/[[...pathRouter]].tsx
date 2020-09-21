@@ -29,9 +29,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     if (!contentToComponentMap[content.__typename]) {
         const path = content._path.replace(enonicContentBasePath, '');
-        const html = await fetchHtml(path);
-        content.__typename = ContentType.NotImplemented;
-        content.data = { html: html || undefined };
+        const legacyContent = await fetchHtml(path).then((res) => ({
+            ...content,
+            __typename: ContentType.NotImplemented,
+            data: { html: res },
+        }));
+
+        return {
+            props: {
+                content: legacyContent,
+            },
+            revalidate: 1,
+        };
     }
 
     return {

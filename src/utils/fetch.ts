@@ -1,4 +1,5 @@
 import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
+import { makeErrorProps } from '../types/content-types/error-props';
 
 const xpServiceUrl = process.env.XP_SERVICE_URL;
 const xpBaseUrl = process.env.XP_BASE_URL;
@@ -14,19 +15,37 @@ const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
     }
 };
 
+const timeoutPromise = (timeout: number): Promise<any> =>
+    new Promise((res, rej) => setTimeout(rej, timeout, 'request timed out'));
+
 export const fetchHtml = (path: string): Promise<string | void> =>
-    fetch(`${xpBaseUrl}${encodeURI(path)}?legacy=true`)
-        .then((res) => res.text())
-        .catch((e) => {
-            console.error(`Failed to fetch html: ${e}`);
-        });
+    Promise.race([
+        fetch(`${xpBaseUrl}${encodeURI(path)}?legacy=true`),
+        timeoutPromise(1000),
+    ])
+        .then((res) => {
+            if (!res.ok) {
+                const error = `Failed to fetch html: ${res.status} - ${res.statusText}`;
+                return makeErrorProps(path, error);
+            }
+            return res.text();
+        })
+        .catch(console.error);
 
 export const fetchContent = (idOrPath: string): Promise<ContentTypeSchema> =>
-    fetch(`${xpServiceUrl}/sitecontent?id=${encodeURI(idOrPath)}`)
-        .then((res) => res.json())
-        .catch((e) => {
-            console.error(`Failed to fetch content: ${e}`);
-        });
+    Promise.race([
+        fetch(`${xpServiceUrl}/sitecontent?id=${encodeURI(idOrPath)}`),
+        timeoutPromise(1000),
+    ])
+        .then((res) => {
+            if (!res.ok) {
+                const error = `Failed to fetch content: ${res.status} - ${res.statusText}`;
+                console.error(error);
+                return makeErrorProps(idOrPath, error);
+            }
+            return res.json();
+        })
+        .catch(console.error);
 
 export const fetchPage = async (
     idOrPath: string,
