@@ -1,14 +1,14 @@
 import React from 'react';
 import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
-import { SectionPageSchema } from '../../../types/schemas/section-page-schema';
-import TableContents from '../../sub-components/table-contents/TableContents';
+import { SectionPageProps } from '../../../types/content-types/section-page-props';
+import TableContents from '../../part-components/table-contents/TableContents';
 import { BEM } from '../../../utils/bem';
-import { LenkepanelListe } from '../../sub-components/lenkepanel-liste/LenkepanelListe';
-import { ContentListLenkeliste } from '../../sub-components/content-list/ContentListLenkeliste';
-import { LenkeNavNo } from '../../sub-components/lenke-navno/LenkeNavNo';
+import { LenkepanelListe } from '../../part-components/lenkepanel-liste/LenkepanelListe';
+import { ContentList } from '../../part-components/content-list/ContentList';
+import { LenkeNavNo } from '../../part-components/lenke-navno/LenkeNavNo';
 import './SectionPage.less';
 
-export const SectionPage = (props: SectionPageSchema) => {
+export const SectionPage = (props: SectionPageProps) => {
     const {
         // nrTableEntries,
         tableContents,
@@ -40,7 +40,7 @@ export const SectionPage = (props: SectionPageSchema) => {
             {(ntkContents || newsContents || scContents) && (
                 <div className={bem('content-lists')}>
                     {ntkContents && (
-                        <ContentListLenkeliste
+                        <ContentList
                             content={ntkContents}
                             className={bem('content-list')}
                             maxItems={nrNTK}
@@ -52,7 +52,7 @@ export const SectionPage = (props: SectionPageSchema) => {
                                 'nyheter'
                             )}`}
                         >
-                            <ContentListLenkeliste
+                            <ContentList
                                 content={newsContents}
                                 maxItems={nrNews}
                                 showDateLabel={true}
@@ -70,7 +70,7 @@ export const SectionPage = (props: SectionPageSchema) => {
                         </div>
                     )}
                     {scContents && (
-                        <ContentListLenkeliste
+                        <ContentList
                             content={scContents}
                             className={bem('content-list')}
                             maxItems={nrSC}

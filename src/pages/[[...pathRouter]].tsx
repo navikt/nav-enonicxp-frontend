@@ -1,23 +1,38 @@
 import React from 'react';
-import { routerQueryToEnonicPath } from '../utils/enonic-path';
+import { enonicContentBasePath, routerQueryToEnonicPath } from '../utils/paths';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import ContentComponentMapper from '../components/content-component-mapper/ContentComponentMapper';
-import { fetchPageContent } from '../utils/fetch-content';
-import { ContentTypeSchemas } from '../types/schemas/_schemas';
+import ContentToComponentMapper, {
+    contentToComponentMap,
+} from '../components/ContentToComponentMapper';
+import { fetchHtml, fetchPage } from '../utils/fetch';
+import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
+import DynamicPageWrapper from '../components/DynamicPageWrapper';
 
 type Props = {
-    content: ContentTypeSchemas;
+    content: ContentTypeSchema;
 };
 
 const PathRouter = (props: Props) => {
-    return <ContentComponentMapper contentData={props.content} />;
+    return props?.content ? (
+        <DynamicPageWrapper content={props.content}>
+            <ContentToComponentMapper content={props.content} />
+        </DynamicPageWrapper>
+    ) : null;
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const enonicPath = routerQueryToEnonicPath(
         context?.params?.pathRouter || ''
     );
-    const content = await fetchPageContent(enonicPath);
+
+    const content = await fetchPage(enonicPath);
+
+    if (!contentToComponentMap[content.__typename]) {
+        const path = content._path.replace(enonicContentBasePath, '');
+        const html = await fetchHtml(path);
+        content.__typename = ContentType.NotImplemented;
+        content.data = { html: html || undefined };
+    }
 
     return {
         props: {

@@ -1,11 +1,11 @@
-import { ContentTypeSchemas } from '../types/schemas/_schemas';
+import { ContentTypeSchema } from '../types/content-types/_schema';
 
-const getLastUpdatedUnixTime = (content: ContentTypeSchemas) =>
+const getLastUpdatedUnixTime = (content: ContentTypeSchema) =>
     new Date(
         content.modifiedTime.split('.')[0] || content.createdTime.split('.')[0]
     ).getTime();
 
 export const sortContentByLastModified = (
-    a: ContentTypeSchemas,
-    b: ContentTypeSchemas
+    a: ContentTypeSchema,
+    b: ContentTypeSchema
 ) => getLastUpdatedUnixTime(b) - getLastUpdatedUnixTime(a);
