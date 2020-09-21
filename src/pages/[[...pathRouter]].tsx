@@ -26,9 +26,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
     );
 
     const content = await fetchPage(enonicPath);
+    console.log('content:', content);
+    console.log(process.env.APP_BASE_PATH);
 
     if (!contentToComponentMap[content.__typename]) {
-        const path = content._path.replace(enonicContentBasePath, '');
+        console.log('lolwut');
+        const path = content._path?.replace(enonicContentBasePath, '');
         const legacyContent = await fetchHtml(path).then((res) => ({
             ...content,
             __typename: ContentType.NotImplemented,

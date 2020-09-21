@@ -21,7 +21,7 @@ const timeoutPromise = (timeout: number): Promise<any> =>
 export const fetchHtml = (path: string): Promise<string | void> =>
     Promise.race([
         fetch(`${xpBaseUrl}${encodeURI(path)}?legacy=true`),
-        timeoutPromise(1000),
+        timeoutPromise(5000),
     ])
         .then((res) => {
             if (!res.ok) {
@@ -35,7 +35,7 @@ export const fetchHtml = (path: string): Promise<string | void> =>
 export const fetchContent = (idOrPath: string): Promise<ContentTypeSchema> =>
     Promise.race([
         fetch(`${xpServiceUrl}/sitecontent?id=${encodeURI(idOrPath)}`),
-        timeoutPromise(1000),
+        timeoutPromise(5000),
     ])
         .then((res) => {
             if (!res.ok) {
