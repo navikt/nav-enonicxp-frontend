@@ -15,7 +15,7 @@ const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
 };
 
 export const fetchHtml = (path: string): Promise<string | void> =>
-    fetch(`${xpBaseUrl}${encodeURI(path)}`)
+    fetch(`${xpBaseUrl}${encodeURI(path)}?legacy=true`)
         .then((res) => res.text())
         .catch((e) => {
             console.error(`Failed to fetch html: ${e}`);

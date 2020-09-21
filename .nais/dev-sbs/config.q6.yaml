@@ -25,6 +25,8 @@ spec:
       value: "8080"
     - name: APP_BASE_PATH
       value: /person/navno-frontend
+    - name: APP_BASE_URL
+      value: https://www-q6.nav.no
     - name: DECORATOR_URL
       value: https://www-q6.nav.no/dekoratoren
     - name: XP_BASE_URL

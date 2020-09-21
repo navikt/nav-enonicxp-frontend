@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import { isEnonicPath } from '../../../utils/paths';
 import { NotImplementedProps } from '../../../types/content-types/not-implemented-props';
-import './LegacyStyle.less';
 import Link from 'next/link';
+import './LegacyStyle.less';
 
 // TODO: flytt dette til en enonic-service?
 const parseLegacyHtml = (htmlString: string) => {
@@ -26,21 +26,13 @@ const parseLegacyHtml = (htmlString: string) => {
     };
 
     const options = {
-        replace: ({ name, attribs, children, parent }: DomElement) => {
-            if (
-                name === 'html' ||
-                name === 'body' ||
-                attribs?.id === 'page-top' ||
-                attribs?.class === 'content-page'
-            ) {
-                return <>{children && domToReact(children, options)}</>;
-            } else if (
-                parent?.attribs?.id === 'maincontent' &&
-                attribs?.class.includes('maincontent')
-            ) {
+        replace: ({ children, parent }: DomElement) => {
+            if (parent?.attribs?.id === 'maincontent') {
                 return <>{children && domToReact(children, linkOptions)}</>;
-            } else {
+            } else if (!children) {
                 return <Fragment />;
+            } else {
+                return <>{children && domToReact(children, options)}</>;
             }
         },
     };
