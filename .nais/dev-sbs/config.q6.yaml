@@ -21,8 +21,6 @@ spec:
     - {{url}}
   {{/each}}
   env:
-    - name: APP_PORT
-      value: "3000"
     - name: APP_BASE_PATH
       value: /person/xp-frontend
     - name: APP_BASE_URL

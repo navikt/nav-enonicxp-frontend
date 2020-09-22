@@ -57,10 +57,7 @@ export const fetchPage = async (
     idOrPath: string,
     didRedirect: boolean = false
 ): Promise<ContentTypeSchema> => {
-    const content = {
-        ...(await fetchContent(idOrPath)),
-        didRedirect: didRedirect,
-    };
+    const content = await fetchContent(idOrPath);
 
     const redirectTarget = getTargetIfRedirect(content);
 
@@ -68,5 +65,7 @@ export const fetchPage = async (
         return fetchPage(redirectTarget, true);
     }
 
-    return content;
+    return content
+        ? { ...content, didRedirect: didRedirect }
+        : makeErrorProps(idOrPath, 'Unspecified error');
 };
