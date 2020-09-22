@@ -1,4 +1,3 @@
 export default (req, res) => {
-    res.statusCode = 200;
-    res.end();
+    return res.status(200).json({ message: 'Ok!' });
 };

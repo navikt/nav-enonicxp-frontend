@@ -11,6 +11,7 @@
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "^1.0.21",
         "classnames": "^2.2.6",
+        "cors": "^2.8.5",
         "html-react-parser": "^0.13.0",
         "nav-frontend-chevron": "^1.0.13",
         "nav-frontend-chevron-style": "^0.3.5",

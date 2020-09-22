@@ -35,6 +35,7 @@ export default async (req, res) => {
     }${enonicPathToAppPath(content._path)}`;
     console.log('url:', url);
 
-    res.setPreviewData({ branch });
-    res.redirect(url);
+    res.setPreviewData({});
+    // res.redirect(url);
+    res.status(200).json({ url: url });
 };
