@@ -9,7 +9,7 @@ metadata:
 spec:
   image: {{image}}:{{version}}
   team: personbruker
-  port: 8080
+  port: 3000
   liveness:
     path: /person/xp-frontend/api/internal/isAlive
     initialDelay: 10
@@ -22,7 +22,7 @@ spec:
   {{/each}}
   env:
     - name: APP_PORT
-      value: "8080"
+      value: "3000"
     - name: APP_BASE_PATH
       value: /person/xp-frontend
     - name: APP_BASE_URL
