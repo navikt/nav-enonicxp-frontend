@@ -11,10 +11,10 @@ spec:
   team: personbruker
   port: 8080
   liveness:
-    path: /person/xp-frontend/internal/isAlive
+    path: /person/xp-frontend/api/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /person/xp-frontend/internal/isReady
+    path: /person/xp-frontend/api/internal/isReady
     initialDelay: 10
   ingresses:
   {{#each ingresses as |url|}}
