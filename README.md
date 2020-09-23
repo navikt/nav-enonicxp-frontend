@@ -6,4 +6,4 @@ React/[Next.js](https://nextjs.org/) frontend for Enonic XP headless CMS.
 npm run dev
 ```
 
-Kjører lokalt på [http://localhost:8090](http://localhost:8090)
+Kjører lokalt på [http://localhost:3000](http://localhost:3000)
