@@ -4,15 +4,15 @@ import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
 import { ContentListProps } from './content-list-props';
 import { EnonicContentRef } from '../../utils/paths';
-import { NotImplementedProps } from './not-implemented-props';
+import { LegacyHtmlProps } from './legacy-html-props';
 import { PageListProps } from './page-list-props';
 import { MainArticleProps } from './main-article-props';
 import { SiteProps } from './site-props';
 import { ErrorProps } from './error-props';
 
 export enum ContentType {
-    NotImplemented,
-    Error,
+    LegacyHtml = 'legacy',
+    Error = 'error',
     Site = 'portal_Site',
     InternalLink = 'no_nav_navno_InternalLink',
     ExternalLink = 'no_nav_navno_ExternalLink',
@@ -24,7 +24,7 @@ export enum ContentType {
 }
 
 export type ContentTypeSchema =
-    | NotImplementedProps
+    | LegacyHtmlProps
     | ErrorProps
     | SiteProps
     | ExternalLinkProps

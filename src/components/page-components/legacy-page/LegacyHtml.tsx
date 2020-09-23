@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import { isEnonicPath } from '../../../utils/paths';
-import { NotImplementedProps } from '../../../types/content-types/not-implemented-props';
+import { LegacyHtmlProps } from '../../../types/content-types/legacy-html-props';
 import Link from 'next/link';
 import './LegacyStyle.less';
 
@@ -46,7 +46,7 @@ const parseLegacyHtml = (htmlString: string) => {
     return <>{htmlParsed}</>;
 };
 
-export const LegacyHtml = (contentData: NotImplementedProps) => {
+export const LegacyHtml = (contentData: LegacyHtmlProps) => {
     return (
         <div className={'legacy-container'}>
             {parseLegacyHtml(contentData.data.html)}

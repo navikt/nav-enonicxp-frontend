@@ -4,10 +4,11 @@ import { SectionPage } from './page-components/section-page/SectionPage';
 import { TransportPage } from './page-components/transport-page/TransportPage';
 import LegacyHtml from './page-components/legacy-page/LegacyHtml';
 import { ErrorPage } from './page-components/error-page/ErrorPage';
+import { makeErrorProps } from '../types/content-types/error-props';
 
 export const contentToComponentMap = {
     [ContentType.Error]: ErrorPage,
-    [ContentType.NotImplemented]: LegacyHtml,
+    [ContentType.LegacyHtml]: LegacyHtml,
     [ContentType.SectionPage]: SectionPage,
     [ContentType.TransportPage]: TransportPage,
 };
@@ -19,7 +20,17 @@ type Props = {
 export const ContentToComponentMapper = ({ content }: Props) => {
     const Component = contentToComponentMap[content.__typename];
 
-    return <Component {...content} />;
+    return Component ? (
+        <Component {...content} />
+    ) : (
+        <ErrorPage
+            {...makeErrorProps(
+                content._path,
+                `Content type not implemented: ${content.__typename}.
+                 (This error should never occur, double-check content-fetch logic!)`
+            )}
+        />
+    );
 };
 
 export default ContentToComponentMapper;

@@ -1,8 +1,10 @@
 import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
 import { makeErrorProps } from '../types/content-types/error-props';
+import { contentToComponentMap } from '../components/ContentToComponentMapper';
+import { enonicContentBasePath } from './paths';
 
 const xpServiceUrl = process.env.XP_SERVICE_URL;
-const xpBaseUrl = process.env.APP_ORIGIN;
+const xpLegacyUrl = `${process.env.XP_ORIGIN}/_/service/legacy`;
 
 const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
     switch (contentData?.__typename) {
@@ -15,36 +17,34 @@ const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
     }
 };
 
-const timeoutPromise = (timeout: number): Promise<any> =>
-    new Promise((res) =>
-        setTimeout(
-            () =>
-                res({ ok: false, status: 408, statusText: 'Request Timeout' }),
-            timeout
-        )
+const fetchWithTimeout = (url: string, timeout: number): Promise<any> =>
+    Promise.race([
+        fetch(url),
+        new Promise((res) =>
+            setTimeout(
+                () =>
+                    res({
+                        ok: false,
+                        status: 408,
+                        statusText: 'Request Timeout',
+                    }),
+                timeout
+            )
+        ),
+    ]);
+
+const fetchLegacyHtml = (path: string) =>
+    fetchWithTimeout(`${xpLegacyUrl}${encodeURI(path)}`, 5000).catch(
+        console.error
     );
 
-export const fetchHtml = (path: string): Promise<string | void> =>
-    Promise.race([
-        fetch(`${xpBaseUrl}${encodeURI(path)}?legacy=true`),
-        timeoutPromise(5000),
-    ])
-        .then((res) => {
-            if (!res.ok) {
-                const error = `Failed to fetch html: ${res.status} - ${res.statusText}`;
-                return makeErrorProps(path, error);
-            }
-            return res.text();
-        })
-        .catch(console.error);
-
 export const fetchContent = (idOrPath: string): Promise<ContentTypeSchema> =>
-    Promise.race([
-        fetch(`${xpServiceUrl}/sitecontent?id=${encodeURI(idOrPath)}`),
-        timeoutPromise(5000),
-    ])
+    fetchWithTimeout(
+        `${xpServiceUrl}/sitecontent?id=${encodeURI(idOrPath)}`,
+        5000
+    )
         .then((res) => {
-            if (!res.ok) {
+            if (!res?.ok) {
                 const error = `Failed to fetch content: ${res.status} - ${res.statusText}`;
                 console.error(error);
                 return makeErrorProps(idOrPath, error);
@@ -63,6 +63,22 @@ export const fetchPage = async (
 
     if (redirectTarget) {
         return fetchPage(redirectTarget, true);
+    }
+
+    if (content && !contentToComponentMap[content.__typename]) {
+        const path = content._path?.replace(enonicContentBasePath, '');
+        const legacyContent = (await fetchLegacyHtml(path).then(async (res) => {
+            if (!res?.ok) {
+                return makeErrorProps(path, 'Failed to fetch legacy html');
+            }
+            return {
+                ...content,
+                __typename: ContentType.LegacyHtml,
+                data: { html: await res.text() },
+            };
+        })) as ContentTypeSchema;
+
+        return { ...legacyContent, didRedirect: didRedirect };
     }
 
     return content

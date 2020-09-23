@@ -1,11 +1,9 @@
 import React from 'react';
-import { enonicContentBasePath, routerQueryToEnonicPath } from '../utils/paths';
+import { routerQueryToEnonicPath } from '../utils/paths';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import ContentToComponentMapper, {
-    contentToComponentMap,
-} from '../components/ContentToComponentMapper';
-import { fetchHtml, fetchPage } from '../utils/fetch';
-import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
+import ContentToComponentMapper from '../components/ContentToComponentMapper';
+import { fetchPage } from '../utils/fetch';
+import { ContentTypeSchema } from '../types/content-types/_schema';
 import DynamicPageWrapper from '../components/DynamicPageWrapper';
 
 type Props = {
@@ -28,22 +26,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     const content = await fetchPage(enonicPath);
     console.log('content:', content);
-
-    if (!contentToComponentMap[content.__typename]) {
-        const path = content._path?.replace(enonicContentBasePath, '');
-        const legacyContent = await fetchHtml(path).then((res) => ({
-            ...content,
-            __typename: ContentType.NotImplemented,
-            data: { html: res },
-        }));
-
-        return {
-            props: {
-                content: legacyContent,
-            },
-            revalidate: 1,
-        };
-    }
 
     return {
         props: {
