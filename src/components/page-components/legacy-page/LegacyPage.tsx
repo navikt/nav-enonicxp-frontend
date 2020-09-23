@@ -6,7 +6,7 @@ import Link from 'next/link';
 import './LegacyPage.less';
 
 const parseLegacyHtml = (htmlString: string) => {
-    const linkOptions = {
+    const replaceInternalLinks = {
         replace: ({ name, attribs, children }: DomElement) => {
             if (
                 name?.toLowerCase() === 'a' &&
@@ -24,18 +24,18 @@ const parseLegacyHtml = (htmlString: string) => {
         },
     };
 
-    const options = {
+    const mainContentOnly = {
         replace: ({ children, parent }: DomElement) => {
             if (parent?.attribs?.id === 'maincontent') {
                 return (
                     <>
                         {children
-                            ? domToReact(children, linkOptions)
+                            ? domToReact(children, replaceInternalLinks)
                             : 'No page content found.'}
                     </>
                 );
             } else if (children) {
-                return <>{domToReact(children, options)}</>;
+                return <>{domToReact(children, mainContentOnly)}</>;
             } else {
                 return <Fragment />;
             }
@@ -45,7 +45,7 @@ const parseLegacyHtml = (htmlString: string) => {
     // htmlReactParser does not always handle linebreaks well...
     const htmlParsed = htmlReactParser(
         htmlString.replace(/(\r\n|\n|\r)/gm, ''),
-        options
+        mainContentOnly
     );
 
     return <>{htmlParsed}</>;
