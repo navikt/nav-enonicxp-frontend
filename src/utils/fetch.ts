@@ -2,7 +2,7 @@ import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
 import { makeErrorProps } from '../types/content-types/error-props';
 
 const xpServiceUrl = process.env.XP_SERVICE_URL;
-const xpBaseUrl = process.env.XP_BASE_URL;
+const xpBaseUrl = process.env.APP_ORIGIN;
 
 const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
     switch (contentData?.__typename) {

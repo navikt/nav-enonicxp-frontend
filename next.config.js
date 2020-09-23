@@ -16,7 +16,6 @@ const withTranspileModules = require('next-transpile-modules')([
 
 module.exports = withTranspileModules(
     withLess({
-        basePath: process.env.APP_BASE_PATH,
         async headers() {
             return [
                 {
