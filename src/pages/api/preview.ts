@@ -44,5 +44,3 @@ export default async (req, res) => {
     res.setPreviewData({ branchUrl: branchUrl[branch] || branchUrl.master });
     res.status(200).json({ url: url });
 };
-
-// export default setPreviewModeAndReturnPreviewUrl;
