@@ -1,6 +1,6 @@
-const { createSecureHeaders } = require('next-secure-headers');
 const withLess = require('@zeit/next-less');
 const packageJson = require('./package.json');
+const { createSecureHeaders } = require('./src/utils/next-secure-headers/lib');
 
 const navFrontendModuler = [];
 Object.keys(packageJson.dependencies).forEach((key) => {
@@ -17,12 +17,16 @@ const withTranspileModules = require('next-transpile-modules')([
 module.exports = withTranspileModules(
     withLess({
         basePath: process.env.APP_BASE_PATH,
+        // assetPrefix: `${process.env.APP_BASE_URL}${process.env.APP_BASE_PATH}`,
         async headers() {
             return [
                 {
                     source: '/(.*)',
                     headers: createSecureHeaders({
                         frameGuard: false,
+                        contentSecurityPolicy: {
+                            directives: { frameAncestors: '*' },
+                        },
                     }),
                 },
             ];
