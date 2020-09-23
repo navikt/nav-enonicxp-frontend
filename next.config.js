@@ -2,12 +2,10 @@ const withLess = require('@zeit/next-less');
 const packageJson = require('./package.json');
 const { createSecureHeaders } = require('./src/utils/next-secure-headers/lib');
 
-const navFrontendModuler = [];
-Object.keys(packageJson.dependencies).forEach((key) => {
-    if (key.startsWith('nav-frontend-')) {
-        navFrontendModuler.push(key);
-    }
-});
+const navFrontendModuler = Object.keys(packageJson.dependencies).reduce(
+    (acc, key) => (key.startsWith('nav-frontend-') ? acc.concat(key) : acc),
+    []
+);
 
 const withTranspileModules = require('next-transpile-modules')([
     ...navFrontendModuler,
@@ -16,7 +14,7 @@ const withTranspileModules = require('next-transpile-modules')([
 
 module.exports = withTranspileModules(
     withLess({
-        async headers() {
+        headers: async () => {
             return [
                 {
                     source: '/(.*)',

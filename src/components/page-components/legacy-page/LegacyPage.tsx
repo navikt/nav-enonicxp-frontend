@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import { isEnonicPath } from '../../../utils/paths';
-import { LegacyHtmlProps } from '../../../types/content-types/legacy-html-props';
+import { LegacyProps } from '../../../types/content-types/legacy-props';
 import Link from 'next/link';
-import './LegacyStyle.less';
+import './LegacyPage.less';
 
-// TODO: flytt dette til en enonic-service?
 const parseLegacyHtml = (htmlString: string) => {
     const linkOptions = {
         replace: ({ name, attribs, children }: DomElement) => {
@@ -28,11 +27,17 @@ const parseLegacyHtml = (htmlString: string) => {
     const options = {
         replace: ({ children, parent }: DomElement) => {
             if (parent?.attribs?.id === 'maincontent') {
-                return <>{children && domToReact(children, linkOptions)}</>;
-            } else if (!children) {
-                return <Fragment />;
+                return (
+                    <>
+                        {children
+                            ? domToReact(children, linkOptions)
+                            : 'No page content found.'}
+                    </>
+                );
+            } else if (children) {
+                return <>{domToReact(children, options)}</>;
             } else {
-                return <>{children && domToReact(children, options)}</>;
+                return <Fragment />;
             }
         },
     };
@@ -46,12 +51,12 @@ const parseLegacyHtml = (htmlString: string) => {
     return <>{htmlParsed}</>;
 };
 
-export const LegacyHtml = (contentData: LegacyHtmlProps) => {
+export const LegacyPage = (contentData: LegacyProps) => {
     return (
         <div className={'legacy-container'}>
-            {parseLegacyHtml(contentData.data.html)}
+            {contentData.data?.html && parseLegacyHtml(contentData.data.html)}
         </div>
     );
 };
 
-export default LegacyHtml;
+export default LegacyPage;

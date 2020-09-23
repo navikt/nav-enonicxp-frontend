@@ -1,7 +1,7 @@
 import { ContentType, GlobalSchema } from './_schema';
 
-export interface LegacyHtmlProps extends GlobalSchema {
-    __typename: ContentType.LegacyHtml;
+export interface LegacyProps extends GlobalSchema {
+    __typename: ContentType.Legacy;
     data: {
         html: string;
     };

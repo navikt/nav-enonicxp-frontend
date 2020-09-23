@@ -73,7 +73,7 @@ export const fetchPage = async (
             }
             return {
                 ...content,
-                __typename: ContentType.LegacyHtml,
+                __typename: ContentType.Legacy,
                 data: { html: await res.text() },
             };
         })) as ContentTypeSchema;
