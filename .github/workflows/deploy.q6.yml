@@ -37,6 +37,7 @@ jobs:
           ingresses:
             - https://xp-frontend.nais.oera-q.local
             - https://www-q6.nav.no/person/xp-frontend
+            - https://www-q6.nav.no
           image: $IMAGE_REGISTRY/$IMAGE_NAME
           version: $IMAGE_VERSION
           EOF

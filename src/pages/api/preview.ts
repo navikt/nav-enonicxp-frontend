@@ -30,12 +30,11 @@ export default async (req, res) => {
         return res.status(401).json({ message: 'Invalid path' });
     }
 
-    const url = `${process.env.APP_BASE_URL}${
+    const url = `${process.env.APP_ORIGIN}${
         process.env.APP_BASE_PATH
     }${enonicPathToAppPath(content._path)}`;
     console.log('url:', url);
 
-    res.setPreviewData({});
-    // res.redirect(url);
+    res.setPreviewData({ branchUrl: branchUrl[branch] });
     res.status(200).json({ url: url });
 };

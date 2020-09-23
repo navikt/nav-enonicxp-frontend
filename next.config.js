@@ -17,13 +17,11 @@ const withTranspileModules = require('next-transpile-modules')([
 module.exports = withTranspileModules(
     withLess({
         basePath: process.env.APP_BASE_PATH,
-        // assetPrefix: `${process.env.APP_BASE_URL}${process.env.APP_BASE_PATH}`,
         async headers() {
             return [
                 {
                     source: '/(.*)',
                     headers: createSecureHeaders({
-                        frameGuard: false,
                         contentSecurityPolicy: {
                             directives: { frameAncestors: '*' },
                         },

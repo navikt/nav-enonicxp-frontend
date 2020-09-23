@@ -20,17 +20,6 @@ spec:
   {{#each ingresses as |url|}}
     - {{url}}
   {{/each}}
-  env:
-    - name: APP_BASE_PATH
-      value: /person/xp-frontend
-    - name: APP_BASE_URL
-      value: https://www-q6.nav.no
-    - name: DECORATOR_URL
-      value: https://www-q6.nav.no/dekoratoren
-    - name: XP_BASE_URL
-      value: https://www-q6.nav.no
-    - name: XP_SERVICE_URL
-      value: https://www-q6.nav.no/_/service/no.nav.navno
   replicas:
     min: 2
     max: 4
