@@ -5,7 +5,7 @@ import { isEnonicPath, legacyPathPrefix } from '../../../utils/paths';
 import { LegacyProps } from '../../../types/content-types/legacy-props';
 import MetaTags from 'react-meta-tags';
 import Link from 'next/link';
-// import './LegacyPage.less';
+import './LegacyPage.less';
 
 const xpOrigin = process.env.XP_ORIGIN;
 
