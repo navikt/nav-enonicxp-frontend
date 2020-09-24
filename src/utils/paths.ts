@@ -1,4 +1,5 @@
 export const enonicContentBasePath = '/www.nav.no';
+export const legacyPathPrefix = '/_/service/legacy';
 
 export type EnonicContentRef = string;
 
