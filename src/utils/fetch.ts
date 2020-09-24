@@ -1,10 +1,10 @@
 import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
 import { makeErrorProps } from '../types/content-types/error-props';
 import { contentToComponentMap } from '../components/ContentToComponentMapper';
-import { enonicContentBasePath } from './paths';
+import { enonicContentBasePath, legacyPathPrefix } from './paths';
 
 const xpServiceUrl = process.env.XP_SERVICE_URL;
-const xpLegacyUrl = `${process.env.XP_ORIGIN}/_/service/legacy`;
+const xpLegacyUrl = `${process.env.XP_ORIGIN}${legacyPathPrefix}`;
 
 const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
     switch (contentData?.__typename) {
