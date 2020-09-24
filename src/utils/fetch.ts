@@ -36,7 +36,12 @@ const fetchWithTimeout = (url: string, timeout: number): Promise<any> =>
 
 export const fetchDecorator = () =>
     fetchWithTimeout(decoratorUrl, 5000)
-        .then((res) => res.text())
+        .then((res) => {
+            if (!res.ok) {
+                throw Error('Failed to fetch decorator');
+            }
+            return res.text();
+        })
         .catch(console.log);
 
 const fetchLegacyHtml = (path: string) =>

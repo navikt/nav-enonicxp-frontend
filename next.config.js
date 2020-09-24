@@ -29,5 +29,15 @@ module.exports = withTranspileModules(
                 },
             ];
         },
+        redirects: async () => {
+            return [
+                { source: '/', destination: '/no/person', permanent: true },
+                {
+                    source: '/Forsiden',
+                    destination: '/no/person',
+                    permanent: true,
+                },
+            ];
+        },
     })
 );
