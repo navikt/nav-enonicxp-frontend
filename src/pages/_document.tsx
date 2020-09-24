@@ -20,6 +20,18 @@ class DocumentWithDecorator extends Document<Props> {
         const initialProps = await Document.getInitialProps(ctx);
         const decoratorBody = await fetchDecorator();
 
+        if (!decoratorBody) {
+            return {
+                ...initialProps,
+                decoratorFragments: {
+                    HEADER: null,
+                    STYLES: null,
+                    FOOTER: null,
+                    SCRIPTS: null,
+                },
+            };
+        }
+
         const { document } = new JSDOM(decoratorBody).window;
         const prop = 'innerHTML';
         const decoratorFragments = {
