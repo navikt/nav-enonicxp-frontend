@@ -2,9 +2,8 @@ import React from 'react';
 import type { AppProps } from 'next/app';
 import { JSDOM } from 'jsdom';
 import WithDecorator, { DecoratorFragments } from '../components/WithDecorator';
+import { fetchDecorator } from '../utils/fetch';
 import '../global.less';
-
-const { DECORATOR_URL } = process.env;
 
 type Props = {
     decoratorFragments: DecoratorFragments;
@@ -27,9 +26,7 @@ const App = (props: Props) => {
 App.getInitialProps = async (ctx) => {
     // runs only on server
     if (ctx.ctx.req) {
-        const decoratorBody = await fetch(DECORATOR_URL)
-            .then((res) => res.text())
-            .catch(console.log);
+        const decoratorBody = await fetchDecorator();
 
         if (!decoratorBody) {
             return {

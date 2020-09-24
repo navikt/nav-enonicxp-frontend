@@ -3,10 +3,10 @@ import parse from 'html-react-parser';
 import Head from 'next/head';
 
 export type DecoratorFragments = {
-    HEADER: string;
-    FOOTER: string;
-    SCRIPTS: string;
-    STYLES: string;
+    HEADER: string | null;
+    FOOTER: string | null;
+    SCRIPTS: string | null;
+    STYLES: string | null;
 };
 
 type Props = {
@@ -20,11 +20,11 @@ export const WithDecorator = ({
 }: Props) => {
     return (
         <>
-            <Head>{parse(STYLES)}</Head>
-            {parse(HEADER)}
+            {STYLES && <Head>{parse(STYLES)}</Head>}
+            {HEADER && parse(HEADER)}
             {children}
-            {parse(FOOTER)}
-            {parse(SCRIPTS)}
+            {FOOTER && parse(FOOTER)}
+            {SCRIPTS && parse(SCRIPTS)}
         </>
     );
 };

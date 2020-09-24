@@ -5,6 +5,7 @@ import { enonicContentBasePath, legacyPathPrefix } from './paths';
 
 const xpServiceUrl = process.env.XP_SERVICE_URL;
 const xpLegacyUrl = `${process.env.XP_ORIGIN}${legacyPathPrefix}`;
+const decoratorUrl = process.env.DECORATOR_URL;
 
 const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
     switch (contentData?.__typename) {
@@ -32,6 +33,11 @@ const fetchWithTimeout = (url: string, timeout: number): Promise<any> =>
             )
         ),
     ]);
+
+export const fetchDecorator = () =>
+    fetchWithTimeout(decoratorUrl, 5000)
+        .then((res) => res.text())
+        .catch(console.log);
 
 const fetchLegacyHtml = (path: string) =>
     fetchWithTimeout(`${xpLegacyUrl}${encodeURI(path)}`, 5000).catch(
