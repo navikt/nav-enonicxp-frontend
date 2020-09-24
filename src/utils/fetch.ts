@@ -3,6 +3,7 @@ import { makeErrorProps } from '../types/content-types/error-props';
 import { contentToComponentMap } from '../components/ContentToComponentMapper';
 import { enonicContentBasePath, legacyPathPrefix } from './paths';
 
+const decoratorUrl = process.env.DECORATOR_URL;
 const xpServiceUrl = process.env.XP_SERVICE_URL;
 const xpLegacyUrl = `${process.env.XP_ORIGIN}${legacyPathPrefix}`;
 
@@ -85,3 +86,14 @@ export const fetchPage = async (
         ? { ...content, didRedirect: didRedirect }
         : makeErrorProps(idOrPath, 'Unspecified error');
 };
+
+export const fetchDecorator = () =>
+    fetchWithTimeout(`${decoratorUrl}`, 5000)
+        .then((res) => {
+            if (!res?.ok) {
+                const error = `Failed to fetch content: ${res.status} - ${res.statusText}`;
+                throw Error(error);
+            }
+            return res.text();
+        })
+        .catch(console.error);

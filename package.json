@@ -1,6 +1,6 @@
 {
     "name": "nav-enonicxp-frontend",
-    "version": "0.1.30",
+    "version": "0.1.41",
     "private": true,
     "scripts": {
         "dev": "next dev -p 3000",
@@ -12,6 +12,7 @@
         "classnames": "^2.2.6",
         "cors": "^2.8.5",
         "html-react-parser": "^0.13.0",
+        "jsdom": "^16.4.0",
         "nav-frontend-chevron": "^1.0.13",
         "nav-frontend-chevron-style": "^0.3.5",
         "nav-frontend-core": "^5.0.1",
@@ -28,7 +29,8 @@
         "next": "9.5.3",
         "prop-types": "^15.7.2",
         "react": "^16.13.1",
-        "react-dom": "16.13.1"
+        "react-dom": "16.13.1",
+        "react-meta-tags": "^0.7.4"
     },
     "devDependencies": {
         "@types/node": "^14.10.3",

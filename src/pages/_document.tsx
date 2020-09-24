@@ -1,37 +1,61 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { JSDOM } from 'jsdom';
+import parse from 'html-react-parser';
+import { fetchDecorator } from '../utils/fetch';
 
-const decoratorUrl = process.env.DECORATOR_URL;
+interface Decorator {
+    HEADER: string;
+    FOOTER: string;
+    SCRIPTS: string;
+    STYLES: string;
+}
 
-class DocumentWithDecorator extends Document {
+type Props = {
+    decoratorFragments: Decorator;
+};
+
+class DocumentWithDecorator extends Document<Props> {
+    static async getInitialProps(ctx) {
+        const initialProps = await Document.getInitialProps(ctx);
+        const decoratorBody = await fetchDecorator();
+
+        if (!decoratorBody) {
+            return {
+                ...initialProps,
+                decoratorFragments: {
+                    HEADER: null,
+                    STYLES: null,
+                    FOOTER: null,
+                    SCRIPTS: null,
+                },
+            };
+        }
+
+        const { document } = new JSDOM(decoratorBody).window;
+        const prop = 'innerHTML';
+        const decoratorFragments = {
+            HEADER: document.getElementById('header-withmenu')[prop],
+            STYLES: document.getElementById('styles')[prop],
+            FOOTER: document.getElementById('footer-withmenu')[prop],
+            SCRIPTS: document.getElementById('scripts')[prop],
+        };
+
+        return { ...initialProps, decoratorFragments };
+    }
+
     render() {
+        const { decoratorFragments } = this.props;
+        const { HEADER, STYLES, FOOTER, SCRIPTS } = decoratorFragments;
+
         return (
             <Html>
-                <Head>
-                    <link
-                        href={`${decoratorUrl}/css/client.css`}
-                        rel="stylesheet"
-                    />
-                </Head>
+                <Head>{STYLES ? parse(STYLES) : null}</Head>
                 <body>
-                    <div
-                        id="decorator-header"
-                        className="navno-dekorator"
-                        role="main"
-                    />
-                    <div className="app">
-                        <Main />
-                    </div>
-                    <div
-                        id="decorator-footer"
-                        className="navno-dekorator"
-                        role="main"
-                    />
-                    <div
-                        id="decorator-env"
-                        data-src={`${decoratorUrl}/env?chatbot=true`}
-                    />
-                    <script src={`${decoratorUrl}/client.js`} />
+                    {HEADER ? parse(HEADER) : null}
+                    <Main />
+                    {FOOTER ? parse(FOOTER) : null}
+                    {SCRIPTS ? parse(SCRIPTS) : null}
                     <NextScript />
                 </body>
             </Html>
