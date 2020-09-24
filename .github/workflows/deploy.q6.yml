@@ -18,6 +18,7 @@ jobs:
           echo ::set-env name=IMAGE_VERSION::$(echo ${GITHUB_WORKFLOW})-$(echo ${GITHUB_SHA})
           echo ::set-env name=GITHUB_TOKEN::$(echo ${GITHUB_TOKEN})
       - name: Define app environmment
+        run: |
           cat > .env <<EOF
           APP_ORIGIN=https://www-q6
           DECORATOR_URL=https://www-q6.nav.no/dekoratoren
