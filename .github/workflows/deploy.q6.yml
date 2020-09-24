@@ -20,11 +20,11 @@ jobs:
       - name: Define app environmment
         run: |
           cat > .env <<EOF
-          APP_ORIGIN=https://www-q6
+          APP_ORIGIN=https://www-q6.nav.no
           DECORATOR_URL=https://www-q6.nav.no/dekoratoren
           PREVIEW_SECRET=asdf
-          XP_ORIGIN=https://www-q6
-          XP_SERVICE_URL=https://www-q6
+          XP_ORIGIN=https://www-q6.nav.no
+          XP_SERVICE_URL=https://www-q6.nav.no/_/service/no.nav.navno
           EOF
       - uses: actions/cache@v1
         with:
