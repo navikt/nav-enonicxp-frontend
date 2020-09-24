@@ -10,7 +10,7 @@ COPY package*.json /usr/src/app/
 RUN npm ci
 
 # Copying build files from workflow
-COPY .next /usr/src/app/
+COPY .next /usr/src/app/.next/
 
 # Start app
 EXPOSE 3000
