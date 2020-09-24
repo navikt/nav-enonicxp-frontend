@@ -45,12 +45,8 @@ class DocumentWithDecorator extends Document<Props> {
     }
 
     render() {
-        const {
-            HEADER,
-            STYLES,
-            FOOTER,
-            SCRIPTS,
-        } = this.props.decoratorFragments;
+        const { decoratorFragments } = this.props;
+        const { HEADER, STYLES, FOOTER, SCRIPTS } = decoratorFragments;
 
         return (
             <Html>
@@ -59,20 +55,7 @@ class DocumentWithDecorator extends Document<Props> {
                     {HEADER ? parse(HEADER) : null}
                     <Main />
                     {FOOTER ? parse(FOOTER) : null}
-                    {SCRIPTS &&
-                        parse(SCRIPTS, {
-                            replace: ({ type, attribs }) => {
-                                if (typeof document !== 'undefined') {
-                                    if (type === 'script') {
-                                        const script = document.createElement(
-                                            'script'
-                                        );
-                                        script.src = attribs.src;
-                                        document.head.appendChild(script);
-                                    }
-                                }
-                            },
-                        })}
+                    {SCRIPTS ? parse(SCRIPTS) : null}
                     <NextScript />
                 </body>
             </Html>
