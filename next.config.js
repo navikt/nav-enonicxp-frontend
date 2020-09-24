@@ -14,6 +14,9 @@ const withTranspileModules = require('next-transpile-modules')([
 
 module.exports = withTranspileModules(
     withLess({
+        env: {
+            XP_ORIGIN: process.env.XP_ORIGIN,
+        },
         headers: async () => {
             return [
                 {
