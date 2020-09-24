@@ -6,10 +6,10 @@ import parse from 'html-react-parser';
 const { DECORATOR_URL } = process.env;
 
 interface Decorator {
-    HEADER: string;
-    FOOTER: string;
-    SCRIPTS: string;
-    STYLES: string;
+    HEADER: string | null;
+    FOOTER: string | null;
+    SCRIPTS: string | null;
+    STYLES: string | null;
 }
 
 type Props = {
@@ -19,9 +19,22 @@ type Props = {
 class DocumentWithDecorator extends Document<Props> {
     static async getInitialProps(ctx) {
         const initialProps = await Document.getInitialProps(ctx);
-        const decoratorBody = await fetch(DECORATOR_URL).then((res) =>
-            res.text()
-        );
+
+        const decoratorBody = await fetch(DECORATOR_URL)
+            .then((res) => res.text())
+            .catch(console.log);
+
+        if (!decoratorBody) {
+            return {
+                ...initialProps,
+                decoratorFragments: {
+                    HEADER: null,
+                    STYLES: null,
+                    FOOTER: null,
+                    SCRIPTS: null,
+                },
+            };
+        }
 
         const { document } = new JSDOM(decoratorBody).window;
         const prop = 'innerHTML';
