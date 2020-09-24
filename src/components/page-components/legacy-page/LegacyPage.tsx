@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
+import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { isEnonicPath, legacyPathPrefix } from '../../../utils/paths';
 import { LegacyProps } from '../../../types/content-types/legacy-props';
 import Link from 'next/link';
@@ -12,14 +13,13 @@ const parseLegacyHtml = (htmlString: string) => {
                 const href = attribs.href
                     .replace(legacyPathPrefix, '')
                     .replace('https://www.nav.no', '');
+                const props = attributesToProps(attribs);
                 return isEnonicPath(href) ? (
                     <Link href={href} passHref={true}>
-                        <a {...attribs} className={attribs?.class}>
-                            {children && domToReact(children)}
-                        </a>
+                        <a {...props}>{children && domToReact(children)}</a>
                     </Link>
                 ) : (
-                    <a {...attribs} href={href} className={attribs?.class}>
+                    <a {...props} href={href}>
                         {children && domToReact(children)}
                     </a>
                 );
