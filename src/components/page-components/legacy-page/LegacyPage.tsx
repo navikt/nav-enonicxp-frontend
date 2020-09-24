@@ -3,8 +3,11 @@ import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { isEnonicPath, legacyPathPrefix } from '../../../utils/paths';
 import { LegacyProps } from '../../../types/content-types/legacy-props';
+import MetaTags from 'react-meta-tags';
 import Link from 'next/link';
-import './LegacyPage.less';
+// import './LegacyPage.less';
+
+const xpOrigin = process.env.XP_ORIGIN;
 
 const parseLegacyHtml = (htmlString: string) => {
     const replaceInternalLinks = {
@@ -27,8 +30,30 @@ const parseLegacyHtml = (htmlString: string) => {
         },
     };
 
-    const mainContentOnly = {
-        replace: ({ children, parent }: DomElement) => {
+    const fixHeadHrefs = {
+        replace: ({ name, attribs }: DomElement) => {
+            const href = attribs?.href
+                ? `${xpOrigin}${attribs.href.replace(legacyPathPrefix, '')}`
+                : undefined;
+            const src = attribs?.src
+                ? `${xpOrigin}${attribs.src.replace(legacyPathPrefix, '')}`
+                : undefined;
+            const props = attributesToProps(attribs);
+
+            return React.createElement(name, { ...props, href, src });
+        },
+    };
+
+    const headAndMainContentOnly = {
+        replace: ({ name, children, parent }: DomElement) => {
+            if (name?.toLowerCase() === 'head' && children) {
+                return (
+                    <MetaTags>
+                        <>{domToReact(children, fixHeadHrefs)}</>
+                    </MetaTags>
+                );
+            }
+
             if (parent?.attribs?.id === 'maincontent') {
                 return (
                     <>
@@ -40,7 +65,7 @@ const parseLegacyHtml = (htmlString: string) => {
                     </>
                 );
             } else if (children) {
-                return <>{domToReact(children, mainContentOnly)}</>;
+                return <>{domToReact(children, headAndMainContentOnly)}</>;
             } else {
                 return <Fragment />;
             }
@@ -50,7 +75,7 @@ const parseLegacyHtml = (htmlString: string) => {
     // htmlReactParser does not always handle linebreaks well...
     const htmlParsed = htmlReactParser(
         htmlString.replace(/(\r\n|\n|\r)/gm, ''),
-        mainContentOnly
+        headAndMainContentOnly
     );
 
     return <>{htmlParsed}</>;
@@ -58,9 +83,12 @@ const parseLegacyHtml = (htmlString: string) => {
 
 export const LegacyPage = (contentData: LegacyProps) => {
     return (
-        <div className={'legacy-container'}>
-            {contentData.data?.html && parseLegacyHtml(contentData.data.html)}
-        </div>
+        <>
+            <div className={'legacy-container'}>
+                {contentData.data?.html &&
+                    parseLegacyHtml(contentData.data.html)}
+            </div>
+        </>
     );
 };
 
