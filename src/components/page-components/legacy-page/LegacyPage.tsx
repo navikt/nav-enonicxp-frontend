@@ -29,9 +29,11 @@ const parseLegacyHtml = (htmlString: string) => {
             if (parent?.attribs?.id === 'maincontent') {
                 return (
                     <>
-                        {children
-                            ? domToReact(children, replaceInternalLinks)
-                            : 'No page content found.'}
+                        {children ? (
+                            domToReact(children, replaceInternalLinks)
+                        ) : (
+                            <Fragment />
+                        )}
                     </>
                 );
             } else if (children) {
