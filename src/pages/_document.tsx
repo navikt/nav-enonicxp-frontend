@@ -53,7 +53,9 @@ class DocumentWithDecorator extends Document<Props> {
                 <Head>{STYLES ? parse(STYLES) : null}</Head>
                 <body>
                     {HEADER ? parse(HEADER) : null}
-                    <Main />
+                    <div className="app">
+                        <Main />
+                    </div>
                     {FOOTER ? parse(FOOTER) : null}
                     {SCRIPTS ? parse(SCRIPTS) : null}
                     <NextScript />
