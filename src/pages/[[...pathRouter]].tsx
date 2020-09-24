@@ -29,10 +29,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const enonicPath = routerQueryToEnonicPath(
         context?.params?.pathRouter || ''
     );
-    // console.log('context:', context);
 
     const content = await fetchPage(enonicPath);
-    // console.log('content:', content);
 
     return {
         props: {
