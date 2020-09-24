@@ -18,12 +18,13 @@ jobs:
           echo ::set-env name=IMAGE_VERSION::$(echo ${GITHUB_WORKFLOW})-$(echo ${GITHUB_SHA})
           echo ::set-env name=GITHUB_TOKEN::$(echo ${GITHUB_TOKEN})
       - name: Define app environmment
-        run: |
-          echo ::set-env name=APP_ORIGIN::https://www-q6.nav.no
-          echo ::set-env name=DECORATOR_URL::https://www-q6.nav.no/dekoratoren
-          echo ::set-env name=PREVIEW_SECRET::asdf
-          echo ::set-env name=XP_ORIGIN::https://www-q6.nav.no
-          echo ::set-env name=XP_SERVICE_URL::https://www-q6.nav.no/_/service/no.nav.navno
+          cat > .env <<EOF
+          APP_ORIGIN=https://www-q6
+          DECORATOR_URL=https://www-q6.nav.no/dekoratoren
+          PREVIEW_SECRET=asdf
+          XP_ORIGIN=https://www-q6
+          XP_SERVICE_URL=https://www-q6
+          EOF
       - uses: actions/cache@v1
         with:
           path: ~/.npm
