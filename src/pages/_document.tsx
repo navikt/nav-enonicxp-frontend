@@ -2,8 +2,7 @@ import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { JSDOM } from 'jsdom';
 import parse from 'html-react-parser';
-
-const { DECORATOR_URL } = process.env;
+import { fetchDecorator } from '../utils/fetch';
 
 interface Decorator {
     HEADER: string;
@@ -19,9 +18,7 @@ type Props = {
 class DocumentWithDecorator extends Document<Props> {
     static async getInitialProps(ctx) {
         const initialProps = await Document.getInitialProps(ctx);
-        const decoratorBody = await fetch(DECORATOR_URL).then((res) =>
-            res.text()
-        );
+        const decoratorBody = await fetchDecorator();
 
         const { document } = new JSDOM(decoratorBody).window;
         const prop = 'innerHTML';
