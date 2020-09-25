@@ -14,17 +14,28 @@ type Props = {
     children: React.ReactNode;
 };
 
+const decUrl = process.env.DECORATOR_URL;
+const ClientStyles = () => <link href={`${decUrl}/css/client.css`} />;
+const ClientHeader = () => <div id="decorator-header" />;
+const ClientFooter = () => <div id="decorator-footer" />;
+const ClientScripts = () => (
+    <>
+        <div id="decorator-env" data-src={`${decUrl}`} />
+        <script src={`${decUrl}/client.js`} />
+    </>
+);
+
 export const WithDecorator = ({
     fragments: { HEADER, FOOTER, SCRIPTS, STYLES },
     children,
 }: Props) => {
     return (
         <>
-            {STYLES && <Head>{parse(STYLES)}</Head>}
-            {HEADER && parse(HEADER)}
+            <Head>{STYLES ? parse(STYLES) : <ClientStyles />}</Head>
+            {HEADER ? parse(HEADER) : <ClientHeader />}
             {children}
-            {FOOTER && parse(FOOTER)}
-            {SCRIPTS && parse(SCRIPTS)}
+            {FOOTER ? parse(FOOTER) : <ClientFooter />}
+            {SCRIPTS ? parse(SCRIPTS) : <ClientScripts />}
         </>
     );
 };
