@@ -33,7 +33,7 @@ App.getInitialProps = async (ctx) => {
             return {
                 decoratorFragments: {
                     HEADER: `<div id="decorator-header"></div>`,
-                    STYLES: `<link href="${decoratorUrl}/css/client.css\" rel=\"stylesheet\" />`,
+                    STYLES: `<link href="${decoratorUrl}/css/client.css" rel="stylesheet" />`,
                     FOOTER: `<div id="decorator-footer"></div>`,
                     SCRIPTS: `<div id="decorator-env" data-src="${decoratorUrl}"></div><script src="${decoratorUrl}/client.js"></script>`,
                 },
