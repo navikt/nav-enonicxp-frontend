@@ -4,6 +4,8 @@ import { JSDOM } from 'jsdom';
 import WithDecorator, { DecoratorFragments } from '../components/WithDecorator';
 import { fetchDecorator } from '../utils/fetch';
 import '../global.less';
+import { useRouter } from 'next/router';
+import { FallbackPage } from '../components/page-components/fallback-page/FallbackPage';
 
 type Props = {
     decoratorFragments: DecoratorFragments;
@@ -11,14 +13,19 @@ type Props = {
 
 const App = (props: Props) => {
     const { Component, pageProps, decoratorFragments } = props;
+    const router = useRouter();
 
     return (
         <WithDecorator fragments={decoratorFragments}>
-            <div className={'app'}>
-                <div className={'content-wrapper'} id={'maincontent'}>
-                    <Component {...pageProps} />
+            {router.isFallback ? (
+                <FallbackPage />
+            ) : (
+                <div className={'app'}>
+                    <div className={'content-wrapper'} id={'maincontent'}>
+                        <Component {...pageProps} />
+                    </div>
                 </div>
-            </div>
+            )}
         </WithDecorator>
     );
 };

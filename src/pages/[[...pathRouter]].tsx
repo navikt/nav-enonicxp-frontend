@@ -13,11 +13,6 @@ type Props = {
 };
 
 const PathRouter = (props: Props) => {
-    const router = useRouter();
-    if (router.isFallback) {
-        return <FallbackPage />;
-    }
-
     return props?.content ? (
         <DynamicPageWrapper content={props.content}>
             <ContentToComponentMapper content={props.content} />
