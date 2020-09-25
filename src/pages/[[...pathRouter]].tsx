@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
-        paths: [],
+        paths: [{ params: { pathRouter: null } }],
         fallback: true,
     };
 };
