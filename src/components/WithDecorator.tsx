@@ -31,11 +31,13 @@ export const WithDecorator = ({
 }: Props) => {
     return (
         <>
-            <Head>{STYLES ? parse(STYLES) : <ClientStyles />}</Head>
+            <Head>
+                {STYLES ? parse(STYLES) : <ClientStyles />}
+                {SCRIPTS ? parse(SCRIPTS) : <ClientScripts />}
+            </Head>
             {HEADER ? parse(HEADER) : <ClientHeader />}
             {children}
             {FOOTER ? parse(FOOTER) : <ClientFooter />}
-            {SCRIPTS ? parse(SCRIPTS) : <ClientScripts />}
         </>
     );
 };
