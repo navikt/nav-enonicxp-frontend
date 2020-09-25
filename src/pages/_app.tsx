@@ -29,12 +29,13 @@ App.getInitialProps = async (ctx) => {
         const decoratorBody = await fetchDecorator();
 
         if (!decoratorBody) {
+            const decoratorUrl = process.env.DECORATOR_URL;
             return {
                 decoratorFragments: {
-                    HEADER: null,
-                    STYLES: null,
-                    FOOTER: null,
-                    SCRIPTS: null,
+                    HEADER: `<div id="decorator-header"></div>`,
+                    STYLES: `<link href="${decoratorUrl}/css/client.css\" rel=\"stylesheet\" />`,
+                    FOOTER: `<div id="decorator-footer"></div>`,
+                    SCRIPTS: `<div id="decorator-env" data-src="${decoratorUrl}"></div><script src="${decoratorUrl}/client.js"></script>`,
                 },
             };
         }
