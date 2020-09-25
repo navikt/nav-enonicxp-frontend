@@ -13,47 +13,46 @@ const App = (props: Props) => {
     const { Component, pageProps, decoratorFragments } = props;
 
     return (
-        // <WithDecorator fragments={decoratorFragments}>
-        <div className={'app'}>
-            <div className={'content-wrapper'} id={'maincontent'}>
-                <Component {...pageProps} />
+        <WithDecorator fragments={decoratorFragments}>
+            <div className={'app'}>
+                <div className={'content-wrapper'} id={'maincontent'}>
+                    <Component {...pageProps} />
+                </div>
             </div>
-        </div>
-        // </WithDecorator>
+        </WithDecorator>
     );
 };
 
-// App.getInitialProps = async (ctx) => {
-//     console.log(ctx);
-//     // runs only on server
-//     if (ctx.ctx.req) {
-//         const decoratorBody = await fetchDecorator();
-//
-//         if (true) {
-//             const decoratorUrl = process.env.DECORATOR_URL;
-//             return {
-//                 decoratorFragments: {
-//                     HEADER: `<div id="decorator-header"></div>`,
-//                     STYLES: `<link href="${decoratorUrl}/css/client.css" rel="stylesheet" />`,
-//                     FOOTER: `<div id="decorator-footer"></div>`,
-//                     SCRIPTS: `<div id="decorator-env" data-src="${decoratorUrl}"></div><script src="${decoratorUrl}/client.js"></script>`,
-//                 },
-//             };
-//         }
-//
-//         const { document } = new JSDOM(decoratorBody).window;
-//         const prop = 'innerHTML';
-//         const decoratorFragments = {
-//             HEADER: document.getElementById('header-withmenu')[prop],
-//             STYLES: document.getElementById('styles')[prop],
-//             FOOTER: document.getElementById('footer-withmenu')[prop],
-//             SCRIPTS: document.getElementById('scripts')[prop],
-//         };
-//
-//         return { decoratorFragments };
-//     }
-//
-//     return {};
-// };
+App.getInitialProps = async (ctx) => {
+    // runs only on server
+    if (ctx.ctx.req) {
+        const decoratorBody = await fetchDecorator();
+
+        if (!decoratorBody) {
+            const decoratorUrl = process.env.DECORATOR_URL;
+            return {
+                decoratorFragments: {
+                    HEADER: `<div id="decorator-header"></div>`,
+                    STYLES: `<link href="${decoratorUrl}/css/client.css" rel="stylesheet" />`,
+                    FOOTER: `<div id="decorator-footer"></div>`,
+                    SCRIPTS: `<div id="decorator-env" data-src="${decoratorUrl}/env"><script src="${decoratorUrl}/client.js"></script>`,
+                },
+            };
+        }
+
+        const { document } = new JSDOM(decoratorBody).window;
+        const prop = 'innerHTML';
+        const decoratorFragments = {
+            HEADER: document.getElementById('header-withmenu')[prop],
+            STYLES: document.getElementById('styles')[prop],
+            FOOTER: document.getElementById('footer-withmenu')[prop],
+            SCRIPTS: document.getElementById('scripts')[prop],
+        };
+
+        return { decoratorFragments };
+    }
+
+    return {};
+};
 
 export default App;
