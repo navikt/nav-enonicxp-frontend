@@ -1,9 +1,13 @@
 import React from 'react';
 import type { AppProps } from 'next/app';
 import { JSDOM } from 'jsdom';
-import WithDecorator, { DecoratorFragments } from '../components/WithDecorator';
-import { fetchDecorator } from '../utils/fetch';
+import WithDecorator, {
+    DecoratorFragments,
+    paramsObjectToQueryString,
+} from '../components/WithDecorator';
+import { fetchDecorator, fetchPage } from '../utils/fetch';
 import '../global.less';
+import { enonicPathToUrl, routerQueryToEnonicPath } from '../utils/paths';
 
 type Props = {
     decoratorFragments: DecoratorFragments;
@@ -26,7 +30,23 @@ const App = (props: Props) => {
 App.getInitialProps = async (ctx) => {
     // runs only on server
     if (ctx.ctx.req) {
-        const decoratorBody = await fetchDecorator();
+        // TODO: finn en måte å få denne informasjonen uten et nytt kall til enonic...
+        const enonicPath = routerQueryToEnonicPath(
+            ctx.router.query.pathRouter || ''
+        );
+        const content = await fetchPage(enonicPath);
+
+        const params = {
+            chatbot: true,
+            breadcrumbs: [
+                {
+                    title: content?.displayName || ' ',
+                    url: enonicPathToUrl(content?._path),
+                },
+            ],
+        };
+        const query = paramsObjectToQueryString(params);
+        const decoratorBody = await fetchDecorator(query);
 
         if (!decoratorBody) {
             const decoratorUrl = process.env.DECORATOR_URL;
@@ -35,7 +55,7 @@ App.getInitialProps = async (ctx) => {
                     HEADER: `<div id="decorator-header"></div>`,
                     STYLES: `<link href="${decoratorUrl}/css/client.css" rel="stylesheet" />`,
                     FOOTER: `<div id="decorator-footer"></div>`,
-                    SCRIPTS: `<div id="decorator-env" data-src="${decoratorUrl}/env"><script src="${decoratorUrl}/client.js"></script>`,
+                    SCRIPTS: `<div id="decorator-env" data-src="${decoratorUrl}/env${query}"><script src="${decoratorUrl}/client.js"></script>`,
                 },
             };
         }

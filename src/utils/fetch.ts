@@ -34,11 +34,14 @@ const fetchWithTimeout = (url: string, timeout: number): Promise<any> =>
         ),
     ]);
 
-export const fetchDecorator = () =>
-    fetchWithTimeout(`${decoratorUrl}`, 5000)
+export const fetchDecorator = (queryString?: string) =>
+    fetchWithTimeout(
+        `${decoratorUrl}${queryString ? `/?${queryString}` : ''}`,
+        5000
+    )
         .then((res) => {
             if (!res?.ok) {
-                const error = `Failed to fetch content: ${res.status} - ${res.statusText}`;
+                const error = `Failed to fetch decorator: ${res.status} - ${res.statusText}`;
                 throw Error(error);
             }
             return res.text();
