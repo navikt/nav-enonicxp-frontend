@@ -12,7 +12,7 @@ export const enonicPathToUrl = (enonicPath: string) =>
         : '#';
 
 export const isEnonicPath = (path: string) =>
-    /(nav.no|^)(\/no|\/en|\/se|\/nav.no)/.test(path);
+    /(www.nav.no|^nav.no|^)($|\/$|\/no|\/en|\/se|\/nav.no)/.test(path);
 
 export const routerQueryToEnonicPath = (routerQuery: string | string[]) => {
     const queryPath =

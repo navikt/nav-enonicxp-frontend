@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import {
+    onBreadcrumbClick,
+    setBreadcrumbs,
+} from '@navikt/nav-dekoratoren-moduler';
 import { enonicPathToAppPath } from '../utils/paths';
 import { ContentTypeSchema } from '../types/content-types/_schema';
 import Head from 'next/head';
@@ -14,6 +17,10 @@ export const DynamicPageWrapper = ({ content, children }: Props) => {
     const router = useRouter();
 
     useEffect(() => {
+        onBreadcrumbClick((breadcrumb) => router.push(breadcrumb.url));
+    }, []);
+
+    useEffect(() => {
         if (!content) {
             return;
         }
@@ -22,6 +29,7 @@ export const DynamicPageWrapper = ({ content, children }: Props) => {
             {
                 title: content.displayName,
                 url: enonicPathToAppPath(content._path),
+                handleInApp: true,
             },
         ]);
 
