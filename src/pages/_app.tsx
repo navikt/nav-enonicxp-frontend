@@ -26,33 +26,30 @@ const App = (props: Props) => {
 App.getInitialProps = async (ctx) => {
     // runs only on server
     if (ctx.ctx.req) {
-        const decoratorBody = await fetchDecorator();
+        const decoratorUrlEnv = process.env.DECORATOR_URL;
+        const decoratorUrlProd = `https://www.nav.no/dekoratoren`;
 
-        if (!decoratorBody) {
-            const decoratorUrl = process.env.DECORATOR_URL;
-            return {
-                decoratorFragments: {
-                    HEADER: `<div id="decorator-header"></div>`,
-                    STYLES: `<link href="${decoratorUrl}/css/client.css" rel="stylesheet" />`,
-                    FOOTER: `<div id="decorator-footer"></div>`,
-                    SCRIPTS: `<div id="decorator-env" data-src="${decoratorUrl}"></div><script src="${decoratorUrl}/client.js"></script>`,
-                },
-            };
-        }
-
-        const { document } = new JSDOM(decoratorBody).window;
-        const prop = 'innerHTML';
-        const decoratorFragments = {
-            HEADER: document.getElementById('header-withmenu')[prop],
-            STYLES: document.getElementById('styles')[prop],
-            FOOTER: document.getElementById('footer-withmenu')[prop],
-            SCRIPTS: document.getElementById('scripts')[prop],
-        };
+        const decoratorFragments =
+            (await getDecoratorFragments(decoratorUrlEnv)) ||
+            (await getDecoratorFragments(decoratorUrlProd));
 
         return { decoratorFragments };
     }
 
     return {};
+};
+
+const getDecoratorFragments = async (url: string) => {
+    const body = await fetchDecorator(url);
+    if (!body) return false;
+    const { document } = new JSDOM(body).window;
+    const prop = 'innerHTML';
+    return {
+        HEADER: document.getElementById('header-withmenu')[prop],
+        STYLES: document.getElementById('styles')[prop],
+        FOOTER: document.getElementById('footer-withmenu')[prop],
+        SCRIPTS: document.getElementById('scripts')[prop],
+    };
 };
 
 export default App;
