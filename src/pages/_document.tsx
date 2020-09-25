@@ -3,13 +3,17 @@ import { fetchDecorator } from '../utils/fetch';
 import { JSDOM } from 'jsdom';
 import parse from 'html-react-parser';
 import React from 'react';
-import { DecoratorFragments } from '../components/WithDecorator';
 
 const ParsedHtml = ({ html }: { html: string | null }) =>
     html ? <>{parse(html)}</> : null;
 
 type Props = {
-    decoratorFragments: DecoratorFragments;
+    decoratorFragments: {
+        HEADER: string;
+        FOOTER: string;
+        SCRIPTS: string;
+        STYLES: string;
+    };
 };
 
 class MyDocument extends Document<Props> {
@@ -26,7 +30,7 @@ class MyDocument extends Document<Props> {
                     HEADER: `<div id="decorator-header"></div>`,
                     STYLES: `<link href="${decoratorUrl}/css/client.css" rel="stylesheet" />`,
                     FOOTER: `<div id="decorator-footer"></div>`,
-                    SCRIPTS: `<div id="decorator-env" data-src="${decoratorUrl}"></div><script src="${decoratorUrl}/client.js"></script>`,
+                    SCRIPTS: `<div id="decorator-env" data-src=${decoratorUrl}/env></div><script src="${decoratorUrl}/client.js"></script>`,
                 },
             };
         }
