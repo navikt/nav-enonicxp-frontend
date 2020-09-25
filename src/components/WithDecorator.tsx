@@ -17,16 +17,14 @@ type Props = {
 export const WithDecorator = ({
     fragments: { HEADER, FOOTER, SCRIPTS, STYLES },
     children,
-}: Props) => {
-    return (
-        <>
-            {STYLES && <Head>{parse(STYLES)}</Head>}
-            {HEADER && parse(HEADER)}
-            {children}
-            {FOOTER && parse(FOOTER)}
-            {SCRIPTS && parse(SCRIPTS)}
-        </>
-    );
-};
+}: Props) => (
+    <>
+        {STYLES && <Head>{parse(STYLES)}</Head>}
+        {HEADER && parse(HEADER)}
+        {children}
+        {FOOTER && parse(FOOTER)}
+        {SCRIPTS && parse(SCRIPTS)}
+    </>
+);
 
 export default WithDecorator;
