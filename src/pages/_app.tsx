@@ -8,7 +8,7 @@ import {
     paramsObjectToQueryString,
 } from '../utils/fetch';
 import '../global.less';
-import { enonicPathToUrl, routerQueryToEnonicPath } from '../utils/paths';
+import { enonicPathToAppPath, routerQueryToEnonicPath } from '../utils/paths';
 
 type Props = {
     decoratorFragments: DecoratorFragments;
@@ -42,7 +42,7 @@ App.getInitialProps = async (ctx) => {
             breadcrumbs: [
                 {
                     title: content?.displayName || ' ',
-                    url: enonicPathToUrl(content?._path),
+                    url: enonicPathToAppPath(content?._path),
                 },
             ],
         };
