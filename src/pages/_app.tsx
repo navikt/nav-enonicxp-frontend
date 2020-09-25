@@ -26,12 +26,12 @@ const App = (props: Props) => {
 App.getInitialProps = async (ctx) => {
     // runs only on server
     if (ctx.ctx.req) {
-        const decoratorUrlEnv = process.env.DECORATOR_URL;
-        const decoratorUrlProd = `https://www.nav.no/dekoratoren`;
+        const decoratorUrlEnv = process.env.DECORATOR_ENV_URL;
+        const decoratorUrlProd = process.env.DECORATOR_PROD_URL;
 
-        const decoratorFragments =
-            (await getDecoratorFragments(decoratorUrlEnv)) ||
-            (await getDecoratorFragments(decoratorUrlProd));
+        const decoratorFragments = !process.env.GITHUB_BUILD
+            ? await getDecoratorFragments(decoratorUrlEnv)
+            : await getDecoratorFragments(decoratorUrlProd);
 
         return { decoratorFragments };
     }
