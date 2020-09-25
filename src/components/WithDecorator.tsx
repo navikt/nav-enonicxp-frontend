@@ -4,15 +4,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { hookAndInterceptInternalLink } from '../utils/links';
 
-export const paramsObjectToQueryString = (params: object) =>
-    encodeURI(
-        Object.entries(params).reduce(
-            (acc, [k, v], i) =>
-                `${acc}${i ? '&' : ''}${k}=${JSON.stringify(v)}`,
-            ''
-        )
-    );
-
 export type DecoratorFragments = {
     HEADER: string | null;
     FOOTER: string | null;

@@ -1,11 +1,12 @@
 import React from 'react';
 import type { AppProps } from 'next/app';
 import { JSDOM } from 'jsdom';
-import WithDecorator, {
-    DecoratorFragments,
+import WithDecorator, { DecoratorFragments } from '../components/WithDecorator';
+import {
+    fetchDecorator,
+    fetchPage,
     paramsObjectToQueryString,
-} from '../components/WithDecorator';
-import { fetchDecorator, fetchPage } from '../utils/fetch';
+} from '../utils/fetch';
 import '../global.less';
 import { enonicPathToUrl, routerQueryToEnonicPath } from '../utils/paths';
 

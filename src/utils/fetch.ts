@@ -18,6 +18,15 @@ const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
     }
 };
 
+export const paramsObjectToQueryString = (params: object) =>
+    encodeURI(
+        Object.entries(params).reduce(
+            (acc, [k, v], i) =>
+                `${acc}${i ? '&' : ''}${k}=${JSON.stringify(v)}`,
+            '?'
+        )
+    );
+
 const fetchWithTimeout = (url: string, timeout: number): Promise<any> =>
     Promise.race([
         fetch(url),
@@ -35,10 +44,7 @@ const fetchWithTimeout = (url: string, timeout: number): Promise<any> =>
     ]);
 
 export const fetchDecorator = (queryString?: string) =>
-    fetchWithTimeout(
-        `${decoratorUrl}${queryString ? `/?${queryString}` : ''}`,
-        5000
-    )
+    fetchWithTimeout(`${decoratorUrl}${queryString ? queryString : ''}`, 5000)
         .then((res) => {
             if (!res?.ok) {
                 const error = `Failed to fetch decorator: ${res.status} - ${res.statusText}`;
