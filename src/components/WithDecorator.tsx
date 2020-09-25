@@ -14,17 +14,26 @@ type Props = {
     children: React.ReactNode;
 };
 
+const ParsedHtml = ({ html }: { html: string | null }) =>
+    html ? <>{parse(html)}</> : null;
+
+let counter = 0;
+
 export const WithDecorator = ({
     fragments: { HEADER, FOOTER, SCRIPTS, STYLES },
     children,
 }: Props) => {
+    counter++;
+    console.log('scripts:', counter, SCRIPTS);
     return (
         <>
-            {STYLES && <Head>{parse(STYLES)}</Head>}
-            {HEADER && parse(HEADER)}
+            <Head>
+                <ParsedHtml html={STYLES} />
+            </Head>
+            <ParsedHtml html={HEADER} />
             {children}
-            {FOOTER && parse(FOOTER)}
-            {SCRIPTS && parse(SCRIPTS)}
+            <ParsedHtml html={FOOTER} />
+            <ParsedHtml html={SCRIPTS} />
         </>
     );
 };
