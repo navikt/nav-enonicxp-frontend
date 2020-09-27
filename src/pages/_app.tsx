@@ -31,12 +31,10 @@ const App = (props: Props) => {
 App.getInitialProps = async (ctx) => {
     // runs only on server
     if (ctx.ctx.req) {
-        // TODO: finn en måte å få denne informasjonen uten et ekstra kall til enonic...
         const enonicPath = routerQueryToEnonicPath(
             ctx.router.query.pathRouter || ''
         );
         const content = await fetchPage(enonicPath);
-        console.log('getting decorator for', enonicPath);
 
         const params = {
             chatbot: true,
