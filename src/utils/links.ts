@@ -18,6 +18,18 @@ export const hookAndInterceptInternalLink = (router: NextRouter) => (
     if (isEnonicPath(href)) {
         e.preventDefault();
         const path = new URL(href).pathname;
-        router.push(path);
+        router
+            .push(path)
+            .then(() =>
+                document?.getElementById('top-element')?.scrollIntoView()
+            );
+    }
+};
+
+export const prefetchOnMouseover = (router: NextRouter) => (e: MouseEvent) => {
+    const href = getLinkHref(e.target as HTMLElement);
+    if (isEnonicPath(href)) {
+        const path = new URL(href).pathname;
+        router.prefetch(path);
     }
 };

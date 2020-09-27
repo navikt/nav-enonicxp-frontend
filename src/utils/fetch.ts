@@ -19,12 +19,12 @@ const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
 };
 
 export const paramsObjectToQueryString = (params: object) =>
-    encodeURI(
-        Object.entries(params).reduce(
-            (acc, [k, v], i) =>
-                `${acc}${i ? '&' : ''}${k}=${JSON.stringify(v)}`,
-            '?'
-        )
+    Object.entries(params).reduce(
+        (acc, [k, v], i) =>
+            `${acc}${i ? '&' : '?'}${k}=${encodeURIComponent(
+                JSON.stringify(v)
+            )}`,
+        ''
     );
 
 const fetchWithTimeout = (url: string, timeout: number): Promise<any> =>
@@ -43,32 +43,36 @@ const fetchWithTimeout = (url: string, timeout: number): Promise<any> =>
         ),
     ]);
 
-export const fetchDecorator = (queryString?: string) =>
-    fetchWithTimeout(`${decoratorUrl}/${queryString ? queryString : ''}`, 5000)
+export const fetchDecorator = (queryString?: string) => {
+    const url = `${decoratorUrl}/${queryString ? queryString : ''}`;
+    return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (!res?.ok) {
-                const error = `Failed to fetch decorator: ${res.status} - ${res.statusText}`;
+                const error = `Failed to fetch decorator from ${url}: ${res.status} - ${res.statusText}`;
                 throw Error(error);
             }
             return res.text();
         })
         .catch(console.error);
+};
 
-const fetchLegacyHtml = (path: string) =>
-    fetchWithTimeout(`${xpLegacyUrl}${encodeURI(path)}`, 5000).catch(
-        console.error
-    );
+const fetchLegacyHtml = (path: string) => {
+    const url = `${xpLegacyUrl}/${encodeURIComponent(
+        path[0] === '/' ? path.slice(1) : path
+    )}`;
+    return fetchWithTimeout(url, 5000).catch(console.error);
+};
 
-export const fetchContent = (idOrPath: string): Promise<ContentTypeSchema> =>
+const fetchContent = (idOrPath: string): Promise<ContentTypeSchema> =>
     fetchWithTimeout(
-        `${xpServiceUrl}/sitecontent?id=${encodeURI(idOrPath)}`,
+        `${xpServiceUrl}/sitecontent?id=${encodeURIComponent(idOrPath)}`,
         5000
     )
         .then((res) => {
             if (!res?.ok) {
-                const error = `Failed to fetch content: ${res.status} - ${res.statusText}`;
+                const error = `Failed to fetch content from ${idOrPath}: ${res.statusText}`;
                 console.error(error);
-                return makeErrorProps(idOrPath, error);
+                return makeErrorProps(idOrPath, error, res.status);
             }
             return res.json();
         })
@@ -90,7 +94,8 @@ export const fetchPage = async (
         const path = content._path?.replace(enonicContentBasePath, '');
         const legacyContent = (await fetchLegacyHtml(path).then(async (res) => {
             if (!res?.ok) {
-                return makeErrorProps(path, 'Failed to fetch legacy html');
+                const error = `Failed to fetch legacy html from ${path}`;
+                return makeErrorProps(path, error, res.statusText);
             }
             return {
                 ...content,
@@ -104,5 +109,5 @@ export const fetchPage = async (
 
     return content
         ? { ...content, didRedirect: didRedirect }
-        : makeErrorProps(idOrPath, 'Unspecified error');
+        : makeErrorProps(idOrPath, `Unknown fetch error from ${idOrPath}`);
 };

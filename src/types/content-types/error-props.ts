@@ -3,13 +3,15 @@ import { ContentType, GlobalSchema } from './_schema';
 export interface ErrorProps extends GlobalSchema {
     __typename: ContentType.Error;
     data: {
-        error?: string;
+        errorMessage: string;
+        errorCode?: number;
     };
 }
 
 export const makeErrorProps = (
     idOrPath: string,
-    error: string
+    errorMessage: string,
+    errorCode?: number
 ): ErrorProps => ({
     __typename: ContentType.Error,
     _path: idOrPath,
@@ -18,6 +20,7 @@ export const makeErrorProps = (
     createdTime: Date.now().toString(),
     modifiedTime: Date.now().toString(),
     data: {
-        error: error,
+        errorMessage: errorMessage,
+        errorCode: errorCode,
     },
 });

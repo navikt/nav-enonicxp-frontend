@@ -25,6 +25,9 @@ export const DynamicPageWrapper = ({ content, children }: Props) => {
             return;
         }
 
+        const focusedElement = document.activeElement as HTMLElement;
+        focusedElement?.blur && focusedElement.blur();
+
         setBreadcrumbs([
             {
                 title: content.displayName,

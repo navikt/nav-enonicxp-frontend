@@ -9,7 +9,7 @@ export const enonicPathToAppPath = (enonicPath: string) =>
 export const enonicPathToUrl = (enonicPath: string) =>
     enonicPath
         ? `${process.env.APP_ORIGIN}${enonicPathToAppPath(enonicPath)}`
-        : '#';
+        : '';
 
 export const isEnonicPath = (path: string) =>
     /(www.*.nav.no|^nav.no|^)($|\/$|\/no|\/en|\/se|\/nav.no)/.test(path);
