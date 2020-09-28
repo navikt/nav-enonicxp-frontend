@@ -1,4 +1,4 @@
-import { fetchPage } from '../../utils/fetch';
+import { fetchPage } from '../../utils/fetchContent';
 import { enonicContentBasePath, enonicPathToUrl } from '../../utils/paths';
 
 type Params = {

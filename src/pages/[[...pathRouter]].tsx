@@ -2,7 +2,7 @@ import React from 'react';
 import { routerQueryToEnonicPath } from '../utils/paths';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import ContentToComponentMapper from '../components/ContentToComponentMapper';
-import { fetchPage } from '../utils/fetch';
+import { fetchPage } from '../utils/fetchContent';
 import { ContentTypeSchema } from '../types/content-types/_schema';
 import DynamicPageWrapper from '../components/DynamicPageWrapper';
 import { useRouter } from 'next/router';
