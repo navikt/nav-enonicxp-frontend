@@ -16,14 +16,20 @@ export type DecoratorFragments = {
 
 type Props = {
     fragments: DecoratorFragments;
+    isCSR?: boolean;
     children: React.ReactNode;
 };
 
 export const WithDecorator = ({
     fragments: { HEADER, FOOTER, SCRIPTS, STYLES },
+    isCSR = false,
     children,
 }: Props) => {
     const router = useRouter();
+
+    useEffect(() => {
+        console.warn('using CSR decorator?:', isCSR);
+    }, [isCSR]);
 
     useEffect(() => {
         const linkInterceptor = hookAndInterceptInternalLink(router);

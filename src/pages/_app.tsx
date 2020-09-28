@@ -12,13 +12,19 @@ import { enonicPathToAppPath, routerQueryToEnonicPath } from '../utils/paths';
 
 type Props = {
     decoratorFragments: DecoratorFragments;
+    isCSRDecorator?: boolean;
 } & AppProps;
 
 const App = (props: Props) => {
-    const { Component, pageProps, decoratorFragments } = props;
+    const {
+        Component,
+        pageProps,
+        decoratorFragments,
+        isCSRDecorator = false,
+    } = props;
 
     return (
-        <WithDecorator fragments={decoratorFragments}>
+        <WithDecorator fragments={decoratorFragments} isCSR={isCSRDecorator}>
             <div className={'app'}>
                 <div className={'content-wrapper'} id={'maincontent'}>
                     <Component {...pageProps} />
@@ -55,8 +61,9 @@ App.getInitialProps = async (ctx) => {
                     HEADER: `<div id="decorator-header"></div>`,
                     STYLES: `<link href="${decoratorUrl}/css/client.css" rel="stylesheet" />`,
                     FOOTER: `<div id="decorator-footer"></div>`,
-                    SCRIPTS: `<div id="decorator-env" data-src="${decoratorUrl}/env${query}"><script src="${decoratorUrl}/client.js"></script>`,
+                    SCRIPTS: `<div id="decorator-env" data-src="${decoratorUrl}/env${query}"></div><script src="${decoratorUrl}/client.js"></script>`,
                 },
+                isCSRDecorator: true,
             };
         }
 
