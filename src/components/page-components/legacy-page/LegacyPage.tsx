@@ -5,6 +5,7 @@ import { isEnonicPath, legacyPathPrefix } from '../../../utils/paths';
 import { LegacyProps } from '../../../types/content-types/legacy-props';
 import Link from 'next/link';
 import Head from 'next/head';
+import './LegacyPage.less';
 
 const xpOrigin = process.env.XP_ORIGIN;
 
@@ -88,13 +89,9 @@ export const LegacyPage = (contentData: LegacyProps) => {
     return (
         <>
             <Head>
-                <link
-                    rel="stylesheet"
-                    href={`${xpOrigin}/_/asset/no.nav.navno:1601291153/styles/navno.css`}
-                />
                 <script
                     type="text/javascript"
-                    src={`${xpOrigin}/_/asset/no.nav.navno:1601291153/js/navno.js`}
+                    src={`/legacygfx/scripts/navno.js`}
                 />
             </Head>
             <div className={'legacy-container'}>
