@@ -57,9 +57,7 @@ export const fetchDecorator = (queryString?: string) => {
 };
 
 const fetchLegacyHtml = (path: string) => {
-    const url = `${xpLegacyUrl}/${encodeURIComponent(
-        path[0] === '/' ? path.slice(1) : path
-    )}`;
+    const url = `${xpLegacyUrl}/${path[0] === '/' ? path.slice(1) : path}`;
     return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (!res?.ok) {
