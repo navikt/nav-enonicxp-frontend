@@ -9,6 +9,7 @@ import { PageListProps } from './page-list-props';
 import { MainArticleProps } from './main-article-props';
 import { SiteProps } from './site-props';
 import { ErrorProps } from './error-props';
+import { NotificationProps } from './notification-props';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -21,6 +22,7 @@ export enum ContentType {
     ContentList = 'no_nav_navno_ContentList',
     PageList = 'no_nav_navno_PageList',
     MainArticle = 'no_nav_navno_MainArticle',
+    Notification = 'no_nav_navno_Notification',
 }
 
 export type ContentTypeSchema =
@@ -33,7 +35,8 @@ export type ContentTypeSchema =
     | TransportPageProps
     | ContentListProps
     | PageListProps
-    | MainArticleProps;
+    | MainArticleProps
+    | NotificationProps;
 
 export type GlobalSchema = {
     __typename: ContentType;
