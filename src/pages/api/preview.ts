@@ -1,5 +1,5 @@
 import { fetchPage } from '../../utils/fetch';
-import { enonicContentBasePath, enonicPathToAppPath } from '../../utils/paths';
+import { enonicContentBasePath, enonicPathToUrl } from '../../utils/paths';
 
 type Params = {
     secret: string;
@@ -36,9 +36,7 @@ export default async (req, res) => {
         return res.status(404).json({ message: 'Not found' });
     }
 
-    const url = `${process.env.APP_ORIGIN}${enonicPathToAppPath(
-        content._path
-    )}`;
+    const url = enonicPathToUrl(content._path);
     console.log('url:', url);
 
     res.setPreviewData({ branchUrl: branchUrl[branch] || branchUrl.master });

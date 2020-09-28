@@ -1,11 +1,12 @@
 {
     "name": "nav-enonicxp-frontend",
-    "version": "0.1.61",
+    "version": "0.2.6",
     "private": true,
     "scripts": {
         "dev": "next dev -p 3000",
         "build": "next build",
-        "start": "next start"
+        "start": "next start",
+        "start-clean": "rm -fr .next && npm run build && npm start"
     },
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "^1.0.21",
