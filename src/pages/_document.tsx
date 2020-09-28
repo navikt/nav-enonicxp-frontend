@@ -1,9 +1,15 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { DecoratorFragments } from '../components/WithDecorator';
 import { fetchDecorator, paramsObjectToQueryString } from '../utils/fetch';
 import { JSDOM } from 'jsdom';
 import parse from 'html-react-parser';
 import React from 'react';
+
+export type DecoratorFragments = {
+    HEADER: string | null;
+    FOOTER: string | null;
+    SCRIPTS: string | null;
+    STYLES: string | null;
+};
 
 type Props = {
     decoratorFragments: DecoratorFragments;
@@ -60,7 +66,9 @@ class MyDocument extends Document<Props> {
             <Html>
                 <Head>{STYLES && parse(STYLES)}</Head>
                 <body>
-                    <div>{`Using CSR decorator?: ${isCSRDecorator}`}</div>
+                    <div
+                        style={{ position: 'absolute', zIndex: 9999 }}
+                    >{`Using CSR decorator?: ${isCSRDecorator}`}</div>
                     {HEADER && parse(HEADER)}
                     <Main />
                     {FOOTER && parse(FOOTER)}
