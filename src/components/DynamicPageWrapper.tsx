@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
-import {
-    onBreadcrumbClick,
-    setBreadcrumbs,
-} from '@navikt/nav-dekoratoren-moduler';
+import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
 import { enonicPathToAppPath } from '../utils/paths';
 import { ContentTypeSchema } from '../types/content-types/_schema';
-import Head from 'next/head';
-import {
-    hookAndInterceptInternalLink,
-    prefetchOnMouseover,
-} from '../utils/links';
+import { prefetchOnMouseover } from '../utils/links';
+import { hookAndInterceptInternalLink } from '../utils/links';
 
 type Props = {
     content: ContentTypeSchema;
@@ -62,13 +58,15 @@ export const DynamicPageWrapper = ({ content, children }: Props) => {
 
         const enonicPath = enonicPathToAppPath(content._path);
 
-        setBreadcrumbs([
-            {
-                title: content.displayName,
-                url: enonicPath || '/',
-                handleInApp: true,
-            },
-        ]);
+        if (content.displayName) {
+            setBreadcrumbs([
+                {
+                    title: content.displayName,
+                    url: enonicPath || '/',
+                    handleInApp: true,
+                },
+            ]);
+        }
 
         // Ensures the url displayed in the browser is correct after static redirection
         if (content.didRedirect && enonicPath) {
