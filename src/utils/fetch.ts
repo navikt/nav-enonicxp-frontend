@@ -60,7 +60,17 @@ const fetchLegacyHtml = (path: string) => {
     const url = `${xpLegacyUrl}/${encodeURIComponent(
         path[0] === '/' ? path.slice(1) : path
     )}`;
-    return fetchWithTimeout(url, 5000).catch(console.error);
+    return fetchWithTimeout(url, 5000)
+        .then((res) => {
+            if (!res?.ok) {
+                return {
+                    ...res,
+                    statusText: `Failed to fetch legacy html from ${path} at ${url}`,
+                };
+            }
+            return res;
+        })
+        .catch(console.error);
 };
 
 const fetchContent = (idOrPath: string): Promise<ContentTypeSchema> =>
@@ -71,7 +81,6 @@ const fetchContent = (idOrPath: string): Promise<ContentTypeSchema> =>
         .then((res) => {
             if (!res?.ok) {
                 const error = `Failed to fetch content from ${idOrPath}: ${res.statusText}`;
-                console.error(error);
                 return makeErrorProps(idOrPath, error, res.status);
             }
             return res.json();
@@ -94,8 +103,7 @@ export const fetchPage = async (
         const path = content._path?.replace(enonicContentBasePath, '');
         const legacyContent = (await fetchLegacyHtml(path).then(async (res) => {
             if (!res?.ok) {
-                const error = `Failed to fetch legacy html from ${path}`;
-                return makeErrorProps(path, error, res.statusText);
+                return makeErrorProps(path, res.statusText, res.status);
             }
             return {
                 ...content,

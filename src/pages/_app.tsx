@@ -41,7 +41,7 @@ App.getInitialProps = async (ctx) => {
             breadcrumbs: [
                 {
                     title: content?.displayName || ' ',
-                    url: enonicPathToAppPath(content?._path) || ' ',
+                    url: enonicPathToAppPath(content?._path) || '/',
                 },
             ],
         };

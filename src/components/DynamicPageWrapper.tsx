@@ -28,17 +28,19 @@ export const DynamicPageWrapper = ({ content, children }: Props) => {
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
 
+        const enonicPath = enonicPathToAppPath(content._path);
+
         setBreadcrumbs([
             {
                 title: content.displayName,
-                url: enonicPathToAppPath(content._path),
+                url: enonicPath || '/',
                 handleInApp: true,
             },
         ]);
 
         // Ensures the url displayed in the browser is correct after static redirection
-        if (content.didRedirect) {
-            router.replace(enonicPathToAppPath(content._path), undefined, {
+        if (content.didRedirect && enonicPath) {
+            router.replace(enonicPath, undefined, {
                 shallow: true,
             });
         }

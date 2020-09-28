@@ -31,7 +31,7 @@ export const LenkeNavNo = ({
 
     const link = (
         <a
-            href={_href}
+            href={_href || '/'}
             className={`${bem()} ${className || ''}`}
             id={id}
             onClick={onClick}

@@ -33,7 +33,7 @@ const LenkepanelPluss = ({
 
     return (
         <LenkepanelBase
-            href={_href}
+            href={_href || '/'}
             className={`${bem()} ${className || ''}`}
             id={id}
             border={true}
