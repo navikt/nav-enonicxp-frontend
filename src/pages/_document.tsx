@@ -13,7 +13,6 @@ export type DecoratorFragments = {
 
 type Props = {
     decoratorFragments: DecoratorFragments;
-    isCSRDecorator?: boolean;
 };
 
 class MyDocument extends Document<Props> {
@@ -42,7 +41,6 @@ class MyDocument extends Document<Props> {
                     FOOTER: `<div id="decorator-footer"></div>`,
                     SCRIPTS: `<div id="decorator-env" data-src="${decoratorUrl}/env${query}"></div><script src="${decoratorUrl}/client.js"></script>`,
                 },
-                isCSRDecorator: true,
             };
         }
 
@@ -55,11 +53,11 @@ class MyDocument extends Document<Props> {
             SCRIPTS: document.getElementById('scripts')[prop],
         };
 
-        return { ...initialProps, decoratorFragments, isCSRDecorator: false };
+        return { ...initialProps, decoratorFragments };
     }
 
     render() {
-        const { decoratorFragments, isCSRDecorator } = this.props;
+        const { decoratorFragments } = this.props;
         const { HEADER, FOOTER, SCRIPTS, STYLES } = decoratorFragments;
 
         return (
@@ -72,9 +70,6 @@ class MyDocument extends Document<Props> {
                     {STYLES && parse(STYLES)}
                 </Head>
                 <body>
-                    <div
-                        style={{ position: 'absolute', zIndex: 9999 }}
-                    >{`Using CSR decorator?: ${isCSRDecorator}`}</div>
                     {HEADER && parse(HEADER)}
                     <Main />
                     {FOOTER && parse(FOOTER)}
