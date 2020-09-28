@@ -10,6 +10,7 @@ COPY package*.json /usr/src/app/
 RUN npm ci
 
 # Copying build files from workflow
+COPY public /usr/src/app/public/
 COPY .next /usr/src/app/.next/
 COPY .env /usr/src/app/
 
