@@ -64,7 +64,13 @@ class MyDocument extends Document<Props> {
 
         return (
             <Html>
-                <Head>{STYLES && parse(STYLES)}</Head>
+                <Head>
+                    {/* Legacy scripts */}
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
+                    <script src="https://amplitude.nav.no/libs/amplitude-7.1.0-min.gz.js" />
+                    {/* Legacy scripts */}
+                    {STYLES && parse(STYLES)}
+                </Head>
                 <body>
                     <div
                         style={{ position: 'absolute', zIndex: 9999 }}

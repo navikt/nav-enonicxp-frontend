@@ -3,9 +3,8 @@ import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { isEnonicPath, legacyPathPrefix } from '../../../utils/paths';
 import { LegacyProps } from '../../../types/content-types/legacy-props';
-import MetaTags from 'react-meta-tags';
 import Link from 'next/link';
-import './LegacyPage.less';
+import Head from 'next/head';
 
 const xpOrigin = process.env.XP_ORIGIN;
 
@@ -33,10 +32,14 @@ const parseLegacyHtml = (htmlString: string) => {
     const fixHeadHrefs = {
         replace: ({ name, attribs }: DomElement) => {
             const href = attribs?.href
-                ? `${xpOrigin}${attribs.href.replace(legacyPathPrefix, '')}`
+                ? attribs?.href?.charAt(0) === '/'
+                    ? `${xpOrigin}${attribs.href.replace(legacyPathPrefix, '')}`
+                    : attribs.href
                 : undefined;
             const src = attribs?.src
-                ? `${xpOrigin}${attribs.src.replace(legacyPathPrefix, '')}`
+                ? attribs?.src?.charAt(0) === '/'
+                    ? `${xpOrigin}${attribs.src.replace(legacyPathPrefix, '')}`
+                    : attribs.src
                 : undefined;
             const props = attributesToProps(attribs);
 
@@ -48,9 +51,9 @@ const parseLegacyHtml = (htmlString: string) => {
         replace: ({ name, children, parent }: DomElement) => {
             if (name?.toLowerCase() === 'head' && children) {
                 return (
-                    <MetaTags>
+                    <Head>
                         <>{domToReact(children, fixHeadHrefs)}</>
-                    </MetaTags>
+                    </Head>
                 );
             }
 
@@ -84,6 +87,16 @@ const parseLegacyHtml = (htmlString: string) => {
 export const LegacyPage = (contentData: LegacyProps) => {
     return (
         <>
+            <Head>
+                <link
+                    rel="stylesheet"
+                    href={`${xpOrigin}/_/asset/no.nav.navno:1601291153/styles/navno.css`}
+                />
+                <script
+                    type="text/javascript"
+                    src={`${xpOrigin}/_/asset/no.nav.navno:1601291153/js/navno.js`}
+                />
+            </Head>
             <div className={'legacy-container'}>
                 {contentData.data?.html &&
                     parseLegacyHtml(contentData.data.html)}
