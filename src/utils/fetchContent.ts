@@ -4,6 +4,7 @@ import { contentToComponentMap } from '../components/ContentToComponentMapper';
 import { enonicContentBasePath, legacyPathPrefix } from './paths';
 import { fetchWithTimeout } from './fetchWithTimeout';
 import { Breadcrumb } from '../types/breadcrumb';
+import { NotificationProps } from '../types/content-types/notification-props';
 
 const xpServiceUrl = process.env.XP_SERVICE_URL;
 const xpLegacyUrl = `${process.env.XP_ORIGIN}${legacyPathPrefix}`;
@@ -34,7 +35,7 @@ const fetchLegacyHtml = (path: string) => {
         .catch(console.error);
 };
 
-const fetch = (idOrPath: string): Promise<ContentTypeSchema> =>
+const fetchContent = (idOrPath: string): Promise<ContentTypeSchema> =>
     fetchWithTimeout(
         `${xpServiceUrl}/sitecontent?id=${encodeURIComponent(idOrPath)}`,
         5000
@@ -45,6 +46,22 @@ const fetch = (idOrPath: string): Promise<ContentTypeSchema> =>
             }
             const error = `Failed to fetch content from ${idOrPath}: ${res.statusText}`;
             return makeErrorProps(idOrPath, error, res.status);
+        })
+        .catch(console.error);
+
+export const fetchNotifications = (
+    path?: string
+): Promise<NotificationProps[] | void> =>
+    fetchWithTimeout(
+        `${xpServiceUrl}/notifications${path ? `?path=${path}` : ''}`,
+        5000
+    )
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            const error = `Failed to fetch notifications: ${res.statusText}`;
+            throw Error(error);
         })
         .catch(console.error);
 
@@ -86,7 +103,7 @@ export const fetchPage = async (
     idOrPath: string,
     didRedirect: boolean = false
 ): Promise<ContentTypeSchema> => {
-    const content = await fetch(idOrPath);
+    const content = await fetchContent(idOrPath);
 
     const redirectTarget = getTargetIfRedirect(content);
 

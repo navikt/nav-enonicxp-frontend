@@ -1,0 +1,21 @@
+@import (reference) '../../../global';
+
+.global-notifications {
+    @numCols: 2;
+    @margin-between: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem @padding-sides-desktop 2rem @padding-sides-desktop;
+
+    .notification {
+        width: calc(
+            percentage(1 / @numCols) - @margin-between *
+                ((@numCols - 1) / @numCols)
+        );
+        &:not(:nth-child(@{numCols}n)) {
+            margin-right: @margin-between;
+        }
+    }
+}

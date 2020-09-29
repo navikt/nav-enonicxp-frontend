@@ -11,16 +11,19 @@ import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
 import { Breadcrumb } from '../types/breadcrumb';
 import { Language } from '../types/languages';
+import GlobalNotifications from './part-components/notifications/GlobalNotifications';
+import { NotificationProps } from '../types/content-types/notification-props';
 
 type Props = {
     content: ContentTypeSchema;
     breadcrumbs: Breadcrumb[];
     languages: Language[];
+    notifications?: NotificationProps[];
     children: React.ReactNode;
 };
 
 export const DynamicPageWrapper = (props: Props) => {
-    const { content, breadcrumbs, languages, children } = props;
+    const { content, breadcrumbs, languages, notifications, children } = props;
     const router = useRouter();
 
     useEffect(() => {
@@ -91,7 +94,12 @@ export const DynamicPageWrapper = (props: Props) => {
             <Head>
                 <title>{`${content.displayName} - nav.no`}</title>
             </Head>
-            {children}
+            {notifications && (
+                <GlobalNotifications notifications={notifications} />
+            )}
+            <div className={'content-wrapper'} id={'maincontent'}>
+                {children}
+            </div>
         </>
     );
 };

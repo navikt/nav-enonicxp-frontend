@@ -34,11 +34,11 @@ module.exports = configWithAllTheThings({
     },
     redirects: async () => {
         return [
-            { source: '/', destination: '/no/person', permanent: true },
+            { source: '/', destination: '/no/person', permanent: false },
             {
                 source: '/Forsiden',
                 destination: '/no/person',
-                permanent: true,
+                permanent: false,
             },
         ];
     },

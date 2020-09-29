@@ -1,25 +1,14 @@
 import React from 'react';
-import {
-    NotificationProps,
-    NotificationType,
-} from '../../../types/content-types/notification-props';
+import { NotificationProps } from '../../../types/content-types/notification-props';
 import LenkepanelPluss from '../lenkepanel/LenkepanelPluss';
 import {
     ContentType,
     ContentTypeSchema,
 } from '../../../types/content-types/_schema';
-
-import infoIconAsset from '/public/gfx/info-sirkel-fyll.svg';
 import { Undertekst } from 'nav-frontend-typografi';
-
-const PulsatingIcon = () => (
-    <>
-        <div className={'icon__pulse'} />
-        <div className={'icon__center'} />
-    </>
-);
-
-const InfoIcon = () => <img src={infoIconAsset} alt={''} />;
+import { PulsatingIcon } from './icons/PulsatingIcon';
+import { InfoIcon } from './icons/InfoIcon';
+import './Notification.less';
 
 const iconsForType = {
     warning: <PulsatingIcon />,
@@ -43,6 +32,7 @@ export const Notification = ({ data, modifiedTime }: NotificationProps) => {
             href={getUrl(target)}
             tittel={title}
             ikon={iconsForType[type]}
+            className={'notification'}
         >
             <>
                 {showUpdated && <Undertekst>{modifiedTime}</Undertekst>}
