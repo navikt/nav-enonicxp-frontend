@@ -2,10 +2,10 @@ import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
 import { makeErrorProps } from '../types/content-types/error-props';
 import { contentToComponentMap } from '../components/ContentToComponentMapper';
 import { enonicContentBasePath, legacyPathPrefix } from './paths';
+import { fetchWithTimeout } from './fetchWithTimeout';
 
 const xpServiceUrl = process.env.XP_SERVICE_URL;
 const xpLegacyUrl = `${process.env.XP_ORIGIN}${legacyPathPrefix}`;
-const decoratorUrl = process.env.DECORATOR_URL;
 
 const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
     switch (contentData?.__typename) {
@@ -16,44 +16,6 @@ const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
         default:
             return null;
     }
-};
-
-export const paramsObjectToQueryString = (params: object) =>
-    Object.entries(params).reduce(
-        (acc, [k, v], i) =>
-            `${acc}${i ? '&' : '?'}${k}=${encodeURIComponent(
-                JSON.stringify(v)
-            )}`,
-        ''
-    );
-
-const fetchWithTimeout = (url: string, timeout: number): Promise<any> =>
-    Promise.race([
-        fetch(url),
-        new Promise((res) =>
-            setTimeout(
-                () =>
-                    res({
-                        ok: false,
-                        status: 408,
-                        statusText: 'Request Timeout',
-                    }),
-                timeout
-            )
-        ),
-    ]);
-
-export const fetchDecorator = (queryString?: string) => {
-    const url = `${decoratorUrl}/${queryString ? queryString : ''}`;
-    return fetchWithTimeout(url, 5000)
-        .then((res) => {
-            if (res.ok) {
-                return res.text();
-            }
-            const error = `Failed to fetch decorator from ${url}: ${res.status} - ${res.statusText}`;
-            throw Error(error);
-        })
-        .catch(console.error);
 };
 
 const fetchLegacyHtml = (path: string) => {
@@ -71,7 +33,7 @@ const fetchLegacyHtml = (path: string) => {
         .catch(console.error);
 };
 
-const fetchContent = (idOrPath: string): Promise<ContentTypeSchema> =>
+const fetch = (idOrPath: string): Promise<ContentTypeSchema> =>
     fetchWithTimeout(
         `${xpServiceUrl}/sitecontent?id=${encodeURIComponent(idOrPath)}`,
         5000
@@ -89,7 +51,7 @@ export const fetchPage = async (
     idOrPath: string,
     didRedirect: boolean = false
 ): Promise<ContentTypeSchema> => {
-    const content = await fetchContent(idOrPath);
+    const content = await fetch(idOrPath);
 
     const redirectTarget = getTargetIfRedirect(content);
 
