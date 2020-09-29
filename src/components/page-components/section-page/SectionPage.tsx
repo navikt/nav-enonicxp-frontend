@@ -1,5 +1,5 @@
 import React from 'react';
-import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
+import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import { SectionPageProps } from '../../../types/content-types/section-page-props';
 import TableContents from '../../part-components/table-contents/TableContents';
 import { BEM } from '../../../utils/bem';
@@ -26,9 +26,9 @@ export const SectionPage = (props: SectionPageProps) => {
 
     return (
         <div className={bem()}>
-            <span className={bem('tittel')}>
-                <Sidetittel>{props.displayName}</Sidetittel>
-            </span>
+            <div className={bem('tittel')}>
+                <Innholdstittel>{props.displayName}</Innholdstittel>
+            </div>
             {tableContents && <TableContents tableContents={tableContents} />}
             {(panelsHeading || panelItems) && (
                 <LenkepanelListe
