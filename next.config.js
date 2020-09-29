@@ -1,4 +1,5 @@
 const withLess = require('@zeit/next-less');
+const withImages = require('next-images');
 const packageJson = require('./package.json');
 const { createSecureHeaders } = require('./src/utils/next-secure-headers/lib');
 
@@ -12,32 +13,33 @@ const withTranspileModules = require('next-transpile-modules')([
     '@navikt/nav-dekoratoren-moduler',
 ]);
 
-module.exports = withTranspileModules(
-    withLess({
-        env: {
-            XP_ORIGIN: process.env.XP_ORIGIN,
-        },
-        headers: async () => {
-            return [
-                {
-                    source: '/(.*)',
-                    headers: createSecureHeaders({
-                        contentSecurityPolicy: {
-                            directives: { frameAncestors: '*' },
-                        },
-                    }),
-                },
-            ];
-        },
-        redirects: async () => {
-            return [
-                { source: '/', destination: '/no/person', permanent: true },
-                {
-                    source: '/Forsiden',
-                    destination: '/no/person',
-                    permanent: true,
-                },
-            ];
-        },
-    })
-);
+const configWithAllTheThings = (config) =>
+    withTranspileModules(withLess(withImages(config)));
+
+module.exports = configWithAllTheThings({
+    env: {
+        XP_ORIGIN: process.env.XP_ORIGIN,
+    },
+    headers: async () => {
+        return [
+            {
+                source: '/(.*)',
+                headers: createSecureHeaders({
+                    contentSecurityPolicy: {
+                        directives: { frameAncestors: '*' },
+                    },
+                }),
+            },
+        ];
+    },
+    redirects: async () => {
+        return [
+            { source: '/', destination: '/no/person', permanent: false },
+            {
+                source: '/Forsiden',
+                destination: '/no/person',
+                permanent: false,
+            },
+        ];
+    },
+});

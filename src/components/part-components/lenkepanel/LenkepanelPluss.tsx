@@ -48,8 +48,8 @@ const LenkepanelPluss = ({
                 )
             }
         >
+            {ikon && <div className={bem('ikon')}>{ikon}</div>}
             <div className={bem('innhold')}>
-                {ikon}
                 <Undertittel className={'lenkepanel__heading'}>
                     {tittel}
                 </Undertittel>

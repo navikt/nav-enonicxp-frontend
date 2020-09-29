@@ -3,6 +3,13 @@ export const legacyPathPrefix = '/_/service/legacy';
 
 export type EnonicContentRef = string;
 
+export const redirectPath = (path: string) =>
+    ({
+        '/Forsiden': '/no/person',
+        '/': '/no/person',
+        '': '/no/person',
+    }[path] || path);
+
 export const isEnonicPath = (path: string) =>
     /(www.*.nav.no|^nav.no|^)($|\/$|\/no|\/en|\/se|\/nav.no)/.test(path);
 
@@ -15,8 +22,9 @@ export const enonicPathToUrl = (path: string) =>
         : null;
 
 export const routerQueryToEnonicPath = (routerQuery: string | string[]) => {
-    const queryPath =
-        typeof routerQuery === 'string' ? routerQuery : routerQuery.join('/');
+    const queryPath = `/${
+        typeof routerQuery === 'string' ? routerQuery : routerQuery.join('/')
+    }`;
 
-    return `${enonicContentBasePath}/${queryPath}`;
+    return `${enonicContentBasePath}${redirectPath(queryPath)}`;
 };

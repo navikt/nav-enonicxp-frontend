@@ -4,6 +4,7 @@
 @mobilMaxWidth: 768px;
 @screen-desktop: ~'(min-width: @{mobilMaxWidth})';
 @screen-mobile: ~'not all and (min-width: @{mobilMaxWidth})';
+@padding-sides-desktop: 3rem;
 
 .app {
     max-width: 1440px;
@@ -19,7 +20,7 @@
 
 @media @screen-desktop {
     .content-wrapper {
-        padding: 0 3rem;
+        padding: 0 @padding-sides-desktop;;
     }
 }
 

@@ -19,7 +19,9 @@
         }
 
         @media @screen-desktop {
-            width: calc(percentage(1 / @numCols) - @margin);
+            width: calc(
+                    percentage(1 / @numCols) - @margin * ((@numCols - 1) / @numCols)
+            );
             &:not(:nth-child(@{numCols}n)) {
                 margin-right: @margin;
             }

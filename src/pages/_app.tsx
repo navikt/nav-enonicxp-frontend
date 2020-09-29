@@ -8,9 +8,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
     return (
         <div className={'app'} style={styles}>
-            <div className={'content-wrapper'} id={'maincontent'}>
-                <Component {...pageProps} />
-            </div>
+            <Component {...pageProps} />
         </div>
     );
 };
