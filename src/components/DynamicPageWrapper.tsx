@@ -62,7 +62,6 @@ export const DynamicPageWrapper = (props: Props) => {
         const enonicPath = enonicPathToAppPath(content._path);
 
         if (breadcrumbs) {
-            console.log(breadcrumbs);
             setBreadcrumbs(breadcrumbs);
         }
 
