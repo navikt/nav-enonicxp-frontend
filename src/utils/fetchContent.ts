@@ -3,6 +3,7 @@ import { makeErrorProps } from '../types/content-types/error-props';
 import { contentToComponentMap } from '../components/ContentToComponentMapper';
 import { enonicContentBasePath, legacyPathPrefix } from './paths';
 import { fetchWithTimeout } from './fetchWithTimeout';
+import { Breadcrumb } from '../types/breadcrumb';
 
 const xpServiceUrl = process.env.XP_SERVICE_URL;
 const xpLegacyUrl = `${process.env.XP_ORIGIN}${legacyPathPrefix}`;
@@ -43,6 +44,20 @@ const fetch = (idOrPath: string): Promise<ContentTypeSchema> =>
                 return res.json();
             }
             const error = `Failed to fetch content from ${idOrPath}: ${res.statusText}`;
+            return makeErrorProps(idOrPath, error, res.status);
+        })
+        .catch(console.error);
+
+export const fetchBreadcrumbs = (idOrPath: string): Promise<Breadcrumb[]> =>
+    fetchWithTimeout(
+        `${xpServiceUrl}/breadcrumbs?id=${encodeURIComponent(idOrPath)}`,
+        5000
+    )
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            const error = `Failed to fetch breadcrumb from ${idOrPath}: ${res.statusText}`;
             return makeErrorProps(idOrPath, error, res.status);
         })
         .catch(console.error);

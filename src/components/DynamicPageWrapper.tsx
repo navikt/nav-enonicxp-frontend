@@ -7,13 +7,16 @@ import { enonicPathToAppPath } from '../utils/paths';
 import { ContentTypeSchema } from '../types/content-types/_schema';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
+import { Breadcrumb } from '../types/breadcrumb';
 
 type Props = {
     content: ContentTypeSchema;
+    breadcrumbs: Breadcrumb[];
     children: React.ReactNode;
 };
 
-export const DynamicPageWrapper = ({ content, children }: Props) => {
+export const DynamicPageWrapper = (props: Props) => {
+    const { content, breadcrumbs, children } = props;
     const router = useRouter();
 
     useEffect(() => {
@@ -58,14 +61,8 @@ export const DynamicPageWrapper = ({ content, children }: Props) => {
 
         const enonicPath = enonicPathToAppPath(content._path);
 
-        if (content.displayName) {
-            setBreadcrumbs([
-                {
-                    title: content.displayName,
-                    url: enonicPath || '/',
-                    handleInApp: true,
-                },
-            ]);
+        if (breadcrumbs) {
+            setBreadcrumbs(breadcrumbs);
         }
 
         // Ensures the url displayed in the browser is correct after static redirection
