@@ -3,20 +3,23 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
+import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 import { enonicPathToAppPath } from '../utils/paths';
 import { ContentTypeSchema } from '../types/content-types/_schema';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
 import { Breadcrumb } from '../types/breadcrumb';
+import { Language } from '../types/languages';
 
 type Props = {
     content: ContentTypeSchema;
     breadcrumbs: Breadcrumb[];
+    languages: Language[];
     children: React.ReactNode;
 };
 
 export const DynamicPageWrapper = (props: Props) => {
-    const { content, breadcrumbs, children } = props;
+    const { content, breadcrumbs, languages, children } = props;
     const router = useRouter();
 
     useEffect(() => {
@@ -63,6 +66,10 @@ export const DynamicPageWrapper = (props: Props) => {
 
         if (breadcrumbs) {
             setBreadcrumbs(breadcrumbs);
+        }
+
+        if (languages) {
+            setAvailableLanguages(languages);
         }
 
         // Ensures the url displayed in the browser is correct after static redirection
