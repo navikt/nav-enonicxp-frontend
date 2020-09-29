@@ -2,9 +2,8 @@
 @import '~nav-frontend-core/less/core';
 
 @mobilMaxWidth: 768px;
-
-@screen-mobile: ~'(min-width: 0)';
 @screen-desktop: ~'(min-width: @{mobilMaxWidth})';
+@screen-mobile: ~'not all and (min-width: @{mobilMaxWidth})';
 
 .app {
     max-width: 1440px;
