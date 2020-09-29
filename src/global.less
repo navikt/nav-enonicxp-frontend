@@ -3,14 +3,25 @@
 
 @mobilMaxWidth: 768px;
 
+@screen-mobile: ~'(min-width: 0)';
+@screen-desktop: ~'(min-width: @{mobilMaxWidth})';
+
 .app {
     max-width: 1440px;
     min-height: 20rem;
     margin: 3rem auto 4rem auto;
 }
 
-.content-wrapper {
-    padding: 0 3rem;
+@media @screen-mobile {
+    .content-wrapper {
+        padding: 0 1rem;
+    }
+}
+
+@media @screen-desktop {
+    .content-wrapper {
+        padding: 0 3rem;
+    }
 }
 
 #decorator-header {
