@@ -37,12 +37,6 @@ const fetchDecorator = (queryString?: string) => {
 export const getDecorator = async () => {
     const params = {
         chatbot: true,
-        breadcrumbs: [
-            {
-                title: 'Laster innhold...',
-                url: '/',
-            },
-        ],
     };
 
     const query = paramsObjectToQueryString(params);
