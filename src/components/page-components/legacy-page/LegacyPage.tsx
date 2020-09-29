@@ -6,6 +6,7 @@ import { LegacyProps } from '../../../types/content-types/legacy-props';
 import Link from 'next/link';
 import Head from 'next/head';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import Lenke from 'nav-frontend-lenker';
 import './LegacyPage.less';
 
 const xpOrigin = process.env.XP_ORIGIN;
@@ -37,12 +38,14 @@ const parseLegacyHtml = (htmlString: string) => {
 
                 return isEnonicPath(href) ? (
                     <Link href={href} passHref={true}>
-                        <a {...props}>{children && domToReact(children)}</a>
+                        <Lenke {...props}>
+                            {children && domToReact(children)}
+                        </Lenke>
                     </Link>
                 ) : (
-                    <a {...props} href={href}>
+                    <Lenke {...props} href={href}>
                         {children && domToReact(children)}
-                    </a>
+                    </Lenke>
                 );
             }
         },
