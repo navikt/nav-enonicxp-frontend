@@ -3,9 +3,8 @@ import type { AppProps } from 'next/app';
 import '../global.less';
 
 const App = ({ Component, pageProps }: AppProps) => {
-    const styles = pageProps.breadcrumbs?.length && {
-        marginTop: '2rem',
-    };
+    const { breadcrumbs } = pageProps;
+    const styles = breadcrumbs?.length > 0 ? { marginTop: '2rem' } : undefined;
 
     return (
         <div className={'app'} style={styles}>
