@@ -58,9 +58,29 @@ export const fetchBreadcrumbs = (idOrPath: string): Promise<Breadcrumb[]> =>
                 return res.json();
             }
             const error = `Failed to fetch breadcrumb from ${idOrPath}: ${res.statusText}`;
-            return makeErrorProps(idOrPath, error, res.status);
+            throw new Error(error);
         })
-        .catch(console.error);
+        .catch((error) => {
+            console.log(error);
+            return [];
+        });
+
+export const fetchLanguages = (idOrPath: string): Promise<Breadcrumb[]> =>
+    fetchWithTimeout(
+        `${xpServiceUrl}/languages?id=${encodeURIComponent(idOrPath)}`,
+        5000
+    )
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            const error = `Failed to fetch breadcrumb from ${idOrPath}: ${res.statusText}`;
+            throw new Error(error);
+        })
+        .catch((error) => {
+            console.log(error);
+            return [];
+        });
 
 export const fetchPage = async (
     idOrPath: string,
