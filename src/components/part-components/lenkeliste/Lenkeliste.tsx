@@ -16,9 +16,9 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
 
     return (
         <div className={`${bem()} ${className || ''}`}>
-            {tittel && (
-                <Undertittel className={bem('tittel')}>{tittel}</Undertittel>
-            )}
+            <span className={bem('tittel')}>
+                {tittel && <Undertittel>{tittel}</Undertittel>}
+            </span>
             <nav className={bem('lenker')}>
                 {lenker.map((lenke, index) => (
                     <LenkeNavNo
