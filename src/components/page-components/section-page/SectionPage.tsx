@@ -26,9 +26,9 @@ export const SectionPage = (props: SectionPageProps) => {
 
     return (
         <div className={bem()}>
-            <Sidetittel className={bem('tittel')}>
-                {props.displayName}
-            </Sidetittel>
+            <span className={bem('tittel')}>
+                <Sidetittel>{props.displayName}</Sidetittel>
+            </span>
             {tableContents && <TableContents tableContents={tableContents} />}
             {(panelsHeading || panelItems) && (
                 <LenkepanelListe
