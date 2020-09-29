@@ -23,9 +23,9 @@ export const LenkepanelListe = ({
     return (
         <div className={className}>
             {title && (
-                <Innholdstittel className={bem('tittel')}>
-                    {title}
-                </Innholdstittel>
+                <span className={bem('tittel')}>
+                    <Innholdstittel>{title}</Innholdstittel>
+                </span>
             )}
             {ingress && <Ingress className={bem('ingress')}>{ingress}</Ingress>}
             {items && (
