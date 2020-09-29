@@ -61,7 +61,8 @@ export const fetchNotifications = (
                 return res.json();
             }
             const error = `Failed to fetch notifications: ${res.statusText}`;
-            throw Error(error);
+            console.log(error);
+            return [];
         })
         .catch(console.error);
 
@@ -75,12 +76,10 @@ export const fetchBreadcrumbs = (idOrPath: string): Promise<Breadcrumb[]> =>
                 return res.json();
             }
             const error = `Failed to fetch breadcrumb from ${idOrPath}: ${res.statusText}`;
-            throw new Error(error);
-        })
-        .catch((error) => {
             console.log(error);
             return [];
-        });
+        })
+        .catch(console.error);
 
 export const fetchLanguages = (idOrPath: string): Promise<Breadcrumb[]> =>
     fetchWithTimeout(
@@ -91,13 +90,11 @@ export const fetchLanguages = (idOrPath: string): Promise<Breadcrumb[]> =>
             if (res.ok) {
                 return res.json();
             }
-            const error = `Failed to fetch breadcrumb from ${idOrPath}: ${res.statusText}`;
-            throw new Error(error);
-        })
-        .catch((error) => {
+            const error = `Failed to fetch language from ${idOrPath}: ${res.statusText}`;
             console.log(error);
             return [];
-        });
+        })
+        .catch(console.error);
 
 export const fetchPage = async (
     idOrPath: string,

@@ -30,14 +30,19 @@
         position: relative;
 
         display: flex;
-        align-self: flex-start;
+        align-self: center;
         align-items: center;
         justify-content: center;
 
-        padding: 0.5rem 1rem 0.5rem 0.5rem;
+        padding: 0 1rem 0 0.5rem;
 
-        min-width: 48px;
-        min-height: 48px;
+        width: 48px;
+        height: 48px;
+
+        & > img {
+            max-width: 32px;
+            max-height: 32px;
+        }
     }
 
     &__separator {
