@@ -37,7 +37,8 @@
         display: none;
     }
 
-    nav a:focus {
+    nav a:focus,
+    nav a:hover {
         background-color: #254b6d;
         box-shadow: 0 0 0 2px #254b6d;
     }
@@ -2335,18 +2336,6 @@
     .table-of-contents ol a:focus,
     .table-of-contents ol a:active {
         color: white;
-    }
-
-    .table-of-contents ol a:hover:before,
-    .table-of-contents ol a:focus:before,
-    .table-of-contents ol a:active:before {
-        border: 3px solid #0067c5;
-        border-radius: 50%;
-        display: inline-block;
-        content: ' ';
-        position: absolute;
-        left: -11px;
-        top: 14px;
     }
 
     .related-content {
