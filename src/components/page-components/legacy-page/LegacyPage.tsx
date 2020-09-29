@@ -5,6 +5,7 @@ import { isEnonicPath, legacyPathPrefix } from '../../../utils/paths';
 import { LegacyProps } from '../../../types/content-types/legacy-props';
 import Link from 'next/link';
 import Head from 'next/head';
+import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import './LegacyPage.less';
 
 const xpOrigin = process.env.XP_ORIGIN;
@@ -12,6 +13,22 @@ const xpOrigin = process.env.XP_ORIGIN;
 const parseLegacyHtml = (htmlString: string) => {
     const replaceInternalLinks = {
         replace: ({ name, attribs, children }: DomElement) => {
+            if (name?.toLowerCase() === 'time') {
+                return (
+                    <Normaltekst tag={'time'}>
+                        {children && domToReact(children)}
+                    </Normaltekst>
+                );
+            }
+
+            if (name?.toLowerCase() === 'h1') {
+                return (
+                    <Innholdstittel>
+                        {children && domToReact(children)}
+                    </Innholdstittel>
+                );
+            }
+
             if (name?.toLowerCase() === 'a' && attribs?.href) {
                 const href = attribs.href
                     .replace(legacyPathPrefix, '')
