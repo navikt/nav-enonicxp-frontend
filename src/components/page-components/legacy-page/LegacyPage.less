@@ -37,24 +37,10 @@
         display: none;
     }
 
-    a {
-        color: #0067c5;
-        background: none;
-        text-decoration: underline;
-        cursor: pointer;
-    }
-
-    a:focus {
-        outline: none;
-        color: white;
-        text-decoration: none;
+    nav a:focus,
+    nav a:hover {
         background-color: #254b6d;
         box-shadow: 0 0 0 2px #254b6d;
-    }
-
-    nav a:focus {
-        background-color: #ffbd66;
-        box-shadow: 0 0 0 2px #ffbd66;
     }
 
     main:focus,
@@ -619,7 +605,6 @@
         font-style: normal;
     }
 
-    h1,
     h2,
     h3,
     h4,
@@ -635,7 +620,6 @@
         text-rendering: optimizelegibility;
     }
 
-    h1,
     .h1 {
         font-size: 2.375rem;
         font-weight: 600;
@@ -1299,7 +1283,6 @@
 
     .link-list-meta time {
         display: block;
-        font-size: 0.875rem;
     }
 
     @media (max-width: 48em) {
@@ -1307,7 +1290,6 @@
             text-align: left;
             padding: 0;
             margin-right: 10px;
-            font-size: 0.875rem;
         }
     }
 
@@ -1420,15 +1402,6 @@
 
     [class*='boxcol-'] {
         float: left;
-    }
-
-    @media (min-width: 38.75em) and (max-width: 48em) {
-        .link-list a,
-        .link-list-meta a,
-        .link-list time,
-        .link-list-meta time {
-            font-size: 0.875rem;
-        }
     }
 
     .events-list table {
@@ -2013,15 +1986,13 @@
     .full-article,
     .article-list,
     .events-list {
-        padding: 1.5rem;
-        border: 1px solid #d1d1d15c;
+        padding-right: 2rem;
         border-radius: 0.25rem;
     }
 
     .full-article header h1,
     .article-list header h1,
     .events-list header h1 {
-        line-height: 1.15;
         margin-top: 0;
         margin-bottom: 14px;
     }
@@ -2030,18 +2001,7 @@
     .article-list header time,
     .events-list header time {
         display: block;
-        text-transform: uppercase;
-        font-size: 0.875rem;
-    }
-
-    .full-article h1,
-    .article-list h1,
-    .events-list h1,
-    .full-article .h1,
-    .article-list .h1,
-    .events-list .h1 {
-        font-size: 1.875rem;
-        font-weight: 400;
+        margin-bottom: 0.5rem;
     }
 
     .article-head {
@@ -2183,7 +2143,7 @@
     }
 
     .article-body .chapter-header:focus {
-        outline: 3px solid #ffbd66;
+        outline: 3px solid #254b6d;
     }
 
     .article-body ul,
@@ -2266,8 +2226,6 @@
     .article-list article time {
         display: block;
         margin-top: 15px;
-        text-transform: uppercase;
-        font-size: 0.875rem;
     }
 
     .article-list article time span:first-child {
@@ -2377,19 +2335,7 @@
     .table-of-contents ol a:hover,
     .table-of-contents ol a:focus,
     .table-of-contents ol a:active {
-        color: #0067c5;
-    }
-
-    .table-of-contents ol a:hover:before,
-    .table-of-contents ol a:focus:before,
-    .table-of-contents ol a:active:before {
-        border: 3px solid #0067c5;
-        border-radius: 50%;
-        display: inline-block;
-        content: ' ';
-        position: absolute;
-        left: -11px;
-        top: 14px;
+        color: white;
     }
 
     .related-content {
@@ -3152,7 +3098,6 @@
             font-weight: 400;
         }
 
-        h1,
         h2,
         h3 {
             font-weight: 600;

@@ -1,15 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { fetchDecorator, paramsObjectToQueryString } from '../utils/fetch';
-import { JSDOM } from 'jsdom';
-import parse from 'html-react-parser';
 import React from 'react';
-
-export type DecoratorFragments = {
-    HEADER: string | null;
-    FOOTER: string | null;
-    SCRIPTS: string | null;
-    STYLES: string | null;
-};
+import { DecoratorFragments, getDecorator } from '../utils/fetchDecorator';
 
 type Props = {
     decoratorFragments: DecoratorFragments;
@@ -18,41 +9,7 @@ type Props = {
 class MyDocument extends Document<Props> {
     static async getInitialProps(ctx) {
         const initialProps = await Document.getInitialProps(ctx);
-
-        const params = {
-            chatbot: true,
-            breadcrumbs: [
-                {
-                    title: 'Laster innhold...',
-                    url: '/',
-                },
-            ],
-        };
-        const query = paramsObjectToQueryString(params);
-        const decoratorBody = await fetchDecorator(query);
-
-        if (!decoratorBody) {
-            const decoratorUrl = process.env.DECORATOR_URL;
-            return {
-                ...initialProps,
-                decoratorFragments: {
-                    HEADER: `<div id="decorator-header"></div>`,
-                    STYLES: `<link href="${decoratorUrl}/css/client.css" rel="stylesheet" />`,
-                    FOOTER: `<div id="decorator-footer"></div>`,
-                    SCRIPTS: `<div id="decorator-env" data-src="${decoratorUrl}/env${query}"></div><script src="${decoratorUrl}/client.js"></script>`,
-                },
-            };
-        }
-
-        const { document } = new JSDOM(decoratorBody).window;
-        const prop = 'innerHTML';
-        const decoratorFragments = {
-            HEADER: document.getElementById('header-withmenu')[prop],
-            STYLES: document.getElementById('styles')[prop],
-            FOOTER: document.getElementById('footer-withmenu')[prop],
-            SCRIPTS: document.getElementById('scripts')[prop],
-        };
-
+        const decoratorFragments = await getDecorator();
         return { ...initialProps, decoratorFragments };
     }
 
@@ -67,13 +24,13 @@ class MyDocument extends Document<Props> {
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
                     <script src="https://amplitude.nav.no/libs/amplitude-7.1.0-min.gz.js" />
                     {/* Legacy scripts */}
-                    {STYLES && parse(STYLES)}
+                    {STYLES}
                 </Head>
                 <body>
-                    {HEADER && parse(HEADER)}
+                    {HEADER}
                     <Main />
-                    {FOOTER && parse(FOOTER)}
-                    {SCRIPTS && parse(SCRIPTS)}
+                    {FOOTER}
+                    {SCRIPTS}
                     <NextScript />
                 </body>
             </Html>
