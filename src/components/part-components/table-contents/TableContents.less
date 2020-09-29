@@ -1,3 +1,5 @@
+@import '../../../global';
+
 .table-contents {
     @numCols: 3;
     @margin: 1rem;
@@ -9,11 +11,18 @@
 
     &__item {
         text-align: start;
-        width: calc(percentage(1 / @numCols) - @margin);
         margin-bottom: @margin;
         padding: 1.5rem;
-        &:not(:nth-child(@{numCols}n)) {
-            margin-right: @margin;
+
+        @media @screen-mobile {
+            width: 100%;
+        }
+
+        @media @screen-desktop {
+            width: calc(percentage(1 / @numCols) - @margin);
+            &:not(:nth-child(@{numCols}n)) {
+                margin-right: @margin;
+            }
         }
     }
 }

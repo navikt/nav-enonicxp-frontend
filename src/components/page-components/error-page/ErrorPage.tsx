@@ -16,6 +16,7 @@ export const ErrorPage = (props: ErrorProps) => {
     useEffect(() => {
         setBreadcrumbs([
             {
+                handleInApp: true,
                 title: 'This page could not be found',
                 url: '/',
             },

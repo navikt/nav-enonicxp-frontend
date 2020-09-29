@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
+import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 import { enonicPathToAppPath } from '../utils/paths';
 import { ContentTypeSchema } from '../types/content-types/_schema';
@@ -24,6 +25,7 @@ export const DynamicPageWrapper = (props: Props) => {
 
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) => router.push(breadcrumb.url));
+        onLanguageSelect((breadcrumb) => router.push(breadcrumb.url));
 
         const linkInterceptor = hookAndInterceptInternalLink(router);
         const linkPrefetcher = prefetchOnMouseover(router);
@@ -65,11 +67,15 @@ export const DynamicPageWrapper = (props: Props) => {
         const enonicPath = enonicPathToAppPath(content._path);
 
         if (breadcrumbs) {
-            setBreadcrumbs(breadcrumbs);
+            setBreadcrumbs(
+                breadcrumbs.map((crumb) => ({ handleInApp: true, ...crumb }))
+            );
         }
 
         if (languages) {
-            setAvailableLanguages(languages);
+            setAvailableLanguages(
+                languages.map((lang) => ({ handleInApp: true, ...lang }))
+            );
         }
 
         // Ensures the url displayed in the browser is correct after static redirection
