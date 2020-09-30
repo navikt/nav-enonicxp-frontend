@@ -7,6 +7,7 @@ import {
 import { LenkepanelVertical } from '../lenkepanel-vertical/LenkepanelVertical';
 import { Normaltekst } from 'nav-frontend-typografi';
 import './TableContents.less';
+import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 
 type TableData = {
     url: string;
