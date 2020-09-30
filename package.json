@@ -11,6 +11,7 @@
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "^1.0.21",
         "classnames": "^2.2.6",
+        "cors": "^2.8.5",
         "html-react-parser": "^0.13.0",
         "jsdom": "^16.4.0",
         "nav-frontend-alertstriper": "^3.0.23",
