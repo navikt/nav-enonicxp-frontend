@@ -9,9 +9,9 @@ export interface ErrorProps extends GlobalSchema {
 }
 
 export const makeErrorProps = (
-    idOrPath: string,
-    errorMessage: string,
-    errorCode?: number
+    idOrPath,
+    errorMessage,
+    errorCode = 500
 ): ErrorProps => ({
     __typename: ContentType.Error,
     _path: idOrPath,
