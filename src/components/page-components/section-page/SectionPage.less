@@ -2,7 +2,6 @@
 
 .section-page {
     @numCols: 3;
-    @margin: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,14 +26,15 @@
     }
 
     &__content-list {
-        margin-top: 2rem;
         @media @screen-mobile {
             width: 100%;
+            margin-top: 1rem;
         }
         @media @screen-desktop {
+            margin-top: 3rem;
             width: calc(percentage(1 / @numCols));
             &:not(:nth-child(@{numCols}n)) {
-                margin-right: @margin;
+                margin-right: 3rem;
             }
         }
     }
