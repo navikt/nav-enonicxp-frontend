@@ -62,6 +62,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         };
     }
 
+    // Use the path from the content object in case the initial path was redirected
     const pathActual = content._path;
 
     const breadcrumbs = await fetchBreadcrumbs(pathActual);
