@@ -2,9 +2,13 @@ import React from 'react';
 import { routerQueryToEnonicPath } from '../utils/paths';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import ContentToComponentMapper from '../components/ContentToComponentMapper';
-import { fetchNotifications, fetchPage } from '../utils/fetchContent';
-import { fetchBreadcrumbs, fetchLanguages } from '../utils/fetchContent';
-import { ContentTypeSchema } from '../types/content-types/_schema';
+import {
+    fetchBreadcrumbs,
+    fetchLanguages,
+    fetchNotifications,
+    fetchPage,
+} from '../utils/fetchContent';
+import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
 import DynamicPageWrapper from '../components/DynamicPageWrapper';
 import { useRouter } from 'next/router';
 import { FallbackPage } from '../components/page-components/fallback-page/FallbackPage';
@@ -45,9 +49,24 @@ export const getStaticProps: GetStaticProps = async (context) => {
     );
 
     const content = await fetchPage(enonicPath);
-    const breadcrumbs = await fetchBreadcrumbs(enonicPath);
-    const languages = await fetchLanguages(enonicPath);
-    const notifications = await fetchNotifications(enonicPath);
+
+    if (content.__typename === ContentType.Error) {
+        return {
+            props: {
+                breadcrumbs: [],
+                languages: [],
+                content: content,
+                notifications: [],
+            },
+            revalidate: 1,
+        };
+    }
+
+    const pathActual = content._path;
+
+    const breadcrumbs = await fetchBreadcrumbs(pathActual);
+    const languages = await fetchLanguages(pathActual);
+    const notifications = await fetchNotifications(pathActual);
 
     return {
         props: {
