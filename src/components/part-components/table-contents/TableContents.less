@@ -3,18 +3,23 @@
 .table-contents {
     @numCols: 3;
     @margin: 1rem;
-    background: #e4f5ea;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     text-align: center;
     width: 100%;
-    padding:1.5rem;
 
     &__item {
         text-align: start;
         margin-bottom: @margin;
         padding: 1.5rem;
+
+        background-image: url("https://www.nav.no/person/personopplysninger/static/media/Natur.002e64fa.svg");
+        background-repeat: no-repeat;
+        background-position: bottom right;
+        min-height: 13rem;
+        box-shadow: 0 0px 8px 4px rgba(0, 0, 0, 0.08);
+        background-color: white;
 
         @media @screen-mobile {
             width: 100%;
