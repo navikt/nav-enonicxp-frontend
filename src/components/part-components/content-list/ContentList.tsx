@@ -3,6 +3,7 @@ import { ContentListProps } from '../../../types/content-types/content-list-prop
 import { LenkeData } from '../../../types/lenke-data';
 import { Lenkeliste } from '../lenkeliste/Lenkeliste';
 import { sortContentByLastModified } from '../../../utils/sort';
+import moment from 'moment';
 
 type Props = {
     content: ContentListProps;
@@ -26,7 +27,7 @@ export const ContentList = ({
             url: data._path,
             lenketekst: data.displayName,
             label: showDateLabel
-                ? data.modifiedTime || data.createdTime
+                ? moment(data.modifiedTime || data.createdTime).format('DD.MM.YYYY')
                 : undefined,
             enonicId: data._id,
         }));
