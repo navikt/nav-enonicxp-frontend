@@ -1,5 +1,5 @@
 import React from 'react';
-import { routerQueryToEnonicPath } from '../utils/paths';
+import { routerQueryToEnonicPathOrId } from '../utils/paths';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import ContentToComponentMapper from '../components/ContentToComponentMapper';
 import {
@@ -44,7 +44,7 @@ const PathRouter = (props: Props) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const enonicPath = routerQueryToEnonicPath(
+    const enonicPath = routerQueryToEnonicPathOrId(
         context?.params?.pathRouter || ''
     );
 

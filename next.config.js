@@ -17,6 +17,7 @@ const configWithAllTheThings = (config) =>
     withTranspileModules(withLess(withImages(config)));
 
 module.exports = configWithAllTheThings({
+    assetPrefix: process.env.APP_ORIGIN,
     env: {
         XP_ORIGIN: process.env.XP_ORIGIN,
     },
@@ -29,6 +30,10 @@ module.exports = configWithAllTheThings({
                         directives: { frameAncestors: '*' },
                     },
                 }),
+            },
+            {
+                source: '/(.*)',
+                headers: [{ key: 'Access-Control-Allow-Origin', value: '*' }],
             },
         ];
     },
