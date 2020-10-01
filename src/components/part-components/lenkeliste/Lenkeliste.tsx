@@ -15,7 +15,7 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
     const bem = BEM('lenkeliste');
 
     return (
-        <div className={`${bem()} ${className || ''}`}>
+        <div className={`${bem()} ${className || ''}`} data-portal-component-type="part">
             <div className={bem('tittel')}>
                 {tittel && <Undertittel>{tittel}</Undertittel>}
             </div>
