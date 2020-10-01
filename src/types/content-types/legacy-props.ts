@@ -1,6 +1,6 @@
-import { ContentType, GlobalSchema } from './_schema';
+import { ContentType, GlobalPageSchema } from './_schema';
 
-export interface LegacyProps extends GlobalSchema {
+export interface LegacyProps extends GlobalPageSchema {
     __typename: ContentType.Legacy;
     data: {
         html: string;
