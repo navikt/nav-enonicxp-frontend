@@ -1,12 +1,9 @@
 import React from 'react';
 import { enonicPathToAppPath } from '../../../utils/paths';
+import { Image } from '../../../types/content-types/_schema';
 
-interface Props {
-    _path: string;
-}
-
-const Image = (props: Props) => {
+const Img = (props: Image) => {
     return <img src={enonicPathToAppPath(props._path)} />;
 };
 
-export default Image;
+export default Img;

@@ -12,18 +12,20 @@ const DynamicRegion = (props: Props) => {
 
     return (
         <>
-            {components.map((component) => (
-                <div
-                    key={component.path}
-                    data-portal-component-type={component.type}
-                    data-portal-component={component.path}
-                    data-th-remove="tag"
-                >
-                    {component.type === 'image' && (
-                        <Image _path={component?.image?._path} />
-                    )}
-                </div>
-            ))}
+            {components.map((component) => {
+                return (
+                    <div
+                        key={component.path}
+                        data-portal-component-type={component.type}
+                        data-portal-component={component.path}
+                        data-th-remove="tag"
+                    >
+                        {component.type === 'image' && (
+                            <Image {...component.image} />
+                        )}
+                    </div>
+                );
+            })}
         </>
     );
 };

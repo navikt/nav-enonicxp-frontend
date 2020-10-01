@@ -53,17 +53,19 @@ export interface GlobalPageSchema extends GlobalSchema {
     page?: {
         type: string;
         descriptor: string;
-        regions?: Regions
+        regions?: Regions;
     };
+}
+
+export interface Image {
+    _path: string;
 }
 
 export type Component = {
     type: 'image';
     path: string;
-    image: {
-        _path: string;
-    }
-}
+    image: Image;
+};
 
 export interface Regions {
     main: Region;
@@ -75,5 +77,5 @@ export interface Regions {
 
 export interface Region {
     name: string;
-    components: Component[]
+    components: Component[];
 }
