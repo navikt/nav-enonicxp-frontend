@@ -24,10 +24,13 @@ export const SectionPage = (props: SectionPageProps) => {
         scContents,
     } = props.data;
     const bem = BEM('section-page');
-    const regions = props.page?.regions;
+    const dynamicRegions = props.page?.regions;
+    const dynamicMainRegion = dynamicRegions?.main;
     return (
         <div className={bem()}>
-            <DynamicRegion region={regions?.main} />
+            {dynamicMainRegion &&
+                <DynamicRegion region={dynamicMainRegion}/>
+            }
             <div className={bem('tittel')}>
                 <Innholdstittel>{props.displayName}</Innholdstittel>
             </div>
