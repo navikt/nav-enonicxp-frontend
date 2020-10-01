@@ -19,7 +19,7 @@ const DynamicRegion = (props: Props) => {
                     data-portal-component={component.path}
                     data-th-remove="tag">
                     {component.type === 'image' &&
-                        <Image _path={component.image._path}/>
+                        <Image _path={component?.image?._path}/>
                     }
                 </div>
             ))}
