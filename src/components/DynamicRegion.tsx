@@ -3,28 +3,29 @@ import { Region } from '../types/content-types/_schema';
 import Image from '../components/part-components/image/Image';
 
 interface Props {
-    region: Region
+    region: Region;
 }
 
 const DynamicRegion = (props: Props) => {
     const { region } = props;
     const components = region.components || [];
 
-    return(
-        <div data-portal-region={region.name}>
-            {components.map(component => (
+    return (
+        <>
+            {components.map((component) => (
                 <div
                     key={component.path}
                     data-portal-component-type={component.type}
                     data-portal-component={component.path}
-                    data-th-remove="tag">
-                    {component.type === 'image' &&
-                        <Image _path={component?.image?._path}/>
-                    }
+                    data-th-remove="tag"
+                >
+                    {component.type === 'image' && (
+                        <Image _path={component?.image?._path} />
+                    )}
                 </div>
             ))}
-        </div>
+        </>
     );
-}
+};
 
 export default DynamicRegion;

@@ -28,12 +28,15 @@ export const SectionPage = (props: SectionPageProps) => {
     const dynamicMainRegion = dynamicRegions?.main;
     return (
         <div className={bem()}>
-            {dynamicMainRegion &&
-                <DynamicRegion region={dynamicMainRegion}/>
-            }
+            <div data-portal-region={'main'}>
+                {dynamicMainRegion && (
+                    <DynamicRegion region={dynamicMainRegion} />
+                )}
+            </div>
             <div className={bem('tittel')}>
                 <Innholdstittel>{props.displayName}</Innholdstittel>
             </div>
+
             {tableContents && <TableContents tableContents={tableContents} />}
             {(panelsHeading || panelItems) && (
                 <LenkepanelListe
