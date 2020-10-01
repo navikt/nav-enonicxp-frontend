@@ -1,8 +1,8 @@
-import { ContentType, ContentTypeSchema, GlobalSchema } from './_schema';
+import { ContentType, ContentTypeSchema, GlobalPageSchema, GlobalSchema } from './_schema';
 import { LinkPanel } from '../link-panel';
 import { ContentListProps } from './content-list-props';
 
-export interface SectionPageProps extends GlobalSchema {
+export interface SectionPageProps extends GlobalPageSchema {
     __typename: ContentType.SectionPage;
     data: {
         panelsHeading?: string;

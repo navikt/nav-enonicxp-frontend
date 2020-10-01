@@ -6,6 +6,7 @@ import { BEM } from '../../../utils/bem';
 import { LenkepanelListe } from '../../part-components/lenkepanel-liste/LenkepanelListe';
 import { ContentList } from '../../part-components/content-list/ContentList';
 import { LenkeNavNo } from '../../part-components/lenke-navno/LenkeNavNo';
+import DynamicRegion from '../../DynamicRegion';
 import './SectionPage.less';
 
 export const SectionPage = (props: SectionPageProps) => {
@@ -23,9 +24,10 @@ export const SectionPage = (props: SectionPageProps) => {
         scContents,
     } = props.data;
     const bem = BEM('section-page');
-
+    const regions = props.page?.regions;
     return (
         <div className={bem()}>
+            <DynamicRegion region={regions?.main} />
             <div className={bem('tittel')}>
                 <Innholdstittel>{props.displayName}</Innholdstittel>
             </div>
