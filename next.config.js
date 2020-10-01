@@ -17,26 +17,26 @@ const configWithAllTheThings = (config) =>
     withTranspileModules(withLess(withImages(config)));
 
 module.exports = configWithAllTheThings({
-    assetPrefix: process.env.APP_ORIGIN,
+    // assetPrefix: process.env.APP_ORIGIN,
     env: {
         XP_ORIGIN: process.env.XP_ORIGIN,
     },
-    headers: async () => {
-        return [
-            {
-                source: '/(.*)',
-                headers: createSecureHeaders({
-                    contentSecurityPolicy: {
-                        directives: { frameAncestors: '*' },
-                    },
-                }),
-            },
-            {
-                source: '/(.*)',
-                headers: [{ key: 'Access-Control-Allow-Origin', value: '*' }],
-            },
-        ];
-    },
+    // headers: async () => {
+    //     return [
+    //         {
+    //             source: '/(.*)',
+    //             headers: createSecureHeaders({
+    //                 contentSecurityPolicy: {
+    //                     directives: { frameAncestors: '*' },
+    //                 },
+    //             }),
+    //         },
+    //         {
+    //             source: '/(.*)',
+    //             headers: [{ key: 'Access-Control-Allow-Origin', value: '*' }],
+    //         },
+    //     ];
+    // },
     redirects: async () => {
         return [
             { source: '/', destination: '/no/person', permanent: false },

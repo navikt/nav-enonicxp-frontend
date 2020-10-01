@@ -18,7 +18,7 @@ const envSecret = process.env.PREVIEW_SECRET;
 export default async (req, res) => {
     const { secret, branch, path } = req.query as Params;
     if (secret !== envSecret) {
-        return res.status(401).json({ message: 'Invalid token' });
+        return res.status(401).json({ message: 'Access denied' });
     }
     if (!path) {
         return res.status(400).json({ message: 'Invalid path' });
