@@ -48,3 +48,26 @@ export type GlobalSchema = {
     data: object;
     didRedirect?: boolean;
 };
+
+export interface GlobalPageSchema extends GlobalSchema {
+    page?: {
+        type: string;
+        descriptor: string;
+        regions: Region
+    };
+}
+
+
+export interface Component {
+    [key: string]: string
+    path: string;
+    type: string;
+    descriptor: string;
+}
+
+export interface Region {
+    [key: string]: {
+        name: string;
+        components: Component[]
+    }
+}

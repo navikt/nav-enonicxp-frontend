@@ -4,7 +4,7 @@ import '../global.less';
 
 const App = ({ Component, pageProps }: AppProps) => {
     return (
-        <div className={'app'} data-portal-region="main" data-th-remove="tag">
+        <div className={'app'} >
             <Component {...pageProps} />
         </div>
     );
