@@ -26,7 +26,7 @@ class MyDocument extends Document<Props> {
                     {/* Legacy scripts */}
                     {STYLES}
                 </Head>
-                <body>
+                <body data-portal-component-type="page">
                     {HEADER}
                     <Main />
                     {FOOTER}
