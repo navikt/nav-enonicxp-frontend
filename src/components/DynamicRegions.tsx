@@ -35,9 +35,11 @@ const DynamicRegion = (props: RegionProps) => {
         <div key={name} data-portal-region={name} className={name}>
             {regionComponents.map((component) => {
                 const className =
-                    component.descriptor === 'no.nav.navno:main-1-col'
-                        ? bem('main-1-col')
-                        : bem('default');
+                    {
+                        'no.nav.navno:main': bem('main'),
+                        'no.nav.navno:main-1-col': bem('main-1-col'),
+                        'no.nav.navno:search': bem('search'),
+                    }[component.descriptor] || bem('default');
 
                 return (
                     <div
