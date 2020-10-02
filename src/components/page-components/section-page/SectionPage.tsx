@@ -6,7 +6,7 @@ import { BEM } from '../../../utils/bem';
 import { LenkepanelListe } from '../../part-components/lenkepanel-liste/LenkepanelListe';
 import { ContentList } from '../../part-components/content-list/ContentList';
 import { LenkeNavNo } from '../../part-components/lenke-navno/LenkeNavNo';
-import DynamicRegion from '../../DynamicRegion';
+import DynamicRegions from '../../DynamicRegions';
 import './SectionPage.less';
 
 export const SectionPage = (props: SectionPageProps) => {
@@ -26,20 +26,21 @@ export const SectionPage = (props: SectionPageProps) => {
     const bem = BEM('section-page');
     const dynamicPage = props.page;
     const dynamicComponents = props.components;
-    const dynamicMainRegion = dynamicPage?.regions?.main;
+    const dynamicRegions = dynamicPage?.regions;
     return (
         <div className={bem()}>
-            <div data-portal-region={'main'}>
-                {dynamicMainRegion && (
-                    <DynamicRegion
-                        region={dynamicMainRegion}
-                        components={dynamicComponents}
-                    />
-                )}
-            </div>
             <div className={bem('tittel')}>
                 <Innholdstittel>{props.displayName}</Innholdstittel>
             </div>
+
+            {dynamicRegions ? (
+                <DynamicRegions
+                    regions={dynamicRegions}
+                    components={dynamicComponents}
+                />
+            ) : (
+                <div data-portal-region={'main'} />
+            )}
 
             {tableContents && <TableContents tableContents={tableContents} />}
             {(panelsHeading || panelItems) && (
