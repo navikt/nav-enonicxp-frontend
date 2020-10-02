@@ -111,11 +111,17 @@ export interface Component {
     image: Image;
 }
 
-export type RegionComponent = {
-    type: 'image';
-    path: string;
-    image: string;
-};
+export type RegionComponent =
+    | {
+          type: 'image';
+          path: string;
+          image: string;
+      }
+    | {
+          type: 'layout';
+          path: string;
+          regions: Regions;
+      };
 
 export interface Regions {
     main: Region;
