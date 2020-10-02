@@ -23,9 +23,9 @@ const DynamicRegion = (props: Props) => {
                     >
                         {component.type === 'image' && (
                             <Image
-                                {...pageComponent.filter(
-                                    (e) => e.path === component.path
-                                )[0]}
+                                {...pageComponent.find(
+                                    ({ path }) => path === component.path
+                                )}
                             />
                         )}
                     </div>
