@@ -1,0 +1,42 @@
+.region{
+
+  &__default{
+    width:100%;
+    display:flex;
+    margin:1rem 0;
+  }
+
+  &__main {
+    width:100%;
+    display: flex;
+    margin:1rem 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .region{
+      &__first{
+        flex: 2;
+        padding-right: 2rem;
+      }
+      &__second{
+        flex: 1;
+      }
+    }
+
+    // Bugfix XP preview
+    .row {
+      display: flex;
+    }
+
+    .xp-page-editor-item-view,
+    .xp-page-editor-region-placeholder {
+      width:100%;
+    }
+  }
+
+  &__main-1-col{
+    width:100%;
+    display:flex;
+    margin:1rem 0;
+  }
+}
