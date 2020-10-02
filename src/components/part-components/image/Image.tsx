@@ -1,9 +1,16 @@
 import React from 'react';
-import { enonicPathToAppPath } from '../../../utils/paths';
-import { Image } from '../../../types/content-types/_schema';
+import { Component } from '../../../types/content-types/_schema';
 
-const Img = (props: Image) => {
-    return <img src={enonicPathToAppPath(props._path)} />;
+const Img = (props: Component) => {
+    const { imageUrl } = props.image?.image;
+
+    if (imageUrl) {
+        const height = 800;
+        const width = 800;
+        const src = imageUrl.replaceAll('$scale', `block-${width}-${height}`);
+        return <img src={src} />;
+    }
+    return null;
 };
 
 export default Img;
