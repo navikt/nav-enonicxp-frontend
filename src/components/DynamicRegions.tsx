@@ -13,7 +13,6 @@ const bem = BEM('region');
 
 const DynamicRegions = (props: RegionsProps) => {
     const regions = props.regions || [];
-    console.log(regions);
     return (
         <>
             {Object.entries(regions).map(([key, value]) => {
