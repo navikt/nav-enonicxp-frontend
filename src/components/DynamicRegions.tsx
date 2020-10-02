@@ -32,7 +32,7 @@ const DynamicRegion = (props: RegionProps) => {
     const regionComponents = regions[name].components || [];
 
     return (
-        <div key={name} data-portal-region={name} className={name}>
+        <div key={name} data-portal-region={name} className={bem(name)}>
             {regionComponents.map((component) => {
                 const className =
                     {
