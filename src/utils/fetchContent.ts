@@ -126,19 +126,19 @@ export const fetchLanguages = (
 export const fetchPage = async (
     idOrPath: string,
     didRedirect: boolean = false,
-    draft = false
+    isDraft = false
 ): Promise<ContentTypeSchema> => {
-    const content = await fetchContent(idOrPath, draft);
+    const content = await fetchContent(idOrPath, isDraft);
 
     const redirectTarget = getTargetIfRedirect(content);
 
     if (redirectTarget) {
-        return fetchPage(redirectTarget, true, draft);
+        return fetchPage(redirectTarget, true, isDraft);
     }
 
     if (content && !contentToComponentMap[content.__typename]) {
         const path = content._path?.replace(enonicContentBasePath, '');
-        const legacyContent = (await fetchLegacyHtml(path, draft).then(
+        const legacyContent = (await fetchLegacyHtml(path, isDraft).then(
             async (res) => {
                 if (!res.ok) {
                     return makeErrorProps(path, res.statusText, res.status);
@@ -151,10 +151,10 @@ export const fetchPage = async (
             }
         )) as ContentTypeSchema;
 
-        return { ...legacyContent, didRedirect: didRedirect };
+        return { ...legacyContent, didRedirect: didRedirect, isDraft: isDraft };
     }
 
     return content
-        ? { ...content, didRedirect: didRedirect }
+        ? { ...content, didRedirect: didRedirect, isDraft: isDraft }
         : makeErrorProps(idOrPath, `Unknown fetch error from ${idOrPath}`);
 };

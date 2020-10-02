@@ -47,4 +47,5 @@ export type GlobalSchema = {
     displayName: string;
     data: object;
     didRedirect?: boolean;
+    isDraft?: boolean;
 };

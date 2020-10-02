@@ -82,7 +82,7 @@ export const DynamicPageWrapper = (props: Props) => {
         }
 
         // Ensures the url displayed in the browser is correct after static redirection
-        if (content.didRedirect && enonicPath) {
+        if (!content.isDraft && content.didRedirect && enonicPath) {
             router.replace(enonicPath, undefined, {
                 shallow: true,
             });
