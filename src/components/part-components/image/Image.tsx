@@ -7,7 +7,7 @@ const Img = (props: Component) => {
     if (imageUrl) {
         const height = 800;
         const width = 800;
-        const src = imageUrl.replaceAll('$scale', `block-${width}-${height}`);
+        const src = imageUrl.replace('$scale', `block-${width}-${height}`);
         return <img src={src} />;
     }
     return null;
