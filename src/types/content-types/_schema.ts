@@ -10,6 +10,7 @@ import { MainArticleProps } from './main-article-props';
 import { SiteProps } from './site-props';
 import { ErrorProps } from './error-props';
 import { NotificationProps } from './notification-props';
+import exp from 'constants';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -49,22 +50,71 @@ export type GlobalSchema = {
     didRedirect?: boolean;
 };
 
+/*
+   "page":{
+      "type":"page",
+      "path":"/",
+      "descriptor":"no.nav.navno:main-page",
+      "config":{
+      },
+      "regions":{
+         "main":{
+            "components":[
+               {
+                  "path":"/main/0",
+                  "type":"image",
+                  "image":"001d6ad4-1f1b-47a2-a14d-6521e0c4880a"
+               }
+            ],
+            "name":"main"
+         }
+      }
+   },
+   "components":[
+      {
+         "type":"page",
+         "path":"/"
+      },
+      {
+         "type":"image",
+         "path":"/main/0",
+         "image":{
+            "image":{
+               "imageUrl":"http://lo.jpg"
+            }
+         }
+      }
+ */
+
 export interface GlobalPageSchema extends GlobalSchema {
-    page?: {
-        type: string;
-        descriptor: string;
-        regions?: Regions;
-    };
+    components?: Component[];
+    page?: Page;
+}
+
+export interface Page {
+    type: string;
+    descriptor: string;
+    path: string;
+    config: object;
+    regions?: Regions;
 }
 
 export interface Image {
-    _path: string;
+    image: {
+        imageUrl: string;
+    };
 }
 
-export type Component = {
+export interface Component {
     type: 'image';
     path: string;
     image: Image;
+}
+
+export type RegionComponent = {
+    type: 'image';
+    path: string;
+    image: string;
 };
 
 export interface Regions {
@@ -77,5 +127,5 @@ export interface Regions {
 
 export interface Region {
     name: string;
-    components: Component[];
+    components: RegionComponent[];
 }

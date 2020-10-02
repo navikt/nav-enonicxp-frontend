@@ -1,18 +1,19 @@
 import React from 'react';
-import { Region } from '../types/content-types/_schema';
+import { Component, Region } from '../types/content-types/_schema';
 import Image from '../components/part-components/image/Image';
 
 interface Props {
     region: Region;
+    components: Component[];
 }
 
 const DynamicRegion = (props: Props) => {
-    const { region } = props;
-    const components = region.components || [];
+    const pageComponent = props.components || [];
+    const regionComponent = props.region.components || [];
 
     return (
         <>
-            {components.map((component) => {
+            {regionComponent.map((component) => {
                 return (
                     <div
                         key={component.path}
@@ -21,7 +22,11 @@ const DynamicRegion = (props: Props) => {
                         data-th-remove="tag"
                     >
                         {component.type === 'image' && (
-                            <Image {...component.image} />
+                            <Image
+                                {...pageComponent.filter(
+                                    (e) => e.path === component.path
+                                )[0]}
+                            />
                         )}
                     </div>
                 );

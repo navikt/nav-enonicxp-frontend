@@ -24,13 +24,17 @@ export const SectionPage = (props: SectionPageProps) => {
         scContents,
     } = props.data;
     const bem = BEM('section-page');
-    const dynamicRegions = props.page?.regions;
-    const dynamicMainRegion = dynamicRegions?.main;
+    const dynamicPage = props.page;
+    const dynamicComponents = props.components;
+    const dynamicMainRegion = dynamicPage?.regions?.main;
     return (
         <div className={bem()}>
             <div data-portal-region={'main'}>
                 {dynamicMainRegion && (
-                    <DynamicRegion region={dynamicMainRegion} />
+                    <DynamicRegion
+                        region={dynamicMainRegion}
+                        components={dynamicComponents}
+                    />
                 )}
             </div>
             <div className={bem('tittel')}>
