@@ -27,6 +27,7 @@ export const SectionPage = (props: SectionPageProps) => {
     const dynamicPage = props.page;
     const dynamicComponents = props.components;
     const dynamicRegions = dynamicPage?.regions;
+
     return (
         <div className={bem()}>
             <div className={bem('tittel')}>

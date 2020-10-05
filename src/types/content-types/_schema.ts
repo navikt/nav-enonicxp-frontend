@@ -113,6 +113,13 @@ export interface Component {
 
 export type RegionComponent =
     | {
+          type: 'text';
+          path: string;
+          text: {
+              value: string;
+          };
+      }
+    | {
           type: 'image';
           path: string;
           image: string;

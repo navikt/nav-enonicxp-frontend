@@ -2,6 +2,7 @@ import React from 'react';
 import { Component, Regions } from '../types/content-types/_schema';
 import Image from '../components/part-components/image/Image';
 import { BEM } from '../utils/bem';
+import htmlReactParser from 'html-react-parser';
 import './DynamicRegions.less';
 
 interface RegionsProps {
@@ -48,24 +49,40 @@ const DynamicRegion = (props: RegionProps) => {
                         className={className}
                         data-th-remove="tag"
                     >
-                        {component.type === 'image' && (
-                            <Image
-                                {...components.find(
-                                    ({ path }) => path === component.path
-                                )}
-                            />
-                        )}
-                        {component.type === 'layout' && (
-                            <DynamicRegions
-                                regions={component.regions}
-                                components={components}
-                            />
+                        {{
+                            text: <ParsedHtml value={component.text} />,
+                            image: (
+                                <Image
+                                    {...components.find(
+                                        ({ path }) => path === component.path
+                                    )}
+                                />
+                            ),
+                            part: {
+                                'no.nav.navno:breaking-news': (
+                                    <div>Breaking news</div>
+                                ),
+                            }[component.descriptor] || (
+                                <div>{`Unimplemented part: ${component.descriptor}`}</div>
+                            ),
+                            layout: (
+                                <DynamicRegions
+                                    regions={component.regions}
+                                    components={components}
+                                />
+                            ),
+                        }[component.type] || (
+                            <div>{`Unimplemented type: ${component.type}`}</div>
                         )}
                     </div>
                 );
             })}
         </div>
     );
+};
+
+export const ParsedHtml = (text: { value: string }) => {
+    return <>{htmlReactParser(text.value)}</>;
 };
 
 export default DynamicRegions;
