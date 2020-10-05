@@ -45,7 +45,7 @@ export const fetchPageBaseProps = async (
     enonicPath: string,
     isDraft = false
 ): Promise<Props> => {
-    const content = await fetchPage(enonicPath, false, isDraft);
+    const content = await fetchPage(enonicPath, isDraft);
 
     if (content.__typename === ContentType.Error) {
         return {

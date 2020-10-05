@@ -23,9 +23,7 @@ jobs:
           ADMIN_ORIGIN=https://portal-admin-q6.adeo.no
           APP_ORIGIN=https://www-q6.nav.no
           DECORATOR_URL=https://www-q6.nav.no/dekoratoren
-          PREVIEW_SECRET=asdf
           XP_ORIGIN=https://www-q6.nav.no
-          XP_SERVICE_URL=https://www-q6.nav.no/_/service/no.nav.navno
           EOF
       - uses: actions/cache@v1
         with:

@@ -2,19 +2,22 @@ import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
 import { makeErrorProps } from '../types/content-types/error-props';
 import { contentToComponentMap } from '../components/ContentToComponentMapper';
 import {
-    draftPathPrefix,
-    enonicContentBasePath,
-    legacyPathPrefix,
+    enonicDraftLegacyPath,
+    xpContentBasePath,
+    enonicLegacyPath,
+    enonicDraftServicePath,
+    enonicServicePath,
 } from './paths';
 import { fetchWithTimeout } from './fetchWithTimeout';
 import { Breadcrumb } from '../types/breadcrumb';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { Language } from '../types/languages';
 
-const xpServiceUrl = process.env.XP_SERVICE_URL;
-const xpLegacyUrl = `${process.env.XP_ORIGIN}${legacyPathPrefix}`;
-const xpDraftUrl = `${process.env.ADMIN_ORIGIN}${draftPathPrefix}`;
-const xpDraftServiceUrl = `${process.env.ADMIN_ORIGIN}${draftPathPrefix}/_/service/no.nav.navno`;
+const xpOrigin = process.env.XP_ORIGIN;
+const xpServiceUrl = `${xpOrigin}${enonicServicePath}`;
+const xpDraftServiceUrl = `${xpOrigin}${enonicDraftServicePath}`;
+const xpLegacyUrl = `${xpOrigin}${enonicLegacyPath}`;
+const xpLegacyDraftUrl = `${xpOrigin}${enonicDraftLegacyPath}`;
 
 const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
     switch (contentData?.__typename) {
@@ -28,9 +31,10 @@ const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
 };
 
 const fetchLegacyHtml = (path: string, draft = false) => {
-    const url = `${draft ? xpDraftUrl : xpLegacyUrl}/${
+    const url = `${draft ? xpLegacyDraftUrl : xpLegacyUrl}/${
         path[0] === '/' ? path.slice(1) : path
     }`;
+    console.log('fetching legacy html from:', url);
     return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (res.ok) {
@@ -47,13 +51,12 @@ const fetchLegacyHtml = (path: string, draft = false) => {
 const fetchContent = (
     idOrPath: string,
     draft = false
-): Promise<ContentTypeSchema> =>
-    fetchWithTimeout(
-        `${
-            draft ? xpDraftServiceUrl : xpServiceUrl
-        }/sitecontent?id=${encodeURIComponent(idOrPath)}`,
-        5000
-    )
+): Promise<ContentTypeSchema> => {
+    const url = `${
+        draft ? xpDraftServiceUrl : xpServiceUrl
+    }/sitecontent?id=${encodeURIComponent(idOrPath)}`;
+    console.log('fetching content from:', url);
+    return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (res.ok) {
                 return res.json();
@@ -62,17 +65,16 @@ const fetchContent = (
             return makeErrorProps(idOrPath, error, res.status);
         })
         .catch(console.error);
+};
 
 export const fetchNotifications = (
     path?: string,
     draft = false
-): Promise<NotificationProps[]> =>
-    fetchWithTimeout(
-        `${draft ? xpDraftServiceUrl : xpServiceUrl}/notifications${
-            path ? `?path=${path}` : ''
-        }`,
-        5000
-    )
+): Promise<NotificationProps[]> => {
+    const url = `${draft ? xpDraftServiceUrl : xpServiceUrl}/notifications${
+        path ? `?path=${path}` : ''
+    }`;
+    return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (res.ok) {
                 return res.json();
@@ -82,17 +84,16 @@ export const fetchNotifications = (
             return [];
         })
         .catch(console.error);
+};
 
 export const fetchBreadcrumbs = (
     idOrPath: string,
     draft = false
-): Promise<Breadcrumb[]> =>
-    fetchWithTimeout(
-        `${
-            draft ? xpDraftServiceUrl : xpServiceUrl
-        }/breadcrumbs?id=${encodeURIComponent(idOrPath)}`,
-        5000
-    )
+): Promise<Breadcrumb[]> => {
+    const url = `${
+        draft ? xpDraftServiceUrl : xpServiceUrl
+    }/breadcrumbs?id=${encodeURIComponent(idOrPath)}`;
+    return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (res.ok) {
                 return res.json();
@@ -102,6 +103,7 @@ export const fetchBreadcrumbs = (
             return [];
         })
         .catch(console.error);
+};
 
 export const fetchLanguages = (
     idOrPath: string,
@@ -125,19 +127,19 @@ export const fetchLanguages = (
 
 export const fetchPage = async (
     idOrPath: string,
-    didRedirect: boolean = false,
-    isDraft = false
+    isDraft = false,
+    didRedirect: boolean = false
 ): Promise<ContentTypeSchema> => {
     const content = await fetchContent(idOrPath, isDraft);
 
     const redirectTarget = getTargetIfRedirect(content);
 
     if (redirectTarget) {
-        return fetchPage(redirectTarget, true, isDraft);
+        return fetchPage(redirectTarget, isDraft, true);
     }
 
     if (content && !contentToComponentMap[content.__typename]) {
-        const path = content._path?.replace(enonicContentBasePath, '');
+        const path = content._path?.replace(xpContentBasePath, '');
         const legacyContent = (await fetchLegacyHtml(path, isDraft).then(
             async (res) => {
                 if (!res.ok) {

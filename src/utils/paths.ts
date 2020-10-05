@@ -1,6 +1,10 @@
-export const enonicContentBasePath = '/www.nav.no';
-export const legacyPathPrefix = '/_/service/legacy';
-export const draftPathPrefix = '/admin/site/preview/default/draft/www.nav.no';
+export const xpContentBasePath = '/www.nav.no';
+export const localDraftPath = '/draft';
+export const enonicDraftPath = '/_/draft';
+export const enonicServicePath = '/_/service/no.nav.navno';
+export const enonicDraftServicePath = `${enonicDraftPath}${enonicServicePath}`;
+export const enonicLegacyPath = '/_/legacy';
+export const enonicDraftLegacyPath = '/_/legacy/draft';
 
 export type EnonicContentRef = string;
 
@@ -14,7 +18,7 @@ export const isUUID = (id: string) =>
     );
 
 export const enonicPathToAppPath = (path: string) =>
-    isEnonicPath(path) ? path.split(enonicContentBasePath)[1] : null;
+    isEnonicPath(path) ? path.split(xpContentBasePath)[1] : null;
 
 export const enonicPathToUrl = (path: string) =>
     isEnonicPath(path)
@@ -33,5 +37,5 @@ export const routerQueryToEnonicPathOrId = (routerQuery: string | string[]) => {
         typeof routerQuery === 'string' ? routerQuery : routerQuery.join('/')
     }`;
 
-    return `${enonicContentBasePath}${path}`;
+    return `${xpContentBasePath}${path}`;
 };

@@ -63,11 +63,13 @@ export const DynamicPageWrapper = (props: Props) => {
             return;
         }
 
-        // Focus sometimes "sticks" after navigating to a new page
+        // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
 
-        const enonicPath = enonicPathToAppPath(content._path);
+        const path = `${content.isDraft ? '/draft' : ''}${enonicPathToAppPath(
+            content._path
+        )}`;
 
         if (breadcrumbs) {
             setBreadcrumbs(
@@ -81,9 +83,9 @@ export const DynamicPageWrapper = (props: Props) => {
             );
         }
 
-        // Ensures the url displayed in the browser is correct after static redirection
-        if (!content.isDraft && content.didRedirect && enonicPath) {
-            router.replace(enonicPath, undefined, {
+        // Ensures the url displayed in the browser is correct after async redirection
+        if (content.didRedirect && path) {
+            router.replace(path, undefined, {
                 shallow: true,
             });
         }
