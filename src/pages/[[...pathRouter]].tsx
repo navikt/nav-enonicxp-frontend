@@ -10,7 +10,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     const props = await fetchPageBaseProps(enonicPath);
 
-    return { props: props, revalidate: 1 };
+    return { props: props };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
