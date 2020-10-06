@@ -28,7 +28,7 @@ export enum ContentType {
 }
 
 export enum PartType {
-    BreakingNews = 'no.nav.navno:breaking-news',
+    LinkPanelWithBackground = 'no.nav.navno:link-panel-with-background',
 }
 
 export type ContentTypeSchema =
@@ -88,7 +88,32 @@ export interface Text {
     };
 }
 
-export type Component = Image | Text;
+export interface LinkPanelWithBackgroundPart {
+    type: 'part';
+    path: string;
+    descriptor: 'no.nav.navno:link-panel-with-background';
+    regions: undefined;
+    part: {
+        config: {
+            no_nav_navno: {
+                link_panel_with_background: {
+                    background: GlobalSchema & {
+                        data: {
+                            media: {
+                                attachment: string;
+                            };
+                        };
+                    };
+                    description: string;
+                    target: string;
+                    title: string;
+                };
+            };
+        };
+    };
+}
+
+export type Component = Image | Text | LinkPanelWithBackgroundPart;
 
 // Subset of components
 export type RegionComponent =
@@ -111,6 +136,12 @@ export type RegionComponent =
           path: string;
           descriptor: string;
           regions: Regions;
+      }
+    | {
+          type: 'part';
+          path: string;
+          descriptor: string;
+          regions: undefined;
       };
 
 export interface Regions {

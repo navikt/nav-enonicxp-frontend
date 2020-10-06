@@ -1,8 +1,11 @@
 import React from 'react';
-import { Component, Region } from '../types/content-types/_schema';
+import { Component } from '../types/content-types/_schema';
+import { Region } from '../types/content-types/_schema';
+import { LinkPanelWithBackgroundPart } from '../types/content-types/_schema';
 import { PartType, Regions, Text, Image } from '../types/content-types/_schema';
 import Picture from '../components/part-components/image/Image';
 import { BEM } from '../utils/bem';
+import { LinkPanelWithBackground } from './part-components/link-panel-with-background/LinkPanelWithBackground';
 import htmlReactParser from 'html-react-parser';
 import './DynamicRegions.less';
 
@@ -58,13 +61,19 @@ export const DynamicRegion = (props: RegionProps) => {
                         {{
                             text: <Html {...(component as Text)} />,
                             image: <Picture {...(component as Image)} />,
+
+                            // Dynamic parts
                             part: {
-                                [PartType.BreakingNews]: (
-                                    <div>Breaking news</div>
+                                [PartType.LinkPanelWithBackground]: (
+                                    <LinkPanelWithBackground
+                                        {...(component as LinkPanelWithBackgroundPart)}
+                                    />
                                 ),
                             }[regionComponent.descriptor] || (
                                 <div>{`Unimplemented part: ${regionComponent.descriptor}`}</div>
                             ),
+
+                            // Recursive layouts
                             layout: (
                                 <DynamicRegions
                                     regions={regionComponent.regions}
