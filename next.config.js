@@ -16,7 +16,7 @@ const configWithAllTheThings = (config) =>
     withTranspileModules(withLess(withImages(config)));
 
 module.exports = configWithAllTheThings({
-    assetPrefix: process.env.APP_ORIGIN,
+    assetPrefix: process.env.APP_ORIGIN || 'https://www-q6.nav.no',
     env: {
         XP_ORIGIN: process.env.XP_ORIGIN,
     },
