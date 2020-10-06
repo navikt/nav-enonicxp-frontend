@@ -5,12 +5,12 @@ import DynamicRegions from '../../DynamicRegions';
 import './FragmentPage.less';
 
 export const FragmentPage = (props: GlobalPageSchema) => {
-    const components = props.components;
+    const pageComponents = props.components;
     const regions: Regions = {
         main: {
             name: 'main',
-            components: components as any,
+            components: pageComponents as any,
         },
     };
-    return <DynamicRegions regions={regions} components={components} />;
+    return <DynamicRegions regions={regions} pageComponents={pageComponents} />;
 };

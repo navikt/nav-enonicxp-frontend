@@ -23,6 +23,7 @@ export const SectionPage = (props: SectionPageProps) => {
         nrSC,
         scContents,
     } = props.data;
+
     const bem = BEM('section-page');
     const dynamicPage = props.page;
     const dynamicComponents = props.components;
@@ -37,7 +38,7 @@ export const SectionPage = (props: SectionPageProps) => {
             {dynamicRegions ? (
                 <DynamicRegions
                     regions={dynamicRegions}
-                    components={dynamicComponents}
+                    pageComponents={dynamicComponents}
                 />
             ) : (
                 <div data-portal-region={'main'} />
