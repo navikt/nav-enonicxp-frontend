@@ -19,7 +19,7 @@ npm run build && npm start
 ```
 
 ## vhost config
-Mappings legges inn i com.enonic.xp.web.host.cfg.
+Mappings legges inn i com.enonic.xp.web.vhost.cfg.
 
 #### lokalt
 
