@@ -16,6 +16,9 @@ const configWithAllTheThings = (config) =>
     withTranspileModules(withLess(withImages(config)));
 
 module.exports = configWithAllTheThings({
+    serverRuntimeConfig: {
+        assetPrefix: 'asdfasdf',
+    },
     assetPrefix: process.env.APP_ORIGIN,
     env: {
         XP_ORIGIN: process.env.XP_ORIGIN,
