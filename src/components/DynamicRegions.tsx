@@ -1,5 +1,5 @@
 import React from 'react';
-import { Component } from '../types/content-types/_schema';
+import { Component, Region } from '../types/content-types/_schema';
 import { PartType, Regions, Text, Image } from '../types/content-types/_schema';
 import Picture from '../components/part-components/image/Image';
 import { BEM } from '../utils/bem';
@@ -15,22 +15,29 @@ const bem = BEM('region');
 
 const DynamicRegions = (props: RegionsProps) => {
     const regions = props.regions || [];
+    const pageComponents = props.pageComponents || [];
     return (
         <>
-            {Object.entries(regions).map(([key, value]) => {
-                return <DynamicRegion key={key} name={key} {...props} />;
-            })}
+            {Object.values(regions).map((region, i) => (
+                <DynamicRegion
+                    key={region.name}
+                    region={region}
+                    pageComponents={pageComponents}
+                />
+            ))}
         </>
     );
 };
 
-interface RegionProps extends RegionsProps {
-    name: string;
+interface RegionProps {
+    region: Region;
+    pageComponents: Component[];
 }
 
 export const DynamicRegion = (props: RegionProps) => {
-    const { name, pageComponents, regions } = props;
-    const regionComponents = regions[name].components || [];
+    const { region, pageComponents } = props;
+    const regionComponents = region.components || [];
+    const { name } = region;
 
     return (
         <div key={name} data-portal-region={name} className={bem(name)}>
@@ -80,7 +87,7 @@ export const Html = ({ text }: Text) => {
     return <>{value && htmlReactParser(value)}</>;
 };
 
-const getClass = (descriptor: string) =>
+const getClass = (descriptor?: string) =>
     ({
         'no.nav.navno:main': bem('main'),
         'no.nav.navno:main-1-col': bem('main-1-col'),

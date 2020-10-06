@@ -95,16 +95,21 @@ export type RegionComponent =
     | {
           type: 'text';
           path: string;
+          descriptor: undefined;
           text: string;
+          regions: undefined;
       }
     | {
           type: 'image';
           path: string;
+          descriptor: undefined;
           image: string;
+          regions: undefined;
       }
     | {
           type: 'layout';
           path: string;
+          descriptor: string;
           regions: Regions;
       };
 
