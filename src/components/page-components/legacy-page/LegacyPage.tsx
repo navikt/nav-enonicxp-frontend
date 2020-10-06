@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
-import { isEnonicPath, legacyPathPrefix } from '../../../utils/paths';
+import { isEnonicPath, enonicLegacyPath } from '../../../utils/paths';
 import { LegacyProps } from '../../../types/content-types/legacy-props';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -32,7 +32,7 @@ const parseLegacyHtml = (htmlString: string) => {
 
             if (name?.toLowerCase() === 'a' && attribs?.href) {
                 const href = attribs.href
-                    .replace(legacyPathPrefix, '')
+                    .replace(enonicLegacyPath, '')
                     .replace('https://www.nav.no', '');
                 const props = attributesToProps(attribs);
 
@@ -55,13 +55,13 @@ const parseLegacyHtml = (htmlString: string) => {
         replace: ({ name, attribs }: DomElement) => {
             const href = attribs?.href
                 ? attribs?.href?.charAt(0) === '/'
-                    ? `${xpOrigin}${attribs.href.replace(legacyPathPrefix, '')}`
+                    ? `${xpOrigin}${attribs.href.replace(enonicLegacyPath, '')}`
                     : attribs.href
                 : undefined;
 
             const src = attribs?.src
                 ? attribs?.src?.charAt(0) === '/'
-                    ? `${xpOrigin}${attribs.src.replace(legacyPathPrefix, '')}`
+                    ? `${xpOrigin}${attribs.src.replace(enonicLegacyPath, '')}`
                     : attribs.src
                 : undefined;
 

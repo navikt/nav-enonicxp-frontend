@@ -1,7 +1,6 @@
 const withLess = require('@zeit/next-less');
 const withImages = require('next-images');
 const packageJson = require('./package.json');
-const { createSecureHeaders } = require('./src/utils/next-secure-headers/lib');
 
 const navFrontendModuler = Object.keys(packageJson.dependencies).reduce(
     (acc, key) => (key.startsWith('nav-frontend-') ? acc.concat(key) : acc),
@@ -24,16 +23,13 @@ module.exports = configWithAllTheThings({
     headers: async () => {
         return [
             {
-                source: '/(.*)',
-                headers: createSecureHeaders({
-                    contentSecurityPolicy: {
-                        directives: { frameAncestors: '*' },
+                source: '/_next/(.*)',
+                headers: [
+                    {
+                        key: 'Access-Control-Allow-Origin',
+                        value: process.env.ADMIN_ORIGIN,
                     },
-                }),
-            },
-            {
-                source: '/(.*)',
-                headers: [{ key: 'Access-Control-Allow-Origin', value: '*' }],
+                ],
             },
         ];
     },

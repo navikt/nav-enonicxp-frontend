@@ -16,6 +16,7 @@ export enum ContentType {
     Legacy = 'legacy',
     Error = 'error',
     Site = 'portal_Site',
+    Fragment = 'portal_Fragment',
     InternalLink = 'no_nav_navno_InternalLink',
     ExternalLink = 'no_nav_navno_ExternalLink',
     SectionPage = 'no_nav_navno_SectionPage',
@@ -24,6 +25,10 @@ export enum ContentType {
     PageList = 'no_nav_navno_PageList',
     MainArticle = 'no_nav_navno_MainArticle',
     Notification = 'no_nav_navno_Notification',
+}
+
+export enum PartType {
+    BreakingNews = 'no.nav.navno:breaking-news',
 }
 
 export type ContentTypeSchema =
@@ -48,43 +53,8 @@ export type GlobalSchema = {
     displayName: string;
     data: object;
     didRedirect?: boolean;
+    isDraft?: boolean;
 };
-
-/*
-   "page":{
-      "type":"page",
-      "path":"/",
-      "descriptor":"no.nav.navno:main-page",
-      "config":{
-      },
-      "regions":{
-         "main":{
-            "components":[
-               {
-                  "path":"/main/0",
-                  "type":"image",
-                  "image":"001d6ad4-1f1b-47a2-a14d-6521e0c4880a"
-               }
-            ],
-            "name":"main"
-         }
-      }
-   },
-   "components":[
-      {
-         "type":"page",
-         "path":"/"
-      },
-      {
-         "type":"image",
-         "path":"/main/0",
-         "image":{
-            "image":{
-               "imageUrl":"http://lo.jpg"
-            }
-         }
-      }
- */
 
 export interface GlobalPageSchema extends GlobalSchema {
     components?: Component[];
@@ -99,19 +69,34 @@ export interface Page {
     regions?: Regions;
 }
 
+// Components
 export interface Image {
+    type: 'image';
+    path: string;
     image: {
-        imageUrl: string;
+        image: {
+            imageUrl: string;
+        };
     };
 }
 
-export interface Component {
-    type: 'image';
+export interface Text {
+    type: 'text';
     path: string;
-    image: Image;
+    text: {
+        value: string;
+    };
 }
 
+export type Component = Image | Text;
+
+// Subset of components
 export type RegionComponent =
+    | {
+          type: 'text';
+          path: string;
+          text: string;
+      }
     | {
           type: 'image';
           path: string;
@@ -124,11 +109,11 @@ export type RegionComponent =
       };
 
 export interface Regions {
-    main: Region;
-    first: Region;
-    second: Region;
-    result: Region;
-    searchbar: Region;
+    main?: Region;
+    first?: Region;
+    second?: Region;
+    result?: Region;
+    searchbar?: Region;
 }
 
 export interface Region {

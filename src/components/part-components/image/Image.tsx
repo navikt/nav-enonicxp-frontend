@@ -1,10 +1,10 @@
 import React from 'react';
-import { Component } from '../../../types/content-types/_schema';
+import { Image } from '../../../types/content-types/_schema';
 import { BEM } from '../../../utils/bem';
 import './Image.less';
 
-const Img = (props: Component) => {
-    const { imageUrl } = props.image?.image;
+const Img = (props: Image) => {
+    const { imageUrl } = props.image.image;
     const bem = BEM('image');
     if (imageUrl) {
         const height = 800;
