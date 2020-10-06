@@ -5,12 +5,14 @@ import { TransportPage } from './page-components/transport-page/TransportPage';
 import LegacyPage from './page-components/legacy-page/LegacyPage';
 import { ErrorPage } from './page-components/error-page/ErrorPage';
 import { makeErrorProps } from '../types/content-types/error-props';
+import { FragmentPage } from './page-components/fragment-page/FragmentPage';
 
 export const contentToComponentMap = {
     [ContentType.Error]: ErrorPage,
     [ContentType.Legacy]: LegacyPage,
     [ContentType.SectionPage]: SectionPage,
     [ContentType.TransportPage]: TransportPage,
+    [ContentType.Fragment]: FragmentPage,
 };
 
 type Props = {

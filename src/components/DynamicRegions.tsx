@@ -1,5 +1,6 @@
 import React from 'react';
-import { Component, Regions } from '../types/content-types/_schema';
+import { Component } from '../types/content-types/_schema';
+import { PartType, Regions, Text } from '../types/content-types/_schema';
 import Image from '../components/part-components/image/Image';
 import { BEM } from '../utils/bem';
 import htmlReactParser from 'html-react-parser';
@@ -27,7 +28,7 @@ interface RegionProps extends RegionsProps {
     name: string;
 }
 
-const DynamicRegion = (props: RegionProps) => {
+export const DynamicRegion = (props: RegionProps) => {
     const { name, components, regions } = props;
     const regionComponents = regions[name].components || [];
 
@@ -50,7 +51,13 @@ const DynamicRegion = (props: RegionProps) => {
                         data-th-remove="tag"
                     >
                         {{
-                            text: <ParsedHtml value={component.text} />,
+                            text: (
+                                <Html
+                                    {...components.find(
+                                        ({ path }) => path === component.path
+                                    )}
+                                />
+                            ),
                             image: (
                                 <Image
                                     {...components.find(
@@ -59,7 +66,7 @@ const DynamicRegion = (props: RegionProps) => {
                                 />
                             ),
                             part: {
-                                'no.nav.navno:breaking-news': (
+                                [PartType.BreakingNews]: (
                                     <div>Breaking news</div>
                                 ),
                             }[component.descriptor] || (
@@ -81,8 +88,9 @@ const DynamicRegion = (props: RegionProps) => {
     );
 };
 
-export const ParsedHtml = (text: { value: string }) => {
-    return <>{htmlReactParser(text.value)}</>;
+export const Html = ({ text }: Text) => {
+    const value = text.value;
+    return <>{value && htmlReactParser(value)}</>;
 };
 
 export default DynamicRegions;
