@@ -6,11 +6,10 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Installing dependencies
-#COPY package*.json /usr/src/app/
-#RUN npm ci
+COPY package*.json /usr/src/app/
+RUN npm ci
 
 COPY . /usr/src/app
-RUN npm ci
 RUN npm run build
 
 # Copying build files from workflow
