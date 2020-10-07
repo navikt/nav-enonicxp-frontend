@@ -8,12 +8,13 @@ WORKDIR /usr/src/app
 COPY package*.json /usr/src/app/
 RUN npm ci
 
+# Building app
 COPY src /usr/src/app/src/
 COPY public /usr/src/app/public/
 COPY [".env", "next.config.js", "next-env.d.ts", "/usr/src/app/"]
 RUN npm run build
 
-ENV NODE_ENV production
 # Start app
+ENV NODE_ENV production
 EXPOSE 3000
 CMD "npm" "start"
