@@ -1,7 +1,7 @@
 import React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { DynamicAlert } from '../../../../types/content-types/_dynamic/alert';
-import htmlReactParser from 'html-react-parser';
+import { ParsedHtml } from '../ParsedHtml';
 import './Alerstripe.less';
 
 const Alerstripe = (props: DynamicAlert) => {
@@ -20,8 +20,8 @@ const Alerstripe = (props: DynamicAlert) => {
     };
 
     return (
-        <AlertStripe type={type} style={style}>
-            {content && htmlReactParser(content)}
+        <AlertStripe type={type || 'info'} style={style}>
+            <ParsedHtml content={content} />
         </AlertStripe>
     );
 };

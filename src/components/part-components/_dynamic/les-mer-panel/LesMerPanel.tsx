@@ -1,7 +1,7 @@
 import React from 'react';
-import htmlReactParser from 'html-react-parser';
 import { DynamicReadMorePanel } from '../../../../types/content-types/_dynamic/read-more-panel';
 import LesmerpanelModul from 'nav-frontend-lesmerpanel';
+import { ParsedHtml } from '../ParsedHtml';
 import './LesMerPanel.less';
 
 const LesMerPanel = (props: DynamicReadMorePanel) => {
@@ -23,9 +23,9 @@ const LesMerPanel = (props: DynamicReadMorePanel) => {
         <div className={'lesMerPanel__container'} style={style}>
             <LesmerpanelModul
                 border={border === 'true'}
-                intro={<span>{ingress && htmlReactParser(ingress)}</span>}
+                intro={<ParsedHtml content={ingress} />}
             >
-                {content && htmlReactParser(content)}
+                <ParsedHtml content={content} />
             </LesmerpanelModul>
         </div>
     );
