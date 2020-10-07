@@ -19,11 +19,11 @@ interface RegionsProps {
 const bem = BEM('region');
 
 const DynamicRegions = (props: RegionsProps) => {
-    const regions = props.dynamicRegions || [];
+    const dynamicRegions = props.dynamicRegions || [];
     const dynamicGlobalComponents = props.dynamicGlobalComponents || [];
     return (
         <>
-            {Object.values(regions).map((region, i) => (
+            {Object.values(dynamicRegions).map((region, i) => (
                 <DynamicRegion
                     key={region.name}
                     region={region}
