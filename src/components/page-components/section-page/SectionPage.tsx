@@ -24,24 +24,11 @@ export const SectionPage = (props: SectionPageProps) => {
     } = props.data;
 
     const bem = BEM('section-page');
-    const dynamicPage = props.page;
-    const dynamicComponents = props.components;
-    const dynamicRegions = dynamicPage?.regions;
-
     return (
         <div className={bem()}>
             <div className={bem('tittel')}>
                 <Innholdstittel>{props.displayName}</Innholdstittel>
             </div>
-
-            {dynamicRegions ? (
-                <DynamicRegions
-                    regions={dynamicRegions}
-                    pageComponents={dynamicComponents}
-                />
-            ) : (
-                <div data-portal-region={'main'} />
-            )}
 
             {tableContents && <TableContents tableContents={tableContents} />}
             {(panelsHeading || panelItems) && (
