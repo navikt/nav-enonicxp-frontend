@@ -11,7 +11,7 @@ import './LegacyPage.less';
 
 const xpOrigin = process.env.XP_ORIGIN;
 
-export const parseHtml = (htmlString: string) => {
+export const parseLegacyHtml = (htmlString: string) => {
     const replaceBodyElements = {
         replace: ({ name, attribs, children }: DomElement) => {
             if (name?.toLowerCase() === 'time') {
@@ -120,7 +120,7 @@ export const LegacyPage = (contentData: LegacyProps) => (
             />
         </Head>
         <div className={'legacy-container'}>
-            {contentData.data?.html && parseHtml(contentData.data.html)}
+            {contentData.data?.html && parseLegacyHtml(contentData.data.html)}
         </div>
     </Fragment>
 );
