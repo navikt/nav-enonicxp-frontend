@@ -2,9 +2,9 @@ import React from 'react';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import Link from 'next/link';
 import { Undertittel } from 'nav-frontend-typografi';
-import { isEnonicPath } from '../../../../utils/paths';
-import { DynamicLinkPanel } from '../../../../types/content-types/_dynamic/link-panel';
-import { BEM } from '../../../../utils/bem';
+import { isEnonicPath } from 'utils/paths';
+import { DynamicLinkPanel } from 'types/content-types/_dynamic/link-panel';
+import { BEM } from 'utils/bem';
 import './LinkPanel.less';
 
 const bem = BEM('link-panel');

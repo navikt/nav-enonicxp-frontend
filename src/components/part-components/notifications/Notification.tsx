@@ -1,16 +1,14 @@
 import React from 'react';
-import { NotificationProps } from '../../../types/content-types/notification-props';
+import { NotificationProps } from 'types/content-types/notification-props';
 import LenkepanelPluss from '../lenkepanel/LenkepanelPluss';
-import { ContentType } from '../../../types/content-types/_schema';
+import { ContentType } from 'types/content-types/_schema';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { PulsatingIcon } from './icons/PulsatingIcon';
 import { InfoIcon } from './icons/InfoIcon';
+import { hasIngress } from 'types/content-types/_type-utils';
+import { hasDescription } from 'types/content-types/_type-utils';
+import { BEM } from 'utils/bem';
 import './Notification.less';
-import {
-    hasDescription,
-    hasIngress,
-} from '../../../types/content-types/_type-utils';
-import { BEM } from '../../../utils/bem';
 
 type Target = NotificationProps['data']['target'];
 

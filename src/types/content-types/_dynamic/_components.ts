@@ -3,6 +3,8 @@ import { DynamicText } from './text';
 import { DynamicRegions } from '../_schema';
 import { DynamicLinkPanel } from './link-panel';
 import { DynamicSupervisorPanel } from './supervisor-panel';
+import { DynamicAlert } from './alert';
+import { DynamicReadMorePanel } from './read-more-panel';
 
 export type DynamicRegionComponent =
     | {
@@ -45,4 +47,6 @@ export type DynamicGlobalComponent =
     | DynamicImage
     | DynamicText
     | DynamicLinkPanel
-    | DynamicSupervisorPanel;
+    | DynamicSupervisorPanel
+    | DynamicAlert
+    | DynamicReadMorePanel;

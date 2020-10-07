@@ -1,6 +1,6 @@
 import React from 'react';
-import { TransportPageProps } from '../../../types/content-types/transport-page-props';
-import { LenkepanelListe } from '../../part-components/lenkepanel-liste/LenkepanelListe';
+import { TransportPageProps } from 'types/content-types/transport-page-props';
+import { LenkepanelListe } from 'components/part-components/lenkepanel-liste/LenkepanelListe';
 
 export const TransportPage = ({
     displayName,

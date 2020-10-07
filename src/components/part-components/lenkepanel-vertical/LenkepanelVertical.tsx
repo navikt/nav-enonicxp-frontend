@@ -1,7 +1,6 @@
 import React from 'react';
-import LenkepanelPluss, {
-    LenkepanelProps,
-} from '../lenkepanel/LenkepanelPluss';
+import LenkepanelPluss from '../lenkepanel/LenkepanelPluss';
+import { LenkepanelProps } from '../lenkepanel/LenkepanelPluss';
 import './LenkepanelVertical.less';
 
 export const LenkepanelVertical = (props: LenkepanelProps) => {

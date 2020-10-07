@@ -1,8 +1,8 @@
 import React from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
-import { LenkeData } from '../../../types/lenke-data';
+import { LenkeData } from 'types/lenke-data';
 import { LenkeNavNo } from '../lenke-navno/LenkeNavNo';
-import { BEM } from '../../../utils/bem';
+import { BEM } from 'utils/bem';
 import './Lenkeliste.less';
 
 type Props = {
@@ -15,7 +15,10 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
     const bem = BEM('lenkeliste');
 
     return (
-        <div className={`${bem()} ${className || ''}`} data-portal-component-type="part">
+        <div
+            className={`${bem()} ${className || ''}`}
+            data-portal-component-type="part"
+        >
             <div className={bem('tittel')}>
                 {tittel && <Undertittel>{tittel}</Undertittel>}
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalPageSchema } from '../../../types/content-types/_schema';
+import { GlobalPageSchema } from 'types/content-types/_schema';
 import DynamicRegions from './DynamicRegions';
 import './DynamicPage.less';
 

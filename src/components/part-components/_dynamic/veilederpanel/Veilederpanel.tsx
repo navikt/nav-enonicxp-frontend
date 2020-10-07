@@ -1,8 +1,8 @@
 import React from 'react';
-import { DynamicSupervisorPanel } from '../../../../types/content-types/_dynamic/supervisor-panel';
+import { DynamicSupervisorPanel } from 'types/content-types/_dynamic/supervisor-panel';
 import VeilederPanelModul from 'nav-frontend-veilederpanel';
-import htmlReactParser from 'html-react-parser';
 import { Veileder } from './Veileder';
+import { ParsedHtml } from '../ParsedHtml';
 import './Veilederpanel.less';
 
 const Veilederpanel = (props: DynamicSupervisorPanel) => {
@@ -13,12 +13,19 @@ const Veilederpanel = (props: DynamicSupervisorPanel) => {
     }
 
     const { dynamic_supervisor_panel } = no_nav_navno;
-    const { content } = dynamic_supervisor_panel;
+    const { content, margin } = dynamic_supervisor_panel;
+    const style = {
+        ...(margin && {
+            margin: margin,
+        }),
+    };
 
     return (
-        <VeilederPanelModul svg={<Veileder />}>
-            {content && htmlReactParser(content)}
-        </VeilederPanelModul>
+        <div className={'nav-veilederpanel__container'} style={style}>
+            <VeilederPanelModul svg={<Veileder />}>
+                <ParsedHtml content={content} />
+            </VeilederPanelModul>
+        </div>
     );
 };
 

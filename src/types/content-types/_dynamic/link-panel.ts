@@ -1,9 +1,9 @@
-import { GlobalSchema } from '../_schema';
+import { GlobalSchema, PartType } from '../_schema';
 
 export interface DynamicLinkPanel {
     type: 'part';
     path: string;
-    descriptor: 'no.nav.navno:dynamic-link-panel';
+    descriptor: PartType.LinkPanel;
     regions: undefined;
     part: {
         config: {

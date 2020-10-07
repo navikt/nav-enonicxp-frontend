@@ -1,9 +1,9 @@
 import React from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
-import { enonicPathToAppPath, isEnonicPath } from '../../../utils/paths';
+import { enonicPathToAppPath, isEnonicPath } from 'utils/paths';
 import Link from 'next/link';
-import { BEM } from '../../../utils/bem';
+import { BEM } from 'utils/bem';
 import './LenkepanelPluss.less';
 
 export type LenkepanelProps = {

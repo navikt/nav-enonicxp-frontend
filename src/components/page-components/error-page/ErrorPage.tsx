@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ErrorProps } from '../../../types/content-types/error-props';
+import { ErrorProps } from 'types/content-types/error-props';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import './ErrorPage.less';

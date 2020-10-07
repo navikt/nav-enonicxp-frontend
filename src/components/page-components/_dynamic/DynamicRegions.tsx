@@ -1,17 +1,21 @@
 import React from 'react';
-import { DynamicRegion } from '../../../types/content-types/_schema';
-import { PartType, DynamicRegions } from '../../../types/content-types/_schema';
-import { BEM } from '../../../utils/bem';
-import { LinkPanel } from '../../part-components/_dynamic/link-panel/LinkPanel';
-import { DynamicRegionConfig } from '../../../types/content-types/_dynamic/_components';
-import { DynamicGlobalComponent } from '../../../types/content-types/_dynamic/_components';
-import { DynamicText } from '../../../types/content-types/_dynamic/text';
-import { DynamicImage } from '../../../types/content-types/_dynamic/image';
-import { Text } from '../../part-components/_dynamic/text/Text';
-import Image from '../../part-components/_dynamic/image/Image';
-import { DynamicLinkPanel } from '../../../types/content-types/_dynamic/link-panel';
-import Veilederpanel from '../../part-components/_dynamic/veilederpanel/Veilederpanel';
-import { DynamicSupervisorPanel } from '../../../types/content-types/_dynamic/supervisor-panel';
+import { DynamicRegion } from 'types/content-types/_schema';
+import { PartType, DynamicRegions } from 'types/content-types/_schema';
+import { LinkPanel } from 'components/part-components/_dynamic/link-panel/LinkPanel';
+import { DynamicRegionConfig } from 'types/content-types/_dynamic/_components';
+import { DynamicGlobalComponent } from 'types/content-types/_dynamic/_components';
+import { DynamicText } from 'types/content-types/_dynamic/text';
+import { DynamicImage } from 'types/content-types/_dynamic/image';
+import { Text } from 'components/part-components/_dynamic/text/Text';
+import Image from 'components/part-components/_dynamic/image/Image';
+import { DynamicLinkPanel } from 'types/content-types/_dynamic/link-panel';
+import Veilederpanel from 'components/part-components/_dynamic/veilederpanel/Veilederpanel';
+import AlertStripe from 'components/part-components/_dynamic/alerstripe/Alerstripe';
+import { DynamicSupervisorPanel } from 'types/content-types/_dynamic/supervisor-panel';
+import { DynamicAlert } from 'types/content-types/_dynamic/alert';
+import LesMerPanel from 'components/part-components/_dynamic/les-mer-panel/LesMerPanel';
+import { DynamicReadMorePanel } from 'types/content-types/_dynamic/read-more-panel';
+import { BEM } from 'utils/bem';
 import './DynamicRegions.less';
 
 interface RegionsProps {
@@ -103,6 +107,16 @@ export const Region = (props: RegionProps) => {
                                 [PartType.SupervisorPanel]: (
                                     <Veilederpanel
                                         {...(component as DynamicSupervisorPanel)}
+                                    />
+                                ),
+                                [PartType.Alert]: (
+                                    <AlertStripe
+                                        {...(component as DynamicAlert)}
+                                    />
+                                ),
+                                [PartType.ReadMorePanel]: (
+                                    <LesMerPanel
+                                        {...(component as DynamicReadMorePanel)}
                                     />
                                 ),
                             }[dynamicRegionComponent.descriptor] || (

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import { SectionPageProps } from '../../../types/content-types/section-page-props';
-import TableContents from '../../part-components/table-contents/TableContents';
-import { BEM } from '../../../utils/bem';
-import { LenkepanelListe } from '../../part-components/lenkepanel-liste/LenkepanelListe';
-import { ContentList } from '../../part-components/content-list/ContentList';
-import { LenkeNavNo } from '../../part-components/lenke-navno/LenkeNavNo';
+import { SectionPageProps } from 'types/content-types/section-page-props';
+import TableContents from 'components/part-components/table-contents/TableContents';
+import { LenkepanelListe } from 'components/part-components/lenkepanel-liste/LenkepanelListe';
+import { ContentList } from 'components/part-components/content-list/ContentList';
+import { LenkeNavNo } from 'components/part-components/lenke-navno/LenkeNavNo';
+import { BEM } from 'utils/bem';
 import './SectionPage.less';
 
 export const SectionPage = (props: SectionPageProps) => {
