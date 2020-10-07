@@ -19,20 +19,20 @@ interface RegionsProps {
 }
 
 const bem = BEM('region');
-
 const Regions = (props: RegionsProps) => {
     const dynamicConfig = props.dynamicConfig;
     const dynamicRegions = props.dynamicRegions || [];
     const dynamicGlobalComponents = props.dynamicGlobalComponents || [];
+
     return (
         <>
             {Object.values(dynamicRegions).map((region, i) => {
-                const width = dynamicConfig?.distribution.split('-')[i];
                 return (
                     <Region
                         key={region.name}
-                        width={width}
-                        region={region}
+                        dynamicKey={i}
+                        dynamicRegion={region}
+                        dynamicConfig={dynamicConfig}
                         dynamicGlobalComponents={dynamicGlobalComponents}
                     />
                 );
@@ -42,19 +42,27 @@ const Regions = (props: RegionsProps) => {
 };
 
 interface RegionProps {
-    width: string;
-    region: DynamicRegion;
+    dynamicKey: number;
+    dynamicRegion: DynamicRegion;
+    dynamicConfig?: DynamicRegionConfig;
     dynamicGlobalComponents: DynamicGlobalComponent[];
 }
 
 export const Region = (props: RegionProps) => {
-    const { region, dynamicGlobalComponents, width } = props;
-    const regionComponents = region.components || [];
-    const { name } = region;
+    const { dynamicRegion, dynamicGlobalComponents, dynamicConfig } = props;
+    const regionComponents = dynamicRegion.components || [];
+    const { name } = dynamicRegion;
+
+    const dynamicStyle = {
+        ...(dynamicConfig?.distribution && {
+            flex: `${dynamicConfig.distribution.split('-')[props.dynamicKey]}`,
+        }),
+    };
+
     return (
         <div
             key={name}
-            style={{ flex: width ? `${width}` : undefined }}
+            style={dynamicStyle}
             data-portal-region={name}
             className={`${bem()} ${bem(name)}`}
         >
@@ -64,9 +72,16 @@ export const Region = (props: RegionProps) => {
                     ({ path }) => path === dynamicRegionComponent.path
                 );
 
+                const dynamicStyle = {
+                    ...(dynamicRegionComponent?.config?.margin && {
+                        margin: `${dynamicRegionComponent?.config?.margin}`,
+                    }),
+                };
+
                 return (
                     <div
                         key={dynamicRegionComponent.path}
+                        style={dynamicStyle}
                         data-portal-component-type={dynamicRegionComponent.type}
                         data-portal-component={dynamicRegionComponent.path}
                         className={`${bem()} ${className}`}
