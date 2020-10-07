@@ -17,9 +17,9 @@ const configWithAllTheThings = (config) =>
 
 module.exports = configWithAllTheThings({
     assetPrefix: process.env.APP_ORIGIN,
-    env: {
-        XP_ORIGIN: process.env.XP_ORIGIN,
-    },
+    // env: {
+    //     XP_ORIGIN: process.env.XP_ORIGIN,
+    // },
     headers: async () => {
         return [
             {
