@@ -1,14 +1,15 @@
 import { PartType } from '../_schema';
 
-export interface DynamicSupervisorPanel {
+export interface DynamicAlert {
     type: 'part';
     path: string;
-    descriptor: PartType.SupervisorPanel;
+    descriptor: PartType.Alert;
     regions: undefined;
     part: {
         config: {
             no_nav_navno: {
-                dynamic_supervisor_panel: {
+                dynamic_alert: {
+                    type: 'info' | 'suksess' | 'advarsel' | 'feil';
                     content: string;
                 };
             };

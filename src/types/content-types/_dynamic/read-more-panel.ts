@@ -1,14 +1,15 @@
 import { PartType } from '../_schema';
 
-export interface DynamicSupervisorPanel {
+export interface DynamicReadMorePanel {
     type: 'part';
     path: string;
-    descriptor: PartType.SupervisorPanel;
+    descriptor: PartType.ReadMorePanel;
     regions: undefined;
     part: {
         config: {
             no_nav_navno: {
-                dynamic_supervisor_panel: {
+                dynamic_read_more_panel: {
+                    ingress: string;
                     content: string;
                 };
             };

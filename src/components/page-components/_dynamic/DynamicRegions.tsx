@@ -11,8 +11,12 @@ import { Text } from '../../part-components/_dynamic/text/Text';
 import Image from '../../part-components/_dynamic/image/Image';
 import { DynamicLinkPanel } from '../../../types/content-types/_dynamic/link-panel';
 import Veilederpanel from '../../part-components/_dynamic/veilederpanel/Veilederpanel';
+import AlertStripe from '../../part-components/_dynamic/alerstripe/Alerstripe';
 import { DynamicSupervisorPanel } from '../../../types/content-types/_dynamic/supervisor-panel';
 import './DynamicRegions.less';
+import { DynamicAlert } from '../../../types/content-types/_dynamic/alert';
+import LesMerPanel from '../../part-components/_dynamic/les-mer-panel/LesMerPanel';
+import { DynamicReadMorePanel } from '../../../types/content-types/_dynamic/read-more-panel';
 
 interface RegionsProps {
     dynamicRegions: DynamicRegions;
@@ -103,6 +107,16 @@ export const Region = (props: RegionProps) => {
                                 [PartType.SupervisorPanel]: (
                                     <Veilederpanel
                                         {...(component as DynamicSupervisorPanel)}
+                                    />
+                                ),
+                                [PartType.Alert]: (
+                                    <AlertStripe
+                                        {...(component as DynamicAlert)}
+                                    />
+                                ),
+                                [PartType.ReadMorePanel]: (
+                                    <LesMerPanel
+                                        {...(component as DynamicReadMorePanel)}
                                     />
                                 ),
                             }[dynamicRegionComponent.descriptor] || (
