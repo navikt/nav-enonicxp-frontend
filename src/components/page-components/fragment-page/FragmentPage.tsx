@@ -1,12 +1,12 @@
 import React from 'react';
-import { Regions } from '../../../types/content-types/_schema';
+import { DynamicRegions } from '../../../types/content-types/_schema';
 import { GlobalPageSchema } from '../../../types/content-types/_schema';
+import Regions from '../_dynamic/DynamicRegions';
 import './FragmentPage.less';
-import DynamicRegions from '../_dynamic/DynamicRegions';
 
 export const FragmentPage = (props: GlobalPageSchema) => {
     const dynamicGlobalComponents = props.components;
-    const dynamicRegions: Regions = {
+    const dynamicRegions: DynamicRegions = {
         main: {
             name: 'main',
             components: dynamicGlobalComponents as any,
@@ -14,7 +14,7 @@ export const FragmentPage = (props: GlobalPageSchema) => {
     };
 
     return (
-        <DynamicRegions
+        <Regions
             dynamicRegions={dynamicRegions}
             dynamicGlobalComponents={dynamicGlobalComponents}
         />

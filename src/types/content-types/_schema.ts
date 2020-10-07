@@ -10,10 +10,8 @@ import { MainArticleProps } from './main-article-props';
 import { SiteProps } from './site-props';
 import { ErrorProps } from './error-props';
 import { NotificationProps } from './notification-props';
-import {
-    DynamicGlobalComponent,
-    DynamicRegionComponent,
-} from './_dynamic/_components';
+import { DynamicRegionComponent } from './_dynamic/_components';
+import { DynamicGlobalComponent } from './_dynamic/_components';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -60,29 +58,29 @@ export type GlobalSchema = {
     isDraft?: boolean;
 };
 
-// Specific for page schemas
+// Specific for dynamic page schemas
 export interface GlobalPageSchema extends GlobalSchema {
     components?: DynamicGlobalComponent[];
-    page?: Page;
+    page?: DynamicPage;
 }
 
-export interface Page {
+export interface DynamicPage {
     type: string;
     descriptor: string;
     path: string;
     config: object;
-    regions?: Regions;
+    regions?: DynamicRegions;
 }
 
-export interface Regions {
-    main?: Region;
-    first?: Region;
-    second?: Region;
-    result?: Region;
-    searchbar?: Region;
+export interface DynamicRegions {
+    main?: DynamicRegion;
+    first?: DynamicRegion;
+    second?: DynamicRegion;
+    result?: DynamicRegion;
+    searchbar?: DynamicRegion;
 }
 
-export interface Region {
+export interface DynamicRegion {
     name: string;
     components: DynamicRegionComponent[];
 }

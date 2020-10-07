@@ -1,8 +1,9 @@
 import React from 'react';
-import { Region } from '../../../types/content-types/_schema';
-import { PartType, Regions } from '../../../types/content-types/_schema';
+import { DynamicRegion } from '../../../types/content-types/_schema';
+import { PartType, DynamicRegions } from '../../../types/content-types/_schema';
 import { BEM } from '../../../utils/bem';
 import { LinkPanel } from '../../part-components/_dynamic/link-panel/LinkPanel';
+import { DynamicRegionConfig } from '../../../types/content-types/_dynamic/_components';
 import { DynamicGlobalComponent } from '../../../types/content-types/_dynamic/_components';
 import { DynamicText } from '../../../types/content-types/_dynamic/text';
 import { DynamicImage } from '../../../types/content-types/_dynamic/image';
@@ -12,40 +13,51 @@ import { DynamicLinkPanel } from '../../../types/content-types/_dynamic/link-pan
 import './DynamicRegions.less';
 
 interface RegionsProps {
-    dynamicRegions: Regions;
+    dynamicRegions: DynamicRegions;
+    dynamicConfig?: DynamicRegionConfig;
     dynamicGlobalComponents: DynamicGlobalComponent[];
 }
 
 const bem = BEM('region');
 
-const DynamicRegions = (props: RegionsProps) => {
+const Regions = (props: RegionsProps) => {
+    const dynamicConfig = props.dynamicConfig;
     const dynamicRegions = props.dynamicRegions || [];
     const dynamicGlobalComponents = props.dynamicGlobalComponents || [];
     return (
         <>
-            {Object.values(dynamicRegions).map((region, i) => (
-                <DynamicRegion
-                    key={region.name}
-                    region={region}
-                    dynamicGlobalComponents={dynamicGlobalComponents}
-                />
-            ))}
+            {Object.values(dynamicRegions).map((region, i) => {
+                const width = dynamicConfig?.distribution.split('-')[i];
+                return (
+                    <Region
+                        key={region.name}
+                        width={width}
+                        region={region}
+                        dynamicGlobalComponents={dynamicGlobalComponents}
+                    />
+                );
+            })}
         </>
     );
 };
 
 interface RegionProps {
-    region: Region;
+    width: string;
+    region: DynamicRegion;
     dynamicGlobalComponents: DynamicGlobalComponent[];
 }
 
-export const DynamicRegion = (props: RegionProps) => {
-    const { region, dynamicGlobalComponents } = props;
+export const Region = (props: RegionProps) => {
+    const { region, dynamicGlobalComponents, width } = props;
     const regionComponents = region.components || [];
     const { name } = region;
-
     return (
-        <div key={name} data-portal-region={name} className={bem(name)}>
+        <div
+            key={name}
+            style={{ flex: width ? `${width}` : undefined }}
+            data-portal-region={name}
+            className={`${bem()} ${bem(name)}`}
+        >
             {regionComponents.map((dynamicRegionComponent) => {
                 const className = getClass(dynamicRegionComponent.descriptor);
                 const component = dynamicGlobalComponents.find(
@@ -57,7 +69,7 @@ export const DynamicRegion = (props: RegionProps) => {
                         key={dynamicRegionComponent.path}
                         data-portal-component-type={dynamicRegionComponent.type}
                         data-portal-component={dynamicRegionComponent.path}
-                        className={className}
+                        className={`${bem()} ${className}`}
                         data-th-remove="tag"
                     >
                         {{
@@ -79,7 +91,10 @@ export const DynamicRegion = (props: RegionProps) => {
 
                             // Recursive layouts
                             layout: (
-                                <DynamicRegions
+                                <Regions
+                                    dynamicConfig={
+                                        dynamicRegionComponent.config
+                                    }
                                     dynamicRegions={
                                         dynamicRegionComponent.regions
                                     }
@@ -100,11 +115,13 @@ export const DynamicRegion = (props: RegionProps) => {
     );
 };
 
-const getClass = (descriptor?: string) =>
+const getClass = (descriptor?: string, config?: { distribution: string }) =>
     ({
         'no.nav.navno:main': bem('main'),
         'no.nav.navno:main-1-col': bem('main-1-col'),
-        'no.nav.navno:search': bem('search'),
+        'no.nav.navno:dynamic-2-col': bem('dynamic-2-col'),
+        'no.nav.navno:dynamic-3-col': bem('dynamic-3-col'),
+        'no.nav.navno:dynamic-4-col': bem('dynamic-4-col'),
     }[descriptor] || bem('default'));
 
-export default DynamicRegions;
+export default Regions;
