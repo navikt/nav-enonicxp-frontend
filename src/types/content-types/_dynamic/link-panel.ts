@@ -3,7 +3,7 @@ import { GlobalSchema } from '../_schema';
 export interface DynamicLinkPanel {
     type: 'part';
     path: string;
-    descriptor: 'no.nav.navno:link-panel-with-background';
+    descriptor: 'no.nav.navno:dynamic-link-panel';
     regions: undefined;
     part: {
         config: {

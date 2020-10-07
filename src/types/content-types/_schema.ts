@@ -31,6 +31,7 @@ export enum ContentType {
 
 export enum PartType {
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
+    SupervisorPanel = 'no.nav.navno:dynamic-supervisor-panel',
 }
 
 export type ContentTypeSchema =
