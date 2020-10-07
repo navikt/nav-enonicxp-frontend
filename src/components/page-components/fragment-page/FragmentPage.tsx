@@ -12,5 +12,11 @@ export const FragmentPage = (props: GlobalPageSchema) => {
             components: pageComponents as any,
         },
     };
-    return <DynamicRegions regions={regions} pageComponents={pageComponents} />;
+
+    return (
+        <DynamicRegions
+            dynamicRegions={regions}
+            dynamicGlobalComponents={pageComponents}
+        />
+    );
 };
