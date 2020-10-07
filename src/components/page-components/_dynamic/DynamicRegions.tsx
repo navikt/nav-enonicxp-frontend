@@ -10,6 +10,8 @@ import { DynamicImage } from '../../../types/content-types/_dynamic/image';
 import { Text } from '../../part-components/_dynamic/text/Text';
 import Image from '../../part-components/_dynamic/image/Image';
 import { DynamicLinkPanel } from '../../../types/content-types/_dynamic/link-panel';
+import Veilederpanel from '../../part-components/_dynamic/veilederpanel/Veilederpanel';
+import { DynamicSupervisorPanel } from '../../../types/content-types/_dynamic/supervisor-panel';
 import './DynamicRegions.less';
 
 interface RegionsProps {
@@ -96,6 +98,11 @@ export const Region = (props: RegionProps) => {
                                 [PartType.LinkPanel]: (
                                     <LinkPanel
                                         {...(component as DynamicLinkPanel)}
+                                    />
+                                ),
+                                [PartType.SupervisorPanel]: (
+                                    <Veilederpanel
+                                        {...(component as DynamicSupervisorPanel)}
                                     />
                                 ),
                             }[dynamicRegionComponent.descriptor] || (

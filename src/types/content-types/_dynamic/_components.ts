@@ -2,6 +2,7 @@ import { DynamicImage } from './image';
 import { DynamicText } from './text';
 import { DynamicRegions } from '../_schema';
 import { DynamicLinkPanel } from './link-panel';
+import { DynamicSupervisorPanel } from './supervisor-panel';
 
 export type DynamicRegionComponent =
     | {
@@ -43,4 +44,5 @@ export interface DynamicRegionConfig {
 export type DynamicGlobalComponent =
     | DynamicImage
     | DynamicText
-    | DynamicLinkPanel;
+    | DynamicLinkPanel
+    | DynamicSupervisorPanel;
