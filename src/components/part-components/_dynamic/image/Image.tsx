@@ -1,6 +1,6 @@
 import React from 'react';
 import { BEM } from '../../../../utils/bem';
-import { DynamicImage } from '../../../../types/dynamic-components/image';
+import { DynamicImage } from '../../../../types/content-types/_dynamic/image';
 import './Image.less';
 
 const Image = (props: DynamicImage) => {

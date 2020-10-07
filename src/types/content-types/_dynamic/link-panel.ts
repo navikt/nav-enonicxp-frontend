@@ -1,6 +1,6 @@
-import { GlobalSchema } from '../content-types/_schema';
+import { GlobalSchema } from '../_schema';
 
-export interface DynamicLinkPanelWithBackground {
+export interface DynamicLinkPanel {
     type: 'part';
     path: string;
     descriptor: 'no.nav.navno:link-panel-with-background';
@@ -8,7 +8,7 @@ export interface DynamicLinkPanelWithBackground {
     part: {
         config: {
             no_nav_navno: {
-                link_panel_with_background: {
+                dynamic_link_panel: {
                     background: GlobalSchema & {
                         data: {
                             media: {

@@ -3,15 +3,21 @@ import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import Link from 'next/link';
 import { Undertittel } from 'nav-frontend-typografi';
 import { isEnonicPath } from '../../../../utils/paths';
-import { DynamicLinkPanelWithBackground } from '../../../../types/dynamic-components/link-panel-with-background';
+import { DynamicLinkPanel } from '../../../../types/content-types/_dynamic/link-panel';
 import { BEM } from '../../../../utils/bem';
-import './LinkPanelWithBackground.less';
+import './LinkPanel.less';
 
-type Props = DynamicLinkPanelWithBackground;
-export const LinkPanelWithBackground = (props: Props) => {
-    const { link_panel_with_background } = props.part.config.no_nav_navno;
-    const { title, description, background } = link_panel_with_background;
-    const bem = BEM('link-panel-with-background');
+const bem = BEM('link-panel');
+export const LinkPanel = (props: DynamicLinkPanel) => {
+    const no_nav_navno = props?.part?.config?.no_nav_navno;
+
+    // Check if config is empty
+    if (!no_nav_navno) {
+        return <h2>Tomt lenkepanel</h2>;
+    }
+
+    const { dynamic_link_panel } = props?.part?.config?.no_nav_navno;
+    const { title, description, background } = dynamic_link_panel;
     const isInternalUrl = isEnonicPath('/');
     const backgroundUrl = `${process.env.XP_ORIGIN}/_/image/${background._id}/block-800-800/${background.data.media.attachment}`;
 

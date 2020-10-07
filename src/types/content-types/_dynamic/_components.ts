@@ -1,7 +1,7 @@
 import { DynamicImage } from './image';
-import { DynamicLinkPanelWithBackground } from './link-panel-with-background';
 import { DynamicText } from './text';
-import { Regions } from '../content-types/_schema';
+import { Regions } from '../_schema';
+import { DynamicLinkPanel } from './link-panel';
 
 export type DynamicRegionComponent =
     | {
@@ -34,4 +34,4 @@ export type DynamicRegionComponent =
 export type DynamicGlobalComponent =
     | DynamicImage
     | DynamicText
-    | DynamicLinkPanelWithBackground;
+    | DynamicLinkPanel;

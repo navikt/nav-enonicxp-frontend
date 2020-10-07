@@ -10,8 +10,10 @@ import { MainArticleProps } from './main-article-props';
 import { SiteProps } from './site-props';
 import { ErrorProps } from './error-props';
 import { NotificationProps } from './notification-props';
-import { DynamicRegionComponent } from '../dynamic-components/_components';
-import { DynamicGlobalComponent } from '../dynamic-components/_components';
+import {
+    DynamicGlobalComponent,
+    DynamicRegionComponent,
+} from './_dynamic/_components';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -30,7 +32,7 @@ export enum ContentType {
 }
 
 export enum PartType {
-    LinkPanelWithBackground = 'no.nav.navno:link-panel-with-background',
+    LinkPanel = 'no.nav.navno:dynamic-link-panel',
 }
 
 export type ContentTypeSchema =
