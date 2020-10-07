@@ -1,17 +1,19 @@
 import React from 'react';
-import { Component } from '../types/content-types/_schema';
 import { Region } from '../types/content-types/_schema';
-import { LinkPanelWithBackgroundPart } from '../types/content-types/_schema';
-import { PartType, Regions, Text, Image } from '../types/content-types/_schema';
-import Picture from '../components/part-components/image/Image';
+import { PartType, Regions } from '../types/content-types/_schema';
 import { BEM } from '../utils/bem';
-import { LinkPanelWithBackground } from './part-components/link-panel-with-background/LinkPanelWithBackground';
-import htmlReactParser from 'html-react-parser';
+import { LinkPanelWithBackground } from './part-components/_dynamic/link-panel-with-background/LinkPanelWithBackground';
+import { DynamicGlobalComponent } from '../types/dynamic-components/_components';
+import { DynamicLinkPanelWithBackground } from '../types/dynamic-components/link-panel-with-background';
+import { DynamicText } from '../types/dynamic-components/text';
+import { DynamicImage } from '../types/dynamic-components/image';
+import { Text } from './part-components/_dynamic/text/Text';
+import Image from './part-components/_dynamic/image/Image';
 import './DynamicRegions.less';
 
 interface RegionsProps {
     regions: Regions;
-    pageComponents: Component[];
+    pageComponents: DynamicGlobalComponent[];
 }
 
 const bem = BEM('region');
@@ -34,7 +36,7 @@ const DynamicRegions = (props: RegionsProps) => {
 
 interface RegionProps {
     region: Region;
-    pageComponents: Component[];
+    pageComponents: DynamicGlobalComponent[];
 }
 
 export const DynamicRegion = (props: RegionProps) => {
@@ -59,14 +61,14 @@ export const DynamicRegion = (props: RegionProps) => {
                         data-th-remove="tag"
                     >
                         {{
-                            text: <Html {...(component as Text)} />,
-                            image: <Picture {...(component as Image)} />,
+                            text: <Text {...(component as DynamicText)} />,
+                            image: <Image {...(component as DynamicImage)} />,
 
                             // Dynamic parts
                             part: {
                                 [PartType.LinkPanelWithBackground]: (
                                     <LinkPanelWithBackground
-                                        {...(component as LinkPanelWithBackgroundPart)}
+                                        {...(component as DynamicLinkPanelWithBackground)}
                                     />
                                 ),
                             }[regionComponent.descriptor] || (
@@ -88,12 +90,6 @@ export const DynamicRegion = (props: RegionProps) => {
             })}
         </div>
     );
-};
-
-// Utils
-export const Html = ({ text }: Text) => {
-    const value = text.value;
-    return <>{value && htmlReactParser(value)}</>;
 };
 
 const getClass = (descriptor?: string) =>

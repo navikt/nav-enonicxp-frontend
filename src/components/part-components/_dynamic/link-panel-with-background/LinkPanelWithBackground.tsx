@@ -2,12 +2,13 @@ import React from 'react';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import Link from 'next/link';
 import { Undertittel } from 'nav-frontend-typografi';
-import { LinkPanelWithBackgroundPart } from '../../../types/content-types/_schema';
-import { BEM } from '../../../utils/bem';
-import { isEnonicPath } from '../../../utils/paths';
+import { isEnonicPath } from '../../../../utils/paths';
+import { DynamicLinkPanelWithBackground } from '../../../../types/dynamic-components/link-panel-with-background';
+import { BEM } from '../../../../utils/bem';
 import './LinkPanelWithBackground.less';
 
-export const LinkPanelWithBackground = (props: LinkPanelWithBackgroundPart) => {
+type Props = DynamicLinkPanelWithBackground;
+export const LinkPanelWithBackground = (props: Props) => {
     const { link_panel_with_background } = props.part.config.no_nav_navno;
     const { title, description, background } = link_panel_with_background;
     const bem = BEM('link-panel-with-background');

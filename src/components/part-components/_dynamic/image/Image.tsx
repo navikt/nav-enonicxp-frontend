@@ -1,9 +1,9 @@
 import React from 'react';
-import { Image } from '../../../types/content-types/_schema';
-import { BEM } from '../../../utils/bem';
+import { BEM } from '../../../../utils/bem';
+import { DynamicImage } from '../../../../types/dynamic-components/image';
 import './Image.less';
 
-const Img = (props: Image) => {
+const Image = (props: DynamicImage) => {
     const { imageUrl } = props.image.image;
     const bem = BEM('image');
     if (imageUrl) {
@@ -15,4 +15,4 @@ const Img = (props: Image) => {
     return null;
 };
 
-export default Img;
+export default Image;
