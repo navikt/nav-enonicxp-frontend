@@ -10,7 +10,10 @@ import { MainArticleProps } from './main-article-props';
 import { SiteProps } from './site-props';
 import { ErrorProps } from './error-props';
 import { NotificationProps } from './notification-props';
-import exp from 'constants';
+import {
+    DynamicGlobalComponent,
+    DynamicRegionComponent,
+} from './_dynamic/_components';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -21,6 +24,7 @@ export enum ContentType {
     ExternalLink = 'no_nav_navno_ExternalLink',
     SectionPage = 'no_nav_navno_SectionPage',
     TransportPage = 'no_nav_navno_TransportPage',
+    DynamicPage = 'no_nav_navno_DynamicPage',
     ContentList = 'no_nav_navno_ContentList',
     PageList = 'no_nav_navno_PageList',
     MainArticle = 'no_nav_navno_MainArticle',
@@ -28,7 +32,7 @@ export enum ContentType {
 }
 
 export enum PartType {
-    BreakingNews = 'no.nav.navno:breaking-news',
+    LinkPanel = 'no.nav.navno:dynamic-link-panel',
 }
 
 export type ContentTypeSchema =
@@ -56,8 +60,9 @@ export type GlobalSchema = {
     isDraft?: boolean;
 };
 
+// Specific for page schemas
 export interface GlobalPageSchema extends GlobalSchema {
-    components?: Component[];
+    components?: DynamicGlobalComponent[];
     page?: Page;
 }
 
@@ -69,50 +74,6 @@ export interface Page {
     regions?: Regions;
 }
 
-// Components
-export interface Image {
-    type: 'image';
-    path: string;
-    image: {
-        image: {
-            imageUrl: string;
-        };
-    };
-}
-
-export interface Text {
-    type: 'text';
-    path: string;
-    text: {
-        value: string;
-    };
-}
-
-export type Component = Image | Text;
-
-// Subset of components
-export type RegionComponent =
-    | {
-          type: 'text';
-          path: string;
-          descriptor: undefined;
-          text: string;
-          regions: undefined;
-      }
-    | {
-          type: 'image';
-          path: string;
-          descriptor: undefined;
-          image: string;
-          regions: undefined;
-      }
-    | {
-          type: 'layout';
-          path: string;
-          descriptor: string;
-          regions: Regions;
-      };
-
 export interface Regions {
     main?: Region;
     first?: Region;
@@ -123,5 +84,5 @@ export interface Regions {
 
 export interface Region {
     name: string;
-    components: RegionComponent[];
+    components: DynamicRegionComponent[];
 }

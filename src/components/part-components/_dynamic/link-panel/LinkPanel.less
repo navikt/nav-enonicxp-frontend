@@ -1,0 +1,34 @@
+@import (reference) '../../../../global';
+
+.link-panel {
+    width:100%;
+    text-align: start;
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    min-height: 13rem;
+    box-shadow: 0 0px 8px 4px rgba(0, 0, 0, 0.08);
+    background-color: white;
+
+    border: 2px transparent solid;
+    box-sizing: border-box;
+
+    &__heading{
+        margin: 1rem 0;
+        color: @navBla
+    }
+
+    &__ingress{
+        margin: 1rem 0;
+    }
+
+    &:hover {
+        border: 2px black solid;
+
+        .lenkepanel__heading {
+            color: @navBla;
+        }
+    }
+}
