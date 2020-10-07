@@ -11,6 +11,7 @@ export interface DynamicAlert {
                 dynamic_alert: {
                     type: 'info' | 'suksess' | 'advarsel' | 'feil';
                     content: string;
+                    margin: string;
                 };
             };
         };

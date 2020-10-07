@@ -13,12 +13,19 @@ const Veilederpanel = (props: DynamicSupervisorPanel) => {
     }
 
     const { dynamic_supervisor_panel } = no_nav_navno;
-    const { content } = dynamic_supervisor_panel;
+    const { content, margin } = dynamic_supervisor_panel;
+    const style = {
+        ...(margin && {
+            margin: margin,
+        }),
+    };
 
     return (
-        <VeilederPanelModul svg={<Veileder />}>
-            {content && htmlReactParser(content)}
-        </VeilederPanelModul>
+        <div className={'nav-veilederpanel__container'} style={style}>
+            <VeilederPanelModul svg={<Veileder />}>
+                {content && htmlReactParser(content)}
+            </VeilederPanelModul>
+        </div>
     );
 };
 

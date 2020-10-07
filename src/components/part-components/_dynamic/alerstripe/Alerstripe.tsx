@@ -12,10 +12,15 @@ const Alerstripe = (props: DynamicAlert) => {
     }
 
     const { dynamic_alert } = no_nav_navno;
-    const { content, type } = dynamic_alert;
+    const { content, type, margin } = dynamic_alert;
+    const style = {
+        ...(margin && {
+            margin: margin,
+        }),
+    };
 
     return (
-        <AlertStripe type={type}>
+        <AlertStripe type={type} style={style}>
             {content && htmlReactParser(content)}
         </AlertStripe>
     );

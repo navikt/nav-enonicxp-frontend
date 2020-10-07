@@ -10,6 +10,7 @@ export interface DynamicSupervisorPanel {
             no_nav_navno: {
                 dynamic_supervisor_panel: {
                     content: string;
+                    margin: string;
                 };
             };
         };

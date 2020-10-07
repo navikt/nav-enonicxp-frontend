@@ -12,15 +12,22 @@ const LesMerPanel = (props: DynamicReadMorePanel) => {
     }
 
     const { dynamic_read_more_panel } = no_nav_navno;
-    const { content, ingress } = dynamic_read_more_panel;
+    const { content, ingress, margin, border } = dynamic_read_more_panel;
+    const style = {
+        ...(margin && {
+            margin: margin,
+        }),
+    };
 
     return (
-        <LesmerpanelModul
-            border={true}
-            intro={<span>{ingress && htmlReactParser(ingress)}</span>}
-        >
-            {content && htmlReactParser(content)}
-        </LesmerpanelModul>
+        <div className={'lesMerPanel__container'} style={style}>
+            <LesmerpanelModul
+                border={border === 'true'}
+                intro={<span>{ingress && htmlReactParser(ingress)}</span>}
+            >
+                {content && htmlReactParser(content)}
+            </LesmerpanelModul>
+        </div>
     );
 };
 

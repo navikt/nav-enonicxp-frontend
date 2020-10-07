@@ -11,6 +11,8 @@ export interface DynamicReadMorePanel {
                 dynamic_read_more_panel: {
                     ingress: string;
                     content: string;
+                    border: string;
+                    margin: string;
                 };
             };
         };
