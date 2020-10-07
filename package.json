@@ -1,6 +1,6 @@
 {
     "name": "nav-enonicxp-frontend",
-    "version": "0.2.79",
+    "version": "0.2.92",
     "private": true,
     "scripts": {
         "dev": "next dev -p 3000",
@@ -11,7 +11,6 @@
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "^1.0.21",
         "classnames": "^2.2.6",
-        "cors": "^2.8.5",
         "html-react-parser": "^0.13.0",
         "jsdom": "^16.4.0",
         "moment": "^2.29.0",
