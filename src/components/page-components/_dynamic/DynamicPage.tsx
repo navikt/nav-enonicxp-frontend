@@ -5,15 +5,15 @@ import './DynamicPage.less';
 
 export const DynamicPage = (props: GlobalPageSchema) => {
     const dynamicPage = props.page;
-    const dynamicComponents = props.components;
+    const dynamicGlobalComponents = props.components;
     const dynamicRegions = dynamicPage?.regions;
 
     return (
         <div className={'dynamic-page'}>
             {dynamicRegions ? (
                 <DynamicRegions
-                    regions={dynamicRegions}
-                    pageComponents={dynamicComponents}
+                    dynamicRegions={dynamicRegions}
+                    dynamicGlobalComponents={dynamicGlobalComponents}
                 />
             ) : (
                 <div data-portal-region={'main'} />

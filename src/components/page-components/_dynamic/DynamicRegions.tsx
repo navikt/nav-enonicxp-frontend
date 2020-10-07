@@ -12,22 +12,22 @@ import { DynamicLinkPanel } from '../../../types/content-types/_dynamic/link-pan
 import './DynamicRegions.less';
 
 interface RegionsProps {
-    regions: Regions;
-    pageComponents: DynamicGlobalComponent[];
+    dynamicRegions: Regions;
+    dynamicGlobalComponents: DynamicGlobalComponent[];
 }
 
 const bem = BEM('region');
 
 const DynamicRegions = (props: RegionsProps) => {
-    const regions = props.regions || [];
-    const pageComponents = props.pageComponents || [];
+    const regions = props.dynamicRegions || [];
+    const dynamicGlobalComponents = props.dynamicGlobalComponents || [];
     return (
         <>
             {Object.values(regions).map((region, i) => (
                 <DynamicRegion
                     key={region.name}
                     region={region}
-                    pageComponents={pageComponents}
+                    dynamicGlobalComponents={dynamicGlobalComponents}
                 />
             ))}
         </>
@@ -36,27 +36,27 @@ const DynamicRegions = (props: RegionsProps) => {
 
 interface RegionProps {
     region: Region;
-    pageComponents: DynamicGlobalComponent[];
+    dynamicGlobalComponents: DynamicGlobalComponent[];
 }
 
 export const DynamicRegion = (props: RegionProps) => {
-    const { region, pageComponents } = props;
+    const { region, dynamicGlobalComponents } = props;
     const regionComponents = region.components || [];
     const { name } = region;
 
     return (
         <div key={name} data-portal-region={name} className={bem(name)}>
-            {regionComponents.map((regionComponent) => {
-                const className = getClass(regionComponent.descriptor);
-                const component = pageComponents.find(
-                    ({ path }) => path === regionComponent.path
+            {regionComponents.map((dynamicRegionComponent) => {
+                const className = getClass(dynamicRegionComponent.descriptor);
+                const component = dynamicGlobalComponents.find(
+                    ({ path }) => path === dynamicRegionComponent.path
                 );
 
                 return (
                     <div
-                        key={regionComponent.path}
-                        data-portal-component-type={regionComponent.type}
-                        data-portal-component={regionComponent.path}
+                        key={dynamicRegionComponent.path}
+                        data-portal-component-type={dynamicRegionComponent.type}
+                        data-portal-component={dynamicRegionComponent.path}
                         className={className}
                         data-th-remove="tag"
                     >
@@ -71,19 +71,27 @@ export const DynamicRegion = (props: RegionProps) => {
                                         {...(component as DynamicLinkPanel)}
                                     />
                                 ),
-                            }[regionComponent.descriptor] || (
-                                <div>{`Unimplemented part: ${regionComponent.descriptor}`}</div>
+                            }[dynamicRegionComponent.descriptor] || (
+                                <div className={bem('unimplemented')}>
+                                    {`Unimplemented part: ${dynamicRegionComponent.descriptor}`}
+                                </div>
                             ),
 
                             // Recursive layouts
                             layout: (
                                 <DynamicRegions
-                                    regions={regionComponent.regions}
-                                    pageComponents={pageComponents}
+                                    dynamicRegions={
+                                        dynamicRegionComponent.regions
+                                    }
+                                    dynamicGlobalComponents={
+                                        dynamicGlobalComponents
+                                    }
                                 />
                             ),
-                        }[regionComponent.type] || (
-                            <div>{`Unimplemented type: ${regionComponent.type}`}</div>
+                        }[dynamicRegionComponent.type] || (
+                            <div className={bem('unimplemented')}>
+                                {`Unimplemented type: ${dynamicRegionComponent.type}`}
+                            </div>
                         )}
                     </div>
                 );
