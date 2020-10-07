@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
-import { isEnonicPath, enonicLegacyPath } from '../../../utils/paths';
-import { LegacyProps } from '../../../types/content-types/legacy-props';
+import { isEnonicPath, enonicLegacyPath } from 'utils/paths';
+import { LegacyProps } from 'types/content-types/legacy-props';
+import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import Link from 'next/link';
 import Head from 'next/head';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
 import './LegacyPage.less';
 

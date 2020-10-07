@@ -1,5 +1,5 @@
 import React from 'react';
-import { DynamicSupervisorPanel } from '../../../../types/content-types/_dynamic/supervisor-panel';
+import { DynamicSupervisorPanel } from 'types/content-types/_dynamic/supervisor-panel';
 import VeilederPanelModul from 'nav-frontend-veilederpanel';
 import { Veileder } from './Veileder';
 import { ParsedHtml } from '../ParsedHtml';

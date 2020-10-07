@@ -1,6 +1,6 @@
 import React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { DynamicAlert } from '../../../../types/content-types/_dynamic/alert';
+import { DynamicAlert } from 'types/content-types/_dynamic/alert';
 import { ParsedHtml } from '../ParsedHtml';
 import './Alerstripe.less';
 

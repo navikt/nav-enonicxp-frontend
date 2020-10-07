@@ -1,11 +1,9 @@
 import React from 'react';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
-import { enonicPathToAppPath, isEnonicPath } from '../../../utils/paths';
+import { enonicPathToAppPath, isEnonicPath } from 'utils/paths';
 import Link from 'next/link';
 import { BEM } from '../../../utils/bem';
-import Moment from 'react-moment';
-
 import './LenkeNavNo.less';
 
 type Props = {

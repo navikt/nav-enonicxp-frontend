@@ -6,13 +6,9 @@ import { useRouter } from 'next/router';
 import { FallbackPage } from './page-components/fallback-page/FallbackPage';
 import DynamicPageWrapper from './DynamicPageWrapper';
 import ContentToComponentMapper from './ContentToComponentMapper';
+import { fetchBreadcrumbs, fetchLanguages } from '../utils/fetchContent';
+import { fetchNotifications, fetchPage } from '../utils/fetchContent';
 import React from 'react';
-import {
-    fetchBreadcrumbs,
-    fetchLanguages,
-    fetchNotifications,
-    fetchPage,
-} from '../utils/fetchContent';
 
 type Props = {
     content: ContentTypeSchema;

@@ -1,9 +1,7 @@
 import React from 'react';
-import { BEM } from '../../../utils/bem';
-import {
-    ContentType,
-    ContentTypeSchema,
-} from '../../../types/content-types/_schema';
+import { BEM } from 'utils/bem';
+import { ContentTypeSchema } from 'types/content-types/_schema';
+import { ContentType } from 'types/content-types/_schema';
 import { LenkepanelVertical } from '../lenkepanel-vertical/LenkepanelVertical';
 import { Normaltekst } from 'nav-frontend-typografi';
 import './TableContents.less';

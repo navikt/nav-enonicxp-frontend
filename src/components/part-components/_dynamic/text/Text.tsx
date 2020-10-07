@@ -1,6 +1,6 @@
 import React from 'react';
-import { DynamicText } from '../../../../types/content-types/_dynamic/text';
-import { parseHtml } from '../../../page-components/legacy-page/LegacyPage';
+import { DynamicText } from 'types/content-types/_dynamic/text';
+import { parseHtml } from 'components/page-components/legacy-page/LegacyPage';
 
 export const Text = ({ text }: DynamicText) => {
     const value = text.value;
