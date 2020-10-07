@@ -21,6 +21,7 @@ export enum ContentType {
     ExternalLink = 'no_nav_navno_ExternalLink',
     SectionPage = 'no_nav_navno_SectionPage',
     TransportPage = 'no_nav_navno_TransportPage',
+    DynamicPage = 'no_nav_navno_DynamicPage',
     ContentList = 'no_nav_navno_ContentList',
     PageList = 'no_nav_navno_PageList',
     MainArticle = 'no_nav_navno_MainArticle',
