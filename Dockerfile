@@ -1,7 +1,5 @@
 FROM node:14
 
-ENV NODE_ENV production
-
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
