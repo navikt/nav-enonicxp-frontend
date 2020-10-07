@@ -37,6 +37,7 @@ export type DynamicRegionComponent =
 
 export interface DynamicRegionConfig {
     distribution: string;
+    margin: string;
 }
 
 export type DynamicGlobalComponent =

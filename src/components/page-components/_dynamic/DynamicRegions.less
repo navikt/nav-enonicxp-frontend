@@ -1,20 +1,18 @@
 @import (reference) '../../../global';
 
 .region{
-  width:100%;
+  width: 100%;
   display: flex;
-  margin: 1rem 0;
   flex-direction: row;
 
   @media (max-width: @mobilMaxWidth) {
     flex-direction: column;
   }
 
-  &__default{
-
-  }
+  &__default{}
 
   &__main {
+    margin: 1rem 0;
     flex-direction: column;
 
     .region{
@@ -28,9 +26,7 @@
     }
   }
 
-  &__main-1-col{
-
-  }
+  &__main-1-col{}
 
   &__dynamic-2-col{
     .region{
