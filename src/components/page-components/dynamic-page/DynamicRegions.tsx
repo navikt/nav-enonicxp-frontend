@@ -1,15 +1,15 @@
 import React from 'react';
-import { Region } from '../types/content-types/_schema';
-import { PartType, Regions } from '../types/content-types/_schema';
-import { BEM } from '../utils/bem';
-import { LinkPanelWithBackground } from './part-components/_dynamic/link-panel-with-background/LinkPanelWithBackground';
-import { DynamicGlobalComponent } from '../types/dynamic-components/_components';
-import { DynamicLinkPanelWithBackground } from '../types/dynamic-components/link-panel-with-background';
-import { DynamicText } from '../types/dynamic-components/text';
-import { DynamicImage } from '../types/dynamic-components/image';
-import { Text } from './part-components/_dynamic/text/Text';
-import Image from './part-components/_dynamic/image/Image';
-import './DynamicRegions.less';
+import { Region } from '../../../types/content-types/_schema';
+import { PartType, Regions } from '../../../types/content-types/_schema';
+import { BEM } from '../../../utils/bem';
+import { LinkPanelWithBackground } from '../../part-components/_dynamic/link-panel-with-background/LinkPanelWithBackground';
+import { DynamicGlobalComponent } from '../../../types/dynamic-components/_components';
+import { DynamicText } from '../../../types/dynamic-components/text';
+import { DynamicImage } from '../../../types/dynamic-components/image';
+import { Text } from '../../part-components/_dynamic/text/Text';
+import Image from '../../part-components/_dynamic/image/Image';
+import { DynamicLinkPanelWithBackground } from '../../../types/dynamic-components/link-panel-with-background';
+import '../../DynamicRegions.less';
 
 interface RegionsProps {
     regions: Regions;

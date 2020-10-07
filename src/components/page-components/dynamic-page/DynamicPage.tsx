@@ -1,6 +1,6 @@
 import React from 'react';
 import { GlobalPageSchema } from '../../../types/content-types/_schema';
-import DynamicRegions from '../../DynamicRegions';
+import DynamicRegions from './DynamicRegions';
 import './DynamicPage.less';
 
 export const DynamicPage = (props: GlobalPageSchema) => {

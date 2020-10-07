@@ -6,7 +6,6 @@ import { BEM } from '../../../utils/bem';
 import { LenkepanelListe } from '../../part-components/lenkepanel-liste/LenkepanelListe';
 import { ContentList } from '../../part-components/content-list/ContentList';
 import { LenkeNavNo } from '../../part-components/lenke-navno/LenkeNavNo';
-import DynamicRegions from '../../DynamicRegions';
 import './SectionPage.less';
 
 export const SectionPage = (props: SectionPageProps) => {
