@@ -9,9 +9,9 @@ COPY package*.json /usr/src/app/
 RUN npm ci
 
 # Copying build files from workflow
-COPY .next /usr/src/app/.next/
 COPY public /usr/src/app/public/
-COPY [".env", "next.config.js", "/usr/src/app/"]
+COPY .next /usr/src/app/.next/
+COPY .env /usr/src/app/
 
 # Start app
 EXPOSE 3000
