@@ -12,7 +12,7 @@ const Alerstripe = (props: DynamicAlert) => {
     }
 
     const { dynamic_alert } = no_nav_navno;
-    const { content, type, margin } = dynamic_alert;
+    const { content, type, inline, margin } = dynamic_alert;
     const style = {
         ...(margin && {
             margin: margin,
@@ -20,7 +20,11 @@ const Alerstripe = (props: DynamicAlert) => {
     };
 
     return (
-        <AlertStripe type={type || 'info'} style={style}>
+        <AlertStripe
+            type={type || 'info'}
+            form={inline === 'true' ? 'inline' : undefined}
+            style={style}
+        >
             <ParsedHtml content={content} />
         </AlertStripe>
     );

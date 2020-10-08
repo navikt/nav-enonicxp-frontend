@@ -10,6 +10,7 @@ export interface DynamicAlert {
             no_nav_navno: {
                 dynamic_alert: {
                     type: 'info' | 'suksess' | 'advarsel' | 'feil';
+                    inline: string;
                     content: string;
                     margin: string;
                 };
