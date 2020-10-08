@@ -32,7 +32,6 @@ interface RegionsProps {
 
 const Regions = (props: RegionsProps & GlobalPageSchema) => {
     const dynamicRegions = props.dynamicRegions || [];
-    console.log(dynamicRegions);
     return (
         <>
             {Object.values(dynamicRegions).map((region, i) => (
@@ -134,13 +133,7 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 ),
                                 [PartType.LinkLists]: <LinkLists {...props} />,
                                 [PartType.MainPanels]: (
-                                    <MainPanels
-                                        // @ts-ignore
-                                        title={staticGlobalData?.panelsHeading}
-                                        // @ts-ignore
-                                        items={staticGlobalData?.panelItems}
-                                        className={bem('panels')}
-                                    />
+                                    <MainPanels {...props} />
                                 ),
                                 // Todo
                                 [PartType.Notifications]: <></>,
