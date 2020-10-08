@@ -6,6 +6,7 @@ import { BEM } from '../../../utils/bem';
 import { makeErrorProps } from '../../../types/content-types/error-props';
 import { ErrorPage } from '../error-page/ErrorPage';
 import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import { enonicPathToAppPath } from '../../../utils/paths';
 import './LargeTablePage.less';
 
 const parseHtml = (htmlString: string) => {
@@ -41,7 +42,9 @@ const parseHtml = (htmlString: string) => {
 export const LargeTablePage = (contentData: LargeTableProps) => {
     const bem = BEM('large-table-page');
 
-    const parentPath = contentData._path.split('tabeller')[0];
+    const parentPath = enonicPathToAppPath(
+        contentData._path.split('tabeller')[0]
+    );
     const parentTitle = parentPath
         .split('/')
         .slice(-2, -1)[0]
@@ -51,7 +54,7 @@ export const LargeTablePage = (contentData: LargeTableProps) => {
         setBreadcrumbs([
             {
                 title: parentTitle || 'Statistikk',
-                url: parentPath,
+                url: parentPath || '/',
                 handleInApp: true,
             },
             { title: 'Tabeller', url: '/', handleInApp: true },
