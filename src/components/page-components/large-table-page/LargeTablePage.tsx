@@ -1,6 +1,7 @@
 import React from 'react';
 import htmlReactParser from 'html-react-parser';
 import { LargeTableProps } from '../../../types/content-types/large-table-props';
+import './LargeTablePage.less';
 
 const xpOrigin = process.env.XP_ORIGIN;
 
