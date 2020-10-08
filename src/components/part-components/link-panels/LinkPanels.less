@@ -1,6 +1,6 @@
 @import '../../../global';
 
-.table-contents {
+.link-panels {
     @numCols: 3;
     @margin: 1rem;
     display: flex;
@@ -20,7 +20,7 @@
 
         @media @screen-desktop {
             width: calc(
-                    percentage(1 / @numCols) - @margin * ((@numCols - 1) / @numCols)
+                percentage(1 / @numCols) - @margin * ((@numCols - 1) / @numCols)
             );
             &:not(:nth-child(@{numCols}n)) {
                 margin-right: @margin;

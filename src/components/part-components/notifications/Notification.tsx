@@ -1,6 +1,6 @@
 import React from 'react';
 import { NotificationProps } from 'types/content-types/notification-props';
-import LenkepanelPluss from '../lenkepanel/LenkepanelPluss';
+import LenkepanelPluss from '../_common/lenkepanel/LenkepanelPluss';
 import { ContentType } from 'types/content-types/_schema';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { PulsatingIcon } from './icons/PulsatingIcon';

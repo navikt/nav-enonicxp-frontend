@@ -1,6 +1,6 @@
 import { DynamicImage } from './image';
 import { DynamicText } from './text';
-import { DynamicRegions } from '../_schema';
+import { DynamicRegions, PartType } from '../_schema';
 import { DynamicLinkPanel } from './link-panel';
 import { DynamicSupervisorPanel } from './supervisor-panel';
 import { DynamicAlert } from './alert';
@@ -36,6 +36,13 @@ export type DynamicRegionComponent =
           config: undefined;
           descriptor: string;
           regions: undefined;
+      }
+    | {
+          type: 'page';
+          path: string;
+          config: undefined;
+          descriptor: string;
+          regions: undefined;
       };
 
 export interface DynamicRegionConfig {
@@ -43,10 +50,19 @@ export interface DynamicRegionConfig {
     margin: string;
 }
 
-export type DynamicGlobalComponent =
+export type DynamicGlobalComponent = {
+    type: 'part';
+    path: string;
+    descriptor: string;
+    regions: undefined;
+    part?: {
+        descriptor: string;
+    };
+} & (
     | DynamicImage
     | DynamicText
     | DynamicLinkPanel
     | DynamicSupervisorPanel
     | DynamicAlert
-    | DynamicReadMorePanel;
+    | DynamicReadMorePanel
+);

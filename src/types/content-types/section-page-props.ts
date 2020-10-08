@@ -1,4 +1,4 @@
-import { ContentType, ContentTypeSchema, GlobalPageSchema, GlobalSchema } from './_schema';
+import { ContentType, ContentTypeSchema, GlobalPageSchema } from './_schema';
 import { LinkPanel } from '../link-panel';
 import { ContentListProps } from './content-list-props';
 

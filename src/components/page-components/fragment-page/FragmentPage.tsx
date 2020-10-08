@@ -13,10 +13,5 @@ export const FragmentPage = (props: GlobalPageSchema) => {
         },
     };
 
-    return (
-        <Regions
-            dynamicRegions={dynamicRegions}
-            dynamicGlobalComponents={dynamicGlobalComponents}
-        />
-    );
+    return <Regions dynamicRegions={dynamicRegions} {...props} />;
 };
