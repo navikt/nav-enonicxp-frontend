@@ -4,11 +4,15 @@ import { Language } from '../types/languages';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { useRouter } from 'next/router';
 import { FallbackPage } from './page-components/fallback-page/FallbackPage';
-import DynamicPageWrapper from './DynamicPageWrapper';
+import PageWrapper from './PageWrapper';
 import ContentToComponentMapper from './ContentToComponentMapper';
-import { fetchBreadcrumbs, fetchLanguages } from '../utils/fetchContent';
-import { fetchNotifications, fetchPage } from '../utils/fetchContent';
 import React from 'react';
+import {
+    fetchBreadcrumbs,
+    fetchLanguages,
+    fetchNotifications,
+    fetchPage,
+} from '../utils/fetchContent';
 
 type Props = {
     content: ContentTypeSchema;
@@ -26,14 +30,14 @@ export const PageBase = (props: Props) => {
     const { breadcrumbs, content, languages, notifications } = props;
 
     return props?.content ? (
-        <DynamicPageWrapper
+        <PageWrapper
             content={content}
             breadcrumbs={breadcrumbs}
             languages={languages}
             notifications={notifications}
         >
             <ContentToComponentMapper content={content} />
-        </DynamicPageWrapper>
+        </PageWrapper>
     ) : null;
 };
 
@@ -43,7 +47,10 @@ export const fetchPageBaseProps = async (
 ): Promise<Props> => {
     const content = await fetchPage(enonicPath, isDraft);
 
-    if (content.__typename === ContentType.Error) {
+    if (
+        content.__typename === ContentType.Error ||
+        content.__typename === ContentType.LargeTable
+    ) {
         return {
             breadcrumbs: [],
             languages: [],
