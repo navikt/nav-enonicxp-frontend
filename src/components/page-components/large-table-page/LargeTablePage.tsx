@@ -16,10 +16,12 @@ const parseHtml = (htmlString: string) => {
                 (!children ||
                     children.filter((col) => col.children?.length).length === 0)
             ) {
-                return React.createElement('tr', {
-                    ...attributesToProps(attribs),
-                    className: 'empty-row',
-                });
+                return (
+                    <tr
+                        {...attributesToProps(attribs)}
+                        className={'empty-row'}
+                    />
+                );
             }
 
             if (name?.toLowerCase() === 'strong') {
