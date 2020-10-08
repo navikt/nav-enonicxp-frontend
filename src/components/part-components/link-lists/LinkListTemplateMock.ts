@@ -71,7 +71,6 @@ export const LinkListTemplateMock = {
         createdTime: '2016-04-15T08:57:58Z',
         modifiedTime: '2019-12-13T13:58:35.807991Z',
         displayName: 'Nyheter',
-        page: {},
         data: {
             sectionContents: [
                 {

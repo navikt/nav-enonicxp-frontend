@@ -11,6 +11,8 @@ import { NotificationProps } from './notification-props';
 import { DynamicRegionComponent } from './_dynamic/_components';
 import { DynamicGlobalComponent } from './_dynamic/_components';
 import { LinkPanel } from '../link-panel';
+import { SectionPageProps } from './section-page-props';
+import { TransportPageProps } from './transport-page-props';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -51,6 +53,8 @@ export type ContentTypeSchema =
     | SiteProps
     | ExternalLinkProps
     | InternalLinkProps
+    | SectionPageProps
+    | TransportPageProps
     | ContentListProps
     | PageListProps
     | MainArticleProps
@@ -75,24 +79,7 @@ export interface GlobalPageSchema extends GlobalSchema {
     pageTemplate?: {
         page: DynamicPage;
     };
-    data: {
-        // Section page
-        panelsHeading?: string;
-        panelItems?: LinkPanel[];
-        nrTableEntries?: number;
-        tableContents?: ContentTypeSchema[];
-        nrNews?: number;
-        newsContents?: ContentListProps;
-        moreNewsUrl?: string;
-        nrNTK?: number;
-        ntkContents?: ContentListProps;
-        nrSC?: number;
-        scContents?: ContentListProps;
-
-        // Transport page
-        ingress?: string;
-        items?: LinkPanel[];
-    };
+    data: PageData;
 }
 
 export interface PageData {
@@ -108,6 +95,9 @@ export interface PageData {
     ntkContents?: ContentListProps;
     nrSC?: number;
     scContents?: ContentListProps;
+
+    // Legacy page
+    html?: string;
 
     // Transport page
     ingress?: string;
