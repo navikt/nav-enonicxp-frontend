@@ -1,7 +1,5 @@
 import { ExternalLinkProps } from './external-link-props';
 import { InternalLinkProps } from './internal-link-props';
-import { SectionPageProps } from './section-page-props';
-import { TransportPageProps } from './transport-page-props';
 import { ContentListProps } from './content-list-props';
 import { EnonicContentRef } from '../../utils/paths';
 import { LegacyProps } from './legacy-props';
@@ -53,8 +51,6 @@ export type ContentTypeSchema =
     | SiteProps
     | ExternalLinkProps
     | InternalLinkProps
-    | SectionPageProps
-    | TransportPageProps
     | ContentListProps
     | PageListProps
     | MainArticleProps
