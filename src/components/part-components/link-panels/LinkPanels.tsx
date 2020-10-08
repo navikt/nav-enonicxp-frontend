@@ -1,10 +1,12 @@
 import React from 'react';
 import { BEM } from 'utils/bem';
+import { GlobalPageSchema, PageData } from 'types/content-types/_schema';
 import { ContentTypeSchema } from 'types/content-types/_schema';
 import { ContentType } from 'types/content-types/_schema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelPluss from '../_common/lenkepanel/LenkepanelPluss';
 import './LinkPanels.less';
+import { LinkPanelMock } from './LinkPanelsMock';
 
 type TableData = {
     url: string;
@@ -53,11 +55,14 @@ const getLinkData = (
     }
 };
 
-type Props = {
-    tableContents: ContentTypeSchema[];
-};
+export const LinkPanels = (props: GlobalPageSchema) => {
+    const type = props.__typename;
+    const data =
+        type === ContentType.TemplatePage
+            ? (LinkPanelMock as PageData)
+            : props.data;
 
-export const LinkPanels = ({ tableContents }: Props) => {
+    const { tableContents } = data;
     const bem = BEM('link-panels');
 
     return (
