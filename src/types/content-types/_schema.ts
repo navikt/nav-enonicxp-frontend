@@ -18,6 +18,7 @@ export enum ContentType {
     Error = 'error',
     Site = 'portal_Site',
     Fragment = 'portal_Fragment',
+    TemplatePage = 'portal_PageTemplate',
     InternalLink = 'no_nav_navno_InternalLink',
     ExternalLink = 'no_nav_navno_ExternalLink',
     SectionPage = 'no_nav_navno_SectionPage',
@@ -30,6 +31,15 @@ export enum ContentType {
 }
 
 export enum PartType {
+    // Parts with page content
+    LinkPanels = 'no.nav.navno:link-panels',
+    LinkLists = 'no.nav.navno:link-lists',
+    PageHeading = 'no.nav.navno:page-heading',
+    MainPanels = 'no.nav.navno:main-panels',
+    BreakingBews = 'no.nav.navno:breaking-news',
+    Notifications = 'no.nav.navno:notifications',
+
+    // Parts with own content
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
     SupervisorPanel = 'no.nav.navno:dynamic-supervisor-panel',
     Alert = 'no.nav.navno:dynamic-alert',
@@ -65,6 +75,9 @@ export type GlobalSchema = {
 export interface GlobalPageSchema extends GlobalSchema {
     components?: DynamicGlobalComponent[];
     page?: DynamicPage;
+    pageTemplate?: {
+        page: DynamicPage;
+    };
 }
 
 export interface DynamicPage {

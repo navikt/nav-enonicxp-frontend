@@ -4,17 +4,13 @@ import DynamicRegions from './DynamicRegions';
 import './DynamicPage.less';
 
 export const DynamicPage = (props: GlobalPageSchema) => {
-    const dynamicPage = props.page;
-    const dynamicGlobalComponents = props.components;
-    const dynamicRegions = dynamicPage?.regions;
+    const dynamicRegions =
+        props.page?.regions || props?.pageTemplate?.page.regions;
 
     return (
         <div className={'dynamic-page'}>
             {dynamicRegions ? (
-                <DynamicRegions
-                    dynamicRegions={dynamicRegions}
-                    dynamicGlobalComponents={dynamicGlobalComponents}
-                />
+                <DynamicRegions dynamicRegions={dynamicRegions} {...props} />
             ) : (
                 <div data-portal-region={'main'} />
             )}

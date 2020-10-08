@@ -2,7 +2,7 @@ import React from 'react';
 import { LinkPanel } from 'types/link-panel';
 import { BEM } from 'utils/bem';
 import { Ingress, Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import LenkepanelPluss from '../lenkepanel/LenkepanelPluss';
+import LenkepanelPluss from '../../_common/lenkepanel/LenkepanelPluss';
 import './LenkepanelListe.less';
 
 type Props = {

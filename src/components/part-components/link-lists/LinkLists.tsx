@@ -1,19 +1,13 @@
 import React from 'react';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { ContentList } from './content-list/ContentList';
+import { LenkeNavNo } from '../_common/lenke-navno/LenkeNavNo';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { SectionPageProps } from 'types/content-types/section-page-props';
-import TableContents from 'components/part-components/table-contents/TableContents';
-import { LenkepanelListe } from 'components/part-components/lenkepanel-liste/LenkepanelListe';
-import { ContentList } from 'components/part-components/content-list/ContentList';
-import { LenkeNavNo } from 'components/part-components/lenke-navno/LenkeNavNo';
 import { BEM } from 'utils/bem';
-import './SectionPage.less';
+import './LinkLists.less';
 
-export const SectionPage = (props: SectionPageProps) => {
+const LinkLists = (props: SectionPageProps) => {
     const {
-        // nrTableEntries,
-        tableContents,
-        panelsHeading,
-        panelItems,
         nrNews,
         newsContents,
         moreNewsUrl,
@@ -23,36 +17,21 @@ export const SectionPage = (props: SectionPageProps) => {
         scContents,
     } = props.data;
 
-    const bem = BEM('section-page');
-    return (
-        <div className={bem()}>
-            <div className={bem('tittel')}>
-                <Innholdstittel>{props.displayName}</Innholdstittel>
-            </div>
+    const bem = BEM('content-lists');
 
-            {tableContents && <TableContents tableContents={tableContents} />}
-            {(panelsHeading || panelItems) && (
-                <LenkepanelListe
-                    title={panelsHeading}
-                    items={panelItems}
-                    className={bem('panels')}
-                />
-            )}
+    return (
+        <>
             {(ntkContents || newsContents || scContents) && (
-                <div className={bem('content-lists')}>
+                <div className={bem()}>
                     {ntkContents && (
                         <ContentList
                             content={ntkContents}
-                            className={bem('content-list')}
+                            className={bem('column')}
                             maxItems={nrNTK}
                         />
                     )}
                     {newsContents?.data?.sectionContents?.length > 0 && (
-                        <div
-                            className={`${bem('content-list')} ${bem(
-                                'nyheter'
-                            )}`}
-                        >
+                        <div className={`${bem('column')} ${bem('nyheter')}`}>
                             <ContentList
                                 content={newsContents}
                                 maxItems={nrNews}
@@ -73,12 +52,14 @@ export const SectionPage = (props: SectionPageProps) => {
                     {scContents && (
                         <ContentList
                             content={scContents}
-                            className={bem('content-list')}
+                            className={bem('column')}
                             maxItems={nrSC}
                         />
                     )}
                 </div>
             )}
-        </div>
+        </>
     );
 };
+
+export default LinkLists;
