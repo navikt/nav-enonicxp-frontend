@@ -1,9 +1,8 @@
 import React from 'react';
+import { ContentType, GlobalPageSchema } from 'types/content-types/_schema';
+import { DynamicRegions, PartType } from 'types/content-types/_schema';
 import { DynamicRegion } from 'types/content-types/_schema';
-import { PartType, DynamicRegions } from 'types/content-types/_schema';
 import { LinkPanel } from 'components/part-components/_dynamic/link-panel/LinkPanel';
-import { DynamicRegionConfig } from 'types/content-types/_dynamic/_components';
-import { DynamicGlobalComponent } from 'types/content-types/_dynamic/_components';
 import { DynamicText } from 'types/content-types/_dynamic/text';
 import { DynamicImage } from 'types/content-types/_dynamic/image';
 import { Text } from 'components/part-components/_dynamic/text/Text';
@@ -16,33 +15,36 @@ import { DynamicAlert } from 'types/content-types/_dynamic/alert';
 import LesMerPanel from 'components/part-components/_dynamic/les-mer-panel/LesMerPanel';
 import { DynamicReadMorePanel } from 'types/content-types/_dynamic/read-more-panel';
 import { BEM } from 'utils/bem';
+import LinkPanels from '../../part-components/link-panels/LinkPanels';
+import { DynamicRegionConfig } from '../../../types/content-types/_dynamic/_components';
+import { MockTableContent } from './DynamicMockData';
+import LinkLists from '../../part-components/link-lists/LinkLists';
+import { SectionPageProps } from '../../../types/content-types/section-page-props';
+import { MainPanels } from '../../part-components/main-panels/MainPanels';
+import PageHeading from '../../part-components/page-heading/PageHeading';
+import { BreakingNews } from '../../part-components/breaking-news/BreakingNews';
 import './DynamicRegions.less';
+
+const bem = BEM('region');
 
 interface RegionsProps {
     dynamicRegions: DynamicRegions;
     dynamicConfig?: DynamicRegionConfig;
-    dynamicGlobalComponents: DynamicGlobalComponent[];
 }
 
-const bem = BEM('region');
-const Regions = (props: RegionsProps) => {
-    const dynamicConfig = props.dynamicConfig;
+const Regions = (props: RegionsProps & GlobalPageSchema) => {
     const dynamicRegions = props.dynamicRegions || [];
-    const dynamicGlobalComponents = props.dynamicGlobalComponents || [];
-
+    console.log(dynamicRegions);
     return (
         <>
-            {Object.values(dynamicRegions).map((region, i) => {
-                return (
-                    <Region
-                        key={region.name}
-                        dynamicKey={i}
-                        dynamicRegion={region}
-                        dynamicConfig={dynamicConfig}
-                        dynamicGlobalComponents={dynamicGlobalComponents}
-                    />
-                );
-            })}
+            {Object.values(dynamicRegions).map((region, i) => (
+                <Region
+                    {...props}
+                    key={region.name}
+                    dynamicKey={i}
+                    dynamicRegion={region}
+                />
+            ))}
         </>
     );
 };
@@ -51,13 +53,14 @@ interface RegionProps {
     dynamicKey: number;
     dynamicRegion: DynamicRegion;
     dynamicConfig?: DynamicRegionConfig;
-    dynamicGlobalComponents: DynamicGlobalComponent[];
 }
 
-export const Region = (props: RegionProps) => {
-    const { dynamicRegion, dynamicGlobalComponents, dynamicConfig } = props;
-    const regionComponents = dynamicRegion.components || [];
-    const { name } = dynamicRegion;
+export const Region = (props: RegionProps & GlobalPageSchema) => {
+    const staticGlobalData = props.data;
+    const dynamicGlobalComponents = props.components;
+    const dynamicRegionComponents = props.dynamicRegion.components || [];
+    const dynamicConfig = props.dynamicConfig;
+    const { name } = props.dynamicRegion;
 
     const dynamicStyle = {
         ...(dynamicConfig?.distribution && {
@@ -72,11 +75,15 @@ export const Region = (props: RegionProps) => {
             data-portal-region={name}
             className={`${bem()} ${bem(name)}`}
         >
-            {regionComponents.map((dynamicRegionComponent) => {
-                const className = getClass(dynamicRegionComponent.descriptor);
+            {dynamicRegionComponents.map((dynamicRegionComponent) => {
+                const componentDescriptor = dynamicRegionComponent.descriptor;
                 const component = dynamicGlobalComponents.find(
                     ({ path }) => path === dynamicRegionComponent.path
                 );
+
+                const part = component?.part;
+                const descriptor = componentDescriptor || part?.descriptor;
+                const className = getClass(descriptor);
 
                 const dynamicStyle = {
                     ...(dynamicRegionComponent?.config?.margin && {
@@ -97,8 +104,8 @@ export const Region = (props: RegionProps) => {
                             text: <Text {...(component as DynamicText)} />,
                             image: <Image {...(component as DynamicImage)} />,
 
-                            // Dynamic parts
                             part: {
+                                // Dynamic parts with own content
                                 [PartType.LinkPanel]: (
                                     <LinkPanel
                                         {...(component as DynamicLinkPanel)}
@@ -119,23 +126,54 @@ export const Region = (props: RegionProps) => {
                                         {...(component as DynamicReadMorePanel)}
                                     />
                                 ),
-                            }[dynamicRegionComponent.descriptor] || (
+
+                                // Parts based on global content
+                                [PartType.PageHeading]: (
+                                    <PageHeading
+                                        {...(props as SectionPageProps)}
+                                    />
+                                ),
+                                [PartType.LinkPanels]: (
+                                    <LinkPanels
+                                        tableContents={
+                                            // @ts-ignore
+                                            staticGlobalData?.tableContents ||
+                                            MockTableContent
+                                        }
+                                    />
+                                ),
+                                [PartType.LinkLists]: (
+                                    <LinkLists
+                                        {...(props as SectionPageProps)}
+                                    />
+                                ),
+                                [PartType.MainPanels]: (
+                                    <MainPanels
+                                        // @ts-ignore
+                                        title={staticGlobalData?.panelsHeading}
+                                        // @ts-ignore
+                                        items={staticGlobalData?.panelItems}
+                                        className={bem('panels')}
+                                    />
+                                ),
+                                // Todo
+                                [PartType.Notifications]: <></>,
+                                [PartType.BreakingBews]: <BreakingNews />,
+                            }[descriptor] || (
                                 <div className={bem('unimplemented')}>
-                                    {`Unimplemented part: ${dynamicRegionComponent.descriptor}`}
+                                    {`Unimplemented part: ${descriptor}`}
                                 </div>
                             ),
 
                             // Recursive layouts
                             layout: (
                                 <Regions
+                                    {...props}
                                     dynamicConfig={
                                         dynamicRegionComponent.config
                                     }
                                     dynamicRegions={
                                         dynamicRegionComponent.regions
-                                    }
-                                    dynamicGlobalComponents={
-                                        dynamicGlobalComponents
                                     }
                                 />
                             ),

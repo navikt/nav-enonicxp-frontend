@@ -2,9 +2,9 @@ import React from 'react';
 import { BEM } from 'utils/bem';
 import { ContentTypeSchema } from 'types/content-types/_schema';
 import { ContentType } from 'types/content-types/_schema';
-import { LenkepanelVertical } from '../lenkepanel-vertical/LenkepanelVertical';
 import { Normaltekst } from 'nav-frontend-typografi';
-import './TableContents.less';
+import LenkepanelPluss from '../_common/lenkepanel/LenkepanelPluss';
+import './LinkPanels.less';
 
 type TableData = {
     url: string;
@@ -57,8 +57,8 @@ type Props = {
     tableContents: ContentTypeSchema[];
 };
 
-export const TableContents = ({ tableContents }: Props) => {
-    const bem = BEM('table-contents');
+export const LinkPanels = ({ tableContents }: Props) => {
+    const bem = BEM('link-panels');
 
     return (
         tableContents?.length > 0 && (
@@ -68,14 +68,15 @@ export const TableContents = ({ tableContents }: Props) => {
 
                     return (
                         link && (
-                            <LenkepanelVertical
+                            <LenkepanelPluss
                                 href={link.url}
+                                separator={true}
                                 tittel={link.tittel}
                                 key={content._id}
-                                className={bem('item')}
+                                className={`lenkepanel-vertical ${bem('item')}`}
                             >
                                 <Normaltekst>{link.children}</Normaltekst>
-                            </LenkepanelVertical>
+                            </LenkepanelPluss>
                         )
                     );
                 })}
@@ -84,4 +85,4 @@ export const TableContents = ({ tableContents }: Props) => {
     );
 };
 
-export default TableContents;
+export default LinkPanels;

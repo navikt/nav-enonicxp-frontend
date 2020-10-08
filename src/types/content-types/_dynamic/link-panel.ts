@@ -6,6 +6,7 @@ export interface DynamicLinkPanel {
     descriptor: PartType.LinkPanel;
     regions: undefined;
     part: {
+        descriptor: PartType.LinkPanel;
         config: {
             no_nav_navno: {
                 dynamic_link_panel: {

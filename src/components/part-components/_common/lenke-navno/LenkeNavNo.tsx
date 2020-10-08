@@ -3,7 +3,7 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
 import { enonicPathToAppPath, isEnonicPath } from 'utils/paths';
 import Link from 'next/link';
-import { BEM } from '../../../utils/bem';
+import { BEM } from 'utils/bem';
 import './LenkeNavNo.less';
 
 type Props = {
