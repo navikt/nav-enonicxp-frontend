@@ -12,16 +12,11 @@ type Props = {
     className?: string;
 };
 
-export const LenkepanelListe = ({
-    title,
-    ingress,
-    items,
-    className,
-}: Props) => {
+export const LenkepanelListe = ({ title, ingress, items }: Props) => {
     const bem = BEM('lenkepanel-liste');
 
     return (
-        <div className={className}>
+        <div className={bem()}>
             {title && (
                 <div className={bem('tittel')}>
                     <Innholdstittel>{title}</Innholdstittel>

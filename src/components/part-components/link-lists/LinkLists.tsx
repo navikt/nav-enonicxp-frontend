@@ -2,11 +2,19 @@ import React from 'react';
 import { ContentList } from './content-list/ContentList';
 import { LenkeNavNo } from '../_common/lenke-navno/LenkeNavNo';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { SectionPageProps } from 'types/content-types/section-page-props';
 import { BEM } from 'utils/bem';
+import { GlobalPageSchema, PageData } from 'types/content-types/_schema';
+import { ContentType } from 'types/content-types/_schema';
+import { LinkListTemplateMock } from './LinkListTemplateMock';
 import './LinkLists.less';
 
-const LinkLists = (props: SectionPageProps) => {
+const LinkLists = (props: GlobalPageSchema) => {
+    const type = props.__typename;
+    const data =
+        type === ContentType.TemplatePage
+            ? (LinkListTemplateMock as PageData)
+            : props.data;
+
     const {
         nrNews,
         newsContents,
@@ -15,7 +23,7 @@ const LinkLists = (props: SectionPageProps) => {
         ntkContents,
         nrSC,
         scContents,
-    } = props.data;
+    } = data;
 
     const bem = BEM('content-lists');
 

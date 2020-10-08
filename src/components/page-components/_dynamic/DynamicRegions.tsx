@@ -17,9 +17,7 @@ import { DynamicReadMorePanel } from 'types/content-types/_dynamic/read-more-pan
 import { BEM } from 'utils/bem';
 import LinkPanels from '../../part-components/link-panels/LinkPanels';
 import { DynamicRegionConfig } from '../../../types/content-types/_dynamic/_components';
-import { MockTableContent } from './DynamicMockData';
 import LinkLists from '../../part-components/link-lists/LinkLists';
-import { SectionPageProps } from '../../../types/content-types/section-page-props';
 import { MainPanels } from '../../part-components/main-panels/MainPanels';
 import PageHeading from '../../part-components/page-heading/PageHeading';
 import { BreakingNews } from '../../part-components/breaking-news/BreakingNews';
@@ -34,7 +32,6 @@ interface RegionsProps {
 
 const Regions = (props: RegionsProps & GlobalPageSchema) => {
     const dynamicRegions = props.dynamicRegions || [];
-    console.log(dynamicRegions);
     return (
         <>
             {Object.values(dynamicRegions).map((region, i) => (
@@ -129,32 +126,14 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
 
                                 // Parts based on global content
                                 [PartType.PageHeading]: (
-                                    <PageHeading
-                                        {...(props as SectionPageProps)}
-                                    />
+                                    <PageHeading {...props} />
                                 ),
                                 [PartType.LinkPanels]: (
-                                    <LinkPanels
-                                        tableContents={
-                                            // @ts-ignore
-                                            staticGlobalData?.tableContents ||
-                                            MockTableContent
-                                        }
-                                    />
+                                    <LinkPanels {...props} />
                                 ),
-                                [PartType.LinkLists]: (
-                                    <LinkLists
-                                        {...(props as SectionPageProps)}
-                                    />
-                                ),
+                                [PartType.LinkLists]: <LinkLists {...props} />,
                                 [PartType.MainPanels]: (
-                                    <MainPanels
-                                        // @ts-ignore
-                                        title={staticGlobalData?.panelsHeading}
-                                        // @ts-ignore
-                                        items={staticGlobalData?.panelItems}
-                                        className={bem('panels')}
-                                    />
+                                    <MainPanels {...props} />
                                 ),
                                 // Todo
                                 [PartType.Notifications]: <></>,
