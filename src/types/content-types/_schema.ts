@@ -10,6 +10,7 @@ import { ErrorProps } from './error-props';
 import { NotificationProps } from './notification-props';
 import { DynamicRegionComponent } from './_dynamic/_components';
 import { DynamicGlobalComponent } from './_dynamic/_components';
+import { LargeTableProps } from './large-table-props';
 import { LinkPanel } from '../link-panel';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
@@ -29,6 +30,7 @@ export enum ContentType {
     PageList = 'no_nav_navno_PageList',
     MainArticle = 'no_nav_navno_MainArticle',
     Notification = 'no_nav_navno_Notification',
+    LargeTable = 'no_nav_navno_LargeTable',
 }
 
 export enum PartType {
@@ -56,7 +58,8 @@ export type ContentTypeSchema =
     | ContentListProps
     | PageListProps
     | MainArticleProps
-    | NotificationProps;
+    | NotificationProps
+    | LargeTableProps;
 
 export type GlobalSchema = {
     __typename: ContentType;

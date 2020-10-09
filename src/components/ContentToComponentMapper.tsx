@@ -5,6 +5,7 @@ import { ErrorPage } from './page-components/error-page/ErrorPage';
 import { makeErrorProps } from '../types/content-types/error-props';
 import { DynamicPage } from './page-components/_dynamic/DynamicPage';
 import { FragmentPage } from './page-components/fragment-page/FragmentPage';
+import LargeTablePage from './page-components/large-table-page/LargeTablePage';
 
 export const contentToComponentMap = {
     [ContentType.Error]: ErrorPage,
@@ -13,6 +14,7 @@ export const contentToComponentMap = {
     [ContentType.TransportPage]: DynamicPage,
     [ContentType.Fragment]: FragmentPage,
     [ContentType.DynamicPage]: DynamicPage,
+    [ContentType.LargeTable]: LargeTablePage,
     [ContentType.TemplatePage]: DynamicPage,
 };
 

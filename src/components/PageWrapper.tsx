@@ -22,7 +22,7 @@ type Props = {
     children: React.ReactNode;
 };
 
-export const DynamicPageWrapper = (props: Props) => {
+export const PageWrapper = (props: Props) => {
     const { content, breadcrumbs, languages, notifications, children } = props;
     const router = useRouter();
 
@@ -106,4 +106,4 @@ export const DynamicPageWrapper = (props: Props) => {
     );
 };
 
-export default DynamicPageWrapper;
+export default PageWrapper;
