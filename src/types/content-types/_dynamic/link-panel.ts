@@ -11,11 +11,7 @@ export interface DynamicLinkPanel {
             no_nav_navno: {
                 dynamic_link_panel: {
                     background: GlobalSchema & {
-                        data: {
-                            media: {
-                                attachment: string;
-                            };
-                        };
+                        mediaUrl: string;
                     };
                     description: string;
                     target: string;
