@@ -28,8 +28,7 @@ export const LenkeNavNo = ({
 }: Props) => {
     const bem = BEM('navno-lenke');
     const isInternalLink = isEnonicPath(href);
-    const _href =
-        (isInternalLink ? enonicPathToAppPath(href) : href) || '/aSDFADF';
+    const _href = (isInternalLink ? enonicPathToAppPath(href) : href) || '/';
     const analyticsLinkText =
         typeof children === 'string' ? children : undefined;
 
