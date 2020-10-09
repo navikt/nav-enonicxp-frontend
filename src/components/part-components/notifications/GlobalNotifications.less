@@ -12,7 +12,7 @@
     @media @screen-desktop {
         .notification {
             width: calc(
-                percentage(1 / @numCols) - @margin-between *
+                percentage(0.75 / @numCols) - @margin-between *
                     ((@numCols - 1) / @numCols)
             );
             &:not(:nth-child(@{numCols}n)) {
