@@ -8,13 +8,13 @@ type Props = {
 };
 
 export const GlobalNotifications = ({ notifications = [] }: Props) => {
-    return (
+    return notifications.length > 0 ? (
         <div className={'global-notifications'}>
             {notifications.map((props, index) => (
                 <Notification {...props} key={index} />
             ))}
         </div>
-    );
+    ) : null;
 };
 
 export default GlobalNotifications;

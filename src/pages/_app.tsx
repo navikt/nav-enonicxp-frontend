@@ -4,8 +4,13 @@ import '../global.less';
 
 const App = (props: AppProps) => {
     const { Component, pageProps } = props;
+    const styles = {
+        ...(pageProps.breadcrumbs?.length && {
+            marginTop: '1rem',
+        }),
+    };
     return (
-        <div className={'app'}>
+        <div className={'app'} style={styles}>
             <Component {...pageProps} />
         </div>
     );
