@@ -11,7 +11,7 @@ import './LegacyPage.less';
 
 const xpOrigin = process.env.XP_ORIGIN;
 
-export const parseLegacyHtml = (htmlString: string) => {
+const parseLegacyHtml = (htmlString: string) => {
     const replaceBodyElements = {
         replace: ({ name, attribs, children }: DomElement) => {
             if (name?.toLowerCase() === 'time') {
