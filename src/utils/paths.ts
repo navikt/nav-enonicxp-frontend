@@ -18,7 +18,7 @@ export const isUUID = (id: string) =>
     );
 
 export const enonicPathToAppPath = (path: string) =>
-    isEnonicPath(path) ? path.split(xpContentBasePath)[1] : null;
+    isEnonicPath(path) ? path.split(xpContentBasePath).slice(-1)[0] : path;
 
 export const enonicPathToUrl = (path: string) =>
     isEnonicPath(path)
