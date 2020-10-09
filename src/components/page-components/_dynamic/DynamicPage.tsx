@@ -5,7 +5,7 @@ import './DynamicPage.less';
 
 export const DynamicPage = (props: GlobalPageSchema) => {
     const dynamicRegions =
-        props.page?.regions || props?.pageTemplate?.page.regions;
+        props.page?.regions || props?.pageTemplate?.page?.regions;
 
     return (
         <div className={'dynamic-page'}>

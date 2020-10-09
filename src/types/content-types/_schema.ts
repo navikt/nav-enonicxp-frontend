@@ -79,6 +79,7 @@ export interface GlobalPageSchema extends GlobalSchema {
     page?: DynamicPage;
     pageTemplate?: {
         page: DynamicPage;
+        components?: DynamicGlobalComponent[];
     };
     data: PageData;
 }
