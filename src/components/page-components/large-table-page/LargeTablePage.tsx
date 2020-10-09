@@ -68,7 +68,7 @@ export const LargeTablePage = (contentData: LargeTableProps) => {
         <ErrorPage
             {...makeErrorProps(
                 contentData._path,
-                'Page content not found',
+                'Table content not found',
                 404
             )}
         />
