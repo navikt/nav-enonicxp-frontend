@@ -20,8 +20,13 @@
         justify-content: space-between;
         margin-top: 1rem;
         border: 4px solid #e4f5ea;
-        padding: 2rem;
         width: 100%;
+        @media @screen-mobile {
+            padding: 2rem 0.5rem;
+        }
+        @media @screen-desktop {
+            padding: 2rem;
+        }
     }
 
     &__item {
