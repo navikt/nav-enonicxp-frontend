@@ -25,9 +25,7 @@ export const LinkPanel = (props: DynamicLinkPanel) => {
         <LenkepanelBase
             href={'/'}
             className={`${bem()}`}
-            style={{
-                backgroundImage: `url(${backgroundUrl})`,
-            }}
+            style={{ backgroundImage: `url(${backgroundUrl})` }}
             border={true}
             onClick={null}
             linkCreator={(props) =>
@@ -42,7 +40,6 @@ export const LinkPanel = (props: DynamicLinkPanel) => {
         >
             <div className={bem('innhold')}>
                 <Undertittel className={bem('heading')}>{title}</Undertittel>
-                <hr className={bem('separator')} />
                 {description && (
                     <div className={bem('ingress')}>{description}</div>
                 )}

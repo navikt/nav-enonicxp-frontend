@@ -1,26 +1,31 @@
 @import (reference) '../../../../global';
 
 .link-panel {
-    width:100%;
+    width: 100%;
+    min-height: 13rem;
+
+    display: flex;
+    justify-items: flex-start;
+    flex-direction: column;
+
     text-align: start;
     margin-bottom: 1rem;
     padding: 1.5rem;
 
     background-repeat: no-repeat;
     background-position: bottom right;
-    min-height: 13rem;
     box-shadow: 0 0px 8px 4px rgba(0, 0, 0, 0.08);
     background-color: white;
 
     border: 2px transparent solid;
     box-sizing: border-box;
 
-    &__heading{
+    &__heading {
         margin: 1rem 0;
-        color: @navBla
+        color: @navBla;
     }
 
-    &__ingress{
+    &__ingress {
         margin: 1rem 0;
     }
 
