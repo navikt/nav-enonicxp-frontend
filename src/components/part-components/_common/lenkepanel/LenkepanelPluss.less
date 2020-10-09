@@ -1,12 +1,13 @@
 @import (reference) '../../../../global';
 
 .lenkepanel-pluss {
-    border: 2px @navGra80 solid;
+    border: 2px transparent solid;
     box-sizing: border-box;
+    background: transparent;
     display: flex;
 
     &:hover {
-        border: 2px @navBla solid;
+        border: 2px @navGra80 solid;
 
         .lenkepanel__indikator,
         .lenkepanel__heading {
@@ -53,7 +54,7 @@
     }
 
     .lenkepanel__heading {
-        color: black;
+        color: @navBla;
     }
 
     @media (max-width: @mobilMaxWidth) {
