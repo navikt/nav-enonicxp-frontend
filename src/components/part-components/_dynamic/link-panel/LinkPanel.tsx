@@ -19,7 +19,7 @@ export const LinkPanel = (props: DynamicLinkPanel) => {
     const { dynamic_link_panel } = props?.part?.config?.no_nav_navno;
     const { title, description, background } = dynamic_link_panel;
     const isInternalUrl = isEnonicPath('/');
-    const backgroundUrl = `${process.env.XP_ORIGIN}/_/image/${background._id}/block-800-800/${background.data.media.attachment}`;
+    const backgroundUrl = `${process.env.NEXT_PUBLIC_XP_ORIGIN}/_/image/${background._id}/block-800-800/${background.data.media.attachment}`;
 
     return (
         <LenkepanelBase

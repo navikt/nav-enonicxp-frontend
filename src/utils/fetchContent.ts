@@ -13,7 +13,7 @@ import { Breadcrumb } from '../types/breadcrumb';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { Language } from '../types/languages';
 
-const xpOrigin = process.env.XP_ORIGIN;
+const xpOrigin = process.env.NEXT_PUBLIC_XP_ORIGIN;
 const xpServiceUrl = `${xpOrigin}${enonicServicePath}`;
 const xpDraftServiceUrl = `${xpOrigin}${enonicDraftServicePath}`;
 const xpLegacyUrl = `${xpOrigin}${enonicLegacyPath}`;

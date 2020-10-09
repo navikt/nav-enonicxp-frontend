@@ -24,7 +24,7 @@ jobs:
           ADMIN_ORIGIN=https://portal-admin-q6.oera.no
           APP_ORIGIN=https://www-q6.nav.no
           DECORATOR_URL=https://www-q6.nav.no/dekoratoren
-          XP_ORIGIN=https://www-q6.nav.no
+          NEXT_PUBLIC_XP_ORIGIN=https://www-q6.nav.no
           EOF
       - uses: actions/cache@v1
         with:
