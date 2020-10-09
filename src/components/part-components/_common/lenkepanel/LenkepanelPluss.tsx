@@ -4,6 +4,7 @@ import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import { enonicPathToAppPath, isEnonicPath } from 'utils/paths';
 import Link from 'next/link';
 import { BEM } from 'utils/bem';
+import { logLinkClick } from '../../../../utils/amplitude';
 import './LenkepanelPluss.less';
 
 export type LenkepanelProps = {
@@ -28,16 +29,19 @@ const LenkepanelPluss = ({
     children,
 }: LenkepanelProps) => {
     const isInternalUrl = isEnonicPath(href);
-    const _href = isInternalUrl ? enonicPathToAppPath(href) : href;
+    const _href = (isInternalUrl ? enonicPathToAppPath(href) : href) || '/';
     const bem = BEM('lenkepanel-pluss');
 
     return (
         <LenkepanelBase
-            href={_href || '/'}
+            href={_href}
             className={`${bem()} ${className || ''}`}
             id={id}
             border={true}
-            onClick={onClick}
+            onClick={(e) => {
+                logLinkClick(_href, tittel);
+                onClick?.(e);
+            }}
             linkCreator={(props) =>
                 isInternalUrl ? (
                     <Link href={props.href} passHref={true}>

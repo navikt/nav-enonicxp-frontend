@@ -13,6 +13,7 @@ import { Breadcrumb } from '../types/breadcrumb';
 import { Language } from '../types/languages';
 import GlobalNotifications from './part-components/notifications/GlobalNotifications';
 import { NotificationProps } from '../types/content-types/notification-props';
+import { initAmplitude, logPageview } from '../utils/amplitude';
 
 type Props = {
     content: ContentTypeSchema;
@@ -29,6 +30,8 @@ export const PageWrapper = (props: Props) => {
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) => router.push(breadcrumb.url));
         onLanguageSelect((breadcrumb) => router.push(breadcrumb.url));
+
+        initAmplitude();
 
         const linkInterceptor = hookAndInterceptInternalLink(router);
         const linkPrefetcher = prefetchOnMouseover(router);
@@ -62,6 +65,8 @@ export const PageWrapper = (props: Props) => {
         if (!content) {
             return;
         }
+
+        logPageview();
 
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;
