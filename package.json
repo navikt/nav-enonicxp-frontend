@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@navikt/nav-dekoratoren-moduler": "^1.0.21",
+        "amplitude-js": "^7.2.2",
         "classnames": "^2.2.6",
         "html-react-parser": "^0.13.0",
         "jsdom": "^16.4.0",
