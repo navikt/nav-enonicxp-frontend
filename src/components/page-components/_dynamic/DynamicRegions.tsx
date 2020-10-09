@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentType, GlobalPageSchema } from 'types/content-types/_schema';
+import { GlobalPageSchema } from 'types/content-types/_schema';
 import { DynamicRegions, PartType } from 'types/content-types/_schema';
 import { DynamicRegion } from 'types/content-types/_schema';
 import { LinkPanel } from 'components/part-components/_dynamic/link-panel/LinkPanel';
@@ -15,12 +15,11 @@ import { DynamicAlert } from 'types/content-types/_dynamic/alert';
 import LesMerPanel from 'components/part-components/_dynamic/les-mer-panel/LesMerPanel';
 import { DynamicReadMorePanel } from 'types/content-types/_dynamic/read-more-panel';
 import { BEM } from 'utils/bem';
-import LinkPanels from '../../part-components/link-panels/LinkPanels';
-import { DynamicRegionConfig } from '../../../types/content-types/_dynamic/_components';
-import LinkLists from '../../part-components/link-lists/LinkLists';
-import { MainPanels } from '../../part-components/main-panels/MainPanels';
-import PageHeading from '../../part-components/page-heading/PageHeading';
-import { BreakingNews } from '../../part-components/breaking-news/BreakingNews';
+import LinkPanels from 'components/part-components/link-panels/LinkPanels';
+import { DynamicRegionConfig } from 'types/content-types/_dynamic/_components';
+import LinkLists from 'components/part-components/link-lists/LinkLists';
+import { MainPanels } from 'components/part-components/main-panels/MainPanels';
+import PageHeading from 'components/part-components/page-heading/PageHeading';
 import './DynamicRegions.less';
 
 const bem = BEM('region');
@@ -53,7 +52,6 @@ interface RegionProps {
 }
 
 export const Region = (props: RegionProps & GlobalPageSchema) => {
-    const staticGlobalData = props.data;
     const dynamicGlobalComponents = props.components;
     const dynamicRegionComponents = props.dynamicRegion.components || [];
     const dynamicConfig = props.dynamicConfig;
@@ -135,9 +133,6 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 [PartType.MainPanels]: (
                                     <MainPanels {...props} />
                                 ),
-                                // Todo
-                                [PartType.Notifications]: <></>,
-                                [PartType.BreakingBews]: <BreakingNews />,
                             }[descriptor] || (
                                 <div className={bem('unimplemented')}>
                                     {`Unimplemented part: ${descriptor}`}

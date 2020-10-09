@@ -37,8 +37,6 @@ export enum PartType {
     LinkLists = 'no.nav.navno:link-lists',
     PageHeading = 'no.nav.navno:page-heading',
     MainPanels = 'no.nav.navno:main-panels',
-    BreakingBews = 'no.nav.navno:breaking-news',
-    Notifications = 'no.nav.navno:notifications',
 
     // Parts with own content
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
