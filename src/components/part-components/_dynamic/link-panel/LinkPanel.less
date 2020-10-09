@@ -2,14 +2,7 @@
 
 .link-panel {
     width: 100%;
-    min-height: 13rem;
-
     display: flex;
-    justify-items: flex-start;
-    flex-direction: column;
-
-    text-align: start;
-    margin-bottom: 1rem;
     padding: 1.5rem;
 
     background-repeat: no-repeat;
@@ -20,8 +13,25 @@
     border: 2px transparent solid;
     box-sizing: border-box;
 
+    @media @screen-desktop {
+        padding-bottom: 4rem;
+    }
+
+    @media @screen-mobile {
+        padding-bottom: 3rem;
+    }
+
+    &__innhold {
+        height: 100%;
+        display: flex;
+        justify-items: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        text-align: start;
+    }
+
     &__heading {
-        margin: 1rem 0;
+        margin-top: 1rem;
         color: @navBla;
     }
 
