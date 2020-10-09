@@ -1,17 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LargeTableProps } from '../../../types/content-types/large-table-props';
-import { BEM } from '../../../utils/bem';
 import { makeErrorProps } from '../../../types/content-types/error-props';
 import { ErrorPage } from '../error-page/ErrorPage';
-import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
-import { enonicPathToAppPath } from '../../../utils/paths';
 import './LargeTablePage.less';
 
 const parseHtml = (htmlString: string) => {
-    const replaceEmptyRows = {
+    const options = {
         replace: ({ name, attribs, children }: DomElement) => {
+            // Replace rows with no content with an easily styled element
             if (
                 name?.toLowerCase() === 'tr' &&
                 (!children ||
@@ -20,49 +18,40 @@ const parseHtml = (htmlString: string) => {
                 return (
                     <tr
                         {...attributesToProps(attribs)}
-                        className={'empty-row'}
+                        className={'spacer-row'}
                     />
                 );
             }
 
+            // Remove strong, as it is inconsistently used and we apply font-styling in css instead
             if (name?.toLowerCase() === 'strong') {
                 return <>{domToReact(children)}</>;
+            }
+
+            // Remove empty footers etc
+            if (
+                name?.toLowerCase() === 'div' &&
+                (!children || children.length === 0)
+            ) {
+                return <Fragment />;
             }
         },
     };
 
     const htmlParsed = htmlReactParser(
-        htmlString.replace(/(\r\n|\n|\r|&nbsp;)/gm, ''),
-        replaceEmptyRows
+        // remove whitespace
+        htmlString.replace(/(\t|\n|\r|&nbsp;)/gm, ''),
+        options
     );
 
     return <>{htmlParsed}</>;
 };
 
 export const LargeTablePage = (contentData: LargeTableProps) => {
-    const bem = BEM('large-table-page');
-
-    const parentPath = enonicPathToAppPath(
-        contentData._path.split('tabeller')[0]
-    );
-    const parentTitle = parentPath
-        .split('/')
-        .slice(-2, -1)[0]
-        .replace(/[^a-zA-Z0-9]/g, ' ');
-
-    useEffect(() => {
-        setBreadcrumbs([
-            {
-                title: parentTitle || 'Statistikk',
-                url: parentPath || '/',
-                handleInApp: true,
-            },
-            { title: 'Tabeller', url: '/', handleInApp: true },
-        ]);
-    }, []);
-
     return contentData.data?.text ? (
-        <div className={bem()}>{parseHtml(contentData.data.text)}</div>
+        <div className={'large-table-page'}>
+            {parseHtml(contentData.data.text)}
+        </div>
     ) : (
         <ErrorPage
             {...makeErrorProps(
