@@ -13,7 +13,6 @@ import {
     fetchNotifications,
     fetchPage,
 } from '../utils/fetchContent';
-import { enonicPathToAppPath } from '../utils/paths';
 
 type Props = {
     content: ContentTypeSchema;
@@ -48,30 +47,13 @@ export const fetchPageBaseProps = async (
 ): Promise<Props> => {
     const content = await fetchPage(enonicPath, isDraft);
 
-    if (content.__typename === ContentType.Error) {
+    if (
+        content.__typename === ContentType.Error ||
+        content.__typename === ContentType.LargeTable
+    ) {
         return {
             content: content,
             breadcrumbs: [],
-            languages: [],
-            notifications: [],
-        };
-    }
-
-    if (content.__typename === ContentType.LargeTable) {
-        const parentPath = content._path.split('tabeller')[0];
-        const parentTitle = parentPath.split('/').slice(-2, -1)[0];
-        const breadcrumbs = [
-            {
-                title: parentTitle || 'Statistikk',
-                url: enonicPathToAppPath(parentPath) || '/',
-                handleInApp: true,
-            },
-            { title: 'Tabeller', url: '/', handleInApp: true },
-        ];
-
-        return {
-            content: content,
-            breadcrumbs: breadcrumbs,
             languages: [],
             notifications: [],
         };

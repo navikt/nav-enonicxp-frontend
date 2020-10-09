@@ -4,6 +4,8 @@ import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LargeTableProps } from '../../../types/content-types/large-table-props';
 import { makeErrorProps } from '../../../types/content-types/error-props';
 import { ErrorPage } from '../error-page/ErrorPage';
+import { LenkeNavNo } from '../../part-components/_common/lenke-navno/LenkeNavNo';
+import { VenstreChevron } from 'nav-frontend-chevron';
 import './LargeTablePage.less';
 
 const parseHtml = (htmlString: string) => {
@@ -48,8 +50,18 @@ const parseHtml = (htmlString: string) => {
 };
 
 export const LargeTablePage = (contentData: LargeTableProps) => {
+    const parentPath = contentData._path.split('tabeller')[0];
+
     return contentData.data?.text ? (
         <div className={'large-table-page'}>
+            <LenkeNavNo
+                href={parentPath}
+                withChevron={false}
+                className={'tilbake-lenke'}
+            >
+                <VenstreChevron />
+                {'Tilbake'}
+            </LenkeNavNo>
             {parseHtml(contentData.data.text)}
         </div>
     ) : (
