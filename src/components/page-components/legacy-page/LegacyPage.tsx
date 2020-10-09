@@ -8,7 +8,7 @@ import Head from 'next/head';
 import { LenkeNavNo } from '../../part-components/_common/lenke-navno/LenkeNavNo';
 import './LegacyPage.less';
 
-const xpOrigin = process.env.XP_ORIGIN;
+const xpOrigin = process.env.NEXT_PUBLIC_XP_ORIGIN;
 
 const parseLegacyHtml = (htmlString: string) => {
     const replaceBodyElements = {
