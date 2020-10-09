@@ -52,10 +52,11 @@ interface RegionProps {
 }
 
 export const Region = (props: RegionProps & GlobalPageSchema) => {
-    const dynamicGlobalComponents = props.components;
     const dynamicRegionComponents = props.dynamicRegion.components || [];
     const dynamicConfig = props.dynamicConfig;
     const { name } = props.dynamicRegion;
+    const dynamicGlobalComponents =
+        props.pageTemplate.components || props.components;
 
     const dynamicStyle = {
         ...(dynamicConfig?.distribution && {

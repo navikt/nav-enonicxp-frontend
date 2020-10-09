@@ -22,6 +22,7 @@ export type DynamicRegionComponent =
           config: undefined;
           regions: undefined;
           image: string;
+          text: undefined;
       }
     | {
           type: 'layout';
@@ -29,6 +30,7 @@ export type DynamicRegionComponent =
           config?: DynamicRegionConfig;
           descriptor: string;
           regions: DynamicRegions;
+          text: undefined;
       }
     | {
           type: 'part';
@@ -36,6 +38,7 @@ export type DynamicRegionComponent =
           config: undefined;
           descriptor: string;
           regions: undefined;
+          text: undefined;
       }
     | {
           type: 'page';
@@ -43,6 +46,7 @@ export type DynamicRegionComponent =
           config: undefined;
           descriptor: string;
           regions: undefined;
+          text: undefined;
       };
 
 export interface DynamicRegionConfig {
