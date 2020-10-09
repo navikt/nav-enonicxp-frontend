@@ -4,6 +4,7 @@ import { Undertekst } from 'nav-frontend-typografi';
 import { enonicPathToAppPath, isEnonicPath } from 'utils/paths';
 import Link from 'next/link';
 import { BEM } from 'utils/bem';
+import { logLinkClick } from '../../../../utils/amplitude';
 import './LenkeNavNo.less';
 
 type Props = {
@@ -27,14 +28,20 @@ export const LenkeNavNo = ({
 }: Props) => {
     const bem = BEM('navno-lenke');
     const isInternalLink = isEnonicPath(href);
-    const _href = isInternalLink ? enonicPathToAppPath(href) : href;
+    const _href =
+        (isInternalLink ? enonicPathToAppPath(href) : href) || '/aSDFADF';
+    const analyticsLinkText =
+        typeof children === 'string' ? children : undefined;
 
     const link = (
         <a
-            href={_href || '/'}
+            href={_href}
             className={`${bem()} ${className || ''}`}
             id={id}
-            onClick={onClick}
+            onClick={(e) => {
+                logLinkClick(_href, analyticsLinkText);
+                onClick?.(e);
+            }}
         >
             {label && <Undertekst className={bem('label')}>{label}</Undertekst>}
             <span className={bem('lenketekst')}>
