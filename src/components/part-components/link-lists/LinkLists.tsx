@@ -25,7 +25,7 @@ const LinkLists = (props: GlobalPageSchema) => {
         scContents,
     } = data;
 
-    const bem = BEM('content-lists');
+    const bem = BEM('link-lists');
 
     return (
         <>
