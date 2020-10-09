@@ -642,7 +642,7 @@
     "ADMIN_ORIGIN": "http://localhost:8080",
     "APP_ORIGIN": "http://localhost:3000",
     "DECORATOR_URL": "http://localhost:8100/dekoratoren",
-    "NEXT_PUBLIC_XP_ORIGIN": "http://localhost:8080",
+    "XP_ORIGIN": "http://localhost:8080",
     "PREVIEW_SECRET": "asdf",
     "XP_SERVICE_URL": "http://localhost:8080/_/service/no.nav.navno"
   },
