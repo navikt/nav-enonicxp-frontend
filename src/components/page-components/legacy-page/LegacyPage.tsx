@@ -38,7 +38,7 @@ const parseLegacyHtml = (htmlString: string) => {
 
                 return isEnonicPath(href) ? (
                     <Link href={href} passHref={true}>
-                        <Lenke {...props}>
+                        <Lenke {...props} target={undefined}>
                             {children && domToReact(children)}
                         </Lenke>
                     </Link>
