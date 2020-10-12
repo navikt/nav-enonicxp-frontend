@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
-import { enonicLegacyPath } from 'utils/paths';
+import { enonicLegacyPath, isEnonicPath } from 'utils/paths';
 import { LegacyProps } from 'types/content-types/legacy-props';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import Head from 'next/head';
-import { LenkeNavNo } from '../../part-components/_common/lenke-navno/LenkeNavNo';
+import Link from 'next/link';
+import Lenke from 'nav-frontend-lenker';
 import './LegacyPage.less';
 
 const xpOrigin = process.env.XP_ORIGIN;
@@ -34,20 +35,18 @@ const parseLegacyHtml = (htmlString: string) => {
                     .replace(enonicLegacyPath, '')
                     .replace('https://www.nav.no', '');
 
-                if (href.startsWith('#')) {
-                    return;
-                }
-
                 const props = attributesToProps(attribs);
 
-                return (
-                    <LenkeNavNo
-                        href={href}
-                        withChevron={false}
-                        className={props.className}
-                    >
+                return isEnonicPath(href) ? (
+                    <Link href={href} passHref={true}>
+                        <Lenke {...props} target={undefined}>
+                            {children && domToReact(children)}
+                        </Lenke>
+                    </Link>
+                ) : (
+                    <Lenke {...props} href={href}>
                         {children && domToReact(children)}
-                    </LenkeNavNo>
+                    </Lenke>
                 );
             }
         },
