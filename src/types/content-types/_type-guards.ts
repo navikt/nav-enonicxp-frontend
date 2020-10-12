@@ -21,3 +21,11 @@ export const hasMetaDescription = (
 } => {
     return typeof content?.metaDescription === 'string';
 };
+
+export const hasCanonicalUrl = (
+    content: any
+): content is {
+    canonicalUrl: string;
+} => {
+    return typeof content?.canonicalUrl === 'string';
+};

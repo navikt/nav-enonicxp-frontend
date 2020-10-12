@@ -4,7 +4,7 @@ import { GlobalPageSchema, PageData } from 'types/content-types/_schema';
 import { ContentTypeSchema } from 'types/content-types/_schema';
 import { ContentType } from 'types/content-types/_schema';
 import { Normaltekst } from 'nav-frontend-typografi';
-import LenkepanelPluss from '../_common/lenkepanel/LenkepanelPluss';
+import LenkepanelNavNo from '../_common/lenkepanel/LenkepanelNavNo';
 import './LinkPanels.less';
 import { LinkPanelMock } from './LinkPanelsMock';
 
@@ -73,7 +73,7 @@ export const LinkPanels = (props: GlobalPageSchema) => {
 
                     return (
                         link && (
-                            <LenkepanelPluss
+                            <LenkepanelNavNo
                                 href={link.url}
                                 separator={true}
                                 tittel={link.tittel}
@@ -81,7 +81,7 @@ export const LinkPanels = (props: GlobalPageSchema) => {
                                 className={`lenkepanel-vertical ${bem('item')}`}
                             >
                                 <Normaltekst>{link.children}</Normaltekst>
-                            </LenkepanelPluss>
+                            </LenkepanelNavNo>
                         )
                     );
                 })}

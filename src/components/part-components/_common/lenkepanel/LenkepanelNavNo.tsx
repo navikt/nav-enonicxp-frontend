@@ -5,7 +5,7 @@ import { enonicPathToAppPath, isEnonicPath } from 'utils/paths';
 import Link from 'next/link';
 import { BEM } from 'utils/bem';
 import { logLinkClick } from '../../../../utils/amplitude';
-import './LenkepanelPluss.less';
+import './LenkepanelNavNo.less';
 
 export type LenkepanelProps = {
     href: string;
@@ -18,7 +18,7 @@ export type LenkepanelProps = {
     children?: React.ReactElement;
 };
 
-const LenkepanelPluss = ({
+const LenkepanelNavNo = ({
     href,
     tittel,
     ikon,
@@ -30,7 +30,7 @@ const LenkepanelPluss = ({
 }: LenkepanelProps) => {
     const isInternalUrl = isEnonicPath(href);
     const _href = (isInternalUrl ? enonicPathToAppPath(href) : href) || '/';
-    const bem = BEM('lenkepanel-pluss');
+    const bem = BEM('lenkepanel-navno');
 
     return (
         <LenkepanelBase
@@ -64,4 +64,4 @@ const LenkepanelPluss = ({
     );
 };
 
-export default LenkepanelPluss;
+export default LenkepanelNavNo;

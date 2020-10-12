@@ -85,6 +85,8 @@ export interface GlobalPageSchema extends GlobalSchema {
 }
 
 export interface PageData {
+    canonicalUrl?: string;
+
     // Section page
     panelsHeading?: string;
     panelItems?: LinkPanel[];

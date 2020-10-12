@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
@@ -14,7 +13,7 @@ import { Language } from '../types/languages';
 import GlobalNotifications from './part-components/notifications/GlobalNotifications';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { initAmplitude, logPageview } from '../utils/amplitude';
-import { HeadWithMetaTags } from './part-components/_common/metatags/HeadWithMetaTags';
+import { HeadWithMetatags } from './part-components/_common/metatags/HeadWithMetatags';
 
 type Props = {
     content: ContentTypeSchema;
@@ -99,7 +98,7 @@ export const PageWrapper = (props: Props) => {
 
     return (
         <>
-            <HeadWithMetaTags content={content} />
+            <HeadWithMetatags content={content} />
             {notifications && (
                 <GlobalNotifications notifications={notifications} />
             )}

@@ -1,5 +1,5 @@
 import React from 'react';
 
-import infoIcon from '../../../../../public/gfx/info-sirkel-fyll.svg';
-
-export const InfoIcon = () => <img src={infoIcon} alt={''} />;
+export const InfoIcon = () => (
+    <img src={'/gfx/info-sirkel-fyll.svg'} alt={''} />
+);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { LenkeData } from 'types/lenke-data';
-import { LenkeNavNo } from '../../_common/lenke-navno/LenkeNavNo';
+import { LenkeNavNo } from '../../_common/lenke/LenkeNavNo';
 import { BEM } from 'utils/bem';
 import './Lenkeliste.less';
 

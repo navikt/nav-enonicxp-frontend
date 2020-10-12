@@ -8,6 +8,11 @@ export const enonicDraftLegacyPath = '/_/legacy/draft';
 
 export type EnonicContentRef = string;
 
+export const getLocationOrigin = () =>
+    process.env.APP_ORIGIN ||
+    (typeof window !== 'undefined' && window.location.origin) ||
+    '';
+
 export const isEnonicPath = (path: string) =>
     /(www.*.nav.no|^nav.no|^)($|\/$|\/no|\/en|\/se|\/nav.no)/.test(path);
 
@@ -21,9 +26,7 @@ export const enonicPathToAppPath = (path: string) =>
     isEnonicPath(path) ? path.split(xpContentBasePath).slice(-1)[0] : path;
 
 export const enonicPathToUrl = (path: string) =>
-    isEnonicPath(path)
-        ? `${process.env.APP_ORIGIN}${enonicPathToAppPath(path)}`
-        : null;
+    `${getLocationOrigin()}${enonicPathToAppPath(path)}`;
 
 export const routerQueryToEnonicPathOrId = (routerQuery: string | string[]) => {
     const possibleId =
