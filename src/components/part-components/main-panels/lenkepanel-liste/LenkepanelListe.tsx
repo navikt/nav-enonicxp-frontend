@@ -2,7 +2,7 @@ import React from 'react';
 import { LinkPanel } from 'types/link-panel';
 import { BEM } from 'utils/bem';
 import { Ingress, Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import LenkepanelPluss from '../../_common/lenkepanel/LenkepanelPluss';
+import LenkepanelNavNo from '../../_common/lenkepanel/LenkepanelNavNo';
 import './LenkepanelListe.less';
 
 type Props = {
@@ -26,7 +26,7 @@ export const LenkepanelListe = ({ title, ingress, items }: Props) => {
             {items && (
                 <div className={bem('items')}>
                     {items.map((item) => (
-                        <LenkepanelPluss
+                        <LenkepanelNavNo
                             href={item.url.text || ''}
                             tittel={item.title}
                             className={bem('item')}
@@ -35,7 +35,7 @@ export const LenkepanelListe = ({ title, ingress, items }: Props) => {
                             {item.ingress && (
                                 <Normaltekst>{item.ingress}</Normaltekst>
                             )}
-                        </LenkepanelPluss>
+                        </LenkepanelNavNo>
                     ))}
                 </div>
             )}

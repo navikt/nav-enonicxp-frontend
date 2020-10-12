@@ -6,5 +6,6 @@ export interface TransportPageProps extends GlobalPageSchema {
     data: {
         ingress?: string;
         items?: LinkPanel[];
+        metaDescription?: string;
     };
 }

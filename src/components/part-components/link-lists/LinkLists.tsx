@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContentList } from './content-list/ContentList';
-import { LenkeNavNo } from '../_common/lenke-navno/LenkeNavNo';
+import { LenkeNavNo } from '../_common/lenke/LenkeNavNo';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { BEM } from 'utils/bem';
 import { GlobalPageSchema, PageData } from 'types/content-types/_schema';

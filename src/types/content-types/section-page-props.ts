@@ -16,5 +16,6 @@ export interface SectionPageProps extends GlobalPageSchema {
         ntkContents?: ContentListProps;
         nrSC?: number;
         scContents?: ContentListProps;
+        metaDescription?: string;
     };
 }

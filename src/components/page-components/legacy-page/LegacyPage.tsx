@@ -5,7 +5,7 @@ import { enonicLegacyPath } from 'utils/paths';
 import { LegacyProps } from 'types/content-types/legacy-props';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import Head from 'next/head';
-import { LenkeNavNo } from '../../part-components/_common/lenke-navno/LenkeNavNo';
+import { LenkeNavNo } from '../../part-components/_common/lenke/LenkeNavNo';
 import './LegacyPage.less';
 
 const xpOrigin = process.env.XP_ORIGIN;
@@ -116,10 +116,7 @@ const parseLegacyHtml = (htmlString: string) => {
 export const LegacyPage = (contentData: LegacyProps) => (
     <Fragment>
         <Head>
-            <script
-                type="text/javascript"
-                src={`/legacygfx/scripts/navno.js`}
-            />
+            <script type="text/javascript" src={`/legacy/scripts/navno.js`} />
         </Head>
         <div className={'legacy-container'}>
             {contentData.data?.html && parseLegacyHtml(contentData.data.html)}

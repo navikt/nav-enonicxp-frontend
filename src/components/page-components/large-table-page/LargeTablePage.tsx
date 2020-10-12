@@ -4,7 +4,7 @@ import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LargeTableProps } from '../../../types/content-types/large-table-props';
 import { makeErrorProps } from '../../../types/content-types/error-props';
 import { ErrorPage } from '../error-page/ErrorPage';
-import { LenkeNavNo } from '../../part-components/_common/lenke-navno/LenkeNavNo';
+import { LenkeNavNo } from '../../part-components/_common/lenke/LenkeNavNo';
 import { VenstreChevron } from 'nav-frontend-chevron';
 import './LargeTablePage.less';
 

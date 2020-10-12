@@ -6,5 +6,6 @@ export interface PageListProps extends GlobalSchema {
     data: {
         ingress?: string;
         sectionContents?: EnonicContentRef[];
+        metaDescription?: string;
     };
 }
