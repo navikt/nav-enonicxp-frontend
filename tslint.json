@@ -51,9 +51,7 @@
         "radix": true,
         "semicolon": [false, "always"],
         "switch-default": true,
-
         "trailing-comma": [false],
-
         "triple-equals": [true, "allow-null-check"],
         "typedef": [true, "parameter", "property-declaration"],
         "typedef-whitespace": [

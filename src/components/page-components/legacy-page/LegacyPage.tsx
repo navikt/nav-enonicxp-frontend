@@ -33,6 +33,11 @@ const parseLegacyHtml = (htmlString: string) => {
                 const href = attribs.href
                     .replace(enonicLegacyPath, '')
                     .replace('https://www.nav.no', '');
+
+                if (attribs.class?.includes('accordion')) {
+                    return;
+                }
+
                 const props = attributesToProps(attribs);
 
                 return (
