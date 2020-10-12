@@ -33,6 +33,11 @@ const parseLegacyHtml = (htmlString: string) => {
                 const href = attribs.href
                     .replace(enonicLegacyPath, '')
                     .replace('https://www.nav.no', '');
+
+                if (href.startsWith('#')) {
+                    return;
+                }
+
                 const props = attributesToProps(attribs);
 
                 return (
