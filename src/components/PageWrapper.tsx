@@ -14,6 +14,7 @@ import { Language } from '../types/languages';
 import GlobalNotifications from './part-components/notifications/GlobalNotifications';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { initAmplitude, logPageview } from '../utils/amplitude';
+import { HeadWithMetaTags } from './part-components/_common/metatags/HeadWithMetaTags';
 
 type Props = {
     content: ContentTypeSchema;
@@ -98,9 +99,7 @@ export const PageWrapper = (props: Props) => {
 
     return (
         <>
-            <Head>
-                <title>{`${content.displayName} - nav.no`}</title>
-            </Head>
+            <HeadWithMetaTags content={content} />
             {notifications && (
                 <GlobalNotifications notifications={notifications} />
             )}

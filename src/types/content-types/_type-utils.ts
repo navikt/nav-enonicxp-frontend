@@ -11,5 +11,13 @@ export const hasIngress = (
 ): content is {
     ingress: string;
 } => {
-    return typeof content?.description === 'string';
+    return typeof content?.ingress === 'string';
+};
+
+export const hasMetaDescription = (
+    content: any
+): content is {
+    metaDescription: string;
+} => {
+    return typeof content?.metaDescription === 'string';
 };
