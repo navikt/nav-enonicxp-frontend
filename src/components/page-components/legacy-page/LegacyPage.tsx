@@ -34,7 +34,7 @@ const parseLegacyHtml = (htmlString: string) => {
                     .replace(enonicLegacyPath, '')
                     .replace('https://www.nav.no', '');
 
-                if (href.startsWith('#')) {
+                if (attribs.class?.includes('accordion')) {
                     return;
                 }
 
