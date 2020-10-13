@@ -21,8 +21,7 @@ class MyDocument extends Document<Props> {
             <Html>
                 <Head>
                     {/* Legacy scripts */}
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
-                    <script src="https://amplitude.nav.no/libs/amplitude-7.1.0-min.gz.js" />
+                    <script src="/legacy/scripts/jquery.min.js" />
                     {/* Legacy scripts */}
                     {STYLES}
                 </Head>

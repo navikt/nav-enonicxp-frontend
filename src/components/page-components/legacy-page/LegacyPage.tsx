@@ -5,7 +5,7 @@ import { enonicLegacyPath } from 'utils/paths';
 import { LegacyProps } from 'types/content-types/legacy-props';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import Head from 'next/head';
-import { LenkeNavNo } from '../../part-components/_common/lenke/LenkeNavNo';
+import { LenkeUstylet } from '../../part-components/_common/lenke/LenkeUstylet';
 import './LegacyPage.less';
 
 const xpOrigin = process.env.XP_ORIGIN;
@@ -41,13 +41,9 @@ const parseLegacyHtml = (htmlString: string) => {
                 const props = attributesToProps(attribs);
 
                 return (
-                    <LenkeNavNo
-                        href={href}
-                        withChevron={false}
-                        className={props.className}
-                    >
+                    <LenkeUstylet href={href} className={props.className}>
                         {children && domToReact(children)}
-                    </LenkeNavNo>
+                    </LenkeUstylet>
                 );
             }
         },
