@@ -37,7 +37,10 @@ const parseLegacyHtml = (htmlString: string) => {
                 const props = attributesToProps(attribs);
 
                 return (
-                    <LenkeUstylet href={href} className={props.className}>
+                    <LenkeUstylet
+                        href={href}
+                        className={`lenke ${props.className || ''}`}
+                    >
                         {children && domToReact(children)}
                     </LenkeUstylet>
                 );
