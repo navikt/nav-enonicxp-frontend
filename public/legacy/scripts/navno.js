@@ -272,17 +272,6 @@ $.fn.navnoAccordion = function () {
         })
     );
 };
-function logAmplitudeEvent(event, data) {
-    return new Promise(function (resolve) {
-        const eventData = data || {};
-        eventData.app = 'navno';
-        eventData.url = window.location.origin + window.location.pathname;
-        eventData.hostname = window.location.hostname;
-        eventData.pagePath = window.location.pathname;
-        eventData.sidetittel = document.title;
-        amplitude.getInstance().logEvent(event, eventData, resolve);
-    });
-}
 function getLinkText(element) {
     let text = '';
     if (element.classList.contains('hero-link')) {
@@ -304,13 +293,6 @@ $(document).ready(function () {
     navno.initContentPrintHandler();
     navno.contentLanguages();
 
-    amplitude.getInstance().init('default', '', {
-        apiEndpoint: 'amplitude.nav.no/collect-auto',
-        saveEvents: false,
-        includeUtm: true,
-        includeReferrer: true,
-        platform: window.location.toString(),
-    });
     document.querySelectorAll('[data-ga]').forEach(function (el) {
         el.onclick = function () {
             const eventData = {
@@ -318,7 +300,6 @@ $(document).ready(function () {
                 lenketekst: getLinkText(this),
                 destinasjon: this.getAttribute('href'),
             };
-            logAmplitudeEvent('navigere', eventData);
         };
     });
 });
