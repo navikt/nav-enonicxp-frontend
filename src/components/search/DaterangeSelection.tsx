@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    DaterangeBucket,
+    DaterangeBucketProps,
     DaterangeKey,
     DaterangeProps,
 } from '../../types/search/search-result';
@@ -21,7 +21,7 @@ const bucketsDisplayOrder = [
     DaterangeKey.Over12Months,
 ];
 
-const sortBuckets = (a: DaterangeBucket, b: DaterangeBucket) =>
+const sortBuckets = (a: DaterangeBucketProps, b: DaterangeBucketProps) =>
     bucketsDisplayOrder.indexOf(a.key) - bucketsDisplayOrder.indexOf(b.key);
 
 const Timerange = ({
@@ -43,7 +43,9 @@ const Timerange = ({
                 defaultChecked={checked}
                 onChange={() => setDateRange(daterangeKeyToParam[daterangeKey])}
             />
-            <Undertekst>{docCount}</Undertekst>
+            <Undertekst className={'search__filter-option-count'}>
+                {docCount}
+            </Undertekst>
         </div>
     );
 };

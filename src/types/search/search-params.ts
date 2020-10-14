@@ -8,6 +8,11 @@ export const daterangeKeyToParam = {
     [DaterangeKey.Last7Days]: 3,
 };
 
+export enum SearchSort {
+    BestMatch = 0,
+    Newest = 1,
+}
+
 export type SearchParams = {
     // Search string
     ord?: string;
@@ -21,8 +26,7 @@ export type SearchParams = {
     // Number of results to retrieve (<chunk_count> * c)
     c?: number;
 
-    // Sorting (0 = best match, 1 = newest first)
-    s?: number;
+    s?: SearchSort;
 
     daterange?: number;
 };

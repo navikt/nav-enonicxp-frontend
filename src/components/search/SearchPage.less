@@ -1,6 +1,38 @@
 @import (reference) '../../global.less';
 
 .search {
+    display: flex;
+    justify-content: space-between;
+
+    &__results {
+        flex-grow: 1;
+
+        .search-separator {
+            border: none;
+            margin: 1.5rem 0;
+            border-bottom: 2px solid @navGra60;
+        }
+    }
+
+    &__results-list {
+        margin: 0 -1rem;
+
+        .search-separator {
+            border: none;
+            margin: 1.5rem 1rem;
+            border-bottom: 1px solid @navGra60;
+        }
+    }
+
+    &__results-list-subheading {
+        padding: 0 1rem;
+    }
+
+    &__filters {
+        margin-left: 3rem;
+        min-width: 300px;
+    }
+
     &__filter {
         padding: 1rem;
         border: 2px @navGra60 solid;
@@ -9,5 +41,9 @@
     &__filter-option {
         display: flex;
         justify-content: space-between;
+
+        &-count {
+            margin-left: 1rem;
+        }
     }
 }

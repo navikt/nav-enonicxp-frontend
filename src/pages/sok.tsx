@@ -3,11 +3,11 @@ import { GetStaticProps } from 'next';
 import { fetchSearchResults } from '../utils/search';
 import { ErrorPage } from '../components/page-components/error-page/ErrorPage';
 import { makeErrorProps } from '../types/content-types/error-props';
-import { SearchResult } from '../types/search/search-result';
+import { SearchResultProps } from '../types/search/search-result';
 import SearchPage from '../components/search/SearchPage';
 
 type Props = {
-    results: SearchResult;
+    results: SearchResultProps;
     // breadcrumbs: Breadcrumb[];
     // languages: Language[];
     // notifications: NotificationProps[];

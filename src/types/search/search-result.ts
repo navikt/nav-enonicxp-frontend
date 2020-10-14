@@ -8,7 +8,7 @@ export enum DaterangeKey {
     All = 'Alle datoer',
 }
 
-export type DaterangeBucket = {
+export type DaterangeBucketProps = {
     key: DaterangeKey;
     docCount: number;
     checked: boolean;
@@ -19,28 +19,28 @@ export type DaterangeBucket = {
 export type DaterangeProps = {
     docCount: number;
     checked: boolean;
-    buckets: DaterangeBucket[];
+    buckets: DaterangeBucketProps[];
 };
 
-export type FacetBucket = {
+export type FacetBucketProps = {
     key: string;
     docCount: number;
     checked: boolean;
     className: string;
-    underaggregeringer: { buckets: FacetBucket[] };
+    underaggregeringer: { buckets: FacetBucketProps[] };
     default?: boolean;
     defaultClassName?: string;
 };
 
-export type SearchHit = {
+export type SearchHitProps = {
     priority: boolean;
     displayName: string;
     href: string;
     displayPath: string;
     highlight: string;
     publish: {
-        from: string;
-        first: string;
+        from?: string;
+        first?: string;
     };
     modifiedTime: string;
     className: string;
@@ -50,7 +50,7 @@ export type SearchHit = {
     keywords: string[];
 };
 
-export type SearchResult = {
+export type SearchResultProps = {
     c: number;
     isSortDate: boolean;
     s: number;
@@ -60,9 +60,9 @@ export type SearchResult = {
     total: number;
     fasett: string;
     aggregations: {
-        fasetter: { buckets: FacetBucket[] };
+        fasetter: { buckets: FacetBucketProps[] };
         Tidsperiode: DaterangeProps;
     };
-    hits: SearchHit[];
-    prioritized: SearchHit[];
+    hits: SearchHitProps[];
+    prioritized: SearchHitProps[];
 };

@@ -14,7 +14,7 @@ export type LenkepanelProps = {
     className?: string;
     id?: string;
     onClick?: (event: React.MouseEvent) => void;
-    children?: React.ReactElement;
+    children?: React.ReactElement | React.ReactElement[];
 };
 
 const LenkepanelNavNo = ({
