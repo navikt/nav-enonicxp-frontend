@@ -14,7 +14,9 @@ export const getLocationOrigin = () =>
     '';
 
 export const isEnonicPath = (path: string) =>
-    /(www.*.nav.no|^nav.no|^)($|\/$|\/no|\/en|\/se|\/nav.no)/.test(path);
+    /(www.*.nav.no|^nav.no|^)($|\/$|\/no|\/en|\/se|\/nav.no|\/sok($|[/?]))/.test(
+        path
+    );
 
 export const isUUID = (id: string) =>
     id &&

@@ -8,7 +8,7 @@ import {
     enonicDraftServicePath,
     enonicServicePath,
 } from './paths';
-import { fetchWithTimeout } from './fetchWithTimeout';
+import { fetchWithTimeout } from './fetch-utils';
 import { Breadcrumb } from '../types/breadcrumb';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { Language } from '../types/languages';

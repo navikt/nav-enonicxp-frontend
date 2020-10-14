@@ -1,4 +1,4 @@
-import { fetchWithTimeout } from '../../utils/fetchWithTimeout';
+import { fetchWithTimeout } from '../../utils/fetch-utils';
 
 type Params = {
     path: string;
