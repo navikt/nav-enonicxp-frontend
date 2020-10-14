@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { SearchResultProps } from '../../types/search/search-result';
 import { SearchParams } from '../../types/search/search-params';
-import { DaterangeSelection } from './DaterangeSelection';
+import { DaterangeSelector } from './filters/DaterangeSelector';
 import { SearchResultsHeader } from './results/SearchResultsHeader';
 import { BEM } from '../../utils/bem';
-import './SearchPage.less';
 import { SearchHit } from './results/SearchHit';
-import { Ingress } from 'nav-frontend-typografi';
+import { Ingress, Undertittel } from 'nav-frontend-typografi';
+import { FacetsSelector } from './filters/FacetsSelector';
+import './SearchPage.less';
+import Panel from 'nav-frontend-paneler';
 
 const Separator = () => <hr className={'search-separator'} />;
 
@@ -22,15 +24,32 @@ const SearchPage = (props: SearchResultProps) => {
         hits,
     } = props;
 
-    const [searchParams, setSearchParams] = useState<SearchParams>();
+    const prevParams: SearchParams = {
+        ord: word,
+        c: props.c,
+        s: props.s,
+    };
+
+    const [searchParams, setSearchParams] = useState<SearchParams>(prevParams);
 
     const setDaterange = (daterange) => {
         console.log('Setting daterange: ', daterange);
         setSearchParams((state) => ({ ...state, daterange }));
     };
+
     const setSort = (s) => {
         console.log('Setting sorting: ', s);
         setSearchParams((state) => ({ ...state, s }));
+    };
+
+    const setFacet = (f) => {
+        console.log('Setting facet: ', f);
+        setSearchParams((state) => ({ ...state, f }));
+    };
+
+    const setUnderFacets = (uf) => {
+        console.log('Setting sub-facets: ', uf);
+        setSearchParams((state) => ({ ...state, uf }));
     };
 
     return (
@@ -48,20 +67,26 @@ const SearchPage = (props: SearchResultProps) => {
                     <Ingress className={bem('results-list-subheading')}>
                         {'Anbefalte treff:'}
                     </Ingress>
-                    {prioritized?.map((hitProps) => (
-                        <SearchHit {...hitProps} />
+                    {prioritized?.map((hitProps, index) => (
+                        <SearchHit {...hitProps} key={index} />
                     ))}
                     <Separator />
                     <Ingress className={bem('results-list-subheading')}>
                         {'Andre treff:'}
                     </Ingress>
-                    {hits?.map((hitProps) => (
-                        <SearchHit {...hitProps} />
+                    {hits?.map((hitProps, index) => (
+                        <SearchHit {...hitProps} key={index} />
                     ))}
                 </div>
             </div>
             <div className={bem('filters')}>
-                <DaterangeSelection
+                <Undertittel>{'Søkefilter'}</Undertittel>
+                <FacetsSelector
+                    facets={aggregations.fasetter}
+                    setFacet={setFacet}
+                    setUnderFacets={setUnderFacets}
+                />
+                <DaterangeSelector
                     daterangeProps={aggregations.Tidsperiode}
                     setDaterange={setDaterange}
                 />

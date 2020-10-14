@@ -16,17 +16,12 @@ export enum SearchSort {
 export type SearchParams = {
     // Search string
     ord?: string;
-
     // Facet
     f?: number;
-
     // Under-facets
-    uf?: number;
-
+    uf?: number | number[];
     // Number of results to retrieve (<chunk_count> * c)
     c?: number;
-
     s?: SearchSort;
-
     daterange?: number;
 };
