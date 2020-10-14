@@ -19,7 +19,7 @@ export type SearchParams = {
     // Facet
     f?: number;
     // Under-facets
-    uf?: number | number[];
+    uf?: number[];
     // Number of results to retrieve (<chunk_count> * c)
     c?: number;
     s?: SearchSort;

@@ -1,6 +1,6 @@
 import { EkspanderbartpanelBase } from 'nav-frontend-ekspanderbartpanel';
 import React from 'react';
-import './RadioExpandingPanel.less';
+import './ExpandingRadioPanel.less';
 
 type Props = {
     title: React.ReactNode;
@@ -9,7 +9,7 @@ type Props = {
     children: React.ReactNode | React.ReactNode[];
 };
 
-export const RadioExpandingPanel = ({
+export const ExpandingRadioPanel = ({
     title,
     isOpen,
     onClick,
@@ -18,7 +18,7 @@ export const RadioExpandingPanel = ({
     return (
         <EkspanderbartpanelBase
             tittel={title}
-            apen={isOpen}
+            apen={isOpen && !!children}
             onClick={onClick}
             border={false}
             className={'radio-expanding-panel'}

@@ -5,6 +5,8 @@ import { ErrorPage } from '../components/page-components/error-page/ErrorPage';
 import { makeErrorProps } from '../types/content-types/error-props';
 import { SearchResultProps } from '../types/search/search-result';
 import SearchPage from '../components/search/SearchPage';
+import Head from 'next/head';
+import { HeadWithMetatags } from '../components/part-components/_common/metatags/HeadWithMetatags';
 
 type Props = {
     results: SearchResultProps;
@@ -21,9 +23,16 @@ const SearchBase = (props: Props) => {
     const { results } = props;
 
     return (
-        <div className={'content-wrapper'} id={'maincontent'}>
-            <SearchPage {...results} />
-        </div>
+        <>
+            <HeadWithMetatags
+                title={'Søk'}
+                description={'Søk på nav.no'}
+                canonicalUrl={'https://www.nav.no/sok'}
+            />
+            <div className={'content-wrapper'} id={'maincontent'}>
+                <SearchPage {...results} />
+            </div>
+        </>
     );
 };
 

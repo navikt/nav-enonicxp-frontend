@@ -7,6 +7,7 @@ import {
 import { RadioGruppe } from 'nav-frontend-skjema';
 import { FilterPanel } from './filter-panel/FilterPanel';
 import { FilterOption, FilterOptionType } from './filter-panel/FilterOption';
+import { daterangeKeyToParam } from '../../../types/search/search-params';
 
 type Props = {
     daterangeProps: DaterangeProps;
@@ -33,7 +34,6 @@ export const DaterangeSelector = ({ daterangeProps, setDaterange }: Props) => {
     const buttonProps = {
         name: 'timerange',
         type: 'radio' as FilterOptionType,
-        onChange: setDaterange,
     };
 
     return (
@@ -44,6 +44,9 @@ export const DaterangeSelector = ({ daterangeProps, setDaterange }: Props) => {
                     label={DaterangeKey.All}
                     count={allDocCount}
                     defaultChecked={allChecked}
+                    onChange={() =>
+                        setDaterange(daterangeKeyToParam[DaterangeKey.All])
+                    }
                 />
                 {buckets.sort(sortBuckets).map((bucket) => (
                     <FilterOption
@@ -51,6 +54,9 @@ export const DaterangeSelector = ({ daterangeProps, setDaterange }: Props) => {
                         label={bucket.key}
                         count={bucket.docCount}
                         defaultChecked={bucket.checked}
+                        onChange={() =>
+                            setDaterange(daterangeKeyToParam[bucket.key])
+                        }
                         key={bucket.key}
                     />
                 ))}

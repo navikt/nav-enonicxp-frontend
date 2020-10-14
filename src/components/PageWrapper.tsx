@@ -4,7 +4,7 @@ import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
 import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
-import { enonicPathToAppPath } from '../utils/paths';
+import { enonicPathToAppPath, enonicPathToUrl } from '../utils/paths';
 import { ContentTypeSchema } from '../types/content-types/_schema';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
@@ -14,6 +14,12 @@ import GlobalNotifications from './part-components/notifications/GlobalNotificat
 import { NotificationProps } from '../types/content-types/notification-props';
 import { initAmplitude, logPageview } from '../utils/amplitude';
 import { HeadWithMetatags } from './part-components/_common/metatags/HeadWithMetatags';
+import {
+    hasCanonicalUrl,
+    hasDescription,
+    hasIngress,
+    hasMetaDescription,
+} from '../types/content-types/_type-guards';
 
 type Props = {
     content: ContentTypeSchema;
@@ -21,6 +27,22 @@ type Props = {
     languages: Language[];
     notifications?: NotificationProps[];
     children: React.ReactNode;
+};
+
+const getDescriptionFromContent = (content: ContentTypeSchema) => {
+    if (hasMetaDescription(content.data)) {
+        return content.data.metaDescription;
+    }
+
+    if (hasIngress(content.data)) {
+        return content.data.ingress;
+    }
+
+    if (hasDescription(content.data)) {
+        return content.data.description;
+    }
+
+    return content.displayName;
 };
 
 export const PageWrapper = (props: Props) => {
@@ -98,7 +120,15 @@ export const PageWrapper = (props: Props) => {
 
     return (
         <>
-            <HeadWithMetatags content={content} />
+            <HeadWithMetatags
+                title={content.displayName}
+                description={getDescriptionFromContent(content)}
+                canonicalUrl={
+                    hasCanonicalUrl(content.data)
+                        ? content.data.canonicalUrl
+                        : enonicPathToUrl(content._path)
+                }
+            />
             {notifications && (
                 <GlobalNotifications notifications={notifications} />
             )}

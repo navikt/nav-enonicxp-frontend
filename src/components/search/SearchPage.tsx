@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SearchResultProps } from '../../types/search/search-result';
 import { SearchParams } from '../../types/search/search-params';
 import { DaterangeSelector } from './filters/DaterangeSelector';
@@ -8,12 +8,17 @@ import { SearchHit } from './results/SearchHit';
 import { Ingress, Undertittel } from 'nav-frontend-typografi';
 import { FacetsSelector } from './filters/FacetsSelector';
 import './SearchPage.less';
-import Panel from 'nav-frontend-paneler';
+import { fetchSearchResults } from '../../utils/search';
 
 const Separator = () => <hr className={'search-separator'} />;
 
 const SearchPage = (props: SearchResultProps) => {
     const bem = BEM('search');
+
+    const [searchResults, setSearchResults] = useState<SearchResultProps>(
+        props
+    );
+
     const {
         fasett,
         word,
@@ -22,35 +27,60 @@ const SearchPage = (props: SearchResultProps) => {
         aggregations,
         prioritized,
         hits,
-    } = props;
+    } = searchResults;
 
-    const prevParams: SearchParams = {
-        ord: word,
-        c: props.c,
-        s: props.s,
+    const initialParams: SearchParams = {
+        // ord: word,
+        c: Number(props.c),
+        s: Number(props.s),
     };
 
-    const [searchParams, setSearchParams] = useState<SearchParams>(prevParams);
+    const [searchParams, setSearchParams] = useState<SearchParams>(
+        initialParams
+    );
 
-    const setDaterange = (daterange) => {
-        console.log('Setting daterange: ', daterange);
+    const setDaterange = (daterange) =>
         setSearchParams((state) => ({ ...state, daterange }));
+
+    const setSort = (s) => setSearchParams((state) => ({ ...state, s }));
+
+    const setFacet = (f) =>
+        setSearchParams((state) => ({ ...state, f, uf: [] }));
+
+    const setUnderFacet = ({
+        underFacet,
+        toggle,
+    }: {
+        underFacet: number;
+        toggle: boolean;
+    }) => {
+        setSearchParams((state) => {
+            const oldUf = state.uf || [];
+            const newUf = toggle
+                ? oldUf.includes(underFacet)
+                    ? oldUf
+                    : [...oldUf, underFacet]
+                : oldUf.filter((item) => item !== underFacet);
+            return { ...state, uf: newUf };
+        });
     };
 
-    const setSort = (s) => {
-        console.log('Setting sorting: ', s);
-        setSearchParams((state) => ({ ...state, s }));
-    };
+    useEffect(() => {
+        const fetchNewResults = async () => {
+            const newSearchResults = await fetchSearchResults(
+                searchParams
+            ).catch((err) => console.log(err));
 
-    const setFacet = (f) => {
-        console.log('Setting facet: ', f);
-        setSearchParams((state) => ({ ...state, f }));
-    };
-
-    const setUnderFacets = (uf) => {
-        console.log('Setting sub-facets: ', uf);
-        setSearchParams((state) => ({ ...state, uf }));
-    };
+            if (newSearchResults) {
+                console.log(newSearchResults);
+                setSearchResults(newSearchResults);
+            }
+        };
+        if (searchParams !== initialParams) {
+            console.log('search params updated: ', searchParams);
+            fetchNewResults();
+        }
+    }, [searchParams]);
 
     return (
         <div className={bem()}>
@@ -84,7 +114,7 @@ const SearchPage = (props: SearchResultProps) => {
                 <FacetsSelector
                     facets={aggregations.fasetter}
                     setFacet={setFacet}
-                    setUnderFacets={setUnderFacets}
+                    setUnderFacet={setUnderFacet}
                 />
                 <DaterangeSelector
                     daterangeProps={aggregations.Tidsperiode}
