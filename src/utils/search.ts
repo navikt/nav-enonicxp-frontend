@@ -1,4 +1,3 @@
-import { NotificationProps } from '../types/content-types/notification-props';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { enonicDraftServicePath, enonicServicePath } from './paths';
 import { SearchParams } from '../types/search/search-params';

@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { SearchResultProps } from '../../types/search/search-result';
 import { SearchParams } from '../../types/search/search-params';
 import { DaterangeSelector } from './filters/DaterangeSelector';
-import { SearchResultsHeader } from './results/SearchResultsHeader';
+import { SearchHeader } from './header/SearchHeader';
 import { BEM } from '../../utils/bem';
-import { SearchHit } from './results/SearchHit';
-import { Ingress, Undertittel } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import { FacetsSelector } from './filters/FacetsSelector';
+import { SearchInput } from './input/SearchInput';
+import { SearchSorting } from './sorting/SearchSorting';
+import { SearchResults } from './results/SearchResults';
+import { objectToQueryString } from '../../utils/fetch-utils';
 import './SearchPage.less';
-import { fetchSearchResults } from '../../utils/search';
+import { SearchApiResponse } from '../../pages/api/search';
 
 const Separator = () => <hr className={'search-separator'} />;
 
@@ -39,12 +42,16 @@ const SearchPage = (props: SearchResultProps) => {
         initialParams
     );
 
-    const setDaterange = (daterange) =>
+    const setSearchTerm = (term: string) =>
+        setSearchParams((state) => ({ ...state, ord: term }));
+
+    const setDaterange = (daterange: number) =>
         setSearchParams((state) => ({ ...state, daterange }));
 
-    const setSort = (s) => setSearchParams((state) => ({ ...state, s }));
+    const setSort = (s: number) =>
+        setSearchParams((state) => ({ ...state, s }));
 
-    const setFacet = (f) =>
+    const setFacet = (f: number) =>
         setSearchParams((state) => ({ ...state, f, uf: [] }));
 
     const setUnderFacet = ({
@@ -67,15 +74,19 @@ const SearchPage = (props: SearchResultProps) => {
 
     useEffect(() => {
         const fetchNewResults = async () => {
-            const newSearchResults = await fetchSearchResults(
-                searchParams
-            ).catch((err) => console.log(err));
+            const { result, error } = (await fetch(
+                `/api/search${objectToQueryString(searchParams)}`
+            ).then((res) => res.json())) as SearchApiResponse;
 
-            if (newSearchResults) {
-                console.log(newSearchResults);
-                setSearchResults(newSearchResults);
+            if (result) {
+                console.log(result);
+                setSearchResults(result);
+            }
+            if (error) {
+                console.log(error);
             }
         };
+
         if (searchParams !== initialParams) {
             console.log('search params updated: ', searchParams);
             fetchNewResults();
@@ -85,29 +96,15 @@ const SearchPage = (props: SearchResultProps) => {
     return (
         <div className={bem()}>
             <div className={bem('results')}>
-                <SearchResultsHeader
-                    title={`Søk - ${fasett}`}
+                <SearchHeader
+                    facet={fasett}
                     searchTerm={word}
                     numHits={total}
-                    isSortDate={isSortDate}
-                    setSort={setSort}
                 />
+                <SearchInput setSearchTerm={setSearchTerm} />
+                <SearchSorting isSortDate={isSortDate} setSort={setSort} />
                 <Separator />
-                <div className={bem('results-list')}>
-                    <Ingress className={bem('results-list-subheading')}>
-                        {'Anbefalte treff:'}
-                    </Ingress>
-                    {prioritized?.map((hitProps, index) => (
-                        <SearchHit {...hitProps} key={index} />
-                    ))}
-                    <Separator />
-                    <Ingress className={bem('results-list-subheading')}>
-                        {'Andre treff:'}
-                    </Ingress>
-                    {hits?.map((hitProps, index) => (
-                        <SearchHit {...hitProps} key={index} />
-                    ))}
-                </div>
+                <SearchResults hits={hits} prioritizedHits={prioritized} />
             </div>
             <div className={bem('filters')}>
                 <Undertittel>{'Søkefilter'}</Undertittel>

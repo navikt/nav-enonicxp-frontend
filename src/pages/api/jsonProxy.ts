@@ -1,4 +1,5 @@
 import { fetchWithTimeout } from '../../utils/fetch-utils';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 type Params = {
     path: string;
@@ -6,7 +7,7 @@ type Params = {
 
 const appOrigin = process.env.APP_ORIGIN;
 
-const handler = async (req, res) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { path } = req.query as Params;
 
     if (!path || !path.endsWith('.json')) {

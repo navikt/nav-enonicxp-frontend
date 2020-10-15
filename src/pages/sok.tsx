@@ -1,11 +1,10 @@
 import React from 'react';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { fetchSearchResults } from '../utils/search';
 import { ErrorPage } from '../components/page-components/error-page/ErrorPage';
 import { makeErrorProps } from '../types/content-types/error-props';
 import { SearchResultProps } from '../types/search/search-result';
 import SearchPage from '../components/search/SearchPage';
-import Head from 'next/head';
 import { HeadWithMetatags } from '../components/part-components/_common/metatags/HeadWithMetatags';
 
 type Props = {
@@ -16,11 +15,11 @@ type Props = {
 };
 
 const SearchBase = (props: Props) => {
-    if (!props) {
+    const { results } = props;
+
+    if (!results) {
         return <ErrorPage {...makeErrorProps('www.nav.no', 'Unknown error')} />;
     }
-
-    const { results } = props;
 
     return (
         <>
@@ -36,10 +35,19 @@ const SearchBase = (props: Props) => {
     );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-    const results = await fetchSearchResults();
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const results = await fetchSearchResults(context.query).catch((err) =>
+        console.log(err)
+    );
 
-    return { props: { results }, revalidate: 1 };
+    if (!results) {
+        const resultsWithoutQuery = await fetchSearchResults().catch((err) =>
+            console.log(err)
+        );
+        return { props: { results: resultsWithoutQuery } };
+    }
+
+    return { props: { results: results } };
 };
 
 export default SearchBase;
