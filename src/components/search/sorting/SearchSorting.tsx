@@ -7,7 +7,7 @@ import { Radio } from 'nav-frontend-skjema';
 import { SearchSort } from '../../../types/search/search-params';
 import './SearchSorting.less';
 
-const searchTipsPath =
+export const searchTipsPath =
     '/no/nav-og-samfunn/kontakt-nav/teknisk-brukerstotte/nyttig-a-vite/soketips';
 
 type Props = {

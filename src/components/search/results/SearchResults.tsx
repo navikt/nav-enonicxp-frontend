@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Element, Undertittel } from 'nav-frontend-typografi';
+import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { SearchHit } from './SearchHit';
 import {
     FacetBucketProps,
@@ -12,6 +12,8 @@ import Spinner from '../../part-components/_common/spinner/Spinner';
 import { SearchParams } from '../../../types/search/search-params';
 import { fetchSearchResultsClientSide } from '../../../utils/fetchSearchResults';
 import { useRouter } from 'next/router';
+import { searchTipsPath } from '../sorting/SearchSorting';
+import { LenkeNavNo } from '../../part-components/_common/lenke/LenkeNavNo';
 import './SearchResults.less';
 
 const filterHitsBySelectedUnderFacets = (
@@ -84,7 +86,24 @@ export const SearchResults = ({
                 <Spinner text={'Henter søke-resultater...'} />
             ) : (
                 <>
-                    {' '}
+                    {!prioritizedHitsToShow?.length && !hits?.length && (
+                        <div className={bem('no-hits')}>
+                            <Undertittel>
+                                {`Ingen treff${
+                                    results.word ? ` for "${results.word}"` : ''
+                                }.`}
+                            </Undertittel>
+                            <Normaltekst>
+                                {'Prøv igjen med mer generelle søkeord, eller andre søkefiltre. '}
+                                <LenkeNavNo
+                                    href={searchTipsPath}
+                                    withChevron={false}
+                                >
+                                    {'Se søketips.'}
+                                </LenkeNavNo>
+                            </Normaltekst>
+                        </div>
+                    )}
                     {prioritizedHitsToShow?.length > 0 && (
                         <>
                             <Element className={bem('subheading')}>

@@ -4,12 +4,10 @@ import {
     SearchResultProps,
 } from '../../../types/search/search-result';
 import { SearchParams } from '../../../types/search/search-params';
-import { Undertekst } from 'nav-frontend-typografi';
-import { Radio } from 'nav-frontend-skjema';
 import { FilterPanel } from './filter-panel/FilterPanel';
 import { FilterOption } from './filter-panel/FilterOption';
 import { BEM } from '../../../utils/bem';
-import { ExpandingRadioPanel } from './expanding-radio-panel/ExpandingRadioPanel';
+import { FilterRadioPanel } from './filter-radio-panel/FilterRadioPanel';
 import './FacetsSelector.less';
 
 type Props = {
@@ -45,21 +43,11 @@ const MainFacet = (props: FacetProps) => {
     } = props;
     const bem = BEM('search-facet');
 
-    const header = (
-        <div className={bem('header')}>
-            <Radio
-                name={'search-facet'}
-                label={facetKey}
-                defaultChecked={isOpen}
-            />
-            <Undertekst className={bem('count')}>{count}</Undertekst>
-        </div>
-    );
-
     return (
         <div className={bem()}>
-            <ExpandingRadioPanel
-                title={header}
+            <FilterRadioPanel
+                label={facetKey}
+                count={count}
                 isOpen={isOpen}
                 onClick={setFacet}
             >
@@ -80,7 +68,7 @@ const MainFacet = (props: FacetProps) => {
                             key={underFacet.key}
                         />
                     ))}
-            </ExpandingRadioPanel>
+            </FilterRadioPanel>
         </div>
     );
 };

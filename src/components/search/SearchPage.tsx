@@ -94,18 +94,20 @@ const SearchPage = (props: SearchResultProps) => {
 
     return (
         <div className={bem()}>
-            <div className={bem('results')}>
-                <SearchHeader
-                    facet={fasett}
-                    searchTerm={word}
-                    numHits={total}
-                />
-                <SearchInput
-                    setSearchTerm={setSearchTerm}
-                    prevSearchTerm={word}
-                />
-                <SearchSorting isSortDate={isSortDate} setSort={setSort} />
-                <hr className={bem('separator')} />
+            <div className={bem('search-col')}>
+                <div className={bem('search-top-row')}>
+                    <SearchHeader
+                        facet={fasett}
+                        searchTerm={word}
+                        numHits={total}
+                    />
+                    <SearchInput
+                        setSearchTerm={setSearchTerm}
+                        prevSearchTerm={word}
+                    />
+                    <SearchSorting isSortDate={isSortDate} setSort={setSort} />
+                    <hr className={bem('separator')} />
+                </div>
                 <SearchResults
                     results={searchResults}
                     isAwaiting={isAwaiting}
@@ -113,7 +115,7 @@ const SearchPage = (props: SearchResultProps) => {
                     setSearchResults={setSearchResults}
                 />
             </div>
-            <div className={bem('filters')}>
+            <div className={bem('filters-col')}>
                 <Undertittel>{'Søkefilter'}</Undertittel>
                 <FacetsSelector
                     facets={aggregations.fasetter}
