@@ -45,18 +45,10 @@ export const SearchHit = (props: SearchHitProps) => {
 
     return (
         <LenkepanelNavNo href={href} tittel={displayName} className={bem()}>
-            <Undertekst className={bem('display-path')}>
-                {displayPath}
-            </Undertekst>
-            {highlight && (
-                <Normaltekst className={bem('highlight')}>
-                    {highlight}
-                </Normaltekst>
-            )}
+            <p className={bem('display-path')}>{displayPath}</p>
+            {highlight && <p className={bem('highlight')}>{highlight}</p>}
             {publishedString && (
-                <Undertekst className={bem('published')}>
-                    {publishedString}
-                </Undertekst>
+                <p className={bem('published')}>{publishedString}</p>
             )}
         </LenkepanelNavNo>
     );

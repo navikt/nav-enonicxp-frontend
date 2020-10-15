@@ -1,17 +1,22 @@
 @import (reference) '../../../global.less';
 
 .search-hit {
-    border-color: transparent;
+    &.lenkepanel-navno {
+        border-color: transparent;
+    }
 
     &__display-path {
+        .typo-undertekst;
         color: @navGra60;
     }
 
     &__highlight {
+        .typo-normal;
         margin-top: 0.5rem;
     }
 
     &__published {
+        .typo-undertekst;
         margin-top: 0.5rem;
         color: @navGra60;
     }
