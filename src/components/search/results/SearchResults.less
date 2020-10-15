@@ -1,9 +1,16 @@
 @import (reference) '../../../global.less';
 
 .search-results {
+    display: flex;
+    flex-direction: column;
     margin: 0 -1rem;
 
     &__subheading {
         padding: 0 1rem;
+    }
+
+    &__show-more {
+        align-self: center;
+        text-transform: none;
     }
 }

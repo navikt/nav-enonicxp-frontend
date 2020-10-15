@@ -27,9 +27,9 @@ const SearchPage = (props: SearchResultProps) => {
     const { fasett, word, total, isSortDate, aggregations } = searchResults;
 
     const initialParams: SearchParams = {
-        ord: word,
-        c: Number(props.c),
-        s: Number(props.s),
+        ord: word || '',
+        c: Number(props.c) || 1,
+        s: Number(props.s) || 0,
     };
 
     const [searchParams, setSearchParams] = useState<SearchParams>(
@@ -37,19 +37,19 @@ const SearchPage = (props: SearchResultProps) => {
     );
 
     const setSearchTerm = (term: string) =>
-        setSearchParams((state) => ({ ...state, ord: term }));
+        setSearchParams((state) => ({ ...state, ord: term, c: 1 }));
 
     const setDaterange = (daterange: number) =>
-        setSearchParams((state) => ({ ...state, daterange }));
+        setSearchParams((state) => ({ ...state, daterange, c: 1 }));
 
     const setSort = (s: number) =>
-        setSearchParams((state) => ({ ...state, s }));
+        setSearchParams((state) => ({ ...state, s, c: 1 }));
 
     const showMore = () =>
-        setSearchParams((state) => ({ ...state, c: state.c++ }));
+        setSearchParams((state) => ({ ...state, c: state.c + 1 }));
 
     const setFacet = (f: number) =>
-        setSearchParams((state) => ({ ...state, f, uf: [] }));
+        setSearchParams((state) => ({ ...state, f, uf: [], c: 1 }));
 
     const setUnderFacet = ({
         underFacet,
@@ -65,7 +65,7 @@ const SearchPage = (props: SearchResultProps) => {
                     ? oldUf
                     : [...oldUf, underFacet]
                 : oldUf.filter((item) => item !== underFacet);
-            return { ...state, uf: newUf };
+            return { ...state, uf: newUf, c: 1 };
         });
     };
 

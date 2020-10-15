@@ -1,5 +1,5 @@
 import React from 'react';
-import { Ingress } from 'nav-frontend-typografi';
+import { Ingress, Undertittel } from 'nav-frontend-typografi';
 import { SearchHit } from './SearchHit';
 import {
     FacetBucketProps,
@@ -7,6 +7,7 @@ import {
     SearchResultProps,
 } from '../../../types/search/search-result';
 import { BEM } from '../../../utils/bem';
+import { Flatknapp } from 'nav-frontend-knapper';
 import './SearchResults.less';
 
 type Props = {
@@ -18,23 +19,21 @@ const filterHitsBySelectedUnderFacets = (
     hits: SearchHitProps[],
     underFacetBuckets: FacetBucketProps[]
 ) => {
-    const underFacetsSelected = underFacetBuckets?.filter(
-        (bucket) => bucket.checked
-    );
+    const ufSelected = underFacetBuckets?.filter((bucket) => bucket.checked);
 
-    const facetClasses = (underFacetsSelected?.length > 0
-        ? underFacetsSelected
+    const ufClasses = (ufSelected?.length > 0
+        ? ufSelected
         : underFacetBuckets
     ).map((uf) => uf.key.toLowerCase());
 
     return hits.filter((hit) =>
-        facetClasses?.includes(hit.className.toLowerCase().trim())
+        ufClasses?.includes(hit.className.toLowerCase().trim())
     );
 };
 
 export const SearchResults = ({ results, showMore }: Props) => {
     const bem = BEM('search-results');
-    const { hits, prioritized, fasett, aggregations } = results;
+    const { hits, prioritized, fasett, aggregations, isMore } = results;
 
     const underFacetBuckets = aggregations?.fasetter?.buckets?.find(
         (bucket) => bucket.key === fasett
@@ -68,6 +67,11 @@ export const SearchResults = ({ results, showMore }: Props) => {
                         <SearchHit {...hitProps} key={index} />
                     ))}
                 </>
+            )}
+            {isMore && (
+                <Flatknapp onClick={showMore} className={bem('show-more')}>
+                    <Undertittel>{'Vis flere treff'}</Undertittel>
+                </Flatknapp>
             )}
         </div>
     );
