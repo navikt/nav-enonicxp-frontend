@@ -94,7 +94,9 @@ export const SearchResults = ({
                                 }.`}
                             </Undertittel>
                             <Normaltekst>
-                                {'Prøv igjen med mer generelle søkeord, eller andre søkefiltre. '}
+                                {
+                                    'Prøv igjen med mer generelle søkeord, eller andre søkefiltre. '
+                                }
                                 <LenkeNavNo
                                     href={searchTipsPath}
                                     withChevron={false}
