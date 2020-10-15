@@ -10,30 +10,24 @@ import { SearchInput } from './input/SearchInput';
 import { SearchSorting } from './sorting/SearchSorting';
 import { SearchResults } from './results/SearchResults';
 import { objectToQueryString } from '../../utils/fetch-utils';
-import './SearchPage.less';
 import { SearchApiResponse } from '../../pages/api/search';
+import { useRouter } from 'next/router';
+import './SearchPage.less';
 
 const Separator = () => <hr className={'search-separator'} />;
 
 const SearchPage = (props: SearchResultProps) => {
     const bem = BEM('search');
+    const router = useRouter();
 
     const [searchResults, setSearchResults] = useState<SearchResultProps>(
         props
     );
 
-    const {
-        fasett,
-        word,
-        total,
-        isSortDate,
-        aggregations,
-        prioritized,
-        hits,
-    } = searchResults;
+    const { fasett, word, total, isSortDate, aggregations } = searchResults;
 
     const initialParams: SearchParams = {
-        // ord: word,
+        ord: word,
         c: Number(props.c),
         s: Number(props.s),
     };
@@ -51,6 +45,9 @@ const SearchPage = (props: SearchResultProps) => {
     const setSort = (s: number) =>
         setSearchParams((state) => ({ ...state, s }));
 
+    const showMore = () =>
+        setSearchParams((state) => ({ ...state, c: state.c++ }));
+
     const setFacet = (f: number) =>
         setSearchParams((state) => ({ ...state, f, uf: [] }));
 
@@ -58,7 +55,7 @@ const SearchPage = (props: SearchResultProps) => {
         underFacet,
         toggle,
     }: {
-        underFacet: number;
+        underFacet: string;
         toggle: boolean;
     }) => {
         setSearchParams((state) => {
@@ -74,13 +71,19 @@ const SearchPage = (props: SearchResultProps) => {
 
     useEffect(() => {
         const fetchNewResults = async () => {
+            const queryString = objectToQueryString(searchParams);
             const { result, error } = (await fetch(
-                `/api/search${objectToQueryString(searchParams)}`
+                `/api/search${queryString}`
             ).then((res) => res.json())) as SearchApiResponse;
 
             if (result) {
-                console.log(result);
                 setSearchResults(result);
+                const newUrl = `${
+                    window.location.href.split('?')[0]
+                }${queryString}`;
+                router.push(newUrl, undefined, {
+                    shallow: true,
+                });
             }
             if (error) {
                 console.log(error);
@@ -104,7 +107,7 @@ const SearchPage = (props: SearchResultProps) => {
                 <SearchInput setSearchTerm={setSearchTerm} />
                 <SearchSorting isSortDate={isSortDate} setSort={setSort} />
                 <Separator />
-                <SearchResults hits={hits} prioritizedHits={prioritized} />
+                <SearchResults results={searchResults} showMore={showMore} />
             </div>
             <div className={bem('filters')}>
                 <Undertittel>{'Søkefilter'}</Undertittel>

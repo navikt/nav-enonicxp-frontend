@@ -19,7 +19,7 @@ type Props = {
         underFacet,
         toggle,
     }: {
-        underFacet: number;
+        underFacet: string;
         toggle: boolean;
     }) => void;
 };
@@ -73,7 +73,7 @@ const MainFacet = (props: FacetProps) => {
                             type={'checkbox'}
                             onChange={(e) =>
                                 setUnderFacet({
-                                    underFacet: index,
+                                    underFacet: String(index),
                                     toggle: e.target.checked,
                                 })
                             }
