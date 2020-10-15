@@ -1,6 +1,6 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import { fetchSearchResults } from '../utils/search';
+import { fetchSearchResults } from '../utils/fetchSearchResults';
 import { ErrorPage } from '../components/page-components/error-page/ErrorPage';
 import { makeErrorProps } from '../types/content-types/error-props';
 import { SearchResultProps } from '../types/search/search-result';

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Ingress, Undertittel } from 'nav-frontend-typografi';
+import React, { useState } from 'react';
+import { Element, Undertittel } from 'nav-frontend-typografi';
 import { SearchHit } from './SearchHit';
 import {
     FacetBucketProps,
@@ -9,6 +9,9 @@ import {
 import { BEM } from '../../../utils/bem';
 import { Flatknapp } from 'nav-frontend-knapper';
 import Spinner from '../../part-components/_common/spinner/Spinner';
+import { SearchParams } from '../../../types/search/search-params';
+import { fetchSearchResultsClientSide } from '../../../utils/fetchSearchResults';
+import { useRouter } from 'next/router';
 import './SearchResults.less';
 
 const filterHitsBySelectedUnderFacets = (
@@ -29,13 +32,23 @@ const filterHitsBySelectedUnderFacets = (
 
 type Props = {
     results: SearchResultProps;
-    showMore: () => void;
     isAwaiting: boolean;
+    searchParams: SearchParams;
+    setSearchResults: (results: SearchResultProps) => void;
 };
 
-export const SearchResults = ({ results, showMore, isAwaiting }: Props) => {
+export const SearchResults = ({
+    results,
+    isAwaiting,
+    searchParams,
+    setSearchResults,
+}: Props) => {
     const bem = BEM('search-results');
     const { hits, prioritized, fasett, aggregations, isMore } = results;
+
+    const [chunkCount, setChunkCount] = useState(searchParams.c);
+    const [isAwaitingMore, setIsAwaitingMore] = useState(false);
+    const router = useRouter();
 
     const underFacetBuckets = aggregations?.fasetter?.buckets?.find(
         (bucket) => bucket.key === fasett
@@ -46,6 +59,25 @@ export const SearchResults = ({ results, showMore, isAwaiting }: Props) => {
         underFacetBuckets
     );
 
+    const showMore = async () => {
+        setIsAwaitingMore(true);
+        const newCount = chunkCount + 1;
+        const { result, error } = await fetchSearchResultsClientSide(
+            { ...searchParams, c: newCount },
+            router
+        );
+        setChunkCount(newCount);
+        setIsAwaitingMore(false);
+
+        if (result) {
+            setSearchResults(result);
+        }
+
+        if (error) {
+            console.error(`failed to fetch more: ${error}`);
+        }
+    };
+
     return (
         <div className={bem()}>
             {isAwaiting ? (
@@ -55,9 +87,9 @@ export const SearchResults = ({ results, showMore, isAwaiting }: Props) => {
                     {' '}
                     {prioritizedHitsToShow?.length > 0 && (
                         <>
-                            <Ingress className={bem('subheading')}>
+                            <Element className={bem('subheading')}>
                                 {'Anbefalte treff:'}
-                            </Ingress>
+                            </Element>
                             {prioritized?.map((hitProps, index) => (
                                 <SearchHit {...hitProps} key={index} />
                             ))}
@@ -66,9 +98,12 @@ export const SearchResults = ({ results, showMore, isAwaiting }: Props) => {
                     {hits?.length > 0 && (
                         <>
                             {prioritizedHitsToShow?.length > 0 && (
-                                <Ingress className={bem('subheading')}>
-                                    {'Andre treff:'}
-                                </Ingress>
+                                <>
+                                    <hr className={bem('separator')} />
+                                    <Element className={bem('subheading')}>
+                                        {'Andre treff:'}
+                                    </Element>
+                                </>
                             )}
                             {hits?.map((hitProps, index) => (
                                 <SearchHit {...hitProps} key={index} />
@@ -79,8 +114,14 @@ export const SearchResults = ({ results, showMore, isAwaiting }: Props) => {
                         <Flatknapp
                             onClick={showMore}
                             className={bem('show-more')}
+                            spinner={isAwaitingMore}
+                            disabled={isAwaitingMore}
                         >
-                            <Undertittel>{'Vis flere treff'}</Undertittel>
+                            <Undertittel>
+                                {isAwaitingMore
+                                    ? 'Henter flere treff...'
+                                    : 'Vis flere treff'}
+                            </Undertittel>
                         </Flatknapp>
                     )}
                 </>

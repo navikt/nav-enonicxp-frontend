@@ -69,7 +69,7 @@ const MainFacet = (props: FacetProps) => {
                             label={underFacet.key}
                             name={facetKey}
                             count={underFacet.docCount}
-                            defaultChecked={underFacet.checked}
+                            checked={underFacet.checked}
                             type={'checkbox'}
                             onChange={(e) =>
                                 setUnderFacet({

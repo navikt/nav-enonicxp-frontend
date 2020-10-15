@@ -20,7 +20,7 @@ export type SearchParams = {
     f?: number;
     // Under-facets
     uf?: string[];
-    // Number of results to retrieve (<chunk_count> * c)
+    // Number of results to retrieve (20 (always?) * c)
     c?: number;
     s?: SearchSort;
     daterange?: number;

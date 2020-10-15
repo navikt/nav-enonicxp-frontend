@@ -9,12 +9,10 @@ import { FacetsSelector } from './filters/FacetsSelector';
 import { SearchInput } from './input/SearchInput';
 import { SearchSorting } from './sorting/SearchSorting';
 import { SearchResults } from './results/SearchResults';
-import { objectToQueryString } from '../../utils/fetch-utils';
-import { SearchApiResponse } from '../../pages/api/search';
 import { useRouter } from 'next/router';
+import { fetchSearchResultsClientSide } from '../../utils/fetchSearchResults';
+import debounce from 'lodash.debounce';
 import './SearchPage.less';
-
-const Separator = () => <hr className={'search-separator'} />;
 
 const SearchPage = (props: SearchResultProps) => {
     const bem = BEM('search');
@@ -31,6 +29,10 @@ const SearchPage = (props: SearchResultProps) => {
         ord: word || '',
         c: Number(props.c) || 1,
         s: Number(props.s) || 0,
+        f:
+            aggregations.fasetter.buckets.findIndex(
+                (bucket) => bucket.key === fasett
+            ) || 0,
     };
 
     const [searchParams, setSearchParams] = useState<SearchParams>(
@@ -46,11 +48,8 @@ const SearchPage = (props: SearchResultProps) => {
     const setSort = (s: number) =>
         setSearchParams((state) => ({ ...state, s, c: 1 }));
 
-    const showMore = () =>
-        setSearchParams((state) => ({ ...state, c: state.c + 1 }));
-
     const setFacet = (f: number) =>
-        setSearchParams((state) => ({ ...state, f, uf: [], c: 1 }));
+        setSearchParams((state) => ({ ...state, f, uf: undefined, c: 1 }));
 
     const setUnderFacet = ({
         underFacet,
@@ -66,36 +65,30 @@ const SearchPage = (props: SearchResultProps) => {
                     ? oldUf
                     : [...oldUf, underFacet]
                 : oldUf.filter((item) => item !== underFacet);
-            return { ...state, uf: newUf, c: 1 };
+            return { ...state, uf: newUf.length > 0 ? newUf : undefined, c: 1 };
         });
     };
 
     useEffect(() => {
-        const fetchNewResults = async () => {
+        const fetchAndSetNewResults = debounce(async () => {
             setIsAwaiting(true);
-            const queryString = objectToQueryString(searchParams);
-            const { result, error } = (await fetch(
-                `/api/search${queryString}`
-            ).then((res) => res.json())) as SearchApiResponse;
+            const { result, error } = await fetchSearchResultsClientSide(
+                searchParams,
+                router
+            );
             setIsAwaiting(false);
 
             if (result) {
                 setSearchResults(result);
-                const newUrl = `${
-                    window.location.href.split('?')[0]
-                }${queryString}`;
-                router.push(newUrl, undefined, {
-                    shallow: true,
-                });
             }
+
             if (error) {
-                console.log(error);
+                console.error(`failed to fetch results: ${error}`);
             }
-        };
+        }, 100);
 
         if (searchParams !== initialParams) {
-            console.log('search params updated: ', searchParams);
-            fetchNewResults();
+            fetchAndSetNewResults();
         }
     }, [searchParams]);
 
@@ -112,11 +105,12 @@ const SearchPage = (props: SearchResultProps) => {
                     prevSearchTerm={word}
                 />
                 <SearchSorting isSortDate={isSortDate} setSort={setSort} />
-                <Separator />
+                <hr className={bem('separator')} />
                 <SearchResults
                     results={searchResults}
-                    showMore={showMore}
                     isAwaiting={isAwaiting}
+                    searchParams={searchParams}
+                    setSearchResults={setSearchResults}
                 />
             </div>
             <div className={bem('filters')}>

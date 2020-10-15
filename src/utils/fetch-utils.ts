@@ -18,9 +18,11 @@ export const objectToQueryString = (params: object) =>
     params
         ? Object.entries(params).reduce(
               (acc, [k, v], i) =>
-                  `${acc}${i ? '&' : '?'}${k}=${encodeURIComponent(
-                      typeof v === 'object' ? JSON.stringify(v) : v
-                  )}`,
+                  v !== undefined
+                      ? `${acc}${i ? '&' : '?'}${k}=${encodeURIComponent(
+                            typeof v === 'object' ? JSON.stringify(v) : v
+                        )}`
+                      : acc,
               ''
           )
         : '';

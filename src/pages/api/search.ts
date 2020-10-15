@@ -1,5 +1,5 @@
 import { SearchParams } from '../../types/search/search-params';
-import { fetchSearchResults } from '../../utils/search';
+import { fetchSearchResults } from '../../utils/fetchSearchResults';
 import { SearchResultProps } from '../../types/search/search-result';
 import { NextApiRequest, NextApiResponse } from 'next';
 
