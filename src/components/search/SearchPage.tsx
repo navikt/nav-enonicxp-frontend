@@ -23,6 +23,7 @@ const SearchPage = (props: SearchResultProps) => {
     const [searchResults, setSearchResults] = useState<SearchResultProps>(
         props
     );
+    const [isAwaiting, setIsAwaiting] = useState(false);
 
     const { fasett, word, total, isSortDate, aggregations } = searchResults;
 
@@ -37,7 +38,7 @@ const SearchPage = (props: SearchResultProps) => {
     );
 
     const setSearchTerm = (term: string) =>
-        setSearchParams((state) => ({ ...state, ord: term, c: 1 }));
+        setSearchParams((state) => ({ ...state, ord: term?.trim(), c: 1 }));
 
     const setDaterange = (daterange: number) =>
         setSearchParams((state) => ({ ...state, daterange, c: 1 }));
@@ -71,10 +72,12 @@ const SearchPage = (props: SearchResultProps) => {
 
     useEffect(() => {
         const fetchNewResults = async () => {
+            setIsAwaiting(true);
             const queryString = objectToQueryString(searchParams);
             const { result, error } = (await fetch(
                 `/api/search${queryString}`
             ).then((res) => res.json())) as SearchApiResponse;
+            setIsAwaiting(false);
 
             if (result) {
                 setSearchResults(result);
@@ -104,10 +107,17 @@ const SearchPage = (props: SearchResultProps) => {
                     searchTerm={word}
                     numHits={total}
                 />
-                <SearchInput setSearchTerm={setSearchTerm} />
+                <SearchInput
+                    setSearchTerm={setSearchTerm}
+                    prevSearchTerm={word}
+                />
                 <SearchSorting isSortDate={isSortDate} setSort={setSort} />
                 <Separator />
-                <SearchResults results={searchResults} showMore={showMore} />
+                <SearchResults
+                    results={searchResults}
+                    showMore={showMore}
+                    isAwaiting={isAwaiting}
+                />
             </div>
             <div className={bem('filters')}>
                 <Undertittel>{'Søkefilter'}</Undertittel>

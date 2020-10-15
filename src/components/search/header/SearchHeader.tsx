@@ -16,7 +16,7 @@ type Props = {
 export const SearchHeader = ({ facet, searchTerm, numHits }: Props) => {
     const bem = BEM('search-header');
     const hitsCountText = `${numHits} treff${
-        searchTerm ? `for: "${searchTerm}"` : ''
+        searchTerm ? ` for: "${searchTerm}"` : ''
     }`;
 
     return (

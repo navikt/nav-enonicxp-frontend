@@ -6,11 +6,12 @@ import './SearchInput.less';
 
 type Props = {
     setSearchTerm: (term: string) => void;
+    prevSearchTerm: string;
 };
 
-export const SearchInput = ({ setSearchTerm }: Props) => {
+export const SearchInput = ({ setSearchTerm, prevSearchTerm }: Props) => {
     const bem = BEM('search-input');
-    const [searchInput, setSearchInput] = useState('');
+    const [searchInput, setSearchInput] = useState(prevSearchTerm);
 
     const onSubmit = (e: React.FormEvent) => {
         console.log('submitting');
@@ -25,6 +26,8 @@ export const SearchInput = ({ setSearchTerm }: Props) => {
                 className={bem('input')}
                 onChange={(e) => setSearchInput(e.target.value)}
                 onSubmit={onSubmit}
+                defaultValue={prevSearchTerm}
+                placeholder={'Søk på nav.no'}
             />
             <Hovedknapp
                 className={bem('button')}

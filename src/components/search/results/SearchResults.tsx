@@ -8,12 +8,8 @@ import {
 } from '../../../types/search/search-result';
 import { BEM } from '../../../utils/bem';
 import { Flatknapp } from 'nav-frontend-knapper';
+import Spinner from '../../part-components/_common/spinner/Spinner';
 import './SearchResults.less';
-
-type Props = {
-    results: SearchResultProps;
-    showMore: () => void;
-};
 
 const filterHitsBySelectedUnderFacets = (
     hits: SearchHitProps[],
@@ -31,7 +27,13 @@ const filterHitsBySelectedUnderFacets = (
     );
 };
 
-export const SearchResults = ({ results, showMore }: Props) => {
+type Props = {
+    results: SearchResultProps;
+    showMore: () => void;
+    isAwaiting: boolean;
+};
+
+export const SearchResults = ({ results, showMore, isAwaiting }: Props) => {
     const bem = BEM('search-results');
     const { hits, prioritized, fasett, aggregations, isMore } = results;
 
@@ -46,32 +48,42 @@ export const SearchResults = ({ results, showMore }: Props) => {
 
     return (
         <div className={bem()}>
-            {prioritizedHitsToShow?.length > 0 && (
+            {isAwaiting ? (
+                <Spinner text={'Henter søke-resultater...'} />
+            ) : (
                 <>
-                    <Ingress className={bem('subheading')}>
-                        {'Anbefalte treff:'}
-                    </Ingress>
-                    {prioritized?.map((hitProps, index) => (
-                        <SearchHit {...hitProps} key={index} />
-                    ))}
-                </>
-            )}
-            {hits?.length > 0 && (
-                <>
+                    {' '}
                     {prioritizedHitsToShow?.length > 0 && (
-                        <Ingress className={bem('subheading')}>
-                            {'Andre treff:'}
-                        </Ingress>
+                        <>
+                            <Ingress className={bem('subheading')}>
+                                {'Anbefalte treff:'}
+                            </Ingress>
+                            {prioritized?.map((hitProps, index) => (
+                                <SearchHit {...hitProps} key={index} />
+                            ))}
+                        </>
                     )}
-                    {hits?.map((hitProps, index) => (
-                        <SearchHit {...hitProps} key={index} />
-                    ))}
+                    {hits?.length > 0 && (
+                        <>
+                            {prioritizedHitsToShow?.length > 0 && (
+                                <Ingress className={bem('subheading')}>
+                                    {'Andre treff:'}
+                                </Ingress>
+                            )}
+                            {hits?.map((hitProps, index) => (
+                                <SearchHit {...hitProps} key={index} />
+                            ))}
+                        </>
+                    )}
+                    {isMore && (
+                        <Flatknapp
+                            onClick={showMore}
+                            className={bem('show-more')}
+                        >
+                            <Undertittel>{'Vis flere treff'}</Undertittel>
+                        </Flatknapp>
+                    )}
                 </>
-            )}
-            {isMore && (
-                <Flatknapp onClick={showMore} className={bem('show-more')}>
-                    <Undertittel>{'Vis flere treff'}</Undertittel>
-                </Flatknapp>
             )}
         </div>
     );
