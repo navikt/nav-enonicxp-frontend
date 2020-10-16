@@ -101,17 +101,18 @@ const SearchPage = (props: SearchResultProps) => {
         <div className={bem()}>
             <div className={bem('search-col')}>
                 <div className={bem('search-top-row')}>
-                    <SearchHeader
-                        facet={fasett}
-                        searchTerm={word}
-                        numHits={total}
-                    />
+                    <SearchHeader facet={fasett} />
                     <SearchInput
                         prevSearchTerm={word}
                         setSearchTerm={setSearchTerm}
                         fetchNewResults={fetchAndSetNewResults}
                     />
-                    <SearchSorting isSortDate={isSortDate} setSort={setSort} />
+                    <SearchSorting
+                        isSortDate={isSortDate}
+                        setSort={setSort}
+                        searchTerm={word}
+                        numHits={total}
+                    />
                     <hr className={bem('separator')} />
                 </div>
                 <SearchResults

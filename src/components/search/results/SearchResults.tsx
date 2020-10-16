@@ -9,7 +9,7 @@ import {
 import { BEM } from '../../../utils/bem';
 import { Flatknapp } from 'nav-frontend-knapper';
 import Spinner from '../../part-components/_common/spinner/Spinner';
-import { SearchParams } from '../../../types/search/search-params';
+import { SearchParams, SearchSort } from '../../../types/search/search-params';
 import { fetchSearchResultsClientSide } from '../../../utils/fetchSearchResults';
 import { useRouter } from 'next/router';
 import { searchTipsPath } from '../sorting/SearchSorting';
@@ -60,6 +60,8 @@ export const SearchResults = ({
         prioritized,
         underFacetBuckets
     );
+
+    // const allHits = results.s === SearchSort.BestMatch ?
 
     const showMore = async () => {
         setIsAwaitingMore(true);

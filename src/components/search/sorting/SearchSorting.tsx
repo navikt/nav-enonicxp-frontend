@@ -13,10 +13,21 @@ export const searchTipsPath =
 type Props = {
     isSortDate: boolean;
     setSort: (s: SearchSort) => void;
+    searchTerm: string;
+    numHits: number;
 };
 
-export const SearchSorting = ({ isSortDate, setSort }: Props) => {
+export const SearchSorting = ({
+    isSortDate,
+    setSort,
+    searchTerm,
+    numHits,
+}: Props) => {
     const bem = BEM('search-sorting-row');
+
+    const hitsCountText = `${numHits} treff${
+        searchTerm ? ` for: "${searchTerm}"` : ''
+    }`;
 
     return (
         <div className={bem()}>
@@ -39,12 +50,7 @@ export const SearchSorting = ({ isSortDate, setSort }: Props) => {
                     />
                 </div>
             </div>
-            <LenkeNavNo
-                href={enonicPathToUrl(searchTipsPath)}
-                withChevron={false}
-            >
-                {'Søketips'}
-            </LenkeNavNo>
+            <Normaltekst>{hitsCountText}</Normaltekst>
         </div>
     );
 };
