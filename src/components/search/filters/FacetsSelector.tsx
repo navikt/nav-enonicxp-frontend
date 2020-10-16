@@ -4,8 +4,8 @@ import {
     SearchResultProps,
 } from '../../../types/search/search-result';
 import { SearchParams } from '../../../types/search/search-params';
-import { FilterPanel } from './filter-panel/FilterPanel';
-import { FilterOption } from './filter-panel/FilterOption';
+import { FilterSectionPanel } from './filter-section-panel/FilterSectionPanel';
+import { FilterOption } from './filter-section-panel/FilterOption';
 import { BEM } from '../../../utils/bem';
 import { FilterRadioPanel } from './filter-radio-panel/FilterRadioPanel';
 import './FacetsSelector.less';
@@ -79,7 +79,7 @@ export const FacetsSelector = ({ facets, setFacet, setUnderFacet }: Props) => {
     const [currentFacet, setCurrentFacet] = useState(defaultOpenFacet.key);
 
     return (
-        <FilterPanel>
+        <FilterSectionPanel>
             {buckets.map((facet, index) => (
                 <MainFacet
                     facetKey={facet.key}
@@ -94,6 +94,6 @@ export const FacetsSelector = ({ facets, setFacet, setUnderFacet }: Props) => {
                     key={facet.key}
                 />
             ))}
-        </FilterPanel>
+        </FilterSectionPanel>
     );
 };

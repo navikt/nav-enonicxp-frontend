@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Input } from 'nav-frontend-skjema';
 import { BEM } from '../../../utils/bem';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import './SearchInput.less';
 
 type Props = {
-    setSearchTerm: (term: string) => void;
     prevSearchTerm: string;
+    setSearchTerm: (term: string) => void;
+    fetchNewResults: () => void;
 };
 
-export const SearchInput = ({ setSearchTerm, prevSearchTerm }: Props) => {
+export const SearchInput = ({
+    prevSearchTerm,
+    setSearchTerm,
+    fetchNewResults,
+}: Props) => {
     const bem = BEM('search-input');
-    const [searchInput, setSearchInput] = useState(prevSearchTerm);
 
     const onSubmit = (e: React.FormEvent) => {
-        console.log('submitting');
         e.preventDefault();
-        setSearchTerm(searchInput);
+        fetchNewResults();
     };
 
     return (
         <form onSubmit={onSubmit} className={bem()}>
             <Input
-                aria-labelledby={'search-input-label'}
+                aria-labelledby={'search-header'}
                 className={bem('input')}
-                onChange={(e) => setSearchInput(e.target.value)}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 onSubmit={onSubmit}
                 defaultValue={prevSearchTerm}
                 placeholder={'Søk på nav.no'}

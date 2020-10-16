@@ -21,7 +21,7 @@ export const SearchHeader = ({ facet, searchTerm, numHits }: Props) => {
 
     return (
         <div className={bem()}>
-            <span className={bem('title')} id={'search-input-label'}>
+            <span className={bem('title')} id={'search-header'}>
                 <Innholdstittel>{'Søk'}</Innholdstittel>
                 <Undertittel>{facet}</Undertittel>
             </span>

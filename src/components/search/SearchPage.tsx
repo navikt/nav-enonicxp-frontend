@@ -69,28 +69,33 @@ const SearchPage = (props: SearchResultProps) => {
         });
     };
 
+    const fetchAndSetNewResults = debounce(async () => {
+        setIsAwaiting(true);
+        const { result, error } = await fetchSearchResultsClientSide(
+            searchParams,
+            router
+        );
+        setIsAwaiting(false);
+
+        if (result) {
+            setSearchResults(result);
+        }
+
+        if (error) {
+            console.error(`failed to fetch results: ${error}`);
+        }
+    }, 100);
+
     useEffect(() => {
-        const fetchAndSetNewResults = debounce(async () => {
-            setIsAwaiting(true);
-            const { result, error } = await fetchSearchResultsClientSide(
-                searchParams,
-                router
-            );
-            setIsAwaiting(false);
-
-            if (result) {
-                setSearchResults(result);
-            }
-
-            if (error) {
-                console.error(`failed to fetch results: ${error}`);
-            }
-        }, 100);
-
         if (searchParams !== initialParams) {
             fetchAndSetNewResults();
         }
-    }, [searchParams]);
+    }, [
+        searchParams.daterange,
+        searchParams.f,
+        searchParams.uf,
+        searchParams.s,
+    ]);
 
     return (
         <div className={bem()}>
@@ -102,8 +107,9 @@ const SearchPage = (props: SearchResultProps) => {
                         numHits={total}
                     />
                     <SearchInput
-                        setSearchTerm={setSearchTerm}
                         prevSearchTerm={word}
+                        setSearchTerm={setSearchTerm}
+                        fetchNewResults={fetchAndSetNewResults}
                     />
                     <SearchSorting isSortDate={isSortDate} setSort={setSort} />
                     <hr className={bem('separator')} />

@@ -5,8 +5,11 @@ import {
     DaterangeProps,
 } from '../../../types/search/search-result';
 import { RadioGruppe } from 'nav-frontend-skjema';
-import { FilterPanel } from './filter-panel/FilterPanel';
-import { FilterOption, FilterOptionType } from './filter-panel/FilterOption';
+import { FilterSectionPanel } from './filter-section-panel/FilterSectionPanel';
+import {
+    FilterOption,
+    FilterOptionType,
+} from './filter-section-panel/FilterOption';
 import { daterangeKeyToParam } from '../../../types/search/search-params';
 
 type Props = {
@@ -37,7 +40,7 @@ export const DaterangeSelector = ({ daterangeProps, setDaterange }: Props) => {
     };
 
     return (
-        <FilterPanel>
+        <FilterSectionPanel>
             <RadioGruppe legend={'Tidsperiode'}>
                 <FilterOption
                     {...buttonProps}
@@ -61,6 +64,6 @@ export const DaterangeSelector = ({ daterangeProps, setDaterange }: Props) => {
                     />
                 ))}
             </RadioGruppe>
-        </FilterPanel>
+        </FilterSectionPanel>
     );
 };

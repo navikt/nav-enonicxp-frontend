@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { SearchHit } from './SearchHit';
 import {
     FacetBucketProps,
@@ -106,31 +106,12 @@ export const SearchResults = ({
                             </Normaltekst>
                         </div>
                     )}
-                    {prioritizedHitsToShow?.length > 0 && (
-                        <>
-                            <Element className={bem('subheading')}>
-                                {'Anbefalte treff:'}
-                            </Element>
-                            {prioritized?.map((hitProps, index) => (
-                                <SearchHit {...hitProps} key={index} />
-                            ))}
-                        </>
-                    )}
-                    {hits?.length > 0 && (
-                        <>
-                            {prioritizedHitsToShow?.length > 0 && (
-                                <>
-                                    <hr className={bem('separator')} />
-                                    <Element className={bem('subheading')}>
-                                        {'Andre treff:'}
-                                    </Element>
-                                </>
-                            )}
-                            {hits?.map((hitProps, index) => (
-                                <SearchHit {...hitProps} key={index} />
-                            ))}
-                        </>
-                    )}
+                    {prioritized?.map((hitProps, index) => (
+                        <SearchHit {...hitProps} key={index} />
+                    ))}
+                    {hits?.map((hitProps, index) => (
+                        <SearchHit {...hitProps} key={index} />
+                    ))}
                     {isMore && (
                         <Flatknapp
                             onClick={showMore}
