@@ -3,14 +3,14 @@ import {
     DaterangeBucketProps,
     DaterangeKey,
     DaterangeProps,
-} from '../../../types/search/search-result';
+} from '../../../../types/search/search-result';
 import { RadioGruppe } from 'nav-frontend-skjema';
-import { FilterSectionPanel } from './filter-section-panel/FilterSectionPanel';
+import { FilterSectionPanel } from '../filter-section-panel/FilterSectionPanel';
 import {
     FilterOption,
     FilterOptionType,
-} from './filter-section-panel/FilterOption';
-import { daterangeKeyToParam } from '../../../types/search/search-params';
+} from '../filter-section-panel/FilterOption';
+import { daterangeKeyToParam } from '../../../../types/search/search-params';
 
 type Props = {
     daterangeProps: DaterangeProps;

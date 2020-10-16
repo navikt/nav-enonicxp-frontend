@@ -3,9 +3,12 @@
 @import (reference) '~nav-frontend-typografi-style/src/index';
 
 @mobilMaxWidth: 768px;
-@screen-desktop: ~'(min-width: @{mobilMaxWidth})';
+@desktopSmallMaxWidth: 1024px;
+@screen-desktop: ~'(min-width: @{desktopSmallMaxWidth})';
+@screen-desktop-small: ~'(min-width: @{mobilMaxWidth})';
 @screen-mobile: ~'not all and (min-width: @{mobilMaxWidth})';
 @padding-sides-desktop: 3rem;
+@padding-sides-desktop-small: 1rem;
 @padding-sides-mobile: 1rem;
 
 .app {
@@ -17,6 +20,12 @@
 @media @screen-mobile {
     .content-wrapper {
         padding: 0 @padding-sides-mobile;
+    }
+}
+
+@media @screen-desktop-small {
+    .content-wrapper {
+        padding: 1rem @padding-sides-desktop-small;
     }
 }
 

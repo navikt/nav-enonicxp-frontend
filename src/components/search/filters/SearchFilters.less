@@ -1,0 +1,74 @@
+@import (reference) '../../../global.less';
+
+.search-filters {
+    @width: 300px;
+    margin-left: 3rem;
+    min-width: @width;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-decoration: none;
+        pointer-events: none;
+    }
+
+    &__title {
+        .typo-undertittel;
+        color: black;
+    }
+
+    &__filter-toggle {
+        display: none;
+    }
+
+    &__filters {
+        & > * {
+            margin-top: 1rem;
+        }
+    }
+
+    @media (max-width: @desktopSmallMaxWidth) {
+        position: absolute;
+        right: 1rem;
+        margin: 0;
+        padding: 0.5rem;
+        background-color: white;
+        border-radius: @border-radius-base;
+        box-shadow: 0 0 0 2px @navGra80;
+        min-width: 0;
+
+        &__title {
+            .typo-element;
+        }
+
+        &__filter-toggle {
+            display: block;
+        }
+
+        &__header {
+            pointer-events: auto;
+            &:focus {
+                & > * {
+                    color: white;
+                }
+            }
+        }
+
+        &__filters {
+            visibility: hidden;
+            overflow: hidden;
+            max-height: 0;
+            max-width: 140px;
+            transition-property: max-height, max-width, visibility;
+            transition-duration: 0.25s;
+            transition-timing-function: ease-in;
+
+            &--visible-mobile {
+                visibility: visible;
+                max-height: 50rem;
+                max-width: @width;
+            }
+        }
+    }
+}

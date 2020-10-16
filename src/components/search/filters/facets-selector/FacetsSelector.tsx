@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import {
-    FacetBucketProps,
-    SearchResultProps,
-} from '../../../types/search/search-result';
-import { SearchParams } from '../../../types/search/search-params';
-import { FilterSectionPanel } from './filter-section-panel/FilterSectionPanel';
-import { FilterOption } from './filter-section-panel/FilterOption';
-import { BEM } from '../../../utils/bem';
-import { FilterRadioPanel } from './filter-radio-panel/FilterRadioPanel';
+import { FacetBucketProps } from '../../../../types/search/search-result';
+import { SearchParams } from '../../../../types/search/search-params';
+import { FilterSectionPanel } from '../filter-section-panel/FilterSectionPanel';
+import { FilterOption } from '../filter-section-panel/FilterOption';
+import { BEM } from '../../../../utils/bem';
+import { FilterRadioPanel } from '../filter-radio-panel/FilterRadioPanel';
 import './FacetsSelector.less';
 
 type Props = {
-    facets: SearchResultProps['aggregations']['fasetter'];
+    facetsProps: FacetBucketProps[];
     setFacet: (f: SearchParams['f']) => void;
     setUnderFacet: ({
         underFacet,
@@ -73,14 +70,17 @@ const MainFacet = (props: FacetProps) => {
     );
 };
 
-export const FacetsSelector = ({ facets, setFacet, setUnderFacet }: Props) => {
-    const { buckets } = facets;
-    const defaultOpenFacet = buckets.find((facet) => facet.checked);
+export const FacetsSelector = ({
+    facetsProps,
+    setFacet,
+    setUnderFacet,
+}: Props) => {
+    const defaultOpenFacet = facetsProps.find((facet) => facet.checked);
     const [currentFacet, setCurrentFacet] = useState(defaultOpenFacet.key);
 
     return (
         <FilterSectionPanel>
-            {buckets.map((facet, index) => (
+            {facetsProps.map((facet, index) => (
                 <MainFacet
                     facetKey={facet.key}
                     count={facet.docCount}

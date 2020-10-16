@@ -3,6 +3,8 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { BEM } from '../../../utils/bem';
 import { Radio } from 'nav-frontend-skjema';
 import { SearchSort } from '../../../types/search/search-params';
+import { LenkeNavNo } from '../../part-components/_common/lenke/LenkeNavNo';
+import { enonicPathToUrl } from '../../../utils/paths';
 import './SearchSorting.less';
 
 export const searchTipsPath =
@@ -48,7 +50,15 @@ export const SearchSorting = ({
                     />
                 </div>
             </div>
-            <Normaltekst>{hitsCountText}</Normaltekst>
+            <div className={bem('hits-and-tips')}>
+                <LenkeNavNo
+                    href={enonicPathToUrl(searchTipsPath)}
+                    withChevron={false}
+                >
+                    {'Søketips'}
+                </LenkeNavNo>
+                <Normaltekst>{hitsCountText}</Normaltekst>
+            </div>
         </div>
     );
 };

@@ -1,14 +1,19 @@
 @import (reference) '../../../global.less';
 
 .search-hit {
+    word-break: break-word;
+
     &.lenkepanel-navno {
         border: none;
         padding: 0;
         transition: transform 0.1s ease-in;
 
-        .lenkepanel__heading,
-        .lenkepanel__indikator {
+        .lenkepanel__heading {
             color: @navBla;
+        }
+
+        .lenkepanel__indikator {
+            display: none;
         }
 
         &:hover {

@@ -1,9 +1,6 @@
 import React from 'react';
 import { Innholdstittel, Undertittel } from 'nav-frontend-typografi';
 import { BEM } from '../../../utils/bem';
-import { LenkeNavNo } from '../../part-components/_common/lenke/LenkeNavNo';
-import { enonicPathToUrl } from '../../../utils/paths';
-import { searchTipsPath } from '../sorting/SearchSorting';
 import './SearchHeader.less';
 
 type Props = {
@@ -18,12 +15,6 @@ export const SearchHeader = ({ facet }: Props) => {
                 <Innholdstittel>{'Søk'}</Innholdstittel>
                 <Undertittel>{facet}</Undertittel>
             </span>
-            <LenkeNavNo
-                href={enonicPathToUrl(searchTipsPath)}
-                withChevron={false}
-            >
-                {'Søketips'}
-            </LenkeNavNo>
         </div>
     );
 };

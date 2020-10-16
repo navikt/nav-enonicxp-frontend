@@ -9,7 +9,7 @@ import {
 import { BEM } from '../../../utils/bem';
 import { Flatknapp } from 'nav-frontend-knapper';
 import Spinner from '../../part-components/_common/spinner/Spinner';
-import { SearchParams, SearchSort } from '../../../types/search/search-params';
+import { SearchParams } from '../../../types/search/search-params';
 import { fetchSearchResultsClientSide } from '../../../utils/fetchSearchResults';
 import { useRouter } from 'next/router';
 import { searchTipsPath } from '../sorting/SearchSorting';
@@ -17,19 +17,18 @@ import { LenkeNavNo } from '../../part-components/_common/lenke/LenkeNavNo';
 import dayjs from 'dayjs';
 import './SearchResults.less';
 
-const filterOnSelectedUnderFacets = (
+const filterByFacets = (
     hits: SearchHitProps[],
-    underFacetBuckets: FacetBucketProps[]
+    facetBuckets: FacetBucketProps[]
 ) => {
-    const ufSelected = underFacetBuckets?.filter((bucket) => bucket.checked);
+    const selected = facetBuckets?.filter((bucket) => bucket.checked);
 
-    const ufClasses = (ufSelected?.length > 0
-        ? ufSelected
-        : underFacetBuckets
-    ).map((uf) => uf.key.toLowerCase());
+    const classes = (selected?.length > 0 ? selected : facetBuckets).map((uf) =>
+        uf.key.toLowerCase()
+    );
 
     return hits.filter((hit) =>
-        ufClasses?.includes(hit.className.toLowerCase().trim())
+        classes?.includes(hit.className.toLowerCase().trim())
     );
 };
 
@@ -81,7 +80,7 @@ export const SearchResults = ({
     const sortFunc = isSortDate ? sortByDate : undefined;
 
     const allHits = [
-        ...filterOnSelectedUnderFacets(prioritized, underFacetBuckets),
+        ...filterByFacets(prioritized, underFacetBuckets),
         ...hits,
     ].sort(sortFunc);
 

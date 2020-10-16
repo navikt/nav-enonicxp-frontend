@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { SearchResultProps } from '../../types/search/search-result';
 import { SearchParams } from '../../types/search/search-params';
-import { DaterangeSelector } from './filters/DaterangeSelector';
 import { SearchHeader } from './header/SearchHeader';
 import { BEM } from '../../utils/bem';
-import { Undertittel } from 'nav-frontend-typografi';
-import { FacetsSelector } from './filters/FacetsSelector';
 import { SearchInput } from './input/SearchInput';
 import { SearchSorting } from './sorting/SearchSorting';
 import { SearchResults } from './results/SearchResults';
 import { useRouter } from 'next/router';
 import { fetchSearchResultsClientSide } from '../../utils/fetchSearchResults';
 import debounce from 'lodash.debounce';
+import { SearchFilters, UFSetterProps } from './filters/SearchFilters';
 import './SearchPage.less';
 
 const SearchPage = (props: SearchResultProps) => {
@@ -52,13 +50,7 @@ const SearchPage = (props: SearchResultProps) => {
     const setFacet = (f: number) =>
         setSearchParams((state) => ({ ...state, f, uf: undefined, c: 1 }));
 
-    const setUnderFacet = ({
-        underFacet,
-        toggle,
-    }: {
-        underFacet: string;
-        toggle: boolean;
-    }) => {
+    const setUnderFacet = ({ underFacet, toggle }: UFSetterProps) => {
         setSearchParams((state) => {
             const oldUf = state.uf || [];
             const newUf = toggle
@@ -127,18 +119,13 @@ const SearchPage = (props: SearchResultProps) => {
                     setSearchResults={setSearchResults}
                 />
             </div>
-            <div className={bem('filters-col')}>
-                <Undertittel>{'Søkefilter'}</Undertittel>
-                <FacetsSelector
-                    facets={aggregations.fasetter}
-                    setFacet={setFacet}
-                    setUnderFacet={setUnderFacet}
-                />
-                <DaterangeSelector
-                    daterangeProps={aggregations.Tidsperiode}
-                    setDaterange={setDaterange}
-                />
-            </div>
+            <SearchFilters
+                daterangeProps={aggregations.Tidsperiode}
+                facetsProps={aggregations.fasetter.buckets}
+                setFacet={setFacet}
+                setUnderFacet={setUnderFacet}
+                setDaterange={setDaterange}
+            />
         </div>
     );
 };
