@@ -111,7 +111,7 @@ const SearchPage = (props: SearchResultProps) => {
                         isSortDate={isSortDate}
                         setSort={setSort}
                         searchTerm={word}
-                        numHits={total}
+                        numHits={Number(total)}
                     />
                     <hr className={bem('separator')} />
                 </div>

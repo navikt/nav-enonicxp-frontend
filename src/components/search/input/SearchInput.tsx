@@ -22,12 +22,15 @@ export const SearchInput = ({
         fetchNewResults();
     };
 
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+        setSearchTerm(e.target.value);
+
     return (
         <form onSubmit={onSubmit} className={bem()}>
             <Input
                 aria-labelledby={'search-header'}
                 className={bem('input')}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={onChange}
                 onSubmit={onSubmit}
                 defaultValue={prevSearchTerm}
                 placeholder={'Søk på nav.no'}

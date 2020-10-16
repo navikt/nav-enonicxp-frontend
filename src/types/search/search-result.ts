@@ -53,11 +53,11 @@ export type SearchHitProps = {
 export type SearchResultProps = {
     c: number;
     isSortDate: boolean;
-    s: number;
-    daterange: number;
+    s: string;
+    daterange: string;
     isMore: boolean;
     word: string;
-    total: number;
+    total: string;
     fasett: string;
     aggregations: {
         fasetter: { buckets: FacetBucketProps[] };

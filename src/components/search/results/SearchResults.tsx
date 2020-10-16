@@ -14,9 +14,10 @@ import { fetchSearchResultsClientSide } from '../../../utils/fetchSearchResults'
 import { useRouter } from 'next/router';
 import { searchTipsPath } from '../sorting/SearchSorting';
 import { LenkeNavNo } from '../../part-components/_common/lenke/LenkeNavNo';
+import dayjs from 'dayjs';
 import './SearchResults.less';
 
-const filterHitsBySelectedUnderFacets = (
+const filterOnSelectedUnderFacets = (
     hits: SearchHitProps[],
     underFacetBuckets: FacetBucketProps[]
 ) => {
@@ -30,6 +31,20 @@ const filterHitsBySelectedUnderFacets = (
     return hits.filter((hit) =>
         ufClasses?.includes(hit.className.toLowerCase().trim())
     );
+};
+
+const sortByDate = (a: SearchHitProps, b: SearchHitProps) => {
+    const lastChanged = (props: SearchHitProps) =>
+        Math.max(
+            ...[
+                props.publish.first,
+                props.publish.from,
+                props.modifiedTime,
+                0,
+            ].map((v) => dayjs(v).unix())
+        );
+
+    return lastChanged(b) - lastChanged(a);
 };
 
 type Props = {
@@ -46,7 +61,14 @@ export const SearchResults = ({
     setSearchResults,
 }: Props) => {
     const bem = BEM('search-results');
-    const { hits, prioritized, fasett, aggregations, isMore } = results;
+    const {
+        hits,
+        prioritized,
+        fasett,
+        aggregations,
+        isMore,
+        s: sorting,
+    } = results;
 
     const [chunkCount, setChunkCount] = useState(searchParams.c);
     const [isAwaitingMore, setIsAwaitingMore] = useState(false);
@@ -56,12 +78,13 @@ export const SearchResults = ({
         (bucket) => bucket.key === fasett
     )?.underaggregeringer?.buckets;
 
-    const prioritizedHitsToShow = filterHitsBySelectedUnderFacets(
-        prioritized,
-        underFacetBuckets
-    );
+    const sortFunc =
+        Number(sorting) === SearchSort.Newest ? sortByDate : undefined;
 
-    // const allHits = results.s === SearchSort.BestMatch ?
+    const allHits = [
+        ...filterOnSelectedUnderFacets(prioritized, underFacetBuckets),
+        ...hits,
+    ].sort(sortFunc);
 
     const showMore = async () => {
         setIsAwaitingMore(true);
@@ -88,7 +111,11 @@ export const SearchResults = ({
                 <Spinner text={'Henter søke-resultater...'} />
             ) : (
                 <>
-                    {!prioritizedHitsToShow?.length && !hits?.length && (
+                    {allHits?.length > 0 ? (
+                        allHits.map((hitProps, index) => (
+                            <SearchHit {...hitProps} key={index} />
+                        ))
+                    ) : (
                         <div className={bem('no-hits')}>
                             <Undertittel>
                                 {`Ingen treff${
@@ -108,12 +135,6 @@ export const SearchResults = ({
                             </Normaltekst>
                         </div>
                     )}
-                    {prioritized?.map((hitProps, index) => (
-                        <SearchHit {...hitProps} key={index} />
-                    ))}
-                    {hits?.map((hitProps, index) => (
-                        <SearchHit {...hitProps} key={index} />
-                    ))}
                     {isMore && (
                         <Flatknapp
                             onClick={showMore}

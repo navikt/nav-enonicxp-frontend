@@ -1,8 +1,6 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { BEM } from '../../../utils/bem';
-import { LenkeNavNo } from '../../part-components/_common/lenke/LenkeNavNo';
-import { enonicPathToUrl } from '../../../utils/paths';
 import { Radio } from 'nav-frontend-skjema';
 import { SearchSort } from '../../../types/search/search-params';
 import './SearchSorting.less';
@@ -26,7 +24,7 @@ export const SearchSorting = ({
     const bem = BEM('search-sorting-row');
 
     const hitsCountText = `${numHits} treff${
-        searchTerm ? ` for: "${searchTerm}"` : ''
+        searchTerm ? ` for "${searchTerm}"` : ''
     }`;
 
     return (
