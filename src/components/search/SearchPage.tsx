@@ -22,6 +22,7 @@ const SearchPage = (props: SearchResultProps) => {
         props
     );
     const [isAwaiting, setIsAwaiting] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const { fasett, word, total, isSortDate, aggregations } = searchResults;
 
@@ -87,7 +88,7 @@ const SearchPage = (props: SearchResultProps) => {
     }, 100);
 
     useEffect(() => {
-        if (searchParams !== initialParams) {
+        if (isLoaded) {
             fetchAndSetNewResults();
         }
     }, [
@@ -96,6 +97,10 @@ const SearchPage = (props: SearchResultProps) => {
         searchParams.uf,
         searchParams.s,
     ]);
+
+    useEffect(() => {
+        setIsLoaded(true);
+    }, []);
 
     return (
         <div className={bem()}>

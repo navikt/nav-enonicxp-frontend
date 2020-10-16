@@ -67,7 +67,7 @@ export const SearchResults = ({
         fasett,
         aggregations,
         isMore,
-        s: sorting,
+        isSortDate,
     } = results;
 
     const [chunkCount, setChunkCount] = useState(searchParams.c);
@@ -78,8 +78,7 @@ export const SearchResults = ({
         (bucket) => bucket.key === fasett
     )?.underaggregeringer?.buckets;
 
-    const sortFunc =
-        Number(sorting) === SearchSort.Newest ? sortByDate : undefined;
+    const sortFunc = isSortDate ? sortByDate : undefined;
 
     const allHits = [
         ...filterOnSelectedUnderFacets(prioritized, underFacetBuckets),

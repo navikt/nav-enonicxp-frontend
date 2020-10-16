@@ -9,8 +9,8 @@ export const daterangeKeyToParam = {
 };
 
 export enum SearchSort {
-    BestMatch = 0,
-    Newest = 1,
+    Newest = 0,
+    BestMatch = 1,
 }
 
 export type SearchParams = {

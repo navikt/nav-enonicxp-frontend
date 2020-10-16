@@ -1,9 +1,9 @@
 import React from 'react';
 import { SearchHitProps } from '../../../types/search/search-result';
 import LenkepanelNavNo from '../../part-components/_common/lenkepanel/LenkepanelNavNo';
-import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { BEM } from '../../../utils/bem';
 import { formatDate } from '../../../utils/datetime';
+import dayjs from 'dayjs';
 import './SearchHit.less';
 
 const createPublishedAndModifiedString = (
@@ -14,11 +14,12 @@ const createPublishedAndModifiedString = (
     const publisedString = publishedTime
         ? `Publisert ${formatDate(publishedTime)}`
         : '';
-    const modifiedString = modifiedTime
-        ? `${publisedString ? ' - ' : ''}Sist endret ${formatDate(
-              modifiedTime
-          )}`
-        : '';
+    const modifiedString =
+        modifiedTime && dayjs(modifiedTime).unix() > dayjs(publishedTime).unix()
+            ? `${publisedString ? ' - ' : ''}Sist endret ${formatDate(
+                  modifiedTime
+              )}`
+            : '';
     return `${publisedString}${modifiedString}`;
 };
 

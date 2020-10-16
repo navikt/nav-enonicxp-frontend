@@ -1,8 +1,19 @@
 @import (reference) '../../../global.less';
 
 .search-hit {
-    &.lenkepanel-navno:not(:hover) {
+    &.lenkepanel-navno {
         border-color: transparent;
+        padding: 0;
+        transition: transform 0.1s ease-in;
+
+        .lenkepanel__heading,
+        .lenkepanel__indikator {
+            color: @navBla;
+        }
+
+        &:hover {
+            box-shadow: none;
+        }
     }
 
     &__display-path {
