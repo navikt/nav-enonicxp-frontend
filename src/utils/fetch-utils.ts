@@ -13,3 +13,16 @@ export const fetchWithTimeout = (url: string, timeout: number): Promise<any> =>
             )
         ),
     ]);
+
+export const objectToQueryString = (params: object) =>
+    params
+        ? Object.entries(params).reduce(
+              (acc, [k, v], i) =>
+                  v !== undefined
+                      ? `${acc}${i ? '&' : '?'}${k}=${encodeURIComponent(
+                            typeof v === 'object' ? JSON.stringify(v) : v
+                        )}`
+                      : acc,
+              ''
+          )
+        : '';

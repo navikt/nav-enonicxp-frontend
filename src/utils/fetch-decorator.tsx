@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchWithTimeout } from './fetchWithTimeout';
+import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { JSDOM } from 'jsdom';
 import parse from 'html-react-parser';
 
@@ -11,15 +11,6 @@ export type DecoratorFragments = {
     SCRIPTS: React.ReactNode;
     STYLES: React.ReactNode;
 };
-
-const paramsObjectToQueryString = (params: object) =>
-    Object.entries(params).reduce(
-        (acc, [k, v], i) =>
-            `${acc}${i ? '&' : '?'}${k}=${encodeURIComponent(
-                JSON.stringify(v)
-            )}`,
-        ''
-    );
 
 const fetchDecorator = (queryString?: string) => {
     const url = `${decoratorUrl}/${queryString ? queryString : ''}`;
@@ -39,7 +30,7 @@ export const getDecorator = async () => {
         chatbot: true,
     };
 
-    const query = paramsObjectToQueryString(params);
+    const query = objectToQueryString(params);
 
     const decoratorBody = await fetchDecorator(query);
 
