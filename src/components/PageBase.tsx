@@ -12,7 +12,7 @@ import {
     fetchLanguages,
     fetchNotifications,
     fetchPage,
-} from '../utils/fetchContent';
+} from '../utils/fetch-content';
 import { makeErrorProps } from '../types/content-types/error-props';
 import { ErrorPage } from './page-components/error-page/ErrorPage';
 
