@@ -1,13 +1,19 @@
 import React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { DecoratorFragments, getDecorator } from '../utils/fetchDecorator';
+import Document, {
+    Html,
+    Head,
+    Main,
+    NextScript,
+    DocumentContext,
+} from 'next/document';
+import { DecoratorFragments, getDecorator } from '../utils/fetch-decorator';
 
 type Props = {
     decoratorFragments: DecoratorFragments;
 };
 
 class MyDocument extends Document<Props> {
-    static async getInitialProps(ctx) {
+    static async getInitialProps(ctx: DocumentContext) {
         const initialProps = await Document.getInitialProps(ctx);
         const decoratorFragments = await getDecorator();
         return { ...initialProps, decoratorFragments };
@@ -21,8 +27,7 @@ class MyDocument extends Document<Props> {
             <Html>
                 <Head>
                     {/* Legacy scripts */}
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
-                    <script src="https://amplitude.nav.no/libs/amplitude-7.1.0-min.gz.js" />
+                    <script src="/legacy/scripts/jquery.min.js" />
                     {/* Legacy scripts */}
                     {STYLES}
                 </Head>

@@ -12,7 +12,9 @@ import {
     fetchLanguages,
     fetchNotifications,
     fetchPage,
-} from '../utils/fetchContent';
+} from '../utils/fetch-content';
+import { makeErrorProps } from '../types/content-types/error-props';
+import { ErrorPage } from './page-components/error-page/ErrorPage';
 
 type Props = {
     content: ContentTypeSchema;
@@ -27,9 +29,13 @@ export const PageBase = (props: Props) => {
         return <FallbackPage />;
     }
 
+    if (!props?.content) {
+        return <ErrorPage {...makeErrorProps('www.nav.no', 'Unknown error')} />;
+    }
+
     const { breadcrumbs, content, languages, notifications } = props;
 
-    return props?.content ? (
+    return (
         <PageWrapper
             content={content}
             breadcrumbs={breadcrumbs}
@@ -38,7 +44,7 @@ export const PageBase = (props: Props) => {
         >
             <ContentToComponentMapper content={content} />
         </PageWrapper>
-    ) : null;
+    );
 };
 
 export const fetchPageBaseProps = async (

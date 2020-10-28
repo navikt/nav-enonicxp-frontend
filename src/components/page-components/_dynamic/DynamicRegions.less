@@ -27,8 +27,10 @@
         .region {
             &__first {
                 flex: 2;
-                @media @screen-desktop {
-                    padding-right: 2rem;
+                &:not(:only-child) {
+                    @media @screen-desktop {
+                        padding-right: 2rem;
+                    }
                 }
             }
             &__second {

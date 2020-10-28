@@ -2,14 +2,15 @@
 
 .navno-lenke {
     .lenke;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
     text-decoration: none;
     box-sizing: border-box;
 
     &:focus {
-        * {
+        .navno-lenke__chevron,
+        .navno-lenke__label {
             fill: white;
             color: white;
         }

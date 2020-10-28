@@ -1,10 +1,8 @@
 import React from 'react';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
-import { enonicPathToAppPath, isEnonicPath } from 'utils/paths';
-import Link from 'next/link';
 import { BEM } from 'utils/bem';
-import { logLinkClick } from '../../../../utils/amplitude';
+import { LenkeUstylet } from './LenkeUstylet';
 import './LenkeNavNo.less';
 
 type Props = {
@@ -27,20 +25,13 @@ export const LenkeNavNo = ({
     children,
 }: Props) => {
     const bem = BEM('navno-lenke');
-    const isInternalLink = isEnonicPath(href);
-    const _href = (isInternalLink ? enonicPathToAppPath(href) : href) || '/';
-    const analyticsLinkText =
-        typeof children === 'string' ? children : undefined;
 
-    const link = (
-        <a
-            href={_href}
+    return (
+        <LenkeUstylet
+            href={href}
             className={`${bem()} ${className || ''}`}
             id={id}
-            onClick={(e) => {
-                logLinkClick(_href, analyticsLinkText);
-                onClick?.(e);
-            }}
+            onClick={onClick}
         >
             {label && <Undertekst className={bem('label')}>{label}</Undertekst>}
             <span className={bem('lenketekst')}>
@@ -51,14 +42,6 @@ export const LenkeNavNo = ({
                 )}
                 {children}
             </span>
-        </a>
-    );
-
-    return isInternalLink ? (
-        <Link href={_href} passHref={true}>
-            {link}
-        </Link>
-    ) : (
-        link
+        </LenkeUstylet>
     );
 };

@@ -16,6 +16,9 @@ spec:
   readiness:
     path: /api/internal/isReady
     initialDelay: 10
+  prometheus:
+    enabled: true
+    path: /_metrics
   ingresses:
   {{#each ingresses as |url|}}
     - {{url}}

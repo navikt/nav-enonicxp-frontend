@@ -1,12 +1,12 @@
 import React from 'react';
 import { NotificationProps } from 'types/content-types/notification-props';
-import LenkepanelPluss from '../_common/lenkepanel/LenkepanelPluss';
+import LenkepanelNavNo from '../_common/lenkepanel/LenkepanelNavNo';
 import { ContentType } from 'types/content-types/_schema';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { PulsatingIcon } from './icons/PulsatingIcon';
 import { InfoIcon } from './icons/InfoIcon';
-import { hasIngress } from 'types/content-types/_type-utils';
-import { hasDescription } from 'types/content-types/_type-utils';
+import { hasIngress } from 'types/content-types/_type-guards';
+import { hasDescription } from 'types/content-types/_type-guards';
 import { BEM } from 'utils/bem';
 import './Notification.less';
 
@@ -45,7 +45,7 @@ export const Notification = (props: NotificationProps) => {
     const bem = BEM('notification');
 
     return (
-        <LenkepanelPluss
+        <LenkepanelNavNo
             href={getUrl(target)}
             tittel={getTitle(props)}
             ikon={iconsForType[type]}
@@ -63,7 +63,7 @@ export const Notification = (props: NotificationProps) => {
                     >{`Sist oppdatert: ${modifiedTime}`}</Undertekst>
                 )}
             </>
-        </LenkepanelPluss>
+        </LenkepanelNavNo>
     );
 };
 
