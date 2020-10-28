@@ -27,7 +27,7 @@ class MyDocument extends Document<Props> {
             <Html>
                 <Head>
                     {/* Legacy scripts */}
-                    <script src="/legacy/scripts/jquery.min.js" />
+                    <script src={`${process.env.APP_ORIGIN}/legacy/scripts/jquery.min.js`} />
                     {/* Legacy scripts */}
                     {STYLES}
                 </Head>
