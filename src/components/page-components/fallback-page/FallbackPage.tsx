@@ -1,7 +1,8 @@
 import React from 'react';
+import { Undertittel } from 'nav-frontend-typografi';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import './FallbackPage.less';
-import { Undertittel } from 'nav-frontend-typografi';
+
 
 export const FallbackPage = () => {
     return (

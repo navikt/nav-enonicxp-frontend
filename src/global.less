@@ -1,14 +1,19 @@
 @import '~nav-frontend-core/less/_variabler';
 @import '~nav-frontend-core/less/core';
 
-@mobilMaxWidth: 768px;
+@mobilMaxWidth: 48em;
 @screen-desktop: ~'(min-width: @{mobilMaxWidth})';
 @screen-mobile: ~'not all and (min-width: @{mobilMaxWidth})';
 @padding-sides-desktop: 3rem;
 @padding-sides-mobile: 1rem;
 
+// Kan fjerne denne hvis/når hardkoding til 16px blir fjernet fra designsystemet
+html {
+    font-size: 100%;
+}
+
 .app {
-    max-width: 1440px;
+    max-width: 90rem;
     min-height: 20rem;
     margin: 2rem auto 3rem auto;
 }
@@ -26,15 +31,15 @@
 }
 
 #decorator-header {
-    min-height: 88px;
+    min-height: 5.5rem;
 }
 
 @media (min-width: 48em) {
     #decorator-header {
-        min-height: 106px;
+        min-height: 6.625rem;
     }
     #decorator-header.with-context {
-        min-height: 150px;
+        min-height: 9.375rem;
     }
 }
 
