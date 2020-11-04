@@ -16,6 +16,7 @@ export const contentToComponentMap = {
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.LargeTable]: LargeTablePage,
     [ContentType.TemplatePage]: DynamicPage,
+    [ContentType.MainArticle]: DynamicPage,
 };
 
 type Props = {

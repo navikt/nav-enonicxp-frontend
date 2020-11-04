@@ -20,6 +20,7 @@ import { DynamicRegionConfig } from 'types/content-types/_dynamic/_components';
 import LinkLists from 'components/part-components/link-lists/LinkLists';
 import { MainPanels } from 'components/part-components/main-panels/MainPanels';
 import PageHeading from 'components/part-components/page-heading/PageHeading';
+import { MainArticle } from '../../part-components/main-article/MainArticle';
 import './DynamicRegions.less';
 
 const bem = BEM('region');
@@ -134,6 +135,7 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 [PartType.MainPanels]: (
                                     <MainPanels {...props} />
                                 ),
+                                [PartType.MainArticle]: <MainArticle {...props} />
                             }[descriptor] || (
                                 <div className={bem('unimplemented')}>
                                     {`Unimplemented part: ${descriptor}`}

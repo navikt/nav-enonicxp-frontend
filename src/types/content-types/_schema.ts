@@ -39,6 +39,7 @@ export enum PartType {
     LinkLists = 'no.nav.navno:link-lists',
     PageHeading = 'no.nav.navno:page-heading',
     MainPanels = 'no.nav.navno:main-panels',
+    MainArticle = 'no.nav.navno:main-article',
 
     // Parts with own content
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
@@ -71,6 +72,9 @@ export type GlobalSchema = {
     data: object;
     didRedirect?: boolean;
     isDraft?: boolean;
+    publish?: {
+        from: string;
+    }
 };
 
 // Specific for dynamic page schemas
@@ -99,6 +103,12 @@ export interface PageData {
     ntkContents?: ContentListProps;
     nrSC?: number;
     scContents?: ContentListProps;
+
+    // Main Article
+    displayName: string,
+    contentType: string,
+    hasTableOfContents: string,
+    text: string
 
     // Legacy page
     html?: string;
