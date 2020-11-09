@@ -6,7 +6,9 @@ import { useRouter } from 'next/router';
 import { enonicPathToAppPath } from '../utils/paths';
 import { SiteProps } from '../types/content-types/site-props';
 
-export const Redirect = (
+// Not sure if this will ever be needed...
+
+export const ClientSideRedirect = (
     props: ExternalLinkProps | InternalLinkProps | SiteProps
 ) => {
     const router = useRouter();
