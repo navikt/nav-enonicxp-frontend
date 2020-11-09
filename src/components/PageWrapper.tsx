@@ -89,9 +89,11 @@ export const PageWrapper = (props: Props) => {
         }
 
         // Ensures the url displayed in the browser is correct after redirection
-        router.replace(path, undefined, {
-            shallow: true,
-        });
+        if (content.didRedirect && path) {
+            router.replace(path, undefined, {
+                shallow: true,
+            });
+        }
     }, [content]);
 
     return (
