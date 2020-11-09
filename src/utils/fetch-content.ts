@@ -19,17 +19,6 @@ const xpDraftServiceUrl = `${xpOrigin}${enonicDraftServicePath}`;
 const xpLegacyUrl = `${xpOrigin}${enonicLegacyPath}`;
 const xpLegacyDraftUrl = `${xpOrigin}${enonicDraftLegacyPath}`;
 
-const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
-    switch (contentData?.__typename) {
-        case ContentType.Site:
-            return '/www.nav.no/forsiden';
-        case ContentType.InternalLink:
-            return contentData.data.target._path;
-        default:
-            return null;
-    }
-};
-
 const fetchLegacyHtml = (path: string, draft = false) => {
     const url = `${draft ? xpLegacyDraftUrl : xpLegacyUrl}/${encodeURI(
         path[0] === '/' ? path.slice(1) : path
@@ -131,12 +120,6 @@ export const fetchPage = async (
     didRedirect: boolean = false
 ): Promise<ContentTypeSchema> => {
     const content = await fetchContent(idOrPath, isDraft);
-
-    const redirectTarget = getTargetIfRedirect(content);
-
-    if (redirectTarget) {
-        return fetchPage(redirectTarget, isDraft, true);
-    }
 
     if (content && !contentToComponentMap[content.__typename]) {
         const path = content._path?.replace(xpContentBasePath, '');

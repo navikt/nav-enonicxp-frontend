@@ -2,7 +2,7 @@ import React from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { routerQueryToEnonicPathOrId } from '../utils/paths';
 import PageBase, { fetchPageBaseProps } from '../components/PageBase';
-import { ContentType } from '../types/content-types/_schema';
+import { getTargetIfRedirect } from '../utils/redirects';
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const enonicPath = routerQueryToEnonicPathOrId(
@@ -11,11 +11,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     const props = await fetchPageBaseProps(enonicPath);
 
-    if (props.content.__typename === ContentType.ExternalLink) {
+    const redirectTarget = getTargetIfRedirect(props.content);
+    if (redirectTarget) {
         return {
-            props: {},
-            revalidate: 1,
-            redirect: { destination: props.content.data.url, statusCode: 301 },
+            props: props,
+            revalidate: 60,
+            redirect: { destination: redirectTarget, permanent: false },
         };
     }
 
