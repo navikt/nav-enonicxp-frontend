@@ -3,16 +3,13 @@ import { MainArticleProps } from 'types/content-types/main-article-props';
 import { RegionProps } from '../../page-components/_dynamic/DynamicRegions';
 import Lenke from 'nav-frontend-lenker';
 import { enonicPathToAppPath } from 'utils/paths';
-import { MainArticleChapterProps } from 'types/content-types/main-article-chapter-props';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { BEM } from 'utils/bem';
 import './MenuList.less';
 
-export type MainArticleLinkedListProps =
-    | (RegionProps & MainArticleProps)
-    | (RegionProps & MainArticleChapterProps);
+export type MenuListProps = RegionProps & MainArticleProps;
 
-export const MenuList = (props: MainArticleLinkedListProps) => {
+export const MenuList = (props: MenuListProps) => {
     const menuListItems = props.data?.menuListItems || [];
     const bem = BEM('menu-list');
 

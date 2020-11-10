@@ -22,6 +22,7 @@ import { MainPanels } from 'components/part-components/main-panels/MainPanels';
 import PageHeading from 'components/part-components/page-heading/PageHeading';
 import { MainArticleLinkedListProps } from '../../part-components/main-article-linked-list/MainArticleLinkedList';
 import { MainArticleLinkedList } from '../../part-components/main-article-linked-list/MainArticleLinkedList';
+import { MenuListProps } from '../../part-components/menu-list/MenuList';
 import { MenuList } from '../../part-components/menu-list/MenuList';
 import './DynamicRegions.less';
 
@@ -145,9 +146,7 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                     />
                                 ),
                                 [PartType.MenuList]: (
-                                    <MenuList
-                                        {...(props as MainArticleLinkedListProps)}
-                                    />
+                                    <MenuList {...(props as MenuListProps)} />
                                 ),
                             }[descriptor] || (
                                 <div className={bem('unimplemented')}>
