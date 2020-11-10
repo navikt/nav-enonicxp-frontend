@@ -21,6 +21,8 @@ import LinkLists from 'components/part-components/link-lists/LinkLists';
 import { MainPanels } from 'components/part-components/main-panels/MainPanels';
 import PageHeading from 'components/part-components/page-heading/PageHeading';
 import { MainArticle } from '../../part-components/main-article/MainArticle';
+import { MainArticleLinkedListProps } from '../../part-components/main-article-linked-list/MainArticleLinkedList';
+import { MainArticleLinkedList } from '../../part-components/main-article-linked-list/MainArticleLinkedList';
 import './DynamicRegions.less';
 
 const bem = BEM('region');
@@ -46,7 +48,7 @@ const Regions = (props: RegionsProps & GlobalPageSchema) => {
     );
 };
 
-interface RegionProps {
+export interface RegionProps {
     dynamicKey: number;
     dynamicRegion: DynamicRegion;
     dynamicConfig?: DynamicRegionConfig;
@@ -134,6 +136,12 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 [PartType.LinkLists]: <LinkLists {...props} />,
                                 [PartType.MainPanels]: (
                                     <MainPanels {...props} />
+                                ),
+                                // Main Article
+                                [PartType.MainArticleLinkedList]: (
+                                    <MainArticleLinkedList
+                                        {...(props as MainArticleLinkedListProps)}
+                                    />
                                 ),
                                 [PartType.MainArticle]: <MainArticle {...props} />
                             }[descriptor] || (

@@ -1,5 +1,73 @@
 @import (reference) '../../../global';
 
-.mainArticle {
+
+
+.main-article {
+  padding: 1.5rem;
+  background: #fff;
+}
+
+.article-head {
+  margin-bottom:  1.5rem;
+}
+
+.table-of-contents{
+  margin-top: 2rem;
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #d1d1d1;
+  }
+  li {
+    font-size: 1.1rem;
+    border-bottom: 1px solid #d1d1d1;
+  }
+
+  a {
+    color: #3e3832;
+    font-weight: 600;
+    display: block;
+    padding: 6px 0;
+    position: relative;
+    text-decoration: none;
+
+
+    &:hover,
+    &:active {
+      color: #0067c5;
+    }
+
+    &focus {
+      outline: none;
+      color: white;
+      background-color: #254b6d;
+      box-shadow: 0 0 0 2px #254b6d;
+    }
+    &:hover:before,
+    &:focus:before,
+    &:active:before {
+      border: 3px solid #0067c5;
+      border-radius: 50%;
+      display: inline-block;
+      content: ' ';
+      position: absolute;
+      left: -11px;
+      top: 14px;
+    }
+  }
+
+
+  .visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
 
 }

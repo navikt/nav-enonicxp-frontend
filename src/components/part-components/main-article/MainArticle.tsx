@@ -31,55 +31,74 @@ const parseInnholdsfortegnelse = (htmlText: string) => {
     return toc;
 }
 
-const cleanupHtml = (htmlText: string) => {
+function getDate(content: GlobalPageSchema, language: string ) {
+    if (!content) {
+        return '';
+    }
+    const p = (content.publish?.from ? content.publish?.from : content.createdTime);
+    // TODO: oversett
+    const published = `Publisert: ${new Date(p)}`;
+    const publishedString = `${published}`;
 
+    let modifiedString = '';
+    const m = (content.modifiedTime);
+    if (new Date(m) > new Date(p)) {
+        // TODO: oversett
+        const lastModified = `Sist endret: ${new Date(content.modifiedTime) }`;
+        modifiedString = ` | ${lastModified}`;
+    }
+    return publishedString + modifiedString;
+}
+
+const cleanupHtml = (htmlText: string) => {
     // Fjern tomme headings og br-tagger fra HTML
     let cleanHtml = htmlText;
-    cleanHtml = cleanHtml.replace(/<h\d>\s*<\/h\d>/g, '');
-    cleanHtml = cleanHtml.replace(/<h\d>&nbsp;<\/h\d>/g, '');
-    cleanHtml = cleanHtml.replace(/<br \/>/g, '');
+    cleanHtml = cleanHtml?.replace(/<h\d>\s*<\/h\d>/g, '');
+    cleanHtml = cleanHtml?.replace(/<h\d>&nbsp;<\/h\d>/g, '');
+    cleanHtml = cleanHtml?.replace(/<br \/>/g, '');
 
     return cleanHtml;
 }
+
 export const MainArticle = (props: GlobalPageSchema) => {
     const type = props.__typename;
-
     const data =
         type === ContentType.TemplatePage
             ? (MainArticleMock as PageData)
             : props.data;
 
-    const innholdsfortegnelse = parseInnholdsfortegnelse(data.text);
+    const innholdsfortegnelse = data.hasTableOfContents && data.hasTableOfContents !== 'none' ?
+        parseInnholdsfortegnelse(data.text) : [];
+
 
     return (
-        <div data-portal-region="first" className="col-sm-12 col-md-8">
-            <article data-portal-component-type="part" className="full-article factsheet tblc" id="pagecontent">
-                <header className="article-head">
-                    <time className="pubdate muted" dateTime={props.publish.from}>
-                        Todo: parse dato
-                    </time>
-                    <h1>{props.displayName}</h1>
-                    <p className="preface">{data.ingress}</p>
-                    { data.hasTableOfContents && data.hasTableOfContents !== 'none' &&
-                        <nav className="table-of-contents" data-selected-id="">
-                          <h2 className="visuallyhidden" role="heading" aria-level={2}>
-                            todo:  Innholdsfortegnelse || table of content  avhenging av språk
-                          </h2>
-                          <ol>
-                              {innholdsfortegnelse.map((item, index) => (
-                                  <li key={index}>
-                                      <a data-ga="toc" href="#chapter-1">{item}</a>
-                                  </li>
-                              ))}
-                          </ol>
-                        </nav>
-                    }
-                </header>
-                <div className="article-body">
-                    <ParsedHtml content={cleanupHtml(data.text)}/>
-                </div>
-            </article>
-        </div>
+        <article
+            id="pagecontent"
+            className="main-article"
+        >
+            <header className="article-head">
+                <time dateTime={props.publish?.from}>
+                    {getDate(props, props.language)}
+                </time>
+                <h1>{props.displayName}</h1>
+                <p className="preface">{data.ingress}</p>
+                { data.hasTableOfContents && data.hasTableOfContents !== 'none' &&
+                    <nav className="table-of-contents" data-selected-id>
+                      <h2 className="visuallyhidden">
+                          innholdsfortegnelse // TODO: oversett
+                      </h2>
+                      <ol>
+                          {innholdsfortegnelse.map((item, index) => (
+                              <li key={index}>
+                                  <a data-ga="toc" href={`#chapter-${index + 1}`}>{item}</a>
+                              </li>
+                          ))}
+                      </ol>
+                    </nav>
+                }
+            </header>
+            <ParsedHtml content={cleanupHtml(data.text)}/>
+        </article>
 
     );
 };
