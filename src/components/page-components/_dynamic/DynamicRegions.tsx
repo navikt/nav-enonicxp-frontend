@@ -33,7 +33,6 @@ interface RegionsProps {
 
 const Regions = (props: RegionsProps & GlobalPageSchema) => {
     const dynamicRegions = props.dynamicRegions || [];
-    console.log(props);
     return (
         <>
             {Object.values(dynamicRegions).map((region, i) => (
