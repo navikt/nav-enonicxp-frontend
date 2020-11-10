@@ -29,6 +29,7 @@ export enum ContentType {
     ContentList = 'no_nav_navno_ContentList',
     PageList = 'no_nav_navno_PageList',
     MainArticle = 'no_nav_navno_MainArticle',
+    MainArticleChapter = 'no_nav_navno_MainArticleChapter',
     Notification = 'no_nav_navno_Notification',
     LargeTable = 'no_nav_navno_LargeTable',
 }
@@ -39,6 +40,7 @@ export enum PartType {
     LinkLists = 'no.nav.navno:link-lists',
     PageHeading = 'no.nav.navno:page-heading',
     MainPanels = 'no.nav.navno:main-panels',
+    MainArticleLinkedList = 'no.nav.navno:main-article-linked-list',
 
     // Parts with own content
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
