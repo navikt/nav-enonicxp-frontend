@@ -47,7 +47,9 @@ export const MenuList = (props: MainArticleLinkedListProps) => {
                         {menuItem.link?.map((link) => {
                             const path = enonicPathToAppPath(link._path);
                             return (
-                                <Lenke href={path}>{link.displayName}</Lenke>
+                                <Lenke key={path} href={path}>
+                                    {link.displayName}
+                                </Lenke>
                             );
                         })}
                     </Ekspanderbartpanel>
