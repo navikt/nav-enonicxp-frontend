@@ -6,14 +6,14 @@ import { useRouter } from 'next/router';
 import { enonicPathToAppPath } from '../utils/paths';
 import { SiteProps } from '../types/content-types/site-props';
 
-// Not sure if this will ever be needed...
-
+// Redirects should now be handled in the catch-all router, leaving this in as a failsafe for now
 export const ClientsideRedirect = (
     props: ExternalLinkProps | InternalLinkProps | SiteProps
 ) => {
     const router = useRouter();
 
     useEffect(() => {
+        console.log(`Redirecting from ${props._path}`);
         if (props.__typename === ContentType.ExternalLink) {
             document.location.replace(props.data.url);
         } else if (props.__typename === ContentType.InternalLink) {
