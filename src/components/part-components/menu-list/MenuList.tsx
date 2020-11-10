@@ -2,28 +2,25 @@ import React from 'react';
 import { MainArticleProps } from 'types/content-types/main-article-props';
 import { RegionProps } from '../../page-components/_dynamic/DynamicRegions';
 import Lenke from 'nav-frontend-lenker';
-import { ContentType } from 'types/content-types/_schema';
 import { enonicPathToAppPath } from 'utils/paths';
 import { MainArticleChapterProps } from 'types/content-types/main-article-chapter-props';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { BEM } from 'utils/bem';
 import './MenuList.less';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 export type MainArticleLinkedListProps =
     | (RegionProps & MainArticleProps)
     | (RegionProps & MainArticleChapterProps);
 
 export const MenuList = (props: MainArticleLinkedListProps) => {
-    const bem = BEM('menu-list');
-
     const menuListItems = props.data?.menuListItems || [];
-    console.log(props);
+    const bem = BEM('menu-list');
 
     if (menuListItems.length === 0) {
         return null;
     }
 
-    // Oversett
+    // Todo: Oversett
     const titles = {
         selfservice: 'Selvbetjening',
         formAndApplication: 'Skjema og søknad',
@@ -43,6 +40,7 @@ export const MenuList = (props: MainArticleLinkedListProps) => {
                 .filter(([key, menuItem]) => key !== '_selected')
                 .map(([key, menuItem]) => (
                     <Ekspanderbartpanel
+                        key={key}
                         tittel={titles[key] || key}
                         className={bem('panel')}
                     >
