@@ -21,7 +21,6 @@ type Props = {
     breadcrumbs: Breadcrumb[];
     languages: Language[];
     notifications: NotificationProps[];
-    timestamp?: number;
 };
 
 export const PageBase = (props: Props) => {
@@ -34,7 +33,7 @@ export const PageBase = (props: Props) => {
         return <ErrorPage {...makeErrorProps('www.nav.no', 'Unknown error')} />;
     }
 
-    const { breadcrumbs, content, languages, notifications, timestamp } = props;
+    const { breadcrumbs, content, languages, notifications } = props;
 
     return (
         <PageWrapper
@@ -43,7 +42,6 @@ export const PageBase = (props: Props) => {
             languages={languages}
             notifications={notifications}
         >
-            {timestamp && <div>{timestamp}</div>}
             <ContentToComponentMapper content={content} />
         </PageWrapper>
     );
