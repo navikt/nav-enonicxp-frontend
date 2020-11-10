@@ -14,6 +14,8 @@ export const contentToComponentMap = {
     [ContentType.TransportPage]: DynamicPage,
     [ContentType.Fragment]: FragmentPage,
     [ContentType.DynamicPage]: DynamicPage,
+    [ContentType.MainArticle]: DynamicPage,
+    [ContentType.MainArticleChapter]: DynamicPage,
     [ContentType.LargeTable]: LargeTablePage,
     [ContentType.TemplatePage]: DynamicPage,
 };
