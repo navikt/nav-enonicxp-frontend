@@ -155,7 +155,7 @@ export const LegacyPage = (contentData: LegacyProps) => {
             <Head>
                 <script
                     type="text/javascript"
-                    src={`/legacy/scripts/navno.js`}
+                    src={`${process.env.APP_ORIGIN}/legacy/scripts/navno.js`}
                 />
             </Head>
             <div className={'legacy-container'}>

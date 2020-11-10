@@ -2,7 +2,7 @@
 
 .global-notifications {
     @numCols: 2;
-    @margin-between: 1rem;
+    @margin: 1rem;
 
     display: flex;
     justify-content: center;
@@ -12,11 +12,14 @@
     @media @screen-desktop {
         .notification {
             width: calc(
-                percentage(0.75 / @numCols) - @margin-between *
+                percentage(0.75 / @numCols) - @margin *
                     ((@numCols - 1) / @numCols)
             );
-            &:not(:nth-child(@{numCols}n)) {
-                margin-right: @margin-between;
+            &:not(:nth-child(@{numCols}n)):not(:last-child) {
+                margin-right: @margin / 2;
+            }
+            &:not(:nth-child(@{numCols}n-1)) {
+                margin-left: @margin / 2;
             }
         }
     }

@@ -31,10 +31,10 @@ const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
 };
 
 const fetchLegacyHtml = (path: string, draft = false) => {
-    const url = `${draft ? xpLegacyDraftUrl : xpLegacyUrl}/${
+    const url = `${draft ? xpLegacyDraftUrl : xpLegacyUrl}/${encodeURI(
         path[0] === '/' ? path.slice(1) : path
-    }`;
-    // console.log('fetching legacy html from:', url);
+    )}`;
+    console.log('fetching legacy html from:', url);
     return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (res.ok) {
@@ -55,7 +55,7 @@ const fetchContent = (
     const url = `${
         draft ? xpDraftServiceUrl : xpServiceUrl
     }/sitecontent?id=${encodeURIComponent(idOrPath)}`;
-    // console.log('fetching content from:', url);
+    console.log('fetching content from:', url);
     return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (res.ok) {
@@ -72,7 +72,7 @@ export const fetchNotifications = (
     draft = false
 ): Promise<NotificationProps[]> => {
     const url = `${draft ? xpDraftServiceUrl : xpServiceUrl}/notifications${
-        path ? `?path=${path}` : ''
+        path ? `?path=${encodeURIComponent(path)}` : ''
     }`;
     return fetchWithTimeout(url, 5000)
         .then((res) => {

@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const InfoIcon = () => (
-    <img src={'/gfx/info-sirkel-fyll.svg'} alt={''} />
-);
+export const InfoIcon = () => {
+    return <img src={`${process.env.APP_ORIGIN}/gfx/info-sirkel-fyll.svg`} alt={''} />
+};

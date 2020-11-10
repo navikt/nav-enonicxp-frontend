@@ -2,6 +2,7 @@
 
 .link-panels {
     @numCols: 3;
+    @incCols: 2;
     @margin: 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -22,8 +23,11 @@
             width: calc(
                 percentage(1 / @numCols) - @margin * ((@numCols - 1) / @numCols)
             );
-            &:not(:nth-child(@{numCols}n)) {
-                margin-right: @margin;
+            &:not(:nth-child(@{numCols}n)):not(:last-child) {
+                margin-right: @margin / 2;
+            }
+            &:not(:nth-child(@{numCols}n-@{incCols})) {
+                margin-left: @margin / 2;
             }
         }
     }
