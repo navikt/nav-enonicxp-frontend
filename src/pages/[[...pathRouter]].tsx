@@ -12,15 +12,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const props = await fetchPageBaseProps(enonicPath);
 
     const redirectTarget = getTargetIfRedirect(props.content);
-    if (redirectTarget) {
-        return {
-            props: props,
-            revalidate: 60,
-            redirect: { destination: redirectTarget, permanent: false },
-        };
-    }
 
-    return { props: props, revalidate: 1 };
+    return {
+        props: props,
+        revalidate: 1,
+        ...(redirectTarget && {
+            redirect: { destination: redirectTarget, permanent: false },
+        }),
+    };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
