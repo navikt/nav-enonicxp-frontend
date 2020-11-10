@@ -69,7 +69,6 @@ export type GlobalSchema = {
     modifiedTime: string;
     displayName: string;
     data: object;
-    didRedirect?: boolean;
     isDraft?: boolean;
 };
 

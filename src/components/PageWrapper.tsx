@@ -4,7 +4,6 @@ import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
 import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
-import { enonicPathToAppPath } from '../utils/paths';
 import { ContentTypeSchema } from '../types/content-types/_schema';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
@@ -72,10 +71,6 @@ export const PageWrapper = (props: Props) => {
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
 
-        const path = `${content.isDraft ? '/draft' : ''}${enonicPathToAppPath(
-            content._path
-        )}`;
-
         if (breadcrumbs) {
             setBreadcrumbs(
                 breadcrumbs.map((crumb) => ({ handleInApp: true, ...crumb }))
@@ -86,13 +81,6 @@ export const PageWrapper = (props: Props) => {
             setAvailableLanguages(
                 languages.map((lang) => ({ handleInApp: true, ...lang }))
             );
-        }
-
-        // Ensures the url displayed in the browser is correct after redirection
-        if (content.didRedirect && path) {
-            router.replace(path, undefined, {
-                shallow: true,
-            });
         }
     }, [content]);
 

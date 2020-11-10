@@ -110,8 +110,7 @@ export const fetchLanguages = (
 
 export const fetchPage = async (
     idOrPath: string,
-    isDraft = false,
-    didRedirect: boolean = false
+    isDraft = false
 ): Promise<ContentTypeSchema> => {
     const content = await fetchContent(idOrPath, isDraft);
 
@@ -130,10 +129,10 @@ export const fetchPage = async (
             }
         )) as ContentTypeSchema;
 
-        return { ...legacyContent, didRedirect: didRedirect, isDraft: isDraft };
+        return { ...legacyContent, isDraft: isDraft };
     }
 
     return content
-        ? { ...content, didRedirect: didRedirect, isDraft: isDraft }
+        ? { ...content, isDraft: isDraft }
         : makeErrorProps(idOrPath, `Unknown fetch error from ${idOrPath}`);
 };
