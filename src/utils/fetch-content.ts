@@ -2,22 +2,16 @@ import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
 import { makeErrorProps } from '../types/content-types/error-props';
 import { contentToComponentMap } from '../components/ContentToComponentMapper';
 import {
-    enonicDraftLegacyPath,
     xpContentBasePath,
-    enonicLegacyPath,
-    enonicDraftServicePath,
-    enonicServicePath,
+    xpLegacyDraftUrl,
+    xpLegacyUrl,
+    xpDraftServiceUrl,
+    xpServiceUrl,
 } from './paths';
 import { fetchWithTimeout } from './fetch-utils';
 import { Breadcrumb } from '../types/breadcrumb';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { Language } from '../types/languages';
-
-const xpOrigin = process.env.XP_ORIGIN;
-const xpServiceUrl = `${xpOrigin}${enonicServicePath}`;
-const xpDraftServiceUrl = `${xpOrigin}${enonicDraftServicePath}`;
-const xpLegacyUrl = `${xpOrigin}${enonicLegacyPath}`;
-const xpLegacyDraftUrl = `${xpOrigin}${enonicDraftLegacyPath}`;
 
 const fetchLegacyHtml = (path: string, draft = false) => {
     const url = `${draft ? xpLegacyDraftUrl : xpLegacyUrl}/${encodeURI(
