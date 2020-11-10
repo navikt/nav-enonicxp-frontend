@@ -18,16 +18,22 @@ const configWithAllTheThings = (config) =>
 const sanitizeUrl = (url) => encodeURI(url).replace(/\+/g, '%2B');
 
 const fetchRedirects = async () => {
-    const redirects = await fetch(
-        `${process.env.XP_ORIGIN}/_/service/no.nav.navno/redirects`
-    )
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
+    const redirects = await Promise.race([
+        new Promise((res) =>
+            setTimeout(() => {
+                console.error(`Failed to fetch redirects: service timed out`);
+                res(null);
+            }, 5000)
+        ),
+        fetch(`${process.env.XP_ORIGIN}/_/service/no.nav.navno/redirects`).then(
+            (res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                throw res.statusText;
             }
-            throw `Failed to fetch redirects: ${res.statusText}`;
-        })
-        .catch(console.error);
+        ),
+    ]).catch((err) => console.error(`Failed to fetch redirects: ${err}`));
 
     if (!redirects) {
         return [];
