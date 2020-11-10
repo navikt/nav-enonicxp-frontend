@@ -15,6 +15,8 @@ const withTranspileModules = require('next-transpile-modules')([
 const configWithAllTheThings = (config) =>
     withTranspileModules(withLess(withImages(config)));
 
+const sanitizeUrl = (url) => encodeURI(url).replace(/\+/g, '%2B');
+
 const fetchRedirects = async () => {
     const redirects = await fetch(
         `${process.env.XP_ORIGIN}/_/service/no.nav.navno/redirects`
@@ -36,8 +38,8 @@ const fetchRedirects = async () => {
             (redirect) => redirect && redirect.source && redirect.destination
         )
         .map((redirect) => ({
-            source: encodeURI(redirect.source.replace(/\+/g, '%2B')),
-            destination: encodeURI(redirect.destination.replace(/\+/g, '%2B')),
+            source: sanitizeUrl(redirect.source),
+            destination: sanitizeUrl(redirect.destination),
             permanent: false,
         }));
 };
