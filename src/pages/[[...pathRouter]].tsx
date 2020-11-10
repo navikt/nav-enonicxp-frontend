@@ -14,7 +14,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const redirectTarget = getTargetIfRedirect(props.content);
 
     return {
-        props: props,
+        props: { ...props, timestamp: Date.now() },
         revalidate: 1,
         ...(redirectTarget && {
             redirect: { destination: redirectTarget, permanent: false },
