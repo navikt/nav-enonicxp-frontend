@@ -8,7 +8,7 @@ import { SiteProps } from '../types/content-types/site-props';
 
 // Not sure if this will ever be needed...
 
-export const ClientSideRedirect = (
+export const ClientsideRedirect = (
     props: ExternalLinkProps | InternalLinkProps | SiteProps
 ) => {
     const router = useRouter();

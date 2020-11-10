@@ -6,7 +6,7 @@ import { makeErrorProps } from '../types/content-types/error-props';
 import { DynamicPage } from './page-components/_dynamic/DynamicPage';
 import { FragmentPage } from './page-components/fragment-page/FragmentPage';
 import LargeTablePage from './page-components/large-table-page/LargeTablePage';
-import { ClientSideRedirect } from './ClientSideRedirect';
+import { ClientsideRedirect } from './ClientsideRedirect';
 
 export const contentToComponentMap = {
     [ContentType.Error]: ErrorPage,
@@ -17,9 +17,9 @@ export const contentToComponentMap = {
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.LargeTable]: LargeTablePage,
     [ContentType.TemplatePage]: DynamicPage,
-    [ContentType.ExternalLink]: ClientSideRedirect,
-    [ContentType.InternalLink]: ClientSideRedirect,
-    [ContentType.Site]: ClientSideRedirect,
+    [ContentType.ExternalLink]: ClientsideRedirect,
+    [ContentType.InternalLink]: ClientsideRedirect,
+    [ContentType.Site]: ClientsideRedirect,
 };
 
 type Props = {

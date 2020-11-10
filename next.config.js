@@ -27,6 +27,10 @@ const fetchRedirects = async () => {
         })
         .catch(console.error);
 
+    if (!redirects) {
+        return [];
+    }
+
     return redirects
         .filter(
             (redirect) => redirect && redirect.source && redirect.destination
