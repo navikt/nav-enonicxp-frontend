@@ -11,8 +11,9 @@ export type MenuListProps = RegionProps & MainArticleProps;
 
 export const MenuList = (props: MenuListProps) => {
     const menuListItems = props.data?.menuListItems
-        ? Object.entries(props.data.menuListItems)
+        ? Object.entries(props.data?.menuListItems)
         : [];
+
     const selectedList = props.data?.menuListItems?.selected || [];
     const bem = BEM('menu-list');
 
@@ -44,14 +45,18 @@ export const MenuList = (props: MenuListProps) => {
                         tittel={titles[key] || key}
                         className={bem('panel')}
                     >
-                        {menuItem.link?.map((link) => {
-                            const path = xpPathToAppPath(link._path);
-                            return (
-                                <Lenke key={path} href={path}>
-                                    {link.displayName}
-                                </Lenke>
-                            );
-                        })}
+                        <ul>
+                            {menuItem.link?.map((link) => {
+                                const path = xpPathToAppPath(link._path);
+                                return (
+                                    <li key={path}>
+                                        <Lenke href={path}>
+                                            {link.displayName}
+                                        </Lenke>
+                                    </li>
+                                );
+                            })}
+                        </ul>
                     </Ekspanderbartpanel>
                 ))}
         </div>
