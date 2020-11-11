@@ -1,19 +1,25 @@
 export const xpContentBasePath = '/www.nav.no';
 export const localDraftPath = '/draft';
-export const enonicDraftPath = '/_/draft';
-export const enonicServicePath = '/_/service/no.nav.navno';
-export const enonicDraftServicePath = `${enonicDraftPath}${enonicServicePath}`;
-export const enonicLegacyPath = '/_/legacy';
-export const enonicDraftLegacyPath = '/_/legacy/draft';
+export const xpDraftPath = '/_/draft';
+export const xpServicePath = '/_/service/no.nav.navno';
+export const xpDraftServicePath = `${xpDraftPath}${xpServicePath}`;
+export const xpLegacyPath = '/_/legacy';
+export const xpDraftLegacyPath = '/_/legacy/draft';
 
-export type EnonicContentRef = string;
+export const xpOrigin = process.env.XP_ORIGIN;
+export const xpServiceUrl = `${xpOrigin}${xpServicePath}`;
+export const xpDraftServiceUrl = `${xpOrigin}${xpDraftServicePath}`;
+export const xpLegacyUrl = `${xpOrigin}${xpLegacyPath}`;
+export const xpLegacyDraftUrl = `${xpOrigin}${xpDraftLegacyPath}`;
+
+export type XpContentRef = string;
 
 export const getLocationOrigin = () =>
     process.env.APP_ORIGIN ||
     (typeof window !== 'undefined' && window.location.origin) ||
     '';
 
-export const isEnonicPath = (path: string) =>
+export const isXpPath = (path: string) =>
     /(www.*.nav.no|^nav.no|^)($|\/$|\/no|\/en|\/se|\/nav.no)/.test(path);
 
 export const isUUID = (id: string) =>
@@ -22,13 +28,13 @@ export const isUUID = (id: string) =>
         id
     );
 
-export const enonicPathToAppPath = (path: string) =>
-    isEnonicPath(path) ? path.split(xpContentBasePath).slice(-1)[0] : path;
+export const xpPathToAppPath = (path: string) =>
+    isXpPath(path) ? path.split(xpContentBasePath).slice(-1)[0] : path;
 
-export const enonicPathToUrl = (path: string) =>
-    `${getLocationOrigin()}${enonicPathToAppPath(path)}`;
+export const xpPathToUrl = (path: string) =>
+    `${getLocationOrigin()}${xpPathToAppPath(path)}`;
 
-export const routerQueryToEnonicPathOrId = (routerQuery: string | string[]) => {
+export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
     const possibleId =
         typeof routerQuery === 'string' ? routerQuery : routerQuery[0];
 

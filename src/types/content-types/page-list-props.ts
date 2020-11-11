@@ -1,11 +1,11 @@
 import { ContentType, GlobalSchema } from './_schema';
-import { EnonicContentRef } from '../../utils/paths';
+import { XpContentRef } from '../../utils/paths';
 
 export interface PageListProps extends GlobalSchema {
     __typename: ContentType.PageList;
     data: {
         ingress?: string;
-        sectionContents?: EnonicContentRef[];
+        sectionContents?: XpContentRef[];
         metaDescription?: string;
     };
 }

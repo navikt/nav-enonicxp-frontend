@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
-import { enonicLegacyPath } from 'utils/paths';
+import { xpLegacyPath } from 'utils/paths';
 import { LegacyProps } from 'types/content-types/legacy-props';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import Head from 'next/head';
@@ -65,7 +65,7 @@ const parseLegacyHtml = (htmlString: string) => {
 
             if (name?.toLowerCase() === 'a' && attribs?.href) {
                 const href = attribs.href
-                    .replace(enonicLegacyPath, '')
+                    .replace(xpLegacyPath, '')
                     .replace('https://www.nav.no', '');
 
                 const props = attributesToProps(attribs);
@@ -93,13 +93,13 @@ const parseLegacyHtml = (htmlString: string) => {
         replace: ({ name, attribs }: DomElement) => {
             const href = attribs?.href
                 ? attribs?.href?.charAt(0) === '/'
-                    ? `${xpOrigin}${attribs.href.replace(enonicLegacyPath, '')}`
+                    ? `${xpOrigin}${attribs.href.replace(xpLegacyPath, '')}`
                     : attribs.href
                 : undefined;
 
             const src = attribs?.src
                 ? attribs?.src?.charAt(0) === '/'
-                    ? `${xpOrigin}${attribs.src.replace(enonicLegacyPath, '')}`
+                    ? `${xpOrigin}${attribs.src.replace(xpLegacyPath, '')}`
                     : attribs.src
                 : undefined;
 

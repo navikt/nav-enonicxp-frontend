@@ -1,6 +1,6 @@
 {
     "name": "nav-enonicxp-frontend",
-    "version": "0.4.1",
+    "version": "0.4.10",
     "private": true,
     "scripts": {
         "dev": "next dev -p 3000",
@@ -41,7 +41,7 @@
         "nav-frontend-veileder-style": "^2.0.18",
         "nav-frontend-veilederpanel": "^0.1.32",
         "nav-frontend-veilederpanel-style": "0.0.32",
-        "next": "9.5.5",
+        "next": "^10.0.2-canary.5",
         "next-images": "^1.6.0",
         "prop-types": "^15.7.2",
         "react": "^16.14.0",

@@ -4,6 +4,10 @@ import { LenkeData } from 'types/lenke-data';
 import { Lenkeliste } from '../lenkeliste/Lenkeliste';
 import { sortContentByLastModified } from 'utils/sort';
 import { formatDate } from 'utils/datetime';
+import {
+    ContentType,
+    ContentTypeSchema,
+} from '../../../../types/content-types/_schema';
 
 type Props = {
     content: ContentListProps;
@@ -11,6 +15,16 @@ type Props = {
     sorted?: boolean;
     maxItems?: number;
     className?: string;
+};
+
+const getUrl = (content: ContentTypeSchema) => {
+    if (content.__typename === ContentType.InternalLink) {
+        return content.data.target._path;
+    }
+    if (content.__typename === ContentType.ExternalLink) {
+        return content.data.url;
+    }
+    return content._path;
 };
 
 export const ContentList = ({
@@ -23,13 +37,13 @@ export const ContentList = ({
     const lenkeData: LenkeData[] = content.data.sectionContents
         .sort(sorted ? sortContentByLastModified : undefined)
         .slice(0, maxItems)
-        .map((data) => ({
-            url: data._path,
-            lenketekst: data.displayName,
+        .map((scContent) => ({
+            url: getUrl(scContent),
+            lenketekst: scContent.displayName,
             label: showDateLabel
-                ? formatDate(data.modifiedTime || data.createdTime)
+                ? formatDate(scContent.modifiedTime || scContent.createdTime)
                 : undefined,
-            enonicId: data._id,
+            xpId: scContent._id,
         }));
 
     return (

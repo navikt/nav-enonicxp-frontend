@@ -2,7 +2,7 @@ import React from 'react';
 import { MainArticleProps } from 'types/content-types/main-article-props';
 import { RegionProps } from '../../page-components/_dynamic/DynamicRegions';
 import Lenke from 'nav-frontend-lenker';
-import { enonicPathToAppPath } from 'utils/paths';
+import { xpPathToAppPath } from 'utils/paths';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { BEM } from 'utils/bem';
 import './MenuList.less';
@@ -10,7 +10,10 @@ import './MenuList.less';
 export type MenuListProps = RegionProps & MainArticleProps;
 
 export const MenuList = (props: MenuListProps) => {
-    const menuListItems = props.data?.menuListItems || [];
+    const menuListItems = props.data?.menuListItems
+        ? Object.entries(props.data.menuListItems)
+        : [];
+    const selectedList = props.data?.menuListItems?.selected || [];
     const bem = BEM('menu-list');
 
     if (menuListItems.length === 0) {
@@ -33,8 +36,8 @@ export const MenuList = (props: MenuListProps) => {
 
     return (
         <div className={bem()}>
-            {Object.entries(menuListItems)
-                .filter(([key, menuItem]) => key !== '_selected')
+            {menuListItems
+                .filter(([key]) => selectedList.includes(key))
                 .map(([key, menuItem]) => (
                     <Ekspanderbartpanel
                         key={key}
@@ -42,7 +45,7 @@ export const MenuList = (props: MenuListProps) => {
                         className={bem('panel')}
                     >
                         {menuItem.link?.map((link) => {
-                            const path = enonicPathToAppPath(link._path);
+                            const path = xpPathToAppPath(link._path);
                             return (
                                 <Lenke key={path} href={path}>
                                     {link.displayName}
