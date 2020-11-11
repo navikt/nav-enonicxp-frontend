@@ -1,4 +1,13 @@
-import dayjs from 'dayjs';
+import dayjs, { locale } from 'dayjs';
+import 'dayjs/locale/nb';
+import 'dayjs/locale/en';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 
-export const formatDate = (datetime: string) =>
-    datetime ? dayjs(datetime).format('DD-MM-YYYY') : '';
+dayjs.extend(localizedFormat);
+export const formatDate = (datetime: string, locale: string = 'nb') => {
+    return datetime ? dayjs(datetime).locale(locale).format('L') : datetime;
+};
+
+export const formatDateTime = (datetime: string, locale:string = 'nb') => {
+    return datetime ? dayjs(datetime).locale(locale).format('LLL') : datetime;
+};

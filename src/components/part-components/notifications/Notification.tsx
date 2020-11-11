@@ -8,6 +8,7 @@ import { InfoIcon } from './icons/InfoIcon';
 import { hasIngress } from 'types/content-types/_type-guards';
 import { hasDescription } from 'types/content-types/_type-guards';
 import { BEM } from 'utils/bem';
+import { formatDate } from 'utils/datetime';
 import './Notification.less';
 
 type Target = NotificationProps['data']['target'];
@@ -60,7 +61,7 @@ export const Notification = (props: NotificationProps) => {
                 {showUpdated && (
                     <Undertekst
                         className={bem('updated')}
-                    >{`Sist oppdatert: ${modifiedTime}`}</Undertekst>
+                    >{`Sist oppdatert: ${formatDate(modifiedTime)}`}</Undertekst>
                 )}
             </>
         </LenkepanelNavNo>
