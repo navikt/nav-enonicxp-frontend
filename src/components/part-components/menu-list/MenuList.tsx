@@ -10,7 +10,8 @@ import './MenuList.less';
 export type MenuListProps = RegionProps & MainArticleProps;
 
 export const MenuList = (props: MenuListProps) => {
-    const menuListItems = props.data?.menuListItems || [];
+    const menuListItems = Object.entries(props.data?.menuListItems) || [];
+    const selectedList = props.data?.menuListItems?.selected || [];
     const bem = BEM('menu-list');
 
     if (menuListItems.length === 0) {
@@ -33,8 +34,8 @@ export const MenuList = (props: MenuListProps) => {
 
     return (
         <div className={bem()}>
-            {Object.entries(menuListItems)
-                .filter(([key, menuItem]) => key !== '_selected')
+            {menuListItems
+                .filter(([key]) => selectedList.includes(key))
                 .map(([key, menuItem]) => (
                     <Ekspanderbartpanel
                         key={key}
