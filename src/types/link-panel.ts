@@ -1,4 +1,4 @@
-import { EnonicContentRef } from '../utils/paths';
+import { XpContentRef } from '../utils/paths';
 
 export type LinkPanel = {
     title: string;
@@ -6,6 +6,6 @@ export type LinkPanel = {
     spanning?: boolean;
     url: {
         text?: string;
-        ref?: EnonicContentRef;
+        ref?: XpContentRef;
     };
 };

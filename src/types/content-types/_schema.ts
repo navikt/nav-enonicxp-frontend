@@ -1,7 +1,7 @@
 import { ExternalLinkProps } from './external-link-props';
 import { InternalLinkProps } from './internal-link-props';
 import { ContentListProps } from './content-list-props';
-import { EnonicContentRef } from '../../utils/paths';
+import { XpContentRef } from '../../utils/paths';
 import { LegacyProps } from './legacy-props';
 import { PageListProps } from './page-list-props';
 import { MainArticleProps } from './main-article-props';
@@ -66,13 +66,12 @@ export type ContentTypeSchema =
 
 export type GlobalSchema = {
     __typename: ContentType;
-    _id: EnonicContentRef;
-    _path: EnonicContentRef;
+    _id: XpContentRef;
+    _path: XpContentRef;
     createdTime: string;
     modifiedTime: string;
     displayName: string;
     data: object;
-    didRedirect?: boolean;
     isDraft?: boolean;
 };
 

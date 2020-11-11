@@ -2,33 +2,16 @@ import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
 import { makeErrorProps } from '../types/content-types/error-props';
 import { contentToComponentMap } from '../components/ContentToComponentMapper';
 import {
-    enonicDraftLegacyPath,
     xpContentBasePath,
-    enonicLegacyPath,
-    enonicDraftServicePath,
-    enonicServicePath,
+    xpLegacyDraftUrl,
+    xpLegacyUrl,
+    xpDraftServiceUrl,
+    xpServiceUrl,
 } from './paths';
 import { fetchWithTimeout } from './fetch-utils';
 import { Breadcrumb } from '../types/breadcrumb';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { Language } from '../types/languages';
-
-const xpOrigin = process.env.XP_ORIGIN;
-const xpServiceUrl = `${xpOrigin}${enonicServicePath}`;
-const xpDraftServiceUrl = `${xpOrigin}${enonicDraftServicePath}`;
-const xpLegacyUrl = `${xpOrigin}${enonicLegacyPath}`;
-const xpLegacyDraftUrl = `${xpOrigin}${enonicDraftLegacyPath}`;
-
-const getTargetIfRedirect = (contentData: ContentTypeSchema) => {
-    switch (contentData?.__typename) {
-        case ContentType.Site:
-            return '/www.nav.no/forsiden';
-        case ContentType.InternalLink:
-            return contentData.data.target._path;
-        default:
-            return null;
-    }
-};
 
 const fetchLegacyHtml = (path: string, draft = false) => {
     const url = `${draft ? xpLegacyDraftUrl : xpLegacyUrl}/${encodeURI(
@@ -127,16 +110,9 @@ export const fetchLanguages = (
 
 export const fetchPage = async (
     idOrPath: string,
-    isDraft = false,
-    didRedirect: boolean = false
+    isDraft = false
 ): Promise<ContentTypeSchema> => {
     const content = await fetchContent(idOrPath, isDraft);
-
-    const redirectTarget = getTargetIfRedirect(content);
-
-    if (redirectTarget) {
-        return fetchPage(redirectTarget, isDraft, true);
-    }
 
     if (content && !contentToComponentMap[content.__typename]) {
         const path = content._path?.replace(xpContentBasePath, '');
@@ -153,10 +129,10 @@ export const fetchPage = async (
             }
         )) as ContentTypeSchema;
 
-        return { ...legacyContent, didRedirect: didRedirect, isDraft: isDraft };
+        return { ...legacyContent, isDraft: isDraft };
     }
 
     return content
-        ? { ...content, didRedirect: didRedirect, isDraft: isDraft }
+        ? { ...content, isDraft: isDraft }
         : makeErrorProps(idOrPath, `Unknown fetch error from ${idOrPath}`);
 };

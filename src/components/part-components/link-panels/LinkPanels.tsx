@@ -1,8 +1,11 @@
 import React from 'react';
 import { BEM } from 'utils/bem';
-import { GlobalPageSchema, PageData } from 'types/content-types/_schema';
-import { ContentTypeSchema } from 'types/content-types/_schema';
-import { ContentType } from 'types/content-types/_schema';
+import {
+    ContentType,
+    ContentTypeSchema,
+    GlobalPageSchema,
+    PageData,
+} from 'types/content-types/_schema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelNavNo from '../_common/lenkepanel/LenkepanelNavNo';
 import './LinkPanels.less';
@@ -22,6 +25,11 @@ const getLinkData = (
     }
 
     switch (contentData.__typename) {
+        case ContentType.InternalLink:
+            return {
+                url: contentData.data.target._path,
+                tittel: contentData.displayName,
+            };
         case ContentType.ExternalLink:
             return {
                 url: contentData.data.url,

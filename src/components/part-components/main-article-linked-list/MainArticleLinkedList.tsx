@@ -3,7 +3,7 @@ import { MainArticleProps } from 'types/content-types/main-article-props';
 import { RegionProps } from '../../page-components/_dynamic/DynamicRegions';
 import Lenke from 'nav-frontend-lenker';
 import { ContentType } from 'types/content-types/_schema';
-import { enonicPathToAppPath } from 'utils/paths';
+import { xpPathToAppPath } from 'utils/paths';
 import { MainArticleChapterProps } from 'types/content-types/main-article-chapter-props';
 import { BEM } from 'utils/bem';
 import './MainArticleLinkedList.less';
@@ -24,8 +24,8 @@ export const MainArticleLinkedList = (props: MainArticleLinkedListProps) => {
         return null;
     }
 
-    const currentPath = enonicPathToAppPath(props._path);
-    const parentPath = enonicPathToAppPath(props.parent?._path || props._path);
+    const currentPath = xpPathToAppPath(props._path);
+    const parentPath = xpPathToAppPath(props.parent?._path || props._path);
     const parentTitle = props.parent?.displayName || props.displayName;
     const parentSelected = parentPath === currentPath;
 
@@ -41,7 +41,7 @@ export const MainArticleLinkedList = (props: MainArticleLinkedListProps) => {
                     </Lenke>
                 </li>
                 {chapters.map((chapter) => {
-                    const chapterPath = enonicPathToAppPath(chapter._path);
+                    const chapterPath = xpPathToAppPath(chapter._path);
                     const chapterSelected = currentPath === chapterPath;
                     return (
                         <li key={chapter._path}>
