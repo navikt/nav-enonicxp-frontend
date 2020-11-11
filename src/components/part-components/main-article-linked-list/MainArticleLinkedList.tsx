@@ -20,6 +20,10 @@ export const MainArticleLinkedList = (props: MainArticleLinkedListProps) => {
         (child) => child.__typename === ContentType.MainArticleChapter
     );
 
+    if (chapters.length === 0) {
+        return null;
+    }
+
     const currentPath = xpPathToAppPath(props._path);
     const parentPath = xpPathToAppPath(props.parent?._path || props._path);
     const parentTitle = props.parent?.displayName || props.displayName;
