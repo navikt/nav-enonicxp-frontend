@@ -55,6 +55,12 @@ module.exports = configWithAllTheThings({
     env: {
         APP_ORIGIN: process.env.APP_ORIGIN,
     },
+    rewrites: async () => [
+        {
+            source: '/sitemap.xml',
+            destination: `${process.env.ADMIN_ORIGIN}/_/legacy/sitemap.xml`,
+        },
+    ],
     headers: async () => {
         return [
             {
