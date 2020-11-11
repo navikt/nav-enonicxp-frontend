@@ -1,15 +1,13 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { routerQueryToEnonicPathOrId } from '../utils/paths';
+import { routerQueryToXpPathOrId } from '../utils/paths';
 import PageBase, { fetchPageBaseProps } from '../components/PageBase';
 import { getTargetIfRedirect } from '../utils/redirects';
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const enonicPath = routerQueryToEnonicPathOrId(
-        context?.params?.pathRouter || ''
-    );
+    const xpPath = routerQueryToXpPathOrId(context?.params?.pathRouter || '');
 
-    const props = await fetchPageBaseProps(enonicPath);
+    const props = await fetchPageBaseProps(xpPath);
 
     const redirectTarget = getTargetIfRedirect(props.content);
 

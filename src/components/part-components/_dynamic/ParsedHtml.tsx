@@ -1,6 +1,6 @@
 import React from 'react';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import { xpLegacyPath, isEnonicPath } from '../../../utils/paths';
+import { xpLegacyPath, isXpPath } from '../../../utils/paths';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import Link from 'next/link';
@@ -41,7 +41,7 @@ export const ParsedHtml = (props: Props) => {
                     .replace('https://www.nav.no', '');
                 const props = attributesToProps(attribs);
 
-                return isEnonicPath(href) ? (
+                return isXpPath(href) ? (
                     <Link href={href} passHref={true}>
                         <Lenke {...props}>
                             {children && domToReact(children)}

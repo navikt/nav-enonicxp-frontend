@@ -2,7 +2,7 @@ import React from 'react';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import Link from 'next/link';
 import { Undertittel } from 'nav-frontend-typografi';
-import { isEnonicPath } from 'utils/paths';
+import { isXpPath } from 'utils/paths';
 import { DynamicLinkPanel } from 'types/content-types/_dynamic/link-panel';
 import { BEM } from 'utils/bem';
 import './LinkPanel.less';
@@ -18,7 +18,7 @@ export const LinkPanel = (props: DynamicLinkPanel) => {
 
     const { dynamic_link_panel } = props?.part?.config?.no_nav_navno;
     const { title, description, background } = dynamic_link_panel;
-    const isInternalUrl = isEnonicPath('/');
+    const isInternalUrl = isXpPath('/');
 
     return (
         <LenkepanelBase

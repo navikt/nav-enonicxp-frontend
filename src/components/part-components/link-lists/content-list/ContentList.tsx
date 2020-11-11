@@ -43,7 +43,7 @@ export const ContentList = ({
             label: showDateLabel
                 ? formatDate(scContent.modifiedTime || scContent.createdTime)
                 : undefined,
-            enonicId: scContent._id,
+            xpId: scContent._id,
         }));
 
     return (

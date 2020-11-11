@@ -48,10 +48,10 @@ export const PageBase = (props: Props) => {
 };
 
 export const fetchPageBaseProps = async (
-    enonicPath: string,
+    xpPath: string,
     isDraft = false
 ): Promise<Props> => {
-    const content = await fetchPage(enonicPath, isDraft);
+    const content = await fetchPage(xpPath, isDraft);
 
     if (
         content.__typename === ContentType.Error ||

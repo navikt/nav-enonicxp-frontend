@@ -1,5 +1,5 @@
 import React from 'react';
-import { enonicPathToAppPath, isEnonicPath } from '../../../../utils/paths';
+import { xpPathToAppPath, isXpPath } from '../../../../utils/paths';
 import { logLinkClick } from '../../../../utils/amplitude';
 import Link from 'next/link';
 
@@ -20,8 +20,8 @@ export const LenkeUstylet = ({
     analyticsLabel,
     children,
 }: Props) => {
-    const isInternalLink = isEnonicPath(href);
-    const _href = (isInternalLink ? enonicPathToAppPath(href) : href) || '/';
+    const isInternalLink = isXpPath(href);
+    const _href = (isInternalLink ? xpPathToAppPath(href) : href) || '/';
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);
 

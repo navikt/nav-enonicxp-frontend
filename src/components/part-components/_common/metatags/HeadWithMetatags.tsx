@@ -7,7 +7,7 @@ import {
     hasIngress,
     hasMetaDescription,
 } from '../../../../types/content-types/_type-guards';
-import { enonicPathToUrl, getLocationOrigin } from '../../../../utils/paths';
+import { xpPathToUrl, getLocationOrigin } from '../../../../utils/paths';
 
 type Props = {
     content: ContentTypeSchema;
@@ -35,7 +35,7 @@ const getDescription = (content: ContentTypeSchema) => {
 export const HeadWithMetatags = ({ content, children }: Props) => {
     const title = `${content.displayName} - nav.no`;
     const description = getDescription(content).slice(0, descriptionMaxLength);
-    const url = enonicPathToUrl(content._path);
+    const url = xpPathToUrl(content._path);
     const canonicalUrl = hasCanonicalUrl(content.data)
         ? content.data.canonicalUrl
         : url;
