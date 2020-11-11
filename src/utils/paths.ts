@@ -36,7 +36,7 @@ export const xpPathToUrl = (path: string) =>
 
 export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
     const possibleId =
-        typeof routerQuery === 'string' ? routerQuery : routerQuery[0];
+        typeof routerQuery === 'string' ? routerQuery : routerQuery[1];
 
     if (isUUID(possibleId)) {
         return possibleId;
