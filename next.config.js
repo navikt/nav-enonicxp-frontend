@@ -58,7 +58,7 @@ module.exports = configWithAllTheThings({
     rewrites: async () => [
         {
             source: '/sitemap.xml',
-            destination: `${process.env.ADMIN_ORIGIN}/_/legacy/sitemap.xml`,
+            destination: `${process.env.XP_ORIGIN}/_/legacy/sitemap.xml`,
         },
     ],
     headers: async () => {
