@@ -25,12 +25,12 @@ const fetchDecorator = (queryString?: string) => {
         .catch(console.error);
 };
 
-export const getDecorator = async () => {
-    const params = {
+export const getDecorator = async (params?: object) => {
+    const defaultParams = {
         chatbot: true,
     };
 
-    const query = objectToQueryString(params);
+    const query = objectToQueryString({ ...params, ...defaultParams });
 
     const decoratorBody = await fetchDecorator(query);
 
