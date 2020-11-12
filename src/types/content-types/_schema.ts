@@ -14,6 +14,8 @@ import { LargeTableProps } from './large-table-props';
 import { LinkPanel } from '../link-panel';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
+import { MainArticleChapterProps } from './main-article-chapter-props';
+import { MainArticleLinkedListProps } from '../../components/part-components/main-article-linked-list/MainArticleLinkedList';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -109,9 +111,13 @@ export interface PageData {
 
     // Main Article
     displayName: string,
-    contentType: string,
     hasTableOfContents: string,
     text: string
+    article: {
+        data: {
+            text: string
+        }
+    }
 
     // Legacy page
     html?: string;

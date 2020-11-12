@@ -5,6 +5,9 @@ import { ContentType } from 'types/content-types/_schema';
 import { MainArticleMock } from './MainArticleMock';
 import { ParsedHtml } from '../_dynamic/ParsedHtml';
 import './MainArticle.less';
+import { formatDate } from '../../../utils/datetime';
+import { MainArticleProps } from '../../../types/content-types/main-article-props';
+import { MainArticleChapterProps } from '../../../types/content-types/main-article-chapter-props';
 
 
 const parseInnholdsfortegnelse = (htmlText: string) => {
@@ -31,20 +34,20 @@ const parseInnholdsfortegnelse = (htmlText: string) => {
     return toc;
 }
 
-function getDate(content: GlobalPageSchema, language: string ) {
+function getDate(content: MainArticleProps |  MainArticleChapterProps ) {
     if (!content) {
         return '';
     }
     const p = (content.publish?.from ? content.publish?.from : content.createdTime);
     // TODO: oversett
-    const published = `Publisert: ${new Date(p)}`;
+    const published = `Publisert: ${formatDate(p)}`;
     const publishedString = `${published}`;
 
     let modifiedString = '';
     const m = (content.modifiedTime);
     if (new Date(m) > new Date(p)) {
         // TODO: oversett
-        const lastModified = `Sist endret: ${new Date(content.modifiedTime) }`;
+        const lastModified = `Sist endret: ${formatDate(content.modifiedTime) }`;
         modifiedString = ` | ${lastModified}`;
     }
     return publishedString + modifiedString;
@@ -60,27 +63,34 @@ const cleanupHtml = (htmlText: string) => {
     return cleanHtml;
 }
 
-export const MainArticle = (props: GlobalPageSchema) => {
-    const type = props.__typename;
-    const data =
-        type === ContentType.TemplatePage
-            ? (MainArticleMock as PageData)
-            : props.data;
+export const MainArticle = (props: MainArticleProps | MainArticleChapterProps) => {
+    let data, content;
+    if (props.__typename === ContentType.TemplatePage) {
+        data = (MainArticleMock as PageData)
+        content = props;
+    } else if (props.__typename === ContentType.MainArticleChapter) {
+        data = props.data.article.data
+        content = props.data.article;
+    } else {
+        data = props.data;
+        content = props;
+    }
+
 
     const innholdsfortegnelse = data.hasTableOfContents && data.hasTableOfContents !== 'none' ?
         parseInnholdsfortegnelse(data.text) : [];
 
-
+    console.log(props);
     return (
         <article
             id="pagecontent"
             className="main-article"
         >
             <header className="article-head">
-                <time dateTime={props.publish?.from}>
-                    {getDate(props, props.language)}
+                <time dateTime={content.publish?.from}>
+                    {getDate(content)}
                 </time>
-                <h1>{props.displayName}</h1>
+                <h1>{content.displayName}</h1>
                 <p className="preface">{data.ingress}</p>
                 { data.hasTableOfContents && data.hasTableOfContents !== 'none' &&
                     <nav className="table-of-contents" data-selected-id>
@@ -97,7 +107,7 @@ export const MainArticle = (props: GlobalPageSchema) => {
                     </nav>
                 }
             </header>
-            <ParsedHtml content={cleanupHtml(data.text)}/>
+            <ParsedHtml content={cleanupHtml(  data?.article?.data?.text || data.text)}/>
         </article>
 
     );

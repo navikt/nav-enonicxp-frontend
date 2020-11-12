@@ -7,6 +7,14 @@ export interface MainArticleChapterProps extends GlobalSchema {
     children: undefined;
     parent: MainArticleProps;
     data: {
-        menuListItems?: MenuListItem;
+        article: {
+            data: {
+                menuListItems?: MenuListItem;
+            }
+            publish?: {
+                from: string;
+            };
+            language?: string;
+        }
     };
 }

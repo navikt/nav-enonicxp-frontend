@@ -25,6 +25,8 @@ import { MainArticleLinkedList } from '../../part-components/main-article-linked
 import { MenuListProps } from '../../part-components/menu-list/MenuList';
 import { MenuList } from '../../part-components/menu-list/MenuList';
 import { MainArticle } from '../../part-components/main-article/MainArticle';
+import { MainArticleChapterProps } from '../../../types/content-types/main-article-chapter-props';
+import { MainArticleProps } from '../../../types/content-types/main-article-props';
 import './DynamicRegions.less';
 
 const bem = BEM('region');
@@ -34,7 +36,9 @@ interface RegionsProps {
     dynamicConfig?: DynamicRegionConfig;
 }
 
-const Regions = (props: RegionsProps & GlobalPageSchema) => {
+type PageProps = MainArticleChapterProps | MainArticleProps | MainArticleLinkedListProps;
+
+const Regions = (props: RegionsProps & GlobalPageSchema & PageProps) => {
     const dynamicRegions = props.dynamicRegions || [];
     return (
         <>
@@ -56,7 +60,8 @@ export interface RegionProps {
     dynamicConfig?: DynamicRegionConfig;
 }
 
-export const Region = (props: RegionProps & GlobalPageSchema) => {
+
+export const Region = (props: RegionProps & GlobalPageSchema & PageProps) => {
     const dynamicRegionComponents = props.dynamicRegion.components || [];
     const dynamicConfig = props.dynamicConfig;
     const { name } = props.dynamicRegion;
@@ -149,7 +154,7 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 [PartType.MenuList]: (
                                     <MenuList {...(props as MenuListProps)} />
                                 ),
-                                [PartType.MainArticle]: <MainArticle {...props} />
+                                [PartType.MainArticle]: <MainArticle {...(props as (MainArticleChapterProps | MainArticleProps))} />
                             }[descriptor] || (
                                 <div className={bem('unimplemented')}>
                                     {`Unimplemented part: ${descriptor}`}

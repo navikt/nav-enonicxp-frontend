@@ -3,12 +3,26 @@ import { MainArticleChapterProps } from './main-article-chapter-props';
 import { MenuListItem } from './menuListItems';
 
 export interface MainArticleProps extends GlobalPageSchema {
-    __typename: ContentType.MainArticle;
+    __typename: ContentType.MainArticle | ContentType.TemplatePage | ContentType.MainArticleChapter;
     children: MainArticleChapterProps[];
     parent: undefined;
     data: {
-        ingress?: string;
-        metaDescription?: string;
-        menuListItems?: MenuListItem;
+        displayName: string;
+        article: {
+            data: {
+                text: string
+            }
+        };
+        ingress: string;
+        metaDescription: string;
+        menuListItems: MenuListItem;
+        text: string;
+        hasTableOfContents: string;
     };
+    publish?: {
+        from: string;
+    };
+    language: string;
 }
+
+
