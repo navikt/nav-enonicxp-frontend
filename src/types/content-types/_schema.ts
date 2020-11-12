@@ -52,6 +52,7 @@ export enum PartType {
     // Deprecated parts - remove after release
     Notifications = 'no.nav.navno:notifications',
     BreakingNews = 'no.nav.navno:breaking-news',
+    PageCrumbs = 'no.nav.navno:page-crumbs',
 }
 
 export type ContentTypeSchema =

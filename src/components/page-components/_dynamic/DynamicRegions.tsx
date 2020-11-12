@@ -152,6 +152,7 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 // Deprecated parts - remove after release
                                 [PartType.Notifications]: <></>,
                                 [PartType.BreakingNews]: <></>,
+                                [PartType.PageCrumbs]: <></>,
                             }[descriptor] || (
                                 <div className={bem('unimplemented')}>
                                     {`Unimplemented part: ${descriptor}`}
