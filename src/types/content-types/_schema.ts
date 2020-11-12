@@ -48,6 +48,10 @@ export enum PartType {
     SupervisorPanel = 'no.nav.navno:dynamic-supervisor-panel',
     Alert = 'no.nav.navno:dynamic-alert',
     ReadMorePanel = 'no.nav.navno:dynamic-read-more-panel',
+
+    // Deprecated parts - remove after release
+    Notifications = 'no.nav.navno:notifications',
+    BreakingNews = 'no.nav.navno:breaking-news',
 }
 
 export type ContentTypeSchema =
