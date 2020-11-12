@@ -2,16 +2,23 @@
     display: flex;
     flex-direction: column;
 
-    p {
+    p:not(:last-child) {
         margin-bottom: 1rem;
     }
 
     .search {
-        margin-top: 1.5rem;
+        margin-top: 2rem;
     }
 
-    &__english-header {
-        margin-top: 1.5rem;
+    &__content-en {
+        margin-top: 3rem;
+    }
+
+    &__en-header {
         margin-bottom: 0.5rem;
     }
+}
+
+.brodsmulesti li:nth-child(2):not(:last-child) {
+    display: none;
 }

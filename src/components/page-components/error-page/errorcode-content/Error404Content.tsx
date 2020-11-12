@@ -5,47 +5,54 @@ import { SearchForm } from './search-form/SearchForm';
 import { LenkeInline } from '../../../part-components/_common/lenke/LenkeInline';
 import './Error404Content.less';
 
-const frontpageHref = '/';
-const feedbackHref = `${process.env.APP_ORIGIN}/person/kontakt-oss/tilbakemeldinger/feil-og-mangler`;
+const origin = process.env.APP_ORIGIN;
+const frontpageHref = origin;
+const feedbackHref = `${origin}/person/kontakt-oss/tilbakemeldinger/feil-og-mangler`;
 
 export const Error404Content = () => {
     const bem = BEM('error404');
 
     return (
         <div className={bem()}>
-            <Normaltekst>
-                {
-                    'Beklager, siden kan være slettet eller flyttet, eller det var en feil i lenken som førte deg hit.'
-                }
-            </Normaltekst>
+            <div className={bem('content')}>
+                <Normaltekst>
+                    {
+                        'Beklager, siden kan være slettet eller flyttet, eller det var en feil i lenken som førte deg hit.'
+                    }
+                </Normaltekst>
 
-            <Normaltekst>
-                {'Bruk gjerne søket, menyen eller '}
-                <LenkeInline href={frontpageHref}>
-                    {'gå til forsiden'}
-                </LenkeInline>
-                {'.'}
-            </Normaltekst>
+                <Normaltekst>
+                    {'Bruk gjerne søket, menyen eller '}
+                    <LenkeInline href={frontpageHref}>
+                        {'gå til forsiden'}
+                    </LenkeInline>
+                    {'.'}
+                </Normaltekst>
 
-            <Normaltekst>
-                <LenkeInline href={feedbackHref}>
-                    {'Meld gjerne fra om denne lenken'}
-                </LenkeInline>
-            </Normaltekst>
+                <Normaltekst>
+                    <LenkeInline href={feedbackHref}>
+                        {'Meld gjerne fra om denne lenken'}
+                    </LenkeInline>
+                </Normaltekst>
+            </div>
 
             <SearchForm />
 
-            <Undertittel className={bem('english-header')}>
-                {'In English'}
-            </Undertittel>
-            <Normaltekst>
-                {'The page you requested cannot be found.'}
-            </Normaltekst>
-            <Normaltekst>
-                {'Go to the '}
-                <LenkeInline href={frontpageHref}>{'front page'}</LenkeInline>
-                {', or use one of the links in the menu.'}
-            </Normaltekst>
+            <div className={bem('content-en')}>
+                <Undertittel className={bem('en-header')}>
+                    {'In English'}
+                </Undertittel>
+                <Normaltekst>
+                    {'The page you requested cannot be found.'}
+                </Normaltekst>
+                <Normaltekst>
+                    {'Go to the '}
+                    <LenkeInline href={frontpageHref}>
+                        {'front page'}
+                    </LenkeInline>
+                    {', or use one of the links in the menu.'}
+                </Normaltekst>
+            </div>
         </div>
     );
 };

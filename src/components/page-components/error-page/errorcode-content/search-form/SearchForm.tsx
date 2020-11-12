@@ -24,7 +24,7 @@ export const SearchForm = () => {
 
     return (
         <div className={bem()}>
-            <Undertittel id={'search-header'}>
+            <Undertittel className={bem('header')} id={'search-header'}>
                 {'Hva leter du etter?'}
             </Undertittel>
 
