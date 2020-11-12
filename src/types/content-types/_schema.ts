@@ -42,6 +42,7 @@ export enum PartType {
     MainPanels = 'no.nav.navno:main-panels',
     MainArticleLinkedList = 'no.nav.navno:main-article-linked-list',
     MenuList = 'no.nav.navno:menu-list',
+    PageList = 'no.nav.navno:page-list',
 
     // Parts with own content
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
@@ -101,6 +102,9 @@ export interface PageData {
     ntkContents?: ContentListProps;
     nrSC?: number;
     scContents?: ContentListProps;
+
+    // PageList
+    sectionContents?: GlobalPageSchema[];
 
     // Legacy page
     html?: string;

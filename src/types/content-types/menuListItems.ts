@@ -5,6 +5,8 @@ interface LinkItem {
 }
 
 export interface MenuListItem {
+    selected: string[];
+    _selected: string[];
     selfservice: LinkItem;
     formAndApplication: LinkItem;
     processTimes: LinkItem;
@@ -14,6 +16,5 @@ export interface MenuListItem {
     rates: LinkItem;
     appealRights: LinkItem;
     membership: LinkItem;
-    selected: string[];
     rulesAndRegulations: LinkItem;
 }

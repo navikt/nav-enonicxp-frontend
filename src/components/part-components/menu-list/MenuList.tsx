@@ -10,14 +10,13 @@ import './MenuList.less';
 export type MenuListProps = RegionProps & MainArticleProps;
 
 export const MenuList = (props: MenuListProps) => {
-    const menuListItems = props.data?.menuListItems
-        ? Object.entries(props.data?.menuListItems)
-        : [];
-
-    const selectedList = props.data?.menuListItems?.selected || [];
     const bem = BEM('menu-list');
+    const data = props.data;
+    const menuListItems = data?.menuListItems;
+    const entries = menuListItems ? Object.entries(menuListItems) : [];
+    const selected = menuListItems?.selected || menuListItems?._selected || [];
 
-    if (menuListItems.length === 0) {
+    if (entries.length === 0) {
         return null;
     }
 
@@ -33,12 +32,13 @@ export const MenuList = (props: MenuListProps) => {
         appealRights: 'Klagerettigheter',
         membership: 'Medlemsskap i folketrygden',
         rulesAndRegulations: 'Regelverk',
+        shortcuts: 'Snareveier',
     };
 
     return (
         <div className={bem()}>
-            {menuListItems
-                .filter(([key]) => selectedList.includes(key))
+            {entries
+                .filter(([key]) => selected.includes(key))
                 .map(([key, menuItem]) => (
                     <Ekspanderbartpanel
                         key={key}
