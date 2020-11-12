@@ -17,7 +17,8 @@ export const SearchForm = () => {
     const bem = BEM('search');
     const [searchTerm, setSearchTerm] = useState('');
 
-    const onSearchSubmit = () => {
+    const onSearchSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
         window.location.assign(`${searchHref}?ord=${searchTerm}`);
     };
 
@@ -27,13 +28,7 @@ export const SearchForm = () => {
                 {'Hva leter du etter?'}
             </Undertittel>
 
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    onSearchSubmit();
-                }}
-                className={bem('form')}
-            >
+            <form onSubmit={onSearchSubmit} className={bem('form')}>
                 <Input
                     aria-labelledby={'search-header'}
                     className={bem('input')}
