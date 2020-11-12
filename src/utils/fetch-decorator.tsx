@@ -30,7 +30,7 @@ export const getDecorator = async (params?: object) => {
         chatbot: true,
     };
 
-    const query = objectToQueryString({ ...params, ...defaultParams });
+    const query = objectToQueryString({ ...defaultParams, ...params });
 
     const decoratorBody = await fetchDecorator(query);
 
