@@ -71,7 +71,7 @@ export type GlobalSchema = {
     createdTime: string;
     modifiedTime: string;
     displayName: string;
-    data: object;
+    data?: object;
     isDraft?: boolean;
 };
 

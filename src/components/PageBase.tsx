@@ -47,7 +47,7 @@ export const PageBase = (props: Props) => {
     );
 };
 
-export const fetchPageBaseProps = async (
+export const fetchPageProps = async (
     xpPath: string,
     isDraft = false
 ): Promise<Props> => {

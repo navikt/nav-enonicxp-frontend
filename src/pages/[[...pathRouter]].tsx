@@ -1,13 +1,21 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { routerQueryToXpPathOrId } from '../utils/paths';
-import PageBase, { fetchPageBaseProps } from '../components/PageBase';
+import PageBase, { fetchPageProps } from '../components/PageBase';
 import { getTargetIfRedirect } from '../utils/redirects';
+import { ContentType } from '../types/content-types/_schema';
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const xpPath = routerQueryToXpPathOrId(context?.params?.pathRouter || '');
 
-    const props = await fetchPageBaseProps(xpPath);
+    const props = await fetchPageProps(xpPath);
+
+    if (
+        props.content?.__typename === ContentType.Error &&
+        props.content.errorCode === 404
+    ) {
+        return { notFound: true };
+    }
 
     const redirectTarget = getTargetIfRedirect(props.content);
 
@@ -23,7 +31,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
         paths: [],
-        fallback: true,
+        fallback: 'blocking',
     };
 };
 
