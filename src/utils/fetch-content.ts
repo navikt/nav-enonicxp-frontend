@@ -5,19 +5,19 @@ import {
     xpContentBasePath,
     xpLegacyDraftUrl,
     xpLegacyUrl,
-    xpDraftServiceUrl,
     xpServiceUrl,
 } from './paths';
-import { fetchWithTimeout } from './fetch-utils';
+import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { Breadcrumb } from '../types/breadcrumb';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { Language } from '../types/languages';
 
-const fetchLegacyHtml = (path: string, draft = false) => {
-    const url = `${draft ? xpLegacyDraftUrl : xpLegacyUrl}/${encodeURI(
+const fetchLegacyHtml = (path: string, isDraft = false) => {
+    const url = `${isDraft ? xpLegacyDraftUrl : xpLegacyUrl}/${encodeURI(
         path[0] === '/' ? path.slice(1) : path
     )}`;
     console.log('fetching legacy html from:', url);
+
     return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (res.ok) {
@@ -33,12 +33,15 @@ const fetchLegacyHtml = (path: string, draft = false) => {
 
 const fetchContent = (
     idOrPath: string,
-    draft = false
+    isDraft = false
 ): Promise<ContentTypeSchema> => {
-    const url = `${
-        draft ? xpDraftServiceUrl : xpServiceUrl
-    }/sitecontent?id=${encodeURIComponent(idOrPath)}`;
+    const params = objectToQueryString({
+        ...(isDraft && { branch: 'draft' }),
+        id: idOrPath,
+    });
+    const url = `${xpServiceUrl}/sitecontent${params}`;
     console.log('fetching content from:', url);
+
     return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (res.ok) {
@@ -52,11 +55,14 @@ const fetchContent = (
 
 export const fetchNotifications = (
     path?: string,
-    draft = false
+    isDraft = false
 ): Promise<NotificationProps[]> => {
-    const url = `${draft ? xpDraftServiceUrl : xpServiceUrl}/notifications${
-        path ? `?path=${encodeURIComponent(path)}` : ''
-    }`;
+    const params = objectToQueryString({
+        ...(isDraft && { branch: 'draft' }),
+        ...(path && { path }),
+    });
+    const url = `${xpServiceUrl}/notifications${params}`;
+
     return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (res.ok) {
@@ -71,11 +77,14 @@ export const fetchNotifications = (
 
 export const fetchBreadcrumbs = (
     idOrPath: string,
-    draft = false
+    isDraft = false
 ): Promise<Breadcrumb[]> => {
-    const url = `${
-        draft ? xpDraftServiceUrl : xpServiceUrl
-    }/breadcrumbs?id=${encodeURIComponent(idOrPath)}`;
+    const params = objectToQueryString({
+        ...(isDraft && { branch: 'draft' }),
+        id: idOrPath,
+    });
+    const url = `${xpServiceUrl}/breadcrumbs${params}`;
+
     return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (res.ok) {
@@ -90,14 +99,15 @@ export const fetchBreadcrumbs = (
 
 export const fetchLanguages = (
     idOrPath: string,
-    draft = false
-): Promise<Language[]> =>
-    fetchWithTimeout(
-        `${
-            draft ? xpDraftServiceUrl : xpServiceUrl
-        }/languages?id=${encodeURIComponent(idOrPath)}`,
-        5000
-    )
+    isDraft = false
+): Promise<Language[]> => {
+    const params = objectToQueryString({
+        ...(isDraft && { branch: 'draft' }),
+        id: idOrPath,
+    });
+    const url = `${xpServiceUrl}/languages${params}`;
+
+    return fetchWithTimeout(url, 5000)
         .then((res) => {
             if (res.ok) {
                 return res.json();
@@ -107,6 +117,7 @@ export const fetchLanguages = (
             return [];
         })
         .catch(console.error);
+};
 
 export const fetchPage = async (
     idOrPath: string,
@@ -116,23 +127,21 @@ export const fetchPage = async (
 
     if (content && !contentToComponentMap[content.__typename]) {
         const path = content._path?.replace(xpContentBasePath, '');
-        const legacyContent = (await fetchLegacyHtml(path, isDraft).then(
-            async (res) => {
-                if (!res.ok) {
-                    return makeErrorProps(path, res.statusText, res.status);
-                }
-                return {
-                    ...content,
-                    __typename: ContentType.Legacy,
-                    data: { html: await res.text() },
-                };
-            }
-        )) as ContentTypeSchema;
 
-        return { ...legacyContent, isDraft: isDraft };
+        return (await fetchLegacyHtml(path, isDraft).then(async (res) => {
+            if (!res.ok) {
+                return makeErrorProps(path, res.statusText, res.status);
+            }
+            return {
+                ...content,
+                __typename: ContentType.Legacy,
+                data: { html: await res.text() },
+            };
+        })) as ContentTypeSchema;
     }
 
-    return content
-        ? { ...content, isDraft: isDraft }
-        : makeErrorProps(idOrPath, `Unknown fetch error from ${idOrPath}`);
+    return (
+        content ||
+        makeErrorProps(idOrPath, `Unknown fetch error from ${idOrPath}`)
+    );
 };
