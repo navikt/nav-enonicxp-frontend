@@ -9,9 +9,8 @@ import './SearchForm.less';
 const origin = process.env.APP_ORIGIN;
 const maxSearchLength = 200;
 
-const searchHref = `${
-    origin.includes('localhost') ? origin.replace('3000', '3001') : origin
-}/sok`;
+// Replace the localhost port number to support local integration with the search-app
+const searchHref = `${origin.replace('3000', '3001')}/sok`;
 
 export const SearchForm = () => {
     const bem = BEM('search');
