@@ -1,11 +1,11 @@
 import React from 'react';
 import { ContentList } from './content-list/ContentList';
-import { LenkeNavNo } from '../_common/lenke/LenkeNavNo';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { BEM } from 'utils/bem';
 import { GlobalPageSchema, PageData } from 'types/content-types/_schema';
 import { ContentType } from 'types/content-types/_schema';
 import { LinkListTemplateMock } from './LinkListTemplateMock';
+import { LenkeInline } from '../_common/lenke/LenkeInline';
 import './LinkLists.less';
 
 const LinkLists = (props: GlobalPageSchema) => {
@@ -47,13 +47,12 @@ const LinkLists = (props: GlobalPageSchema) => {
                                 sorted={true}
                             />
                             {moreNewsUrl && (
-                                <LenkeNavNo
+                                <LenkeInline
                                     href={moreNewsUrl}
                                     className={bem('flere-nyheter')}
-                                    withChevron={false}
                                 >
                                     <Normaltekst>{'Flere nyheter'}</Normaltekst>
-                                </LenkeNavNo>
+                                </LenkeInline>
                             )}
                         </div>
                     )}

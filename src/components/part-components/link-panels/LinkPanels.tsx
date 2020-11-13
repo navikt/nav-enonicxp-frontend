@@ -15,7 +15,7 @@ export const LinkPanels = (props: GlobalPageSchema) => {
     const panelsHeading = data?.panelsHeading;
     const panelItems = data?.panelItems;
 
-    return (
+    return panelItems?.length > 0 ? (
         <LenkepanelListe title={panelsHeading} items={panelItems} {...props} />
-    );
+    ) : null;
 };

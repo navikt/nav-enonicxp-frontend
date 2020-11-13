@@ -60,6 +60,36 @@ const getLinkData = (
     }
 };
 
+const ikonForTittelDemoHack = (tittel: string) => {
+    if (tittel === 'Hva er din situasjon') {
+        return (
+            <img src={`${process.env.APP_ORIGIN}/gfx/id-card-1.svg`} alt={''} />
+        );
+    }
+    if (tittel === 'arbeidsplassen.no') {
+        return (
+            <img
+                src={`${process.env.APP_ORIGIN}/gfx/NAV_arbplassen_logo.svg`}
+                alt={''}
+            />
+        );
+    }
+    if (tittel === 'Skjema og søknad') {
+        return (
+            <img
+                src={`${process.env.APP_ORIGIN}/gfx/pencil-fill.svg`}
+                alt={''}
+            />
+        );
+    }
+    if (tittel === 'Hva er din situasjon') {
+        return (
+            <img src={`${process.env.APP_ORIGIN}/gfx/id-card-1.svg`} alt={''} />
+        );
+    }
+    return undefined;
+};
+
 export const MainPanels = (props: GlobalPageSchema) => {
     const type = props.__typename;
     const data =
@@ -82,6 +112,7 @@ export const MainPanels = (props: GlobalPageSchema) => {
                                 href={link.url}
                                 separator={true}
                                 tittel={link.tittel}
+                                ikon={ikonForTittelDemoHack(link.tittel)}
                                 key={content._id}
                                 className={`lenkepanel-vertical ${bem('item')}`}
                             >

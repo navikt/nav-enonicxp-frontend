@@ -1,6 +1,6 @@
 import React from 'react';
 import { BEM } from '../../../../utils/bem';
-import NavFrontendChevron, { HoyreChevron } from 'nav-frontend-chevron';
+import NavFrontendChevron from 'nav-frontend-chevron';
 import { Undertittel } from 'nav-frontend-typografi';
 import { LenkeUstylet } from '../lenke/LenkeUstylet';
 import './LenkeMedIngress.less';
@@ -23,8 +23,14 @@ export const LenkeMedIngress = ({
     const bem = BEM('lenke-med-ingress');
 
     return (
-        <LenkeUstylet href={href} className={`${bem()} ${className || ''}`}>
-            <NavFrontendChevron className={bem('chevron')} />
+        <LenkeUstylet
+            href={href}
+            className={`${bem()} ${className || ''}`}
+            onClick={onClick}
+        >
+            <div className={bem('chevron-container')}>
+                <NavFrontendChevron className={bem('chevron')} />
+            </div>
             <div className={bem('content')}>
                 <Undertittel className={bem('tittel')}>{tittel}</Undertittel>
                 {children && <div className={bem('ingress')}>{children}</div>}

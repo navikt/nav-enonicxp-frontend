@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Color/01-edition/pencil-fill</title>
+    <g id="Nye-skisser" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Hover-Copy-8" transform="translate(-1078.000000, -341.000000)">
+            <g id="Group-26-Copy" transform="translate(1078.000000, 341.000000)">
+                <path d="M2,29.8103448 L54,29.8103448 C55.1045695,29.8103448 56,30.7514474 56,31.9123563 L56,52.9324713 C56,54.0933802 55.1045695,55.0344828 54,55.0344828 L2,55.0344828 C0.8954305,55.0344828 0,54.0933802 0,52.9324713 L0,31.9123563 C0,30.7514474 0.8954305,29.8103448 2,29.8103448 Z" id="Rectangle" fill="#99BDCD"></path>
+                <polygon id="Rectangle" fill="#A13A28" points="18.6666667 27.4532974 46.6016008 1.01019576e-12 56 9.23635781 28.0650658 36.6896552"></polygon>
+                <polygon id="Triangle" fill="#FFD7A3" points="14 41.2758621 18.6088751 27.5172414 28 36.7464503"></polygon>
+                <polygon id="Triangle-Copy-2" fill="#323F42" points="14 41.2758621 15.5362917 36.6896552 18.6666667 39.7660581"></polygon>
+                <polygon id="Rectangle" fill="#C86151" points="46.6378601 1.01528747e-12 56 9.20072371 51.3621399 13.7586207 42 4.55789698"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

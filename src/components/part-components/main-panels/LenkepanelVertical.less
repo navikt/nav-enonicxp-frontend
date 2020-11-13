@@ -1,15 +1,28 @@
 @import (reference) '../../../global';
 
 .lenkepanel-vertical {
-    border: 2px @navGra80 solid;
+    //border: 1px @navBla solid;
+    border: none;
+    box-shadow: 0 0 0 2px @navGra80;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 
     &:hover {
-        border: 2px @navBla solid;
+        //border: 2px @navBla solid;
+        border: none;
 
-        .lenkepanel__heading {
-            color: @navBla;
+        &:not(:focus) {
+            box-shadow: 0 0 0 2px @navBla;
         }
+
+        .lenkepanel-navno__chevron {
+            left: 0.375rem;
+        }
+    }
+
+    .lenkepanel__heading {
+        color: @navBla;
     }
 
     .lenkepanel__indikator {
@@ -27,8 +40,8 @@
     .lenkepanel-navno__separator {
         width: 5rem;
         border: none;
-        background-color: @navGra60;
-        height: 1px;
-        margin: 1rem auto;
+        background-color: @navGra40;
+        //height: 1px;
+        //margin: 0.75rem auto;
     }
 }

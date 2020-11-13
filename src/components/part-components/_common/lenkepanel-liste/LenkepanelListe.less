@@ -1,11 +1,15 @@
 @import '../../../../global';
 
 .lenkepanel-liste {
+    @margin-between: 1.5rem;
+    @numCols: 3;
     width: 100%;
     margin: 1rem 0;
     padding: 2rem;
-    border: 1px solid black;
-    border-radius: @border-radius-large;
+    //border: 1px solid @navGra60;
+    border-radius: @border-radius-base;
+    background-color: white;
+    box-shadow: 0 0 0 2px @navGra40;
 
     &__tittel {
         text-align: center;
@@ -26,13 +30,13 @@
     }
 
     &__item {
-        text-align: start;
-        margin-bottom: 1rem;
         @media @screen-mobile {
             width: 100%;
         }
         @media @screen-desktop {
-            width: calc(50% - 0.5rem);
+            width: calc(
+                100% / @numCols - ((@numCols - 1) * @margin-between) / @numCols
+            );
         }
     }
 }
