@@ -6,6 +6,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelNavNo from '../_common/lenkepanel/LenkepanelNavNo';
 import { MainPanelMock } from './MainPanelsMock';
 import './MainPanels.less';
+import './LenkepanelVertical.less';
 
 type TableData = {
     url: string;
@@ -67,7 +68,7 @@ export const MainPanels = (props: GlobalPageSchema) => {
             : props.data;
 
     const { tableContents } = data;
-    const bem = BEM('link-panels');
+    const bem = BEM('main-panels');
 
     return (
         tableContents?.length > 0 && (

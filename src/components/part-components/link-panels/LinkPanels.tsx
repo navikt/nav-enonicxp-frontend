@@ -1,10 +1,9 @@
 import React from 'react';
-import { LenkepanelListe } from './lenkepanel-liste/LenkepanelListe';
+import { LenkepanelListe } from '../_common/lenkepanel-liste/LenkepanelListe';
 import { PageData } from 'types/content-types/_schema';
 import { GlobalPageSchema } from 'types/content-types/_schema';
 import { ContentType } from 'types/content-types/_schema';
 import { LinkPanelsMock } from './LinkPanelsMock';
-import './LinkPanels.less';
 
 export const LinkPanels = (props: GlobalPageSchema) => {
     const type = props.__typename;

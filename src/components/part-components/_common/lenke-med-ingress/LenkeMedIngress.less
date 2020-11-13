@@ -1,0 +1,38 @@
+@import '../../../../global';
+
+.lenke-med-ingress {
+    @chevron-transform: translateY(10px) rotateZ(-90deg);
+    display: flex;
+    align-items: flex-start;
+    text-decoration: none;
+
+    &:hover {
+        .lenke-med-ingress__tittel {
+            text-decoration: underline;
+        }
+        .lenke-med-ingress__chevron {
+            transform: translateX(8px) @chevron-transform;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 1rem;
+    }
+
+    &__tittel {
+        color: @navBla;
+    }
+
+    &__chevron {
+        align-self: flex-start;
+        transform: @chevron-transform;
+        color: @navBla;
+    }
+
+    &__ingress {
+        color: black;
+    }
+}
