@@ -61,12 +61,15 @@ const getLinkData = (
 };
 
 const ikonForTittelDemoHack = (tittel: string) => {
-    if (tittel === 'Hva er din situasjon') {
+    if (
+        tittel === 'Hva er din situasjon' ||
+        tittel === 'Logg inn på Ditt NAV'
+    ) {
         return (
             <img src={`${process.env.APP_ORIGIN}/gfx/id-card-1.svg`} alt={''} />
         );
     }
-    if (tittel === 'arbeidsplassen.no') {
+    if (tittel === 'arbeidsplassen.no' || tittel === 'Ledige jobber') {
         return (
             <img
                 src={`${process.env.APP_ORIGIN}/gfx/NAV_arbplassen_logo.svg`}
@@ -80,11 +83,6 @@ const ikonForTittelDemoHack = (tittel: string) => {
                 src={`${process.env.APP_ORIGIN}/gfx/pencil-fill.svg`}
                 alt={''}
             />
-        );
-    }
-    if (tittel === 'Hva er din situasjon') {
-        return (
-            <img src={`${process.env.APP_ORIGIN}/gfx/id-card-1.svg`} alt={''} />
         );
     }
     return undefined;
