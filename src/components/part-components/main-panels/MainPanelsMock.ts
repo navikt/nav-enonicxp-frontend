@@ -1,40 +1,32 @@
-export const MainPanelsMock = {
-    panelsHeading: 'Hva er din situasjon?',
-    panelItems: [
+import { ContentType } from 'types/content-types/_schema';
+
+export const MainPanelMock = {
+    tableContents: [
         {
-            url: '#',
-            title: 'Lenke 1',
-            ingress: 'Ingress 1',
-            spanning: false,
-            altText: 'Ikon',
+            __typename: ContentType.TransportPage,
+            _path: '/',
+            displayName: 'Panel 1',
+            data: {
+                ingress: 'Din ingress',
+            },
         },
         {
-            url: '#',
-            title: 'Lenke 2',
-            ingress: 'Ingress 2',
-            spanning: false,
-            altText: 'Ikon',
+            __typename: ContentType.ExternalLink,
+            _path: '/',
+            displayName: 'Panel 2',
+            data: {
+                description: 'Din ingress',
+                url: '/',
+            },
         },
         {
-            url: '#',
-            title: 'Lenke 3',
-            ingress: 'Ingress 3',
-            spanning: false,
-            altText: 'Ikon',
-        },
-        {
-            url: '#',
-            title: 'Lenke 4',
-            ingress: 'Ingress 4',
-            spanning: false,
-            altText: 'Ikon',
-        },
-        {
-            url: '#',
-            title: 'Lenke 5',
-            ingress: 'Ingress 5',
-            spanning: false,
-            altText: 'Ikon',
+            __typename: ContentType.ExternalLink,
+            _path: '/',
+            displayName: 'Panel 3',
+            data: {
+                description: 'Din ingress',
+                url: '/',
+            },
         },
     ],
 };
