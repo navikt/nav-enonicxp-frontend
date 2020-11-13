@@ -9,6 +9,7 @@ import { hasIngress } from 'types/content-types/_type-guards';
 import { hasDescription } from 'types/content-types/_type-guards';
 import { BEM } from 'utils/bem';
 import { formatDate } from 'utils/datetime';
+import { translator } from 'translations';
 import './Notification.less';
 
 type Target = NotificationProps['data']['target'];
@@ -40,6 +41,7 @@ const getDescription = ({ data }: Target) => {
 };
 
 export const Notification = (props: NotificationProps) => {
+    const getDateLabel = translator('dates', props.language);
     const { data, modifiedTime } = props;
     const { type, showDescription, showUpdated, target } = data;
     const description = showDescription && getDescription(target);
@@ -59,9 +61,9 @@ export const Notification = (props: NotificationProps) => {
                     </Normaltekst>
                 )}
                 {showUpdated && (
-                    <Undertekst
-                        className={bem('updated')}
-                    >{`Sist oppdatert: ${formatDate(modifiedTime)}`}</Undertekst>
+                    <Undertekst className={bem('updated')}>{`${getDateLabel(
+                        'lastChanged'
+                    )}: ${formatDate(modifiedTime)}`}</Undertekst>
                 )}
             </>
         </LenkepanelNavNo>
