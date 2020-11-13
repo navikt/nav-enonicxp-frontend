@@ -15,10 +15,10 @@ import { DynamicAlert } from 'types/content-types/_dynamic/alert';
 import LesMerPanel from 'components/part-components/_dynamic/les-mer-panel/LesMerPanel';
 import { DynamicReadMorePanel } from 'types/content-types/_dynamic/read-more-panel';
 import { BEM } from 'utils/bem';
-import LinkPanels from 'components/part-components/link-panels/LinkPanels';
+import { LinkPanels } from 'components/part-components/link-panels/LinkPanels';
 import { DynamicRegionConfig } from 'types/content-types/_dynamic/_components';
 import LinkLists from 'components/part-components/link-lists/LinkLists';
-import { MainPanels } from 'components/part-components/main-panels/MainPanels';
+import MainPanels from 'components/part-components/main-panels/MainPanels';
 import PageHeading from 'components/part-components/page-heading/PageHeading';
 import { MainArticleLinkedListProps } from '../../part-components/main-article-linked-list/MainArticleLinkedList';
 import { MainArticleLinkedList } from '../../part-components/main-article-linked-list/MainArticleLinkedList';
@@ -150,6 +150,11 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 [PartType.MenuList]: (
                                     <MenuList {...(props as MenuListProps)} />
                                 ),
+
+                                // Deprecated parts - remove after release
+                                [PartType.Notifications]: <></>,
+                                [PartType.BreakingNews]: <></>,
+                                [PartType.PageCrumbs]: <></>,
                             }[descriptor] || (
                                 <div className={bem('unimplemented')}>
                                     {`Unimplemented part: ${descriptor}`}
