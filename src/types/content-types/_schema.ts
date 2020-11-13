@@ -77,7 +77,6 @@ export type GlobalSchema = {
     modifiedTime: string;
     displayName: string;
     data?: object;
-    isDraft?: boolean;
 };
 
 // Specific for dynamic page schemas
