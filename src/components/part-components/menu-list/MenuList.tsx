@@ -4,12 +4,14 @@ import { RegionProps } from '../../page-components/_dynamic/DynamicRegions';
 import Lenke from 'nav-frontend-lenker';
 import { xpPathToAppPath } from 'utils/paths';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import {translator} from 'translations'
 import { BEM } from 'utils/bem';
 import './MenuList.less';
 
 export type MenuListProps = RegionProps & MainArticleProps;
 
 export const MenuList = (props: MenuListProps) => {
+    const getLabel = translator('relatedContent', props.language);
     const menuListItems = props.data?.menuListItems
         ? Object.entries(props.data?.menuListItems)
         : [];
@@ -21,20 +23,6 @@ export const MenuList = (props: MenuListProps) => {
         return null;
     }
 
-    // Todo: Oversett
-    const titles = {
-        selfservice: 'Selvbetjening',
-        formAndApplication: 'Skjema og søknad',
-        processTimes: 'Saksbehandlingstider',
-        relatedInformation: 'Relatert innhold',
-        international: 'Internasjonalt',
-        reportChanges: 'Meld fra om endringer',
-        rates: 'Satser',
-        appealRights: 'Klagerettigheter',
-        membership: 'Medlemsskap i folketrygden',
-        rulesAndRegulations: 'Regelverk',
-    };
-
     return (
         <div className={bem()}>
             {menuListItems
@@ -42,7 +30,7 @@ export const MenuList = (props: MenuListProps) => {
                 .map(([key, menuItem]) => (
                     <Ekspanderbartpanel
                         key={key}
-                        tittel={titles[key] || key}
+                        tittel={getLabel(key) || key}
                         className={bem('panel')}
                     >
                         <ul>

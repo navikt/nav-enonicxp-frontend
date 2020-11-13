@@ -75,6 +75,7 @@ export type GlobalSchema = {
     _path: XpContentRef;
     createdTime: string;
     modifiedTime: string;
+    language: string;
     displayName: string;
     data: object;
     isDraft?: boolean;
