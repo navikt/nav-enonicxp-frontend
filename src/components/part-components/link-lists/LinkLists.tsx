@@ -27,18 +27,26 @@ const LinkLists = (props: GlobalPageSchema) => {
 
     const bem = BEM('link-lists');
 
+    const ntkHasContent = ntkContents?.data?.sectionContents?.length > 0;
+    const newsHasContent = newsContents?.data?.sectionContents?.length > 0;
+    const scHasContent = scContents?.data?.sectionContents?.length > 0;
+
+    if (!ntkHasContent && !newsHasContent && !scHasContent) {
+        return null;
+    }
+
     return (
         <>
             {(ntkContents || newsContents || scContents) && (
                 <div className={bem()}>
-                    {ntkContents && (
+                    {ntkHasContent && (
                         <ContentList
                             content={ntkContents}
                             className={bem('column')}
                             maxItems={nrNTK}
                         />
                     )}
-                    {newsContents?.data?.sectionContents?.length > 0 && (
+                    {newsHasContent && (
                         <div className={`${bem('column')} ${bem('nyheter')}`}>
                             <ContentList
                                 content={newsContents}
@@ -56,7 +64,7 @@ const LinkLists = (props: GlobalPageSchema) => {
                             )}
                         </div>
                     )}
-                    {scContents && (
+                    {scHasContent && (
                         <ContentList
                             content={scContents}
                             className={bem('column')}
