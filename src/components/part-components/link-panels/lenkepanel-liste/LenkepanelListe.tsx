@@ -30,8 +30,6 @@ export const LenkepanelListe = ({ title, ingress, items }: Props) => {
                             href={item.url.text || ''}
                             tittel={item.title}
                             className={bem('item')}
-                            component={'link-panel'}
-                            linkGroup={title}
                             key={item.title}
                         >
                             {item.ingress && (

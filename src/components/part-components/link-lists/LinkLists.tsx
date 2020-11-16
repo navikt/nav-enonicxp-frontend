@@ -38,14 +38,12 @@ const LinkLists = (props: GlobalPageSchema) => {
                             content={ntkContents}
                             className={bem('column')}
                             maxItems={nrNTK}
-                            component={'link-list'}
                         />
                     )}
                     {newsContents?.data?.sectionContents?.length > 0 && (
                         <div className={`${bem('column')} ${bem('nyheter')}`}>
                             <ContentList
                                 content={newsContents}
-                                component={'link-list'}
                                 maxItems={nrNews}
                                 showDateLabel={true}
                                 sorted={true}
@@ -54,7 +52,6 @@ const LinkLists = (props: GlobalPageSchema) => {
                                 <LenkeNavNo
                                     href={moreNewsUrl}
                                     className={bem('flere-nyheter')}
-                                    component={'link-list'}
                                     withChevron={false}
                                 >
                                     <Normaltekst>
@@ -68,7 +65,6 @@ const LinkLists = (props: GlobalPageSchema) => {
                         <ContentList
                             content={scContents}
                             className={bem('column')}
-                            component={'link-list'}
                             maxItems={nrSC}
                         />
                     )}

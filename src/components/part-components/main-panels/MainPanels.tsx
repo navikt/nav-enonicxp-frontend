@@ -83,7 +83,6 @@ export const MainPanels = (props: GlobalPageSchema) => {
                                 tittel={link.tittel}
                                 key={content._id}
                                 className={`lenkepanel-vertical ${bem('item')}`}
-                                component={'main-panels'}
                             >
                                 <Normaltekst>{link.children}</Normaltekst>
                             </LenkepanelNavNo>

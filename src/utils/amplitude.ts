@@ -14,14 +14,8 @@ export const initAmplitude = () => {
 
 export const logPageview = () => logAmplitudeEvent('sidevisning');
 
-export const logLinkClick = (
-    href: string,
-    linkText: string | undefined,
-    component?: string,
-    linkGroup?: string ) =>
+export const logLinkClick = (href: string, linkText: string | undefined) =>
     logAmplitudeEvent('navigere', {
-        komponent: component,
-        lenkegruppe: linkGroup,
         destinasjon: href,
         lenketekst: linkText,
     });

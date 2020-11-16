@@ -9,8 +9,6 @@ type Props = {
     href: string;
     label?: string;
     className?: string;
-    component?: string;
-    linkGroup?: string;
     id?: string;
     onClick?: (e: React.MouseEvent) => void;
     withChevron?: boolean;
@@ -21,8 +19,6 @@ export const LenkeNavNo = ({
     href,
     label,
     className,
-    component,
-    linkGroup,
     id,
     onClick,
     withChevron = true,
@@ -34,8 +30,6 @@ export const LenkeNavNo = ({
         <LenkeUstylet
             href={href}
             className={`${bem()} ${className || ''}`}
-            component={component}
-            linkGroup={linkGroup}
             id={id}
             onClick={onClick}
         >
