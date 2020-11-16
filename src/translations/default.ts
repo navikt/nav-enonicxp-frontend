@@ -1,11 +1,22 @@
 import { DeepPartial } from '../types/util-types';
 import { MenuListItemKey } from '../types/content-types/menuListItems';
 
-type BundleStructure = {
-    relatedContent: { [key in MenuListItemKey]: string };
-} & { [key: string]: { [key: string]: string } };
+const relatedContent: { [key in MenuListItemKey]: string } = {
+    appealRights: 'Klagerettigheter',
+    formAndApplication: 'Skjema og søknad',
+    international: 'Internasjonalt',
+    membership: 'Medlemsskap i folketrygden',
+    processTimes: 'Saksbehandlingstider',
+    rates: 'Satser',
+    relatedInformation: 'Relatert innhold',
+    reportChanges: 'Meld fra om endringer',
+    rulesAndRegulations: 'Regelverk',
+    saksbehandling: 'Saksbehandling',
+    selfservice: 'Selvbetjening',
+    shortcuts: 'Snarveier',
+};
 
-export const bundle: BundleStructure = {
+export const bundle = {
     dates: {
         lastChanged: 'Sist endret',
         published: 'Publisert',
@@ -30,20 +41,7 @@ export const bundle: BundleStructure = {
     mainPanels: {
         label: 'Hovedvalg',
     },
-    relatedContent: {
-        appealRights: 'Klagerettigheter',
-        formAndApplication: 'Skjema og søknad',
-        international: 'Internasjonalt',
-        membership: 'Medlemsskap i folketrygden',
-        processTimes: 'Saksbehandlingstider',
-        rates: 'Satser',
-        relatedInformation: 'Relatert innhold',
-        reportChanges: 'Meld fra om endringer',
-        rulesAndRegulations: 'Regelverk',
-        saksbehandling: 'Saksbehandling',
-        selfservice: 'Selvbetjening',
-        shortcuts: 'Snarveier',
-    },
+    relatedContent: relatedContent,
     publishingCalendar: {
         event: 'Kalenderhendelse',
         publishdate: 'Publiseringsdato',
