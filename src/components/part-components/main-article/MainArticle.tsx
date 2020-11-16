@@ -11,45 +11,25 @@ import { InfoIcon } from '../notifications/icons/InfoIcon';
 import './MainArticle.less';
 import { xpPathToUrl } from '../../../utils/paths';
 
-
-function getExtensionForImage(contentId: string) {
-    /*
-    const mimeTypes = {
-        'image/png': 'png',
-        'image/jpeg': 'jpg',
-        'image/gif': 'gif',
-        'image/svg+xml': 'svg',
-    };
-    const content = libs.content.get({ key: contentId });
-    if (content) {
-        const imageInfo = content.x && content.x.media ? content.x.media.imageInfo : false;
-
-        if (imageInfo) {
-            return mimeTypes[imageInfo.contentType] || '';
+const getImageObject = (picture: any) => {
+    if (!!picture && picture.target) {
+        const { caption, altText, size } = picture;
+        const imgClass = size === '40' ? 'figure-small' : (size === '70' ? 'figure-medium' : 'figure-full');
+        const imageUrl = picture.target.imageUrl;
+        if (imageUrl) {
+            const height = 768;
+            const width = 'max';
+            const src = imageUrl.replace('$scale', `${width}-${height}`);
+            return {
+                url: src,
+                imgClass,
+                caption,
+                altText,
+            };
         }
     }
 
-     */
-    return '';
-}
-
-/**
- * Get the imageUrl for a contentId, wrapper to portal.imageUrl to handle extensions correctly
- * @param {String} contentId The id of the content.
- * scale is default blank
- */
-
-function getImageUrl(contentId: string, scale: string = '') {
-    /*
-    const extension = getExtensionForImage(contentId);
-    return libs.portal.imageUrl({
-        id: contentId,
-        format: extension,
-        scale,
-    });
-
-    */
-    return '';
+    return undefined;
 }
 
 const parseInnholdsfortegnelse = (htmlText: string) => {
@@ -161,11 +141,11 @@ export const MainArticle = (props: Article) => {
     const data = getData(props);
     const content = isMainArticleChapter(props) ? props.data.article : props;
 
-    console.log('data', data);
     console.log('content', content);
     const innholdsfortegnelse = data.hasTableOfContents && data.hasTableOfContents !== 'none' ?
         parseInnholdsfortegnelse(data.text) : [];
 
+    const imageObj = getImageObject(data.picture);
     const socialMedia = data.social?.map((el) => {
             let tmpText = 'Del på ';
             if (el === 'linkedin') {
@@ -182,19 +162,6 @@ export const MainArticle = (props: Article) => {
             };
         });
 
-    let imageObj = null;
-    if (!!data.picture && data.picture.target) {
-        const { caption, altText, target, size } = data.picture;
-        const imgClass =
-            // eslint-disable-next-line no-nested-ternary
-            size === '40' ? 'figure-small' : size === '70' ? 'figure-medium' : 'figure-full';
-        imageObj = {
-            url: getImageUrl(target, 'max(768)'),
-            imgClass,
-            caption,
-            altText,
-        };
-    }
 
     return (
         <article
@@ -257,27 +224,21 @@ export const MainArticle = (props: Article) => {
                     </ul>
                 </div>
             }
-            {/*
-
-
-            <div data-th-if="${imageObj}" className="figure-container">
-                <figure data-th-class="${imageObj.imgClass}">
-                    <img
-                        data-th-if="${imageObj.altText != ''}"
-                        data-th-src="${imageObj.url}"
-                        data-th-alt="${imageObj.altText}"
-                        src=""
-                        alt=""
-                    />
-                    <img data-th-if="${imageObj.altText == ''}" data-th-src="${imageObj.url}" src="" alt="" />
-                    <figcaption className="decorated" data-th-if="${imageObj.caption}">
-                        [[${imageObj.caption}]]
-                    </figcaption>
-                </figure>
-            </div>
-
-
-            */}
+            {imageObj &&
+                <div className="figure-container">
+                    <figure className={imageObj.imgClass}>
+                        <img
+                            src={imageObj.url}
+                            alt={imageObj.altText || ''}
+                        />
+                        {imageObj.caption &&
+                            <figcaption className="decorated">
+                                {imageObj.caption}
+                            </figcaption>
+                        }
+                    </figure>
+                </div>
+            }
         </article>
 
     );

@@ -109,6 +109,41 @@
   margin-bottom:  1.5rem;
 }
 
+.figure-container {
+  text-align: center;
+  figure {
+    width: 100%;
+    margin-top: 60px;
+    display: inline-block;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    &.figure-small img {
+      max-width: 40%;
+    }
+
+    &.figure-full img {
+      max-width: 100%;
+    }
+
+    &.figure-medium img {
+      max-width: 70%;
+    }
+
+    figcaption {
+      padding-top: 6px;
+      margin-bottom: 0;
+      color: #555;
+      font-size: 0.75rem;
+    }
+  }
+
+}
+
+
 .table-of-contents{
   margin-top: 2rem;
   ol {
