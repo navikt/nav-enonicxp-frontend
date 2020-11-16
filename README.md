@@ -29,11 +29,6 @@ mapping.next.source = /_next
 mapping.next.target = /_/service/no.nav.navno/nextProxy
 mapping.next.idProvider.system = default
 
-mapping.draft.host = localhost
-mapping.draft.source = /_/draft
-mapping.draft.target = /site/default/draft/www.nav.no/
-mapping.draft.idProvider.system = default
-
 mapping.legacy.host = localhost
 mapping.legacy.source = /_/legacy
 mapping.legacy.target = /site/default/master/www.nav.no/
@@ -52,11 +47,6 @@ mapping.next.host = portal-admin<-q-n>.oera.no
 mapping.next.source = /_next
 mapping.next.target = /_/service/no.nav.navno/nextProxy
 mapping.next.idProvider.adfs = default
-
-mapping.draft.host = www<-q-n>.nav.no
-mapping.draft.source = /_/draft
-mapping.draft.target = /site/default/draft/www.nav.no/
-mapping.draft.idProvider.adfs = default
 
 mapping.legacy.host = www<-q-n>.nav.no
 mapping.legacy.source = /_/legacy

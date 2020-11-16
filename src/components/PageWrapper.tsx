@@ -8,7 +8,7 @@ import { ContentTypeSchema } from '../types/content-types/_schema';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
 import { Breadcrumb } from '../types/breadcrumb';
-import { Language } from '../types/languages';
+import { LanguageSelectorProps } from '../types/language-selector-props';
 import GlobalNotifications from './part-components/notifications/GlobalNotifications';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { initAmplitude, logPageview } from '../utils/amplitude';
@@ -17,7 +17,7 @@ import { HeadWithMetatags } from './part-components/_common/metatags/HeadWithMet
 type Props = {
     content: ContentTypeSchema;
     breadcrumbs: Breadcrumb[];
-    languages: Language[];
+    languages: LanguageSelectorProps[];
     notifications?: NotificationProps[];
     children: React.ReactNode;
 };

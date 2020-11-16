@@ -1,6 +1,6 @@
 import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
 import { Breadcrumb } from '../types/breadcrumb';
-import { Language } from '../types/languages';
+import { LanguageSelectorProps } from '../types/language-selector-props';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { useRouter } from 'next/router';
 import { FallbackPage } from './page-components/fallback-page/FallbackPage';
@@ -21,7 +21,7 @@ import { routerQueryToXpPathOrId } from '../utils/paths';
 type PageProps = {
     content: ContentTypeSchema;
     breadcrumbs: Breadcrumb[];
-    languages: Language[];
+    languages: LanguageSelectorProps[];
     notifications: NotificationProps[];
 };
 
