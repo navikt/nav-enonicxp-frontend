@@ -4,49 +4,43 @@ import { RegionProps } from '../../page-components/_dynamic/DynamicRegions';
 import Lenke from 'nav-frontend-lenker';
 import { xpPathToAppPath } from 'utils/paths';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { translator } from 'translations';
 import { BEM } from 'utils/bem';
+import { MenuListItemKey } from '../../../types/content-types/menuListItems';
 import './MenuList.less';
 
 export type MenuListProps = RegionProps & MainArticleProps;
 
 export const MenuList = (props: MenuListProps) => {
-    const menuListItems = props.data?.menuListItems
-        ? Object.entries(props.data?.menuListItems)
-        : [];
-
-    const selectedList = props.data?.menuListItems?.selected || [];
-    const bem = BEM('menu-list');
-
-    if (menuListItems.length === 0) {
+    if (!props.data?.menuListItems) {
         return null;
     }
 
-    // Todo: Oversett
-    const titles = {
-        selfservice: 'Selvbetjening',
-        formAndApplication: 'Skjema og søknad',
-        processTimes: 'Saksbehandlingstider',
-        relatedInformation: 'Relatert innhold',
-        international: 'Internasjonalt',
-        reportChanges: 'Meld fra om endringer',
-        rates: 'Satser',
-        appealRights: 'Klagerettigheter',
-        membership: 'Medlemsskap i folketrygden',
-        rulesAndRegulations: 'Regelverk',
-    };
+    const getLabel = translator('relatedContent', props.language);
+
+    const { selected, ...menuListItems } = props.data.menuListItems;
+    const menuListKeys =
+        menuListItems && (Object.keys(menuListItems) as MenuListItemKey[]);
+
+    if (!menuListKeys || menuListKeys.length === 0) {
+        return null;
+    }
+
+    const selectedList = selected || [];
+    const bem = BEM('menu-list');
 
     return (
         <div className={bem()}>
-            {menuListItems
-                .filter(([key]) => selectedList.includes(key))
-                .map(([key, menuItem]) => (
+            {menuListKeys
+                .filter((key) => selectedList.includes(key))
+                .map((key) => (
                     <Ekspanderbartpanel
                         key={key}
-                        tittel={titles[key] || key}
+                        tittel={getLabel(key) || key}
                         className={bem('panel')}
                     >
                         <ul>
-                            {menuItem.link?.map((link) => {
+                            {menuListItems[key].link?.map((link) => {
                                 const path = xpPathToAppPath(link._path);
                                 return (
                                     <li key={path}>
