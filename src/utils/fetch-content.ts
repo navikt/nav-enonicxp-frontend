@@ -134,5 +134,5 @@ export const fetchPage = async (
 
     return content
         ? { ...content, isDraft: isDraft }
-        : makeErrorProps(idOrPath, `Unknown fetch error from ${idOrPath}`);
+        : makeErrorProps(idOrPath, `Ukjent feil`, 500);
 };
