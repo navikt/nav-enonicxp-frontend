@@ -79,7 +79,6 @@ export type GlobalSchema = {
     language: Language;
     displayName: string;
     data?: object;
-    isDraft?: boolean;
 };
 
 // Specific for dynamic page schemas
