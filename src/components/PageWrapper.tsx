@@ -28,7 +28,7 @@ export const PageWrapper = (props: Props) => {
 
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) => router.push(breadcrumb.url));
-        onLanguageSelect((language) => router.push(language.url));
+        onLanguageSelect((breadcrumb) => router.push(breadcrumb.url));
 
         initAmplitude();
 
