@@ -14,8 +14,8 @@ import { LargeTableProps } from './large-table-props';
 import { LinkPanel } from '../link-panel';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
-import { MainArticleChapterProps } from './main-article-chapter-props';
-import { MainArticleLinkedListProps } from '../../components/part-components/main-article-linked-list/MainArticleLinkedList';
+import { MainArticleChapterDataProps } from './main-article-chapter-props';
+import { MainArticleDataProps } from './main-article-content-props';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -93,7 +93,7 @@ export interface GlobalPageSchema extends GlobalSchema {
     data: PageData;
 }
 
-export interface PageData {
+export interface PageData extends Partial<MainArticleDataProps & MainArticleChapterDataProps> {
     canonicalUrl?: string;
 
     // Section page
@@ -108,16 +108,6 @@ export interface PageData {
     ntkContents?: ContentListProps;
     nrSC?: number;
     scContents?: ContentListProps;
-
-    // Main Article
-    displayName: string,
-    hasTableOfContents: string,
-    text: string
-    article: {
-        data: {
-            text: string
-        }
-    }
 
     // Legacy page
     html?: string;

@@ -1,10 +1,111 @@
 @import (reference) '../../../global';
 
-
-
 .main-article {
   padding: 1.5rem;
   background: #fff;
+
+  &__text, &__facts {
+    p {
+      margin-bottom: 0.875rem;
+    }
+  }
+
+  &__facts {
+    img {
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      margin: 0 auto;
+    }
+    h3 {
+      text-align: center;
+
+    }
+    .decorated {
+      margin-bottom: 1.25rem;
+
+      &:after {
+        border-top: 1px solid #808080;
+        content: ' ';
+        display: block;
+        margin: 1.25rem auto 0;
+        width: 2rem;
+      }
+
+    }
+    background: #f1f1f1;
+    border: 1px solid #d1d1d1;
+    padding: 1.5rem;
+    margin-top: 3.75rem;
+  }
+
+
+  &__social-media {
+    text-align: center;
+    margin-top: 3rem;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      padding: 0;
+      margin: 0 1rem 0 0;
+      display: inline-block;
+    }
+
+    a {
+      padding: 0.5rem;
+      display: inline-block;
+
+    }
+
+// TODO: flytt ikoner hit
+    .share-twitter {
+      background-image: url('/legacy/gfx/icons/share-twitter.png');
+      background-size: 19px 1rem;
+
+      &:hover {
+        background-image: url('/legacy/gfx/icons/share-twitter-hover.png');
+      }
+    }
+
+
+    .share-facebook {
+      background-image: url('/legacy/gfx/icons/share-facebook.png');
+      background-size: 0.5625rem 1.125rem;
+      &:hover {
+        background-image: url('/legacy/gfx/icons/share-facebook-hover.png');
+      }
+    }
+
+
+    .share-linkedin {
+      background-image: url('/legacy/gfx/icons/share-linkedin.png');
+      background-size: 1rem 1rem;
+      &:hover {
+        background-image: url('/legacy/gfx/icons/share-linkedin-hover.png');
+      }
+    }
+
+
+    .share-social {
+      display: inline-block;
+      width: 2rem;
+      height: 2rem;
+      text-indent: -9999px;
+      border-radius: 50%;
+      border: 1px solid #0067c5;
+      background-position: center center;
+      background-repeat: no-repeat;
+
+      &:hover {
+        background-color: #0067c5;
+      }
+    }
+  }
 }
 
 .article-head {
@@ -56,18 +157,15 @@
       top: 14px;
     }
   }
+}
 
-
-  .visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
-
-
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }

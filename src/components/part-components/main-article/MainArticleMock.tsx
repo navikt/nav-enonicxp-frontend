@@ -1,3 +1,6 @@
 export const MainArticleMock = {
-    displayName: 'Artikkel - hovedartikkel'
+    displayName: 'Artikkel - hovedartikkel',
+    hasTableOfContents: 'none',
+    ingress: '',
+    text: ''
 };

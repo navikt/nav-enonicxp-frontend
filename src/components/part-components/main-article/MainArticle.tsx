@@ -1,14 +1,56 @@
 import React from 'react';
 import { PageData } from 'types/content-types/_schema';
-import { GlobalPageSchema } from 'types/content-types/_schema';
 import { ContentType } from 'types/content-types/_schema';
 import { MainArticleMock } from './MainArticleMock';
 import { ParsedHtml } from '../_dynamic/ParsedHtml';
-import './MainArticle.less';
 import { formatDate } from '../../../utils/datetime';
 import { MainArticleProps } from '../../../types/content-types/main-article-props';
 import { MainArticleChapterProps } from '../../../types/content-types/main-article-chapter-props';
+import { BEM } from '../../../utils/bem';
+import { InfoIcon } from '../notifications/icons/InfoIcon';
+import './MainArticle.less';
+import { xpPathToUrl } from '../../../utils/paths';
 
+
+function getExtensionForImage(contentId: string) {
+    /*
+    const mimeTypes = {
+        'image/png': 'png',
+        'image/jpeg': 'jpg',
+        'image/gif': 'gif',
+        'image/svg+xml': 'svg',
+    };
+    const content = libs.content.get({ key: contentId });
+    if (content) {
+        const imageInfo = content.x && content.x.media ? content.x.media.imageInfo : false;
+
+        if (imageInfo) {
+            return mimeTypes[imageInfo.contentType] || '';
+        }
+    }
+
+     */
+    return '';
+}
+
+/**
+ * Get the imageUrl for a contentId, wrapper to portal.imageUrl to handle extensions correctly
+ * @param {String} contentId The id of the content.
+ * scale is default blank
+ */
+
+function getImageUrl(contentId: string, scale: string = '') {
+    /*
+    const extension = getExtensionForImage(contentId);
+    return libs.portal.imageUrl({
+        id: contentId,
+        format: extension,
+        scale,
+    });
+
+    */
+    return '';
+}
 
 const parseInnholdsfortegnelse = (htmlText: string) => {
     const toc = [];
@@ -34,7 +76,7 @@ const parseInnholdsfortegnelse = (htmlText: string) => {
     return toc;
 }
 
-function getDate(content: MainArticleProps |  MainArticleChapterProps ) {
+function getDate(content: Partial<MainArticleProps |  MainArticleChapterProps> ) {
     if (!content) {
         return '';
     }
@@ -63,28 +105,101 @@ const cleanupHtml = (htmlText: string) => {
     return cleanHtml;
 }
 
-export const MainArticle = (props: MainArticleProps | MainArticleChapterProps) => {
-    let data, content;
+// Todo: Oversett
+const titles = {
+    facts: 'FAKTA',
+    innholdsfortegnelse : 'Innholdsfortegnelse'
+};
+
+type Article = MainArticleProps | MainArticleChapterProps
+
+function isMainArticleChapter(props: Article): props is MainArticleChapterProps {
+    return (props.__typename === ContentType.MainArticleChapter)
+}
+
+function getData(props: MainArticleProps | MainArticleChapterProps) {
     if (props.__typename === ContentType.TemplatePage) {
-        data = (MainArticleMock as PageData)
-        content = props;
-    } else if (props.__typename === ContentType.MainArticleChapter) {
-        data = props.data.article.data
-        content = props.data.article;
-    } else {
-        data = props.data;
-        content = props;
+        return MainArticleMock as PageData;
     }
+    return isMainArticleChapter(props) ? props.data.article.data : props.data;
+}
 
+function getSocialRef(el: string, displayName: string, requestUrl: string) {
+    if (!requestUrl) {
+        return null;
+    }
+    switch (el) {
+        case 'facebook':
+            return (
+                'https://www.facebook.com/sharer/sharer.php?u=' +
+                requestUrl +
+                '&amp;title=' +
+                displayName?.replace(/ /g, '%20')
+            );
+        case 'twitter':
+            return (
+                'https://twitter.com/intent/tweet?text=' +
+                displayName?.replace(/ /g, '%20') +
+                ': ' +
+                requestUrl
+            );
+        case 'linkedin':
+            return (
+                'https://www.linkedin.com/shareArticle?mini=true&amp;url=' +
+                requestUrl +
+                '&amp;title=' +
+                displayName?.replace(/ /g, '%20') +
+                '&amp;source=nav.no'
+            );
+        default:
+            return null;
+    }
+}
+export const MainArticle = (props: Article) => {
+    const bem = BEM('main-article');
 
+    const data = getData(props);
+    const content = isMainArticleChapter(props) ? props.data.article : props;
+
+    console.log('data', data);
+    console.log('content', content);
     const innholdsfortegnelse = data.hasTableOfContents && data.hasTableOfContents !== 'none' ?
         parseInnholdsfortegnelse(data.text) : [];
 
-    console.log(props);
+    const socialMedia = data.social?.map((el) => {
+            let tmpText = 'Del på ';
+            if (el === 'linkedin') {
+                tmpText += 'LinkedIn';
+            } else if (el === 'facebook') {
+                tmpText += 'Facebook';
+            } else {
+                tmpText += 'Twitter';
+            }
+            return {
+                type: el,
+                text: tmpText,
+                href: getSocialRef(el, content.displayName, xpPathToUrl(content._path))
+            };
+        });
+
+    let imageObj = null;
+    if (!!data.picture && data.picture.target) {
+        const { caption, altText, target, size } = data.picture;
+        const imgClass =
+            // eslint-disable-next-line no-nested-ternary
+            size === '40' ? 'figure-small' : size === '70' ? 'figure-medium' : 'figure-full';
+        imageObj = {
+            url: getImageUrl(target, 'max(768)'),
+            imgClass,
+            caption,
+            altText,
+        };
+    }
+
     return (
         <article
             id="pagecontent"
-            className="main-article"
+            className={bem()}
         >
             <header className="article-head">
                 <time dateTime={content.publish?.from}>
@@ -95,7 +210,7 @@ export const MainArticle = (props: MainArticleProps | MainArticleChapterProps) =
                 { data.hasTableOfContents && data.hasTableOfContents !== 'none' &&
                     <nav className="table-of-contents" data-selected-id>
                       <h2 className="visuallyhidden">
-                          innholdsfortegnelse // TODO: oversett
+                          {titles.innholdsfortegnelse}
                       </h2>
                       <ol>
                           {innholdsfortegnelse.map((item, index) => (
@@ -107,7 +222,62 @@ export const MainArticle = (props: MainArticleProps | MainArticleChapterProps) =
                     </nav>
                 }
             </header>
-            <ParsedHtml content={cleanupHtml(  data?.article?.data?.text || data.text)}/>
+            <div className={bem('text')}>
+                <ParsedHtml content={cleanupHtml( data.text)}/>
+            </div>
+
+            {!!data.fact &&
+                <div className={bem('facts')}>
+                  <InfoIcon />
+                  <h3 className="decorated">{titles.facts}</h3>
+                  <ParsedHtml content={data.fact} />
+                </div>
+            }
+
+            { socialMedia.length > 0 &&
+                <div className={bem('social-media')}>
+                    <ul className="share-social-media-pills">
+                        {socialMedia.map(item => (
+                            <li key={item.type}>
+                                <a
+                                    data-ga="share-social-media"
+                                    className="js-share share-container"
+                                    data-th-attr="data-medium=${social.type}"
+                                    href={item.href}
+                                >
+                              <span className={`share-social share-${item.type}`}>
+                                 {item.text}
+                              </span>
+                                </a>
+                            </li>
+                        ))
+
+                        }
+
+                    </ul>
+                </div>
+            }
+            {/*
+
+
+            <div data-th-if="${imageObj}" className="figure-container">
+                <figure data-th-class="${imageObj.imgClass}">
+                    <img
+                        data-th-if="${imageObj.altText != ''}"
+                        data-th-src="${imageObj.url}"
+                        data-th-alt="${imageObj.altText}"
+                        src=""
+                        alt=""
+                    />
+                    <img data-th-if="${imageObj.altText == ''}" data-th-src="${imageObj.url}" src="" alt="" />
+                    <figcaption className="decorated" data-th-if="${imageObj.caption}">
+                        [[${imageObj.caption}]]
+                    </figcaption>
+                </figure>
+            </div>
+
+
+            */}
         </article>
 
     );
