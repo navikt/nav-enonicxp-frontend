@@ -69,7 +69,7 @@ mapping.legacydraft.target = /site/default/draft/www.nav.no/
 mapping.legacydraft.idProvider.adfs = default
 
 # this is for pre-release compatibility only
-mapping.draftlocal.host = www<-q-n>.nav.no
+mapping.draftlocal.host = portal-admin<-q-n>.oera.no
 mapping.draftlocal.source = /draft
 mapping.draftlocal.target = /site/default/draft/www.nav.no/
 mapping.draftlocal.idProvider.system = default
