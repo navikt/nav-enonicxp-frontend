@@ -19,10 +19,10 @@ type Props = {
 
 const getUrl = (content: ContentTypeSchema) => {
     if (content.__typename === ContentType.InternalLink) {
-        return content.data.target._path;
+        return content.data?.target?._path;
     }
     if (content.__typename === ContentType.ExternalLink) {
-        return content.data.url;
+        return content.data?.url;
     }
     return content._path;
 };
@@ -43,8 +43,8 @@ export const ContentList = ({
             label: showDateLabel
                 ? formatDate(scContent.modifiedTime || scContent.createdTime)
                 : undefined,
-            xpId: scContent._id,
-        }));
+        }))
+        .filter(({ url, lenketekst }) => url && lenketekst);
 
     return (
         <Lenkeliste
