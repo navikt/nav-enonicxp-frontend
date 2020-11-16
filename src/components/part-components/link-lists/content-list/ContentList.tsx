@@ -15,6 +15,7 @@ type Props = {
     sorted?: boolean;
     maxItems?: number;
     className?: string;
+    component?: string;
 };
 
 const getUrl = (content: ContentTypeSchema) => {
@@ -33,6 +34,7 @@ export const ContentList = ({
     sorted = false,
     maxItems = 128,
     className,
+    component,
 }: Props) => {
     const lenkeData: LenkeData[] = content.data.sectionContents
         .sort(sorted ? sortContentByLastModified : undefined)
@@ -51,6 +53,7 @@ export const ContentList = ({
             lenker={lenkeData}
             tittel={content?.displayName}
             className={className}
+            component={component}
         />
     );
 };

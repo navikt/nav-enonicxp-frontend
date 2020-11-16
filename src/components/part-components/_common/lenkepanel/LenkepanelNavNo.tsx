@@ -10,6 +10,8 @@ export type LenkepanelProps = {
     tittel: string;
     ikon?: React.ReactElement;
     separator?: boolean;
+    component?: string;
+    linkGroup?: string;
     className?: string;
     id?: string;
     onClick?: (event: React.MouseEvent) => void;
@@ -22,6 +24,8 @@ const LenkepanelNavNo = ({
     ikon,
     separator,
     className,
+    component,
+    linkGroup,
     id,
     onClick,
     children,

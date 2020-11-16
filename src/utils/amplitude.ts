@@ -14,12 +14,19 @@ export const initAmplitude = () => {
 
 export const logPageview = () => logAmplitudeEvent('sidevisning');
 
-export const logLinkClick = (href: string, linkText: string | undefined) =>
-    logAmplitudeEvent('navigere', {
-        destinasjon: href,
-        lenketekst: linkText,
-    });
-
+export const logLinkClick = (
+    href: string,
+    linkText: string | undefined,
+    component?: string,
+    linkGroup?: string ) => {
+        console.log(component);
+        logAmplitudeEvent('navigere', {
+            komponent: component,
+            lenkegruppe: linkGroup,
+            destinasjon: href,
+            lenketekst: linkText,
+        });
+    };
 export function logAmplitudeEvent(eventName: string, data?: any): Promise<any> {
     return new Promise(function (resolve: any) {
         const eventData = data || {};
