@@ -9,9 +9,10 @@ type Props = {
     lenker: LenkeData[];
     tittel?: string;
     className?: string;
+    component?: string;
 };
 
-export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
+export const Lenkeliste = ({ tittel, lenker, className, component }: Props) => {
     const bem = BEM('lenkeliste');
 
     return (
@@ -29,6 +30,8 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
                         label={lenke.label}
                         key={index}
                         className={bem('lenke')}
+                        component={component}
+                        linkGroup={tittel}
                     >
                         {lenke.lenketekst}
                     </LenkeNavNo>

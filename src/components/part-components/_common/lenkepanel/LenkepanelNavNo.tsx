@@ -4,12 +4,15 @@ import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import { BEM } from 'utils/bem';
 import { LenkeUstylet } from '../lenke/LenkeUstylet';
 import './LenkepanelNavNo.less';
+import { logLinkClick } from '../../../../utils/amplitude';
 
 export type LenkepanelProps = {
     href: string;
     tittel: string;
     ikon?: React.ReactElement;
     separator?: boolean;
+    component?: string;
+    linkGroup?: string;
     className?: string;
     id?: string;
     onClick?: (event: React.MouseEvent) => void;
@@ -22,6 +25,8 @@ const LenkepanelNavNo = ({
     ikon,
     separator,
     className,
+    component,
+    linkGroup,
     id,
     onClick,
     children,
@@ -34,7 +39,10 @@ const LenkepanelNavNo = ({
             className={`${bem()} ${className || ''}`}
             id={id}
             border={true}
-            onClick={onClick}
+            onClick={(e) => {
+                logLinkClick(href, tittel, component, linkGroup);
+                onClick?.(e);
+            }}
             linkCreator={LenkeUstylet}
         >
             {ikon && <div className={bem('ikon')}>{ikon}</div>}
