@@ -3,77 +3,16 @@ import { PageData } from 'types/content-types/_schema';
 import { ContentType } from 'types/content-types/_schema';
 import { MainArticleMock } from './MainArticleMock';
 import { ParsedHtml } from '../_dynamic/ParsedHtml';
-import { formatDate } from '../../../utils/datetime';
 import { MainArticleProps } from '../../../types/content-types/main-article-props';
 import { MainArticleChapterProps } from '../../../types/content-types/main-article-chapter-props';
 import { BEM } from '../../../utils/bem';
-import { InfoIcon } from '../notifications/icons/InfoIcon';
+import { translator } from 'translations';
+import Innholdsfortegnelse from './Innholdsfortegnelse';
+import SosialeMedier from './SosialeMedier';
+import ArtikkelDato from './ArtikkelDato';
+import Faktaboks from './Faktaboks';
+import Bilde from './Bilde';
 import './MainArticle.less';
-import { xpPathToUrl } from '../../../utils/paths';
-
-const getImageObject = (picture: any) => {
-    if (!!picture && picture.target) {
-        const { caption, altText, size } = picture;
-        const imgClass = size === '40' ? 'figure-small' : (size === '70' ? 'figure-medium' : 'figure-full');
-        const imageUrl = picture.target.imageUrl;
-        if (imageUrl) {
-            const height = 768;
-            const width = 'max';
-            const src = imageUrl.replace('$scale', `${width}-${height}`);
-            return {
-                url: src,
-                imgClass,
-                caption,
-                altText,
-            };
-        }
-    }
-
-    return undefined;
-}
-
-const parseInnholdsfortegnelse = (htmlText: string) => {
-    const toc = [];
-    let count = 0;
-    let ch = 1;
-    let ind = htmlText.indexOf('<h3>');
-    while (ind !== -1 && count < 100) {
-        const h2End = ind + 4;
-        const ssEnd = htmlText.indexOf('</h3>', ind);
-        const ss = htmlText
-            .slice(h2End, ssEnd)
-            .replace(/<([^>]+)>/gi, '') // Strip html
-            .replace(/&nbsp;/gi, ' '); // Replace &nbsp;
-        count++;
-        toc.push(ss);
-        htmlText = htmlText.replace(
-            '<h3>',
-            '<h3 id="chapter-' + ch++ + '" tabindex="-1" class="chapter-header">'
-        );
-        ind = htmlText.indexOf('<h3>');
-    }
-
-    return toc;
-}
-
-function getDate(content: Partial<MainArticleProps |  MainArticleChapterProps> ) {
-    if (!content) {
-        return '';
-    }
-    const p = (content.publish?.from ? content.publish?.from : content.createdTime);
-    // TODO: oversett
-    const published = `Publisert: ${formatDate(p)}`;
-    const publishedString = `${published}`;
-
-    let modifiedString = '';
-    const m = (content.modifiedTime);
-    if (new Date(m) > new Date(p)) {
-        // TODO: oversett
-        const lastModified = `Sist endret: ${formatDate(content.modifiedTime) }`;
-        modifiedString = ` | ${lastModified}`;
-    }
-    return publishedString + modifiedString;
-}
 
 const cleanupHtml = (htmlText: string) => {
     // Fjern tomme headings og br-tagger fra HTML
@@ -81,15 +20,8 @@ const cleanupHtml = (htmlText: string) => {
     cleanHtml = cleanHtml?.replace(/<h\d>\s*<\/h\d>/g, '');
     cleanHtml = cleanHtml?.replace(/<h\d>&nbsp;<\/h\d>/g, '');
     cleanHtml = cleanHtml?.replace(/<br \/>/g, '');
-
     return cleanHtml;
 }
-
-// Todo: Oversett
-const titles = {
-    facts: 'FAKTA',
-    innholdsfortegnelse : 'Innholdsfortegnelse'
-};
 
 type Article = MainArticleProps | MainArticleChapterProps
 
@@ -104,142 +36,52 @@ function getData(props: MainArticleProps | MainArticleChapterProps) {
     return isMainArticleChapter(props) ? props.data.article.data : props.data;
 }
 
-function getSocialRef(el: string, displayName: string, requestUrl: string) {
-    if (!requestUrl) {
-        return null;
-    }
-    switch (el) {
-        case 'facebook':
-            return (
-                'https://www.facebook.com/sharer/sharer.php?u=' +
-                requestUrl +
-                '&amp;title=' +
-                displayName?.replace(/ /g, '%20')
-            );
-        case 'twitter':
-            return (
-                'https://twitter.com/intent/tweet?text=' +
-                displayName?.replace(/ /g, '%20') +
-                ': ' +
-                requestUrl
-            );
-        case 'linkedin':
-            return (
-                'https://www.linkedin.com/shareArticle?mini=true&amp;url=' +
-                requestUrl +
-                '&amp;title=' +
-                displayName?.replace(/ /g, '%20') +
-                '&amp;source=nav.no'
-            );
-        default:
-            return null;
-    }
-}
+
 export const MainArticle = (props: Article) => {
     const bem = BEM('main-article');
-
     const data = getData(props);
     const content = isMainArticleChapter(props) ? props.data.article : props;
+    const getLabel = translator('mainArticle', props.language);
 
-    console.log('content', content);
-    const innholdsfortegnelse = data.hasTableOfContents && data.hasTableOfContents !== 'none' ?
-        parseInnholdsfortegnelse(data.text) : [];
-
-    const imageObj = getImageObject(data.picture);
-    const socialMedia = data.social?.map((el) => {
-            let tmpText = 'Del på ';
-            if (el === 'linkedin') {
-                tmpText += 'LinkedIn';
-            } else if (el === 'facebook') {
-                tmpText += 'Facebook';
-            } else {
-                tmpText += 'Twitter';
-            }
-            return {
-                type: el,
-                text: tmpText,
-                href: getSocialRef(el, content.displayName, xpPathToUrl(content._path))
-            };
-        });
-
-
+    console.log(content)
     return (
         <article
             id="pagecontent"
             className={bem()}
         >
             <header className="article-head">
-                <time dateTime={content.publish?.from}>
-                    {getDate(content)}
-                </time>
+                <ArtikkelDato
+                    publish={content.publish}
+                    createdTime={content.createdTime}
+                    modifiedTime={content.modifiedTime}
+                    publishLabel={getLabel('published')}
+                    modifiedLabel={getLabel('lastChanged')}
+                />
                 <h1>{content.displayName}</h1>
                 <p className="preface">{data.ingress}</p>
                 { data.hasTableOfContents && data.hasTableOfContents !== 'none' &&
-                    <nav className="table-of-contents" data-selected-id>
-                      <h2 className="visuallyhidden">
-                          {titles.innholdsfortegnelse}
-                      </h2>
-                      <ol>
-                          {innholdsfortegnelse.map((item, index) => (
-                              <li key={index}>
-                                  <a data-ga="toc" href={`#chapter-${index + 1}`}>{item}</a>
-                              </li>
-                          ))}
-                      </ol>
-                    </nav>
+                    <Innholdsfortegnelse
+                        innhold={data.text}
+                        label={getLabel('tableOfContents')}
+                    />
                 }
             </header>
             <div className={bem('text')}>
                 <ParsedHtml content={cleanupHtml( data.text)}/>
             </div>
+            <Faktaboks
+                fakta={data.fact}
+                label={getLabel('facts')}
+                wrapperClass={bem('facts')}
+            />
+            <SosialeMedier
+                social={data.social}
+                displayName={content.displayName}
+                contentPath={content._path}
+            />
 
-            {!!data.fact &&
-                <div className={bem('facts')}>
-                  <InfoIcon />
-                  <h3 className="decorated">{titles.facts}</h3>
-                  <ParsedHtml content={data.fact} />
-                </div>
-            }
+            <Bilde picture={data.picture} />
 
-            { socialMedia.length > 0 &&
-                <div className={bem('social-media')}>
-                    <ul className="share-social-media-pills">
-                        {socialMedia.map(item => (
-                            <li key={item.type}>
-                                <a
-                                    data-ga="share-social-media"
-                                    className="js-share share-container"
-                                    data-th-attr="data-medium=${social.type}"
-                                    href={item.href}
-                                >
-                                      <span className={`share-social share-${item.type}`}>
-                                         {item.text}
-                                      </span>
-                                </a>
-                            </li>
-                        ))
-
-                        }
-
-                    </ul>
-                </div>
-            }
-            {imageObj &&
-                <div className="figure-container">
-                    <figure className={imageObj.imgClass}>
-                        <img
-                            src={imageObj.url}
-                            alt={imageObj.altText || ''}
-                        />
-                        {imageObj.caption &&
-                            <figcaption className="decorated">
-                                {imageObj.caption}
-                            </figcaption>
-                        }
-                    </figure>
-                </div>
-            }
         </article>
-
     );
 };

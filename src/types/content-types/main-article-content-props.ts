@@ -1,5 +1,13 @@
 import { MenuListItem } from './menuListItems';
 
+export interface Picture {
+    target: {
+        imageUrl: string
+    },
+    size: string,
+    caption: string
+    altText: string
+}
 export interface MainArticleDataProps {
     ingress: string;
     menuListItems: MenuListItem;
@@ -7,10 +15,5 @@ export interface MainArticleDataProps {
     hasTableOfContents: string;
     fact: string;
     social: string[];
-    picture: {
-        target: {}
-        size: string;
-        caption: string;
-        altText: string;
-    }
+    picture: Picture;
 }
