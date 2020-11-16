@@ -52,6 +52,7 @@ const LinkLists = (props: GlobalPageSchema) => {
                                 <LenkeNavNo
                                     href={moreNewsUrl}
                                     className={bem('flere-nyheter')}
+                                    component={'link-list'}
                                     withChevron={false}
                                 >
                                     <Normaltekst>

@@ -29,6 +29,8 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
                         label={lenke.label}
                         key={index}
                         className={bem('lenke')}
+                        component={'link-list'}
+                        linkGroup={tittel}
                     >
                         {lenke.lenketekst}
                     </LenkeNavNo>
