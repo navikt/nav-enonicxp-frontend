@@ -19,7 +19,6 @@ export const logLinkClick = (
     linkText: string | undefined,
     component?: string,
     linkGroup?: string ) => {
-        console.log(component);
         logAmplitudeEvent('navigere', {
             komponent: component,
             lenkegruppe: linkGroup,

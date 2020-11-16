@@ -39,16 +39,25 @@ const LenkepanelNavNo = ({
             id={id}
             border={true}
             onClick={onClick}
-            linkCreator={LenkeUstylet}
+            linkCreator={(props) =>
+                <LenkeUstylet
+                    href={href}
+                    component={component}
+                    linkGroup={linkGroup}
+                    {...children}
+                    {...props}
+                >
+                    {ikon && <div className={bem('ikon')}>{ikon}</div>}
+                    <div className={bem('innhold')}>
+                        <Undertittel className={'lenkepanel__heading'}>
+                            {tittel}
+                        </Undertittel>
+                        {separator && <hr className={bem('separator')} />}
+                        {children && <div className={bem('ingress')}>{children}</div>}
+                    </div>
+                </LenkeUstylet>
+            }
         >
-            {ikon && <div className={bem('ikon')}>{ikon}</div>}
-            <div className={bem('innhold')}>
-                <Undertittel className={'lenkepanel__heading'}>
-                    {tittel}
-                </Undertittel>
-                {separator && <hr className={bem('separator')} />}
-                {children && <div className={bem('ingress')}>{children}</div>}
-            </div>
         </LenkepanelBase>
     );
 };

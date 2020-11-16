@@ -51,6 +51,7 @@ export const Notification = (props: NotificationProps) => {
             tittel={getTitle(props)}
             ikon={iconsForType[type]}
             className={bem()}
+            component={'notifications'}
         >
             <>
                 {description && (
