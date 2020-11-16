@@ -1,7 +1,4 @@
 export const bundle = {
-    mainArticle: {
-        printpage: 'Wydrukuj stronę',
-    },
     relatedContent: {
         appealRights: 'Prawo do złożenia odwołania',
         formAndApplication: 'Formularze i wnioski',
@@ -13,8 +10,5 @@ export const bundle = {
         reportChanges: 'Zgłoś zmiany',
         rulesAndRegulations: 'Przepisy',
         selfservice: 'Samoobsługa',
-    },
-    tavleliste: {
-        printpage: 'Wydrukuj stronę',
     },
 };

@@ -62,9 +62,11 @@ export const Notification = (props: NotificationProps) => {
                     </Normaltekst>
                 )}
                 {showUpdated && (
-                    <Undertekst className={bem('updated')}>{`${getDateLabel(
-                        'lastChanged'
-                    )}: ${formatDate(modifiedTime)}`}</Undertekst>
+                    <Undertekst className={bem('updated')}>
+                        {`${getDateLabel('lastChanged')}: ${formatDate(
+                            modifiedTime
+                        )}`}
+                    </Undertekst>
                 )}
             </>
         </LenkepanelNavNo>
