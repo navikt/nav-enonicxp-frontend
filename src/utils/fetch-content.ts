@@ -11,7 +11,7 @@ import {
 import { fetchWithTimeout } from './fetch-utils';
 import { Breadcrumb } from '../types/breadcrumb';
 import { NotificationProps } from '../types/content-types/notification-props';
-import { Language } from '../types/languages';
+import { LanguageSelectorProps } from '../types/language-selector-props';
 
 const fetchLegacyHtml = (path: string, draft = false) => {
     const url = `${draft ? xpLegacyDraftUrl : xpLegacyUrl}/${encodeURI(
@@ -91,7 +91,7 @@ export const fetchBreadcrumbs = (
 export const fetchLanguages = (
     idOrPath: string,
     draft = false
-): Promise<Language[]> =>
+): Promise<LanguageSelectorProps[]> =>
     fetchWithTimeout(
         `${
             draft ? xpDraftServiceUrl : xpServiceUrl
