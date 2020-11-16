@@ -1,6 +1,6 @@
 import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
 import { Breadcrumb } from '../types/breadcrumb';
-import { Language } from '../types/languages';
+import { LanguageSelectorProps } from '../types/language-selector-props';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { useRouter } from 'next/router';
 import { FallbackPage } from './page-components/fallback-page/FallbackPage';
@@ -15,15 +15,24 @@ import {
 } from '../utils/fetch-content';
 import { makeErrorProps } from '../types/content-types/error-props';
 import { ErrorPage } from './page-components/error-page/ErrorPage';
+import { getTargetIfRedirect } from '../utils/redirects';
+import { routerQueryToXpPathOrId } from '../utils/paths';
 
-type Props = {
+type PageProps = {
     content: ContentTypeSchema;
     breadcrumbs: Breadcrumb[];
-    languages: Language[];
+    languages: LanguageSelectorProps[];
     notifications: NotificationProps[];
 };
 
-export const PageBase = (props: Props) => {
+type StaticProps = {
+    props: PageProps;
+    revalidate?: number;
+    redirect?: { destination: string; permanent: boolean };
+    notFound?: boolean;
+};
+
+export const PageBase = (props: PageProps) => {
     const router = useRouter();
     if (router.isFallback) {
         return <FallbackPage />;
@@ -48,35 +57,62 @@ export const PageBase = (props: Props) => {
 };
 
 export const fetchPageProps = async (
-    xpPath: string,
-    isDraft = false
-): Promise<Props> => {
+    routerQuery: string | string[],
+    isDraft = false,
+    revalidate?: number
+): Promise<StaticProps> => {
+    const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft);
+
+    const defaultProps = {
+        props: undefined,
+        ...(revalidate && { revalidate }),
+    };
+
+    if (content.__typename === ContentType.Error && content.errorCode === 404) {
+        return {
+            ...defaultProps,
+            notFound: true,
+        };
+    }
 
     if (
         content.__typename === ContentType.Error ||
         content.__typename === ContentType.LargeTable
     ) {
         return {
-            content: content,
-            breadcrumbs: [],
-            languages: [],
-            notifications: [],
+            ...defaultProps,
+            props: {
+                content: content,
+                breadcrumbs: [],
+                languages: [],
+                notifications: [],
+            },
         };
     }
 
-    // Use the path from the content object in case the initial path was redirected
-    const pathActual = content._path;
+    const redirectTarget = getTargetIfRedirect(content);
 
-    const breadcrumbs = await fetchBreadcrumbs(pathActual, isDraft);
-    const languages = await fetchLanguages(pathActual, isDraft);
-    const notifications = await fetchNotifications(pathActual, isDraft);
+    if (redirectTarget) {
+        return {
+            ...defaultProps,
+            redirect: { destination: redirectTarget, permanent: false },
+        };
+    }
+
+    const contentPath = content._path;
+    const breadcrumbs = await fetchBreadcrumbs(contentPath, isDraft);
+    const languages = await fetchLanguages(contentPath, isDraft);
+    const notifications = await fetchNotifications(contentPath, isDraft);
 
     return {
-        content: content,
-        breadcrumbs: breadcrumbs,
-        languages: languages,
-        notifications: notifications,
+        ...defaultProps,
+        props: {
+            content: content,
+            breadcrumbs: breadcrumbs,
+            languages: languages,
+            notifications: notifications,
+        },
     };
 };
 

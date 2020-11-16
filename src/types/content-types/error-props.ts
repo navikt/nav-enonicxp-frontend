@@ -19,4 +19,5 @@ export const makeErrorProps = (
     modifiedTime: Date.now().toString(),
     errorMessage: errorMessage,
     errorCode: errorCode,
+    language: 'no',
 });

@@ -23,11 +23,11 @@ export const ErrorPage = (props: ErrorProps) => {
         setBreadcrumbs([
             {
                 handleInApp: true,
-                title: 'Feil',
+                title: errorMessage,
                 url: '/',
             },
         ]);
-    }, [errorCode]);
+    }, [errorMessage]);
 
     return (
         <div className={bem()}>
