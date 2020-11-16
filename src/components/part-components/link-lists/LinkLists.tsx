@@ -6,7 +6,7 @@ import { BEM } from 'utils/bem';
 import { GlobalPageSchema, PageData } from 'types/content-types/_schema';
 import { ContentType } from 'types/content-types/_schema';
 import { LinkListTemplateMock } from './LinkListTemplateMock';
-import { translator } from 'translations'
+import { translator } from 'translations';
 import './LinkLists.less';
 
 const LinkLists = (props: GlobalPageSchema) => {
@@ -49,7 +49,7 @@ const LinkLists = (props: GlobalPageSchema) => {
                                 maxItems={nrNews}
                                 showDateLabel={true}
                                 sorted={true}
-                        />
+                            />
                             {moreNewsUrl && (
                                 <LenkeNavNo
                                     href={moreNewsUrl}
@@ -57,7 +57,9 @@ const LinkLists = (props: GlobalPageSchema) => {
                                     component={'link-list'}
                                     withChevron={false}
                                 >
-                                    <Normaltekst>{getLabel('moreNews')}</Normaltekst>
+                                    <Normaltekst>
+                                        {getLabel('moreNews')}
+                                    </Normaltekst>
                                 </LenkeNavNo>
                             )}
                         </div>

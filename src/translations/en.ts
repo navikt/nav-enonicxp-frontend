@@ -1,4 +1,6 @@
-export const bundle = {
+import { Translations } from './default';
+
+export const bundle: Translations = {
     dates: {
         published: 'Published',
         lastChanged: 'Updated',

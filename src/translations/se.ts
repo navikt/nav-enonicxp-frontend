@@ -1,4 +1,6 @@
-export const bundle = {
+import { Translations } from './default';
+
+export const bundle: Translations = {
     relatedContent: {
         appealRights: 'Váidinvuoigatvuođat',
         formAndApplication: 'Skovit',

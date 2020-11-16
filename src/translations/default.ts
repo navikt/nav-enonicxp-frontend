@@ -1,9 +1,18 @@
-export const bundle = {
+import { DeepPartial } from '../types/util-types';
+import { MenuListItemKey } from '../types/content-types/menuListItems';
+
+type BundleStructure = {
+    relatedContent: { [key in MenuListItemKey]: string };
+} & { [key: string]: { [key: string]: string } };
+
+export const bundle: BundleStructure = {
     dates: {
         lastChanged: 'Sist endret',
         published: 'Publisert',
     },
-    linkPanels: { label: 'Valgpaneler' },
+    linkPanels: {
+        label: 'Valgpaneler',
+    },
     linkLists: {
         news: 'Nyheter',
         moreNews: 'Flere nyheter',
@@ -18,7 +27,9 @@ export const bundle = {
         published: 'Publisert',
         tableOfContents: 'Innholdsfortegnelse',
     },
-    mainPanels: { label: 'Hovedvalg' },
+    mainPanels: {
+        label: 'Hovedvalg',
+    },
     relatedContent: {
         appealRights: 'Klagerettigheter',
         formAndApplication: 'Skjema og søknad',
@@ -38,3 +49,5 @@ export const bundle = {
         publishdate: 'Publiseringsdato',
     },
 };
+
+export type Translations = DeepPartial<typeof bundle>;
