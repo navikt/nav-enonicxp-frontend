@@ -9,10 +9,9 @@ type Props = {
     lenker: LenkeData[];
     tittel?: string;
     className?: string;
-    component?: string;
 };
 
-export const Lenkeliste = ({ tittel, lenker, className, component }: Props) => {
+export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
     const bem = BEM('lenkeliste');
 
     return (
@@ -30,7 +29,7 @@ export const Lenkeliste = ({ tittel, lenker, className, component }: Props) => {
                         label={lenke.label}
                         key={index}
                         className={bem('lenke')}
-                        component={component}
+                        component={'link-list'}
                         linkGroup={tittel}
                     >
                         {lenke.lenketekst}
