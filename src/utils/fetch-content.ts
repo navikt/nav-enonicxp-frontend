@@ -10,7 +10,7 @@ import {
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { Breadcrumb } from '../types/breadcrumb';
 import { NotificationProps } from '../types/content-types/notification-props';
-import { Language } from '../types/languages';
+import { LanguageSelectorProps } from '../types/language-selector-props';
 
 const fetchLegacyHtml = (path: string, isDraft = false) => {
     const url = `${isDraft ? xpLegacyDraftUrl : xpLegacyUrl}/${encodeURI(
@@ -100,7 +100,7 @@ export const fetchBreadcrumbs = (
 export const fetchLanguages = (
     idOrPath: string,
     isDraft = false
-): Promise<Language[]> => {
+): Promise<LanguageSelectorProps[]> => {
     const params = objectToQueryString({
         ...(isDraft && { branch: 'draft' }),
         id: idOrPath,
@@ -142,6 +142,6 @@ export const fetchPage = async (
 
     return (
         content ||
-        makeErrorProps(idOrPath, `Unknown fetch error from ${idOrPath}`)
+        makeErrorProps(idOrPath, `Ukjent feil`, 500)
     );
 };
