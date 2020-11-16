@@ -3,7 +3,7 @@ import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { JSDOM } from 'jsdom';
 import parse from 'html-react-parser';
 import { Breadcrumb } from '../types/breadcrumb';
-import { Language } from '../types/languages';
+import { LanguageSelectorProps } from '../types/language-selector-props';
 
 const decoratorUrl = process.env.DECORATOR_URL;
 
@@ -15,7 +15,7 @@ export type DecoratorFragments = {
 };
 
 export type DecoratorParams = Partial<{
-    availableLanguages: Language[];
+    availableLanguages: LanguageSelectorProps[];
     breadcrumbs: Breadcrumb[];
     chatbot: boolean;
     feedback: boolean;
