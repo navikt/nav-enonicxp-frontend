@@ -245,9 +245,9 @@ export const MainArticle = (props: Article) => {
                                     data-th-attr="data-medium=${social.type}"
                                     href={item.href}
                                 >
-                              <span className={`share-social share-${item.type}`}>
-                                 {item.text}
-                              </span>
+                                      <span className={`share-social share-${item.type}`}>
+                                         {item.text}
+                                      </span>
                                 </a>
                             </li>
                         ))

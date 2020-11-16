@@ -154,12 +154,12 @@ export const Region = (props: RegionProps & GlobalPageSchema & PageProps) => {
                                 [PartType.MenuList]: (
                                     <MenuList {...(props as MenuListProps)} />
                                 ),
+                                [PartType.MainArticle]: <MainArticle {...(props as (MainArticleChapterProps | MainArticleProps))} />,
 
                                 // Deprecated parts - remove after release
                                 [PartType.Notifications]: <></>,
                                 [PartType.BreakingNews]: <></>,
                                 [PartType.PageCrumbs]: <></>,
-                                [PartType.MainArticle]: <MainArticle {...(props as (MainArticleChapterProps | MainArticleProps))} />
                             }[descriptor] || (
                                 <div className={bem('unimplemented')}>
                                     {`Unimplemented part: ${descriptor}`}
