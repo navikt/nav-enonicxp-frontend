@@ -14,6 +14,7 @@ import { LargeTableProps } from './large-table-props';
 import { LinkPanel } from '../link-panel';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
+import { Language } from '../../translations';
 import { MainArticleChapterDataProps } from './main-article-chapter-props';
 import { MainArticleDataProps } from './main-article-content-props';
 
@@ -78,13 +79,12 @@ export type GlobalSchema = {
     _path: XpContentRef;
     createdTime: string;
     modifiedTime: string;
+    language: Language;
     displayName: string;
-    data: object;
-    isDraft?: boolean;
+    data?: object;
     publish?: {
         from: string;
     }
-    language: string
 };
 
 // Specific for dynamic page schemas
