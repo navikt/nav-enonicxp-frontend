@@ -74,7 +74,7 @@ export const MainPanels = (props: GlobalPageSchema) => {
     return (
         tableContents?.length > 0 && (
             <div className={bem()}>
-                {tableContents.map((content, index) => {
+                {tableContents.map((content) => {
                     const { url, tittel, ingress } = getLinkData(content);
 
                     return (
@@ -84,7 +84,7 @@ export const MainPanels = (props: GlobalPageSchema) => {
                                 href={url}
                                 separator={true}
                                 tittel={tittel}
-                                key={index}
+                                key={content._id}
                                 className={`lenkepanel-vertical ${bem('item')}`}
                                 component={'main-panels'}
                             >
