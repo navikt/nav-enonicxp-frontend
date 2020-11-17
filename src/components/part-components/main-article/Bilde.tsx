@@ -11,7 +11,7 @@ const Bilde = (props: Props) => {
         return <></>;
     }
 
-    const imgClass = picture.size === '40' ? 'figure-small' : (props.size  === '70' ? 'figure-medium' : 'figure-full');
+    const imgClass = picture.size === '40' ? 'figure-small' : (picture.size  === '70' ? 'figure-medium' : 'figure-full');
     const height = 768;
     const width = 'max';
     const src = picture.target.imageUrl.replace('$scale', `${width}-${height}`);
