@@ -2,6 +2,8 @@ import React from 'react';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { JSDOM } from 'jsdom';
 import parse from 'html-react-parser';
+import { Breadcrumb } from '../types/breadcrumb';
+import { LanguageSelectorProps } from '../types/language-selector-props';
 
 const decoratorUrl = process.env.DECORATOR_URL;
 
@@ -10,6 +12,17 @@ export type DecoratorFragments = {
     FOOTER: React.ReactNode;
     SCRIPTS: React.ReactNode;
     STYLES: React.ReactNode;
+};
+
+export type DecoratorParams = Partial<{
+    availableLanguages: LanguageSelectorProps[];
+    breadcrumbs: Breadcrumb[];
+    chatbot: boolean;
+    feedback: boolean;
+}>;
+
+const defaultParams: DecoratorParams = {
+    chatbot: true,
 };
 
 const fetchDecorator = (queryString?: string) => {
@@ -25,11 +38,7 @@ const fetchDecorator = (queryString?: string) => {
         .catch(console.error);
 };
 
-export const getDecorator = async (params?: object) => {
-    const defaultParams = {
-        chatbot: true,
-    };
-
+export const getDecorator = async (params?: DecoratorParams) => {
     const query = objectToQueryString({ ...defaultParams, ...params });
 
     const decoratorBody = await fetchDecorator(query);

@@ -7,10 +7,12 @@ import LenkepanelNavNo from '../_common/lenkepanel/LenkepanelNavNo';
 import { MainPanelMock } from './MainPanelsMock';
 import './MainPanels.less';
 
+const ingressMaxLength = 140;
+
 type TableData = {
     url: string;
     tittel: string;
-    children?: string;
+    ingress?: string;
 };
 
 const getLinkData = (
@@ -30,31 +32,31 @@ const getLinkData = (
             return {
                 url: contentData.data.url,
                 tittel: contentData.displayName,
-                children: contentData.data.description,
+                ingress: contentData.data.description,
             };
         case ContentType.TransportPage:
             return {
                 url: contentData._path,
                 tittel: contentData.displayName,
-                children: contentData.data.ingress,
+                ingress: contentData.data.ingress,
             };
         case ContentType.PageList:
             return {
                 url: contentData._path,
                 tittel: contentData.displayName,
-                children: contentData.data.ingress,
+                ingress: contentData.data.ingress,
             };
         case ContentType.MainArticle:
             return {
                 url: contentData._path,
                 tittel: contentData.displayName,
-                children: contentData.data.ingress,
+                ingress: contentData.data.ingress,
             };
         default:
             return {
                 url: contentData._path,
                 tittel: contentData.displayName,
-                children: contentData.displayName,
+                ingress: contentData.displayName,
             };
     }
 };
@@ -73,18 +75,26 @@ export const MainPanels = (props: GlobalPageSchema) => {
         tableContents?.length > 0 && (
             <div className={bem()}>
                 {tableContents.map((content) => {
-                    const link = getLinkData(content);
+                    const { url, tittel, ingress } = getLinkData(content);
 
                     return (
-                        link && (
+                        url &&
+                        tittel && (
                             <LenkepanelNavNo
-                                href={link.url}
+                                href={url}
                                 separator={true}
-                                tittel={link.tittel}
+                                tittel={tittel}
                                 key={content._id}
                                 className={`lenkepanel-vertical ${bem('item')}`}
+                                component={'main-panels'}
                             >
-                                <Normaltekst>{link.children}</Normaltekst>
+                                {ingress && (
+                                    <Normaltekst>
+                                        {ingress.slice(0, ingressMaxLength)}
+                                        {ingress.length > ingressMaxLength &&
+                                            '...'}
+                                    </Normaltekst>
+                                )}
                             </LenkepanelNavNo>
                         )
                     );

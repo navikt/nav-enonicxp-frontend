@@ -30,6 +30,9 @@ export const xpPathToAppPath = (path: string) =>
 export const xpPathToUrl = (path: string) =>
     `${getLocationOrigin()}${xpPathToAppPath(path)}`;
 
+export const appPathToXpPath = (path: string) =>
+    path && `${xpContentBasePath}${path}`;
+
 export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
     const possibleId =
         typeof routerQuery === 'string' ? routerQuery : routerQuery[1];

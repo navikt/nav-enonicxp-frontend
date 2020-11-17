@@ -41,11 +41,11 @@ const getDescription = ({ data }: Target) => {
 };
 
 export const Notification = (props: NotificationProps) => {
-    const getDateLabel = translator('dates', props.language);
     const { data, modifiedTime } = props;
     const { type, showDescription, showUpdated, target } = data;
     const description = showDescription && getDescription(target);
     const bem = BEM('notification');
+    const getDateLabel = translator('dates', props.language);
 
     return (
         <LenkepanelNavNo
@@ -53,6 +53,7 @@ export const Notification = (props: NotificationProps) => {
             tittel={getTitle(props)}
             ikon={iconsForType[type]}
             className={bem()}
+            component={'notifications'}
         >
             <>
                 {description && (

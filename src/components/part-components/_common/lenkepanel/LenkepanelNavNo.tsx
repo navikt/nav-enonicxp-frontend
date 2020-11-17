@@ -10,6 +10,8 @@ export type LenkepanelProps = {
     tittel: string;
     ikon?: React.ReactElement;
     separator?: boolean;
+    component?: string;
+    linkGroup?: string;
     className?: string;
     id?: string;
     onClick?: (event: React.MouseEvent) => void;
@@ -22,6 +24,8 @@ const LenkepanelNavNo = ({
     ikon,
     separator,
     className,
+    component,
+    linkGroup,
     id,
     onClick,
     children,
@@ -35,7 +39,16 @@ const LenkepanelNavNo = ({
             id={id}
             border={true}
             onClick={onClick}
-            linkCreator={LenkeUstylet}
+            linkCreator={(props) =>
+                <LenkeUstylet
+                    href={href}
+                    component={component}
+                    linkGroup={linkGroup}
+                    {...props}
+                >
+                    {props.children}
+                </LenkeUstylet>
+            }
         >
             {ikon && <div className={bem('ikon')}>{ikon}</div>}
             <div className={bem('innhold')}>
