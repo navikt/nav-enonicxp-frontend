@@ -86,6 +86,7 @@ export const MainPanels = (props: GlobalPageSchema) => {
                                 tittel={tittel}
                                 key={index}
                                 className={`lenkepanel-vertical ${bem('item')}`}
+                                component={'main-panels'}
                             >
                                 {ingress && (
                                     <Normaltekst>

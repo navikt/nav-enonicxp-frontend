@@ -6,6 +6,8 @@ import Link from 'next/link';
 type Props = {
     href: string;
     className?: string;
+    component?: string;
+    linkGroup?: string;
     id?: string;
     onClick?: (e: React.MouseEvent) => void;
     analyticsLabel?: string;
@@ -15,6 +17,8 @@ type Props = {
 export const LenkeUstylet = ({
     href,
     className,
+    component,
+    linkGroup,
     id,
     onClick,
     analyticsLabel,
@@ -31,7 +35,7 @@ export const LenkeUstylet = ({
             className={className}
             id={id}
             onClick={(e) => {
-                logLinkClick(_href, analyticsLinkText);
+                logLinkClick(_href, analyticsLinkText, component, linkGroup);
                 onClick?.(e);
             }}
         >
