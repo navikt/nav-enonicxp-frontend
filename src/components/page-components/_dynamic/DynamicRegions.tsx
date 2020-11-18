@@ -24,6 +24,8 @@ import { MainArticleLinkedListProps } from '../../part-components/main-article-l
 import { MainArticleLinkedList } from '../../part-components/main-article-linked-list/MainArticleLinkedList';
 import { MenuListProps } from '../../part-components/menu-list/MenuList';
 import { MenuList } from '../../part-components/menu-list/MenuList';
+import { OfficeInformationProps } from 'types/content-types/office-information-props';
+import { OfficeInformation } from '../../part-components/office-information/OfficeInformation';
 import './DynamicRegions.less';
 
 const bem = BEM('region');
@@ -148,7 +150,11 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 [PartType.MenuList]: (
                                     <MenuList {...(props as MenuListProps)} />
                                 ),
-
+                                [PartType.OfficeInformation]: (
+                                    <OfficeInformation
+                                        {...(props as OfficeInformationProps)}
+                                    />
+                                ),
                                 // Deprecated parts - remove after release
                                 [PartType.Notifications]: <></>,
                                 [PartType.BreakingNews]: <></>,

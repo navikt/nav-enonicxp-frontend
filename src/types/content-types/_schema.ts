@@ -14,6 +14,7 @@ import { LargeTableProps } from './large-table-props';
 import { LinkPanel } from '../link-panel';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
+import { OfficeInformationProps } from './office-information-props';
 import { Language } from '../../translations';
 
 export enum ContentType {
@@ -33,6 +34,7 @@ export enum ContentType {
     MainArticleChapter = 'no_nav_navno_MainArticleChapter',
     Notification = 'no_nav_navno_Notification',
     LargeTable = 'no_nav_navno_LargeTable',
+    OfficeInformation = 'no_nav_navno_OfficeInformation',
 }
 
 export enum PartType {
@@ -43,6 +45,7 @@ export enum PartType {
     MainPanels = 'no.nav.navno:main-panels',
     MainArticleLinkedList = 'no.nav.navno:main-article-linked-list',
     MenuList = 'no.nav.navno:menu-list',
+    OfficeInformation = 'no.nav.navno:office-information',
 
     // Parts with own content
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
@@ -68,6 +71,7 @@ export type ContentTypeSchema =
     | PageListProps
     | MainArticleProps
     | NotificationProps
+    | OfficeInformationProps
     | LargeTableProps;
 
 export type GlobalSchema = {
