@@ -13,7 +13,7 @@ interface Props {
 
 const ArtikkelDato = (props: Props) => {
 
-    const publisertDato = (props.publish?.from ? props.publish?.from : props.createdTime);
+    const publisertDato = (props.publish?.from ? props.publish.from : props.createdTime);
     const publishedString = `${props.publishLabel}: ${formatDate(publisertDato)}`;
 
     let modifiedString = '';

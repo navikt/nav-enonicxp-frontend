@@ -6,12 +6,13 @@ import { MainArticleProps } from '../../../types/content-types/main-article-prop
 import { ArticleProps } from '../../../types/content-types/main-article-chapter-props';
 import { BEM } from '../../../utils/bem';
 import { translator } from 'translations';
-import Innholdsfortegnelse, { parseInnholdsfortegnelse } from './Innholdsfortegnelse';
+import Innholdsfortegnelse from './innholdsfortegnelse/Innholdsfortegnelse';
 import SosialeMedier from './SosialeMedier';
 import ArtikkelDato from './ArtikkelDato';
 import Faktaboks from './Faktaboks';
 import Bilde from './Bilde';
 import MainArticleText from './MainArticleText';
+import { parseInnholdsfortegnelse } from './innholdsfortegnelse/parseInnholdsfortegnelse';
 import './MainArticle.less';
 
 export const MainArticle = (props: MainArticleProps | ArticleProps) => {
@@ -20,7 +21,7 @@ export const MainArticle = (props: MainArticleProps | ArticleProps) => {
             ? (MainArticleMock  as PageData)
             : props.data;
     const getLabel = translator('mainArticle', props.language);
-    const {innholdsfortegnelse, modifiedHtml} = parseInnholdsfortegnelse(data.text);
+    const {innholdsfortegnelse, modifiedHtml} = parseInnholdsfortegnelse(data.text, data.hasTableOfContents);
 
     return (
         <article
@@ -36,12 +37,10 @@ export const MainArticle = (props: MainArticleProps | ArticleProps) => {
                 />
                 <h1>{props.displayName}</h1>
                 <p className={bem('preface')}>{data.ingress}</p>
-                { data.hasTableOfContents && data.hasTableOfContents !== 'none' &&
-                    <Innholdsfortegnelse
-                        innholdsfortegnelse={innholdsfortegnelse}
-                        label={getLabel('tableOfContents')}
-                    />
-                }
+                <Innholdsfortegnelse
+                    innholdsfortegnelse={innholdsfortegnelse}
+                    label={getLabel('tableOfContents')}
+                />
             </header>
             <MainArticleText
                 text={modifiedHtml}
