@@ -8,13 +8,19 @@ import Lenke from 'nav-frontend-lenker';
 import { xpPathToAppPath } from '../../../utils/paths';
 
 const PageList = (props: RegionProps & GlobalPageSchema) => {
-    console.log(props);
     const bem = BEM('page-list');
+    const sectionContents = (props.data?.sectionContents || []).filter(
+        (section) => props._id !== section._id
+    );
+
     return (
         <div className={bem()}>
             <Innholdstittel>{props.displayName}</Innholdstittel>
+            <div className={bem('ingress')}>
+                <Normaltekst>{props.data.ingress}</Normaltekst>
+            </div>
             <div className={bem('list')}>
-                {props.data?.sectionContents.map((section) => {
+                {sectionContents.map((section) => {
                     const { displayName, _path } = section;
                     const ingress = section.data?.ingress;
                     return (
@@ -25,9 +31,11 @@ const PageList = (props: RegionProps & GlobalPageSchema) => {
                                 </Lenke>
                             </Normaltekst>
                             {ingress && (
-                                <Normaltekst>
-                                    {section.data?.ingress}
-                                </Normaltekst>
+                                <div className={bem('ingress')}>
+                                    <Normaltekst>
+                                        {section.data?.ingress}
+                                    </Normaltekst>
+                                </div>
                             )}
                         </div>
                     );

@@ -28,26 +28,28 @@ export const MenuList = (props: MenuListProps) => {
         <div className={bem()}>
             {entries
                 .filter(([key]) => selected.includes(key as MenuListItemKey))
-                .map(([key, menuItem]) => (
-                    <Ekspanderbartpanel
-                        key={key}
-                        tittel={getLabel(key as MenuListItemKey) || key}
-                        className={bem('panel')}
-                    >
-                        <ul>
-                            {(menuItem as LinkItem)?.link?.map((link) => {
-                                const path = xpPathToAppPath(link._path);
-                                return (
-                                    <li key={path}>
-                                        <Lenke href={path}>
-                                            {link.displayName}
-                                        </Lenke>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </Ekspanderbartpanel>
-                ))}
+                .map(([key, LinkItem], i) => {
+                    return (
+                        <Ekspanderbartpanel
+                            key={key}
+                            tittel={getLabel(key as MenuListItemKey) || key}
+                            className={bem('panel')}
+                        >
+                            <ul>
+                                {(LinkItem as LinkItem)?.link?.map((link) => {
+                                    const path = xpPathToAppPath(link._path);
+                                    return (
+                                        <li key={path}>
+                                            <Lenke href={path}>
+                                                {link.displayName}
+                                            </Lenke>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </Ekspanderbartpanel>
+                    );
+                })}
         </div>
     );
 };
