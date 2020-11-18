@@ -1,6 +1,6 @@
 import { GlobalSchema } from './_schema';
 
-interface LinkItem {
+export interface LinkItem {
     link: GlobalSchema[];
 }
 
@@ -20,4 +20,4 @@ export type MenuListItemKey =
 
 export type MenuListItem = {
     [key in MenuListItemKey]: LinkItem;
-} & { selected: MenuListItemKey[], _selected: MenuListItemKey[] };
+} & { selected: MenuListItemKey[]; _selected: MenuListItemKey[] };

@@ -6,7 +6,7 @@ import { xpPathToAppPath } from 'utils/paths';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { translator } from 'translations';
 import { BEM } from 'utils/bem';
-import { MenuListItemKey } from 'types/content-types/menuListItems';
+import { LinkItem, MenuListItemKey } from 'types/content-types/menuListItems';
 import './MenuList.less';
 
 export type MenuListProps = RegionProps & MainArticleProps;
@@ -14,10 +14,11 @@ export type MenuListProps = RegionProps & MainArticleProps;
 export const MenuList = (props: MenuListProps) => {
     const bem = BEM('menu-list');
     const data = props.data;
+    const language = props.language;
     const menuListItems = data?.menuListItems;
     const entries = menuListItems ? Object.entries(menuListItems) : [];
     const selected = menuListItems?.selected || menuListItems?._selected || [];
-    const getLabel = translator('relatedContent', props.language);
+    const getLabel = translator('relatedContent', language);
 
     if (entries.length === 0) {
         return null;
@@ -34,7 +35,7 @@ export const MenuList = (props: MenuListProps) => {
                         className={bem('panel')}
                     >
                         <ul>
-                            {menuItem[key].link?.map((link) => {
+                            {(menuItem as LinkItem)?.link?.map((link) => {
                                 const path = xpPathToAppPath(link._path);
                                 return (
                                     <li key={path}>
