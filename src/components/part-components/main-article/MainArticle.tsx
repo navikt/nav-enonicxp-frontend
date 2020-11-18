@@ -2,9 +2,8 @@ import React from 'react';
 import { PageData } from 'types/content-types/_schema';
 import { ContentType } from 'types/content-types/_schema';
 import { MainArticleMock } from './MainArticleMock';
-import { ParsedHtml } from '../_dynamic/ParsedHtml';
 import { MainArticleProps } from '../../../types/content-types/main-article-props';
-import { MainArticleChapterProps } from '../../../types/content-types/main-article-chapter-props';
+import { ArticleProps } from '../../../types/content-types/main-article-chapter-props';
 import { BEM } from '../../../utils/bem';
 import { translator } from 'translations';
 import Innholdsfortegnelse from './Innholdsfortegnelse';
@@ -12,53 +11,30 @@ import SosialeMedier from './SosialeMedier';
 import ArtikkelDato from './ArtikkelDato';
 import Faktaboks from './Faktaboks';
 import Bilde from './Bilde';
+import MainArticleText from './MainArticleText';
 import './MainArticle.less';
 
-const cleanupHtml = (htmlText: string) => {
-    // Fjern tomme headings og br-tagger fra HTML
-    let cleanHtml = htmlText;
-    cleanHtml = cleanHtml?.replace(/<h\d>\s*<\/h\d>/g, '');
-    cleanHtml = cleanHtml?.replace(/<h\d>&nbsp;<\/h\d>/g, '');
-    cleanHtml = cleanHtml?.replace(/<br \/>/g, '');
-    return cleanHtml;
-}
-
-type Article = MainArticleProps | MainArticleChapterProps
-
-function isMainArticleChapter(props: Article): props is MainArticleChapterProps {
-    return (props.__typename === ContentType.MainArticleChapter)
-}
-
-function getData(props: MainArticleProps | MainArticleChapterProps) {
-    if (props.__typename === ContentType.TemplatePage) {
-        return MainArticleMock as PageData;
-    }
-    return isMainArticleChapter(props) ? props.data.article.data : props.data;
-}
-
-
-export const MainArticle = (props: Article) => {
+export const MainArticle = (props: MainArticleProps | ArticleProps) => {
     const bem = BEM('main-article');
-    const data = getData(props);
-    const content = isMainArticleChapter(props) ? props.data.article : props;
+    const data = props.__typename === ContentType.TemplatePage
+            ? (MainArticleMock  as PageData)
+            : props.data;
     const getLabel = translator('mainArticle', props.language);
 
-    console.log(content)
     return (
         <article
-            id="pagecontent"
             className={bem()}
         >
-            <header className="article-head">
+            <header className={bem('header')}>
                 <ArtikkelDato
-                    publish={content.publish}
-                    createdTime={content.createdTime}
-                    modifiedTime={content.modifiedTime}
+                    publish={props.publish}
+                    createdTime={props.createdTime}
+                    modifiedTime={props.modifiedTime}
                     publishLabel={getLabel('published')}
                     modifiedLabel={getLabel('lastChanged')}
                 />
-                <h1>{content.displayName}</h1>
-                <p className="preface">{data.ingress}</p>
+                <h1>{props.displayName}</h1>
+                <p className={bem('preface')}>{data.ingress}</p>
                 { data.hasTableOfContents && data.hasTableOfContents !== 'none' &&
                     <Innholdsfortegnelse
                         innhold={data.text}
@@ -66,22 +42,21 @@ export const MainArticle = (props: Article) => {
                     />
                 }
             </header>
-            <div className={bem('text')}>
-                <ParsedHtml content={cleanupHtml( data.text)}/>
-            </div>
+            <MainArticleText
+                text={data.text}
+                className={bem('text')}
+            />
             <Faktaboks
                 fakta={data.fact}
                 label={getLabel('facts')}
-                wrapperClass={bem('facts')}
+                className={bem('facts')}
             />
             <SosialeMedier
                 social={data.social}
-                displayName={content.displayName}
-                contentPath={content._path}
+                displayName={props.displayName}
+                contentPath={props._path}
             />
-
             <Bilde picture={data.picture} />
-
         </article>
     );
 };

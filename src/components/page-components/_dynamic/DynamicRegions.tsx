@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalPageSchema } from 'types/content-types/_schema';
+import { ContentType, GlobalPageSchema } from 'types/content-types/_schema';
 import { DynamicRegions, PartType } from 'types/content-types/_schema';
 import { DynamicRegion } from 'types/content-types/_schema';
 import { LinkPanel } from 'components/part-components/_dynamic/link-panel/LinkPanel';
@@ -25,7 +25,7 @@ import { MainArticleLinkedList } from '../../part-components/main-article-linked
 import { MenuListProps } from '../../part-components/menu-list/MenuList';
 import { MenuList } from '../../part-components/menu-list/MenuList';
 import { MainArticle } from '../../part-components/main-article/MainArticle';
-import { MainArticleChapterProps } from '../../../types/content-types/main-article-chapter-props';
+import { ArticleProps } from '../../../types/content-types/main-article-chapter-props';
 import { MainArticleProps } from '../../../types/content-types/main-article-props';
 import './DynamicRegions.less';
 
@@ -36,9 +36,7 @@ interface RegionsProps {
     dynamicConfig?: DynamicRegionConfig;
 }
 
-type PageProps = MainArticleChapterProps | MainArticleProps | MainArticleLinkedListProps;
-
-const Regions = (props: RegionsProps & GlobalPageSchema & PageProps) => {
+const Regions = (props: RegionsProps & GlobalPageSchema) => {
     const dynamicRegions = props.dynamicRegions || [];
     return (
         <>
@@ -61,7 +59,7 @@ export interface RegionProps {
 }
 
 
-export const Region = (props: RegionProps & GlobalPageSchema & PageProps) => {
+export const Region = (props: RegionProps & GlobalPageSchema) => {
     const dynamicRegionComponents = props.dynamicRegion.components || [];
     const dynamicConfig = props.dynamicConfig;
     const { name } = props.dynamicRegion;
@@ -154,7 +152,12 @@ export const Region = (props: RegionProps & GlobalPageSchema & PageProps) => {
                                 [PartType.MenuList]: (
                                     <MenuList {...(props as MenuListProps)} />
                                 ),
-                                [PartType.MainArticle]: <MainArticle {...(props as (MainArticleChapterProps | MainArticleProps))} />,
+                                [PartType.MainArticle]: (
+                                    props.__typename === ContentType.MainArticleChapter ?
+                                        <MainArticle {...(props.data.article as ArticleProps)} /> :
+                                        <MainArticle {...(props as MainArticleProps)} />
+
+                                ),
 
                                 // Deprecated parts - remove after release
                                 [PartType.Notifications]: <></>,

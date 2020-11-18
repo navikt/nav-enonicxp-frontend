@@ -5,16 +5,16 @@ import { ParsedHtml } from '../_dynamic/ParsedHtml';
 interface Props {
     label: string,
     fakta: string,
-    wrapperClass: string
+    className: string
 }
 
 const Faktaboks = (props: Props) => {
     if (!props.fakta) {
-        return <></>
+        return null;
     }
 
     return (
-        <div className={props.wrapperClass}>
+        <div className={props.className}>
             <InfoIcon />
             <h3 className="decorated">{props.label}</h3>
             <ParsedHtml content={props.fakta} />
