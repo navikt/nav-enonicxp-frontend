@@ -10,6 +10,17 @@
     }
   }
 
+  &__text {
+    .chapter-header {
+      display: inline-block;
+    }
+
+    .chapter-header:focus {
+      outline: 3px solid @fokusFarge;
+      padding: .5rem;
+    }
+  }
+
   &__facts {
     img {
       width: 1.25rem;
@@ -114,12 +125,13 @@
       color: #0067c5;
     }
 
-    &focus {
+    &:focus {
       outline: none;
       color: white;
       background-color: #254b6d;
       box-shadow: 0 0 0 2px #254b6d;
     }
+
     &:hover:before,
     &:focus:before,
     &:active:before {
@@ -144,3 +156,6 @@
   position: absolute;
   width: 1px;
 }
+
+
+

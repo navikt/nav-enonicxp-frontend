@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { xpPathToUrl } from '../../../utils/paths';
+import { LenkeUstylet } from '../_common/lenke/LenkeUstylet';
 import './SosialeMedier.less';
 
-const getSocialRef = (el: string, displayName: string, requestUrl: string) => {
+const getSocialmediaShareUrl = (el: string, displayName: string, requestUrl: string) => {
     if (!requestUrl) {
         return null;
     }
@@ -52,29 +53,26 @@ const SosialeMedier = (props: Props) => {
         return {
             type: el,
             text: tmpText,
-            href: getSocialRef(el, props.displayName, xpPathToUrl(props.contentPath))
+            href: getSocialmediaShareUrl(el, props.displayName, xpPathToUrl(props.contentPath))
         };
     });
 
     if (socialMedia === []) {
-        return <></>
+        return null;
     }
 
     return (
         <div className="social-media">
-            <ul className="share-social-media-pills">
+            <ul>
                 {socialMedia.map(item => (
                     <li key={item.type}>
-                        <a
-                            data-ga="share-social-media"
-                            className="js-share share-container"
-                            data-th-attr="data-medium=${social.type}"
+                        <LenkeUstylet
                             href={item.href}
                         >
-                              <span className={`share-social share-${item.type}`}>
-                                 {item.text}
-                              </span>
-                        </a>
+                            <span className={`share-social share-${item.type}`}>
+                                {item.text}
+                            </span>
+                        </LenkeUstylet>
                     </li>
                 ))
                 }

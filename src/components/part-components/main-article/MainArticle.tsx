@@ -6,7 +6,7 @@ import { MainArticleProps } from '../../../types/content-types/main-article-prop
 import { ArticleProps } from '../../../types/content-types/main-article-chapter-props';
 import { BEM } from '../../../utils/bem';
 import { translator } from 'translations';
-import Innholdsfortegnelse from './Innholdsfortegnelse';
+import Innholdsfortegnelse, { parseInnholdsfortegnelse } from './Innholdsfortegnelse';
 import SosialeMedier from './SosialeMedier';
 import ArtikkelDato from './ArtikkelDato';
 import Faktaboks from './Faktaboks';
@@ -20,6 +20,7 @@ export const MainArticle = (props: MainArticleProps | ArticleProps) => {
             ? (MainArticleMock  as PageData)
             : props.data;
     const getLabel = translator('mainArticle', props.language);
+    const {innholdsfortegnelse, modifiedHtml} = parseInnholdsfortegnelse(data.text);
 
     return (
         <article
@@ -37,13 +38,13 @@ export const MainArticle = (props: MainArticleProps | ArticleProps) => {
                 <p className={bem('preface')}>{data.ingress}</p>
                 { data.hasTableOfContents && data.hasTableOfContents !== 'none' &&
                     <Innholdsfortegnelse
-                        innhold={data.text}
+                        innholdsfortegnelse={innholdsfortegnelse}
                         label={getLabel('tableOfContents')}
                     />
                 }
             </header>
             <MainArticleText
-                text={data.text}
+                text={modifiedHtml}
                 className={bem('text')}
             />
             <Faktaboks
