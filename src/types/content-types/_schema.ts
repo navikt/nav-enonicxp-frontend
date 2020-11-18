@@ -14,6 +14,7 @@ import { LargeTableProps } from './large-table-props';
 import { LinkPanel } from '../link-panel';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
+import { Language } from '../../translations';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -76,9 +77,9 @@ export type GlobalSchema = {
     _path: XpContentRef;
     createdTime: string;
     modifiedTime: string;
+    language: Language;
     displayName: string;
-    data: object;
-    isDraft?: boolean;
+    data?: object;
 };
 
 // Specific for dynamic page schemas

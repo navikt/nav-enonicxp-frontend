@@ -4,17 +4,20 @@ interface LinkItem {
     link: GlobalSchema[];
 }
 
-export interface MenuListItem {
-    selected: string[];
-    _selected: string[];
-    selfservice: LinkItem;
-    formAndApplication: LinkItem;
-    processTimes: LinkItem;
-    relatedInformation: LinkItem;
-    international: LinkItem;
-    reportChanges: LinkItem;
-    rates: LinkItem;
-    appealRights: LinkItem;
-    membership: LinkItem;
-    rulesAndRegulations: LinkItem;
-}
+export type MenuListItemKey =
+    | 'selfservice'
+    | 'formAndApplication'
+    | 'processTimes'
+    | 'relatedInformation'
+    | 'international'
+    | 'reportChanges'
+    | 'rates'
+    | 'appealRights'
+    | 'membership'
+    | 'rulesAndRegulations'
+    | 'saksbehandling'
+    | 'shortcuts';
+
+export type MenuListItem = {
+    [key in MenuListItemKey]: LinkItem;
+} & { selected: MenuListItemKey[], _selected: MenuListItemKey[] };

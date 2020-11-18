@@ -4,7 +4,9 @@ import { RegionProps } from '../../page-components/_dynamic/DynamicRegions';
 import Lenke from 'nav-frontend-lenker';
 import { xpPathToAppPath } from 'utils/paths';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { translator } from 'translations';
 import { BEM } from 'utils/bem';
+import { MenuListItemKey } from 'types/content-types/menuListItems';
 import './MenuList.less';
 
 export type MenuListProps = RegionProps & MainArticleProps;
@@ -15,38 +17,24 @@ export const MenuList = (props: MenuListProps) => {
     const menuListItems = data?.menuListItems;
     const entries = menuListItems ? Object.entries(menuListItems) : [];
     const selected = menuListItems?.selected || menuListItems?._selected || [];
+    const getLabel = translator('relatedContent', props.language);
 
     if (entries.length === 0) {
         return null;
     }
 
-    // Todo: Oversett
-    const titles = {
-        selfservice: 'Selvbetjening',
-        formAndApplication: 'Skjema og søknad',
-        processTimes: 'Saksbehandlingstider',
-        relatedInformation: 'Relatert innhold',
-        international: 'Internasjonalt',
-        reportChanges: 'Meld fra om endringer',
-        rates: 'Satser',
-        appealRights: 'Klagerettigheter',
-        membership: 'Medlemsskap i folketrygden',
-        rulesAndRegulations: 'Regelverk',
-        shortcuts: 'Snareveier',
-    };
-
     return (
         <div className={bem()}>
             {entries
-                .filter(([key]) => selected.includes(key))
+                .filter(([key]) => selected.includes(key as MenuListItemKey))
                 .map(([key, menuItem]) => (
                     <Ekspanderbartpanel
                         key={key}
-                        tittel={titles[key] || key}
+                        tittel={getLabel(key as MenuListItemKey) || key}
                         className={bem('panel')}
                     >
                         <ul>
-                            {menuItem.link?.map((link) => {
+                            {menuItem[key].link?.map((link) => {
                                 const path = xpPathToAppPath(link._path);
                                 return (
                                     <li key={path}>

@@ -1,4 +1,4 @@
-export type Language = {
+export type LanguageSelectorProps = {
     locale: string;
     url: string;
 };

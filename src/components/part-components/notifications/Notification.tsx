@@ -9,6 +9,7 @@ import { hasIngress } from 'types/content-types/_type-guards';
 import { hasDescription } from 'types/content-types/_type-guards';
 import { BEM } from 'utils/bem';
 import { formatDate } from 'utils/datetime';
+import { translator } from 'translations';
 import './Notification.less';
 
 type Target = NotificationProps['data']['target'];
@@ -44,6 +45,7 @@ export const Notification = (props: NotificationProps) => {
     const { type, showDescription, showUpdated, target } = data;
     const description = showDescription && getDescription(target);
     const bem = BEM('notification');
+    const getDateLabel = translator('dates', props.language);
 
     return (
         <LenkepanelNavNo
@@ -51,6 +53,7 @@ export const Notification = (props: NotificationProps) => {
             tittel={getTitle(props)}
             ikon={iconsForType[type]}
             className={bem()}
+            component={'notifications'}
         >
             <>
                 {description && (
@@ -59,9 +62,11 @@ export const Notification = (props: NotificationProps) => {
                     </Normaltekst>
                 )}
                 {showUpdated && (
-                    <Undertekst
-                        className={bem('updated')}
-                    >{`Sist oppdatert: ${formatDate(modifiedTime)}`}</Undertekst>
+                    <Undertekst className={bem('updated')}>
+                        {`${getDateLabel('lastChanged')}: ${formatDate(
+                            modifiedTime
+                        )}`}
+                    </Undertekst>
                 )}
             </>
         </LenkepanelNavNo>
