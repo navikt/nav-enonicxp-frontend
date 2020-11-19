@@ -7,32 +7,14 @@ const getSocialmediaShareUrl = (el: string, displayName: string, requestUrl: str
     if (!requestUrl) {
         return null;
     }
-    switch (el) {
-        case 'facebook':
-            return (
-                'https://www.facebook.com/sharer/sharer.php?u=' +
-                requestUrl +
-                '&amp;title=' +
-                displayName?.replace(/ /g, '%20')
-            );
-        case 'twitter':
-            return (
-                'https://twitter.com/intent/tweet?text=' +
-                displayName?.replace(/ /g, '%20') +
-                ': ' +
-                requestUrl
-            );
-        case 'linkedin':
-            return (
-                'https://www.linkedin.com/shareArticle?mini=true&amp;url=' +
-                requestUrl +
-                '&amp;title=' +
-                displayName?.replace(/ /g, '%20') +
-                '&amp;source=nav.no'
-            );
-        default:
-            return null;
+
+    const shareUrl = {
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${requestUrl}&amp;title=${displayName}`,
+        twitter: `https://twitter.com/intent/tweet?text=${displayName}:${requestUrl}`,
+        linkedin: `https://www.linkedin.com/shareArticle?mini=true&amp;url=${requestUrl}&amp;title=${displayName}&amp;source=nav.no`
     }
+
+    return encodeURI(shareUrl[el]) || null;
 }
 
 interface Props {
