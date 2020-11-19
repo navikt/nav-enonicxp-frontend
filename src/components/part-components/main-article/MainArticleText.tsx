@@ -14,7 +14,7 @@ const modifyHtml = (htmlText: string, hasTableOfContest: boolean) => {
         tmp = tmp?.replaceAll(
             '<h3>',
             () => {
-                return `<h3 id="chapter-${index++}" tabindex="-1" class="chapter-header">`
+                return `<h3 id="chapter-${index++}" class="chapter-header">`
             })
     }
 
