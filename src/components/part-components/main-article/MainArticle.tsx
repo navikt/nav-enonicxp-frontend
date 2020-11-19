@@ -21,7 +21,8 @@ export const MainArticle = (props: MainArticleProps | ArticleProps) => {
             ? (MainArticleMock  as PageData)
             : props.data;
     const getLabel = translator('mainArticle', props.language);
-    const {innholdsfortegnelse, modifiedHtml} = parseInnholdsfortegnelse(data.text, data.hasTableOfContents);
+    const hasTableOfContest = data.hasTableOfContents && data.hasTableOfContents !== 'none';
+    const innholdsfortegnelse = parseInnholdsfortegnelse(data.text, hasTableOfContest);
 
     return (
         <article
@@ -43,8 +44,9 @@ export const MainArticle = (props: MainArticleProps | ArticleProps) => {
                 />
             </header>
             <MainArticleText
-                text={modifiedHtml}
+                text={data.text}
                 className={bem('text')}
+                hasTableOfContents={hasTableOfContest}
             />
             <Faktaboks
                 fakta={data.fact}

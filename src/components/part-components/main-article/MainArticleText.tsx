@@ -1,25 +1,39 @@
 import * as React from 'react';
 import { ParsedHtml } from '../_dynamic/ParsedHtml';
 
-
-const cleanupHtml = (htmlText: string) => {
+const modifyHtml = (htmlText: string, hasTableOfContest: boolean) => {
     // Fjern tomme headings og br-tagger fra HTML
-    let cleanHtml = htmlText;
-    cleanHtml = cleanHtml?.replace(/<h\d>\s*<\/h\d>/g, '');
-    cleanHtml = cleanHtml?.replace(/<h\d>&nbsp;<\/h\d>/g, '');
-    cleanHtml = cleanHtml?.replace(/<br \/>/g, '');
-    return cleanHtml;
+    let tmp = htmlText;
+    tmp = tmp?.replace(/<h\d>\s*<\/h\d>/g, '');
+    tmp = tmp?.replace(/<h\d>&nbsp;<\/h\d>/g, '');
+    tmp = tmp?.replace(/<br \/>/g, '');
+
+    // legg på id'er for innholdsfortegnelse
+    if (hasTableOfContest) {
+        let index = 1;
+        tmp = tmp?.replaceAll(
+            '<h3>',
+            () => {
+                return `<h3 id="chapter-${index++}" tabindex="-1" class="chapter-header">`
+            })
+    }
+
+    return tmp;
 }
 
 interface Props {
     text: string,
     className: string
+    hasTableOfContents: boolean
 }
 
 const MainArticleText = (props: Props) => {
+
+    const modifiedHtml = modifyHtml(props.text, props.hasTableOfContents);
+
     return (
         <div className={props.className}>
-            <ParsedHtml content={cleanupHtml(props.text)}/>
+            <ParsedHtml content={modifiedHtml}/>
         </div>
     );
 }

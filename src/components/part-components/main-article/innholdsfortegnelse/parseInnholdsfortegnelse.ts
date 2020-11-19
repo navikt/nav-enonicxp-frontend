@@ -1,36 +1,18 @@
-export const parseInnholdsfortegnelse = (htmlText: string, hasTableOfContents: string) => {
-
-    if (!hasTableOfContents || hasTableOfContents === 'none') {
-        return {
-            innholdsfortegnelse: [],
-            modifiedHtml: htmlText
-        };
+export const parseInnholdsfortegnelse = (htmlText: string, hasTableOfContents: boolean) => {
+    if (!hasTableOfContents) {
+        return [];
     }
 
-    const innholdsfortegnelse = [];
-    let modifiedHtml = htmlText;
-    let count = 0;
-    let chapter = 1;
-    let hTagStart = modifiedHtml.indexOf('<h3>');
-    while (hTagStart !== -1 && count < 100) {
-        const hTagEnd = hTagStart + 4;
-        const hEndTagStart = modifiedHtml.indexOf('</h3>', hTagStart);
-        const headerText = modifiedHtml
-            .slice(hTagEnd, hEndTagStart)
-            .replace(/<([^>]+)>/gi, '') // Strip html
-            .replace(/&nbsp;/gi, ' '); // Replace &nbsp;
+    const htmlSegments = htmlText.split('<h3>');
 
-        count++;
-        innholdsfortegnelse.push(headerText);
-        modifiedHtml = modifiedHtml.replace(
-            '<h3>',
-            '<h3 id="chapter-' + chapter++ + '" tabindex="-1" class="chapter-header">'
-        );
-        hTagStart = modifiedHtml.indexOf('<h3>');
-    }
+    const innholdsfortegnelse = htmlSegments.slice(1).map(
+        (segment) =>
+            segment
+                .split('</h3>')[0]
+                .replace(/<([^>]+)>/gi, '') // Strip html
+                .replace(/&nbsp;/gi, ' ') // Replace &nbsp;
+    );
 
-    return {
-        innholdsfortegnelse: innholdsfortegnelse,
-        modifiedHtml: modifiedHtml
-    };
+
+    return innholdsfortegnelse;
 }
