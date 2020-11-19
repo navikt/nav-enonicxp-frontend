@@ -57,7 +57,7 @@ const getLinkData = (
             return {
                 url: contentData._path,
                 tittel: contentData.displayName,
-                ingress: contentData.displayName,
+                ingress: '',
             };
     }
 };
