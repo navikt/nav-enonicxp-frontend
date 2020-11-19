@@ -27,6 +27,7 @@ const getLinkData = (
             return {
                 url: contentData.data.target._path,
                 tittel: contentData.displayName,
+                ingress: contentData.data.description,
             };
         case ContentType.ExternalLink:
             return {
@@ -56,7 +57,7 @@ const getLinkData = (
             return {
                 url: contentData._path,
                 tittel: contentData.displayName,
-                ingress: contentData.displayName,
+                ingress: '',
             };
     }
 };
