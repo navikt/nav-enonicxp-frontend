@@ -41,21 +41,20 @@ interface Props {
     contentPath: string
 }
 const SosialeMedier = (props: Props) => {
-    const socialMedia = props.social?.map((el) => {
-        let tmpText = 'Del på ';
-        if (el === 'linkedin') {
-            tmpText += 'LinkedIn';
-        } else if (el === 'facebook') {
-            tmpText += 'Facebook';
-        } else {
-            tmpText += 'Twitter';
-        }
-        return {
+
+    const sosialMediaName: {[key: string]: string} = {
+        linkedin: 'LinkedIn',
+        facebook: 'Facebook',
+        twitter: 'Twitter'
+    }
+
+    const socialMedia = props.social?.map((el) => (
+        {
             type: el,
-            text: tmpText,
+            text: `Del på ${sosialMediaName[el]}`,
             href: getSocialmediaShareUrl(el, props.displayName, xpPathToUrl(props.contentPath))
-        };
-    });
+        })
+    );
 
     if (socialMedia === []) {
         return null;

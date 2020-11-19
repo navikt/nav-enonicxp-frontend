@@ -15,23 +15,17 @@ const Bilde = (props: Props) => {
     const height = 768;
     const width = 'max';
     const src = picture.target.imageUrl.replace('$scale', `${width}-${height}`);
-    const imageObj =  {
-        url: src,
-        imgClass,
-        caption: picture.caption,
-        altText: picture.altText
-    };
 
     return (
         <div className="figure-container">
-          <figure className={imageObj.imgClass}>
+          <figure className={imgClass}>
             <img
-                src={imageObj.url}
-                alt={imageObj.altText || ''}
+                src={src}
+                alt={picture.altText || ''}
             />
-              {imageObj.caption &&
+              {picture.caption &&
               <figcaption className="decorated">
-                  {imageObj.caption}
+                  {picture.caption}
               </figcaption>
               }
           </figure>
