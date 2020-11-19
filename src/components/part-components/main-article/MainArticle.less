@@ -1,4 +1,5 @@
 @import (reference) '../../../global';
+@import (reference) '~nav-frontend-typografi-style/src/index';
 
 .main-article {
   padding: 1.5rem;
@@ -24,7 +25,6 @@
       outline-offset: 0.1875rem;
       outline: 0.1875rem solid @fokusFarge;
     }
-
 
     img {
       display: block;
@@ -82,22 +82,20 @@
 
     }
 
-    h1:first-child,
-    h2:first-child {
-      margin-top: 0;
-    }
-
     h2,
     .h2,
     h3,
     .h3,
     h4,
     .h4 {
+      .typo-element;
       font-size: 1.0675rem;
-      font-weight: 600;
       margin: 1.75rem 0 0.6875rem;
-      text-transform: none;
-      position: relative;
+    }
+
+    h1:first-child,
+    h2:first-child {
+      margin-top: 0;
     }
 
     ul,
