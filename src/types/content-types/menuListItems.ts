@@ -20,4 +20,4 @@ export type MenuListItemKey =
 
 export type MenuListItem = {
     [key in MenuListItemKey]: LinkItem;
-} & { selected: MenuListItemKey[]; _selected: MenuListItemKey[] };
+} & { _selected: MenuListItemKey[] };

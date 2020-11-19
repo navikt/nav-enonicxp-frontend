@@ -17,7 +17,7 @@ export const MenuList = (props: MenuListProps) => {
     const language = props.language;
     const menuListItems = data?.menuListItems;
     const entries = menuListItems ? Object.entries(menuListItems) : [];
-    const selected = menuListItems?.selected || menuListItems?._selected || [];
+    const selected = menuListItems?._selected || [];
     const getLabel = translator('relatedContent', language);
 
     if (entries.length === 0) {
