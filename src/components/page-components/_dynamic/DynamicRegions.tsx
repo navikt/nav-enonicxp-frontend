@@ -24,6 +24,7 @@ import { MainArticleLinkedListProps } from '../../part-components/main-article-l
 import { MainArticleLinkedList } from '../../part-components/main-article-linked-list/MainArticleLinkedList';
 import { MenuListProps } from '../../part-components/menu-list/MenuList';
 import { MenuList } from '../../part-components/menu-list/MenuList';
+import PageList from '../../part-components/page-list/PageList';
 import { MainArticle } from '../../part-components/main-article/MainArticle';
 import { ArticleProps } from '../../../types/content-types/main-article-chapter-props';
 import { MainArticleProps } from '../../../types/content-types/main-article-props';
@@ -142,6 +143,7 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 [PartType.MainPanels]: (
                                     <MainPanels {...props} />
                                 ),
+                                [PartType.PageList]: <PageList {...props} />,
 
                                 // Main Article
                                 [PartType.MainArticleLinkedList]: (
