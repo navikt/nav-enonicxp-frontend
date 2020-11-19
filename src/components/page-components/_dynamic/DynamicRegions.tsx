@@ -24,6 +24,7 @@ import { MainArticleLinkedListProps } from '../../part-components/main-article-l
 import { MainArticleLinkedList } from '../../part-components/main-article-linked-list/MainArticleLinkedList';
 import { MenuListProps } from '../../part-components/menu-list/MenuList';
 import { MenuList } from '../../part-components/menu-list/MenuList';
+import PageList from '../../part-components/page-list/PageList';
 import './DynamicRegions.less';
 
 const bem = BEM('region');
@@ -138,6 +139,7 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 [PartType.MainPanels]: (
                                     <MainPanels {...props} />
                                 ),
+                                [PartType.PageList]: <PageList {...props} />,
 
                                 // Main Article
                                 [PartType.MainArticleLinkedList]: (
