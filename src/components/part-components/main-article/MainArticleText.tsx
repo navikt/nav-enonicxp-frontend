@@ -19,7 +19,7 @@ interface Props {
 const MainArticleText = (props: Props) => {
     return (
         <div className={props.className}>
-            <ParsedHtml content={cleanupHtml( props.text)}/>
+            <ParsedHtml content={cleanupHtml(props.text)}/>
         </div>
     );
 }
