@@ -1,36 +1,17 @@
-export const parseInnholdsfortegnelse = (htmlText: string, hasTableOfContents: string) => {
+import htmlReactParser from 'html-react-parser';
 
-    if (!hasTableOfContents || hasTableOfContents === 'none') {
-        return {
-            innholdsfortegnelse: [],
-            modifiedHtml: htmlText
-        };
+
+
+export const parseInnholdsfortegnelse = (htmlText: string, hasTableOfContents: boolean) => {
+
+    if (!hasTableOfContents) {
+        return [];
     }
 
-    const innholdsfortegnelse = [];
-    let modifiedHtml = htmlText;
-    let count = 0;
-    let chapter = 1;
-    let hTagStart = modifiedHtml.indexOf('<h3>');
-    while (hTagStart !== -1 && count < 100) {
-        const hTagEnd = hTagStart + 4;
-        const hEndTagStart = modifiedHtml.indexOf('</h3>', hTagStart);
-        const headerText = modifiedHtml
-            .slice(hTagEnd, hEndTagStart)
-            .replace(/<([^>]+)>/gi, '') // Strip html
-            .replace(/&nbsp;/gi, ' '); // Replace &nbsp;
+    const parsedHtml = htmlReactParser(htmlText) as JSX.Element[];
+    const innholdsfortegnelse = parsedHtml
+        .filter((el) => el.type === 'h3')
+        .map((el) => el.props?.children);
 
-        count++;
-        innholdsfortegnelse.push(headerText);
-        modifiedHtml = modifiedHtml.replace(
-            '<h3>',
-            '<h3 id="chapter-' + chapter++ + '" tabindex="-1" class="chapter-header">'
-        );
-        hTagStart = modifiedHtml.indexOf('<h3>');
-    }
-
-    return {
-        innholdsfortegnelse: innholdsfortegnelse,
-        modifiedHtml: modifiedHtml
-    };
+    return innholdsfortegnelse;
 }

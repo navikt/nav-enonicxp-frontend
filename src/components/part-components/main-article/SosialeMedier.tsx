@@ -9,9 +9,9 @@ const getSocialmediaShareUrl = (el: string, displayName: string, requestUrl: str
     }
 
     const shareUrl = {
-        facebook: `https://www.facebook.com/sharer/sharer.php?u=${requestUrl}&amp;title=${displayName}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${requestUrl}&title=${displayName}`,
         twitter: `https://twitter.com/intent/tweet?text=${displayName}:${requestUrl}`,
-        linkedin: `https://www.linkedin.com/shareArticle?mini=true&amp;url=${requestUrl}&amp;title=${displayName}&amp;source=nav.no`
+        linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${requestUrl}&title=${displayName}&source=nav.no`
     }
 
     return encodeURI(shareUrl[el]) || null;
