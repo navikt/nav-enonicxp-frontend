@@ -3,64 +3,11 @@ import {
     OfficeInformationProps,
     AudienceReception,
 } from 'types/content-types/office-information-props';
-/* import { RegionProps } from '../../page-components/_dynamic/DynamicRegions'; */
-import { formatDate } from 'utils/datetime';
-import { ParsedHtml } from '../_dynamic/ParsedHtml';
-import { translator } from 'translations';
 import Reception from './Reception';
+import { SpecialInformation } from './SpecialInfo';
 import { formatAddress } from './utils';
 import { BEM } from 'utils/bem';
 import { Email } from './Contact';
-
-const isBalanced = (str: string) => {
-    return (str.match(/{/g) || []).length === (str.match(/}/g) || []).length;
-};
-
-const isTextClean = (str: string) => {
-    // checks for curlies in the string.
-    return str.split('{').length < 2 && str.split('}').length < 2;
-};
-
-function specialInfoParseLink(infoContent: string) {
-    const pattern = /\{((.*?):(.*?))\}/g;
-    const result = [];
-
-    let match = pattern.exec(infoContent);
-    while (match !== null) {
-        // Only correctly formatted urls should be turned into a-tags, so
-        // check if the match has balanced curlies and that description is 'OK'
-        if (isBalanced(match[0]) && isTextClean(match[2])) {
-            result.push({
-                match: match[0],
-                text: match[2],
-                url: match[3],
-                start: match.index,
-                end: pattern.lastIndex,
-            });
-        }
-        match = pattern.exec(infoContent);
-    }
-    return result;
-}
-
-const parseSpecialInfo = (infoContent: string) => {
-    let parsedString: string = infoContent;
-    if (!parsedString) {
-        return '';
-    }
-    // replace \n with <br />
-    parsedString = parsedString.replace(/(?:\r\n|\r|\n)/g, '<br>');
-    // replace urls
-    const urls = specialInfoParseLink(parsedString);
-    urls.forEach((url) => {
-        parsedString = parsedString.replace(
-            url.match,
-            `<a href='${url.url}'>${url.text}</a>`
-        );
-    });
-
-    return parsedString;
-};
 
 const parsePhoneNumber = (number: string, mod: number = null) => {
     const modular = mod || 2;
@@ -101,17 +48,6 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     ) : null;
 
     // specialInfo
-    const specialInfo = parseSpecialInfo(contact.spesielleOpplysninger);
-    const specialInfoView =
-        specialInfo !== '' ? (
-            <div className="p-note">
-                <h3>Opplysninger</h3>
-                <p>
-                    <ParsedHtml content={specialInfo} />
-                </p>
-            </div>
-        ) : null;
-
     // postAddress
     const address = formatAddress(contact.postadresse, false);
     const addressView = (
@@ -194,7 +130,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     rett adresse det skal sendes til.
                 </p>
             </div>
-            {specialInfoView}
+            <SpecialInformation info={contact.spesielleOpplysninger} />
             {addressView}
             {faxView}
             {orgNrView}
