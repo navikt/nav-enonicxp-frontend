@@ -1,6 +1,6 @@
-import { ContentType, GlobalSchema } from './_schema';
+import { ContentType, GlobalContentSchema } from './_schema';
 
-export interface ExternalLinkProps extends GlobalSchema {
+export interface ExternalLinkProps extends GlobalContentSchema {
     __typename: ContentType.ExternalLink;
     data: {
         description: string;

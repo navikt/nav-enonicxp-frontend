@@ -1,8 +1,8 @@
-import { ContentType, ContentTypeSchema, GlobalSchema } from './_schema';
+import { ContentType, ContentTypeSchema, GlobalContentSchema } from './_schema';
 
 export type NotificationType = 'warning' | 'info';
 
-export interface NotificationProps extends GlobalSchema {
+export interface NotificationProps extends GlobalContentSchema {
     __typename: ContentType.Notification;
     data: {
         type: NotificationType;

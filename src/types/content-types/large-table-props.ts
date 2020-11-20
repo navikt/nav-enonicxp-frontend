@@ -1,6 +1,6 @@
-import { ContentType, GlobalSchema } from './_schema';
+import { ContentType, GlobalContentSchema } from './_schema';
 
-export interface LargeTableProps extends GlobalSchema {
+export interface LargeTableProps extends GlobalContentSchema {
     __typename: ContentType.LargeTable;
     data: {
         text?: string;

@@ -1,6 +1,6 @@
-import { ContentType, GlobalSchema } from './_schema';
+import { ContentType, GlobalContentSchema } from './_schema';
 
-export interface ErrorProps extends GlobalSchema {
+export interface ErrorProps extends GlobalContentSchema {
     __typename: ContentType.Error;
     errorMessage?: string;
     errorCode?: number;

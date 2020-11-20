@@ -3,7 +3,7 @@ import { Breadcrumb } from '../types/breadcrumb';
 import { LanguageSelectorProps } from '../types/language-selector-props';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { useRouter } from 'next/router';
-import { FallbackPage } from './page-components/fallback-page/FallbackPage';
+import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
 import ContentToComponentMapper from './ContentToComponentMapper';
 import React from 'react';
@@ -14,7 +14,7 @@ import {
     fetchPage,
 } from '../utils/fetch-content';
 import { makeErrorProps } from '../types/content-types/error-props';
-import { ErrorPage } from './page-components/error-page/ErrorPage';
+import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
 

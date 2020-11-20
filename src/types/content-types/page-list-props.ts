@@ -1,11 +1,13 @@
-import { ContentType, GlobalSchema } from './_schema';
+import { ContentType, GlobalContentSchema } from './_schema';
 import { XpContentRef } from '../../utils/paths';
 
-export interface PageListProps extends GlobalSchema {
+export type PageListData = Partial<{
+    ingress: string;
+    sectionContents: XpContentRef[];
+    metaDescription: string;
+}>;
+
+export interface PageListProps extends GlobalContentSchema {
     __typename: ContentType.PageList;
-    data: {
-        ingress?: string;
-        sectionContents?: XpContentRef[];
-        metaDescription?: string;
-    };
+    data: PageListData;
 }

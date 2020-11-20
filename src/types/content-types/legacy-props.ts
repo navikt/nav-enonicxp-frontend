@@ -1,8 +1,10 @@
-import { ContentType, GlobalPageSchema } from './_schema';
+import { ContentType, GlobalContentSchema } from './_schema';
 
-export interface LegacyProps extends GlobalPageSchema {
+export type LegacyData = Partial<{
+    html: string;
+}>;
+
+export interface LegacyProps extends GlobalContentSchema {
     __typename: ContentType.Legacy;
-    data: {
-        html: string;
-    };
+    data: LegacyData;
 }

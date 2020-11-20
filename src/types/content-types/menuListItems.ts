@@ -1,7 +1,7 @@
-import { GlobalSchema } from './_schema';
+import { GlobalContentSchema } from './_schema';
 
 export interface LinkItem {
-    link: GlobalSchema[];
+    link: GlobalContentSchema[];
 }
 
 export type MenuListItemKey =

@@ -2,19 +2,18 @@ import { ExternalLinkProps } from './external-link-props';
 import { InternalLinkProps } from './internal-link-props';
 import { ContentListProps } from './content-list-props';
 import { XpContentRef } from '../../utils/paths';
-import { LegacyProps } from './legacy-props';
-import { PageListProps } from './page-list-props';
+import { LegacyData, LegacyProps } from './legacy-props';
+import { PageListData, PageListProps } from './page-list-props';
 import { MainArticleProps } from './main-article-props';
 import { SiteProps } from './site-props';
 import { ErrorProps } from './error-props';
 import { NotificationProps } from './notification-props';
 import { DynamicRegionComponent } from './_dynamic/_components';
-import { DynamicGlobalComponent } from './_dynamic/_components';
 import { LargeTableProps } from './large-table-props';
-import { LinkPanel } from '../link-panel';
-import { SectionPageProps } from './section-page-props';
-import { TransportPageProps } from './transport-page-props';
+import { SectionPageData, SectionPageProps } from './section-page-props';
+import { TransportPageData, TransportPageProps } from './transport-page-props';
 import { Language } from '../../translations';
+import { ComponentProps, PageComponent } from '../components/_common';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -35,28 +34,6 @@ export enum ContentType {
     LargeTable = 'no_nav_navno_LargeTable',
 }
 
-export enum PartType {
-    // Parts with page content
-    LinkPanels = 'no.nav.navno:link-panels',
-    LinkLists = 'no.nav.navno:link-lists',
-    PageHeading = 'no.nav.navno:page-heading',
-    MainPanels = 'no.nav.navno:main-panels',
-    MainArticleLinkedList = 'no.nav.navno:main-article-linked-list',
-    MenuList = 'no.nav.navno:menu-list',
-    PageList = 'no.nav.navno:page-list',
-
-    // Parts with own content
-    LinkPanel = 'no.nav.navno:dynamic-link-panel',
-    SupervisorPanel = 'no.nav.navno:dynamic-supervisor-panel',
-    Alert = 'no.nav.navno:dynamic-alert',
-    ReadMorePanel = 'no.nav.navno:dynamic-read-more-panel',
-
-    // Deprecated parts - remove after release
-    Notifications = 'no.nav.navno:notifications',
-    BreakingNews = 'no.nav.navno:breaking-news',
-    PageCrumbs = 'no.nav.navno:page-crumbs',
-}
-
 export type ContentTypeSchema =
     | LegacyProps
     | ErrorProps
@@ -71,7 +48,7 @@ export type ContentTypeSchema =
     | NotificationProps
     | LargeTableProps;
 
-export type GlobalSchema = {
+export type GlobalContentSchema = {
     __typename: ContentType;
     _id: XpContentRef;
     _path: XpContentRef;
@@ -79,64 +56,23 @@ export type GlobalSchema = {
     modifiedTime: string;
     language: Language;
     displayName: string;
-    data?: object;
 };
 
-// Specific for dynamic page schemas
-export interface GlobalPageSchema extends GlobalSchema {
-    components?: DynamicGlobalComponent[];
-    page?: DynamicPage;
-    pageTemplate?: {
-        page: DynamicPage;
-        components?: DynamicGlobalComponent[];
-    };
+export interface GlobalPageProps extends GlobalContentSchema {
+    components?: ComponentProps[];
+    page?: PageComponent;
     data: PageData;
 }
 
-export interface PageData {
+export type PageData = {
     canonicalUrl?: string;
+    metaDescription?: string;
+} & SectionPageData &
+    PageListData &
+    LegacyData &
+    TransportPageData;
 
-    // Section page
-    panelsHeading?: string;
-    panelItems?: LinkPanel[];
-    nrTableEntries?: number;
-    tableContents?: ContentTypeSchema[];
-    nrNews?: number;
-    newsContents?: ContentListProps;
-    moreNewsUrl?: string;
-    nrNTK?: number;
-    ntkContents?: ContentListProps;
-    nrSC?: number;
-    scContents?: ContentListProps;
-
-    // PageList
-    sectionContents?: GlobalPageSchema[];
-
-    // Legacy page
-    html?: string;
-
-    // Transport page
-    ingress?: string;
-    items?: LinkPanel[];
-}
-
-export interface DynamicPage {
-    type: string;
-    descriptor: string;
-    path: string;
-    config: object;
-    regions?: DynamicRegions;
-}
-
-export interface DynamicRegions {
-    main?: DynamicRegion;
-    first?: DynamicRegion;
-    second?: DynamicRegion;
-    result?: DynamicRegion;
-    searchbar?: DynamicRegion;
-}
-
-export interface DynamicRegion {
+export interface Region {
     name: string;
     components: DynamicRegionComponent[];
 }

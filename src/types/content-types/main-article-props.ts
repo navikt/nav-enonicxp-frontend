@@ -1,8 +1,8 @@
-import { ContentType, GlobalPageSchema } from './_schema';
+import { ContentType, GlobalPageProps } from './_schema';
 import { MainArticleChapterProps } from './main-article-chapter-props';
 import { MenuListItem } from './menuListItems';
 
-export interface MainArticleProps extends GlobalPageSchema {
+export interface MainArticleProps extends GlobalPageProps {
     __typename: ContentType.MainArticle;
     children: MainArticleChapterProps[];
     parent: undefined;

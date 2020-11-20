@@ -9,10 +9,10 @@ import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
 import { Breadcrumb } from '../types/breadcrumb';
 import { LanguageSelectorProps } from '../types/language-selector-props';
-import GlobalNotifications from './part-components/notifications/GlobalNotifications';
+import GlobalNotifications from './parts/notifications/GlobalNotifications';
 import { NotificationProps } from '../types/content-types/notification-props';
 import { initAmplitude, logPageview } from '../utils/amplitude';
-import { HeadWithMetatags } from './part-components/_common/metatags/HeadWithMetatags';
+import { HeadWithMetatags } from './parts/_common/metatags/HeadWithMetatags';
 
 type Props = {
     content: ContentTypeSchema;

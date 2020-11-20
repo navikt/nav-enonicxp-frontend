@@ -1,6 +1,6 @@
-import { ContentType, ContentTypeSchema, GlobalSchema } from './_schema';
+import { ContentType, ContentTypeSchema, GlobalContentSchema } from './_schema';
 
-export interface ContentListProps extends GlobalSchema {
+export interface ContentListProps extends GlobalContentSchema {
     __typename: ContentType.ContentList;
     data: {
         sectionContents: ContentTypeSchema[];

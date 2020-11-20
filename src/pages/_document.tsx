@@ -11,7 +11,7 @@ import {
     DecoratorParams,
     getDecorator,
 } from '../utils/fetch-decorator';
-import { decoratorParams404 } from '../components/page-components/error-page/errorcode-content/Error404Content';
+import { decoratorParams404 } from '../components/pages/error-page/errorcode-content/Error404Content';
 import { fetchBreadcrumbs, fetchLanguages } from '../utils/fetch-content';
 import { appPathToXpPath } from '../utils/paths';
 

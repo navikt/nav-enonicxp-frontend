@@ -1,4 +1,4 @@
-import { GlobalSchema, PartType } from '../_schema';
+import { GlobalContentSchema, PartType } from '../_schema';
 
 export interface DynamicLinkPanel {
     type: 'part';
@@ -10,7 +10,7 @@ export interface DynamicLinkPanel {
         config: {
             no_nav_navno: {
                 dynamic_link_panel: {
-                    background: GlobalSchema & {
+                    background: GlobalContentSchema & {
                         mediaUrl: string;
                     };
                     description: string;
