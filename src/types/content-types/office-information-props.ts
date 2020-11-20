@@ -29,7 +29,8 @@ export interface OpeningHours {
     fra: string;
     til: string;
     kommentar: string;
-    stengt: boolean;
+    // this should have been a bool put I get a string..
+    stengt: string;
 }
 
 export interface AudienceReception {

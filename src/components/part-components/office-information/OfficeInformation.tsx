@@ -1,107 +1,16 @@
 import React from 'react';
 import {
     OfficeInformationProps,
-    Address,
-    OpeningHours,
     AudienceReception,
 } from 'types/content-types/office-information-props';
 /* import { RegionProps } from '../../page-components/_dynamic/DynamicRegions'; */
 import { formatDate } from 'utils/datetime';
 import { ParsedHtml } from '../_dynamic/ParsedHtml';
 import { translator } from 'translations';
-
+import Reception from './Reception';
+import { formatAddress } from './utils';
 import { BEM } from 'utils/bem';
-
-const dagArr: string[] = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag'];
-
-const formatAddress = (address: Address, withZip: boolean) => {
-    if (!address) {
-        return '';
-    }
-    let formatedAddress: string;
-    if (address.type === 'postboksadresse') {
-        const postboksanlegg = address.postboksanlegg
-            ? ` ${address.postboksanlegg}`
-            : '';
-        formatedAddress = `Postboks ${address.postboksnummer}${postboksanlegg}`;
-    } else {
-        const husnummer = address.husnummer ? ` ${address.husnummer}` : '';
-        const husbokstav = address.husbokstav ? `${address.husbokstav}` : '';
-        formatedAddress = `${address.gatenavn}${husnummer}${husbokstav}`;
-    }
-    if (withZip) {
-        let poststed = address ? address.poststed || '' : '';
-        poststed = poststed.toUpperCase();
-
-        formatedAddress += `, ${address.postnummer} ${poststed}`;
-    }
-    return formatedAddress;
-};
-
-const formatMetaOpeningHours = (el: OpeningHours) => {
-    let day: string;
-    if (el.dag === 'Mandag') {
-        day = 'Mo';
-    } else if (el.dag === 'Tirsdag') {
-        day = 'Tu';
-    } else if (el.dag === 'Onsdag') {
-        day = 'We';
-    } else if (el.dag === 'Torsdag') {
-        day = 'Th';
-    } else if (el.dag === 'Fredag') {
-        day = 'Fr';
-    }
-    const meta = `${day} ${el.fra}-${el.til}`;
-    return { ...el, meta };
-};
-
-const sortOpeningHours = (a: OpeningHours, b: OpeningHours) => {
-    return dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag);
-};
-
-interface FormattedAudienceReception {
-    address: string;
-    place: string;
-    openingHoursExceptions: OpeningHours[];
-    openingHours: OpeningHours[];
-}
-
-const formatAudienceReception = (
-    audienceReception: AudienceReception,
-    language: string = 'no'
-): FormattedAudienceReception => {
-    // filter regular and exceptions for opening hour then introduce formatting for display
-    const aapningstider = audienceReception.aapningstider.reduce(
-        (acc, elem) => {
-            if (elem.dato) {
-                const isoDate = elem.dato;
-                const dato = formatDate(elem.dato, language);
-
-                acc.exceptions.push({
-                    ...elem,
-                    isoDate,
-                    dato,
-                });
-            } else {
-                acc.regular.push(elem);
-            }
-            return acc;
-        },
-        {
-            regular: [],
-            exceptions: [],
-        }
-    );
-
-    return {
-        address: formatAddress(audienceReception.besoeksadresse, true),
-        place:
-            audienceReception.stedsbeskrivelse ||
-            audienceReception.besoeksadresse.poststed,
-        openingHoursExceptions: aapningstider.exceptions,
-        openingHours: aapningstider.regular.sort(sortOpeningHours),
-    };
-};
+import { Email } from './Contact';
 
 const isBalanced = (str: string) => {
     return (str.match(/{/g) || []).length === (str.match(/}/g) || []).length;
@@ -153,30 +62,6 @@ const parseSpecialInfo = (infoContent: string) => {
     return parsedString;
 };
 
-const parseEmail = (emailString: string) => {
-    if (!emailString) {
-        return '';
-    }
-
-    let email: string;
-    let internal: boolean = false;
-    let match: string[];
-    const betweenBracketsPattern = /\[(.*?)\]/g;
-
-    while ((match = betweenBracketsPattern.exec(emailString)) !== null) {
-        const matchedRes = match[1];
-        if (matchedRes.indexOf('@') !== -1) {
-            email = matchedRes;
-        } else if (matchedRes === 'true') {
-            internal = true;
-        }
-    }
-    if (internal) {
-        return '';
-    }
-    return email;
-};
-
 const parsePhoneNumber = (number: string, mod: number = null) => {
     const modular = mod || 2;
     if (number) {
@@ -192,7 +77,6 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;
     const bem = BEM('office-information');
-    const getLabel = translator('officeInformation', props.language);
 
     // location
     const location = formatAddress(contact.besoeksadresse, true);
@@ -205,7 +89,6 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 </p>
             </div>
         ) : null;
-    // contactpoint
     // phone
     const phoneView = contact?.telefonnummer ? (
         <div>
@@ -216,6 +99,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             <p>{contact.telefonnummerKommentar}</p>
         </div>
     ) : null;
+
     // specialInfo
     const specialInfo = parseSpecialInfo(contact.spesielleOpplysninger);
     const specialInfoView =
@@ -227,6 +111,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 </p>
             </div>
         ) : null;
+
     // postAddress
     const address = formatAddress(contact.postadresse, false);
     const addressView = (
@@ -249,6 +134,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             </p>
         </div>
     );
+
     // fax
     const fax = parsePhoneNumber(contact.faksnummer);
     const faxView =
@@ -263,6 +149,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 </p>
             </div>
         ) : null;
+
     // orgNr
     const orgNrView = unit.organisasjonsnummer ? (
         <div>
@@ -270,6 +157,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             <p>{unit.organisasjonsnummer}</p>
         </div>
     ) : null;
+
     // officeNr
     const officeNrView = unit.enhetNr ? (
         <div>
@@ -277,92 +165,20 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             <p>{unit.enhetNr}</p>
         </div>
     ) : null;
+
     // reception
     const receptions: AudienceReception[] = Array.isArray(
         contact.publikumsmottak
     )
         ? contact.publikumsmottak
         : [contact.publikumsmottak];
-    const receptionsView = receptions.map((rec: AudienceReception) => {
-        const reception = formatAudienceReception(rec);
-
-        const openingHoursDays = reception.openingHours.map((opening) => {
-            return (
-                <tr>
-                    <td>{opening.dato}</td>
-                    <td>${opening.dag}</td>
-                    <td data-th-if="${!opening.stengt}">
-                        {opening.fra && opening.til
-                            ? `${opening.fra} - ${opening.til}`
-                            : ''}
-                    </td>
-                    <td data-th-if="${opening.stengt}">{getLabel('closed')}</td>
-                    <td>{opening.kommentar}</td>
-                </tr>
-            );
-        });
-        const openingHours =
-            openingHoursDays.length > 0 ? (
-                <div>
-                    <h5>Åpningstider</h5>
-
-                    <table>
-                        <tbody>{openingHoursDays}</tbody>
-                    </table>
-                </div>
-            ) : null;
-
-        const openingHoursExceptions = reception.openingHoursExceptions.map(
-            (exception) => {
-                return (
-                    <tr>
-                        <td>[[${exception.dato}]]</td>
-                        <td>[[${exception.dag}]]</td>
-                        <td data-th-if="${!exception.stengt}">
-                            {exception.fra && exception.til
-                                ? `${exception.fra} - ${exception.til}`
-                                : ''}
-                        </td>
-                        <td data-th-if="${exception.stengt}">
-                            {getLabel('closed')}
-                        </td>
-                        <td>{exception.kommentar}</td>
-                    </tr>
-                );
-            }
-        );
-        const exceptions =
-            openingHoursExceptions.length > 0 ? (
-                <div>
-                    <h5>Spesielle åpningstider</h5>
-
-                    <table>
-                        <tbody>{openingHoursExceptions}</tbody>
-                    </table>
-                </div>
-            ) : null;
-        return (
-            <div itemProp="http://schema.org/localbusiness">
-                <h2 itemProp="name">{reception.place}</h2>
-                <p></p>
-                <p
-                    className="p-street-address"
-                    itemProp="address"
-                    itemType="http://schema.org/postaladdress"
-                >
-                    {reception.address}
-                </p>
-                {exceptions}
-                {openingHours}
-            </div>
-        );
-    });
 
     return (
         <article className={bem()}>
             <header></header>
             <h1>{unit.navn}</h1>
             {locationView}
+            <Email email={contact.epost} unitType={unit.type} />
             {phoneView}
             <div className="p-note">
                 <h3>Innsending av skjemaer</h3>
@@ -383,7 +199,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             {faxView}
             {orgNrView}
             {officeNrView}
-            {receptionsView}
+            <Reception receptions={receptions} language={props.language} />
         </article>
     );
 };
