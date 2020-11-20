@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalPageSchema } from 'types/content-types/_schema';
+import { ContentType, GlobalPageSchema } from 'types/content-types/_schema';
 import { DynamicRegions, PartType } from 'types/content-types/_schema';
 import { DynamicRegion } from 'types/content-types/_schema';
 import { LinkPanel } from 'components/part-components/_dynamic/link-panel/LinkPanel';
@@ -25,6 +25,9 @@ import { MainArticleLinkedList } from '../../part-components/main-article-linked
 import { MenuListProps } from '../../part-components/menu-list/MenuList';
 import { MenuList } from '../../part-components/menu-list/MenuList';
 import PageList from '../../part-components/page-list/PageList';
+import { MainArticle } from '../../part-components/main-article/MainArticle';
+import { ArticleProps } from '../../../types/content-types/main-article-chapter-props';
+import { MainArticleProps } from '../../../types/content-types/main-article-props';
 import './DynamicRegions.less';
 
 const bem = BEM('region');
@@ -55,6 +58,7 @@ export interface RegionProps {
     dynamicRegion: DynamicRegion;
     dynamicConfig?: DynamicRegionConfig;
 }
+
 
 export const Region = (props: RegionProps & GlobalPageSchema) => {
     const dynamicRegionComponents = props.dynamicRegion.components || [];
@@ -149,6 +153,12 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 ),
                                 [PartType.MenuList]: (
                                     <MenuList {...(props as MenuListProps)} />
+                                ),
+                                [PartType.MainArticle]: (
+                                    props.__typename === ContentType.MainArticleChapter ?
+                                        <MainArticle {...(props.data.article as ArticleProps)} /> :
+                                        <MainArticle {...(props as MainArticleProps)} />
+
                                 ),
 
                                 // Deprecated parts - remove after release

@@ -15,6 +15,8 @@ import { LinkPanel } from '../link-panel';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
 import { Language } from '../../translations';
+import { MainArticleChapterDataProps } from './main-article-chapter-props';
+import { MainArticleDataProps } from './main-article-content-props';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -44,6 +46,7 @@ export enum PartType {
     MainArticleLinkedList = 'no.nav.navno:main-article-linked-list',
     MenuList = 'no.nav.navno:menu-list',
     PageList = 'no.nav.navno:page-list',
+    MainArticle = 'no.nav.navno:main-article',
 
     // Parts with own content
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
@@ -80,6 +83,9 @@ export type GlobalSchema = {
     language: Language;
     displayName: string;
     data?: object;
+    publish?: {
+        from: string;
+    }
 };
 
 // Specific for dynamic page schemas
@@ -93,7 +99,7 @@ export interface GlobalPageSchema extends GlobalSchema {
     data: PageData;
 }
 
-export interface PageData {
+export interface PageData extends Partial<MainArticleDataProps & MainArticleChapterDataProps> {
     canonicalUrl?: string;
 
     // Section page
