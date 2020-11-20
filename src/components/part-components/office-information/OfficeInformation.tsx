@@ -8,6 +8,7 @@ import {
 /* import { RegionProps } from '../../page-components/_dynamic/DynamicRegions'; */
 import { formatDate } from 'utils/datetime';
 import { ParsedHtml } from '../_dynamic/ParsedHtml';
+import { translator } from 'translations';
 
 import { BEM } from 'utils/bem';
 
@@ -58,16 +59,24 @@ const sortOpeningHours = (a: OpeningHours, b: OpeningHours) => {
     return dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag);
 };
 
+interface FormattedAudienceReception {
+    address: string;
+    place: string;
+    openingHoursExceptions: OpeningHours[];
+    openingHours: OpeningHours[];
+}
+
 const formatAudienceReception = (
     audienceReception: AudienceReception,
     language: string = 'no'
-) => {
+): FormattedAudienceReception => {
     // filter regular and exceptions for opening hour then introduce formatting for display
     const aapningstider = audienceReception.aapningstider.reduce(
         (acc, elem) => {
             if (elem.dato) {
                 const isoDate = elem.dato;
                 const dato = formatDate(elem.dato, language);
+
                 acc.exceptions.push({
                     ...elem,
                     isoDate,
@@ -85,12 +94,12 @@ const formatAudienceReception = (
     );
 
     return {
-        besokkom: formatAddress(audienceReception.besoeksadresse, true),
-        stedbeskrivelse:
+        address: formatAddress(audienceReception.besoeksadresse, true),
+        place:
             audienceReception.stedsbeskrivelse ||
             audienceReception.besoeksadresse.poststed,
-        unntakAapning: aapningstider.exceptions,
-        apning: aapningstider.regular.sort(sortOpeningHours),
+        openingHoursExceptions: aapningstider.exceptions,
+        openingHours: aapningstider.regular.sort(sortOpeningHours),
     };
 };
 
@@ -182,6 +191,9 @@ const parsePhoneNumber = (number: string, mod: number = null) => {
 export const OfficeInformation = (props: OfficeInformationProps) => {
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;
+    const bem = BEM('office-information');
+    const getLabel = translator('officeInformation', props.language);
+
     // location
     const location = formatAddress(contact.besoeksadresse, true);
     const locationView =
@@ -273,22 +285,79 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
         : [contact.publikumsmottak];
     const receptionsView = receptions.map((rec: AudienceReception) => {
         const reception = formatAudienceReception(rec);
+
+        const openingHoursDays = reception.openingHours.map((opening) => {
+            return (
+                <tr>
+                    <td>{opening.dato}</td>
+                    <td>${opening.dag}</td>
+                    <td data-th-if="${!opening.stengt}">
+                        {opening.fra && opening.til
+                            ? `${opening.fra} - ${opening.til}`
+                            : ''}
+                    </td>
+                    <td data-th-if="${opening.stengt}">{getLabel('closed')}</td>
+                    <td>{opening.kommentar}</td>
+                </tr>
+            );
+        });
+        const openingHours =
+            openingHoursDays.length > 0 ? (
+                <div>
+                    <h5>Åpningstider</h5>
+
+                    <table>
+                        <tbody>{openingHoursDays}</tbody>
+                    </table>
+                </div>
+            ) : null;
+
+        const openingHoursExceptions = reception.openingHoursExceptions.map(
+            (exception) => {
+                return (
+                    <tr>
+                        <td>[[${exception.dato}]]</td>
+                        <td>[[${exception.dag}]]</td>
+                        <td data-th-if="${!exception.stengt}">
+                            {exception.fra && exception.til
+                                ? `${exception.fra} - ${exception.til}`
+                                : ''}
+                        </td>
+                        <td data-th-if="${exception.stengt}">
+                            {getLabel('closed')}
+                        </td>
+                        <td>{exception.kommentar}</td>
+                    </tr>
+                );
+            }
+        );
+        const exceptions =
+            openingHoursExceptions.length > 0 ? (
+                <div>
+                    <h5>Spesielle åpningstider</h5>
+
+                    <table>
+                        <tbody>{openingHoursExceptions}</tbody>
+                    </table>
+                </div>
+            ) : null;
         return (
             <div itemProp="http://schema.org/localbusiness">
-                <h2 itemProp="name">{reception.stedbeskrivelse}</h2>
+                <h2 itemProp="name">{reception.place}</h2>
                 <p></p>
                 <p
                     className="p-street-address"
                     itemProp="address"
                     itemType="http://schema.org/postaladdress"
                 >
-                    {reception.besokkom}
+                    {reception.address}
                 </p>
+                {exceptions}
+                {openingHours}
             </div>
         );
     });
 
-    const bem = BEM('office-information');
     return (
         <article className={bem()}>
             <header></header>

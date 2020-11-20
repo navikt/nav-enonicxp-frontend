@@ -41,6 +41,9 @@ export const bundle = {
     mainPanels: {
         label: 'Hovedvalg',
     },
+    officeInformation: {
+        closed: 'Stengt',
+    },
     relatedContent: relatedContent,
     publishingCalendar: {
         event: 'Kalenderhendelse',

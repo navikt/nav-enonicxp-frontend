@@ -140,8 +140,5 @@ export const fetchPage = async (
         })) as ContentTypeSchema;
     }
 
-    return (
-        content ||
-        makeErrorProps(idOrPath, `Ukjent feil`, 500)
-    );
+    return content || makeErrorProps(idOrPath, `Ukjent feil`, 500);
 };
