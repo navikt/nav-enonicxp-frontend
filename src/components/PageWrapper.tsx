@@ -4,18 +4,18 @@ import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
 import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
-import { ContentTypeSchema } from '../types/content-types/_schema';
+import { ContentTypeProps } from '../types/content/_common';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
 import { Breadcrumb } from '../types/breadcrumb';
 import { LanguageSelectorProps } from '../types/language-selector-props';
 import GlobalNotifications from './parts/notifications/GlobalNotifications';
-import { NotificationProps } from '../types/content-types/notification-props';
+import { NotificationProps } from '../types/content/notification-props';
 import { initAmplitude, logPageview } from '../utils/amplitude';
 import { HeadWithMetatags } from './parts/_common/metatags/HeadWithMetatags';
 
 type Props = {
-    content: ContentTypeSchema;
+    content: ContentTypeProps;
     breadcrumbs: Breadcrumb[];
     languages: LanguageSelectorProps[];
     notifications?: NotificationProps[];

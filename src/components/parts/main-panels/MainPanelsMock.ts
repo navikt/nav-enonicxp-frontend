@@ -1,4 +1,4 @@
-import { ContentType } from 'types/content-types/_schema';
+import { ContentType } from 'types/content/_common';
 
 export const MainPanelMock = {
     tableContents: [

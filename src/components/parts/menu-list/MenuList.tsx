@@ -1,12 +1,12 @@
 import React from 'react';
-import { MainArticleProps } from 'types/content-types/main-article-props';
+import { MainArticleProps } from 'types/content/main-article-props';
 import { RegionProps } from '../../pages/regions-page/Regions';
 import Lenke from 'nav-frontend-lenker';
 import { xpPathToAppPath } from 'utils/paths';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { translator } from 'translations';
 import { BEM } from 'utils/bem';
-import { LinkItem, MenuListItemKey } from 'types/content-types/menuListItems';
+import { LinkItem, MenuListItemKey } from 'types/content/menuListItems';
 import './MenuList.less';
 
 export type MenuListProps = RegionProps & MainArticleProps;

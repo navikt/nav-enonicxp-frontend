@@ -1,6 +1,5 @@
 import React from 'react';
-import { DynamicRegions } from 'types/content-types/_schema';
-import { GlobalPageProps } from 'types/content-types/_schema';
+import { GlobalPageProps } from 'types/content/_common';
 import Regions from '../regions-page/Regions';
 import './FragmentPage.less';
 

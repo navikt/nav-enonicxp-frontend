@@ -1,6 +1,6 @@
 import React from 'react';
-import { GlobalPageProps } from '../../../types/content-types/_schema';
-import { ComponentProps } from '../../../types/components/_common';
+import { GlobalPageProps } from '../../../types/content/_common';
+import { ComponentProps } from '../../../types/components/_components';
 import { Text } from '../../parts/_dynamic/text/Text';
 import Image from '../../parts/_dynamic/image/Image';
 import { PartType } from '../../../types/components/parts';
@@ -45,35 +45,33 @@ const hiddenParts = {
     [PartType.PageCrumbs]: true,
 };
 
-const UnimplementedFallback = (props: ComponentProps) => (
-    <div>{`Unimplemented ${props.type}: ${props.descriptor}`}</div>
-);
-
 export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
     if (componentProps.type === 'text') {
         return <Text {...componentProps} />;
     }
 
     if (componentProps.type === 'image') {
-        return null; // <Image {...componentProps} />
+        return <Image imageUrl={componentProps.image.imageUrl} />;
     }
 
     if (componentProps.type === 'part') {
         const { descriptor } = componentProps;
 
-        if (partsWithGlobalData[descriptor]) {
-            const Component = partsWithGlobalData[descriptor];
-            return <Component {...pageProps} />;
+        const PartWithGlobalData = partsWithGlobalData[descriptor];
+        if (PartWithGlobalData) {
+            return <PartWithGlobalData {...pageProps} />;
         }
 
-        if (partsWithOwnData[descriptor]) {
-            const Component = partsWithOwnData[descriptor];
-            return <Component {...componentProps} />;
+        const PartWithOwnData = partsWithOwnData[descriptor];
+        if (PartWithOwnData) {
+            return <PartWithOwnData {...componentProps} />;
         }
 
         if (hiddenParts[descriptor]) {
             return null;
         }
+
+        return <div>{`Unimplemented part: ${descriptor}`}</div>;
     }
 
     if (componentProps.type === 'layout') {
@@ -82,5 +80,5 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
         );
     }
 
-    return <UnimplementedFallback {...componentProps} />;
+    return <div>{`Unimplemented component type: ${componentProps.type}`}</div>;
 };

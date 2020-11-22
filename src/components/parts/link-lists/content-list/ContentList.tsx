@@ -1,13 +1,13 @@
 import React from 'react';
-import { ContentListProps } from 'types/content-types/content-list-props';
+import { ContentListProps } from 'types/content/content-list-props';
 import { LenkeData } from 'types/lenke-data';
 import { Lenkeliste } from '../lenkeliste/Lenkeliste';
 import { sortContentByLastModified } from 'utils/sort';
 import { formatDate } from 'utils/datetime';
 import {
     ContentType,
-    ContentTypeSchema,
-} from '../../../../types/content-types/_schema';
+    ContentTypeProps,
+} from '../../../../types/content/_common';
 
 type Props = {
     content: ContentListProps;
@@ -17,7 +17,7 @@ type Props = {
     className?: string;
 };
 
-const getUrl = (content: ContentTypeSchema) => {
+const getUrl = (content: ContentTypeProps) => {
     if (content.__typename === ContentType.InternalLink) {
         return content.data?.target?._path;
     }

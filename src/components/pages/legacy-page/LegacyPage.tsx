@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { xpLegacyPath } from 'utils/paths';
-import { LegacyProps } from 'types/content-types/legacy-props';
+import { LegacyProps } from 'types/content/legacy-props';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import Head from 'next/head';
 import { LenkeUstylet } from '../../parts/_common/lenke/LenkeUstylet';

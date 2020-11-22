@@ -1,7 +1,7 @@
-import { GlobalContentSchema } from './_schema';
+import { GlobalContentProps } from './_common';
 
 export interface LinkItem {
-    link: GlobalContentSchema[];
+    link: GlobalContentProps[];
 }
 
 export type MenuListItemKey =

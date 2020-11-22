@@ -2,7 +2,7 @@ import React from 'react';
 import { BEM } from 'utils/bem';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import { RegionProps } from '../../pages/regions-page/Regions';
-import { GlobalPageProps } from 'types/content-types/_schema';
+import { GlobalPageProps } from 'types/content/_common';
 import './PageList.less';
 import Lenke from 'nav-frontend-lenker';
 import { xpPathToAppPath } from '../../../utils/paths';

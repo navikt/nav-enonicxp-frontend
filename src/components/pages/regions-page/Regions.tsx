@@ -1,6 +1,6 @@
 import React from 'react';
-import { GlobalPageProps } from 'types/content-types/_schema';
-import { RegionsProps } from '../../../types/components/_common';
+import { GlobalPageProps } from 'types/content/_common';
+import { RegionsProps } from '../../../types/components/_components';
 import Region from './Region';
 import './Regions.less';
 

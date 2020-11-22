@@ -1,7 +1,11 @@
 import React from 'react';
-import { GlobalPageProps } from '../../../types/content-types/_schema';
+import { GlobalPageProps } from '../../../types/content/_common';
 import { BEM } from '../../../utils/bem';
-import { RegionProps } from '../../../types/components/_common';
+import {
+    ComponentProps,
+    ComponentType,
+    RegionProps,
+} from '../../../types/components/_components';
 import { ComponentMapper } from './ComponentMapper';
 
 const bem = BEM('region');
@@ -12,7 +16,16 @@ const bem = BEM('region');
 //     dynamicConfig?: DynamicRegionConfig;
 // }
 
-const getClass = (descriptor: string) => bem(descriptor.split(':')[1]);
+const getClass = (component: ComponentProps) => {
+    switch (component.type) {
+        case ComponentType.Page:
+        case ComponentType.Layout:
+        case ComponentType.Part:
+            return bem(component.descriptor.split(':')[1] || 'default');
+        default:
+            return bem('default');
+    }
+};
 
 type Props = {
     pageProps: GlobalPageProps;
@@ -23,8 +36,8 @@ export const Region = ({ pageProps, regionProps }: Props) => {
     const { name, components } = regionProps;
 
     // const dynamicRegionComponents = regionProps.components || [];
-    // const dynamicConfig = props.dynamicConfig;
 
+    // const dynamicConfig = props.dynamicConfig;
     // const dynamicStyle = {
     //     ...(dynamicConfig?.distribution && {
     //         flex: `${dynamicConfig.distribution.split('-')[props.dynamicKey]}`,
@@ -39,7 +52,7 @@ export const Region = ({ pageProps, regionProps }: Props) => {
             className={`${bem()} ${bem(name)}`}
         >
             {components.map((component) => {
-                const className = getClass(component.descriptor);
+                const className = getClass(component);
 
                 // const dynamicStyle = {
                 //     ...(component?.config?.margin && {

@@ -1,32 +1,34 @@
 import React from 'react';
-import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
+import { ContentType, ContentTypeProps } from '../types/content/_common';
 import LegacyPage from './pages/legacy-page/LegacyPage';
 import { ErrorPage } from './pages/error-page/ErrorPage';
-import { makeErrorProps } from '../types/content-types/error-props';
-import { DynamicPage } from './pages/regions-page/DynamicPage';
+import { makeErrorProps } from '../types/content/error-props';
+import { RegionsPage } from './pages/regions-page/RegionsPage';
 import { FragmentPage } from './pages/fragment-page/FragmentPage';
 import LargeTablePage from './pages/large-table-page/LargeTablePage';
 import { ClientsideRedirect } from './ClientsideRedirect';
 
 export const contentToComponentMap = {
     [ContentType.Error]: ErrorPage,
-    [ContentType.Legacy]: LegacyPage,
-    [ContentType.SectionPage]: DynamicPage,
-    [ContentType.TransportPage]: DynamicPage,
-    [ContentType.Fragment]: FragmentPage,
-    [ContentType.DynamicPage]: DynamicPage,
-    [ContentType.MainArticle]: DynamicPage,
-    [ContentType.MainArticleChapter]: DynamicPage,
     [ContentType.LargeTable]: LargeTablePage,
-    [ContentType.TemplatePage]: DynamicPage,
-    [ContentType.PageList]: DynamicPage,
+    [ContentType.Legacy]: LegacyPage,
+
+    [ContentType.DynamicPage]: RegionsPage,
+    [ContentType.Fragment]: FragmentPage,
+    [ContentType.MainArticle]: RegionsPage,
+    [ContentType.MainArticleChapter]: RegionsPage,
+    [ContentType.PageList]: RegionsPage,
+    [ContentType.SectionPage]: RegionsPage,
+    [ContentType.TemplatePage]: RegionsPage,
+    [ContentType.TransportPage]: RegionsPage,
+
     [ContentType.ExternalLink]: ClientsideRedirect,
     [ContentType.InternalLink]: ClientsideRedirect,
     [ContentType.Site]: ClientsideRedirect,
 };
 
 type Props = {
-    content: ContentTypeSchema | undefined;
+    content: ContentTypeProps | undefined;
 };
 
 export const ContentToComponentMapper = ({ content }: Props) => {

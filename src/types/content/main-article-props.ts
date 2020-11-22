@@ -1,4 +1,4 @@
-import { ContentType, GlobalPageProps } from './_schema';
+import { ContentType, GlobalPageProps } from './_common';
 import { MainArticleChapterProps } from './main-article-chapter-props';
 import { MenuListItem } from './menuListItems';
 

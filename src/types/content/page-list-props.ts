@@ -1,4 +1,4 @@
-import { ContentType, GlobalContentSchema } from './_schema';
+import { ContentType, GlobalContentProps } from './_common';
 import { XpContentRef } from '../../utils/paths';
 
 export type PageListData = Partial<{
@@ -7,7 +7,7 @@ export type PageListData = Partial<{
     metaDescription: string;
 }>;
 
-export interface PageListProps extends GlobalContentSchema {
+export interface PageListProps extends GlobalContentProps {
     __typename: ContentType.PageList;
     data: PageListData;
 }

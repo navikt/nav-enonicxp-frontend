@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
-import { LargeTableProps } from '../../../types/content-types/large-table-props';
-import { makeErrorProps } from '../../../types/content-types/error-props';
+import { LargeTableProps } from '../../../types/content/large-table-props';
+import { makeErrorProps } from '../../../types/content/error-props';
 import { ErrorPage } from '../error-page/ErrorPage';
 import { LenkeNavNo } from '../../parts/_common/lenke/LenkeNavNo';
 import { VenstreChevron } from 'nav-frontend-chevron';

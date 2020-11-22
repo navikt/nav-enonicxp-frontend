@@ -1,5 +1,7 @@
+import { ComponentCommonProps, ComponentType } from './_components';
+
 export enum PartType {
-    // Parts with page content
+    // Parts using page data
     LinkPanels = 'no.nav.navno:link-panels',
     LinkLists = 'no.nav.navno:link-lists',
     PageHeading = 'no.nav.navno:page-heading',
@@ -8,7 +10,7 @@ export enum PartType {
     MenuList = 'no.nav.navno:menu-list',
     PageList = 'no.nav.navno:page-list',
 
-    // Parts with own content
+    // Parts using own data
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
     SupervisorPanel = 'no.nav.navno:dynamic-supervisor-panel',
     Alert = 'no.nav.navno:dynamic-alert',

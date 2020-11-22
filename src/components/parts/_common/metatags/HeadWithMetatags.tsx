@@ -1,22 +1,22 @@
 import React from 'react';
-import { ContentTypeSchema } from '../../../../types/content-types/_schema';
+import { ContentTypeProps } from '../../../../types/content/_common';
 import Head from 'next/head';
 import {
     hasCanonicalUrl,
     hasDescription,
     hasIngress,
     hasMetaDescription,
-} from '../../../../types/content-types/_type-guards';
+} from '../../../../types/_type-guards';
 import { xpPathToUrl, getLocationOrigin } from '../../../../utils/paths';
 
 type Props = {
-    content: ContentTypeSchema;
+    content: ContentTypeProps;
     children?: React.ReactNode;
 };
 
 const descriptionMaxLength = 140;
 
-const getDescription = (content: ContentTypeSchema) => {
+const getDescription = (content: ContentTypeProps) => {
     if (hasMetaDescription(content.data)) {
         return content.data.metaDescription;
     }

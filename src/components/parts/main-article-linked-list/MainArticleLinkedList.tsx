@@ -1,10 +1,10 @@
 import React from 'react';
-import { MainArticleProps } from 'types/content-types/main-article-props';
+import { MainArticleProps } from 'types/content/main-article-props';
 import { RegionProps } from '../../pages/_dynamic/DynamicRegions';
 import Lenke from 'nav-frontend-lenker';
-import { ContentType } from 'types/content-types/_schema';
+import { ContentType } from 'types/content/_common';
 import { xpPathToAppPath } from 'utils/paths';
-import { MainArticleChapterProps } from 'types/content-types/main-article-chapter-props';
+import { MainArticleChapterProps } from 'types/content/main-article-chapter-props';
 import { BEM } from 'utils/bem';
 import './MainArticleLinkedList.less';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BEM } from 'utils/bem';
-import { GlobalPageProps, PageData } from 'types/content-types/_schema';
-import { ContentType, ContentTypeSchema } from 'types/content-types/_schema';
+import { GlobalPageProps, PageData } from 'types/content/_common';
+import { ContentType, ContentTypeProps } from 'types/content/_common';
 import { Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelNavNo from '../_common/lenkepanel/LenkepanelNavNo';
 import { MainPanelMock } from './MainPanelsMock';
@@ -16,7 +16,7 @@ type TableData = {
 };
 
 const getLinkData = (
-    contentData: ContentTypeSchema | null
+    contentData: ContentTypeProps | null
 ): TableData | null => {
     if (!contentData) {
         return null;

@@ -1,4 +1,4 @@
-import { ContentType, ContentTypeSchema, GlobalContentSchema } from './_schema';
+import { ContentType, ContentTypeProps, GlobalContentProps } from './_common';
 import { LinkPanel } from '../link-panel';
 import { ContentListProps } from './content-list-props';
 
@@ -6,7 +6,7 @@ export type SectionPageData = Partial<{
     panelsHeading: string;
     panelItems: LinkPanel[];
     nrTableEntries: number;
-    tableContents: ContentTypeSchema[];
+    tableContents: ContentTypeProps[];
     nrNews: number;
     newsContents: ContentListProps;
     moreNewsUrl: string;
@@ -17,7 +17,7 @@ export type SectionPageData = Partial<{
     metaDescription: string;
 }>;
 
-export interface SectionPageProps extends GlobalContentSchema {
+export interface SectionPageProps extends GlobalContentProps {
     __typename: ContentType.SectionPage;
     data: SectionPageData;
 }

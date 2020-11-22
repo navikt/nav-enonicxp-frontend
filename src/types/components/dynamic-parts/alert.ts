@@ -1,4 +1,4 @@
-import { PartType } from '../_schema';
+import { PartType } from '../../content/_common';
 
 export interface DynamicAlert {
     type: 'part';

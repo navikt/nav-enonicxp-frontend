@@ -1,7 +1,7 @@
-import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
+import { ContentType, ContentTypeProps } from '../types/content/_common';
 import { Breadcrumb } from '../types/breadcrumb';
 import { LanguageSelectorProps } from '../types/language-selector-props';
-import { NotificationProps } from '../types/content-types/notification-props';
+import { NotificationProps } from '../types/content/notification-props';
 import { useRouter } from 'next/router';
 import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
@@ -13,13 +13,13 @@ import {
     fetchNotifications,
     fetchPage,
 } from '../utils/fetch-content';
-import { makeErrorProps } from '../types/content-types/error-props';
+import { makeErrorProps } from '../types/content/error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
 
 type PageProps = {
-    content: ContentTypeSchema;
+    content: ContentTypeProps;
     breadcrumbs: Breadcrumb[];
     languages: LanguageSelectorProps[];
     notifications: NotificationProps[];

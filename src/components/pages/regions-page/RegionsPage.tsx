@@ -1,10 +1,10 @@
 import React from 'react';
-import { GlobalPageProps } from 'types/content-types/_schema';
+import { GlobalPageProps } from 'types/content/_common';
 import Regions from './Regions';
 import './DynamicPage.less';
 
-export const DynamicPage = (props: GlobalPageProps) => {
-    const regions = props.page?.regions;
+export const RegionsPage = (props: GlobalPageProps) => {
+    const { regions } = props.page;
 
     return (
         <div className={'dynamic-page'}>

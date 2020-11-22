@@ -8,12 +8,11 @@ import { MainArticleProps } from './main-article-props';
 import { SiteProps } from './site-props';
 import { ErrorProps } from './error-props';
 import { NotificationProps } from './notification-props';
-import { DynamicRegionComponent } from './_dynamic/_components';
 import { LargeTableProps } from './large-table-props';
 import { SectionPageData, SectionPageProps } from './section-page-props';
 import { TransportPageData, TransportPageProps } from './transport-page-props';
 import { Language } from '../../translations';
-import { ComponentProps, PageComponent } from '../components/_common';
+import { PageComponentProps } from '../components/_components';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -34,7 +33,7 @@ export enum ContentType {
     LargeTable = 'no_nav_navno_LargeTable',
 }
 
-export type ContentTypeSchema =
+export type ContentTypeProps =
     | LegacyProps
     | ErrorProps
     | SiteProps
@@ -48,7 +47,7 @@ export type ContentTypeSchema =
     | NotificationProps
     | LargeTableProps;
 
-export type GlobalContentSchema = {
+export type GlobalContentProps = {
     __typename: ContentType;
     _id: XpContentRef;
     _path: XpContentRef;
@@ -58,9 +57,8 @@ export type GlobalContentSchema = {
     displayName: string;
 };
 
-export interface GlobalPageProps extends GlobalContentSchema {
-    components?: ComponentProps[];
-    page?: PageComponent;
+export interface GlobalPageProps extends GlobalContentProps {
+    page?: PageComponentProps;
     data: PageData;
 }
 
@@ -71,8 +69,3 @@ export type PageData = {
     PageListData &
     LegacyData &
     TransportPageData;
-
-export interface Region {
-    name: string;
-    components: DynamicRegionComponent[];
-}

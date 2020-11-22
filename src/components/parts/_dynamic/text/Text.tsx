@@ -1,8 +1,8 @@
 import React from 'react';
 import { ParsedHtml } from '../ParsedHtml';
-import { TextComponent } from '../../../../types/components/_common';
+import { TextComponentProps } from '../../../../types/components/_components';
 
-export const Text = ({ value }: TextComponent) => {
+export const Text = ({ value }: TextComponentProps) => {
     if (!value) {
         return null;
     }

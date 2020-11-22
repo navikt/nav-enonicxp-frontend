@@ -1,12 +1,12 @@
 import React from 'react';
-import { NotificationProps } from 'types/content-types/notification-props';
+import { NotificationProps } from 'types/content/notification-props';
 import LenkepanelNavNo from '../_common/lenkepanel/LenkepanelNavNo';
-import { ContentType } from 'types/content-types/_schema';
+import { ContentType } from 'types/content/_common';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { PulsatingIcon } from './icons/PulsatingIcon';
 import { InfoIcon } from './icons/InfoIcon';
-import { hasIngress } from 'types/content-types/_type-guards';
-import { hasDescription } from 'types/content-types/_type-guards';
+import { hasIngress } from 'types/_type-guards';
+import { hasDescription } from 'types/_type-guards';
 import { BEM } from 'utils/bem';
 import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
