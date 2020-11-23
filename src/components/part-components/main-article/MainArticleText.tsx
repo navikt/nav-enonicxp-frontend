@@ -28,7 +28,6 @@ interface Props {
 }
 
 const MainArticleText = (props: Props) => {
-
     const modifiedHtml = modifyHtml(props.text, props.hasTableOfContents);
 
     return (
