@@ -25,7 +25,7 @@ const Bilde = (props: Props) => {
             />
                {picture.caption &&
               <figcaption className="decorated">
-                    {picture.caption}
+                      {picture.caption}
               </figcaption>
               }
           </figure>
