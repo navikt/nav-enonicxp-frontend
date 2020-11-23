@@ -7,28 +7,27 @@ import { formatAddress } from './utils';
 import { formatDate } from 'utils/datetime';
 import { translator, Language } from 'translations';
 
+interface FormattedOpeningHours extends OpeningHours {
+    meta: string;
+}
+
 interface FormattedAudienceReception {
     address: string;
     place: string;
-    openingHoursExceptions: OpeningHours[];
-    openingHours: OpeningHours[];
+    openingHoursExceptions: FormattedOpeningHours[];
+    openingHours: FormattedOpeningHours[];
 }
 
 const formatMetaOpeningHours = (el: OpeningHours) => {
-    let day: string;
-    if (el.dag === 'Mandag') {
-        day = 'Mo';
-    } else if (el.dag === 'Tirsdag') {
-        day = 'Tu';
-    } else if (el.dag === 'Onsdag') {
-        day = 'We';
-    } else if (el.dag === 'Torsdag') {
-        day = 'Th';
-    } else if (el.dag === 'Fredag') {
-        day = 'Fr';
-    }
-    const meta = `${day} ${el.fra}-${el.til}`;
-    return { ...el, meta };
+    const days: { [key: string]: string } = {
+        Mandag: 'Mo',
+        Tirsdag: 'Tu',
+        Onsdag: 'We',
+        Torsdag: 'Th',
+        Fredag: 'Fr',
+    };
+    const day = days[el.dag];
+    return `${day} ${el.fra}-${el.til}`;
 };
 
 const sortOpeningHours = (a: OpeningHours, b: OpeningHours) => {
@@ -59,7 +58,10 @@ const formatAudienceReception = (
                     dato,
                 });
             } else {
-                acc.regular.push(elem);
+                acc.regular.push({
+                    ...elem,
+                    meta: formatMetaOpeningHours(elem),
+                });
             }
             return acc;
         },
@@ -148,15 +150,21 @@ const Reception = (props: Props) => {
             getLabel('closed'),
             'standard'
         );
-        const metaOpeningHours = getMetaOpeningHours(
-            reception.openingHours,
-            'meta-standard'
-        );
         const openingHours =
             openingHoursDays.length > 0 ? (
                 <div>
                     <h5>Åpningstider</h5>
-                    <ul className="hidden">{metaOpeningHours}</ul>
+                    {reception.openingHours.map((oh, ix) => {
+                        return (
+                            oh.stengt !== 'true' && (
+                                <meta
+                                    itemProp="openingHours"
+                                    key={`oh-meta-${ix}`}
+                                    content={oh.meta}
+                                />
+                            )
+                        );
+                    })}
                     <table>
                         <tbody>{openingHoursDays}</tbody>
                     </table>
