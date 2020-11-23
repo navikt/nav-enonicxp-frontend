@@ -6,7 +6,6 @@ import { DecoratorFragments, DecoratorParams } from '../utils/fetch-decorator';
 import { decoratorParams404 } from '../components/page-components/error-page/errorcode-content/Error404Content';
 import { fetchBreadcrumbs, fetchLanguages } from '../utils/fetch-content';
 import { appPathToXpPath } from '../utils/paths';
-import dotenv from 'dotenv';
 
 type Props = {
     decoratorFragments: DecoratorFragments;
@@ -34,10 +33,6 @@ const decoratorParamsFromContext = async (
 
 class MyDocument extends Document<Props> {
     static async getInitialProps(ctx: DocumentContext) {
-        if (process.env.NODE_ENV === 'production') {
-            dotenv.config({ path: '/var/run/secrets/nais.io/vault/.env' });
-        }
-
         const initialProps = await Document.getInitialProps(ctx);
         const decoratorParams = await decoratorParamsFromContext(ctx);
         const decoratorFragments = await getDecorator(decoratorParams);
