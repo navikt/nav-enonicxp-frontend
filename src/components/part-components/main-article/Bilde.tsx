@@ -10,7 +10,6 @@ const Bilde = (props: Props) => {
     if (!picture) {
         return <></>;
     }
-
     const imgClass = picture.size === '40' ? 'figure-small' : (picture.size  === '70' ? 'figure-medium' : 'figure-full');
     const height = 768;
     const width = 'max';
