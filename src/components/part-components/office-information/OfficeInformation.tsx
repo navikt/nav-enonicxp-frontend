@@ -8,6 +8,8 @@ import { SpecialInformation } from './SpecialInfo';
 import { formatAddress } from './utils';
 import { BEM } from 'utils/bem';
 import { Email } from './Contact';
+import { translator } from 'translations';
+import ArtikkelDato from '../main-article/ArtikkelDato';
 
 const parsePhoneNumber = (number: string, mod: number = null) => {
     const modular = mod || 2;
@@ -24,6 +26,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;
     const bem = BEM('office-information');
+    const getLabelMain = translator('mainArticle', props.language);
 
     // location
     const location = formatAddress(contact.besoeksadresse, true);
@@ -111,7 +114,15 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
 
     return (
         <article className={bem()}>
-            <header></header>
+            <header>
+                <ArtikkelDato
+                    publish={props.publish}
+                    createdTime={props.createdTime}
+                    modifiedTime={props.modifiedTime}
+                    publishLabel={getLabelMain('published')}
+                    modifiedLabel={getLabelMain('lastChanged')}
+                />
+            </header>
             <h1>{unit.navn}</h1>
             {locationView}
             <Email email={contact.epost} unitType={unit.type} />
