@@ -28,84 +28,9 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     const bem = BEM('office-information');
     const getLabelMain = translator('mainArticle', props.language);
 
-    // location
     const location = formatAddress(contact.besoeksadresse, true);
-    const locationView =
-        unit.type in ['HMS', 'ALS', 'TILTAK'] && location !== '' ? (
-            <div>
-                <h3>Besøksadresse</h3>
-                <p className="p-street-address" itemProp="streetAddress">
-                    {location}
-                </p>
-            </div>
-        ) : null;
-    // phone
-    const phoneView = contact?.telefonnummer ? (
-        <div>
-            <h3 itemProp="contactType">Telefon</h3>
-            <p className="p-tel" itemProp="telephone">
-                {parsePhoneNumber(contact.telefonnummer)}
-            </p>
-            <p>{contact.telefonnummerKommentar}</p>
-        </div>
-    ) : null;
-
-    // specialInfo
-    // postAddress
     const address = formatAddress(contact.postadresse, false);
-    const addressView = (
-        <div itemProp="address" itemType="http://schema.org/PostalAddress">
-            <h3>Postadresse</h3>
-            <p>
-                <span
-                    className="p-post-office-box"
-                    itemProp="postOfficeBoxNumber"
-                >
-                    {address}
-                </span>
-                ,
-                <span className="p-postal-code" itemProp="postalCode">
-                    {contact.postadresse.postnummer}
-                </span>
-                <span className="p-locality" itemProp="addressRegion">
-                    {contact.postadresse.poststed}
-                </span>
-            </p>
-        </div>
-    );
-
-    // fax
     const fax = parsePhoneNumber(contact.faksnummer);
-    const faxView =
-        fax !== '' ? (
-            <div
-                itemProp="contactPoint"
-                itemType="http://schema.org/ContactPoint"
-            >
-                <h3 itemProp="contactType">Telefaks</h3>
-                <p className="p-tel-fax" itemProp="faxNumber">
-                    {fax}
-                </p>
-            </div>
-        ) : null;
-
-    // orgNr
-    const orgNrView = unit.organisasjonsnummer ? (
-        <div>
-            <h3>Organisasjonsnummer</h3>
-            <p>{unit.organisasjonsnummer}</p>
-        </div>
-    ) : null;
-
-    // officeNr
-    const officeNrView = unit.enhetNr ? (
-        <div>
-            <h3>Kontornummer</h3>
-            <p>{unit.enhetNr}</p>
-        </div>
-    ) : null;
-
-    // reception
     const receptions: AudienceReception[] = Array.isArray(
         contact.publikumsmottak
     )
@@ -124,9 +49,24 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 />
             </header>
             <h1>{unit.navn}</h1>
-            {locationView}
+            {unit.type in ['HMS', 'ALS', 'TILTAK'] && location !== '' && (
+                <div>
+                    <h3>Besøksadresse</h3>
+                    <p className="p-street-address" itemProp="streetAddress">
+                        {location}
+                    </p>
+                </div>
+            )}
             <Email email={contact.epost} unitType={unit.type} />
-            {phoneView}
+            {contact?.telefonnummer && (
+                <div>
+                    <h3 itemProp="contactType">Telefon</h3>
+                    <p className="p-tel" itemProp="telephone">
+                        {parsePhoneNumber(contact.telefonnummer)}
+                    </p>
+                    <p>{contact.telefonnummerKommentar}</p>
+                </div>
+            )}
             <div className="p-note">
                 <h3>Innsending av skjemaer</h3>
                 <p>
@@ -142,10 +82,47 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 </p>
             </div>
             <SpecialInformation info={contact.spesielleOpplysninger} />
-            {addressView}
-            {faxView}
-            {orgNrView}
-            {officeNrView}
+            <div itemProp="address" itemType="http://schema.org/PostalAddress">
+                <h3>Postadresse</h3>
+                <p>
+                    <span
+                        className="p-post-office-box"
+                        itemProp="postOfficeBoxNumber"
+                    >
+                        {address}
+                    </span>
+                    ,
+                    <span className="p-postal-code" itemProp="postalCode">
+                        {contact.postadresse.postnummer}
+                    </span>
+                    <span className="p-locality" itemProp="addressRegion">
+                        {contact.postadresse.poststed}
+                    </span>
+                </p>
+            </div>
+            {fax !== '' && (
+                <div
+                    itemProp="contactPoint"
+                    itemType="http://schema.org/ContactPoint"
+                >
+                    <h3 itemProp="contactType">Telefaks</h3>
+                    <p className="p-tel-fax" itemProp="faxNumber">
+                        {fax}
+                    </p>
+                </div>
+            )}
+            {unit.organisasjonsnummer && (
+                <div>
+                    <h3>Organisasjonsnummer</h3>
+                    <p>{unit.organisasjonsnummer}</p>
+                </div>
+            )}
+            {unit.enhetNr && (
+                <div>
+                    <h3>Kontornummer</h3>
+                    <p>{unit.enhetNr}</p>
+                </div>
+            )}
             <Reception receptions={receptions} language={props.language} />
         </article>
     );
