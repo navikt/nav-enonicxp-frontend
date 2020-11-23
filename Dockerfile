@@ -15,4 +15,4 @@ COPY [".env", "next.config.js", "/usr/src/app/"]
 
 # Start app
 EXPOSE 3000
-CMD "npm" "start"
+ENTRYPOINT ["npm", "start"]
