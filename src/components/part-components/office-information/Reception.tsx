@@ -150,26 +150,6 @@ const Reception = (props: Props) => {
             getLabel('closed'),
             'standard'
         );
-        const openingHours =
-            openingHoursDays.length > 0 ? (
-                <div>
-                    <h5>Åpningstider</h5>
-                    {reception.openingHours.map((oh, ix) => {
-                        return (
-                            oh.stengt !== 'true' && (
-                                <meta
-                                    itemProp="openingHours"
-                                    key={`oh-meta-${ix}`}
-                                    content={oh.meta}
-                                />
-                            )
-                        );
-                    })}
-                    <table>
-                        <tbody>{openingHoursDays}</tbody>
-                    </table>
-                </div>
-            ) : null;
 
         const openingHoursExceptions = getOpeningHours(
             reception.openingHoursExceptions,
@@ -181,16 +161,7 @@ const Reception = (props: Props) => {
             reception.openingHoursExceptions,
             'meta-exceptions'
         );
-        const exceptions =
-            openingHoursExceptions.length > 0 ? (
-                <div>
-                    <h5>Spesielle åpningstider</h5>
-                    <ul className="hidden">{metaOpeningHoursExceptions}</ul>
-                    <table>
-                        <tbody>{openingHoursExceptions}</tbody>
-                    </table>
-                </div>
-            ) : null;
+
         return (
             <div key={rec.id} itemProp="http://schema.org/localbusiness">
                 <h2 itemProp="name">{reception.place}</h2>
@@ -202,8 +173,37 @@ const Reception = (props: Props) => {
                 >
                     {reception.address}
                 </p>
-                {exceptions}
-                {openingHours}
+                {/* exceptions in opening hours */}
+                {openingHoursExceptions.length > 0 && (
+                    <div>
+                        <h5>Spesielle åpningstider</h5>
+                        <ul className="hidden">{metaOpeningHoursExceptions}</ul>
+                        <table>
+                            <tbody>{openingHoursExceptions}</tbody>
+                        </table>
+                    </div>
+                )}
+
+                {/* opening hours */}
+                {openingHoursDays.length > 0 && (
+                    <div>
+                        <h5>Åpningstider</h5>
+                        {reception.openingHours.map((oh, ix) => {
+                            return (
+                                oh.stengt !== 'true' && (
+                                    <meta
+                                        itemProp="openingHours"
+                                        key={`oh-meta-${ix}`}
+                                        content={oh.meta}
+                                    />
+                                )
+                            );
+                        })}
+                        <table>
+                            <tbody>{openingHoursDays}</tbody>
+                        </table>
+                    </div>
+                )}
             </div>
         );
     });
