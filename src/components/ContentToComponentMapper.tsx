@@ -20,6 +20,7 @@ export const contentToComponentMap = {
     [ContentType.MainArticleChapter]: DynamicPage,
     [ContentType.LargeTable]: LargeTablePage,
     [ContentType.TemplatePage]: DynamicPage,
+    [ContentType.PageList]: DynamicPage,
     [ContentType.ExternalLink]: ClientsideRedirect,
     [ContentType.InternalLink]: ClientsideRedirect,
     [ContentType.Site]: ClientsideRedirect,

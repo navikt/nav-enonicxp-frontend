@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalPageSchema } from 'types/content-types/_schema';
+import { ContentType, GlobalPageSchema } from 'types/content-types/_schema';
 import { DynamicRegions, PartType } from 'types/content-types/_schema';
 import { DynamicRegion } from 'types/content-types/_schema';
 import { LinkPanel } from 'components/part-components/_dynamic/link-panel/LinkPanel';
@@ -26,6 +26,10 @@ import { MenuListProps } from '../../part-components/menu-list/MenuList';
 import { MenuList } from '../../part-components/menu-list/MenuList';
 import { OfficeInformationProps } from 'types/content-types/office-information-props';
 import { OfficeInformation } from '../../part-components/office-information/OfficeInformation';
+import PageList from '../../part-components/page-list/PageList';
+import { MainArticle } from '../../part-components/main-article/MainArticle';
+import { ArticleProps } from '../../../types/content-types/main-article-chapter-props';
+import { MainArticleProps } from '../../../types/content-types/main-article-props';
 import './DynamicRegions.less';
 
 const bem = BEM('region');
@@ -140,6 +144,7 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 [PartType.MainPanels]: (
                                     <MainPanels {...props} />
                                 ),
+                                [PartType.PageList]: <PageList {...props} />,
 
                                 // Main Article
                                 [PartType.MainArticleLinkedList]: (
@@ -155,6 +160,19 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                         {...(props as OfficeInformationProps)}
                                     />
                                 ),
+                                [PartType.MainArticle]:
+                                    props.__typename ===
+                                    ContentType.MainArticleChapter ? (
+                                        <MainArticle
+                                            {...(props.data
+                                                .article as ArticleProps)}
+                                        />
+                                    ) : (
+                                        <MainArticle
+                                            {...(props as MainArticleProps)}
+                                        />
+                                    ),
+
                                 // Deprecated parts - remove after release
                                 [PartType.Notifications]: <></>,
                                 [PartType.BreakingNews]: <></>,
