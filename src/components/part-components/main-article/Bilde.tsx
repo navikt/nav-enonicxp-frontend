@@ -23,7 +23,7 @@ const Bilde = (props: Props) => {
                 src={src}
                 alt={picture.altText || ''}
             />
-               {picture.caption &&
+                  {picture.caption &&
               <figcaption className="decorated">{picture.caption}
               </figcaption>
               }
