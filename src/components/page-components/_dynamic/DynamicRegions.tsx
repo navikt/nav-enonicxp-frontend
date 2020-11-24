@@ -24,6 +24,8 @@ import { MainArticleLinkedListProps } from '../../part-components/main-article-l
 import { MainArticleLinkedList } from '../../part-components/main-article-linked-list/MainArticleLinkedList';
 import { MenuListProps } from '../../part-components/menu-list/MenuList';
 import { MenuList } from '../../part-components/menu-list/MenuList';
+import { OfficeInformationProps } from 'types/content-types/office-information-props';
+import { OfficeInformation } from '../../part-components/office-information/OfficeInformation';
 import PageList from '../../part-components/page-list/PageList';
 import { MainArticle } from '../../part-components/main-article/MainArticle';
 import { ArticleProps } from '../../../types/content-types/main-article-chapter-props';
@@ -58,7 +60,6 @@ export interface RegionProps {
     dynamicRegion: DynamicRegion;
     dynamicConfig?: DynamicRegionConfig;
 }
-
 
 export const Region = (props: RegionProps & GlobalPageSchema) => {
     const dynamicRegionComponents = props.dynamicRegion.components || [];
@@ -154,12 +155,23 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 [PartType.MenuList]: (
                                     <MenuList {...(props as MenuListProps)} />
                                 ),
-                                [PartType.MainArticle]: (
-                                    props.__typename === ContentType.MainArticleChapter ?
-                                        <MainArticle {...(props.data.article as ArticleProps)} /> :
-                                        <MainArticle {...(props as MainArticleProps)} />
-
+                                [PartType.OfficeInformation]: (
+                                    <OfficeInformation
+                                        {...(props as OfficeInformationProps)}
+                                    />
                                 ),
+                                [PartType.MainArticle]:
+                                    props.__typename ===
+                                    ContentType.MainArticleChapter ? (
+                                        <MainArticle
+                                            {...(props.data
+                                                .article as ArticleProps)}
+                                        />
+                                    ) : (
+                                        <MainArticle
+                                            {...(props as MainArticleProps)}
+                                        />
+                                    ),
 
                                 // Deprecated parts - remove after release
                                 [PartType.Notifications]: <></>,

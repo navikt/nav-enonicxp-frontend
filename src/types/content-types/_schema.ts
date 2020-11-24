@@ -14,6 +14,7 @@ import { LargeTableProps } from './large-table-props';
 import { LinkPanel } from '../link-panel';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
+import { OfficeInformationProps } from './office-information-props';
 import { Language } from '../../translations';
 import { MainArticleChapterDataProps } from './main-article-chapter-props';
 import { MainArticleDataProps } from './main-article-content-props';
@@ -35,6 +36,7 @@ export enum ContentType {
     MainArticleChapter = 'no_nav_navno_MainArticleChapter',
     Notification = 'no_nav_navno_Notification',
     LargeTable = 'no_nav_navno_LargeTable',
+    OfficeInformation = 'no_nav_navno_OfficeInformation',
 }
 
 export enum PartType {
@@ -45,6 +47,7 @@ export enum PartType {
     MainPanels = 'no.nav.navno:main-panels',
     MainArticleLinkedList = 'no.nav.navno:main-article-linked-list',
     MenuList = 'no.nav.navno:menu-list',
+    OfficeInformation = 'no.nav.navno:office-information',
     PageList = 'no.nav.navno:page-list',
     MainArticle = 'no.nav.navno:main-article',
 
@@ -72,6 +75,7 @@ export type ContentTypeSchema =
     | PageListProps
     | MainArticleProps
     | NotificationProps
+    | OfficeInformationProps
     | LargeTableProps;
 
 export type GlobalSchema = {
@@ -85,7 +89,7 @@ export type GlobalSchema = {
     data?: object;
     publish?: {
         from: string;
-    }
+    };
 };
 
 // Specific for dynamic page schemas
@@ -99,7 +103,8 @@ export interface GlobalPageSchema extends GlobalSchema {
     data: PageData;
 }
 
-export interface PageData extends Partial<MainArticleDataProps & MainArticleChapterDataProps> {
+export interface PageData
+    extends Partial<MainArticleDataProps & MainArticleChapterDataProps> {
     canonicalUrl?: string;
 
     // Section page

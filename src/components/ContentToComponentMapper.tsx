@@ -11,6 +11,7 @@ import { ClientsideRedirect } from './ClientsideRedirect';
 export const contentToComponentMap = {
     [ContentType.Error]: ErrorPage,
     [ContentType.Legacy]: LegacyPage,
+    [ContentType.OfficeInformation]: DynamicPage,
     [ContentType.SectionPage]: DynamicPage,
     [ContentType.TransportPage]: DynamicPage,
     [ContentType.Fragment]: FragmentPage,
