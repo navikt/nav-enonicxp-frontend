@@ -23,7 +23,7 @@ export const MenuList = (props: MenuListProps) => {
         selected.includes(key as MenuListItemKey)
     );
 
-    if (entries.length === 0) {
+    if (filtered.length === 0) {
         return null;
     }
 
