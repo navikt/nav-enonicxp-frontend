@@ -1,15 +1,10 @@
-import { PartType } from '../../content-props/_content-common';
+import { PartComponent } from '../_component-common';
+import { PartType } from '../parts';
 
-export interface DynamicSupervisorPanel {
-    part: {
-        descriptor: PartType.SupervisorPanel;
-        config: {
-            no_nav_navno: {
-                dynamic_supervisor_panel: {
-                    content: string;
-                    margin: string;
-                };
-            };
-        };
+export interface DynamicSupervisorPanel extends PartComponent {
+    descriptor: PartType.SupervisorPanel;
+    config: {
+        content: string;
+        margin: string;
     };
 }

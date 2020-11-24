@@ -1,5 +1,3 @@
-import { ComponentCommonProps, ComponentType } from './_component-common';
-
 export enum PartType {
     LinkPanels = 'no.nav.navno:link-panels',
     LinkLists = 'no.nav.navno:link-lists',
@@ -42,8 +40,3 @@ export type PartDeprecated =
     | PartType.Notifications
     | PartType.BreakingNews
     | PartType.PageCrumbs;
-
-export interface PartComponent extends ComponentCommonProps {
-    type: ComponentType.Part;
-    descriptor: PartType;
-}

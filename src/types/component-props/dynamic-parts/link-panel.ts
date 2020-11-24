@@ -1,24 +1,18 @@
-import { GlobalContentProps } from '../../content-props/_content-common';
+import { PartComponent } from '../_component-common';
 import { PartType } from '../parts';
+import { GlobalContentProps } from '../../content-props/_content-common';
 
-export interface DynamicLinkPanel {
-    type: 'part';
-    path: string;
+export interface DynamicLinkPanel extends PartComponent {
     descriptor: PartType.LinkPanel;
-    regions: undefined;
-    part: {
-        descriptor: PartType.LinkPanel;
-        config: {
-            no_nav_navno: {
-                dynamic_link_panel: {
-                    background: GlobalContentProps & {
-                        mediaUrl: string;
-                    };
-                    description: string;
-                    target: string;
-                    title: string;
-                };
-            };
+    config: {
+        title: string;
+        ingress: string;
+        target: GlobalContentProps;
+        background: {
+            mediaUrl: string;
+        };
+        icon: {
+            mediaUrl: string;
         };
     };
 }

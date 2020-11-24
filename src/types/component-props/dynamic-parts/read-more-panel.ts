@@ -1,17 +1,12 @@
-import { PartType } from '../../content-props/_content-common';
+import { PartComponent } from '../_component-common';
+import { PartType } from '../parts';
 
-export interface DynamicReadMorePanel {
-    part: {
-        descriptor: PartType.ReadMorePanel;
-        config: {
-            no_nav_navno: {
-                dynamic_read_more_panel: {
-                    ingress: string;
-                    content: string;
-                    border: string;
-                    margin: string;
-                };
-            };
-        };
+export interface DynamicReadMorePanel extends PartComponent {
+    descriptor: PartType.ReadMorePanel;
+    config: {
+        ingress: string;
+        content: string;
+        border: string;
+        margin: string;
     };
 }

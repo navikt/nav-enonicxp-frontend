@@ -1,21 +1,12 @@
-import { PartType } from '../../content-props/_content-common';
+import { PartComponent } from '../_component-common';
+import { PartType } from '../parts';
 
-export interface DynamicAlert {
-    type: 'part';
-    path: string;
+export interface DynamicAlert extends PartComponent {
     descriptor: PartType.Alert;
-    regions: undefined;
-    part: {
-        descriptor: PartType.Alert;
-        config: {
-            no_nav_navno: {
-                dynamic_alert: {
-                    type: 'info' | 'suksess' | 'advarsel' | 'feil';
-                    inline: string;
-                    content: string;
-                    margin: string;
-                };
-            };
-        };
+    config: {
+        type: 'info' | 'suksess' | 'advarsel' | 'feil';
+        inline: string;
+        content: string;
+        margin: string;
     };
 }

@@ -11,7 +11,7 @@ import { FragmentPage } from './pages/fragment-page/FragmentPage';
 import LargeTablePage from './pages/large-table-page/LargeTablePage';
 import { ClientsideRedirect } from './ClientsideRedirect';
 
-export const contentToComponentMap = {
+export const contentToReactComponent: Partial<{ [key in ContentType] }> = {
     [ContentType.Error]: ErrorPage,
     [ContentType.LargeTable]: LargeTablePage,
     [ContentType.Legacy]: LegacyPage,
@@ -31,11 +31,11 @@ export const contentToComponentMap = {
 };
 
 type Props = {
-    content: ContentTypeProps | undefined;
+    content: ContentTypeProps;
 };
 
 export const ContentMapper = ({ content }: Props) => {
-    const Component = contentToComponentMap[content.__typename];
+    const Component = contentToReactComponent[content.__typename];
 
     return Component ? (
         <Component {...content} />

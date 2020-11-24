@@ -12,7 +12,7 @@ import { LargeTableProps } from './large-table-props';
 import { SectionPageData, SectionPageProps } from './section-page-props';
 import { TransportPageData, TransportPageProps } from './transport-page-props';
 import { Language } from '../../translations';
-import { LayoutComponentProps } from '../component-props/layouts';
+import { LayoutProps } from '../component-props/layouts';
 import { MainArticleDataProps } from './main-article-content-props';
 import { MainArticleChapterDataProps } from './main-article-chapter-props';
 
@@ -55,12 +55,12 @@ export type GlobalContentProps = {
     _path: XpContentRef;
     createdTime: string;
     modifiedTime: string;
-    language: Language;
     displayName: string;
+    language: Language;
 };
 
 export interface GlobalPageProps extends GlobalContentProps {
-    page?: LayoutComponentProps;
+    page?: LayoutProps;
     data: PageData;
 }
 

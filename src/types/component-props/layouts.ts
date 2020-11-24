@@ -4,7 +4,7 @@ import {
     ComponentType,
 } from './_component-common';
 
-export enum LayoutType {
+enum LayoutType {
     Dynamic2Col = 'no.nav.navno:dynamic-2-col',
     Dynamic3Col = 'no.nav.navno:dynamic-3-col',
     Dynamic4Col = 'no.nav.navno:dynamic-4-col',
@@ -27,7 +27,7 @@ export type LayoutConfig = {
     margin: string;
 };
 
-export interface LayoutComponentProps extends ComponentCommonProps {
+export interface LayoutProps extends ComponentCommonProps {
     type: ComponentType.Layout | ComponentType.Page;
     descriptor: LayoutType;
     config?: LayoutConfig;

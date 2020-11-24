@@ -1,6 +1,6 @@
 import React from 'react';
 import { GlobalPageProps } from 'types/content-props/_content-common';
-import LayoutsMapper from '../../layouts/LayoutsMapper';
+import Layouts from '../../layouts/Layouts';
 import './DynamicPage.less';
 
 export const DynamicPage = (props: GlobalPageProps) => {
@@ -9,7 +9,7 @@ export const DynamicPage = (props: GlobalPageProps) => {
     return (
         <div className={'dynamic-page'}>
             {regions ? (
-                <LayoutsMapper pageProps={props} layoutProps={props.page} />
+                <Layouts pageProps={props} layoutProps={props.page} />
             ) : (
                 <div data-portal-region={'main'} />
             )}

@@ -1,5 +1,5 @@
-import { PartComponent } from './parts';
-import { LayoutComponentProps } from './layouts';
+import { PartType } from './parts';
+import { LayoutProps } from './layouts';
 
 export enum ComponentType {
     Page = 'page',
@@ -14,6 +14,11 @@ export type ComponentCommonProps = {
     type: ComponentType;
     path: string;
 };
+
+export interface PartComponent extends ComponentCommonProps {
+    type: ComponentType.Part;
+    descriptor: PartType;
+}
 
 export interface TextComponentProps extends ComponentCommonProps {
     type: ComponentType.Text;
@@ -32,7 +37,7 @@ export interface FragmentComponentProps extends ComponentCommonProps {
 }
 
 export type ComponentProps =
-    | LayoutComponentProps
+    | LayoutProps
     | PartComponent
     | TextComponentProps
     | ImageComponentProps
