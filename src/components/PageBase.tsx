@@ -1,11 +1,14 @@
-import { ContentType, ContentTypeProps } from '../types/content/_common';
+import {
+    ContentType,
+    ContentTypeProps,
+} from '../types/content-props/_content-common';
 import { Breadcrumb } from '../types/breadcrumb';
 import { LanguageSelectorProps } from '../types/language-selector-props';
-import { NotificationProps } from '../types/content/notification-props';
+import { NotificationProps } from '../types/content-props/notification-props';
 import { useRouter } from 'next/router';
 import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
-import ContentToComponentMapper from './ContentToComponentMapper';
+import ContentMapper from './ContentMapper';
 import React from 'react';
 import {
     fetchBreadcrumbs,
@@ -13,7 +16,7 @@ import {
     fetchNotifications,
     fetchPage,
 } from '../utils/fetch-content';
-import { makeErrorProps } from '../types/content/error-props';
+import { makeErrorProps } from '../types/content-props/error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
@@ -51,7 +54,7 @@ export const PageBase = (props: PageProps) => {
             languages={languages}
             notifications={notifications}
         >
-            <ContentToComponentMapper content={content} />
+            <ContentMapper content={content} />
         </PageWrapper>
     );
 };

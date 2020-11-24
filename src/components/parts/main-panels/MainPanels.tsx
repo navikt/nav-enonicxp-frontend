@@ -1,9 +1,12 @@
 import React from 'react';
 import { BEM } from 'utils/bem';
-import { GlobalPageProps, PageData } from 'types/content/_common';
-import { ContentType, ContentTypeProps } from 'types/content/_common';
+import { GlobalPageProps, PageData } from 'types/content-props/_content-common';
+import {
+    ContentType,
+    ContentTypeProps,
+} from 'types/content-props/_content-common';
 import { Normaltekst } from 'nav-frontend-typografi';
-import LenkepanelNavNo from '../_common/lenkepanel/LenkepanelNavNo';
+import LenkepanelNavNo from '../../_common/lenkepanel/LenkepanelNavNo';
 import { MainPanelMock } from './MainPanelsMock';
 import './MainPanels.less';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { LenkepanelListe } from './lenkepanel-liste/LenkepanelListe';
-import { PageData } from 'types/content/_common';
-import { GlobalPageProps } from 'types/content/_common';
-import { ContentType } from 'types/content/_common';
+import { PageData } from 'types/content-props/_content-common';
+import { GlobalPageProps } from 'types/content-props/_content-common';
+import { ContentType } from 'types/content-props/_content-common';
 import { LinkPanelsMock } from './LinkPanelsMock';
 import './LinkPanels.less';
 

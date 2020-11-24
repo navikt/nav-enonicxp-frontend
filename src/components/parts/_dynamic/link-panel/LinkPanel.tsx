@@ -3,7 +3,7 @@ import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import Link from 'next/link';
 import { Undertittel } from 'nav-frontend-typografi';
 import { isXpPath } from 'utils/paths';
-import { DynamicLinkPanel } from 'types/components/dynamic-parts/link-panel';
+import { DynamicLinkPanel } from 'types/component-props/dynamic-parts/link-panel';
 import { BEM } from 'utils/bem';
 import './LinkPanel.less';
 

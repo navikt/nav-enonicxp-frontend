@@ -1,4 +1,4 @@
-import { ContentTypeProps } from '../types/content/_common';
+import { ContentTypeProps } from '../types/content-props/_content-common';
 
 const getLastUpdatedUnixTime = (content: ContentTypeProps) =>
     new Date(

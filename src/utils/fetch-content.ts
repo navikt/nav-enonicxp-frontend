@@ -1,6 +1,9 @@
-import { ContentType, ContentTypeProps } from '../types/content/_common';
-import { makeErrorProps } from '../types/content/error-props';
-import { contentToComponentMap } from '../components/ContentToComponentMapper';
+import {
+    ContentType,
+    ContentTypeProps,
+} from '../types/content-props/_content-common';
+import { makeErrorProps } from '../types/content-props/error-props';
+import { contentToComponentMap } from '../components/ContentMapper';
 import {
     xpContentBasePath,
     xpLegacyDraftUrl,
@@ -9,7 +12,7 @@ import {
 } from './paths';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { Breadcrumb } from '../types/breadcrumb';
-import { NotificationProps } from '../types/content/notification-props';
+import { NotificationProps } from '../types/content-props/notification-props';
 import { LanguageSelectorProps } from '../types/language-selector-props';
 
 const fetchLegacyHtml = (path: string, isDraft = false) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentListProps } from 'types/content/content-list-props';
+import { ContentListProps } from 'types/content-props/content-list-props';
 import { LenkeData } from 'types/lenke-data';
 import { Lenkeliste } from '../lenkeliste/Lenkeliste';
 import { sortContentByLastModified } from 'utils/sort';
@@ -7,7 +7,7 @@ import { formatDate } from 'utils/datetime';
 import {
     ContentType,
     ContentTypeProps,
-} from '../../../../types/content/_common';
+} from '../../../../types/content-props/_content-common';
 
 type Props = {
     content: ContentListProps;

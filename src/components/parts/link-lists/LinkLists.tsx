@@ -1,10 +1,10 @@
 import React from 'react';
 import { ContentList } from './content-list/ContentList';
-import { LenkeNavNo } from '../_common/lenke/LenkeNavNo';
+import { LenkeNavNo } from '../../_common/lenke/LenkeNavNo';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { BEM } from 'utils/bem';
-import { GlobalPageProps, PageData } from 'types/content/_common';
-import { ContentType } from 'types/content/_common';
+import { GlobalPageProps, PageData } from 'types/content-props/_content-common';
+import { ContentType } from 'types/content-props/_content-common';
 import { LinkListTemplateMock } from './LinkListTemplateMock';
 import { translator } from 'translations';
 import './LinkLists.less';

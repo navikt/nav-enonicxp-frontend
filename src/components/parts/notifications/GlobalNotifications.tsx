@@ -1,5 +1,5 @@
 import React from 'react';
-import { NotificationProps } from 'types/content/notification-props';
+import { NotificationProps } from 'types/content-props/notification-props';
 import Notification from './Notification';
 import './GlobalNotifications.less';
 

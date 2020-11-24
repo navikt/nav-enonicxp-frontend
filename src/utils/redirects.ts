@@ -1,4 +1,7 @@
-import { ContentType, ContentTypeProps } from '../types/content/_common';
+import {
+    ContentType,
+    ContentTypeProps,
+} from '../types/content-props/_content-common';
 import { xpPathToAppPath } from './paths';
 
 export const getTargetIfRedirect = (contentData: ContentTypeProps) => {

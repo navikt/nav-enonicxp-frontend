@@ -1,8 +1,8 @@
 import React from 'react';
 import { BEM } from 'utils/bem';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import { RegionProps } from '../../pages/regions-page/Regions';
-import { GlobalPageProps } from 'types/content/_common';
+import { RegionProps } from '../../layouts/LayoutsMapper';
+import { GlobalPageProps } from 'types/content-props/_content-common';
 import './PageList.less';
 import Lenke from 'nav-frontend-lenker';
 import { xpPathToAppPath } from '../../../utils/paths';

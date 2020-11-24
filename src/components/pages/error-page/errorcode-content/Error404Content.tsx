@@ -2,7 +2,7 @@ import React from 'react';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { BEM } from '../../../../utils/bem';
 import { SearchForm } from './search-form/SearchForm';
-import { LenkeInline } from '../../../parts/_common/lenke/LenkeInline';
+import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import Head from 'next/head';
 import { DecoratorParams } from '../../../../utils/fetch-decorator';
 import './Error404Content.less';

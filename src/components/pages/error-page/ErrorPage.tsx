@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ErrorProps } from 'types/content/error-props';
+import { ErrorProps } from 'types/content-props/error-props';
 import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { Error404Content } from './errorcode-content/Error404Content';

@@ -1,4 +1,4 @@
-import { ContentType } from '../../../types/content/_common';
+import { ContentType } from '../../../types/content-props/_content-common';
 
 export const LinkListTemplateMock = {
     nrNTK: 6,

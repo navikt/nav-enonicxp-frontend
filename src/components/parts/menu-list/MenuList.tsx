@@ -1,12 +1,12 @@
 import React from 'react';
-import { MainArticleProps } from 'types/content/main-article-props';
-import { RegionProps } from '../../pages/regions-page/Regions';
+import { MainArticleProps } from 'types/content-props/main-article-props';
+import { RegionProps } from '../../layouts/LayoutsMapper';
 import Lenke from 'nav-frontend-lenker';
 import { xpPathToAppPath } from 'utils/paths';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { translator } from 'translations';
 import { BEM } from 'utils/bem';
-import { LinkItem, MenuListItemKey } from 'types/content/menuListItems';
+import { LinkItem, MenuListItemKey } from 'types/content-props/menuListItems';
 import './MenuList.less';
 
 export type MenuListProps = RegionProps & MainArticleProps;
@@ -28,7 +28,7 @@ export const MenuList = (props: MenuListProps) => {
         <div className={bem()}>
             {entries
                 .filter(([key]) => selected.includes(key as MenuListItemKey))
-                .map(([key, LinkItem], i) => {
+                .map(([key, LinkItem]) => {
                     return (
                         <Ekspanderbartpanel
                             key={key}
