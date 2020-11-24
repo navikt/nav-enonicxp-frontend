@@ -29,29 +29,27 @@ export const MenuList = (props: MenuListProps) => {
 
     return (
         <div className={bem()}>
-            {filtered.map(([key, LinkItem], i) => {
-                return (
-                    <Ekspanderbartpanel
-                        key={key}
-                        apen={filtered.length === 1}
-                        tittel={getLabel(key as MenuListItemKey) || key}
-                        className={bem('panel')}
-                    >
-                        <ul>
-                            {(LinkItem as LinkItem)?.link?.map((link) => {
-                                const path = xpPathToAppPath(link._path);
-                                return (
-                                    <li key={path}>
-                                        <Lenke href={path}>
-                                            {link.displayName}
-                                        </Lenke>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </Ekspanderbartpanel>
-                );
-            })}
+            {filtered.map(([key, LinkItem], i) => (
+                <Ekspanderbartpanel
+                    key={key}
+                    apen={filtered.length === 1}
+                    tittel={getLabel(key as MenuListItemKey) || key}
+                    className={bem('panel')}
+                >
+                    <ul>
+                        {(LinkItem as LinkItem)?.link?.map((link) => {
+                            const path = xpPathToAppPath(link._path);
+                            return (
+                                <li key={path}>
+                                    <Lenke href={path}>
+                                        {link.displayName}
+                                    </Lenke>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </Ekspanderbartpanel>
+            ))}
         </div>
     );
 };
