@@ -59,10 +59,11 @@ export const PageBase = (props: PageProps) => {
 export const fetchPageProps = async (
     routerQuery: string | string[],
     isDraft = false,
+    secret: string,
     revalidate?: number
 ): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
-    const content = await fetchPage(xpPath, isDraft);
+    const content = await fetchPage(xpPath, isDraft, secret);
 
     const defaultProps = {
         props: undefined,

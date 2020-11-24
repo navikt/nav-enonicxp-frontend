@@ -1,4 +1,4 @@
-FROM node:14
+FROM navikt/node-express:14-alpine
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -15,4 +15,4 @@ COPY [".env", "next.config.js", "/usr/src/app/"]
 
 # Start app
 EXPOSE 3000
-CMD "npm" "start"
+CMD ["npm", "run", "start"]
