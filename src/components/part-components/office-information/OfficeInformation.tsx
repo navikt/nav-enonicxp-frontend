@@ -10,6 +10,7 @@ import { BEM } from 'utils/bem';
 import { Email } from './Contact';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/ArtikkelDato';
+import Lenke from 'nav-frontend-lenker';
 
 const parsePhoneNumber = (number: string, mod: number = null) => {
     const modular = mod || 2;
@@ -71,12 +72,12 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 <h3>Innsending av skjemaer</h3>
                 <p>
                     Skal du sende søknader og skjemaer, må du bruke
-                    <a
+                    <Lenke
                         href="https://www.nav.no/soknader/nb/person"
-                        rel="external"
+                        className={bem('lenke')}
                     >
                         NAVs skjemaveileder.
-                    </a>
+                    </Lenke>
                     Skjemaveilederen gir deg hjelp til å velge rett skjema og
                     rett adresse det skal sendes til.
                 </p>
