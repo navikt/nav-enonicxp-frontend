@@ -1,12 +1,12 @@
 import React from 'react';
 import { MainArticleProps } from 'types/content-props/main-article-props';
-import { RegionProps } from '../../layouts/LayoutsMapper';
 import Lenke from 'nav-frontend-lenker';
 import { xpPathToAppPath } from 'utils/paths';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { translator } from 'translations';
 import { BEM } from 'utils/bem';
 import { LinkItem, MenuListItemKey } from 'types/content-props/menuListItems';
+import { RegionProps } from '../../../types/component-props/layouts';
 import './MenuList.less';
 
 export type MenuListProps = RegionProps & MainArticleProps;

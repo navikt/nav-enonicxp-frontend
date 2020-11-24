@@ -1,29 +1,24 @@
-import * as React from 'react';
-import { LenkeUstylet } from '../../_common/lenke/LenkeUstylet';
+import React from 'react';
 import './Innholdsfortegnelse.less';
+import { LenkeUstylet } from '../../../_common/lenke/LenkeUstylet';
 
 interface Props {
-    label: string
-    innholdsfortegnelse: string[]
+    label: string;
+    innholdsfortegnelse: string[];
 }
 
 const Innholdsfortegnelse = (props: Props) => {
-
     if (props.innholdsfortegnelse.length === 0) {
         return null;
     }
 
     return (
         <nav className="table-of-contents" data-selected-id>
-            <h2 className="visuallyhidden">
-                {props.label}
-            </h2>
+            <h2 className="visuallyhidden">{props.label}</h2>
             <ol>
                 {props.innholdsfortegnelse.map((item, index) => (
                     <li key={index}>
-                        <LenkeUstylet
-                            href={`#chapter-${index + 1}`}
-                        >
+                        <LenkeUstylet href={`#chapter-${index + 1}`}>
                             {item}
                         </LenkeUstylet>
                     </li>
@@ -31,5 +26,5 @@ const Innholdsfortegnelse = (props: Props) => {
             </ol>
         </nav>
     );
-}
+};
 export default Innholdsfortegnelse;

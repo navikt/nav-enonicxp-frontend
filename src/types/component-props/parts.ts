@@ -5,6 +5,7 @@ export enum PartType {
     LinkLists = 'no.nav.navno:link-lists',
     PageHeading = 'no.nav.navno:page-heading',
     MainPanels = 'no.nav.navno:main-panels',
+    MainArticle = 'no.nav.navno:main-article',
     MainArticleLinkedList = 'no.nav.navno:main-article-linked-list',
     MenuList = 'no.nav.navno:menu-list',
     PageList = 'no.nav.navno:page-list',
@@ -24,6 +25,7 @@ export type PartWithPageData =
     | PartType.LinkPanels
     | PartType.LinkLists
     | PartType.PageHeading
+    | PartType.MainArticle
     | PartType.MainArticleLinkedList
     | PartType.MainPanels
     | PartType.MenuList

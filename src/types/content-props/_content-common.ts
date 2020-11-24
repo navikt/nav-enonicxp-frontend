@@ -13,6 +13,8 @@ import { SectionPageData, SectionPageProps } from './section-page-props';
 import { TransportPageData, TransportPageProps } from './transport-page-props';
 import { Language } from '../../translations';
 import { LayoutComponentProps } from '../component-props/layouts';
+import { MainArticleDataProps } from './main-article-content-props';
+import { MainArticleChapterDataProps } from './main-article-chapter-props';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -68,4 +70,6 @@ export type PageData = {
 } & SectionPageData &
     PageListData &
     LegacyData &
-    TransportPageData;
+    TransportPageData &
+    MainArticleDataProps &
+    MainArticleChapterDataProps;

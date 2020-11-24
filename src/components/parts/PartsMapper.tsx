@@ -18,6 +18,7 @@ import Alert from './_dynamic/alert/Alerstripe';
 import { LinkPanel } from './_dynamic/link-panel/LinkPanel';
 import LesMerPanel from './_dynamic/les-mer-panel/LesMerPanel';
 import Veilederpanel from 'nav-frontend-veilederpanel';
+import { MainArticle } from './main-article/MainArticle';
 
 type Props = {
     componentProps: PartComponent;
@@ -27,6 +28,7 @@ type Props = {
 const partsWithPageData: { [key in PartWithPageData] } = {
     [PartType.LinkLists]: LinkLists,
     [PartType.LinkPanels]: LinkPanels,
+    [PartType.MainArticle]: MainArticle,
     [PartType.MainArticleLinkedList]: MainArticleLinkedList,
     [PartType.MainPanels]: MainPanels,
     [PartType.MenuList]: MenuList,
