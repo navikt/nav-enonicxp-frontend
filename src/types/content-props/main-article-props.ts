@@ -1,14 +1,15 @@
-import { ContentType, GlobalPageProps } from './_content-common';
+import { ContentType, GlobalPageSchema } from './_schema';
 import { MainArticleChapterProps } from './main-article-chapter-props';
-import { MenuListItem } from './menuListItems';
+import { MainArticleDataProps } from './main-article-content-props';
 
-export interface MainArticleProps extends GlobalPageProps {
-    __typename: ContentType.MainArticle;
-    children: MainArticleChapterProps[];
-    parent: undefined;
-    data: {
-        ingress?: string;
-        metaDescription?: string;
-        menuListItems?: MenuListItem;
-    };
+
+export interface MainArticleProps extends GlobalPageSchema {
+    __typename: ContentType.MainArticle | ContentType.TemplatePage | ContentType.MainArticleChapter;
+    _path: string;
+    children?: MainArticleChapterProps[];
+    parent?: undefined;
+    displayName: string
+    data: MainArticleDataProps;
 }
+
+

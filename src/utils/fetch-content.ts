@@ -36,16 +36,18 @@ const fetchLegacyHtml = (path: string, isDraft = false) => {
 
 const fetchContent = (
     idOrPath: string,
-    isDraft = false
+    isDraft = false,
+    secret: string
 ): Promise<ContentTypeProps> => {
     const params = objectToQueryString({
         ...(isDraft && { branch: 'draft' }),
         id: idOrPath,
     });
     const url = `${xpServiceUrl}/sitecontent${params}`;
+    const config = { headers: { secret } };
     console.log('fetching content from:', url);
 
-    return fetchWithTimeout(url, 5000)
+    return fetchWithTimeout(url, 5000, config)
         .then((res) => {
             if (res.ok) {
                 return res.json();
@@ -124,9 +126,10 @@ export const fetchLanguages = (
 
 export const fetchPage = async (
     idOrPath: string,
-    isDraft = false
+    isDraft = false,
+    secret: string
 ): Promise<ContentTypeProps> => {
-    const content = await fetchContent(idOrPath, isDraft);
+    const content = await fetchContent(idOrPath, isDraft, secret);
 
     if (content && !contentToComponentMap[content.__typename]) {
         const path = content._path?.replace(xpContentBasePath, '');

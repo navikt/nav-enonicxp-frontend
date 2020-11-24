@@ -22,7 +22,7 @@ export const ParsedHtml = (props: Props) => {
             if (name?.toLowerCase() === 'h1') {
                 return (
                     <Innholdstittel>
-                        {children && domToReact(children)}
+                        {children && domToReact(children, replaceElements)}
                     </Innholdstittel>
                 );
             }
@@ -30,7 +30,7 @@ export const ParsedHtml = (props: Props) => {
             if (name?.toLowerCase() === 'p') {
                 return (
                     <Normaltekst>
-                        {children && domToReact(children)}
+                        {children && domToReact(children, replaceElements)}
                     </Normaltekst>
                 );
             }
