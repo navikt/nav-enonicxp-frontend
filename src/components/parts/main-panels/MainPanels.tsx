@@ -1,13 +1,12 @@
 import React from 'react';
 import { BEM } from 'utils/bem';
-import { GlobalPageProps, PageData } from 'types/content-props/_content-common';
+import { GlobalPageProps } from 'types/content-props/_content-common';
 import {
     ContentType,
     ContentTypeProps,
 } from 'types/content-props/_content-common';
 import { Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelNavNo from '../../_common/lenkepanel/LenkepanelNavNo';
-import { MainPanelMock } from './MainPanelsMock';
 import './MainPanels.less';
 
 const ingressMaxLength = 140;
@@ -66,13 +65,8 @@ const getLinkData = (
 };
 
 export const MainPanels = (props: GlobalPageProps) => {
-    const type = props.__typename;
-    const data =
-        type === ContentType.TemplatePage
-            ? (MainPanelMock as PageData)
-            : props.data;
+    const tableContents = props.data?.tableContents;
 
-    const { tableContents } = data;
     const bem = BEM('link-panels');
 
     return (

@@ -10,14 +10,18 @@ import { DynamicPage } from './pages/dynamic-page/DynamicPage';
 import { FragmentPage } from './pages/fragment-page/FragmentPage';
 import LargeTablePage from './pages/large-table-page/LargeTablePage';
 import { ClientsideRedirect } from './ClientsideRedirect';
+import { TemplatePage } from './pages/template-page/TemplatePage';
 
-export const contentToReactComponent: Partial<{ [key in ContentType] }> = {
+export const contentToReactComponent: Partial<
+    { [key in ContentType]: React.FunctionComponent<ContentTypeProps> }
+> = {
     [ContentType.Error]: ErrorPage,
     [ContentType.LargeTable]: LargeTablePage,
     [ContentType.Legacy]: LegacyPage,
+    [ContentType.Fragment]: FragmentPage,
+    [ContentType.TemplatePage]: TemplatePage,
 
     [ContentType.DynamicPage]: DynamicPage,
-    [ContentType.Fragment]: FragmentPage,
     [ContentType.MainArticle]: DynamicPage,
     [ContentType.MainArticleChapter]: DynamicPage,
     [ContentType.PageList]: DynamicPage,

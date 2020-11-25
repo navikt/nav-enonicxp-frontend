@@ -18,7 +18,7 @@ export type RegionProps = {
     name: string;
 };
 
-type RegionsProps = {
+export type RegionsProps = {
     [key: string]: RegionProps;
 };
 

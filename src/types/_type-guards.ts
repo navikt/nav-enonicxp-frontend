@@ -1,31 +1,39 @@
 export const hasDescription = (
     content: any
 ): content is {
-    description: string;
+    data: {
+        description: string;
+    };
 } => {
-    return typeof content?.description === 'string';
+    return typeof content?.data?.description === 'string';
 };
 
 export const hasIngress = (
     content: any
 ): content is {
-    ingress: string;
+    data: {
+        ingress: string;
+    };
 } => {
-    return typeof content?.ingress === 'string';
+    return typeof content?.data?.ingress === 'string';
 };
 
 export const hasMetaDescription = (
     content: any
 ): content is {
-    metaDescription: string;
+    data: {
+        metaDescription: string;
+    };
 } => {
-    return typeof content?.metaDescription === 'string';
+    return typeof content?.data?.metaDescription === 'string';
 };
 
 export const hasCanonicalUrl = (
     content: any
 ): content is {
-    canonicalUrl: string;
+    data: {
+        canonicalUrl: string;
+    };
 } => {
-    return typeof content?.canonicalUrl === 'string';
+    return typeof content?.data?.canonicalUrl === 'string';
 };

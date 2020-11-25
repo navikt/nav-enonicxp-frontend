@@ -3,19 +3,13 @@ import { ContentList } from './content-list/ContentList';
 import { LenkeNavNo } from '../../_common/lenke/LenkeNavNo';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { BEM } from 'utils/bem';
-import { GlobalPageProps, PageData } from 'types/content-props/_content-common';
-import { ContentType } from 'types/content-props/_content-common';
-import { LinkListTemplateMock } from './LinkListTemplateMock';
+import { GlobalPageProps } from 'types/content-props/_content-common';
 import { translator } from 'translations';
 import './LinkLists.less';
 
 const LinkLists = (props: GlobalPageProps) => {
-    const type = props.__typename;
     const getLabel = translator('linkLists', props.language);
-    const data =
-        type === ContentType.TemplatePage
-            ? (LinkListTemplateMock as PageData)
-            : props.data;
+    const { data } = props;
 
     const {
         nrNews,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ParsedHtml } from '../ParsedHtml';
+import { ParsedHtml } from '../../../ParsedHtml';
 import { TextComponentProps } from '../../../../types/component-props/_component-common';
 
 export const Text = ({ value }: TextComponentProps) => {

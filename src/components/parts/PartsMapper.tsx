@@ -1,12 +1,10 @@
 import React from 'react';
 import {
-    PartComponent,
     PartDeprecated,
     PartType,
     PartWithOwnData,
     PartWithPageData,
 } from '../../types/component-props/parts';
-import { GlobalPageProps } from '../../types/content-props/_content-common';
 import LinkLists from './link-lists/LinkLists';
 import { LinkPanels } from './link-panels/LinkPanels';
 import { MainArticleLinkedList } from './main-article-linked-list/MainArticleLinkedList';
@@ -14,18 +12,22 @@ import MainPanels from './main-panels/MainPanels';
 import { MenuList } from './menu-list/MenuList';
 import PageHeading from './page-heading/PageHeading';
 import PageList from './page-list/PageList';
-import Alert from './_dynamic/alert/Alerstripe';
+import Alert from './_dynamic/alert/Alert';
 import { LinkPanel } from './_dynamic/link-panel/LinkPanel';
 import LesMerPanel from './_dynamic/les-mer-panel/LesMerPanel';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import { MainArticle } from './main-article/MainArticle';
+import { PartComponent } from '../../types/component-props/_component-common';
+import { ContentTypeProps } from '../../types/content-props/_content-common';
 
 type Props = {
     componentProps: PartComponent;
-    pageProps: GlobalPageProps;
+    pageProps: ContentTypeProps;
 };
 
-const partsWithPageData: { [key in PartWithPageData] } = {
+const partsWithPageData: {
+    [key in PartWithPageData]: React.FunctionComponent<ContentTypeProps>;
+} = {
     [PartType.LinkLists]: LinkLists,
     [PartType.LinkPanels]: LinkPanels,
     [PartType.MainArticle]: MainArticle,

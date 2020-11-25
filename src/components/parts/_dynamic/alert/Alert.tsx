@@ -1,18 +1,17 @@
 import React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { DynamicAlert } from 'types/component-props/dynamic-parts/alert';
-import { ParsedHtml } from '../ParsedHtml';
-import './Alerstripe.less';
+import { ParsedHtml } from '../../../ParsedHtml';
+import './Alert.less';
 
-const Alerstripe = (props: DynamicAlert) => {
-    const no_nav_navno = props?.part?.config?.no_nav_navno;
+const Alert = (props: DynamicAlert) => {
+    const { config } = props;
 
-    if (!no_nav_navno) {
+    if (!config) {
         return <h2>Tomt veilederpanel</h2>;
     }
 
-    const { dynamic_alert } = no_nav_navno;
-    const { content, type, inline, margin } = dynamic_alert;
+    const { content, type, inline, margin } = config;
     const style = {
         ...(margin && {
             margin: margin,
@@ -30,4 +29,4 @@ const Alerstripe = (props: DynamicAlert) => {
     );
 };
 
-export default Alerstripe;
+export default Alert;

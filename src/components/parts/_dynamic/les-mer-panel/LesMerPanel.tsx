@@ -1,18 +1,15 @@
 import React from 'react';
 import { DynamicReadMorePanel } from 'types/component-props/dynamic-parts/read-more-panel';
 import LesmerpanelModul from 'nav-frontend-lesmerpanel';
-import { ParsedHtml } from '../ParsedHtml';
+import { ParsedHtml } from '../../../ParsedHtml';
 import './LesMerPanel.less';
 
 const LesMerPanel = (props: DynamicReadMorePanel) => {
-    const no_nav_navno = props?.part?.config?.no_nav_navno;
-
-    if (!no_nav_navno) {
+    if (!props.config) {
         return <h2>Tomt veilederpanel</h2>;
     }
 
-    const { dynamic_read_more_panel } = no_nav_navno;
-    const { content, ingress, margin, border } = dynamic_read_more_panel;
+    const { content, ingress, margin, border } = props.config;
     const style = {
         ...(margin && {
             margin: margin,

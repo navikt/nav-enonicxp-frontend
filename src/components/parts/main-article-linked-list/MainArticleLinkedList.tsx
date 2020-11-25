@@ -1,18 +1,14 @@
 import React from 'react';
-import { MainArticleProps } from 'types/content-props/main-article-props';
-import { RegionProps } from '../../pages/_dynamic/DynamicRegions';
 import Lenke from 'nav-frontend-lenker';
-import { ContentType } from 'types/content-props/_content-common';
+import {
+    ContentType,
+    GlobalPageProps,
+} from 'types/content-props/_content-common';
 import { xpPathToAppPath } from 'utils/paths';
-import { MainArticleChapterProps } from 'types/content-props/main-article-chapter-props';
 import { BEM } from 'utils/bem';
 import './MainArticleLinkedList.less';
 
-export type MainArticleLinkedListProps =
-    | (RegionProps & MainArticleProps)
-    | (RegionProps & MainArticleChapterProps);
-
-export const MainArticleLinkedList = (props: MainArticleLinkedListProps) => {
+export const MainArticleLinkedList = (props: GlobalPageProps) => {
     const bem = BEM('main-article-linked-list');
 
     const children = props.children || props.parent?.children || [];

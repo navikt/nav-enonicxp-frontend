@@ -10,7 +10,7 @@ const ErrorContent = ({ code }: { code: number }) =>
     ({ 404: <Error404Content /> }[code] || null);
 
 export const ErrorPage = (props: ErrorProps) => {
-    const { errorMessage, errorCode } = props;
+    const { errorMessage, errorCode } = props.data;
     const message = `Error! ${errorMessage}${
         errorCode ? ` - Error code ${errorCode}` : ''
     }`;

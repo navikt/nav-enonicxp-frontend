@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ParsedHtml } from '../_dynamic/ParsedHtml';
+import { ParsedHtml } from '../../ParsedHtml';
 
 const modifyHtml = (htmlText: string, hasTableOfContest: boolean) => {
     // Fjern tomme headings og br-tagger fra HTML
@@ -11,30 +11,27 @@ const modifyHtml = (htmlText: string, hasTableOfContest: boolean) => {
     // legg på id'er for innholdsfortegnelse
     if (hasTableOfContest) {
         let index = 1;
-        tmp = tmp?.replaceAll(
-            '<h3>',
-            () => {
-                return `<h3 id="chapter-${index++}" class="chapter-header">`
-            })
+        tmp = tmp?.replaceAll('<h3>', () => {
+            return `<h3 id="chapter-${index++}" class="chapter-header">`;
+        });
     }
 
     return tmp;
-}
+};
 
 interface Props {
-    text: string,
-    className: string
-    hasTableOfContents: boolean
+    text: string;
+    className: string;
+    hasTableOfContents: boolean;
 }
 
 const MainArticleText = (props: Props) => {
-
     const modifiedHtml = modifyHtml(props.text, props.hasTableOfContents);
 
     return (
         <div className={props.className}>
-            <ParsedHtml content={modifiedHtml}/>
+            <ParsedHtml content={modifiedHtml} />
         </div>
     );
-}
+};
 export default MainArticleText;

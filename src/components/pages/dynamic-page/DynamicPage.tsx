@@ -1,9 +1,9 @@
 import React from 'react';
-import { GlobalPageProps } from 'types/content-props/_content-common';
+import { ContentTypeProps } from 'types/content-props/_content-common';
 import Layouts from '../../layouts/Layouts';
 import './DynamicPage.less';
 
-export const DynamicPage = (props: GlobalPageProps) => {
+export const DynamicPage = (props: ContentTypeProps) => {
     const { regions } = props.page;
 
     return (

@@ -4,9 +4,11 @@ import {
     GlobalContentProps,
 } from './_content-common';
 
+export type ContentListData = Partial<{
+    sectionContents: ContentTypeProps[];
+}>;
+
 export interface ContentListProps extends GlobalContentProps {
     __typename: ContentType.ContentList;
-    data: {
-        sectionContents: ContentTypeProps[];
-    };
+    data: ContentListData;
 }

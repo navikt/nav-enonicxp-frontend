@@ -13,10 +13,8 @@ export type LenkepanelProps = {
     component?: string;
     linkGroup?: string;
     className?: string;
-    id?: string;
-    onClick?: (event: React.MouseEvent) => void;
     children?: React.ReactElement | React.ReactElement[];
-};
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const LenkepanelNavNo = ({
     href,
@@ -26,9 +24,8 @@ const LenkepanelNavNo = ({
     className,
     component,
     linkGroup,
-    id,
-    onClick,
     children,
+    ...rest
 }: LenkepanelProps) => {
     const bem = BEM('lenkepanel-navno');
 
@@ -36,10 +33,8 @@ const LenkepanelNavNo = ({
         <LenkepanelBase
             href={href}
             className={`${bem()} ${className || ''}`}
-            id={id}
             border={true}
-            onClick={onClick}
-            linkCreator={(props) =>
+            linkCreator={(props) => (
                 <LenkeUstylet
                     href={href}
                     component={component}
@@ -48,7 +43,8 @@ const LenkepanelNavNo = ({
                 >
                     {props.children}
                 </LenkeUstylet>
-            }
+            )}
+            {...rest}
         >
             {ikon && <div className={bem('ikon')}>{ikon}</div>}
             <div className={bem('innhold')}>

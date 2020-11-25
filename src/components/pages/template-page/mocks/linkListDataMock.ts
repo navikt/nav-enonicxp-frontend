@@ -1,6 +1,7 @@
-import { ContentType } from '../../../types/content-props/_content-common';
+import { ContentType } from '../../../../types/content-props/_content-common';
+import { SectionPageData } from '../../../../types/content-props/section-page-props';
 
-export const LinkListTemplateMock = {
+export const linkListDataMock: SectionPageData = {
     nrNTK: 6,
     nrSC: 5,
     nrNews: 3,
@@ -11,6 +12,7 @@ export const LinkListTemplateMock = {
         createdTime: '2019-10-31T12:51:49Z',
         modifiedTime: '2019-12-12T13:40:51.919815Z',
         displayName: 'Nyttig å vite',
+        language: 'no',
         data: {
             sectionContents: [
                 {
@@ -20,7 +22,11 @@ export const LinkListTemplateMock = {
                     createdTime: '2019-10-31T12:51:49Z',
                     modifiedTime: '2019-12-12T13:40:51.919815Z',
                     displayName: 'Artikkel 1',
-                    page: {},
+                    language: 'no',
+                    publish: {
+                        from: '',
+                    },
+                    data: {},
                 },
                 {
                     __typename: ContentType.PageList,
@@ -29,6 +35,8 @@ export const LinkListTemplateMock = {
                     createdTime: '2019-10-31T12:51:49Z',
                     modifiedTime: '2019-12-12T13:40:51.919815Z',
                     displayName: 'Artikkel 2',
+                    language: 'no',
+                    data: {},
                 },
                 {
                     __typename: ContentType.MainArticle,
@@ -37,6 +45,11 @@ export const LinkListTemplateMock = {
                     createdTime: '2015-02-03T08:33:59Z',
                     modifiedTime: '2019-12-13T08:35:50.375459Z',
                     displayName: 'Artikkel 3',
+                    language: 'no',
+                    publish: {
+                        from: '',
+                    },
+                    data: {},
                 },
                 {
                     __typename: ContentType.MainArticle,
@@ -45,7 +58,11 @@ export const LinkListTemplateMock = {
                     createdTime: '2019-11-15T07:12:00Z',
                     modifiedTime: '2019-11-15T21:38:20Z',
                     displayName: 'Artikke 4',
-                    page: {},
+                    language: 'no',
+                    publish: {
+                        from: '',
+                    },
+                    data: {},
                 },
                 {
                     __typename: ContentType.MainArticle,
@@ -54,12 +71,24 @@ export const LinkListTemplateMock = {
                     createdTime: '2014-11-10T13:59:33Z',
                     modifiedTime: '2019-12-05T14:02:17.311746Z',
                     displayName: 'Artikkel 4',
+                    language: 'no',
+                    publish: {
+                        from: '',
+                    },
+                    data: {},
                 },
                 {
                     __typename: ContentType.MainArticle,
                     _id: 'e8b0e763-84ec-46e3-af12-033ec20f9dd7',
                     _path: '#',
+                    createdTime: '2014-11-10T13:59:33Z',
+                    modifiedTime: '2019-12-05T14:02:17.311746Z',
                     displayName: 'Artikkel 5',
+                    language: 'no',
+                    publish: {
+                        from: '',
+                    },
+                    data: {},
                 },
             ],
         },
@@ -71,6 +100,7 @@ export const LinkListTemplateMock = {
         createdTime: '2016-04-15T08:57:58Z',
         modifiedTime: '2019-12-13T13:58:35.807991Z',
         displayName: 'Nyheter',
+        language: 'no',
         data: {
             sectionContents: [
                 {
@@ -80,6 +110,11 @@ export const LinkListTemplateMock = {
                     createdTime: '2019-12-12T12:06:41.407671Z',
                     modifiedTime: '2019-12-13T15:17:57.930832Z',
                     displayName: 'Nyhet 1',
+                    language: 'no',
+                    publish: {
+                        from: '',
+                    },
+                    data: {},
                 },
                 {
                     __typename: ContentType.MainArticle,
@@ -88,6 +123,11 @@ export const LinkListTemplateMock = {
                     createdTime: '2019-12-13T13:38:07.402648Z',
                     modifiedTime: '2019-12-13T15:14:16.128722Z',
                     displayName: 'Nyhet 2',
+                    language: 'no',
+                    publish: {
+                        from: '',
+                    },
+                    data: {},
                 },
                 {
                     __typename: ContentType.MainArticle,
@@ -96,6 +136,11 @@ export const LinkListTemplateMock = {
                     createdTime: '2019-12-13T08:20:51.220550Z',
                     modifiedTime: '2019-12-13T14:36:11.983898Z',
                     displayName: 'Nyhet 3',
+                    language: 'no',
+                    publish: {
+                        from: '',
+                    },
+                    data: {},
                 },
             ],
         },
@@ -107,6 +152,7 @@ export const LinkListTemplateMock = {
         createdTime: '2019-10-31T12:51:49Z',
         modifiedTime: '2019-12-12T13:40:51.919815Z',
         displayName: 'Snarveier',
+        language: 'no',
         data: {
             sectionContents: [
                 {
@@ -116,6 +162,11 @@ export const LinkListTemplateMock = {
                     createdTime: '2019-10-31T12:51:49Z',
                     modifiedTime: '2019-12-12T13:40:51.919815Z',
                     displayName: 'Snarevei 1',
+                    language: 'no',
+                    publish: {
+                        from: '',
+                    },
+                    data: {},
                 },
                 {
                     __typename: ContentType.InternalLink,
@@ -124,6 +175,8 @@ export const LinkListTemplateMock = {
                     createdTime: '2019-10-31T12:51:49Z',
                     modifiedTime: '2019-12-12T13:40:51.919815Z',
                     displayName: 'Snarevei 2',
+                    language: 'no',
+                    data: { target: { _path: '' } },
                 },
                 {
                     __typename: ContentType.ExternalLink,
@@ -132,6 +185,8 @@ export const LinkListTemplateMock = {
                     createdTime: '2019-10-31T12:51:49Z',
                     modifiedTime: '2019-12-12T13:40:51.919815Z',
                     displayName: 'Snarevei 3',
+                    language: 'no',
+                    data: { url: '', description: '' },
                 },
                 {
                     __typename: ContentType.MainArticle,
@@ -140,6 +195,11 @@ export const LinkListTemplateMock = {
                     createdTime: '2019-10-31T12:51:49Z',
                     modifiedTime: '2019-12-12T13:40:51.919815Z',
                     displayName: 'Snarevei 4',
+                    language: 'no',
+                    publish: {
+                        from: '',
+                    },
+                    data: {},
                 },
                 {
                     __typename: ContentType.ExternalLink,
@@ -148,6 +208,8 @@ export const LinkListTemplateMock = {
                     createdTime: '2019-10-31T12:51:49Z',
                     modifiedTime: '2019-12-12T13:40:51.919815Z',
                     displayName: 'Snarevei 4',
+                    language: 'no',
+                    data: { url: '', description: '' },
                 },
             ],
         },

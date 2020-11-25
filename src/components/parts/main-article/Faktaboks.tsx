@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { InfoIcon } from '../notifications/icons/InfoIcon';
-import { ParsedHtml } from '../_dynamic/ParsedHtml';
+import { ParsedHtml } from '../../ParsedHtml';
 
 interface Props {
-    label: string,
-    fakta: string,
-    className: string
+    label: string;
+    fakta: string;
+    className: string;
 }
 
 const Faktaboks = (props: Props) => {
@@ -20,5 +20,5 @@ const Faktaboks = (props: Props) => {
             <ParsedHtml content={props.fakta} />
         </div>
     );
-}
+};
 export default Faktaboks;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentTypeProps } from '../../../types/content-props/_content-common';
+import { GlobalContentProps } from '../../../types/content-props/_content-common';
 import Head from 'next/head';
 import {
     hasCanonicalUrl,
@@ -10,13 +10,13 @@ import {
 import { xpPathToUrl, getLocationOrigin } from '../../../utils/paths';
 
 type Props = {
-    content: ContentTypeProps;
+    content: GlobalContentProps;
     children?: React.ReactNode;
 };
 
 const descriptionMaxLength = 140;
 
-const getDescription = (content: ContentTypeProps) => {
+const getDescription = (content: GlobalContentProps) => {
     if (hasMetaDescription(content)) {
         return content.data.metaDescription;
     }
@@ -36,7 +36,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
     const title = `${content.displayName} - nav.no`;
     const description = getDescription(content).slice(0, descriptionMaxLength);
     const url = xpPathToUrl(content._path);
-    const canonicalUrl = hasCanonicalUrl(content.data)
+    const canonicalUrl = hasCanonicalUrl(content)
         ? content.data.canonicalUrl
         : url;
     const imageUrl = `${getLocationOrigin()}/gfx/social-share-fallback.png`;

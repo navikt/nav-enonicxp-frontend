@@ -1,9 +1,9 @@
 import {
     ContentType,
+    contentTypeIsImplemented,
     ContentTypeProps,
 } from '../types/content-props/_content-common';
 import { makeErrorProps } from '../types/content-props/error-props';
-import { contentToReactComponent } from '../components/ContentMapper';
 import {
     xpContentBasePath,
     xpLegacyDraftUrl,
@@ -131,7 +131,7 @@ export const fetchPage = async (
 ): Promise<ContentTypeProps> => {
     const content = await fetchContent(idOrPath, isDraft, secret);
 
-    if (content && !contentToReactComponent[content.__typename]) {
+    if (content && !contentTypeIsImplemented(content.__typename)) {
         const path = content._path?.replace(xpContentBasePath, '');
 
         return (await fetchLegacyHtml(path, isDraft).then(async (res) => {

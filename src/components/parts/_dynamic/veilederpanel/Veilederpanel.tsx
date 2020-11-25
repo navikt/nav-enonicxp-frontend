@@ -2,18 +2,15 @@ import React from 'react';
 import { DynamicSupervisorPanel } from 'types/component-props/dynamic-parts/supervisor-panel';
 import VeilederPanelModul from 'nav-frontend-veilederpanel';
 import { Veileder } from './Veileder';
-import { ParsedHtml } from '../ParsedHtml';
+import { ParsedHtml } from '../../../ParsedHtml';
 import './Veilederpanel.less';
 
 const Veilederpanel = (props: DynamicSupervisorPanel) => {
-    const no_nav_navno = props?.part?.config?.no_nav_navno;
-
-    if (!no_nav_navno) {
+    if (!props.config) {
         return <h2>Tomt veilederpanel</h2>;
     }
 
-    const { dynamic_supervisor_panel } = no_nav_navno;
-    const { content, margin } = dynamic_supervisor_panel;
+    const { content, margin } = props.config;
     const style = {
         ...(margin && {
             margin: margin,

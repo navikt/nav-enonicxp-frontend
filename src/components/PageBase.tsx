@@ -73,7 +73,10 @@ export const fetchPageProps = async (
         ...(revalidate && { revalidate }),
     };
 
-    if (content.__typename === ContentType.Error && content.errorCode === 404) {
+    if (
+        content.__typename === ContentType.Error &&
+        content.data.errorCode === 404
+    ) {
         return {
             ...defaultProps,
             notFound: true,

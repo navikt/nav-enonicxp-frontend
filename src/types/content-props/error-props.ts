@@ -1,9 +1,13 @@
 import { ContentType, GlobalContentProps } from './_content-common';
 
-export interface ErrorProps extends GlobalContentProps {
-    __typename: ContentType.Error;
+export type ErrorData = {
     errorMessage?: string;
     errorCode?: number;
+};
+
+export interface ErrorProps extends GlobalContentProps {
+    __typename: ContentType.Error;
+    data: ErrorData;
 }
 
 export const makeErrorProps = (
@@ -17,7 +21,9 @@ export const makeErrorProps = (
     displayName: idOrPath,
     createdTime: Date.now().toString(),
     modifiedTime: Date.now().toString(),
-    errorMessage: errorMessage,
-    errorCode: errorCode,
     language: 'no',
+    data: {
+        errorMessage: errorMessage,
+        errorCode: errorCode,
+    },
 });

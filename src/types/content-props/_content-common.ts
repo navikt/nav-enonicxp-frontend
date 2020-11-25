@@ -1,20 +1,24 @@
 import { ExternalLinkProps } from './external-link-props';
 import { InternalLinkProps } from './internal-link-props';
-import { ContentListProps } from './content-list-props';
+import { ContentListData, ContentListProps } from './content-list-props';
 import { XpContentRef } from '../../utils/paths';
 import { LegacyData, LegacyProps } from './legacy-props';
 import { PageListData, PageListProps } from './page-list-props';
-import { MainArticleProps } from './main-article-props';
+import { MainArticleData, MainArticleProps } from './main-article-props';
 import { SiteProps } from './site-props';
-import { ErrorProps } from './error-props';
+import { ErrorData, ErrorProps } from './error-props';
 import { NotificationProps } from './notification-props';
 import { LargeTableProps } from './large-table-props';
 import { SectionPageData, SectionPageProps } from './section-page-props';
 import { TransportPageData, TransportPageProps } from './transport-page-props';
 import { Language } from '../../translations';
 import { LayoutProps } from '../component-props/layouts';
-import { MainArticleDataProps } from './main-article-content-props';
-import { MainArticleChapterDataProps } from './main-article-chapter-props';
+import {
+    MainArticleChapterData,
+    MainArticleChapterProps,
+} from './main-article-chapter-props';
+import { TemplateProps } from './template-props';
+import { DynamicPageProps } from './dynamic-page-props';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -35,6 +39,9 @@ export enum ContentType {
     LargeTable = 'no_nav_navno_LargeTable',
 }
 
+export const contentTypeIsImplemented = (type: ContentType) =>
+    Object.values(ContentType).includes(type);
+
 export type ContentTypeProps =
     | LegacyProps
     | ErrorProps
@@ -46,8 +53,11 @@ export type ContentTypeProps =
     | ContentListProps
     | PageListProps
     | MainArticleProps
+    | MainArticleChapterProps
     | NotificationProps
-    | LargeTableProps;
+    | LargeTableProps
+    | TemplateProps
+    | DynamicPageProps;
 
 export type GlobalContentProps = {
     __typename: ContentType;
@@ -57,12 +67,15 @@ export type GlobalContentProps = {
     modifiedTime: string;
     displayName: string;
     language: Language;
-};
-
-export interface GlobalPageProps extends GlobalContentProps {
+    publish?: {
+        first?: string;
+        from?: string;
+    };
+    data?: PageData;
     page?: LayoutProps;
-    data: PageData;
-}
+    children?: GlobalContentProps[];
+    parent?: GlobalContentProps;
+};
 
 export type PageData = {
     canonicalUrl?: string;
@@ -71,5 +84,7 @@ export type PageData = {
     PageListData &
     LegacyData &
     TransportPageData &
-    MainArticleDataProps &
-    MainArticleChapterDataProps;
+    MainArticleData &
+    MainArticleChapterData &
+    ErrorData &
+    ContentListData;
