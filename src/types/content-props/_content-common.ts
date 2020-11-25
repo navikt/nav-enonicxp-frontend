@@ -12,6 +12,7 @@ import { TransportPageData } from './transport-page-props';
 import { Language } from '../../translations';
 import { LayoutProps } from '../component-props/layouts';
 import { MainArticleChapterData } from './main-article-chapter-props';
+import { OfficeInformationData } from './office-information-props';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -30,6 +31,7 @@ export enum ContentType {
     MainArticleChapter = 'no_nav_navno_MainArticleChapter',
     Notification = 'no_nav_navno_Notification',
     LargeTable = 'no_nav_navno_LargeTable',
+    OfficeInformation = 'no_nav_navno_OfficeInformation',
 }
 
 export const contentTypeIsImplemented = (type: ContentType) =>
@@ -65,6 +67,7 @@ export type ContentData = Partial<
         LegacyData &
         MainArticleData &
         MainArticleChapterData &
+        OfficeInformationData &
         PageListData &
         SectionPageData &
         TransportPageData

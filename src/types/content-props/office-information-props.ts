@@ -1,4 +1,4 @@
-import { ContentType, GlobalSchema } from './_schema';
+import { ContentProps, ContentType } from './_content-common';
 
 export interface Office {
     enhetId: number;
@@ -52,11 +52,14 @@ interface ContactInfo {
     spesielleOpplysninger: string;
     publikumsmottak: AudienceReception;
 }
-export interface OfficeInformationProps extends GlobalSchema {
+
+export type OfficeInformationData = {
+    enhet: Office;
+    overordnetEnhet: string;
+    kontaktinformasjon: ContactInfo;
+};
+
+export interface OfficeInformationProps extends ContentProps {
     __typename: ContentType.OfficeInformation;
-    data: {
-        enhet: Office;
-        overordnetEnhet: string;
-        kontaktinformasjon: ContactInfo;
-    };
+    data: OfficeInformationData;
 }

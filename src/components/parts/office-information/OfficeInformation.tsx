@@ -1,8 +1,4 @@
 import React from 'react';
-import {
-    OfficeInformationProps,
-    AudienceReception,
-} from 'types/content-types/office-information-props';
 import Reception from './Reception';
 import { SpecialInformation } from './SpecialInfo';
 import { formatAddress } from './utils';
@@ -11,11 +7,15 @@ import { Email } from './Contact';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/ArtikkelDato';
 import Lenke from 'nav-frontend-lenker';
+import {
+    AudienceReception,
+    OfficeInformationProps,
+} from '../../../types/content-props/office-information-props';
 
-const parsePhoneNumber = (number: string, mod: number = null) => {
+const parsePhoneNumber = (phoneNumber: string, mod: number = null) => {
     const modular = mod || 2;
-    if (number) {
-        return number
+    if (phoneNumber) {
+        return phoneNumber
             .replace(/ /g, '')
             .split('')
             .reduce((t, e, i) => t + e + (i % modular === 1 ? ' ' : ''), '');
