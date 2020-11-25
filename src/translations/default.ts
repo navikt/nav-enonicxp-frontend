@@ -1,5 +1,5 @@
 import { DeepPartial } from '../types/util-types';
-import { MenuListItemKey } from '../types/content-types/menuListItems';
+import { MenuListItemKey } from '../types/menu-list-items';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
     appealRights: 'Klagerettigheter',

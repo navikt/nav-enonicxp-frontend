@@ -1,0 +1,125 @@
+@import (reference) '../../global';
+
+.region {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+
+    @media (max-width: @mobilMaxWidth) {
+        flex-direction: column;
+    }
+
+    &__first {
+        flex-direction: column;
+    }
+    &__second {
+        flex-direction: column;
+    }
+
+    &__default {
+    }
+
+    &__main {
+        margin: 1rem 0;
+        flex-direction: column;
+
+        .region {
+            &__main {
+                flex-direction: row;
+            }
+            &__first {
+                flex: 2;
+                &:not(:only-child) {
+                    @media @screen-desktop {
+                        padding-right: 2rem;
+                    }
+                }
+            }
+            &__second {
+                flex: 1;
+            }
+        }
+    }
+
+    &__main-1-col {
+    }
+
+    &__dynamic-2-col {
+        .region {
+            &__dynamic-1 {
+                @media @screen-desktop {
+                    padding-right: 1rem;
+                }
+            }
+            &__dynamic-2 {
+                @media @screen-desktop {
+                    padding-left: 1rem;
+                }
+            }
+        }
+    }
+
+    &__dynamic-3-col {
+        .region {
+            &__dynamic-1 {
+                @media @screen-desktop {
+                    padding-right: 1rem;
+                }
+            }
+            &__dynamic-2 {
+                @media @screen-desktop {
+                    padding: 0 1rem 0 1rem;
+                }
+            }
+            &__dynamic-3 {
+                @media @screen-desktop {
+                    padding-left: 1rem;
+                }
+            }
+        }
+    }
+
+    &__dynamic-4-col {
+        .region {
+            &__dynamic-1 {
+                @media @screen-desktop {
+                    padding-right: 1rem;
+                }
+            }
+            &__dynamic-2 {
+                @media @screen-desktop {
+                    padding: 0 1rem 0 1rem;
+                }
+            }
+            &__dynamic-3 {
+                @media @screen-desktop {
+                    padding: 0 1rem 0 1rem;
+                }
+            }
+            &__dynamic-4 {
+                @media @screen-desktop {
+                    padding-left: 1rem;
+                }
+            }
+        }
+    }
+
+    &__part {
+        &-heading {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+    }
+
+    // Bugfix for XP region preview
+    .row {
+        display: flex;
+    }
+
+    .xp-page-editor-item-view,
+    .xp-page-editor-region-placeholder {
+        width: 100%;
+    }
+}
