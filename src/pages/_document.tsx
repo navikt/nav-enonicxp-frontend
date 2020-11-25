@@ -3,9 +3,9 @@ import Document, { NextScript, DocumentContext } from 'next/document';
 import { Html, Head, Main } from 'next/document';
 import { getDecorator } from '../utils/fetch-decorator';
 import { DecoratorFragments, DecoratorParams } from '../utils/fetch-decorator';
-import { decoratorParams404 } from '../components/page-components/error-page/errorcode-content/Error404Content';
 import { fetchBreadcrumbs, fetchLanguages } from '../utils/fetch-content';
 import { appPathToXpPath } from '../utils/paths';
+import { decoratorParams404 } from '../components/pages/error-page/errorcode-content/Error404Content';
 
 type Props = {
     decoratorFragments: DecoratorFragments;
