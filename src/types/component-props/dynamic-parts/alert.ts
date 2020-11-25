@@ -1,7 +1,7 @@
-import { PartComponent } from '../_component-common';
+import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 
-export interface DynamicAlert extends PartComponent {
+export interface DynamicAlert extends PartComponentProps {
     descriptor: PartType.Alert;
     config: {
         type: 'info' | 'suksess' | 'advarsel' | 'feil';

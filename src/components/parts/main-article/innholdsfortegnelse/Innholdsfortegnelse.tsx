@@ -1,6 +1,6 @@
 import React from 'react';
-import './Innholdsfortegnelse.less';
 import { LenkeUstylet } from '../../../_common/lenke/LenkeUstylet';
+import './Innholdsfortegnelse.less';
 
 interface Props {
     label: string;

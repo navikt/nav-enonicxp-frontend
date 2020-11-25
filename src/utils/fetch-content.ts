@@ -134,7 +134,7 @@ export const fetchPage = async (
     if (content && !contentTypeIsImplemented(content.__typename)) {
         const path = content._path?.replace(xpContentBasePath, '');
 
-        return (await fetchLegacyHtml(path, isDraft).then(async (res) => {
+        return await fetchLegacyHtml(path, isDraft).then(async (res) => {
             if (!res.ok) {
                 return makeErrorProps(path, res.statusText, res.status);
             }
@@ -143,7 +143,7 @@ export const fetchPage = async (
                 __typename: ContentType.Legacy,
                 data: { html: await res.text() },
             };
-        })) as ContentProps;
+        });
     }
 
     return content || makeErrorProps(idOrPath, `Ukjent feil`, 500);

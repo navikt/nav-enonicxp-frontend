@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { xpPathToUrl } from '../../../utils/paths';
-import './SosialeMedier.less';
 import { LenkeUstylet } from '../../_common/lenke/LenkeUstylet';
+import './SosialeMedier.less';
 
 const getSocialmediaShareUrl = (
     el: string,

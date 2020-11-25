@@ -15,13 +15,13 @@ import PageList from './page-list/PageList';
 import Alert from './_dynamic/alert/Alert';
 import { LinkPanel } from './_dynamic/link-panel/LinkPanel';
 import LesMerPanel from './_dynamic/les-mer-panel/LesMerPanel';
-import Veilederpanel from 'nav-frontend-veilederpanel';
 import { MainArticle } from './main-article/MainArticle';
-import { PartComponent } from '../../types/component-props/_component-common';
+import { PartComponentProps } from '../../types/component-props/_component-common';
 import { ContentProps } from '../../types/content-props/_content-common';
+import Veilederpanel from './_dynamic/veilederpanel/Veilederpanel';
 
 type Props = {
-    componentProps: PartComponent;
+    componentProps: PartComponentProps;
     pageProps: ContentProps;
 };
 
@@ -38,7 +38,9 @@ const partsWithPageData: {
     [PartType.PageList]: PageList,
 };
 
-const partsWithOwnData: { [key in PartWithOwnData] } = {
+const partsWithOwnData: {
+    [key in PartWithOwnData]: React.FunctionComponent<PartComponentProps>;
+} = {
     [PartType.Alert]: Alert,
     [PartType.Header]: null,
     [PartType.LinkPanel]: LinkPanel,

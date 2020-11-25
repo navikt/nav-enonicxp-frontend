@@ -15,7 +15,7 @@ export type ComponentCommonProps = {
     path: string;
 };
 
-export interface PartComponent extends ComponentCommonProps {
+export interface PartComponentProps extends ComponentCommonProps {
     type: ComponentType.Part;
     descriptor: PartType;
 }
@@ -38,7 +38,7 @@ export interface FragmentComponentProps extends ComponentCommonProps {
 
 export type ComponentProps =
     | LayoutProps
-    | PartComponent
+    | PartComponentProps
     | TextComponentProps
     | ImageComponentProps
     | FragmentComponentProps;

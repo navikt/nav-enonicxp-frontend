@@ -2,14 +2,14 @@ import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutProps } from '../../types/component-props/layouts';
 import Region from './Region';
-import './Layouts.less';
+import './Region.less';
 
 type Props = {
     pageProps: ContentProps;
     layoutProps?: LayoutProps;
 };
 
-export const Layouts = ({ pageProps, layoutProps }: Props) => {
+export const Layout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
 
     return (
@@ -30,4 +30,4 @@ export const Layouts = ({ pageProps, layoutProps }: Props) => {
     );
 };
 
-export default Layouts;
+export default Layout;

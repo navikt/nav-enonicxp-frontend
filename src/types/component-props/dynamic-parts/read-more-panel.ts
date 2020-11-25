@@ -1,7 +1,7 @@
-import { PartComponent } from '../_component-common';
+import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 
-export interface DynamicReadMorePanel extends PartComponent {
+export interface DynamicReadMorePanel extends PartComponentProps {
     descriptor: PartType.ReadMorePanel;
     config: {
         ingress: string;

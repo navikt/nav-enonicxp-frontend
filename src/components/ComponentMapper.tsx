@@ -1,8 +1,11 @@
 import React from 'react';
-import { ComponentProps } from '../types/component-props/_component-common';
+import {
+    ComponentProps,
+    ComponentType,
+} from '../types/component-props/_component-common';
 import { Text } from './parts/_dynamic/text/Text';
 import Image from './parts/_dynamic/image/Image';
-import Layouts from './layouts/Layouts';
+import Layout from './layouts/Layout';
 import { PartsMapper } from './parts/PartsMapper';
 import { ContentProps } from '../types/content-props/_content-common';
 
@@ -12,26 +15,25 @@ type Props = {
 };
 
 export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
-    if (componentProps.type === 'text') {
-        return <Text {...componentProps} />;
+    switch (componentProps.type) {
+        case ComponentType.Text:
+            return <Text {...componentProps} />;
+        case ComponentType.Image:
+            return <Image imageUrl={componentProps.image.imageUrl} />;
+        case ComponentType.Layout:
+            return (
+                <Layout pageProps={pageProps} layoutProps={componentProps} />
+            );
+        case ComponentType.Part:
+            return (
+                <PartsMapper
+                    componentProps={componentProps}
+                    pageProps={pageProps}
+                />
+            );
+        default:
+            return (
+                <div>{`Unimplemented component type: ${componentProps.type}`}</div>
+            );
     }
-
-    if (componentProps.type === 'image') {
-        return <Image imageUrl={componentProps.image.imageUrl} />;
-    }
-
-    if (componentProps.type === 'layout') {
-        return <Layouts pageProps={pageProps} layoutProps={componentProps} />;
-    }
-
-    if (componentProps.type === 'part') {
-        return (
-            <PartsMapper
-                componentProps={componentProps}
-                pageProps={pageProps}
-            />
-        );
-    }
-
-    return <div>{`Unimplemented component type: ${componentProps.type}`}</div>;
 };

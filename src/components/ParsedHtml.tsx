@@ -1,9 +1,10 @@
 import React from 'react';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import { xpLegacyPath } from '../utils/paths';
+import { xpLegacyPath, isXpPath } from '../utils/paths';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
-import { LenkeInline } from './_common/lenke/LenkeInline';
+import Link from 'next/link';
+import Lenke from 'nav-frontend-lenker';
 
 interface Props {
     content?: string;
@@ -35,13 +36,21 @@ export const ParsedHtml = (props: Props) => {
             }
 
             if (name?.toLowerCase() === 'a' && attribs?.href) {
-                const href = attribs.href.replace(xpLegacyPath, '');
+                const href = attribs.href
+                    .replace(xpLegacyPath, '')
+                    .replace('https://www.nav.no', '');
                 const props = attributesToProps(attribs);
 
-                return (
-                    <LenkeInline {...props} href={href}>
+                return isXpPath(href) ? (
+                    <Link href={href} passHref={true}>
+                        <Lenke {...props}>
+                            {children && domToReact(children)}
+                        </Lenke>
+                    </Link>
+                ) : (
+                    <Lenke {...props} href={href}>
                         {children && domToReact(children)}
-                    </LenkeInline>
+                    </Lenke>
                 );
             }
         },
