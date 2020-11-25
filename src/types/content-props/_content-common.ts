@@ -1,24 +1,17 @@
-import { ExternalLinkProps } from './external-link-props';
-import { InternalLinkProps } from './internal-link-props';
-import { ContentListData, ContentListProps } from './content-list-props';
+import { ExternalLinkData } from './external-link-props';
+import { InternalLinkData } from './internal-link-props';
+import { ContentListData } from './content-list-props';
 import { XpContentRef } from '../../utils/paths';
-import { LegacyData, LegacyProps } from './legacy-props';
-import { PageListData, PageListProps } from './page-list-props';
-import { MainArticleData, MainArticleProps } from './main-article-props';
-import { SiteProps } from './site-props';
-import { ErrorData, ErrorProps } from './error-props';
-import { NotificationProps } from './notification-props';
-import { LargeTableProps } from './large-table-props';
-import { SectionPageData, SectionPageProps } from './section-page-props';
-import { TransportPageData, TransportPageProps } from './transport-page-props';
+import { LegacyData } from './legacy-props';
+import { PageListData } from './page-list-props';
+import { MainArticleData } from './main-article-props';
+import { ErrorData } from './error-props';
+import { LargeTableData } from './large-table-props';
+import { SectionPageData } from './section-page-props';
+import { TransportPageData } from './transport-page-props';
 import { Language } from '../../translations';
 import { LayoutProps } from '../component-props/layouts';
-import {
-    MainArticleChapterData,
-    MainArticleChapterProps,
-} from './main-article-chapter-props';
-import { TemplateProps } from './template-props';
-import { DynamicPageProps } from './dynamic-page-props';
+import { MainArticleChapterData } from './main-article-chapter-props';
 
 export enum ContentType {
     Legacy = 'legacy',
@@ -42,24 +35,7 @@ export enum ContentType {
 export const contentTypeIsImplemented = (type: ContentType) =>
     Object.values(ContentType).includes(type);
 
-export type ContentTypeProps =
-    | LegacyProps
-    | ErrorProps
-    | SiteProps
-    | ExternalLinkProps
-    | InternalLinkProps
-    | SectionPageProps
-    | TransportPageProps
-    | ContentListProps
-    | PageListProps
-    | MainArticleProps
-    | MainArticleChapterProps
-    | NotificationProps
-    | LargeTableProps
-    | TemplateProps
-    | DynamicPageProps;
-
-export type GlobalContentProps = {
+export type ContentProps = {
     __typename: ContentType;
     _id: XpContentRef;
     _path: XpContentRef;
@@ -71,20 +47,25 @@ export type GlobalContentProps = {
         first?: string;
         from?: string;
     };
-    data?: PageData;
+    children?: ContentProps[];
+    parent?: ContentProps;
+    data?: ContentData;
     page?: LayoutProps;
-    children?: GlobalContentProps[];
-    parent?: GlobalContentProps;
 };
 
-export type PageData = {
-    canonicalUrl?: string;
-    metaDescription?: string;
-} & SectionPageData &
-    PageListData &
-    LegacyData &
-    TransportPageData &
-    MainArticleData &
-    MainArticleChapterData &
-    ErrorData &
-    ContentListData;
+export type ContentData = Partial<
+    {
+        canonicalUrl: string;
+        metaDescription: string;
+    } & ContentListData &
+        ErrorData &
+        ExternalLinkData &
+        InternalLinkData &
+        LargeTableData &
+        LegacyData &
+        MainArticleData &
+        MainArticleChapterData &
+        PageListData &
+        SectionPageData &
+        TransportPageData
+>;

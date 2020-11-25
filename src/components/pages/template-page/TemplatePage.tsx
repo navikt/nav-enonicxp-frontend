@@ -4,7 +4,7 @@ import { linkListDataMock } from './mocks/linkListDataMock';
 import { linkPanelsDataMock } from './mocks/linkPanelsDataMock';
 import { mainArticleDataMock } from './mocks/mainArticleDataMock';
 import { mainPanelDataMock } from './mocks/mainPanelsDataMock';
-import { ContentTypeProps } from '../../../types/content-props/_content-common';
+import { ContentProps } from '../../../types/content-props/_content-common';
 
 const mockData = {
     ...linkListDataMock,
@@ -13,7 +13,7 @@ const mockData = {
     ...mainPanelDataMock,
 };
 
-export const TemplatePage = (props: ContentTypeProps) => {
+export const TemplatePage = (props: ContentProps) => {
     const propsWithMocks = { ...props, data: { ...props.data, ...mockData } };
     return <DynamicPage {...propsWithMocks} />;
 };

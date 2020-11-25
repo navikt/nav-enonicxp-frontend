@@ -1,7 +1,7 @@
 import {
+    ContentProps,
     ContentType,
     contentTypeIsImplemented,
-    ContentTypeProps,
 } from '../types/content-props/_content-common';
 import { makeErrorProps } from '../types/content-props/error-props';
 import {
@@ -12,7 +12,7 @@ import {
 } from './paths';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { Breadcrumb } from '../types/breadcrumb';
-import { NotificationProps } from '../types/content-props/notification-props';
+import { NotificationProps } from '../types/notification-props';
 import { LanguageSelectorProps } from '../types/language-selector-props';
 
 const fetchLegacyHtml = (path: string, isDraft = false) => {
@@ -38,7 +38,7 @@ const fetchContent = (
     idOrPath: string,
     isDraft = false,
     secret: string
-): Promise<ContentTypeProps> => {
+): Promise<ContentProps> => {
     const params = objectToQueryString({
         ...(isDraft && { branch: 'draft' }),
         id: idOrPath,
@@ -128,7 +128,7 @@ export const fetchPage = async (
     idOrPath: string,
     isDraft = false,
     secret: string
-): Promise<ContentTypeProps> => {
+): Promise<ContentProps> => {
     const content = await fetchContent(idOrPath, isDraft, secret);
 
     if (content && !contentTypeIsImplemented(content.__typename)) {
@@ -143,7 +143,7 @@ export const fetchPage = async (
                 __typename: ContentType.Legacy,
                 data: { html: await res.text() },
             };
-        })) as ContentTypeProps;
+        })) as ContentProps;
     }
 
     return content || makeErrorProps(idOrPath, `Ukjent feil`, 500);

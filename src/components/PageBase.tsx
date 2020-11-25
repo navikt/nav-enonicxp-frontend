@@ -1,10 +1,10 @@
 import {
+    ContentProps,
     ContentType,
-    ContentTypeProps,
 } from '../types/content-props/_content-common';
 import { Breadcrumb } from '../types/breadcrumb';
 import { LanguageSelectorProps } from '../types/language-selector-props';
-import { NotificationProps } from '../types/content-props/notification-props';
+import { NotificationProps } from '../types/notification-props';
 import { useRouter } from 'next/router';
 import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
@@ -22,7 +22,7 @@ import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
 
 type PageProps = {
-    content: ContentTypeProps;
+    content: ContentProps;
     breadcrumbs: Breadcrumb[];
     languages: LanguageSelectorProps[];
     notifications: NotificationProps[];

@@ -1,10 +1,10 @@
 import {
     ContentType,
-    ContentTypeProps,
+    ContentProps,
 } from '../types/content-props/_content-common';
 import { xpPathToAppPath } from './paths';
 
-export const getTargetIfRedirect = (contentData: ContentTypeProps) => {
+export const getTargetIfRedirect = (contentData: ContentProps) => {
     switch (contentData?.__typename) {
         case ContentType.Site:
             return '/no/person';

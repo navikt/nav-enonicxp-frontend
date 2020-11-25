@@ -6,7 +6,7 @@ import { sortContentByLastModified } from 'utils/sort';
 import { formatDate } from 'utils/datetime';
 import {
     ContentType,
-    ContentTypeProps,
+    ContentProps,
 } from '../../../../types/content-props/_content-common';
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
     className?: string;
 };
 
-const getUrl = (content: ContentTypeProps) => {
+const getUrl = (content: ContentProps) => {
     if (content.__typename === ContentType.InternalLink) {
         return content.data?.target?._path;
     }

@@ -1,14 +1,11 @@
 import React from 'react';
 import Lenke from 'nav-frontend-lenker';
-import {
-    ContentType,
-    GlobalPageProps,
-} from 'types/content-props/_content-common';
+import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { xpPathToAppPath } from 'utils/paths';
 import { BEM } from 'utils/bem';
 import './MainArticleLinkedList.less';
 
-export const MainArticleLinkedList = (props: GlobalPageProps) => {
+export const MainArticleLinkedList = (props: ContentProps) => {
     const bem = BEM('main-article-linked-list');
 
     const children = props.children || props.parent?.children || [];

@@ -1,4 +1,4 @@
-import { ContentType, GlobalContentProps } from './_content-common';
+import { ContentType, ContentProps } from './_content-common';
 import { LinkPanel } from '../link-panel';
 
 export type TransportPageData = Partial<{
@@ -7,7 +7,7 @@ export type TransportPageData = Partial<{
     metaDescription: string;
 }>;
 
-export interface TransportPageProps extends GlobalContentProps {
+export interface TransportPageProps extends ContentProps {
     __typename: ContentType.TransportPage;
     data: TransportPageData;
 }

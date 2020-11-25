@@ -3,11 +3,11 @@ import { ContentList } from './content-list/ContentList';
 import { LenkeNavNo } from '../../_common/lenke/LenkeNavNo';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { BEM } from 'utils/bem';
-import { GlobalPageProps } from 'types/content-props/_content-common';
 import { translator } from 'translations';
+import { ContentProps } from '../../../types/content-props/_content-common';
 import './LinkLists.less';
 
-const LinkLists = (props: GlobalPageProps) => {
+const LinkLists = (props: ContentProps) => {
     const getLabel = translator('linkLists', props.language);
     const { data } = props;
 

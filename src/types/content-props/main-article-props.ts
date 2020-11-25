@@ -1,6 +1,6 @@
 import { MainArticleChapterProps } from './main-article-chapter-props';
-import { ContentType, GlobalContentProps } from './_content-common';
-import { MenuListItem } from './menuListItems';
+import { ContentType, ContentProps } from './_content-common';
+import { MenuListItem } from '../menu-list-items';
 
 export interface Picture {
     target: {
@@ -21,7 +21,7 @@ export type MainArticleData = Partial<{
     menuListItems: MenuListItem;
 }>;
 
-export interface MainArticleProps extends GlobalContentProps {
+export interface MainArticleProps extends ContentProps {
     __typename: ContentType.MainArticle;
     children?: MainArticleChapterProps[];
     data: MainArticleData;

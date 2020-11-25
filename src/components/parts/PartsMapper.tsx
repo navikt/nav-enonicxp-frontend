@@ -18,15 +18,15 @@ import LesMerPanel from './_dynamic/les-mer-panel/LesMerPanel';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import { MainArticle } from './main-article/MainArticle';
 import { PartComponent } from '../../types/component-props/_component-common';
-import { ContentTypeProps } from '../../types/content-props/_content-common';
+import { ContentProps } from '../../types/content-props/_content-common';
 
 type Props = {
     componentProps: PartComponent;
-    pageProps: ContentTypeProps;
+    pageProps: ContentProps;
 };
 
 const partsWithPageData: {
-    [key in PartWithPageData]: React.FunctionComponent<ContentTypeProps>;
+    [key in PartWithPageData]: React.FunctionComponent<ContentProps>;
 } = {
     [PartType.LinkLists]: LinkLists,
     [PartType.LinkPanels]: LinkPanels,

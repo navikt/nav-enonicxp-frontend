@@ -1,13 +1,12 @@
 import React from 'react';
 import { BEM } from 'utils/bem';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import { RegionProps } from '../../layouts/Layouts';
-import { GlobalPageProps } from 'types/content-props/_content-common';
-import './PageList.less';
 import Lenke from 'nav-frontend-lenker';
 import { xpPathToAppPath } from '../../../utils/paths';
+import { ContentProps } from '../../../types/content-props/_content-common';
+import './PageList.less';
 
-const PageList = (props: RegionProps & GlobalPageProps) => {
+const PageList = (props: ContentProps) => {
     const bem = BEM('page-list');
     const sectionContents = (props.data?.sectionContents || []).filter(
         (section) => props._id !== section._id

@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalPageProps } from '../../types/content-props/_content-common';
+import { ContentProps } from '../../types/content-props/_content-common';
 import { BEM } from '../../utils/bem';
 import {
     ComponentProps,
@@ -22,7 +22,7 @@ const getClass = (component: ComponentProps) => {
 };
 
 type Props = {
-    pageProps: GlobalPageProps;
+    pageProps: ContentProps;
     regionProps?: RegionProps;
     layoutConfig?: LayoutConfig;
     regionIndex?: number;

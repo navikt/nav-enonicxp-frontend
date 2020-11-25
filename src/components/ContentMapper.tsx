@@ -1,7 +1,7 @@
 import React from 'react';
 import {
+    ContentProps,
     ContentType,
-    ContentTypeProps,
 } from '../types/content-props/_content-common';
 import LegacyPage from './pages/legacy-page/LegacyPage';
 import { ErrorPage } from './pages/error-page/ErrorPage';
@@ -13,7 +13,7 @@ import { ClientsideRedirect } from './ClientsideRedirect';
 import { TemplatePage } from './pages/template-page/TemplatePage';
 
 export const contentToReactComponent: Partial<
-    { [key in ContentType]: React.FunctionComponent<ContentTypeProps> }
+    { [key in ContentType]: React.FunctionComponent<ContentProps> }
 > = {
     [ContentType.Error]: ErrorPage,
     [ContentType.LargeTable]: LargeTablePage,
@@ -35,7 +35,7 @@ export const contentToReactComponent: Partial<
 };
 
 type Props = {
-    content: ContentTypeProps;
+    content: ContentProps;
 };
 
 export const ContentMapper = ({ content }: Props) => {

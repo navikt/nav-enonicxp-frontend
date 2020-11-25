@@ -1,11 +1,11 @@
 import React from 'react';
-import { GlobalPageProps } from 'types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutProps } from '../../types/component-props/layouts';
 import Region from './Region';
 import './Layouts.less';
 
 type Props = {
-    pageProps: GlobalPageProps;
+    pageProps: ContentProps;
     layoutProps?: LayoutProps;
 };
 

@@ -1,12 +1,14 @@
-import { ContentType, GlobalContentProps } from './_content-common';
+import { ContentType, ContentProps } from './_content-common';
 import { XpContentRef } from '../../utils/paths';
 
-export interface InternalLinkProps extends GlobalContentProps {
-    __typename: ContentType.InternalLink;
-    data: {
-        description?: string;
-        target: {
-            _path: XpContentRef;
-        };
+export type InternalLinkData = {
+    description?: string;
+    target: {
+        _path: XpContentRef;
     };
+};
+
+export interface InternalLinkProps extends ContentProps {
+    __typename: ContentType.InternalLink;
+    data: InternalLinkData;
 }

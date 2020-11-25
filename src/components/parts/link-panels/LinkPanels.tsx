@@ -1,9 +1,9 @@
 import React from 'react';
 import { LenkepanelListe } from './lenkepanel-liste/LenkepanelListe';
-import { GlobalPageProps } from 'types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import './LinkPanels.less';
 
-export const LinkPanels = (props: GlobalPageProps) => {
+export const LinkPanels = (props: ContentProps) => {
     const { panelsHeading, panelItems } = props.data;
 
     return (

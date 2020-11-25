@@ -1,5 +1,5 @@
 import React from 'react';
-import { NotificationProps } from 'types/content-props/notification-props';
+import { NotificationProps } from 'types/notification-props';
 import LenkepanelNavNo from '../../_common/lenkepanel/LenkepanelNavNo';
 import { ContentType } from 'types/content-props/_content-common';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';

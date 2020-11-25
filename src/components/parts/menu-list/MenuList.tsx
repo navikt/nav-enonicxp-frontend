@@ -4,11 +4,11 @@ import { xpPathToAppPath } from 'utils/paths';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { translator } from 'translations';
 import { BEM } from 'utils/bem';
-import { LinkItem, MenuListItemKey } from 'types/content-props/menuListItems';
-import { GlobalPageProps } from '../../../types/content-props/_content-common';
+import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
+import { ContentProps } from '../../../types/content-props/_content-common';
 import './MenuList.less';
 
-export const MenuList = (props: GlobalPageProps) => {
+export const MenuList = (props: ContentProps) => {
     const bem = BEM('menu-list');
     const data = props.data;
     const language = props.language;

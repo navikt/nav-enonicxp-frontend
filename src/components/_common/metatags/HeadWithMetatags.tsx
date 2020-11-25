@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalContentProps } from '../../../types/content-props/_content-common';
+import { ContentProps } from '../../../types/content-props/_content-common';
 import Head from 'next/head';
 import {
     hasCanonicalUrl,
@@ -10,13 +10,13 @@ import {
 import { xpPathToUrl, getLocationOrigin } from '../../../utils/paths';
 
 type Props = {
-    content: GlobalContentProps;
+    content: ContentProps;
     children?: React.ReactNode;
 };
 
 const descriptionMaxLength = 140;
 
-const getDescription = (content: GlobalContentProps) => {
+const getDescription = (content: ContentProps) => {
     if (hasMetaDescription(content)) {
         return content.data.metaDescription;
     }

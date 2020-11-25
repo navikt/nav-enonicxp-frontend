@@ -1,10 +1,6 @@
 import React from 'react';
 import { BEM } from 'utils/bem';
-import { GlobalPageProps } from 'types/content-props/_content-common';
-import {
-    ContentType,
-    ContentTypeProps,
-} from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelNavNo from '../../_common/lenkepanel/LenkepanelNavNo';
 import './MainPanels.less';
@@ -17,9 +13,7 @@ type TableData = {
     ingress?: string;
 };
 
-const getLinkData = (
-    contentData: ContentTypeProps | null
-): TableData | null => {
+const getLinkData = (contentData: ContentProps | null): TableData | null => {
     if (!contentData) {
         return null;
     }
@@ -64,7 +58,7 @@ const getLinkData = (
     }
 };
 
-export const MainPanels = (props: GlobalPageProps) => {
+export const MainPanels = (props: ContentProps) => {
     const tableContents = props.data?.tableContents;
 
     const bem = BEM('link-panels');

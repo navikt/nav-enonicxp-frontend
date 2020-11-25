@@ -1,14 +1,14 @@
 import React from 'react';
-import { GlobalPageProps } from '../types/content-props/_content-common';
 import { ComponentProps } from '../types/component-props/_component-common';
 import { Text } from './parts/_dynamic/text/Text';
 import Image from './parts/_dynamic/image/Image';
 import Layouts from './layouts/Layouts';
 import { PartsMapper } from './parts/PartsMapper';
+import { ContentProps } from '../types/content-props/_content-common';
 
 type Props = {
     componentProps: ComponentProps;
-    pageProps: GlobalPageProps;
+    pageProps: ContentProps;
 };
 
 export const ComponentMapper = ({ componentProps, pageProps }: Props) => {

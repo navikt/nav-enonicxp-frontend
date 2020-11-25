@@ -1,9 +1,11 @@
-import { ContentType, GlobalContentProps } from './_content-common';
+import { ContentType, ContentProps } from './_content-common';
 
-export interface ExternalLinkProps extends GlobalContentProps {
+export type ExternalLinkData = {
+    description: string;
+    url: string;
+};
+
+export interface ExternalLinkProps extends ContentProps {
     __typename: ContentType.ExternalLink;
-    data: {
-        description: string;
-        url: string;
-    };
+    data: ExternalLinkData;
 }

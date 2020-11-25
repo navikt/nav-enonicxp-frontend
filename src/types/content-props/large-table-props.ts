@@ -1,8 +1,10 @@
-import { ContentType, GlobalContentProps } from './_content-common';
+import { ContentType, ContentProps } from './_content-common';
 
-export interface LargeTableProps extends GlobalContentProps {
+export type LargeTableData = {
+    text?: string;
+};
+
+export interface LargeTableProps extends ContentProps {
     __typename: ContentType.LargeTable;
-    data: {
-        text?: string;
-    };
+    data: LargeTableData;
 }

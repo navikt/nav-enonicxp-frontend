@@ -10,11 +10,11 @@ import MainArticleText from './MainArticleText';
 import { parseInnholdsfortegnelse } from './innholdsfortegnelse/parseInnholdsfortegnelse';
 import {
     ContentType,
-    GlobalPageProps,
+    ContentProps,
 } from '../../../types/content-props/_content-common';
 import './MainArticle.less';
 
-export const MainArticle = (propsInitial: GlobalPageProps) => {
+export const MainArticle = (propsInitial: ContentProps) => {
     const props =
         propsInitial.__typename === ContentType.MainArticleChapter
             ? propsInitial.data.article

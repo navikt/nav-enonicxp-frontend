@@ -1,7 +1,7 @@
-import { GlobalContentProps } from './_content-common';
+import { ContentProps } from './content-props/_content-common';
 
 export interface LinkItem {
-    link: GlobalContentProps[];
+    link: ContentProps[];
 }
 
 export type MenuListItemKey =
