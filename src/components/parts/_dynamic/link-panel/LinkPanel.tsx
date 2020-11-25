@@ -6,16 +6,20 @@ import './LinkPanel.less';
 
 const bem = BEM('link-panel');
 
-export const LinkPanel = (props: DynamicLinkPanel) => {
-    if (!props.config) {
+export const LinkPanel = ({ config }: DynamicLinkPanel) => {
+    if (!config) {
         return <h2>Tomt lenkepanel</h2>;
     }
 
-    const { title, ingress, background, icon, target } = props.config;
+    const { title, ingress, background, icon, target, vertical } = config;
+
+    const iconElement = <img src={icon.mediaUrl} alt={''} />;
 
     return (
         <LenkepanelNavNo
             tittel={title}
+            ikon={iconElement}
+            vertikal={vertical}
             href={target?._path}
             className={bem()}
             style={{ backgroundImage: `url(${background?.mediaUrl})` }}

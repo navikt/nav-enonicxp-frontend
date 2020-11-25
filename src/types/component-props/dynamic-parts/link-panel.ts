@@ -8,6 +8,7 @@ export interface DynamicLinkPanel extends PartComponentProps {
     config: DeepPartial<{
         title: string;
         ingress: string;
+        vertical: boolean;
         target: ContentProps;
         background: {
             mediaUrl: string;

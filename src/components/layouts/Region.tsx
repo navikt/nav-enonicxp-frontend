@@ -15,7 +15,7 @@ const getClass = (component: ComponentProps) => {
         case ComponentType.Page:
         case ComponentType.Layout:
         case ComponentType.Part:
-            return bem(component.descriptor.split(':')[1] || 'default');
+            return bem(component?.descriptor?.split(':')[1] || 'default');
         default:
             return bem('default');
     }
