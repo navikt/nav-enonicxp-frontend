@@ -16,37 +16,37 @@ export const MenuList = (props: ContentProps) => {
     const entries = menuListItems ? Object.entries(menuListItems) : [];
     const selected = menuListItems?._selected || [];
     const getLabel = translator('relatedContent', language);
+    const filtered = entries.filter(([key]) =>
+        selected.includes(key as MenuListItemKey)
+    );
 
-    if (entries.length === 0) {
+    if (filtered.length === 0) {
         return null;
     }
 
     return (
         <div className={bem()}>
-            {entries
-                .filter(([key]) => selected.includes(key as MenuListItemKey))
-                .map(([key, LinkItem]) => {
-                    return (
-                        <Ekspanderbartpanel
-                            key={key}
-                            tittel={getLabel(key as MenuListItemKey) || key}
-                            className={bem('panel')}
-                        >
-                            <ul>
-                                {(LinkItem as LinkItem)?.link?.map((link) => {
-                                    const path = xpPathToAppPath(link._path);
-                                    return (
-                                        <li key={path}>
-                                            <Lenke href={path}>
-                                                {link.displayName}
-                                            </Lenke>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </Ekspanderbartpanel>
-                    );
-                })}
+            {filtered.map(([key, LinkItem]) => (
+                <Ekspanderbartpanel
+                    key={key}
+                    apen={filtered.length === 1}
+                    tittel={getLabel(key as MenuListItemKey) || key}
+                    className={bem('panel')}
+                >
+                    <ul>
+                        {(LinkItem as LinkItem)?.link?.map((link) => {
+                            const path = xpPathToAppPath(link._path);
+                            return (
+                                <li key={path}>
+                                    <Lenke href={path}>
+                                        {link.displayName}
+                                    </Lenke>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </Ekspanderbartpanel>
+            ))}
         </div>
     );
 };

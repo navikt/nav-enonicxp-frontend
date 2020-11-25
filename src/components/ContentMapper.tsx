@@ -24,6 +24,7 @@ export const contentToReactComponent: Partial<
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.MainArticle]: DynamicPage,
     [ContentType.MainArticleChapter]: DynamicPage,
+    [ContentType.OfficeInformation]: DynamicPage,
     [ContentType.PageList]: DynamicPage,
     [ContentType.SectionPage]: DynamicPage,
     [ContentType.TemplatePage]: DynamicPage,

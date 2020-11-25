@@ -11,7 +11,7 @@ const modifyHtml = (htmlText: string, hasTableOfContest: boolean) => {
     // legg på id'er for innholdsfortegnelse
     if (hasTableOfContest) {
         let index = 1;
-        tmp = tmp?.replaceAll('<h3>', () => {
+        tmp = tmp?.replace(/<h3>/g, () => {
             return `<h3 id="chapter-${index++}" class="chapter-header">`;
         });
     }
