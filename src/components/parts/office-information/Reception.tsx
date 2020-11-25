@@ -1,11 +1,11 @@
 import React from 'react';
-import {
-    OpeningHours,
-    AudienceReception,
-} from 'types/content-types/office-information-props';
 import { formatAddress } from './utils';
 import { formatDate } from 'utils/datetime';
 import { translator, Language } from 'translations';
+import {
+    AudienceReception,
+    OpeningHours,
+} from '../../../types/content-props/office-information-props';
 
 interface FormattedOpeningHours extends OpeningHours {
     meta: string;

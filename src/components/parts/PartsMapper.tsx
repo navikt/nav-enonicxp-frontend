@@ -19,6 +19,7 @@ import { MainArticle } from './main-article/MainArticle';
 import { PartComponentProps } from '../../types/component-props/_component-common';
 import { ContentProps } from '../../types/content-props/_content-common';
 import Veilederpanel from './_dynamic/veilederpanel/Veilederpanel';
+import { OfficeInformation } from './office-information/OfficeInformation';
 
 type Props = {
     componentProps: PartComponentProps;
@@ -34,6 +35,7 @@ const partsWithPageData: {
     [PartType.MainArticleLinkedList]: MainArticleLinkedList,
     [PartType.MainPanels]: MainPanels,
     [PartType.MenuList]: MenuList,
+    [PartType.OfficeInformation]: OfficeInformation,
     [PartType.PageHeading]: PageHeading,
     [PartType.PageList]: PageList,
 };

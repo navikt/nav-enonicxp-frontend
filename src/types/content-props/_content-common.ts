@@ -55,20 +55,23 @@ export type ContentProps = {
     page?: LayoutProps;
 };
 
+type TypeSpecificData =
+    | ContentListData
+    | ErrorData
+    | ExternalLinkData
+    | InternalLinkData
+    | LargeTableData
+    | LegacyData
+    | MainArticleData
+    | MainArticleChapterData
+    | OfficeInformationData
+    | PageListData
+    | SectionPageData
+    | TransportPageData;
+
 export type ContentData = Partial<
     {
         canonicalUrl: string;
         metaDescription: string;
-    } & ContentListData &
-        ErrorData &
-        ExternalLinkData &
-        InternalLinkData &
-        LargeTableData &
-        LegacyData &
-        MainArticleData &
-        MainArticleChapterData &
-        OfficeInformationData &
-        PageListData &
-        SectionPageData &
-        TransportPageData
+    } & TypeSpecificData
 >;

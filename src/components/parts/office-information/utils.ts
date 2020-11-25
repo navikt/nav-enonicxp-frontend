@@ -1,9 +1,4 @@
-import {
-    OfficeInformationProps,
-    Address,
-    OpeningHours,
-    AudienceReception,
-} from 'types/content-types/office-information-props';
+import { Address } from '../../../types/content-props/office-information-props';
 
 export const formatAddress = (address: Address, withZip: boolean) => {
     if (!address) {

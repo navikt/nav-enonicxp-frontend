@@ -1,5 +1,5 @@
 import React from 'react';
-import { ParsedHtml } from '../_dynamic/ParsedHtml';
+import { ParsedHtml } from '../../ParsedHtml';
 
 function specialInfoParseLink(infoContent: string) {
     const isTextClean = (str: string) => {
