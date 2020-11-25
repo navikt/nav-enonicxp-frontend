@@ -1,3 +1,6 @@
+@import (reference) "~nav-frontend-core/less/_variabler";
+@import (reference) '../../../global';
+
 .main-article-linked-list {
     display: flex;
     border: 1px solid #d1d1d1;
@@ -13,28 +16,28 @@
         li {
             a {
                 border-bottom: 1px solid #d1d1d1;
-                color: #3e3832;
-                padding: 10px 30px 10px 30px;
+                padding: 0.625rem 1.875rem;
                 display: block;
-                text-decoration: none;
-                background-color: #f5f5f4;
+                background-color: #fff;
 
-                &:hover,
-                &:focus,
-                &:active {
-                    background: #fff !important;
-                    color: #0067c5;
+                &:active,
+                &:focus {
+                    color: #fff;
+                    box-shadow: none;
+                }
+
+                span {
+                    position: relative;
                 }
             }
 
-            a:not(.selected) {
-                background-color: #f5f5f4;
-            }
-
             .selected {
+                text-decoration: none;
                 position: relative;
-                background: #fff !important;
-                color: #0067c5;
+
+                &:focus:after {
+                    border-right-color: @fokusFarge;
+                }
             }
 
             .selected:before,
@@ -46,18 +49,43 @@
                 outline: none;
                 position: absolute;
                 right: 100%;
+                @media @screen-mobile {
+                    border: none;
+                }
             }
 
             .selected:before {
-                border-width: 12px;
+                border-width: 0.75rem;
                 border-right-color: #d1d1d1;
-                top: 8px;
+                top: 0.5rem;
             }
 
             .selected:after {
-                border-width: 10px;
+                border-width: 0.625rem;
                 border-right-color: #fff;
-                top: 10px;
+                top: 0.625rem;
+            }
+
+            .selected span:before,
+            a:hover span:before {
+                border: 0.1875rem solid #0067c5;
+                background-color: #0067c5;
+            }
+
+            a:focus span:before {
+                border: 0.1875rem solid #fff;
+                background-color: #fff;
+            }
+
+            .selected span:before,
+            a:hover span:before,
+            a:focus span:before {
+                border-radius: 50%;
+                display: inline-block;
+                content: ' ';
+                position: absolute;
+                left: -0.8125rem;
+                top: 0.4375rem;
             }
         }
     }
