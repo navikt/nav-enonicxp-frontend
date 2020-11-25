@@ -157,7 +157,8 @@ export const Region = (props: RegionProps & GlobalPageSchema) => {
                                 ),
                                 [PartType.OfficeInformation]: (
                                     <OfficeInformation
-                                        {...(props as OfficeInformationProps)}
+                                        {...(props as RegionProps &
+                                            OfficeInformationProps)}
                                     />
                                 ),
                                 [PartType.MainArticle]:
