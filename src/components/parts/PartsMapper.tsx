@@ -22,6 +22,7 @@ import Veilederpanel from './_dynamic/veilederpanel/Veilederpanel';
 import { OfficeInformation } from './office-information/OfficeInformation';
 import { Header } from './_dynamic/header/Header';
 import { LinkList } from './_dynamic/link-list/LinkList';
+import { NewsList } from './_dynamic/news-list/NewsList';
 
 type Props = {
     componentProps: PartComponentProps;
@@ -51,6 +52,7 @@ const partsWithOwnData: {
     [PartType.ReadMorePanel]: LesMerPanel,
     [PartType.SupervisorPanel]: Veilederpanel,
     [PartType.LinkList]: LinkList,
+    [PartType.NewsList]: NewsList,
 };
 
 const partsHidden: { [key in PartDeprecated] } = {

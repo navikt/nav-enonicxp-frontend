@@ -1,5 +1,5 @@
 import React from 'react';
-import { DynamicLinkPanel } from 'types/component-props/dynamic-parts/link-panel';
+import { DynamicLinkPanel } from 'types/component-props/parts/link-panel';
 import { BEM } from 'utils/bem';
 import LenkepanelNavNo from '../../../_common/lenkepanel/LenkepanelNavNo';
 import './LinkPanel.less';

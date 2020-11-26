@@ -1,5 +1,5 @@
 import React from 'react';
-import { DynamicReadMorePanel } from 'types/component-props/dynamic-parts/read-more-panel';
+import { DynamicReadMorePanel } from 'types/component-props/parts/read-more-panel';
 import LesmerpanelModul from 'nav-frontend-lesmerpanel';
 import { ParsedHtml } from '../../../ParsedHtml';
 import './LesMerPanel.less';

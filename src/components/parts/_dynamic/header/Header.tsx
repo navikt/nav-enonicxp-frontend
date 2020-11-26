@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderProps } from '../../../../types/component-props/dynamic-parts/header';
+import { HeaderProps } from '../../../../types/component-props/parts/header';
 import { BEM } from '../../../../utils/bem';
 import { Ingress, Sidetittel } from 'nav-frontend-typografi';
 import './Header.less';

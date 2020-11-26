@@ -1,5 +1,5 @@
 import React from 'react';
-import { DynamicLinkList } from '../../../../types/component-props/dynamic-parts/link-list';
+import { DynamicLinkList } from '../../../../types/component-props/parts/link-list';
 import { Lenkeliste } from '../../../_common/lenkeliste/Lenkeliste';
 import { ContentList } from '../../link-lists/content-list/ContentList';
 import { getUrlFromContent } from '../../../../utils/url-from-content';
