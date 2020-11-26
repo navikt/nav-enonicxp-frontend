@@ -50,7 +50,8 @@ const SosialeMedier = (props: Props) => {
     return (
         <div
           className="social-media">
-            <ul>{socialMedia.map((item) => (
+            <ul>
+                {socialMedia.map((item) => (
                     <li key={item.type}>
                         <LenkeUstylet href={item.href}>
                             <span className={`share-social share-${item.type}`}>
