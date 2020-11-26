@@ -7,15 +7,21 @@
 @padding-sides-desktop: 3rem;
 @padding-sides-mobile: 1rem;
 
-// Kan fjerne denne hvis/når hardkoding til 16px blir fjernet fra designsystemet
 html {
-    font-size: 100%;
+    font-size: 112.5%;
+}
+
+#__next,
+.decorator-utils-container {
+    background-color: #f1f1f1;
 }
 
 .app {
-    max-width: 90rem;
+    max-width: 1440px;
     min-height: 20rem;
-    margin: 2rem auto 3rem auto;
+    margin: 0 auto;
+    background-color: #f1f1f1;
+    padding: 2rem 0 3rem 0;
 }
 
 @media @screen-mobile {
@@ -26,7 +32,7 @@ html {
 
 @media @screen-desktop {
     .content-wrapper {
-        padding: 1rem @padding-sides-desktop;
+        padding: 0 @padding-sides-desktop;
     }
 }
 
@@ -47,7 +53,7 @@ html {
     .decorator-wrapper {
         display: none;
     }
-} ;
+}
 
 .hidden {
     display: none;

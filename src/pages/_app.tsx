@@ -6,7 +6,7 @@ const App = (props: AppProps) => {
     const { Component, pageProps } = props;
     const styles = {
         ...(pageProps.breadcrumbs?.length && {
-            marginTop: '1rem',
+            paddingTop: '1rem',
         }),
     };
     return (

@@ -46,11 +46,11 @@ export const ContentList = ({
         }))
         .filter(({ url, lenketekst }) => url && lenketekst);
 
-    return (
+    return lenkeData.length > 0 ? (
         <Lenkeliste
             lenker={lenkeData}
             tittel={content?.displayName}
             className={className}
         />
-    );
+    ) : null;
 };

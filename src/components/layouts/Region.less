@@ -21,11 +21,12 @@
     }
 
     &__main {
-        margin: 1rem 0;
+        margin: 1rem auto;
         flex-direction: column;
 
         .region {
             &__main {
+                max-width: 52rem;
                 flex-direction: row;
             }
             &__first {
@@ -38,6 +39,13 @@
             }
             &__second {
                 flex: 1;
+            }
+
+            @media @screen-mobile {
+                flex-direction: column;
+                &__second {
+                    margin-top: 2rem;
+                }
             }
         }
     }
