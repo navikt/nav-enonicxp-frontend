@@ -1,20 +1,39 @@
 import { fetchWithTimeout } from 'utils/fetch-utils';
+import Cache from 'node-cache';
+
+const cacheKey = 'sitemap-cache';
+const cache = new Cache({ stdTTL: 500, checkperiod: 100 });
 
 const handler = async (req, res) => {
     const sitemapUrl = `${process.env.XP_ORIGIN}/_/legacy/sitemap.xml`;
-    const sitemapContent = await fetchWithTimeout(sitemapUrl, 15000)
-        .then((response) => {
-            if (response.ok) {
-                return response.text();
-            }
-        })
-        // Remove /_/legacy
-        .then((xml) => xml.replace(/\/_\/legacy/g, ''))
-        .catch((e) => console.log(`error fetching json: ${e}`));
+    const sitemapContent = cache.has(cacheKey)
+        ? await cache.get(cacheKey)
+        : await fetchSitemap(sitemapUrl);
 
     res.setHeader('Content-Type', 'application/xml');
     res.status(200);
     res.end(sitemapContent);
+};
+
+const fetchSitemap = (url) => {
+    const sitemap = fetchWithTimeout(url, 25000)
+        .then(checkRespons)
+        .then((xml) => xml.replace(/\/_\/legacy/g, ''))
+        .catch((e) => console.log(`error fetching json: ${e}`));
+
+    if (sitemap) {
+        cache.set(cacheKey, sitemap);
+    }
+
+    return sitemap;
+};
+
+const checkRespons = (response: Response) => {
+    if (response.ok) {
+        return response.text();
+    } else {
+        throw Error('Response not ok');
+    }
 };
 
 export default handler;
