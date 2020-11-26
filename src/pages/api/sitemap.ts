@@ -19,7 +19,7 @@ const fetchSitemap = (url) => {
     const sitemap = fetchWithTimeout(url, 25000)
         .then(checkResponse)
         .then((xml) => xml.replace(/\/_\/legacy/g, ''))
-        .catch((e) => console.log(`error fetching json: ${e}`));
+        .catch((e) => console.log(`Error fetching sitemap: ${e}`));
 
     if (sitemap) {
         cache.set(cacheKey, sitemap);
