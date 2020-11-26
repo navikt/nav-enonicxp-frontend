@@ -3,6 +3,7 @@ import Cache from 'node-cache';
 
 const oneHourInSeconds = 3600;
 const oneMinuteInSeconds = 60;
+const oneMinuteInMilliseconds = oneMinuteInSeconds * 1000;
 
 const cacheKey = 'sitemap-cache';
 const cache = new Cache({
@@ -22,7 +23,7 @@ const handler = async (req, res) => {
 };
 
 const fetchSitemap = (url) => {
-    return fetchWithTimeout(url, 50000)
+    return fetchWithTimeout(url, oneMinuteInMilliseconds)
         .then(checkResponse)
         .then((xml) => xml.replace(/\/_\/legacy/g, ''))
         .then(saveToCache)
