@@ -48,7 +48,8 @@ const SosialeMedier = (props: Props) => {
     }
 
     return (
-        <div className="social-media">
+        <div
+          className="social-media">
             <ul>
                 {socialMedia.map((item) => (
                     <li key={item.type}>
