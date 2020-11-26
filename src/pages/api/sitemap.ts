@@ -16,21 +16,17 @@ const handler = async (req, res) => {
 };
 
 const fetchSitemap = (url) => {
-    const sitemap = fetchWithTimeout(url, 25000)
+    return fetchWithTimeout(url, 50000)
         .then(checkResponse)
         .then((xml) => xml.replace(/\/_\/legacy/g, ''))
         .catch((e) => console.log(`Error fetching sitemap: ${e}`));
-
-    if (sitemap) {
-        cache.set(cacheKey, sitemap);
-    }
-
-    return sitemap;
 };
 
 const checkResponse = (response: Response) => {
     if (response.ok) {
-        return response.text();
+        const sitemap = response.text();
+        cache.set(cacheKey, sitemap);
+        return sitemap;
     } else {
         throw Error('Response not ok');
     }
