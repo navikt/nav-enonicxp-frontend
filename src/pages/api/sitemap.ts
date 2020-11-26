@@ -17,7 +17,7 @@ const handler = async (req, res) => {
 
 const fetchSitemap = (url) => {
     const sitemap = fetchWithTimeout(url, 25000)
-        .then(checkRespons)
+        .then(checkResponse)
         .then((xml) => xml.replace(/\/_\/legacy/g, ''))
         .catch((e) => console.log(`error fetching json: ${e}`));
 
@@ -28,7 +28,7 @@ const fetchSitemap = (url) => {
     return sitemap;
 };
 
-const checkRespons = (response: Response) => {
+const checkResponse = (response: Response) => {
     if (response.ok) {
         return response.text();
     } else {
