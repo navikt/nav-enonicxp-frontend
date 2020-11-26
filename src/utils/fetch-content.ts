@@ -1,6 +1,9 @@
-import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
-import { makeErrorProps } from '../types/content-types/error-props';
-import { contentToComponentMap } from '../components/ContentToComponentMapper';
+import {
+    ContentProps,
+    ContentType,
+    contentTypeIsImplemented,
+} from '../types/content-props/_content-common';
+import { makeErrorProps } from '../types/content-props/error-props';
 import {
     xpContentBasePath,
     xpLegacyDraftUrl,
@@ -9,7 +12,7 @@ import {
 } from './paths';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { Breadcrumb } from '../types/breadcrumb';
-import { NotificationProps } from '../types/content-types/notification-props';
+import { NotificationProps } from '../types/notification-props';
 import { LanguageSelectorProps } from '../types/language-selector-props';
 
 const fetchLegacyHtml = (path: string, isDraft = false) => {
@@ -33,16 +36,18 @@ const fetchLegacyHtml = (path: string, isDraft = false) => {
 
 const fetchContent = (
     idOrPath: string,
-    isDraft = false
-): Promise<ContentTypeSchema> => {
+    isDraft = false,
+    secret: string
+): Promise<ContentProps> => {
     const params = objectToQueryString({
         ...(isDraft && { branch: 'draft' }),
         id: idOrPath,
     });
     const url = `${xpServiceUrl}/sitecontent${params}`;
+    const config = { headers: { secret } };
     console.log('fetching content from:', url);
 
-    return fetchWithTimeout(url, 5000)
+    return fetchWithTimeout(url, 5000, config)
         .then((res) => {
             if (res.ok) {
                 return res.json();
@@ -121,14 +126,15 @@ export const fetchLanguages = (
 
 export const fetchPage = async (
     idOrPath: string,
-    isDraft = false
-): Promise<ContentTypeSchema> => {
-    const content = await fetchContent(idOrPath, isDraft);
+    isDraft = false,
+    secret: string
+): Promise<ContentProps> => {
+    const content = await fetchContent(idOrPath, isDraft, secret);
 
-    if (content && !contentToComponentMap[content.__typename]) {
+    if (content && !contentTypeIsImplemented(content.__typename)) {
         const path = content._path?.replace(xpContentBasePath, '');
 
-        return (await fetchLegacyHtml(path, isDraft).then(async (res) => {
+        return await fetchLegacyHtml(path, isDraft).then(async (res) => {
             if (!res.ok) {
                 return makeErrorProps(path, res.statusText, res.status);
             }
@@ -137,11 +143,8 @@ export const fetchPage = async (
                 __typename: ContentType.Legacy,
                 data: { html: await res.text() },
             };
-        })) as ContentTypeSchema;
+        });
     }
 
-    return (
-        content ||
-        makeErrorProps(idOrPath, `Ukjent feil`, 500)
-    );
+    return content || makeErrorProps(idOrPath, `Ukjent feil`, 500);
 };

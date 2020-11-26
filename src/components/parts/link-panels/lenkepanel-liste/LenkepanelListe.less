@@ -1,0 +1,35 @@
+@import '../../../../global';
+
+.lenkepanel-liste {
+    width: 100%;
+    margin: 2rem 0;
+
+    &__tittel {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    &__ingress {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    &__items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    &__item {
+        text-align: start;
+        margin-bottom: 1rem;
+        @media @screen-mobile {
+            width: 100%;
+        }
+        @media @screen-desktop {
+            width: calc(50% - 0.5rem);
+        }
+    }
+}
