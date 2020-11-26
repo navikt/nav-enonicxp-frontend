@@ -21,6 +21,7 @@ import { ContentProps } from '../../types/content-props/_content-common';
 import Veilederpanel from './_dynamic/veilederpanel/Veilederpanel';
 import { OfficeInformation } from './office-information/OfficeInformation';
 import { Header } from './_dynamic/header/Header';
+import { LinkList } from './_dynamic/link-list/LinkList';
 
 type Props = {
     componentProps: PartComponentProps;
@@ -49,6 +50,7 @@ const partsWithOwnData: {
     [PartType.LinkPanel]: LinkPanel,
     [PartType.ReadMorePanel]: LesMerPanel,
     [PartType.SupervisorPanel]: Veilederpanel,
+    [PartType.LinkList]: LinkList,
 };
 
 const partsHidden: { [key in PartDeprecated] } = {

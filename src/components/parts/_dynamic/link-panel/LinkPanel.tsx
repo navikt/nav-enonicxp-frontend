@@ -13,12 +13,12 @@ export const LinkPanel = ({ config }: DynamicLinkPanel) => {
 
     const { title, ingress, background, icon, target, vertical } = config;
 
-    const iconElement = <img src={icon.mediaUrl} alt={''} />;
+    const IconElement = icon?.mediaUrl && <img src={icon.mediaUrl} alt={''} />;
 
     return (
         <LenkepanelNavNo
             tittel={title}
-            ikon={iconElement}
+            ikon={IconElement}
             vertikal={vertical}
             href={target?._path}
             className={bem()}

@@ -14,6 +14,7 @@ export enum PartType {
     Alert = 'no.nav.navno:dynamic-alert',
     ReadMorePanel = 'no.nav.navno:dynamic-read-more-panel',
     Header = 'no.nav.navno:dynamic-header',
+    LinkList = 'no.nav.navno:dynamic-link-list',
 
     Notifications = 'no.nav.navno:notifications',
     BreakingNews = 'no.nav.navno:breaking-news',
@@ -36,7 +37,8 @@ export type PartWithOwnData =
     | PartType.SupervisorPanel
     | PartType.Alert
     | PartType.ReadMorePanel
-    | PartType.Header;
+    | PartType.Header
+    | PartType.LinkList;
 
 export type PartDeprecated =
     | PartType.Notifications
