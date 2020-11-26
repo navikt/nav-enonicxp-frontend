@@ -1,6 +1,6 @@
 import React from 'react';
 import { DynamicNewsList } from '../../../../types/component-props/parts/news-list';
-import { ContentList } from '../../link-lists/content-list/ContentList';
+import { ContentList } from '../../../_common/content-list/ContentList';
 import { LenkeNavNo } from '../../../_common/lenke/LenkeNavNo';
 import { BEM } from '../../../../utils/bem';
 import './NewsList.less';

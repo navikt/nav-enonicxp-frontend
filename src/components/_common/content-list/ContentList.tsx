@@ -1,10 +1,10 @@
 import React from 'react';
 import { ContentListProps } from 'types/content-props/content-list-props';
 import { LinkProps } from 'types/link-props';
-import { Lenkeliste } from '../../../_common/lenkeliste/Lenkeliste';
+import { Lenkeliste } from '../lenkeliste/Lenkeliste';
 import { sortContentByLastModified } from 'utils/sort';
 import { formatDate } from 'utils/datetime';
-import { getUrlFromContent } from '../../../../utils/url-from-content';
+import { getUrlFromContent } from '../../../utils/url-from-content';
 
 type Props = {
     content: ContentListProps;

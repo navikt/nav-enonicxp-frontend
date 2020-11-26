@@ -1,8 +1,9 @@
 import React from 'react';
 import { DynamicLinkList } from '../../../../types/component-props/parts/link-list';
 import { Lenkeliste } from '../../../_common/lenkeliste/Lenkeliste';
-import { ContentList } from '../../link-lists/content-list/ContentList';
+import { ContentList } from '../../../_common/content-list/ContentList';
 import { getUrlFromContent } from '../../../../utils/url-from-content';
+import './LinkList.less';
 
 export const LinkList = ({ config }: DynamicLinkList) => {
     if (!config?.list) {
