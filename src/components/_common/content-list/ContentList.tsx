@@ -28,7 +28,7 @@ export const ContentList = ({
     }
 
     const lenkeData: LinkProps[] = content.data.sectionContents
-        ?.sort(sorted ? sortContentByLastModified : undefined)
+        .sort(sorted ? sortContentByLastModified : undefined)
         .slice(0, maxItems)
         .map((scContent) => ({
             url: getUrlFromContent(scContent),
