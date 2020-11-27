@@ -9,7 +9,7 @@ const bem = BEM('news-list');
 
 export const NewsList = ({ config }: DynamicNewsList) => {
     if (!config?.contentList) {
-        return null;
+        return 'Tom nyhetsliste';
     }
 
     const { title, contentList, moreNews } = config;

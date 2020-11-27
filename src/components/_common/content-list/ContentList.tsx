@@ -4,7 +4,7 @@ import { LinkProps } from 'types/link-props';
 import { Lenkeliste } from '../lenkeliste/Lenkeliste';
 import { sortContentByLastModified } from 'utils/sort';
 import { formatDate } from 'utils/datetime';
-import { getUrlFromContent } from '../../../utils/url-from-content';
+import { getUrlFromContent } from '../../../utils/links-from-content';
 
 type Props = {
     content: ContentListProps;
@@ -23,8 +23,12 @@ export const ContentList = ({
     maxItems = 128,
     className,
 }: Props) => {
+    if (!content?.data?.sectionContents) {
+        return null;
+    }
+
     const lenkeData: LinkProps[] = content.data.sectionContents
-        .sort(sorted ? sortContentByLastModified : undefined)
+        ?.sort(sorted ? sortContentByLastModified : undefined)
         .slice(0, maxItems)
         .map((scContent) => ({
             url: getUrlFromContent(scContent),
@@ -35,10 +39,10 @@ export const ContentList = ({
         }))
         .filter(({ url, text }) => url && text);
 
-    return lenkeData.length > 0 ? (
+    return lenkeData?.length > 0 ? (
         <Lenkeliste
             lenker={lenkeData}
-            tittel={title || content?.displayName}
+            tittel={title || content.displayName}
             className={className}
         />
     ) : null;

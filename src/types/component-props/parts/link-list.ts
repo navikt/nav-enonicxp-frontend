@@ -1,6 +1,6 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
-import { ContentListMixin, LinksMixin } from '../_mixins';
+import { ContentListMixin, LinkSelectable } from '../_mixins';
 
 export interface DynamicLinkList extends PartComponentProps {
     descriptor: PartType.LinkList;
@@ -10,7 +10,7 @@ export interface DynamicLinkList extends PartComponentProps {
             _selected: 'contentList' | 'linkList';
             contentList: ContentListMixin;
             linkList: {
-                links: LinksMixin[];
+                links: LinkSelectable[];
             };
         };
     }>;
