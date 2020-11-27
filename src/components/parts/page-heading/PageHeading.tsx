@@ -6,15 +6,19 @@ import './PageHeading.less';
 
 const bem = BEM('page-heading');
 
-const PageHeading = (props: ContentProps) => (
-    <div className={bem('container')}>
-        <Innholdstittel>{props.displayName || 'Tittel'}</Innholdstittel>
-        {props.data?.ingress && (
-            <div className={bem('ingress')}>
-                <Ingress>{props.data?.ingress || 'Ingress'}</Ingress>
-            </div>
-        )}
-    </div>
-);
+const PageHeading = (props: ContentProps) => {
+    const displayName = props.displayName;
+    const ingress = props.data?.ingress;
+    return (
+        <div className={bem('container')}>
+            <Innholdstittel>{displayName || 'Tittel'}</Innholdstittel>
+            {ingress && (
+                <div className={bem('ingress')}>
+                    <Ingress>{ingress}</Ingress>
+                </div>
+            )}
+        </div>
+    );
+};
 
 export default PageHeading;
