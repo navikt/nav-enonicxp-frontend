@@ -24,25 +24,27 @@ export const LinkList = ({ config }: DynamicLinkList) => {
     }
 
     if (_selected === 'linkList') {
-        const links = linkList.links.map((link) => {
-            const { _selected, external, internal } = link;
+        const links = linkList.links
+            .map((link) => {
+                const { _selected, external, internal } = link;
 
-            if (_selected === 'internal' && internal) {
-                return {
-                    url: getUrlFromContent(internal.target),
-                    text: internal.text || internal.target.displayName,
-                };
-            }
+                if (_selected === 'internal' && internal) {
+                    return {
+                        url: getUrlFromContent(internal.target),
+                        text: internal.text || internal.target.displayName,
+                    };
+                }
 
-            if (_selected === 'external' && external) {
-                return {
-                    url: external.url,
-                    text: external.text,
-                };
-            }
+                if (_selected === 'external' && external) {
+                    return {
+                        url: external.url,
+                        text: external.text,
+                    };
+                }
 
-            return null;
-        });
+                return null;
+            })
+            .filter(Boolean);
 
         return <Lenkeliste tittel={title} lenker={links} />;
     }
