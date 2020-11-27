@@ -16,6 +16,13 @@ export const getUrlFromContent = (content: ContentProps) => {
 };
 
 export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
+    if (!link) {
+        return {
+            url: '/',
+            text: 'Invalid link',
+        };
+    }
+
     const { _selected, external, internal } = link;
 
     if (_selected === 'internal' && internal) {
