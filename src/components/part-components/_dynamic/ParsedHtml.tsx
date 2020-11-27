@@ -5,6 +5,8 @@ import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import Link from 'next/link';
 import Lenke from 'nav-frontend-lenker';
+import { ParseMacro } from './Macros';
+
 
 interface Props {
     content?: string;
@@ -18,7 +20,12 @@ export const ParsedHtml = (props: Props) => {
     }
 
     const replaceElements = {
-        replace: ({ name, attribs, children }: DomElement) => {
+        replace: ({ name, attribs, type, data, children }: DomElement) => {
+
+            if (type?.toLowerCase() === 'comment') {
+                return ParseMacro(data);
+            }
+
             if (name?.toLowerCase() === 'h1') {
                 return (
                     <Innholdstittel>
@@ -58,7 +65,7 @@ export const ParsedHtml = (props: Props) => {
 
     // htmlReactParser does not always handle linebreaks well...
     const htmlParsed = htmlReactParser(
-        content.replace(/(\r\n|\n|\r)/gm, ''),
+        content.replace(/(\r\n|\n|\r)/gm, ' '),
         replaceElements
     );
 
