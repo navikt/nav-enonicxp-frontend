@@ -20,6 +20,9 @@ import { PartComponentProps } from '../../types/component-props/_component-commo
 import { ContentProps } from '../../types/content-props/_content-common';
 import Veilederpanel from './_dynamic/veilederpanel/Veilederpanel';
 import { OfficeInformation } from './office-information/OfficeInformation';
+import { Header } from './_dynamic/header/Header';
+import { LinkList } from './_dynamic/link-list/LinkList';
+import { NewsList } from './_dynamic/news-list/NewsList';
 
 type Props = {
     componentProps: PartComponentProps;
@@ -44,10 +47,12 @@ const partsWithOwnData: {
     [key in PartWithOwnData]: React.FunctionComponent<PartComponentProps>;
 } = {
     [PartType.Alert]: Alert,
-    [PartType.Header]: null,
+    [PartType.Header]: Header,
     [PartType.LinkPanel]: LinkPanel,
     [PartType.ReadMorePanel]: LesMerPanel,
     [PartType.SupervisorPanel]: Veilederpanel,
+    [PartType.LinkList]: LinkList,
+    [PartType.NewsList]: NewsList,
 };
 
 const partsHidden: { [key in PartDeprecated] } = {

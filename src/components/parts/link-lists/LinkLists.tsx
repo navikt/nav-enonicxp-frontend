@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentList } from './content-list/ContentList';
+import { ContentList } from '../../_common/content-list/ContentList';
 import { LenkeNavNo } from '../../_common/lenke/LenkeNavNo';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { BEM } from 'utils/bem';
