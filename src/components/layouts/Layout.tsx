@@ -12,6 +12,8 @@ type Props = {
 export const Layout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
 
+    console.log(layoutProps);
+    console.log(pageProps);
     return (
         <>
             {regions &&
