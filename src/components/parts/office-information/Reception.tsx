@@ -6,6 +6,12 @@ import {
     AudienceReception,
     OpeningHours,
 } from '../../../types/content-props/office-information-props';
+import {
+    Normaltekst,
+    Element,
+    Undertittel,
+    Systemtittel,
+} from 'nav-frontend-typografi';
 
 interface FormattedOpeningHours extends OpeningHours {
     meta: string;
@@ -86,54 +92,78 @@ const getOpeningHours = (
     closedLabel: string,
     metaKey: string
 ) => {
-    return openingHours.map((opening, ix) => {
-        // TODO: check why stengt is a string?
-        const compKey = `${metaKey}-${ix}`;
-        return (
-            <tr key={compKey}>
-                <td>{opening.dato}</td>
-                <td>{opening.dag}</td>
-                <td>
-                    {opening.fra && opening.til
-                        ? `${opening.fra} - ${opening.til}`
-                        : ''}
-                </td>
-                <td>{opening.stengt === 'true' ? closedLabel : ''}</td>
-                <td>{opening.kommentar}</td>
-            </tr>
-        );
-    });
+    return (
+        <table>
+            <tbody>
+                {openingHours.map((opening, ix) => {
+                    // TODO: check why stengt is a string?
+                    const compKey = `${metaKey}-${ix}`;
+
+                    console.log(opening.dato);
+                    return (
+                        <tr key={compKey}>
+                            {opening.dato && <td>{opening.dato}</td>}
+                            <td>{opening.dag}</td>
+                            {opening.fra && opening.til && (
+                                <td>{`${opening.fra} - ${opening.til}`}</td>
+                            )}
+                            {opening.stengt === 'true' && (
+                                <td>{closedLabel}</td>
+                            )}
+                            {opening.kommentar && <td>{opening.kommentar}</td>}
+                        </tr>
+                    );
+                })}
+            </tbody>
+        </table>
+    );
 };
 
 const getMetaOpeningHours = (openingHours: OpeningHours[], metaKey: string) => {
-    return openingHours.map((opening, ix) => {
-        const hours = !opening.stengt ? (
-            <>
-                <time itemProp="opens" data-th-datetime="${opening.fra}">
-                    {opening.fra}
-                </time>
-                <time itemProp="closes" data-th-datetime="${opening.til}">
-                    {opening.til}
-                </time>
-            </>
-        ) : null;
-        const compKey = `${metaKey}-${ix}`;
-        return (
-            <li
-                key={compKey}
-                itemProp="specialOpeningHoursSpecification"
-                itemType="http://schema.org/OpeningHoursSpecification"
-            >
-                <time itemProp="validFrom" dateTime="${opening.isoDate}">
-                    {opening.dato}
-                </time>
-                <time itemProp="validThrough" dateTime="${opening.isoDate}">
-                    {opening.dato}
-                </time>
-                {hours}
-            </li>
-        );
-    });
+    return (
+        <ul className="hidden">
+            {openingHours.map((opening, ix) => {
+                const hours = !opening.stengt ? (
+                    <>
+                        <time
+                            itemProp="opens"
+                            data-th-datetime="${opening.fra}"
+                        >
+                            {opening.fra}
+                        </time>
+                        <time
+                            itemProp="closes"
+                            data-th-datetime="${opening.til}"
+                        >
+                            {opening.til}
+                        </time>
+                    </>
+                ) : null;
+                const compKey = `${metaKey}-${ix}`;
+                return (
+                    <li
+                        key={compKey}
+                        itemProp="specialOpeningHoursSpecification"
+                        itemType="http://schema.org/OpeningHoursSpecification"
+                    >
+                        <time
+                            itemProp="validFrom"
+                            dateTime="${opening.isoDate}"
+                        >
+                            {opening.dato}
+                        </time>
+                        <time
+                            itemProp="validThrough"
+                            dateTime="${opening.isoDate}"
+                        >
+                            {opening.dato}
+                        </time>
+                        {hours}
+                    </li>
+                );
+            })}
+        </ul>
+    );
 };
 interface Props {
     receptions: AudienceReception[];
@@ -163,31 +193,33 @@ const Reception = (props: Props) => {
         );
 
         return (
-            <div key={rec.id} itemProp="http://schema.org/localbusiness">
-                <h2 itemProp="name">{reception.place}</h2>
-                <p></p>
-                <p
-                    className="p-street-address"
+            <div
+                key={rec.id}
+                itemScope
+                itemProp="http://schema.org/localbusiness"
+            >
+                <Element tag="h3" itemProp="name">
+                    {reception.place}
+                </Element>
+                <Normaltekst
                     itemProp="address"
                     itemType="http://schema.org/postaladdress"
                 >
                     {reception.address}
-                </p>
+                </Normaltekst>
                 {/* exceptions in opening hours */}
-                {openingHoursExceptions.length > 0 && (
-                    <div>
-                        <h5>Spesielle åpningstider</h5>
-                        <ul className="hidden">{metaOpeningHoursExceptions}</ul>
-                        <table>
-                            <tbody>{openingHoursExceptions}</tbody>
-                        </table>
-                    </div>
+                {reception.openingHoursExceptions.length > 0 && (
+                    <>
+                        <h4>Spesielle åpningstider</h4>
+                        {metaOpeningHoursExceptions}
+                        {openingHoursExceptions}
+                    </>
                 )}
 
                 {/* opening hours */}
-                {openingHoursDays.length > 0 && (
-                    <div>
-                        <h5>Åpningstider</h5>
+                {reception.openingHours.length > 0 && (
+                    <>
+                        <h4>Åpningstider</h4>
                         {reception.openingHours.map((oh, ix) => {
                             return (
                                 oh.stengt !== 'true' && (
@@ -202,13 +234,20 @@ const Reception = (props: Props) => {
                         <table>
                             <tbody>{openingHoursDays}</tbody>
                         </table>
-                    </div>
+                    </>
                 )}
             </div>
         );
     });
 
-    return <>{receptions}</>;
+    return (
+        <>
+            <Systemtittel className="publikumsmottak__header">
+                Publikumsmottak
+            </Systemtittel>
+            {receptions}
+        </>
+    );
 };
 
 export default Reception;

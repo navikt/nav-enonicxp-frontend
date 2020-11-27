@@ -18,8 +18,17 @@ export const formatAddress = (address: Address, withZip: boolean) => {
     if (withZip) {
         let poststed = address ? address.poststed || '' : '';
         poststed = poststed.toUpperCase();
-
         formatedAddress += `, ${address.postnummer} ${poststed}`;
     }
     return formatedAddress;
+};
+export const parsePhoneNumber = (phoneNumber: string, mod: number = null) => {
+    const modular = mod || 2;
+    if (phoneNumber) {
+        return phoneNumber
+            .replace(/ /g, '')
+            .split('')
+            .reduce((t, e, i) => t + e + (i % modular === 1 ? ' ' : ''), '');
+    }
+    return null;
 };
