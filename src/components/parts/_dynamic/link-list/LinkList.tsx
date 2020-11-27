@@ -7,7 +7,7 @@ import './LinkList.less';
 
 export const LinkList = ({ config }: DynamicLinkList) => {
     if (!config?.list) {
-        return 'Tom lenkeliste';
+        return <h2>{'Tom lenkeliste'}</h2>;
     }
 
     const { title, list } = config;
