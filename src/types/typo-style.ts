@@ -11,6 +11,8 @@ import {
     Undertekst,
 } from 'nav-frontend-typografi';
 
+export type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
 export enum TypoStyle {
     Sidetittel = 'sidetittel',
     Innholdstittel = 'innholdstittel',

@@ -12,12 +12,16 @@ export const Header = ({ config }: HeaderProps) => {
         return null;
     }
 
-    const { title, ingress, titleTypo } = config;
+    const { title, ingress, titleTypo, titleTag } = config;
+    if (!title) {
+        return null;
+    }
+
     const TypoComponent = typoToComponent[titleTypo] || Innholdstittel;
 
     return (
         <div className={bem()}>
-            {title && <TypoComponent>{title}</TypoComponent>}
+            <TypoComponent tag={titleTag}>{title}</TypoComponent>
             {ingress && <Ingress>{ingress}</Ingress>}
         </div>
     );
