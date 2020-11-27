@@ -6,7 +6,7 @@ import './LinkPanels.less';
 export const LinkPanels = (props: ContentProps) => {
     const { panelsHeading, panelItems } = props.data;
 
-    return (
+    return panelItems?.length > 0 ? (
         <LenkepanelListe title={panelsHeading} items={panelItems} {...props} />
-    );
+    ) : null;
 };

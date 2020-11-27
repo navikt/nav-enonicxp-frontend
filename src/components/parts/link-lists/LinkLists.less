@@ -12,14 +12,20 @@
     }
 
     &__column {
-        margin-top: 2rem;
         @media @screen-mobile {
             width: 100%;
         }
         @media @screen-desktop {
             width: calc(percentage(1 / @numCols));
-            &:not(:nth-child(@{numCols}n)) {
+            &:not(:last-child) {
                 margin-right: @margin;
+            }
+            &:nth-child(2):not(:last-child) {
+                margin-left: @margin;
+                margin-right: @margin;
+            }
+            &:last-child {
+                margin-left: @margin;
             }
         }
     }
