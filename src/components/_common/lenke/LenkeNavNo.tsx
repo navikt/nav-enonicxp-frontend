@@ -39,7 +39,6 @@ export const LenkeNavNo = ({
             id={id}
             onClick={onClick}
         >
-            {label && <Undertekst className={bem('label')}>{label}</Undertekst>}
             <span className={bem('lenketekst')}>
                 {withChevron && (
                     <span className={bem('ikon-container')}>
@@ -48,6 +47,7 @@ export const LenkeNavNo = ({
                 )}
                 {children}
             </span>
+            {label && <Undertekst className={bem('label')}>{label}</Undertekst>}
         </LenkeUstylet>
     );
 };
