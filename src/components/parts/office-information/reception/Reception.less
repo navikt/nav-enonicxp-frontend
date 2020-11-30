@@ -1,3 +1,5 @@
+@import '~nav-frontend-tabell-style';
+
 .publikumsmottak {
 
   &__header {
@@ -6,51 +8,17 @@
 
   table {
     margin-bottom: 1.4rem;
-    border: none;
     width: auto;
-    line-height: 1.15em;
 
     th,
     td {
       vertical-align: top;
-      padding: 0.1rem 1rem 0.5rem 0;
+      padding: 0.3rem 1rem 0.3rem 0;
     }
 
     .timeslotColumn {
       min-width: 6.5rem;
     }
 
-    tr:first-child th{
-      color: #3e3832;
-      background-color: #fff;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.55);
-      font-weight: 600;
-      line-height: 1.375rem;
-    }
-
-    tr:nth-child(even) {
-      color: #3e3832;
-      font-size: 1rem;
-      background-color: rgba(0, 0, 0, 0.03);
-      border-top: 1px solid rgba(0, 0, 0, 0.15);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-      font-weight: 400;
-      padding: 1rem;
-      line-height: 1.375rem;
-    }
-    tr:last-child {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.55);
-    }
-
-    tr:first-child th strong,
-    tr:first-child td strong {
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
-
-    th p:last-child,
-    td p:last-child {
-      margin: 0;
-    }
   }
 }
