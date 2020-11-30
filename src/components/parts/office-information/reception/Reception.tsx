@@ -92,42 +92,39 @@ const MetaOpeningHours = (props: {
     return (
         <ul className="hidden">
             {props.openingHours.map((opening, ix) => {
-                const hours = !opening.stengt ? (
-                    <>
-                        <time
-                            itemProp="opens"
-                            data-th-datetime="${opening.fra}"
-                        >
-                            {opening.fra}
-                        </time>
-                        <time
-                            itemProp="closes"
-                            data-th-datetime="${opening.til}"
-                        >
-                            {opening.til}
-                        </time>
-                    </>
-                ) : null;
                 const compKey = `${props.metaKey}-${ix}`;
                 return (
                     <li
                         key={compKey}
                         itemProp="specialOpeningHoursSpecification"
+                        itemScope
                         itemType="http://schema.org/OpeningHoursSpecification"
                     >
-                        <time
-                            itemProp="validFrom"
-                            dateTime="${opening.isoDate}"
-                        >
+                        <time itemProp="validFrom" dateTime={opening.isoDate}>
                             {opening.dato}
                         </time>
                         <time
                             itemProp="validThrough"
-                            dateTime="${opening.isoDate}"
+                            dateTime={opening.isoDate}
                         >
                             {opening.dato}
                         </time>
-                        {hours}
+                        {!opening.stengt && (
+                            <>
+                                <time
+                                    itemProp="opens"
+                                    data-th-datetime={opening.fra}
+                                >
+                                    {opening.fra}
+                                </time>
+                                <time
+                                    itemProp="closes"
+                                    data-th-datetime={opening.til}
+                                >
+                                    {opening.til}
+                                </time>
+                            </>
+                        )}
                     </li>
                 );
             })}

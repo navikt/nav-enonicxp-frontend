@@ -5,6 +5,10 @@ const OpeningHours = (props: {
     closedLabel: string;
     metaKey: string;
 }) => {
+    const hasKommentar = props.openingHours.some(
+        (opening) => !!opening.kommentar
+    );
+
     return (
         <table>
             <tbody>
@@ -15,14 +19,14 @@ const OpeningHours = (props: {
                     return (
                         <tr key={compKey}>
                             {opening.dato && <td>{opening.dato}</td>}
-                            <td>{opening.dag}</td>
+                            {opening.dag && <td>{opening.dag}</td>}
                             {opening.fra && opening.til && (
-                                <td>{`${opening.fra} - ${opening.til}`}</td>
+                                <td className="timeslotColumn">{`${opening.fra} - ${opening.til}`}</td>
                             )}
                             {opening.stengt === 'true' && (
                                 <td>{props.closedLabel}</td>
                             )}
-                            {opening.kommentar && <td>{opening.kommentar}</td>}
+                            {hasKommentar && <td>{opening.kommentar}</td>}
                         </tr>
                     );
                 })}

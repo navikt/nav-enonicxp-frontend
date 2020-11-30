@@ -31,6 +31,7 @@ export interface OpeningHoursProps {
     kommentar: string;
     // this should have been a bool put I get a string..
     stengt: string;
+    isoDate: string;
 }
 
 export interface AudienceReception {
