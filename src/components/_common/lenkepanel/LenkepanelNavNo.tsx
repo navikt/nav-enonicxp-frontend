@@ -9,6 +9,7 @@ export type LenkepanelProps = {
     href: string;
     tittel: string;
     ikon?: React.ReactElement;
+    vertikal?: boolean;
     separator?: boolean;
     component?: string;
     linkGroup?: string;
@@ -20,6 +21,7 @@ const LenkepanelNavNo = ({
     href,
     tittel,
     ikon,
+    vertikal,
     separator,
     className,
     component,
@@ -32,7 +34,9 @@ const LenkepanelNavNo = ({
     return (
         <LenkepanelBase
             href={href}
-            className={`${bem()} ${className || ''}`}
+            className={`${bem()} ${vertikal ? bem('vertikal') : ''} ${
+                className || ''
+            }`}
             border={true}
             linkCreator={(props) => (
                 <LenkeUstylet

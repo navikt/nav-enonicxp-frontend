@@ -1,55 +1,48 @@
 import React from 'react';
 import { ContentListProps } from 'types/content-props/content-list-props';
-import { LenkeData } from 'types/lenke-data';
+import { LinkProps } from 'types/link-props';
 import { Lenkeliste } from '../lenkeliste/Lenkeliste';
 import { sortContentByLastModified } from 'utils/sort';
 import { formatDate } from 'utils/datetime';
-import {
-    ContentType,
-    ContentProps,
-} from '../../../../types/content-props/_content-common';
+import { getUrlFromContent } from '../../../utils/links-from-content';
 
 type Props = {
     content: ContentListProps;
+    title?: string;
     showDateLabel?: boolean;
     sorted?: boolean;
     maxItems?: number;
     className?: string;
 };
 
-const getUrl = (content: ContentProps) => {
-    if (content.__typename === ContentType.InternalLink) {
-        return content.data?.target?._path;
-    }
-    if (content.__typename === ContentType.ExternalLink) {
-        return content.data?.url;
-    }
-    return content._path;
-};
-
 export const ContentList = ({
     content,
+    title,
     showDateLabel = false,
     sorted = false,
     maxItems = 128,
     className,
 }: Props) => {
-    const lenkeData: LenkeData[] = content.data.sectionContents
+    if (!content?.data?.sectionContents) {
+        return null;
+    }
+
+    const lenkeData: LinkProps[] = content.data.sectionContents
         .sort(sorted ? sortContentByLastModified : undefined)
         .slice(0, maxItems)
         .map((scContent) => ({
-            url: getUrl(scContent),
-            lenketekst: scContent.displayName,
+            url: getUrlFromContent(scContent),
+            text: scContent.displayName,
             label: showDateLabel
                 ? formatDate(scContent.modifiedTime || scContent.createdTime)
                 : undefined,
         }))
-        .filter(({ url, lenketekst }) => url && lenketekst);
+        .filter(({ url, text }) => url && text);
 
-    return lenkeData.length > 0 ? (
+    return lenkeData?.length > 0 ? (
         <Lenkeliste
             lenker={lenkeData}
-            tittel={content?.displayName}
+            tittel={title || content.displayName}
             className={className}
         />
     ) : null;
