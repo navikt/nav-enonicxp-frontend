@@ -22,7 +22,7 @@ export interface Address {
     type: string;
 }
 
-export interface OpeningHours {
+export interface OpeningHoursProps {
     id: number;
     dag: string;
     dato: string;
@@ -36,7 +36,7 @@ export interface OpeningHours {
 export interface AudienceReception {
     id: number;
     besoeksadresse: Address;
-    aapningstider: OpeningHours[];
+    aapningstider: OpeningHoursProps[];
     stedsbeskrivelse: string;
 }
 

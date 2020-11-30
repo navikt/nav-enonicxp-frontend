@@ -1,5 +1,5 @@
 import React from 'react';
-import Reception from './Reception';
+import Reception from './reception/Reception';
 import { SpecialInformation } from './SpecialInfo';
 import { formatAddress, parsePhoneNumber } from './utils';
 import { BEM } from 'utils/bem';
@@ -23,11 +23,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     const location = formatAddress(contact.besoeksadresse, true);
     const address = formatAddress(contact.postadresse, false);
     const fax = parsePhoneNumber(contact.faksnummer);
-    const receptions: AudienceReception[] = Array.isArray(
-        contact.publikumsmottak
-    )
-        ? contact.publikumsmottak
-        : [contact.publikumsmottak];
+    const receptions: AudienceReception[] = [contact.publikumsmottak].concat();
 
     return (
         <article className={bem()}>
@@ -39,7 +35,9 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     publishLabel={getLabelMain('published')}
                     modifiedLabel={getLabelMain('lastChanged')}
                 />
-                <Innholdstittel>{`${unit.navn} - kontorinformasjon`}</Innholdstittel>
+                <Innholdstittel
+                    className={bem('header')}
+                >{`${unit.navn} - kontorinformasjon`}</Innholdstittel>
             </header>
             {unit.type in ['HMS', 'ALS', 'TILTAK'] && location && (
                 <div
@@ -91,10 +89,11 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             >
                 <Element tag="h2">Postadresse</Element>
                 <Normaltekst>
-                    <span itemProp="postOfficeBoxNumber">{address}</span>,
+                    <span itemProp="postOfficeBoxNumber">{address}</span>
+                    {', '}
                     <span itemProp="postalCode">
                         {contact.postadresse.postnummer}
-                    </span>
+                    </span>{' '}
                     <span itemProp="addressRegion">
                         {contact.postadresse.poststed}
                     </span>
