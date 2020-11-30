@@ -23,7 +23,11 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     const location = formatAddress(contact.besoeksadresse, true);
     const address = formatAddress(contact.postadresse, false);
     const fax = parsePhoneNumber(contact.faksnummer);
-    const receptions: AudienceReception[] = [contact.publikumsmottak].concat();
+    const receptions: AudienceReception[] = Array.isArray(
+        contact.publikumsmottak
+    )
+        ? contact.publikumsmottak
+        : [contact.publikumsmottak];
 
     return (
         <article className={bem()}>
