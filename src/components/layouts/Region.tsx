@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContentProps } from '../../types/content-props/_content-common';
 import { BEM } from '../../utils/bem';
-import { XpComponent } from '../ComponentMapper';
+import { ComponentMapper } from '../ComponentMapper';
 import { RegionProps, LayoutConfig } from '../../types/component-props/layouts';
 
 const bem = BEM('region');
@@ -37,7 +37,10 @@ export const Region = ({
             className={`${bem()} ${bem(name)}`}
         >
             {components.map((component) => (
-                <XpComponent component={component} pageProps={pageProps} />
+                <ComponentMapper
+                    componentProps={component}
+                    pageProps={pageProps}
+                />
             ))}
         </div>
     );

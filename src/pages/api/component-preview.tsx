@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { PartComponentProps } from '../../types/component-props/_component-common';
-import { XpComponent } from '../../components/ComponentMapper';
+import { ComponentMapper } from '../../components/ComponentMapper';
 import {
     ContentProps,
     ContentType,
@@ -32,7 +32,7 @@ const postHandler = async (req, res) => {
     const props = req.body.props as PartComponentProps;
 
     const html = ReactDOMServer.renderToStaticMarkup(
-        <XpComponent component={props} pageProps={dummyPageProps} />
+        <ComponentMapper componentProps={props} pageProps={dummyPageProps} />
     );
 
     return res.send(html);

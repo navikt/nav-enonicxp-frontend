@@ -24,38 +24,43 @@ const getClass = (component: ComponentProps) => {
 };
 
 type Props = {
-    component: ComponentProps;
+    componentProps: ComponentProps;
     pageProps: ContentProps;
 };
 
-const ComponentMapper = ({ component, pageProps }: Props) => {
-    switch (component.type) {
+const Component = ({ componentProps, pageProps }: Props) => {
+    switch (componentProps.type) {
         case ComponentType.Text:
-            return <Text {...component} />;
+            return <Text {...componentProps} />;
         case ComponentType.Image:
-            return <Image imageUrl={component.image.imageUrl} />;
+            return <Image imageUrl={componentProps.image.imageUrl} />;
         case ComponentType.Layout:
-            return <Layout pageProps={pageProps} layoutProps={component} />;
+            return (
+                <Layout pageProps={pageProps} layoutProps={componentProps} />
+            );
         case ComponentType.Part:
             return (
-                <PartsMapper componentProps={component} pageProps={pageProps} />
+                <PartsMapper
+                    componentProps={componentProps}
+                    pageProps={pageProps}
+                />
             );
         default:
             return (
-                <div>{`Unimplemented component type: ${component.type}`}</div>
+                <div>{`Unimplemented component type: ${componentProps.type}`}</div>
             );
     }
 };
 
-export const XpComponent = ({ component, pageProps }: Props) => {
-    const { path } = component;
-    const className = getClass(component);
+export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
+    const { path } = componentProps;
+    const className = getClass(componentProps);
 
     const componentStyle =
-        component.type === ComponentType.Layout
+        componentProps.type === ComponentType.Layout
             ? {
-                  ...(component?.config?.margin && {
-                      margin: `${component?.config?.margin}`,
+                  ...(componentProps?.config?.margin && {
+                      margin: `${componentProps?.config?.margin}`,
                   }),
               }
             : undefined;
@@ -64,12 +69,12 @@ export const XpComponent = ({ component, pageProps }: Props) => {
         <div
             key={path}
             style={componentStyle}
-            data-portal-component-type={component.type}
+            data-portal-component-type={componentProps.type}
             data-portal-component={path}
             className={`${bem()} ${className}`}
             data-th-remove="tag"
         >
-            <ComponentMapper component={component} pageProps={pageProps} />
+            <Component componentProps={componentProps} pageProps={pageProps} />
         </div>
     );
 };
