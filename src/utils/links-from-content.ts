@@ -6,6 +6,10 @@ import { LinkSelectable } from '../types/component-props/_mixins';
 import { LinkProps } from '../types/link-props';
 
 export const getUrlFromContent = (content: ContentProps) => {
+    if (!content) {
+        return '';
+    }
+
     if (content.__typename === ContentType.InternalLink) {
         return content.data?.target?._path;
     }
@@ -25,7 +29,7 @@ export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
 
     const { _selected, external, internal } = link;
 
-    if (_selected === 'internal' && internal) {
+    if (_selected === 'internal' && internal?.target) {
         return {
             url: getUrlFromContent(internal.target),
             text: internal.text || internal.target.displayName,
