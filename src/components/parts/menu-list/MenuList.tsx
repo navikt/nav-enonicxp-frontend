@@ -29,7 +29,7 @@ export const MenuList = (props: ContentProps) => {
             {filtered.map(([key, LinkItem]) => (
                 <Ekspanderbartpanel
                     key={key}
-                    apen={filtered.length === 1}
+                    apen={key === MenuListItemKey.Shortcuts}
                     tittel={getLabel(key as MenuListItemKey) || key}
                     className={bem('panel')}
                 >
