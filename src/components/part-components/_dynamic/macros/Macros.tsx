@@ -6,6 +6,7 @@ import './Macros.less';
 import { BEM } from '../../../../utils/bem';
 
 const getUrl = ( content: string ) => {
+    // TODO: Lag denne
     return content;
 };
 type ButtonProps =  {
@@ -61,6 +62,7 @@ type lenkeFilerProps = {
 }
 const lenkeFilerKeys = ['text', 'files'];
 const lenkeFiler = ({text, files}): lenkeFilerProps => {
+    // TODO: Lag denne (foreløpig ikke i bruk)
     return null;
 };
 
