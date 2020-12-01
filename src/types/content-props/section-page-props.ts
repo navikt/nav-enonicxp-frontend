@@ -5,14 +5,10 @@ import { ContentListProps } from './content-list-props';
 export type SectionPageData = Partial<{
     panelsHeading: string;
     panelItems: LinkPanel[];
-    nrTableEntries: number;
     tableContents: ContentProps[];
-    nrNews: number;
     newsContents: ContentListProps;
     moreNewsUrl: string;
-    nrNTK: number;
     ntkContents: ContentListProps;
-    nrSC: number;
     scContents: ContentListProps;
     metaDescription: string;
 }>;

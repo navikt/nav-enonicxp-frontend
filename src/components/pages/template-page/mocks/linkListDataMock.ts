@@ -2,9 +2,6 @@ import { ContentType } from '../../../../types/content-props/_content-common';
 import { SectionPageData } from '../../../../types/content-props/section-page-props';
 
 export const linkListDataMock: SectionPageData = {
-    nrNTK: 6,
-    nrSC: 5,
-    nrNews: 3,
     ntkContents: {
         _id: 'mock-id',
         __typename: ContentType.ContentList,

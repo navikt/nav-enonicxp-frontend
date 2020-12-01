@@ -2,7 +2,6 @@ import React from 'react';
 import { ContentListProps } from 'types/content-props/content-list-props';
 import { LinkProps } from 'types/link-props';
 import { Lenkeliste } from '../lenkeliste/Lenkeliste';
-import { sortContentByLastModified } from 'utils/sort';
 import { formatDate } from 'utils/datetime';
 import { getUrlFromContent } from '../../../utils/links-from-content';
 
@@ -10,8 +9,6 @@ type Props = {
     content: ContentListProps;
     title?: string;
     showDateLabel?: boolean;
-    sorted?: boolean;
-    maxItems?: number;
     className?: string;
 };
 
@@ -19,8 +16,6 @@ export const ContentList = ({
     content,
     title,
     showDateLabel = false,
-    sorted = false,
-    maxItems = 128,
     className,
 }: Props) => {
     if (!content?.data?.sectionContents) {
@@ -28,8 +23,6 @@ export const ContentList = ({
     }
 
     const lenkeData: LinkProps[] = content.data.sectionContents
-        .sort(sorted ? sortContentByLastModified : undefined)
-        .slice(0, maxItems)
         .map((scContent) => ({
             url: getUrlFromContent(scContent),
             text: scContent.displayName,
