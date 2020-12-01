@@ -1,4 +1,5 @@
 import React from 'react';
+import { Normaltekst, Element } from 'nav-frontend-typografi';
 
 const parseEmail = (emailString: string) => {
     if (!emailString) {
@@ -32,11 +33,15 @@ interface Props {
 export const Email = (props: Props) => {
     const emailAddress = parseEmail(props.email);
     return props.unitType in ['HMS', 'ALS', 'TILTAK'] && emailAddress !== '' ? (
-        <div itemProp="contactPoint" itemType="http://schema.org/ContactPoint">
-            <h3 itemProp="contactType">Epost</h3>
-            <p className="u-email" itemProp="email">
-                {emailAddress}
-            </p>
+        <div
+            itemProp="contactPoint"
+            itemScope
+            itemType="http://schema.org/ContactPoint"
+        >
+            <Element tag="h2" itemProp="contactType">
+                Epost
+            </Element>
+            <Normaltekst itemProp="email">{emailAddress}</Normaltekst>
         </div>
     ) : null;
 };

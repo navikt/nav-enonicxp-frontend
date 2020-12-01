@@ -1,5 +1,6 @@
 import React from 'react';
 import { ParsedHtml } from '../../ParsedHtml';
+import { Normaltekst, Element } from 'nav-frontend-typografi';
 
 function specialInfoParseLink(infoContent: string) {
     const isTextClean = (str: string) => {
@@ -59,12 +60,12 @@ interface Props {
 export const SpecialInformation = (props: Props) => {
     // contact.spesielleOpplysninger
     const specialInfo = parseSpecialInfo(props.info);
-    return specialInfo !== '' ? (
-        <div className="p-note">
-            <h3>Opplysninger</h3>
-            <p>
+    return specialInfo ? (
+        <div>
+            <Element tag="h2">Opplysninger</Element>
+            <Normaltekst>
                 <ParsedHtml content={specialInfo} />
-            </p>
+            </Normaltekst>
         </div>
     ) : null;
 };

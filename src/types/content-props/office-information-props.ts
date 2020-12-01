@@ -22,7 +22,7 @@ export interface Address {
     type: string;
 }
 
-export interface OpeningHours {
+export interface OpeningHoursProps {
     id: number;
     dag: string;
     dato: string;
@@ -31,12 +31,13 @@ export interface OpeningHours {
     kommentar: string;
     // this should have been a bool put I get a string..
     stengt: string;
+    isoDate: string;
 }
 
 export interface AudienceReception {
     id: number;
     besoeksadresse: Address;
-    aapningstider: OpeningHours[];
+    aapningstider: OpeningHoursProps[];
     stedsbeskrivelse: string;
 }
 

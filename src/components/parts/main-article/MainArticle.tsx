@@ -13,6 +13,7 @@ import {
     ContentProps,
 } from '../../../types/content-props/_content-common';
 import './MainArticle.less';
+import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 
 export const MainArticle = (propsInitial: ContentProps) => {
     const props =
@@ -42,8 +43,12 @@ export const MainArticle = (propsInitial: ContentProps) => {
                     publishLabel={getLabel('published')}
                     modifiedLabel={getLabel('lastChanged')}
                 />
-                <h1>{props.displayName}</h1>
-                <p className={bem('preface')}>{data.ingress}</p>
+                <Innholdstittel className={bem('title')}>
+                    {props.displayName}
+                </Innholdstittel>
+                <Normaltekst className={bem('preface')}>
+                    {data.ingress}
+                </Normaltekst>
                 <Innholdsfortegnelse
                     innholdsfortegnelse={innholdsfortegnelse}
                     label={getLabel('tableOfContents')}
