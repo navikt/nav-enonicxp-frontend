@@ -102,7 +102,7 @@
         }
     },
     "lint-staged": {
-        "*.{js,jsx,json,md,ts,tsx}": "prettier --write"
+        "*.{js,jsx,json,md,ts,tsx,less, css}": "prettier --write"
     },
     "eslintConfig": {
         "extends": [
