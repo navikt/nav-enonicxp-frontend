@@ -11,15 +11,7 @@ const LinkLists = (props: ContentProps) => {
     const getLabel = translator('linkLists', props.language);
     const { data } = props;
 
-    const {
-        nrNews,
-        newsContents,
-        moreNewsUrl,
-        nrNTK,
-        ntkContents,
-        nrSC,
-        scContents,
-    } = data;
+    const { newsContents, moreNewsUrl, ntkContents, scContents } = data;
 
     const bem = BEM('link-lists');
 
@@ -31,14 +23,12 @@ const LinkLists = (props: ContentProps) => {
                         <ContentList
                             content={ntkContents}
                             className={bem('column')}
-                            maxItems={nrNTK}
                         />
                     )}
                     {newsContents?.data?.sectionContents?.length > 0 && (
                         <div className={`${bem('column')} ${bem('nyheter')}`}>
                             <ContentList
                                 content={newsContents}
-                                maxItems={nrNews}
                                 showDateLabel={true}
                                 sorted={true}
                             />
@@ -60,7 +50,6 @@ const LinkLists = (props: ContentProps) => {
                         <ContentList
                             content={scContents}
                             className={bem('column')}
-                            maxItems={nrSC}
                         />
                     )}
                 </div>
