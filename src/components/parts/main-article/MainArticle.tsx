@@ -35,7 +35,13 @@ export const MainArticle = (propsInitial: ContentProps) => {
 
     return (
         <article className={bem()}>
-            <header className={bem('header')}>
+            <header
+                className={
+                    innholdsfortegnelse.length === 0
+                        ? bem('header')
+                        : bem('header-med-toc')
+                }
+            >
                 <ArtikkelDato
                     publish={props.publish}
                     createdTime={props.createdTime}
