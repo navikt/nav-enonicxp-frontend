@@ -22,20 +22,22 @@ export const MainArticle = (propsInitial: ContentProps) => {
             : propsInitial;
 
     const { data } = props;
-
     const bem = BEM('main-article');
     const getLabel = translator('mainArticle', props.language);
-
     const hasTableOfContest =
         data.hasTableOfContents && data.hasTableOfContents !== 'none';
     const innholdsfortegnelse = parseInnholdsfortegnelse(
         data.text,
         hasTableOfContest
     );
+    const headerClassName =
+        innholdsfortegnelse.length === 0
+            ? bem('header')
+            : bem('header-med-toc');
 
     return (
         <article className={bem()}>
-            <header className={bem('header')}>
+            <header className={headerClassName}>
                 <ArtikkelDato
                     publish={props.publish}
                     createdTime={props.createdTime}
