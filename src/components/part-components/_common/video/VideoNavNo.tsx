@@ -8,11 +8,10 @@ export type VideoProps = {
 };
 
 const VideoNavNo = ({
-                 title,
-                 src,
-               }: VideoProps) => {
+     title,
+     src,
+}: VideoProps) => {
     const bem = BEM('video-navno');
-
     return (
         <div className={`${bem()}`}>
             <iframe title={title} src={src} allow="fullscreen" />

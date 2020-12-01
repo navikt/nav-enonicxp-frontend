@@ -5,7 +5,7 @@ import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import Link from 'next/link';
 import Lenke from 'nav-frontend-lenker';
-import { ParseMacro } from './Macros';
+import { ParseMacro } from './macros/Macros';
 
 
 interface Props {

@@ -1,0 +1,21 @@
+@import (reference) '../../../../global';
+
+blockquote.macro-quote {
+  font-weight: normal;
+  margin: 1.5rem 0;
+  padding: 0 2rem;
+  position: relative;
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+  :before {
+    content: '\201C';
+    font-size: 3.5rem;
+    color: #c30000;
+    font-family: 'Times new roman', serif;
+    position: absolute;
+    left: 0;
+    top: 10px;
+  }
+}
