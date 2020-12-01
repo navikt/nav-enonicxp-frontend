@@ -19,7 +19,6 @@ export const NewsList = ({ config }: DynamicNewsList) => {
             <ContentList
                 showDateLabel={true}
                 content={contentList.target}
-                maxItems={contentList.numLinks}
                 title={title}
             />
             {moreNews && (

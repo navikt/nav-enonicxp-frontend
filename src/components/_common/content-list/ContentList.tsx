@@ -9,8 +9,6 @@ type Props = {
     content: ContentListProps;
     title?: string;
     showDateLabel?: boolean;
-    sorted?: boolean;
-    maxItems?: number;
     className?: string;
 };
 
