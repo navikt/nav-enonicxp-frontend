@@ -55,7 +55,7 @@ const partsWithOwnData: {
     [PartType.NewsList]: NewsList,
 };
 
-const partsHidden: { [key in PartDeprecated] } = {
+const partsDeprecated: { [key in PartDeprecated] } = {
     [PartType.Notifications]: true,
     [PartType.BreakingNews]: true,
     [PartType.PageCrumbs]: true,
@@ -74,7 +74,7 @@ export const PartsMapper = ({ componentProps, pageProps }: Props) => {
         return <PartWithOwnData {...componentProps} />;
     }
 
-    if (partsHidden[descriptor]) {
+    if (partsDeprecated[descriptor]) {
         return null;
     }
 
