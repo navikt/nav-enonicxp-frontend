@@ -5,16 +5,7 @@ import {
 import { LinkSelectable } from '../types/component-props/_mixins';
 import { LinkProps } from '../types/link-props';
 
-const invalidLinkProps = {
-    url: '/',
-    text: 'Invalid link',
-};
-
 export const getUrlFromContent = (content: ContentProps) => {
-    if (!content) {
-        return '';
-    }
-
     if (content.__typename === ContentType.InternalLink) {
         return content.data?.target?._path;
     }
@@ -26,32 +17,30 @@ export const getUrlFromContent = (content: ContentProps) => {
 
 export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
     if (!link) {
-        return invalidLinkProps;
+        return {
+            url: '/',
+            text: 'Invalid link',
+        };
     }
 
     const { _selected, external, internal } = link;
 
-    if (_selected === 'internal') {
-        if (!internal?.target) {
-            return invalidLinkProps;
-        }
-
+    if (_selected === 'internal' && internal) {
         return {
             url: getUrlFromContent(internal.target),
             text: internal.text || internal.target.displayName,
         };
     }
 
-    if (_selected === 'external') {
-        if (!external) {
-            return invalidLinkProps;
-        }
-
+    if (_selected === 'external' && external) {
         return {
             url: external.url,
             text: external.text,
         };
     }
 
-    return invalidLinkProps;
+    return {
+        url: '/',
+        text: 'Invalid link',
+    };
 };

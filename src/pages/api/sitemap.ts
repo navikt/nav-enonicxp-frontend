@@ -17,7 +17,6 @@ const handler = async (req, res) => {
         ? await cache.get(cacheKey)
         : await fetchSitemap(sitemapUrl);
 
-    res.setHeader('X-Robots-Tag', 'noindex');
     res.setHeader('Content-Type', 'application/xml');
     res.status(200);
     res.end(sitemapContent);

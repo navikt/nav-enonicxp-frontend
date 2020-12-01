@@ -58,9 +58,7 @@ export const ParsedHtml = (props: Props) => {
 
     // htmlReactParser does not always handle linebreaks well...
     const htmlParsed = htmlReactParser(
-        content
-            .replace(/(\r\n|\n|\r)/gm, '')
-            .replace(/(<table)/gm, '<table class="tabell tabell--stripet"'),
+        content.replace(/(\r\n|\n|\r)/gm, ''),
         replaceElements
     );
 

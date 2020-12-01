@@ -146,7 +146,5 @@ export const fetchPage = async (
         });
     }
 
-    return content?.__typename
-        ? content
-        : makeErrorProps(idOrPath, `Ukjent feil`, 500);
+    return content || makeErrorProps(idOrPath, `Ukjent feil`, 500);
 };

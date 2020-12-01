@@ -4,20 +4,19 @@ export interface LinkItem {
     link: ContentProps[];
 }
 
-export enum MenuListItemKey {
-    Selfservice = 'selfservice',
-    FormAndApplication = 'formAndApplication',
-    ProcessTimes = 'processTimes',
-    RelatedInformation = 'relatedInformation',
-    International = 'international',
-    ReportChanges = 'reportChanges',
-    Rates = 'rates',
-    AppealRights = 'appealRights',
-    Membership = 'membership',
-    RulesAndRegulations = 'rulesAndRegulations',
-    Saksbehandling = 'saksbehandling',
-    Shortcuts = 'shortcuts',
-}
+export type MenuListItemKey =
+    | 'selfservice'
+    | 'formAndApplication'
+    | 'processTimes'
+    | 'relatedInformation'
+    | 'international'
+    | 'reportChanges'
+    | 'rates'
+    | 'appealRights'
+    | 'membership'
+    | 'rulesAndRegulations'
+    | 'saksbehandling'
+    | 'shortcuts';
 
 export type MenuListItem = {
     [key in MenuListItemKey]: LinkItem;
