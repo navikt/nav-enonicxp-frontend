@@ -30,7 +30,6 @@ const LinkLists = (props: ContentProps) => {
                             <ContentList
                                 content={newsContents}
                                 showDateLabel={true}
-                                sorted={true}
                             />
                             {moreNewsUrl && (
                                 <LenkeNavNo
