@@ -1,5 +1,6 @@
 @import (reference) '../../../global';
 @import (reference) '~nav-frontend-typografi-style/src/index';
+@import '~nav-frontend-tabell-style/src/index';
 
 .main-article {
     width: 100%;
@@ -9,6 +10,8 @@
 
     &__header {
         margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #d1d1d1;
     }
 
     &__title {
@@ -47,51 +50,14 @@
         }
 
         table {
-            width: 100%;
-            line-height: 1.15em;
+            float: none;
             margin-bottom: 1rem;
+            line-height: 1.15em;
 
-            tr:first-child th,
-            tr:first-child td {
-                color: #3e3832;
-                background-color: #fff;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.55);
-                font-weight: 600;
-                line-height: 1.375rem;
-            }
-
-            tr:nth-child(even) {
-                color: #3e3832;
-                font-size: 1rem;
-                background-color: rgba(0, 0, 0, 0.03);
-                border-top: 1px solid rgba(0, 0, 0, 0.15);
-                border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-                font-weight: 400;
-                padding: 1rem;
-                line-height: 1.375rem;
-            }
-            tr:last-child {
-                border-bottom: 1px solid rgba(0, 0, 0, 0.55);
-            }
-
-            tr:first-child th strong,
-            tr:first-child td strong {
-                font-size: 1.1rem;
-                font-weight: 700;
-            }
             th,
             td {
-                padding: 0.625rem;
                 vertical-align: top;
-                font-size: 0.9375rem;
-            }
-            th p,
-            td p {
-                font-size: 1rem;
-            }
-            th p:last-child,
-            td p:last-child {
-                margin: 0;
+                padding: 0.625rem;
             }
         }
 

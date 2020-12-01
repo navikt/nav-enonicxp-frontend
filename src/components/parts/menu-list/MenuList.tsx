@@ -5,11 +5,13 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { translator } from 'translations';
 import { BEM } from 'utils/bem';
 import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import { ContentType } from 'types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import './MenuList.less';
 
 export const MenuList = (props: ContentProps) => {
     const bem = BEM('menu-list');
+    const { __typename } = props;
     const data = props.data;
     const language = props.language;
     const menuListItems = data?.menuListItems;
@@ -26,27 +28,32 @@ export const MenuList = (props: ContentProps) => {
 
     return (
         <div className={bem()}>
-            {filtered.map(([key, LinkItem]) => (
-                <Ekspanderbartpanel
-                    key={key}
-                    apen={filtered.length === 1}
-                    tittel={getLabel(key as MenuListItemKey) || key}
-                    className={bem('panel')}
-                >
-                    <ul>
-                        {(LinkItem as LinkItem)?.link?.map((link) => {
-                            const path = xpPathToAppPath(link._path);
-                            return (
-                                <li key={path}>
-                                    <Lenke href={path}>
-                                        {link.displayName}
-                                    </Lenke>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </Ekspanderbartpanel>
-            ))}
+            {filtered.map(([key, LinkItem]) => {
+                const isShortcuts = key === MenuListItemKey.Shortcuts;
+                const isPageList = __typename === ContentType.PageList;
+                const isOpen = isShortcuts && isPageList;
+                return (
+                    <Ekspanderbartpanel
+                        key={key}
+                        apen={isOpen}
+                        tittel={getLabel(key as MenuListItemKey) || key}
+                        className={bem('panel')}
+                    >
+                        <ul>
+                            {(LinkItem as LinkItem)?.link?.map((link) => {
+                                const path = xpPathToAppPath(link._path);
+                                return (
+                                    <li key={path}>
+                                        <Lenke href={path}>
+                                            {link.displayName}
+                                        </Lenke>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </Ekspanderbartpanel>
+                );
+            })}
         </div>
     );
 };
