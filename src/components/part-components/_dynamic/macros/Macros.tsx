@@ -32,13 +32,13 @@ const ButtonBlue = ({text, url, content}: ButtonProps) => {
 };
 
 type FotnoteProps = {
-    text: string;
+    fotnote: string;
 }
-const FotnoteKeys = ['text'];
-const Fotnote = ({text}: FotnoteProps) => {
+const FotnoteKeys = ['fotnote'];
+const Fotnote = ({fotnote}: FotnoteProps) => {
     return (
         <sup>
-            {text}
+            {fotnote}
         </sup>
     );
 };

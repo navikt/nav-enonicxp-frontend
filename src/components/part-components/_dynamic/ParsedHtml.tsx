@@ -26,23 +26,27 @@ export const ParsedHtml = (props: Props) => {
                 return ParseMacro(data);
             }
 
-            if (name?.toLowerCase() === 'h1') {
+            if (name?.toLowerCase() === 'h1' && children) {
                 return (
                     <Innholdstittel>
-                        {children && domToReact(children, replaceElements)}
+                        {domToReact(children, replaceElements)}
                     </Innholdstittel>
                 );
             }
 
-            if (name?.toLowerCase() === 'p') {
-                return (
-                    <Normaltekst>
-                        {children && domToReact(children, replaceElements)}
-                    </Normaltekst>
-                );
+            if (name?.toLowerCase() === 'p' && children) {
+                if (children[0]?.type === 'comment') {
+                    return domToReact(children, replaceElements);
+                } else {
+                    return (
+                        <Normaltekst>
+                            {domToReact(children, replaceElements)}
+                        </Normaltekst>
+                    );
+                }
             }
 
-            if (name?.toLowerCase() === 'a' && attribs?.href) {
+            if (name?.toLowerCase() === 'a' && attribs?.href && children) {
                 const href = attribs.href
                     .replace(xpLegacyPath, '')
                     .replace('https://www.nav.no', '');
