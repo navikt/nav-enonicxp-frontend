@@ -26,10 +26,11 @@ export const MenuList = (props: ContentProps) => {
         <div className={bem()}>
             {filtered.map(([key, LinkItem]) => {
                 const links = (LinkItem as LinkItem)?.link;
+                const files = (LinkItem as LinkItem)?.files;
                 const isShortcuts = key === MenuListItemKey.Shortcuts;
                 const isPageList = __typename === ContentType.PageList;
                 const isOpen = isShortcuts && isPageList;
-                return links?.length > 0 ? (
+                return links?.length > 0 || files?.length > 0 ? (
                     <Ekspanderbartpanel
                         key={key}
                         apen={isOpen}
@@ -37,7 +38,7 @@ export const MenuList = (props: ContentProps) => {
                         className={bem('panel')}
                     >
                         <ul>
-                            {links.map((link) => {
+                            {links?.map((link) => {
                                 const path = xpPathToUrl(link._path);
                                 return (
                                     <li key={path}>
@@ -47,6 +48,13 @@ export const MenuList = (props: ContentProps) => {
                                     </li>
                                 );
                             })}
+                            {files?.map((file) => (
+                                <li key={file._path}>
+                                    <Lenke href={file.mediaUrl}>
+                                        {file.displayName}
+                                    </Lenke>
+                                </li>
+                            ))}
                         </ul>
                     </Ekspanderbartpanel>
                 ) : null;
