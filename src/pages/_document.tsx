@@ -48,14 +48,7 @@ class MyDocument extends Document<Props> {
 
         return (
             <Html>
-                <Head>
-                    {/* Legacy scripts */}
-                    <script
-                        src={`${process.env.APP_ORIGIN}/legacy/scripts/jquery.min.js`}
-                    />
-                    {/* Legacy scripts */}
-                    {STYLES}
-                </Head>
+                <Head>{STYLES}</Head>
                 <body data-portal-component-type="page">
                     {HEADER}
                     <Main />

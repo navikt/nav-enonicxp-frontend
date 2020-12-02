@@ -2,7 +2,6 @@ import { ExternalLinkData } from './external-link-props';
 import { InternalLinkData } from './internal-link-props';
 import { ContentListData } from './content-list-props';
 import { XpContentRef } from '../../utils/paths';
-import { LegacyData } from './legacy-props';
 import { PageListData } from './page-list-props';
 import { MainArticleData } from './main-article-props';
 import { ErrorData } from './error-props';
@@ -15,7 +14,6 @@ import { MainArticleChapterData } from './main-article-chapter-props';
 import { OfficeInformationData } from './office-information-props';
 
 export enum ContentType {
-    Legacy = 'legacy',
     Error = 'error',
     Site = 'portal_Site',
     Fragment = 'portal_Fragment',
@@ -60,7 +58,6 @@ type TypeSpecificData = ContentListData &
     ExternalLinkData &
     InternalLinkData &
     LargeTableData &
-    LegacyData &
     MainArticleData &
     MainArticleChapterData &
     OfficeInformationData &

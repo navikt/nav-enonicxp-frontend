@@ -1,38 +1,10 @@
-import {
-    ContentProps,
-    ContentType,
-    contentTypeIsImplemented,
-} from '../types/content-props/_content-common';
+import { ContentProps } from '../types/content-props/_content-common';
 import { makeErrorProps } from '../types/content-props/error-props';
-import {
-    xpContentBasePath,
-    xpLegacyDraftUrl,
-    xpLegacyUrl,
-    xpServiceUrl,
-} from './paths';
+import { xpServiceUrl } from './paths';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { Breadcrumb } from '../types/breadcrumb';
 import { NotificationProps } from '../types/notification-props';
 import { LanguageSelectorProps } from '../types/language-selector-props';
-
-const fetchLegacyHtml = (path: string, isDraft = false) => {
-    const url = `${isDraft ? xpLegacyDraftUrl : xpLegacyUrl}/${encodeURI(
-        path[0] === '/' ? path.slice(1) : path
-    )}`;
-    console.log('fetching legacy html from:', url);
-
-    return fetchWithTimeout(url, 5000)
-        .then((res) => {
-            if (res.ok) {
-                return res;
-            }
-            return {
-                ...res,
-                statusText: `Failed to fetch legacy html from ${path} at ${url}`,
-            };
-        })
-        .catch(console.error);
-};
 
 const fetchContent = (
     idOrPath: string,
@@ -130,21 +102,6 @@ export const fetchPage = async (
     secret: string
 ): Promise<ContentProps> => {
     const content = await fetchContent(idOrPath, isDraft, secret);
-
-    if (content && !contentTypeIsImplemented(content.__typename)) {
-        const path = content._path?.replace(xpContentBasePath, '');
-
-        return await fetchLegacyHtml(path, isDraft).then(async (res) => {
-            if (!res.ok) {
-                return makeErrorProps(path, res.statusText, res.status);
-            }
-            return {
-                ...content,
-                __typename: ContentType.Legacy,
-                data: { html: await res.text() },
-            };
-        });
-    }
 
     return content?.__typename
         ? content

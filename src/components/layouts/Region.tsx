@@ -40,6 +40,7 @@ export const Region = ({
                 <ComponentMapper
                     componentProps={component}
                     pageProps={pageProps}
+                    key={component.path}
                 />
             ))}
         </div>
