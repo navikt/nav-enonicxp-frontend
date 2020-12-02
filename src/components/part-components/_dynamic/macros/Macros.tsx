@@ -1,60 +1,10 @@
 import * as React from 'react';
-import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
-import VideoNavNo from '../../_common/video/VideoNavNo';
-import { ParsedHtml } from '../ParsedHtml';
-import './Macros.less';
-import { BEM } from '../../../../utils/bem';
-
-const getUrl = ( content: string ) => {
-    // TODO: Lag denne
-    return content;
-};
-type ButtonProps =  {
-    text: string;
-    url?: string;
-    content?: string;
-}
-const ButtonKeys = ['text', 'url', 'content'];
-const Button = ({text, url, content}: ButtonProps) => {
-    const href = url ? url : getUrl(content);
-    return (
-        <a className={'knapp knapp--standard'} href={href}>
-            {text}
-        </a>
-    );
-};
-const ButtonBlue = ({text, url, content}: ButtonProps) => {
-    const href = url ? url : getUrl(content);
-    return (
-        <a className={'knapp knapp--hoved'} href={href}>
-            {text}
-        </a>
-    );
-};
-
-type FotnoteProps = {
-    fotnote: string;
-}
-const FotnoteKeys = ['fotnote'];
-const Fotnote = ({fotnote}: FotnoteProps) => {
-    return (
-        <sup>
-            {fotnote}
-        </sup>
-    );
-};
-
-type infoBoksProps = {
-    infoBoks: string;
-}
-const infoBoksKeys = ['infoBoks'];
-const infoBoks = ({infoBoks}: infoBoksProps) => {
-    return (
-        <AlertStripeInfo>
-            <ParsedHtml content={infoBoks} />
-        </AlertStripeInfo>
-    );
-};
+import { Button, ButtonBlue, ButtonKeys } from './buttons';
+import { infoBoks, infoBoksKeys, varselBoks, varselBoksKeys } from './bokser';
+import { Fotnote, FotnoteKeys } from './Fotnote';
+import { Quote, QuoteKeys } from './Quote';
+import { Video, VideoKeys } from './Video';
+import { Tankestrek } from './Tankestrek';
 
 type lenkeFilerProps = {
     text: string;
@@ -64,46 +14,6 @@ const lenkeFilerKeys = ['text', 'files'];
 const lenkeFiler = ({text, files}): lenkeFilerProps => {
     // TODO: Lag denne (foreløpig ikke i bruk)
     return null;
-};
-
-type QuoteProps = {
-    quote: string;
-}
-const QuoteKeys = ['quote'];
-const Quote = ({quote}: QuoteProps) => {
-    const bem = BEM('macro-quote');
-    return (
-        <blockquote className={`${bem()}`}>
-            <p>{quote}</p>
-        </blockquote>
-    );
-};
-
-const Tankestrek = () => {
-    return (<> – </>);
-};
-
-type varselBoksProps = {
-    varselBoks: string;
-}
-const varselBoksKeys = ['varselBoks'];
-const varselBoks = ({varselBoks}: varselBoksProps) => {
-    return (
-        <AlertStripeAdvarsel>
-            <ParsedHtml content={varselBoks} />
-        </AlertStripeAdvarsel>
-    );
-};
-
-type VideoProps = {
-    title: string;
-    video: string;
-}
-const VideoKeys = ['title', 'video'];
-const Video = ({title, video}: VideoProps) => {
-    return (
-        <VideoNavNo src={video} title={title} />
-    );
 };
 
 const htmlMacros = {
