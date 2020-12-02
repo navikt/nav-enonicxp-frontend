@@ -21,8 +21,8 @@ export const ParsedHtml = (props: Props) => {
     const replaceElements = {
         replace: ({ name, attribs, type, data, children }: DomElement) => {
 
-            if (type?.toLowerCase() === 'comment') {
-                return ParseMacro(data);
+            if (attribs?.class === 'xp-macro' && children) {
+                return ParseMacro(children);
             }
 
             if (name?.toLowerCase() === 'h1' && children) {
@@ -34,15 +34,11 @@ export const ParsedHtml = (props: Props) => {
             }
 
             if (name?.toLowerCase() === 'p' && children) {
-                if (children[0]?.type === 'comment') {
-                    return domToReact(children, replaceElements);
-                } else {
-                    return (
-                        <Normaltekst>
-                            {domToReact(children, replaceElements)}
-                        </Normaltekst>
-                    );
-                }
+                return (
+                    <Normaltekst>
+                        {domToReact(children, replaceElements)}
+                    </Normaltekst>
+                );
             }
 
             if (name?.toLowerCase() === 'a' && attribs?.href && children) {

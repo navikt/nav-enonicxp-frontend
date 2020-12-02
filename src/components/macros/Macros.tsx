@@ -5,6 +5,8 @@ import { Fotnote, FotnoteKeys } from './Fotnote';
 import { Quote, QuoteKeys } from './Quote';
 import { Video, VideoKeys } from './Video';
 import { Tankestrek } from './Tankestrek';
+import { DOMElement } from 'react';
+import { DomElement } from 'domhandler';
 
 type lenkeFilerProps = {
     text: string;
@@ -78,7 +80,9 @@ const getProps = (data, validProps) => {
     return props;
 };
 
-export const ParseMacro = (data: string) => {
+export const ParseMacro = (data: DomElement[]) => {
+    console.log(data);
+    /*
     if (data?.includes('#MACRO')) {
         // Må gjøre om evetuelle anførselstegn for atributt-verdier til '
         const parsedParam = data.replace(/\\"/g, `'`);
@@ -96,5 +100,6 @@ export const ParseMacro = (data: string) => {
             );
         }
     }
+    */
     return null;
 };
