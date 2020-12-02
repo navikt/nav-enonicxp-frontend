@@ -3,7 +3,6 @@ import {
     ContentProps,
     ContentType,
 } from '../types/content-props/_content-common';
-import LegacyPage from './pages/legacy-page/LegacyPage';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { makeErrorProps } from '../types/content-props/error-props';
 import { DynamicPage } from './pages/dynamic-page/DynamicPage';
@@ -17,7 +16,6 @@ export const contentToReactComponent: Partial<
 > = {
     [ContentType.Error]: ErrorPage,
     [ContentType.LargeTable]: LargeTablePage,
-    [ContentType.Legacy]: LegacyPage,
     [ContentType.Fragment]: FragmentPage,
     [ContentType.TemplatePage]: TemplatePage,
 
@@ -48,7 +46,8 @@ export const ContentMapper = ({ content }: Props) => {
         <ErrorPage
             {...makeErrorProps(
                 content._path,
-                `Content type not implemented: ${content.__typename}`
+                `Content type not implemented: ${content.__typename}`,
+                501
             )}
         />
     );

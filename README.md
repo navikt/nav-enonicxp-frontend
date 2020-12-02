@@ -1,4 +1,4 @@
-React/[Next.js](https://nextjs.org/) frontend for Enonic XP headless CMS. 
+React/[Next.js](https://nextjs.org/) frontend for Enonic XP headless CMS.
 
 ## Lokal kjøring
 
@@ -7,11 +7,13 @@ lokalt tilgjengelig instans av [denne branchen](https://github.com/navikt/nav-en
 av Enonic XP.
 
 #### Development mode:
+
 ```
 npm run dev
 ```
 
 #### Production mode:
+
 Kopier først innhold fra .env.development til .env.local
 
 ```
@@ -19,6 +21,7 @@ npm run build && npm start
 ```
 
 ## vhost config
+
 Mappings legges inn i com.enonic.xp.web.vhost.cfg.
 
 #### lokalt
@@ -33,11 +36,6 @@ mapping.legacy.host = localhost
 mapping.legacy.source = /_/legacy
 mapping.legacy.target = /site/default/master/www.nav.no/
 mapping.legacy.idProvider.system = default
-
-mapping.legacydraft.host = localhost
-mapping.legacydraft.source = /_/legacy/draft
-mapping.legacydraft.target = /site/default/draft/www.nav.no/
-mapping.legacydraft.idProvider.system = default
 ```
 
 ##### q/prod:
@@ -52,11 +50,6 @@ mapping.legacy.host = www<-q-n>.nav.no
 mapping.legacy.source = /_/legacy
 mapping.legacy.target = /site/default/master/www.nav.no/
 mapping.legacy.idProvider.adfs = default
-
-mapping.legacydraft.host = www<-q-n>.nav.no
-mapping.legacydraft.source = /_/legacy/draft
-mapping.legacydraft.target = /site/default/draft/www.nav.no/
-mapping.legacydraft.idProvider.adfs = default
 
 # this is for pre-release compatibility only
 mapping.draftlocal.host = portal-admin<-q-n>.oera.no
