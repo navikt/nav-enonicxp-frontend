@@ -49,6 +49,12 @@ const getLinkData = (contentData: ContentProps | null): TableData | null => {
                 tittel: contentData.displayName,
                 ingress: contentData.data.ingress,
             };
+        case ContentType.SectionPage:
+            return {
+                url: contentData._path,
+                tittel: contentData.displayName,
+                ingress: contentData.data.ingress,
+            };
         default:
             return {
                 url: contentData._path,
