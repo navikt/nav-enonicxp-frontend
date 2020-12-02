@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
 import {
     Innholdstittel,
     Normaltekst,
@@ -9,6 +8,11 @@ import {
 import { BEM } from '../../../utils/bem';
 import { translator } from '../../../translations';
 import './PublishingCalendar.less';
+import {
+    PublishingCalendarChildren,
+    PublishingCalendarEntries,
+    PublishingCalendarProps,
+} from '../../../types/content-props/publishing-calendar-props';
 
 const monthShortName = [
     'JAN',
@@ -25,7 +29,9 @@ const monthShortName = [
     'DES',
 ];
 
-const processEntries = (children: any) => {
+const processEntries = (
+    children: PublishingCalendarChildren[]
+): PublishingCalendarEntries[] => {
     return children
         .map((item) => {
             const publDate = new Date(item.data.date);
@@ -37,13 +43,14 @@ const processEntries = (children: any) => {
                 month: monthShortName[publDate.getMonth()],
             };
         })
-        .sort((a, b) => a.publDate - b.publDate); // Dato for publisering: stigende
+        .sort((a, b) => a.publDate.getTime() - b.publDate.getTime()); // Dato for publisering: stigende
 };
 
-const PublishingCalendar = (props: ContentProps) => {
+const PublishingCalendar = (props: PublishingCalendarProps) => {
     const bem = BEM('publishing-calendar');
     const getLabel = translator('publishingCalendar', props.language);
     const items = processEntries(props.children);
+
     return (
         <div className={bem()}>
             <header>
