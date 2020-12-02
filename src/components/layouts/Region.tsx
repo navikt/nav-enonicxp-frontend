@@ -36,8 +36,9 @@ export const Region = ({
             data-portal-region={name}
             className={`${bem()} ${bem(name)}`}
         >
-            {components.map((component) => (
+            {components.map((component, idx) => (
                 <ComponentMapper
+                    key={component.type + '_' + idx}
                     componentProps={component}
                     pageProps={pageProps}
                 />

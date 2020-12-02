@@ -23,6 +23,7 @@ import { OfficeInformation } from './office-information/OfficeInformation';
 import { Header } from './_dynamic/header/Header';
 import { LinkList } from './_dynamic/link-list/LinkList';
 import { NewsList } from './_dynamic/news-list/NewsList';
+import PublishingCalendar from './publishing-calendar/PublishingCalendar';
 
 type Props = {
     componentProps: PartComponentProps;
@@ -41,6 +42,7 @@ const partsWithPageData: {
     [PartType.OfficeInformation]: OfficeInformation,
     [PartType.PageHeading]: PageHeading,
     [PartType.PageList]: PageList,
+    [PartType.PublishingCalendar]: PublishingCalendar,
 };
 
 const partsWithOwnData: {
