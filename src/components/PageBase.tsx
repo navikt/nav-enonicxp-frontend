@@ -1,11 +1,14 @@
-import { ContentType, ContentTypeSchema } from '../types/content-types/_schema';
+import {
+    ContentProps,
+    ContentType,
+} from '../types/content-props/_content-common';
 import { Breadcrumb } from '../types/breadcrumb';
 import { LanguageSelectorProps } from '../types/language-selector-props';
-import { NotificationProps } from '../types/content-types/notification-props';
+import { NotificationProps } from '../types/notification-props';
 import { useRouter } from 'next/router';
-import { FallbackPage } from './page-components/fallback-page/FallbackPage';
+import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
-import ContentToComponentMapper from './ContentToComponentMapper';
+import ContentMapper from './ContentMapper';
 import React from 'react';
 import {
     fetchBreadcrumbs,
@@ -13,13 +16,13 @@ import {
     fetchNotifications,
     fetchPage,
 } from '../utils/fetch-content';
-import { makeErrorProps } from '../types/content-types/error-props';
-import { ErrorPage } from './page-components/error-page/ErrorPage';
+import { makeErrorProps } from '../types/content-props/error-props';
+import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
 
 type PageProps = {
-    content: ContentTypeSchema;
+    content: ContentProps;
     breadcrumbs: Breadcrumb[];
     languages: LanguageSelectorProps[];
     notifications: NotificationProps[];
@@ -51,7 +54,7 @@ export const PageBase = (props: PageProps) => {
             languages={languages}
             notifications={notifications}
         >
-            <ContentToComponentMapper content={content} />
+            <ContentMapper content={content} />
         </PageWrapper>
     );
 };
@@ -70,7 +73,10 @@ export const fetchPageProps = async (
         ...(revalidate && { revalidate }),
     };
 
-    if (content.__typename === ContentType.Error && content.errorCode === 404) {
+    if (
+        content.__typename === ContentType.Error &&
+        content.data.errorCode === 404
+    ) {
         return {
             ...defaultProps,
             notFound: true,

@@ -1,0 +1,35 @@
+@import '../../../global';
+
+.link-panels {
+    @numCols: 3;
+    @incCols: 2;
+    @margin: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+    text-align: center;
+    width: 100%;
+
+    &__item {
+        text-align: start;
+        margin-bottom: @margin;
+        padding: 1.5rem;
+
+        @media @screen-mobile {
+            width: 100%;
+        }
+
+        @media @screen-desktop {
+            width: calc(
+                percentage(1 / @numCols) - @margin * ((@numCols - 1) / @numCols)
+            );
+            &:not(:nth-child(@{numCols}n)):not(:last-child) {
+                margin-right: @margin / 2;
+            }
+            &:not(:nth-child(@{numCols}n-@{incCols})) {
+                margin-left: @margin / 2;
+            }
+        }
+    }
+}

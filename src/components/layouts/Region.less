@@ -1,0 +1,93 @@
+@import (reference) '../../global';
+
+.region {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+
+    @media (max-width: @mobilMaxWidth) {
+        flex-direction: column;
+    }
+
+    &__first,
+    &__second {
+        flex-direction: column;
+    }
+
+    &__default {
+    }
+
+    &__main {
+        margin: 1rem auto;
+        flex-direction: column;
+
+        .region {
+            &__main {
+                max-width: 52rem;
+                flex-direction: row;
+            }
+            &__first {
+                flex: 2;
+                &:not(:only-child) {
+                    @media @screen-desktop {
+                        padding-right: 2rem;
+                    }
+                }
+            }
+            &__second {
+                flex: 1;
+            }
+
+            @media @screen-mobile {
+                flex-direction: column;
+                &__second {
+                    margin-top: 2rem;
+                }
+            }
+        }
+    }
+
+    &__main-1-col {
+    }
+
+    &__dynamic-2-col,
+    &__dynamic-3-col,
+    &__dynamic-4-col {
+        & > * {
+            display: flex;
+            flex-direction: column;
+            @media @screen-desktop {
+                padding: 0 1rem;
+            }
+        }
+        & > :first-child {
+            @media @screen-desktop {
+                padding-right: 1rem;
+            }
+        }
+        & > :last-child {
+            @media @screen-desktop {
+                padding-left: 1rem;
+            }
+        }
+    }
+
+    &__part {
+        &-heading {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+    }
+
+    // Bugfix for XP region preview
+    .row {
+        display: flex;
+    }
+
+    .xp-page-editor-item-view,
+    .xp-page-editor-region-placeholder {
+        width: 100%;
+    }
+}
