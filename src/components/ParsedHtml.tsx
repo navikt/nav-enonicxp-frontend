@@ -5,7 +5,8 @@ import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import Link from 'next/link';
 import Lenke from 'nav-frontend-lenker';
-import { ParseMacro } from './macros/Macros';
+import '../components/macros/Quote.less';
+import '../components/macros/Video.less';
 
 interface Props {
     content?: string;
@@ -19,11 +20,7 @@ export const ParsedHtml = (props: Props) => {
     }
 
     const replaceElements = {
-        replace: ({ name, attribs, type, data, children }: DomElement) => {
-
-            if (attribs?.class === 'xp-macro' && children) {
-                return ParseMacro(children);
-            }
+        replace: ({ name, attribs, children }: DomElement) => {
 
             if (name?.toLowerCase() === 'h1' && children) {
                 return (
@@ -45,6 +42,14 @@ export const ParsedHtml = (props: Props) => {
                 const href = attribs.href
                     .replace(xpLegacyPath, '')
                     .replace('https://www.nav.no', '');
+                // Noen XP-macroer må få nye klasser
+                if (attribs?.class?.includes('macroButton')) {
+                    let className = 'knapp';
+                    if( attribs.class.includes('macroButtonBlue')) {
+                        className += ' knapp--hoved'
+                    }
+                    attribs.class = className;
+                }
                 const props = attributesToProps(attribs);
 
                 return isXpPath(href) ? (
