@@ -79,7 +79,7 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
                 <tbody>
                     {items.map((item, index) => {
                         return (
-                            <tr key={item.displayName + '_' + index}>
+                            <tr key={`${item.displayName}_${index}`}>
                                 <td>
                                     <time>
                                         <Element>{item.day}</Element>

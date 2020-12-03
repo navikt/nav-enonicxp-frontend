@@ -38,7 +38,7 @@ export const Region = ({
         >
             {components.map((component, idx) => (
                 <ComponentMapper
-                    key={component.type + '_' + idx}
+                    key={component.path}
                     componentProps={component}
                     pageProps={pageProps}
                 />
