@@ -41,7 +41,6 @@ export const Region = ({
                     key={component.path}
                     componentProps={component}
                     pageProps={pageProps}
-                    key={component.path}
                 />
             ))}
         </div>
