@@ -30,6 +30,7 @@ export enum ContentType {
     Notification = 'no_nav_navno_Notification',
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
+    PublishingCalendar = 'no_nav_navno_PublishingCalendar',
 }
 
 export const contentTypeIsImplemented = (type: ContentType) =>
