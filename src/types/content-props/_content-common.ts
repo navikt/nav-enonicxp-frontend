@@ -32,9 +32,6 @@ export enum ContentType {
     OfficeInformation = 'no_nav_navno_OfficeInformation',
 }
 
-export const contentTypeIsImplemented = (type: ContentType) =>
-    Object.values(ContentType).includes(type);
-
 export type ContentProps = {
     __typename: ContentType;
     _id: XpContentRef;
