@@ -21,7 +21,6 @@ const PageList = (props: ContentProps) => {
             <div className={bem('list')}>
                 {sectionContents.map((section) => {
                     const { displayName, _path } = section;
-                    console.log(section);
                     const ingress = section.data.ingress || section.data.description;
                     return (
                         <div key={section._path} className={bem('row')}>
