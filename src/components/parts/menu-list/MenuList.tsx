@@ -1,6 +1,6 @@
 import React from 'react';
 import Lenke from 'nav-frontend-lenker';
-import { xpPathToAppPath } from 'utils/paths';
+import { xpPathToUrl } from 'utils/paths';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { translator } from 'translations';
 import { BEM } from 'utils/bem';
@@ -22,17 +22,15 @@ export const MenuList = (props: ContentProps) => {
         selected.includes(key as MenuListItemKey)
     );
 
-    if (filtered.length === 0) {
-        return null;
-    }
-
-    return (
+    return filtered?.length > 0 ? (
         <div className={bem()}>
             {filtered.map(([key, LinkItem]) => {
+                const links = (LinkItem as LinkItem)?.link;
+                const files = (LinkItem as LinkItem)?.files;
                 const isShortcuts = key === MenuListItemKey.Shortcuts;
                 const isPageList = __typename === ContentType.PageList;
                 const isOpen = isShortcuts && isPageList;
-                return (
+                return links?.length > 0 || files?.length > 0 ? (
                     <Ekspanderbartpanel
                         key={key}
                         apen={isOpen}
@@ -40,8 +38,8 @@ export const MenuList = (props: ContentProps) => {
                         className={bem('panel')}
                     >
                         <ul>
-                            {(LinkItem as LinkItem)?.link?.map((link) => {
-                                const path = xpPathToAppPath(link._path);
+                            {links?.map((link) => {
+                                const path = xpPathToUrl(link._path);
                                 return (
                                     <li key={path}>
                                         <Lenke href={path}>
@@ -50,10 +48,17 @@ export const MenuList = (props: ContentProps) => {
                                     </li>
                                 );
                             })}
+                            {files?.map((file) => (
+                                <li key={file._path}>
+                                    <Lenke href={file.mediaUrl}>
+                                        {file.displayName}
+                                    </Lenke>
+                                </li>
+                            ))}
                         </ul>
                     </Ekspanderbartpanel>
-                );
+                ) : null;
             })}
         </div>
-    );
+    ) : null;
 };

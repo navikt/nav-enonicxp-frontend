@@ -1,6 +1,6 @@
 import React from 'react';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import { xpLegacyPath, isXpPath } from '../utils/paths';
+import { isXpPath } from '../utils/paths';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import Link from 'next/link';
@@ -39,9 +39,7 @@ export const ParsedHtml = (props: Props) => {
             }
 
             if (name?.toLowerCase() === 'a' && attribs?.href && children) {
-                const href = attribs.href
-                    .replace(xpLegacyPath, '')
-                    .replace('https://www.nav.no', '');
+                const href = attribs.href.replace('https://www.nav.no', '');
                 // Noen XP-macroer må få nye klasser
                 if (attribs?.class?.includes('macroButton')) {
                     let className = 'knapp';

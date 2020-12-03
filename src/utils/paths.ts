@@ -1,12 +1,8 @@
 export const xpContentBasePath = '/www.nav.no';
 export const xpServicePath = '/_/service/no.nav.navno';
-export const xpLegacyPath = '/_/legacy';
-export const xpDraftLegacyPath = '/_/legacy/draft';
 
 export const xpOrigin = process.env.XP_ORIGIN;
 export const xpServiceUrl = `${xpOrigin}${xpServicePath}`;
-export const xpLegacyUrl = `${xpOrigin}${xpLegacyPath}`;
-export const xpLegacyDraftUrl = `${xpOrigin}${xpDraftLegacyPath}`;
 
 export type XpContentRef = string;
 

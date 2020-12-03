@@ -8,8 +8,6 @@ const modifyHtml = (htmlText: string, hasTableOfContent: boolean) => {
     tmp = tmp?.replace(/<h\d>&nbsp;<\/h\d>/g, '');
     tmp = tmp?.replace(/<br \/>/g, '');
 
-    console.log(htmlText);
-
     // legg på id'er for innholdsfortegnelse
     if (hasTableOfContent) {
         let index = 1;

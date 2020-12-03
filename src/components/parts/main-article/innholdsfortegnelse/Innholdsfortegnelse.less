@@ -1,61 +1,49 @@
 @import (reference) '../../../../global';
 
-.table-of-contents{
-  margin-top: 2rem;
-  ol {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-top: 1px solid #d1d1d1;
-  }
-  li {
-    font-size: 1.1rem;
-    border-bottom: 1px solid #d1d1d1;
-  }
-
-  a {
-    color: #3e3832;
-    font-weight: 600;
-    display: block;
-    padding: 6px 0;
-    position: relative;
-    text-decoration: none;
-
-
-    &:hover,
-    &:active {
-      color: #0067c5;
+.table-of-contents {
+    margin-top: 2rem;
+    ol {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border-top: 1px solid #d1d1d1;
+    }
+    li {
+        font-size: 1.1rem;
+        border-bottom: 1px solid #d1d1d1;
     }
 
-    &:focus {
-      outline: none;
-      color: white;
-      background-color: @fokusFarge;
-      box-shadow: 0 0 0 2px @fokusFarge;
-    }
+    a {
+        color: #3e3832;
+        font-weight: 600;
+        display: block;
+        padding: 6px 0;
+        position: relative;
+        text-decoration: none;
 
-    &:hover:before,
-    &:focus:before,
-    &:active:before {
-      border: 0.1875rem solid #0067c5;
-      background-color: #0067c5;
-      border-radius: 50%;
-      display: inline-block;
-      content: ' ';
-      position: absolute;
-      left: -0.6875rem;
-      top: 0.875rem;
-    }
-  }
-}
+        &:hover,
+        &:active {
+            color: #0067c5;
+        }
 
-.visuallyhidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
+        &:focus {
+            outline: none;
+            color: white;
+            background-color: @fokusFarge;
+            box-shadow: 0 0 0 2px @fokusFarge;
+        }
+
+        &:hover:before,
+        &:focus:before,
+        &:active:before {
+            border: 0.1875rem solid #0067c5;
+            background-color: #0067c5;
+            border-radius: 50%;
+            display: inline-block;
+            content: ' ';
+            position: absolute;
+            left: -0.6875rem;
+            top: 0.875rem;
+        }
+    }
 }
