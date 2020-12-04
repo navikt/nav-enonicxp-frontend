@@ -33,9 +33,6 @@ export enum ContentType {
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
 }
 
-export const contentTypeIsImplemented = (type: ContentType) =>
-    Object.values(ContentType).includes(type);
-
 export type ContentProps = {
     __typename: ContentType;
     _id: XpContentRef;

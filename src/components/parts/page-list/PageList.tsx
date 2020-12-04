@@ -21,7 +21,7 @@ const PageList = (props: ContentProps) => {
             <div className={bem('list')}>
                 {sectionContents.map((section) => {
                     const { displayName, _path } = section;
-                    const ingress = section.data?.ingress;
+                    const ingress = section.data?.ingress || section.data?.description;
                     return (
                         <div key={section._path} className={bem('row')}>
                             <Normaltekst>
@@ -32,7 +32,7 @@ const PageList = (props: ContentProps) => {
                             {ingress && (
                                 <div className={bem('ingress')}>
                                     <Normaltekst>
-                                        {section.data?.ingress}
+                                        {ingress}
                                     </Normaltekst>
                                 </div>
                             )}
