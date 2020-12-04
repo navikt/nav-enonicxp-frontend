@@ -6,8 +6,8 @@ import { BEM } from 'utils/bem';
 import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
 import { ContentType } from 'types/content-props/_content-common';
 import { ContentProps } from 'types/content-props/_content-common';
+import { isXpPath, xpPathToUrl } from 'utils/paths';
 import './MenuList.less';
-import { isXpPath, xpPathToUrl } from '../../../utils/paths';
 
 export const MenuList = (props: ContentProps) => {
     const bem = BEM('menu-list');
