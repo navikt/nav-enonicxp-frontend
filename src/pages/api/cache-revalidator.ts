@@ -11,17 +11,18 @@ const { networkInterfaces } = require('os');
 const nets = networkInterfaces();
 
 const getHandler = async (req, res) => {
+    const { secret } = req.headers;
     const { path } = req.query;
     const url = `${origin}${path}`;
-    console.log('revalidating cache for ', url);
 
-    console.log(nets);
+    console.log('revalidating cache for ', url);
+    console.log(JSON.stringify(nets));
 
     [...Array(reqsPerRevalidation)].forEach((_, index) => {
         setTimeout(() => {
             console.log('fetching');
             fetch(url);
-        }, revalidationPeriodMs * (index + 1));
+        }, revalidationPeriodMs);
     });
 
     return res.status(200).send('Cache revalidating triggered');
