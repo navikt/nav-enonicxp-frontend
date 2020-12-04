@@ -1,7 +1,7 @@
 import React from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { LinkProps } from 'types/link-props';
-import { LenkeNavNo } from '../lenke/LenkeNavNo';
+import { LenkeStandalone } from '../lenke/LenkeStandalone';
 import { BEM } from 'utils/bem';
 import './Lenkeliste.less';
 
@@ -30,7 +30,7 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
             )}
             <nav className={bem('lenker')}>
                 {lenker.map((lenke, index) => (
-                    <LenkeNavNo
+                    <LenkeStandalone
                         href={lenke.url}
                         label={lenke.label}
                         key={index}
@@ -39,7 +39,7 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
                         linkGroup={tittel}
                     >
                         {lenke.text}
-                    </LenkeNavNo>
+                    </LenkeStandalone>
                 ))}
             </nav>
         </div>
