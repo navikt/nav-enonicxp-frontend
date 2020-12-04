@@ -41,9 +41,9 @@ export const ParsedHtml = (props: Props) => {
             if (name?.toLowerCase() === 'a' && attribs?.href && children) {
                 const href = attribs.href.replace('https://www.nav.no', '');
                 // Noen XP-macroer må få nye klasser
-                if (attribs?.class?.includes('macroButton')) {
+                if (attribs?.class?.includes('macroButton') || attribs?.class?.includes('btn-link')) {
                     let className = 'knapp';
-                    if( attribs.class.includes('macroButtonBlue')) {
+                    if( attribs.class.includes('macroButtonBlue') || attribs.class.includes('btn-primary')) {
                         className += ' knapp--hoved'
                     }
                     attribs.class = className;
