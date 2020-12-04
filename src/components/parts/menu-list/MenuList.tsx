@@ -7,6 +7,7 @@ import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
 import { ContentType } from 'types/content-props/_content-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import './MenuList.less';
+import { isXpPath, xpPathToUrl } from '../../../utils/paths';
 
 export const MenuList = (props: ContentProps) => {
     const bem = BEM('menu-list');
@@ -36,11 +37,17 @@ export const MenuList = (props: ContentProps) => {
                         className={bem('panel')}
                     >
                         <ul>
-                            {links?.map((link, i) => (
-                                <li key={i}>
-                                    <Lenke href={link.url}>{link.text}</Lenke>
-                                </li>
-                            ))}
+                            {links?.map((link, i) => {
+                                const url = isXpPath(link.url)
+                                    ? xpPathToUrl(link.url)
+                                    : link.url;
+
+                                return (
+                                    <li key={i}>
+                                        <Lenke href={url}>{link.text}</Lenke>
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </Ekspanderbartpanel>
                 ) : null;
