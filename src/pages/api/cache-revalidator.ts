@@ -37,14 +37,17 @@ const getHandler = async (req, res) => {
 
     k8sApi
         .listNamespacedPod(
-            'q6',
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            'app=nav-enonicxp-frontend'
+            'q6'
+            // undefined,
+            // undefined,
+            // undefined,
+            // undefined,
+            // 'app=nav-enonicxp-frontend'
         )
-        .then((res) => console.log(res.body));
+        .then((res) => console.log(res.body, res.response))
+        .catch((e) => {
+            console.log(`k8s call failed: ${e}`);
+        });
 
     [...Array(reqsPerRevalidation)].forEach((_, index) => {
         setTimeout(() => {
