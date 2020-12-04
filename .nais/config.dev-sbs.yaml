@@ -26,8 +26,8 @@ spec:
   vault:
     enabled: true
   replicas:
-    min: 2
-    max: 4
+    min: 8
+    max: 8
   resources:
     limits:
       cpu: '3'

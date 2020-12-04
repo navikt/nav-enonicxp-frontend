@@ -3,7 +3,7 @@ const revalidationPeriodSecs = 1; // process.env.REVALIDATION_PERIOD
 
 const revalidationPeriodMs = revalidationPeriodSecs * 1000;
 
-const maxPods = 4;
+const maxPods = 8;
 const reqsPerPod = 1;
 const reqsPerRevalidation = maxPods * reqsPerPod;
 
