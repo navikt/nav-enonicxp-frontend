@@ -25,7 +25,7 @@ export const MainArticle = (propsInitial: ContentProps) => {
     const bem = BEM('main-article');
     const getLabel = translator('mainArticle', props.language);
     const hasTableOfContest =
-        data.hasTableOfContents && data.hasTableOfContents !== 'none';
+        data?.hasTableOfContents && data?.hasTableOfContents !== 'none';
     const innholdsfortegnelse = parseInnholdsfortegnelse(
         data.text,
         hasTableOfContest

@@ -27,6 +27,7 @@ export enum ContentType {
     PageList = 'no_nav_navno_PageList',
     MainArticle = 'no_nav_navno_MainArticle',
     MainArticleChapter = 'no_nav_navno_MainArticleChapter',
+    Melding = 'no_nav_navno_Melding',
     Notification = 'no_nav_navno_Notification',
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',

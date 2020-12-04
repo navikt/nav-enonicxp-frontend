@@ -1,9 +1,8 @@
-import { ContentProps } from './content-props/_content-common';
-import { MediaProps } from './content-props/media';
-
 export interface LinkItem {
-    link: ContentProps[];
-    files?: MediaProps[];
+    links?: {
+        text: string;
+        url: string;
+    }[];
 }
 
 export enum MenuListItemKey {
