@@ -37,7 +37,7 @@ const getHandler = async (req, res) => {
 
     k8sApi
         .listNamespacedPod(
-            'q6'
+            'default'
             // undefined,
             // undefined,
             // undefined,
