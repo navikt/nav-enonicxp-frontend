@@ -10,6 +10,7 @@ spec:
   image: {{image}}:{{version}}
   team: personbruker
   port: 3000
+  leaderElection: true
   liveness:
     path: /api/internal/isAlive
     initialDelay: 10
