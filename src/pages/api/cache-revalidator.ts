@@ -15,7 +15,7 @@ const nets = networkInterfaces();
 const host = hostname();
 
 const kc = new k8s.KubeConfig();
-kc.loadFromCluster();
+kc.loadFromDefault();
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 const getHandler = async (req, res) => {
