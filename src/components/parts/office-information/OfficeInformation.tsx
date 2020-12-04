@@ -8,10 +8,7 @@ import { translator } from 'translations';
 import ArtikkelDato from '../main-article/ArtikkelDato';
 import Lenke from 'nav-frontend-lenker';
 import { Innholdstittel, Element, Normaltekst } from 'nav-frontend-typografi';
-import {
-    AudienceReception,
-    OfficeInformationProps,
-} from '../../../types/content-props/office-information-props';
+import { OfficeInformationProps } from '../../../types/content-props/office-information-props';
 import './OfficeInformation.less';
 
 export const OfficeInformation = (props: OfficeInformationProps) => {
@@ -23,11 +20,6 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     const location = formatAddress(contact.besoeksadresse, true);
     const address = formatAddress(contact.postadresse, false);
     const fax = parsePhoneNumber(contact.faksnummer);
-    const receptions: AudienceReception[] = Array.isArray(
-        contact.publikumsmottak
-    )
-        ? contact.publikumsmottak
-        : [contact.publikumsmottak];
 
     return (
         <article className={bem()}>
@@ -127,7 +119,10 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     <Normaltekst>{unit.enhetNr}</Normaltekst>
                 </div>
             )}
-            <Reception receptions={receptions} language={props.language} />
+            <Reception
+                receptions={contact.publikumsmottak}
+                language={props.language}
+            />
         </article>
     );
 };
