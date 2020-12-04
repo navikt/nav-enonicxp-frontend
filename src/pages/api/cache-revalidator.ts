@@ -22,7 +22,10 @@ const getHandler = async (req, res) => {
     console.log(`Pod hostname: ${host}`);
 
     const electorPath = process.env.ELECTOR_PATH;
-    const elector = await fetchWithTimeout(`http://${electorPath}`, 1000);
+    const elector = await fetchWithTimeout(
+        `http://${electorPath}`,
+        1000
+    ).then((res) => (res.ok ? res.json() : {}));
     console.log(elector);
 
     const url = `${origin}${path}`;
