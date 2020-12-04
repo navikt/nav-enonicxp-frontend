@@ -1,6 +1,6 @@
 {
     "name": "nav-enonicxp-frontend",
-    "version": "0.5.37-q6",
+    "version": "0.5.38-q6",
     "private": true,
     "scripts": {
         "dev": "next dev -p 3000",
