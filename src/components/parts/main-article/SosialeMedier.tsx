@@ -43,27 +43,20 @@ const SosialeMedier = (props: Props) => {
         ),
     }));
 
-    if (socialMedia === []) {
-        return null;
-    }
-
-    return (
+    return socialMedia && socialMedia.length > 0 ? (
         <div className="social-media">
             <ul>
-                {socialMedia &&
-                    socialMedia.map((item) => (
-                        <li key={item.type}>
-                            <LenkeUstylet href={item.href}>
-                                <span
-                                    className={`share-social share-${item.type}`}
-                                >
-                                    {item.text}
-                                </span>
-                            </LenkeUstylet>
-                        </li>
-                    ))}
+                {socialMedia.map((item) => (
+                    <li key={item.type}>
+                        <LenkeUstylet href={item.href}>
+                            <span className={`share-social share-${item.type}`}>
+                                {item.text}
+                            </span>
+                        </LenkeUstylet>
+                    </li>
+                ))}
             </ul>
         </div>
-    );
+    ) : null;
 };
 export default SosialeMedier;
