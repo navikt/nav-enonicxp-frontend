@@ -14,10 +14,10 @@ const getHandler = async (req, res) => {
     const { secret } = req.headers;
     const { path } = req.query;
 
-    const myIp = nets.eth0?.[0]?.address || origin;
-    console.log(`Pod IP: ${myIp}`);
+    const podIp = nets.eth0?.[0]?.address;
+    console.log(`Pod IP: ${podIp}`);
 
-    const url = `https://${myIp}:3000${path}`;
+    const url = podIp ? `https://${podIp}:3000${path}` : `${origin}${path}`;
     console.log('revalidating cache for ', url);
 
     [...Array(reqsPerRevalidation)].forEach((_, index) => {
