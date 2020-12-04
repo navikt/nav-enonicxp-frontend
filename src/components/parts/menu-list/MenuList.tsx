@@ -1,14 +1,12 @@
 import React from 'react';
-import Lenke from 'nav-frontend-lenker';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { translator } from 'translations';
 import { BEM } from 'utils/bem';
 import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
 import { ContentType } from 'types/content-props/_content-common';
 import { ContentProps } from 'types/content-props/_content-common';
-import { isXpPath, xpPathToUrl } from 'utils/paths';
-import './MenuList.less';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
+import './MenuList.less';
 
 export const MenuList = (props: ContentProps) => {
     const bem = BEM('menu-list');
