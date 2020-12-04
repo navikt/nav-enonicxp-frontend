@@ -43,7 +43,7 @@ export const ParsedHtml = (props: Props) => {
                 // Noen XP-macroer må få nye klasser
                 if (attribs?.class?.includes('macroButton') || attribs?.class?.includes('btn-link')) {
                     let className = 'knapp';
-                    if( attribs.class.includes('macroButtonBlue') || attribs?.class?.includes('btn-primary')) {
+                    if( attribs.class.includes('macroButtonBlue') || attribs.class.includes('btn-primary')) {
                         className += ' knapp--hoved'
                     }
                     attribs.class = className;
