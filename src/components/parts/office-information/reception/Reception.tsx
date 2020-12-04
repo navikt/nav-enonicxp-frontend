@@ -131,8 +131,11 @@ const MetaOpeningHours = (props: {
         </ul>
     );
 };
+
+type ReceptionType = AudienceReception[] | AudienceReception | undefined;
+
 interface Props {
-    receptions: AudienceReception[];
+    receptions: ReceptionType;
     language: Language;
 }
 
@@ -140,12 +143,20 @@ const Reception = (props: Props) => {
     const getLabel = translator('officeInformation', props.language);
     const bem = BEM('publikumsmottak');
 
+    if (!props.receptions) {
+        return null;
+    }
+
+    const receptionArray: AudienceReception[] = Array.isArray(props.receptions)
+        ? props.receptions
+        : [props.receptions];
+
     return (
         <div className={bem()}>
             <Systemtittel className={bem('header')}>
                 Publikumsmottak
             </Systemtittel>
-            {props.receptions.map((rec: AudienceReception) => {
+            {receptionArray.map((rec: AudienceReception) => {
                 const reception = formatAudienceReception(rec);
 
                 return (
