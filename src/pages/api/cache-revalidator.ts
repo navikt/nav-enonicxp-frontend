@@ -1,3 +1,4 @@
+import k8s from '@kubernetes/client-node';
 import { fetchWithTimeout } from '../../utils/fetch-utils';
 
 const origin = process.env.APP_ORIGIN;
@@ -13,6 +14,10 @@ const { networkInterfaces, hostname } = require('os');
 const nets = networkInterfaces();
 const host = hostname();
 
+const kc = new k8s.KubeConfig();
+kc.loadFromCluster();
+const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
+
 const getHandler = async (req, res) => {
     const { secret } = req.headers;
     const { path } = req.query;
@@ -26,10 +31,12 @@ const getHandler = async (req, res) => {
         `http://${electorPath}`,
         1000
     ).then((res) => (res.ok ? res.json() : {}));
-    console.log(elector);
+    console.log(elector.name);
 
     const url = `${origin}${path}`;
     console.log('revalidating cache for ', url);
+
+    k8sApi.listNamespacedPod('q6').then((res) => console.log(res.body));
 
     [...Array(reqsPerRevalidation)].forEach((_, index) => {
         setTimeout(() => {

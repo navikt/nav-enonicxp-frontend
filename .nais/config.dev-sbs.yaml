@@ -27,7 +27,7 @@ spec:
   vault:
     enabled: true
   replicas:
-    min: 4
+    min: 2
     max: 4
   resources:
     limits:
