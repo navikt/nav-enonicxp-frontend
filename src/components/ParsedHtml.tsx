@@ -49,7 +49,7 @@ export const ParsedHtml = (props: Props) => {
 
                 return (
                     <LenkeInline {...props} href={href}>
-                        {children && domToReact(children)}
+                        {domToReact(children)}
                     </LenkeInline>
                 );
             }
