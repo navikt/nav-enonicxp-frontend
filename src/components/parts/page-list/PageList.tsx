@@ -1,9 +1,8 @@
 import React from 'react';
 import { BEM } from 'utils/bem';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import Lenke from 'nav-frontend-lenker';
-import { xpPathToAppPath } from '../../../utils/paths';
 import { ContentProps } from '../../../types/content-props/_content-common';
+import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import './PageList.less';
 
 const PageList = (props: ContentProps) => {
@@ -21,19 +20,18 @@ const PageList = (props: ContentProps) => {
             <div className={bem('list')}>
                 {sectionContents.map((section) => {
                     const { displayName, _path } = section;
-                    const ingress = section.data?.ingress || section.data?.description;
+                    const ingress =
+                        section.data?.ingress || section.data?.description;
                     return (
                         <div key={section._path} className={bem('row')}>
                             <Normaltekst>
-                                <Lenke href={xpPathToAppPath(_path)}>
+                                <LenkeInline href={_path}>
                                     {displayName}
-                                </Lenke>
+                                </LenkeInline>
                             </Normaltekst>
                             {ingress && (
                                 <div className={bem('ingress')}>
-                                    <Normaltekst>
-                                        {ingress}
-                                    </Normaltekst>
+                                    <Normaltekst>{ingress}</Normaltekst>
                                 </div>
                             )}
                         </div>

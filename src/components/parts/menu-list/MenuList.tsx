@@ -1,5 +1,4 @@
 import React from 'react';
-import Lenke from 'nav-frontend-lenker';
 import { xpPathToUrl } from 'utils/paths';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { translator } from 'translations';
@@ -7,6 +6,7 @@ import { BEM } from 'utils/bem';
 import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
 import { ContentType } from 'types/content-props/_content-common';
 import { ContentProps } from 'types/content-props/_content-common';
+import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import './MenuList.less';
 
 export const MenuList = (props: ContentProps) => {
@@ -42,17 +42,17 @@ export const MenuList = (props: ContentProps) => {
                                 const path = xpPathToUrl(link._path);
                                 return (
                                     <li key={path}>
-                                        <Lenke href={path}>
+                                        <LenkeInline href={path}>
                                             {link.displayName}
-                                        </Lenke>
+                                        </LenkeInline>
                                     </li>
                                 );
                             })}
                             {files?.map((file) => (
                                 <li key={file._path}>
-                                    <Lenke href={file.mediaUrl}>
+                                    <LenkeInline href={file.mediaUrl}>
                                         {file.displayName}
-                                    </Lenke>
+                                    </LenkeInline>
                                 </li>
                             ))}
                         </ul>
