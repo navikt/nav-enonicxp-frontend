@@ -13,7 +13,7 @@ const PageList = (props: PageListProps) => {
     const bem = BEM('page-list');
     const { modifiedTime, createdTime, language } = props;
     const data = props.data;
-    const hidePageDates = data?.hideSectionContentsDate;
+    const hideDatesOnPage = data?.hideSectionContentsDate;
     const hideDatesInList = data?.hide_date;
     const orderListByPublishedDate = data?.orderSectionContentsByPublished;
     const sectionContents = (data?.sectionContents || [])
@@ -31,7 +31,7 @@ const PageList = (props: PageListProps) => {
             <div className={bem('ingress')}>
                 <Normaltekst>{props.data.ingress}</Normaltekst>
             </div>
-            {hidePageDates === true && (
+            {!hideDatesOnPage === true && (
                 <CreatedAndModifiedDate
                     language={language}
                     className={bem('date')}
@@ -58,7 +58,7 @@ const PageList = (props: PageListProps) => {
                                     <Normaltekst>{ingress}</Normaltekst>
                                 </div>
                             )}
-                            {hideDatesInList === true && (
+                            {!hideDatesInList === true && (
                                 <CreatedAndModifiedDate
                                     language={language}
                                     className={bem('date')}
