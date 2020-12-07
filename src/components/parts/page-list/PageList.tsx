@@ -8,6 +8,7 @@ import { formatDate } from 'utils/datetime';
 import { Language, translator } from 'translations';
 import { PageListProps } from 'types/content-props/page-list-props';
 import './PageList.less';
+import { LenkeInline } from '../../_common/lenke/LenkeInline';
 
 const PageList = (props: PageListProps) => {
     const bem = BEM('page-list');
@@ -49,9 +50,9 @@ const PageList = (props: PageListProps) => {
                     return (
                         <div key={section._path} className={bem('row')}>
                             <Normaltekst>
-                                <Lenke href={xpPathToAppPath(_path)}>
+                                <LenkeInline href={xpPathToAppPath(_path)}>
                                     {displayName}
-                                </Lenke>
+                                </LenkeInline>
                             </Normaltekst>
                             {ingress && (
                                 <div className={bem('ingress')}>
