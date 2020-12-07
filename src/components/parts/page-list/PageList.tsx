@@ -13,8 +13,8 @@ const PageList = (props: PageListProps) => {
     const bem = BEM('page-list');
     const { modifiedTime, createdTime, language } = props;
     const data = props.data;
-    const hideDatesOnPage = data?.hideSectionContentsDate;
-    const hideDatesInList = data?.hide_date;
+    const hideDatesOnPage = data?.hide_date;
+    const hideDatesInList = data?.hideSectionContentsDate;
     const orderListByPublishedDate = data?.orderSectionContentsByPublished;
     const sectionContents = (data?.sectionContents || [])
         .filter((section) => props._id !== section._id)
