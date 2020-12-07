@@ -2,13 +2,12 @@ import React from 'react';
 import { BEM } from 'utils/bem';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import Lenke from 'nav-frontend-lenker';
 import { xpPathToAppPath } from 'utils/paths';
 import { formatDate } from 'utils/datetime';
 import { Language, translator } from 'translations';
 import { PageListProps } from 'types/content-props/page-list-props';
-import './PageList.less';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
+import './PageList.less';
 
 const PageList = (props: PageListProps) => {
     const bem = BEM('page-list');
