@@ -7,10 +7,7 @@ export type VideoProps = {
     title: string;
 };
 
-const VideoNavNo = ({
-     title,
-     src,
-}: VideoProps) => {
+const VideoNavNo = ({ title, src }: VideoProps) => {
     const bem = BEM('video-navno');
     return (
         <div className={`${bem()}`}>
