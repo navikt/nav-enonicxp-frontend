@@ -27,6 +27,8 @@ export const contentToReactComponent: Partial<
     [ContentType.SectionPage]: DynamicPage,
     [ContentType.TemplatePage]: DynamicPage,
     [ContentType.TransportPage]: DynamicPage,
+    [ContentType.PublishingCalendar]: DynamicPage,
+    [ContentType.Melding]: DynamicPage,
 
     [ContentType.ExternalLink]: ClientsideRedirect,
     [ContentType.InternalLink]: ClientsideRedirect,

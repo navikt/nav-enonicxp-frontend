@@ -43,11 +43,7 @@ const SosialeMedier = (props: Props) => {
         ),
     }));
 
-    if (socialMedia === []) {
-        return null;
-    }
-
-    return (
+    return socialMedia && socialMedia.length > 0 ? (
         <div className="social-media">
             <ul>
                 {socialMedia.map((item) => (
@@ -61,6 +57,6 @@ const SosialeMedier = (props: Props) => {
                 ))}
             </ul>
         </div>
-    );
+    ) : null;
 };
 export default SosialeMedier;

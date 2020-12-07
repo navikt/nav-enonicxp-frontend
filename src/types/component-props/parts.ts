@@ -8,6 +8,7 @@ export enum PartType {
     MenuList = 'no.nav.navno:menu-list',
     OfficeInformation = 'no.nav.navno:office-information',
     PageList = 'no.nav.navno:page-list',
+    PublishingCalendar = 'no.nav.navno:publishing-calendar',
 
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
     SupervisorPanel = 'no.nav.navno:dynamic-supervisor-panel',
@@ -31,7 +32,8 @@ export type PartWithPageData =
     | PartType.MainPanels
     | PartType.MenuList
     | PartType.OfficeInformation
-    | PartType.PageList;
+    | PartType.PageList
+    | PartType.PublishingCalendar;
 
 export type PartWithOwnData =
     | PartType.LinkPanel
