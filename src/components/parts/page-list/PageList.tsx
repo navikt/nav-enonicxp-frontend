@@ -31,7 +31,7 @@ const PageList = (props: PageListProps) => {
             <div className={bem('ingress')}>
                 <Normaltekst>{props.data.ingress}</Normaltekst>
             </div>
-            {!hideDatesOnPage === true && (
+            {!hideDatesOnPage && (
                 <CreatedAndModifiedDate
                     language={language}
                     className={bem('date')}
@@ -58,7 +58,7 @@ const PageList = (props: PageListProps) => {
                                     <Normaltekst>{ingress}</Normaltekst>
                                 </div>
                             )}
-                            {!hideDatesInList === true && (
+                            {!hideDatesInList && (
                                 <CreatedAndModifiedDate
                                     language={language}
                                     className={bem('date')}
