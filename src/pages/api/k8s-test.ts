@@ -2,6 +2,11 @@ const k8s = require('@kubernetes/client-node');
 const request = require('request');
 
 const getHandler = (req, res) => {
+    const { path } = req.query;
+    if (!path) {
+        return res.status(400).send('must specify request path');
+    }
+
     const kc = new k8s.KubeConfig();
     kc.loadFromCluster();
 
@@ -9,7 +14,7 @@ const getHandler = (req, res) => {
     kc.applyToRequest(opts);
 
     const response = request.get(
-        `${kc.getCurrentCluster().server}/api/v1/namespaces/default/pods`,
+        `${kc.getCurrentCluster().server}/${path}`,
         opts,
         (error, response, body) => {
             if (error) {
@@ -24,7 +29,6 @@ const getHandler = (req, res) => {
 
     // const response = fetch(
     //     `${kc.getCurrentCluster().server}/api/v1/namespaces/default/pods`,
-    //     opts
     // )
     //     .then((res) => res.json())
     //     .catch((e) => console.error(`fetch error: ${e}`));
@@ -48,7 +52,6 @@ const getHandler = (req, res) => {
 
     res.status(200).json({
         cluster: kc.getCurrentCluster(),
-        options: opts,
         response,
     });
 };
