@@ -3,7 +3,7 @@ const { networkInterfaces } = require('os');
 const nets = networkInterfaces();
 const podIp = nets.eth0?.[0]?.address;
 
-const getHandler = async (req, res) => {
+const revalidate = async (req, res) => {
     const { path } = req.query;
 
     const url = `http://localhost:3000${path}`;
@@ -15,7 +15,7 @@ const getHandler = async (req, res) => {
         )
     );
 
-    return res.status(204).send('Revalidating cache');
+    return res.status(200).send('Revalidating cache');
 };
 
-export default getHandler;
+export default revalidate;
