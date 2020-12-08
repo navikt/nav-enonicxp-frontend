@@ -31,3 +31,4 @@ yarn-error.log*
 /.idea/
 /nav-enonicxp-frontend.iml
 .env
+/revalidator-proxy/node_modules/
