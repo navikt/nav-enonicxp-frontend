@@ -4,12 +4,6 @@ const nets = networkInterfaces();
 const podIp = nets.eth0?.[0]?.address;
 
 const getHandler = async (req, res) => {
-    const { secret } = req.headers;
-
-    if (secret !== process.env.SERVICE_SECRET) {
-        // return res.status(403).send('Not allowed');
-    }
-
     const { path } = req.query;
 
     const url = `http://localhost:3000${path}`;
