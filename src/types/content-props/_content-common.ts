@@ -50,6 +50,7 @@ export type ContentProps = {
     parent?: ContentProps;
     data?: ContentData;
     page?: LayoutProps;
+    editMode?: boolean;
 };
 
 type TypeSpecificData = ContentListData &

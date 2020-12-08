@@ -51,8 +51,7 @@ const parseHtml = (htmlString: string) => {
 
 export const LargeTablePage = (contentData: LargeTableProps) => {
     const parentPath = contentData._path.split('tabeller')[0];
-
-    return contentData.data?.text ? (
+    return contentData.data?.text || contentData.editMode ? (
         <div className={'large-table-page'}>
             <LenkeStandalone
                 href={parentPath}
@@ -62,7 +61,7 @@ export const LargeTablePage = (contentData: LargeTableProps) => {
                 <VenstreChevron />
                 {'Tilbake'}
             </LenkeStandalone>
-            {parseHtml(contentData.data.text)}
+            {contentData.data?.text ? parseHtml(contentData.data.text) : ''}
         </div>
     ) : (
         <ErrorPage

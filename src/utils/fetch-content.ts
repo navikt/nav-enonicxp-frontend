@@ -102,8 +102,7 @@ export const fetchPage = async (
     secret: string
 ): Promise<ContentProps> => {
     const content = await fetchContent(idOrPath, isDraft, secret);
-
     return content?.__typename
-        ? content
+        ? { ...content, editMode: isDraft }
         : makeErrorProps(idOrPath, `Ukjent feil`, 500);
 };
