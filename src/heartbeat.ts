@@ -1,3 +1,7 @@
+// Sends a heartbeat signal to an internal app which proxies revalidation from
+// Enonic XP to all frontend pods
+// See: https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy
+
 import { networkInterfaces } from 'os';
 
 const { NODE_ENV, REVALIDATOR_PROXY_ORIGIN } = process.env;
