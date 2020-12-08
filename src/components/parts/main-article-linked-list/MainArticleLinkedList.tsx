@@ -1,8 +1,8 @@
 import React from 'react';
-import Lenke from 'nav-frontend-lenker';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { xpPathToAppPath } from 'utils/paths';
 import { BEM } from 'utils/bem';
+import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import './MainArticleLinkedList.less';
 
 export const MainArticleLinkedList = (props: ContentProps) => {
@@ -26,24 +26,24 @@ export const MainArticleLinkedList = (props: ContentProps) => {
         <nav className={bem()}>
             <ul>
                 <li>
-                    <Lenke
-                        className={parentSelected ? `selected` : ``}
+                    <LenkeInline
                         href={parentPath}
+                        className={parentSelected ? `selected` : ``}
                     >
                         <span>{parentTitle}</span>
-                    </Lenke>
+                    </LenkeInline>
                 </li>
                 {chapters.map((chapter) => {
                     const chapterPath = xpPathToAppPath(chapter._path);
                     const chapterSelected = currentPath === chapterPath;
                     return (
                         <li key={chapter._path}>
-                            <Lenke
+                            <LenkeInline
                                 href={chapterPath}
                                 className={chapterSelected ? `selected` : ``}
                             >
                                 <span>{chapter.displayName}</span>
-                            </Lenke>
+                            </LenkeInline>
                         </li>
                     );
                 })}
