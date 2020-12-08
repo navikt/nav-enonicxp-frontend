@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContentList } from '../../_common/content-list/ContentList';
-import { LenkeNavNo } from '../../_common/lenke/LenkeNavNo';
+import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { BEM } from 'utils/bem';
 import { translator } from 'translations';
@@ -32,7 +32,7 @@ const LinkLists = (props: ContentProps) => {
                                 showDateLabel={true}
                             />
                             {moreNewsUrl && (
-                                <LenkeNavNo
+                                <LenkeStandalone
                                     href={moreNewsUrl}
                                     className={bem('flere-nyheter')}
                                     component={'link-list'}
@@ -41,7 +41,7 @@ const LinkLists = (props: ContentProps) => {
                                     <Normaltekst>
                                         {getLabel('moreNews')}
                                     </Normaltekst>
-                                </LenkeNavNo>
+                                </LenkeStandalone>
                             )}
                         </div>
                     )}

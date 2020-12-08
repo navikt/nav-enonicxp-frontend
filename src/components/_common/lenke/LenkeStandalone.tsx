@@ -3,7 +3,7 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
 import { BEM } from 'utils/bem';
 import { LenkeUstylet } from './LenkeUstylet';
-import './LenkeNavNo.less';
+import './LenkeStandalone.less';
 
 type Props = {
     href: string;
@@ -17,7 +17,7 @@ type Props = {
     children: React.ReactNode;
 };
 
-export const LenkeNavNo = ({
+export const LenkeStandalone = ({
     href,
     label,
     className,

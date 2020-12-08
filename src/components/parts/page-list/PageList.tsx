@@ -2,7 +2,6 @@ import React from 'react';
 import { BEM } from 'utils/bem';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import { xpPathToAppPath } from 'utils/paths';
 import { formatDate } from 'utils/datetime';
 import { Language, translator } from 'translations';
 import { PageListProps } from 'types/content-props/page-list-props';
@@ -49,7 +48,7 @@ const PageList = (props: PageListProps) => {
                     return (
                         <div key={section._path} className={bem('row')}>
                             <Normaltekst>
-                                <LenkeInline href={xpPathToAppPath(_path)}>
+                                <LenkeInline href={_path}>
                                     {displayName}
                                 </LenkeInline>
                             </Normaltekst>

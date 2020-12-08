@@ -1,7 +1,7 @@
 import React from 'react';
 import { DynamicNewsList } from '../../../../types/component-props/parts/news-list';
 import { ContentList } from '../../../_common/content-list/ContentList';
-import { LenkeNavNo } from '../../../_common/lenke/LenkeNavNo';
+import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
 import { BEM } from '../../../../utils/bem';
 import './NewsList.less';
 
@@ -22,9 +22,12 @@ export const NewsList = ({ config }: DynamicNewsList) => {
                 title={title}
             />
             {moreNews && (
-                <LenkeNavNo href={moreNews.url} className={bem('more-news')}>
+                <LenkeStandalone
+                    href={moreNews.url}
+                    className={bem('more-news')}
+                >
                     {moreNews.text}
-                </LenkeNavNo>
+                </LenkeStandalone>
             )}
         </div>
     );

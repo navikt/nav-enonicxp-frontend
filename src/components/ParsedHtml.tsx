@@ -1,10 +1,8 @@
 import React from 'react';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import { isXpPath } from '../utils/paths';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
-import Link from 'next/link';
-import Lenke from 'nav-frontend-lenker';
+import { LenkeInline } from './_common/lenke/LenkeInline';
 import '../components/macros/Quote.less';
 import '../components/macros/Video.less';
 
@@ -55,16 +53,10 @@ export const ParsedHtml = (props: Props) => {
                 }
                 const props = attributesToProps(attribs);
 
-                return isXpPath(href) ? (
-                    <Link href={href} passHref={true}>
-                        <Lenke {...props}>
-                            {children && domToReact(children)}
-                        </Lenke>
-                    </Link>
-                ) : (
-                    <Lenke {...props} href={href}>
-                        {children && domToReact(children)}
-                    </Lenke>
+                return (
+                    <LenkeInline {...props} href={href}>
+                        {domToReact(children)}
+                    </LenkeInline>
                 );
             }
         },
