@@ -1,4 +1,4 @@
-const revalidatorProxyServerUrl = process.env.REVALIDATOR_PROXY_URL;
+import { revalidatorProxyOrigin } from '../../heartbeat';
 
 const getHandler = async (req, res) => {
     const { secret } = req.headers;
@@ -9,7 +9,7 @@ const getHandler = async (req, res) => {
 
     const { path } = req.query;
 
-    const url = `${revalidatorProxyServerUrl}/revalidator-proxy?path=${path}`;
+    const url = `http://${revalidatorProxyOrigin}/revalidator-proxy?path=${path}`;
 
     fetch(url, { method: 'HEAD', headers: { secret } }).catch((e) =>
         console.error(`Invalid response from revalidation proxy - ${e}`)

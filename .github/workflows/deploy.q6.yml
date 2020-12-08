@@ -26,7 +26,6 @@ jobs:
           APP_ORIGIN=https://www-q6.nav.no
           DECORATOR_URL=https://www-q6.nav.no/dekoratoren
           XP_ORIGIN=https://www-q6.nav.no
-          REVALIDATOR_PROXY_URL=https://nav-enonicxp-frontend-revalidator-proxy-q6.nais.oera-q.local
           EOF
       - uses: actions/cache@v1
         with:

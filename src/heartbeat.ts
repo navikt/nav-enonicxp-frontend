@@ -1,6 +1,10 @@
 import { networkInterfaces } from 'os';
 
-const { REVALIDATOR_PROXY_URL, NODE_ENV } = process.env;
+const { NODE_ENV } = process.env;
+export const revalidatorProxyOrigin =
+    NODE_ENV === 'production'
+        ? 'nav-enonicxp-frontend-revalidator-proxy'
+        : 'localhost:3002';
 
 const heartbeatPeriodMs = 5000;
 
@@ -12,7 +16,7 @@ if (podAddress === 'localhost' && NODE_ENV === 'production') {
     console.log('Warning: pod IP could not be determined');
 }
 
-const revalidatorProxyHeartbeatUrl = `${REVALIDATOR_PROXY_URL}/heartbeat?address=${podAddress}`;
+const revalidatorProxyHeartbeatUrl = `http://${revalidatorProxyOrigin}/heartbeat?address=${podAddress}`;
 
 const sendHeartbeat = () =>
     Promise.race([
