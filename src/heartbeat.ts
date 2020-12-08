@@ -7,15 +7,19 @@ import { networkInterfaces } from 'os';
 const { NODE_ENV, REVALIDATOR_PROXY_ORIGIN } = process.env;
 const heartbeatPeriodMs = 5000;
 
-const nets = networkInterfaces();
-const podAddress =
-    (nets.eth0 && nets.eth0[0] && nets.eth0[0].address) || 'localhost';
+const getPodAddress = () => {
+    const nets = networkInterfaces();
+    const podAddress =
+        (nets.eth0 && nets.eth0[0] && nets.eth0[0].address) || 'localhost';
 
-if (podAddress === 'localhost' && NODE_ENV === 'production') {
-    console.log('Warning: pod IP could not be determined');
-}
+    if (podAddress === 'localhost' && NODE_ENV === 'production') {
+        console.log('Warning: pod IP could not be determined');
+    }
 
-const revalidatorProxyHeartbeatUrl = `${REVALIDATOR_PROXY_ORIGIN}/heartbeat?address=${podAddress}`;
+    return podAddress;
+};
+
+const revalidatorProxyHeartbeatUrl = `${REVALIDATOR_PROXY_ORIGIN}/heartbeat?address=${getPodAddress()}`;
 
 const sendHeartbeat = () =>
     Promise.race([
