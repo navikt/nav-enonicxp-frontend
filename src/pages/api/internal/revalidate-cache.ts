@@ -1,29 +1,11 @@
 import { networkInterfaces } from 'os';
-import fs from 'fs';
 import { fetchWithTimeout } from '../../../utils/fetch-utils';
 import Config from '../../../Config';
 
-const cacheBasePath = './.next/server/pages';
 const revalidateTimeMs = Config.vars.revalidatePeriod * 1000;
 
 const nets = networkInterfaces();
 const podIp = nets.eth0?.[0]?.address;
-
-const deleteFile = (filePath: string) => {
-    try {
-        fs.unlinkSync(filePath);
-    } catch (e) {
-        console.error(
-            `File system error while attemping to delete ${filePath} - ${e}`
-        );
-    }
-};
-
-const clearPageCache = (path: string) => {
-    console.log(`Clearing cache for ${path} on ${podIp}`);
-    deleteFile(`${cacheBasePath}${path}.json`);
-    deleteFile(`${cacheBasePath}${path}.html`);
-};
 
 const regeneratePageCache = (path: string) =>
     fetchWithTimeout(`http://localhost:3000${path}`, 1000, {
@@ -39,7 +21,6 @@ const revalidateCache = async (req, res) => {
         return res.status(400).send('No path specified');
     }
 
-    clearPageCache(path);
     setTimeout(() => regeneratePageCache(path), revalidateTimeMs);
 
     return res.status(200).send(`Regenerating cache for ${path}`);
