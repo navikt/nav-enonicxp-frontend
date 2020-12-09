@@ -1,4 +1,4 @@
-import { initHeartbeat } from '../../../heartbeat';
+import { initHeartbeat } from '../../../revalidation-heartbeat';
 
 const isAlive = (req, res) => {
     initHeartbeat();

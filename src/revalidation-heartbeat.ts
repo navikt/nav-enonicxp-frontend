@@ -5,7 +5,7 @@
 import { networkInterfaces } from 'os';
 import { fetchWithTimeout } from './utils/fetch-utils';
 
-const { NODE_ENV, REVALIDATOR_PROXY_ORIGIN } = process.env;
+const { NODE_ENV, REVALIDATOR_PROXY_ORIGIN, SERVICE_SECRET } = process.env;
 const heartbeatPeriodMs = 5000;
 
 const getPodAddress = () => {
@@ -43,7 +43,9 @@ const heartbeatSingleton = (() => {
         if (!heartbeatInterval && url) {
             console.log('Starting heartbeat loop');
             const heartbeatFunc = () =>
-                fetchWithTimeout(url, 1000).catch((e) =>
+                fetchWithTimeout(url, 1000, {
+                    headers: { secret: SERVICE_SECRET },
+                }).catch((e) =>
                     console.error(`Failed to send heartbeat signal - ${e}`)
                 );
             heartbeatFunc();
