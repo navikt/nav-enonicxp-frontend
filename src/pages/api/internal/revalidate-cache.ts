@@ -1,8 +1,10 @@
 import { networkInterfaces } from 'os';
 import fs from 'fs';
 import { fetchWithTimeout } from '../../../utils/fetch-utils';
+import Config from '../../../Config';
 
 const cacheBasePath = './.next/server/pages';
+const revalidateTimeMs = Config.vars.revalidatePeriod * 1000;
 
 const nets = networkInterfaces();
 const podIp = nets.eth0?.[0]?.address;
@@ -38,9 +40,9 @@ const revalidateCache = async (req, res) => {
     }
 
     clearPageCache(path);
-    regeneratePageCache(path);
+    setTimeout(() => regeneratePageCache(path), revalidateTimeMs);
 
-    return res.status(200).send(`Regenerated cache for ${path}`);
+    return res.status(200).send(`Regenerating cache for ${path}`);
 };
 
 export default revalidateCache;
