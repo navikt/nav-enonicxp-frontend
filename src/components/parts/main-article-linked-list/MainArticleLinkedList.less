@@ -1,21 +1,20 @@
-@import (reference) "~nav-frontend-core/less/_variabler";
+@import (reference) '~nav-frontend-core/less/_variabler';
 @import (reference) '../../../global';
 
 .main-article-linked-list {
     display: flex;
-    border: 1px solid #d1d1d1;
     margin-bottom: 2rem;
     width: 100%;
 
     ul {
         list-style: none;
         width: 100%;
-        padding: 0;
+        background-color: white;
+        padding: 1rem 0;
         margin: 0;
 
         li {
             a {
-                border-bottom: 1px solid #d1d1d1;
                 padding: 0.625rem 1.875rem;
                 display: block;
                 background-color: #fff;
@@ -34,58 +33,26 @@
             .selected {
                 text-decoration: none;
                 position: relative;
-
-                &:focus:after {
-                    border-right-color: @fokusFarge;
-                }
             }
 
-            .selected:before,
-            .selected:after {
-                content: ' ';
-                display: inline-block;
-                border: solid rgba(209, 209, 209, 0);
-                transform: scale(0.9999);
-                outline: none;
-                position: absolute;
-                right: 100%;
-                @media @screen-mobile {
-                    border: none;
-                }
-            }
-
-            .selected:before {
-                border-width: 0.75rem;
-                border-right-color: #d1d1d1;
-                top: 0.5rem;
-            }
-
-            .selected:after {
-                border-width: 0.625rem;
-                border-right-color: #fff;
-                top: 0.625rem;
-            }
-
-            .selected span:before,
             a:hover span:before {
-                border: 0.1875rem solid #0067c5;
-                background-color: #0067c5;
+                background-color: #bbd6e9;
             }
 
-            a:focus span:before {
-                border: 0.1875rem solid #fff;
-                background-color: #fff;
+            .selected span:before {
+                background-color: #0067cc;
             }
 
             .selected span:before,
             a:hover span:before,
             a:focus span:before {
-                border-radius: 50%;
                 display: inline-block;
                 content: ' ';
                 position: absolute;
-                left: -0.8125rem;
-                top: 0.4375rem;
+                left: -1.89rem;
+                height: calc(100% + 1.5rem);
+                width: 0.75rem;
+                top: -0.755rem;
             }
         }
     }
