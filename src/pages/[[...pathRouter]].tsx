@@ -4,7 +4,7 @@ import PageBase, { fetchPageProps } from '../components/PageBase';
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const secret = process.env.SERVICE_SECRET as string;
-    return await fetchPageProps(context?.params?.pathRouter, false, secret, 60);
+    return await fetchPageProps(context?.params?.pathRouter, false, secret, 1);
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
