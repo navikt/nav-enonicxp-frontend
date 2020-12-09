@@ -1,10 +1,16 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import PageBase, { fetchPageProps } from '../components/PageBase';
+import Config from '../Config';
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const secret = process.env.SERVICE_SECRET as string;
-    return await fetchPageProps(context?.params?.pathRouter, false, secret, 1);
+    return await fetchPageProps(
+        context?.params?.pathRouter,
+        false,
+        secret,
+        Config.vars.revalidatePeriod
+    );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
