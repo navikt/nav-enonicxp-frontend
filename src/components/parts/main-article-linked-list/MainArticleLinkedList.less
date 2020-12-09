@@ -15,6 +15,7 @@
 
         li {
             a {
+                position: relative;
                 padding: 0.625rem 1.875rem;
                 display: block;
                 background-color: #fff;
@@ -35,24 +36,22 @@
                 position: relative;
             }
 
-            a:hover span:before {
+            a:hover:before {
                 background-color: #bbd6e9;
             }
 
-            .selected span:before {
+            .selected:before {
                 background-color: #0067cc;
             }
 
-            .selected span:before,
-            a:hover span:before,
-            a:focus span:before {
+            a:before {
                 display: inline-block;
                 content: ' ';
                 position: absolute;
-                left: -1.89rem;
-                height: calc(100% + 1.5rem);
+                left: 0rem;
+                height: 100%;
                 width: 0.75rem;
-                top: -0.755rem;
+                top: 0;
             }
         }
     }
