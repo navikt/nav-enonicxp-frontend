@@ -11,11 +11,9 @@ type Props = {
     className?: string;
     component?: string;
     linkGroup?: string;
-    id?: string;
-    onClick?: (e: React.MouseEvent) => void;
     withChevron?: boolean;
     children: React.ReactNode;
-};
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const LenkeStandalone = ({
     href,
@@ -23,10 +21,9 @@ export const LenkeStandalone = ({
     className,
     component,
     linkGroup,
-    id,
-    onClick,
     withChevron = true,
     children,
+    ...rest
 }: Props) => {
     const bem = BEM('navno-lenke');
 
@@ -36,8 +33,7 @@ export const LenkeStandalone = ({
             className={`${bem()} ${className || ''}`}
             component={component}
             linkGroup={linkGroup}
-            id={id}
-            onClick={onClick}
+            {...rest}
         >
             <span className={bem('lenketekst')}>
                 {withChevron && (
