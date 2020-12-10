@@ -1,4 +1,5 @@
 import React from 'react';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { xpPathToAppPath } from 'utils/paths';
 import { BEM } from 'utils/bem';
@@ -26,24 +27,26 @@ export const MainArticleLinkedList = (props: ContentProps) => {
         <nav className={bem()}>
             <ul>
                 <li>
-                    <LenkeInline
-                        href={parentPath}
-                        className={parentSelected ? `selected` : ``}
-                    >
-                        <span>{parentTitle}</span>
-                    </LenkeInline>
+                    {parentSelected ? (
+                        <Normaltekst>{parentTitle}</Normaltekst>
+                    ) : (
+                        <LenkeInline href={parentPath}>
+                            {parentTitle}
+                        </LenkeInline>
+                    )}
                 </li>
                 {chapters.map((chapter) => {
                     const chapterPath = xpPathToAppPath(chapter._path);
                     const chapterSelected = currentPath === chapterPath;
                     return (
                         <li key={chapter._path}>
-                            <LenkeInline
-                                href={chapterPath}
-                                className={chapterSelected ? `selected` : ``}
-                            >
-                                <span>{chapter.displayName}</span>
-                            </LenkeInline>
+                            {chapterSelected ? (
+                                <Normaltekst>{chapter.displayName}</Normaltekst>
+                            ) : (
+                                <LenkeInline href={chapterPath}>
+                                    {chapter.displayName}
+                                </LenkeInline>
+                            )}
                         </li>
                     );
                 })}

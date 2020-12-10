@@ -1,91 +1,63 @@
-@import (reference) "~nav-frontend-core/less/_variabler";
+@import (reference) '~nav-frontend-core/less/_variabler';
 @import (reference) '../../../global';
 
 .main-article-linked-list {
     display: flex;
-    border: 1px solid #d1d1d1;
     margin-bottom: 2rem;
     width: 100%;
 
     ul {
         list-style: none;
         width: 100%;
-        padding: 0;
+        background-color: white;
+        border-radius: 0.25rem;
+        padding: 1rem 0.2rem;
         margin: 0;
-
-        li {
-            a {
-                border-bottom: 1px solid #d1d1d1;
-                padding: 0.625rem 1.875rem;
-                display: block;
-                background-color: #fff;
-
-                &:active,
-                &:focus {
-                    color: #fff;
-                    box-shadow: none;
-                }
-
-                span {
-                    position: relative;
-                }
-            }
-
-            .selected {
-                text-decoration: none;
+        & li {
+            a,
+            p {
+                z-index: 1;
                 position: relative;
+                padding: 0.65rem 1.75rem;
+                display: block;
+            }
 
-                &:focus:after {
-                    border-right-color: @fokusFarge;
+            p {
+                z-index: 0;
+                &:before {
+                    background-color: @navGra80;
                 }
             }
 
-            .selected:before,
-            .selected:after {
-                content: ' ';
-                display: inline-block;
-                border: solid rgba(209, 209, 209, 0);
-                transform: scale(0.9999);
-                outline: none;
-                position: absolute;
-                right: 100%;
-                @media @screen-mobile {
-                    border: none;
+            a {
+                &:hover {
+                    z-index: 0;
+                    &:before {
+                        background-color: #0067cc;
+                    }
+                }
+                &:focus {
+                    color: @navBla;
+                    background: none;
+                    text-decoration: underline;
+                    cursor: pointer;
+                    box-shadow: 0 0 0 0.2rem @fokusFarge;
+                    outline: none;
+                    &:before {
+                        left: 0rem;
+                    }
                 }
             }
 
-            .selected:before {
-                border-width: 0.75rem;
-                border-right-color: #d1d1d1;
-                top: 0.5rem;
-            }
-
-            .selected:after {
-                border-width: 0.625rem;
-                border-right-color: #fff;
-                top: 0.625rem;
-            }
-
-            .selected span:before,
-            a:hover span:before {
-                border: 0.1875rem solid #0067c5;
-                background-color: #0067c5;
-            }
-
-            a:focus span:before {
-                border: 0.1875rem solid #fff;
-                background-color: #fff;
-            }
-
-            .selected span:before,
-            a:hover span:before,
-            a:focus span:before {
-                border-radius: 50%;
+            p:before,
+            a:before {
                 display: inline-block;
                 content: ' ';
                 position: absolute;
-                left: -0.8125rem;
-                top: 0.4375rem;
+                left: -0.2rem;
+                height: 100%;
+                width: 0.75rem;
+                top: 0;
             }
         }
     }
