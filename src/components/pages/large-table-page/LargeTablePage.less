@@ -7,8 +7,13 @@
 
     .tilbake-lenke {
         margin-bottom: 2rem;
+        margin-top: 1rem;
         .navno-lenke__lenketekst {
             align-items: center;
+        }
+
+        @media print {
+            display: none;
         }
     }
 
@@ -40,7 +45,6 @@
 
     thead {
         tr {
-            border-top: 1px @navGra20 solid;
             border-bottom: 1px @navGra20 solid;
         }
     }
@@ -70,6 +74,16 @@
         }
     }
 
+    .statPage {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        padding: 1rem;
+    }
+
+    .statTab {
+    }
+
     .statGroupHead,
     .statGroupRest {
         .typo-element;
@@ -80,6 +94,10 @@
         &:not(th) {
             .typo-element;
         }
+    }
+
+    .statRest {
+        text-align: right;
     }
 
     .statFoot {
