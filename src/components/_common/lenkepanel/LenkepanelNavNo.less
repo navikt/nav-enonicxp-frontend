@@ -3,13 +3,13 @@
 .lenkepanel-navno {
     box-sizing: border-box;
     display: flex;
+    border: 1px solid @navBla;
+
+    .lenkepanel__heading {
+        color: @navBla;
+    }
 
     &:hover {
-        .lenkepanel__indikator,
-        .lenkepanel__heading {
-            color: @navBla;
-        }
-
         .lenkepanel-navno__chevron {
             left: 0.375rem;
         }
@@ -38,11 +38,6 @@
             max-width: 2rem;
             max-height: 2rem;
         }
-    }
-
-    .lenkepanel__indikator,
-    .lenkepanel__heading {
-        color: black;
     }
 
     &__vertikal {

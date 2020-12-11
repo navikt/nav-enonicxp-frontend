@@ -4,11 +4,19 @@
 .large-table-page {
     .typo-normal;
     margin-top: -2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
     .tilbake-lenke {
         margin-bottom: 2rem;
+        margin-top: 1rem;
         .navno-lenke__lenketekst {
             align-items: center;
+        }
+
+        @media print {
+            display: none;
         }
     }
 
@@ -27,10 +35,6 @@
         }
     }
 
-    td {
-        padding: 0.125rem 0.375rem;
-    }
-
     th {
         .typo-element;
         font-size: 110%;
@@ -40,7 +44,6 @@
 
     thead {
         tr {
-            border-top: 1px @navGra20 solid;
             border-bottom: 1px @navGra20 solid;
         }
     }
@@ -70,16 +73,31 @@
         }
     }
 
+    .statPage {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        padding: 1rem;
+    }
+
+    .statTab {
+    }
+
     .statGroupHead,
     .statGroupRest {
         .typo-element;
     }
 
     .statHead {
-        padding-right: 0.5rem;
+        padding: 0.125rem 0.5rem;
         &:not(th) {
             .typo-element;
         }
+    }
+
+    .statRest {
+        text-align: right;
+        padding: 0.125rem 0.125rem 0.125rem 1rem;
     }
 
     .statFoot {

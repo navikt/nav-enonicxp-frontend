@@ -5,24 +5,21 @@ import Link from 'next/link';
 
 type Props = {
     href: string;
-    className?: string;
+    onClick?: (e: React.MouseEvent) => void;
     component?: string;
     linkGroup?: string;
-    id?: string;
-    onClick?: (e: React.MouseEvent) => void;
     analyticsLabel?: string;
     children: React.ReactNode;
-};
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const LenkeUstylet = ({
     href,
-    className,
+    onClick,
     component,
     linkGroup,
-    id,
-    onClick,
     analyticsLabel,
     children,
+    ...rest
 }: Props) => {
     const isInternalLink = isXpPath(href);
     const _href = (isInternalLink ? xpPathToAppPath(href) : href) || '/';
@@ -32,12 +29,11 @@ export const LenkeUstylet = ({
     const linkElement = (
         <a
             href={_href}
-            className={className}
-            id={id}
             onClick={(e) => {
                 logLinkClick(_href, analyticsLinkText, component, linkGroup);
                 onClick?.(e);
             }}
+            {...rest}
         >
             {children}
         </a>
