@@ -30,7 +30,7 @@
             &__first {
                 flex: 2;
                 &:not(:only-child) {
-                    @media @screen-desktop {
+                    @media @screen-tablet-and-desktop {
                         padding-right: 2rem;
                     }
                 }
@@ -54,19 +54,28 @@
     &__dynamic-2-col,
     &__dynamic-3-col,
     &__dynamic-4-col {
-        & > * {
+        & > :not(:first-child):not(:last-child) {
             display: flex;
             flex-direction: column;
+            @media @screen-tablet {
+                padding: 0 0.5rem;
+            }
             @media @screen-desktop {
                 padding: 0 1rem;
             }
         }
         & > :first-child {
+            @media @screen-tablet {
+                padding-right: 0.5rem;
+            }
             @media @screen-desktop {
                 padding-right: 1rem;
             }
         }
         & > :last-child {
+            @media @screen-tablet {
+                padding-left: 0.5rem;
+            }
             @media @screen-desktop {
                 padding-left: 1rem;
             }

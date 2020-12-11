@@ -1,10 +1,20 @@
 @import '~nav-frontend-core/less/_variabler';
 @import '~nav-frontend-core/less/core';
 
-@mobilMaxWidth: 48em;
-@screen-desktop: ~'(min-width: @{mobilMaxWidth})';
-@screen-mobile: ~'not all and (min-width: @{mobilMaxWidth})';
+// screen size breakpoints
+@mobilMaxWidth: 767px;
+@tabletMinWidth: 768px;
+@tabletMaxWidth: 1023px;
+@desktopMinWidth: 1024px;
+@desktopMaxWidth: 1440px;
+
+@screen-mobile: ~'only screen and (max-width: @{mobilMaxWidth})';
+@screen-tablet: ~'only screen and (min-width: @{tabletMinWidth}) and (max-width: @{tabletMaxWidth})';
+@screen-tablet-and-desktop: ~'only screen and (min-width: @{tabletMinWidth}) ';
+@screen-desktop: ~'only screen and (min-width: @{desktopMinWidth}) ';
+
 @padding-sides-desktop: 3rem;
+@padding-sides-tablet: 1rem;
 @padding-sides-mobile: 1rem;
 
 html {
@@ -25,6 +35,12 @@ html {
 }
 
 @media @screen-mobile {
+    .content-wrapper {
+        padding: 0 @padding-sides-mobile;
+    }
+}
+
+@media @screen-tablet {
     .content-wrapper {
         padding: 0 @padding-sides-mobile;
     }
