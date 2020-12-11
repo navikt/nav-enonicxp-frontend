@@ -1,8 +1,19 @@
+@import (reference) '../../../global';
+
 .page-list {
     width: 100%;
-    padding: 1.5rem;
     background: white;
     border-radius: 0.25rem;
+
+    @media @screen-mobile {
+        padding: 1.5rem;
+    }
+    @media @screen-tablet {
+        padding: 1.5rem;
+    }
+    @media @screen-desktop {
+        padding: 5rem;
+    }
 
     &__ingress {
         margin-top: 0.5rem;
