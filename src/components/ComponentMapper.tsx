@@ -5,21 +5,19 @@ import {
 } from '../types/component-props/_component-common';
 import { Text } from './parts/_dynamic/text/Text';
 import Image from './parts/_dynamic/image/Image';
-import Layout from './layouts/Layout';
+import LayoutMapper from './layouts/LayoutMapper';
 import { PartsMapper } from './parts/PartsMapper';
 import { ContentProps } from '../types/content-props/_content-common';
 import { BEM } from '../utils/bem';
-
-const bem = BEM('region');
 
 const getClass = (component: ComponentProps) => {
     switch (component.type) {
         case ComponentType.Page:
         case ComponentType.Layout:
         case ComponentType.Part:
-            return bem(component?.descriptor?.split(':')[1] || 'default');
+            return component?.descriptor?.split(':')[1] || 'default';
         default:
-            return bem('default');
+            return 'default';
     }
 };
 
@@ -36,7 +34,10 @@ const Component = ({ componentProps, pageProps }: Props) => {
             return <Image imageUrl={componentProps.image.imageUrl} />;
         case ComponentType.Layout:
             return (
-                <Layout pageProps={pageProps} layoutProps={componentProps} />
+                <LayoutMapper
+                    pageProps={pageProps}
+                    layoutProps={componentProps}
+                />
             );
         case ComponentType.Part:
             return (
@@ -53,7 +54,8 @@ const Component = ({ componentProps, pageProps }: Props) => {
 };
 
 export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
-    const { path } = componentProps;
+    const { path, type } = componentProps;
+    const bem = BEM(type);
     const className = getClass(componentProps);
 
     const componentStyle =
@@ -71,7 +73,7 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
             style={componentStyle}
             data-portal-component-type={componentProps.type}
             data-portal-component={path}
-            className={`${bem()} ${className}`}
+            className={bem(className)}
             data-th-remove="tag"
         >
             <Component componentProps={componentProps} pageProps={pageProps} />

@@ -4,14 +4,14 @@ import { BEM } from '../../utils/bem';
 import { ComponentMapper } from '../ComponentMapper';
 import { RegionProps, LayoutConfig } from '../../types/component-props/layouts';
 
-const bem = BEM('region');
-
 type Props = {
     pageProps: ContentProps;
     regionProps?: RegionProps;
     layoutConfig?: LayoutConfig;
     regionIndex?: number;
 };
+
+const bem = BEM('region');
 
 export const Region = ({
     pageProps,
@@ -36,7 +36,7 @@ export const Region = ({
             data-portal-region={name}
             className={`${bem()} ${bem(name)}`}
         >
-            {components.map((component, idx) => (
+            {components.map((component) => (
                 <ComponentMapper
                     key={component.path}
                     componentProps={component}
