@@ -16,7 +16,7 @@ const configWithAllTheThings = (config) =>
     withTranspileModules(withLess(withImages(config)));
 
 module.exports = configWithAllTheThings({
-    basePath: '/no/person/nav-enonicxp-frontend', // Remove when going live
+    basePath: '/person/nav-enonicxp-frontend', // Remove when going live
     assetPrefix: process.env.APP_ORIGIN,
     env: {
         APP_ORIGIN: process.env.APP_ORIGIN,
