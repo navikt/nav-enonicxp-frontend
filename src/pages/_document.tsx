@@ -20,10 +20,9 @@ const decoratorParamsFromContext = async (
 
     const xpPath = appPathToXpPath(ctx.asPath);
 
-    const [breadcrumbs, languages] =
-        xpPath && !xpPath.includes('/tabeller/') // Do not include decorator widgets on statistics pages
-            ? [await fetchBreadcrumbs(xpPath), await fetchLanguages(xpPath)]
-            : [];
+    const [breadcrumbs, languages] = xpPath
+        ? [await fetchBreadcrumbs(xpPath), await fetchLanguages(xpPath)]
+        : [];
 
     return {
         ...(breadcrumbs && { breadcrumbs }),
