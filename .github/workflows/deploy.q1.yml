@@ -47,6 +47,7 @@ jobs:
           namespace: q1
           ingresses:
             - https://www-q1.nav.no
+            - https://www-q1.nav.no/person/nav-enonicxp-frontend
           image: $IMAGE_REGISTRY/$IMAGE_NAME
           version: $IMAGE_VERSION
           EOF
