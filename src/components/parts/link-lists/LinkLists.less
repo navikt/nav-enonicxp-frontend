@@ -1,4 +1,4 @@
-@import '../../../global';
+@import (reference) '../../../global';
 
 @numCols: 3;
 @margin: 1rem;
@@ -15,7 +15,7 @@
         @media @screen-mobile {
             width: 100%;
         }
-        @media @screen-desktop {
+        @media @screen-tablet-and-desktop {
             width: calc(percentage(1 / @numCols));
             &:not(:last-child) {
                 margin-right: @margin;
