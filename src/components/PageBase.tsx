@@ -42,7 +42,14 @@ export const PageBase = (props: PageProps) => {
     }
 
     if (!props?.content) {
-        return <ErrorPage {...makeErrorProps('www.nav.no', 'Unknown error')} />;
+        return (
+            <ErrorPage
+                {...makeErrorProps(
+                    'www.nav.no',
+                    'Ukjent feil - kunne ikke laste innhold'
+                )}
+            />
+        );
     }
 
     const { breadcrumbs, content, languages, notifications } = props;
@@ -67,6 +74,7 @@ export const fetchPageProps = async (
 ): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret);
+    const contentPath = content._path;
 
     const defaultProps = {
         props: undefined,
@@ -83,15 +91,24 @@ export const fetchPageProps = async (
         };
     }
 
-    if (
-        content.__typename === ContentType.Error ||
-        content.__typename === ContentType.LargeTable
-    ) {
+    if (content.__typename === ContentType.Error) {
         return {
             ...defaultProps,
             props: {
-                content: content,
+                content,
                 breadcrumbs: [],
+                languages: [],
+                notifications: [],
+            },
+        };
+    }
+
+    if (content.__typename === ContentType.LargeTable) {
+        return {
+            ...defaultProps,
+            props: {
+                content,
+                breadcrumbs: await fetchBreadcrumbs(contentPath, isDraft),
                 languages: [],
                 notifications: [],
             },
@@ -107,18 +124,13 @@ export const fetchPageProps = async (
         };
     }
 
-    const contentPath = content._path;
-    const breadcrumbs = await fetchBreadcrumbs(contentPath, isDraft);
-    const languages = await fetchLanguages(contentPath, isDraft);
-    const notifications = await fetchNotifications(contentPath, isDraft);
-
     return {
         ...defaultProps,
         props: {
-            content: content,
-            breadcrumbs: breadcrumbs,
-            languages: languages,
-            notifications: notifications,
+            content,
+            breadcrumbs: await fetchBreadcrumbs(contentPath, isDraft),
+            languages: await fetchLanguages(contentPath, isDraft),
+            notifications: await fetchNotifications(contentPath, isDraft),
         },
     };
 };
