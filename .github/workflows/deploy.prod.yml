@@ -1,4 +1,4 @@
-name: Deploy-to-q1
+name: Deploy-to-prod
 on:
   push:
     tags:
