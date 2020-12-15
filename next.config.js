@@ -18,10 +18,10 @@ const configWithAllTheThings = (config) =>
 const basePath = '/person/nav-enonicxp-frontend';
 
 module.exports = configWithAllTheThings({
-    // Remove when going live - start
+    // Remove basePath when going live - start
     basePath: basePath,
     assetPrefix: `${process.env.APP_ORIGIN}${basePath}`,
-    // Remove when going live - end
+    // Remove basePath when going live - end
     env: {
         APP_ORIGIN: process.env.APP_ORIGIN,
     },
