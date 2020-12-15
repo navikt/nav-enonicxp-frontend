@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { setBreadcrumbs, setParams } from '@navikt/nav-dekoratoren-moduler';
+import { setParams } from '@navikt/nav-dekoratoren-moduler';
 import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
 import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
-import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 import { ContentProps } from '../types/content-props/_content-common';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
