@@ -8,7 +8,7 @@ import NodeCache from 'node-cache';
 import { DocumentContext } from 'next/document';
 import { decoratorParams404 } from '../components/pages/error-page/errorcode-content/Error404Content';
 import { appPathToXpPath } from './paths';
-import { fetchBreadcrumbs, fetchLanguages } from './fetch-content';
+import { fetchBreadcrumbs, fetchLanguageProps } from './fetch-content';
 import { Language } from '../translations';
 
 const decoratorUrl = process.env.DECORATOR_URL;
@@ -34,7 +34,7 @@ export type DecoratorParams = Partial<{
     language: DecoratorLanguage;
 }>;
 
-const pathToLanguage: { [key in Language]: DecoratorLanguage } = {
+const xpToDecoratorLanguage: { [key in Language]: DecoratorLanguage } = {
     en: 'en',
     no: 'nb',
     pl: 'pl',
@@ -60,19 +60,19 @@ const paramsFromContext = async (
 
     const path = ctx.asPath;
 
-    const [, languagePath, rolePath] = path.split('/');
-    const language = pathToLanguage[languagePath];
+    const rolePath = path.split('/')[2];
     const roleContext = pathToRoleContext[rolePath];
 
     const xpPath = appPathToXpPath(path);
     const breadcrumbs = await fetchBreadcrumbs(xpPath);
-    const languages = await fetchLanguages(xpPath);
+    const { currentLanguage, languages } = await fetchLanguageProps(xpPath);
+    const language = xpToDecoratorLanguage[currentLanguage] || 'nb';
 
     return {
         ...(breadcrumbs && { breadcrumbs }),
         ...(languages && { availableLanguages: languages }),
-        ...(language && { language }),
         ...(roleContext && { context: roleContext }),
+        language,
     };
 };
 

@@ -4,7 +4,7 @@ import { xpServiceUrl } from './paths';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { Breadcrumb } from '../types/breadcrumb';
 import { NotificationProps } from '../types/notification-props';
-import { LanguageSelectorProps } from '../types/language-selector-props';
+import { LanguageServiceProps } from '../types/language-selector-props';
 
 const fetchContent = (
     idOrPath: string,
@@ -74,10 +74,10 @@ export const fetchBreadcrumbs = (
         .catch(console.error);
 };
 
-export const fetchLanguages = (
+export const fetchLanguageProps = (
     idOrPath: string,
     isDraft = false
-): Promise<LanguageSelectorProps[]> => {
+): Promise<LanguageServiceProps> => {
     const params = objectToQueryString({
         ...(isDraft && { branch: 'draft' }),
         id: idOrPath,
@@ -91,7 +91,7 @@ export const fetchLanguages = (
             }
             const error = `Failed to fetch language from ${idOrPath}: ${res.statusText}`;
             console.log(error);
-            return [];
+            return { languages: [], currentLanguage: 'no' };
         })
         .catch(console.error);
 };
