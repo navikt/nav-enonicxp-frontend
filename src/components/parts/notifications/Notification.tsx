@@ -3,20 +3,19 @@ import { NotificationProps } from 'types/notification-props';
 import LenkepanelNavNo from '../../_common/lenkepanel/LenkepanelNavNo';
 import { ContentType } from 'types/content-props/_content-common';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
-import { PulsatingIcon } from './icons/PulsatingIcon';
-import { InfoIcon } from './icons/InfoIcon';
 import { hasIngress } from 'types/_type-guards';
 import { hasDescription } from 'types/_type-guards';
 import { BEM } from 'utils/bem';
 import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
+import { PublicImage } from '../../_common/image/PublicImage';
 import './Notification.less';
 
 type Target = NotificationProps['data']['target'];
 
 const iconsForType = {
-    warning: <PulsatingIcon />,
-    info: <InfoIcon />,
+    warning: <PublicImage imagePath={'/gfx/coronavirus.svg'} />,
+    info: <PublicImage imagePath={'/gfx/globe.svg'} />,
 };
 
 const getUrl = (target: Target) => {
