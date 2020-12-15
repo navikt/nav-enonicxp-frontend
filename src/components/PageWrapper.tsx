@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import { setBreadcrumbs, setParams } from '@navikt/nav-dekoratoren-moduler';
 import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
 import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
@@ -70,6 +70,10 @@ export const PageWrapper = (props: Props) => {
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
+
+        setParams({
+            language: (content.language as 'en' | 'se' | 'nb' | 'nn') || 'nb',
+        });
 
         if (breadcrumbs) {
             setBreadcrumbs(
