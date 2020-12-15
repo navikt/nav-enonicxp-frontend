@@ -72,7 +72,7 @@ export const PageWrapper = (props: Props) => {
         focusedElement?.blur && focusedElement.blur();
 
         setParams({
-            language: (content.language as 'en' | 'se' | 'nb' | 'nn') || 'nb',
+            language: (content?.language as 'en' | 'se' | 'nb' | 'nn') || 'nb',
         });
 
         if (breadcrumbs) {
