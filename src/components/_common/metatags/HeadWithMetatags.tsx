@@ -45,7 +45,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
         <Head>
             <title>{title}</title>
             <meta name="description" content={description} />
-            <link rel={'canonical'} href={canonicalUrl} />
+            <meta name="robots" content="noindex" />
             <meta property={'og:title'} content={title} />
             <meta property={'og:site_name'} content={'nav.no'} />
             <meta property={'og:url'} content={url} />
