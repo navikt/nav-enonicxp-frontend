@@ -22,7 +22,11 @@ export const LinkPanel = ({ config }: DynamicLinkPanel) => {
             href={linkProps.url}
             border={true}
             className={`${bem()} ${vertical ? `vertical` : 'horisontal'}`}
-            style={{ backgroundImage: `url(${background?.mediaUrl})` }}
+            style={
+                background?.mediaUrl && {
+                    backgroundImage: `url(${background.mediaUrl})`,
+                }
+            }
             linkCreator={(props) => (
                 <LenkeUstylet href={props.href} {...props}>
                     {props.children}
