@@ -13,6 +13,7 @@ import GlobalNotifications from './parts/notifications/GlobalNotifications';
 import { NotificationProps } from '../types/notification-props';
 import { initAmplitude, logPageview } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
+import { pathToRoleContext, xpToDecoratorLanguage } from '../utils/decorator';
 
 type Props = {
     content: ContentProps;
@@ -71,21 +72,31 @@ export const PageWrapper = (props: Props) => {
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
 
+        const path = window.location.href;
+        const rolePath = path.split('/')[4];
+        const context = pathToRoleContext[rolePath];
+        const language = xpToDecoratorLanguage[content?.language] || 'nb';
+
         setParams({
-            language: (content?.language as 'en' | 'se' | 'nb' | 'nn') || 'nb',
+            ...(context && {
+                context: context,
+            }),
+            ...(language && {
+                language: language as 'en' | 'se' | 'nb' | 'nn',
+            }),
+            ...(breadcrumbs && {
+                breadcrumbs: breadcrumbs.map((crumb) => ({
+                    handleInApp: true,
+                    ...crumb,
+                })),
+            }),
+            ...(languages && {
+                availableLanguages: languages.map((lang) => ({
+                    handleInApp: true,
+                    ...lang,
+                })),
+            }),
         });
-
-        if (breadcrumbs) {
-            setBreadcrumbs(
-                breadcrumbs.map((crumb) => ({ handleInApp: true, ...crumb }))
-            );
-        }
-
-        if (languages) {
-            setAvailableLanguages(
-                languages.map((lang) => ({ handleInApp: true, ...lang }))
-            );
-        }
     }, [content]);
 
     return (
