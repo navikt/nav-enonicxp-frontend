@@ -20,7 +20,7 @@ export const LenkepanelListe = ({ title, ingress, items }: Props) => {
         <div className={bem()}>
             {title && (
                 <div className={bem('tittel')}>
-                    <Innholdstittel>{title}</Innholdstittel>
+                    <Innholdstittel tag={'h2'}>{title}</Innholdstittel>
                 </div>
             )}
             {ingress && <Ingress className={bem('ingress')}>{ingress}</Ingress>}
