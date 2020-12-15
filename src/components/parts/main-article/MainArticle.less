@@ -1,12 +1,21 @@
 @import (reference) '../../../global';
 @import (reference) '~nav-frontend-typografi-style/src/index';
-@import '~nav-frontend-tabell-style/src/index';
+@import (reference) '~nav-frontend-tabell-style/src/index';
 
 .main-article {
     width: 100%;
-    padding: 1.5rem;
     background: white;
     border-radius: 0.25rem;
+
+    @media @screen-mobile {
+        padding: 1.5rem;
+    }
+    @media @screen-tablet {
+        padding: 1.5rem;
+    }
+    @media @screen-desktop {
+        padding: 2.5rem;
+    }
 
     &__header {
         margin-bottom: 1.5rem;

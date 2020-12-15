@@ -4,6 +4,48 @@
     height: 100%;
 }
 
+.lenkepanel__indikator {
+    display: none;
+}
+
+.vertical .link-panel {
+    &__ikon {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        img {
+            height: 2rem;
+        }
+    }
+    &__title {
+        text-align: center;
+    }
+    &__ingress {
+        text-align: center;
+    }
+}
+
+.horisontal .link-panel {
+    &__ikon {
+        margin-right: 0.5rem;
+        img {
+            height: 1.75rem;
+        }
+    }
+    &__header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+    }
+    &__innhold {
+        padding-right: 0.5rem;
+    }
+}
+
 .link-panel {
     width: 100%;
     display: flex;
@@ -12,44 +54,38 @@
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: contain;
-    box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.08);
     background-color: white;
 
-    border: 2px transparent solid;
+    border: 1px solid @navBla;
     box-sizing: border-box;
+
+    &:hover {
+        .link-panel {
+            &__title {
+                text-decoration: underline;
+            }
+        }
+    }
 
     &__innhold {
         height: 100%;
+        width: 100%;
         display: flex;
         justify-items: flex-start;
         align-items: flex-start;
         flex-direction: column;
         text-align: start;
-        padding-right: 0.5rem;
-
-        @media @screen-desktop {
-            padding-bottom: 2.5rem;
-        }
-
-        @media @screen-mobile {
-            padding-bottom: 1.5rem;
-        }
+    }
+    &__header {
+        width: 100%;
     }
 
-    &__heading {
-        margin-top: 1rem;
+    &__title {
+        width: 100%;
         color: @navBla;
     }
-
     &__ingress {
-        margin: 1rem 0;
-    }
-
-    &:hover {
-        border: 2px black solid;
-
-        .lenkepanel__heading {
-            color: @navBla;
-        }
+        width: 100%;
+        margin: 1rem 0 0.5rem 0;
     }
 }
