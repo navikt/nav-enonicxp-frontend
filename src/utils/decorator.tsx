@@ -18,19 +18,6 @@ const cache = new NodeCache({ stdTTL: 120 });
 type DecoratorContext = 'privatperson' | 'arbeidsgiver' | 'samarbeidspartner';
 type DecoratorLanguage = 'en' | 'nb' | 'nn' | 'pl' | 'se';
 
-const pathToLanguage: { [key in Language]: DecoratorLanguage } = {
-    en: 'en',
-    no: 'nb',
-    pl: 'pl',
-    se: 'se',
-};
-
-const pathToRole: { [key: string]: DecoratorContext } = {
-    person: 'privatperson',
-    bedrift: 'arbeidsgiver',
-    samarbeidspartner: 'samarbeidspartner',
-};
-
 export type DecoratorFragments = {
     HEADER: React.ReactNode;
     FOOTER: React.ReactNode;
@@ -47,6 +34,19 @@ export type DecoratorParams = Partial<{
     language: DecoratorLanguage;
 }>;
 
+const pathToLanguage: { [key in Language]: DecoratorLanguage } = {
+    en: 'en',
+    no: 'nb',
+    pl: 'pl',
+    se: 'se',
+};
+
+const pathToRoleContext: { [key: string]: DecoratorContext } = {
+    person: 'privatperson',
+    bedrift: 'arbeidsgiver',
+    samarbeidspartner: 'samarbeidspartner',
+};
+
 const defaultParams: DecoratorParams = {
     chatbot: true,
 };
@@ -62,18 +62,17 @@ const paramsFromContext = async (
 
     const [, languagePath, rolePath] = path.split('/');
     const language = pathToLanguage[languagePath];
-    const role = pathToRole[rolePath];
+    const roleContext = pathToRoleContext[rolePath];
 
     const xpPath = appPathToXpPath(path);
-    const [breadcrumbs, languages] = xpPath
-        ? [await fetchBreadcrumbs(xpPath), await fetchLanguages(xpPath)]
-        : [];
+    const breadcrumbs = await fetchBreadcrumbs(xpPath);
+    const languages = await fetchLanguages(xpPath);
 
     return {
         ...(breadcrumbs && { breadcrumbs }),
         ...(languages && { availableLanguages: languages }),
         ...(language && { language }),
-        ...(role && { context: role }),
+        ...(roleContext && { context: roleContext }),
     };
 };
 
@@ -90,25 +89,20 @@ const fetchDecorator = (query?: string) => {
         .catch(console.error);
 };
 
-const decoratorCSR = (query: string) => {
-    const decoratorUrl = process.env.DECORATOR_URL;
-    return {
-        HEADER: <div id="decorator-header"></div>,
-        STYLES: (
-            <link href={`${decoratorUrl}/css/client.css`} rel="stylesheet" />
-        ),
-        FOOTER: <div id="decorator-footer"></div>,
-        SCRIPTS: (
-            <>
-                <div
-                    id="decorator-env"
-                    data-src={`${decoratorUrl}/env${query}`}
-                ></div>
-                <script src={`${decoratorUrl}/client.js`}></script>
-            </>
-        ),
-    };
-};
+const decoratorCSR = (query: string) => ({
+    HEADER: <div id="decorator-header"></div>,
+    STYLES: <link href={`${decoratorUrl}/css/client.css`} rel="stylesheet" />,
+    FOOTER: <div id="decorator-footer"></div>,
+    SCRIPTS: (
+        <>
+            <div
+                id="decorator-env"
+                data-src={`${decoratorUrl}/env${query}`}
+            ></div>
+            <script src={`${decoratorUrl}/client.js`}></script>
+        </>
+    ),
+});
 
 export const getDecorator = async (ctx: DocumentContext) => {
     const params = await paramsFromContext(ctx);
