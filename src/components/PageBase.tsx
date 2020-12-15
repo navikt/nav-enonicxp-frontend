@@ -20,6 +20,7 @@ import { makeErrorProps } from '../types/content-props/error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
+import { Systemtittel } from 'nav-frontend-typografi';
 
 type PageProps = {
     content: ContentProps;
@@ -55,14 +56,19 @@ export const PageBase = (props: PageProps) => {
     const { breadcrumbs, content, languages, notifications } = props;
 
     return (
-        <PageWrapper
-            content={content}
-            breadcrumbs={breadcrumbs}
-            languages={languages}
-            notifications={notifications}
-        >
-            <ContentMapper content={content} />
-        </PageWrapper>
+        <>
+            <Systemtittel style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                {'Obs: Denne versjonen av nav.no er under utvikling!'}
+            </Systemtittel>
+            <PageWrapper
+                content={content}
+                breadcrumbs={breadcrumbs}
+                languages={languages}
+                notifications={notifications}
+            >
+                <ContentMapper content={content} />
+            </PageWrapper>
+        </>
     );
 };
 
