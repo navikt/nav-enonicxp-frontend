@@ -50,10 +50,4 @@ mapping.legacy.host = www<-q-n>.nav.no
 mapping.legacy.source = /_/legacy
 mapping.legacy.target = /site/default/master/www.nav.no/
 mapping.legacy.idProvider.adfs = default
-
-# this is for pre-release compatibility only
-mapping.draftlocal.host = portal-admin<-q-n>.oera.no
-mapping.draftlocal.source = /draft
-mapping.draftlocal.target = /site/default/draft/www.nav.no/
-mapping.draftlocal.idProvider.system = default
 ```
