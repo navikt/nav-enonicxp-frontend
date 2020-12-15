@@ -15,9 +15,13 @@ const withTranspileModules = require('next-transpile-modules')([
 const configWithAllTheThings = (config) =>
     withTranspileModules(withLess(withImages(config)));
 
+const basePath = '/person/nav-enonicxp-frontend';
+
 module.exports = configWithAllTheThings({
-    basePath: '/person/nav-enonicxp-frontend', // Remove when going live
-    assetPrefix: process.env.APP_ORIGIN,
+    // Remove when going live - start
+    basePath: basePath,
+    assetPrefix: `${process.env.APP_ORIGIN}${basePath}`,
+    // Remove when going live - end
     env: {
         APP_ORIGIN: process.env.APP_ORIGIN,
     },
