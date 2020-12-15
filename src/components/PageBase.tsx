@@ -12,7 +12,7 @@ import ContentMapper, { isContentTypeImplemented } from './ContentMapper';
 import React from 'react';
 import {
     fetchBreadcrumbs,
-    fetchLanguages,
+    fetchLanguageProps,
     fetchNotifications,
     fetchPage,
 } from '../utils/fetch-content';
@@ -125,13 +125,17 @@ export const fetchPageProps = async (
         };
     }
 
+    const breadcrumbs = await fetchBreadcrumbs(contentPath, isDraft);
+    const { languages } = await fetchLanguageProps(contentPath, isDraft);
+    const notifications = await fetchNotifications(contentPath, isDraft);
+
     return {
         ...defaultProps,
         props: {
             content,
-            breadcrumbs: await fetchBreadcrumbs(contentPath, isDraft),
-            languages: await fetchLanguages(contentPath, isDraft),
-            notifications: await fetchNotifications(contentPath, isDraft),
+            breadcrumbs,
+            languages,
+            notifications,
         },
     };
 };
