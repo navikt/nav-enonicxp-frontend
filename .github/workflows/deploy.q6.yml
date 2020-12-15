@@ -3,6 +3,7 @@ on:
   push:
     tags:
       - "v*"
+      - "!v*-prod"
       - "!v*-q1"
 jobs:
   deploy:
