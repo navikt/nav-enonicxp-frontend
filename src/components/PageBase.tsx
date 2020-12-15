@@ -8,7 +8,7 @@ import { NotificationProps } from '../types/notification-props';
 import { useRouter } from 'next/router';
 import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
-import ContentMapper from './ContentMapper';
+import ContentMapper, { isContentTypeImplemented } from './ContentMapper';
 import React from 'react';
 import {
     fetchBreadcrumbs,
@@ -82,8 +82,9 @@ export const fetchPageProps = async (
     };
 
     if (
-        content.__typename === ContentType.Error &&
-        content.data.errorCode === 404
+        (content.__typename === ContentType.Error &&
+            content.data.errorCode === 404) ||
+        !isContentTypeImplemented(content)
     ) {
         return {
             ...defaultProps,
