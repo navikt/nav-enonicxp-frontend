@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import { setParams } from '@navikt/nav-dekoratoren-moduler';
 import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
 import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
-import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 import { ContentProps } from '../types/content-props/_content-common';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
@@ -13,6 +12,7 @@ import GlobalNotifications from './parts/notifications/GlobalNotifications';
 import { NotificationProps } from '../types/notification-props';
 import { initAmplitude, logPageview } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
+import { pathToRoleContext, xpToDecoratorLanguage } from '../utils/decorator';
 
 type Props = {
     content: ContentProps;
@@ -71,17 +71,31 @@ export const PageWrapper = (props: Props) => {
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
 
-        if (breadcrumbs) {
-            setBreadcrumbs(
-                breadcrumbs.map((crumb) => ({ handleInApp: true, ...crumb }))
-            );
-        }
+        const path = window.location.href;
+        const rolePath = path.split('/')[4];
+        const context = pathToRoleContext[rolePath];
+        const language = xpToDecoratorLanguage[content?.language] || 'nb';
 
-        if (languages) {
-            setAvailableLanguages(
-                languages.map((lang) => ({ handleInApp: true, ...lang }))
-            );
-        }
+        setParams({
+            ...(context && {
+                context: context,
+            }),
+            ...(language && {
+                language: language as 'en' | 'se' | 'nb' | 'nn',
+            }),
+            ...(breadcrumbs && {
+                breadcrumbs: breadcrumbs.map((crumb) => ({
+                    handleInApp: true,
+                    ...crumb,
+                })),
+            }),
+            ...(languages && {
+                availableLanguages: languages.map((lang) => ({
+                    handleInApp: true,
+                    ...lang,
+                })),
+            }),
+        });
     }, [content]);
 
     return (

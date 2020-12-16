@@ -31,14 +31,14 @@ export type DecoratorParams = Partial<{
     language: DecoratorLanguage;
 }>;
 
-const xpToDecoratorLanguage: { [key in Language]: DecoratorLanguage } = {
+export const xpToDecoratorLanguage: { [key in Language]: DecoratorLanguage } = {
     en: 'en',
     no: 'nb',
     pl: 'pl',
     se: 'se',
 };
 
-const pathToRoleContext: { [key: string]: DecoratorContext } = {
+export const pathToRoleContext: { [key: string]: DecoratorContext } = {
     person: 'privatperson',
     bedrift: 'arbeidsgiver',
     samarbeidspartner: 'samarbeidspartner',
