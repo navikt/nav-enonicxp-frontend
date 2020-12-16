@@ -12,7 +12,7 @@ export const getLocationOrigin = () =>
     '';
 
 export const isXpPath = (path: string) =>
-    /(www.*.nav.no|^nav.no|^)($|\/$|\/no|\/en|\/se|\/nav.no|\/skjemaer|\/forsiden|\/footer-contactus-no|\/footer-contactus-en|\/sykepenger-korona|\/beskjed|\/)/i.test(
+    /(www.*.nav.no|^nav.no|^)($|\/$|\/no|\/en|\/se|\/nav.no|\/skjemaer|\/forsiden|\/footer-contactus-no|\/footer-contactus-en|\/sykepenger-korona|\/beskjed)/i.test(
         path
     );
 
