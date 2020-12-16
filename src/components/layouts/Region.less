@@ -6,8 +6,10 @@
     align-items: stretch;
     flex-direction: row;
 
-    @media (max-width: @mobilMaxWidth) {
+    @media @screen-mobile {
         flex-direction: column;
+        -webkit-flex: 0;
+        flex-shrink: 0;
     }
 
     &__first,
