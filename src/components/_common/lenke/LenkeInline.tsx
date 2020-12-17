@@ -4,7 +4,8 @@ import { LenkeUstylet } from './LenkeUstylet';
 type Props = {
     href: string;
     className?: string;
-    children: React.ReactNode;
+    analyticsLabel?: string;
+    children: string;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const LenkeInline = ({ href, className, children, ...rest }: Props) => {

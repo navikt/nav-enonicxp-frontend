@@ -12,6 +12,7 @@ type Props = {
     component?: string;
     linkGroup?: string;
     withChevron?: boolean;
+    analyticsLabel?: string;
     children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
