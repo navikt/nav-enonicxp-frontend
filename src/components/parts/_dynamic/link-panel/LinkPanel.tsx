@@ -28,7 +28,11 @@ export const LinkPanel = ({ config }: DynamicLinkPanel) => {
                 }
             }
             linkCreator={(props) => (
-                <LenkeUstylet href={props.href} {...props}>
+                <LenkeUstylet
+                    href={props.href}
+                    analyticsLabel={linkProps.text}
+                    {...props}
+                >
                     {props.children}
                 </LenkeUstylet>
             )}

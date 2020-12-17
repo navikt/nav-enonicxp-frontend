@@ -8,13 +8,13 @@ import './LenkepanelNavNo.less';
 export type LenkepanelProps = {
     href: string;
     tittel: string;
-    ikon?: React.ReactElement;
+    ikon?: React.ReactNode;
     vertikal?: boolean;
     separator?: boolean;
     component?: string;
     linkGroup?: string;
     className?: string;
-    children?: React.ReactElement | React.ReactElement[];
+    children?: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const LenkepanelNavNo = ({
@@ -43,6 +43,7 @@ const LenkepanelNavNo = ({
                     href={href}
                     component={component}
                     linkGroup={linkGroup}
+                    analyticsLabel={tittel}
                     {...props}
                 >
                     {props.children}

@@ -37,6 +37,7 @@ const LinkLists = (props: ContentProps) => {
                                     className={bem('flere-nyheter')}
                                     component={'link-list'}
                                     withChevron={false}
+                                    analyticsLabel={'Flere nyheter'}
                                 >
                                     <Normaltekst>
                                         {getLabel('moreNews')}
