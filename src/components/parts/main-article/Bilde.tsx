@@ -22,9 +22,9 @@ const Bilde = (props: Props) => {
     const height = 768;
     const width = 'max';
     const src =
-        target.__typename === 'media_Image'
-            ? target.imageUrl?.replace('$scale', `${width}-${height}`)
-            : target.mediaUrl;
+        target.__typename === 'media_Vector'
+            ? target.mediaUrl
+            : target.imageUrl?.replace('$scale', `${width}-${height}`);
 
     if (!src) {
         return null;
