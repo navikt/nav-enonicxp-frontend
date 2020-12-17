@@ -32,7 +32,8 @@ interface Props {
 
 export const Email = (props: Props) => {
     const emailAddress = parseEmail(props.email);
-    return props.unitType in ['HMS', 'ALS', 'TILTAK'] && emailAddress !== '' ? (
+    return ['HMS', 'ALS', 'TILTAK'].includes(props.unitType) &&
+        emailAddress !== '' ? (
         <div
             itemProp="contactPoint"
             itemScope
