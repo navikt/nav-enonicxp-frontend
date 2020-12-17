@@ -38,10 +38,7 @@ export const MenuList = (props: ContentProps) => {
                         <ul>
                             {links?.map((link, i) => (
                                 <li key={i}>
-                                    <LenkeInline
-                                        href={link.url}
-                                        analyticsLabel={link.text}
-                                    >
+                                    <LenkeInline href={link.url}>
                                         {link.text}
                                     </LenkeInline>
                                 </li>
