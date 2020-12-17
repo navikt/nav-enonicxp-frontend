@@ -16,13 +16,29 @@ import './MainArticle.less';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 
 export const MainArticle = (propsInitial: ContentProps) => {
+    const bem = BEM('main-article');
     const props =
         propsInitial.__typename === ContentType.MainArticleChapter
-            ? propsInitial.data.article
+            ? propsInitial?.data?.article
             : propsInitial;
 
+    // Sjekk fordi et kapittel kan peke til en artikkel som er avpublisert
+    if ( !props ) {
+        return (
+            <article className={bem()}>
+                <header className={bem('header')}>
+                    <Innholdstittel className={bem('title')}>
+                        Ikke tilgjengelig
+                    </Innholdstittel>
+                    <Normaltekst className={bem('preface')}>
+                        Denne artikkelen er ikke tilgjengelig akkurat nå
+                    </Normaltekst>
+                </header>
+            </article>
+        );
+    }
+
     const { data } = props;
-    const bem = BEM('main-article');
     const getLabel = translator('mainArticle', props.language);
     const hasTableOfContest =
         data?.hasTableOfContents && data?.hasTableOfContents !== 'none';
