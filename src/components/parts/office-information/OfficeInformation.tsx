@@ -35,7 +35,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     className={bem('header')}
                 >{`${unit.navn} - kontorinformasjon`}</Innholdstittel>
             </header>
-            {unit.type in ['HMS', 'ALS', 'TILTAK'] && location && (
+            {['HMS', 'ALS', 'TILTAK'].includes(unit.type) && location && (
                 <div
                     itemProp="location"
                     itemScope
