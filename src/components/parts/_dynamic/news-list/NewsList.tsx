@@ -25,7 +25,6 @@ export const NewsList = ({ config }: DynamicNewsList) => {
                 <LenkeStandalone
                     href={moreNews.url}
                     className={bem('more-news')}
-                    analyticsLabel={moreNews.text}
                 >
                     {moreNews.text}
                 </LenkeStandalone>

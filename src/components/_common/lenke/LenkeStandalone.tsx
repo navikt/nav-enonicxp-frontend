@@ -24,6 +24,7 @@ export const LenkeStandalone = ({
     linkGroup,
     withChevron = true,
     children,
+    analyticsLabel,
     ...rest
 }: Props) => {
     const bem = BEM('navno-lenke');
@@ -34,6 +35,10 @@ export const LenkeStandalone = ({
             className={`${bem()} ${className || ''}`}
             component={component}
             linkGroup={linkGroup}
+            analyticsLabel={
+                analyticsLabel ||
+                (typeof children === 'string' ? children : undefined)
+            }
             {...rest}
         >
             <span className={bem('lenketekst')}>
