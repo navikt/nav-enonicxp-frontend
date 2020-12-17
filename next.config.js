@@ -25,6 +25,10 @@ module.exports = configWithAllTheThings({
             source: '/sitemap.xml',
             destination: `${process.env.APP_ORIGIN}/api/sitemap`,
         },
+        {
+            source: '/no/rss',
+            destination: `${process.env.XP_ORIGIN}/_/legacy/no/rss`,
+        },
     ],
     headers: async () => {
         return [
