@@ -1,6 +1,6 @@
 import {
-    ContentType,
     ContentProps,
+    ContentType,
 } from '../types/content-props/_content-common';
 import { xpPathToAppPath } from './paths';
 
@@ -11,7 +11,8 @@ export const getTargetIfRedirect = (contentData: ContentProps) => {
         case ContentType.InternalLink:
             return xpPathToAppPath(contentData.data.target._path);
         case ContentType.ExternalLink:
-            return contentData.data.url;
+        case ContentType.Url:
+            return contentData.data?.url;
         default:
             return null;
     }
