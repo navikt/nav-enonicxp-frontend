@@ -18,7 +18,10 @@ export const getUrlFromContent = (content: ContentProps) => {
     if (content.__typename === ContentType.InternalLink) {
         return content.data?.target?._path;
     }
-    if (content.__typename === ContentType.ExternalLink) {
+    if (
+        content.__typename === ContentType.ExternalLink ||
+        content.__typename === ContentType.Url
+    ) {
         return content.data?.url;
     }
     return content._path;

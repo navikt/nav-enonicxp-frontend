@@ -33,6 +33,7 @@ const contentToReactComponent: Partial<
     [ContentType.ExternalLink]: ClientsideRedirect,
     [ContentType.InternalLink]: ClientsideRedirect,
     [ContentType.Site]: ClientsideRedirect,
+    [ContentType.Url]: ClientsideRedirect,
 };
 
 export const isContentTypeImplemented = (content: ContentProps) =>

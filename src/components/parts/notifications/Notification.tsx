@@ -3,8 +3,7 @@ import { NotificationProps } from 'types/notification-props';
 import LenkepanelNavNo from '../../_common/lenkepanel/LenkepanelNavNo';
 import { ContentType } from 'types/content-props/_content-common';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
-import { hasIngress } from 'types/_type-guards';
-import { hasDescription } from 'types/_type-guards';
+import { hasDescription, hasIngress } from 'types/_type-guards';
 import { BEM } from 'utils/bem';
 import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
@@ -21,7 +20,8 @@ const iconsForType = {
 const getUrl = (target: Target) => {
     switch (target.__typename) {
         case ContentType.ExternalLink:
-            return target.data.url;
+        case ContentType.Url:
+            return target.data?.url;
         default:
             return target._path;
     }
