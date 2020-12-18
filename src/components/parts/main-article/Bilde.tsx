@@ -7,19 +7,28 @@ interface Props {
 
 const Bilde = (props: Props) => {
     const { picture } = props;
-    if (!picture) {
-        return <></>;
+    if (!picture?.target) {
+        return null;
     }
 
+    const { size, target } = picture;
+
     const imgClass =
-        picture.size === '40'
+        size === '40'
             ? 'figure-small'
-            : picture.size === '70'
+            : size === '70'
             ? 'figure-medium'
             : 'figure-full';
     const height = 768;
     const width = 'max';
-    const src = picture.target.imageUrl.replace('$scale', `${width}-${height}`);
+    const src =
+        target.__typename === 'media_Vector'
+            ? target.mediaUrl
+            : target.imageUrl?.replace('$scale', `${width}-${height}`);
+
+    if (!src) {
+        return null;
+    }
 
     return (
         <div className="figure-container">

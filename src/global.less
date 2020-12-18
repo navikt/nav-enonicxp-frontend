@@ -2,11 +2,11 @@
 @import '~nav-frontend-core/less/core';
 
 // screen size breakpoints
-@mobilMaxWidth: 767px;
-@tabletMinWidth: 768px;
-@tabletMaxWidth: 1023px;
-@desktopMinWidth: 1024px;
-@desktopMaxWidth: 1440px;
+@mobilMaxWidth: calc(767em / 16);
+@tabletMinWidth: 48em;
+@tabletMaxWidth: calc(1023em / 16);
+@desktopMinWidth: 64em;
+@desktopMaxWidth: 90em;
 
 @screen-mobile: ~'only screen and (max-width: @{mobilMaxWidth})';
 @screen-tablet: ~'only screen and (min-width: @{tabletMinWidth}) and (max-width: @{tabletMaxWidth})';
