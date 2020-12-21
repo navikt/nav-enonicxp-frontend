@@ -1,56 +1,21 @@
-import React, { Fragment } from 'react';
-import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
-import attributesToProps from 'html-react-parser/lib/attributes-to-props';
+import React from 'react';
 import { LargeTableProps } from '../../../types/content-props/large-table-props';
 import { makeErrorProps } from '../../../types/content-props/error-props';
+import { parseHtmlByProps } from '../../../utils/parse-html';
 import { ErrorPage } from '../error-page/ErrorPage';
 import './LargeTablePage.less';
 
-const parseHtml = (htmlString: string) => {
-    const options = {
-        replace: ({ name, attribs, children }: DomElement) => {
-            // Replace rows with no content with an easily styled element
-            if (
-                name?.toLowerCase() === 'tr' &&
-                (!children ||
-                    children.filter((col) => col.children?.length).length === 0)
-            ) {
-                return (
-                    <tr
-                        {...attributesToProps(attribs)}
-                        className={'spacer-row'}
-                    />
-                );
-            }
-
-            // Remove strong, as it is inconsistently used and we apply font-styling in css instead
-            if (name?.toLowerCase() === 'strong') {
-                return <>{domToReact(children)}</>;
-            }
-
-            // Remove empty footers etc
-            if (
-                name?.toLowerCase() === 'div' &&
-                (!children || children.length === 0)
-            ) {
-                return <Fragment />;
-            }
-        },
-    };
-
-    const htmlParsed = htmlReactParser(
-        // remove whitespace
-        htmlString.replace(/(\t|\n|\r|&nbsp;)/gm, ''),
-        options
-    );
-
-    return <>{htmlParsed}</>;
-};
-
 export const LargeTablePage = (contentData: LargeTableProps) => {
-    return contentData.data?.text || contentData.editMode ? (
+    return contentData?.data?.text || contentData?.editMode ? (
         <div className={'large-table-page'}>
-            {contentData.data?.text ? parseHtml(contentData.data.text) : ''}
+            {contentData.data?.text
+                ? parseHtmlByProps(contentData.data.text, {
+                    removeEmpty: true,
+                    tableContent: true,
+                    tableAttribs: true,
+                })
+                : ''
+            }
         </div>
     ) : (
         <ErrorPage
