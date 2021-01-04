@@ -17,6 +17,10 @@ const configWithAllTheThings = (config) =>
 
 module.exports = configWithAllTheThings({
     assetPrefix: process.env.APP_ORIGIN,
+    i18n: {
+        locales: ['no', 'en', 'pl', 'se'],
+        defaultLocale: 'no',
+    },
     env: {
         APP_ORIGIN: process.env.APP_ORIGIN,
     },
