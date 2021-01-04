@@ -27,7 +27,7 @@ module.exports = configWithAllTheThings({
         },
         {
             source: '/no/rss',
-            destination: `${process.env.XP_ORIGIN}/_/legacy/no/rss`,
+            destination: `${process.env.APP_ORIGIN}/api/rss`,
         },
     ],
     headers: async () => {
