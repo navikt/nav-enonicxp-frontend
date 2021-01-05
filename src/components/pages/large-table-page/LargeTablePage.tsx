@@ -10,7 +10,6 @@ export const LargeTablePage = (contentData: LargeTableProps) => {
         <div className={'large-table-page'}>
             {contentData.data?.text
                 ? parseHtmlByProps(contentData.data.text, {
-                    removeEmpty: true,
                     tableContent: true,
                     tableAttribs: true,
                 })
