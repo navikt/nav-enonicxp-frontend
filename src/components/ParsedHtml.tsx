@@ -14,7 +14,6 @@ export const ParsedHtml = (props: Props) => {
     }
 
     const htmlParsed = parseHtmlByProps(content, {
-        removeEmpty: true,
         macros: true,
         tableAttribs: true,
         tableClass: true,
