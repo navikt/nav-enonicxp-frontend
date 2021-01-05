@@ -1,0 +1,51 @@
+@import (reference) '../../../global';
+
+.global-notifications {
+    display: flex;
+    justify-content: center;
+}
+
+.global-notifications-inner {
+    @numCols: 2;
+    @margin: 1rem;
+    @max-width: @desktopMaxWidth * 0.75;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: @max-width;
+    width: 100%;
+
+    @media @screen-desktop-large {
+        .notification {
+            width: calc(
+                @max-width / @numCols - @margin * (@numCols - 1) / @numCols
+            );
+
+            &:not(:nth-child(@{numCols}n)) {
+                margin-right: @margin;
+            }
+        }
+    }
+
+    @media @screen-tablet-and-desktop {
+        .notification {
+            width: calc(100% / @numCols - @margin * (@numCols - 1) / @numCols);
+
+            &:not(:nth-child(@{numCols}n)) {
+                margin-right: @margin;
+            }
+        }
+    }
+
+    @media @screen-mobile {
+        padding: 1rem 0;
+        flex-direction: column;
+        align-items: center;
+
+        .notification {
+            width: 100%;
+            margin-right: 0;
+        }
+    }
+}

@@ -10,8 +10,9 @@
 
 @screen-mobile: ~'only screen and (max-width: @{mobilMaxWidth})';
 @screen-tablet: ~'only screen and (min-width: @{tabletMinWidth}) and (max-width: @{tabletMaxWidth})';
-@screen-tablet-and-desktop: ~'only screen and (min-width: @{tabletMinWidth}) ';
-@screen-desktop: ~'only screen and (min-width: @{desktopMinWidth}) ';
+@screen-tablet-and-desktop: ~'only screen and (min-width: @{tabletMinWidth})';
+@screen-desktop: ~'only screen and (min-width: @{desktopMinWidth})';
+@screen-desktop-large: ~'only screen and (min-width: @{desktopMaxWidth})';
 
 @padding-sides-desktop: 3rem;
 @padding-sides-tablet: 1rem;
@@ -31,24 +32,17 @@ html {
     min-height: 20rem;
     margin: 0 auto;
     background-color: #f1f1f1;
-    padding: 2rem 0;
-}
 
-@media @screen-mobile {
-    .content-wrapper {
-        padding: 0 @padding-sides-mobile;
+    @media @screen-mobile {
+        padding: 2rem @padding-sides-mobile;
     }
-}
 
-@media @screen-tablet {
-    .content-wrapper {
-        padding: 0 @padding-sides-mobile;
+    @media @screen-tablet {
+        padding: 2rem @padding-sides-mobile;
     }
-}
 
-@media @screen-desktop {
-    .content-wrapper {
-        padding: 0 @padding-sides-desktop;
+    @media @screen-desktop {
+        padding: 2rem @padding-sides-desktop;
     }
 }
 
