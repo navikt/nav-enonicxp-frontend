@@ -12,7 +12,10 @@ import GlobalNotifications from './parts/notifications/GlobalNotifications';
 import { NotificationProps } from '../types/notification-props';
 import { initAmplitude, logPageview } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
-import { pathToRoleContext, xpLangToDecoratorLang } from '../utils/decorator';
+import {
+    pathToRoleContext,
+    xpLangToDecoratorLang,
+} from '../utils/document-utils';
 
 type Props = {
     content: ContentProps;
