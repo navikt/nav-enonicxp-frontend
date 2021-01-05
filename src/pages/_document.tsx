@@ -14,7 +14,7 @@ class MyDocument extends Document<Props> {
     static async getInitialProps(ctx: DocumentContext) {
         const initialProps = await Document.getInitialProps(ctx);
         const { decoratorParams, language } = await paramsFromContext(ctx);
-        const decoratorFragments = await getDecorator(ctx, decoratorParams);
+        const decoratorFragments = await getDecorator(decoratorParams);
         return {
             ...initialProps,
             decoratorFragments,

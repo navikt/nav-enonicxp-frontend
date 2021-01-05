@@ -109,10 +109,7 @@ const decoratorCSR = (query: string) => ({
     ),
 });
 
-export const getDecorator = async (
-    ctx: DocumentContext,
-    params: DecoratorParams
-) => {
+export const getDecorator = async (params: DecoratorParams) => {
     const query = objectToQueryString({ ...decoratorParamsDefault, ...params });
 
     const decoratorHtml = await fetchDecorator(query);
