@@ -8,7 +8,7 @@
 .global-notifications-inner {
     @numCols: 2;
     @margin: 1rem;
-    @max-width: @desktopMaxWidth * 0.75;
+    @max-width: calc(@desktopMaxWidth * 0.75 - @padding-sides-desktop * 2);
     @margin-width-term: @margin * (@numCols - 1) / @numCols;
 
     display: flex;
@@ -24,12 +24,6 @@
             &:not(:nth-child(@{numCols}n)) {
                 margin-right: @margin;
             }
-        }
-    }
-
-    @media @screen-desktop-large {
-        .notification {
-            width: calc(@max-width / @numCols - @margin-width-term);
         }
     }
 
