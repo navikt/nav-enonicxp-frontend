@@ -37,6 +37,7 @@ export const bundle = {
         linkedListDescription: 'Kapitler',
         published: 'Publisert',
         tableOfContents: 'Innholdsfortegnelse',
+        jumpTo: 'Hopp til',
     },
     mainPanels: {
         label: 'Hovedvalg',
