@@ -22,6 +22,10 @@ export type DecoratorFragments = {
     STYLES: React.ReactNode;
 };
 
+const decoratorParamsDefault: DecoratorParams = {
+    chatbot: true,
+};
+
 export type DecoratorParams = Partial<{
     availableLanguages: LanguageSelectorProps[];
     breadcrumbs: Breadcrumb[];
@@ -31,7 +35,12 @@ export type DecoratorParams = Partial<{
     language: DecoratorLanguage;
 }>;
 
-export const xpToDecoratorLanguage: { [key in Language]: DecoratorLanguage } = {
+export type DocumentParams = {
+    decoratorParams: DecoratorParams;
+    language?: Language;
+};
+
+export const xpLangToDecoratorLang: { [key in Language]: DecoratorLanguage } = {
     en: 'en',
     no: 'nb',
     pl: 'pl',
@@ -44,15 +53,11 @@ export const pathToRoleContext: { [key: string]: DecoratorContext } = {
     samarbeidspartner: 'samarbeidspartner',
 };
 
-const defaultParams: DecoratorParams = {
-    chatbot: true,
-};
-
-const paramsFromContext = async (
+export const paramsFromContext = async (
     ctx: DocumentContext
-): Promise<DecoratorParams> => {
+): Promise<DocumentParams> => {
     if (ctx.pathname === '/404') {
-        return decoratorParams404;
+        return { decoratorParams: decoratorParams404, language: 'no' };
     }
 
     const path = ctx.asPath;
@@ -63,13 +68,16 @@ const paramsFromContext = async (
     const xpPath = appPathToXpPath(path);
     const breadcrumbs = await fetchBreadcrumbs(xpPath);
     const { currentLanguage, languages } = await fetchLanguageProps(xpPath);
-    const language = xpToDecoratorLanguage[currentLanguage] || 'nb';
+    const decoratorLang = xpLangToDecoratorLang[currentLanguage] || 'nb';
 
     return {
-        ...(breadcrumbs && { breadcrumbs }),
-        ...(languages && { availableLanguages: languages }),
-        ...(roleContext && { context: roleContext }),
-        language,
+        decoratorParams: {
+            ...(breadcrumbs && { breadcrumbs }),
+            ...(languages && { availableLanguages: languages }),
+            ...(roleContext && { context: roleContext }),
+            language: decoratorLang,
+        },
+        language: currentLanguage,
     };
 };
 
@@ -101,9 +109,11 @@ const decoratorCSR = (query: string) => ({
     ),
 });
 
-export const getDecorator = async (ctx: DocumentContext) => {
-    const params = await paramsFromContext(ctx);
-    const query = objectToQueryString({ ...defaultParams, ...params });
+export const getDecorator = async (
+    ctx: DocumentContext,
+    params: DecoratorParams
+) => {
+    const query = objectToQueryString({ ...decoratorParamsDefault, ...params });
 
     const decoratorHtml = await fetchDecorator(query);
 
@@ -114,12 +124,10 @@ export const getDecorator = async (ctx: DocumentContext) => {
 
     const { document } = new JSDOM(decoratorHtml).window;
 
-    const decoratorElements = {
+    return {
         HEADER: parse(document.getElementById('header-withmenu').innerHTML),
         STYLES: parse(document.getElementById('styles').innerHTML),
         FOOTER: parse(document.getElementById('footer-withmenu').innerHTML),
         SCRIPTS: parse(document.getElementById('scripts').innerHTML),
     };
-
-    return decoratorElements;
 };
