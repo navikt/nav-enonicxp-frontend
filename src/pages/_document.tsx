@@ -1,7 +1,7 @@
 import React from 'react';
 import Document, { NextScript, DocumentContext } from 'next/document';
 import { Html, Head, Main } from 'next/document';
-import { getDecorator, propsFromContext } from '../utils/document-utils';
+import { getDecorator, paramsFromContext } from '../utils/document-utils';
 import { DecoratorFragments } from '../utils/document-utils';
 import { Language } from '../translations';
 
@@ -13,7 +13,7 @@ type Props = {
 class MyDocument extends Document<Props> {
     static async getInitialProps(ctx: DocumentContext) {
         const initialProps = await Document.getInitialProps(ctx);
-        const { decoratorParams, language } = await propsFromContext(ctx);
+        const { decoratorParams, language } = await paramsFromContext(ctx);
         const decoratorFragments = await getDecorator(ctx, decoratorParams);
         return {
             ...initialProps,
