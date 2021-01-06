@@ -21,7 +21,7 @@
         .notification {
             width: calc(100% / @numCols - @margin-width-term);
 
-            &:not(:nth-child(@{numCols}n)) {
+            &:not(:nth-child(@{numCols}n)):not(:last-child) {
                 margin-right: @margin;
             }
         }
