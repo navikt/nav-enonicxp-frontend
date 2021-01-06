@@ -12,7 +12,10 @@ import GlobalNotifications from './_common/notifications/GlobalNotifications';
 import { NotificationProps } from '../types/notification-props';
 import { initAmplitude, logPageview } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
-import { pathToRoleContext, xpToDecoratorLanguage } from '../utils/decorator';
+import {
+    pathToRoleContext,
+    xpLangToDecoratorLang,
+} from '../utils/document-utils';
 
 type Props = {
     content: ContentProps;
@@ -74,7 +77,7 @@ export const PageWrapper = (props: Props) => {
         const path = window.location.href;
         const rolePath = path.split('/')[4];
         const context = pathToRoleContext[rolePath];
-        const language = xpToDecoratorLanguage[content?.language] || 'nb';
+        const language = xpLangToDecoratorLang[content?.language] || 'nb';
 
         setParams({
             ...(context && {
@@ -96,6 +99,8 @@ export const PageWrapper = (props: Props) => {
                 })),
             }),
         });
+
+        document.documentElement.lang = content?.language || 'no';
     }, [content]);
 
     return (

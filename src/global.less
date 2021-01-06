@@ -1,25 +1,38 @@
 @import '~nav-frontend-core/less/_variabler';
 @import '~nav-frontend-core/less/core';
 
-// screen size breakpoints
-@mobilMaxWidth: calc(767em / 16);
-@tabletMinWidth: 48em;
-@tabletMaxWidth: calc(1023em / 16);
-@desktopMinWidth: 64em;
-@desktopMaxWidth: 90em;
+@font-size-factor: 1.125;
 
-@screen-mobile: ~'only screen and (max-width: @{mobilMaxWidth})';
-@screen-tablet: ~'only screen and (min-width: @{tabletMinWidth}) and (max-width: @{tabletMaxWidth})';
-@screen-tablet-and-desktop: ~'only screen and (min-width: @{tabletMinWidth})';
-@screen-desktop: ~'only screen and (min-width: @{desktopMinWidth})';
-@screen-desktop-large: ~'only screen and (min-width: @{desktopMaxWidth})';
+// Screen size breakpoints
+//
+// Relative units does not take CSS font-size into account when used in media queries,
+// but they do when used as CSS attribute values. We use separate variable sets to ensure
+// width and breakpoints scale consistently with browser font-size without being affected
+// by CSS font-size.
+@_MQ_mobileMaxWidth: 48em; // 768px
+@_MQ_tabletMinWidth: @_MQ_mobileMaxWidth;
+@_MQ_tabletMaxWidth: 64em; // 1024px
+@_MQ_desktopMinWidth: @_MQ_tabletMaxWidth;
+@_MQ_desktopMaxWidth: 90em; // 1440px
+
+@mobileMaxWidth: calc(@_MQ_mobileMaxWidth / @font-size-factor);
+@tabletMinWidth: @mobileMaxWidth;
+@tabletMaxWidth: calc(@_MQ_tabletMaxWidth / @font-size-factor);
+@desktopMinWidth: @tabletMaxWidth;
+@desktopMaxWidth: calc(@_MQ_desktopMaxWidth / @font-size-factor);
+
+@screen-mobile: ~'only screen and (max-width: @{_MQ_mobileMaxWidth})';
+@screen-tablet: ~'only screen and (min-width: @{_MQ_tabletMinWidth}) and (max-width: @{_MQ_tabletMaxWidth})';
+@screen-tablet-and-desktop: ~'only screen and (min-width: @{_MQ_tabletMinWidth}) ';
+@screen-desktop: ~'only screen and (min-width: @{_MQ_desktopMinWidth}) ';
+@screen-desktop-large: ~'only screen and (min-width: @{_MQ_desktopMaxWidth}) ';
 
 @padding-sides-desktop: 3rem;
 @padding-sides-tablet: 1rem;
 @padding-sides-mobile: 1rem;
 
 html {
-    font-size: 112.5%;
+    font-size: @font-size-factor * 100%;
 }
 
 #__next,
@@ -28,7 +41,7 @@ html {
 }
 
 .app {
-    max-width: 1440px;
+    max-width: @desktopMaxWidth;
     min-height: 20rem;
     margin: 0 auto;
     background-color: #f1f1f1;
