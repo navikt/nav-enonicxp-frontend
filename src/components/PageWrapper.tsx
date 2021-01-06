@@ -8,7 +8,7 @@ import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
 import { Breadcrumb } from '../types/breadcrumb';
 import { LanguageSelectorProps } from '../types/language-selector-props';
-import GlobalNotifications from './parts/notifications/GlobalNotifications';
+import GlobalNotifications from './_common/notifications/GlobalNotifications';
 import { NotificationProps } from '../types/notification-props';
 import { initAmplitude, logPageview } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
