@@ -8,13 +8,12 @@
 .global-notifications-inner {
     @numCols: 2;
     @margin: 1rem;
-    @max-width: calc((@desktopMaxWidth - @padding-sides-desktop * 2) * 0.75);
     @margin-width-term: @margin * (@numCols - 1) / @numCols;
 
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: @max-width;
+    max-width: calc((@desktopMaxWidth - @padding-sides-desktop * 2) * 0.75);
     width: 100%;
 
     @media @screen-tablet-and-desktop {
