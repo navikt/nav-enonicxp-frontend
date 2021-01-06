@@ -1,4 +1,4 @@
-FROM navikt/node-express:14-alpine
+FROM navikt/node-express:12.18-alpine
 
 # Create app directory
 RUN mkdir -p /usr/src/app
