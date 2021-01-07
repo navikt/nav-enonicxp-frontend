@@ -2,19 +2,12 @@ import {
     ContentProps,
     ContentType,
 } from '../types/content-props/_content-common';
-import { Breadcrumb } from '../types/breadcrumb';
-import { LanguageSelectorProps } from '../types/language-selector-props';
-import { NotificationProps } from '../types/notification-props';
 import { useRouter } from 'next/router';
 import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
 import ContentMapper, { isContentTypeImplemented } from './ContentMapper';
 import React from 'react';
-import {
-    fetchBreadcrumbs,
-    fetchLanguageProps,
-    fetchPage,
-} from '../utils/fetch-content';
+import { fetchPage } from '../utils/fetch-content';
 import { makeErrorProps } from '../types/content-props/error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
@@ -22,9 +15,6 @@ import { routerQueryToXpPathOrId } from '../utils/paths';
 
 type PageProps = {
     content: ContentProps;
-    breadcrumbs: Breadcrumb[];
-    languages: LanguageSelectorProps[];
-    notifications?: NotificationProps[];
 };
 
 type StaticProps = {
@@ -51,15 +41,10 @@ export const PageBase = (props: PageProps) => {
         );
     }
 
-    const { breadcrumbs, content, languages, notifications } = props;
+    const { content } = props;
 
     return (
-        <PageWrapper
-            content={content}
-            breadcrumbs={breadcrumbs}
-            languages={languages}
-            notifications={notifications}
-        >
+        <PageWrapper content={content}>
             <ContentMapper content={content} />
         </PageWrapper>
     );
@@ -72,8 +57,7 @@ export const fetchPageProps = async (
     revalidate?: number
 ): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
-    const { content, notifications } = await fetchPage(xpPath, isDraft, secret);
-    const contentPath = content._path;
+    const content = await fetchPage(xpPath, isDraft, secret);
 
     const defaultProps = {
         props: undefined,
@@ -96,9 +80,6 @@ export const fetchPageProps = async (
             ...defaultProps,
             props: {
                 content,
-                breadcrumbs: [],
-                languages: [],
-                notifications: [],
             },
         };
     }
@@ -108,9 +89,6 @@ export const fetchPageProps = async (
             ...defaultProps,
             props: {
                 content,
-                breadcrumbs: await fetchBreadcrumbs(contentPath, isDraft),
-                languages: [],
-                notifications: [],
             },
         };
     }
@@ -124,16 +102,10 @@ export const fetchPageProps = async (
         };
     }
 
-    const breadcrumbs = await fetchBreadcrumbs(contentPath, isDraft);
-    const { languages } = await fetchLanguageProps(contentPath, isDraft);
-
     return {
         ...defaultProps,
         props: {
             content,
-            breadcrumbs,
-            languages,
-            notifications,
         },
     };
 };

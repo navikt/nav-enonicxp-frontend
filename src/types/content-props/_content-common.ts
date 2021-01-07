@@ -13,6 +13,8 @@ import { LayoutProps } from '../component-props/layouts';
 import { MainArticleChapterData } from './main-article-chapter-props';
 import { OfficeInformationData } from './office-information-props';
 import { UrlData } from './url-props';
+import { Breadcrumb } from '../breadcrumb';
+import { NotificationProps } from '../notification-props';
 
 export enum ContentType {
     Error = 'error',
@@ -53,6 +55,8 @@ export type ContentProps = {
     data?: ContentData;
     page?: LayoutProps;
     editMode?: boolean;
+    breadcrumbs?: Breadcrumb[];
+    notifications?: NotificationProps[];
 };
 
 type TypeSpecificData = ContentListData &

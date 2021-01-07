@@ -6,32 +6,30 @@ import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 import { ContentProps } from '../types/content-props/_content-common';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
-import { Breadcrumb } from '../types/breadcrumb';
-import { LanguageSelectorProps } from '../types/language-selector-props';
 import GlobalNotifications from './_common/notifications/GlobalNotifications';
-import { NotificationProps } from '../types/notification-props';
 import { initAmplitude, logPageview } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import {
     pathToRoleContext,
     xpLangToDecoratorLang,
 } from '../utils/document-utils';
+import { getContentLanguages } from '../utils/languages';
+import { xpPathToAppPath } from '../utils/paths';
 
 type Props = {
     content: ContentProps;
-    breadcrumbs: Breadcrumb[];
-    languages: LanguageSelectorProps[];
-    notifications?: NotificationProps[];
     children: React.ReactNode;
 };
 
 export const PageWrapper = (props: Props) => {
-    const { content, breadcrumbs, languages, notifications, children } = props;
+    const { content, children } = props;
+    const { notifications } = content;
+
     const router = useRouter();
 
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) => router.push(breadcrumb.url));
-        onLanguageSelect((breadcrumb) => router.push(breadcrumb.url));
+        onLanguageSelect((language) => router.push(language.url));
 
         initAmplitude();
 
@@ -69,22 +67,25 @@ export const PageWrapper = (props: Props) => {
         }
 
         logPageview();
+        logPageview();
 
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
 
+        const { breadcrumbs, language } = content;
         const path = window.location.href;
         const rolePath = path.split('/')[4];
         const context = pathToRoleContext[rolePath];
-        const language = xpLangToDecoratorLang[content?.language] || 'nb';
+        const decoratorLang = xpLangToDecoratorLang[language] || 'nb';
+        const languages = getContentLanguages(content);
 
         setParams({
             ...(context && {
                 context: context,
             }),
-            ...(language && {
-                language: language as 'en' | 'se' | 'nb' | 'nn',
+            ...(decoratorLang && {
+                language: decoratorLang as 'en' | 'se' | 'nb' | 'nn', // TODO: add 'pl' to decorator-modules!
             }),
             ...(breadcrumbs && {
                 breadcrumbs: breadcrumbs.map((crumb) => ({
@@ -95,7 +96,8 @@ export const PageWrapper = (props: Props) => {
             ...(languages && {
                 availableLanguages: languages.map((lang) => ({
                     handleInApp: true,
-                    ...lang,
+                    url: xpPathToAppPath(lang._path),
+                    locale: xpLangToDecoratorLang[lang.language],
                 })),
             }),
         });
