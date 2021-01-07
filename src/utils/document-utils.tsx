@@ -9,8 +9,11 @@ import { decoratorParams404 } from '../components/pages/error-page/errorcode-con
 import { appPathToXpPath } from './paths';
 import { fetchBreadcrumbs, fetchLanguageProps } from './fetch-content';
 import { Language } from '../translations';
+import NodeCache from 'node-cache';
 
 const decoratorUrl = process.env.DECORATOR_URL;
+
+const cache = new NodeCache({ stdTTL: 60 });
 
 type DecoratorContext = 'privatperson' | 'arbeidsgiver' | 'samarbeidspartner';
 type DecoratorLanguage = 'en' | 'nb' | 'nn' | 'pl' | 'se';
@@ -20,10 +23,6 @@ export type DecoratorFragments = {
     FOOTER: React.ReactNode;
     SCRIPTS: React.ReactNode;
     STYLES: React.ReactNode;
-};
-
-const decoratorParamsDefault: DecoratorParams = {
-    chatbot: true,
 };
 
 export type DecoratorParams = Partial<{
@@ -38,6 +37,10 @@ export type DecoratorParams = Partial<{
 export type DocumentParams = {
     decoratorParams: DecoratorParams;
     language?: Language;
+};
+
+const decoratorParamsDefault: DecoratorParams = {
+    chatbot: true,
 };
 
 export const xpLangToDecoratorLang: { [key in Language]: DecoratorLanguage } = {
@@ -104,13 +107,19 @@ const decoratorCSR = (query: string) => ({
                 id="decorator-env"
                 data-src={`${decoratorUrl}/env${query}`}
             ></div>
-            <script src={`${decoratorUrl}/client.js`}></script>
+            <script async={true} src={`${decoratorUrl}/client.js`}></script>
         </>
     ),
 });
 
 export const getDecorator = async (params: DecoratorParams) => {
     const query = objectToQueryString({ ...decoratorParamsDefault, ...params });
+
+    const decoratorElementsCached = cache.get(query);
+
+    if (decoratorElementsCached) {
+        return decoratorElementsCached;
+    }
 
     const decoratorHtml = await fetchDecorator(query);
 
@@ -121,10 +130,14 @@ export const getDecorator = async (params: DecoratorParams) => {
 
     const { document } = new JSDOM(decoratorHtml).window;
 
-    return {
+    const decoratorElements = {
         HEADER: parse(document.getElementById('header-withmenu').innerHTML),
         STYLES: parse(document.getElementById('styles').innerHTML),
         FOOTER: parse(document.getElementById('footer-withmenu').innerHTML),
         SCRIPTS: parse(document.getElementById('scripts').innerHTML),
     };
+
+    cache.set(query, decoratorElements);
+
+    return decoratorElements;
 };
