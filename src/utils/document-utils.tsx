@@ -3,13 +3,12 @@ import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { JSDOM } from 'jsdom';
 import parse from 'html-react-parser';
 import { Breadcrumb } from '../types/breadcrumb';
-import { LanguageSelectorProps } from '../types/language-selector-props';
 import { DocumentContext } from 'next/document';
 import { decoratorParams404 } from '../components/pages/error-page/errorcode-content/Error404Content';
-import { appPathToXpPath } from './paths';
-import { fetchBreadcrumbs, fetchLanguageProps } from './fetch-content';
+import { appPathToXpPath, xpPathToAppPath, xpServiceUrl } from './paths';
 import { Language } from '../translations';
 import NodeCache from 'node-cache';
+import { LanguageProps } from '../types/language';
 
 const decoratorUrl = process.env.DECORATOR_URL;
 
@@ -17,6 +16,10 @@ const cache = new NodeCache({ stdTTL: 60 });
 
 type DecoratorContext = 'privatperson' | 'arbeidsgiver' | 'samarbeidspartner';
 type DecoratorLanguage = 'en' | 'nb' | 'nn' | 'pl' | 'se';
+type DecoratorLanguageParams = {
+    locale: DecoratorLanguage;
+    url: string;
+};
 
 export type DecoratorFragments = {
     HEADER: React.ReactNode;
@@ -26,7 +29,7 @@ export type DecoratorFragments = {
 };
 
 export type DecoratorParams = Partial<{
-    availableLanguages: LanguageSelectorProps[];
+    availableLanguages: DecoratorLanguageParams[];
     breadcrumbs: Breadcrumb[];
     chatbot: boolean;
     feedback: boolean;
@@ -39,11 +42,54 @@ export type DocumentParams = {
     language?: Language;
 };
 
-const decoratorParamsDefault: DecoratorParams = {
+type DecoratorProps = {
+    currentLanguage: Language;
+    languages?: LanguageProps[];
+    breadcrumbs?: Breadcrumb[];
+};
+
+const decoratorParamsDefault = {
     chatbot: true,
 };
 
-export const xpLangToDecoratorLang: { [key in Language]: DecoratorLanguage } = {
+const fetchDecoratorProps = (
+    idOrPath: string,
+    isDraft = false
+): Promise<DecoratorProps> => {
+    const params = objectToQueryString({
+        ...(isDraft && { branch: 'draft' }),
+        id: idOrPath,
+    });
+    const url = `${xpServiceUrl}/decoratorProps${params}`;
+
+    return fetchWithTimeout(url, 5000)
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+            const error = `Failed to fetch decorator props from ${idOrPath}: ${res.statusText}`;
+            console.log(error);
+            return [];
+        })
+        .catch(console.error);
+};
+
+const fetchDecorator = (query?: string) => {
+    const url = `${decoratorUrl}/${query ? query : ''}`;
+    return fetchWithTimeout(url, 5000)
+        .then((res) => {
+            if (res.ok) {
+                return res.text();
+            }
+            const error = `Failed to fetch decorator from ${url}: ${res.status} - ${res.statusText}`;
+            throw Error(error);
+        })
+        .catch(console.error);
+};
+
+export const xpLangToDecoratorLang: {
+    [key in Language]: DecoratorLanguage;
+} = {
     en: 'en',
     no: 'nb',
     pl: 'pl',
@@ -66,35 +112,31 @@ export const paramsFromContext = async (
     const path = ctx.asPath;
 
     const rolePath = path.split('/')[2];
-    const roleContext = pathToRoleContext[rolePath];
+    const context = pathToRoleContext[rolePath];
 
-    const xpPath = appPathToXpPath(path);
-    const breadcrumbs = await fetchBreadcrumbs(xpPath);
-    const { currentLanguage, languages } = await fetchLanguageProps(xpPath);
+    const {
+        currentLanguage,
+        languages,
+        breadcrumbs,
+    } = await fetchDecoratorProps(appPathToXpPath(path));
+
     const decoratorLang = xpLangToDecoratorLang[currentLanguage] || 'nb';
+    const availableLanguages = languages
+        ?.map((lang) => ({
+            locale: xpLangToDecoratorLang[lang.language],
+            url: xpPathToAppPath(lang._path),
+        }))
+        .concat([{ locale: decoratorLang, url: path }]);
 
     return {
         decoratorParams: {
             ...(breadcrumbs && { breadcrumbs }),
-            ...(languages && { availableLanguages: languages }),
-            ...(roleContext && { context: roleContext }),
+            ...(availableLanguages && { availableLanguages }),
+            ...(context && { context }),
             language: decoratorLang,
         },
         language: currentLanguage,
     };
-};
-
-const fetchDecorator = (query?: string) => {
-    const url = `${decoratorUrl}/${query ? query : ''}`;
-    return fetchWithTimeout(url, 5000)
-        .then((res) => {
-            if (res.ok) {
-                return res.text();
-            }
-            const error = `Failed to fetch decorator from ${url}: ${res.status} - ${res.statusText}`;
-            throw Error(error);
-        })
-        .catch(console.error);
 };
 
 const decoratorCSR = (query: string) => ({
