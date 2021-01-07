@@ -48,6 +48,10 @@ type DecoratorProps = {
     breadcrumbs?: Breadcrumb[];
 };
 
+const decoratorParamsDefault = {
+    chatbot: true,
+};
+
 const fetchDecoratorProps = (
     idOrPath: string,
     isDraft = false

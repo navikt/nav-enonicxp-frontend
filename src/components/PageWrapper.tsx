@@ -67,7 +67,6 @@ export const PageWrapper = (props: Props) => {
         }
 
         logPageview();
-        logPageview();
 
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;
