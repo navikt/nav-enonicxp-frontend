@@ -10,37 +10,31 @@ import { Language } from '../translations';
 import NodeCache from 'node-cache';
 import { LanguageProps } from '../types/language';
 import { getDecoratorLanguagesParam } from './languages';
+import {
+    DecoratorParams,
+    pathToRoleContext,
+    xpLangToDecoratorLang,
+} from './decorator-utils';
 
 const decoratorUrl = process.env.DECORATOR_URL;
 
 const cache = new NodeCache({ stdTTL: 60 });
 
-type DecoratorContext = 'privatperson' | 'arbeidsgiver' | 'samarbeidspartner';
-type DecoratorLanguage = 'en' | 'nb' | 'nn' | 'pl' | 'se';
-type DecoratorLanguageParams = {
-    locale: DecoratorLanguage;
-    url: string;
+export type DocumentProps = {
+    decoratorFragments: DecoratorFragments;
+    language: Language;
 };
 
-export type DecoratorFragments = {
+type DocumentParams = {
+    decoratorParams: DecoratorParams;
+    language: Language;
+};
+
+type DecoratorFragments = {
     HEADER: React.ReactNode;
     FOOTER: React.ReactNode;
     SCRIPTS: React.ReactNode;
     STYLES: React.ReactNode;
-};
-
-export type DecoratorParams = Partial<{
-    availableLanguages: DecoratorLanguageParams[];
-    breadcrumbs: Breadcrumb[];
-    chatbot: boolean;
-    feedback: boolean;
-    context: DecoratorContext;
-    language: DecoratorLanguage;
-}>;
-
-export type DocumentParams = {
-    decoratorParams: DecoratorParams;
-    language?: Language;
 };
 
 type DecoratorProps = {
@@ -88,22 +82,7 @@ const fetchDecorator = (query?: string) => {
         .catch(console.error);
 };
 
-export const xpLangToDecoratorLang: {
-    [key in Language]: DecoratorLanguage;
-} = {
-    en: 'en',
-    no: 'nb',
-    pl: 'pl',
-    se: 'se',
-};
-
-export const pathToRoleContext: { [key: string]: DecoratorContext } = {
-    person: 'privatperson',
-    bedrift: 'arbeidsgiver',
-    samarbeidspartner: 'samarbeidspartner',
-};
-
-export const paramsFromContext = async (
+const getParamsFromContext = async (
     ctx: DocumentContext
 ): Promise<DocumentParams> => {
     if (ctx.pathname === '/404') {
@@ -138,47 +117,67 @@ export const paramsFromContext = async (
     };
 };
 
-const decoratorCSR = (query: string) => ({
-    HEADER: <div id="decorator-header"></div>,
-    STYLES: <link href={`${decoratorUrl}/css/client.css`} rel="stylesheet" />,
-    FOOTER: <div id="decorator-footer"></div>,
-    SCRIPTS: (
-        <>
-            <div
-                id="decorator-env"
-                data-src={`${decoratorUrl}/env${query}`}
-            ></div>
-            <script async={true} src={`${decoratorUrl}/client.js`}></script>
-        </>
-    ),
-});
-
-export const getDecorator = async (params: DecoratorParams) => {
-    const query = objectToQueryString({ ...decoratorParamsDefault, ...params });
-
-    const decoratorElementsCached = cache.get(query);
-
-    if (decoratorElementsCached) {
-        return decoratorElementsCached;
-    }
+const getDecoratorFragments = async (
+    decoratorParams: DecoratorParams
+): Promise<DecoratorFragments> => {
+    const query = objectToQueryString({
+        ...decoratorParamsDefault,
+        ...decoratorParams,
+    });
 
     const decoratorHtml = await fetchDecorator(query);
 
     // Fallback to client-side rendered decorator if fetch failed
     if (!decoratorHtml) {
-        return decoratorCSR(query);
+        return {
+            HEADER: <div id="decorator-header"></div>,
+            STYLES: (
+                <link
+                    href={`${decoratorUrl}/css/client.css`}
+                    rel="stylesheet"
+                />
+            ),
+            FOOTER: <div id="decorator-footer"></div>,
+            SCRIPTS: (
+                <>
+                    <div
+                        id="decorator-env"
+                        data-src={`${decoratorUrl}/env${query}`}
+                    ></div>
+                    <script
+                        async={true}
+                        src={`${decoratorUrl}/client.js`}
+                    ></script>
+                </>
+            ),
+        };
     }
 
     const { document } = new JSDOM(decoratorHtml).window;
 
-    const decoratorElements = {
+    return {
         HEADER: parse(document.getElementById('header-withmenu').innerHTML),
         STYLES: parse(document.getElementById('styles').innerHTML),
         FOOTER: parse(document.getElementById('footer-withmenu').innerHTML),
         SCRIPTS: parse(document.getElementById('scripts').innerHTML),
     };
+};
 
-    cache.set(query, decoratorElements);
+export const getDocumentProps = async (
+    ctx: DocumentContext
+): Promise<DocumentProps> => {
+    const cacheKey = ctx.asPath;
+    if (cache.has(cacheKey)) {
+        return cache.get(cacheKey);
+    }
 
-    return decoratorElements;
+    const { decoratorParams, language } = await getParamsFromContext(ctx);
+    const documentProps = {
+        decoratorFragments: await getDecoratorFragments(decoratorParams),
+        language,
+    };
+
+    cache.set(cacheKey, documentProps);
+
+    return documentProps;
 };
