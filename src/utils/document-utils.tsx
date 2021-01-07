@@ -13,7 +13,7 @@ import NodeCache from 'node-cache';
 
 const decoratorUrl = process.env.DECORATOR_URL;
 
-const cache = new NodeCache({ stdTTL: 120 });
+const cache = new NodeCache({ stdTTL: 60 });
 
 type DecoratorContext = 'privatperson' | 'arbeidsgiver' | 'samarbeidspartner';
 type DecoratorLanguage = 'en' | 'nb' | 'nn' | 'pl' | 'se';
@@ -107,7 +107,7 @@ const decoratorCSR = (query: string) => ({
                 id="decorator-env"
                 data-src={`${decoratorUrl}/env${query}`}
             ></div>
-            <script src={`${decoratorUrl}/client.js`}></script>
+            <script async={true} src={`${decoratorUrl}/client.js`}></script>
         </>
     ),
 });
