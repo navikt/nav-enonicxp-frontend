@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 import { Breadcrumb } from '../types/breadcrumb';
 import { DocumentContext } from 'next/document';
 import { decoratorParams404 } from '../components/pages/error-page/errorcode-content/Error404Content';
-import { appPathToXpPath, xpServiceUrl } from './paths';
+import { appPathToXpPath, xpPathToAppPath, xpServiceUrl } from './paths';
 import { Language } from '../translations';
 import NodeCache from 'node-cache';
 import { LanguageProps } from '../types/language';
@@ -74,6 +74,19 @@ const fetchDecoratorProps = (
         .catch(console.error);
 };
 
+const fetchDecorator = (query?: string) => {
+    const url = `${decoratorUrl}/${query ? query : ''}`;
+    return fetchWithTimeout(url, 5000)
+        .then((res) => {
+            if (res.ok) {
+                return res.text();
+            }
+            const error = `Failed to fetch decorator from ${url}: ${res.status} - ${res.statusText}`;
+            throw Error(error);
+        })
+        .catch(console.error);
+};
+
 export const xpLangToDecoratorLang: {
     [key in Language]: DecoratorLanguage;
 } = {
@@ -101,17 +114,19 @@ export const paramsFromContext = async (
     const rolePath = path.split('/')[2];
     const context = pathToRoleContext[rolePath];
 
-    const xpPath = appPathToXpPath(path);
     const {
         currentLanguage,
         languages,
         breadcrumbs,
-    } = await fetchDecoratorProps(xpPath);
+    } = await fetchDecoratorProps(appPathToXpPath(path));
+
     const decoratorLang = xpLangToDecoratorLang[currentLanguage] || 'nb';
-    const availableLanguages = languages?.map((lang) => ({
-        locale: xpLangToDecoratorLang[lang.language],
-        url: lang._path,
-    }));
+    const availableLanguages = languages
+        ?.map((lang) => ({
+            locale: xpLangToDecoratorLang[lang.language],
+            url: xpPathToAppPath(lang._path),
+        }))
+        .concat([{ locale: decoratorLang, url: path }]);
 
     return {
         decoratorParams: {
@@ -122,19 +137,6 @@ export const paramsFromContext = async (
         },
         language: currentLanguage,
     };
-};
-
-const fetchDecorator = (query?: string) => {
-    const url = `${decoratorUrl}/${query ? query : ''}`;
-    return fetchWithTimeout(url, 5000)
-        .then((res) => {
-            if (res.ok) {
-                return res.text();
-            }
-            const error = `Failed to fetch decorator from ${url}: ${res.status} - ${res.statusText}`;
-            throw Error(error);
-        })
-        .catch(console.error);
 };
 
 const decoratorCSR = (query: string) => ({
