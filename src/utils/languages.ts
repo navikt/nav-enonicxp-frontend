@@ -3,9 +3,9 @@ import {
     ContentType,
 } from '../types/content-props/_content-common';
 import { LanguageProps } from '../types/language';
-import { xpLangToDecoratorLang } from './document-utils';
 import { xpPathToAppPath } from './paths';
 import { Language } from '../translations';
+import { xpLangToDecoratorLang } from './decorator-utils';
 
 export const getContentLanguages = (
     content: ContentProps
