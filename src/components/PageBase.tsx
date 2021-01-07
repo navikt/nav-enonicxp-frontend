@@ -13,7 +13,6 @@ import React from 'react';
 import {
     fetchBreadcrumbs,
     fetchLanguageProps,
-    fetchNotifications,
     fetchPage,
 } from '../utils/fetch-content';
 import { makeErrorProps } from '../types/content-props/error-props';
@@ -25,7 +24,7 @@ type PageProps = {
     content: ContentProps;
     breadcrumbs: Breadcrumb[];
     languages: LanguageSelectorProps[];
-    notifications: NotificationProps[];
+    notifications?: NotificationProps[];
 };
 
 type StaticProps = {
@@ -73,7 +72,7 @@ export const fetchPageProps = async (
     revalidate?: number
 ): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
-    const content = await fetchPage(xpPath, isDraft, secret);
+    const { content, notifications } = await fetchPage(xpPath, isDraft, secret);
     const contentPath = content._path;
 
     const defaultProps = {
@@ -127,7 +126,6 @@ export const fetchPageProps = async (
 
     const breadcrumbs = await fetchBreadcrumbs(contentPath, isDraft);
     const { languages } = await fetchLanguageProps(contentPath, isDraft);
-    const notifications = await fetchNotifications(contentPath, isDraft);
 
     return {
         ...defaultProps,
