@@ -22,6 +22,7 @@ export const xpLangToDecoratorLang: {
 } = {
     en: 'en',
     no: 'nb',
+    nn: 'nn',
     pl: 'pl',
     se: 'se',
 };
