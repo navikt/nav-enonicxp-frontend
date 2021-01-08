@@ -35,6 +35,6 @@ export const fetchPage = async (
     const content = await fetchSiteContent(idOrPath, isDraft, secret);
 
     return content?.__typename
-        ? content
+        ? { ...content, editMode: isDraft }
         : makeErrorProps(idOrPath, `Ukjent feil`, 500);
 };
