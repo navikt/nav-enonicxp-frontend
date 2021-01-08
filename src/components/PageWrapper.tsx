@@ -85,7 +85,7 @@ export const PageWrapper = (props: Props) => {
                 | 'nb'
                 | 'nn', // TODO: add 'pl' to decorator-modules!,
             breadcrumbs:
-                breadcrumbs.map((crumb) => ({
+                breadcrumbs?.map((crumb) => ({
                     handleInApp: true,
                     ...crumb,
                 })) || [],
