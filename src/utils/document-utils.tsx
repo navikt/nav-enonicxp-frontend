@@ -43,6 +43,7 @@ export type DocumentParams = {
 export const xpLangToDecoratorLang: { [key in Language]: DecoratorLanguage } = {
     en: 'en',
     no: 'nb',
+    nn: 'nn',
     pl: 'pl',
     se: 'se',
 };
