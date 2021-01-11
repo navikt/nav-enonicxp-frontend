@@ -31,7 +31,7 @@ export const PageWrapper = (props: Props) => {
 
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) => router.push(breadcrumb.url));
-        onLanguageSelect((breadcrumb) => router.push(breadcrumb.url));
+        onLanguageSelect((language) => router.push(language.url));
 
         initAmplitude();
 
@@ -80,24 +80,18 @@ export const PageWrapper = (props: Props) => {
         const language = xpLangToDecoratorLang[content?.language] || 'nb';
 
         setParams({
-            ...(context && {
-                context: context,
-            }),
-            ...(language && {
-                language: language as 'en' | 'se' | 'nb' | 'nn',
-            }),
-            ...(breadcrumbs && {
-                breadcrumbs: breadcrumbs.map((crumb) => ({
+            ...(context && { context }),
+            language: language as 'en' | 'se' | 'nb' | 'nn', // TODO: add 'pl' to decorator-modules!
+            breadcrumbs:
+                breadcrumbs?.map((crumb) => ({
                     handleInApp: true,
                     ...crumb,
-                })),
-            }),
-            ...(languages && {
-                availableLanguages: languages.map((lang) => ({
+                })) || [],
+            availableLanguages:
+                languages?.map((lang) => ({
                     handleInApp: true,
                     ...lang,
-                })),
-            }),
+                })) || [],
         });
 
         document.documentElement.lang = content?.language || 'no';
