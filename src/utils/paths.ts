@@ -11,6 +11,7 @@ export const getLocationOrigin = () =>
     (typeof window !== 'undefined' && window.location.origin) ||
     '';
 
+// This pattern matches both relative and absolute urls which points to content internal to the app
 const internalUrlPattern = new RegExp(
     `^(${process.env.APP_ORIGIN})?($|\\/$|\\/no|\\/en|\\/se|\\/nav.no|\\/skjemaer|\\/forsiden|\\/footer-contactus-no|\\/footer-contactus-en|\\/sykepenger-korona|\\/beskjed)`,
     'i'
