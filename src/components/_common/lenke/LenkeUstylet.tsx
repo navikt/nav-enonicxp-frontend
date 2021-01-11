@@ -1,5 +1,5 @@
 import React from 'react';
-import { xpPathToAppPath, isInternalUrl } from '../../../utils/paths';
+import { xpPathToPathname, isInternalUrl } from '../../../utils/paths';
 import { logLinkClick } from '../../../utils/amplitude';
 import Link from 'next/link';
 
@@ -21,7 +21,7 @@ export const LenkeUstylet = ({
     children,
     ...rest
 }: Props) => {
-    const _href = xpPathToAppPath(href) || '/';
+    const _href = xpPathToPathname(href) || '/';
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);
 

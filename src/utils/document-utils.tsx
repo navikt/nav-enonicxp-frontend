@@ -6,7 +6,7 @@ import { Breadcrumb } from '../types/breadcrumb';
 import { LanguageSelectorProps } from '../types/language-selector-props';
 import { DocumentContext } from 'next/document';
 import { decoratorParams404 } from '../components/pages/error-page/errorcode-content/Error404Content';
-import { appPathToXpPath } from './paths';
+import { pathnameToXpPath } from './paths';
 import { fetchBreadcrumbs, fetchLanguageProps } from './fetch-content';
 import { Language } from '../translations';
 
@@ -66,7 +66,7 @@ export const paramsFromContext = async (
     const rolePath = path.split('/')[2];
     const roleContext = pathToRoleContext[rolePath];
 
-    const xpPath = appPathToXpPath(path);
+    const xpPath = pathnameToXpPath(path);
     const breadcrumbs = await fetchBreadcrumbs(xpPath);
     const { currentLanguage, languages } = await fetchLanguageProps(xpPath);
     const decoratorLang = xpLangToDecoratorLang[currentLanguage] || 'nb';

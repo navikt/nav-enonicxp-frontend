@@ -29,13 +29,13 @@ export const isUUID = (id: string) =>
         id
     );
 
-export const xpPathToAppPath = (path: string) =>
+export const xpPathToPathname = (path: string) =>
     isXpPath(path) ? path.slice(xpContentPathPrefix.length) : path;
 
 export const xpPathToUrl = (path: string) =>
-    `${getLocationOrigin()}${xpPathToAppPath(path)}`;
+    `${getLocationOrigin()}${xpPathToPathname(path)}`;
 
-export const appPathToXpPath = (path: string) =>
+export const pathnameToXpPath = (path: string) =>
     path && `${xpContentPathPrefix}${path}`;
 
 export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
