@@ -12,7 +12,7 @@ export const getTargetIfRedirect = (contentData: ContentProps) => {
             return xpPathToAppPath(contentData.data.target._path);
         case ContentType.ExternalLink:
         case ContentType.Url:
-            return contentData.data?.url;
+            return xpPathToAppPath(contentData.data?.url);
         default:
             return null;
     }
