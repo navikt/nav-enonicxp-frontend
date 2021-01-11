@@ -12,7 +12,7 @@ export const getLocationOrigin = () =>
     '';
 
 const internalUrlPattern = new RegExp(
-    `^((${process.env.APP_ORIGIN}|((https?:\\/\\/)?nav.no))?)($|\\/$|\\/no|\\/en|\\/se|\\/nav.no|\\/skjemaer|\\/forsiden|\\/footer-contactus-no|\\/footer-contactus-en|\\/sykepenger-korona|\\/beskjed)`,
+    `^(${process.env.APP_ORIGIN})?($|\\/$|\\/no|\\/en|\\/se|\\/nav.no|\\/skjemaer|\\/forsiden|\\/footer-contactus-no|\\/footer-contactus-en|\\/sykepenger-korona|\\/beskjed)`,
     'i'
 );
 
