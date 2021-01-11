@@ -53,7 +53,7 @@ export const MainArticle = (propsInitial: ContentProps) => {
                 </Normaltekst>
                 <Innholdsfortegnelse
                     innholdsfortegnelse={innholdsfortegnelse}
-                    language={props.language}
+                    label={getLabel('tableOfContents')}
                 />
             </header>
             <MainArticleText
