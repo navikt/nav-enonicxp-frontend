@@ -1,4 +1,4 @@
-import { isXpPath } from './paths';
+import { isInternalUrl } from './paths';
 import { NextRouter } from 'next/router';
 
 const getLinkHref = (element: HTMLElement | null): string | null => {
@@ -15,7 +15,7 @@ export const hookAndInterceptInternalLink = (router: NextRouter) => (
     e: MouseEvent
 ) => {
     const href = getLinkHref(e.target as HTMLElement);
-    if (isXpPath(href)) {
+    if (isInternalUrl(href)) {
         e.preventDefault();
         const path = new URL(href).pathname;
         router
@@ -28,7 +28,7 @@ export const hookAndInterceptInternalLink = (router: NextRouter) => (
 
 export const prefetchOnMouseover = (router: NextRouter) => (e: MouseEvent) => {
     const href = getLinkHref(e.target as HTMLElement);
-    if (isXpPath(href)) {
+    if (isInternalUrl(href)) {
         const path = new URL(href).pathname;
         router.prefetch(path);
     }
