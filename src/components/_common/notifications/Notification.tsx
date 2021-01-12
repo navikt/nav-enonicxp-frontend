@@ -46,13 +46,19 @@ export const Notification = (props: NotificationProps) => {
     const description = showDescription && getDescription(target);
     const bem = BEM('notification');
     const getDateLabel = translator('dates', props.language);
-    const _icon = getImageUrl(icon) || iconsForType[type];
+
+    const iconUrl = getImageUrl(icon);
+    const IconElement = iconUrl ? (
+        <img src={iconUrl} alt={''} />
+    ) : (
+        iconsForType[type]
+    );
 
     return (
         <LenkepanelNavNo
             href={getUrl(target)}
             tittel={getTitle(props)}
-            ikon={_icon}
+            ikon={IconElement}
             className={bem()}
             component={'notifications'}
         >
