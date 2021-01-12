@@ -9,7 +9,7 @@ export const getTargetIfRedirect = (contentData: ContentProps) => {
         case ContentType.Site:
             return '/no/person';
         case ContentType.InternalLink:
-            return xpPathToPathname(contentData.data.target._path);
+            return xpPathToPathname(contentData.data?.target?._path);
         case ContentType.ExternalLink:
         case ContentType.Url:
             return xpPathToPathname(contentData.data?.url);
