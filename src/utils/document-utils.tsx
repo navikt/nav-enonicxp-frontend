@@ -94,11 +94,13 @@ const getParamsFromContext = async (
     const rolePath = path.split('/')[2];
     const context = pathToRoleContext[rolePath];
 
-    const {
-        currentLanguage,
-        languages,
-        breadcrumbs,
-    } = await fetchDecoratorProps(pathnameToXpPath(path));
+    const props = await fetchDecoratorProps(pathnameToXpPath(path));
+
+    if (!props) {
+        return { decoratorParams: decoratorParamsDefault, language: 'no' };
+    }
+
+    const { currentLanguage, languages, breadcrumbs } = props;
 
     const availableLanguages = getDecoratorLanguagesParam(
         languages,
