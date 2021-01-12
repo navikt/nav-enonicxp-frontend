@@ -3,7 +3,7 @@ import {
     ContentType,
 } from '../types/content-props/_content-common';
 import { LanguageProps } from '../types/language';
-import { xpPathToAppPath } from './paths';
+import { xpPathToPathname } from './paths';
 import { Language } from '../translations';
 import { xpLangToDecoratorLang } from './decorator-utils';
 
@@ -30,12 +30,12 @@ export const getDecoratorLanguagesParam = (
         ? languages
               .map((lang) => ({
                   locale: xpLangToDecoratorLang[lang.language],
-                  url: xpPathToAppPath(lang._path),
+                  url: xpPathToPathname(lang._path),
               }))
               .concat([
                   {
                       locale: xpLangToDecoratorLang[currentLang],
-                      url: xpPathToAppPath(currentPath),
+                      url: xpPathToPathname(currentPath),
                   },
               ])
         : [];
