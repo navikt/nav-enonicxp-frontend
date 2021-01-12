@@ -5,7 +5,7 @@ import parse from 'html-react-parser';
 import { Breadcrumb } from '../types/breadcrumb';
 import { DocumentContext } from 'next/document';
 import { decoratorParams404 } from '../components/pages/error-page/errorcode-content/Error404Content';
-import { appPathToXpPath, xpServiceUrl } from './paths';
+import { pathnameToXpPath, xpServiceUrl } from './paths';
 import { Language } from '../translations';
 import NodeCache from 'node-cache';
 import { LanguageProps } from '../types/language';
@@ -98,7 +98,7 @@ const getParamsFromContext = async (
         currentLanguage,
         languages,
         breadcrumbs,
-    } = await fetchDecoratorProps(appPathToXpPath(path));
+    } = await fetchDecoratorProps(pathnameToXpPath(path));
 
     const availableLanguages = getDecoratorLanguagesParam(
         languages,
