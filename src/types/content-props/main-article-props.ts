@@ -1,19 +1,10 @@
 import { MainArticleChapterProps } from './main-article-chapter-props';
 import { ContentType, ContentProps } from './_content-common';
 import { MenuListItem } from '../menu-list-items';
-
-type VectorImage = {
-    __typename: 'media_Vector';
-    mediaUrl?: string;
-};
-
-type BitmapImage = {
-    __typename: 'media_Image';
-    imageUrl?: string;
-};
+import { XpImage } from '../media';
 
 export type Picture = Partial<{
-    target: VectorImage | BitmapImage;
+    target: XpImage;
     size: '100' | '70' | '40';
     caption: string;
     altText: string;
