@@ -11,6 +11,12 @@ export interface Office {
     organisasjonsnummer: string;
 }
 
+export interface EMail {
+    adresse: string;
+    kommentar: string;
+    kunIntern: string;
+}
+
 export interface Address {
     gatenavn: string;
     husbokstav: string;
@@ -47,7 +53,7 @@ interface ContactInfo {
     telefonnummer: string;
     telefonnummerKommentar: string;
     faksnummer: string;
-    epost: string;
+    epost: EMail;
     postadresse: Address;
     besoeksadresse: Address;
     spesielleOpplysninger: string;
