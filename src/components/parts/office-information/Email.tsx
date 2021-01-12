@@ -1,39 +1,16 @@
 import React from 'react';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
-
-const parseEmail = (emailString: string) => {
-    if (!emailString) {
-        return '';
-    }
-
-    let email: string;
-    let internal: boolean = false;
-    let match: string[];
-    const betweenBracketsPattern = /\[(.*?)\]/g;
-
-    while ((match = betweenBracketsPattern.exec(emailString)) !== null) {
-        const matchedRes = match[1];
-        if (matchedRes.indexOf('@') !== -1) {
-            email = matchedRes;
-        } else if (matchedRes === 'true') {
-            internal = true;
-        }
-    }
-    if (internal) {
-        return '';
-    }
-    return email;
-};
+import { EMail } from 'types/content-props/office-information-props';
 
 interface Props {
-    email: string;
+    email: EMail;
     unitType: string;
 }
 
 export const Email = (props: Props) => {
-    const emailAddress = parseEmail(props.email);
     return ['HMS', 'ALS', 'TILTAK'].includes(props.unitType) &&
-        emailAddress !== '' ? (
+        props.email?.adresse !== '' &&
+        props.email?.kunIntern !== 'false' ? (
         <div
             itemProp="contactPoint"
             itemScope
@@ -42,7 +19,7 @@ export const Email = (props: Props) => {
             <Element tag="h2" itemProp="contactType">
                 Epost
             </Element>
-            <Normaltekst itemProp="email">{emailAddress}</Normaltekst>
+            <Normaltekst itemProp="email">{props.email.adresse}</Normaltekst>
         </div>
     ) : null;
 };
