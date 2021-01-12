@@ -15,7 +15,7 @@ export const getContentLanguages = (
         content.__typename === ContentType.MainArticleChapter ||
         content.__typename === ContentType.PageList
     ) {
-        return content.data.languages;
+        return content.data?.languages;
     }
 
     return null;
