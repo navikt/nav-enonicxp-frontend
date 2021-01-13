@@ -8,6 +8,7 @@ import { BEM } from 'utils/bem';
 import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
 import { PublicImage } from '../image/PublicImage';
+import { getImageUrl } from '../../../utils/images';
 import './Notification.less';
 
 type Target = NotificationProps['data']['target'];
@@ -41,16 +42,23 @@ const getDescription = ({ data }: Target) => {
 
 export const Notification = (props: NotificationProps) => {
     const { data, modifiedTime } = props;
-    const { type, showDescription, showUpdated, target } = data;
+    const { type, showDescription, showUpdated, target, icon } = data;
     const description = showDescription && getDescription(target);
     const bem = BEM('notification');
     const getDateLabel = translator('dates', props.language);
+
+    const iconUrl = getImageUrl(icon);
+    const IconElement = iconUrl ? (
+        <img src={iconUrl} alt={''} />
+    ) : (
+        iconsForType[type]
+    );
 
     return (
         <LenkepanelNavNo
             href={getUrl(target)}
             tittel={getTitle(props)}
-            ikon={iconsForType[type]}
+            ikon={IconElement}
             className={bem()}
             component={'notifications'}
         >
