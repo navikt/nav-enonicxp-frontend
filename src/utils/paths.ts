@@ -38,6 +38,7 @@ export const xpPathToUrl = (path: string) =>
 export const pathnameToXpPath = (path: string) =>
     path && `${xpContentPathPrefix}${path}`;
 
+// Requests from content-studio can be either a path or UUID, we check for both
 export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
     const possibleId =
         typeof routerQuery === 'string'
