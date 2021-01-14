@@ -40,7 +40,9 @@ export const pathnameToXpPath = (path: string) =>
 
 export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
     const possibleId =
-        typeof routerQuery === 'string' ? routerQuery : routerQuery[1];
+        typeof routerQuery === 'string'
+            ? routerQuery
+            : routerQuery[1] || routerQuery[0]; // checking the 1-index can be removed when PR#746 on the backend is in production
 
     if (isUUID(possibleId)) {
         return possibleId;
@@ -50,5 +52,5 @@ export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
         typeof routerQuery === 'string' ? routerQuery : routerQuery.join('/')
     }`;
 
-    return `${xpContentPathPrefix}${path}`;
+    return pathnameToXpPath(path);
 };
