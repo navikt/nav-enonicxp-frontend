@@ -1,4 +1,3 @@
-import React from 'react';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import PageBase, { fetchPageProps } from '../components/PageBase';
 import Config from '../Config';
