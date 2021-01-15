@@ -6,16 +6,14 @@ import { Error404Content } from './errorcode-content/Error404Content';
 import { BEM } from '../../../utils/bem';
 import './ErrorPage.less';
 
+const bem = BEM('error-page');
+
 const ErrorContent = ({ code }: { code: number }) =>
     ({ 404: <Error404Content /> }[code] || null);
 
 export const ErrorPage = (props: ErrorProps) => {
     const { errorMessage, errorCode } = props.data;
-    const message = `Error! ${errorMessage}${
-        errorCode ? ` - Error code ${errorCode}` : ''
-    }`;
-
-    const bem = BEM('error-page');
+    const message = `Error code ${errorCode} - ${errorMessage}`;
 
     console.error(message);
 

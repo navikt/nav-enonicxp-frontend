@@ -50,6 +50,18 @@ export const PageBase = (props: PageProps) => {
     );
 };
 
+// These status codes may indicate that the requested page has been intentionally
+// made unavailable.  We want to perform cache revalidation in these cases.
+const revalidateOnErrorCode = {
+    401: true, // unauthorized
+    403: true, // forbidden
+    404: true, // not found
+};
+
+const appError = (content: ContentProps) => ({
+    content,
+});
+
 export const fetchPageProps = async (
     routerQuery: string | string[],
     isDraft = false,
@@ -75,13 +87,11 @@ export const fetchPageProps = async (
         };
     }
 
-    if (content.__typename === ContentType.Error) {
-        return {
-            ...defaultProps,
-            props: {
-                content,
-            },
-        };
+    if (
+        content.__typename === ContentType.Error &&
+        !revalidateOnErrorCode[content.data.errorCode]
+    ) {
+        throw appError(content);
     }
 
     if (content.__typename === ContentType.LargeTable) {

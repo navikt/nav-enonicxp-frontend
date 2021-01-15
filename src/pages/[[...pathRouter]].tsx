@@ -4,6 +4,7 @@ import Config from '../Config';
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const secret = process.env.SERVICE_SECRET as string;
+
     return await fetchPageProps(
         context?.params?.pathRouter,
         false,
