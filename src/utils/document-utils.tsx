@@ -110,7 +110,12 @@ const getParamsFromContext = async (
 
     return {
         decoratorParams: {
-            ...(breadcrumbs && { breadcrumbs }),
+            ...(breadcrumbs && {
+                breadcrumbs: breadcrumbs.map((crumb) => ({
+                    handleInApp: true,
+                    ...crumb,
+                })),
+            }),
             ...(availableLanguages && { availableLanguages }),
             ...(context && { context }),
             language: xpLangToDecoratorLang[currentLanguage] || 'nb',
