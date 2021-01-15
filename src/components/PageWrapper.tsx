@@ -76,9 +76,10 @@ export const PageWrapper = (props: Props) => {
 
         const { breadcrumbs, language } = content;
         const rolePath = window.location.href.split('/')[4];
+        const context = pathToRoleContext[rolePath];
 
         setParams({
-            context: pathToRoleContext[rolePath] || pathToRoleContext['person'],
+            ...(context && { context }),
             language: (xpLangToDecoratorLang[language] || 'nb') as
                 | 'en'
                 | 'se'
