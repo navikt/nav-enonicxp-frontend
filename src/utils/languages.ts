@@ -29,11 +29,13 @@ export const getDecoratorLanguagesParam = (
     languages?.length > 0
         ? languages
               .map((lang) => ({
+                  handleInApp: true,
                   locale: xpLangToDecoratorLang[lang.language],
                   url: xpPathToPathname(lang._path),
               }))
               .concat([
                   {
+                      handleInApp: true,
                       locale: xpLangToDecoratorLang[currentLang],
                       url: xpPathToPathname(currentPath),
                   },
