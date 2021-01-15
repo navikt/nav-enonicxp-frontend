@@ -94,15 +94,6 @@ export const fetchPageProps = async (
         throw appError(content);
     }
 
-    if (content.__typename === ContentType.LargeTable) {
-        return {
-            ...defaultProps,
-            props: {
-                content,
-            },
-        };
-    }
-
     const redirectTarget = getTargetIfRedirect(content);
 
     if (redirectTarget) {
