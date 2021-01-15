@@ -9,11 +9,11 @@ type Props = {
 
 export const GlobalNotifications = ({ notifications = [] }: Props) => {
     return notifications.length > 0 ? (
-        <div className={'global-notifications'}>
+        <section className={'global-notifications'} aria-label={'Varsel'}>
             {notifications.map((props, index) => (
                 <Notification {...props} key={index} />
             ))}
-        </div>
+        </section>
     ) : null;
 };
 

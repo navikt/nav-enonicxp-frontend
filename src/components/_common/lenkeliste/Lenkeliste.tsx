@@ -19,16 +19,16 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
     const bem = BEM('lenkeliste');
 
     return (
-        <div
+        <section
             className={`${bem()} ${className || ''}`}
             data-portal-component-type="part"
         >
             {tittel && (
-                <div className={bem('tittel')}>
+                <div className={bem('tittel')} aria-label={'Tittel'}>
                     <Undertittel>{tittel}</Undertittel>
                 </div>
             )}
-            <nav className={bem('lenker')}>
+            <nav className={bem('lenker')} aria-label={'Lenker'}>
                 {lenker.map((lenke, index) => (
                     <LenkeStandalone
                         href={lenke.url}
@@ -42,6 +42,6 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
                     </LenkeStandalone>
                 ))}
             </nav>
-        </div>
+        </section>
     );
 };

@@ -71,7 +71,7 @@ export const MainPanels = (props: ContentProps) => {
 
     return (
         tableContents?.length > 0 && (
-            <div className={bem()}>
+            <section className={bem()} aria-label={'Hovedpanel'}>
                 {tableContents.map((content) => {
                     const { url, tittel, ingress } = getLinkData(content);
 
@@ -97,7 +97,7 @@ export const MainPanels = (props: ContentProps) => {
                         )
                     );
                 })}
-            </div>
+            </section>
         )
     );
 };
