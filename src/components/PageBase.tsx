@@ -12,6 +12,7 @@ import { makeErrorProps } from '../types/content-props/error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
+import { InternalLinkProps } from '../types/content-props/internal-link-props';
 
 type PageProps = {
     content: ContentProps;
@@ -61,6 +62,21 @@ const appError = (content: ContentProps) => ({
     content,
 });
 
+const redirectPropsDev = (target: string): InternalLinkProps => ({
+    __typename: ContentType.InternalLink,
+    _path: target,
+    _id: '',
+    displayName: '',
+    createdTime: '0',
+    modifiedTime: '0',
+    language: 'no',
+    data: {
+        target: {
+            _path: target,
+        },
+    },
+});
+
 const errorHandlerProd = (content: ContentProps) => {
     if (!revalidateOnErrorCode[content.data.errorCode]) {
         throw appError(content);
@@ -69,7 +85,7 @@ const errorHandlerProd = (content: ContentProps) => {
     return { props: { content } };
 };
 
-// Allow build-time errors when not in production
+// Return a loopback redirect on build-time errors for non-production environments
 const errorHandlerDev = (content: ContentProps) => {
     if (!revalidateOnErrorCode[content.data.errorCode]) {
         if (process.env.NEXT_PHASE !== 'phase-production-build') {
@@ -78,10 +94,8 @@ const errorHandlerDev = (content: ContentProps) => {
 
         return {
             props: {
-                content: makeErrorProps(
-                    content._path,
-                    'Dette er en testmiljø-spesifikk bygg-feil - forsøk å refreshe siden 1-4 ganger',
-                    1337
+                content: redirectPropsDev(
+                    content.data?.canonicalUrl || content._path
                 ),
             },
         };
