@@ -80,7 +80,7 @@ const errorHandlerDev = (content: ContentProps) => {
             props: {
                 content: makeErrorProps(
                     content._path,
-                    'Dette er en test-miljø spesifikk feil - forsøk å refreshe siden 1-4 ganger',
+                    'Dette er en testmiljø-spesifikk bygg-feil - forsøk å refreshe siden 1-4 ganger',
                     1337
                 ),
             },
