@@ -64,7 +64,7 @@ const fetchDecoratorProps = (
             }
             const error = `Failed to fetch decorator props from ${idOrPath}: ${res.statusText}`;
             console.log(error);
-            return [];
+            return null;
         })
         .catch(console.error);
 };
