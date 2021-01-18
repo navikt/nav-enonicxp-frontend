@@ -86,7 +86,7 @@ const errorHandlerProd = (content: ContentProps) => {
 };
 
 // Return a loopback redirect on build-time errors for non-production environments
-const errorHandlerDev = (content: ContentProps) => {
+const errorHandlerDev = (content: ContentProps, sourcePath?: string) => {
     if (!revalidateOnErrorCode[content.data.errorCode]) {
         if (process.env.NEXT_PHASE !== 'phase-production-build') {
             throw appError(content);
@@ -94,9 +94,7 @@ const errorHandlerDev = (content: ContentProps) => {
 
         return {
             props: {
-                content: redirectPropsDev(
-                    content.data?.canonicalUrl || content._path
-                ),
+                content: redirectPropsDev(sourcePath || content._path),
             },
         };
     }
@@ -117,7 +115,8 @@ const isNotFound = (content) =>
 export const fetchPageProps = async (
     routerQuery: string | string[],
     isDraft = false,
-    secret: string
+    secret: string,
+    sourcePath?: string
 ): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret);
@@ -130,7 +129,7 @@ export const fetchPageProps = async (
     }
 
     if (content.__typename === ContentType.Error) {
-        return errorHandler(content);
+        return errorHandler(content, sourcePath);
     }
 
     const redirectTarget = getTargetIfRedirect(content);

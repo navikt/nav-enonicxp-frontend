@@ -6,7 +6,6 @@ import { SiteProps } from '../types/content-props/site-props';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { UrlProps } from '../types/content-props/url-props';
 
-// Redirects should now be handled in the catch-all router, leaving this in as a failsafe
 export const ClientsideRedirect = (
     props: ExternalLinkProps | InternalLinkProps | SiteProps | UrlProps
 ) => {
