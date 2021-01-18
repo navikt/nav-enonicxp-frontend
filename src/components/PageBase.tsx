@@ -5,13 +5,14 @@ import {
 import { useRouter } from 'next/router';
 import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
-import ContentMapper, { isContentTypeImplemented } from './ContentMapper';
+import ContentMapper from './ContentMapper';
 import React from 'react';
 import { fetchPage } from '../utils/fetch-content';
 import { makeErrorProps } from '../types/content-props/error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
+import { shouldReturnNotFound } from '../utils/errors';
 
 type PageProps = {
     content: ContentProps;
@@ -64,11 +65,7 @@ export const fetchPageProps = async (
         ...(revalidate && { revalidate }),
     };
 
-    if (
-        (content.__typename === ContentType.Error &&
-            content.data.errorCode === 404) ||
-        !isContentTypeImplemented(content)
-    ) {
+    if (shouldReturnNotFound(content)) {
         return {
             ...defaultProps,
             notFound: true,
