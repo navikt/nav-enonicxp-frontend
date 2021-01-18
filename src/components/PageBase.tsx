@@ -73,6 +73,7 @@ const errorHandlerProd = (content: ContentProps) => {
 // Allow build-time errors when not in production
 const errorHandlerDev = (content: ContentProps) => {
     if (!revalidateOnErrorCode[content.data.errorCode]) {
+        // NEXT_PHASE === 'phase-production-build' during the build phase
         if (process.env.NEXT_PHASE !== 'phase-production-build') {
             throw appError(content);
         }
