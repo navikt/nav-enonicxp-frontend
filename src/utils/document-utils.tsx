@@ -64,7 +64,7 @@ const fetchDecoratorProps = (
             }
             const error = `Failed to fetch decorator props from ${idOrPath}: ${res.statusText}`;
             console.log(error);
-            return [];
+            return null;
         })
         .catch(console.error);
 };
@@ -89,7 +89,7 @@ const getParamsFromContext = async (
         return { decoratorParams: decoratorParams404, language: 'no' };
     }
 
-    const path = ctx.asPath;
+    const path = decodeURIComponent(ctx.asPath);
 
     const rolePath = path.split('/')[2];
     const context = pathToRoleContext[rolePath];
@@ -173,7 +173,7 @@ const getDecoratorFragments = async (
 export const getDocumentProps = async (
     ctx: DocumentContext
 ): Promise<DocumentProps> => {
-    const cacheKey = ctx.asPath;
+    const cacheKey = decodeURIComponent(ctx.asPath);
     if (cache.has(cacheKey)) {
         return cache.get(cacheKey);
     }
