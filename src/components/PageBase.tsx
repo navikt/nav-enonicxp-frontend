@@ -19,7 +19,6 @@ type PageProps = {
 
 type StaticProps = {
     props: PageProps;
-    revalidate?: number;
     redirect?: { destination: string; permanent: boolean };
     notFound?: boolean;
 };
@@ -62,52 +61,75 @@ const appError = (content: ContentProps) => ({
     content,
 });
 
+const errorHandlerProd = (content: ContentProps) => {
+    if (!revalidateOnErrorCode[content.data.errorCode]) {
+        throw appError(content);
+    }
+
+    return { props: { content } };
+};
+
+// Allow build-time errors when not in production
+const errorHandlerDev = (content: ContentProps) => {
+    if (!revalidateOnErrorCode[content.data.errorCode]) {
+        if (process.env.NEXT_PHASE !== 'phase-production-build') {
+            throw appError(content);
+        }
+
+        return {
+            props: {
+                content: makeErrorProps(
+                    content._path,
+                    'Dette er en test-miljø spesifikk feil - forsøk å refreshe siden 1-4 ganger',
+                    1337
+                ),
+            },
+        };
+    }
+
+    return { props: { content } };
+};
+
+const errorHandler =
+    process.env.APP_ORIGIN === 'https://www.nav.no'
+        ? errorHandlerProd
+        : errorHandlerDev;
+
+const isNotFound = (content) =>
+    (content.__typename === ContentType.Error &&
+        content.data.errorCode === 404) ||
+    !isContentTypeImplemented(content);
+
 export const fetchPageProps = async (
     routerQuery: string | string[],
     isDraft = false,
-    secret: string,
-    revalidate?: number
+    secret: string
 ): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret);
 
-    const defaultProps = {
-        props: undefined,
-        ...(revalidate && { revalidate }),
-    };
-
-    if (
-        (content.__typename === ContentType.Error &&
-            content.data.errorCode === 404) ||
-        !isContentTypeImplemented(content)
-    ) {
+    if (isNotFound(content)) {
         return {
-            ...defaultProps,
+            props: { content },
             notFound: true,
         };
     }
 
-    if (
-        content.__typename === ContentType.Error &&
-        !revalidateOnErrorCode[content.data.errorCode]
-    ) {
-        throw appError(content);
+    if (content.__typename === ContentType.Error) {
+        return errorHandler(content);
     }
 
     const redirectTarget = getTargetIfRedirect(content);
 
     if (redirectTarget) {
         return {
-            ...defaultProps,
+            props: { content },
             redirect: { destination: redirectTarget, permanent: false },
         };
     }
 
     return {
-        ...defaultProps,
-        props: {
-            content,
-        },
+        props: { content },
     };
 };
 
