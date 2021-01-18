@@ -12,6 +12,7 @@ import { makeErrorProps } from '../types/content-props/error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
+import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
 
 type PageProps = {
     content: ContentProps;
@@ -78,11 +79,7 @@ const errorHandlerDev = (content: ContentProps) => {
 
         return {
             props: {
-                content: makeErrorProps(
-                    content._path,
-                    'Dette er en testmiljø-spesifikk bygg-feil - forsøk å refreshe siden 1-4 ganger',
-                    1337
-                ),
+                content: error1337ReloadProps(content._path),
             },
         };
     }

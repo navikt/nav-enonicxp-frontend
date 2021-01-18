@@ -3,14 +3,16 @@ import { ErrorProps } from 'types/content-props/error-props';
 import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { Error404Content } from './errorcode-content/Error404Content';
-import { Error1337Content } from './errorcode-content/Error1337Content';
+import { Error1337ReloadOnDevBuildError } from './errorcode-content/Error1337ReloadOnDevBuildError';
 import { BEM } from '../../../utils/bem';
 import './ErrorPage.less';
 
 const bem = BEM('error-page');
 
 const ErrorContent = ({ code }: { code: number }) =>
-    ({ 404: <Error404Content />, 1337: <Error1337Content /> }[code] || null);
+    ({ 404: <Error404Content />, 1337: <Error1337ReloadOnDevBuildError /> }[
+        code
+    ] || null);
 
 export const ErrorPage = (props: ErrorProps) => {
     const { errorMessage, errorCode } = props.data;
