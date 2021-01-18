@@ -35,17 +35,16 @@ const getDescription = (content: ContentProps) => {
 export const HeadWithMetatags = ({ content, children }: Props) => {
     const title = `${content.displayName} - nav.no`;
     const description = getDescription(content).slice(0, descriptionMaxLength);
-    const url = xpPathToUrl(content._path);
-    const canonicalUrl = hasCanonicalUrl(content)
+    const url = hasCanonicalUrl(content)
         ? content.data.canonicalUrl
-        : url;
+        : xpPathToUrl(content._path);
     const imageUrl = `${getLocationOrigin()}/gfx/social-share-fallback.png`;
 
     return (
         <Head>
             <title>{title}</title>
             <meta name="description" content={description} />
-            <link rel={'canonical'} href={canonicalUrl} />
+            <link rel={'canonical'} href={url} />
             <meta property={'og:title'} content={title} />
             <meta property={'og:site_name'} content={'nav.no'} />
             <meta property={'og:url'} content={url} />
