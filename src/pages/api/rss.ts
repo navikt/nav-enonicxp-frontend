@@ -25,7 +25,9 @@ const handler = async (req, res) => {
 const fetchRSS = (url) => {
     return fetchWithTimeout(url, oneMinuteInMilliseconds)
         .then(checkResponse)
-        .then((xml) => xml.replace(/\/_\/legacy/g, ''))
+        .then((xml) => xml.replaceAll('/_/legacy', ''))
+        .then((xml) => xml.replaceAll('<![CDATA[', ''))
+        .then((xml) => xml.replaceAll(']]', ''))
         .then(saveToCache)
         .catch((e) => console.log(`Error fetching rss: ${e}`));
 };
