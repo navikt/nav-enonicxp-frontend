@@ -21,7 +21,6 @@ jobs:
       - name: Define app environmment
         env:
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
-          SECRET_TEST: ${{ secrets.SECRET_TEST }}
         run: |
           cat > .env <<EOF
           NODE_ENV=production
@@ -30,8 +29,7 @@ jobs:
           DECORATOR_URL=https://www-q6.nav.no/dekoratoren
           XP_ORIGIN=https://www-q6.nav.no
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
-          SERVICE_SECRET="$SERVICE_SECRET"
-          SECRET_TEST=$SECRET_TEST
+          SERVICE_SECRET=$SERVICE_SECRET
           EOF
       - uses: actions/cache@v1
         with:
