@@ -10,9 +10,10 @@ import './ErrorPage.less';
 const bem = BEM('error-page');
 
 const ErrorContent = ({ code }: { code: number }) =>
-    ({ 404: <Error404Content />, 1337: <Error1337ReloadOnDevBuildError /> }[
-        code
-    ] || null);
+    ({
+        404: <Error404Content />,
+        1337: <Error1337ReloadOnDevBuildError />,
+    }[code] || null);
 
 export const ErrorPage = (props: ErrorProps) => {
     const { errorMessage, errorCode } = props.data;
