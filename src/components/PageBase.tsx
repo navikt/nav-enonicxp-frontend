@@ -73,15 +73,15 @@ const errorHandlerProd = (content: ContentProps) => {
 const errorHandlerDev = (content: ContentProps) => {
     if (!revalidateOnErrorCode[content.data.errorCode]) {
         // Do not throw errors at build-time in dev-environments
-        if (process.env.NEXT_PHASE !== 'phase-production-build') {
-            throw appError(content);
+        if (process.env.NEXT_PHASE === 'phase-production-build') {
+            return {
+                props: {
+                    content: error1337ReloadProps(content._path),
+                },
+            };
         }
 
-        return {
-            props: {
-                content: error1337ReloadProps(content._path),
-            },
-        };
+        throw appError(content);
     }
 
     return { props: { content } };
