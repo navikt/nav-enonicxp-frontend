@@ -4,7 +4,7 @@ import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { xpPathToPathname } from 'utils/paths';
 import { BEM } from 'utils/bem';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
-import './MainArticleLinkedList.less';
+import './MainArticleChapterNavigation.less';
 
 /*
     Render of XP part named main-article-linked-list
