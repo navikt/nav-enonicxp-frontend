@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { ExternalLinkProps } from '../types/content-props/external-link-props';
 import { InternalLinkProps } from '../types/content-props/internal-link-props';
 import { useRouter } from 'next/router';

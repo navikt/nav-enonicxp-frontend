@@ -12,6 +12,7 @@ import { makeErrorProps } from '../types/content-props/error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
+import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
 
 type PageProps = {
     content: ContentProps;
@@ -19,7 +20,6 @@ type PageProps = {
 
 type StaticProps = {
     props: PageProps;
-    revalidate?: number;
     redirect?: { destination: string; permanent: boolean };
     notFound?: boolean;
 };
@@ -50,63 +50,83 @@ export const PageBase = (props: PageProps) => {
     );
 };
 
+// These status codes may indicate that the requested page has been intentionally
+// made unavailable.  We want to perform cache revalidation in these cases.
+const revalidateOnErrorCode = {
+    401: true, // unauthorized
+    403: true, // forbidden
+    404: true, // not found
+};
+
+const appError = (content: ContentProps) => ({
+    content,
+});
+
+const errorHandlerProd = (content: ContentProps) => {
+    if (!revalidateOnErrorCode[content.data.errorCode]) {
+        throw appError(content);
+    }
+
+    return { props: { content } };
+};
+
+const errorHandlerDev = (content: ContentProps) => {
+    if (!revalidateOnErrorCode[content.data.errorCode]) {
+        // Do not throw errors at build-time in dev-environments
+        if (process.env.NEXT_PHASE === 'phase-production-build') {
+            return {
+                props: {
+                    content: error1337ReloadProps(content._path),
+                },
+            };
+        }
+
+        throw appError(content);
+    }
+
+    return { props: { content } };
+};
+
+const errorHandler =
+    process.env.APP_ORIGIN === 'https://www.nav.no'
+        ? errorHandlerProd
+        : errorHandlerDev;
+
+const isNotFound = (content) =>
+    (content.__typename === ContentType.Error &&
+        content.data.errorCode === 404) ||
+    !isContentTypeImplemented(content);
+
 export const fetchPageProps = async (
     routerQuery: string | string[],
     isDraft = false,
-    secret: string,
-    revalidate?: number
+    secret: string
 ): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret);
 
-    const defaultProps = {
-        props: undefined,
-        ...(revalidate && { revalidate }),
-    };
-
-    if (
-        (content.__typename === ContentType.Error &&
-            content.data.errorCode === 404) ||
-        !isContentTypeImplemented(content)
-    ) {
+    if (isNotFound(content)) {
         return {
-            ...defaultProps,
+            props: { content },
             notFound: true,
         };
     }
 
     if (content.__typename === ContentType.Error) {
-        return {
-            ...defaultProps,
-            props: {
-                content,
-            },
-        };
-    }
-
-    if (content.__typename === ContentType.LargeTable) {
-        return {
-            ...defaultProps,
-            props: {
-                content,
-            },
-        };
+        return errorHandler(content);
     }
 
     const redirectTarget = getTargetIfRedirect(content);
 
     if (redirectTarget) {
         return {
-            ...defaultProps,
+            props: { content },
             redirect: { destination: redirectTarget, permanent: false },
         };
     }
 
     return {
-        ...defaultProps,
-        props: {
-            content,
-        },
+        props: { content },
     };
 };
 

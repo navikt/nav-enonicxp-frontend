@@ -4,16 +4,6 @@ import { MenuListItem } from '../menu-list-items';
 import { LanguageProps } from '../language';
 import { XpImage } from '../media';
 
-type VectorImage = {
-    __typename: 'media_Vector';
-    mediaUrl?: string;
-};
-
-type BitmapImage = {
-    __typename: 'media_Image';
-    imageUrl?: string;
-};
-
 export type Picture = Partial<{
     target: XpImage;
     size: '100' | '70' | '40';
