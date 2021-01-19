@@ -23,14 +23,10 @@ const LinkLists = (props: ContentProps) => {
                         <ContentList
                             content={ntkContents}
                             className={bem('column')}
-                            aria-label={'Nyttig å vite'}
                         />
                     )}
                     {newsContents?.data?.sectionContents?.length > 0 && (
-                        <div
-                            className={`${bem('column')} ${bem('nyheter')}`}
-                            aria-label={'Nyheter'}
-                        >
+                        <div className={`${bem('column')} ${bem('nyheter')}`}>
                             <ContentList
                                 content={newsContents}
                                 showDateLabel={true}
@@ -54,7 +50,6 @@ const LinkLists = (props: ContentProps) => {
                         <ContentList
                             content={scContents}
                             className={bem('column')}
-                            aria-label={'Snarveier'}
                         />
                     )}
                 </div>

@@ -26,6 +26,9 @@ export const bundle: Translations = {
         publishdate: 'Publiseringsdato',
         event: 'Kalenderhendelse',
     },
+    notifications: {
+        label: 'Urgent notifications',
+    },
     relatedContent: {
         appealRights: 'Appeal rights',
         formAndApplication: 'Form and application',

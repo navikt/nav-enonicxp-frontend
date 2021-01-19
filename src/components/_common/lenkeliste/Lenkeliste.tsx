@@ -22,13 +22,14 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
         <section
             className={`${bem()} ${className || ''}`}
             data-portal-component-type="part"
+            aria-label={tittel}
         >
             {tittel && (
-                <div className={bem('tittel')} aria-label={'Tittel'}>
+                <div className={bem('tittel')}>
                     <Undertittel>{tittel}</Undertittel>
                 </div>
             )}
-            <nav className={bem('lenker')} aria-label={'Lenker'}>
+            <nav className={bem('lenker')}>
                 {lenker.map((lenke, index) => (
                     <LenkeStandalone
                         href={lenke.url}

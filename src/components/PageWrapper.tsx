@@ -102,7 +102,10 @@ export const PageWrapper = (props: Props) => {
         <>
             <HeadWithMetatags content={content} />
             {notifications && (
-                <GlobalNotifications notifications={notifications} />
+                <GlobalNotifications
+                    language={content?.language}
+                    notifications={notifications}
+                />
             )}
             <div className={'content-wrapper'} id={'maincontent'}>
                 {children}
