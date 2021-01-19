@@ -6,6 +6,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: dev-sbs:q6
     steps:
       - uses: actions/checkout@v1
       - name: Define build environment
@@ -28,7 +29,7 @@ jobs:
           DECORATOR_URL=https://www-q6.nav.no/dekoratoren
           XP_ORIGIN=https://www-q6.nav.no
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
-          SERVICE_SECRET=$SERVICE_SECRET
+          SERVICE_SECRET="$SERVICE_SECRET"
           EOF
       - uses: actions/cache@v1
         with:
