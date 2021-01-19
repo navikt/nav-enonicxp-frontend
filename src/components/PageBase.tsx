@@ -5,7 +5,7 @@ import {
 import { useRouter } from 'next/router';
 import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
-import ContentMapper, { isContentTypeImplemented } from './ContentMapper';
+import ContentMapper from './ContentMapper';
 import React from 'react';
 import { fetchPage } from '../utils/fetch-content';
 import { makeErrorProps } from '../types/content-props/error-props';
@@ -13,6 +13,7 @@ import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
 import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
+import { isNotFound } from '../utils/errors';
 
 type PageProps = {
     content: ContentProps;
@@ -91,11 +92,6 @@ const errorHandler =
     process.env.APP_ORIGIN === 'https://www.nav.no'
         ? errorHandlerProd
         : errorHandlerDev;
-
-const isNotFound = (content) =>
-    (content.__typename === ContentType.Error &&
-        content.data.errorCode === 404) ||
-    !isContentTypeImplemented(content);
 
 export const fetchPageProps = async (
     routerQuery: string | string[],
