@@ -8,7 +8,7 @@ const isEmptyMainArticleChapter = (content: ContentProps) =>
     content.__typename === ContentType.MainArticleChapter &&
     !content.data?.article;
 
-export const shouldReturnNotFound = (content: ContentProps) => {
+export const isNotFound = (content: ContentProps) => {
     return (
         (content.__typename === ContentType.Error &&
             content.data.errorCode === 404) ||

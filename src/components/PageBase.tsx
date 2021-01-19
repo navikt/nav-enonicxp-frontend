@@ -12,7 +12,7 @@ import { makeErrorProps } from '../types/content-props/error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
-import { shouldReturnNotFound } from '../utils/errors';
+import { isNotFound } from '../utils/errors';
 
 type PageProps = {
     content: ContentProps;
@@ -65,7 +65,7 @@ export const fetchPageProps = async (
         ...(revalidate && { revalidate }),
     };
 
-    if (shouldReturnNotFound(content)) {
+    if (isNotFound(content)) {
         return {
             ...defaultProps,
             notFound: true,
