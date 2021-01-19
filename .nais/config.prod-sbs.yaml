@@ -21,8 +21,10 @@ spec:
     path: /_metrics
   ingresses:
   {{#each ingresses as |url|}}
-    - {{url}}
+     - {{url}}
   {{/each}}
+  vault:
+    enabled: true
   replicas:
     min: 2
     max: 4
