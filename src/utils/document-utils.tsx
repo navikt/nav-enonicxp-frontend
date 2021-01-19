@@ -47,6 +47,9 @@ const decoratorParamsDefault = {
     chatbot: true,
 };
 
+const decodeAndStripQueryFromPath = (path: string) =>
+    decodeURI(path).split('?')[0];
+
 const fetchDecoratorProps = (
     idOrPath: string,
     isDraft = false
@@ -83,13 +86,12 @@ const fetchDecorator = (query?: string) => {
 };
 
 const getParamsFromContext = async (
-    ctx: DocumentContext
+    ctx: DocumentContext,
+    path: string
 ): Promise<DocumentParams> => {
     if (ctx.pathname === '/404') {
         return { decoratorParams: decoratorParams404, language: 'no' };
     }
-
-    const path = decodeURIComponent(ctx.asPath);
 
     const rolePath = path.split('/')[2];
     const context = pathToRoleContext[rolePath];
@@ -173,18 +175,18 @@ const getDecoratorFragments = async (
 export const getDocumentProps = async (
     ctx: DocumentContext
 ): Promise<DocumentProps> => {
-    const cacheKey = decodeURIComponent(ctx.asPath);
-    if (cache.has(cacheKey)) {
-        return cache.get(cacheKey);
+    const path = decodeAndStripQueryFromPath(ctx.asPath);
+    if (cache.has(path)) {
+        return cache.get(path);
     }
 
-    const { decoratorParams, language } = await getParamsFromContext(ctx);
+    const { decoratorParams, language } = await getParamsFromContext(ctx, path);
     const documentProps = {
         decoratorFragments: await getDecoratorFragments(decoratorParams),
         language,
     };
 
-    cache.set(cacheKey, documentProps);
+    cache.set(path, documentProps);
 
     return documentProps;
 };
