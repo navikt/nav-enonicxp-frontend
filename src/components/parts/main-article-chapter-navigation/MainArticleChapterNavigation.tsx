@@ -6,9 +6,12 @@ import { BEM } from 'utils/bem';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import './MainArticleLinkedList.less';
 
-export const MainArticleLinkedList = (props: ContentProps) => {
-    const bem = BEM('main-article-linked-list');
+/*
+    Render of XP part named main-article-linked-list
+*/
 
+export const MainArticleChapterNavigation = (props: ContentProps) => {
+    const bem = BEM('main-article-chapter-navigation');
     const children = props.children || props.parent?.children || [];
     const chapters = children.filter(
         (child) => child.__typename === ContentType.MainArticleChapter
