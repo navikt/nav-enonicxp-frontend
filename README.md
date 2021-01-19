@@ -3,8 +3,7 @@ React/[Next.js](https://nextjs.org/) frontend for Enonic XP headless CMS.
 ## Lokal kjøring
 
 Kjører lokalt på [http://localhost:3000](http://localhost:3000). Appen er avhengig av en
-lokalt tilgjengelig instans av [denne branchen](https://github.com/navikt/nav-enonicxp/tree/headless-guillotine)
-av Enonic XP.
+lokalt tilgjengelig instans av [Enonic XP](https://github.com/navikt/nav-enonicxp).
 
 #### Development mode:
 

@@ -4,7 +4,7 @@ import { BEM } from '../../../../utils/bem';
 import { SearchForm } from './search-form/SearchForm';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import Head from 'next/head';
-import { DecoratorParams } from '../../../../utils/document-utils';
+import { DecoratorParams } from '../../../../utils/decorator-utils';
 import './Error404Content.less';
 
 const origin = process.env.APP_ORIGIN;

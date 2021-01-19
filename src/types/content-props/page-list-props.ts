@@ -1,6 +1,8 @@
 import { ContentType, ContentProps } from './_content-common';
+import { LanguageProps } from '../language';
 
 export type PageListData = Partial<{
+    languages: LanguageProps[];
     ingress: string;
     sectionContents: ContentProps[];
     metaDescription: string;

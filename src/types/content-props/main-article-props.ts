@@ -1,7 +1,18 @@
 import { MainArticleChapterProps } from './main-article-chapter-props';
 import { ContentType, ContentProps } from './_content-common';
 import { MenuListItem } from '../menu-list-items';
+import { LanguageProps } from '../language';
 import { XpImage } from '../media';
+
+type VectorImage = {
+    __typename: 'media_Vector';
+    mediaUrl?: string;
+};
+
+type BitmapImage = {
+    __typename: 'media_Image';
+    imageUrl?: string;
+};
 
 export type Picture = Partial<{
     target: XpImage;
@@ -11,6 +22,7 @@ export type Picture = Partial<{
 }>;
 
 export type MainArticleData = Partial<{
+    languages: LanguageProps[];
     ingress: string;
     text: string;
     hasTableOfContents: string;

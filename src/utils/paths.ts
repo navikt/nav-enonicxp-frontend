@@ -1,5 +1,6 @@
 export const xpContentPathPrefix = '/www.nav.no';
 export const xpServicePath = '/_/service/no.nav.navno';
+export const xpDraftPathPrefix = '/admin/site/preview/default/draft/www.nav.no';
 
 export const xpOrigin = process.env.XP_ORIGIN;
 export const xpServiceUrl = `${xpOrigin}${xpServicePath}`;
@@ -16,6 +17,14 @@ const internalUrlPattern = new RegExp(
     `^(${process.env.APP_ORIGIN})?($|\\/$|\\/no|\\/en|\\/se|\\/nav.no|\\/skjemaer|\\/forsiden|\\/footer-contactus-no|\\/footer-contactus-en|\\/sykepenger-korona|\\/beskjed)`,
     'i'
 );
+
+export const insertDraftPrefixOnInternalUrl = (url: string) => {
+    if (internalUrlPattern.test(url)) {
+        return `${xpDraftPathPrefix}${url}`.replace(process.env.APP_ORIGIN, '');
+    }
+
+    return url;
+};
 
 // Checks if the string matches the pattern of the _path field of XP content objects
 export const isXpPath = (path: string) => path?.startsWith(xpContentPathPrefix);
