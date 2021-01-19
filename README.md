@@ -19,7 +19,10 @@ Kopier først innhold fra .env.development til .env.local
 npm run build && npm start
 ```
 
-## vhost config
+## Secrets
+Secrets hentes fra Environment secrets på Github. For å legge til secrets gå til: Settings -> Environments
+
+## vhost config i Enonic XP
 
 Mappings legges inn i com.enonic.xp.web.vhost.cfg.
 
