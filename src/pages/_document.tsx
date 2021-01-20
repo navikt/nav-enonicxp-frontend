@@ -7,6 +7,8 @@ import {
     DecoratorFragments,
     getDecoratorFragments,
 } from '../utils/decorator-utils';
+import { objectToQueryString } from '../utils/fetch-utils';
+import { decoratorParams404 } from '../components/pages/error-page/errorcode-content/Error404Content';
 
 type DocumentProps = {
     language: Language;
@@ -28,17 +30,17 @@ class MyDocument extends Document<DocumentProps> {
     static async getInitialProps(ctx: DocumentContext) {
         const initialProps = await Document.getInitialProps(ctx);
 
-        const decoratorQueryParams = retrieveMetaContent(
-            initialProps,
-            '_decoratorQuery'
-        );
+        const decoratorQuery =
+            ctx.pathname === '/404'
+                ? objectToQueryString(decoratorParams404)
+                : retrieveMetaContent(initialProps, '_decoratorQuery');
 
         const language = retrieveMetaContent(initialProps, '_htmlLang');
 
         const path = decodeAndStripQueryFromPath(ctx.asPath);
         const decoratorFragments = await getDecoratorFragments(
             path,
-            decoratorQueryParams
+            decoratorQuery
         );
 
         return {

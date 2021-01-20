@@ -10,6 +10,11 @@ const origin = process.env.APP_ORIGIN;
 const frontpageHref = origin;
 const feedbackHref = `${origin}/person/kontakt-oss/tilbakemeldinger/feil-og-mangler`;
 
+export const decoratorParams404 = {
+    feedback: false,
+    breadcrumbs: [{ title: 'Fant ikke siden', url: '/' }],
+};
+
 export const Error404Content = () => {
     const bem = BEM('error404');
 
