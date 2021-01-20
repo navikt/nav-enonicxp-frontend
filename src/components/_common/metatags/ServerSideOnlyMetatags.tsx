@@ -16,14 +16,11 @@ export const ServerSideOnlyMetatags = ({ content }: Props) => {
         return null;
     }
 
-    const decoratorParams = getDecoratorParams(content);
+    const decoratorQuery = objectToQueryString(getDecoratorParams(content));
 
     return (
         <Head>
-            <meta
-                name="_decoratorQuery"
-                content={objectToQueryString(decoratorParams)}
-            />
+            <meta name="_decoratorQuery" content={decoratorQuery} />
             <meta name="_htmlLang" content={content.language} />
         </Head>
     );
