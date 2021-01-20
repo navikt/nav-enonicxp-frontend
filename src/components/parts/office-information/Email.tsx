@@ -9,7 +9,7 @@ interface Props {
 
 export const Email = (props: Props) => {
     return ['HMS', 'ALS', 'TILTAK'].includes(props.unitType) &&
-        props.email?.adresse !== '' &&
+        props.email?.adresse &&
         props.email?.kunIntern !== 'true' ? (
         <div
             itemProp="contactPoint"
