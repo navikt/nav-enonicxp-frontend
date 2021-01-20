@@ -6,7 +6,10 @@ import NodeCache from 'node-cache';
 import { Language } from '../translations';
 import { Breadcrumb } from '../types/breadcrumb';
 import { getContentLanguages } from './languages';
-import { ContentProps } from '../types/content-props/_content-common';
+import {
+    ContentProps,
+    ContentType,
+} from '../types/content-props/_content-common';
 import { LanguageProps } from '../types/language';
 import { xpPathToPathname } from './paths';
 
@@ -102,7 +105,16 @@ const decoratorFragmentsCSR = (query?: string) => ({
     ),
 });
 
+const decoratorErrorParams = (message: string): DecoratorParams => ({
+    feedback: false,
+    breadcrumbs: [{ title: message || 'Ukjent feil', url: '/' }],
+});
+
 export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
+    if (content.__typename === ContentType.Error) {
+        return decoratorErrorParams(content.data.errorMessage);
+    }
+
     const { _path, breadcrumbs, language } = content;
     const rolePath = _path.split('/')[3];
     const context = pathToRoleContext[rolePath];
