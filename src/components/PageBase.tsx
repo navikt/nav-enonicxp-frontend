@@ -14,7 +14,6 @@ import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
 import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
 import { isNotFound } from '../utils/errors';
-import { GetServerSidePropsContext, GetStaticPropsContext } from 'next';
 
 type PageProps = {
     content: ContentProps;
@@ -94,16 +93,10 @@ const errorHandler =
         ? errorHandlerProd
         : errorHandlerDev;
 
-const injectDecoratorParams = (
-    context: GetStaticPropsContext | GetServerSidePropsContext,
-    content: ContentProps
-) => {};
-
 export const fetchPageProps = async (
     routerQuery: string | string[],
     isDraft = false,
-    secret: string,
-    context: GetStaticPropsContext | GetServerSidePropsContext
+    secret: string
 ): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret);

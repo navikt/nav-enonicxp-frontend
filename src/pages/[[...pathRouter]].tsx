@@ -6,8 +6,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const props = await fetchPageProps(
         context?.params?.pathRouter,
         false,
-        process.env.SERVICE_SECRET,
-        context
+        process.env.SERVICE_SECRET
     );
 
     return {

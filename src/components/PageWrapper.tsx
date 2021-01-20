@@ -9,15 +9,8 @@ import { hookAndInterceptInternalLink } from '../utils/links';
 import GlobalNotifications from './_common/notifications/GlobalNotifications';
 import { initAmplitude, logPageview } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
-import {
-    getContentLanguages,
-    getDecoratorLanguagesParam,
-} from '../utils/languages';
-import {
-    getDecoratorParams,
-    pathToRoleContext,
-    xpLangToDecoratorLang,
-} from '../utils/decorator-utils';
+import { getDecoratorParams } from '../utils/decorator-utils';
+import { ServerSideOnlyMetatags } from './_common/metatags/ServerSideOnlyMetatags';
 
 type Props = {
     content: ContentProps;
@@ -76,18 +69,17 @@ export const PageWrapper = (props: Props) => {
         focusedElement?.blur && focusedElement.blur();
 
         const decoratorParams = getDecoratorParams(content);
-        if (decoratorParams) {
-            // @ts-ignore
-            // ignoring due to pl language not being defined in the language type
-            // for decorator modules
-            setParams(decoratorParams);
-        }
+        // @ts-ignore
+        // ignoring due to 'pl' missing from the language type
+        // in decorator modules
+        setParams(decoratorParams);
 
         document.documentElement.lang = content.language || 'no';
     }, [content]);
 
     return (
         <>
+            <ServerSideOnlyMetatags content={content} />
             <HeadWithMetatags content={content} />
             {notifications && (
                 <GlobalNotifications notifications={notifications} />

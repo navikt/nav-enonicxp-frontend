@@ -5,8 +5,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return await fetchPageProps(
         context?.params?.draftRouter,
         true,
-        process.env.SERVICE_SECRET,
-        context
+        process.env.SERVICE_SECRET
     );
 };
 
