@@ -52,7 +52,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
             <meta property={'og:image'} content={imageUrl} />
             <meta property={'og:image:width'} content={'200'} />
             <meta property={'og:image:height'} content={'200'} />
-            <meta name="twitter:card" content={'summary_large_image'} />
+            <meta name="twitter:card" content={'summary'} />
             <meta name="twitter:domain" content={'nav.no'} />
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />
