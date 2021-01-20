@@ -18,6 +18,7 @@ type DecoratorLanguage = 'en' | 'nb' | 'nn' | 'pl' | 'se';
 type DecoratorLanguageParams = {
     locale: DecoratorLanguage;
     url: string;
+    handleInApp?: boolean;
 };
 
 export type DecoratorParams = Partial<{
@@ -50,7 +51,7 @@ const getDecoratorLanguagesParam = (
     languages: LanguageProps[],
     currentLang: Language,
     currentPath: string
-) =>
+): DecoratorLanguageParams[] =>
     languages?.length > 0
         ? languages
               .map((lang) => ({
