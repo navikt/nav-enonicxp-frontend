@@ -73,7 +73,7 @@ export const PageWrapper = (props: Props) => {
         // in decorator modules
         setParams(getDecoratorParams(content));
 
-        document.documentElement.lang = language || 'no';
+        document.documentElement.lang = content.language || 'no';
     }, [content]);
 
     return (
