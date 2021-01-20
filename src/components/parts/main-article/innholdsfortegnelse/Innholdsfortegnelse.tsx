@@ -13,8 +13,11 @@ const Innholdsfortegnelse = (props: Props) => {
     }
 
     return (
-        <nav className="table-of-contents" data-selected-id>
-            <h2 className="visuallyhidden">{props.label}</h2>
+        <nav
+            className="table-of-contents"
+            aria-label={props.label}
+            data-selected-id
+        >
             <ol>
                 {props.innholdsfortegnelse.map((item, index) => (
                     <li key={index}>
