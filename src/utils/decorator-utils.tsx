@@ -87,7 +87,7 @@ const fetchDecoratorHtml = (query?: string) => {
         .catch(console.error);
 };
 
-const decoratorFragmentsCSR = (query: string) => ({
+const decoratorFragmentsCSR = (query?: string) => ({
     HEADER: <div id="decorator-header"></div>,
     STYLES: <link href={`${decoratorUrl}/css/client.css`} rel="stylesheet" />,
     FOOTER: <div id="decorator-footer"></div>,
@@ -95,7 +95,7 @@ const decoratorFragmentsCSR = (query: string) => ({
         <>
             <div
                 id="decorator-env"
-                data-src={`${decoratorUrl}/env${query}`}
+                data-src={`${decoratorUrl}/env${query || ''}`}
             ></div>
             <script async={true} src={`${decoratorUrl}/client.js`}></script>
         </>
@@ -125,7 +125,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 
 export const getDecoratorFragments = async (
     path: string,
-    query: string
+    query?: string
 ): Promise<DecoratorFragments> => {
     if (cache.has(path)) {
         return cache.get(path);
