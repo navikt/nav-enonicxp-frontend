@@ -35,16 +35,27 @@ html {
     font-size: @font-size-factor * 100%;
 }
 
+body,
 #__next,
+.app,
 .decorator-utils-container {
     background-color: #f1f1f1;
+}
+
+.decorator-utils-container {
+    min-height: 4rem;
+    margin-bottom: -4rem;
 }
 
 .app {
     max-width: @desktopMaxWidth;
     min-height: 20rem;
     margin: 0 auto;
-    background-color: #f1f1f1;
+    transition: margin-top 0.2s ease-in-out;
+
+    &__offset {
+        margin-top: 3rem;
+    }
 
     @media @screen-mobile {
         padding: 2rem @padding-sides-mobile;

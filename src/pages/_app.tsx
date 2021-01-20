@@ -1,16 +1,20 @@
 import React from 'react';
 import type { AppProps } from 'next/app';
+import { getContentLanguages } from '../utils/languages';
 import '../global.less';
 
 const App = (props: AppProps) => {
     const { Component, pageProps } = props;
-    const styles = {
-        ...(pageProps.breadcrumbs?.length && {
-            paddingTop: '1rem',
-        }),
-    };
+    const hasBreadcrumbsOrLanguageSelector =
+        pageProps.content?.breadcrumbs?.length > 0 ||
+        !!getContentLanguages(pageProps.content);
+
     return (
-        <div className={'app'} style={styles}>
+        <div
+            className={`app${
+                hasBreadcrumbsOrLanguageSelector ? ' app__offset' : ''
+            }`}
+        >
             <Component {...pageProps} />
         </div>
     );
