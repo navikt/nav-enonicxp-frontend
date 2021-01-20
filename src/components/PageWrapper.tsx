@@ -9,14 +9,8 @@ import { hookAndInterceptInternalLink } from '../utils/links';
 import GlobalNotifications from './_common/notifications/GlobalNotifications';
 import { initAmplitude, logPageview } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
-import {
-    getContentLanguages,
-    getDecoratorLanguagesParam,
-} from '../utils/languages';
-import {
-    pathToRoleContext,
-    xpLangToDecoratorLang,
-} from '../utils/decorator-utils';
+import { getDecoratorParams } from '../utils/decorator-utils';
+import { ServerSideOnlyMetatags } from './_common/metatags/ServerSideOnlyMetatags';
 
 type Props = {
     content: ContentProps;
@@ -74,34 +68,17 @@ export const PageWrapper = (props: Props) => {
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
 
-        const { breadcrumbs, language } = content;
-        const rolePath = window.location.href.split('/')[4];
-        const context = pathToRoleContext[rolePath];
-
-        setParams({
-            ...(context && { context }),
-            language: (xpLangToDecoratorLang[language] || 'nb') as
-                | 'en'
-                | 'se'
-                | 'nb'
-                | 'nn', // TODO: add 'pl' to decorator-modules!,
-            breadcrumbs:
-                breadcrumbs?.map((crumb) => ({
-                    handleInApp: true,
-                    ...crumb,
-                })) || [],
-            availableLanguages: getDecoratorLanguagesParam(
-                getContentLanguages(content),
-                language,
-                content._path
-            ),
-        });
+        // @ts-ignore
+        // ignoring due to 'pl' missing from the language type
+        // in decorator modules
+        setParams(getDecoratorParams(content));
 
         document.documentElement.lang = language || 'no';
     }, [content]);
 
     return (
         <>
+            <ServerSideOnlyMetatags content={content} />
             <HeadWithMetatags content={content} />
             {notifications && (
                 <GlobalNotifications notifications={notifications} />
