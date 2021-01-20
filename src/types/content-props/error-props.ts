@@ -11,7 +11,7 @@ export interface ErrorProps extends ContentProps {
 }
 
 export const makeErrorProps = (
-    idOrPath,
+    idOrPath = '/',
     errorMessage = 'Ukjent feil',
     errorCode = 500
 ): ErrorProps => ({

@@ -1,29 +1,25 @@
 import React from 'react';
 import Document, { NextScript, DocumentContext } from 'next/document';
 import { Html, Head, Main } from 'next/document';
-import { getDecorator } from '../utils/decorator';
-import { DecoratorFragments } from '../utils/decorator';
+import { DocumentProps, getDocumentProps } from '../utils/document-utils';
 
-type Props = {
-    decoratorFragments: DecoratorFragments;
-};
-
-class MyDocument extends Document<Props> {
+class MyDocument extends Document<DocumentProps> {
     static async getInitialProps(ctx: DocumentContext) {
         const initialProps = await Document.getInitialProps(ctx);
-        const decoratorFragments = await getDecorator(ctx);
+        const { decoratorFragments, language } = await getDocumentProps(ctx);
         return {
             ...initialProps,
             decoratorFragments,
+            language,
         };
     }
 
     render() {
-        const { decoratorFragments } = this.props;
+        const { decoratorFragments, language } = this.props;
         const { HEADER, FOOTER, SCRIPTS, STYLES } = decoratorFragments;
 
         return (
-            <Html>
+            <Html lang={language || 'no'}>
                 <Head>{STYLES}</Head>
                 <body data-portal-component-type="page">
                     {HEADER}

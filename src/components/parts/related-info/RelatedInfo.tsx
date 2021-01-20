@@ -6,16 +6,20 @@ import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
 import { ContentType } from 'types/content-props/_content-common';
 import { ContentProps } from 'types/content-props/_content-common';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
-import './MenuList.less';
+import './RelatedInfo.less';
 
-export const MenuList = (props: ContentProps) => {
-    const bem = BEM('menu-list');
+/*
+    Render of XP part named menu-list
+*/
+
+export const RelatedInfo = (props: ContentProps) => {
+    const bem = BEM('related-info');
     const { __typename } = props;
     const data = props.data;
     const language = props.language;
-    const menuListItems = data?.menuListItems;
-    const entries = menuListItems ? Object.entries(menuListItems) : [];
-    const selected = menuListItems?._selected || [];
+    const relatedInfoItems = data?.menuListItems;
+    const entries = relatedInfoItems ? Object.entries(relatedInfoItems) : [];
+    const selected = relatedInfoItems?._selected || [];
     const getLabel = translator('relatedContent', language);
     const filtered = entries.filter(([key]) =>
         selected.includes(key as MenuListItemKey)

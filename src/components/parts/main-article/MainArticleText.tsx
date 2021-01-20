@@ -23,6 +23,7 @@ interface Props {
     text: string;
     className: string;
     hasTableOfContents: boolean;
+    isDraft?: boolean;
 }
 
 const MainArticleText = (props: Props) => {
@@ -30,7 +31,7 @@ const MainArticleText = (props: Props) => {
 
     return (
         <div className={props.className}>
-            <ParsedHtml content={modifiedHtml} />
+            <ParsedHtml content={modifiedHtml} isDraft={props.isDraft} />
         </div>
     );
 };

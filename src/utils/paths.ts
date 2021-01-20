@@ -1,5 +1,6 @@
-export const xpContentBasePath = '/www.nav.no';
+export const xpContentPathPrefix = '/www.nav.no';
 export const xpServicePath = '/_/service/no.nav.navno';
+export const xpDraftPathPrefix = '/admin/site/preview/default/draft/www.nav.no';
 
 export const xpOrigin = process.env.XP_ORIGIN;
 export const xpServiceUrl = `${xpOrigin}${xpServicePath}`;
@@ -11,10 +12,25 @@ export const getLocationOrigin = () =>
     (typeof window !== 'undefined' && window.location.origin) ||
     '';
 
-export const isXpPath = (path: string) =>
-    /(www.*.nav.no|^nav.no|^)($|\/$|\/no|\/en|\/se|\/nav.no|\/skjemaer|\/forsiden|\/footer-contactus-no|\/footer-contactus-en|\/sykepenger-korona|\/beskjed)/i.test(
-        path
-    );
+// This pattern matches both relative and absolute urls which points to content internal to the app
+const internalUrlPattern = new RegExp(
+    `^(${process.env.APP_ORIGIN})?($|\\/$|\\/no|\\/en|\\/se|\\/nav.no|\\/skjemaer|\\/forsiden|\\/footer-contactus-no|\\/footer-contactus-en|\\/sykepenger-korona|\\/beskjed)`,
+    'i'
+);
+
+export const insertDraftPrefixOnInternalUrl = (url: string) => {
+    if (internalUrlPattern.test(url)) {
+        return `${xpDraftPathPrefix}${url}`.replace(process.env.APP_ORIGIN, '');
+    }
+
+    return url;
+};
+
+// Checks if the string matches the pattern of the _path field of XP content objects
+export const isXpPath = (path: string) => path?.startsWith(xpContentPathPrefix);
+
+export const isInternalUrl = (url: string) =>
+    isXpPath(url) || internalUrlPattern.test(url);
 
 export const isUUID = (id: string) =>
     id &&
@@ -22,18 +38,21 @@ export const isUUID = (id: string) =>
         id
     );
 
-export const xpPathToAppPath = (path: string) =>
-    isXpPath(path) ? path.split(xpContentBasePath).slice(-1)[0] : path;
+export const xpPathToPathname = (path: string) =>
+    isXpPath(path) ? path.slice(xpContentPathPrefix.length) : path;
 
 export const xpPathToUrl = (path: string) =>
-    `${getLocationOrigin()}${xpPathToAppPath(path)}`;
+    `${getLocationOrigin()}${xpPathToPathname(path)}`;
 
-export const appPathToXpPath = (path: string) =>
-    path && `${xpContentBasePath}${path}`;
+export const pathnameToXpPath = (path: string) =>
+    path && `${xpContentPathPrefix}${path}`;
 
+// Requests from content-studio can be either a path or UUID, we check for both
 export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
     const possibleId =
-        typeof routerQuery === 'string' ? routerQuery : routerQuery[1];
+        typeof routerQuery === 'string'
+            ? routerQuery
+            : routerQuery[1] || routerQuery[0]; // checking the 1-index can be removed when PR#746 on the backend is in production
 
     if (isUUID(possibleId)) {
         return possibleId;
@@ -43,5 +62,5 @@ export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
         typeof routerQuery === 'string' ? routerQuery : routerQuery.join('/')
     }`;
 
-    return `${xpContentBasePath}${path}`;
+    return pathnameToXpPath(path);
 };
