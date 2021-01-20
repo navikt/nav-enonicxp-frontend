@@ -104,8 +104,9 @@ export const parseHtmlByProps = (content: string, props: ParseProps) => {
 
     // Parse and return
     const htmlParsed = htmlReactParser(
-        htmlToParse,
+        htmlToParse.replace(/(\r\n|\n|\r)/gm, ' '),
         replaceElements
     );
+
     return <>{htmlParsed}</>;
 };
