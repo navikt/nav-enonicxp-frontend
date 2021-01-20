@@ -7,6 +7,7 @@ class MyDocument extends Document<DocumentProps> {
     static async getInitialProps(ctx: DocumentContext) {
         const initialProps = await Document.getInitialProps(ctx);
         const { decoratorFragments, language } = await getDocumentProps(ctx);
+        console.log('document params:', ctx.query);
         return {
             ...initialProps,
             decoratorFragments,

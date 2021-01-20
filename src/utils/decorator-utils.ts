@@ -1,5 +1,7 @@
 import { Language } from '../translations';
 import { Breadcrumb } from '../types/breadcrumb';
+import { getContentLanguages, getDecoratorLanguagesParam } from './languages';
+import { ContentProps } from '../types/content-props/_content-common';
 
 type DecoratorContext = 'privatperson' | 'arbeidsgiver' | 'samarbeidspartner';
 type DecoratorLanguage = 'en' | 'nb' | 'nn' | 'pl' | 'se';
@@ -31,4 +33,25 @@ export const pathToRoleContext: { [key: string]: DecoratorContext } = {
     person: 'privatperson',
     bedrift: 'arbeidsgiver',
     samarbeidspartner: 'samarbeidspartner',
+};
+
+export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
+    const { _path, breadcrumbs, language } = content;
+    const rolePath = _path.split('/')[3];
+    const context = pathToRoleContext[rolePath];
+
+    return {
+        ...(context && { context }),
+        language: xpLangToDecoratorLang[language] || 'nb',
+        breadcrumbs:
+            breadcrumbs?.map((crumb) => ({
+                handleInApp: true,
+                ...crumb,
+            })) || [],
+        availableLanguages: getDecoratorLanguagesParam(
+            getContentLanguages(content),
+            language,
+            _path
+        ),
+    };
 };

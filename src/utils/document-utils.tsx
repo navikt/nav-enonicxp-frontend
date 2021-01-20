@@ -15,6 +15,7 @@ import {
     pathToRoleContext,
     xpLangToDecoratorLang,
 } from './decorator-utils';
+import { ContentProps } from '../types/content-props/_content-common';
 
 const decoratorUrl = process.env.DECORATOR_URL;
 
@@ -37,40 +38,12 @@ type DecoratorFragments = {
     STYLES: React.ReactNode;
 };
 
-type DecoratorProps = {
-    currentLanguage: Language;
-    languages?: LanguageProps[];
-    breadcrumbs?: Breadcrumb[];
-};
-
 const decoratorParamsDefault = {
     chatbot: true,
 };
 
 const decodeAndStripQueryFromPath = (path: string) =>
     decodeURI(path).split('?')[0];
-
-const fetchDecoratorProps = (
-    idOrPath: string,
-    isDraft = false
-): Promise<DecoratorProps> => {
-    const params = objectToQueryString({
-        ...(isDraft && { branch: 'draft' }),
-        id: idOrPath,
-    });
-    const url = `${xpServiceUrl}/decoratorProps${params}`;
-
-    return fetchWithTimeout(url, 5000)
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            const error = `Failed to fetch decorator props from ${idOrPath}: ${res.statusText}`;
-            console.log(error);
-            return null;
-        })
-        .catch(console.error);
-};
 
 const fetchDecorator = (query?: string) => {
     const url = `${decoratorUrl}/${query ? query : ''}`;
@@ -85,8 +58,8 @@ const fetchDecorator = (query?: string) => {
         .catch(console.error);
 };
 
-const getParamsFromContext = async (
-    ctx: DocumentContext,
+const getDecoratorParamsFromContent = async (
+    content: ContentProps,
     path: string
 ): Promise<DocumentParams> => {
     if (ctx.pathname === '/404') {
@@ -180,7 +153,10 @@ export const getDocumentProps = async (
         return cache.get(path);
     }
 
-    const { decoratorParams, language } = await getParamsFromContext(ctx, path);
+    const { decoratorParams, language } = await getDecoratorParamsFromContent(
+        ctx,
+        path
+    );
     const documentProps = {
         decoratorFragments: await getDecoratorFragments(decoratorParams),
         language,

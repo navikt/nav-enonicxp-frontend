@@ -14,6 +14,7 @@ import {
     getDecoratorLanguagesParam,
 } from '../utils/languages';
 import {
+    getDecoratorParams,
     pathToRoleContext,
     xpLangToDecoratorLang,
 } from '../utils/decorator-utils';
@@ -74,28 +75,13 @@ export const PageWrapper = (props: Props) => {
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
 
-        const { breadcrumbs, language } = content;
-        const rolePath = window.location.href.split('/')[4];
-        const context = pathToRoleContext[rolePath];
-
-        setParams({
-            ...(context && { context }),
-            language: (xpLangToDecoratorLang[language] || 'nb') as
-                | 'en'
-                | 'se'
-                | 'nb'
-                | 'nn', // TODO: add 'pl' to decorator-modules!,
-            breadcrumbs:
-                breadcrumbs?.map((crumb) => ({
-                    handleInApp: true,
-                    ...crumb,
-                })) || [],
-            availableLanguages: getDecoratorLanguagesParam(
-                getContentLanguages(content),
-                language,
-                content._path
-            ),
-        });
+        const decoratorParams = getDecoratorParams(content);
+        if (decoratorParams) {
+            // @ts-ignore
+            // ignoring due to pl language not being defined in the language type
+            // for decorator modules
+            setParams(decoratorParams);
+        }
 
         document.documentElement.lang = content.language || 'no';
     }, [content]);

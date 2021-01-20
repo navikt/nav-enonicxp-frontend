@@ -2,9 +2,14 @@ import { GetStaticProps } from 'next';
 import PageBase, { fetchPageProps } from '../../components/PageBase';
 import Config from '../../Config';
 
-export const getStaticProps: GetStaticProps = async () => {
-    const secret = process.env.SERVICE_SECRET as string;
-    const props = await fetchPageProps(['no', 'privatperson'], false, secret);
+export const getStaticProps: GetStaticProps = async (context) => {
+    const props = await fetchPageProps(
+        ['no', 'privatperson'],
+        false,
+        process.env.SERVICE_SECRET,
+        context
+    );
+
     return {
         ...props,
         revalidate: Config.vars.revalidatePeriod,
