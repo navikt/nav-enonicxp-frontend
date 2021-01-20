@@ -92,14 +92,14 @@ export const parseHtmlByProps = (content: string, props: ParseProps) => {
             }
         },
     };
-    const htmlToParse = content;
+    let htmlToParse = content;
     if ( tableAttribs ) {
         // Remove all table attributes
-        htmlToParse.replace(/<table(.*)>/gm, '<table>');
+        htmlToParse = htmlToParse.replace(/<table(.*)>/gm, '<table>');
     }
     if ( tableClass ) {
         // Add table classes
-        htmlToParse.replace(/<table>/gm, '<table class="tabell tabell--stripet">');
+        htmlToParse = htmlToParse.replace(/(<table)/gm, '<table class="tabell tabell--stripet"');
     }
 
     // Parse and return
