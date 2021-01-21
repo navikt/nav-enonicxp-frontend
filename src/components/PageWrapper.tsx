@@ -7,10 +7,11 @@ import { ContentProps } from '../types/content-props/_content-common';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
 import GlobalNotifications from './_common/notifications/GlobalNotifications';
-import { initAmplitude, logPageview } from '../utils/amplitude';
+import { initAmplitude } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from '../utils/decorator-utils';
 import { ServerSideOnlyMetatags } from './_common/metatags/ServerSideOnlyMetatags';
+import { getContentLanguages } from '../utils/languages';
 
 type Props = {
     content: ContentProps;
@@ -22,6 +23,8 @@ export const PageWrapper = (props: Props) => {
     const { notifications } = content;
 
     const router = useRouter();
+    const hasBreadcrumbsOrLanguageSelector =
+        content?.breadcrumbs?.length > 0 || !!getContentLanguages(content);
 
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) => router.push(breadcrumb.url));
@@ -62,8 +65,6 @@ export const PageWrapper = (props: Props) => {
             return;
         }
 
-        logPageview();
-
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
@@ -77,7 +78,11 @@ export const PageWrapper = (props: Props) => {
     }, [content]);
 
     return (
-        <>
+        <div
+            className={`app${
+                hasBreadcrumbsOrLanguageSelector ? ' app__offset' : ''
+            }`}
+        >
             <ServerSideOnlyMetatags content={content} />
             <HeadWithMetatags content={content} />
             {notifications && (
@@ -86,7 +91,7 @@ export const PageWrapper = (props: Props) => {
             <div className={'content-wrapper'} id={'maincontent'}>
                 {children}
             </div>
-        </>
+        </div>
     );
 };
 

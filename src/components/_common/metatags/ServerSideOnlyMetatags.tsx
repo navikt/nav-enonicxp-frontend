@@ -10,7 +10,7 @@ type Props = {
 
 const isServerSide = typeof window === 'undefined';
 
-// These are used for injecting data into the _document component
+// These are used for passing data to the nextjs Document component
 export const ServerSideOnlyMetatags = ({ content }: Props) => {
     if (!isServerSide) {
         return null;

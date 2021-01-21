@@ -12,8 +12,6 @@ export const initAmplitude = () => {
     });
 };
 
-export const logPageview = () => logAmplitudeEvent('sidevisning');
-
 export const logLinkClick = (
     href: string,
     linkText: string | undefined,
