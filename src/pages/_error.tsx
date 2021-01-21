@@ -1,16 +1,16 @@
-import { ErrorPage } from '../components/pages/error-page/ErrorPage';
-import { ErrorProps, makeErrorProps } from '../types/content-props/error-props';
+import { makeErrorProps } from '../utils/errors';
+import PageBase from '../components/PageBase';
+import { ContentProps } from '../types/content-props/_content-common';
 
-const Error = (props: ErrorProps) => <ErrorPage {...props} />;
+const Error = (props: ContentProps) => <PageBase content={props} />;
 
 Error.getInitialProps = ({
     res,
     err,
 }: {
     res: any;
-    err: { errorProps: ErrorProps };
-}): ErrorProps =>
-    err?.errorProps ||
-    makeErrorProps('/', 'Ukjent feil', res?.statusCode || 500);
+    err: { content: ContentProps };
+}): ContentProps =>
+    err?.content || makeErrorProps('/', 'Ukjent feil', res?.statusCode || 500);
 
 export default Error;
