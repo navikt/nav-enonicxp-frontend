@@ -10,6 +10,10 @@ import { xpLangToDecoratorLang } from './decorator-utils';
 export const getContentLanguages = (
     content: ContentProps
 ): LanguageProps[] | null => {
+    if (!content?.__typename) {
+        return null;
+    }
+
     if (
         content.__typename === ContentType.MainArticle ||
         content.__typename === ContentType.PageList
