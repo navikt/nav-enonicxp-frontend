@@ -105,14 +105,19 @@ const decoratorFragmentsCSR = (query?: string) => ({
     ),
 });
 
-const decoratorErrorParams = (message: string): DecoratorParams => ({
+const decoratorErrorParams = (content: ContentProps): DecoratorParams => ({
     feedback: false,
-    breadcrumbs: [{ title: message || 'Ukjent feil', url: '/' }],
+    breadcrumbs: content.breadcrumbs || [
+        {
+            title: content.data?.errorMessage || 'Ukjent feil',
+            url: '/',
+        },
+    ],
 });
 
 export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     if (content.__typename === ContentType.Error) {
-        return decoratorErrorParams(content.data.errorMessage);
+        return decoratorErrorParams(content);
     }
 
     const { _path, breadcrumbs, language } = content;
