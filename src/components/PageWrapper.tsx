@@ -28,6 +28,8 @@ export const PageWrapper = (props: Props) => {
     const { notifications } = content;
 
     const router = useRouter();
+    const hasBreadcrumbsOrLanguageSelector =
+        content?.breadcrumbs?.length > 0 || !!getContentLanguages(content);
 
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) => router.push(breadcrumb.url));
@@ -99,7 +101,11 @@ export const PageWrapper = (props: Props) => {
     }, [content]);
 
     return (
-        <>
+        <div
+            className={`app${
+                hasBreadcrumbsOrLanguageSelector ? ' app__offset' : ''
+            }`}
+        >
             <HeadWithMetatags content={content} />
             {notifications && (
                 <GlobalNotifications notifications={notifications} />
@@ -107,7 +113,7 @@ export const PageWrapper = (props: Props) => {
             <div className={'content-wrapper'} id={'maincontent'}>
                 {children}
             </div>
-        </>
+        </div>
     );
 };
 
