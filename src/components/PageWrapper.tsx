@@ -7,7 +7,7 @@ import { ContentProps } from '../types/content-props/_content-common';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
 import GlobalNotifications from './_common/notifications/GlobalNotifications';
-import { initAmplitude, logPageview } from '../utils/amplitude';
+import { initAmplitude } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import {
     getContentLanguages,
@@ -67,8 +67,6 @@ export const PageWrapper = (props: Props) => {
         if (!content) {
             return;
         }
-
-        logPageview();
 
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;
