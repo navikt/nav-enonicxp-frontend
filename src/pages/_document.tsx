@@ -19,7 +19,7 @@ const decodeAndStripQueryFromPath = (path: string) =>
     decodeURI(path).split('?')[0];
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
-// We use this to pass certain data from our page content
+// We use this to pass certain data from our page content via the ServerSideOnlyMetatags component
 const retrieveMetaContent = (
     initialProps: DocumentInitialProps,
     name: string
