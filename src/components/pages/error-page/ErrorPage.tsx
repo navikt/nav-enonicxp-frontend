@@ -24,9 +24,9 @@ export const ErrorPage = (props: ErrorProps) => {
     return (
         <div className={bem()}>
             <Head>
-                <title>{`${errorMessage} - nav.no`}</title>
                 <style type={'text/css'}>
                     {
+                        // Skjuler andre brødsmuleledd for feilsider (privatperson/etc)
                         '.brodsmulesti li:nth-child(2):not(:last-child) {display: none;}'
                     }
                 </style>

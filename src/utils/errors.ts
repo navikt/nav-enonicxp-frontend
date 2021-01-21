@@ -26,7 +26,7 @@ export const makeErrorProps = (
     __typename: ContentType.Error,
     _path: idOrPath,
     _id: idOrPath,
-    displayName: idOrPath,
+    displayName: errorMessage,
     createdTime: Date.now().toString(),
     modifiedTime: Date.now().toString(),
     language: 'no',
