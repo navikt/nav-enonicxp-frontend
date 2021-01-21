@@ -3,7 +3,6 @@ import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { BEM } from '../../../../utils/bem';
 import { SearchForm } from './search-form/SearchForm';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
-import Head from 'next/head';
 import { DecoratorParams } from '../../../../utils/decorator-utils';
 import './Error404Content.less';
 
@@ -21,14 +20,6 @@ export const Error404Content = () => {
 
     return (
         <div className={bem()}>
-            <Head>
-                <title>{'Fant ikke siden - nav.no'}</title>
-                <style type={'text/css'}>
-                    {
-                        '.brodsmulesti li:nth-child(2):not(:last-child) {display: none;}'
-                    }
-                </style>
-            </Head>
             <div className={bem('content')}>
                 <Normaltekst>
                     {
