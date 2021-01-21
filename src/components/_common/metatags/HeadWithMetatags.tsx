@@ -46,9 +46,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
     return (
         <Head>
             <title>{title}</title>
-            {content.__typename === ContentType.Error ? (
-                <meta name="robots" content="noindex" />
-            ) : (
+            {content.__typename !== ContentType.Error && (
                 <link rel={'canonical'} href={url} />
             )}
             <meta property={'og:title'} content={title} />
