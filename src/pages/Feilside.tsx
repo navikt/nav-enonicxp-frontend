@@ -1,9 +1,14 @@
 import { GetServerSideProps } from 'next';
 import PageBase from '../components/PageBase';
+import { makeErrorProps } from '../utils/errors';
 
-export const getServerSideProps: GetServerSideProps = async () => {
+const content = makeErrorProps('/Feilside', 'Ukjent feil', 500);
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    context.res.statusCode = 500;
+
     return {
-        notFound: true,
+        props: { content },
     };
 };
 
