@@ -69,9 +69,7 @@ export const PageWrapper = (props: Props) => {
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
 
-        // @ts-ignore
-        // ignoring due to 'pl' missing from the language type
-        // in decorator modules
+        // Updates decorator-parameters client-side when navigating to new content
         setParams(getDecoratorParams(content));
 
         document.documentElement.lang = content.language || 'no';
