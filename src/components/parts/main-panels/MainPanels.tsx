@@ -4,6 +4,7 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelNavNo from '../../_common/lenkepanel/LenkepanelNavNo';
 import './MainPanels.less';
+import { translator } from '../../../translations';
 
 const ingressMaxLength = 140;
 
@@ -66,12 +67,12 @@ const getLinkData = (contentData: ContentProps | null): TableData | null => {
 
 export const MainPanels = (props: ContentProps) => {
     const tableContents = props.data?.tableContents;
-
+    const getLabel = translator('mainPanels', props.language);
     const bem = BEM('link-panels');
 
     return (
         tableContents?.length > 0 && (
-            <div className={bem()}>
+            <section className={bem()} aria-label={getLabel('label')}>
                 {tableContents.map((content) => {
                     const { url, tittel, ingress } = getLinkData(content);
 
@@ -97,7 +98,7 @@ export const MainPanels = (props: ContentProps) => {
                         )
                     );
                 })}
-            </div>
+            </section>
         )
     );
 };

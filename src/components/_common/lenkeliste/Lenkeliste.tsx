@@ -19,9 +19,10 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
     const bem = BEM('lenkeliste');
 
     return (
-        <div
+        <section
             className={`${bem()} ${className || ''}`}
             data-portal-component-type="part"
+            aria-label={tittel}
         >
             {tittel && (
                 <div className={bem('tittel')}>
@@ -42,6 +43,6 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
                     </LenkeStandalone>
                 ))}
             </nav>
-        </div>
+        </section>
     );
 };
