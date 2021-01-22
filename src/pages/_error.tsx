@@ -11,7 +11,6 @@ Error.getInitialProps = ({
     res: any;
     err: { content: ContentProps };
 }): ContentProps => {
-    res.setHeader('X-Escape-5xx-Redirect', 'true');
     return (
         err?.content ||
         makeErrorProps('/', 'Ukjent feil', res?.statusCode || 500)
