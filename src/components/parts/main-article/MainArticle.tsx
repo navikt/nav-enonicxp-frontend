@@ -53,13 +53,14 @@ export const MainArticle = (propsInitial: ContentProps) => {
                 </Normaltekst>
                 <Innholdsfortegnelse
                     innholdsfortegnelse={innholdsfortegnelse}
-                    language={props.language}
+                    label={getLabel('tableOfContents')}
                 />
             </header>
             <MainArticleText
                 text={data.text}
                 className={bem('text')}
                 hasTableOfContents={hasTableOfContest}
+                isDraft={propsInitial.editMode}
             />
             <Faktaboks
                 fakta={data.fact}

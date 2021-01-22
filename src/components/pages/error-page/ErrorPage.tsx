@@ -1,36 +1,36 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ErrorProps } from 'types/content-props/error-props';
 import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
-import { setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { Error404Content } from './errorcode-content/Error404Content';
+import { Error1337ReloadOnDevBuildError } from './errorcode-content/Error1337ReloadOnDevBuildError';
 import { BEM } from '../../../utils/bem';
+import Head from 'next/head';
 import './ErrorPage.less';
 
+const bem = BEM('error-page');
+
 const ErrorContent = ({ code }: { code: number }) =>
-    ({ 404: <Error404Content /> }[code] || null);
+    ({
+        404: <Error404Content />,
+        1337: <Error1337ReloadOnDevBuildError />,
+    }[code] || null);
 
 export const ErrorPage = (props: ErrorProps) => {
     const { errorMessage, errorCode } = props.data;
-    const message = `Error! ${errorMessage}${
-        errorCode ? ` - Error code ${errorCode}` : ''
-    }`;
-
-    const bem = BEM('error-page');
+    const message = `Error code ${errorCode} - ${errorMessage}`;
 
     console.error(message);
 
-    useEffect(() => {
-        setBreadcrumbs([
-            {
-                handleInApp: true,
-                title: errorMessage,
-                url: '/',
-            },
-        ]);
-    }, [errorMessage]);
-
     return (
         <div className={bem()}>
+            <Head>
+                <style type={'text/css'}>
+                    {
+                        // Skjuler andre brødsmuleledd for feilsider (privatperson/etc)
+                        '.brodsmulesti li:nth-child(2):not(:last-child) {display: none;}'
+                    }
+                </style>
+            </Head>
             <div className={bem('header')}>
                 <Innholdstittel className={bem('header-msg')}>
                     {errorMessage}

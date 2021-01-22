@@ -6,29 +6,34 @@ import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 import { ContentProps } from '../types/content-props/_content-common';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
-import { Breadcrumb } from '../types/breadcrumb';
-import { LanguageSelectorProps } from '../types/language-selector-props';
-import GlobalNotifications from './parts/notifications/GlobalNotifications';
-import { NotificationProps } from '../types/notification-props';
-import { initAmplitude, logPageview } from '../utils/amplitude';
+import GlobalNotifications from './_common/notifications/GlobalNotifications';
+import { initAmplitude } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
-import { pathToRoleContext, xpToDecoratorLanguage } from '../utils/decorator';
+import {
+    getContentLanguages,
+    getDecoratorLanguagesParam,
+} from '../utils/languages';
+import {
+    pathToRoleContext,
+    xpLangToDecoratorLang,
+} from '../utils/decorator-utils';
 
 type Props = {
     content: ContentProps;
-    breadcrumbs: Breadcrumb[];
-    languages: LanguageSelectorProps[];
-    notifications?: NotificationProps[];
     children: React.ReactNode;
 };
 
 export const PageWrapper = (props: Props) => {
-    const { content, breadcrumbs, languages, notifications, children } = props;
+    const { content, children } = props;
+    const { notifications } = content;
+
     const router = useRouter();
+    const hasBreadcrumbsOrLanguageSelector =
+        content?.breadcrumbs?.length > 0 || !!getContentLanguages(content);
 
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) => router.push(breadcrumb.url));
-        onLanguageSelect((breadcrumb) => router.push(breadcrumb.url));
+        onLanguageSelect((language) => router.push(language.url));
 
         initAmplitude();
 
@@ -65,41 +70,42 @@ export const PageWrapper = (props: Props) => {
             return;
         }
 
-        logPageview();
-
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
 
-        const path = window.location.href;
-        const rolePath = path.split('/')[4];
+        const { breadcrumbs, language } = content;
+        const rolePath = window.location.href.split('/')[4];
         const context = pathToRoleContext[rolePath];
-        const language = xpToDecoratorLanguage[content?.language] || 'nb';
 
         setParams({
-            ...(context && {
-                context: context,
-            }),
-            ...(language && {
-                language: language as 'en' | 'se' | 'nb' | 'nn',
-            }),
-            ...(breadcrumbs && {
-                breadcrumbs: breadcrumbs.map((crumb) => ({
+            ...(context && { context }),
+            language: (xpLangToDecoratorLang[language] || 'nb') as
+                | 'en'
+                | 'se'
+                | 'nb'
+                | 'nn', // TODO: add 'pl' to decorator-modules!,
+            breadcrumbs:
+                breadcrumbs?.map((crumb) => ({
                     handleInApp: true,
                     ...crumb,
-                })),
-            }),
-            ...(languages && {
-                availableLanguages: languages.map((lang) => ({
-                    handleInApp: true,
-                    ...lang,
-                })),
-            }),
+                })) || [],
+            availableLanguages: getDecoratorLanguagesParam(
+                getContentLanguages(content),
+                language,
+                content._path
+            ),
         });
+
+        document.documentElement.lang = language || 'no';
     }, [content]);
 
     return (
-        <>
+        <div
+            className={`app${
+                hasBreadcrumbsOrLanguageSelector ? ' app__offset' : ''
+            }`}
+        >
             <HeadWithMetatags content={content} />
             {notifications && (
                 <GlobalNotifications
@@ -110,7 +116,7 @@ export const PageWrapper = (props: Props) => {
             <div className={'content-wrapper'} id={'maincontent'}>
                 {children}
             </div>
-        </>
+        </div>
     );
 };
 

@@ -19,9 +19,11 @@ export const GlobalNotifications = ({
             className={'global-notifications'}
             aria-label={getLabel('label')}
         >
-            {notifications.map((props, index) => (
-                <Notification {...props} key={index} />
-            ))}
+            <div className={'global-notifications-inner'}>
+                {notifications.map((props, index) => (
+                    <Notification {...props} key={index} />
+                ))}
+            </div>
         </section>
     ) : null;
 };

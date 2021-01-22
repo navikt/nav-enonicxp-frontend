@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Picture } from '../../../types/content-props/main-article-props';
+import { getImageUrl } from '../../../utils/images';
 
 interface Props {
     picture?: Picture;
@@ -19,12 +20,7 @@ const Bilde = (props: Props) => {
             : size === '70'
             ? 'figure-medium'
             : 'figure-full';
-    const height = 768;
-    const width = 'max';
-    const src =
-        target.__typename === 'media_Vector'
-            ? target.mediaUrl
-            : target.imageUrl?.replace('$scale', `${width}-${height}`);
+    const src = getImageUrl(target, 'max-768');
 
     if (!src) {
         return null;
