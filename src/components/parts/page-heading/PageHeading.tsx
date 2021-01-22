@@ -11,14 +11,14 @@ const PageHeading = (props: ContentProps) => {
     const ingress =
         props.__typename !== ContentType.SectionPage && props.data?.ingress;
     return (
-        <div className={bem('container')}>
+        <header className={bem('container')}>
             <Sidetittel>{displayName || 'Tittel'}</Sidetittel>
             {ingress && (
                 <div className={bem('ingress')}>
                     <Ingress>{ingress}</Ingress>
                 </div>
             )}
-        </div>
+        </header>
     );
 };
 
