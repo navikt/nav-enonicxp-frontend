@@ -62,6 +62,7 @@ class MyDocument extends Document<DocumentProps> {
         const decoratorCacheKey = is404
             ? '404'
             : decodeAndStripQueryFromPath(ctx.asPath);
+
         const decoratorFragments = await getDecoratorFragments(
             decoratorCacheKey,
             decoratorQuery
