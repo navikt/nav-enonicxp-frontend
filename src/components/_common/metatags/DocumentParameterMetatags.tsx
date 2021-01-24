@@ -15,8 +15,8 @@ export enum DocumentParameter {
 
 const isServerSide = typeof window === 'undefined';
 
-// These are used for passing data to the nextjs Document component
-export const ServerSideOnlyMetatags = ({ content }: Props) => {
+// This is used for passing data to the nextjs Document component
+export const DocumentParameterMetatags = ({ content }: Props) => {
     if (!isServerSide) {
         return null;
     }

@@ -10,7 +10,7 @@ import GlobalNotifications from './_common/notifications/GlobalNotifications';
 import { initAmplitude } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from '../utils/decorator-utils';
-import { ServerSideOnlyMetatags } from './_common/metatags/ServerSideOnlyMetatags';
+import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getContentLanguages } from '../utils/languages';
 
 type Props = {
@@ -58,7 +58,7 @@ export const PageWrapper = (props: Props) => {
                 footerElement.removeEventListener('mouseover', linkPrefetcher);
             }
         };
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         if (!content) {
@@ -81,7 +81,7 @@ export const PageWrapper = (props: Props) => {
                 hasBreadcrumbsOrLanguageSelector ? ' app__offset' : ''
             }`}
         >
-            <ServerSideOnlyMetatags content={content} />
+            <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
             {notifications && (
                 <GlobalNotifications

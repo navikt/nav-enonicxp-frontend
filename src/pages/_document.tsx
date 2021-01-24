@@ -14,7 +14,7 @@ import {
 } from '../utils/decorator-utils';
 import { objectToQueryString } from '../utils/fetch-utils';
 import { decoratorParams404 } from '../components/pages/error-page/errorcode-content/Error404Content';
-import { DocumentParameter } from '../components/_common/metatags/ServerSideOnlyMetatags';
+import { DocumentParameter } from '../components/_common/metatags/DocumentParameterMetatags';
 
 type DocumentProps = {
     language: Language;
@@ -30,7 +30,7 @@ const decodeAndStripQueryFromPath = (path: string) => {
         console.log(`Failed to decode path: ${path} - Error: ${e}`);
     }
 
-    return path;
+    return path.split('?')[0];
 };
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
