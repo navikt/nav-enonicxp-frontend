@@ -141,11 +141,11 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 };
 
 export const getDecoratorFragments = async (
-    path: string,
+    cacheKey: string,
     query?: string
 ): Promise<DecoratorFragments> => {
-    if (cache.has(path)) {
-        return cache.get(path);
+    if (cache.has(cacheKey)) {
+        return cache.get(cacheKey);
     }
 
     const decoratorHtml = await fetchDecoratorHtml(query);
@@ -163,7 +163,7 @@ export const getDecoratorFragments = async (
         SCRIPTS: parse(document.getElementById('scripts').innerHTML),
     };
 
-    cache.set(path, decoratorFragments);
+    cache.set(cacheKey, decoratorFragments);
 
     return decoratorFragments;
 };

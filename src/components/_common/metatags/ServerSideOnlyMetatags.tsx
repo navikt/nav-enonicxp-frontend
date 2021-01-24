@@ -8,6 +8,11 @@ type Props = {
     content: ContentProps;
 };
 
+export enum DocumentParameter {
+    DecoratorQuery = '_decoratorQuery',
+    HtmlLang = '_htmlLang',
+}
+
 const isServerSide = typeof window === 'undefined';
 
 // These are used for passing data to the nextjs Document component
@@ -20,8 +25,14 @@ export const ServerSideOnlyMetatags = ({ content }: Props) => {
 
     return (
         <Head>
-            <meta name="_decoratorQuery" content={decoratorQuery} />
-            <meta name="_htmlLang" content={content.language} />
+            <meta
+                name={DocumentParameter.DecoratorQuery}
+                content={decoratorQuery}
+            />
+            <meta
+                name={DocumentParameter.HtmlLang}
+                content={content.language}
+            />
         </Head>
     );
 };

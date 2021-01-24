@@ -1,6 +1,11 @@
 import React from 'react';
-import Document, { NextScript, DocumentContext } from 'next/document';
-import { Html, Head, Main } from 'next/document';
+import Document, {
+    DocumentContext,
+    Head,
+    Html,
+    Main,
+    NextScript,
+} from 'next/document';
 import { Language } from '../translations';
 import { DocumentInitialProps } from 'next/dist/pages/_document';
 import {
@@ -9,20 +14,31 @@ import {
 } from '../utils/decorator-utils';
 import { objectToQueryString } from '../utils/fetch-utils';
 import { decoratorParams404 } from '../components/pages/error-page/errorcode-content/Error404Content';
+import { DocumentParameter } from '../components/_common/metatags/ServerSideOnlyMetatags';
 
 type DocumentProps = {
     language: Language;
     decoratorFragments: DecoratorFragments;
 };
 
-const decodeAndStripQueryFromPath = (path: string) =>
-    decodeURI(path).split('?')[0];
+const query404 = objectToQueryString(decoratorParams404);
+
+const decodeAndStripQueryFromPath = (path: string) => {
+    try {
+        return decodeURI(path).split('?')[0];
+    } catch (e) {
+        console.log(`Failed to decode path: ${path} - Error: ${e}`);
+    }
+
+    return path;
+};
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
-// We use this to pass certain data from our page content via the ServerSideOnlyMetatags component
-const retrieveMetaContent = (
+// We use this to pass certain data from our page content via meta tags from the
+// ServerSideOnlyMetatags component
+const getDocumentParameter = (
     initialProps: DocumentInitialProps,
-    name: string
+    name: DocumentParameter
 ) => {
     return initialProps.head?.find((element) => element.props?.name === name)
         ?.props?.content;
@@ -32,17 +48,28 @@ class MyDocument extends Document<DocumentProps> {
     static async getInitialProps(ctx: DocumentContext) {
         const initialProps = await Document.getInitialProps(ctx);
 
-        const decoratorQuery =
-            ctx.pathname === '/404'
-                ? objectToQueryString(decoratorParams404)
-                : retrieveMetaContent(initialProps, '_decoratorQuery');
+        // 'pathname' in this context refers to the path of the
+        // next.js route which handled the request
+        const is404 = ctx.pathname === '/404';
 
-        const language = retrieveMetaContent(initialProps, '_htmlLang');
+        const decoratorQuery = is404
+            ? query404
+            : getDocumentParameter(
+                  initialProps,
+                  DocumentParameter.DecoratorQuery
+              );
 
-        const path = decodeAndStripQueryFromPath(ctx.asPath);
+        const decoratorCacheKey = is404
+            ? '404'
+            : decodeAndStripQueryFromPath(ctx.asPath);
         const decoratorFragments = await getDecoratorFragments(
-            path,
+            decoratorCacheKey,
             decoratorQuery
+        );
+
+        const language = getDocumentParameter(
+            initialProps,
+            DocumentParameter.HtmlLang
         );
 
         return {
