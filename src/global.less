@@ -1,38 +1,72 @@
 @import '~nav-frontend-core/less/_variabler';
 @import '~nav-frontend-core/less/core';
 
-@mobilMaxWidth: 48em;
-@screen-desktop: ~'(min-width: @{mobilMaxWidth})';
-@screen-mobile: ~'not all and (min-width: @{mobilMaxWidth})';
+@font-size-factor: 1.125;
+
+// Screen size breakpoints
+//
+// Relative units does not take CSS font-size into account when used in media queries,
+// but they do when used as CSS attribute values. We use separate variable sets to ensure
+// width and breakpoints scale consistently with browser font-size without being affected
+// by CSS font-size.
+@_MQ_mobileMaxWidth: 48em; // 768px
+@_MQ_tabletMinWidth: @_MQ_mobileMaxWidth;
+@_MQ_tabletMaxWidth: 64em; // 1024px
+@_MQ_desktopMinWidth: @_MQ_tabletMaxWidth;
+@_MQ_desktopMaxWidth: 90em; // 1440px
+
+@mobileMaxWidth: calc(@_MQ_mobileMaxWidth / @font-size-factor);
+@tabletMinWidth: @mobileMaxWidth;
+@tabletMaxWidth: calc(@_MQ_tabletMaxWidth / @font-size-factor);
+@desktopMinWidth: @tabletMaxWidth;
+@desktopMaxWidth: calc(@_MQ_desktopMaxWidth / @font-size-factor);
+
+@screen-mobile: ~'only screen and (max-width: @{_MQ_mobileMaxWidth})';
+@screen-tablet: ~'only screen and (min-width: @{_MQ_tabletMinWidth}) and (max-width: @{_MQ_tabletMaxWidth})';
+@screen-tablet-and-desktop: ~'only screen and (min-width: @{_MQ_tabletMinWidth}) ';
+@screen-desktop: ~'only screen and (min-width: @{_MQ_desktopMinWidth}) ';
+@screen-desktop-large: ~'only screen and (min-width: @{_MQ_desktopMaxWidth}) ';
+
 @padding-sides-desktop: 3rem;
+@padding-sides-tablet: 1rem;
 @padding-sides-mobile: 1rem;
 
 html {
-    font-size: 112.5%;
+    font-size: @font-size-factor * 100%;
 }
 
+body,
 #__next,
+.app,
 .decorator-utils-container {
-    background-color: #f1f1f1;
+    background-color: @navGraBakgrunn;
+}
+
+.decorator-utils-container {
+    min-height: 4rem;
+    margin-bottom: -4rem;
 }
 
 .app {
-    max-width: 1440px;
+    max-width: @desktopMaxWidth;
     min-height: 20rem;
     margin: 0 auto;
-    background-color: #f1f1f1;
-    padding: 2rem 0 3rem 0;
-}
+    transition: margin-top 0.2s ease-in-out;
 
-@media @screen-mobile {
-    .content-wrapper {
-        padding: 0 @padding-sides-mobile;
+    &__offset {
+        margin-top: 3rem;
     }
-}
 
-@media @screen-desktop {
-    .content-wrapper {
-        padding: 0 @padding-sides-desktop;
+    @media @screen-mobile {
+        padding: 2rem @padding-sides-mobile;
+    }
+
+    @media @screen-tablet {
+        padding: 2rem @padding-sides-mobile;
+    }
+
+    @media @screen-desktop {
+        padding: 2rem @padding-sides-desktop;
     }
 }
 

@@ -4,14 +4,14 @@ import {
     ContentType,
 } from '../types/content-props/_content-common';
 import { ErrorPage } from './pages/error-page/ErrorPage';
-import { makeErrorProps } from '../types/content-props/error-props';
 import { DynamicPage } from './pages/dynamic-page/DynamicPage';
 import { FragmentPage } from './pages/fragment-page/FragmentPage';
 import LargeTablePage from './pages/large-table-page/LargeTablePage';
 import { ClientsideRedirect } from './ClientsideRedirect';
 import { TemplatePage } from './pages/template-page/TemplatePage';
+import ErrorPage404 from '../pages/404';
 
-export const contentToReactComponent: Partial<
+const contentToReactComponent: Partial<
     { [key in ContentType]: React.FunctionComponent<ContentProps> }
 > = {
     [ContentType.Error]: ErrorPage,
@@ -33,7 +33,11 @@ export const contentToReactComponent: Partial<
     [ContentType.ExternalLink]: ClientsideRedirect,
     [ContentType.InternalLink]: ClientsideRedirect,
     [ContentType.Site]: ClientsideRedirect,
+    [ContentType.Url]: ClientsideRedirect,
 };
+
+export const isContentTypeImplemented = (content: ContentProps) =>
+    contentToReactComponent.hasOwnProperty(content.__typename);
 
 type Props = {
     content: ContentProps;
@@ -42,17 +46,7 @@ type Props = {
 export const ContentMapper = ({ content }: Props) => {
     const Component = contentToReactComponent[content.__typename];
 
-    return Component ? (
-        <Component {...content} />
-    ) : (
-        <ErrorPage
-            {...makeErrorProps(
-                content._path,
-                `Content type not implemented: ${content.__typename}`,
-                501
-            )}
-        />
-    );
+    return Component ? <Component {...content} /> : <ErrorPage404 />;
 };
 
 export default ContentMapper;

@@ -3,8 +3,7 @@ React/[Next.js](https://nextjs.org/) frontend for Enonic XP headless CMS.
 ## Lokal kjøring
 
 Kjører lokalt på [http://localhost:3000](http://localhost:3000). Appen er avhengig av en
-lokalt tilgjengelig instans av [denne branchen](https://github.com/navikt/nav-enonicxp/tree/headless-guillotine)
-av Enonic XP.
+lokalt tilgjengelig instans av [Enonic XP](https://github.com/navikt/nav-enonicxp).
 
 #### Development mode:
 
@@ -20,7 +19,11 @@ Kopier først innhold fra .env.development til .env.local
 npm run build && npm start
 ```
 
-## vhost config
+## Secrets
+
+Secrets hentes fra Environment secrets på Github. For å legge til secrets gå til: Settings -> Environments
+
+## vhost config i Enonic XP
 
 Mappings legges inn i com.enonic.xp.web.vhost.cfg.
 
@@ -50,10 +53,4 @@ mapping.legacy.host = www<-q-n>.nav.no
 mapping.legacy.source = /_/legacy
 mapping.legacy.target = /site/default/master/www.nav.no/
 mapping.legacy.idProvider.adfs = default
-
-# this is for pre-release compatibility only
-mapping.draftlocal.host = portal-admin<-q-n>.oera.no
-mapping.draftlocal.source = /draft
-mapping.draftlocal.target = /site/default/draft/www.nav.no/
-mapping.draftlocal.idProvider.system = default
 ```

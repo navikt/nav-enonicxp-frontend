@@ -17,10 +17,10 @@ export const LenkepanelListe = ({ title, ingress, items }: Props) => {
     const bem = BEM('lenkepanel-liste');
 
     return (
-        <div className={bem()}>
+        <section className={bem()} aria-label={title}>
             {title && (
                 <div className={bem('tittel')}>
-                    <Innholdstittel>{title}</Innholdstittel>
+                    <Innholdstittel tag={'h2'}>{title}</Innholdstittel>
                 </div>
             )}
             {ingress && <Ingress className={bem('ingress')}>{ingress}</Ingress>}
@@ -49,6 +49,6 @@ export const LenkepanelListe = ({ title, ingress, items }: Props) => {
                     })}
                 </div>
             )}
-        </div>
+        </section>
     );
 };

@@ -1,15 +1,11 @@
 import React from 'react';
-import {
-    PartDeprecated,
-    PartType,
-    PartWithOwnData,
-    PartWithPageData,
-} from '../../types/component-props/parts';
+import { PartWithOwnData, PartWithPageData } from 'types/component-props/parts';
+import { PartDeprecated, PartType } from 'types/component-props/parts';
 import LinkLists from './link-lists/LinkLists';
 import { LinkPanels } from './link-panels/LinkPanels';
-import { MainArticleLinkedList } from './main-article-linked-list/MainArticleLinkedList';
+import { MainArticleChapterNavigation } from './main-article-chapter-navigation/MainArticleChapterNavigation';
 import MainPanels from './main-panels/MainPanels';
-import { MenuList } from './menu-list/MenuList';
+import { RelatedInfo } from './related-info/RelatedInfo';
 import PageHeading from './page-heading/PageHeading';
 import PageList from './page-list/PageList';
 import Alert from './_dynamic/alert/Alert';
@@ -36,9 +32,9 @@ const partsWithPageData: {
     [PartType.LinkLists]: LinkLists,
     [PartType.LinkPanels]: LinkPanels,
     [PartType.MainArticle]: MainArticle,
-    [PartType.MainArticleLinkedList]: MainArticleLinkedList,
+    [PartType.MainArticleLinkedList]: MainArticleChapterNavigation,
     [PartType.MainPanels]: MainPanels,
-    [PartType.MenuList]: MenuList,
+    [PartType.MenuList]: RelatedInfo,
     [PartType.OfficeInformation]: OfficeInformation,
     [PartType.PageHeading]: PageHeading,
     [PartType.PageList]: PageList,

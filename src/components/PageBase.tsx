@@ -2,35 +2,24 @@ import {
     ContentProps,
     ContentType,
 } from '../types/content-props/_content-common';
-import { Breadcrumb } from '../types/breadcrumb';
-import { LanguageSelectorProps } from '../types/language-selector-props';
-import { NotificationProps } from '../types/notification-props';
 import { useRouter } from 'next/router';
 import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
 import ContentMapper from './ContentMapper';
 import React from 'react';
-import {
-    fetchBreadcrumbs,
-    fetchLanguages,
-    fetchNotifications,
-    fetchPage,
-} from '../utils/fetch-content';
-import { makeErrorProps } from '../types/content-props/error-props';
+import { fetchPage } from '../utils/fetch-content';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
+import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
+import { isNotFound, makeErrorProps } from '../utils/errors';
 
 type PageProps = {
     content: ContentProps;
-    breadcrumbs: Breadcrumb[];
-    languages: LanguageSelectorProps[];
-    notifications: NotificationProps[];
 };
 
 type StaticProps = {
     props: PageProps;
-    revalidate?: number;
     redirect?: { destination: string; permanent: boolean };
     notFound?: boolean;
 };
@@ -52,86 +41,87 @@ export const PageBase = (props: PageProps) => {
         );
     }
 
-    const { breadcrumbs, content, languages, notifications } = props;
+    const { content } = props;
 
     return (
-        <PageWrapper
-            content={content}
-            breadcrumbs={breadcrumbs}
-            languages={languages}
-            notifications={notifications}
-        >
+        <PageWrapper content={content}>
             <ContentMapper content={content} />
         </PageWrapper>
     );
 };
 
+// These status codes may indicate that the requested page has been intentionally
+// made unavailable.  We want to perform cache revalidation in these cases.
+const revalidateOnErrorCode = {
+    401: true, // unauthorized
+    403: true, // forbidden
+    404: true, // not found
+};
+
+const appError = (content: ContentProps) => ({
+    content,
+});
+
+const errorHandlerProd = (content: ContentProps) => {
+    if (!revalidateOnErrorCode[content.data.errorCode]) {
+        throw appError(content);
+    }
+
+    return { props: { content } };
+};
+
+const errorHandlerDev = (content: ContentProps) => {
+    if (!revalidateOnErrorCode[content.data.errorCode]) {
+        // Do not throw errors at build-time in dev-environments
+        if (process.env.NEXT_PHASE === 'phase-production-build') {
+            return {
+                props: {
+                    content: error1337ReloadProps(content._path),
+                },
+            };
+        }
+
+        throw appError(content);
+    }
+
+    return { props: { content } };
+};
+
+const errorHandler =
+    process.env.APP_ORIGIN === 'https://www.nav.no'
+        ? errorHandlerProd
+        : errorHandlerDev;
+
 export const fetchPageProps = async (
     routerQuery: string | string[],
     isDraft = false,
-    secret: string,
-    revalidate?: number
+    secret: string
 ): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret);
-    const contentPath = content._path;
 
-    const defaultProps = {
-        props: undefined,
-        ...(revalidate && { revalidate }),
-    };
-
-    if (
-        content.__typename === ContentType.Error &&
-        content.data.errorCode === 404
-    ) {
+    if (isNotFound(content)) {
         return {
-            ...defaultProps,
+            props: { content },
             notFound: true,
         };
     }
 
     if (content.__typename === ContentType.Error) {
-        return {
-            ...defaultProps,
-            props: {
-                content,
-                breadcrumbs: [],
-                languages: [],
-                notifications: [],
-            },
-        };
-    }
-
-    if (content.__typename === ContentType.LargeTable) {
-        return {
-            ...defaultProps,
-            props: {
-                content,
-                breadcrumbs: await fetchBreadcrumbs(contentPath, isDraft),
-                languages: [],
-                notifications: [],
-            },
-        };
+        return errorHandler(content);
     }
 
     const redirectTarget = getTargetIfRedirect(content);
 
     if (redirectTarget) {
         return {
-            ...defaultProps,
+            props: { content },
             redirect: { destination: redirectTarget, permanent: false },
         };
     }
 
     return {
-        ...defaultProps,
-        props: {
-            content,
-            breadcrumbs: await fetchBreadcrumbs(contentPath, isDraft),
-            languages: await fetchLanguages(contentPath, isDraft),
-            notifications: await fetchNotifications(contentPath, isDraft),
-        },
+        props: { content },
     };
 };
 

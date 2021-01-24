@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Picture } from '../../../types/content-props/main-article-props';
+import { getImageUrl } from '../../../utils/images';
 
 interface Props {
     picture?: Picture;
@@ -7,19 +8,23 @@ interface Props {
 
 const Bilde = (props: Props) => {
     const { picture } = props;
-    if (!picture) {
-        return <></>;
+    if (!picture?.target) {
+        return null;
     }
 
+    const { size, target } = picture;
+
     const imgClass =
-        picture.size === '40'
+        size === '40'
             ? 'figure-small'
-            : picture.size === '70'
+            : size === '70'
             ? 'figure-medium'
             : 'figure-full';
-    const height = 768;
-    const width = 'max';
-    const src = picture.target.imageUrl.replace('$scale', `${width}-${height}`);
+    const src = getImageUrl(target, 'max-768');
+
+    if (!src) {
+        return null;
+    }
 
     return (
         <div className="figure-container">

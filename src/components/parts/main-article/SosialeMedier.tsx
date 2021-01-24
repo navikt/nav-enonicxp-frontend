@@ -48,7 +48,10 @@ const SosialeMedier = (props: Props) => {
             <ul>
                 {socialMedia.map((item) => (
                     <li key={item.type}>
-                        <LenkeUstylet href={item.href}>
+                        <LenkeUstylet
+                            href={item.href}
+                            analyticsLabel={item.text}
+                        >
                             <span className={`share-social share-${item.type}`}>
                                 {item.text}
                             </span>

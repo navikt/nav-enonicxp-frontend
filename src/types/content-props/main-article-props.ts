@@ -1,17 +1,18 @@
 import { MainArticleChapterProps } from './main-article-chapter-props';
 import { ContentType, ContentProps } from './_content-common';
 import { MenuListItem } from '../menu-list-items';
+import { LanguageProps } from '../language';
+import { XpImage } from '../media';
 
-export interface Picture {
-    target: {
-        imageUrl: string;
-    };
-    size: string;
+export type Picture = Partial<{
+    target: XpImage;
+    size: '100' | '70' | '40';
     caption: string;
     altText: string;
-}
+}>;
 
 export type MainArticleData = Partial<{
+    languages: LanguageProps[];
     ingress: string;
     text: string;
     hasTableOfContents: string;

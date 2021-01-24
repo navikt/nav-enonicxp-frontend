@@ -1,18 +1,15 @@
 @import (reference) '../../../global';
 
 .lenkepanel-navno {
-    border: 2px @navGra80 solid;
     box-sizing: border-box;
     display: flex;
+    border: 1px solid @navBla;
+
+    .lenkepanel__heading {
+        color: @navBla;
+    }
 
     &:hover {
-        border: 2px @navBla solid;
-
-        .lenkepanel__indikator,
-        .lenkepanel__heading {
-            color: @navBla;
-        }
-
         .lenkepanel-navno__chevron {
             left: 0.375rem;
         }
@@ -43,11 +40,6 @@
         }
     }
 
-    .lenkepanel__indikator,
-    .lenkepanel__heading {
-        color: black;
-    }
-
     &__vertikal {
         flex-direction: column;
         .lenkepanel__indikator {
@@ -63,7 +55,7 @@
         }
     }
 
-    @media (max-width: @mobilMaxWidth) {
+    @media @screen-mobile {
         padding: 0.75rem 1rem;
     }
 }

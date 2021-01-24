@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LargeTableProps } from '../../../types/content-props/large-table-props';
-import { makeErrorProps } from '../../../types/content-props/error-props';
+import { makeErrorProps } from '../../../utils/errors';
 import { ErrorPage } from '../error-page/ErrorPage';
 import './LargeTablePage.less';
 
