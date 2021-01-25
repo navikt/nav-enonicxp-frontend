@@ -13,13 +13,10 @@ export const getContentLanguages = (
 
     if (
         content.__typename === ContentType.MainArticle ||
-        content.__typename === ContentType.PageList
+        content.__typename === ContentType.PageList ||
+        content.__typename === ContentType.MainArticleChapter
     ) {
         return content.data?.languages;
-    }
-
-    if (content.__typename === ContentType.MainArticleChapter) {
-        return content.data?.article?.data?.languages;
     }
 
     return null;
