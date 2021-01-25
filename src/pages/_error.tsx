@@ -10,7 +10,13 @@ Error.getInitialProps = ({
 }: {
     res: any;
     err: { content: ContentProps };
-}): ContentProps =>
-    err?.content || makeErrorProps('/', 'Ukjent feil', res?.statusCode || 500);
+}): ContentProps => {
+    if (err?.content) {
+        res.statusCode = err.content.data?.errorCode || res.statusCode;
+        return err.content;
+    }
+
+    return makeErrorProps('/', 'Ukjent feil', res.statusCode);
+};
 
 export default Error;
