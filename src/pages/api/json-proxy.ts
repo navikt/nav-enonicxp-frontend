@@ -4,8 +4,6 @@ type Params = {
     path: string;
 };
 
-const appOrigin = process.env.APP_ORIGIN;
-
 const handler = async (req, res) => {
     const { path } = req.query as Params;
 
@@ -13,9 +11,9 @@ const handler = async (req, res) => {
         return res.status(400).json({ error: 'Invalid json path' });
     }
 
-    const nextUrl = `${appOrigin}${path}`;
+    const url = `http://localhost:3000${encodeURI(path)}`;
 
-    const json = await fetchWithTimeout(nextUrl, 5000)
+    const json = await fetchWithTimeout(url, 5000)
         .then((response) => {
             if (response.ok) {
                 return response.json();
