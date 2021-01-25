@@ -9,14 +9,9 @@ import { hookAndInterceptInternalLink } from '../utils/links';
 import GlobalNotifications from './_common/notifications/GlobalNotifications';
 import { initAmplitude } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
-import {
-    getContentLanguages,
-    getDecoratorLanguagesParam,
-} from '../utils/languages';
-import {
-    pathToRoleContext,
-    xpLangToDecoratorLang,
-} from '../utils/decorator-utils';
+import { getDecoratorParams } from '../utils/decorator-utils';
+import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
+import { getContentLanguages } from '../utils/languages';
 
 type Props = {
     content: ContentProps;
@@ -63,7 +58,7 @@ export const PageWrapper = (props: Props) => {
                 footerElement.removeEventListener('mouseover', linkPrefetcher);
             }
         };
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         if (!content) {
@@ -74,30 +69,10 @@ export const PageWrapper = (props: Props) => {
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
 
-        const { breadcrumbs, language } = content;
-        const rolePath = window.location.href.split('/')[4];
-        const context = pathToRoleContext[rolePath];
+        // Updates decorator-parameters client-side when navigating to new content
+        setParams(getDecoratorParams(content));
 
-        setParams({
-            ...(context && { context }),
-            language: (xpLangToDecoratorLang[language] || 'nb') as
-                | 'en'
-                | 'se'
-                | 'nb'
-                | 'nn', // TODO: add 'pl' to decorator-modules!,
-            breadcrumbs:
-                breadcrumbs?.map((crumb) => ({
-                    handleInApp: true,
-                    ...crumb,
-                })) || [],
-            availableLanguages: getDecoratorLanguagesParam(
-                getContentLanguages(content),
-                language,
-                content._path
-            ),
-        });
-
-        document.documentElement.lang = language || 'no';
+        document.documentElement.lang = content.language || 'no';
     }, [content]);
 
     return (
@@ -106,6 +81,7 @@ export const PageWrapper = (props: Props) => {
                 hasBreadcrumbsOrLanguageSelector ? ' app__offset' : ''
             }`}
         >
+            <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
             {notifications && (
                 <GlobalNotifications
