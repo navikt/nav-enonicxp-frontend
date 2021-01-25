@@ -23,6 +23,7 @@ const layoutComponents: {
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
     const { descriptor } = layoutProps;
+    console.log(descriptor);
 
     const Component = layoutComponents[descriptor];
 

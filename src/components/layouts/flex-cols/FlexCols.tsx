@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { LayoutProps } from '../../../types/component-props/layouts';
-import Region from '../Region';
+import { ComponentMapper } from '../../ComponentMapper';
 import './FlexCols.less';
 
 type Props = {
@@ -11,22 +11,21 @@ type Props = {
 
 export const FlexCols = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
+    if (!regions?.flexcols) {
+        return null;
+    }
+
+    const { components, name } = regions.flexcols;
 
     return (
-        <>
-            {regions &&
-                Object.values(regions).map((regionProps, index) => {
-                    return (
-                        <Region
-                            pageProps={pageProps}
-                            regionProps={regionProps}
-                            layoutConfig={config}
-                            regionIndex={index}
-                            className={'fixed-cols'}
-                            key={index}
-                        />
-                    );
-                })}
-        </>
+        <div className={'flex-cols'} data-portal-region={name}>
+            {components.map((component) => (
+                <ComponentMapper
+                    key={component.path}
+                    componentProps={component}
+                    pageProps={pageProps}
+                />
+            ))}
+        </div>
     );
 };

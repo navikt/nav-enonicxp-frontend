@@ -39,7 +39,7 @@
         align-items: stretch;
         flex-direction: row;
 
-        @media (max-width: @mobilMaxWidth) {
+        @media @screen-mobile {
             flex-direction: column;
         }
     }
@@ -47,9 +47,12 @@
     &__dynamic-2-col,
     &__dynamic-3-col,
     &__dynamic-4-col {
+        display: flex;
+
         & > * {
             display: flex;
             flex-direction: column;
+            height: 100%;
             @media @screen-desktop {
                 padding: 0 1rem;
             }

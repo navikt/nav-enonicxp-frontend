@@ -42,8 +42,8 @@ const Component = ({ componentProps, pageProps }: Props) => {
         case ComponentType.Part:
             return (
                 <PartsMapper
-                    componentProps={componentProps}
                     pageProps={pageProps}
+                    componentProps={componentProps}
                 />
             );
         default:
@@ -58,19 +58,19 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
     const bem = BEM(type);
     const className = getClass(componentProps);
 
-    const componentStyle =
-        componentProps.type === ComponentType.Layout
-            ? {
-                  ...(componentProps?.config?.margin && {
-                      margin: `${componentProps?.config?.margin}`,
-                  }),
-              }
-            : undefined;
+    // const componentStyle =
+    //     componentProps.type === ComponentType.Layout
+    //         ? {
+    //               ...(componentProps?.config?.margin && {
+    //                   margin: `${componentProps?.config?.margin}`,
+    //               }),
+    //           }
+    //         : undefined;
 
     return (
         <div
             key={path}
-            style={componentStyle}
+            // style={componentStyle}
             data-portal-component-type={componentProps.type}
             data-portal-component={path}
             className={bem(className)}
