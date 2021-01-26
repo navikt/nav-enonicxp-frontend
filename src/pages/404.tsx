@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeErrorProps } from '../utils/errors';
+import { makeErrorProps } from '../types/content-props/error-props';
 import PageBase from '../components/PageBase';
 
 export const ErrorPage404 = () => {

@@ -1,5 +1,5 @@
 import { ContentProps } from '../types/content-props/_content-common';
-import { makeErrorProps } from './errors';
+import { makeErrorProps } from '../types/content-props/error-props';
 import { xpServiceUrl } from './paths';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 
