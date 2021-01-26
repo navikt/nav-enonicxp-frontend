@@ -2,12 +2,12 @@ import React from 'react';
 import { ContentProps } from '../../types/content-props/_content-common';
 import { BEM } from '../../utils/bem';
 import { ComponentMapper } from '../ComponentMapper';
-import { RegionProps, LayoutConfig } from '../../types/component-props/layouts';
+import { RegionProps } from '../../types/component-props/layouts';
 
 type Props = {
     pageProps: ContentProps;
     regionProps?: RegionProps;
-    layoutConfig?: LayoutConfig;
+    style?: React.CSSProperties;
     regionIndex?: number;
 };
 
@@ -16,23 +16,15 @@ const bem = BEM('region');
 export const Region = ({
     pageProps,
     regionProps,
-    layoutConfig,
+    style,
     regionIndex = 0,
 }: Props) => {
     const { name, components } = regionProps;
 
-    const regionStyle = layoutConfig
-        ? {
-              ...(layoutConfig?.distribution && {
-                  flex: `${layoutConfig.distribution.split('-')[regionIndex]}`,
-              }),
-          }
-        : undefined;
-
     return (
         <div
             key={name}
-            style={regionStyle}
+            style={style}
             data-portal-region={name}
             className={`${bem()} ${bem(name)}`}
         >

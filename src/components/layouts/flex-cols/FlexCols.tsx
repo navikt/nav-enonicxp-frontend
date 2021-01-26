@@ -1,12 +1,12 @@
 import React from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
-import { LayoutProps } from '../../../types/component-props/layouts';
 import { ComponentMapper } from '../../ComponentMapper';
 import './FlexCols.less';
+import { LayoutFlexCols } from '../../../types/component-props/layouts/flex-cols';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: LayoutProps;
+    layoutProps?: LayoutFlexCols;
 };
 
 export const FlexCols = ({ pageProps, layoutProps }: Props) => {
@@ -16,6 +16,7 @@ export const FlexCols = ({ pageProps, layoutProps }: Props) => {
     }
 
     const { components, name } = regions.flexcols;
+    const { numCols, bgColor, bgFullWidth } = config;
 
     return (
         <div className={'flex-cols'} data-portal-region={name}>

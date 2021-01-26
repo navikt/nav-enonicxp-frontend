@@ -19,14 +19,17 @@ export type RegionProps = {
     name: string;
 };
 
-export type LayoutConfig = {
+export type LayoutConfig = Partial<{
     distribution: string;
     margin: string;
-};
+    numCols: number;
+    bgColor: string;
+    bgFullWidth: boolean;
+}>;
 
 export interface LayoutProps extends ComponentCommonProps {
     type: ComponentType.Layout | ComponentType.Page;
     descriptor: LayoutType;
     config?: LayoutConfig;
-    regions?: RegionProps[];
+    regions?: { [key: string]: RegionProps };
 }

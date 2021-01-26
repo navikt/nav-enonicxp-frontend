@@ -16,6 +16,16 @@ export const FixedCols = ({ pageProps, layoutProps }: Props) => {
         <>
             {regions &&
                 Object.values(regions).map((regionProps, index) => {
+                    const regionStyle = config
+                        ? {
+                              ...(config?.distribution && {
+                                  flex: `${
+                                      config.distribution.split('-')[index]
+                                  }`,
+                              }),
+                          }
+                        : undefined;
+
                     return (
                         <Region
                             pageProps={pageProps}
