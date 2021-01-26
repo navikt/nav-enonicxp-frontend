@@ -42,7 +42,15 @@ const getDescription = ({ data }: Target) => {
 
 export const Notification = (props: NotificationProps) => {
     const { data, modifiedTime } = props;
+    if (!data) {
+        return null;
+    }
+
     const { type, showDescription, showUpdated, target, icon } = data;
+    if (!target) {
+        return null;
+    }
+
     const description = showDescription && getDescription(target);
     const bem = BEM('notification');
     const getDateLabel = translator('dates', props.language);
