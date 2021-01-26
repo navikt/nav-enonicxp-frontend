@@ -105,7 +105,7 @@ const decoratorFragmentsCSR = (query?: string) => ({
     ),
 });
 
-const decoratorErrorParams = (content: ContentProps): DecoratorParams => ({
+const errorParams = (content: ContentProps): DecoratorParams => ({
     feedback: false,
     breadcrumbs: content.breadcrumbs || [
         {
@@ -115,18 +115,25 @@ const decoratorErrorParams = (content: ContentProps): DecoratorParams => ({
     ],
 });
 
+const defaultParams = {
+    feedback: true,
+    language: 'nb',
+};
+
 export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     if (content.__typename === ContentType.Error) {
-        return decoratorErrorParams(content);
+        return errorParams(content);
     }
 
     const { _path, breadcrumbs, language } = content;
     const rolePath = _path.split('/')[3];
     const context = pathToRoleContext[rolePath];
+    const decoratorLanguage = xpLangToDecoratorLang[language];
 
     return {
+        ...defaultParams,
         ...(context && { context }),
-        language: xpLangToDecoratorLang[language] || 'nb',
+        ...(decoratorLanguage && { language: decoratorLanguage }),
         breadcrumbs:
             breadcrumbs?.map((crumb) => ({
                 handleInApp: true,
