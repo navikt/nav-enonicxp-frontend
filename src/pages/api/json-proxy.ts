@@ -19,7 +19,9 @@ const handler = async (req, res) => {
                 return response.json();
             }
         })
-        .catch((e) => console.log(`error fetching json: ${e}`));
+        .catch((e) =>
+            console.log(`Error fetching json for path ${path} - ${e}`)
+        );
 
     if (json) {
         res.status(200).json(json);
