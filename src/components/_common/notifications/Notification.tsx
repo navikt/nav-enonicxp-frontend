@@ -19,7 +19,7 @@ const iconsForType = {
 };
 
 const getUrl = (target: Target) => {
-    switch (target?.__typename) {
+    switch (target.__typename) {
         case ContentType.ExternalLink:
         case ContentType.Url:
             return target.data?.url;
