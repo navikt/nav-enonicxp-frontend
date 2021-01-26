@@ -120,6 +120,33 @@ const defaultParams = {
     language: 'nb',
 };
 
+export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
+    if (content.__typename === ContentType.Error) {
+        return errorParams(content);
+    }
+
+    const { _path, breadcrumbs, language } = content;
+    const rolePath = _path.split('/')[3];
+    const context = pathToRoleContext[rolePath];
+    const decoratorLanguage = xpLangToDecoratorLang[language];
+
+    return {
+        ...defaultParams,
+        ...(context && { context }),
+        ...(decoratorLanguage && { language: decoratorLanguage }),
+        breadcrumbs:
+            breadcrumbs?.map((crumb) => ({
+                handleInApp: true,
+                ...crumb,
+            })) || [],
+        availableLanguages: getDecoratorLanguagesParam(
+            getContentLanguages(content),
+            language,
+            _path
+        ),
+    };
+};
+
 export const getDecoratorFragments = async (
     cacheKey: string,
     query?: string
@@ -146,31 +173,4 @@ export const getDecoratorFragments = async (
     cache.set(cacheKey, decoratorFragments);
 
     return decoratorFragments;
-};
-
-export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
-    if (content.__typename === ContentType.Error) {
-        return errorParams(content);
-    }
-
-    const { _path, breadcrumbs, language } = content;
-    const rolePath = _path.split('/')[3];
-    const context = pathToRoleContext[rolePath];
-    const decoratorLanguage = xpLangToDecoratorLang[language];
-
-    return {
-        ...defaultParams,
-        ...(context && { context }),
-        ...(decoratorLanguage && { language: decoratorLanguage }),
-        breadcrumbs:
-            breadcrumbs?.map((crumb) => ({
-                handleInApp: true,
-                ...crumb,
-            })) || [],
-        availableLanguages: getDecoratorLanguagesParam(
-            getContentLanguages(content),
-            language,
-            _path
-        ),
-    };
 };
