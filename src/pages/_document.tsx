@@ -23,16 +23,6 @@ type DocumentProps = {
 
 const query404 = objectToQueryString(decoratorParams404);
 
-const decodeAndStripQueryFromPath = (path: string) => {
-    try {
-        return decodeURI(path).split('?')[0];
-    } catch (e) {
-        console.log(`Failed to decode path: ${path} - Error: ${e}`);
-    }
-
-    return path.split('?')[0];
-};
-
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 // We use this to pass certain data from our page content via meta tags from the
 // ServerSideOnlyMetatags component
@@ -59,19 +49,12 @@ class MyDocument extends Document<DocumentProps> {
                   DocumentParameter.DecoratorQuery
               );
 
-        const decoratorCacheKey = is404
-            ? '404'
-            : decodeAndStripQueryFromPath(ctx.asPath);
-
-        const decoratorFragments = await getDecoratorFragments(
-            decoratorCacheKey,
-            decoratorQuery
-        );
-
         const language = getDocumentParameter(
             initialProps,
             DocumentParameter.HtmlLang
         );
+
+        const decoratorFragments = await getDecoratorFragments(decoratorQuery);
 
         return {
             ...initialProps,
