@@ -1,4 +1,4 @@
-import { makeErrorProps } from '../types/content-props/error-props';
+import { makeErrorProps } from '../utils/make-error-props';
 import PageBase from '../components/PageBase';
 import { ContentProps } from '../types/content-props/_content-common';
 

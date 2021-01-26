@@ -8,7 +8,7 @@ import PageWrapper from './PageWrapper';
 import ContentMapper from './ContentMapper';
 import React from 'react';
 import { fetchPage } from '../utils/fetch-content';
-import { makeErrorProps } from '../types/content-props/error-props';
+import { makeErrorProps } from '../utils/make-error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
