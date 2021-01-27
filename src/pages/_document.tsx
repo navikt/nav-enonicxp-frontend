@@ -70,7 +70,7 @@ class MyDocument extends Document<DocumentProps> {
         return (
             <Html lang={language || 'no'}>
                 <Head>{STYLES}</Head>
-                <body data-portal-component-type="page">
+                <body>
                     {HEADER}
                     <Main />
                     {FOOTER}

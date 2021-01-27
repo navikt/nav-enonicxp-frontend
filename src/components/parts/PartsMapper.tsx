@@ -86,6 +86,10 @@ const PartComponent = ({ componentProps, pageProps }: Props) => {
 export const PartsMapper = ({ pageProps, componentProps }: Props) => {
     const { path, descriptor } = componentProps;
 
+    if (!descriptor) {
+        return null;
+    }
+
     const bem = BEM(ComponentType.Part);
     const layoutName = descriptor.split(':')[1];
 

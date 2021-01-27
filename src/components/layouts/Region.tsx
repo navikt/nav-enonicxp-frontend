@@ -9,17 +9,20 @@ type Props = {
     pageProps: ContentProps;
     regionProps: RegionProps;
     style?: React.CSSProperties;
+    modifier?: string;
 };
 
 const bem = BEM('region');
 
-export const Region = ({ pageProps, regionProps, style }: Props) => {
+export const Region = ({ pageProps, regionProps, style, modifier }: Props) => {
     const { name, components } = regionProps;
 
     return (
         <div
             style={style}
-            className={`${bem()} ${bem(name)}`}
+            className={`${bem()} ${bem(name)} ${
+                modifier ? bem(name, modifier) : ''
+            }`}
             data-portal-region={pageProps.editMode ? name : undefined}
         >
             {components.map((component) => (

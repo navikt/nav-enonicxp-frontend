@@ -148,7 +148,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 };
 
 export const getDecoratorFragments = async (
-    query?: string
+    query: string = ''
 ): Promise<DecoratorFragments> => {
     if (cache.has(query)) {
         return cache.get(query);

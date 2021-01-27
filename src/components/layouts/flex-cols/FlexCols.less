@@ -1,11 +1,78 @@
 @import (reference) '../../../global';
 
-.flex-cols {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+.layout {
+    &__dynamic-flex-cols {
+        width: 100%;
+    }
+}
 
-    & > * {
-        width: 30%;
+.region {
+    &__flexcols {
+        .flex-part(@numCols) {
+            @margin: 1rem;
+
+            & > * {
+                width: calc(
+                    percentage(1 / @numCols) - (@margin * (@numCols - 1)) /
+                        @numCols
+                );
+
+                &:not(:last-child) {
+                    margin-right: @margin;
+                }
+
+                &:nth-child(@{numCols}n + @{numCols}) {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100%;
+        margin: 1rem auto;
+
+        &--1 {
+            & > * {
+                width: 100%;
+            }
+        }
+
+        &--2 {
+            .flex-part(2);
+        }
+
+        &--3 {
+            @media @screen-desktop {
+                .flex-part(3);
+            }
+
+            @media @screen-tablet {
+                .flex-part(2);
+            }
+        }
+
+        @media @screen-mobile {
+            & > * {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+
+        &--4 {
+            @media @screen-desktop {
+                .flex-part(4);
+            }
+
+            @media @screen-tablet {
+                .flex-part(3);
+            }
+
+            @media @screen-mobile {
+                .flex-part(2);
+            }
+        }
     }
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
-import { ComponentMapper } from '../../ComponentMapper';
-import './FlexCols.less';
 import { LayoutFlexCols } from '../../../types/component-props/layouts/flex-cols';
+import Region from '../Region';
+import './FlexCols.less';
 
 type Props = {
     pageProps: ContentProps;
@@ -10,23 +10,21 @@ type Props = {
 };
 
 export const FlexCols = ({ pageProps, layoutProps }: Props) => {
-    const { regions, config } = layoutProps;
-    if (!regions?.flexcols) {
+    const regionProps = layoutProps.regions.flexcols;
+    if (!regionProps) {
         return null;
     }
 
-    const { components, name } = regions.flexcols;
-    const { numCols, bgColor, bgFullWidth } = config;
+    const { numCols, bgColor, bgFullWidth } = layoutProps.config;
 
-    return (
-        <div className={'flex-cols'} data-portal-region={name}>
-            {components.map((component) => (
-                <ComponentMapper
-                    key={component.path}
-                    componentProps={component}
-                    pageProps={pageProps}
-                />
-            ))}
-        </div>
-    );
+    const style = {};
+
+    return regionProps ? (
+        <Region
+            pageProps={pageProps}
+            regionProps={regionProps}
+            style={style}
+            modifier={String(numCols)}
+        />
+    ) : null;
 };

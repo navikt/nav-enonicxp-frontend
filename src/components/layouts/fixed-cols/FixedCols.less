@@ -65,14 +65,19 @@
             flex-direction: column;
         }
 
-        .part,
         .region {
             display: flex;
-            align-items: stretch;
+            flex-direction: column;
             width: 100%;
+
+            .part {
+                display: flex;
+                align-items: stretch;
+                height: 100%;
+            }
         }
 
-        & > * {
+        & > :not(:first-child):not(:last-child) {
             @media @screen-tablet {
                 padding: 0 0.5rem;
             }
@@ -95,6 +100,12 @@
             @media @screen-desktop {
                 padding-left: 1rem;
             }
+        }
+
+        .xp-page-editor-item-view,
+        .xp-page-editor-region-placeholder,
+        .ui-sortable-placeholder {
+            width: 100%;
         }
     }
 }
