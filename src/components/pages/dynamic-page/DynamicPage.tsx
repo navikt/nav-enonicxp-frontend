@@ -1,9 +1,9 @@
 import React from 'react';
-import { DynamicPageProps } from '../../../types/content-props/dynamic-page-props';
+import { ContentProps } from 'types/content-props/_content-common';
 import Layout from '../../layouts/Layout';
 import './DynamicPage.less';
 
-export const DynamicPage = (props: DynamicPageProps) => {
+export const DynamicPage = (props: ContentProps) => {
     const { regions } = props.page;
 
     return (

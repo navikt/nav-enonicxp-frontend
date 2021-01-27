@@ -61,24 +61,19 @@ export type ContentProps = {
     notifications?: NotificationProps[];
 };
 
-type TypeSpecificData = ContentListData &
-    ErrorData &
-    ExternalLinkData &
-    InternalLinkData &
-    UrlData &
-    LargeTableData &
-    MainArticleData &
-    MainArticleChapterData &
-    OfficeInformationData &
-    PageListData &
-    SectionPageData &
-    TransportPageData &
-    DynamicPageData &
-    PublishingCalendarData;
-
 export type ContentData = Partial<
-    {
-        canonicalUrl: string;
-        metaDescription: string;
-    } & TypeSpecificData
+    ContentListData &
+        ErrorData &
+        ExternalLinkData &
+        InternalLinkData &
+        UrlData &
+        LargeTableData &
+        MainArticleData &
+        MainArticleChapterData &
+        OfficeInformationData &
+        PageListData &
+        SectionPageData &
+        TransportPageData &
+        DynamicPageData &
+        PublishingCalendarData
 >;
