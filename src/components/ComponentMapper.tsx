@@ -8,30 +8,18 @@ import Image from './parts/_dynamic/image/Image';
 import LayoutMapper from './layouts/LayoutMapper';
 import { PartsMapper } from './parts/PartsMapper';
 import { ContentProps } from '../types/content-props/_content-common';
-import { BEM } from '../utils/bem';
-
-const getClass = (component: ComponentProps) => {
-    switch (component.type) {
-        case ComponentType.Page:
-        case ComponentType.Layout:
-        case ComponentType.Part:
-            return component?.descriptor?.split(':')[1] || 'default';
-        default:
-            return 'default';
-    }
-};
 
 type Props = {
     componentProps: ComponentProps;
     pageProps: ContentProps;
 };
 
-const Component = ({ componentProps, pageProps }: Props) => {
+export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
     switch (componentProps.type) {
         case ComponentType.Text:
             return <Text {...componentProps} />;
         case ComponentType.Image:
-            return <Image imageUrl={componentProps.image.imageUrl} />;
+            return <Image {...componentProps} />;
         case ComponentType.Layout:
         case ComponentType.Page:
             return (
@@ -52,22 +40,4 @@ const Component = ({ componentProps, pageProps }: Props) => {
                 <div>{`Unimplemented component type: ${componentProps.type}`}</div>
             );
     }
-};
-
-export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
-    const { path, type } = componentProps;
-    const bem = BEM(type);
-    const className = getClass(componentProps);
-
-    return (
-        <div
-            key={path}
-            data-portal-component-type={componentProps.type}
-            data-portal-component={path}
-            className={bem(className)}
-            data-th-remove="tag"
-        >
-            <Component componentProps={componentProps} pageProps={pageProps} />
-        </div>
-    );
 };

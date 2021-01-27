@@ -3,6 +3,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutProps, LayoutType } from '../../types/component-props/layouts';
 import { FixedCols } from './fixed-cols/FixedCols';
 import { FlexCols } from './flex-cols/FlexCols';
+import { BEM } from '../../utils/bem';
 
 type Props = {
     pageProps: ContentProps;
@@ -22,14 +23,26 @@ const layoutComponents: {
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
-    const { descriptor } = layoutProps;
+    const { descriptor, path, type } = layoutProps;
 
     const Component = layoutComponents[descriptor];
 
-    return Component ? (
-        <Component pageProps={pageProps} layoutProps={layoutProps} />
-    ) : (
-        <div>{`Unimplemented layout type: ${descriptor}`}</div>
+    const bem = BEM(type);
+    const layoutName = descriptor.split(':')[1];
+
+    return (
+        <div
+            className={bem(layoutName)}
+            data-portal-component-type={type}
+            data-portal-component={path}
+            data-th-remove="tag"
+        >
+            {Component ? (
+                <Component pageProps={pageProps} layoutProps={layoutProps} />
+            ) : (
+                <div>{`Unimplemented layout type: ${descriptor}`}</div>
+            )}
+        </div>
     );
 };
 

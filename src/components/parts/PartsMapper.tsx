@@ -12,7 +12,10 @@ import Alert from './_dynamic/alert/Alert';
 import { LinkPanel } from './_dynamic/link-panel/LinkPanel';
 import LesMerPanel from './_dynamic/les-mer-panel/LesMerPanel';
 import { MainArticle } from './main-article/MainArticle';
-import { PartComponentProps } from '../../types/component-props/_component-common';
+import {
+    ComponentType,
+    PartComponentProps,
+} from '../../types/component-props/_component-common';
 import { ContentProps } from '../../types/content-props/_content-common';
 import Veilederpanel from './_dynamic/veilederpanel/Veilederpanel';
 import { OfficeInformation } from './office-information/OfficeInformation';
@@ -20,6 +23,7 @@ import { Header } from './_dynamic/header/Header';
 import { LinkList } from './_dynamic/link-list/LinkList';
 import { NewsList } from './_dynamic/news-list/NewsList';
 import PublishingCalendar from './publishing-calendar/PublishingCalendar';
+import { BEM } from '../../utils/bem';
 
 type Props = {
     componentProps: PartComponentProps;
@@ -59,7 +63,7 @@ const partsDeprecated: { [key in PartDeprecated] } = {
     [PartType.PageCrumbs]: true,
 };
 
-export const PartsMapper = ({ componentProps, pageProps }: Props) => {
+const PartComponent = ({ componentProps, pageProps }: Props) => {
     const { descriptor } = componentProps;
 
     const PartWithGlobalData = partsWithPageData[descriptor];
@@ -77,4 +81,22 @@ export const PartsMapper = ({ componentProps, pageProps }: Props) => {
     }
 
     return <div>{`Unimplemented part: ${descriptor}`}</div>;
+};
+
+export const PartsMapper = (props: Props) => {
+    const { path, descriptor } = props.componentProps;
+
+    const bem = BEM(ComponentType.Part);
+    const layoutName = descriptor.split(':')[1];
+
+    return (
+        <div
+            className={bem(layoutName)}
+            data-portal-component-type={ComponentType.Part}
+            data-portal-component={path}
+            data-th-remove="tag"
+        >
+            <PartComponent {...props} />
+        </div>
+    );
 };
