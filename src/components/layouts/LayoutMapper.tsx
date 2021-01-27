@@ -23,16 +23,21 @@ const layoutComponents: {
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
-    const { descriptor, path, type } = layoutProps;
+    const { descriptor, path, type, config } = layoutProps;
 
     const Component = layoutComponents[descriptor];
 
     const bem = BEM(type);
     const layoutName = descriptor.split(':')[1];
 
+    const componentStyle = config?.margin && {
+        margin: `${config?.margin}`,
+    };
+
     return (
         <div
             className={bem(layoutName)}
+            style={componentStyle}
             data-portal-component-type={type}
             data-portal-component={path}
             data-th-remove="tag"

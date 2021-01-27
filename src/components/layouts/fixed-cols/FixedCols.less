@@ -1,21 +1,8 @@
 @import (reference) '../../../global';
 
 .region {
-    &__main {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        margin: 1rem auto;
-
-        @media @screen-mobile {
-            flex-direction: column;
-        }
-    }
-
     &__first {
         flex: 2;
-        flex-direction: column;
 
         @media @screen-desktop {
             &:not(:only-child) {
@@ -26,7 +13,6 @@
 
     &__second {
         flex: 1;
-        flex-direction: column;
 
         @media @screen-mobile {
             margin-top: 2rem;
@@ -36,13 +22,34 @@
 
 .layout {
     &__main {
-        width: 100%;
         display: flex;
-        align-items: stretch;
         flex-direction: row;
+        align-items: stretch;
+
+        max-width: 56.5rem;
+        width: 100%;
+        margin: 1rem auto;
 
         @media @screen-mobile {
             flex-direction: column;
+        }
+    }
+
+    &__dynamic-2-col {
+        & > * {
+            flex: 50;
+        }
+    }
+
+    &__dynamic-3-col {
+        & > * {
+            flex: 33.3;
+        }
+    }
+
+    &__dynamic-4-col {
+        & > * {
+            flex: 25;
         }
     }
 
@@ -50,21 +57,41 @@
     &__dynamic-3-col,
     &__dynamic-4-col {
         display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        width: 100%;
+
+        @media @screen-mobile {
+            flex-direction: column;
+        }
+
+        .part,
+        .region {
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+        }
 
         & > * {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            @media @screen-tablet {
+                padding: 0 0.5rem;
+            }
             @media @screen-desktop {
                 padding: 0 1rem;
             }
         }
         & > :first-child {
+            @media @screen-tablet {
+                padding-right: 0.5rem;
+            }
             @media @screen-desktop {
                 padding-right: 1rem;
             }
         }
         & > :last-child {
+            @media @screen-tablet {
+                padding-left: 0.5rem;
+            }
             @media @screen-desktop {
                 padding-left: 1rem;
             }

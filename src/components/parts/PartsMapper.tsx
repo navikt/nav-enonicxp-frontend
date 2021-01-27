@@ -91,7 +91,7 @@ export const PartsMapper = (props: Props) => {
 
     return (
         <div
-            className={bem(layoutName)}
+            className={`${bem()} ${bem(layoutName)}`}
             data-portal-component-type={ComponentType.Part}
             data-portal-component={path}
             data-th-remove="tag"
