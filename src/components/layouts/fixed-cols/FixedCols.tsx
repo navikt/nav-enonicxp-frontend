@@ -30,8 +30,7 @@ export const FixedCols = ({ pageProps, layoutProps }: Props) => {
                         <Region
                             pageProps={pageProps}
                             regionProps={regionProps}
-                            layoutConfig={config}
-                            regionIndex={index}
+                            style={regionStyle}
                             key={index}
                         />
                     );

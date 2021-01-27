@@ -33,6 +33,7 @@ const Component = ({ componentProps, pageProps }: Props) => {
         case ComponentType.Image:
             return <Image imageUrl={componentProps.image.imageUrl} />;
         case ComponentType.Layout:
+        case ComponentType.Page:
             return (
                 <LayoutMapper
                     pageProps={pageProps}
@@ -58,19 +59,9 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
     const bem = BEM(type);
     const className = getClass(componentProps);
 
-    // const componentStyle =
-    //     componentProps.type === ComponentType.Layout
-    //         ? {
-    //               ...(componentProps?.config?.margin && {
-    //                   margin: `${componentProps?.config?.margin}`,
-    //               }),
-    //           }
-    //         : undefined;
-
     return (
         <div
             key={path}
-            // style={componentStyle}
             data-portal-component-type={componentProps.type}
             data-portal-component={path}
             className={bem(className)}

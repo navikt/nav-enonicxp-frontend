@@ -3,27 +3,21 @@ import { ContentProps } from '../../types/content-props/_content-common';
 import { BEM } from '../../utils/bem';
 import { ComponentMapper } from '../ComponentMapper';
 import { RegionProps } from '../../types/component-props/layouts';
+import './Region.less';
 
 type Props = {
     pageProps: ContentProps;
-    regionProps?: RegionProps;
+    regionProps: RegionProps;
     style?: React.CSSProperties;
-    regionIndex?: number;
 };
 
 const bem = BEM('region');
 
-export const Region = ({
-    pageProps,
-    regionProps,
-    style,
-    regionIndex = 0,
-}: Props) => {
+export const Region = ({ pageProps, regionProps, style }: Props) => {
     const { name, components } = regionProps;
 
     return (
         <div
-            key={name}
             style={style}
             data-portal-region={name}
             className={`${bem()} ${bem(name)}`}
