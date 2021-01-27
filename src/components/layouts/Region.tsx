@@ -19,8 +19,8 @@ export const Region = ({ pageProps, regionProps, style }: Props) => {
     return (
         <div
             style={style}
-            data-portal-region={name}
             className={`${bem()} ${bem(name)}`}
+            data-portal-region={pageProps.editMode ? name : undefined}
         >
             {components.map((component) => (
                 <ComponentMapper

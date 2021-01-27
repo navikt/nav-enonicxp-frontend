@@ -83,20 +83,26 @@ const PartComponent = ({ componentProps, pageProps }: Props) => {
     return <div>{`Unimplemented part: ${descriptor}`}</div>;
 };
 
-export const PartsMapper = (props: Props) => {
-    const { path, descriptor } = props.componentProps;
+export const PartsMapper = ({ pageProps, componentProps }: Props) => {
+    const { path, descriptor } = componentProps;
 
     const bem = BEM(ComponentType.Part);
     const layoutName = descriptor.split(':')[1];
 
+    const editorProps = pageProps.editMode
+        ? {
+              'data-portal-component-type': ComponentType.Part,
+              'data-portal-component': path,
+              'data-th-remove': 'tag',
+          }
+        : undefined;
+
     return (
-        <div
-            className={`${bem()} ${bem(layoutName)}`}
-            data-portal-component-type={ComponentType.Part}
-            data-portal-component={path}
-            data-th-remove="tag"
-        >
-            <PartComponent {...props} />
+        <div className={`${bem()} ${bem(layoutName)}`} {...editorProps}>
+            <PartComponent
+                pageProps={pageProps}
+                componentProps={componentProps}
+            />
         </div>
     );
 };

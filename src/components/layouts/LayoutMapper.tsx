@@ -34,13 +34,19 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
         margin: `${config?.margin}`,
     };
 
+    const editorProps = pageProps.editMode
+        ? {
+              'data-portal-component-type': type,
+              'data-portal-component': path,
+              'data-th-remove': 'tag',
+          }
+        : undefined;
+
     return (
         <div
             className={bem(layoutName)}
             style={componentStyle}
-            data-portal-component-type={type}
-            data-portal-component={path}
-            data-th-remove="tag"
+            {...editorProps}
         >
             {Component ? (
                 <Component pageProps={pageProps} layoutProps={layoutProps} />
