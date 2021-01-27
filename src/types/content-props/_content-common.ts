@@ -15,6 +15,8 @@ import { OfficeInformationData } from './office-information-props';
 import { UrlData } from './url-props';
 import { Breadcrumb } from '../breadcrumb';
 import { NotificationProps } from '../notification-props';
+import { DynamicPageData } from './dynamic-page-props';
+import { PublishingCalendarData } from './publishing-calendar-props';
 
 export enum ContentType {
     Error = 'error',
@@ -70,7 +72,9 @@ type TypeSpecificData = ContentListData &
     OfficeInformationData &
     PageListData &
     SectionPageData &
-    TransportPageData;
+    TransportPageData &
+    DynamicPageData &
+    PublishingCalendarData;
 
 export type ContentData = Partial<
     {

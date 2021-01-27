@@ -64,6 +64,7 @@ export type OfficeInformationData = {
     enhet: Office;
     overordnetEnhet: string;
     kontaktinformasjon: ContactInfo;
+    feedbackToggle: boolean;
 };
 
 export interface OfficeInformationProps extends ContentProps {

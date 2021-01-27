@@ -5,6 +5,9 @@ export type TransportPageData = Partial<{
     ingress: string;
     items: LinkPanel[];
     metaDescription: string;
+    canonicalUrl: string;
+    noindex: boolean;
+    feedbackToggle: boolean;
 }>;
 
 export interface TransportPageProps extends ContentProps {

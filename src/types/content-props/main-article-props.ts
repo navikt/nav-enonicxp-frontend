@@ -20,6 +20,10 @@ export type MainArticleData = Partial<{
     social: string[];
     picture: Picture;
     menuListItems: MenuListItem;
+    metaDescription: string;
+    canonicalUrl: string;
+    noindex: boolean;
+    feedbackToggle: boolean;
 }>;
 
 export interface MainArticleProps extends ContentProps {
