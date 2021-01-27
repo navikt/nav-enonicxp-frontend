@@ -9,4 +9,5 @@ export type DynamicPageData = Partial<{
 
 export interface DynamicPageProps extends ContentProps {
     __typename: ContentType.DynamicPage;
+    data: DynamicPageData;
 }
