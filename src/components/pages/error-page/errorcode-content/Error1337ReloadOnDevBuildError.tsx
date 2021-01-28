@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { makeErrorProps } from '../../../../utils/errors';
+import { makeErrorProps } from '../../../../utils/make-error-props';
 
 export const error1337ReloadProps = (path: string) =>
     makeErrorProps(

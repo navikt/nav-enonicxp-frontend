@@ -8,11 +8,12 @@ import PageWrapper from './PageWrapper';
 import ContentMapper from './ContentMapper';
 import React from 'react';
 import { fetchPage } from '../utils/fetch-content';
+import { makeErrorProps } from '../utils/make-error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
 import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
-import { isNotFound, makeErrorProps } from '../utils/errors';
+import { isNotFound } from '../utils/errors';
 
 type PageProps = {
     content: ContentProps;
