@@ -1,15 +1,15 @@
 import React from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
-import { LayoutFlexCols } from '../../../types/component-props/layouts/flex-cols';
+import { FlexColsLayoutProps } from '../../../types/component-props/layouts/flex-cols';
 import Region from '../Region';
-import './FlexCols.less';
+import './FlexColsLayout.less';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: LayoutFlexCols;
+    layoutProps?: FlexColsLayoutProps;
 };
 
-export const FlexCols = ({ pageProps, layoutProps }: Props) => {
+export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
     const regionProps = layoutProps.regions.flexcols;
     if (!regionProps) {
         return null;
@@ -17,13 +17,15 @@ export const FlexCols = ({ pageProps, layoutProps }: Props) => {
 
     const { numCols, bgColor, bgFullWidth } = layoutProps.config;
 
-    const style = {};
+    const regionStyle = {
+        ...(bgColor && { backgroundColor: bgColor }),
+    };
 
     return regionProps ? (
         <Region
             pageProps={pageProps}
             regionProps={regionProps}
-            style={style}
+            style={regionStyle}
             modifier={String(numCols)}
         />
     ) : null;

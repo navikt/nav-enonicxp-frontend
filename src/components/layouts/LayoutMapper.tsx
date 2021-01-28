@@ -1,9 +1,10 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutProps, LayoutType } from '../../types/component-props/layouts';
-import { FixedCols } from './fixed-cols/FixedCols';
-import { FlexCols } from './flex-cols/FlexCols';
+import { FixedColsLayout } from './fixed-cols/FixedColsLayout';
+import { FlexColsLayout } from './flex-cols/FlexColsLayout';
 import { BEM } from '../../utils/bem';
+import { LegacyLayout } from './legacy/LegacyLayout';
 
 type Props = {
     pageProps: ContentProps;
@@ -13,26 +14,48 @@ type Props = {
 const layoutComponents: {
     [key in LayoutType]: React.FunctionComponent<Props>;
 } = {
-    [LayoutType.Main]: FixedCols,
-    [LayoutType.Main1Col]: FixedCols,
-    [LayoutType.MainPage]: FixedCols,
-    [LayoutType.Dynamic2Col]: FixedCols,
-    [LayoutType.Dynamic3Col]: FixedCols,
-    [LayoutType.Dynamic4Col]: FixedCols,
-    [LayoutType.DynamicFlexCols]: FlexCols,
+    [LayoutType.Main]: LegacyLayout,
+    [LayoutType.Main1Col]: LegacyLayout,
+    [LayoutType.MainPage]: LegacyLayout,
+    [LayoutType.Dynamic2Col]: FixedColsLayout,
+    [LayoutType.Dynamic3Col]: FixedColsLayout,
+    [LayoutType.Dynamic4Col]: FixedColsLayout,
+    [LayoutType.DynamicFlexCols]: FlexColsLayout,
+};
+
+const getLayoutStyle = (layoutProps: LayoutProps): React.CSSProperties => {
+    switch (layoutProps.descriptor) {
+        case LayoutType.Dynamic2Col:
+        case LayoutType.Dynamic3Col:
+        case LayoutType.Dynamic4Col:
+            const { margin } = layoutProps.config;
+            return margin && { margin };
+        case LayoutType.DynamicFlexCols:
+            const { bgColor, bgFullWidth } = layoutProps.config;
+            return (
+                bgColor && {
+                    backgroundColor: bgColor,
+                    ...(bgFullWidth && {
+                        width: '100vw',
+                    }),
+                }
+            );
+        default:
+            return undefined;
+    }
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
-    const { descriptor, path, type, config } = layoutProps;
+    const { descriptor, path, type } = layoutProps;
 
     const Component = layoutComponents[descriptor];
 
+    if (!Component) {
+        return <div>{`Unimplemented layout type: ${descriptor}`}</div>;
+    }
+
     const bem = BEM(type);
     const layoutName = descriptor.split(':')[1];
-
-    const componentStyle = config?.margin && {
-        margin: `${config?.margin}`,
-    };
 
     const editorProps = pageProps.editMode
         ? {
@@ -44,15 +67,11 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <div
-            className={bem(layoutName)}
-            style={componentStyle}
+            className={`${bem()} ${bem(layoutName)}`}
+            style={getLayoutStyle(layoutProps)}
             {...editorProps}
         >
-            {Component ? (
-                <Component pageProps={pageProps} layoutProps={layoutProps} />
-            ) : (
-                <div>{`Unimplemented layout type: ${descriptor}`}</div>
-            )}
+            <Component pageProps={pageProps} layoutProps={layoutProps} />
         </div>
     );
 };

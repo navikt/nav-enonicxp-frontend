@@ -3,6 +3,9 @@ import {
     ComponentProps,
     ComponentType,
 } from './_component-common';
+import { FlexColsLayoutProps } from './layouts/flex-cols';
+import { FixedColsLayoutProps } from './layouts/fixed-cols';
+import { LegacyLayoutProps } from './layouts/legacy-layout';
 
 export enum LayoutType {
     Dynamic2Col = 'no.nav.navno:dynamic-2-col',
@@ -19,17 +22,14 @@ export type RegionProps = {
     name: string;
 };
 
-export type LayoutConfig = Partial<{
-    distribution: string;
-    margin: string;
-    numCols: number;
-    bgColor: string;
-    bgFullWidth: boolean;
-}>;
-
-export interface LayoutProps extends ComponentCommonProps {
+export interface LayoutCommonProps extends ComponentCommonProps {
     type: ComponentType.Layout | ComponentType.Page;
     descriptor: LayoutType;
-    config?: LayoutConfig;
     regions?: { [key: string]: RegionProps };
+    config: any;
 }
+
+export type LayoutProps =
+    | LegacyLayoutProps
+    | FlexColsLayoutProps
+    | FixedColsLayoutProps;

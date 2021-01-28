@@ -2,13 +2,20 @@
 
 .layout {
     &__dynamic-flex-cols {
-        width: 100%;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        width: 100vw;
+        position: relative;
+        margin-left: -50vw;
+        height: 100px;
+        margin-top: 100px;
+        left: 50%;
     }
 }
 
 .region {
     &__flexcols {
-        .flex-part(@numCols) {
+        .flex-component(@numCols) {
             @margin: 1rem;
 
             & > * {
@@ -32,6 +39,7 @@
         flex-wrap: wrap;
         justify-content: flex-start;
         width: 100%;
+        max-width: @desktopMaxWidth;
         margin: 1rem auto;
 
         &--1 {
@@ -41,16 +49,16 @@
         }
 
         &--2 {
-            .flex-part(2);
+            .flex-component(2);
         }
 
         &--3 {
             @media @screen-desktop {
-                .flex-part(3);
+                .flex-component(3);
             }
 
             @media @screen-tablet {
-                .flex-part(2);
+                .flex-component(2);
             }
         }
 
@@ -63,15 +71,15 @@
 
         &--4 {
             @media @screen-desktop {
-                .flex-part(4);
+                .flex-component(4);
             }
 
             @media @screen-tablet {
-                .flex-part(3);
+                .flex-component(3);
             }
 
             @media @screen-mobile {
-                .flex-part(2);
+                .flex-component(2);
             }
         }
     }

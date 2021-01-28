@@ -1,15 +1,15 @@
 import React from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
-import { LayoutProps } from '../../../types/component-props/layouts';
 import Region from '../Region';
-import './FixedCols.less';
+import { FixedColsLayoutProps } from '../../../types/component-props/layouts/fixed-cols';
+import './FixedColsLayout.less';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: LayoutProps;
+    layoutProps?: FixedColsLayoutProps;
 };
 
-export const FixedCols = ({ pageProps, layoutProps }: Props) => {
+export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
 
     return (

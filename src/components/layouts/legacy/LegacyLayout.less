@@ -1,0 +1,37 @@
+@import (reference) '../../../global';
+
+.layout {
+    &__main {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+
+        max-width: 56.5rem;
+        width: 100%;
+        margin: 1rem auto;
+
+        @media @screen-mobile {
+            flex-direction: column;
+        }
+    }
+}
+
+.region {
+    &__first {
+        flex: 2;
+
+        @media @screen-desktop {
+            &:not(:only-child) {
+                padding-right: 2rem;
+            }
+        }
+    }
+
+    &__second {
+        flex: 1;
+
+        @media @screen-mobile {
+            margin-top: 2rem;
+        }
+    }
+}

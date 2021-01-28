@@ -1,0 +1,61 @@
+@import (reference) '../../../global';
+
+.layout {
+    &__dynamic-2-col {
+        & > * {
+            flex: 50%;
+        }
+    }
+
+    &__dynamic-3-col {
+        & > * {
+            flex: percentage(1/3);
+        }
+    }
+
+    &__dynamic-4-col {
+        & > * {
+            flex: 25%;
+        }
+    }
+
+    &__dynamic-2-col,
+    &__dynamic-3-col,
+    &__dynamic-4-col {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        width: 100%;
+
+        @media @screen-mobile {
+            flex-direction: column;
+        }
+
+        .region {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            & > * {
+                display: flex;
+                align-items: stretch;
+                height: 100%;
+            }
+        }
+
+        & > :not(:last-child) {
+            @media @screen-tablet {
+                margin-right: 0.5rem;
+            }
+            @media @screen-desktop {
+                margin-right: 1rem;
+            }
+        }
+
+        .xp-page-editor-item-view,
+        .xp-page-editor-region-placeholder,
+        .ui-sortable-placeholder {
+            width: 100%;
+        }
+    }
+}
