@@ -150,8 +150,9 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 export const getDecoratorFragments = async (
     query?: string
 ): Promise<DecoratorFragments> => {
-    if (cache.has(query)) {
-        return cache.get(query);
+    const cacheKey = query || 'default';
+    if (cache.has(cacheKey)) {
+        return cache.get(cacheKey);
     }
 
     const decoratorHtml = await fetchDecoratorHtml(query);
@@ -169,7 +170,7 @@ export const getDecoratorFragments = async (
         SCRIPTS: parse(document.getElementById('scripts').innerHTML),
     };
 
-    cache.set(query, decoratorFragments);
+    cache.set(cacheKey, decoratorFragments);
 
     return decoratorFragments;
 };

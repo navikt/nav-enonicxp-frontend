@@ -1,3 +1,4 @@
+import { GetServerSideProps } from 'next';
 import { fetchWithTimeout } from 'utils/fetch-utils';
 import Cache from 'node-cache';
 
@@ -10,17 +11,6 @@ const cache = new Cache({
     stdTTL: oneHourInSeconds,
     checkperiod: oneMinuteInSeconds,
 });
-
-const handler = async (req, res) => {
-    const rssUrl = `${process.env.XP_ORIGIN}/_/legacy/no/rss`;
-    const rssContent = cache.has(cacheKey)
-        ? await cache.get(cacheKey)
-        : await fetchRSS(rssUrl);
-
-    res.setHeader('Content-Type', 'application/xml');
-    res.status(200);
-    res.end(rssContent);
-};
 
 const fetchRSS = (url) => {
     return fetchWithTimeout(url, oneMinuteInMilliseconds)
@@ -45,4 +35,20 @@ const saveToCache = (xml) => {
     return xml;
 };
 
-export default handler;
+// This is a bit of a hack compared to rewriting to an api-service
+// However this approach prevents prefetching errors
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+    const rssUrl = `${process.env.XP_ORIGIN}/_/legacy/no/rss`;
+    const rssContent = cache.has(cacheKey)
+        ? await cache.get(cacheKey)
+        : await fetchRSS(rssUrl);
+
+    res.setHeader('Content-Type', 'application/xml');
+    res.end(rssContent);
+
+    return { props: {} };
+};
+
+const RSS = () => null;
+
+export default RSS;
