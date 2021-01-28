@@ -2,14 +2,9 @@
 
 .layout {
     &__dynamic-flex-cols {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        width: 100vw;
+        display: flex;
+        justify-content: center;
         position: relative;
-        margin-left: -50vw;
-        height: 100px;
-        margin-top: 100px;
-        left: 50%;
     }
 }
 
@@ -39,13 +34,15 @@
         flex-wrap: wrap;
         justify-content: flex-start;
         width: 100%;
-        max-width: @desktopMaxWidth;
-        margin: 1rem auto;
+        max-width: @max-inner-width;
+        margin: 1rem @padding-sides-desktop;
+
+        @media @screen-tablet {
+            margin: 1rem @padding-sides-tablet;
+        }
 
         &--1 {
-            & > * {
-                width: 100%;
-            }
+            .flex-component(1);
         }
 
         &--2 {
@@ -63,10 +60,8 @@
         }
 
         @media @screen-mobile {
-            & > * {
-                width: 100%;
-                margin-right: 0;
-            }
+            margin: 1rem @padding-sides-mobile;
+            .flex-component(1);
         }
 
         &--4 {

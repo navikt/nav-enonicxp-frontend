@@ -37,6 +37,8 @@ const getLayoutStyle = (layoutProps: LayoutProps): React.CSSProperties => {
                     backgroundColor: bgColor,
                     ...(bgFullWidth && {
                         width: '100vw',
+                        marginLeft: '-50vw',
+                        left: '50%',
                     }),
                 }
             );
