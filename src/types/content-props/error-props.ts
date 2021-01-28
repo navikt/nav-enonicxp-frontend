@@ -3,6 +3,7 @@ import { ContentType, ContentProps } from './_content-common';
 export type ErrorData = {
     errorMessage?: string;
     errorCode?: number;
+    feedback?: boolean;
 };
 
 export interface ErrorProps extends ContentProps {
