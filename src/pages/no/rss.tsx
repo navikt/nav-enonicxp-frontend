@@ -36,7 +36,8 @@ const saveToCache = (xml) => {
 };
 
 // This is a bit of a hack compared to rewriting to an api-service
-// However this approach prevents prefetching errors
+// However this approach prevents prefetching errors from links to
+// this rss feed
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     const rssUrl = `${process.env.XP_ORIGIN}/_/legacy/no/rss`;
     const rssContent = cache.has(cacheKey)
