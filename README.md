@@ -20,6 +20,7 @@ npm run build && npm start
 ```
 
 ## Secrets
+
 Secrets hentes fra Environment secrets på Github. For å legge til secrets gå til: Settings -> Environments
 
 ## vhost config i Enonic XP
