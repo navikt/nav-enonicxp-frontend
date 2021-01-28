@@ -18,5 +18,5 @@ export const makeErrorProps = (
         errorMessage: errorMessage,
         errorCode: errorCode,
     },
-    breadcrumbs: [{ title: 'Fant ikke siden', url: '/' }],
+    breadcrumbs: [{ title: errorMessage, url: '/' }],
 });
