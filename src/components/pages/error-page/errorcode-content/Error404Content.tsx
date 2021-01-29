@@ -3,17 +3,11 @@ import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { BEM } from '../../../../utils/bem';
 import { SearchForm } from './search-form/SearchForm';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
-import { DecoratorParams } from '../../../../utils/decorator-utils';
 import './Error404Content.less';
 
 const origin = process.env.APP_ORIGIN;
 const frontpageHref = origin;
 const feedbackHref = `${origin}/person/kontakt-oss/tilbakemeldinger/feil-og-mangler`;
-
-export const decoratorParams404: DecoratorParams = {
-    feedback: false,
-    breadcrumbs: [{ title: 'Fant ikke siden', url: '/' }],
-};
 
 export const Error404Content = () => {
     const bem = BEM('error404');

@@ -8,6 +8,13 @@ export type PublishingCalendarChildren = ContentProps & {
     };
 };
 
+export type PublishingCalendarData = Partial<{
+    ingress: string;
+    metaDescription: string;
+    canonicalUrl: string;
+    noindex: boolean;
+}>;
+
 export interface PublishingCalendarEntries {
     displayName: string;
     period: string;
@@ -19,4 +26,5 @@ export interface PublishingCalendarEntries {
 export interface PublishingCalendarProps extends ContentProps {
     __typename: ContentType.PublishingCalendar;
     children: PublishingCalendarChildren[];
+    data: PublishingCalendarData;
 }

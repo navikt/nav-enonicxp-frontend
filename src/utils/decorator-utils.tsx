@@ -107,21 +107,16 @@ const decoratorFragmentsCSR = (query?: string) => ({
 
 const errorParams = (content: ContentProps): DecoratorParams => ({
     feedback: false,
-    breadcrumbs: content.breadcrumbs || [
-        {
-            title: content.data?.errorMessage || 'Ukjent feil',
-            url: '/',
-        },
-    ],
+    breadcrumbs: content?.breadcrumbs || [],
 });
 
 const defaultParams = {
-    feedback: true,
+    feedback: false,
     language: 'nb',
 };
 
 export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
-    if (content.__typename === ContentType.Error) {
+    if (!content || content.__typename === ContentType.Error) {
         return errorParams(content);
     }
 
@@ -129,6 +124,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     const rolePath = _path.split('/')[3];
     const context = pathToRoleContext[rolePath];
     const decoratorLanguage = xpLangToDecoratorLang[language];
+    const feedback = content.data?.feedbackToggle;
 
     return {
         ...defaultParams,
@@ -144,6 +140,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
             language,
             _path
         ),
+        ...(feedback && { feedback: true }),
     };
 };
 
