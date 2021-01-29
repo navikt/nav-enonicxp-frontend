@@ -11,6 +11,9 @@ export type SectionPageData = Partial<{
     ntkContents: ContentListProps;
     scContents: ContentListProps;
     metaDescription: string;
+    canonicalUrl: string;
+    noindex: boolean;
+    feedbackToggle: boolean;
 }>;
 
 export interface SectionPageProps extends ContentProps {

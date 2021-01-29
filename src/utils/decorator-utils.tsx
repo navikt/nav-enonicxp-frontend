@@ -111,7 +111,7 @@ const errorParams = (content: ContentProps): DecoratorParams => ({
 });
 
 const defaultParams = {
-    feedback: true,
+    feedback: false,
     language: 'nb',
 };
 
@@ -124,6 +124,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     const rolePath = _path.split('/')[3];
     const context = pathToRoleContext[rolePath];
     const decoratorLanguage = xpLangToDecoratorLang[language];
+    const feedback = content.data?.feedbackToggle;
 
     return {
         ...defaultParams,
@@ -139,6 +140,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
             language,
             _path
         ),
+        ...(feedback && { feedback: true }),
     };
 };
 
