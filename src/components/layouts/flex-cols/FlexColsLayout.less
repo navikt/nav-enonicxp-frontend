@@ -10,7 +10,7 @@
 
 .region {
     &__flexcols {
-        .flex-component(@numCols) {
+        .flex-components(@numCols) {
             @margin: 1rem;
 
             & > * {
@@ -42,39 +42,39 @@
         }
 
         &--1 {
-            .flex-component(1);
+            .flex-components(1);
         }
 
         &--2 {
-            .flex-component(2);
+            .flex-components(2);
         }
 
         &--3 {
             @media @screen-desktop {
-                .flex-component(3);
+                .flex-components(3);
             }
 
             @media @screen-tablet {
-                .flex-component(2);
+                .flex-components(2);
             }
         }
 
         @media @screen-mobile {
             margin: 1rem @padding-sides-mobile;
-            .flex-component(1);
+            .flex-components(1);
         }
 
         &--4 {
             @media @screen-desktop {
-                .flex-component(4);
+                .flex-components(4);
             }
 
             @media @screen-tablet {
-                .flex-component(3);
+                .flex-components(3);
             }
 
             @media @screen-mobile {
-                .flex-component(2);
+                .flex-components(2);
             }
         }
     }
