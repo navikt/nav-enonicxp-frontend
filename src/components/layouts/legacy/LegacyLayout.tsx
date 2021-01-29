@@ -2,6 +2,7 @@ import React from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { LayoutProps } from '../../../types/component-props/layouts';
 import Region from '../Region';
+import { LayoutWrapper } from '../LayoutWrapper';
 import './LegacyLayout.less';
 
 type Props = {
@@ -12,18 +13,21 @@ type Props = {
 export const LegacyLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions } = layoutProps;
 
+    if (!regions) {
+        return null;
+    }
+
     return (
-        <>
-            {regions &&
-                Object.values(regions).map((regionProps, index) => {
-                    return (
-                        <Region
-                            pageProps={pageProps}
-                            regionProps={regionProps}
-                            key={index}
-                        />
-                    );
-                })}
-        </>
+        <LayoutWrapper pageProps={pageProps} layoutProps={layoutProps}>
+            {Object.values(regions).map((regionProps, index) => {
+                return (
+                    <Region
+                        pageProps={pageProps}
+                        regionProps={regionProps}
+                        key={index}
+                    />
+                );
+            })}
+        </LayoutWrapper>
     );
 };
