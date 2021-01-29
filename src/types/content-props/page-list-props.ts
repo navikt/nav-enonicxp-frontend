@@ -5,10 +5,13 @@ export type PageListData = Partial<{
     languages: LanguageProps[];
     ingress: string;
     sectionContents: ContentProps[];
-    metaDescription: string;
     hide_date: boolean;
     hideSectionContentsDate: boolean;
     orderSectionContentsByPublished: boolean;
+    metaDescription: string;
+    canonicalUrl: string;
+    noindex: boolean;
+    feedbackToggle: boolean;
 }>;
 
 export interface PageListProps extends ContentProps {
