@@ -13,13 +13,13 @@ type Props = {
 const layoutComponents: {
     [key in LayoutType]: React.FunctionComponent<Props>;
 } = {
-    [LayoutType.Main]: LegacyLayout,
-    [LayoutType.Main1Col]: LegacyLayout,
+    [LayoutType.LegacyMain]: LegacyLayout,
+    [LayoutType.LegacyMain1Col]: LegacyLayout,
     [LayoutType.MainPage]: LegacyLayout,
-    [LayoutType.Dynamic2Col]: FixedColsLayout,
-    [LayoutType.Dynamic3Col]: FixedColsLayout,
-    [LayoutType.Dynamic4Col]: FixedColsLayout,
-    [LayoutType.DynamicFlexCols]: FlexColsLayout,
+    [LayoutType.Fixed2Col]: FixedColsLayout,
+    [LayoutType.Fixed3Col]: FixedColsLayout,
+    [LayoutType.Fixed4Col]: FixedColsLayout,
+    [LayoutType.FlexCols]: FlexColsLayout,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {

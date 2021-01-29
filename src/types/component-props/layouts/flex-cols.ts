@@ -3,7 +3,7 @@ import { ComponentProps, ComponentType } from '../_component-common';
 
 export interface FlexColsLayoutProps extends LayoutCommonProps {
     type: ComponentType.Layout;
-    descriptor: LayoutType.DynamicFlexCols;
+    descriptor: LayoutType.FlexCols;
     regions: {
         flexcols: {
             components: ComponentProps[];
@@ -12,6 +12,7 @@ export interface FlexColsLayoutProps extends LayoutCommonProps {
     };
     config: {
         numCols: number;
+        margin: string;
         bgColor: string;
         bgFullWidth: boolean;
     };
