@@ -16,6 +16,7 @@ const layoutComponents: {
     [LayoutType.LegacyMain]: LegacyLayout,
     [LayoutType.LegacyMain1Col]: LegacyLayout,
     [LayoutType.MainPage]: LegacyLayout,
+    [LayoutType.Fixed1Col]: FixedColsLayout,
     [LayoutType.Fixed2Col]: FixedColsLayout,
     [LayoutType.Fixed3Col]: FixedColsLayout,
     [LayoutType.Fixed4Col]: FixedColsLayout,

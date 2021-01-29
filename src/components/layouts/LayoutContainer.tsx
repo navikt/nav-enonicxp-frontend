@@ -10,7 +10,7 @@ type Props = {
     children: React.ReactNode;
 };
 
-export const LayoutWrapper = ({
+export const LayoutContainer = ({
     layoutProps,
     pageProps,
     style,

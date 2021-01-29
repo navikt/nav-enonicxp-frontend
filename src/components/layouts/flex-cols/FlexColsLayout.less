@@ -10,9 +10,7 @@
 
 .region {
     &__flexcols {
-        .flex-components(@numCols) {
-            @margin: 1rem;
-
+        .flex-items(@numCols, @margin: 1rem) {
             & > * {
                 width: calc(
                     percentage(1 / @numCols) - (@margin * (@numCols - 1)) /
@@ -42,39 +40,39 @@
         }
 
         &--1-cols {
-            .flex-components(1);
+            .flex-items(1);
         }
 
         &--2-cols {
-            .flex-components(2);
+            .flex-items(2);
         }
 
         &--3-cols {
             @media @screen-desktop {
-                .flex-components(3);
+                .flex-items(3);
             }
 
             @media @screen-tablet {
-                .flex-components(2);
+                .flex-items(2);
             }
         }
 
         @media @screen-mobile {
             margin: 1rem @padding-sides-mobile;
-            .flex-components(1);
+            .flex-items(1);
         }
 
         &--4-cols {
             @media @screen-desktop {
-                .flex-components(4);
+                .flex-items(4);
             }
 
             @media @screen-tablet {
-                .flex-components(3);
+                .flex-items(3);
             }
 
             @media @screen-mobile {
-                .flex-components(2);
+                .flex-items(2);
             }
         }
 

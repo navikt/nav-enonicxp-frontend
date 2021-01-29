@@ -2,7 +2,7 @@ import React from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import Region from '../Region';
 import { FixedColsLayoutProps } from '../../../types/component-props/layouts/fixed-cols';
-import { LayoutWrapper } from '../LayoutWrapper';
+import { LayoutContainer } from '../LayoutContainer';
 import './FixedColsLayout.less';
 
 type Props = {
@@ -17,12 +17,24 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const layoutStyle = config?.margin && { margin: config.margin };
+    const { bgColor, bgFullWidth, margin } = config;
+
+    const layoutStyle = {
+        ...(margin && { margin }),
+        ...(bgColor && {
+            backgroundColor: bgColor,
+            ...(bgFullWidth && {
+                width: '100vw',
+                marginLeft: '-50vw',
+                left: '50%',
+            }),
+        }),
+    };
 
     return (
-        <LayoutWrapper
-            layoutProps={layoutProps}
+        <LayoutContainer
             pageProps={pageProps}
+            layoutProps={layoutProps}
             style={layoutStyle}
         >
             {Object.values(regions).map((regionProps, index) => {
@@ -43,6 +55,6 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
                     />
                 );
             })}
-        </LayoutWrapper>
+        </LayoutContainer>
     );
 };
