@@ -24,7 +24,6 @@ const Image = ({ imageProps, editMode }: Props) => {
         ? {
               'data-portal-component-type': ComponentType.Image,
               'data-portal-component': path,
-              'data-th-remove': 'tag',
           }
         : undefined;
 

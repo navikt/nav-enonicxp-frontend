@@ -12,8 +12,10 @@ export interface FlexColsLayoutProps extends LayoutCommonProps {
     };
     config: {
         numCols: number;
-        margin: string;
-        bgColor: string;
+        justifyContent: 'flex-start' | 'center' | 'flex-end';
+        marginTop: number;
+        marginBottom: number;
+        backgroundColor: string;
         bgFullWidth: boolean;
     };
 }

@@ -17,29 +17,46 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
         return pageProps.editMode ? <div>{'Flex placeholder'}</div> : null;
     }
 
-    const { numCols, bgColor, bgFullWidth, margin } = layoutProps.config;
+    const {
+        numCols,
+        backgroundColor,
+        bgFullWidth,
+        marginTop,
+        marginBottom,
+        justifyContent,
+    } = layoutProps.config;
+
+    const regionStyle = {
+        ...(justifyContent && { justifyContent }),
+    };
 
     const layoutStyle = {
-        ...(margin && { margin }),
-        ...(bgColor && {
-            backgroundColor: bgColor,
-            ...(bgFullWidth && {
-                width: '100vw',
-                marginLeft: '-50vw',
-                left: '50%',
+        ...(!bgFullWidth &&
+            backgroundColor && {
+                backgroundColor,
             }),
-        }),
+    };
+
+    const outerStyle = {
+        ...(marginTop && { marginTop: `${marginTop}rem` }),
+        ...(marginBottom && { marginBottom: `${marginBottom}rem` }),
+        ...(bgFullWidth &&
+            backgroundColor && {
+                backgroundColor,
+            }),
     };
 
     return (
         <LayoutContainer
             pageProps={pageProps}
             layoutProps={layoutProps}
-            style={layoutStyle}
+            layoutStyle={layoutStyle}
+            outerStyle={outerStyle}
         >
             <Region
                 pageProps={pageProps}
                 regionProps={regionProps}
+                regionStyle={regionStyle}
                 bemModifier={`${numCols}-cols`}
             />
         </LayoutContainer>

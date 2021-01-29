@@ -20,7 +20,6 @@ export const Text = ({ textProps, editMode }: Props) => {
         ? {
               'data-portal-component-type': ComponentType.Text,
               'data-portal-component': path,
-              'data-th-remove': 'tag',
           }
         : undefined;
 

@@ -18,8 +18,9 @@ export interface FixedColsLayoutProps extends LayoutCommonProps {
     };
     config: {
         distribution: string;
-        margin: string;
-        bgColor: string;
+        marginTop: number;
+        marginBottom: number;
+        backgroundColor: string;
         bgFullWidth: boolean;
     };
 }

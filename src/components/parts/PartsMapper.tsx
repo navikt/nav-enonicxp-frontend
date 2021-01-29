@@ -97,7 +97,6 @@ export const PartsMapper = ({ pageProps, partProps }: Props) => {
         ? {
               'data-portal-component-type': ComponentType.Part,
               'data-portal-component': path,
-              'data-th-remove': 'tag',
           }
         : undefined;
 

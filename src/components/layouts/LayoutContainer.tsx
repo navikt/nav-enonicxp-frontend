@@ -2,18 +2,21 @@ import React from 'react';
 import { ContentProps } from '../../types/content-props/_content-common';
 import { LayoutProps } from '../../types/component-props/layouts';
 import { BEM } from '../../utils/bem';
+import './LayoutContainer.less';
 
 type Props = {
     pageProps: ContentProps;
     layoutProps: LayoutProps;
-    style?: React.CSSProperties;
+    layoutStyle?: React.CSSProperties;
+    outerStyle?: React.CSSProperties;
     children: React.ReactNode;
 };
 
 export const LayoutContainer = ({
     layoutProps,
     pageProps,
-    style,
+    layoutStyle,
+    outerStyle,
     children,
 }: Props) => {
     const { descriptor, path, type } = layoutProps;
@@ -25,17 +28,18 @@ export const LayoutContainer = ({
         ? {
               'data-portal-component-type': type,
               'data-portal-component': path,
-              'data-th-remove': 'tag',
           }
         : undefined;
 
     return (
         <div
-            className={`${bem()} ${bem(layoutName)}`}
-            style={style}
+            className={'layout-fullwidth-container'}
+            style={outerStyle}
             {...editorProps}
         >
-            {children}
+            <div className={`${bem()} ${bem(layoutName)}`} style={layoutStyle}>
+                {children}
+            </div>
         </div>
     );
 };

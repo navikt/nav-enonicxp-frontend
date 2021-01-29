@@ -17,32 +17,41 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const { bgColor, bgFullWidth, margin } = config;
+    const {
+        backgroundColor,
+        bgFullWidth,
+        marginTop,
+        marginBottom,
+        distribution,
+    } = config;
 
     const layoutStyle = {
-        ...(margin && { margin }),
-        ...(bgColor && {
-            backgroundColor: bgColor,
-            ...(bgFullWidth && {
-                width: '100vw',
-                marginLeft: '-50vw',
-                left: '50%',
+        ...(!bgFullWidth &&
+            backgroundColor && {
+                backgroundColor: backgroundColor,
             }),
-        }),
+    };
+
+    const outerStyle = {
+        ...(marginTop && { marginTop: `${marginTop}rem` }),
+        ...(marginBottom && { marginBottom: `${marginBottom}rem` }),
+        ...(bgFullWidth &&
+            backgroundColor && {
+                backgroundColor: backgroundColor,
+            }),
     };
 
     return (
         <LayoutContainer
             pageProps={pageProps}
             layoutProps={layoutProps}
-            style={layoutStyle}
+            layoutStyle={layoutStyle}
+            outerStyle={outerStyle}
         >
             {Object.values(regions).map((regionProps, index) => {
-                const regionStyle = config
+                const regionStyle = distribution
                     ? {
-                          ...(config?.distribution && {
-                              flex: `${config.distribution.split('-')[index]}`,
-                          }),
+                          flex: `${distribution.split('-')[index]}`,
                       }
                     : undefined;
 
@@ -50,7 +59,7 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
                     <Region
                         pageProps={pageProps}
                         regionProps={regionProps}
-                        style={regionStyle}
+                        regionStyle={regionStyle}
                         key={index}
                     />
                 );

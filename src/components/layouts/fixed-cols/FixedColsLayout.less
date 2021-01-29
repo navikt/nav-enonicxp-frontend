@@ -32,13 +32,6 @@
         @media @screen-mobile {
             flex-direction: column;
         }
-
-        // Fix for XP region preview
-        .xp-page-editor-item-view,
-        .xp-page-editor-region-placeholder,
-        .ui-sortable-placeholder {
-            width: 100%;
-        }
     }
 }
 
@@ -64,6 +57,12 @@
             @media @screen-desktop {
                 margin-right: 1rem;
             }
+        }
+
+        // Fix for XP region preview
+        .xp-page-editor-item-placeholder,
+        .ui-sortable-placeholder {
+            width: 100%;
         }
     }
 }
