@@ -37,7 +37,7 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
             <Region
                 pageProps={pageProps}
                 regionProps={regionProps}
-                modifier={String(numCols)}
+                modifier={`${numCols}-cols`}
             />
         </LayoutWrapper>
     );

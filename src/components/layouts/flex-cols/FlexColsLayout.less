@@ -41,15 +41,15 @@
             margin: 1rem @padding-sides-tablet;
         }
 
-        &--1 {
+        &--1-cols {
             .flex-components(1);
         }
 
-        &--2 {
+        &--2-cols {
             .flex-components(2);
         }
 
-        &--3 {
+        &--3-cols {
             @media @screen-desktop {
                 .flex-components(3);
             }
@@ -64,7 +64,7 @@
             .flex-components(1);
         }
 
-        &--4 {
+        &--4-cols {
             @media @screen-desktop {
                 .flex-components(4);
             }
@@ -76,6 +76,10 @@
             @media @screen-mobile {
                 .flex-components(2);
             }
+        }
+
+        .xp-page-editor-region-placeholder:last-child {
+            display: block;
         }
     }
 }
