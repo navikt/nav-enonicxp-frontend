@@ -5,23 +5,31 @@ import {
 } from '../../../../types/component-props/_component-common';
 import './Image.less';
 
-const Image = ({ image, path }: ImageComponentProps) => {
-    const { imageUrl } = image;
-    if (!imageUrl) {
+type Props = {
+    imageProps: ImageComponentProps;
+    editMode?: boolean;
+};
+
+const Image = ({ imageProps, editMode }: Props) => {
+    const { image, path } = imageProps;
+    if (!image?.imageUrl) {
         return <h2>Tomt bilde</h2>;
     }
 
     const height = 800;
     const width = 800;
-    const src = imageUrl.replace('$scale', `block-${width}-${height}`);
+    const src = image.imageUrl.replace('$scale', `block-${width}-${height}`);
+
+    const editorProps = editMode
+        ? {
+              'data-portal-component-type': ComponentType.Image,
+              'data-portal-component': path,
+              'data-th-remove': 'tag',
+          }
+        : undefined;
 
     return (
-        <div
-            className={'default'}
-            data-portal-component-type={ComponentType.Image}
-            data-portal-component={path}
-            data-th-remove="tag"
-        >
+        <div className={'default'} {...editorProps}>
             <img className={'image'} src={src} alt={''} />
         </div>
     );

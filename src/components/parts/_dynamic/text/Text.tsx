@@ -5,18 +5,27 @@ import {
     TextComponentProps,
 } from '../../../../types/component-props/_component-common';
 
-export const Text = ({ value, path }: TextComponentProps) => {
+type Props = {
+    textProps: TextComponentProps;
+    editMode?: boolean;
+};
+
+export const Text = ({ textProps, editMode }: Props) => {
+    const { value, path } = textProps;
     if (!value) {
         return null;
     }
 
+    const editorProps = editMode
+        ? {
+              'data-portal-component-type': ComponentType.Text,
+              'data-portal-component': path,
+              'data-th-remove': 'tag',
+          }
+        : undefined;
+
     return (
-        <div
-            className={'default typo-normal'}
-            data-portal-component-type={ComponentType.Text}
-            data-portal-component={path}
-            data-th-remove="tag"
-        >
+        <div className={'default typo-normal'} {...editorProps}>
             <ParsedHtml content={value} />
         </div>
     );

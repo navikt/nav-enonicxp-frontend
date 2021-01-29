@@ -26,7 +26,7 @@ import PublishingCalendar from './publishing-calendar/PublishingCalendar';
 import { BEM } from '../../utils/bem';
 
 type Props = {
-    componentProps: PartComponentProps;
+    partProps: PartComponentProps;
     pageProps: ContentProps;
 };
 
@@ -63,8 +63,8 @@ const partsDeprecated: { [key in PartDeprecated] } = {
     [PartType.PageCrumbs]: true,
 };
 
-const PartComponent = ({ componentProps, pageProps }: Props) => {
-    const { descriptor } = componentProps;
+const PartComponent = ({ partProps, pageProps }: Props) => {
+    const { descriptor } = partProps;
 
     const PartWithGlobalData = partsWithPageData[descriptor];
     if (PartWithGlobalData) {
@@ -73,7 +73,7 @@ const PartComponent = ({ componentProps, pageProps }: Props) => {
 
     const PartWithOwnData = partsWithOwnData[descriptor];
     if (PartWithOwnData) {
-        return <PartWithOwnData {...componentProps} />;
+        return <PartWithOwnData {...partProps} />;
     }
 
     if (partsDeprecated[descriptor]) {
@@ -83,8 +83,8 @@ const PartComponent = ({ componentProps, pageProps }: Props) => {
     return <div>{`Unimplemented part: ${descriptor}`}</div>;
 };
 
-export const PartsMapper = ({ pageProps, componentProps }: Props) => {
-    const { path, descriptor } = componentProps;
+export const PartsMapper = ({ pageProps, partProps }: Props) => {
+    const { path, descriptor } = partProps;
 
     if (!descriptor) {
         return null;
@@ -103,10 +103,7 @@ export const PartsMapper = ({ pageProps, componentProps }: Props) => {
 
     return (
         <div className={`${bem()} ${bem(layoutName)}`} {...editorProps}>
-            <PartComponent
-                pageProps={pageProps}
-                componentProps={componentProps}
-            />
+            <PartComponent pageProps={pageProps} partProps={partProps} />
         </div>
     );
 };
