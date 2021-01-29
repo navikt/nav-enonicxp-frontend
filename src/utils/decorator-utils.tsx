@@ -107,12 +107,7 @@ const decoratorFragmentsCSR = (query?: string) => ({
 
 const errorParams = (content: ContentProps): DecoratorParams => ({
     feedback: false,
-    breadcrumbs: content.breadcrumbs || [
-        {
-            title: content.data?.errorMessage || 'Ukjent feil',
-            url: '/',
-        },
-    ],
+    breadcrumbs: content?.breadcrumbs || [],
 });
 
 const defaultParams = {
@@ -121,7 +116,7 @@ const defaultParams = {
 };
 
 export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
-    if (content.__typename === ContentType.Error) {
+    if (!content || content.__typename === ContentType.Error) {
         return errorParams(content);
     }
 
