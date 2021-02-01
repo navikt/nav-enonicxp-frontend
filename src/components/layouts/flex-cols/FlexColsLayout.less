@@ -4,16 +4,6 @@
     &__dynamic-flex-cols {
         display: flex;
         justify-content: center;
-        //width: 100%;
-        //margin: 0 @padding-sides-desktop;
-        //
-        //@media @screen-tablet {
-        //    margin: 0 @padding-sides-tablet;
-        //}
-        //
-        //@media @screen-mobile {
-        //    margin: 0 @padding-sides-mobile;
-        //}
     }
 }
 
@@ -21,6 +11,7 @@
     &__flexcols {
         .flex-items(@numCols, @margin: 1rem) {
             & > * {
+                @numColsPlus1: @numCols + 1;
                 display: flex;
 
                 width: calc(
@@ -34,6 +25,10 @@
 
                 &:nth-child(@{numCols}n + @{numCols}) {
                     margin-right: 0;
+                }
+
+                &:nth-child(n + @{numColsPlus1}) {
+                    margin-top: @margin;
                 }
             }
         }

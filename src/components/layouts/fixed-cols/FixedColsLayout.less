@@ -11,6 +11,10 @@
 
         @media @screen-mobile {
             flex-direction: column;
+
+            & > *:not(:first-child) {
+                margin-top: 1rem;
+            }
         }
     }
 }
@@ -28,6 +32,10 @@
             display: flex;
             align-items: stretch;
             height: 100%;
+
+            &:not(:first-child) {
+                margin-top: 1rem;
+            }
         }
 
         &:not(:last-child) {

@@ -18,9 +18,9 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const { distribution } = config;
-
     const layoutStyle = getCommonLayoutStyle(layoutProps);
+
+    const { distribution } = config;
 
     return (
         <LayoutContainer
