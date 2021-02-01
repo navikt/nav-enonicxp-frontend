@@ -1,7 +1,11 @@
-import { LayoutProps } from '../../types/component-props/layouts';
+import { LayoutCommonConfig } from '../../types/component-props/layouts';
 
-export const getCommonLayoutStyle = (layoutProps: LayoutProps) => {
-    const { backgroundColor, marginTop, marginBottom } = layoutProps.config;
+export const getCommonLayoutStyle = (config: LayoutCommonConfig) => {
+    if (!config) {
+        return undefined;
+    }
+
+    const { backgroundColor, marginTop, marginBottom } = config;
 
     return {
         ...(marginTop && { marginTop: `${marginTop}rem` }),

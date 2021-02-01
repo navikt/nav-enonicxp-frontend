@@ -24,7 +24,7 @@ export const Text = ({ textProps, editMode }: Props) => {
         : undefined;
 
     return (
-        <div className={'default typo-normal'} {...editorProps}>
+        <div className={'typo-normal'} {...editorProps}>
             <ParsedHtml content={value} />
         </div>
     );

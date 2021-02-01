@@ -28,7 +28,7 @@ const Image = ({ imageProps, editMode }: Props) => {
         : undefined;
 
     return (
-        <div className={'default'} {...editorProps}>
+        <div {...editorProps}>
             <img className={'image'} src={src} alt={''} />
         </div>
     );

@@ -1,4 +1,4 @@
-import { LayoutCommonProps, LayoutType } from '../layouts';
+import { LayoutCommonConfig, LayoutCommonProps, LayoutType } from '../layouts';
 import { ComponentProps, ComponentType } from '../_component-common';
 
 export interface FlexColsLayoutProps extends LayoutCommonProps {
@@ -13,9 +13,5 @@ export interface FlexColsLayoutProps extends LayoutCommonProps {
     config: {
         numCols: number;
         justifyContent: 'flex-start' | 'center' | 'flex-end';
-        marginTop: number;
-        marginBottom: number;
-        backgroundColor: string;
-        bgFullWidth: boolean;
-    };
+    } & LayoutCommonConfig;
 }
