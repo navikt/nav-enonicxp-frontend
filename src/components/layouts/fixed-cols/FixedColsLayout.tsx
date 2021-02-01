@@ -3,6 +3,7 @@ import { ContentProps } from '../../../types/content-props/_content-common';
 import Region from '../Region';
 import { FixedColsLayoutProps } from '../../../types/component-props/layouts/fixed-cols';
 import { LayoutContainer } from '../LayoutContainer';
+import { getCommonLayoutStyle } from '../LayoutStyle';
 import './FixedColsLayout.less';
 
 type Props = {
@@ -17,36 +18,15 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const {
-        backgroundColor,
-        bgFullWidth,
-        marginTop,
-        marginBottom,
-        distribution,
-    } = config;
+    const { distribution } = config;
 
-    const innerStyle = {
-        ...(!bgFullWidth &&
-            backgroundColor && {
-                backgroundColor: backgroundColor,
-            }),
-    };
-
-    const outerStyle = {
-        ...(marginTop && { marginTop: `${marginTop}rem` }),
-        ...(marginBottom && { marginBottom: `${marginBottom}rem` }),
-        ...(bgFullWidth &&
-            backgroundColor && {
-                backgroundColor: backgroundColor,
-            }),
-    };
+    const layoutStyle = getCommonLayoutStyle(layoutProps);
 
     return (
         <LayoutContainer
             pageProps={pageProps}
             layoutProps={layoutProps}
-            innerStyle={innerStyle}
-            outerStyle={outerStyle}
+            layoutStyle={layoutStyle}
         >
             {Object.values(regions).map((regionProps, index) => {
                 const regionStyle = distribution

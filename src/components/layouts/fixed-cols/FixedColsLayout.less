@@ -1,24 +1,6 @@
 @import (reference) '../../../global';
 
 .layout {
-    &__dynamic-2-col {
-        & > * {
-            flex: 50%;
-        }
-    }
-
-    &__dynamic-3-col {
-        & > * {
-            flex: percentage(1/3);
-        }
-    }
-
-    &__dynamic-4-col {
-        & > * {
-            flex: 25%;
-        }
-    }
-
     &__dynamic-1-col,
     &__dynamic-2-col,
     &__dynamic-3-col,
@@ -26,17 +8,8 @@
         display: flex;
         justify-content: center;
         align-items: stretch;
-        position: relative;
-        width: 100%;
-
-        margin: 0 @padding-sides-desktop;
-
-        @media @screen-tablet {
-            margin: 0 @padding-sides-tablet;
-        }
 
         @media @screen-mobile {
-            margin: 0 @padding-sides-mobile;
             flex-direction: column;
         }
     }

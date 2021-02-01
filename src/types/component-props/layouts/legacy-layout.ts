@@ -15,5 +15,4 @@ export interface LegacyLayoutProps extends LayoutCommonProps {
             name: LegacyRegions;
         };
     };
-    config: {};
 }

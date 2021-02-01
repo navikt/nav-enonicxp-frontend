@@ -27,7 +27,7 @@ export interface LayoutCommonProps extends ComponentCommonProps {
     type: ComponentType.Layout | ComponentType.Page;
     descriptor: LayoutType;
     regions?: { [key: string]: RegionProps };
-    config: any;
+    config?: any;
 }
 
 export type LayoutProps =

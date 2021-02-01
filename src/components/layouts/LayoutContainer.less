@@ -1,32 +1,31 @@
 @import (reference) '../../global';
 
 .layout {
-    &__outer {
-        display: flex;
-        justify-content: center;
-        position: relative;
-        width: 100vw;
+    // Set negative horizontal margin and equivalent padding in order to
+    // make the background of a layout cover the padding of the app-container
+    padding-left: @padding-sides-mobile;
+    padding-right: @padding-sides-mobile;
+    margin-left: -@padding-sides-mobile;
+    margin-right: -@padding-sides-mobile;
+
+    @media @screen-tablet {
+        padding-left: @padding-sides-tablet;
+        padding-right: @padding-sides-tablet;
+        margin-left: -@padding-sides-tablet;
+        margin-right: -@padding-sides-tablet;
+    }
+
+    @media @screen-desktop {
+        padding-left: @padding-sides-desktop;
+        padding-right: @padding-sides-desktop;
+        margin-left: -@padding-sides-desktop;
+        margin-right: -@padding-sides-desktop;
+    }
+
+    &__fullwidth {
+        padding-left: 50vw;
+        padding-right: 50vw;
         margin-left: -50vw;
-        left: 50%;
-
-        &--fullwidth {
-            padding: 1.25rem 0;
-        }
-
-        & > * {
-            max-width: calc(100% - @padding-sides-mobile * 2);
-
-            @media @screen-tablet {
-                max-width: calc(100% - @padding-sides-tablet * 2);
-            }
-
-            @media @screen-desktop {
-                max-width: calc(100% - @padding-sides-desktop * 2);
-            }
-
-            @media @screen-desktop-large {
-                max-width: calc(@desktopMaxWidth - @padding-sides-desktop * 2);
-            }
-        }
+        margin-right: -50vw;
     }
 }
