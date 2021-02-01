@@ -75,9 +75,20 @@
             }
         }
 
-        // Fix for XP region preview drop-zone
+        // Fixes for content studio drag and drop placeholders
         .xp-page-editor-region-placeholder:last-child {
             display: block;
+        }
+
+        .xp-page-editor-part-placeholder {
+            width: 100%;
+        }
+
+        .live-edit-drag-placeholder-container {
+            & > * {
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 }
