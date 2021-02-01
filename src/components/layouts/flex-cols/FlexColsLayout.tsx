@@ -18,13 +18,14 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const { numCols, justifyContent, bgFullWidth } = layoutProps.config;
+    const { config } = layoutProps;
+    const { numCols, justifyContent, bgFullWidth } = config;
 
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
     };
 
-    const layoutStyle = getCommonLayoutStyle(layoutProps);
+    const layoutStyle = getCommonLayoutStyle(config);
 
     return (
         <LayoutContainer
