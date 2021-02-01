@@ -1,12 +1,15 @@
 @import (reference) '../../global';
 
 .layout {
+    // The default top/bottom margins may be overridden by the content editor
+    @vertical-margin-default: 1rem;
+
     // Set negative horizontal margin and equivalent padding in order to
     // make the background of a layout cover the padding of the app-container
     padding-left: @padding-sides-mobile;
     padding-right: @padding-sides-mobile;
-    margin-left: -@padding-sides-mobile;
-    margin-right: -@padding-sides-mobile;
+
+    margin: @vertical-margin-default -@padding-sides-mobile;
 
     @media @screen-tablet {
         padding-left: @padding-sides-tablet;

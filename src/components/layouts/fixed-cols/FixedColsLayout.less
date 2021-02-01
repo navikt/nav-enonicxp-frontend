@@ -38,12 +38,9 @@
             }
         }
 
-        &:not(:last-child) {
-            @media @screen-tablet {
-                margin-right: 1rem;
-            }
-            @media @screen-desktop {
-                margin-right: 1rem;
+        &:not(:first-child) {
+            @media @screen-tablet-and-desktop {
+                margin-left: 1rem;
             }
         }
 
