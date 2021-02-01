@@ -8,8 +8,11 @@ export const getCommonLayoutStyle = (config: LayoutCommonConfig) => {
     const { backgroundColor, marginTop, marginBottom } = config;
 
     return {
-        ...(marginTop && { marginTop: `${marginTop}rem` }),
-        ...(marginBottom && { marginBottom: `${marginBottom}rem` }),
+        // Check for undefined specifically. We want to allow margin values of 0
+        ...(marginTop !== undefined && { marginTop: `${marginTop}rem` }),
+        ...(marginBottom !== undefined && {
+            marginBottom: `${marginBottom}rem`,
+        }),
         ...(backgroundColor && {
             backgroundColor,
             paddingTop: '1.25rem',
