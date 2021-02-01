@@ -25,7 +25,7 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
         distribution,
     } = config;
 
-    const layoutStyle = {
+    const innerStyle = {
         ...(!bgFullWidth &&
             backgroundColor && {
                 backgroundColor: backgroundColor,
@@ -45,7 +45,7 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
         <LayoutContainer
             pageProps={pageProps}
             layoutProps={layoutProps}
-            layoutStyle={layoutStyle}
+            innerStyle={innerStyle}
             outerStyle={outerStyle}
         >
             {Object.values(regions).map((regionProps, index) => {

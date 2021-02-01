@@ -5,6 +5,15 @@
         display: flex;
         justify-content: center;
         width: 100%;
+        margin: 0 @padding-sides-desktop;
+
+        @media @screen-tablet {
+            margin: 0 @padding-sides-tablet;
+        }
+
+        @media @screen-mobile {
+            margin: 0 @padding-sides-mobile;
+        }
     }
 }
 
@@ -12,6 +21,8 @@
     &__flexcols {
         .flex-items(@numCols, @margin: 1rem) {
             & > * {
+                display: flex;
+
                 width: calc(
                     percentage(1 / @numCols) - (@margin * (@numCols - 1)) /
                         @numCols
@@ -30,11 +41,8 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        align-items: stretch;
         width: 100%;
-
-        @media @screen-tablet {
-            margin: 1rem @padding-sides-tablet;
-        }
 
         &--1-cols {
             .flex-items(1);
@@ -55,7 +63,6 @@
         }
 
         @media @screen-mobile {
-            margin: 1rem @padding-sides-mobile;
             .flex-items(1);
         }
 

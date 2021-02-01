@@ -1,27 +1,32 @@
 @import (reference) '../../global';
 
-.layout-fullwidth-container {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    width: 100vw;
-    margin-left: -50vw;
-    left: 50%;
-    padding: 1.5rem 0;
+.layout {
+    &__outer {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        width: 100vw;
+        margin-left: -50vw;
+        left: 50%;
 
-    & > * {
-        max-width: calc(100% - @padding-sides-mobile * 2);
-
-        @media @screen-tablet {
-            max-width: calc(100% - @padding-sides-tablet * 2);
+        &--fullwidth {
+            padding: 1.25rem 0;
         }
 
-        @media @screen-desktop {
-            max-width: calc(100% - @padding-sides-desktop * 2);
-        }
+        & > * {
+            max-width: calc(100% - @padding-sides-mobile * 2);
 
-        @media @screen-desktop-large {
-            max-width: calc(@desktopMaxWidth - @padding-sides-desktop * 2);
+            @media @screen-tablet {
+                max-width: calc(100% - @padding-sides-tablet * 2);
+            }
+
+            @media @screen-desktop {
+                max-width: calc(100% - @padding-sides-desktop * 2);
+            }
+
+            @media @screen-desktop-large {
+                max-width: calc(@desktopMaxWidth - @padding-sides-desktop * 2);
+            }
         }
     }
 }

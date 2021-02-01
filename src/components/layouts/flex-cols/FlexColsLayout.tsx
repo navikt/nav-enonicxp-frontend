@@ -14,7 +14,7 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
     const regionProps = layoutProps.regions.flexcols;
 
     if (!regionProps) {
-        return pageProps.editMode ? <div>{'Flex placeholder'}</div> : null;
+        return null;
     }
 
     const {
@@ -30,7 +30,7 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
         ...(justifyContent && { justifyContent }),
     };
 
-    const layoutStyle = {
+    const innerStyle = {
         ...(!bgFullWidth &&
             backgroundColor && {
                 backgroundColor,
@@ -50,7 +50,8 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
         <LayoutContainer
             pageProps={pageProps}
             layoutProps={layoutProps}
-            layoutStyle={layoutStyle}
+            fullwidth={bgFullWidth}
+            innerStyle={innerStyle}
             outerStyle={outerStyle}
         >
             <Region

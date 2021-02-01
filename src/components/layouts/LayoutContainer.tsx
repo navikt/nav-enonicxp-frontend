@@ -7,7 +7,8 @@ import './LayoutContainer.less';
 type Props = {
     pageProps: ContentProps;
     layoutProps: LayoutProps;
-    layoutStyle?: React.CSSProperties;
+    fullwidth?: boolean;
+    innerStyle?: React.CSSProperties;
     outerStyle?: React.CSSProperties;
     children: React.ReactNode;
 };
@@ -15,7 +16,8 @@ type Props = {
 export const LayoutContainer = ({
     layoutProps,
     pageProps,
-    layoutStyle,
+    fullwidth,
+    innerStyle,
     outerStyle,
     children,
 }: Props) => {
@@ -33,11 +35,13 @@ export const LayoutContainer = ({
 
     return (
         <div
-            className={'layout-fullwidth-container'}
+            className={`${bem('outer')} ${
+                fullwidth ? bem('outer', 'fullwidth') : ''
+            }`}
             style={outerStyle}
             {...editorProps}
         >
-            <div className={`${bem()} ${bem(layoutName)}`} style={layoutStyle}>
+            <div className={`${bem()} ${bem(layoutName)}`} style={innerStyle}>
                 {children}
             </div>
         </div>

@@ -29,7 +29,14 @@
         position: relative;
         width: 100%;
 
+        margin: 0 @padding-sides-desktop;
+
+        @media @screen-tablet {
+            margin: 0 @padding-sides-tablet;
+        }
+
         @media @screen-mobile {
+            margin: 0 @padding-sides-mobile;
             flex-direction: column;
         }
     }
@@ -52,7 +59,7 @@
 
         &:not(:last-child) {
             @media @screen-tablet {
-                margin-right: 0.5rem;
+                margin-right: 1rem;
             }
             @media @screen-desktop {
                 margin-right: 1rem;
