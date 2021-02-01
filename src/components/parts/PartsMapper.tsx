@@ -91,7 +91,7 @@ export const PartsMapper = ({ pageProps, partProps }: Props) => {
     }
 
     const bem = BEM(ComponentType.Part);
-    const layoutName = descriptor.split(':')[1];
+    const partName = descriptor.split(':')[1];
 
     const editorProps = pageProps.editMode
         ? {
@@ -101,7 +101,7 @@ export const PartsMapper = ({ pageProps, partProps }: Props) => {
         : undefined;
 
     return (
-        <div className={`${bem()} ${bem(layoutName)}`} {...editorProps}>
+        <div className={`${bem()} ${bem(partName)}`} {...editorProps}>
             <PartComponent pageProps={pageProps} partProps={partProps} />
         </div>
     );
