@@ -4,6 +4,7 @@ import { LayoutProps, LayoutType } from '../../types/component-props/layouts';
 import { FixedColsLayout } from './fixed-cols/FixedColsLayout';
 import { FlexColsLayout } from './flex-cols/FlexColsLayout';
 import { LegacyLayout } from './legacy/LegacyLayout';
+import { PageWithSideMenus } from './page-with-side-menus/PageWithSideMenus';
 
 type Props = {
     pageProps: ContentProps;
@@ -21,6 +22,7 @@ const layoutComponents: {
     [LayoutType.Fixed3Col]: FixedColsLayout,
     [LayoutType.Fixed4Col]: FixedColsLayout,
     [LayoutType.FlexCols]: FlexColsLayout,
+    [LayoutType.PageWithSideMenus]: PageWithSideMenus,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {

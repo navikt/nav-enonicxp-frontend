@@ -1,0 +1,41 @@
+@import (reference) '../../../global';
+
+.page {
+    &__page-with-side-menus {
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+    }
+}
+
+.region {
+    &__leftMenu,
+    &__rightMenu {
+        width: 15rem;
+        position: sticky;
+        top: calc(@decorator-height + 1rem);
+
+        & > * {
+            padding: 1rem;
+            background-color: white;
+            &:not(:last-child) {
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
+    &__pageContent {
+        background-color: white;
+        max-width: 42rem;
+        width: 100%;
+        padding: 1rem 3rem;
+    }
+
+    &__leftMenu {
+        margin-right: 1.25rem;
+    }
+
+    &__rightMenu {
+        margin-left: 1.25rem;
+    }
+}

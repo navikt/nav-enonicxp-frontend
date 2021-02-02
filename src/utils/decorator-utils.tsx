@@ -152,7 +152,12 @@ export const getDecoratorFragments = async (
         return cache.get(cacheKey);
     }
 
-    const decoratorHtml = await fetchDecoratorHtml(query);
+    // Prevents annoying console warning!
+    const decoratorHtml = await fetchDecoratorHtml(query).then((html) =>
+        process.env.NODE_ENV === 'development'
+            ? html.replace('value=""', '')
+            : html
+    );
 
     // Fallback to client-side rendered decorator if fetch failed
     if (!decoratorHtml) {

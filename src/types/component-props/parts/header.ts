@@ -9,5 +9,6 @@ export interface HeaderProps extends PartComponentProps {
         titleTypo: TypoStyle;
         titleTag: HeadingTag;
         ingress: string;
+        anchorId: string;
     }>;
 }
