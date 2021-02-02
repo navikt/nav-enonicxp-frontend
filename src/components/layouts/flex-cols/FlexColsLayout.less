@@ -9,18 +9,18 @@
 
 .region {
     &__flexcols {
-        .flex-items(@numCols, @margin: 1rem) {
+        .flex-items(@numCols, @margin-sides: 1rem) {
             & > * {
                 @numColsPlus1: @numCols + 1;
                 display: flex;
 
                 width: calc(
-                    percentage(1 / @numCols) - (@margin * (@numCols - 1)) /
+                    percentage(1 / @numCols) - (@margin-sides * (@numCols - 1)) /
                         @numCols
                 );
 
                 &:not(:last-child) {
-                    margin-right: @margin;
+                    margin-right: @margin-sides;
                 }
 
                 &:nth-child(@{numCols}n + @{numCols}) {
@@ -28,7 +28,7 @@
                 }
 
                 &:nth-child(n + @{numColsPlus1}) {
-                    margin-top: @margin;
+                    margin-top: 1rem;
                 }
             }
         }

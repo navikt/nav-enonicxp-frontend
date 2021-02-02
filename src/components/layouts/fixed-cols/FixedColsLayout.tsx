@@ -20,13 +20,14 @@ export const FixedColsLayout = ({ pageProps, layoutProps }: Props) => {
 
     const layoutStyle = getCommonLayoutStyle(config);
 
-    const { distribution } = config;
+    const { distribution, bgFullWidth } = config;
 
     return (
         <LayoutContainer
             pageProps={pageProps}
             layoutProps={layoutProps}
             layoutStyle={layoutStyle}
+            fullwidth={bgFullWidth}
         >
             {Object.values(regions).map((regionProps, index) => {
                 const regionStyle = distribution
