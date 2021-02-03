@@ -23,6 +23,7 @@ jobs:
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
         run: |
           cat > .env <<EOF
+          NAIS_ENV=q6
           NODE_ENV=production
           ADMIN_ORIGIN=https://portal-admin-q6.oera.no
           APP_ORIGIN=https://www-q6.nav.no

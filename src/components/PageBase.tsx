@@ -14,9 +14,12 @@ import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
 import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
 import { isNotFound } from '../utils/errors';
+import { fetchLookupTableFromApi } from '../utils/lookup-table';
+import { AppProps } from 'next/app';
 
-type PageProps = {
+export type PageProps = {
     content: ContentProps;
+    lookupTable?: { [key: string]: string };
 };
 
 type StaticProps = {
@@ -25,7 +28,7 @@ type StaticProps = {
     notFound?: boolean;
 };
 
-export const PageBase = (props: PageProps) => {
+export const PageBase = (props: AppProps) => {
     const router = useRouter();
     if (router.isFallback) {
         return <FallbackPage />;
@@ -100,10 +103,11 @@ export const fetchPageProps = async (
 ): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret);
+    const lookupTable = await fetchLookupTableFromApi();
 
     if (isNotFound(content)) {
         return {
-            props: { content },
+            props: { content, lookupTable },
             notFound: true,
         };
     }
@@ -116,13 +120,13 @@ export const fetchPageProps = async (
 
     if (redirectTarget) {
         return {
-            props: { content },
+            props: { content, lookupTable },
             redirect: { destination: redirectTarget, permanent: false },
         };
     }
 
     return {
-        props: { content },
+        props: { content, lookupTable },
     };
 };
 
