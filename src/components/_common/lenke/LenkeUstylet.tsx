@@ -3,7 +3,7 @@ import { xpPathToPathname, isInternalUrl } from 'utils/paths';
 import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
 import { useAppContext } from '../../../pages/_app';
-import { getUrlFromLookupTable } from '../../../utils/lookup-table';
+import { getUrlFromLookupTable } from '../../../utils/url-lookup-table';
 
 type Props = {
     href: string;
@@ -23,11 +23,9 @@ export const LenkeUstylet = ({
     children,
     ...rest
 }: Props) => {
-    const { lookupTable } = useAppContext();
-    const _href = getUrlFromLookupTable(
-        xpPathToPathname(href) || '/',
-        lookupTable
-    );
+    const { urlLookupTable } = useAppContext();
+    const pathOrUrl = xpPathToPathname(href) || '/';
+    const _href = getUrlFromLookupTable(pathOrUrl, urlLookupTable);
 
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);

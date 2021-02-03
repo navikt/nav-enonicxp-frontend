@@ -1,13 +1,18 @@
 import React, { createContext, useContext } from 'react';
 import type { AppProps } from 'next/app';
-import { PageProps } from '../components/PageBase';
+import { GlobalState } from '../components/PageBase';
 import '../global.less';
 
-const AppContext = createContext<PageProps>({ content: undefined });
+const AppContext = createContext<GlobalState>({});
 
 const App = ({ Component, pageProps }: AppProps) => {
+    const { urlLookupTable } = pageProps;
+    const globalState = {
+        urlLookupTable,
+    };
+
     return (
-        <AppContext.Provider value={pageProps}>
+        <AppContext.Provider value={globalState}>
             <Component {...pageProps} />
         </AppContext.Provider>
     );

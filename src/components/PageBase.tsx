@@ -14,15 +14,22 @@ import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
 import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
 import { isNotFound } from '../utils/errors';
-import { fetchLookupTableFromApi } from '../utils/lookup-table';
+import { getUrlLookupTable } from '../utils/url-lookup-table';
 
 export type PageProps = {
     content: ContentProps;
-    lookupTable?: { [key: string]: string };
+};
+
+export type GlobalState = {
+    urlLookupTable?: UrlLookupTable;
+};
+
+export type UrlLookupTable = {
+    [key: string]: string;
 };
 
 type StaticProps = {
-    props: PageProps;
+    props: PageProps & GlobalState;
     redirect?: { destination: string; permanent: boolean };
     notFound?: boolean;
 };
@@ -102,11 +109,11 @@ export const fetchPageProps = async (
 ): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret);
-    const lookupTable = await fetchLookupTableFromApi();
+    const urlLookupTable = (await getUrlLookupTable()) as UrlLookupTable;
 
     if (isNotFound(content)) {
         return {
-            props: { content, lookupTable },
+            props: { content, urlLookupTable },
             notFound: true,
         };
     }
@@ -119,13 +126,13 @@ export const fetchPageProps = async (
 
     if (redirectTarget) {
         return {
-            props: { content, lookupTable },
+            props: { content, urlLookupTable },
             redirect: { destination: redirectTarget, permanent: false },
         };
     }
 
     return {
-        props: { content, lookupTable },
+        props: { content, urlLookupTable },
     };
 };
 
