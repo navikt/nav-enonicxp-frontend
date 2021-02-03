@@ -3,9 +3,9 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
 import { BEM } from 'utils/bem';
 import { LenkeUstylet } from './LenkeUstylet';
+import { getUrlFromLookupTable } from 'utils/url-lookup-table';
+import { useAppContext } from 'pages/_app';
 import './LenkeStandalone.less';
-import { useAppContext } from '../../../pages/_app';
-import { getUrlFromLookupTable } from '../../../utils/url-lookup-table';
 
 type Props = {
     href: string;

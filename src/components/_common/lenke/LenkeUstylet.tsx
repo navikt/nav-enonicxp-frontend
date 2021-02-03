@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { xpPathToPathname, isInternalUrl } from 'utils/paths';
 import { logLinkClick } from 'utils/amplitude';
+import { useAppContext } from 'pages/_app';
+import { getUrlFromLookupTable } from 'utils/url-lookup-table';
 import Link from 'next/link';
-import { useAppContext } from '../../../pages/_app';
-import { getUrlFromLookupTable } from '../../../utils/url-lookup-table';
 
 type Props = {
     href: string;

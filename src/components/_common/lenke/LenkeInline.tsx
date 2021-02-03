@@ -1,7 +1,7 @@
 import React from 'react';
 import { LenkeUstylet } from './LenkeUstylet';
-import { getUrlFromLookupTable } from '../../../utils/url-lookup-table';
-import { useAppContext } from '../../../pages/_app';
+import { getUrlFromLookupTable } from 'utils/url-lookup-table';
+import { useAppContext } from 'pages/_app';
 
 type Props = {
     href: string;
