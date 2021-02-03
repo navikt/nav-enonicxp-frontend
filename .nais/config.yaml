@@ -26,6 +26,11 @@ spec:
   replicas:
     min: 2
     max: 4
+  accessPolicy:
+    outbound:
+      external:
+        - host: nav.no
+        - host: dekoratoren.dev.nav.no
   resources:
     limits:
       cpu: '3'
