@@ -15,7 +15,6 @@ import { routerQueryToXpPathOrId } from '../utils/paths';
 import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
 import { isNotFound } from '../utils/errors';
 import { fetchLookupTableFromApi } from '../utils/lookup-table';
-import { AppProps } from 'next/app';
 
 export type PageProps = {
     content: ContentProps;
@@ -28,7 +27,7 @@ type StaticProps = {
     notFound?: boolean;
 };
 
-export const PageBase = (props: AppProps) => {
+export const PageBase = (props: PageProps) => {
     const router = useRouter();
     if (router.isFallback) {
         return <FallbackPage />;
