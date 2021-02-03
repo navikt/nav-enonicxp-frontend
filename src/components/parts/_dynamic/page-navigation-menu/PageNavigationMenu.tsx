@@ -7,12 +7,16 @@ import './PageNavigationMenu.less';
 const bem = BEM('page-nav-menu');
 
 export const PageNavigationMenu = ({ config }: PageNavigationMenuProps) => {
-    const { anchorLinks } = config;
+    const anchorLinks = config?.anchorLinks;
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [sortedLinks, setSortedLinks] = useState(undefined);
 
     useEffect(() => {
+        if (!anchorLinks) {
+            return;
+        }
+
         const _sortedLinks = anchorLinks
             .filter((link) => document.getElementById(link.anchor))
             .sort(
