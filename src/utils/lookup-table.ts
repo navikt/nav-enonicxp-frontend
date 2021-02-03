@@ -14,7 +14,7 @@ export const getUrlFromLookupTable = (path, lookupTable) => {
 
 export const fetchLookupTableFromApi = async () => {
     console.log(`Fetching url-lookup-table from nav-enonicxp-iac`);
-    const url = `https://raw.githubusercontent.com/navikt/nav-enonicxp-iac/master/url-lookup-tables/${process.env.NEXT_PUBLIC_ENV}.json`;
+    const url = `https://raw.githubusercontent.com/navikt/nav-enonicxp-iac/master/url-lookup-tables/${process.env.NAIS_ENV}.json`;
     return await fetch(url)
         .then((res) => res.json())
         .catch((error) =>
