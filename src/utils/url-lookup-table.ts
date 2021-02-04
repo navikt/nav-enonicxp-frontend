@@ -7,6 +7,7 @@ export const getEnvUrl = (path: string) =>
 const getUrlFromTable = (path: string) => {
     let match = undefined;
     const lookupTable = publicRuntimeConfig?.runtimeConfig?.urlLookupTable;
+    console.log(publicRuntimeConfig);
     if (path && lookupTable) {
         Object.keys(lookupTable).some((key) => {
             if (path.startsWith(key)) {
