@@ -1,7 +1,6 @@
 FROM navikt/node-express:12.18-alpine
 
 # Create app directory
-RUN mkdir -p /app
 WORKDIR /app
 
 # Installing dependencies
