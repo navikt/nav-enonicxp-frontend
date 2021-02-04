@@ -27,6 +27,7 @@ const runtimeConfig = {};
 module.exports = configWithAllTheThings({
     assetPrefix: process.env.APP_ORIGIN,
     env: {
+        NAIS_ENV: process.env.NAIS_ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
     },
     publicRuntimeConfig: {
