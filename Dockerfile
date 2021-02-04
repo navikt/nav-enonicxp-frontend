@@ -1,17 +1,16 @@
 FROM navikt/node-express:12.18-alpine
 
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Installing dependencies
-COPY package*.json /usr/src/app/
-RUN npm ci
+COPY package*.json /app/
+COPY node_modules /app/node_modules/
 
 # Copying build files from workflow
-COPY public /usr/src/app/public/
-COPY .next /usr/src/app/.next/
-COPY [".env", "next.config.js", "/usr/src/app/"]
+COPY public /app/public/
+COPY .next /app/.next/
+COPY [".env", "next.config.js", "/app/"]
 
 # Start app
 EXPOSE 3000
