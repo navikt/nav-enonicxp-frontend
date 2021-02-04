@@ -22,9 +22,7 @@ export const LenkeUstylet = ({
     children,
     ...rest
 }: Props) => {
-    const pathOrUrl = xpPathToPathname(href) || '/';
-    const _href = getEnvUrl(pathOrUrl);
-
+    const _href = getEnvUrl(xpPathToPathname(href) || '/');
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);
 
