@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { xpPathToPathname, isInternalUrl } from 'utils/paths';
 import { logLinkClick } from 'utils/amplitude';
-import { getUrlFromLookupTable } from 'utils/url-lookup-table';
+import { getEnvUrl } from 'utils/url-lookup-table';
 import Link from 'next/link';
 
 type Props = {
@@ -23,7 +23,7 @@ export const LenkeUstylet = ({
     ...rest
 }: Props) => {
     const pathOrUrl = xpPathToPathname(href) || '/';
-    const _href = getUrlFromLookupTable(pathOrUrl);
+    const _href = getEnvUrl(pathOrUrl);
 
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);
