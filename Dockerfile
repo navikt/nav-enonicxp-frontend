@@ -5,7 +5,7 @@ WORKDIR /app
 
 # Installing dependencies
 COPY package*.json /app/
-RUN npm ci
+COPY node_modules /app/node_modules/
 
 # Copying build files from workflow
 COPY public /app/public/
