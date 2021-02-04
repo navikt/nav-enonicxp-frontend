@@ -7,10 +7,14 @@ WORKDIR /app
 COPY package*.json /app/
 RUN npm ci
 
-# Copying build files from workflow
-COPY public /app/public/
+# Copying build folders
 COPY .next /app/.next/
-COPY [".env", "next.config.js", "/app/"]
+COPY public /app/public/
+
+# Copy necesarry files
+COPY .env /app/
+COPY next.config.js /app/
+COPY url-lookup-table.json /app/
 
 # Start app
 EXPOSE 3000
