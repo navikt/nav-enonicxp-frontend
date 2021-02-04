@@ -11,7 +11,7 @@ RUN npm ci
 # Copying build files from workflow
 COPY public /app/public/
 COPY .next /app/.next/
-COPY [".env", "next.config.js", "gi/app/"]
+COPY [".env", "next.config.js", "/app/"]
 
 # Start app
 EXPOSE 3000
