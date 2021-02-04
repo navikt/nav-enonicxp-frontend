@@ -1,8 +1,8 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 
-type AnchorLink = {
-    anchor: string;
+export type AnchorLink = {
+    anchorId: string;
     linkText: string;
 };
 
