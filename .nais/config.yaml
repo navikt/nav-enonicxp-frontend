@@ -26,6 +26,7 @@ spec:
   replicas:
     min: 2
     max: 4
+  webproxy: true
   accessPolicy:
     outbound:
       external:
