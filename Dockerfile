@@ -1,11 +1,11 @@
-FROM navikt/node-express:12.18-alpine
+FROM node:12.18-alpine
 
 # Create app directory
 WORKDIR /app
 
 # Installing dependencies
 COPY package*.json /app/
-COPY node_modules /app/node_modules/
+RUN npm ci
 
 # Copying build files from workflow
 COPY public /app/public/
