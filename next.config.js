@@ -16,19 +16,22 @@ const withTranspileModules = require('next-transpile-modules')([
 const configWithAllTheThings = (config) =>
     withTranspileModules(withLess(withImages(config)));
 
+const getUrlLookupTable = () =>
+    JSON.stringify(
+        JSON.parse(
+            process.env.NAIS_ENV === 'localhost'
+                ? fs.readFileSync('local-url-lookup-table.json')
+                : fs.readFileSync('url-lookup-table.json')
+        )
+    );
+
 module.exports = configWithAllTheThings({
     assetPrefix: process.env.APP_ORIGIN,
     env: {
         NAIS_ENV: process.env.NAIS_ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
-    },
-    publicRuntimeConfig: {
         ...(process.env.NAIS_ENV !== 'prod' && {
-            urlLookupTable: JSON.parse(
-                process.env.NAIS_ENV === 'localhost'
-                    ? fs.readFileSync('local-url-lookup-table.json')
-                    : fs.readFileSync('url-lookup-table.json')
-            ),
+            URL_LOOKUP_TABLE: getUrlLookupTable(),
         }),
     },
     rewrites: async () => [
