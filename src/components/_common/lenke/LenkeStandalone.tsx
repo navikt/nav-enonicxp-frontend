@@ -3,7 +3,6 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
 import { BEM } from 'utils/bem';
 import { LenkeUstylet } from './LenkeUstylet';
-import { getEnvUrl } from 'utils/url-lookup-table';
 import './LenkeStandalone.less';
 
 type Props = {
@@ -29,11 +28,10 @@ export const LenkeStandalone = ({
     ...rest
 }: Props) => {
     const bem = BEM('navno-lenke');
-    const _href = getEnvUrl(href);
 
     return (
         <LenkeUstylet
-            href={_href}
+            href={href}
             className={`${bem()} ${className || ''}`}
             component={component}
             linkGroup={linkGroup}
