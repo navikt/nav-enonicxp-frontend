@@ -15,20 +15,12 @@ import { routerQueryToXpPathOrId } from '../utils/paths';
 import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
 import { isNotFound } from '../utils/errors';
 
-export type PageProps = {
+type PageProps = {
     content: ContentProps;
 };
 
-export type GlobalState = {
-    urlLookupTable?: UrlLookupTable;
-};
-
-export type UrlLookupTable = {
-    [key: string]: string;
-};
-
 type StaticProps = {
-    props: PageProps & GlobalState;
+    props: PageProps;
     redirect?: { destination: string; permanent: boolean };
     notFound?: boolean;
 };
