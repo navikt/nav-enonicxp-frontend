@@ -1,0 +1,13 @@
+{
+    "https://www.nav.no": "http://localhost:3000",
+    "https://aktivitetsplan.nav.no": "http://localhost:3500/aktivitetsplan",
+    "https://arbeidsgiver.nav.no": "http://localhost:3500/arbeidsgiver",
+    "https://arbeidsplassen.nav.no": "http://localhost:3500/arbeidsplassen",
+    "https://arbeidssokerregistrering.nav.no": "http://localhost:3500/arbeidssokerregistrering",
+    "https://familie.nav.no": "http://localhost:3500/familie",
+    "https://foreldrepenger.nav.no": "http://localhost:3500/foreldrepenger",
+    "https://mininnboks.nav.no": "http://localhost:3500/mininnboks",
+    "https://tjenester.nav.no": "http://localhost:3500/tjenester",
+    "https://veiledearbeidssoker.nav.no": "http://localhost:3500/veiledearbeidssoker",
+    "/_/": "http://localhost:8080/_/"
+}
