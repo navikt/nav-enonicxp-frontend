@@ -1,7 +1,7 @@
 # React/[Next.js](https://nextjs.org/) frontend for Enonic XP headless CMS.
 
-![Deploy-to-prod](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-prod/badge.svg) | ![Deploy-to-dev](<![Deploy-to-dev](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-dev/badge.svg)>) <br>
-![Deploy-to-q1](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-q1/badge.svg) | ![Deploy-to-q6](<![Deploy-to-dev](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-q6/badge.svg)>)
+![Deploy-to-prod](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-prod/badge.svg) | ![Deploy-to-dev](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-dev/badge.svg) <br>
+![Deploy-to-q1](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-q1/badge.svg) | ![Deploy-to-q6](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-q6/badge.svg)
 
 ## Lokal kjøring
 
