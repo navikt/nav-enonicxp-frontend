@@ -36,9 +36,8 @@ jobs:
         run: |
           curl \
             -o url-lookup-table.json \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_PAT }}" \
             -H "Accept: application/vnd.github.v3.raw" \
-            -L "https://api.github.com/repos/navikt/nav-enonicxp-iac/contents/url-lookup-tables/dev.json"
+            -L "https://raw.githubusercontent.com/navikt/nav-enonicxp-iac/master/url-lookup-tables/dev.json"
           echo "$(cat url-lookup-table.json)"
       - uses: actions/cache@v1
         with:
