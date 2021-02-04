@@ -25,7 +25,9 @@ module.exports = configWithAllTheThings({
     publicRuntimeConfig: {
         ...(process.env.NAIS_ENV !== 'prod' && {
             urlLookupTable: JSON.parse(
-                fs.readFileSync('url-lookup-table.json')
+                process.env.NAIS_ENV === 'localhost'
+                    ? fs.readFileSync('local-url-lookup-table.json')
+                    : fs.readFileSync('url-lookup-table.json')
             ),
         }),
     },
