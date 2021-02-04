@@ -1,7 +1,6 @@
 import React from 'react';
 import { LenkeUstylet } from './LenkeUstylet';
 import { getUrlFromLookupTable } from 'utils/url-lookup-table';
-import { useAppContext } from 'pages/_app';
 
 type Props = {
     href: string;
@@ -11,8 +10,7 @@ type Props = {
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const LenkeInline = ({ href, className, children, ...rest }: Props) => {
-    const { urlLookupTable } = useAppContext();
-    const _href = getUrlFromLookupTable(href, urlLookupTable);
+    const _href = getUrlFromLookupTable(href);
     return (
         <LenkeUstylet
             href={_href}

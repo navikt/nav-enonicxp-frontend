@@ -1,16 +1,9 @@
-import Cache from 'node-cache';
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
 
-const oneHourInSeconds = 3600;
-const oneMinuteInSeconds = 60;
-
-const cacheKey = 'url-lookup-table-cache';
-const cache = new Cache({
-    stdTTL: oneHourInSeconds,
-    checkperiod: oneMinuteInSeconds,
-});
-
-export const getUrlFromLookupTable = (path, lookupTable) => {
+export const getUrlFromLookupTable = (path) => {
     let match = undefined;
+    const lookupTable = publicRuntimeConfig?.runtimeConfig?.urlLookupTable;
     if (path && lookupTable) {
         Object.keys(lookupTable).some((key) => {
             if (path.startsWith(key)) {
@@ -21,25 +14,4 @@ export const getUrlFromLookupTable = (path, lookupTable) => {
         });
     }
     return match ? path.replace(match, lookupTable[match]) : path;
-};
-
-export const getUrlLookupTable = async () =>
-    cache.has(cacheKey)
-        ? await cache.get(cacheKey)
-        : await fetchUrlLookupTable();
-
-export const fetchUrlLookupTable = async () => {
-    console.log(`Fetching url-lookup-table from nav-enonicxp-iac`);
-    const url = `https://raw.githubusercontent.com/navikt/nav-enonicxp-iac/master/url-lookup-tables/${process.env.NAIS_ENV}.json`;
-    return await fetch(url)
-        .then((res) => {
-            return res.json();
-        })
-        .then((table) => {
-            cache.set(cacheKey, table);
-            return table;
-        })
-        .catch((error) => {
-            console.error(`Unable to fetch url-lookup-table: ${error}`);
-        });
 };

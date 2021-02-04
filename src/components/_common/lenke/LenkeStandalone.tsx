@@ -4,7 +4,6 @@ import { Undertekst } from 'nav-frontend-typografi';
 import { BEM } from 'utils/bem';
 import { LenkeUstylet } from './LenkeUstylet';
 import { getUrlFromLookupTable } from 'utils/url-lookup-table';
-import { useAppContext } from 'pages/_app';
 import './LenkeStandalone.less';
 
 type Props = {
@@ -30,8 +29,7 @@ export const LenkeStandalone = ({
     ...rest
 }: Props) => {
     const bem = BEM('navno-lenke');
-    const { urlLookupTable } = useAppContext();
-    const _href = getUrlFromLookupTable(href, urlLookupTable);
+    const _href = getUrlFromLookupTable(href);
 
     return (
         <LenkeUstylet

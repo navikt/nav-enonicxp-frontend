@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { xpPathToPathname, isInternalUrl } from 'utils/paths';
 import { logLinkClick } from 'utils/amplitude';
-import { useAppContext } from 'pages/_app';
 import { getUrlFromLookupTable } from 'utils/url-lookup-table';
 import Link from 'next/link';
 
@@ -23,9 +22,8 @@ export const LenkeUstylet = ({
     children,
     ...rest
 }: Props) => {
-    const { urlLookupTable } = useAppContext();
     const pathOrUrl = xpPathToPathname(href) || '/';
-    const _href = getUrlFromLookupTable(pathOrUrl, urlLookupTable);
+    const _href = getUrlFromLookupTable(pathOrUrl);
 
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);

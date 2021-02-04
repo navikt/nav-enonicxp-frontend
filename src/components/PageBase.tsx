@@ -14,7 +14,6 @@ import { getTargetIfRedirect } from '../utils/redirects';
 import { routerQueryToXpPathOrId } from '../utils/paths';
 import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
 import { isNotFound } from '../utils/errors';
-import { getUrlLookupTable } from '../utils/url-lookup-table';
 
 export type PageProps = {
     content: ContentProps;
@@ -109,11 +108,10 @@ export const fetchPageProps = async (
 ): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret);
-    const urlLookupTable = (await getUrlLookupTable()) as UrlLookupTable;
 
     if (isNotFound(content)) {
         return {
-            props: { content, urlLookupTable },
+            props: { content },
             notFound: true,
         };
     }
@@ -126,13 +124,13 @@ export const fetchPageProps = async (
 
     if (redirectTarget) {
         return {
-            props: { content, urlLookupTable },
+            props: { content },
             redirect: { destination: redirectTarget, permanent: false },
         };
     }
 
     return {
-        props: { content, urlLookupTable },
+        props: { content },
     };
 };
 

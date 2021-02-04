@@ -15,10 +15,22 @@ const withTranspileModules = require('next-transpile-modules')([
 const configWithAllTheThings = (config) =>
     withTranspileModules(withLess(withImages(config)));
 
+const runtimeConfig = {};
+(async () => {
+    console.log('Fetching url-lookup-table');
+    const urlLookupTableUrl = `https://raw.githubusercontent.com/navikt/nav-enonicxp-iac/master/url-lookup-tables/${process.env.NAIS_ENV}.json`;
+    runtimeConfig.urlLookupTable = await fetch(urlLookupTableUrl)
+        .then((res) => res.json())
+        .catch((err) => `Failed to fetch url-lookup-table: ${err}`);
+})();
+
 module.exports = configWithAllTheThings({
     assetPrefix: process.env.APP_ORIGIN,
     env: {
         APP_ORIGIN: process.env.APP_ORIGIN,
+    },
+    publicRuntimeConfig: {
+        runtimeConfig,
     },
     rewrites: async () => [
         {
@@ -30,17 +42,15 @@ module.exports = configWithAllTheThings({
             destination: `${process.env.APP_ORIGIN}/api/rss`,
         },
     ],
-    headers: async () => {
-        return [
-            {
-                source: '/_next/(.*)',
-                headers: [
-                    {
-                        key: 'Access-Control-Allow-Origin',
-                        value: process.env.ADMIN_ORIGIN,
-                    },
-                ],
-            },
-        ];
-    },
+    headers: async () => [
+        {
+            source: '/_next/(.*)',
+            headers: [
+                {
+                    key: 'Access-Control-Allow-Origin',
+                    value: process.env.ADMIN_ORIGIN,
+                },
+            ],
+        },
+    ],
 });
