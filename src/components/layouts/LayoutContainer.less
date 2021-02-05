@@ -3,6 +3,8 @@
 .layout {
     // The default top/bottom margins may be overridden by the content editor
     @vertical-margin-default: 1rem;
+    @side-width: calc((100vw - 100%) / 2);
+    @side-width-negative: calc((100vw - 100%) / -2);
 
     // Set negative horizontal margin and equivalent padding in order to
     // make the background of a layout cover the padding of the app-container
@@ -27,9 +29,9 @@
 
     // Makes the layout-container cover the entire screen-width
     &__fullwidth {
-        padding-left: 50vw;
-        padding-right: 50vw;
-        margin-left: -50vw;
-        margin-right: -50vw;
+        padding-left: @side-width;
+        padding-right: @side-width;
+        margin-left: @side-width-negative;
+        margin-right: @side-width-negative;
     }
 }
