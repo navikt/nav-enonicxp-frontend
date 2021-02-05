@@ -29,6 +29,22 @@ module.exports = configWithAllTheThings({
             source: '/no/rss',
             destination: `${process.env.APP_ORIGIN}/api/rss`,
         },
+        ...(process.env.APP_ORIGIN === 'http://localhost:3000'
+            ? [
+                  {
+                      source: '/_/:path*',
+                      destination: 'http://localhost:8080/_/:path*',
+                  },
+              ]
+            : []),
+        ...(process.env.APP_ORIGIN === 'https://www.dev.nav.no'
+            ? [
+                  {
+                      source: '/_/:path*',
+                      destination: 'https://www-q1.nav.no/_/:path*',
+                  },
+              ]
+            : []),
     ],
     headers: async () => [
         {
