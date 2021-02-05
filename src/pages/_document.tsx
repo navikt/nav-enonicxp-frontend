@@ -8,10 +8,8 @@ import Document, {
 } from 'next/document';
 import { Language } from '../translations';
 import { DocumentInitialProps } from 'next/dist/pages/_document';
-import {
-    DecoratorFragments,
-    getDecoratorFragments,
-} from '../utils/decorator-utils';
+import { getDecoratorFragments } from '../utils/decorator-utils';
+import { DecoratorFragments } from '../utils/decorator-utils';
 import { DocumentParameter } from '../components/_common/metatags/DocumentParameterMetatags';
 
 type DocumentProps = {

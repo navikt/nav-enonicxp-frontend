@@ -1,12 +1,12 @@
-name: Deploy-to-q6
+name: Deploy-to-dev
 on:
   push:
     tags:
-      - "v*-q6"
+      - "v*-dev"
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: dev-sbs:q6
+    environment: dev-sbs:personbruker
     steps:
       - uses: actions/checkout@v1
       - name: Define build environment
@@ -23,12 +23,12 @@ jobs:
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
         run: |
           cat > .env <<EOF
-          NAIS_ENV=q6
+          NAIS_ENV=dev
           NODE_ENV=production
-          ADMIN_ORIGIN=https://portal-admin-q6.oera.no
-          APP_ORIGIN=https://www-q6.nav.no
-          DECORATOR_URL=https://www-q6.nav.no/dekoratoren
-          XP_ORIGIN=https://www-q6.nav.no
+          ADMIN_ORIGIN=https://portal-admin-q1.oera.no
+          APP_ORIGIN=https://www.dev.nav.no
+          DECORATOR_URL=https://dekoratoren.dev.nav.no
+          XP_ORIGIN=https://www-q1.nav.no
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
           SERVICE_SECRET=$SERVICE_SECRET
           EOF
@@ -37,7 +37,7 @@ jobs:
           curl \
             -o url-lookup-table.json \
             -H "Accept: application/vnd.github.v3.raw" \
-            -L "https://raw.githubusercontent.com/navikt/nav-enonicxp-iac/master/url-lookup-tables/q6.json"
+            -L "https://raw.githubusercontent.com/navikt/nav-enonicxp-iac/master/url-lookup-tables/dev.json"
           echo "$(cat url-lookup-table.json)"
       - uses: actions/cache@v1
         with:
@@ -55,9 +55,9 @@ jobs:
       - name: Generate nais variables
         run: |
           cat > .nais/vars.yaml <<EOF
-          namespace: q6
+          namespace: personbruker
           ingresses:
-            - https://www-q6.nav.no
+            - https://www.dev.nav.no
           image: $IMAGE_REGISTRY/$IMAGE_NAME
           version: $IMAGE_VERSION
           EOF
