@@ -7,5 +7,9 @@ export const HtmlArea = ({ config }: HtmlAreaProps) => {
         return <div>{'Tom innholdskomponent. Klikk for å redigere.'}</div>;
     }
 
-    return <ParsedHtml content={config.html} />;
+    return (
+        <div>
+            <ParsedHtml content={config.html} />
+        </div>
+    );
 };

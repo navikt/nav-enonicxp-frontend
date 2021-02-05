@@ -57,7 +57,9 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
             );
         default:
             return (
-                <div>{`Unimplemented component type: ${componentProps.type}`}</div>
+                <div>{`Unimplemented component type: ${
+                    (componentProps as any).type
+                }`}</div>
             );
     }
 };
