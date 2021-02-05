@@ -2,18 +2,7 @@ import { ContentType } from '../types/content-props/_content-common';
 import { ContentProps } from '../types/content-props/_content-common';
 import { xpPathToPathname } from './paths';
 
-const appOrigin = process.env.APP_ORIGIN;
-
-const getTargetIfRedirectDev = (contentData: ContentProps) => {
-    const redirect = getTargetIfRedirectProd(contentData);
-    if (!redirect) {
-        return null;
-    }
-
-    return redirect.replace(/^https:\/\/.*.nav.no/, appOrigin);
-};
-
-const getTargetIfRedirectProd = (contentData: ContentProps) => {
+export const getTargetIfRedirect = (contentData: ContentProps) => {
     switch (contentData?.__typename) {
         case ContentType.Site:
             return '/no/person';
@@ -26,8 +15,3 @@ const getTargetIfRedirectProd = (contentData: ContentProps) => {
             return null;
     }
 };
-
-export const getTargetIfRedirect =
-    appOrigin === 'https://www.nav.no'
-        ? getTargetIfRedirectProd
-        : getTargetIfRedirectDev;
