@@ -6,15 +6,9 @@ const appOrigin = process.env.APP_ORIGIN;
 
 const getTargetIfRedirectDev = (contentData: ContentProps) => {
     const redirect = getTargetIfRedirectProd(contentData);
-    console.log(redirect);
     if (!redirect) {
         return null;
     }
-
-    console.log(
-        'new redir:',
-        redirect.replace(/^https:\/\/.*.nav.no/, appOrigin)
-    );
 
     return redirect.replace(/^https:\/\/.*.nav.no/, appOrigin);
 };
