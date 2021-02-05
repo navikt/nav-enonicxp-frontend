@@ -5,9 +5,9 @@ import {
 } from '../types/component-props/_component-common';
 import { Text } from './parts/_dynamic/text/Text';
 import Image from './parts/_dynamic/image/Image';
-import LayoutMapper from './layouts/LayoutMapper';
 import { PartsMapper } from './parts/PartsMapper';
 import { ContentProps } from '../types/content-props/_content-common';
+import { LayoutMapper } from './layouts/LayoutMapper';
 
 type Props = {
     componentProps: ComponentProps;
@@ -41,6 +41,19 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
         case ComponentType.Part:
             return (
                 <PartsMapper partProps={componentProps} pageProps={pageProps} />
+            );
+        case ComponentType.Fragment:
+            const editorProps = pageProps.editMode
+                ? {
+                      'data-portal-component-type': ComponentType.Part,
+                      'data-portal-component': componentProps.path,
+                  }
+                : undefined;
+
+            return (
+                <div {...editorProps}>
+                    <div>{'Fragment placeholder'}</div>
+                </div>
             );
         default:
             return (

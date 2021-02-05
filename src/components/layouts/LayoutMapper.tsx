@@ -36,5 +36,3 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
 
     return <LayoutComponent pageProps={pageProps} layoutProps={layoutProps} />;
 };
-
-export default LayoutMapper;

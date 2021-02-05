@@ -25,10 +25,22 @@
     }
 
     &__pageContent {
-        background-color: white;
         max-width: 42rem;
         width: 100%;
-        padding: 1rem 3rem;
+        padding: 0 @padding-sides-mobile;
+
+        & > .layout {
+            background-color: white;
+            margin-top: 1rem;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        @media @screen-desktop {
+            padding: 0 @padding-sides-desktop;
+        }
     }
 
     &__leftMenu {

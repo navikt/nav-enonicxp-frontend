@@ -17,6 +17,7 @@ import { Breadcrumb } from '../breadcrumb';
 import { NotificationProps } from '../notification-props';
 import { DynamicPageData } from './dynamic-page-props';
 import { PublishingCalendarData } from './publishing-calendar-props';
+import { FragmentPageData } from './fragment-page-props';
 
 export enum ContentType {
     Error = 'error',
@@ -75,5 +76,6 @@ export type ContentData = Partial<
         SectionPageData &
         TransportPageData &
         DynamicPageData &
-        PublishingCalendarData
+        PublishingCalendarData &
+        FragmentPageData
 >;
