@@ -8,14 +8,8 @@ type Props = {
     children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-export const LenkeInline = ({ href, className, children, ...rest }: Props) => {
-    return (
-        <LenkeUstylet
-            href={href}
-            className={`lenke ${className || ''}`}
-            {...rest}
-        >
-            {children}
-        </LenkeUstylet>
-    );
-};
+export const LenkeInline = ({ href, className, children, ...rest }: Props) => (
+    <LenkeUstylet href={href} className={`lenke ${className || ''}`} {...rest}>
+        {children}
+    </LenkeUstylet>
+);
