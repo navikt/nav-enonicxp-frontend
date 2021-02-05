@@ -1,6 +1,6 @@
 import React from 'react';
-import { xpPathToPathname, isInternalUrl } from '../../../utils/paths';
-import { logLinkClick } from '../../../utils/amplitude';
+import { xpPathToPathname, isInternalUrl } from 'utils/paths';
+import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
 
 type Props = {

@@ -18,6 +18,7 @@ const configWithAllTheThings = (config) =>
 module.exports = configWithAllTheThings({
     assetPrefix: process.env.APP_ORIGIN,
     env: {
+        ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
     },
     rewrites: async () => [
@@ -29,18 +30,32 @@ module.exports = configWithAllTheThings({
             source: '/no/rss',
             destination: `${process.env.APP_ORIGIN}/api/rss`,
         },
+        ...(process.env.ENV === 'localhost'
+            ? [
+                  {
+                      source: '/_/:path*',
+                      destination: 'http://localhost:8080/_/:path*',
+                  },
+              ]
+            : []),
+        ...(process.env.ENV === 'dev'
+            ? [
+                  {
+                      source: '/_/:path*',
+                      destination: 'https://www-q1.nav.no/_/:path*',
+                  },
+              ]
+            : []),
     ],
-    headers: async () => {
-        return [
-            {
-                source: '/_next/(.*)',
-                headers: [
-                    {
-                        key: 'Access-Control-Allow-Origin',
-                        value: process.env.ADMIN_ORIGIN,
-                    },
-                ],
-            },
-        ];
-    },
+    headers: async () => [
+        {
+            source: '/_next/(.*)',
+            headers: [
+                {
+                    key: 'Access-Control-Allow-Origin',
+                    value: process.env.ADMIN_ORIGIN,
+                },
+            ],
+        },
+    ],
 });
