@@ -23,7 +23,7 @@ jobs:
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
         run: |
           cat > .env <<EOF
-          NAIS_ENV=dev
+          ENV=dev
           NODE_ENV=production
           ADMIN_ORIGIN=https://portal-admin-q1.oera.no
           APP_ORIGIN=https://www.dev.nav.no
@@ -32,13 +32,6 @@ jobs:
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
           SERVICE_SECRET=$SERVICE_SECRET
           EOF
-      - name: Fetch url lookup table from nav-enonicxp-iac
-        run: |
-          curl \
-            -o url-lookup-table.json \
-            -H "Accept: application/vnd.github.v3.raw" \
-            -L "https://raw.githubusercontent.com/navikt/nav-enonicxp-iac/master/url-lookup-tables/dev.json"
-          echo "$(cat url-lookup-table.json)"
       - uses: actions/cache@v1
         with:
           path: ~/.npm

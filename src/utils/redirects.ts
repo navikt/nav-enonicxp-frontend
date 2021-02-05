@@ -1,7 +1,5 @@
-import {
-    ContentProps,
-    ContentType,
-} from '../types/content-props/_content-common';
+import { ContentType } from '../types/content-props/_content-common';
+import { ContentProps } from '../types/content-props/_content-common';
 import { xpPathToPathname } from './paths';
 import { getEnvUrl } from './url-lookup-table';
 

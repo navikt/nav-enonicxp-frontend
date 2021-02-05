@@ -1,7 +1,6 @@
 const withLess = require('@zeit/next-less');
 const withImages = require('next-images');
 const packageJson = require('./package.json');
-const fs = require('fs');
 
 const navFrontendModuler = Object.keys(packageJson.dependencies).reduce(
     (acc, key) => (key.startsWith('nav-frontend-') ? acc.concat(key) : acc),
@@ -16,23 +15,11 @@ const withTranspileModules = require('next-transpile-modules')([
 const configWithAllTheThings = (config) =>
     withTranspileModules(withLess(withImages(config)));
 
-const getUrlLookupTable = () =>
-    JSON.stringify(
-        JSON.parse(
-            process.env.NAIS_ENV === 'localhost'
-                ? fs.readFileSync('local-url-lookup-table.json')
-                : fs.readFileSync('url-lookup-table.json')
-        )
-    );
-
 module.exports = configWithAllTheThings({
     assetPrefix: process.env.APP_ORIGIN,
     env: {
-        NAIS_ENV: process.env.NAIS_ENV,
+        ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
-        ...(process.env.NAIS_ENV !== 'prod' && {
-            URL_LOOKUP_TABLE: getUrlLookupTable(),
-        }),
     },
     rewrites: async () => [
         {
@@ -43,6 +30,22 @@ module.exports = configWithAllTheThings({
             source: '/no/rss',
             destination: `${process.env.APP_ORIGIN}/api/rss`,
         },
+        ...(process.env.ENV === 'localhost'
+            ? [
+                  {
+                      source: '/_/:path*',
+                      destination: 'http://localhost:8080/_/:path*',
+                  },
+              ]
+            : []),
+        ...(process.env.ENV === 'dev'
+            ? [
+                  {
+                      source: '/_/:path*',
+                      destination: 'https://www-q1.nav.no/_/:path*',
+                  },
+              ]
+            : []),
     ],
     headers: async () => [
         {
