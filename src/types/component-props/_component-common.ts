@@ -34,6 +34,7 @@ export interface ImageComponentProps extends ComponentCommonProps {
 
 export interface FragmentComponentProps extends ComponentCommonProps {
     type: ComponentType.Fragment;
+    fragment: ComponentProps;
 }
 
 export type ComponentProps =
