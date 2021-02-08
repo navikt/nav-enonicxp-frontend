@@ -80,17 +80,13 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
         return <PartWithOwnData {...partProps} />;
     }
 
-    if (partsDeprecated[descriptor]) {
-        return null;
-    }
-
     return <div>{`Unimplemented part: ${descriptor}`}</div>;
 };
 
 export const PartsMapper = ({ pageProps, partProps }: Props) => {
     const { path, descriptor } = partProps;
 
-    if (!descriptor) {
+    if (!descriptor || partsDeprecated[descriptor]) {
         return null;
     }
 

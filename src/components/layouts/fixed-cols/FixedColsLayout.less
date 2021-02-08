@@ -30,7 +30,7 @@
 
         & > * {
             display: flex;
-            flex: 1;
+            flex-grow: 1;
 
             &:not(:first-child) {
                 margin-top: 1rem;
@@ -38,8 +38,10 @@
         }
 
         &:not(:first-child) {
-            @media @screen-tablet-and-desktop {
-                margin-left: 1rem;
+            margin-left: 1rem;
+
+            @media @screen-mobile {
+                margin-left: 0;
             }
         }
 
