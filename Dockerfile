@@ -12,7 +12,8 @@ COPY .next /app/.next/
 COPY public /app/public/
 
 # Copy necesarry files
-COPY .env next.config.js url-lookup-table.json* /app/
+COPY next.config.js /app/
+COPY .env  /app/
 
 # Start app
 EXPOSE 3000

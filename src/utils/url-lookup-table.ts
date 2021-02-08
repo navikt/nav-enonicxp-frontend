@@ -1,17 +1,7 @@
-export const getEnvUrl = (path: string) =>
-    process.env.NAIS_ENV === 'prod' ? path : getUrlFromTable(path);
+import { getUrlFromLookupTable } from '@navikt/nav-dekoratoren-moduler';
+const { ENV } = process.env;
 
-const getUrlFromTable = (path: string) => {
-    let match = undefined;
-    const lookupTable = JSON.parse(process.env.URL_LOOKUP_TABLE);
-    if (path && lookupTable) {
-        Object.keys(lookupTable).some((key) => {
-            if (path.startsWith(key)) {
-                match = key;
-                return true;
-            }
-            return false;
-        });
-    }
-    return match ? path.replace(match, lookupTable[match]) : path;
-};
+export const getEnvUrl = (path: string) =>
+    ENV && ENV !== 'localhost' && ENV !== 'prod'
+        ? getUrlFromLookupTable(path, ENV as 'dev' | 'q0' | 'q1' | 'q2' | 'q6')
+        : path;
