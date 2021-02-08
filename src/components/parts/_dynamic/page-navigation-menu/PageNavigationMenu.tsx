@@ -42,7 +42,7 @@ export const PageNavigationMenu = ({ config }: PageNavigationMenuProps) => {
 
         setSortedLinks(_sortedLinks);
 
-        const scrollHandler = debounce(
+        const currentScrollPositionHandler = debounce(
             () => {
                 const scrollPos = window.scrollY;
 
@@ -67,9 +67,9 @@ export const PageNavigationMenu = ({ config }: PageNavigationMenuProps) => {
             { maxWait: 50 }
         );
 
-        window.addEventListener('scroll', scrollHandler);
-
-        return () => window.removeEventListener('scroll', scrollHandler);
+        window.addEventListener('scroll', currentScrollPositionHandler);
+        return () =>
+            window.removeEventListener('scroll', currentScrollPositionHandler);
     }, [anchorLinks]);
 
     if (!sortedLinks?.length) {
