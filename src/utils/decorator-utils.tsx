@@ -77,7 +77,7 @@ const pathToRoleContext: { [key: string]: DecoratorContext } = {
     samarbeidspartner: 'samarbeidspartner',
 };
 
-const fetchDecoratorHtml = (query?: string) => {
+const _fetchDecoratorHtml = (query?: string) => {
     const url = `${decoratorUrl}/${query ? query : ''}`;
     return fetchWithTimeout(url, 5000)
         .then((res) => {
@@ -89,6 +89,15 @@ const fetchDecoratorHtml = (query?: string) => {
         })
         .catch(console.error);
 };
+
+// Prevents annoying console warning in dev-mode
+const fetchDecoratorHtml =
+    process.env.NODE_ENV === 'development'
+        ? (query?: string) =>
+              _fetchDecoratorHtml(query).then((html) =>
+                  html.replace('value=""', '')
+              )
+        : _fetchDecoratorHtml;
 
 const decoratorFragmentsCSR = (query?: string) => ({
     HEADER: <div id="decorator-header"></div>,
@@ -152,12 +161,7 @@ export const getDecoratorFragments = async (
         return cache.get(cacheKey);
     }
 
-    // Prevents annoying console warning!
-    const decoratorHtml = await fetchDecoratorHtml(query).then((html) =>
-        process.env.NODE_ENV === 'development'
-            ? html.replace('value=""', '')
-            : html
-    );
+    const decoratorHtml = await fetchDecoratorHtml(query);
 
     // Fallback to client-side rendered decorator if fetch failed
     if (!decoratorHtml) {

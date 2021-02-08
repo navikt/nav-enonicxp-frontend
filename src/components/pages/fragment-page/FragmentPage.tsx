@@ -1,11 +1,9 @@
 import React from 'react';
 import { FragmentPageProps } from '../../../types/content-props/fragment-page-props';
-import './FragmentPage.less';
+import { ComponentMapper } from '../../ComponentMapper';
 
 export const FragmentPage = (props: FragmentPageProps) => {
     return (
-        <div className={'fragment-page'}>
-            {'Not implemented (Fragment page)'}
-        </div>
+        <ComponentMapper componentProps={props.fragment} pageProps={props} />
     );
 };

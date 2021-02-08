@@ -1,13 +1,7 @@
 import { ContentType, ContentProps } from './_content-common';
-
-export type FragmentPageData = Partial<{
-    metaDescription: string;
-    canonicalUrl: string;
-    noindex: boolean;
-    feedbackToggle: boolean;
-}>;
+import { ComponentProps } from '../component-props/_component-common';
 
 export interface FragmentPageProps extends ContentProps {
     __typename: ContentType.Fragment;
-    data: FragmentPageData;
+    fragment: ComponentProps;
 }
