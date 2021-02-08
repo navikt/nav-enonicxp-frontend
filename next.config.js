@@ -43,6 +43,14 @@ module.exports = configWithAllTheThings({
             source: '/no/rss',
             destination: `${process.env.APP_ORIGIN}/api/rss`,
         },
+        {
+            source: '/autodiscover/autodiscover.xml',
+            destination: `${process.env.APP_ORIGIN}/404`,
+        },
+        {
+            source: '/_public/beta.nav.no/:path*',
+            destination: `${process.env.APP_ORIGIN}/404`,
+        },
     ],
     headers: async () => [
         {
