@@ -42,6 +42,7 @@ services:
     ports:
       - '8100:8088'
     environment:
+      ENV: 'localhost'
       XP_BASE_URL: 'http://localhost:3000'
       APP_BASE_URL: 'http://localhost:8100'
       APP_BASE_PATH: '/dekoratoren'
