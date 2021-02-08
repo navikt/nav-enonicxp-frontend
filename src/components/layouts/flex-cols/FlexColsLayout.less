@@ -16,7 +16,7 @@
 
                 width: calc(
                     percentage(1 / @numCols) - (@margin-sides * (@numCols - 1)) /
-                        @numCols
+                        @numCols - 1px
                 );
 
                 &:not(:last-child) {
