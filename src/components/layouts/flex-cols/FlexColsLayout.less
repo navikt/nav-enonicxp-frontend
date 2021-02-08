@@ -13,10 +13,13 @@
             & > * {
                 @numColsPlus1: @numCols + 1;
                 display: flex;
+                flex-grow: 1;
+                flex-shrink: 0;
+                flex-basis: percentage(1 / (@numCols + 1));
 
-                width: calc(
+                max-width: calc(
                     percentage(1 / @numCols) - (@margin-sides * (@numCols - 1)) /
-                        @numCols - 1px
+                        @numCols
                 );
 
                 &:not(:last-child) {
