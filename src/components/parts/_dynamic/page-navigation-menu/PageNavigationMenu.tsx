@@ -11,7 +11,7 @@ import './PageNavigationMenu.less';
 
 const bem = BEM('page-nav-menu');
 
-const anchorNavigationOffsetPx = 16;
+const anchorNavigationOffsetPx = 24;
 const menuCurrentIndexMinUpdateRateMs = 1000 / 60;
 
 export const PageNavigationMenu = ({ config }: PageNavigationMenuProps) => {
@@ -51,21 +51,17 @@ export const PageNavigationMenu = ({ config }: PageNavigationMenuProps) => {
             () => {
                 const scrollPos = window.scrollY;
 
-                targetElementsSorted.some((target, index) => {
-                    // if scrolled to the bottom, set last index as current
-                    if (
-                        window.innerHeight + scrollPos >=
-                        document.body.offsetHeight
-                    ) {
-                        setCurrentIndex(targetElementsSorted.length - 1);
-                        return true;
-                    }
-
+                targetElementsSorted.some((target, index, array) => {
                     if (
                         target.offsetTop >
                         scrollPos + anchorNavigationOffsetPx
                     ) {
                         setCurrentIndex(Math.max(index - 1, 0));
+                        return true;
+                    }
+
+                    if (index === array.length - 1) {
+                        setCurrentIndex(index);
                         return true;
                     }
 
