@@ -1,5 +1,5 @@
 import React from 'react';
-import { LenkeUstylet } from '../../../_common/lenke/LenkeUstylet';
+import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import './Innholdsfortegnelse.less';
 
 interface Props {
@@ -17,9 +17,9 @@ const Innholdsfortegnelse = (props: Props) => {
             <ol>
                 {props.innholdsfortegnelse.map((item, index) => (
                     <li key={index}>
-                        <LenkeUstylet href={`#chapter-${index + 1}`}>
+                        <LenkeBase href={`#chapter-${index + 1}`}>
                             {item}
-                        </LenkeUstylet>
+                        </LenkeBase>
                     </li>
                 ))}
             </ol>

@@ -12,7 +12,7 @@ export const Header = ({ config }: HeaderProps) => {
         return null;
     }
 
-    const { title, ingress, titleTypo, titleTag, anchorId } = config;
+    const { title, ingress, titleTypo, titleTag, anchorId, justify } = config;
     if (!title) {
         return null;
     }
@@ -20,9 +20,12 @@ export const Header = ({ config }: HeaderProps) => {
     const TypoComponent = typoToComponent[titleTypo] || Innholdstittel;
 
     return (
-        <div className={bem()} id={anchorId}>
+        <div
+            className={`${bem()} ${justify ? bem(undefined, justify) : ''}`}
+            id={anchorId}
+        >
             <TypoComponent tag={titleTag}>{title}</TypoComponent>
-            {ingress && <Ingress>{ingress}</Ingress>}
+            {ingress && <Ingress className={bem('ingress')}>{ingress}</Ingress>}
         </div>
     );
 };

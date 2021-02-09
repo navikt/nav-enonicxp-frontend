@@ -12,7 +12,7 @@ type Props = {
     children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-export const LenkeUstylet = ({
+export const LenkeBase = ({
     href,
     onClick,
     component,

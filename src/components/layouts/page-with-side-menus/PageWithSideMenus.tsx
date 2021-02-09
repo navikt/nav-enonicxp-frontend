@@ -12,7 +12,7 @@ type Props = {
 };
 
 const menuTopOffset = 16;
-const menuOffsetUpdateRate = 1 / 30;
+const menuOffsetMinUpdateRateMs = 1000 / 60;
 
 const getMenuStyle = (
     sticky: boolean,
@@ -28,6 +28,10 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const [stickyHeaderPosition, setStickyHeaderPosition] = useState(0);
 
     useEffect(() => {
+        if (!config?.leftMenuStickyToggle && !config?.rightMenuStickyToggle) {
+            return;
+        }
+
         const stickyHeaderOffsetHandler = debounce(
             () => {
                 const decoratorHeader = document.getElementById(
@@ -38,14 +42,14 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     Math.max(boundingRect.top + boundingRect.height, 0)
                 );
             },
-            menuOffsetUpdateRate,
-            { maxWait: menuOffsetUpdateRate }
+            menuOffsetMinUpdateRateMs / 2,
+            { maxWait: menuOffsetMinUpdateRateMs }
         );
 
         window.addEventListener('scroll', stickyHeaderOffsetHandler);
         return () =>
             window.removeEventListener('scroll', stickyHeaderOffsetHandler);
-    }, []);
+    }, [config]);
 
     if (!regions || !config) {
         return null;

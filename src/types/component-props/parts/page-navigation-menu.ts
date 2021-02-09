@@ -10,5 +10,6 @@ export interface PageNavigationMenuProps extends PartComponentProps {
     descriptor: PartType.PageNavigationMenu;
     config: {
         anchorLinks: AnchorLink[];
+        header: string;
     };
 }

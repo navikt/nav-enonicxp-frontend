@@ -10,5 +10,6 @@ export interface HeaderProps extends PartComponentProps {
         titleTag: HeadingTag;
         ingress: string;
         anchorId: string;
+        justify: 'left' | 'center' | 'right';
     }>;
 }

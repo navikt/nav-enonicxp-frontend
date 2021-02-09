@@ -4,14 +4,19 @@ import {
     PageNavigationMenuProps,
 } from '../../../../types/component-props/parts/page-navigation-menu';
 import { BEM } from '../../../../utils/bem';
-import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
 import debounce from 'lodash.debounce';
+import { Undertittel } from 'nav-frontend-typografi';
+import { PageNavigationLink } from './PageNavigationLink';
 import './PageNavigationMenu.less';
 
 const bem = BEM('page-nav-menu');
 
+const anchorNavigationOffsetPx = 16;
+const menuCurrentIndexMinUpdateRateMs = 1000 / 60;
+
 export const PageNavigationMenu = ({ config }: PageNavigationMenuProps) => {
     const anchorLinks = config?.anchorLinks;
+    const header = config?.header;
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [sortedLinks, setSortedLinks] = useState<AnchorLink[]>([]);
@@ -47,6 +52,7 @@ export const PageNavigationMenu = ({ config }: PageNavigationMenuProps) => {
                 const scrollPos = window.scrollY;
 
                 targetElementsSorted.some((target, index) => {
+                    // if scrolled to the bottom, set last index as current
                     if (
                         window.innerHeight + scrollPos >=
                         document.body.offsetHeight
@@ -55,7 +61,10 @@ export const PageNavigationMenu = ({ config }: PageNavigationMenuProps) => {
                         return true;
                     }
 
-                    if (target.offsetTop > scrollPos + 10) {
+                    if (
+                        target.offsetTop >
+                        scrollPos + anchorNavigationOffsetPx
+                    ) {
                         setCurrentIndex(Math.max(index - 1, 0));
                         return true;
                     }
@@ -63,8 +72,8 @@ export const PageNavigationMenu = ({ config }: PageNavigationMenuProps) => {
                     return false;
                 });
             },
-            50,
-            { maxWait: 50 }
+            menuCurrentIndexMinUpdateRateMs / 2,
+            { maxWait: menuCurrentIndexMinUpdateRateMs }
         );
 
         window.addEventListener('scroll', currentScrollPositionHandler);
@@ -77,17 +86,19 @@ export const PageNavigationMenu = ({ config }: PageNavigationMenuProps) => {
     }
 
     return (
-        <div className={bem()}>
+        <nav className={bem()}>
+            {header && (
+                <Undertittel className={bem('header')}>{header}</Undertittel>
+            )}
             {sortedLinks.map((link, index) => (
-                <LenkeStandalone
-                    href={`#${link.anchorId}`}
-                    className={bem('link')}
-                    withChevron={index === currentIndex}
+                <PageNavigationLink
+                    anchorId={link.anchorId}
+                    current={currentIndex === index}
                     key={index}
                 >
                     {link.linkText}
-                </LenkeStandalone>
+                </PageNavigationLink>
             ))}
-        </div>
+        </nav>
     );
 };
