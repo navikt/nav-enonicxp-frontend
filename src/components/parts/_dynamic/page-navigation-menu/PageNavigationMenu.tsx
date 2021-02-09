@@ -17,95 +17,92 @@ type Props = Partial<PageNavigationMenuProps> & {
     currentCallback?: (linkText: string) => void;
 };
 
-export const PageNavigationMenu = React.memo(
-    ({ config, currentCallback = () => null }: Props) => {
-        const anchorLinks = config?.anchorLinks;
+export const PageNavigationMenuPart = (props: PageNavigationMenuProps) => {
+    return <PageNavigationMenu {...props} />;
+};
 
-        const [currentIndex, _setCurrentIndex] = useState(0);
-        const [sortedLinks, setSortedLinks] = useState<AnchorLink[]>([]);
+export const PageNavigationMenu = ({
+    config,
+    currentCallback = () => null,
+}: Props) => {
+    const anchorLinks = config?.anchorLinks;
 
-        const setCurrentIndex = (index: number) => {
-            _setCurrentIndex(index);
-            currentCallback(sortedLinks[index]?.linkText);
-        };
+    const [currentIndex, _setCurrentIndex] = useState(0);
+    const [sortedLinks, setSortedLinks] = useState<AnchorLink[]>([]);
 
-        useEffect(() => {
-            if (!anchorLinks) {
-                return;
-            }
+    const setCurrentIndex = (index: number) => {
+        _setCurrentIndex(index);
+        currentCallback(sortedLinks[index]?.linkText);
+    };
 
-            const targetElementsSorted = anchorLinks
-                .reduce((targetsAcc, link) => {
-                    const targetElement = document.getElementById(
-                        link.anchorId
-                    );
-                    return targetElement
-                        ? [...targetsAcc, targetElement]
-                        : targetsAcc;
-                }, [])
-                .sort((a, b) => a.offsetTop - b.offsetTop);
-
-            const _sortedLinks = anchorLinks.sort((a, b) => {
-                const aIndex = targetElementsSorted.findIndex(
-                    (element) => element.id === a.anchorId
-                );
-                const bIndex = targetElementsSorted.findIndex(
-                    (element) => element.id === b.anchorId
-                );
-                return aIndex - bIndex;
-            });
-
-            setSortedLinks(_sortedLinks);
-
-            const currentScrollPositionHandler = debounce(
-                () => {
-                    const scrollTarget =
-                        window.scrollY + anchorNavigationOffsetPx;
-                    const scrolledToBottom =
-                        window.scrollY + window.innerHeight >=
-                        document.body.offsetHeight;
-
-                    const foundIndex = targetElementsSorted.findIndex(
-                        (target) => {
-                            return target.offsetTop > scrollTarget;
-                        }
-                    );
-
-                    if (foundIndex === -1 || scrolledToBottom) {
-                        setCurrentIndex(targetElementsSorted.length - 1);
-                        return;
-                    }
-
-                    setCurrentIndex(Math.max(foundIndex - 1, 0));
-                },
-                menuCurrentIndexMinUpdateRateMs / 2,
-                { maxWait: menuCurrentIndexMinUpdateRateMs }
-            );
-
-            window.addEventListener('scroll', currentScrollPositionHandler);
-            return () =>
-                window.removeEventListener(
-                    'scroll',
-                    currentScrollPositionHandler
-                );
-        }, [anchorLinks]);
-
-        if (!sortedLinks?.length) {
-            return null;
+    useEffect(() => {
+        if (!anchorLinks) {
+            return;
         }
 
-        return (
-            <nav className={bem()}>
-                {sortedLinks.map((link, index) => (
-                    <PageNavigationLink
-                        anchorId={link.anchorId}
-                        current={currentIndex === index}
-                        key={index}
-                    >
-                        {link.linkText}
-                    </PageNavigationLink>
-                ))}
-            </nav>
+        const targetElementsSorted = anchorLinks
+            .reduce((targetsAcc, link) => {
+                const targetElement = document.getElementById(link.anchorId);
+                return targetElement
+                    ? [...targetsAcc, targetElement]
+                    : targetsAcc;
+            }, [])
+            .sort((a, b) => a.offsetTop - b.offsetTop);
+
+        const _sortedLinks = anchorLinks.sort((a, b) => {
+            const aIndex = targetElementsSorted.findIndex(
+                (element) => element.id === a.anchorId
+            );
+            const bIndex = targetElementsSorted.findIndex(
+                (element) => element.id === b.anchorId
+            );
+            return aIndex - bIndex;
+        });
+
+        setSortedLinks(_sortedLinks);
+
+        const currentScrollPositionHandler = debounce(
+            () => {
+                const scrollTarget = window.scrollY + anchorNavigationOffsetPx;
+                const scrolledToBottom =
+                    window.scrollY + window.innerHeight >=
+                    document.body.offsetHeight;
+
+                const foundIndex = targetElementsSorted.findIndex((target) => {
+                    return target.offsetTop > scrollTarget;
+                });
+
+                if (foundIndex === -1 || scrolledToBottom) {
+                    setCurrentIndex(targetElementsSorted.length - 1);
+                    return;
+                }
+
+                setCurrentIndex(Math.max(foundIndex - 1, 0));
+            },
+            menuCurrentIndexMinUpdateRateMs / 2,
+            { maxWait: menuCurrentIndexMinUpdateRateMs }
         );
+
+        window.addEventListener('scroll', currentScrollPositionHandler);
+        return () =>
+            window.removeEventListener('scroll', currentScrollPositionHandler);
+    }, [anchorLinks]);
+
+    if (!sortedLinks?.length) {
+        return null;
     }
-);
+
+    return (
+        <nav className={bem()}>
+            {sortedLinks.map((link, index) => (
+                <PageNavigationLink
+                    anchorId={link.anchorId}
+                    current={currentIndex === index}
+                    key={index}
+                >
+                    {link.linkText}
+                </PageNavigationLink>
+            ))}
+        </nav>
+    );
+};

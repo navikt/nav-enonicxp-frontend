@@ -24,7 +24,7 @@ import { LinkList } from './_dynamic/link-list/LinkList';
 import { NewsList } from './_dynamic/news-list/NewsList';
 import PublishingCalendar from './publishing-calendar/PublishingCalendar';
 import { BEM } from '../../utils/bem';
-import { PageNavigationMenu } from './_dynamic/page-navigation-menu/PageNavigationMenu';
+import { PageNavigationMenuPart } from './_dynamic/page-navigation-menu/PageNavigationMenu';
 import { HtmlArea } from './_dynamic/html-area/HtmlArea';
 
 type Props = {
@@ -57,7 +57,7 @@ const partsWithOwnData: {
     [PartType.SupervisorPanel]: Veilederpanel,
     [PartType.LinkList]: LinkList,
     [PartType.NewsList]: NewsList,
-    [PartType.PageNavigationMenu]: PageNavigationMenu,
+    [PartType.PageNavigationMenu]: PageNavigationMenuPart,
     [PartType.HtmlArea]: HtmlArea,
 };
 
