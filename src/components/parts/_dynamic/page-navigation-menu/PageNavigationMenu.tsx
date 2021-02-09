@@ -12,7 +12,7 @@ import './PageNavigationMenu.less';
 const bem = BEM('page-nav-menu');
 
 const anchorNavigationOffsetPx = 24;
-const menuCurrentIndexMinUpdateRateMs = 1000 / 60;
+const menuCurrentIndexMinUpdateRateMs = 1000 / 30;
 
 export const PageNavigationMenu = ({ config }: PageNavigationMenuProps) => {
     const anchorLinks = config?.anchorLinks;

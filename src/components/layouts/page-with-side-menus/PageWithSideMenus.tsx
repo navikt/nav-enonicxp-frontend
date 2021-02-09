@@ -5,6 +5,7 @@ import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
 import debounce from 'lodash.debounce';
 import './PageWithSideMenus.less';
+import { Systemtittel } from 'nav-frontend-typografi';
 
 type Props = {
     pageProps: ContentProps;
@@ -12,7 +13,7 @@ type Props = {
 };
 
 const menuTopOffset = 16;
-const menuOffsetMinUpdateRateMs = 1000 / 60;
+const menuOffsetMinUpdateRateMs = 1000 / 30;
 
 const getMenuStyle = (
     sticky: boolean,
@@ -69,6 +70,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         leftMenuWidth,
         stickyHeaderPosition
     );
+
     const rightStyle = getMenuStyle(
         rightMenuStickyToggle,
         rightMenuWidth,
@@ -78,12 +80,17 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             {leftMenuToggle && (
-                <Region
-                    pageProps={pageProps}
-                    regionProps={regions.leftMenu}
-                    regionStyle={leftStyle}
-                    bemModifier={leftMenuStickyToggle ? 'sticky' : undefined}
-                />
+                <div className={'left-menu'} style={leftStyle}>
+                    <Systemtittel>{'My header'}</Systemtittel>
+                    <Region
+                        pageProps={pageProps}
+                        regionProps={regions.leftMenu}
+                        // regionStyle={leftStyle}
+                        // bemModifier={
+                        //     leftMenuStickyToggle ? 'sticky' : undefined
+                        // }
+                    />
+                </div>
             )}
             <Region pageProps={pageProps} regionProps={regions.pageContent} />
             {rightMenuToggle && (
