@@ -1,32 +1,39 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
-import { PageWithSideMenusProps } from '../../../types/component-props/layouts/page-with-side-menus';
+import { PageWithSideMenusProps } from '../../../types/component-props/pages/page-with-side-menus';
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
 import debounce from 'lodash.debounce';
+import { Undertittel, Element } from 'nav-frontend-typografi';
+import { PageNavigationMenu } from '../../parts/_dynamic/page-navigation-menu/PageNavigationMenu';
+import { BEM } from '../../../utils/bem';
+import { LenkeBase } from '../../_common/lenke/LenkeBase';
+import { NedChevron } from 'nav-frontend-chevron';
 import './PageWithSideMenus.less';
-import { Systemtittel } from 'nav-frontend-typografi';
+
+const menuOffsetMinUpdateRateMs = 1000 / 30;
+
+const bemLeftMenu = BEM('left-menu');
+
+type cssVars = { '--sticky-top': string };
+
+const getMenuStyle = (
+    sticky: boolean,
+    scrollPos: number
+): CSSProperties & cssVars => ({
+    ...(sticky && { '--sticky-top': `${scrollPos}px` }),
+});
 
 type Props = {
     pageProps: ContentProps;
     layoutProps?: PageWithSideMenusProps;
 };
 
-const menuTopOffset = 16;
-const menuOffsetMinUpdateRateMs = 1000 / 30;
-
-const getMenuStyle = (
-    sticky: boolean,
-    width: number,
-    scrollPos: number
-): CSSProperties => ({
-    ...(sticky && { top: scrollPos + menuTopOffset }),
-    ...(width !== undefined && { width: `${width}rem` }),
-});
-
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
     const [stickyHeaderPosition, setStickyHeaderPosition] = useState(0);
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [currentLinkText, setCurrentLinkText] = useState('');
 
     useEffect(() => {
         if (!config?.leftMenuStickyToggle && !config?.rightMenuStickyToggle) {
@@ -59,37 +66,63 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const {
         leftMenuToggle,
         leftMenuStickyToggle,
-        leftMenuWidth,
+        leftMenuHeader,
+        anchorLinks,
         rightMenuToggle,
         rightMenuStickyToggle,
-        rightMenuWidth,
     } = config;
 
-    const leftStyle = getMenuStyle(
-        leftMenuStickyToggle,
-        leftMenuWidth,
-        stickyHeaderPosition
-    );
-
-    const rightStyle = getMenuStyle(
-        rightMenuStickyToggle,
-        rightMenuWidth,
-        stickyHeaderPosition
-    );
+    const leftMenuClassName = `${bemLeftMenu()} ${
+        leftMenuStickyToggle ? bemLeftMenu(undefined, 'sticky') : ''
+    }`;
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             {leftMenuToggle && (
-                <div className={'left-menu'} style={leftStyle}>
-                    <Systemtittel>{'My header'}</Systemtittel>
-                    <Region
-                        pageProps={pageProps}
-                        regionProps={regions.leftMenu}
-                        // regionStyle={leftStyle}
-                        // bemModifier={
-                        //     leftMenuStickyToggle ? 'sticky' : undefined
-                        // }
-                    />
+                <div
+                    className={leftMenuClassName}
+                    style={getMenuStyle(
+                        leftMenuStickyToggle,
+                        stickyHeaderPosition
+                    )}
+                >
+                    <Undertittel className={bemLeftMenu('header-desktop')}>
+                        {leftMenuHeader}
+                    </Undertittel>
+                    <LenkeBase
+                        className={`${bemLeftMenu('header-mobile')}`}
+                        href={'#'}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setMobileOpen(!mobileOpen);
+                        }}
+                    >
+                        <Undertittel>{currentLinkText}</Undertittel>
+                        <Element>
+                            {leftMenuHeader}
+                            <NedChevron
+                                className={
+                                    mobileOpen ? 'chevron-open' : undefined
+                                }
+                            />
+                        </Element>
+                    </LenkeBase>
+                    <div
+                        className={`${bemLeftMenu('navigation')} ${
+                            mobileOpen
+                                ? bemLeftMenu('navigation', 'mobile-open')
+                                : ''
+                        }`}
+                    >
+                        <PageNavigationMenu
+                            config={{ anchorLinks }}
+                            currentCallback={setCurrentLinkText}
+                        />
+                        <Region
+                            pageProps={pageProps}
+                            regionProps={regions.leftMenu}
+                        />
+                    </div>
                 </div>
             )}
             <Region pageProps={pageProps} regionProps={regions.pageContent} />
@@ -97,7 +130,10 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 <Region
                     pageProps={pageProps}
                     regionProps={regions.rightMenu}
-                    regionStyle={rightStyle}
+                    regionStyle={getMenuStyle(
+                        rightMenuStickyToggle,
+                        stickyHeaderPosition
+                    )}
                     bemModifier={rightMenuStickyToggle ? 'sticky' : undefined}
                 />
             )}

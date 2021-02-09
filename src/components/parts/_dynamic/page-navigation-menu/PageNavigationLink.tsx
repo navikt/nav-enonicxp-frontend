@@ -11,24 +11,26 @@ type Props = {
     children: React.ReactNode;
 };
 
-export const PageNavigationLink = ({ anchorId, current, children }: Props) => {
-    const smoothScrollToAnchor = (e: React.MouseEvent) => {
-        e.preventDefault();
-        document
-            .getElementById(anchorId)
-            ?.scrollIntoView?.({ behavior: 'smooth' });
-    };
+export const PageNavigationLink = React.memo(
+    ({ anchorId, current, children }: Props) => {
+        const smoothScrollToAnchor = (e: React.MouseEvent) => {
+            e.preventDefault();
+            document
+                .getElementById(anchorId)
+                ?.scrollIntoView?.({ behavior: 'smooth' });
+        };
 
-    return (
-        <LenkeBase
-            href={`#${anchorId}`}
-            className={`lenke ${bem()} ${
-                current ? bem(undefined, 'current') : ''
-            }`}
-            onClick={smoothScrollToAnchor}
-        >
-            <div className={bem('decor')} aria-hidden={true} />
-            <div className={bem('text')}>{children}</div>
-        </LenkeBase>
-    );
-};
+        return (
+            <LenkeBase
+                href={`#${anchorId}`}
+                className={`lenke ${bem()} ${
+                    current ? bem(undefined, 'current') : ''
+                }`}
+                onClick={smoothScrollToAnchor}
+            >
+                <div className={bem('decor')} aria-hidden={true} />
+                <div className={bem('text')}>{children}</div>
+            </LenkeBase>
+        );
+    }
+);

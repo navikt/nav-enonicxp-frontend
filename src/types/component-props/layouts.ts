@@ -6,7 +6,7 @@ import {
 import { FlexColsLayoutProps } from './layouts/flex-cols';
 import { FixedColsLayoutProps } from './layouts/fixed-cols';
 import { LegacyLayoutProps } from './layouts/legacy-layout';
-import { PageWithSideMenusProps } from './layouts/page-with-side-menus';
+import { PageWithSideMenusProps } from './pages/page-with-side-menus';
 
 export enum LayoutType {
     Fixed1Col = 'no.nav.navno:dynamic-1-col',

@@ -1,47 +1,120 @@
 @import (reference) '../../../global';
 
+.side-menu-mixin() {
+    @menuTopOffsetDesktop: 16px;
+
+    width: 15rem;
+    margin-right: 1.25rem;
+
+    &--sticky {
+        position: sticky;
+        top: calc(var(--sticky-top) + @menuTopOffsetDesktop);
+
+        @media @screen-mobile {
+            top: var(--sticky-top);
+        }
+    }
+}
+
 .page {
     &__page-with-side-menus {
         display: flex;
         align-items: flex-start;
         width: 100%;
 
-        @media @screen-mobile {
-            flex-direction: column;
+        .left-menu {
+            .side-menu-mixin();
+
+            &__header-desktop {
+                padding: 1rem;
+                background-color: white;
+                border-top-left-radius: @border-radius-base;
+                border-top-right-radius: @border-radius-base;
+            }
+
+            &__header-mobile {
+                display: none;
+            }
+
+            &__navigation {
+                .page-nav-menu {
+                    padding: 0 1rem 1rem 1rem;
+                    background-color: white;
+                    border-bottom-left-radius: @border-radius-base;
+                    border-bottom-right-radius: @border-radius-base;
+                }
+            }
         }
 
-        .left-menu {
-            position: sticky;
-            top: 0;
+        @media @screen-mobile {
+            flex-direction: column;
+
+            .left-menu {
+                display: flex;
+                flex-direction: column;
+                z-index: 1;
+                width: 100%;
+                margin-bottom: 1rem;
+                background-color: @navGronnLighten80;
+                //box-shadow: 0 0 0 2px @navDypBlaDarken40;
+                //border-radius: @border-radius-small;
+
+                &__header-desktop {
+                    display: none;
+                }
+
+                &__header-mobile {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                    color: @navMorkGra;
+                    text-decoration: none;
+                    padding: 1rem;
+
+                    &:hover {
+                        text-decoration: underline;
+                        color: @navBla;
+                    }
+
+                    .nav-frontend-chevron {
+                        margin-left: 0.5rem;
+                        &.chevron-open {
+                            transform: rotateX(180deg);
+                        }
+                    }
+                }
+
+                &__navigation {
+                    display: flex;
+                    justify-content: space-between;
+
+                    visibility: hidden;
+                    overflow: hidden;
+                    max-height: 0;
+                    transition-property: visibility, max-height;
+                    transition-duration: 0.25s;
+                    transition-timing-function: ease-in-out;
+
+                    &--mobile-open {
+                        max-height: 25rem;
+                        visibility: visible;
+                    }
+
+                    .page-nav-menu {
+                        background-color: transparent;
+                    }
+
+                    & > * {
+                        flex-grow: 1;
+                    }
+                }
+            }
         }
     }
 }
 
 .region {
-    &__leftMenu,
-    &__rightMenu {
-        width: 15rem;
-
-        & > * {
-            padding: 1rem;
-            background-color: white;
-            border-radius: @border-radius-large;
-            &:not(:last-child) {
-                margin-bottom: 1rem;
-            }
-        }
-
-        &--sticky {
-            position: sticky;
-            top: 0;
-        }
-
-        @media @screen-mobile {
-            position: fixed;
-            z-index: 1;
-        }
-    }
-
     &__pageContent {
         max-width: 42rem;
         width: 100%;
@@ -49,7 +122,7 @@
 
         & > .layout {
             margin-top: 1rem;
-            border-radius: @border-radius-large;
+            border-radius: @border-radius-base;
 
             &:first-child {
                 margin-top: 0;
@@ -62,10 +135,24 @@
     }
 
     &__leftMenu {
-        margin-right: 1.25rem;
+        & > * {
+            padding: 1rem;
+            background-color: white;
+            border-radius: @border-radius-base;
+            margin-top: 1rem;
+
+            @media @screen-mobile {
+                background-color: transparent;
+
+                &:first-child {
+                    margin-top: 0;
+                    padding-top: 0;
+                }
+            }
+        }
     }
 
     &__rightMenu {
-        margin-left: 1.25rem;
+        .side-menu-mixin();
     }
 }
