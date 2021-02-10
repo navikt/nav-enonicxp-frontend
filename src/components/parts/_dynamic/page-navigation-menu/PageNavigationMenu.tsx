@@ -43,23 +43,15 @@ export const PageNavigationMenu = React.memo(
     ({ config, currentLinkCallback = () => null }: Props) => {
         const anchorLinks = config?.anchorLinks;
 
-        const [currentIndex, _setCurrentIndex] = useState(0);
+        const [currentIndex, setCurrentIndex] = useState(0);
         const [sortedLinks, setSortedLinks] = useState<AnchorLink[]>([]);
-
-        const setCurrentIndex = (index: number) => {
-            _setCurrentIndex(index);
-            currentLinkCallback({
-                linkText: sortedLinks[index]?.linkText,
-                index,
-            });
-        };
 
         useEffect(() => {
             if (!anchorLinks) {
                 return;
             }
 
-            const targetElementsSorted = anchorLinks
+            const targetElementsSortedByVerticalOffset = anchorLinks
                 .reduce((targetsAcc, link) => {
                     const targetElement = document.getElementById(
                         link.anchorId
@@ -71,10 +63,10 @@ export const PageNavigationMenu = React.memo(
                 .sort((a, b) => a.offsetTop - b.offsetTop);
 
             const _sortedLinks = anchorLinks.sort((a, b) => {
-                const aIndex = targetElementsSorted.findIndex(
+                const aIndex = targetElementsSortedByVerticalOffset.findIndex(
                     (element) => element.id === a.anchorId
                 );
-                const bIndex = targetElementsSorted.findIndex(
+                const bIndex = targetElementsSortedByVerticalOffset.findIndex(
                     (element) => element.id === b.anchorId
                 );
                 return aIndex - bIndex;
@@ -83,7 +75,18 @@ export const PageNavigationMenu = React.memo(
             setSortedLinks(_sortedLinks);
 
             const currentScrollPositionHandler = debounce(
-                () => setCurrentIndex(getCurrentIndex(targetElementsSorted)),
+                () => {
+                    const index = getCurrentIndex(
+                        targetElementsSortedByVerticalOffset
+                    );
+                    setCurrentIndex(index);
+                    const linkText = _sortedLinks[index]?.linkText;
+                    console.log(sortedLinks);
+                    currentLinkCallback({
+                        linkText,
+                        index,
+                    });
+                },
                 menuCurrentIndexMinUpdateRateMs / 2,
                 { maxWait: menuCurrentIndexMinUpdateRateMs }
             );

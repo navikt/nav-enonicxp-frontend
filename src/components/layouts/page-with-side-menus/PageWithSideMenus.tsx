@@ -103,8 +103,14 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                             setMobileOpen(!mobileOpen);
                         }}
                     >
-                        <Undertittel>{currentMenuItem.linkText}</Undertittel>
-                        {currentMenuItem.index}
+                        {currentMenuItem?.linkText && (
+                            <>
+                                <Undertittel>
+                                    {currentMenuItem.linkText}
+                                </Undertittel>
+                                {currentMenuItem.index}
+                            </>
+                        )}
                         <Element>
                             {leftMenuHeader}
                             <NedChevron
