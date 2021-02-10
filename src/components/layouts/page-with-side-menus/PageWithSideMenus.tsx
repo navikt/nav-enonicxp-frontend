@@ -13,6 +13,7 @@ import { BEM } from '../../../utils/bem';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
 import { NedChevron } from 'nav-frontend-chevron';
 import './PageWithSideMenus.less';
+import { ProgressBars } from '../../_common/progress-bars/ProgressBars';
 
 const menuOffsetMinUpdateRateMs = 1000 / 30;
 
@@ -104,21 +105,24 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                         }}
                     >
                         {currentMenuItem?.linkText && (
-                            <>
+                            <div className={bemLeftMenu('header-mobile-left')}>
                                 <Undertittel>
                                     {currentMenuItem.linkText}
                                 </Undertittel>
-                                {currentMenuItem.index}
-                            </>
+                                <ProgressBars
+                                    currentIndex={currentMenuItem.index}
+                                    length={anchorLinks.length}
+                                />
+                            </div>
                         )}
-                        <Element>
+                        <div className={bemLeftMenu('header-mobile-right')}>
                             {leftMenuHeader}
                             <NedChevron
                                 className={
                                     mobileOpen ? 'chevron-open' : undefined
                                 }
                             />
-                        </Element>
+                        </div>
                     </LenkeBase>
                     <div
                         className={`${bemLeftMenu('navigation')} ${

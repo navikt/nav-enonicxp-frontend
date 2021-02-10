@@ -67,12 +67,17 @@
                     justify-content: space-between;
                     width: 100%;
                     color: @navMorkGra;
-                    text-decoration: none;
                     padding: 1rem;
+                    text-decoration: none;
 
                     &:hover {
-                        text-decoration: underline;
-                        color: @navBla;
+                        .left-menu__header-mobile-left {
+                            text-decoration: none;
+                        }
+
+                        .left-menu__header-mobile-right {
+                            text-decoration: underline;
+                        }
                     }
 
                     .nav-frontend-chevron {
@@ -81,6 +86,13 @@
                             transform: rotateX(180deg);
                         }
                     }
+                }
+
+                &__header-mobile-left {
+                }
+
+                &__header-mobile-right {
+                    color: @navBla;
                 }
 
                 &__navigation {
