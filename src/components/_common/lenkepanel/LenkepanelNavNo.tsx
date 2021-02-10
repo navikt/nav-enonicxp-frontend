@@ -2,7 +2,7 @@ import React from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import { BEM } from 'utils/bem';
-import { LenkeUstylet } from '../lenke/LenkeUstylet';
+import { LenkeBase } from '../lenke/LenkeBase';
 import './LenkepanelNavNo.less';
 
 export type LenkepanelProps = {
@@ -39,7 +39,7 @@ const LenkepanelNavNo = ({
             }`}
             border={true}
             linkCreator={(props) => (
-                <LenkeUstylet
+                <LenkeBase
                     href={href}
                     component={component}
                     linkGroup={linkGroup}
@@ -47,7 +47,7 @@ const LenkepanelNavNo = ({
                     {...props}
                 >
                     {props.children}
-                </LenkeUstylet>
+                </LenkeBase>
             )}
             {...rest}
         >
