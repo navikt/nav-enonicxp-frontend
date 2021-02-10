@@ -32,13 +32,13 @@
 @padding-sides-tablet: 1rem;
 @padding-sides-mobile: 1rem;
 
-// Rounds a rem-value to the nearest full pixel equivalent value,
-// taking global font-size into account
+// Rounds a rem-value to the nearest value which is divisible by
+// the current pixel size, taking global font-size into account
 #round-rem(@value: 0) {
     @valueUpper: @value + @pixel-size-rem / 2;
     @result: if(
-        (isunit(@value, rem)),
-        calc(@valueUpper - mod(@valueUpper, @pixel-size-rem)),
+        isunit(@value, rem),
+        @valueUpper - mod(@valueUpper, @pixel-size-rem),
         0
     );
 }
