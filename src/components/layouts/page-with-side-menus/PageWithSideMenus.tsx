@@ -5,7 +5,10 @@ import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
 import debounce from 'lodash.debounce';
 import { Undertittel, Element } from 'nav-frontend-typografi';
-import { PageNavigationMenu } from '../../parts/_dynamic/page-navigation-menu/PageNavigationMenu';
+import {
+    PageNavigationCallbackArg,
+    PageNavigationMenu,
+} from '../../parts/_dynamic/page-navigation-menu/PageNavigationMenu';
 import { BEM } from '../../../utils/bem';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
 import { NedChevron } from 'nav-frontend-chevron';
@@ -33,7 +36,10 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
     const [stickyHeaderPosition, setStickyHeaderPosition] = useState(0);
     const [mobileOpen, setMobileOpen] = useState(false);
-    const [currentLinkText, setCurrentLinkText] = useState('');
+    const [
+        currentMenuItem,
+        setCurrentMenuItem,
+    ] = useState<PageNavigationCallbackArg>();
 
     useEffect(() => {
         if (!config?.leftMenuStickyToggle && !config?.rightMenuStickyToggle) {
@@ -97,7 +103,8 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                             setMobileOpen(!mobileOpen);
                         }}
                     >
-                        <Undertittel>{currentLinkText}</Undertittel>
+                        <Undertittel>{currentMenuItem.linkText}</Undertittel>
+                        {currentMenuItem.index}
                         <Element>
                             {leftMenuHeader}
                             <NedChevron
@@ -116,7 +123,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     >
                         <PageNavigationMenu
                             config={{ anchorLinks }}
-                            currentCallback={setCurrentLinkText}
+                            currentLinkCallback={setCurrentMenuItem}
                         />
                         <Region
                             pageProps={pageProps}

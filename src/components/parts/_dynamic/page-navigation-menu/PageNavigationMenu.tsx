@@ -13,16 +13,34 @@ const bem = BEM('page-nav-menu');
 const anchorNavigationOffsetPx = 24;
 const menuCurrentIndexMinUpdateRateMs = 1000 / 30;
 
+export type PageNavigationCallbackArg = { linkText: string; index: number };
+
+type Props = Partial<PageNavigationMenuProps> & {
+    currentLinkCallback?: (args: PageNavigationCallbackArg) => void;
+};
+
+const getCurrentIndex = (targetElements: HTMLElement[]) => {
+    const scrollTarget = window.scrollY + anchorNavigationOffsetPx;
+    const scrolledToBottom =
+        window.scrollY + window.innerHeight >= document.body.offsetHeight;
+
+    const foundIndex = targetElements.findIndex((target) => {
+        return target.offsetTop > scrollTarget;
+    });
+
+    if (foundIndex === -1 || scrolledToBottom) {
+        return targetElements.length - 1;
+    }
+
+    return Math.max(foundIndex - 1, 0);
+};
+
 export const PageNavigationMenuPart = (props: PageNavigationMenuProps) => {
     return <PageNavigationMenu {...props} />;
 };
 
-type Props = Partial<PageNavigationMenuProps> & {
-    currentCallback?: (linkText: string) => void;
-};
-
 export const PageNavigationMenu = React.memo(
-    ({ config, currentCallback = () => null }: Props) => {
+    ({ config, currentLinkCallback = () => null }: Props) => {
         const anchorLinks = config?.anchorLinks;
 
         const [currentIndex, _setCurrentIndex] = useState(0);
@@ -30,7 +48,10 @@ export const PageNavigationMenu = React.memo(
 
         const setCurrentIndex = (index: number) => {
             _setCurrentIndex(index);
-            currentCallback(sortedLinks[index]?.linkText);
+            currentLinkCallback({
+                linkText: sortedLinks[index]?.linkText,
+                index,
+            });
         };
 
         useEffect(() => {
@@ -62,29 +83,12 @@ export const PageNavigationMenu = React.memo(
             setSortedLinks(_sortedLinks);
 
             const currentScrollPositionHandler = debounce(
-                () => {
-                    const scrollTarget =
-                        window.scrollY + anchorNavigationOffsetPx;
-                    const scrolledToBottom =
-                        window.scrollY + window.innerHeight >=
-                        document.body.offsetHeight;
-
-                    const foundIndex = targetElementsSorted.findIndex(
-                        (target) => {
-                            return target.offsetTop > scrollTarget;
-                        }
-                    );
-
-                    if (foundIndex === -1 || scrolledToBottom) {
-                        setCurrentIndex(targetElementsSorted.length - 1);
-                        return;
-                    }
-
-                    setCurrentIndex(Math.max(foundIndex - 1, 0));
-                },
+                () => setCurrentIndex(getCurrentIndex(targetElementsSorted)),
                 menuCurrentIndexMinUpdateRateMs / 2,
                 { maxWait: menuCurrentIndexMinUpdateRateMs }
             );
+
+            currentScrollPositionHandler();
 
             window.addEventListener('scroll', currentScrollPositionHandler);
             return () =>
