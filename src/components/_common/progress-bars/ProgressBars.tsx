@@ -1,5 +1,5 @@
 import React from 'react';
-import { BEM } from '../../../utils/bem';
+import { BEM, classNames } from '../../../utils/bem';
 import './ProgressBars.less';
 
 const bem = BEM('progress-bars');
@@ -7,19 +7,20 @@ const bem = BEM('progress-bars');
 type Props = {
     currentIndex: number;
     length: number;
+    className?: string;
 };
 
-const Bar = (fill: number) => {
+export const ProgressBars = ({ currentIndex, length, className }: Props) => {
     return (
-        <span className={bem('bar-outer')}>
-            <span
-                className={bem('bar-inner')}
-                style={{ width: `${fill * 100}%` }}
-            />
-        </span>
+        <div className={classNames(bem(), className)}>
+            {[...Array(length)].map((_, index) => (
+                <span
+                    className={classNames(
+                        bem('bar'),
+                        currentIndex === index && bem('bar', 'current')
+                    )}
+                />
+            ))}
+        </div>
     );
-};
-
-export const ProgressBars = ({ currentIndex, length }: Props) => {
-    return <div className={bem()}>{'test'}</div>;
 };

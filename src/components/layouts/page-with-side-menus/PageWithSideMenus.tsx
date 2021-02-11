@@ -4,7 +4,7 @@ import { PageWithSideMenusProps } from '../../../types/component-props/pages/pag
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
 import debounce from 'lodash.debounce';
-import { Undertittel, Element } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import {
     PageNavigationCallbackArg,
     PageNavigationMenu,
@@ -112,6 +112,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 <ProgressBars
                                     currentIndex={currentMenuItem.index}
                                     length={anchorLinks.length}
+                                    className={bemLeftMenu('progress-bar')}
                                 />
                             </div>
                         )}

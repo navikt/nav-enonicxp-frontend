@@ -1,2 +1,22 @@
+@import (reference) '../../../global';
+
 .progress-bars {
+    display: flex;
+    justify-content: stretch;
+
+    &__bar {
+        display: flex;
+        width: 100%;
+        max-width: 2rem;
+        height: 0.25rem;
+        background-color: @navGra40;
+
+        &--current {
+            background-color: @navGra80;
+        }
+
+        &:not(:first-child) {
+            margin-left: #round-rem(0.1825rem) [];
+        }
+    }
 }

@@ -81,7 +81,6 @@ export const PageNavigationMenu = React.memo(
                     );
                     setCurrentIndex(index);
                     const linkText = _sortedLinks[index]?.linkText;
-                    console.log(sortedLinks);
                     currentLinkCallback({
                         linkText,
                         index,

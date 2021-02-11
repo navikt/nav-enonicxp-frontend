@@ -61,6 +61,10 @@
                     display: none;
                 }
 
+                .page-nav-link__decor {
+                    display: none;
+                }
+
                 &__header-mobile {
                     display: flex;
                     align-items: center;
@@ -95,6 +99,10 @@
                     color: @navBla;
                 }
 
+                &__progress-bar {
+                    margin-top: 0.25rem;
+                }
+
                 &__navigation {
                     display: flex;
                     justify-content: space-between;
@@ -102,7 +110,6 @@
                     visibility: hidden;
                     overflow: hidden;
                     max-height: 0;
-                    transition-property: visibility, max-height;
                     transition-duration: 0.25s;
                     transition-timing-function: ease-in-out;
 
@@ -117,6 +124,7 @@
 
                     & > * {
                         flex-grow: 1;
+                        max-width: 50%;
                     }
                 }
             }
