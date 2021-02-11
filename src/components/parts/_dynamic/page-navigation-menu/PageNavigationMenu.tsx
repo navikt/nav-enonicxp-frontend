@@ -13,10 +13,10 @@ const bem = BEM('page-nav-menu');
 const anchorNavigationOffsetPx = 24;
 const menuCurrentIndexMinUpdateRateMs = 1000 / 30;
 
-export type PageNavigationCallbackArg = { linkText: string; index: number };
+export type PageNavCallbackArgs = { linkText: string; index: number };
 
 type Props = Partial<PageNavigationMenuProps> & {
-    currentLinkCallback?: (args: PageNavigationCallbackArg) => void;
+    currentLinkCallback?: (args: PageNavCallbackArgs) => void;
 };
 
 const getCurrentIndex = (targetElements: HTMLElement[]) => {
@@ -40,11 +40,23 @@ export const PageNavigationMenuPart = (props: PageNavigationMenuProps) => {
 };
 
 export const PageNavigationMenu = React.memo(
-    ({ config, currentLinkCallback = () => null }: Props) => {
+    ({ config, currentLinkCallback }: Props) => {
         const anchorLinks = config?.anchorLinks;
 
         const [currentIndex, setCurrentIndex] = useState(0);
         const [sortedLinks, setSortedLinks] = useState<AnchorLink[]>([]);
+
+        useEffect(() => {
+            if (!currentLinkCallback) {
+                return;
+            }
+
+            const linkText = sortedLinks[currentIndex]?.linkText;
+            currentLinkCallback({
+                linkText,
+                index: currentIndex,
+            });
+        }, [currentIndex, sortedLinks, currentLinkCallback]);
 
         useEffect(() => {
             if (!anchorLinks) {
@@ -80,11 +92,6 @@ export const PageNavigationMenu = React.memo(
                         targetElementsSortedByVerticalOffset
                     );
                     setCurrentIndex(index);
-                    const linkText = _sortedLinks[index]?.linkText;
-                    currentLinkCallback({
-                        linkText,
-                        index,
-                    });
                 },
                 menuCurrentIndexMinUpdateRateMs / 2,
                 { maxWait: menuCurrentIndexMinUpdateRateMs }

@@ -1,133 +1,13 @@
 @import (reference) '../../../global';
 
-.side-menu-mixin() {
-    @menuTopOffsetDesktop: 16px;
-
-    width: 15rem;
-    margin-right: 1.25rem;
-
-    &--sticky {
-        position: sticky;
-        top: calc(var(--sticky-top) + @menuTopOffsetDesktop);
-
-        @media @screen-mobile {
-            top: var(--sticky-top);
-        }
-    }
-}
-
 .page {
     &__page-with-side-menus {
         display: flex;
         align-items: flex-start;
         width: 100%;
 
-        .left-menu {
-            .side-menu-mixin();
-
-            &__header-desktop {
-                padding: 1rem;
-                background-color: white;
-                border-top-left-radius: @border-radius-base;
-                border-top-right-radius: @border-radius-base;
-            }
-
-            &__header-mobile {
-                display: none;
-            }
-
-            &__navigation {
-                .page-nav-menu {
-                    padding: 0 1rem 1rem 1rem;
-                    background-color: white;
-                    border-bottom-left-radius: @border-radius-base;
-                    border-bottom-right-radius: @border-radius-base;
-                }
-            }
-        }
-
         @media @screen-mobile {
             flex-direction: column;
-
-            .left-menu {
-                display: flex;
-                flex-direction: column;
-                z-index: 1;
-                width: 100%;
-                margin-bottom: 1rem;
-                background-color: @navGronnLighten80;
-
-                &__header-desktop {
-                    display: none;
-                }
-
-                .page-nav-link__decor {
-                    display: none;
-                }
-
-                &__header-mobile {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    width: 100%;
-                    color: @navMorkGra;
-                    padding: 1rem;
-                    text-decoration: none;
-
-                    &:hover {
-                        .left-menu__header-mobile-left {
-                            text-decoration: none;
-                        }
-
-                        .left-menu__header-mobile-right {
-                            text-decoration: underline;
-                        }
-                    }
-
-                    .nav-frontend-chevron {
-                        margin-left: 0.5rem;
-                        &.chevron-open {
-                            transform: rotateX(180deg);
-                        }
-                    }
-                }
-
-                &__header-mobile-left {
-                }
-
-                &__header-mobile-right {
-                    color: @navBla;
-                }
-
-                &__progress-bar {
-                    margin-top: 0.25rem;
-                }
-
-                &__navigation {
-                    display: flex;
-                    justify-content: space-between;
-
-                    visibility: hidden;
-                    overflow: hidden;
-                    max-height: 0;
-                    transition-duration: 0.25s;
-                    transition-timing-function: ease-in-out;
-
-                    &--mobile-open {
-                        max-height: 25rem;
-                        visibility: visible;
-                    }
-
-                    .page-nav-menu {
-                        background-color: transparent;
-                    }
-
-                    & > * {
-                        flex-grow: 1;
-                        max-width: 50%;
-                    }
-                }
-            }
         }
     }
 }
@@ -171,6 +51,18 @@
     }
 
     &__rightMenu {
-        .side-menu-mixin();
+        @menuTopOffsetDesktop: 16px;
+
+        width: 15rem;
+        margin-right: 1.25rem;
+
+        &--sticky {
+            position: sticky;
+            top: calc(var(--sticky-offset) + @menuTopOffsetDesktop);
+
+            @media @screen-mobile {
+                top: var(--sticky-offset);
+            }
+        }
     }
 }

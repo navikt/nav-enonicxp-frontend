@@ -19,6 +19,7 @@ export const ProgressBars = ({ currentIndex, length, className }: Props) => {
                         bem('bar'),
                         currentIndex === index && bem('bar', 'current')
                     )}
+                    key={index}
                 />
             ))}
         </div>
