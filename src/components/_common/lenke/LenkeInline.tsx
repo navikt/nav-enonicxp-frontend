@@ -1,5 +1,5 @@
 import React from 'react';
-import { LenkeUstylet } from './LenkeUstylet';
+import { LenkeBase } from './LenkeBase';
 
 type Props = {
     href: string;
@@ -9,7 +9,7 @@ type Props = {
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const LenkeInline = ({ href, className, children, ...rest }: Props) => (
-    <LenkeUstylet href={href} className={`lenke ${className || ''}`} {...rest}>
+    <LenkeBase href={href} className={`lenke ${className || ''}`} {...rest}>
         {children}
-    </LenkeUstylet>
+    </LenkeBase>
 );

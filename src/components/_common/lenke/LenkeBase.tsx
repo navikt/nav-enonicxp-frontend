@@ -1,5 +1,5 @@
 import React from 'react';
-import { xpPathToPathname, isInternalUrl } from 'utils/paths';
+import { xpPathToPathname, isInternalUrl, isNofollowUrl } from 'utils/paths';
 import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
 
@@ -12,7 +12,7 @@ type Props = {
     children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-export const LenkeUstylet = ({
+export const LenkeBase = ({
     href,
     onClick,
     component,
@@ -32,6 +32,7 @@ export const LenkeUstylet = ({
                 logLinkClick(_href, analyticsLinkText, component, linkGroup);
                 onClick?.(e);
             }}
+            rel={isNofollowUrl(_href) ? 'nofollow' : undefined}
             {...rest}
         >
             {children}
