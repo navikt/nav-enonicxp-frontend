@@ -18,6 +18,12 @@ const internalUrlPattern = new RegExp(
     'i'
 );
 
+// Matches urls which should have the nofollow flag
+const nofollowPattern = new RegExp(
+    `^(${process.env.APP_ORIGIN})?(\\/sok($|\\?|\\/))`,
+    'i'
+);
+
 export const insertDraftPrefixOnInternalUrl = (url: string) => {
     if (internalUrlPattern.test(url)) {
         return `${xpDraftPathPrefix}${url}`.replace(process.env.APP_ORIGIN, '');
@@ -31,6 +37,8 @@ export const isXpPath = (path: string) => path?.startsWith(xpContentPathPrefix);
 
 export const isInternalUrl = (url: string) =>
     isXpPath(url) || internalUrlPattern.test(url);
+
+export const isNofollowUrl = (url: string) => nofollowPattern.test(url);
 
 export const isUUID = (id: string) =>
     id &&
