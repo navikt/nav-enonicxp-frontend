@@ -5,7 +5,7 @@ import {
     Undertittel,
     Element,
 } from 'nav-frontend-typografi';
-import { BEM } from '../../../utils/bem';
+import { BEM } from '../../../utils/classnames';
 import { translator } from '../../../translations';
 import './PublishingCalendar.less';
 import {

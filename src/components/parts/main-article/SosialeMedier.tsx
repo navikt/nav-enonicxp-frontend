@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { xpPathToUrl } from '../../../utils/paths';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
+import { classNames } from '../../../utils/classnames';
 import './SosialeMedier.less';
 
 const getSocialmediaShareUrl = (
@@ -49,7 +50,12 @@ const SosialeMedier = (props: Props) => {
                 {socialMedia.map((item) => (
                     <li key={item.type}>
                         <LenkeBase href={item.href} analyticsLabel={item.text}>
-                            <span className={`share-social share-${item.type}`}>
+                            <span
+                                className={classNames(
+                                    'share-social',
+                                    `share-${item.type}`
+                                )}
+                            >
                                 {item.text}
                             </span>
                         </LenkeBase>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { xpPathToPathname } from 'utils/paths';
-import { BEM } from 'utils/bem';
+import { BEM } from 'utils/classnames';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import './MainArticleChapterNavigation.less';
 
