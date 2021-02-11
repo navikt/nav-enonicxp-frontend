@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContentProps } from '../../types/content-props/_content-common';
 import { LayoutProps } from '../../types/component-props/layouts';
-import { BEM } from '../../utils/bem';
+import { BEM } from '../../utils/classnames';
 import './LayoutContainer.less';
 
 type Props = {

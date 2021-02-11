@@ -1,5 +1,5 @@
 import React from 'react';
-import { BEM } from '../../../../utils/bem';
+import { BEM, classNames } from '../../../../utils/classnames';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import './PageNavigationLink.less';
 
@@ -23,9 +23,11 @@ export const PageNavigationLink = React.memo(
         return (
             <LenkeBase
                 href={`#${anchorId}`}
-                className={`lenke ${bem()} ${
-                    current ? bem(undefined, 'current') : ''
-                }`}
+                className={classNames(
+                    'lenke',
+                    bem(),
+                    current && bem(undefined, 'current')
+                )}
                 onClick={smoothScrollToAnchor}
             >
                 <div className={bem('decor')} aria-hidden={true} />

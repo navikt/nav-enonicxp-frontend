@@ -9,7 +9,7 @@ import {
     PageNavigationCallbackArg,
     PageNavigationMenu,
 } from '../../parts/_dynamic/page-navigation-menu/PageNavigationMenu';
-import { BEM } from '../../../utils/bem';
+import { BEM, classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
 import { NedChevron } from 'nav-frontend-chevron';
 import './PageWithSideMenus.less';
@@ -97,7 +97,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                         {leftMenuHeader}
                     </Undertittel>
                     <LenkeBase
-                        className={`${bemLeftMenu('header-mobile')}`}
+                        className={bemLeftMenu('header-mobile')}
                         href={'#'}
                         onClick={(e) => {
                             e.preventDefault();
@@ -126,11 +126,11 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                         </div>
                     </LenkeBase>
                     <div
-                        className={`${bemLeftMenu('navigation')} ${
-                            mobileOpen
-                                ? bemLeftMenu('navigation', 'mobile-open')
-                                : ''
-                        }`}
+                        className={classNames(
+                            bemLeftMenu('navigation'),
+                            mobileOpen &&
+                                bemLeftMenu('navigation', 'mobile-open')
+                        )}
                     >
                         <PageNavigationMenu
                             config={{ anchorLinks }}

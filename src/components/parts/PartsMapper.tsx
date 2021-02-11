@@ -23,7 +23,7 @@ import { Header } from './_dynamic/header/Header';
 import { LinkList } from './_dynamic/link-list/LinkList';
 import { NewsList } from './_dynamic/news-list/NewsList';
 import PublishingCalendar from './publishing-calendar/PublishingCalendar';
-import { BEM } from '../../utils/bem';
+import { BEM, classNames } from '../../utils/classnames';
 import { PageNavigationMenuPart } from './_dynamic/page-navigation-menu/PageNavigationMenu';
 import { HtmlArea } from './_dynamic/html-area/HtmlArea';
 
@@ -101,7 +101,7 @@ export const PartsMapper = ({ pageProps, partProps }: Props) => {
         : undefined;
 
     return (
-        <div className={`${bem()} ${bem(partName)}`} {...editorProps}>
+        <div className={classNames(bem(), bem(partName))} {...editorProps}>
             <PartComponent pageProps={pageProps} partProps={partProps} />
         </div>
     );

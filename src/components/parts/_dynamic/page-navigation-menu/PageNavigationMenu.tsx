@@ -3,7 +3,7 @@ import {
     AnchorLink,
     PageNavigationMenuProps,
 } from '../../../../types/component-props/parts/page-navigation-menu';
-import { BEM } from '../../../../utils/bem';
+import { BEM } from '../../../../utils/classnames';
 import debounce from 'lodash.debounce';
 import { PageNavigationLink } from './PageNavigationLink';
 import './PageNavigationMenu.less';

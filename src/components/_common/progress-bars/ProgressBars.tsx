@@ -1,5 +1,5 @@
 import React from 'react';
-import { BEM, classNames } from '../../../utils/bem';
+import { BEM, classNames } from '../../../utils/classnames';
 import './ProgressBars.less';
 
 const bem = BEM('progress-bars');

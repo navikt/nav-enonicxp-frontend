@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeaderProps } from '../../../../types/component-props/parts/header';
-import { BEM } from '../../../../utils/classnames';
+import { BEM, classNames } from '../../../../utils/classnames';
 import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import { typoToComponent } from '../../../../types/typo-style';
 import './Header.less';
@@ -21,7 +21,7 @@ export const Header = ({ config }: HeaderProps) => {
 
     return (
         <div
-            className={`${bem()} ${justify ? bem(undefined, justify) : ''}`}
+            className={classNames(bem(), justify && bem(undefined, justify))}
             id={anchorId}
         >
             <TypoComponent tag={titleTag}>{title}</TypoComponent>
