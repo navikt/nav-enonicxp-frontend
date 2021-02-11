@@ -78,7 +78,7 @@ const pathToRoleContext: { [key: string]: DecoratorContext } = {
     privatperson: 'privatperson',
 };
 
-const fetchDecoratorHtml = (query?: string) => {
+const _fetchDecoratorHtml = (query?: string) => {
     const url = `${decoratorUrl}/${query ? query : ''}`;
     return fetchWithTimeout(url, 5000)
         .then((res) => {
@@ -90,6 +90,15 @@ const fetchDecoratorHtml = (query?: string) => {
         })
         .catch(console.error);
 };
+
+// Prevents annoying console warning in dev-mode
+const fetchDecoratorHtml =
+    process.env.NODE_ENV === 'development'
+        ? (query?: string) =>
+              _fetchDecoratorHtml(query).then((html) =>
+                  html?.replace('value=""', '')
+              )
+        : _fetchDecoratorHtml;
 
 const decoratorFragmentsCSR = (query?: string) => ({
     HEADER: <div id="decorator-header"></div>,
