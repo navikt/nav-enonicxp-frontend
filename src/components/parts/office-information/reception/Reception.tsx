@@ -8,7 +8,7 @@ import {
 } from '../../../../types/content-props/office-information-props';
 import { Normaltekst, Element, Systemtittel } from 'nav-frontend-typografi';
 import OpeningHours from './OpeningHours';
-import { BEM } from '../../../../utils/bem';
+import { BEM } from '../../../../utils/classnames';
 import './Reception.less';
 
 interface FormattedOpeningHours extends OpeningHoursProps {

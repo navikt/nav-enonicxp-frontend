@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeaderProps } from '../../../../types/component-props/parts/header';
-import { BEM } from '../../../../utils/bem';
+import { BEM } from '../../../../utils/classnames';
 import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import { typoToComponent } from '../../../../types/typo-style';
 import './Header.less';

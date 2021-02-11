@@ -1,5 +1,5 @@
 import React from 'react';
-import { BEM } from 'utils/bem';
+import { BEM, classNames } from 'utils/classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelNavNo from '../../_common/lenkepanel/LenkepanelNavNo';
@@ -84,7 +84,10 @@ export const MainPanels = (props: ContentProps) => {
                                 separator={true}
                                 tittel={tittel}
                                 key={content._id}
-                                className={`lenkepanel-vertical ${bem('item')}`}
+                                className={classNames(
+                                    'lenkepanel-vertical',
+                                    bem('item')
+                                )}
                                 component={'main-panels'}
                             >
                                 {ingress && (

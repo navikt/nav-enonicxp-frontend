@@ -1,7 +1,7 @@
 import React from 'react';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
-import { BEM } from 'utils/bem';
+import { BEM, classNames } from 'utils/classnames';
 import { LenkeBase } from './LenkeBase';
 import './LenkeStandalone.less';
 
@@ -32,7 +32,7 @@ export const LenkeStandalone = ({
     return (
         <LenkeBase
             href={href}
-            className={`${bem()} ${className || ''}`}
+            className={classNames(bem(), className)}
             component={component}
             linkGroup={linkGroup}
             analyticsLabel={

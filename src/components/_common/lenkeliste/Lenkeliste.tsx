@@ -2,7 +2,7 @@ import React from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from '../lenke/LenkeStandalone';
-import { BEM } from 'utils/bem';
+import { BEM, classNames } from 'utils/classnames';
 import './Lenkeliste.less';
 
 type Props = {
@@ -19,7 +19,7 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
     const bem = BEM('lenkeliste');
 
     return (
-        <section className={`${bem()} ${className || ''}`} aria-label={tittel}>
+        <section className={classNames(bem(), className)} aria-label={tittel}>
             {tittel && (
                 <div className={bem('tittel')}>
                     <Undertittel>{tittel}</Undertittel>
