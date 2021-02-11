@@ -78,7 +78,7 @@ const pathToRoleContext: { [key: string]: DecoratorContext } = {
     privatperson: 'privatperson',
 };
 
-const fetchDecoratorHtml = (query?: string) => {
+const _fetchDecoratorHtml = (query?: string) => {
     const url = `${decoratorUrl}/${query ? query : ''}`;
     return fetchWithTimeout(url, 5000)
         .then((res) => {
@@ -90,6 +90,15 @@ const fetchDecoratorHtml = (query?: string) => {
         })
         .catch(console.error);
 };
+
+// Prevents annoying console warning in dev-mode
+const fetchDecoratorHtml =
+    process.env.NODE_ENV === 'development'
+        ? (query?: string) =>
+              _fetchDecoratorHtml(query).then((html) =>
+                  html?.replace('value=""', '')
+              )
+        : _fetchDecoratorHtml;
 
 const decoratorFragmentsCSR = (query?: string) => ({
     HEADER: <div id="decorator-header"></div>,
@@ -148,8 +157,9 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 export const getDecoratorFragments = async (
     query?: string
 ): Promise<DecoratorFragments> => {
-    if (cache.has(query)) {
-        return cache.get(query);
+    const cacheKey = query || 'default';
+    if (cache.has(cacheKey)) {
+        return cache.get(cacheKey);
     }
 
     const decoratorHtml = await fetchDecoratorHtml(query);
@@ -167,7 +177,7 @@ export const getDecoratorFragments = async (
         SCRIPTS: parse(document.getElementById('scripts').innerHTML),
     };
 
-    cache.set(query, decoratorFragments);
+    cache.set(cacheKey, decoratorFragments);
 
     return decoratorFragments;
 };
