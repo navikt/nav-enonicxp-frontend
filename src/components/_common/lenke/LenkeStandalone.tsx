@@ -2,7 +2,7 @@ import React from 'react';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
 import { BEM } from 'utils/bem';
-import { LenkeUstylet } from './LenkeUstylet';
+import { LenkeBase } from './LenkeBase';
 import './LenkeStandalone.less';
 
 type Props = {
@@ -30,7 +30,7 @@ export const LenkeStandalone = ({
     const bem = BEM('navno-lenke');
 
     return (
-        <LenkeUstylet
+        <LenkeBase
             href={href}
             className={`${bem()} ${className || ''}`}
             component={component}
@@ -50,6 +50,6 @@ export const LenkeStandalone = ({
                 {children}
             </span>
             {label && <Undertekst className={bem('label')}>{label}</Undertekst>}
-        </LenkeUstylet>
+        </LenkeBase>
     );
 };
