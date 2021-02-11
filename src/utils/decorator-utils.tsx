@@ -96,7 +96,7 @@ const fetchDecoratorHtml =
     process.env.NODE_ENV === 'development'
         ? (query?: string) =>
               _fetchDecoratorHtml(query).then((html) =>
-                  html.replace('value=""', '')
+                  html?.replace('value=""', '')
               )
         : _fetchDecoratorHtml;
 
