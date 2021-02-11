@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContentProps } from '../../types/content-props/_content-common';
-import { BEM } from '../../utils/bem';
+import { BEM, classNames } from '../../utils/classnames';
 import { ComponentMapper } from '../ComponentMapper';
 import { RegionProps } from '../../types/component-props/layouts';
 
@@ -24,9 +24,11 @@ export const Region = ({
     return (
         <div
             style={regionStyle}
-            className={`${bem()} ${bem(name)} ${
-                bemModifier ? bem(name, bemModifier) : ''
-            }`}
+            className={classNames(
+                bem(),
+                bem(name),
+                bemModifier && bem(name, bemModifier)
+            )}
             data-portal-region={pageProps.editMode ? name : undefined}
         >
             {components.map((component) => (
