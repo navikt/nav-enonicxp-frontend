@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 
 let numStickyUsers = 0;
 
-const minUpdateRateMs = 100 / 3;
+const minUpdateRateMs = 1000 / 60;
 
 const setDecoratorHeaderOffsetVar = debounce(
     () => {

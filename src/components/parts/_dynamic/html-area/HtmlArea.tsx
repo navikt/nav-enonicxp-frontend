@@ -1,6 +1,7 @@
 import React from 'react';
 import { HtmlAreaProps } from '../../../../types/component-props/parts/html-area';
 import { ParsedHtml } from '../../../ParsedHtml';
+import './HtmlArea.less';
 
 export const HtmlArea = ({ config }: HtmlAreaProps) => {
     if (!config?.html) {
@@ -8,7 +9,7 @@ export const HtmlArea = ({ config }: HtmlAreaProps) => {
     }
 
     return (
-        <div>
+        <div className={'html-area'}>
             <ParsedHtml content={config.html} />
         </div>
     );
