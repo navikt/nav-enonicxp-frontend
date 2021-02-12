@@ -1,6 +1,8 @@
 import { fetchWithTimeout } from '../../../utils/fetch-utils';
 import Config from '../../../Config';
+import fs from 'fs';
 
+const cacheBasePath = './.next/server/pages';
 const revalidatePeriodMs = Config.vars.revalidatePeriod * 1000;
 const { SERVICE_SECRET } = process.env;
 
@@ -22,6 +24,12 @@ const revalidateCache = async (req, res) => {
     const { path } = req.query;
     if (!path) {
         return res.status(400).send('No path specified');
+    }
+
+    if (!fs.existsSync(`${cacheBasePath}${path}.html`)) {
+        const msg = `No page cache found for ${path} - regeneration not needed`;
+        console.log(msg);
+        return res.status(200).send(msg);
     }
 
     setTimeout(() => regeneratePageCache(path), revalidatePeriodMs);
