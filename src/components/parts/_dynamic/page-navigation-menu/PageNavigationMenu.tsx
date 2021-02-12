@@ -15,21 +15,29 @@ const menuCurrentIndexMinUpdateRateMs = 1000 / 30;
 
 export type PageNavCallbackArgs = { linkText: string; index: number };
 
-type Props = Partial<PageNavigationMenuProps> & {
-    currentLinkCallback?: (args: PageNavCallbackArgs) => void;
-};
-
-const getCurrentIndex = (targetElements: HTMLElement[]) => {
+const getCurrentIndex = (sortedTargetElements: HTMLElement[]) => {
     const scrollTarget = window.scrollY + anchorNavigationOffsetPx;
+
+    if (
+        !sortedTargetElements?.length ||
+        sortedTargetElements[0].offsetTop > scrollTarget
+    ) {
+        return -1;
+    }
+
     const scrolledToBottom =
         window.scrollY + window.innerHeight >= document.body.offsetHeight;
 
-    const foundIndex = targetElements.findIndex((target) => {
+    if (scrolledToBottom) {
+        return sortedTargetElements.length - 1;
+    }
+
+    const foundIndex = sortedTargetElements.findIndex((target) => {
         return target.offsetTop > scrollTarget;
     });
 
-    if (foundIndex === -1 || scrolledToBottom) {
-        return targetElements.length - 1;
+    if (foundIndex === -1) {
+        return sortedTargetElements.length - 1;
     }
 
     return Math.max(foundIndex - 1, 0);
@@ -37,6 +45,10 @@ const getCurrentIndex = (targetElements: HTMLElement[]) => {
 
 export const PageNavigationMenuPart = (props: PageNavigationMenuProps) => {
     return <PageNavigationMenu {...props} />;
+};
+
+type Props = Partial<PageNavigationMenuProps> & {
+    currentLinkCallback?: (args: PageNavCallbackArgs) => void;
 };
 
 export const PageNavigationMenu = React.memo(
@@ -51,7 +63,7 @@ export const PageNavigationMenu = React.memo(
                 return;
             }
 
-            const linkText = sortedLinks[currentIndex]?.linkText;
+            const linkText = sortedLinks[currentIndex]?.linkText || '';
             currentLinkCallback({
                 linkText,
                 index: currentIndex,

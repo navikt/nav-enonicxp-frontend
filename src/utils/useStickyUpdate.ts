@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import debounce from 'lodash.debounce';
 
-const updateRateMs = 100 / 3;
-
 let numStickyUsers = 0;
+
+const minUpdateRateMs = 100 / 3;
 
 const setDecoratorHeaderOffsetVar = debounce(
     () => {
@@ -21,11 +21,11 @@ const setDecoratorHeaderOffsetVar = debounce(
             `${offset}px`
         );
     },
-    updateRateMs / 2,
-    { maxWait: updateRateMs }
+    minUpdateRateMs / 2,
+    { maxWait: minUpdateRateMs }
 );
 
-// Sets the event listener for updating the sticky-header offset CSS variable
+// Keeps the event listener active for updating the sticky-header offset variable,
 // as long as at least one component is mounted with this hook set to active
 export const useStickyUpdate = (active: boolean = true) => {
     useEffect(() => {

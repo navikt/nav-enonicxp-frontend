@@ -1,5 +1,6 @@
-import { LayoutCommonConfig, LayoutCommonProps, LayoutType } from '../layouts';
+import { LayoutCommonProps, LayoutType } from '../layouts';
 import { ComponentProps, ComponentType } from '../_component-common';
+import { LayoutCommonConfigMixin } from '../_mixins';
 
 type DynamicColRegions = 'dynamic-1' | 'dynamic-2' | 'dynamic-3' | 'dynamic-4';
 
@@ -18,5 +19,5 @@ export interface FixedColsLayoutProps extends LayoutCommonProps {
     };
     config: {
         distribution: string;
-    } & LayoutCommonConfig;
+    } & LayoutCommonConfigMixin;
 }

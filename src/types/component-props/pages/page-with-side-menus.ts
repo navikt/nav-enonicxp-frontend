@@ -16,9 +16,10 @@ export interface PageWithSideMenusProps extends LayoutCommonProps {
     config: {
         leftMenuHeader: string;
         leftMenuToggle: boolean;
-        leftMenuStickyToggle: boolean;
+        leftMenuSticky: boolean;
+        showInternalNav: boolean;
         anchorLinks: AnchorLink[];
         rightMenuToggle: boolean;
-        rightMenuStickyToggle: boolean;
+        rightMenuSticky: boolean;
     };
 }

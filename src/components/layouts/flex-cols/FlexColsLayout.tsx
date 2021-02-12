@@ -3,7 +3,6 @@ import { ContentProps } from '../../../types/content-props/_content-common';
 import { FlexColsLayoutProps } from '../../../types/component-props/layouts/flex-cols';
 import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
-import { getCommonLayoutStyle } from '../LayoutStyle';
 import './FlexColsLayout.less';
 
 type Props = {
@@ -19,21 +18,14 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
     }
 
     const { config } = layoutProps;
-    const { numCols, justifyContent, bgFullWidth } = config;
+    const { numCols, justifyContent } = config;
 
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
     };
 
-    const layoutStyle = getCommonLayoutStyle(config);
-
     return (
-        <LayoutContainer
-            pageProps={pageProps}
-            layoutProps={layoutProps}
-            layoutStyle={layoutStyle}
-            fullwidth={bgFullWidth}
-        >
+        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             <Region
                 pageProps={pageProps}
                 regionProps={regionProps}

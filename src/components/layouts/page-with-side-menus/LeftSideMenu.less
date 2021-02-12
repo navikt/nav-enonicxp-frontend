@@ -5,6 +5,7 @@
     @openAnimationDuration: 0.35s;
 
     width: 15rem;
+    min-width: 10rem;
     margin-right: 1.25rem;
 
     &--sticky {
@@ -14,10 +15,6 @@
         @media @screen-mobile {
             top: var(--sticky-offset);
         }
-    }
-
-    &__outer {
-        width: 100%;
     }
 
     &__header-desktop,
@@ -37,11 +34,25 @@
 
     &__menu-items-outer {
         position: relative;
+        width: 100%;
+
+        @media @screen-tablet-and-desktop {
+            .left-menu__header-desktop ~ & {
+                .page-nav-menu {
+                    padding-top: 0;
+                }
+
+                .region__leftMenu {
+                    margin-top: 1rem;
+                }
+            }
+        }
     }
 
     &__menu-items {
-        & > .page-nav-menu {
-            padding: 0 1rem 1rem 1rem;
+        .page-nav-menu {
+            padding: 1rem;
+            margin-bottom: 1rem;
             background-color: white;
             border-bottom-left-radius: @border-radius-base;
             border-bottom-right-radius: @border-radius-base;
@@ -66,7 +77,6 @@
             justify-content: space-between;
             width: 100%;
             color: @navMorkGra;
-            padding: 1rem;
             text-decoration: none;
             border-top-left-radius: @border-radius-base;
             border-top-right-radius: @border-radius-base;
@@ -91,7 +101,14 @@
 
         &__header-mobile-chevron {
             margin-left: 0.5rem;
+            transition-property: transform;
             transition-duration: @openAnimationDuration;
+
+            &::before,
+            &::after {
+                transition-property: width, transform;
+                transition-duration: @openAnimationDuration;
+            }
         }
 
         &__header-mobile-left {
@@ -112,22 +129,28 @@
 
             position: absolute;
 
-            background-color: @navGronnLighten80;
+            background-color: @white;
             width: 100%;
+            border-bottom-right-radius: @border-radius-base;
+            border-bottom-left-radius: @border-radius-base;
+            box-shadow: 0 0 0 0.5rem @navGronnLighten80 inset;
 
             visibility: hidden;
             overflow: hidden;
             max-height: 0;
+            transition-property: max-height, visibility;
             transition-duration: @openAnimationDuration;
-            transition-timing-function: ease-in-out;
+            transition-timing-function: ease-out;
 
             & > * {
                 flex-grow: 1;
                 max-width: 50%;
+                padding-top: 1rem;
             }
 
             & > .page-nav-menu {
                 background-color: transparent;
+                padding-top: 1rem;
                 .page-nav-link__decor {
                     display: none;
                 }
@@ -136,12 +159,13 @@
 
         &--open {
             .left-menu__menu-items {
+                transition-timing-function: ease-in;
                 max-height: 25rem;
                 visibility: visible;
             }
 
             .left-menu__header-mobile-chevron {
-                transform: rotateZ(180deg);
+                transform: rotateZ(-180deg);
                 &::before {
                     transform: rotateZ(45deg);
                     width: 100%;
@@ -149,6 +173,24 @@
                 &::after {
                     transform: rotateZ(-45deg);
                     width: 100%;
+                }
+            }
+        }
+    }
+
+    .region__leftMenu {
+        & > * {
+            padding: 1rem;
+            background-color: white;
+            border-radius: @border-radius-base;
+            margin-bottom: 1rem;
+
+            @media @screen-mobile {
+                background-color: transparent;
+
+                &:first-child {
+                    margin-top: 0;
+                    padding-top: 0;
                 }
             }
         }

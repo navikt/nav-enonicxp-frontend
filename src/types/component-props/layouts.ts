@@ -25,13 +25,6 @@ export type RegionProps = {
     name: string;
 };
 
-export type LayoutCommonConfig = Partial<{
-    marginTop: number;
-    marginBottom: number;
-    backgroundColor: string;
-    bgFullWidth: boolean;
-}>;
-
 export interface LayoutCommonProps extends ComponentCommonProps {
     type: ComponentType.Layout | ComponentType.Page;
     descriptor: LayoutType;

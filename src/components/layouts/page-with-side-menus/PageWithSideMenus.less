@@ -1,68 +1,35 @@
 @import (reference) '../../../global';
 
-.page {
-    &__page-with-side-menus {
-        display: flex;
-        align-items: flex-start;
-        width: 100%;
+.page__page-with-side-menus {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
 
-        @media @screen-mobile {
-            flex-direction: column;
-        }
+    @media @screen-mobile {
+        flex-direction: column;
     }
 }
 
-.region {
-    &__pageContent {
-        max-width: 42rem;
-        width: 100%;
-        padding: 0 @padding-sides-mobile;
+.region__pageContent {
+    max-width: 37.5rem;
+    width: 100%;
+    flex-shrink: 1;
+    padding: 0 @padding-sides-mobile;
 
-        & > .layout {
-            margin-top: 1rem;
-            border-radius: @border-radius-base;
+    & > .layout {
+        margin-top: 1rem;
+        border-radius: @border-radius-base;
 
-            &:first-child {
-                margin-top: 0;
-            }
-        }
-
-        @media @screen-desktop {
-            padding: 0 @padding-sides-desktop;
+        &:first-child {
+            margin-top: 0;
         }
     }
 
-    &__leftMenu {
-        & > * {
-            padding: 1rem;
-            background-color: white;
-            border-radius: @border-radius-base;
-            margin-top: 1rem;
-
-            @media @screen-mobile {
-                background-color: transparent;
-
-                &:first-child {
-                    margin-top: 0;
-                    padding-top: 0;
-                }
-            }
-        }
+    @media @screen-mobile {
+        max-width: 100%;
     }
 
-    &__rightMenu {
-        @menuTopOffsetDesktop: 16px;
-
-        width: 15rem;
-        margin-right: 1.25rem;
-
-        &--sticky {
-            position: sticky;
-            top: calc(var(--sticky-offset) + @menuTopOffsetDesktop);
-
-            @media @screen-mobile {
-                top: var(--sticky-offset);
-            }
-        }
+    @media @screen-desktop {
+        padding: 0 @padding-sides-desktop;
     }
 }

@@ -8,26 +8,27 @@
 
     // Set negative horizontal margin and equivalent padding in order to
     // make the background of a layout cover the padding of the app-container
-    padding-left: @padding-sides-mobile;
-    padding-right: @padding-sides-mobile;
+    &__standard {
+        padding-left: @padding-sides-mobile;
+        padding-right: @padding-sides-mobile;
+        margin: @vertical-margin-default -@padding-sides-mobile;
 
-    margin: @vertical-margin-default -@padding-sides-mobile;
+        @media @screen-tablet {
+            padding-left: @padding-sides-tablet;
+            padding-right: @padding-sides-tablet;
+            margin-left: -@padding-sides-tablet;
+            margin-right: -@padding-sides-tablet;
+        }
 
-    @media @screen-tablet {
-        padding-left: @padding-sides-tablet;
-        padding-right: @padding-sides-tablet;
-        margin-left: -@padding-sides-tablet;
-        margin-right: -@padding-sides-tablet;
+        @media @screen-desktop {
+            padding-left: @padding-sides-desktop;
+            padding-right: @padding-sides-desktop;
+            margin-left: -@padding-sides-desktop;
+            margin-right: -@padding-sides-desktop;
+        }
     }
 
-    @media @screen-desktop {
-        padding-left: @padding-sides-desktop;
-        padding-right: @padding-sides-desktop;
-        margin-left: -@padding-sides-desktop;
-        margin-right: -@padding-sides-desktop;
-    }
-
-    // Makes the layout-container cover the entire screen-width
+    // Makes the layout-container background cover the entire screen-width
     &__fullwidth {
         padding-left: @side-width;
         padding-right: @side-width;

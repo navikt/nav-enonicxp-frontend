@@ -4,6 +4,7 @@ import { PageWithSideMenusProps } from '../../../types/component-props/pages/pag
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
 import { LeftSideMenu } from './LeftSideMenu';
+import { RightSideMenu } from './RightSideMenu';
 import './PageWithSideMenus.less';
 
 type Props = {
@@ -20,11 +21,12 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
     const {
         leftMenuToggle,
-        leftMenuStickyToggle,
+        leftMenuSticky,
         leftMenuHeader,
+        showInternalNav,
         anchorLinks,
         rightMenuToggle,
-        rightMenuStickyToggle,
+        rightMenuSticky,
     } = config;
 
     return (
@@ -33,14 +35,18 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 <LeftSideMenu
                     pageProps={pageProps}
                     regionProps={regions.leftMenu}
-                    anchorLinks={anchorLinks}
+                    internalLinks={showInternalNav && anchorLinks}
                     menuHeader={leftMenuHeader}
-                    stickyToggle={leftMenuStickyToggle}
+                    stickyToggle={leftMenuSticky}
                 />
             )}
             <Region pageProps={pageProps} regionProps={regions.pageContent} />
             {rightMenuToggle && (
-                <Region pageProps={pageProps} regionProps={regions.rightMenu} />
+                <RightSideMenu
+                    pageProps={pageProps}
+                    regionProps={regions.rightMenu}
+                    stickyToggle={rightMenuSticky}
+                />
             )}
         </LayoutContainer>
     );

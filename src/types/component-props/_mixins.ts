@@ -26,3 +26,15 @@ export type LinkWithIngressMixin = {
     ingress?: string;
     link: LinkSelectable;
 };
+
+export type LayoutCommonConfigMixin = Partial<{
+    marginTop: number;
+    marginBottom: number;
+    backgroundColor: string;
+    paddingSides: {
+        _selected: 'standard' | 'fullWidth' | 'custom';
+        custom?: {
+            remValue: number;
+        };
+    };
+}>;

@@ -18,7 +18,7 @@ import './LeftSideMenu.less';
 const bem = BEM('left-menu');
 
 type Props = {
-    anchorLinks: AnchorLink[];
+    internalLinks: AnchorLink[];
     menuHeader: string;
     stickyToggle: boolean;
     regionProps: RegionProps;
@@ -27,7 +27,7 @@ type Props = {
 
 export const LeftSideMenu = React.memo(
     ({
-        anchorLinks,
+        internalLinks,
         menuHeader,
         stickyToggle,
         regionProps,
@@ -50,35 +50,51 @@ export const LeftSideMenu = React.memo(
                     isMobileMenuOpen && bem(undefined, 'open')
                 )}
             >
-                <Undertittel className={bem('header-desktop')}>
-                    {menuHeader}
-                </Undertittel>
                 <LenkeBase
                     className={classNames(bem('header-mobile'))}
                     href={'#'}
                     onClick={toggleMobileMenu}
+                    aria-labelledby={'mobile-header-label'}
                 >
-                    {currentItem?.linkText && (
-                        <div className={bem('header-mobile-left')}>
-                            <Undertittel>{currentItem.linkText}</Undertittel>
-                            <ProgressBars
-                                currentIndex={currentItem.index}
-                                length={anchorLinks.length}
-                                className={bem('progress-bar')}
-                            />
-                        </div>
-                    )}
-                    <div className={bem('header-mobile-right')}>
-                        {menuHeader}
+                    <div className={bem('header-mobile-left')}>
+                        {currentItem?.index >= 0 ? (
+                            <>
+                                <Undertittel>
+                                    {currentItem.linkText}
+                                </Undertittel>
+                                <ProgressBars
+                                    currentIndex={currentItem.index}
+                                    length={internalLinks.length}
+                                    className={bem('progress-bar')}
+                                />
+                            </>
+                        ) : (
+                            menuHeader && (
+                                <Undertittel>{menuHeader}</Undertittel>
+                            )
+                        )}
+                    </div>
+                    <div
+                        className={bem('header-mobile-right')}
+                        id={'mobile-header-label'}
+                    >
+                        {isMobileMenuOpen ? 'Lukk meny' : 'Åpne meny'}
                         <NedChevron className={bem('header-mobile-chevron')} />
                     </div>
                 </LenkeBase>
+                {menuHeader && (
+                    <Undertittel className={bem('header-desktop')}>
+                        {menuHeader}
+                    </Undertittel>
+                )}
                 <div className={bem('menu-items-outer')}>
                     <div className={bem('menu-items')}>
-                        <PageNavigationMenu
-                            config={{ anchorLinks }}
-                            currentLinkCallback={setCurrentItem}
-                        />
+                        {internalLinks?.length > 0 && (
+                            <PageNavigationMenu
+                                config={{ anchorLinks: internalLinks }}
+                                currentLinkCallback={setCurrentItem}
+                            />
+                        )}
                         <Region
                             pageProps={pageProps}
                             regionProps={regionProps}

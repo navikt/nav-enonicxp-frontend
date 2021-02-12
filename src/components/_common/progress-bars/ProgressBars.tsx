@@ -12,7 +12,7 @@ type Props = {
 
 export const ProgressBars = ({ currentIndex, length, className }: Props) => {
     return (
-        <div className={classNames(bem(), className)}>
+        <div className={classNames(bem(), className)} aria-hidden={true}>
             {[...Array(length)].map((_, index) => (
                 <span
                     className={classNames(
