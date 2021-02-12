@@ -26,7 +26,7 @@ const revalidateCache = async (req, res) => {
         return res.status(400).send('No path specified');
     }
 
-    if (!fs.existsSync(`${cacheBasePath}${path}`)) {
+    if (!fs.existsSync(`${cacheBasePath}${path}.html`)) {
         const msg = `No page cache found for ${path} - regeneration not needed`;
         console.log(msg);
         return res.status(200).send(msg);
