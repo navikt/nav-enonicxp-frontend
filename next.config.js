@@ -1,4 +1,5 @@
 const withLess = require('@zeit/next-less');
+const withCSS = require('@zeit/next-css');
 const withImages = require('next-images');
 const packageJson = require('./package.json');
 
@@ -10,10 +11,12 @@ const navFrontendModuler = Object.keys(packageJson.dependencies).reduce(
 const withTranspileModules = require('next-transpile-modules')([
     ...navFrontendModuler,
     '@navikt/nav-dekoratoren-moduler',
+    '@navikt/ds-react',
+    '@navikt/ds-icons',
 ]);
 
 const configWithAllTheThings = (config) =>
-    withTranspileModules(withLess(withImages(config)));
+    withTranspileModules(withLess(withCSS(withImages(config))));
 
 module.exports = configWithAllTheThings({
     assetPrefix: process.env.APP_ORIGIN,

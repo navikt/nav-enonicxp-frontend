@@ -1,5 +1,6 @@
 @import '~nav-frontend-core/less/_variabler';
 @import '~nav-frontend-core/less/core';
+@import '~@navikt/ds-css/baseline/index.css';
 
 @font-size-factor: 1.125;
 @pixel-size-rem: 1 / (16 * @font-size-factor);
@@ -58,26 +59,26 @@ html {
 }
 
 .app {
-    max-width: @desktopMaxWidth;
-    min-height: 20rem;
-    margin: 0 auto;
+    //max-width: @desktopMaxWidth;
+    //min-height: 20rem;
+    //margin: 0 auto;
     transition: margin-top 0.2s ease-in-out;
 
     &__offset {
         margin-top: 3rem;
     }
 
-    @media @screen-mobile {
-        padding: 2rem @padding-sides-mobile;
-    }
-
-    @media @screen-tablet {
-        padding: 2rem @padding-sides-tablet;
-    }
-
-    @media @screen-desktop {
-        padding: 2rem @padding-sides-desktop;
-    }
+    //@media @screen-mobile {
+    //    padding: 2rem @padding-sides-mobile;
+    //}
+    //
+    //@media @screen-tablet {
+    //    padding: 2rem @padding-sides-tablet;
+    //}
+    //
+    //@media @screen-desktop {
+    //    padding: 2rem @padding-sides-desktop;
+    //}
 }
 
 #decorator-header {

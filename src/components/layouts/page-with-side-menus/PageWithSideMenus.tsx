@@ -5,6 +5,8 @@ import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
 import { LeftSideMenu } from './LeftSideMenu';
 import { RightSideMenu } from './RightSideMenu';
+import { Layout } from '@navikt/ds-react';
+import Section from '@navikt/ds-react/lib/layout/src/Section';
 import './PageWithSideMenus.less';
 
 type Props = {
@@ -31,23 +33,35 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            {leftMenuToggle && (
-                <LeftSideMenu
-                    pageProps={pageProps}
-                    regionProps={regions.leftMenu}
-                    internalLinks={showInternalNav && anchorLinks}
-                    menuHeader={leftMenuHeader}
-                    stickyToggle={leftMenuSticky}
-                />
-            )}
-            <Region pageProps={pageProps} regionProps={regions.pageContent} />
-            {rightMenuToggle && (
-                <RightSideMenu
-                    pageProps={pageProps}
-                    regionProps={regions.rightMenu}
-                    stickyToggle={rightMenuSticky}
-                />
-            )}
+            <Layout>
+                <Section left>
+                    {leftMenuToggle && (
+                        <LeftSideMenu
+                            pageProps={pageProps}
+                            regionProps={regions.leftMenu}
+                            internalLinks={showInternalNav && anchorLinks}
+                            menuHeader={leftMenuHeader}
+                            stickyToggle={leftMenuSticky}
+                        />
+                    )}
+                </Section>
+                <Section>
+                    <Region
+                        pageProps={pageProps}
+                        regionProps={regions.pageContent}
+                    />
+                </Section>
+                <Section right>
+                    {' '}
+                    {rightMenuToggle && (
+                        <RightSideMenu
+                            pageProps={pageProps}
+                            regionProps={regions.rightMenu}
+                            stickyToggle={rightMenuSticky}
+                        />
+                    )}
+                </Section>
+            </Layout>
         </LayoutContainer>
     );
 };
