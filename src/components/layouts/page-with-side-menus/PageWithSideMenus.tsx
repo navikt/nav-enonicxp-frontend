@@ -6,7 +6,6 @@ import Region from '../Region';
 import { LeftSideMenu } from './LeftSideMenu';
 import { RightSideMenu } from './RightSideMenu';
 import { Layout } from '@navikt/ds-react';
-import Section from '@navikt/ds-react/lib/layout/src/Section';
 import './PageWithSideMenus.less';
 
 type Props = {
@@ -34,8 +33,8 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             <Layout>
-                <Section left>
-                    {leftMenuToggle && (
+                {leftMenuToggle && (
+                    <Layout.Section left>
                         <LeftSideMenu
                             pageProps={pageProps}
                             regionProps={regions.leftMenu}
@@ -43,24 +42,23 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                             menuHeader={leftMenuHeader}
                             stickyToggle={leftMenuSticky}
                         />
-                    )}
-                </Section>
-                <Section>
+                    </Layout.Section>
+                )}
+                <Layout.Section>
                     <Region
                         pageProps={pageProps}
                         regionProps={regions.pageContent}
                     />
-                </Section>
-                <Section right>
-                    {' '}
-                    {rightMenuToggle && (
+                </Layout.Section>
+                {rightMenuToggle && (
+                    <Layout.Section right>
                         <RightSideMenu
                             pageProps={pageProps}
                             regionProps={regions.rightMenu}
                             stickyToggle={rightMenuSticky}
                         />
-                    )}
-                </Section>
+                    </Layout.Section>
+                )}
             </Layout>
         </LayoutContainer>
     );
