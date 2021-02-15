@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
-import { LenkeBase } from '../../_common/lenke/LenkeBase';
-import { ProgressBars } from '../../_common/progress-bars/ProgressBars';
+import { LenkeBase } from '../../../_common/lenke/LenkeBase';
+import { ProgressBars } from '../../../_common/progress-bars/ProgressBars';
 import { NedChevron } from 'nav-frontend-chevron';
-import { BEM, classNames } from '../../../utils/classnames';
+import { BEM, classNames } from '../../../../utils/classnames';
 import {
     PageNavCallbackArgs,
     PageNavigationMenu,
-} from '../../parts/_dynamic/page-navigation-menu/PageNavigationMenu';
-import Region from '../Region';
-import { AnchorLink } from '../../../types/component-props/parts/page-navigation-menu';
-import { RegionProps } from '../../../types/component-props/layouts';
-import { ContentProps } from '../../../types/content-props/_content-common';
-import { useStickyUpdate } from '../../../utils/useStickyUpdate';
-import './LeftSideMenu.less';
+} from '../../../parts/_dynamic/page-navigation-menu/PageNavigationMenu';
+import Region from '../../Region';
+import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
+import { RegionProps } from '../../../../types/component-props/layouts';
+import { ContentProps } from '../../../../types/content-props/_content-common';
+import { useStickyUpdate } from '../../../../utils/useStickyUpdate';
+import { Layout } from '@navikt/ds-react';
+import './LeftMenuSection.less';
 
 const bem = BEM('left-menu');
 
@@ -25,7 +26,7 @@ type Props = {
     pageProps: ContentProps;
 };
 
-export const LeftSideMenu = React.memo(
+export const LeftMenuSection = React.memo(
     ({
         internalLinks,
         menuHeader,
@@ -43,7 +44,8 @@ export const LeftSideMenu = React.memo(
         };
 
         return (
-            <div
+            <Layout.Section
+                left
                 className={classNames(
                     bem(),
                     stickyToggle && bem(undefined, 'sticky'),
@@ -101,7 +103,7 @@ export const LeftSideMenu = React.memo(
                         />
                     </div>
                 </div>
-            </div>
+            </Layout.Section>
         );
     }
 );

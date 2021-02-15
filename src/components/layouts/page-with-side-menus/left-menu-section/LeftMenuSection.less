@@ -1,16 +1,13 @@
-@import (reference) '../../../global';
+@import (reference) '../../../../global';
 
 .left-menu {
     @menuTopOffsetDesktop: 16px;
     @openAnimationDuration: 0.35s;
 
-    //width: 15rem;
-    //min-width: 10rem;
-    //margin-right: 1.25rem;
-
     &--sticky {
         position: sticky;
         top: calc(var(--sticky-offset) + @menuTopOffsetDesktop);
+        align-self: start;
 
         @media @screen-mobile {
             top: var(--sticky-offset);
@@ -178,20 +175,18 @@
         }
     }
 
-    .region__leftMenu {
-        & > * {
-            padding: 1rem;
-            background-color: white;
-            border-radius: @border-radius-base;
-            margin-bottom: 1rem;
+    .region__leftMenu > * {
+        padding: 1rem;
+        background-color: white;
+        border-radius: @border-radius-base;
+        margin-bottom: 1rem;
 
-            @media @screen-mobile {
-                background-color: transparent;
+        @media @screen-mobile {
+            background-color: transparent;
 
-                &:first-child {
-                    margin-top: 0;
-                    padding-top: 0;
-                }
+            &:first-child {
+                margin-top: 0;
+                padding-top: 0;
             }
         }
     }

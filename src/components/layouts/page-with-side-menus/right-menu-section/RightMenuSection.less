@@ -1,15 +1,12 @@
-@import (reference) '../../../global';
+@import (reference) '../../../../global';
 
-.region__rightMenu {
+.right-menu {
     @menuTopOffsetDesktop: 16px;
-
-    //width: 15rem;
-    //min-width: 10rem;
-    //margin-left: 1.25rem;
 
     &--sticky {
         position: sticky;
         top: calc(var(--sticky-offset) + @menuTopOffsetDesktop);
+        align-self: start;
 
         @media @screen-mobile {
             position: static;
@@ -17,7 +14,7 @@
         }
     }
 
-    & > * {
+    .region__rightMenu > * {
         padding: 1rem;
         background-color: white;
         border-radius: @border-radius-base;

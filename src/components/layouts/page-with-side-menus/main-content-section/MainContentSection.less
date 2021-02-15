@@ -1,0 +1,23 @@
+@import (reference) '../../../../global';
+
+.region__pageContent {
+    flex-shrink: 1;
+    padding: 0 @padding-sides-mobile;
+
+    & > .layout {
+        margin-top: 1rem;
+        border-radius: @border-radius-base;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    @media @screen-mobile {
+        max-width: 100%;
+    }
+
+    @media @screen-desktop {
+        padding: 0 @padding-sides-desktop;
+    }
+}
