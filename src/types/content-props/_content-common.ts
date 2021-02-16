@@ -61,6 +61,12 @@ export type ContentProps = {
     notifications?: NotificationProps[];
 };
 
+export type SeoDataProps = Partial<{
+    metaDescription: string;
+    canonicalUrl: string;
+    noindex: boolean;
+}>;
+
 export type ContentData = Partial<
     ContentListData &
         ErrorData &

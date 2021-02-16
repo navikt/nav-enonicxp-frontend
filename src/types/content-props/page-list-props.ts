@@ -1,4 +1,4 @@
-import { ContentType, ContentProps } from './_content-common';
+import { ContentType, ContentProps, SeoDataProps } from './_content-common';
 import { LanguageProps } from '../language';
 
 export type PageListData = Partial<{
@@ -8,11 +8,9 @@ export type PageListData = Partial<{
     hide_date: boolean;
     hideSectionContentsDate: boolean;
     orderSectionContentsByPublished: boolean;
-    metaDescription: string;
-    canonicalUrl: string;
-    noindex: boolean;
     feedbackToggle: boolean;
-}>;
+}> &
+    SeoDataProps;
 
 export interface PageListProps extends ContentProps {
     __typename: ContentType.PageList;
