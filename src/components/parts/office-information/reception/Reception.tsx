@@ -113,13 +113,13 @@ const MetaOpeningHours = (props: {
                             <>
                                 <time
                                     itemProp="opens"
-                                    data-th-datetime={opening.fra}
+                                    dateTime={opening.fra}
                                 >
                                     {opening.fra}
                                 </time>
                                 <time
                                     itemProp="closes"
-                                    data-th-datetime={opening.til}
+                                    dateTime={opening.til}
                                 >
                                     {opening.til}
                                 </time>
