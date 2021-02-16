@@ -50,10 +50,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
                 <link rel={'canonical'} href={url} />
             )}
             {content.data?.noindex && (
-                <meta name={'robots'} content={'noindex'} />
-            )}
-            {content.data?.noindex && (
-                <meta name={'robots'} content={'nofollow'} />
+                <meta name={'robots'} content={'noindex, nofollow'} />
             )}
             <meta property={'og:title'} content={title} />
             <meta property={'og:site_name'} content={'nav.no'} />
