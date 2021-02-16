@@ -21,6 +21,13 @@ module.exports = configWithAllTheThings({
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
     },
+    redirects: async () => [
+        {
+            source: '/www.nav.no/:path*',
+            destination: `${process.env.APP_ORIGIN}/:path*`,
+            permanent: false,
+        },
+    ],
     rewrites: async () => [
         {
             source: '/sitemap.xml',

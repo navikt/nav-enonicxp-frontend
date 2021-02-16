@@ -11,7 +11,7 @@ import { fetchPage } from '../utils/fetch-content';
 import { makeErrorProps } from '../utils/make-error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
-import { routerQueryToXpPathOrId } from '../utils/paths';
+import { routerQueryToXpPathOrId, sanitizeUrl } from '../utils/paths';
 import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
 import { isNotFound } from '../utils/errors';
 
@@ -102,6 +102,15 @@ export const fetchPageProps = async (
     const content = await fetchPage(xpPath, isDraft, secret);
 
     if (isNotFound(content)) {
+        const sanitizedPath = sanitizeUrl(xpPath);
+
+        if (sanitizedPath !== xpPath) {
+            return {
+                props: { content },
+                redirect: { destination: sanitizedPath, permanent: false },
+            };
+        }
+
         return {
             props: { content },
             notFound: true,
