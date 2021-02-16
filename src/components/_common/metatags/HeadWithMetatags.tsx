@@ -52,7 +52,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
             {content.data?.noindex && (
                 <meta name={'robots'} content={'noindex'} />
             )}
-            {content.data?.nofollow && (
+            {content.data?.noindex && (
                 <meta name={'robots'} content={'nofollow'} />
             )}
             <meta property={'og:title'} content={title} />

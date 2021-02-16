@@ -65,7 +65,6 @@ export type SeoDataProps = Partial<{
     metaDescription: string;
     canonicalUrl: string;
     noindex: boolean;
-    nofollow: boolean;
 }>;
 
 export type ContentData = Partial<
