@@ -42,16 +42,15 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
         ? content.data.canonicalUrl
         : xpPathToUrl(content._path);
     const imageUrl = `${getLocationOrigin()}/gfx/social-share-fallback.png`;
+    const noIndex = content.data?.noindex;
 
     return (
         <Head>
             <title>{title}</title>
-            {content.__typename !== ContentType.Error && (
+            {content.__typename !== ContentType.Error && !noIndex && (
                 <link rel={'canonical'} href={url} />
             )}
-            {content.data?.noindex && (
-                <meta name={'robots'} content={'noindex, nofollow'} />
-            )}
+            {noIndex && <meta name={'robots'} content={'noindex, nofollow'} />}
             <meta property={'og:title'} content={title} />
             <meta property={'og:site_name'} content={'nav.no'} />
             <meta property={'og:url'} content={url} />
