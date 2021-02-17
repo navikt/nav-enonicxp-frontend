@@ -11,9 +11,12 @@ import { fetchPage } from '../utils/fetch-content';
 import { makeErrorProps } from '../utils/make-error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
-import { routerQueryToXpPathOrId, sanitizeUrl } from '../utils/paths';
-import { error1337ReloadProps } from './pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
-import { isNotFound } from '../utils/errors';
+import {
+    routerQueryToXpPathOrId,
+    sanitizeUrl,
+    xpPathToPathname,
+} from '../utils/paths';
+import { errorHandler, isNotFound } from '../utils/errors';
 
 type PageProps = {
     content: ContentProps;
@@ -51,48 +54,6 @@ export const PageBase = (props: PageProps) => {
     );
 };
 
-// These status codes may indicate that the requested page has been intentionally
-// made unavailable.  We want to perform cache revalidation in these cases.
-const revalidateOnErrorCode = {
-    401: true, // unauthorized
-    403: true, // forbidden
-    404: true, // not found
-};
-
-const appError = (content: ContentProps) => ({
-    content,
-});
-
-const errorHandlerProd = (content: ContentProps) => {
-    if (!revalidateOnErrorCode[content.data.errorCode]) {
-        throw appError(content);
-    }
-
-    return { props: { content } };
-};
-
-const errorHandlerDev = (content: ContentProps) => {
-    if (!revalidateOnErrorCode[content.data.errorCode]) {
-        // Do not throw errors at build-time in dev-environments
-        if (process.env.NEXT_PHASE === 'phase-production-build') {
-            return {
-                props: {
-                    content: error1337ReloadProps(content._path),
-                },
-            };
-        }
-
-        throw appError(content);
-    }
-
-    return { props: { content } };
-};
-
-const errorHandler =
-    process.env.APP_ORIGIN === 'https://www.nav.no'
-        ? errorHandlerProd
-        : errorHandlerDev;
-
 export const fetchPageProps = async (
     routerQuery: string | string[],
     isDraft = false,
@@ -107,7 +68,10 @@ export const fetchPageProps = async (
         if (sanitizedPath !== xpPath) {
             return {
                 props: { content },
-                redirect: { destination: sanitizedPath, permanent: false },
+                redirect: {
+                    destination: xpPathToPathname(sanitizedPath),
+                    permanent: false,
+                },
             };
         }
 
