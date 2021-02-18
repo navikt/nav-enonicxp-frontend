@@ -62,7 +62,7 @@ export const sanitizeUrl = (url: string) =>
         .replace(/,/g, '')
         .replace(/æ/g, 'ae')
         .replace(/ø/g, 'o')
-        .replace(/å/g, 'aa');
+        .replace(/å/g, 'a');
 
 // Requests from content-studio can be either a path or UUID, we check for both
 export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
