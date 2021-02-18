@@ -1,5 +1,5 @@
 import { MainArticleChapterProps } from './main-article-chapter-props';
-import { ContentType, ContentProps } from './_content-common';
+import { ContentType, ContentProps, SeoDataProps } from './_content-common';
 import { MenuListItem } from '../menu-list-items';
 import { LanguageProps } from '../language';
 import { XpImage } from '../media';
@@ -20,11 +20,9 @@ export type MainArticleData = Partial<{
     social: string[];
     picture: Picture;
     menuListItems: MenuListItem;
-    metaDescription: string;
-    canonicalUrl: string;
-    noindex: boolean;
     feedbackToggle: boolean;
-}>;
+}> &
+    SeoDataProps;
 
 export interface MainArticleProps extends ContentProps {
     __typename: ContentType.MainArticle;
