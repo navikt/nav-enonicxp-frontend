@@ -23,6 +23,11 @@ module.exports = configWithAllTheThings({
     },
     redirects: async () => [
         {
+            source: '/www.nav.no',
+            destination: '/',
+            permanent: false,
+        },
+        {
             source: '/www.nav.no/:path*',
             destination: '/:path*',
             permanent: false,
