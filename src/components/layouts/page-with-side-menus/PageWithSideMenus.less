@@ -2,10 +2,10 @@
 
 .page__page-with-side-menus {
     display: flex;
-    align-items: flex-start;
-    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
 
-    @media @screen-mobile {
-        flex-direction: column;
+    .navds-content-container {
+        padding: 0;
     }
 }

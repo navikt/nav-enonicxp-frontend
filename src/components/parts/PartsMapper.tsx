@@ -26,6 +26,8 @@ import PublishingCalendar from './publishing-calendar/PublishingCalendar';
 import { BEM, classNames } from '../../utils/classnames';
 import { PageNavigationMenuPart } from './_dynamic/page-navigation-menu/PageNavigationMenu';
 import { HtmlArea } from './_dynamic/html-area/HtmlArea';
+import { PageHeaderPart } from './_dynamic/page-header/PageHeaderPart';
+import { ButtonPart } from './_dynamic/button/ButtonPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -59,6 +61,8 @@ const partsWithOwnData: {
     [PartType.NewsList]: NewsList,
     [PartType.PageNavigationMenu]: PageNavigationMenuPart,
     [PartType.HtmlArea]: HtmlArea,
+    [PartType.PageHeader]: PageHeaderPart,
+    [PartType.Button]: ButtonPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {

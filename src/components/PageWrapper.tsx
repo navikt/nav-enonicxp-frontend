@@ -13,7 +13,6 @@ import { getDecoratorParams } from '../utils/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getContentLanguages } from '../utils/languages';
 import { BEM, classNames } from '../utils/classnames';
-import { ContentContainer } from '@navikt/ds-react';
 
 const bem = BEM('app');
 
@@ -80,7 +79,7 @@ export const PageWrapper = (props: Props) => {
     }, [content]);
 
     return (
-        <ContentContainer
+        <div
             className={classNames(
                 bem(),
                 hasBreadcrumbsOrLanguageSelector && bem('offset')
@@ -97,7 +96,7 @@ export const PageWrapper = (props: Props) => {
             <div className={'content-wrapper'} id={'maincontent'}>
                 {children}
             </div>
-        </ContentContainer>
+        </div>
     );
 };
 

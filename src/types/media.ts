@@ -9,4 +9,4 @@ export type BitmapImage = {
     mediaUrl?: string;
 };
 
-export type XpImage = VectorImage | BitmapImage;
+export type XpImageProps = VectorImage | BitmapImage;

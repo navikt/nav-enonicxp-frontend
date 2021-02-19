@@ -1,12 +1,12 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 import { LinkWithIngressMixin } from '../_mixins';
-import { XpImage } from '../../media';
+import { XpImageProps } from '../../media';
 
 interface LinkPanelConfig extends LinkWithIngressMixin {
     vertical: boolean;
-    background: XpImage;
-    icon: XpImage;
+    background: XpImageProps;
+    icon: XpImageProps;
 }
 
 export interface DynamicLinkPanel extends PartComponentProps {

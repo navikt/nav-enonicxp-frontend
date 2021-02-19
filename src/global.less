@@ -33,17 +33,6 @@
 @padding-sides-tablet: 1rem;
 @padding-sides-mobile: 1rem;
 
-// Rounds a rem-value to the nearest value which is divisible by
-// the current pixel size, taking global font-size into account
-#round-rem(@value: 0) {
-    @valueUpper: @value + @pixel-size-rem / 2;
-    @result: if(
-        isunit(@value, rem),
-        @valueUpper - mod(@valueUpper, @pixel-size-rem),
-        0
-    );
-}
-
 html {
     font-size: @font-size-factor * 100%;
 }
@@ -59,10 +48,25 @@ html {
 }
 
 .app {
+    max-width: @desktopMaxWidth;
+    min-height: 20rem;
+    margin: 0 auto;
     transition: margin-top 0.2s ease-in-out;
 
     &__offset {
         margin-top: 3rem;
+    }
+
+    @media @screen-mobile {
+        padding: 2rem @padding-sides-mobile;
+    }
+
+    @media @screen-tablet {
+        padding: 2rem @padding-sides-mobile;
+    }
+
+    @media @screen-desktop {
+        padding: 2rem @padding-sides-desktop;
     }
 }
 
@@ -98,4 +102,26 @@ html {
     padding: 0;
     position: absolute;
     width: 1px;
+}
+
+// Rounds a rem-value to the nearest value which is divisible by
+// the current pixel size, taking global font-size into account
+#round-rem(@value: 0) {
+    @valueUpper: @value + @pixel-size-rem / 2;
+    @result: if(
+        isunit(@value, rem),
+        @valueUpper - mod(@valueUpper, @pixel-size-rem),
+        0
+    );
+}
+
+// Makes the element cover the entire screen-width
+.full-width-mixin() {
+    @side-width: calc((100vw - 100%) / 2);
+    @side-width-negative: calc((100vw - 100%) / -2);
+
+    padding-left: @side-width;
+    padding-right: @side-width;
+    margin-left: @side-width-negative;
+    margin-right: @side-width-negative;
 }

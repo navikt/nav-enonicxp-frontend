@@ -23,6 +23,8 @@ export enum PartType {
     NewsList = 'no.nav.navno:dynamic-news-list',
     PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
     HtmlArea = 'no.nav.navno:html-area',
+    PageHeader = 'no.nav.navno:page-header',
+    Button = 'no.nav.navno:button',
 }
 
 export type PartDeprecated =
@@ -51,4 +53,6 @@ export type PartWithOwnData =
     | PartType.LinkList
     | PartType.NewsList
     | PartType.PageNavigationMenu
-    | PartType.HtmlArea;
+    | PartType.HtmlArea
+    | PartType.PageHeader
+    | PartType.Button;
