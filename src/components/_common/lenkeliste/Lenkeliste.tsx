@@ -3,8 +3,6 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from '../lenke/LenkeStandalone';
 import { BEM, classNames } from 'utils/classnames';
-import { PublicImage } from '../image/PublicImage';
-import { isNavUrl } from '../../../utils/paths';
 import './Lenkeliste.less';
 
 type Props = {
@@ -36,16 +34,9 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
                         className={bem('lenke')}
                         component={'link-list'}
                         linkGroup={tittel}
+                        showExternalLinkIcon={true}
                     >
-                        <span>
-                            {lenke.text}
-                            {!isNavUrl(lenke.url) && (
-                                <PublicImage
-                                    imagePath={'/gfx/external-link-icon.svg'}
-                                    className={bem('icon')}
-                                />
-                            )}
-                        </span>
+                        {lenke.text}
                     </LenkeStandalone>
                 ))}
             </nav>

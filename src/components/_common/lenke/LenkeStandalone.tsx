@@ -3,6 +3,8 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
 import { BEM, classNames } from 'utils/classnames';
 import { LenkeBase } from './LenkeBase';
+import { isNavUrl } from '../../../utils/paths';
+import { PublicImage } from '../image/PublicImage';
 import './LenkeStandalone.less';
 
 type Props = {
@@ -12,6 +14,7 @@ type Props = {
     component?: string;
     linkGroup?: string;
     withChevron?: boolean;
+    showExternalLinkIcon?: boolean;
     analyticsLabel?: string;
     children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
@@ -23,6 +26,7 @@ export const LenkeStandalone = ({
     component,
     linkGroup,
     withChevron = true,
+    showExternalLinkIcon,
     children,
     analyticsLabel,
     ...rest
@@ -43,11 +47,17 @@ export const LenkeStandalone = ({
         >
             <span className={bem('lenketekst')}>
                 {withChevron && (
-                    <span className={bem('ikon-container')}>
+                    <span className={bem('icon-container')}>
                         <HoyreChevron className={bem('chevron')} />
                     </span>
                 )}
                 {children}
+                {showExternalLinkIcon && !isNavUrl(href) && (
+                    <PublicImage
+                        imagePath={'/gfx/external-link-icon.svg'}
+                        className={bem('icon-external')}
+                    />
+                )}
             </span>
             {label && <Undertekst className={bem('label')}>{label}</Undertekst>}
         </LenkeBase>
