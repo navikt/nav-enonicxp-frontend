@@ -21,13 +21,13 @@ export const ButtonPart = ({ config }: ButtonPartProps) => {
                 bemPart(),
                 fullwidth && bemPart('fullwidth'),
                 bemDs(),
-                type !== 'standard' && bemDs(undefined, type),
+                bemDs(undefined, type),
                 size !== 'normal' && bemDs(undefined, size)
             )}
         >
             {icon ? (
                 <>
-                    <XpImage imageProps={icon} />
+                    <XpImage imageProps={icon} className={bemPart('icon')} />
                     <span>{linkProps.text}</span>
                 </>
             ) : (

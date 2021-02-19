@@ -3,9 +3,17 @@
 .header-part {
     display: flex;
     width: 100%;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
     position: relative;
+
+    &:hover,
+    &:focus {
+        .header-part__anchor-icon {
+            visibility: visible;
+            opacity: 0.75;
+        }
+    }
 
     &__anchor-icon {
         @height: #round-rem(1.25rem) [];
@@ -21,23 +29,36 @@
         transition-duration: 0.15s;
     }
 
-    &:hover,
-    &:focus {
-        .header-part__anchor-icon {
+    &__copy-tooltip {
+        position: absolute;
+        right: 0;
+        visibility: hidden;
+        background-color: black;
+        color: white;
+        padding: 0 0.25rem;
+        border-radius: @border-radius-small;
+        pointer-events: none;
+        opacity: 0;
+        transition-property: visibility, opacity;
+        transition-duration: 0.15s;
+        transition-timing-function: linear;
+
+        &--visible {
             visibility: visible;
             opacity: 0.75;
         }
     }
 
     &--left {
-        align-items: flex-start;
+        justify-content: flex-start;
     }
 
     &--center {
+        justify-content: center;
     }
 
     &--right {
-        align-items: flex-end;
+        justify-content: flex-end;
     }
 
     &__ingress {

@@ -46,6 +46,9 @@ export const isUUID = (id: string) =>
         id
     );
 
+export const isNavUrl = (url: string) =>
+    /^(https:\/\/)?([a-z0-9-]*(\.)?nav\.no)?(\/|$)/i.test(url);
+
 export const xpPathToPathname = (path: string) =>
     isXpPath(path) ? path.slice(xpContentPathPrefix.length) : path;
 

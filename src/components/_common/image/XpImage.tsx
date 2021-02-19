@@ -5,6 +5,7 @@ type Props = {
     imageProps: XpImageProps;
     scale?: string;
     alt?: string;
+    className?: string;
 };
 
 export const getImageUrl = (imageProps: XpImageProps, scale?: string) => {
@@ -19,11 +20,11 @@ export const getImageUrl = (imageProps: XpImageProps, scale?: string) => {
     return imageProps.mediaUrl;
 };
 
-export const XpImage = ({ imageProps, alt = '', scale }: Props) => {
+export const XpImage = ({ imageProps, alt = '', scale, className }: Props) => {
     const imageUrl = getImageUrl(imageProps, scale);
     if (!imageUrl) {
         return null;
     }
 
-    return <img src={imageUrl} alt={alt} />;
+    return <img src={imageUrl} alt={alt} className={className} />;
 };
