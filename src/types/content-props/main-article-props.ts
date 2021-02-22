@@ -21,11 +21,12 @@ export type MainArticleData = Partial<{
     picture: Picture;
     menuListItems: MenuListItem;
     feedbackToggle: boolean;
+    chapters: MainArticleChapterProps[];
 }> &
     SeoDataProps;
 
 export interface MainArticleProps extends ContentProps {
     __typename: ContentType.MainArticle;
-    children?: MainArticleChapterProps[];
+    children?: MainArticleChapterProps[]; // TODO: remove after backend chapters-update
     data: MainArticleData;
 }

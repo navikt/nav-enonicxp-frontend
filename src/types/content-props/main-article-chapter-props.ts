@@ -7,12 +7,8 @@ export type MainArticleChapterData = Partial<{
     languages: LanguageProps[];
 }>;
 
-type ParentProps = {
-    children: ContentProps[];
-} & ContentProps;
-
 export interface MainArticleChapterProps extends ContentProps {
     __typename: ContentType.MainArticleChapter;
-    parent: ParentProps;
+    parent: MainArticleProps;
     data: MainArticleChapterData;
 }
