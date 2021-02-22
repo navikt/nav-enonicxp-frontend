@@ -1,6 +1,14 @@
 import { OpeningHoursProps } from '../../../../types/content-props/office-information-props';
+import React from 'react';
 
-const OpeningHours = (props: {
+export const MetaOpeningHours = (props: {
+    openingHours: OpeningHoursProps[];
+    metaKey: string;
+}) => {
+    return {};
+};
+
+export const OpeningHours = (props: {
     openingHours: OpeningHoursProps[];
     closedLabel: string;
     metaKey: string;
@@ -34,5 +42,3 @@ const OpeningHours = (props: {
         </table>
     );
 };
-
-export default OpeningHours;

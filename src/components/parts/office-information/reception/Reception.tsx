@@ -7,7 +7,7 @@ import {
     OpeningHoursProps,
 } from '../../../../types/content-props/office-information-props';
 import { Normaltekst, Element, Systemtittel } from 'nav-frontend-typografi';
-import OpeningHours from './OpeningHours';
+import { OpeningHours } from './OpeningHours';
 import { BEM } from '../../../../utils/bem';
 import './Reception.less';
 
@@ -85,52 +85,7 @@ const formatAudienceReception = (
     };
 };
 
-const MetaOpeningHours = (props: {
-    openingHours: OpeningHoursProps[];
-    metaKey: string;
-}) => {
-    return (
-        <ul className="hidden">
-            {props.openingHours.map((opening, ix) => {
-                const compKey = `${props.metaKey}-${ix}`;
-                return (
-                    <li
-                        key={compKey}
-                        itemProp="specialOpeningHoursSpecification"
-                        itemScope
-                        itemType="http://schema.org/OpeningHoursSpecification"
-                    >
-                        <time itemProp="validFrom" dateTime={opening.isoDate}>
-                            {opening.dato}
-                        </time>
-                        <time
-                            itemProp="validThrough"
-                            dateTime={opening.isoDate}
-                        >
-                            {opening.dato}
-                        </time>
-                        {!opening.stengt && (
-                            <>
-                                <time
-                                    itemProp="opens"
-                                    dateTime={opening.fra}
-                                >
-                                    {opening.fra}
-                                </time>
-                                <time
-                                    itemProp="closes"
-                                    dateTime={opening.til}
-                                >
-                                    {opening.til}
-                                </time>
-                            </>
-                        )}
-                    </li>
-                );
-            })}
-        </ul>
-    );
-};
+
 
 type ReceptionType = AudienceReception[] | AudienceReception | undefined;
 
@@ -158,7 +113,7 @@ const Reception = (props: Props) => {
             </Systemtittel>
             {receptionArray.map((rec: AudienceReception) => {
                 const reception = formatAudienceReception(rec);
-
+                console.log(reception);
                 return (
                     <div
                         key={rec.id}
