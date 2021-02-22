@@ -51,12 +51,16 @@ export const LenkeStandalone = ({
                         <HoyreChevron className={bem('chevron')} />
                     </span>
                 )}
-                {children}
-                {showExternalLinkIcon && !isNavUrl(href) && (
-                    <PublicImage
-                        imagePath={'/gfx/external-link-icon.svg'}
-                        className={bem('icon-external')}
-                    />
+                {showExternalLinkIcon && !isNavUrl(href) ? (
+                    <span>
+                        {children}
+                        <PublicImage
+                            imagePath={'/gfx/external-link-icon.svg'}
+                            className={bem('icon-external')}
+                        />
+                    </span>
+                ) : (
+                    <>{children}</>
                 )}
             </span>
             {label && <Undertekst className={bem('label')}>{label}</Undertekst>}
