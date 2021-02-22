@@ -1,5 +1,6 @@
 import { XpContentRef } from '../utils/paths';
 import { Language } from '../translations';
+import { XpResponseProps } from '../utils/fetch-content';
 
 export enum MediaType {
     Archive = 'media_Archive',
@@ -30,6 +31,7 @@ export type MediaProps = {
         from?: string;
     };
     mediaUrl: string;
+    editMode?: boolean;
 };
 
 export type VectorImage = {
@@ -44,3 +46,8 @@ export type BitmapImage = {
 };
 
 export type XpImage = VectorImage | BitmapImage;
+
+export const isMediaContent = (
+    content: XpResponseProps
+): content is MediaProps =>
+    Object.values(MediaType).includes(content.__typename as MediaType);
