@@ -10,9 +10,10 @@ import LargeTablePage from './pages/large-table-page/LargeTablePage';
 import { ClientsideRedirect } from './ClientsideRedirect';
 import { TemplatePage } from './pages/template-page/TemplatePage';
 import ErrorPage404 from '../pages/404';
+import { MediaType } from '../types/media';
 
 const contentToReactComponent: Partial<
-    { [key in ContentType]: React.FunctionComponent<ContentProps> }
+    { [key in ContentType | MediaType]: React.FunctionComponent<ContentProps> }
 > = {
     [ContentType.Error]: ErrorPage,
     [ContentType.LargeTable]: LargeTablePage,
@@ -34,6 +35,20 @@ const contentToReactComponent: Partial<
     [ContentType.InternalLink]: ClientsideRedirect,
     [ContentType.Site]: ClientsideRedirect,
     [ContentType.Url]: ClientsideRedirect,
+
+    [MediaType.Archive]: ClientsideRedirect,
+    [MediaType.Audio]: ClientsideRedirect,
+    [MediaType.Code]: ClientsideRedirect,
+    [MediaType.Data]: ClientsideRedirect,
+    [MediaType.Document]: ClientsideRedirect,
+    [MediaType.Executable]: ClientsideRedirect,
+    [MediaType.Image]: ClientsideRedirect,
+    [MediaType.Presentation]: ClientsideRedirect,
+    [MediaType.Spreadsheet]: ClientsideRedirect,
+    [MediaType.Text]: ClientsideRedirect,
+    [MediaType.Unknown]: ClientsideRedirect,
+    [MediaType.Vector]: ClientsideRedirect,
+    [MediaType.Video]: ClientsideRedirect,
 };
 
 export const isContentTypeImplemented = (content: ContentProps) =>
