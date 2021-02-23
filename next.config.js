@@ -21,28 +21,40 @@ module.exports = configWithAllTheThings({
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
     },
+    redirects: async () => [
+        {
+            source: '/www.nav.no',
+            destination: '/',
+            permanent: false,
+        },
+        {
+            source: '/www.nav.no/:path*',
+            destination: '/:path*',
+            permanent: false,
+        },
+    ],
     rewrites: async () => [
         {
             source: '/sitemap.xml',
-            destination: `${process.env.APP_ORIGIN}/api/sitemap`,
+            destination: '/api/sitemap',
         },
         {
             source: '/no/rss',
-            destination: `${process.env.APP_ORIGIN}/api/rss`,
+            destination: '/api/rss',
         },
         // Send some very common 404-resulting requests directly to 404
         // to prevent unnecessary backend-calls
         {
             source: '/autodiscover/autodiscover.xml',
-            destination: `${process.env.APP_ORIGIN}/404`,
+            destination: '/404',
         },
         {
             source: '/Forsiden/driftsmelding',
-            destination: `${process.env.APP_ORIGIN}/404`,
+            destination: '/404',
         },
         {
             source: '/_public/beta.nav.no/:path*',
-            destination: `${process.env.APP_ORIGIN}/404`,
+            destination: '/404',
         },
         ...(process.env.ENV === 'localhost'
             ? [

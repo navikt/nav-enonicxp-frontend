@@ -55,6 +55,15 @@ export const xpPathToUrl = (path: string) =>
 export const pathnameToXpPath = (path: string) =>
     path && `${xpContentPathPrefix}${path}`;
 
+export const sanitizeUrl = (url: string) =>
+    url
+        .toLowerCase()
+        .replace(/\+|\s|( - )/g, '-')
+        .replace(/,/g, '')
+        .replace(/æ/g, 'ae')
+        .replace(/ø/g, 'o')
+        .replace(/å/g, 'a');
+
 // Requests from content-studio can be either a path or UUID, we check for both
 export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
     const possibleId =
