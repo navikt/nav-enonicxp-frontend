@@ -32,6 +32,11 @@ module.exports = configWithAllTheThings({
             destination: '/:path*',
             permanent: false,
         },
+        {
+            source: '/Global%20Utlogging',
+            destination: '/global-utlogging',
+            permanent: true,
+        },
     ],
     rewrites: async () => [
         {
