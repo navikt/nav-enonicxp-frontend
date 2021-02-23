@@ -75,9 +75,10 @@ const pathToRoleContext: { [key: string]: DecoratorContext } = {
     person: 'privatperson',
     bedrift: 'arbeidsgiver',
     samarbeidspartner: 'samarbeidspartner',
+    privatperson: 'privatperson',
 };
 
-const fetchDecoratorHtml = (query?: string) => {
+const _fetchDecoratorHtml = (query?: string) => {
     const url = `${decoratorUrl}/${query ? query : ''}`;
     return fetchWithTimeout(url, 5000)
         .then((res) => {
@@ -89,6 +90,15 @@ const fetchDecoratorHtml = (query?: string) => {
         })
         .catch(console.error);
 };
+
+// Prevents annoying console warning in dev-mode
+const fetchDecoratorHtml =
+    process.env.NODE_ENV === 'development'
+        ? (query?: string) =>
+              _fetchDecoratorHtml(query).then((html) =>
+                  html?.replace('value=""', '')
+              )
+        : _fetchDecoratorHtml;
 
 const decoratorFragmentsCSR = (query?: string) => ({
     HEADER: <div id="decorator-header"></div>,
@@ -107,21 +117,16 @@ const decoratorFragmentsCSR = (query?: string) => ({
 
 const errorParams = (content: ContentProps): DecoratorParams => ({
     feedback: false,
-    breadcrumbs: content.breadcrumbs || [
-        {
-            title: content.data?.errorMessage || 'Ukjent feil',
-            url: '/',
-        },
-    ],
+    breadcrumbs: content?.breadcrumbs || [],
 });
 
 const defaultParams = {
-    feedback: true,
+    feedback: false,
     language: 'nb',
 };
 
 export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
-    if (content.__typename === ContentType.Error) {
+    if (!content || content.__typename === ContentType.Error) {
         return errorParams(content);
     }
 
@@ -129,6 +134,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     const rolePath = _path.split('/')[3];
     const context = pathToRoleContext[rolePath];
     const decoratorLanguage = xpLangToDecoratorLang[language];
+    const feedback = content.data?.feedbackToggle;
 
     return {
         ...defaultParams,
@@ -144,6 +150,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
             language,
             _path
         ),
+        ...(feedback && { feedback: true }),
     };
 };
 

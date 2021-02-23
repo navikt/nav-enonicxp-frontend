@@ -1,8 +1,8 @@
 import React from 'react';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
-import { BEM } from 'utils/bem';
-import { LenkeUstylet } from './LenkeUstylet';
+import { BEM, classNames } from 'utils/classnames';
+import { LenkeBase } from './LenkeBase';
 import './LenkeStandalone.less';
 
 type Props = {
@@ -30,9 +30,9 @@ export const LenkeStandalone = ({
     const bem = BEM('navno-lenke');
 
     return (
-        <LenkeUstylet
+        <LenkeBase
             href={href}
-            className={`${bem()} ${className || ''}`}
+            className={classNames(bem(), className)}
             component={component}
             linkGroup={linkGroup}
             analyticsLabel={
@@ -50,6 +50,6 @@ export const LenkeStandalone = ({
                 {children}
             </span>
             {label && <Undertekst className={bem('label')}>{label}</Undertekst>}
-        </LenkeUstylet>
+        </LenkeBase>
     );
 };

@@ -18,6 +18,12 @@ const internalUrlPattern = new RegExp(
     'i'
 );
 
+// Matches urls which should have the nofollow flag
+const nofollowPattern = new RegExp(
+    `^(${process.env.APP_ORIGIN})?(\\/sok($|\\?|\\/))`,
+    'i'
+);
+
 export const insertDraftPrefixOnInternalUrl = (url: string) => {
     if (internalUrlPattern.test(url)) {
         return `${xpDraftPathPrefix}${url}`.replace(process.env.APP_ORIGIN, '');
@@ -31,6 +37,8 @@ export const isXpPath = (path: string) => path?.startsWith(xpContentPathPrefix);
 
 export const isInternalUrl = (url: string) =>
     isXpPath(url) || internalUrlPattern.test(url);
+
+export const isNofollowUrl = (url: string) => nofollowPattern.test(url);
 
 export const isUUID = (id: string) =>
     id &&
@@ -46,6 +54,15 @@ export const xpPathToUrl = (path: string) =>
 
 export const pathnameToXpPath = (path: string) =>
     path && `${xpContentPathPrefix}${path}`;
+
+export const sanitizeUrl = (url: string) =>
+    url
+        .toLowerCase()
+        .replace(/\+|\s|( - )/g, '-')
+        .replace(/,/g, '')
+        .replace(/æ/g, 'ae')
+        .replace(/ø/g, 'o')
+        .replace(/å/g, 'a');
 
 // Requests from content-studio can be either a path or UUID, we check for both
 export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {

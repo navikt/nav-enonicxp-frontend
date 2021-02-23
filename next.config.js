@@ -18,25 +18,66 @@ const configWithAllTheThings = (config) =>
 module.exports = configWithAllTheThings({
     assetPrefix: process.env.APP_ORIGIN,
     env: {
+        ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
     },
+    redirects: async () => [
+        {
+            source: '/www.nav.no',
+            destination: '/',
+            permanent: false,
+        },
+        {
+            source: '/www.nav.no/:path*',
+            destination: '/:path*',
+            permanent: false,
+        },
+    ],
     rewrites: async () => [
         {
             source: '/sitemap.xml',
-            destination: `${process.env.APP_ORIGIN}/api/sitemap`,
+            destination: '/api/sitemap',
+        },
+        // Send some very common 404-resulting requests directly to 404
+        // to prevent unnecessary backend-calls
+        {
+            source: '/autodiscover/autodiscover.xml',
+            destination: '/404',
+        },
+        {
+            source: '/Forsiden/driftsmelding',
+            destination: '/404',
+        },
+        {
+            source: '/_public/beta.nav.no/:path*',
+            destination: '/404',
+        },
+        ...(process.env.ENV === 'localhost'
+            ? [
+                  {
+                      source: '/_/:path*',
+                      destination: 'http://localhost:8080/_/:path*',
+                  },
+              ]
+            : []),
+        ...(process.env.ENV === 'dev'
+            ? [
+                  {
+                      source: '/_/:path*',
+                      destination: 'https://www-q1.nav.no/_/:path*',
+                  },
+              ]
+            : []),
+    ],
+    headers: async () => [
+        {
+            source: '/_next/(.*)',
+            headers: [
+                {
+                    key: 'Access-Control-Allow-Origin',
+                    value: process.env.ADMIN_ORIGIN,
+                },
+            ],
         },
     ],
-    headers: async () => {
-        return [
-            {
-                source: '/_next/(.*)',
-                headers: [
-                    {
-                        key: 'Access-Control-Allow-Origin',
-                        value: process.env.ADMIN_ORIGIN,
-                    },
-                ],
-            },
-        ];
-    },
 });

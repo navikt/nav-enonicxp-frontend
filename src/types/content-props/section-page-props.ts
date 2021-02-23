@@ -1,4 +1,4 @@
-import { ContentType, ContentProps } from './_content-common';
+import { ContentType, ContentProps, SeoDataProps } from './_content-common';
 import { LinkPanel } from '../link-panel';
 import { ContentListProps } from './content-list-props';
 
@@ -10,8 +10,9 @@ export type SectionPageData = Partial<{
     moreNewsUrl: string;
     ntkContents: ContentListProps;
     scContents: ContentListProps;
-    metaDescription: string;
-}>;
+    feedbackToggle: boolean;
+}> &
+    SeoDataProps;
 
 export interface SectionPageProps extends ContentProps {
     __typename: ContentType.SectionPage;

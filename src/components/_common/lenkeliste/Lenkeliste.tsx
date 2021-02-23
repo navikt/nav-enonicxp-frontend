@@ -2,7 +2,7 @@ import React from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from '../lenke/LenkeStandalone';
-import { BEM } from 'utils/bem';
+import { BEM, classNames } from 'utils/classnames';
 import './Lenkeliste.less';
 
 type Props = {
@@ -20,7 +20,7 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
 
     return (
         <section
-            className={`${bem()} ${className || ''}`}
+            className={classNames(bem(), className)}
             data-portal-component-type="part"
             aria-label={tittel}
         >

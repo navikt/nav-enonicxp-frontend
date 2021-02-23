@@ -27,7 +27,11 @@ export const ContentList = ({
             url: getUrlFromContent(scContent),
             text: scContent.displayName,
             label: showDateLabel
-                ? formatDate(scContent.publish?.first || scContent.createdTime)
+                ? formatDate(
+                      scContent.publish?.from ||
+                          scContent.publish?.first ||
+                          scContent.createdTime
+                  )
                 : undefined,
         }))
         .filter(({ url, text }) => url && text);

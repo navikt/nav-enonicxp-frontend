@@ -1,6 +1,6 @@
 import React from 'react';
 import { Ingress, Sidetittel } from 'nav-frontend-typografi';
-import { BEM } from 'utils/bem';
+import { BEM } from 'utils/classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import './PageHeading.less';
 

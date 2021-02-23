@@ -2,6 +2,7 @@
 @import '~nav-frontend-core/less/core';
 
 @font-size-factor: 1.125;
+@pixel-size-rem: 1 / (16 * @font-size-factor);
 
 // Screen size breakpoints
 //
@@ -30,6 +31,17 @@
 @padding-sides-desktop: 3rem;
 @padding-sides-tablet: 1rem;
 @padding-sides-mobile: 1rem;
+
+// Rounds a rem-value to the nearest value which is divisible by
+// the current pixel size, taking global font-size into account
+#round-rem(@value: 0) {
+    @valueUpper: @value + @pixel-size-rem / 2;
+    @result: if(
+        isunit(@value, rem),
+        @valueUpper - mod(@valueUpper, @pixel-size-rem),
+        0
+    );
+}
 
 html {
     font-size: @font-size-factor * 100%;

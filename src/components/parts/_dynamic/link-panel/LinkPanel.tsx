@@ -1,8 +1,8 @@
 import React from 'react';
 import { DynamicLinkPanel } from 'types/component-props/parts/link-panel';
-import { BEM } from 'utils/bem';
+import { BEM, classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from '../../../../utils/links-from-content';
-import { LenkeUstylet } from '../../../_common/lenke/LenkeUstylet';
+import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import { Undertittel } from 'nav-frontend-typografi';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { getImageUrl } from '../../../../utils/images';
@@ -26,16 +26,16 @@ export const LinkPanel = ({ config }: DynamicLinkPanel) => {
         <LenkepanelBase
             href={linkProps.url}
             border={true}
-            className={`${bem()} ${vertical ? `vertical` : 'horisontal'}`}
+            className={classNames(bem(), vertical ? `vertical` : 'horisontal')}
             style={bgUrl && { backgroundImage: `url(${bgUrl})` }}
             linkCreator={(props) => (
-                <LenkeUstylet
+                <LenkeBase
                     href={props.href}
                     analyticsLabel={linkProps.text}
                     {...props}
                 >
                     {props.children}
-                </LenkeUstylet>
+                </LenkeBase>
             )}
         >
             <div className={bem('innhold')}>
