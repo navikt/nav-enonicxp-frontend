@@ -1,5 +1,5 @@
 import React from 'react';
-import { BEM } from 'utils/bem';
+import { BEM } from 'utils/classnames';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { formatDate } from 'utils/datetime';

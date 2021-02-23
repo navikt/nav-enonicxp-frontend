@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkPanel } from 'types/link-panel';
-import { BEM } from 'utils/bem';
+import { BEM } from 'utils/classnames';
 import { Ingress, Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import LenkepanelNavNo from '../lenkepanel/LenkepanelNavNo';
 import { getUrlFromContent } from '../../../utils/links-from-content';

@@ -1,5 +1,6 @@
 import React from 'react';
 import { LenkeBase } from './LenkeBase';
+import { classNames } from '../../../utils/classnames';
 
 type Props = {
     href: string;
@@ -9,7 +10,7 @@ type Props = {
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const LenkeInline = ({ href, className, children, ...rest }: Props) => (
-    <LenkeBase href={href} className={`lenke ${className || ''}`} {...rest}>
+    <LenkeBase href={href} className={classNames('lenke', className)} {...rest}>
         {children}
     </LenkeBase>
 );
