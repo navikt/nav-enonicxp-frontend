@@ -1,7 +1,7 @@
 import React from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { translator } from 'translations';
-import { BEM } from 'utils/bem';
+import { BEM } from 'utils/classnames';
 import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
 import { ContentType } from 'types/content-props/_content-common';
 import { ContentProps } from 'types/content-props/_content-common';

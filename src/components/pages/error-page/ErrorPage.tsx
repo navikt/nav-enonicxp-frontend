@@ -3,7 +3,7 @@ import { ErrorProps } from 'types/content-props/error-props';
 import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
 import { Error404Content } from './errorcode-content/Error404Content';
 import { Error1337ReloadOnDevBuildError } from './errorcode-content/Error1337ReloadOnDevBuildError';
-import { BEM } from '../../../utils/bem';
+import { BEM } from '../../../utils/classnames';
 import Head from 'next/head';
 import './ErrorPage.less';
 

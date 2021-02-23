@@ -1,6 +1,6 @@
 import React from 'react';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { BEM } from '../../../../utils/bem';
+import { BEM } from '../../../../utils/classnames';
 import { SearchForm } from './search-form/SearchForm';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import './Error404Content.less';
