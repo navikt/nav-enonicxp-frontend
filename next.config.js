@@ -62,6 +62,11 @@ module.exports = configWithAllTheThings({
                       source: '/_/:path*',
                       destination: 'http://localhost:8080/_/:path*',
                   },
+                  {
+                      source: '/admin/site/preview/default/draft/:path*',
+                      destination:
+                          'http://localhost:8080/admin/site/preview/default/draft/:path*',
+                  },
               ]
             : []),
         ...(process.env.ENV === 'dev'
