@@ -35,15 +35,16 @@ module.exports = configWithAllTheThings({
             destination: '/:path*',
             permanent: false,
         },
+        {
+            source: '/Global%20Utlogging',
+            destination: '/global-utlogging',
+            permanent: true,
+        },
     ],
     rewrites: async () => [
         {
             source: '/sitemap.xml',
             destination: '/api/sitemap',
-        },
-        {
-            source: '/no/rss',
-            destination: '/api/rss',
         },
         // Send some very common 404-resulting requests directly to 404
         // to prevent unnecessary backend-calls
