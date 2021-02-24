@@ -1,27 +1,40 @@
 import React, { useState } from 'react';
-import { HeaderProps } from '../../../../types/component-props/parts/header';
-import { BEM, classNames } from '../../../../utils/classnames';
-import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
-import { typoToComponent } from '../../../../types/typo-style';
-import { PublicImage } from '../../../_common/image/PublicImage';
+import {
+    HeadingTag,
+    TypoStyle,
+    typoToComponent,
+} from '../../../types/typo-style';
+import { BEM, classNames } from '../../../utils/classnames';
+import { Innholdstittel } from 'nav-frontend-typografi';
+import { PublicImage } from '../image/PublicImage';
 import './Header.less';
 
-const bem = BEM('header-part');
+const bem = BEM('header');
 
-export const Header = ({ config }: HeaderProps) => {
+type Props = {
+    text: string;
+    typoStyle: TypoStyle;
+    tag: HeadingTag;
+    justify?: string;
+    anchorId?: string;
+    className?: string;
+};
+
+export const Header = ({
+    text,
+    typoStyle,
+    tag,
+    justify,
+    anchorId,
+    className,
+}: Props) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
 
-    if (!config) {
-        return null;
-    }
-
-    const { title, ingress, titleTypo, titleTag, anchorId, justify } = config;
-
-    if (!title) {
-        return null;
-    }
-
-    const anchor = `#${anchorId}`;
+    const anchor = anchorId
+        ? anchorId.startsWith('#')
+            ? anchorId
+            : `#${anchorId}`
+        : undefined;
 
     const copyLinkToClipboard = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -36,15 +49,19 @@ export const Header = ({ config }: HeaderProps) => {
         }
     };
 
-    const TypoComponent = typoToComponent[titleTypo] || Innholdstittel;
+    const TypoComponent = typoToComponent[typoStyle] || Innholdstittel;
 
     return (
         <div
-            className={classNames(bem(), justify && bem(undefined, justify))}
+            className={classNames(
+                bem(),
+                justify && bem(undefined, justify),
+                className
+            )}
             id={anchorId}
         >
-            <TypoComponent tag={titleTag}>{title}</TypoComponent>
-            {anchorId && (
+            <TypoComponent tag={tag}>{text}</TypoComponent>
+            {anchor && (
                 <>
                     <a href={anchor} onClick={copyLinkToClipboard}>
                         <PublicImage
@@ -62,7 +79,6 @@ export const Header = ({ config }: HeaderProps) => {
                     </span>
                 </>
             )}
-            {ingress && <Ingress className={bem('ingress')}>{ingress}</Ingress>}
         </div>
     );
 };

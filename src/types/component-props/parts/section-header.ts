@@ -1,9 +1,10 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 
-export interface PageHeaderProps extends PartComponentProps {
-    descriptor: PartType.PageHeader;
+export interface SectionHeaderProps extends PartComponentProps {
+    descriptor: PartType.SectionHeader;
     config: {
         title: string;
+        anchorId: string;
     };
 }

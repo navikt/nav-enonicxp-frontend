@@ -4,9 +4,9 @@ import { PageWithSideMenusProps } from '../../../types/component-props/pages/pag
 import { LayoutContainer } from '../LayoutContainer';
 import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
 import { RightMenuSection } from './right-menu-section/RightMenuSection';
-import { Layout } from '@navikt/ds-react';
 import { MainContentSection } from './main-content-section/MainContentSection';
 import { PageHeader } from '../../_common/page-header/PageHeader';
+import { Layout } from '@navikt/ds-react';
 import './PageWithSideMenus.less';
 
 type Props = {
@@ -22,7 +22,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     }
 
     const {
-        pageHeader,
+        title,
         leftMenuToggle,
         leftMenuSticky,
         leftMenuHeader,
@@ -34,7 +34,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            <PageHeader pageHeader={pageHeader} />
+            <PageHeader title={title} />
             <Layout>
                 {leftMenuToggle && (
                     <LeftMenuSection

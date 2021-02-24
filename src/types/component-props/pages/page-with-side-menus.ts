@@ -14,7 +14,7 @@ export interface PageWithSideMenusProps extends LayoutCommonProps {
         };
     };
     config: {
-        pageHeader: string;
+        title: string;
         leftMenuHeader: string;
         leftMenuToggle: boolean;
         leftMenuSticky: boolean;

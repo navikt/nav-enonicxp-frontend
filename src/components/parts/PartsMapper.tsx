@@ -19,7 +19,7 @@ import {
 import { ContentProps } from '../../types/content-props/_content-common';
 import Veilederpanel from './_dynamic/veilederpanel/Veilederpanel';
 import { OfficeInformation } from './office-information/OfficeInformation';
-import { Header } from './_dynamic/header/Header';
+import { HeaderPart } from './_dynamic/header/HeaderPart';
 import { LinkList } from './_dynamic/link-list/LinkList';
 import { NewsList } from './_dynamic/news-list/NewsList';
 import PublishingCalendar from './publishing-calendar/PublishingCalendar';
@@ -28,6 +28,7 @@ import { PageNavigationMenuPart } from './_dynamic/page-navigation-menu/PageNavi
 import { HtmlArea } from './_dynamic/html-area/HtmlArea';
 import { PageHeaderPart } from './_dynamic/page-header/PageHeaderPart';
 import { ButtonPart } from './_dynamic/button/ButtonPart';
+import { SectionHeaderPart } from './_dynamic/section-header/SectionHeaderPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -53,7 +54,7 @@ const partsWithOwnData: {
     [key in PartWithOwnData]: React.FunctionComponent<PartComponentProps>;
 } = {
     [PartType.Alert]: Alert,
-    [PartType.Header]: Header,
+    [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanel,
     [PartType.ReadMorePanel]: LesMerPanel,
     [PartType.SupervisorPanel]: Veilederpanel,
@@ -62,6 +63,7 @@ const partsWithOwnData: {
     [PartType.PageNavigationMenu]: PageNavigationMenuPart,
     [PartType.HtmlArea]: HtmlArea,
     [PartType.PageHeader]: PageHeaderPart,
+    [PartType.SectionHeader]: SectionHeaderPart,
     [PartType.Button]: ButtonPart,
 };
 

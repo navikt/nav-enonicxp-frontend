@@ -40,3 +40,14 @@ export const typoToComponent: {
     [TypoStyle.EtikettLiten]: EtikettLiten,
     [TypoStyle.Undertekst]: Undertekst,
 };
+
+export const headingToTypoStyle: {
+    [key in HeadingTag]: TypoStyle;
+} = {
+    h1: TypoStyle.Sidetittel,
+    h2: TypoStyle.Innholdstittel,
+    h3: TypoStyle.Systemtittel,
+    h4: TypoStyle.Undertittel,
+    h5: TypoStyle.Undertittel,
+    h6: TypoStyle.Element,
+};

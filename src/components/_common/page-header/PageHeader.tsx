@@ -1,18 +1,20 @@
 import React from 'react';
-import { Sidetittel } from 'nav-frontend-typografi';
-import { BEM } from '../../../utils/classnames';
+import { Header } from '../header/Header';
+import { TypoStyle } from '../../../types/typo-style';
 import './PageHeader.less';
 
-const bem = BEM('page-header');
-
 type Props = {
-    pageHeader: string;
+    title: string;
 };
 
-export const PageHeader = ({ pageHeader }: Props) => {
-    return pageHeader ? (
-        <div className={bem()}>
-            <Sidetittel className={bem('title')}>{pageHeader}</Sidetittel>
-        </div>
+export const PageHeader = ({ title }: Props) => {
+    console.log(title);
+    return title ? (
+        <Header
+            typoStyle={TypoStyle.Sidetittel}
+            tag={'h1'}
+            text={title}
+            className={'page-header'}
+        />
     ) : null;
 };

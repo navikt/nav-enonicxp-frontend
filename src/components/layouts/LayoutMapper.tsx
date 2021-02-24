@@ -5,6 +5,7 @@ import { FixedColsLayout } from './fixed-cols/FixedColsLayout';
 import { FlexColsLayout } from './flex-cols/FlexColsLayout';
 import { LegacyLayout } from './legacy/LegacyLayout';
 import { PageWithSideMenus } from './page-with-side-menus/PageWithSideMenus';
+import { SectionWithHeaderLayout } from './section-with-header/SectionWithHeaderLayout';
 
 type Props = {
     pageProps: ContentProps;
@@ -22,6 +23,7 @@ const layoutComponents: {
     [LayoutType.Fixed3Col]: FixedColsLayout,
     [LayoutType.Fixed4Col]: FixedColsLayout,
     [LayoutType.FlexCols]: FlexColsLayout,
+    [LayoutType.SectionWithHeader]: SectionWithHeaderLayout,
     [LayoutType.PageWithSideMenus]: PageWithSideMenus,
 };
 

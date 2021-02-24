@@ -1,15 +1,13 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
-import { HeadingTag, TypoStyle } from '../../typo-style';
+import { HeadingTag } from '../../typo-style';
+import { HeaderCommonConfig } from '../_mixins';
 
 export interface HeaderProps extends PartComponentProps {
     descriptor: PartType.Header;
-    config: Partial<{
+    config: {
         title: string;
-        titleTypo: TypoStyle;
-        titleTag: HeadingTag;
-        ingress: string;
         anchorId: string;
-        justify: 'left' | 'center' | 'right';
-    }>;
+        tag: HeadingTag;
+    } & HeaderCommonConfig;
 }
