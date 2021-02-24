@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContentProps } from '../../types/content-props/_content-common';
-import { BEM } from '../../utils/bem';
+import { BEM, classNames } from '../../utils/classnames';
 import { ComponentMapper } from '../ComponentMapper';
 import { RegionProps, LayoutConfig } from '../../types/component-props/layouts';
 
@@ -34,9 +34,9 @@ export const Region = ({
             key={name}
             style={regionStyle}
             data-portal-region={name}
-            className={`${bem()} ${bem(name)}`}
+            className={classNames(bem(), bem(name))}
         >
-            {components.map((component, idx) => (
+            {components.map((component) => (
                 <ComponentMapper
                     key={component.path}
                     componentProps={component}

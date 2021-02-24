@@ -1,5 +1,5 @@
 import React from 'react';
-import { BEM } from 'utils/bem';
+import { BEM } from 'utils/classnames';
 import './Image.less';
 
 type Props = {

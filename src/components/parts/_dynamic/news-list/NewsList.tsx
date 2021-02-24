@@ -2,7 +2,7 @@ import React from 'react';
 import { DynamicNewsList } from '../../../../types/component-props/parts/news-list';
 import { ContentList } from '../../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
-import { BEM } from '../../../../utils/bem';
+import { BEM } from '../../../../utils/classnames';
 import './NewsList.less';
 
 const bem = BEM('news-list');

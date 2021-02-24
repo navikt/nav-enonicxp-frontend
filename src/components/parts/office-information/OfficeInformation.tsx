@@ -2,7 +2,7 @@ import React from 'react';
 import Reception from './reception/Reception';
 import { SpecialInformation } from './SpecialInfo';
 import { formatAddress, parsePhoneNumber } from './utils';
-import { BEM } from 'utils/bem';
+import { BEM } from 'utils/classnames';
 import { Email } from './Email';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/ArtikkelDato';
