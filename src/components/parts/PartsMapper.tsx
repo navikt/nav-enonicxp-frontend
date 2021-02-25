@@ -90,7 +90,7 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
 export const PartsMapper = ({ pageProps, partProps }: Props) => {
     const { path, descriptor } = partProps;
 
-    if (!descriptor || partsDeprecated[descriptor]) {
+    if (!descriptor) {
         return null;
     }
 
@@ -103,6 +103,14 @@ export const PartsMapper = ({ pageProps, partProps }: Props) => {
               'data-portal-component': path,
           }
         : undefined;
+
+    if (partsDeprecated[descriptor]) {
+        if (!pageProps.editMode) {
+            return null;
+        }
+
+        return <div {...editorProps} />;
+    }
 
     return (
         <div className={classNames(bem(), bem(partName))} {...editorProps}>
