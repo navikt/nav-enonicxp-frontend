@@ -105,11 +105,12 @@ export const PartsMapper = ({ pageProps, partProps }: Props) => {
         : undefined;
 
     if (partsDeprecated[descriptor]) {
-        if (!pageProps.editMode) {
-            return null;
+        // Prevents content-studio editor crash due to missing component props
+        if (pageProps.editMode) {
+            return <div {...editorProps} />;
         }
 
-        return <div {...editorProps} />;
+        return null;
     }
 
     return (
