@@ -2,8 +2,9 @@ import React from 'react';
 import { SectionWithHeaderProps } from '../../../types/component-props/layouts/section-with-header';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { LayoutContainer } from '../LayoutContainer';
-import { SectionHeader } from '../../_common/section-header/SectionHeader';
 import Region from '../Region';
+import { Header } from '../../_common/header/Header';
+import { TypoStyle } from '../../../types/typo-style';
 import './SectionWithHeaderLayout.less';
 
 type Props = {
@@ -22,7 +23,13 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            <SectionHeader text={title} anchorId={anchorId} justify={justify} />
+            <Header
+                typoStyle={TypoStyle.Innholdstittel}
+                tag={'h2'}
+                text={title}
+                anchorId={anchorId}
+                justify={justify}
+            />
             <Region pageProps={pageProps} regionProps={regions.content} />
         </LayoutContainer>
     );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
     HeadingTag,
+    headingToTypoStyle,
     TypoStyle,
     typoToComponent,
 } from '../../../types/typo-style';
@@ -13,8 +14,8 @@ const bem = BEM('header');
 
 type Props = {
     text: string;
-    typoStyle: TypoStyle;
     tag: HeadingTag;
+    typoStyle?: TypoStyle;
     justify?: string;
     anchorId?: string;
     className?: string;
@@ -22,19 +23,13 @@ type Props = {
 
 export const Header = ({
     text,
-    typoStyle,
     tag,
+    typoStyle,
     justify,
     anchorId,
     className,
 }: Props) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
-
-    const anchor = anchorId
-        ? anchorId.startsWith('#')
-            ? anchorId
-            : `#${anchorId}`
-        : undefined;
 
     const copyLinkToClipboard = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -49,7 +44,14 @@ export const Header = ({
         }
     };
 
-    const TypoComponent = typoToComponent[typoStyle] || Innholdstittel;
+    const anchor = anchorId
+        ? anchorId.startsWith('#')
+            ? anchorId
+            : `#${anchorId}`
+        : undefined;
+
+    const _typoStyle = typoStyle || headingToTypoStyle[tag];
+    const TypoComponent = typoToComponent[_typoStyle] || Innholdstittel;
 
     return (
         <div

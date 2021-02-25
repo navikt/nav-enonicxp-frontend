@@ -14,5 +14,6 @@ export interface SectionWithHeaderProps extends LayoutCommonProps {
     config: {
         title: string;
         anchorId: string;
+        backgroundColor?: string;
     } & HeaderCommonConfig;
 }
