@@ -8,7 +8,6 @@ type Props = {
 };
 
 export const PageHeader = ({ title }: Props) => {
-    console.log(title);
     return title ? (
         <Header
             typoStyle={TypoStyle.Sidetittel}
