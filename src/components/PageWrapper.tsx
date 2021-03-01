@@ -13,6 +13,7 @@ import { getDecoratorParams } from '../utils/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getContentLanguages } from '../utils/languages';
 import { BEM, classNames } from '../utils/classnames';
+import { ComponentReorderHack } from '../utils/ComponentReorderHack';
 
 const bem = BEM('app');
 
@@ -87,6 +88,7 @@ export const PageWrapper = (props: Props) => {
         >
             <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
+            {content.editMode && <ComponentReorderHack />}
             {notifications && (
                 <GlobalNotifications
                     language={content?.language}
