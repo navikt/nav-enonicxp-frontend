@@ -13,7 +13,11 @@ const bem = BEM('page-nav-menu');
 const anchorNavigationOffsetPx = 24;
 const menuCurrentIndexMinUpdateRateMs = 1000 / 30;
 
-export type PageNavCallbackArgs = { linkText: string; index: number };
+export type PageNavCallbackArgs = {
+    index: number;
+    linkText: string;
+    linkId?: string;
+};
 
 const getCurrentIndex = (sortedTargetElements: HTMLElement[]) => {
     const scrollTarget = window.scrollY + anchorNavigationOffsetPx;
@@ -26,7 +30,8 @@ const getCurrentIndex = (sortedTargetElements: HTMLElement[]) => {
     }
 
     const scrolledToBottom =
-        window.scrollY + window.innerHeight >= document.body.offsetHeight;
+        window.scrollY + window.innerHeight >=
+        document.getElementById('decorator-footer').offsetTop;
 
     if (scrolledToBottom) {
         return sortedTargetElements.length - 1;
@@ -47,6 +52,8 @@ export const PageNavigationMenuPart = (props: PageNavigationMenuProps) => {
     return <PageNavigationMenu {...props} />;
 };
 
+const getLinkId = (anchorId: string) => `${anchorId}-a`;
+
 type Props = Partial<PageNavigationMenuProps> & {
     currentLinkCallback?: (args: PageNavCallbackArgs) => void;
 };
@@ -63,10 +70,15 @@ export const PageNavigationMenu = React.memo(
                 return;
             }
 
-            const linkText = sortedLinks[currentIndex]?.linkText || '';
+            const targetLink = sortedLinks[currentIndex];
+            if (!targetLink) {
+                return;
+            }
+
             currentLinkCallback({
-                linkText,
                 index: currentIndex,
+                linkText: targetLink.linkText,
+                linkId: getLinkId(targetLink.anchorId),
             });
         }, [currentIndex, sortedLinks, currentLinkCallback]);
 
@@ -75,7 +87,7 @@ export const PageNavigationMenu = React.memo(
                 return;
             }
 
-            const targetElementsSortedByVerticalOffset = anchorLinks
+            const targetElementsSortedByVerticalPosition = anchorLinks
                 .reduce((targetsAcc, link) => {
                     const targetElement = document.getElementById(
                         link.anchorId
@@ -87,10 +99,10 @@ export const PageNavigationMenu = React.memo(
                 .sort((a, b) => a.offsetTop - b.offsetTop);
 
             const _sortedLinks = anchorLinks.sort((a, b) => {
-                const aIndex = targetElementsSortedByVerticalOffset.findIndex(
+                const aIndex = targetElementsSortedByVerticalPosition.findIndex(
                     (element) => element.id === a.anchorId
                 );
-                const bIndex = targetElementsSortedByVerticalOffset.findIndex(
+                const bIndex = targetElementsSortedByVerticalPosition.findIndex(
                     (element) => element.id === b.anchorId
                 );
                 return aIndex - bIndex;
@@ -101,7 +113,7 @@ export const PageNavigationMenu = React.memo(
             const currentScrollPositionHandler = debounce(
                 () => {
                     const index = getCurrentIndex(
-                        targetElementsSortedByVerticalOffset
+                        targetElementsSortedByVerticalPosition
                     );
                     setCurrentIndex(index);
                 },
@@ -125,13 +137,14 @@ export const PageNavigationMenu = React.memo(
 
         return (
             <nav className={bem()}>
-                {sortedLinks.map((link, index) => (
+                {sortedLinks.map((anchorLink, index) => (
                     <PageNavigationLink
-                        anchorId={link.anchorId}
+                        targetId={anchorLink.anchorId}
+                        linkId={getLinkId(anchorLink.anchorId)}
                         current={currentIndex === index}
-                        key={index}
+                        key={anchorLink.anchorId}
                     >
-                        {link.linkText}
+                        {anchorLink.linkText}
                     </PageNavigationLink>
                 ))}
             </nav>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import { ProgressBars } from '../../../_common/progress-bars/ProgressBars';
@@ -13,10 +13,32 @@ import { AnchorLink } from '../../../../types/component-props/parts/page-navigat
 import { RegionProps } from '../../../../types/component-props/layouts';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { useStickyUpdate } from '../../../../utils/useStickyUpdate';
-import { Layout } from '@navikt/ds-react';
+import Section from '@navikt/ds-react/lib/layout/src/Section';
 import './LeftMenuSection.less';
 
 const bem = BEM('left-menu');
+
+const scrollToCurrentLinkIfOutOfMenuBounds = (
+    currentLinkElement,
+    menuElement,
+    bottomOffset = 16
+) => {
+    if (!currentLinkElement || !menuElement) {
+        return;
+    }
+
+    const linkRect = currentLinkElement.getBoundingClientRect();
+    const menuRect = menuElement.getBoundingClientRect();
+
+    const currentLinkBottomBoundaryDelta =
+        linkRect.bottom - menuRect.height + bottomOffset;
+
+    if (currentLinkBottomBoundaryDelta > 0) {
+        menuElement.scrollTo({
+            top: currentLinkBottomBoundaryDelta + menuElement.scrollTop,
+        });
+    }
+};
 
 type Props = {
     internalLinks: AnchorLink[];
@@ -35,8 +57,24 @@ export const LeftMenuSection = React.memo(
         pageProps,
     }: Props) => {
         const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-        const [currentItem, setCurrentItem] = useState<PageNavCallbackArgs>();
+        const [
+            currentNavLink,
+            setCurrentNavLink,
+        ] = useState<PageNavCallbackArgs>();
+
+        const menuElementRef = useRef<HTMLDivElement>(null);
+
         useStickyUpdate(stickyToggle);
+
+        useEffect(() => {
+            const currentLinkElement = document.getElementById(
+                currentNavLink?.linkId
+            );
+            scrollToCurrentLinkIfOutOfMenuBounds(
+                currentLinkElement,
+                menuElementRef?.current
+            );
+        }, [currentNavLink]);
 
         const toggleMobileMenu = (e: React.MouseEvent) => {
             e.preventDefault();
@@ -44,7 +82,7 @@ export const LeftMenuSection = React.memo(
         };
 
         return (
-            <Layout.Section
+            <Section
                 left
                 className={classNames(
                     bem(),
@@ -59,13 +97,13 @@ export const LeftMenuSection = React.memo(
                     aria-labelledby={'mobile-header-label'}
                 >
                     <div className={bem('header-mobile-left')}>
-                        {currentItem?.index >= 0 ? (
+                        {currentNavLink?.index >= 0 ? (
                             <>
                                 <Undertittel>
-                                    {currentItem.linkText}
+                                    {currentNavLink.linkText}
                                 </Undertittel>
                                 <ProgressBars
-                                    currentIndex={currentItem.index}
+                                    currentIndex={currentNavLink.index}
                                     length={internalLinks.length}
                                     className={bem('progress-bar')}
                                 />
@@ -89,12 +127,12 @@ export const LeftMenuSection = React.memo(
                         {menuHeader}
                     </Undertittel>
                 )}
-                <div className={bem('menu-items-outer')}>
+                <div className={bem('menu-items-outer')} ref={menuElementRef}>
                     <div className={bem('menu-items')}>
                         {internalLinks?.length > 0 && (
                             <PageNavigationMenu
                                 config={{ anchorLinks: internalLinks }}
-                                currentLinkCallback={setCurrentItem}
+                                currentLinkCallback={setCurrentNavLink}
                             />
                         )}
                         <Region
@@ -103,7 +141,7 @@ export const LeftMenuSection = React.memo(
                         />
                     </div>
                 </div>
-            </Layout.Section>
+            </Section>
         );
     }
 );
