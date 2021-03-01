@@ -13,7 +13,6 @@ import { AnchorLink } from '../../../../types/component-props/parts/page-navigat
 import { RegionProps } from '../../../../types/component-props/layouts';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { useStickyUpdate } from '../../../../utils/useStickyUpdate';
-import Section from '@navikt/ds-react/lib/layout/src/Section';
 import './LeftMenuSection.less';
 
 const bem = BEM('left-menu');
@@ -82,8 +81,7 @@ export const LeftMenuSection = React.memo(
         };
 
         return (
-            <Section
-                left
+            <div
                 className={classNames(
                     bem(),
                     stickyToggle && bem(undefined, 'sticky'),
@@ -141,7 +139,7 @@ export const LeftMenuSection = React.memo(
                         />
                     </div>
                 </div>
-            </Section>
+            </div>
         );
     }
 );

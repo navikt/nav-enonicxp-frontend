@@ -5,6 +5,9 @@
     @menuVerticalMargin: 1rem;
     @stickyTopDesktop: calc(var(--sticky-offset) + @menuVerticalMargin);
 
+    margin-right: 1.5rem;
+    max-width: calc(@desktopMaxWidthInner / 4);
+
     &--sticky {
         position: sticky;
         top: @stickyTopDesktop;
@@ -70,8 +73,10 @@
         display: flex;
         flex-direction: column;
         z-index: 1;
+        max-width: 100%;
         width: 100%;
         margin-bottom: 1rem;
+        margin-right: 0;
         background-color: @navGronnLighten80;
 
         &__header-desktop {
@@ -167,7 +172,7 @@
         &--open {
             .left-menu__menu-items {
                 transition-timing-function: ease-in;
-                max-height: 25rem;
+                max-height: 50rem;
                 visibility: visible;
             }
 

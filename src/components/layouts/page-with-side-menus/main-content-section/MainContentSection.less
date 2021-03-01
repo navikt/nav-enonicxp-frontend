@@ -1,18 +1,23 @@
 @import (reference) '../../../../global';
 
-.region__pageContent {
+.main-content-section {
+    width: 100%;
     flex-shrink: 1;
 
-    & > .layout {
-        margin-top: 1rem;
-        border-radius: @border-radius-base;
+    .region__pageContent {
+        max-width: calc(@desktopMaxWidthInner / 2);
 
-        &:first-child {
-            margin-top: 0;
+        @media @screen-mobile {
+            max-width: 100%;
         }
-    }
 
-    @media @screen-mobile {
-        max-width: 100%;
+        & > .layout {
+            margin-top: 1rem;
+            border-radius: @border-radius-base;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
     }
 }

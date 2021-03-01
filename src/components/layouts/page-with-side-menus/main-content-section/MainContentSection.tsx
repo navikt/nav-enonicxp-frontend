@@ -1,5 +1,4 @@
 import React from 'react';
-import { Layout } from '@navikt/ds-react';
 import Region from '../../Region';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { RegionProps } from '../../../../types/component-props/layouts';
@@ -12,8 +11,8 @@ type Props = {
 
 export const MainContentSection = ({ pageProps, regionProps }: Props) => {
     return (
-        <Layout.Section>
+        <div className={'main-content-section'}>
             <Region pageProps={pageProps} regionProps={regionProps} />
-        </Layout.Section>
+        </div>
     );
 };
