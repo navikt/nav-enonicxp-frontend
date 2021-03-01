@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from '../header/Header';
+import { Header } from './Header';
 import { TypoStyle } from '../../../types/typo-style';
 import './PageHeader.less';
 

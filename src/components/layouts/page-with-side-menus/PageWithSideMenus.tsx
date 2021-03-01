@@ -5,7 +5,7 @@ import { LayoutContainer } from '../LayoutContainer';
 import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
 import { RightMenuSection } from './right-menu-section/RightMenuSection';
 import { MainContentSection } from './main-content-section/MainContentSection';
-import { PageHeader } from '../../_common/page-header/PageHeader';
+import { PageHeader } from '../../_common/header/PageHeader';
 import { Layout } from '@navikt/ds-react';
 import './PageWithSideMenus.less';
 

@@ -1,13 +1,16 @@
 @import (reference) '../../../../global';
 
 .left-menu {
-    @menuTopOffsetDesktop: 16px;
+    @stickyOffsetDesktop: 16px;
     @openAnimationDuration: 0.35s;
+    @stickyTopDesktop: calc(var(--sticky-offset) + @stickyOffsetDesktop);
 
     &--sticky {
         position: sticky;
-        top: calc(var(--sticky-offset) + @menuTopOffsetDesktop);
+        top: @stickyTopDesktop;
         align-self: start;
+        overflow-y: auto;
+        max-height: calc(100vh - @stickyTopDesktop);
 
         @media @screen-mobile {
             top: var(--sticky-offset);
