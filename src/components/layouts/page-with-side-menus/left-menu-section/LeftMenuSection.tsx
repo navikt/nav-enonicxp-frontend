@@ -55,13 +55,13 @@ export const LeftMenuSection = React.memo(
         regionProps,
         pageProps,
     }: Props) => {
-        const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+        const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(true);
         const [
             currentNavLink,
             setCurrentNavLink,
         ] = useState<PageNavCallbackArgs>();
 
-        const menuElementRef = useRef<HTMLDivElement>(null);
+        const menuItemsRef = useRef<HTMLDivElement>(null);
 
         useStickyUpdate(stickyToggle);
 
@@ -71,7 +71,7 @@ export const LeftMenuSection = React.memo(
             );
             scrollToCurrentLinkIfOutOfMenuBounds(
                 currentLinkElement,
-                menuElementRef?.current
+                menuItemsRef?.current
             );
         }, [currentNavLink]);
 
@@ -125,7 +125,7 @@ export const LeftMenuSection = React.memo(
                         {menuHeader}
                     </Undertittel>
                 )}
-                <div className={bem('menu-items-outer')} ref={menuElementRef}>
+                <div className={bem('menu-items-outer')} ref={menuItemsRef}>
                     <div className={bem('menu-items')}>
                         {internalLinks?.length > 0 && (
                             <PageNavigationMenu

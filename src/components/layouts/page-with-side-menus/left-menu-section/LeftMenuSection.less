@@ -19,7 +19,8 @@
         flex-direction: column;
 
         @media @screen-mobile {
-            top: var(--sticky-offset);
+            //top: var(--sticky-offset);
+            position: static;
         }
     }
 
@@ -129,10 +130,13 @@
         }
 
         &__header-mobile-left {
+            max-width: 75%;
+            width: 100%;
         }
 
         &__header-mobile-right {
             color: @navBla;
+            white-space: nowrap;
         }
 
         &__progress-bar {
@@ -148,7 +152,7 @@
             justify-content: space-between;
             flex-wrap: wrap;
 
-            position: absolute;
+            //position: absolute;
 
             background-color: @white;
             width: 100%;
@@ -182,7 +186,7 @@
         &--open {
             .left-menu__menu-items {
                 transition-timing-function: ease-in;
-                max-height: 50rem;
+                max-height: 100rem;
                 visibility: visible;
             }
 
