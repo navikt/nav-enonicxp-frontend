@@ -15,7 +15,7 @@ const menuCurrentIndexMinUpdateRateMs = 1000 / 30;
 
 export type PageNavCallbackArgs = {
     index: number;
-    linkText: string;
+    linkText?: string;
     linkId?: string;
 };
 
@@ -71,14 +71,13 @@ export const PageNavigationMenu = React.memo(
             }
 
             const targetLink = sortedLinks[currentIndex];
-            if (!targetLink) {
-                return;
-            }
 
             currentLinkCallback({
                 index: currentIndex,
-                linkText: targetLink.linkText,
-                linkId: getLinkId(targetLink.anchorId),
+                ...(targetLink && {
+                    linkText: targetLink.linkText,
+                    linkId: getLinkId(targetLink.anchorId),
+                }),
             });
         }, [currentIndex, sortedLinks, currentLinkCallback]);
 
