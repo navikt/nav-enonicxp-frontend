@@ -4,13 +4,13 @@ export const ComponentReorderHack = () => {
     // Hack to allow layout-components to be reordered in the content studio
     // components-view (may have unintended side-effects!)
     useEffect(() => {
-        const callback = (mutationsList) => {
-            mutationsList.forEach((mutation) => {
+        const callback = (mutations) => {
+            mutations.forEach((mutation) => {
                 if (
                     mutation.target.id === 'drag-helper' &&
-                    !mutation.target.className.includes('drop-allowed')
+                    !mutation.target.classList.contains('drop-allowed')
                 ) {
-                    mutation.target.className = `${mutation.target.className} drop-allowed`;
+                    mutation.target.classList.add('drop-allowed');
                 }
             });
         };
