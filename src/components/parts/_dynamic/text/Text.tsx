@@ -11,10 +11,7 @@ type Props = {
 };
 
 export const Text = ({ textProps, editMode }: Props) => {
-    const { value, path } = textProps;
-    if (!value) {
-        return null;
-    }
+    const { text, path } = textProps;
 
     const editorProps = editMode
         ? {
@@ -23,9 +20,20 @@ export const Text = ({ textProps, editMode }: Props) => {
           }
         : undefined;
 
+    if (!text) {
+        if (editMode) {
+            return (
+                <div {...editorProps}>
+                    {'Tom tekst-komponent, klikk for å redigere'}
+                </div>
+            );
+        }
+        return null;
+    }
+
     return (
         <div className={'typo-normal'} {...editorProps}>
-            <ParsedHtml content={value} />
+            <ParsedHtml content={text} />
         </div>
     );
 };
