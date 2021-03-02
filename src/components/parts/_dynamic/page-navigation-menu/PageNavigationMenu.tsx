@@ -22,17 +22,16 @@ export type PageNavCallbackArgs = {
 const getCurrentIndex = (sortedTargetElements: HTMLElement[]) => {
     const scrollTarget = window.scrollY + anchorNavigationOffsetPx;
 
-    if (
+    const scrolledToTop =
         !sortedTargetElements?.length ||
-        sortedTargetElements[0].offsetTop > scrollTarget
-    ) {
+        sortedTargetElements[0].offsetTop > scrollTarget;
+    if (scrolledToTop) {
         return -1;
     }
 
     const scrolledToBottom =
         window.scrollY + window.innerHeight >=
         document.getElementById('decorator-footer').offsetTop;
-
     if (scrolledToBottom) {
         return sortedTargetElements.length - 1;
     }
