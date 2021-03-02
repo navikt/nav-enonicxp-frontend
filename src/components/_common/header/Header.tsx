@@ -8,6 +8,7 @@ import {
 import { BEM, classNames } from '../../../utils/classnames';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { PublicImage } from '../image/PublicImage';
+import { HeaderCommonConfig } from '../../../types/component-props/_mixins';
 import './Header.less';
 
 const bem = BEM('header');
@@ -16,7 +17,7 @@ type Props = {
     text: string;
     tag: HeadingTag;
     typoStyle?: TypoStyle;
-    justify?: string;
+    justify?: HeaderCommonConfig['justify'];
     anchorId?: string;
     className?: string;
 };

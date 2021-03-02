@@ -5,5 +5,6 @@ export interface HtmlAreaProps extends PartComponentProps {
     descriptor: PartType.HtmlArea;
     config: {
         html: string;
+        title?: string;
     };
 }
