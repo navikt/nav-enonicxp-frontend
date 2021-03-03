@@ -28,7 +28,7 @@ jobs:
           ADMIN_ORIGIN=https://portal-admin-q1.oera.no
           APP_ORIGIN=https://www.dev.nav.no
           DECORATOR_URL=https://dekoratoren.dev.nav.no
-          XP_ORIGIN=https://www-q1.nav.no
+          XP_ORIGIN=https://www.dev.nav.no
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
           SERVICE_SECRET=$SERVICE_SECRET
           EOF
