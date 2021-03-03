@@ -38,6 +38,7 @@ export enum ContentType {
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
+    PageWithSideMenus = 'no_nav_navno_ContentPageWithSidemenus',
 }
 
 export type ContentProps = {
