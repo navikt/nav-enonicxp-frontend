@@ -11,12 +11,11 @@
             max-width: 100%;
         }
 
-        & > .layout {
-            margin-top: 1rem;
+        & > * {
             border-radius: @border-radius-base;
 
-            &:first-child {
-                margin-top: 0;
+            &:not(:first-child) {
+                margin-top: 1rem;
             }
         }
     }
