@@ -4,6 +4,7 @@ import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { xpPathToPathname } from 'utils/paths';
 import { BEM } from 'utils/classnames';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
+import { MainArticleChapterProps } from '../../../types/content-props/main-article-chapter-props';
 import './MainArticleChapterNavigation.less';
 
 /*
@@ -12,10 +13,14 @@ import './MainArticleChapterNavigation.less';
 
 export const MainArticleChapterNavigation = (props: ContentProps) => {
     const bem = BEM('main-article-chapter-navigation');
-    const children = props.children || props.parent?.children || [];
-    const chapters = children.filter(
-        (child) => child.__typename === ContentType.MainArticleChapter
-    );
+    const chapters =
+        props.data?.chapters ||
+        props.parent?.data?.chapters ||
+        // TODO: remove after backend chapters-update
+        ((props.children || props.parent?.children)?.filter(
+            (child) => child.__typename === ContentType.MainArticleChapter
+        ) as MainArticleChapterProps[]) ||
+        [];
 
     if (chapters.length === 0) {
         return null;
