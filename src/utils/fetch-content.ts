@@ -2,12 +2,15 @@ import { ContentProps } from '../types/content-props/_content-common';
 import { makeErrorProps } from './make-error-props';
 import { xpServiceUrl } from './paths';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
+import { MediaProps } from '../types/media';
+
+export type XpResponseProps = ContentProps | MediaProps;
 
 const fetchSiteContent = (
     idOrPath: string,
     isDraft = false,
     secret: string
-): Promise<ContentProps> => {
+): Promise<XpResponseProps> => {
     const params = objectToQueryString({
         ...(isDraft && { branch: 'draft' }),
         id: idOrPath,
@@ -31,7 +34,7 @@ export const fetchPage = async (
     idOrPath: string,
     isDraft = false,
     secret: string
-): Promise<ContentProps> => {
+): Promise<XpResponseProps> => {
     const content = await fetchSiteContent(idOrPath, isDraft, secret);
 
     return content?.__typename
