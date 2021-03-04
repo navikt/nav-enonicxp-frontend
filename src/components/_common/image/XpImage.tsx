@@ -1,5 +1,5 @@
 import React from 'react';
-import { XpImageProps } from '../../../types/media';
+import { MediaType, XpImageProps } from '../../../types/media';
 
 type Props = {
     imageProps: XpImageProps;
@@ -13,7 +13,7 @@ export const getImageUrl = (imageProps: XpImageProps, scale?: string) => {
         return null;
     }
 
-    if (imageProps.__typename === 'media_Image' && scale) {
+    if (imageProps.__typename === MediaType.Image && scale) {
         return imageProps.imageUrl?.replace('$scale', scale);
     }
 
