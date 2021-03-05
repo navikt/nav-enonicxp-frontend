@@ -43,7 +43,7 @@ export const getInternalRelativePath = (url: string, isDraft?: boolean) => {
     return relativePath;
 };
 
-export const getRelativeUrlIfInternal = (url: string, isDraft?: boolean) => {
+export const getRelativePathIfInternal = (url: string, isDraft?: boolean) => {
     if (!isInternalUrl(url)) {
         return url;
     }
