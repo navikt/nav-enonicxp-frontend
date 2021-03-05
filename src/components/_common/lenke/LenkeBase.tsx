@@ -26,8 +26,7 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
-    const { isDraft } = globalState;
-    const _href = getRelativeUrlIfInternal(href, isDraft) || '/';
+    const _href = getRelativeUrlIfInternal(href, globalState.isDraft) || '/';
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);
 

@@ -3,17 +3,12 @@ export const xpServicePath = '/_/service/no.nav.navno';
 export const xpDraftPathPrefix = '/admin/site/preview/default/draft/www.nav.no';
 
 export const xpOrigin = process.env.XP_ORIGIN;
-export const xpServiceUrl = `${xpOrigin}${xpServicePath}`;
-
 export const appOrigin = process.env.APP_ORIGIN;
 export const adminOrigin = process.env.ADMIN_ORIGIN;
 
-export type XpContentRef = string;
+export const xpServiceUrl = `${xpOrigin}${xpServicePath}`;
 
-export const getLocationOrigin = () =>
-    appOrigin ||
-    (typeof window !== 'undefined' && window.location.origin) ||
-    '';
+export type XpContentRef = string;
 
 const internalUrlPrefix = `^(${appOrigin})?(${xpContentPathPrefix})?`;
 
@@ -33,11 +28,10 @@ const nofollowPattern = new RegExp(`^(${appOrigin})?(\\/sok($|\\?|\\/))`, 'i');
 
 export const isNofollowUrl = (url: string) => nofollowPattern.test(url);
 
-// Checks if the string matches the pattern of the _path field of XP content objects
-const isXpPath = (path: string) => path?.startsWith(xpContentPathPrefix);
-
 export const stripXpPathPrefix = (path: string) =>
-    isXpPath(path) ? path.slice(xpContentPathPrefix.length) : path;
+    path?.startsWith(xpContentPathPrefix)
+        ? path.slice(xpContentPathPrefix.length)
+        : path;
 
 export const getInternalRelativePath = (url: string, isDraft?: boolean) => {
     const relativePath = url.replace(internalUrlPrefixPattern, '');
