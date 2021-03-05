@@ -1,7 +1,12 @@
 import React from 'react';
-import { xpPathToPathname, isInternalUrl, isNofollowUrl } from 'utils/paths';
+import {
+    isInternalUrl,
+    isNofollowUrl,
+    getRelativeUrlIfInternal,
+} from 'utils/urls';
 import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
+import globalState from '../../../globalState';
 
 type Props = {
     href: string;
@@ -21,7 +26,8 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
-    const _href = xpPathToPathname(href) || '/';
+    const { isDraft } = globalState;
+    const _href = getRelativeUrlIfInternal(href, isDraft) || '/';
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);
 

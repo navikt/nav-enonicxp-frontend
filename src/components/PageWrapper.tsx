@@ -26,6 +26,7 @@ export const PageWrapper = (props: Props) => {
     const { notifications } = content;
 
     const router = useRouter();
+
     const hasBreadcrumbsOrLanguageSelector =
         content?.breadcrumbs?.length > 0 || !!getContentLanguages(content);
 

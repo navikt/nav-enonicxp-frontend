@@ -1,4 +1,4 @@
-import { isInternalUrl } from './paths';
+import { isInternalUrl } from './urls';
 import { NextRouter } from 'next/router';
 
 const getLinkHref = (element: HTMLElement | null): string | null => {

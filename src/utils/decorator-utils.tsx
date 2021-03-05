@@ -11,7 +11,7 @@ import {
     ContentType,
 } from '../types/content-props/_content-common';
 import { LanguageProps } from '../types/language';
-import { xpPathToPathname } from './paths';
+import { stripXpPathPrefix } from './urls';
 
 const decoratorUrl = process.env.DECORATOR_URL;
 const cache = new NodeCache({ stdTTL: 60 });
@@ -60,13 +60,13 @@ const getDecoratorLanguagesParam = (
               .map((lang) => ({
                   handleInApp: true,
                   locale: xpLangToDecoratorLang[lang.language],
-                  url: xpPathToPathname(lang._path),
+                  url: stripXpPathPrefix(lang._path),
               }))
               .concat([
                   {
                       handleInApp: true,
                       locale: xpLangToDecoratorLang[currentLang],
-                      url: xpPathToPathname(currentPath),
+                      url: stripXpPathPrefix(currentPath),
                   },
               ])
         : [];

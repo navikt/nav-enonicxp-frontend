@@ -14,10 +14,11 @@ import { getTargetIfRedirect } from '../utils/redirects';
 import {
     routerQueryToXpPathOrId,
     sanitizeUrl,
-    xpPathToPathname,
-} from '../utils/paths';
+    stripXpPathPrefix,
+} from '../utils/urls';
 import { errorHandler, isNotFound } from '../utils/errors';
 import { isMediaContent } from '../types/media';
+import globalState from '../globalState';
 
 type PageProps = {
     content: ContentProps;
@@ -47,6 +48,8 @@ export const PageBase = (props: PageProps) => {
     }
 
     const { content } = props;
+
+    globalState.isDraft = !!content.editMode;
 
     return (
         <PageWrapper content={content}>
@@ -81,7 +84,7 @@ export const fetchPageProps = async (
             return {
                 props: { content },
                 redirect: {
-                    destination: xpPathToPathname(sanitizedPath),
+                    destination: stripXpPathPrefix(sanitizedPath),
                     permanent: false,
                 },
             };

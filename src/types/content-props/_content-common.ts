@@ -1,7 +1,7 @@
 import { ExternalLinkData } from './external-link-props';
 import { InternalLinkData } from './internal-link-props';
 import { ContentListData } from './content-list-props';
-import { XpContentRef } from '../../utils/paths';
+import { XpContentRef } from '../../utils/urls';
 import { PageListData } from './page-list-props';
 import { MainArticleData } from './main-article-props';
 import { ErrorData } from './error-props';
