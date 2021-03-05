@@ -39,7 +39,7 @@ const isXpPath = (path: string) => path?.startsWith(xpContentPathPrefix);
 export const stripXpPathPrefix = (path: string) =>
     isXpPath(path) ? path.slice(xpContentPathPrefix.length) : path;
 
-const getInternalRelativePath = (url: string, isDraft?: boolean) => {
+export const getInternalRelativePath = (url: string, isDraft?: boolean) => {
     const relativePath = url.replace(internalUrlPrefixPattern, '');
 
     if (isDraft) {

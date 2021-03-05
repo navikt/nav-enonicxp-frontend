@@ -13,6 +13,8 @@ import { getDecoratorParams } from '../utils/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getContentLanguages } from '../utils/languages';
 import { BEM, classNames } from '../utils/classnames';
+import globalState from '../globalState';
+import { getInternalRelativePath } from '../utils/urls';
 
 const bem = BEM('app');
 
@@ -31,8 +33,16 @@ export const PageWrapper = (props: Props) => {
         content?.breadcrumbs?.length > 0 || !!getContentLanguages(content);
 
     useEffect(() => {
-        onBreadcrumbClick((breadcrumb) => router.push(breadcrumb.url));
-        onLanguageSelect((language) => router.push(language.url));
+        onBreadcrumbClick((breadcrumb) =>
+            router.push(
+                getInternalRelativePath(breadcrumb.url, globalState.isDraft)
+            )
+        );
+        onLanguageSelect((language) =>
+            router.push(
+                getInternalRelativePath(language.url, globalState.isDraft)
+            )
+        );
 
         initAmplitude();
 
