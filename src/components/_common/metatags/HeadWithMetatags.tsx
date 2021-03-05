@@ -10,7 +10,7 @@ import {
     hasIngress,
     hasMetaDescription,
 } from '../../../types/_type-guards';
-import { appOrigin, getRelativePathIfInternal } from '../../../utils/urls';
+import { appOrigin, getInternalAbsoluteUrl } from '../../../utils/urls';
 
 type Props = {
     content: ContentProps;
@@ -40,7 +40,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
     const description = getDescription(content).slice(0, descriptionMaxLength);
     const url = hasCanonicalUrl(content)
         ? content.data.canonicalUrl
-        : getRelativePathIfInternal(content._path);
+        : getInternalAbsoluteUrl(content._path);
     const imageUrl = `${appOrigin}/gfx/social-share-fallback.png`;
     const noIndex = content.data?.noindex;
 
