@@ -13,6 +13,7 @@ import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import {
     getMediaUrl,
+    getRelativePathIfInternal,
     routerQueryToXpPathOrId,
     sanitizeLegacyUrl,
     stripXpPathPrefix,
@@ -104,7 +105,9 @@ export const fetchPageProps = async (
 
     const redirectTarget = getTargetIfRedirect(content);
     if (redirectTarget) {
-        return redirectProps(redirectTarget);
+        return redirectProps(
+            getRelativePathIfInternal(redirectTarget, isDraft)
+        );
     }
 
     return {
