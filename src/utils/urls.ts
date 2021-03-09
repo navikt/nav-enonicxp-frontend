@@ -87,7 +87,7 @@ export const isUUID = (id: string) =>
         id
     );
 
-export const sanitizeUrl = (url: string) =>
+export const sanitizeLegacyUrl = (url: string) =>
     url
         .toLowerCase()
         .replace(/\+|\s|( - )/g, '-')
