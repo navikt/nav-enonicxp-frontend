@@ -58,6 +58,11 @@ export const PageBase = (props: PageProps) => {
     );
 };
 
+const redirectProps = (destination: string, isPermanent?: boolean) => ({
+    destination: encodeURI(destination),
+    permanent: !!isPermanent,
+});
+
 export const fetchPageProps = async (
     routerQuery: string | string[],
     isDraft = false,
@@ -70,10 +75,7 @@ export const fetchPageProps = async (
     if (isMediaContent(content)) {
         return {
             props: {},
-            redirect: {
-                destination: content.mediaUrl,
-                permanent: false,
-            },
+            redirect: redirectProps(content.mediaUrl),
         };
     }
 
@@ -82,11 +84,8 @@ export const fetchPageProps = async (
 
         if (sanitizedPath !== xpPath) {
             return {
-                props: { content },
-                redirect: {
-                    destination: stripXpPathPrefix(sanitizedPath),
-                    permanent: false,
-                },
+                props: {},
+                redirect: redirectProps(stripXpPathPrefix(sanitizedPath)),
             };
         }
 
@@ -104,7 +103,7 @@ export const fetchPageProps = async (
     if (redirectTarget) {
         return {
             props: {},
-            redirect: { destination: redirectTarget, permanent: false },
+            redirect: redirectProps(redirectTarget),
         };
     }
 
