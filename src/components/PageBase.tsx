@@ -12,6 +12,7 @@ import { makeErrorProps } from '../utils/make-error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
 import {
+    getMediaUrl,
     routerQueryToXpPathOrId,
     sanitizeUrl,
     stripXpPathPrefix,
@@ -75,7 +76,10 @@ export const fetchPageProps = async (
     if (isMediaContent(content)) {
         return {
             props: {},
-            redirect: redirectProps(content.mediaUrl),
+            redirect: {
+                destination: getMediaUrl(content.mediaUrl, isDraft),
+                permanent: false,
+            },
         };
     }
 

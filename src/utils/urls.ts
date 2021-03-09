@@ -16,7 +16,7 @@ const internalUrlPrefixPattern = new RegExp(internalUrlPrefix, 'i');
 
 // This pattern matches both relative and absolute urls which points to content internal to the app
 const internalUrlPattern = new RegExp(
-    `${internalUrlPrefix}($|\\/($|no|en|se|nav.no|skjemaer|forsiden|footer-contactus-no|footer-contactus-en|sykepenger-korona|beskjed|_\\/))`,
+    `${internalUrlPrefix}($|\\/($|no|en|se|nav.no|skjemaer|forsiden|footer-contactus-no|footer-contactus-en|sykepenger-korona|beskjed))`,
     'i'
 );
 
@@ -60,6 +60,14 @@ export const getInternalAbsoluteUrl = (url: string, isDraft?: boolean) => {
     const internalPath = getInternalRelativePath(url, isDraft);
 
     return `${isDraft ? adminOrigin : appOrigin}${internalPath}`;
+};
+
+// Media url must always be absolute, to prevent internal routing loopback
+export const getMediaUrl = (url: string, isDraft?: boolean) => {
+    return url.replace(
+        internalUrlPrefixPattern,
+        isDraft ? adminOrigin : appOrigin
+    );
 };
 
 export const isUUID = (id: string) =>
