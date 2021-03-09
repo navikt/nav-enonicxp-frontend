@@ -1,3 +1,5 @@
+import globalState from '../globalState';
+
 export const xpContentPathPrefix = '/www.nav.no';
 export const xpServicePath = '/_/service/no.nav.navno';
 export const xpDraftPathPrefix = '/admin/site/preview/default/draft/www.nav.no';
@@ -33,7 +35,10 @@ export const stripXpPathPrefix = (path: string) =>
         ? path.slice(xpContentPathPrefix.length)
         : path;
 
-export const getInternalRelativePath = (url: string, isDraft?: boolean) => {
+export const getInternalRelativePath = (
+    url: string,
+    isDraft = globalState.isDraft
+) => {
     const relativePath = url.replace(internalUrlPrefixPattern, '');
 
     if (isDraft) {
@@ -43,7 +48,10 @@ export const getInternalRelativePath = (url: string, isDraft?: boolean) => {
     return relativePath;
 };
 
-export const getRelativePathIfInternal = (url: string, isDraft?: boolean) => {
+export const getRelativePathIfInternal = (
+    url: string,
+    isDraft = globalState.isDraft
+) => {
     if (!isInternalUrl(url)) {
         return url;
     }
@@ -51,7 +59,10 @@ export const getRelativePathIfInternal = (url: string, isDraft?: boolean) => {
     return getInternalRelativePath(url, isDraft);
 };
 
-export const getInternalAbsoluteUrl = (url: string, isDraft?: boolean) => {
+export const getInternalAbsoluteUrl = (
+    url: string,
+    isDraft = globalState.isDraft
+) => {
     if (!isInternalUrl(url)) {
         console.log(`Warning: ${url} is not an internal url`);
         return url;
@@ -63,10 +74,10 @@ export const getInternalAbsoluteUrl = (url: string, isDraft?: boolean) => {
 };
 
 // Media url must always be absolute, to prevent internal routing loopback
-export const getMediaUrl = (url: string, isDraft?: boolean) => {
-    return url.replace(
+export const getMediaUrl = (url: string, isDraft = globalState.isDraft) => {
+    return url?.replace(
         internalUrlPrefixPattern,
-        isDraft ? adminOrigin : appOrigin
+        isDraft ? `${adminOrigin}${xpDraftPathPrefix}` : appOrigin
     );
 };
 
