@@ -1,6 +1,5 @@
 import { getInternalRelativePath, isInternalUrl } from './urls';
 import { NextRouter } from 'next/router';
-import globalState from '../globalState';
 
 const getLinkHref = (element: HTMLElement | null): string | null => {
     if (!element) {
@@ -18,7 +17,7 @@ export const hookAndInterceptInternalLink = (router: NextRouter) => (
     const href = getLinkHref(e.target as HTMLElement);
     if (isInternalUrl(href)) {
         e.preventDefault();
-        const path = getInternalRelativePath(href, globalState.isDraft);
+        const path = getInternalRelativePath(href);
         router
             .push(path)
             .then(() =>

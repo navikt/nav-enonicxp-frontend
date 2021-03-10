@@ -25,7 +25,7 @@ type Props = {
 
 export const PageWrapper = (props: Props) => {
     const { content, children } = props;
-    const { notifications } = content;
+    const { notifications, editMode } = content;
 
     const router = useRouter();
 
@@ -34,18 +34,18 @@ export const PageWrapper = (props: Props) => {
 
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) =>
-            router.push(
-                getInternalRelativePath(breadcrumb.url, content.editMode)
-            )
+            router.push(getInternalRelativePath(breadcrumb.url, editMode))
         );
         onLanguageSelect((language) =>
-            router.push(getInternalRelativePath(language.url, content.editMode))
+            router.push(getInternalRelativePath(language.url, editMode))
         );
 
         initAmplitude();
 
         const linkInterceptor = hookAndInterceptInternalLink(router);
-        const linkPrefetcher = prefetchOnMouseover(router);
+        const linkPrefetcher = editMode
+            ? undefined
+            : prefetchOnMouseover(router);
         const headerElement = document.getElementById('decorator-header');
         const footerElement = document.getElementById('decorator-footer');
 
