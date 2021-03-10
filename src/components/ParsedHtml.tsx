@@ -3,17 +3,15 @@ import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LenkeInline } from './_common/lenke/LenkeInline';
-import { insertDraftPrefixOnInternalUrl } from '../utils/paths';
 import '../components/macros/Quote.less';
 import '../components/macros/Video.less';
 
 interface Props {
     content?: string;
-    isDraft?: boolean;
 }
 
 export const ParsedHtml = (props: Props) => {
-    const { content, isDraft } = props;
+    const { content } = props;
 
     if (!content) {
         return null;
@@ -56,14 +54,7 @@ export const ParsedHtml = (props: Props) => {
                 const props = attributesToProps(attribs);
 
                 return (
-                    <LenkeInline
-                        {...props}
-                        href={
-                            isDraft
-                                ? insertDraftPrefixOnInternalUrl(href)
-                                : href
-                        }
-                    >
+                    <LenkeInline {...props} href={href}>
                         {domToReact(children)}
                     </LenkeInline>
                 );
