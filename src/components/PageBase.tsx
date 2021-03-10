@@ -58,7 +58,8 @@ export const PageBase = (props: PageProps) => {
 const redirectProps = (destination: string, isPermanent?: boolean) => ({
     props: {},
     redirect: {
-        destination: encodeURI(destination),
+        // Decode then (re)encode to ensure the destination is not double-encoded
+        destination: encodeURI(decodeURI(destination)),
         permanent: !!isPermanent,
     },
 });
