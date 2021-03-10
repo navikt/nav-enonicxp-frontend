@@ -25,7 +25,7 @@ jobs:
           cat > .env <<EOF
           ENV=dev
           NODE_ENV=production
-          ADMIN_ORIGIN=https://portal-admin-q1.oera.no
+          ADMIN_ORIGIN=https://portal-admin-dev.oera.no
           APP_ORIGIN=https://www.dev.nav.no
           DECORATOR_URL=https://dekoratoren.dev.nav.no
           XP_ORIGIN=https://www.dev.nav.no
