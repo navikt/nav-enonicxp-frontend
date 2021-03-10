@@ -40,6 +40,10 @@ module.exports = configWithAllTheThings({
     ],
     rewrites: async () => [
         {
+            source: '/_',
+            destination: '/404',
+        },
+        {
             source: '/sitemap.xml',
             destination: '/api/sitemap',
         },
