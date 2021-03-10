@@ -60,12 +60,12 @@ export const PageBase = (props: PageProps) => {
     );
 };
 
-const redirectProps = (destination: string, isPermanent?: boolean) => ({
+const redirectProps = (destination: string, isPermanent = false) => ({
     props: {},
     redirect: {
         // Decode then (re)encode to ensure the destination is not double-encoded
         destination: encodeURI(decodeURI(destination)),
-        permanent: !!isPermanent,
+        permanent: isPermanent,
     },
 });
 
