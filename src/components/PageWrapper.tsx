@@ -13,7 +13,6 @@ import { getDecoratorParams } from '../utils/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getContentLanguages } from '../utils/languages';
 import { BEM, classNames } from '../utils/classnames';
-import globalState from '../globalState';
 import { getInternalRelativePath } from '../utils/urls';
 import { ComponentReorderHack } from '../utils/ComponentReorderHack';
 
@@ -36,13 +35,11 @@ export const PageWrapper = (props: Props) => {
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) =>
             router.push(
-                getInternalRelativePath(breadcrumb.url, globalState.isDraft)
+                getInternalRelativePath(breadcrumb.url, content.editMode)
             )
         );
         onLanguageSelect((language) =>
-            router.push(
-                getInternalRelativePath(language.url, globalState.isDraft)
-            )
+            router.push(getInternalRelativePath(language.url, content.editMode))
         );
 
         initAmplitude();

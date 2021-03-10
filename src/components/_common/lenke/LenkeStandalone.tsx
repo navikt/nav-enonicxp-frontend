@@ -3,7 +3,7 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
 import { BEM, classNames } from 'utils/classnames';
 import { LenkeBase } from './LenkeBase';
-import { isNavUrl } from '../../../utils/paths';
+import { isNavUrl } from '../../../utils/urls';
 import { PublicImage } from '../image/PublicImage';
 import './LenkeStandalone.less';
 

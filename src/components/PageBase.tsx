@@ -20,6 +20,7 @@ import {
 } from '../utils/urls';
 import { errorHandler, isNotFound } from '../utils/errors';
 import { isMediaContent } from '../types/media';
+import globalState from '../globalState';
 
 type PageProps = {
     content: ContentProps;
