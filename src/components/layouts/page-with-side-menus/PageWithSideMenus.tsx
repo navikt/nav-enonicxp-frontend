@@ -6,6 +6,8 @@ import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
 import { RightMenuSection } from './right-menu-section/RightMenuSection';
 import { MainContentSection } from './main-content-section/MainContentSection';
 import { PageHeader } from '../../_common/header/PageHeader';
+import { AccordionMenu, ProductPageLayout } from '@navikt/ds-react';
+import { LightBulb, Telephone } from '@navikt/ds-icons';
 import './PageWithSideMenus.less';
 
 type Props = {
@@ -32,9 +34,8 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     } = config;
 
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            <PageHeader title={title} />
-            <div className={'content'}>
+        <ProductPageLayout title={title}>
+            <ProductPageLayout.Section left sticky withPadding={false}>
                 {leftMenuToggle && (
                     <LeftMenuSection
                         pageProps={pageProps}
@@ -44,18 +45,46 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                         stickyToggle={leftMenuSticky}
                     />
                 )}
+            </ProductPageLayout.Section>
+            <ProductPageLayout.Section
+                whiteBackground={false}
+                withPadding={false}
+            >
                 <MainContentSection
                     pageProps={pageProps}
                     regionProps={regions.pageContent}
                 />
-                {rightMenuToggle && (
+                <ProductPageLayout.Panel
+                    title={'Leo quis'}
+                    anchor={'leo-quis'}
+                    highlight={true}
+                    icon={<LightBulb />}
+                >
+                    TEST
+                </ProductPageLayout.Panel>
+                <ProductPageLayout.Panel
+                    title={'Proin accumsan'}
+                    anchor={'proin-accumsan'}
+                >
+                    TEST
+                </ProductPageLayout.Panel>
+                <ProductPageLayout.Panel
+                    title={'Maecenas in pretium'}
+                    anchor={'maecenas-in-pretium'}
+                    icon={<Telephone />}
+                >
+                    TEST
+                </ProductPageLayout.Panel>
+            </ProductPageLayout.Section>
+            {rightMenuToggle && (
+                <ProductPageLayout.Section right sticky>
                     <RightMenuSection
                         pageProps={pageProps}
                         regionProps={regions.rightMenu}
                         stickyToggle={rightMenuSticky}
                     />
-                )}
-            </div>
-        </LayoutContainer>
+                </ProductPageLayout.Section>
+            )}
+        </ProductPageLayout>
     );
 };
