@@ -30,9 +30,6 @@ const nofollowPattern = new RegExp(`^(${appOrigin})?(\\/sok($|\\?|\\/))`, 'i');
 
 export const isNofollowUrl = (url: string) => nofollowPattern.test(url);
 
-export const isNavUrl = (url: string) =>
-    /^(https:\/\/)?([a-z0-9-]*(\.)?nav\.no)?(\/|$)/i.test(url);
-
 export const stripXpPathPrefix = (path: string) =>
     path?.startsWith(xpContentPathPrefix)
         ? path.slice(xpContentPathPrefix.length)

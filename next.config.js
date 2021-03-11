@@ -1,5 +1,4 @@
 const withLess = require('@zeit/next-less');
-const withCSS = require('@zeit/next-css');
 const withImages = require('next-images');
 const packageJson = require('./package.json');
 
@@ -14,7 +13,7 @@ const withTranspileModules = require('next-transpile-modules')([
 ]);
 
 const configWithAllTheThings = (config) =>
-    withTranspileModules(withLess(withCSS(withImages(config))));
+    withTranspileModules(withLess(withImages(config)));
 
 module.exports = configWithAllTheThings({
     assetPrefix: process.env.APP_ORIGIN,
