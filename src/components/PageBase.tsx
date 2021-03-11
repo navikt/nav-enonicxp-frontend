@@ -64,7 +64,7 @@ const redirectProps = (destination: string, isPermanent = false) => ({
     props: {},
     redirect: {
         // Decode then (re)encode to ensure the destination is not double-encoded
-        destination: encodeURI(decodeURI(destination)),
+        destination: encodeURI(decodeURI(destination).trim()),
         permanent: isPermanent,
     },
 });
