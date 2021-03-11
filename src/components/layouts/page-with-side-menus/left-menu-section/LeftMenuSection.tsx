@@ -12,7 +12,6 @@ const bem = BEM('left-menu');
 type Props = {
     internalLinks: AnchorLink[];
     menuHeader: string;
-    stickyToggle: boolean;
     regionProps: RegionProps;
     pageProps: ContentProps;
 };
@@ -20,7 +19,7 @@ type Props = {
 export const LeftMenuSection = React.memo(
     ({ internalLinks, menuHeader, regionProps, pageProps }: Props) => {
         return (
-            <>
+            <div className={classNames(bem())}>
                 <AccordionMenu title={menuHeader}>
                     {internalLinks?.length > 0 &&
                         internalLinks.map((link) => (
@@ -30,7 +29,7 @@ export const LeftMenuSection = React.memo(
                         ))}
                 </AccordionMenu>
                 <Region pageProps={pageProps} regionProps={regionProps} />
-            </>
+            </div>
         );
     }
 );

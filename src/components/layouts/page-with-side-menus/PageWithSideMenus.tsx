@@ -42,17 +42,20 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <ProductPageLayout title={title}>
-            <ProductPageLayout.Section left sticky withPadding={false}>
-                {leftMenuToggle && (
+            {leftMenuToggle && (
+                <ProductPageLayout.Section
+                    left
+                    sticky={leftMenuSticky}
+                    withPadding={false}
+                >
                     <LeftMenuSection
                         pageProps={pageProps}
                         regionProps={regions.leftMenu}
                         internalLinks={showInternalNav && anchorLinks}
                         menuHeader={leftMenuHeader}
-                        stickyToggle={leftMenuSticky}
                     />
-                )}
-            </ProductPageLayout.Section>
+                </ProductPageLayout.Section>
+            )}
             <ProductPageLayout.Section
                 whiteBackground={false}
                 withPadding={false}
@@ -63,11 +66,10 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 />
             </ProductPageLayout.Section>
             {rightMenuToggle && (
-                <ProductPageLayout.Section right sticky>
+                <ProductPageLayout.Section right sticky={rightMenuSticky}>
                     <RightMenuSection
                         pageProps={pageProps}
                         regionProps={regions.rightMenu}
-                        stickyToggle={rightMenuSticky}
                     />
                 </ProductPageLayout.Section>
             )}

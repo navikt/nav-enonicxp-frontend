@@ -1,25 +1,4 @@
 @import (reference) '../../../global';
 
 .page__page-with-side-menus {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    .content {
-        display: flex;
-
-        @media @screen-mobile {
-            flex-direction: column;
-        }
-    }
-}
-
-.navds-layout__header,
-.navds-layout__footer {
-    @side-width: calc((100vw - 100%) / 2);
-    @side-width-negative: calc((100vw - 100%) / -2);
-    padding-left: @side-width;
-    padding-right: @side-width;
-    margin-left: @side-width-negative;
-    margin-right: @side-width-negative;
 }
