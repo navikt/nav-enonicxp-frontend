@@ -1,22 +1,4 @@
 @import (reference) '../../../../global';
 
 .main-content-section {
-    width: 100%;
-    flex-shrink: 1;
-
-    .region__pageContent {
-        max-width: calc(@desktopMaxWidthInner / 2);
-
-        @media @screen-mobile {
-            max-width: 100%;
-        }
-
-        & > * {
-            border-radius: @border-radius-base;
-
-            &:not(:first-child) {
-                margin-top: 1rem;
-            }
-        }
-    }
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 import { SectionWithHeaderProps } from '../../../types/component-props/layouts/section-with-header';
 import { ContentProps } from '../../../types/content-props/_content-common';
-import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
-import { Header } from '../../_common/header/Header';
-import { TypoStyle } from '../../../types/typo-style';
 import './SectionWithHeaderLayout.less';
+import { LightBulb } from '@navikt/ds-icons';
+import { ProductPageLayout } from '@navikt/ds-react';
+import { LayoutContainer } from '../LayoutContainer';
 
 type Props = {
     pageProps: ContentProps;
@@ -19,18 +19,17 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const { title, anchorId, justify } = config;
+    const { title, anchorId } = config;
 
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            <Header
-                typoStyle={TypoStyle.Innholdstittel}
-                tag={'h2'}
-                text={title}
-                anchorId={anchorId}
-                justify={justify}
-            />
-            <Region pageProps={pageProps} regionProps={regions.content} />
-        </LayoutContainer>
+        <ProductPageLayout.Panel
+            title={title}
+            anchor={anchorId}
+            icon={<LightBulb />}
+        >
+            <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+                <Region pageProps={pageProps} regionProps={regions.content} />
+            </LayoutContainer>
+        </ProductPageLayout.Panel>
     );
 };

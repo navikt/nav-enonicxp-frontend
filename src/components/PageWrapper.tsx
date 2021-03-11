@@ -89,6 +89,7 @@ export const PageWrapper = (props: Props) => {
 
     return (
         <div
+            id={bem()}
             className={classNames(
                 bem(),
                 hasBreadcrumbsOrLanguageSelector && bem('offset')

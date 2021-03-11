@@ -1,12 +1,14 @@
+@import (reference) '../../../global';
+
 .layout__section-with-header {
-    padding: 1rem 1.5rem;
-    background-color: white;
+}
 
-    .region__content {
-        margin-top: 1rem;
+.global-notifications {
+    background-color: @navBakgrunn;
+    padding-top: 1rem;
+}
 
-        & > * {
-            margin-top: 1rem;
-        }
-    }
+.app .global-notifications {
+    background-color: @navGraBakgrunn;
+    padding-top: 0;
 }
