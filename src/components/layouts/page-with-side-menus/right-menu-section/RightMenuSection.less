@@ -1,35 +1,4 @@
 @import (reference) '../../../../global';
 
 .right-menu {
-    @menuTopOffsetDesktop: 16px;
-
-    &--sticky {
-        position: sticky;
-        top: calc(var(--sticky-offset) + @menuTopOffsetDesktop);
-        align-self: start;
-
-        @media @screen-mobile {
-            position: static;
-            top: auto;
-        }
-    }
-
-    .region__rightMenu > * {
-        padding: 1rem;
-        background-color: white;
-        border-radius: @border-radius-base;
-
-        &:not(:first-child) {
-            margin-top: 1rem;
-        }
-
-        @media @screen-mobile {
-            background-color: transparent;
-
-            &:first-child {
-                margin-top: 0;
-                padding-top: 0;
-            }
-        }
-    }
 }
