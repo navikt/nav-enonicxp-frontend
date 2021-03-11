@@ -73,14 +73,6 @@ module.exports = configWithAllTheThings({
                   },
               ]
             : []),
-        ...(process.env.ENV === 'dev'
-            ? [
-                  {
-                      source: '/_/:path*',
-                      destination: 'https://www-q1.nav.no/_/:path*',
-                  },
-              ]
-            : []),
     ],
     headers: async () => [
         {
