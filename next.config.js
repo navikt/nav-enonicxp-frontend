@@ -11,8 +11,6 @@ const navFrontendModuler = Object.keys(packageJson.dependencies).reduce(
 const withTranspileModules = require('next-transpile-modules')([
     ...navFrontendModuler,
     '@navikt/nav-dekoratoren-moduler',
-    '@navikt/ds-react',
-    '@navikt/ds-icons',
 ]);
 
 const configWithAllTheThings = (config) =>
