@@ -8,7 +8,7 @@ import Image from './parts/_dynamic/image/Image';
 import Layout from './layouts/Layout';
 import { PartsMapper } from './parts/PartsMapper';
 import { ContentProps } from '../types/content-props/_content-common';
-import { BEM } from '../utils/bem';
+import { BEM, classNames } from '../utils/classnames';
 
 const bem = BEM('region');
 
@@ -71,7 +71,7 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
             style={componentStyle}
             data-portal-component-type={componentProps.type}
             data-portal-component={path}
-            className={`${bem()} ${className}`}
+            className={classNames(bem(), className)}
             data-th-remove="tag"
         >
             <Component componentProps={componentProps} pageProps={pageProps} />

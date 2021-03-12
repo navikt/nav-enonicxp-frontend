@@ -4,7 +4,7 @@ import LenkepanelNavNo from '../lenkepanel/LenkepanelNavNo';
 import { ContentType } from 'types/content-props/_content-common';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
 import { hasDescription, hasIngress } from 'types/_type-guards';
-import { BEM } from 'utils/bem';
+import { BEM } from 'utils/classnames';
 import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
 import { PublicImage } from '../image/PublicImage';

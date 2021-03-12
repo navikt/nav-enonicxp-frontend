@@ -12,6 +12,9 @@ import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from '../utils/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getContentLanguages } from '../utils/languages';
+import { BEM, classNames } from '../utils/classnames';
+
+const bem = BEM('app');
 
 type Props = {
     content: ContentProps;
@@ -77,9 +80,10 @@ export const PageWrapper = (props: Props) => {
 
     return (
         <div
-            className={`app${
-                hasBreadcrumbsOrLanguageSelector ? ' app__offset' : ''
-            }`}
+            className={classNames(
+                bem(),
+                hasBreadcrumbsOrLanguageSelector && bem('offset')
+            )}
         >
             <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />

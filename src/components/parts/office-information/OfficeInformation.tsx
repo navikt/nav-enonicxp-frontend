@@ -8,7 +8,7 @@ import {
     normalizeReceptionAsArray,
     parsePhoneNumber,
 } from './utils';
-import { BEM } from 'utils/bem';
+import { BEM } from 'utils/classnames';
 import { Email } from './Email';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/ArtikkelDato';

@@ -21,28 +21,41 @@ module.exports = configWithAllTheThings({
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
     },
+    redirects: async () => [
+        {
+            source: '/www.nav.no',
+            destination: '/',
+            permanent: false,
+        },
+        {
+            source: '/www.nav.no/:path*',
+            destination: '/:path*',
+            permanent: false,
+        },
+        {
+            source: '/Global%20Utlogging',
+            destination: '/global-utlogging',
+            permanent: true,
+        },
+    ],
     rewrites: async () => [
         {
             source: '/sitemap.xml',
-            destination: `${process.env.APP_ORIGIN}/api/sitemap`,
-        },
-        {
-            source: '/no/rss',
-            destination: `${process.env.APP_ORIGIN}/api/rss`,
+            destination: '/api/sitemap',
         },
         // Send some very common 404-resulting requests directly to 404
         // to prevent unnecessary backend-calls
         {
             source: '/autodiscover/autodiscover.xml',
-            destination: `${process.env.APP_ORIGIN}/404`,
+            destination: '/404',
         },
         {
             source: '/Forsiden/driftsmelding',
-            destination: `${process.env.APP_ORIGIN}/404`,
+            destination: '/404',
         },
         {
             source: '/_public/beta.nav.no/:path*',
-            destination: `${process.env.APP_ORIGIN}/404`,
+            destination: '/404',
         },
         ...(process.env.ENV === 'localhost'
             ? [
@@ -50,13 +63,10 @@ module.exports = configWithAllTheThings({
                       source: '/_/:path*',
                       destination: 'http://localhost:8080/_/:path*',
                   },
-              ]
-            : []),
-        ...(process.env.ENV === 'dev'
-            ? [
                   {
-                      source: '/_/:path*',
-                      destination: 'https://www-q1.nav.no/_/:path*',
+                      source: '/admin/site/preview/default/draft/:path*',
+                      destination:
+                          'http://localhost:8080/admin/site/preview/default/draft/:path*',
                   },
               ]
             : []),

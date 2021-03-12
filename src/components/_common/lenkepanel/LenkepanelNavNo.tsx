@@ -1,7 +1,7 @@
 import React from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
-import { BEM } from 'utils/bem';
+import { BEM, classNames } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import './LenkepanelNavNo.less';
 
@@ -34,9 +34,11 @@ const LenkepanelNavNo = ({
     return (
         <LenkepanelBase
             href={href}
-            className={`${bem()} ${vertikal ? bem('vertikal') : ''} ${
-                className || ''
-            }`}
+            className={classNames(
+                bem(),
+                vertikal && bem('vertikal'),
+                className
+            )}
             border={true}
             linkCreator={(props) => (
                 <LenkeBase

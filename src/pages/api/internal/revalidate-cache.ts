@@ -11,7 +11,7 @@ const regeneratePageCache = (path: string) => {
     fetchWithTimeout(`http://localhost:3000${path}`, 1000, {
         method: 'HEAD',
     }).catch((e) =>
-        console.error(`Regenerating page cache for ${path} failed - ${e}`)
+        console.error(`Regenerating page cache failed for ${path} - ${e}`)
     );
 };
 
@@ -26,7 +26,7 @@ const revalidateCache = async (req, res) => {
         return res.status(400).send('No path specified');
     }
 
-    if (!fs.existsSync(`${cacheBasePath}${path}.html`)) {
+    if (!fs.existsSync(`${cacheBasePath}${encodeURI(path)}.html`)) {
         const msg = `No page cache found for ${path} - regeneration not needed`;
         console.log(msg);
         return res.status(200).send(msg);

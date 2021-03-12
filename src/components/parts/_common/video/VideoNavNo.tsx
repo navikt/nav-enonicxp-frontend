@@ -1,5 +1,5 @@
 import React from 'react';
-import { BEM } from 'utils/bem';
+import { BEM } from 'utils/classnames';
 import './VideoNavNo.less';
 
 export type VideoProps = {
@@ -10,7 +10,7 @@ export type VideoProps = {
 const VideoNavNo = ({ title, src }: VideoProps) => {
     const bem = BEM('video-navno');
     return (
-        <div className={`${bem()}`}>
+        <div className={bem()}>
             <iframe title={title} src={src} allow="fullscreen" />
         </div>
     );

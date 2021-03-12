@@ -8,7 +8,10 @@ export type MainArticleChapterData = Partial<{
 }>;
 
 type ParentProps = {
-    children: ContentProps[];
+    children?: ContentProps[];
+    data?: {
+        chapters?: ContentProps[];
+    };
 } & ContentProps;
 
 export interface MainArticleChapterProps extends ContentProps {
