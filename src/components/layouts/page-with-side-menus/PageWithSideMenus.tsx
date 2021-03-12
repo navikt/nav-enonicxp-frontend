@@ -5,9 +5,7 @@ import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
 import { RightMenuSection } from './right-menu-section/RightMenuSection';
 import { MainContentSection } from './main-content-section/MainContentSection';
 import { ProductPageLayout } from '@navikt/ds-react';
-import { LightBulb, Telephone } from '@navikt/ds-icons';
 import './PageWithSideMenus.less';
-import { LayoutContainer } from '../LayoutContainer';
 
 type Props = {
     pageProps: ContentProps;

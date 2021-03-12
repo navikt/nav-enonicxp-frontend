@@ -97,7 +97,7 @@ export const PageWrapper = (props: Props) => {
             id={bem()}
             className={classNames(
                 bem(),
-                hasBreadcrumbsOrLanguageSelector && bem('offset'),
+                hasBreadcrumbsOrLanguageSelector && bem('no-offset'),
                 !pageLayoutMarginIgnoreList.includes(pageLayoutDescriptior) &&
                     bem('margin')
             )}

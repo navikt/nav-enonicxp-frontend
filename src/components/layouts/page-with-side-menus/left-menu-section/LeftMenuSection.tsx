@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { BEM, classNames } from '../../../../utils/classnames';
 import Region from '../../Region';
 import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
