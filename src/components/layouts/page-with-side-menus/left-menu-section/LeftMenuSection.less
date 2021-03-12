@@ -1,4 +1,16 @@
 @import (reference) '../../../../global';
 
 .left-menu {
+    & > * {
+        margin-bottom: 1rem;
+        background-color: white;
+    }
+}
+
+.region__leftMenu > * {
+    padding: 1rem;
+    background-color: white;
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
 }

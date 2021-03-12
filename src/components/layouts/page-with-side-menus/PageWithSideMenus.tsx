@@ -36,6 +36,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 <ProductPageLayout.Section
                     left
                     sticky={leftMenuSticky}
+                    whiteBackground={false}
                     withPadding={false}
                 >
                     <LeftMenuSection
