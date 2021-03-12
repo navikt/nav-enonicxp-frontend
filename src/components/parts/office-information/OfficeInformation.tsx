@@ -8,6 +8,7 @@ import {
     normalizeReceptionAsArray,
     parsePhoneNumber,
 } from './utils';
+import { xpPathToUrl } from '../../../utils/paths';
 import { BEM } from 'utils/classnames';
 import { Email } from './Email';
 import { translator } from 'translations';
@@ -30,14 +31,14 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     const publikumsmottak = normalizeReceptionAsArray(contact.publikumsmottak);
 
     // Id in format of a URL required by Google for search.
-    const mainOfficeId = `https://${props._path}`;
+    const mainOfficeId = xpPathToUrl(props._path);
 
     const jsonSchema = {
         '@context': 'http://schema.org',
         '@type': 'GovernmentOffice',
         '@id': mainOfficeId,
         name: unit.navn,
-        image: 'https://www.nav.no/gfx/social-share-fallback.png',
+        image: 'https://www.nav.no/gfx/google-search-nav-logo.png',
         telephone,
         faxNumber: fax,
         address: {
@@ -46,22 +47,22 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             addressLocality: contact.postadresse.poststed,
             postalCode: contact.postadresse.postnummer,
         },
-        url: `https://${props._path}`,
+        url: xpPathToUrl(props._path),
         vatID: unit.organisasjonsnummer,
         department: publikumsmottak.map((mottak) => {
             const fullOfficeName = `${unit.navn}, ${mottak.stedsbeskrivelse}`;
             // Globally unique Id in format of a URL required by Google for search. Not required to
             // be a functioning URL
-            const departmentId = `https://www.nav.no/${props._path}/${mottak.id}`;
+            const departmentId = `${xpPathToUrl(props._path)}/${mottak.id}`;
 
             return {
                 '@type': 'GovernmentOffice',
                 '@id': departmentId,
                 name: fullOfficeName,
                 location: mottak.stedsbeskrivelse,
-                image: 'https://www.nav.no/gfx/social-share-fallback.png',
+                image: 'https://www.nav.no/gfx/google-search-nav-logo.png',
                 telephone,
-                url: `https://${props._path}`,
+                url: xpPathToUrl(props._path),
                 address: {
                     '@type': 'PostalAddress',
                     streetAddress: formatAddress(mottak.besoeksadresse, false),
