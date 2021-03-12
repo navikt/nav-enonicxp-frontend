@@ -16,5 +16,6 @@ export interface SectionWithHeaderProps extends LayoutCommonProps {
         anchorId: string;
         backgroundColor?: string;
         icon?: { mediaUrl: string };
+        highlight?: boolean;
     } & HeaderCommonConfig;
 }

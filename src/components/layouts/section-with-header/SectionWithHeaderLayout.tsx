@@ -18,17 +18,20 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const { title, anchorId, icon } = config;
+    const { title, anchorId, icon, highlight } = config;
 
     return (
         <ProductPageLayout.Panel
+            component={LayoutContainer}
+            className={'TEST'}
+            pageProps={pageProps}
+            layoutProps={layoutProps}
             title={title}
             anchor={anchorId}
+            highlight={highlight}
             icon={icon?.mediaUrl && <img src={icon.mediaUrl} />}
         >
-            <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-                <Region pageProps={pageProps} regionProps={regions.content} />
-            </LayoutContainer>
+            <Region pageProps={pageProps} regionProps={regions.content} />
         </ProductPageLayout.Panel>
     );
 };
