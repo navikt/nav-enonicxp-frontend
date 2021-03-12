@@ -57,7 +57,7 @@ interface ContactInfo {
     postadresse: Address;
     besoeksadresse: Address;
     spesielleOpplysninger: string;
-    publikumsmottak: AudienceReception;
+    publikumsmottak: AudienceReception[] | AudienceReception | undefined;
 }
 
 export type OfficeInformationData = {

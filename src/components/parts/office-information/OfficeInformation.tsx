@@ -2,7 +2,12 @@ import React from 'react';
 import Head from 'next/head';
 import Reception from './reception/Reception';
 import { SpecialInformation } from './SpecialInfo';
-import { formatAddress, parsePhoneNumber } from './utils';
+import {
+    formatAddress,
+    buildOpeningHourAsString,
+    normalizeReceptionAsArray,
+    parsePhoneNumber,
+} from './utils';
 import { BEM } from 'utils/bem';
 import { Email } from './Email';
 import { translator } from 'translations';
@@ -19,34 +24,55 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     const getLabelMain = translator('mainArticle', props.language);
     const location = formatAddress(contact.besoeksadresse, true);
     const address = formatAddress(contact.postadresse, false);
+    const telephone = parsePhoneNumber(contact.telefonnummer);
     const fax = parsePhoneNumber(contact.faksnummer);
+
+    const publikumsmottak = normalizeReceptionAsArray(contact.publikumsmottak);
+
+    // Id in format of a URL required by Google for search.
+    const mainOfficeId = `https://${props._path}`;
+
     const jsonSchema = {
         '@context': 'http://schema.org',
-        '@type': 'GovernmentOrganization',
-        'url': '',
-        'name': unit.navn,
-        'telephone': contact.telefonnummer,
-        'address': {
+        '@type': 'GovernmentOffice',
+        '@id': mainOfficeId,
+        name: unit.navn,
+        image: 'https://www.nav.no/gfx/social-share-fallback.png',
+        telephone,
+        faxNumber: fax,
+        address: {
             '@type': 'PostalAddress',
-            'streetAddress':
-                `${contact.postadresse.gatenavn} ${contact.postadresse.husnummer}${contact.postadresse.husbokstav} `,
-            'addressLocality': contact.postadresse.poststed,
-            'postalCode': contact.postadresse.postnummer
+            streetAddress: formatAddress(contact.postadresse, true),
+            addressLocality: contact.postadresse.poststed,
+            postalCode: contact.postadresse.postnummer,
         },
-        'department': [
-            {
-                '@type': 'GovernmentOrganization',
-                'address': {
+        url: `https://${props._path}`,
+        vatID: unit.organisasjonsnummer,
+        department: publikumsmottak.map((mottak) => {
+            const fullOfficeName = `${unit.navn}, ${mottak.stedsbeskrivelse}`;
+            // Globally unique Id in format of a URL required by Google for search. Not required to
+            // be a functioning URL
+            const departmentId = `https://www.nav.no/${props._path}/${mottak.id}`;
+
+            return {
+                '@type': 'GovernmentOffice',
+                '@id': departmentId,
+                name: fullOfficeName,
+                location: mottak.stedsbeskrivelse,
+                image: 'https://www.nav.no/gfx/social-share-fallback.png',
+                telephone,
+                url: `https://${props._path}`,
+                address: {
                     '@type': 'PostalAddress',
-                    'streetAddress':
-                        `${contact.postadresse.gatenavn} ${contact.postadresse.husnummer}${contact.postadresse.husbokstav}`,
-                    'addressLocality': contact.postadresse.poststed,
-                    'postalCode': contact.postadresse.postnummer
-
-                }
-
-            }
-        ],
+                    streetAddress: formatAddress(mottak.besoeksadresse, false),
+                    addressLocality: mottak.besoeksadresse.poststed,
+                    postalCode: mottak.besoeksadresse.postboksnummer,
+                },
+                openingHours: mottak.aapningstider.map((singleDayOpeningHour) =>
+                    buildOpeningHourAsString(singleDayOpeningHour)
+                ),
+            };
+        }),
     };
 
     return (
@@ -94,7 +120,9 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                         <Normaltekst itemProp="telephone">
                             {parsePhoneNumber(contact.telefonnummer)}
                         </Normaltekst>
-                        <Normaltekst>{contact.telefonnummerKommentar}</Normaltekst>
+                        <Normaltekst>
+                            {contact.telefonnummerKommentar}
+                        </Normaltekst>
                     </div>
                 )}
                 <div>
@@ -107,8 +135,8 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                         >
                             NAVs skjemaveileder.
                         </Lenke>{' '}
-                        Skjemaveilederen gir deg hjelp til å velge rett skjema og
-                        rett adresse det skal sendes til.
+                        Skjemaveilederen gir deg hjelp til å velge rett skjema
+                        og rett adresse det skal sendes til.
                     </Normaltekst>
                 </div>
                 <SpecialInformation info={contact.spesielleOpplysninger} />
@@ -154,7 +182,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     </div>
                 )}
                 <Reception
-                    receptions={contact.publikumsmottak}
+                    receptions={publikumsmottak}
                     language={props.language}
                 />
             </article>

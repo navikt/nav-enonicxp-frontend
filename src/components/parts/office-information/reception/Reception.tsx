@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatAddress } from './../utils';
+import { formatAddress, normalizeReceptionAsArray } from './../utils';
 import { formatDate } from 'utils/datetime';
 import { translator, Language } from 'translations';
 import {
@@ -7,7 +7,7 @@ import {
     OpeningHoursProps,
 } from '../../../../types/content-props/office-information-props';
 import { Normaltekst, Element, Systemtittel } from 'nav-frontend-typografi';
-import { OpeningHours } from './OpeningHours';
+import { MetaOpeningHours, OpeningHours } from './OpeningHours';
 import { BEM } from '../../../../utils/bem';
 import './Reception.less';
 
@@ -85,8 +85,6 @@ const formatAudienceReception = (
     };
 };
 
-
-
 type ReceptionType = AudienceReception[] | AudienceReception | undefined;
 
 interface Props {
@@ -102,9 +100,7 @@ const Reception = (props: Props) => {
         return null;
     }
 
-    const receptionArray: AudienceReception[] = Array.isArray(props.receptions)
-        ? props.receptions
-        : [props.receptions];
+    const receptionArray = normalizeReceptionAsArray(props.receptions);
 
     return (
         <div className={bem()}>
@@ -113,7 +109,6 @@ const Reception = (props: Props) => {
             </Systemtittel>
             {receptionArray.map((rec: AudienceReception) => {
                 const reception = formatAudienceReception(rec);
-                console.log(reception);
                 return (
                     <div
                         key={rec.id}
