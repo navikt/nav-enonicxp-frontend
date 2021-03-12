@@ -17,14 +17,6 @@ type Props = {
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
 
-    useEffect(() => {
-        const app = document.getElementById('app');
-        app.classList.remove('app');
-        return () => {
-            app.classList.add('app');
-        };
-    }, []);
-
     if (!regions || !config) {
         return null;
     }

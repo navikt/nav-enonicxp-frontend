@@ -15,6 +15,7 @@ import { getContentLanguages } from '../utils/languages';
 import { BEM, classNames } from '../utils/classnames';
 import { getInternalRelativePath } from '../utils/urls';
 import { ComponentReorderHack } from '../utils/ComponentReorderHack';
+import { LayoutType } from '../types/component-props/layouts';
 
 const bem = BEM('app');
 
@@ -87,12 +88,18 @@ export const PageWrapper = (props: Props) => {
         document.documentElement.lang = content.language || 'no';
     }, [content]);
 
+    // Prevent app__margin on specific layouts
+    const pageLayoutMarginIgnoreList = [LayoutType.PageWithSideMenus];
+    const pageLayoutDescriptior = content?.page?.descriptor;
+
     return (
         <div
             id={bem()}
             className={classNames(
                 bem(),
-                hasBreadcrumbsOrLanguageSelector && bem('offset')
+                hasBreadcrumbsOrLanguageSelector && bem('offset'),
+                !pageLayoutMarginIgnoreList.includes(pageLayoutDescriptior) &&
+                    bem('margin')
             )}
         >
             <DocumentParameterMetatags content={content} />
@@ -102,9 +109,10 @@ export const PageWrapper = (props: Props) => {
                 <GlobalNotifications
                     language={content?.language}
                     notifications={notifications}
+                    pageLayoutDescriptior={pageLayoutDescriptior}
                 />
             )}
-            <div className={'content-wrapper'} id={'maincontent'}>
+            <div id={'maincontent'} className={'content-wrapper'}>
                 {children}
             </div>
         </div>

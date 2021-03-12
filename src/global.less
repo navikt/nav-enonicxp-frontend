@@ -45,29 +45,30 @@ html {
 
 .decorator-utils-container {
     min-height: 4rem;
-    margin-bottom: -4rem;
 }
 
 .app {
-    max-width: @desktopMaxWidth;
-    min-height: 20rem;
-    margin: 0 auto;
-    transition: margin-top 0.2s ease-in-out;
+    &__margin {
+        max-width: @desktopMaxWidth;
+        min-height: 20rem;
+        margin: 0 auto;
+        clear: both;
+        transition: margin-top 0.2s ease-in-out;
 
+        @media @screen-mobile {
+            padding: 2rem @padding-sides-mobile;
+        }
+
+        @media @screen-tablet {
+            padding: 2rem @padding-sides-mobile;
+        }
+
+        @media @screen-desktop {
+            padding: 2rem @padding-sides-desktop;
+        }
+    }
     &__offset {
-        margin-top: 3rem;
-    }
-
-    @media @screen-mobile {
-        padding: 2rem @padding-sides-mobile;
-    }
-
-    @media @screen-tablet {
-        padding: 2rem @padding-sides-mobile;
-    }
-
-    @media @screen-desktop {
-        padding: 2rem @padding-sides-desktop;
+        padding-top: 1rem;
     }
 }
 
