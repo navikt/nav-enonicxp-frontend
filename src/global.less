@@ -56,19 +56,19 @@ html {
         transition: margin-top 0.2s ease-in-out;
 
         @media @screen-mobile {
-            padding: 2rem @padding-sides-mobile;
+            padding: 0 @padding-sides-mobile 2rem @padding-sides-mobile;
         }
 
         @media @screen-tablet {
-            padding: 2rem @padding-sides-mobile;
+            padding: 0 @padding-sides-mobile 2rem @padding-sides-mobile;
         }
 
         @media @screen-desktop {
-            padding: 2rem @padding-sides-desktop;
+            padding: 0 @padding-sides-desktop 2rem @padding-sides-desktop;
         }
     }
     &__offset {
-        padding-top: 1rem;
+        margin-top: 0rem;
     }
 }
 
