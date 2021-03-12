@@ -3,7 +3,6 @@ import { SectionWithHeaderProps } from '../../../types/component-props/layouts/s
 import { ContentProps } from '../../../types/content-props/_content-common';
 import Region from '../Region';
 import './SectionWithHeaderLayout.less';
-import { LightBulb } from '@navikt/ds-icons';
 import { ProductPageLayout } from '@navikt/ds-react';
 import { LayoutContainer } from '../LayoutContainer';
 
@@ -19,13 +18,13 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const { title, anchorId } = config;
+    const { title, anchorId, icon } = config;
 
     return (
         <ProductPageLayout.Panel
             title={title}
             anchor={anchorId}
-            icon={<LightBulb />}
+            icon={icon?.mediaUrl && <img src={icon.mediaUrl} />}
         >
             <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
                 <Region pageProps={pageProps} regionProps={regions.content} />
