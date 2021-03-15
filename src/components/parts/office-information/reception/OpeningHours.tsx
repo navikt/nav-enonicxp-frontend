@@ -27,18 +27,8 @@ export const MetaOpeningHours = (props: {
                         </time>
                         {!opening.stengt && (
                             <>
-                                <time
-                                    itemProp="opens"
-                                    data-th-datetime={opening.fra}
-                                >
-                                    {opening.fra}
-                                </time>
-                                <time
-                                    itemProp="closes"
-                                    data-th-datetime={opening.til}
-                                >
-                                    {opening.til}
-                                </time>
+                                <time itemProp="opens">{opening.fra}</time>
+                                <time itemProp="closes">{opening.til}</time>
                             </>
                         )}
                     </li>
