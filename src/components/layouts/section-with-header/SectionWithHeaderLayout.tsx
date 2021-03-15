@@ -23,7 +23,6 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     return (
         <ProductPageLayout.Panel
             component={LayoutContainer}
-            className={'TEST'}
             pageProps={pageProps}
             layoutProps={layoutProps}
             title={title}
