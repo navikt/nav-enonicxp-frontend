@@ -49,7 +49,7 @@
         "nav-frontend-veileder-style": "^2.0.25",
         "nav-frontend-veilederpanel": "^0.1.43",
         "nav-frontend-veilederpanel-style": "0.0.40",
-        "next": "^10.0.4",
+        "next": "^10.0.6",
         "next-images": "^1.6.2",
         "node-cache": "^5.1.2",
         "prop-types": "^15.7.2",
