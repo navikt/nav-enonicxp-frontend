@@ -18,15 +18,15 @@ type Props = {
 
 export const LeftMenuSection = React.memo(
     ({ internalLinks, menuHeader, regionProps, pageProps }: Props) => {
+        const links = internalLinks?.length > 0 ? internalLinks : [];
         return (
             <div className={classNames(bem())}>
                 <AccordionMenu title={menuHeader}>
-                    {internalLinks?.length > 0 &&
-                        internalLinks.map((link) => (
-                            <AccordionMenu.Item href={`#${link.anchorId}`}>
-                                {link.linkText}
-                            </AccordionMenu.Item>
-                        ))}
+                    {links.map((link) => (
+                        <AccordionMenu.Item href={`#${link.anchorId}`}>
+                            {link.linkText}
+                        </AccordionMenu.Item>
+                    ))}
                 </AccordionMenu>
                 <Region pageProps={pageProps} regionProps={regionProps} />
             </div>

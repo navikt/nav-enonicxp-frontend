@@ -10,9 +10,5 @@ type Props = {
 };
 
 export const MainContentSection = ({ pageProps, regionProps }: Props) => {
-    return (
-        <div className={'main-content-section'}>
-            <Region pageProps={pageProps} regionProps={regionProps} />
-        </div>
-    );
+    return <Region pageProps={pageProps} regionProps={regionProps} />;
 };
