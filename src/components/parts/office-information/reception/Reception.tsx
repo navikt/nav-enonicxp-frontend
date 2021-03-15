@@ -1,5 +1,6 @@
 import React from 'react';
-import { formatAddress } from '../utils';
+import { formatAddress, normalizeReceptionAsArray } from '../utils';
+
 import { formatDate } from 'utils/datetime';
 import { translator, Language } from 'translations';
 import {
@@ -7,7 +8,7 @@ import {
     OpeningHoursProps,
 } from '../../../../types/content-props/office-information-props';
 import { Normaltekst, Element, Systemtittel } from 'nav-frontend-typografi';
-import OpeningHours from './OpeningHours';
+import { MetaOpeningHours, OpeningHours } from './OpeningHours';
 import { BEM } from '../../../../utils/classnames';
 import './Reception.less';
 
@@ -85,43 +86,6 @@ const formatAudienceReception = (
     };
 };
 
-const MetaOpeningHours = (props: {
-    openingHours: OpeningHoursProps[];
-    metaKey: string;
-}) => {
-    return (
-        <ul className="hidden">
-            {props.openingHours.map((opening, ix) => {
-                const compKey = `${props.metaKey}-${ix}`;
-                return (
-                    <li
-                        key={compKey}
-                        itemProp="specialOpeningHoursSpecification"
-                        itemScope
-                        itemType="http://schema.org/OpeningHoursSpecification"
-                    >
-                        <time itemProp="validFrom" dateTime={opening.isoDate}>
-                            {opening.dato}
-                        </time>
-                        <time
-                            itemProp="validThrough"
-                            dateTime={opening.isoDate}
-                        >
-                            {opening.dato}
-                        </time>
-                        {!opening.stengt && (
-                            <>
-                                <time itemProp="opens">{opening.fra}</time>
-                                <time itemProp="closes">{opening.til}</time>
-                            </>
-                        )}
-                    </li>
-                );
-            })}
-        </ul>
-    );
-};
-
 type ReceptionType = AudienceReception[] | AudienceReception | undefined;
 
 interface Props {
@@ -137,9 +101,7 @@ const Reception = (props: Props) => {
         return null;
     }
 
-    const receptionArray: AudienceReception[] = Array.isArray(props.receptions)
-        ? props.receptions
-        : [props.receptions];
+    const receptionArray = normalizeReceptionAsArray(props.receptions);
 
     return (
         <div className={bem()}>
@@ -148,7 +110,6 @@ const Reception = (props: Props) => {
             </Systemtittel>
             {receptionArray.map((rec: AudienceReception) => {
                 const reception = formatAudienceReception(rec);
-
                 return (
                     <div
                         key={rec.id}
