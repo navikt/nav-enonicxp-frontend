@@ -75,6 +75,7 @@ export const getInternalAbsoluteUrl = (
 
 // Media url must always be absolute, to prevent internal routing loopbacks
 export const getMediaUrl = (url: string, isDraft = globalState.isDraft) => {
+    console.log('draft:', isDraft);
     return url?.replace(
         internalUrlPrefixPattern,
         isDraft ? `${adminOrigin}${xpDraftPathPrefix}` : appOrigin
