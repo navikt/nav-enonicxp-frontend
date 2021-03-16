@@ -7,7 +7,7 @@ import {
 import { DecoratorParams } from './decorator-utils';
 import { objectToQueryString } from './fetch-utils';
 
-const decoratorUrl = process.env.DECORATOR_URL;
+const decoratorUrl = process.env.DECORATOR_FALLBACK_URL;
 const decoratorEnv = process.env.ENV as Props['env'];
 const decoratorLocalPort = process.env.DECORATOR_LOCAL_PORT || 8100;
 

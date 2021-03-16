@@ -27,7 +27,7 @@ jobs:
           NODE_ENV=production
           ADMIN_ORIGIN=https://portal-admin-dev.oera.no
           APP_ORIGIN=https://www.dev.nav.no
-          DECORATOR_URL=https://dekoratoren.dev.nav.no
+          DECORATOR_FALLBACK_URL=https://dekoratoren.dev.nav.no
           XP_ORIGIN=https://www.dev.nav.no
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
           SERVICE_SECRET=$SERVICE_SECRET
