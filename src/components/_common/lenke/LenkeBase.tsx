@@ -2,7 +2,6 @@ import React from 'react';
 import { isAppUrl, isNofollowUrl, getRelativePathIfInternal } from 'utils/urls';
 import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
-import globalState from '../../../globalState';
 
 type Props = {
     href: string;
@@ -22,7 +21,7 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
-    const _href = getRelativePathIfInternal(href, globalState.isDraft) || '/';
+    const _href = getRelativePathIfInternal(href) || '/';
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);
 
