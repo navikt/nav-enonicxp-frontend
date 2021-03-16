@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-    isInternalUrl,
-    isNofollowUrl,
-    getRelativePathIfInternal,
-} from 'utils/urls';
+import { isAppUrl, isNofollowUrl, getRelativePathIfInternal } from 'utils/urls';
 import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
 import globalState from '../../../globalState';
@@ -44,7 +40,7 @@ export const LenkeBase = ({
         </a>
     );
 
-    return isInternalUrl(_href) ? (
+    return isAppUrl(_href) ? (
         <Link href={_href} passHref={true}>
             {linkElement}
         </Link>
