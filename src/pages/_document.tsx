@@ -8,18 +8,18 @@ import Document, {
 } from 'next/document';
 import { Language } from '../translations';
 import { DocumentInitialProps } from 'next/dist/pages/_document';
-import { getDecoratorFragments } from '../utils/decorator-utils';
-import { DecoratorFragments } from '../utils/decorator-utils';
 import { DocumentParameter } from '../components/_common/metatags/DocumentParameterMetatags';
+import { getDecoratorComponents } from '../utils/decorator-utils-serverside';
+import { Components } from '@navikt/nav-dekoratoren-moduler/ssr';
 
 type DocumentProps = {
     language: Language;
-    decoratorFragments: DecoratorFragments;
+    decoratorComponents: Components;
 };
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
 // We use this to pass certain data from our page content via meta tags from the
-// ServerSideOnlyMetatags component
+// DocumentParameterMetatags component
 const getDocumentParameter = (
     initialProps: DocumentInitialProps,
     name: DocumentParameter
@@ -32,9 +32,9 @@ class MyDocument extends Document<DocumentProps> {
     static async getInitialProps(ctx: DocumentContext) {
         const initialProps = await Document.getInitialProps(ctx);
 
-        const decoratorQuery = getDocumentParameter(
+        const decoratorParams = getDocumentParameter(
             initialProps,
-            DocumentParameter.DecoratorQuery
+            DocumentParameter.DecoratorParams
         );
 
         const language = getDocumentParameter(
@@ -42,27 +42,31 @@ class MyDocument extends Document<DocumentProps> {
             DocumentParameter.HtmlLang
         );
 
-        const decoratorFragments = await getDecoratorFragments(decoratorQuery);
+        const decoratorComponents = await getDecoratorComponents(
+            decoratorParams ? JSON.parse(decoratorParams) : undefined
+        );
 
         return {
             ...initialProps,
-            decoratorFragments,
+            decoratorComponents,
             language,
         };
     }
 
     render() {
-        const { decoratorFragments, language } = this.props;
-        const { HEADER, FOOTER, SCRIPTS, STYLES } = decoratorFragments;
+        const { decoratorComponents, language } = this.props;
+        const { Header, Footer, Scripts, Styles } = decoratorComponents;
 
         return (
             <Html lang={language || 'no'}>
-                <Head>{STYLES}</Head>
+                <Head>
+                    <Styles />
+                </Head>
                 <body data-portal-component-type="page">
-                    {HEADER}
+                    <Header />
                     <Main />
-                    {FOOTER}
-                    {SCRIPTS}
+                    <Footer />
+                    <Scripts />
                     <NextScript />
                 </body>
             </Html>
