@@ -3,6 +3,7 @@ import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LenkeInline } from './_common/lenke/LenkeInline';
+import { getMediaUrl } from '../utils/urls';
 import '../components/macros/Quote.less';
 import '../components/macros/Video.less';
 import { getMediaUrl } from '../utils/urls';
