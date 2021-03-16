@@ -14,7 +14,7 @@ import { Components } from '@navikt/nav-dekoratoren-moduler/ssr';
 
 type DocumentProps = {
     language: Language;
-    decoratorComponents: Components;
+    Decorator: Components;
 };
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
@@ -42,31 +42,30 @@ class MyDocument extends Document<DocumentProps> {
             DocumentParameter.HtmlLang
         );
 
-        const decoratorComponents = await getDecoratorComponents(
+        const Decorator = await getDecoratorComponents(
             decoratorParams ? JSON.parse(decoratorParams) : undefined
         );
 
         return {
             ...initialProps,
-            decoratorComponents,
+            Decorator,
             language,
         };
     }
 
     render() {
-        const { decoratorComponents, language } = this.props;
-        const { Header, Footer, Scripts, Styles } = decoratorComponents;
+        const { Decorator, language } = this.props;
 
         return (
             <Html lang={language || 'no'}>
                 <Head>
-                    <Styles />
+                    <Decorator.Styles />
                 </Head>
                 <body data-portal-component-type="page">
-                    <Header />
+                    <Decorator.Header />
                     <Main />
-                    <Footer />
-                    <Scripts />
+                    <Decorator.Footer />
+                    <Decorator.Scripts />
                     <NextScript />
                 </body>
             </Html>
