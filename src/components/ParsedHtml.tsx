@@ -6,7 +6,6 @@ import { LenkeInline } from './_common/lenke/LenkeInline';
 import { getMediaUrl } from '../utils/urls';
 import '../components/macros/Quote.less';
 import '../components/macros/Video.less';
-import { getMediaUrl } from '../utils/urls';
 
 interface Props {
     content?: string;
