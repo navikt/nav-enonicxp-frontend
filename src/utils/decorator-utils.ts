@@ -1,8 +1,3 @@
-import React from 'react';
-import { fetchWithTimeout } from './fetch-utils';
-import { JSDOM } from 'jsdom';
-import parse from 'html-react-parser';
-import NodeCache from 'node-cache';
 import { Language } from '../translations';
 import { Breadcrumb } from '../types/breadcrumb';
 import { getContentLanguages } from './languages';
@@ -12,9 +7,6 @@ import {
 } from '../types/content-props/_content-common';
 import { LanguageProps } from '../types/language';
 import { xpPathToPathname } from './paths';
-
-const decoratorUrl = process.env.DECORATOR_URL;
-const cache = new NodeCache({ stdTTL: 60 });
 
 type DecoratorContext = 'privatperson' | 'arbeidsgiver' | 'samarbeidspartner';
 type DecoratorLanguage = 'en' | 'nb' | 'nn' | 'pl' | 'se';
@@ -32,13 +24,6 @@ export type DecoratorParams = Partial<{
     context: DecoratorContext;
     language: DecoratorLanguage;
 }>;
-
-export type DecoratorFragments = {
-    HEADER: React.ReactNode;
-    FOOTER: React.ReactNode;
-    SCRIPTS: React.ReactNode;
-    STYLES: React.ReactNode;
-};
 
 const xpLangToDecoratorLang: {
     [key in Language]: DecoratorLanguage;
@@ -78,43 +63,6 @@ const pathToRoleContext: { [key: string]: DecoratorContext } = {
     privatperson: 'privatperson',
 };
 
-const _fetchDecoratorHtml = (query?: string) => {
-    const url = `${decoratorUrl}/${query ? query : ''}`;
-    return fetchWithTimeout(url, 5000)
-        .then((res) => {
-            if (res.ok) {
-                return res.text();
-            }
-            const error = `Failed to fetch decorator from ${url}: ${res.status} - ${res.statusText}`;
-            throw Error(error);
-        })
-        .catch(console.error);
-};
-
-// Prevents annoying console warning in dev-mode
-const fetchDecoratorHtml =
-    process.env.NODE_ENV === 'development'
-        ? (query?: string) =>
-              _fetchDecoratorHtml(query).then((html) =>
-                  html?.replace('value=""', '')
-              )
-        : _fetchDecoratorHtml;
-
-const decoratorFragmentsCSR = (query?: string) => ({
-    HEADER: <div id="decorator-header"></div>,
-    STYLES: <link href={`${decoratorUrl}/css/client.css`} rel="stylesheet" />,
-    FOOTER: <div id="decorator-footer"></div>,
-    SCRIPTS: (
-        <>
-            <div
-                id="decorator-env"
-                data-src={`${decoratorUrl}/env${query || ''}`}
-            ></div>
-            <script async={true} src={`${decoratorUrl}/client.js`}></script>
-        </>
-    ),
-});
-
 const errorParams = (content: ContentProps): DecoratorParams => ({
     feedback: false,
     breadcrumbs: content?.breadcrumbs || [],
@@ -152,32 +100,4 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         ),
         ...(feedback && { feedback: true }),
     };
-};
-
-export const getDecoratorFragments = async (
-    query?: string
-): Promise<DecoratorFragments> => {
-    const cacheKey = query || 'default';
-    if (cache.has(cacheKey)) {
-        return cache.get(cacheKey);
-    }
-
-    const decoratorHtml = await fetchDecoratorHtml(query);
-
-    // Fallback to client-side rendered decorator if fetch failed
-    if (!decoratorHtml) {
-        return decoratorFragmentsCSR(query);
-    }
-
-    const { document } = new JSDOM(decoratorHtml).window;
-    const decoratorFragments = {
-        HEADER: parse(document.getElementById('header-withmenu').innerHTML),
-        STYLES: parse(document.getElementById('styles').innerHTML),
-        FOOTER: parse(document.getElementById('footer-withmenu').innerHTML),
-        SCRIPTS: parse(document.getElementById('scripts').innerHTML),
-    };
-
-    cache.set(cacheKey, decoratorFragments);
-
-    return decoratorFragments;
 };
