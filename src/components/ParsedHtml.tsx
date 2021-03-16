@@ -5,6 +5,7 @@ import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LenkeInline } from './_common/lenke/LenkeInline';
 import '../components/macros/Quote.less';
 import '../components/macros/Video.less';
+import { getMediaUrl } from '../utils/urls';
 
 interface Props {
     content?: string;
@@ -19,6 +20,16 @@ export const ParsedHtml = (props: Props) => {
 
     const replaceElements = {
         replace: ({ name, attribs, children }: DomElement) => {
+            if (name?.toLowerCase() === 'img' && attribs?.src) {
+                return (
+                    <img
+                        {...attributesToProps(attribs)}
+                        alt={attribs.alt || ''}
+                        src={getMediaUrl(attribs.src)}
+                    />
+                );
+            }
+
             if (name?.toLowerCase() === 'h1' && children) {
                 return (
                     <Innholdstittel>
