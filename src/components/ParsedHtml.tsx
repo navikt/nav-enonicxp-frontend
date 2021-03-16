@@ -3,6 +3,7 @@ import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LenkeInline } from './_common/lenke/LenkeInline';
+import { getMediaUrl } from '../utils/urls';
 import '../components/macros/Quote.less';
 import '../components/macros/Video.less';
 
@@ -19,6 +20,16 @@ export const ParsedHtml = (props: Props) => {
 
     const replaceElements = {
         replace: ({ name, attribs, children }: DomElement) => {
+            if (name?.toLowerCase() === 'img' && attribs?.src) {
+                return (
+                    <img
+                        {...attributesToProps(attribs)}
+                        alt={attribs.alt || ''}
+                        src={getMediaUrl(attribs.src)}
+                    />
+                );
+            }
+
             if (name?.toLowerCase() === 'h1' && children) {
                 return (
                     <Innholdstittel>
