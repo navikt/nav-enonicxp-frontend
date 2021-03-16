@@ -10,6 +10,7 @@ import { objectToQueryString } from './fetch-utils';
 const decoratorUrl = process.env.DECORATOR_FALLBACK_URL;
 const decoratorEnv = process.env.ENV as Props['env'];
 const decoratorLocalPort = process.env.DECORATOR_LOCAL_PORT || 8100;
+const fetchTimeoutMs = 5000;
 
 const decoratorComponentsCSR = (params?: DecoratorParams): Components => {
     const query = objectToQueryString(params);
@@ -36,13 +37,18 @@ export const getDecoratorComponents = async (
     params?: DecoratorParams
 ): Promise<Components> => {
     try {
-        const decoratorComponents = await fetchDecoratorReact({
-            env: decoratorEnv,
-            port: decoratorLocalPort,
-            ...params,
-        });
+        const decoratorComponents = await Promise.race([
+            fetchDecoratorReact({
+                env: decoratorEnv,
+                port: decoratorLocalPort,
+                ...params,
+            }),
+            new Promise((res, rej) =>
+                setTimeout(() => rej('Fetch timeout'), fetchTimeoutMs)
+            ),
+        ]);
 
-        return decoratorComponents;
+        return decoratorComponents as Components;
     } catch (e) {
         console.error(`Failed to fetch decorator - ${e}`);
         return decoratorComponentsCSR(params);
