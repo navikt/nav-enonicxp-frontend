@@ -35,16 +35,16 @@ const decoratorComponentsCSR = (params?: DecoratorParams): Components => {
 export const getDecoratorComponents = async (
     params?: DecoratorParams
 ): Promise<Components> => {
-    const decoratorComponents = await fetchDecoratorReact({
-        env: decoratorEnv,
-        port: decoratorLocalPort,
-        ...params,
-    });
+    try {
+        const decoratorComponents = await fetchDecoratorReact({
+            env: decoratorEnv,
+            port: decoratorLocalPort,
+            ...params,
+        });
 
-    // Fallback to client-side rendered decorator components if fetch failed
-    if (!decoratorComponents) {
+        return decoratorComponents;
+    } catch (e) {
+        console.error(`Failed to fetch decorator - ${e}`);
         return decoratorComponentsCSR(params);
     }
-
-    return decoratorComponents;
 };
