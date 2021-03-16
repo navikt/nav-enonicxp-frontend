@@ -24,11 +24,8 @@ const appUrlPattern = new RegExp(
 export const isAppUrl = (url: string) => url && appUrlPattern.test(url);
 
 // Matches urls pointing directly to XP (/_/*)
-const xpInternalUrlPattern = new RegExp(
-    `^(${appOrigin}|${adminOrigin})?/_`,
-    'i'
-);
-export const isXpUrl = (url: string) => url && xpInternalUrlPattern.test(url);
+const xpUrlPattern = new RegExp(`${internalUrlPrefix}/_`, 'i');
+export const isXpUrl = (url: string) => url && xpUrlPattern.test(url);
 
 export const isInternalUrl = (url: string) =>
     url && (isAppUrl(url) || isXpUrl(url));
