@@ -4,7 +4,7 @@ import Reception from './reception/Reception';
 import { SpecialInformation } from './SpecialInfo';
 import {
     formatAddress,
-    buildOpeningHourAsString,
+    buildOpeningHoursSpecification,
     normalizeReceptionAsArray,
     parsePhoneNumber,
 } from './utils';
@@ -32,6 +32,8 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
 
     // Id in format of a URL required by Google for search.
     const mainOfficeId = xpPathToUrl(props._path);
+
+    console.log(contact);
 
     const jsonSchema = {
         '@context': 'http://schema.org',
@@ -69,12 +71,15 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     addressLocality: mottak.besoeksadresse.poststed,
                     postalCode: mottak.besoeksadresse.postboksnummer,
                 },
-                openingHours: mottak.aapningstider.map((singleDayOpeningHour) =>
-                    buildOpeningHourAsString(singleDayOpeningHour)
+                openingHoursSpecification: mottak.aapningstider.map(
+                    (singleDayOpeningHour) =>
+                        buildOpeningHoursSpecification(singleDayOpeningHour)
                 ),
             };
         }),
     };
+
+    console.log(JSON.stringify(jsonSchema));
 
     return (
         <>
