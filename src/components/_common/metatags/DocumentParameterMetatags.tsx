@@ -2,14 +2,13 @@ import React from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import Head from 'next/head';
 import { getDecoratorParams } from '../../../utils/decorator-utils';
-import { objectToQueryString } from '../../../utils/fetch-utils';
 
 type Props = {
     content: ContentProps;
 };
 
 export enum DocumentParameter {
-    DecoratorQuery = '_decoratorQuery',
+    DecoratorParams = '_decoratorParams',
     HtmlLang = '_htmlLang',
 }
 
@@ -21,13 +20,13 @@ export const DocumentParameterMetatags = ({ content }: Props) => {
         return null;
     }
 
-    const decoratorQuery = objectToQueryString(getDecoratorParams(content));
+    const decoratorParams = JSON.stringify(getDecoratorParams(content));
 
     return (
         <Head>
             <meta
-                name={DocumentParameter.DecoratorQuery}
-                content={decoratorQuery}
+                name={DocumentParameter.DecoratorParams}
+                content={decoratorParams}
             />
             <meta
                 name={DocumentParameter.HtmlLang}
