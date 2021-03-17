@@ -20,7 +20,7 @@
         "html-react-parser": "^0.14.3",
         "jsdom": "^16.4.0",
         "lodash.throttle": "^4.1.1",
-        "nav-frontend-alertstriper": "^3.0.38",
+        "nav-frontend-alertstriper": "^3.0.49",
         "nav-frontend-alertstriper-style": "^2.0.30",
         "nav-frontend-chevron": "^1.0.24",
         "nav-frontend-chevron-style": "^1.0.2",
