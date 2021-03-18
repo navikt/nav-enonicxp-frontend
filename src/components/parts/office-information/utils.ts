@@ -33,9 +33,10 @@ export const parsePhoneNumber = (phoneNumber: string, mod: number = null) => {
         return phoneNumber
             .replace(/ /g, '')
             .split('')
-            .reduce((t, e, i) => t + e + (i % modular === 1 ? ' ' : ''), '');
+            .reduce((t, e, i) => t + e + (i % modular === 1 ? ' ' : ''), '')
+            .trim();
     }
-    return null;
+    return '';
 };
 
 /** Takes each opening our and builds into proper object as recommended by Google. */

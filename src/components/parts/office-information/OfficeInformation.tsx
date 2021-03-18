@@ -33,8 +33,6 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     // Id in format of a URL required by Google for search.
     const mainOfficeId = xpPathToUrl(props._path);
 
-    console.log(contact);
-
     const jsonSchema = {
         '@context': 'http://schema.org',
         '@type': 'GovernmentOffice',
@@ -48,6 +46,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             streetAddress: formatAddress(contact.postadresse, true),
             addressLocality: contact.postadresse.poststed,
             postalCode: contact.postadresse.postnummer,
+            addressCountry: 'NO',
         },
         url: xpPathToUrl(props._path),
         vatID: unit.organisasjonsnummer,
