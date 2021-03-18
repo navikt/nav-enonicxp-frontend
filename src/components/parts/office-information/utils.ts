@@ -80,7 +80,7 @@ export const buildOpeningHoursSpecification = (
     if (openingHour.stengt === 'true') {
         part = {
             opens: '00:00',
-            closed: '00:00',
+            closes: '00:00',
         };
     }
 
