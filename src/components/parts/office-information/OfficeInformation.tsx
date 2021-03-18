@@ -78,8 +78,6 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
         }),
     };
 
-    console.log(JSON.stringify(jsonSchema));
-
     return (
         <>
             <Head>
