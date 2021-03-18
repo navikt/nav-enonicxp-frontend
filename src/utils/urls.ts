@@ -77,7 +77,7 @@ export const getInternalAbsoluteUrl = (
     return `${isDraft ? adminOrigin : appOrigin}${internalPath}`;
 };
 
-// Media url must always be absolute, to prevent internal routing loopbacks
+// Media url must always be absolute, to prevent internal nextjs routing loopbacks on redirects
 export const getMediaUrl = (url: string, isDraft = globalState.isDraft) => {
     return url?.replace(
         internalUrlPrefixPattern,
