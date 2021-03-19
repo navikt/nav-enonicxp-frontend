@@ -35,28 +35,55 @@ export const OpeningHours = (props: {
     closedLabel: string;
     metaKey: string;
 }) => {
-    const hasKommentar = props.openingHours.some(
-        (opening) => !!opening.kommentar
-    );
+    const { openingHours } = props;
+
+    // Handle cases where one openinghour may include both day and date.
+    const buildDayInformation = (opening: OpeningHoursProps): string => {
+        const { dato, dag } = opening;
+        if (dato && dag) {
+            return `${dag}, ${dato}`;
+        }
+
+        return dato || dag || ''; // Fallback to empty string to avoid showing "undefined"
+    };
+
+    // Handle cases where openinghour may include different parts depending on day.
+    const buildOpeningInformation = (opening: OpeningHoursProps): string => {
+        let tempString = '';
+        if (opening.fra && opening.til) {
+            tempString = `${opening.fra} - ${opening.til}`;
+        }
+
+        if (opening.stengt === 'true') {
+            tempString = props.closedLabel;
+        }
+
+        if (opening.kommentar) {
+            tempString =
+                tempString.length > 0
+                    ? `${tempString}, ${opening.kommentar}`
+                    : opening.kommentar;
+        }
+
+        return tempString.toLowerCase(); // Styling will take care first uppercase, as this string is result of concatinated strings.
+    };
 
     return (
         <table className="tabell tabell--stripet">
             <tbody>
-                {props.openingHours.map((opening, ix) => {
+                {openingHours.map((opening, ix) => {
                     // TODO: check why stengt is a string?
                     const compKey = `${props.metaKey}-${ix}`;
 
+                    const dayInformation = buildDayInformation(opening);
+                    const openingInformation = buildOpeningInformation(opening);
+
                     return (
                         <tr key={compKey}>
-                            {opening.dato && <td>{opening.dato}</td>}
-                            {opening.dag && <td>{opening.dag}</td>}
-                            {opening.fra && opening.til && (
-                                <td className="timeslotColumn">{`${opening.fra} - ${opening.til}`}</td>
-                            )}
-                            {opening.stengt === 'true' && (
-                                <td>{props.closedLabel}</td>
-                            )}
-                            {hasKommentar && <td>{opening.kommentar}</td>}
+                            <td className="dayInformation">{dayInformation}</td>
+                            <td className="openingInformation">
+                                {openingInformation}
+                            </td>
                         </tr>
                     );
                 })}
