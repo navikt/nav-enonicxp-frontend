@@ -14,7 +14,13 @@ export const LinkList = ({ config }: DynamicLinkList) => {
     const { _selected, contentList, linkList } = list;
 
     if (_selected === 'contentList') {
-        return <ContentList content={contentList?.target} title={title} />;
+        return (
+            <ContentList
+                content={contentList?.target}
+                dateLabelOption={contentList.dateLabelOption}
+                title={title}
+            />
+        );
     }
 
     if (_selected === 'linkList') {

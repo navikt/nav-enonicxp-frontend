@@ -34,7 +34,7 @@ const LinkLists = (props: ContentProps) => {
                         >
                             <ContentList
                                 content={newsContents}
-                                showDateLabel={true}
+                                dateLabelOption={'publish.first'}
                             />
                             {moreNewsUrl && (
                                 <LenkeStandalone

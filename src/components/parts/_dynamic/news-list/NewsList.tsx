@@ -17,7 +17,7 @@ export const NewsList = ({ config }: DynamicNewsList) => {
     return (
         <div className={bem()}>
             <ContentList
-                showDateLabel={true}
+                dateLabelOption={contentList.dateLabelOption}
                 content={contentList.target}
                 title={title}
             />

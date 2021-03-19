@@ -7,8 +7,14 @@ export type LinkSelectable = {
     external: ExternalLinkMixin;
 };
 
+export type DateTimeOption =
+    | 'createdTime'
+    | 'modifiedTime'
+    | 'publish.from'
+    | 'publish.first';
+
 export type ContentListMixin = {
-    numLinks?: number;
+    dateLabelOption?: DateTimeOption;
     target: ContentListProps;
 };
 
