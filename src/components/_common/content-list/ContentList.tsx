@@ -19,10 +19,16 @@ const getDate = (
 type Props = {
     content: ContentListProps;
     title?: string;
+    showDateLabel?: boolean;
     className?: string;
 };
 
-export const ContentList = ({ content, title, className }: Props) => {
+export const ContentList = ({
+    content,
+    title,
+    showDateLabel,
+    className,
+}: Props) => {
     if (!content?.data?.sectionContents) {
         return null;
     }
@@ -33,9 +39,10 @@ export const ContentList = ({ content, title, className }: Props) => {
         .map((scContent) => ({
             url: getUrlFromContent(scContent),
             text: scContent.displayName,
-            label: dateLabelKey
-                ? formatDate(getDate(scContent, dateLabelKey))
-                : undefined,
+            label:
+                showDateLabel && dateLabelKey
+                    ? formatDate(getDate(scContent, dateLabelKey))
+                    : undefined,
         }))
         .filter(({ url, text }) => url && text);
 

@@ -32,7 +32,10 @@ const LinkLists = (props: ContentProps) => {
                                 bem('nyheter')
                             )}
                         >
-                            <ContentList content={newsContents} />
+                            <ContentList
+                                content={newsContents}
+                                showDateLabel={true}
+                            />
                             {moreNewsUrl && (
                                 <LenkeStandalone
                                     href={moreNewsUrl}

@@ -16,7 +16,11 @@ export const NewsList = ({ config }: DynamicNewsList) => {
 
     return (
         <div className={bem()}>
-            <ContentList content={contentList.target} title={title} />
+            <ContentList
+                content={contentList.target}
+                showDateLabel={true}
+                title={title}
+            />
             {moreNews && (
                 <LenkeStandalone
                     href={moreNews.url}
