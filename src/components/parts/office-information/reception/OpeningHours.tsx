@@ -61,6 +61,13 @@ export const OpeningHours = (props: {
         return tempString.toLowerCase(); // Styling will take care first uppercase, as this string is result of concatinated strings.
     };
 
+    // Explanation: If a row of openinghour has both hours and a comment, we need to put all comments in each table
+    // row into a separate column to keep tings tidy. If there are no cases in openingHours where a
+    // openingHour has both opening info AND a comment, we can display all in one single colum (see return logic)
+    const hasSomeOpeningInformationAndComments = openingHours.some(
+        (opening) => !!(buildOpeningInformation(opening) && opening.kommentar)
+    );
+
     return (
         <table className="tabell tabell--stripet">
             <tbody>
@@ -71,17 +78,21 @@ export const OpeningHours = (props: {
                     const dayInformation = buildDayInformation(opening);
                     const openingInformation = buildOpeningInformation(opening);
 
-                    // Misc NAV-offices will have various use and combination of til, fra and kommentar.
-                    // In order to attempt for the best presentation possible, we have to a show and dance
-                    // to see if kommentar can be placed inside the openingInformation column if that is empty.
                     return (
                         <tr key={compKey}>
                             <td className="dayInformation">{dayInformation}</td>
                             <td className="openingInformation">
-                                {openingInformation || opening.kommentar || ''}
+                                {openingInformation || ''}
+                                {(!openingInformation &&
+                                    !hasSomeOpeningInformationAndComments &&
+                                    opening.kommentar) ||
+                                    ''}
                             </td>
                             <td>
-                                {openingInformation ? opening.kommentar : ''}
+                                {openingInformation ||
+                                hasSomeOpeningInformationAndComments
+                                    ? opening.kommentar
+                                    : ''}
                             </td>
                         </tr>
                     );
