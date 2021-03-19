@@ -3,11 +3,14 @@ import { LinkProps } from 'types/link-props';
 import { Lenkeliste } from '../lenkeliste/Lenkeliste';
 import { formatDate } from 'utils/datetime';
 import { getUrlFromContent } from '../../../utils/links-from-content';
-import { DateTimeOption } from '../../../types/component-props/_mixins';
+import { DateTimeContentField } from '../../../types/datetime';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { ContentListProps } from '../../../types/content-props/content-list-props';
 
-const getDate = (content: ContentProps, dateLabelOption: DateTimeOption) => {
+const getDate = (
+    content: ContentProps,
+    dateLabelOption: DateTimeContentField
+) => {
     switch (dateLabelOption) {
         case 'createdTime':
             if (content.createdTime) {
@@ -31,32 +34,33 @@ const getDate = (content: ContentProps, dateLabelOption: DateTimeOption) => {
             break;
     }
 
-    return content.modifiedTime || content.createdTime;
+    return (
+        content.publish?.from ||
+        content.publish?.first ||
+        content.modifiedTime ||
+        content.createdTime
+    );
 };
 
 type Props = {
     content: ContentListProps;
     title?: string;
-    dateLabelOption?: DateTimeOption;
     className?: string;
 };
 
-export const ContentList = ({
-    content,
-    title,
-    dateLabelOption,
-    className,
-}: Props) => {
+export const ContentList = ({ content, title, className }: Props) => {
     if (!content?.data?.sectionContents) {
         return null;
     }
 
-    const lenkeData: LinkProps[] = content.data.sectionContents
+    const { sectionContents, dateLabelKey } = content.data;
+
+    const lenkeData: LinkProps[] = sectionContents
         .map((scContent) => ({
             url: getUrlFromContent(scContent),
             text: scContent.displayName,
-            label: dateLabelOption
-                ? formatDate(getDate(scContent, dateLabelOption))
+            label: dateLabelKey
+                ? formatDate(getDate(scContent, dateLabelKey))
                 : undefined,
         }))
         .filter(({ url, text }) => url && text);
