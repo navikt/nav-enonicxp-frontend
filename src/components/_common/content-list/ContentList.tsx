@@ -4,15 +4,12 @@ import { LinkProps } from 'types/link-props';
 import { Lenkeliste } from '../lenkeliste/Lenkeliste';
 import { formatDate } from 'utils/datetime';
 import { getUrlFromContent } from 'utils/links-from-content';
-import { DateTimeContentField } from 'types/datetime';
+import { DateTimeContentKey } from 'types/datetime';
 import { ContentProps } from 'types/content-props/_content-common';
 import { getNestedValueFromKeyString } from 'utils/objects';
 
-const getDate = (
-    content: ContentProps,
-    dateLabelOption: DateTimeContentField
-) =>
-    getNestedValueFromKeyString(content, dateLabelOption) ||
+const getDate = (content: ContentProps, dateLabelKey: DateTimeContentKey) =>
+    getNestedValueFromKeyString(content, dateLabelKey) ||
     content.modifiedTime ||
     content.createdTime;
 
