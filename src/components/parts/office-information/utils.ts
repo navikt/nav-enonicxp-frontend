@@ -65,12 +65,12 @@ export const buildOpeningHoursSpecification = (
         part = {
             opens: openingHour.fra,
             closes: openingHour.til,
-            description: openingHour.kommentar,
         };
     }
 
     if (openingHour.kommentar) {
         part = {
+            ...part,
             description: openingHour.kommentar,
         };
     }
@@ -79,6 +79,7 @@ export const buildOpeningHoursSpecification = (
     // to signify that the office is closed the entire day.
     if (openingHour.stengt === 'true') {
         part = {
+            ...part,
             opens: '00:00',
             closes: '00:00',
         };

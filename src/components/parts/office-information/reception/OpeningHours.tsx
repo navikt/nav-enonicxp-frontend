@@ -15,10 +15,10 @@ export const MetaOpeningHours = (props: {
                         <time dateTime={opening.isoDate}>{opening.dato}</time>
                         {!opening.stengt && (
                             <>
-                                <time data-th-datetime={opening.fra}>
+                                <time dateTime={opening.fra}>
                                     {opening.fra}
                                 </time>
-                                <time data-th-datetime={opening.til}>
+                                <time dateTime={opening.til}>
                                     {opening.til}
                                 </time>
                             </>
