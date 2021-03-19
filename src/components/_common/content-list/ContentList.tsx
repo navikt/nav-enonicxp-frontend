@@ -1,11 +1,11 @@
 import React from 'react';
+import { ContentListProps } from '../../../types/content-props/content-list-props';
 import { LinkProps } from 'types/link-props';
 import { Lenkeliste } from '../lenkeliste/Lenkeliste';
 import { formatDate } from 'utils/datetime';
 import { getUrlFromContent } from '../../../utils/links-from-content';
 import { DateTimeContentField } from '../../../types/datetime';
 import { ContentProps } from '../../../types/content-props/_content-common';
-import { ContentListProps } from '../../../types/content-props/content-list-props';
 
 const getDate = (
     content: ContentProps,
