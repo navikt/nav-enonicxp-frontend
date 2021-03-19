@@ -39,10 +39,9 @@ export const ContentList = ({
         .map((scContent) => ({
             url: getUrlFromContent(scContent),
             text: scContent.displayName,
-            label:
-                showDateLabel && dateLabelKey
-                    ? formatDate(getDate(scContent, dateLabelKey))
-                    : undefined,
+            label: showDateLabel
+                ? formatDate(getDate(scContent, dateLabelKey))
+                : undefined,
         }))
         .filter(({ url, text }) => url && text);
 

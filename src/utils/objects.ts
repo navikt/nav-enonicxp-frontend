@@ -18,5 +18,5 @@ export const getNestedValueFromKeyString = (
     obj: object,
     keysString: string
 ) => {
-    return getNestedValueFromKeyArray(obj, keysString?.split('.'));
+    return getNestedValueFromKeyArray(obj, keysString?.split?.('.'));
 };
