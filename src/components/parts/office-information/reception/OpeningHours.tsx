@@ -58,13 +58,6 @@ export const OpeningHours = (props: {
             tempString = props.closedLabel;
         }
 
-        if (opening.kommentar) {
-            tempString =
-                tempString.length > 0
-                    ? `${tempString}, ${opening.kommentar}`
-                    : opening.kommentar;
-        }
-
         return tempString.toLowerCase(); // Styling will take care first uppercase, as this string is result of concatinated strings.
     };
 
@@ -78,11 +71,17 @@ export const OpeningHours = (props: {
                     const dayInformation = buildDayInformation(opening);
                     const openingInformation = buildOpeningInformation(opening);
 
+                    // Misc NAV-offices will have various use and combination of til, fra and kommentar.
+                    // In order to attempt for the best presentation possible, we have to a show and dance
+                    // to see if kommentar can be placed inside the openingInformation column if that is empty.
                     return (
                         <tr key={compKey}>
                             <td className="dayInformation">{dayInformation}</td>
                             <td className="openingInformation">
-                                {openingInformation}
+                                {openingInformation || opening.kommentar || ''}
+                            </td>
+                            <td>
+                                {openingInformation ? opening.kommentar : ''}
                             </td>
                         </tr>
                     );
