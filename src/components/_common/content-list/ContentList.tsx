@@ -6,41 +6,15 @@ import { formatDate } from 'utils/datetime';
 import { getUrlFromContent } from '../../../utils/links-from-content';
 import { DateTimeContentField } from '../../../types/datetime';
 import { ContentProps } from '../../../types/content-props/_content-common';
+import { getNestedValueFromKeyString } from '../../../utils/objects';
 
 const getDate = (
     content: ContentProps,
     dateLabelOption: DateTimeContentField
-) => {
-    switch (dateLabelOption) {
-        case 'createdTime':
-            if (content.createdTime) {
-                return content.createdTime;
-            }
-            break;
-        case 'modifiedTime':
-            if (content.modifiedTime) {
-                return content.modifiedTime;
-            }
-            break;
-        case 'publish.first':
-            if (content.publish?.first) {
-                return content.publish.first;
-            }
-            break;
-        case 'publish.from':
-            if (content.publish?.from) {
-                return content.publish.from;
-            }
-            break;
-    }
-
-    return (
-        content.publish?.from ||
-        content.publish?.first ||
-        content.modifiedTime ||
-        content.createdTime
-    );
-};
+) =>
+    getNestedValueFromKeyString(content, dateLabelOption) ||
+    content.modifiedTime ||
+    content.createdTime;
 
 type Props = {
     content: ContentListProps;
