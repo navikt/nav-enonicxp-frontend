@@ -4,7 +4,7 @@ import Reception from './reception/Reception';
 import { SpecialInformation } from './SpecialInfo';
 import {
     formatAddress,
-    buildOpeningHourAsString,
+    buildOpeningHoursSpecification,
     normalizeReceptionAsArray,
     parsePhoneNumber,
 } from './utils';
@@ -46,6 +46,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             streetAddress: formatAddress(contact.postadresse, true),
             addressLocality: contact.postadresse.poststed,
             postalCode: contact.postadresse.postnummer,
+            addressCountry: 'NO',
         },
         url: xpPathToUrl(props._path),
         vatID: unit.organisasjonsnummer,
@@ -69,8 +70,9 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     addressLocality: mottak.besoeksadresse.poststed,
                     postalCode: mottak.besoeksadresse.postboksnummer,
                 },
-                openingHours: mottak.aapningstider.map((singleDayOpeningHour) =>
-                    buildOpeningHourAsString(singleDayOpeningHour)
+                openingHoursSpecification: mottak.aapningstider.map(
+                    (singleDayOpeningHour) =>
+                        buildOpeningHoursSpecification(singleDayOpeningHour)
                 ),
             };
         }),
@@ -97,28 +99,16 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     >{`${unit.navn} - kontorinformasjon`}</Innholdstittel>
                 </header>
                 {['HMS', 'ALS', 'TILTAK'].includes(unit.type) && location && (
-                    <div
-                        itemProp="location"
-                        itemScope
-                        itemType="http://schema.org/PostalAddress"
-                    >
+                    <div>
                         <Element tag="h2">Besøksadresse</Element>
-                        <Normaltekst itemProp="streetAddress">
-                            {location}
-                        </Normaltekst>
+                        <Normaltekst>{location}</Normaltekst>
                     </div>
                 )}
                 <Email email={contact.epost} unitType={unit.type} />
                 {contact?.telefonnummer && (
-                    <div
-                        itemProp="contactPoint"
-                        itemScope
-                        itemType="http://schema.org/ContactPoint"
-                    >
-                        <Element tag="h2" itemProp="contactType">
-                            Telefon
-                        </Element>
-                        <Normaltekst itemProp="telephone">
+                    <div>
+                        <Element tag="h2">Telefon</Element>
+                        <Normaltekst>
                             {parsePhoneNumber(contact.telefonnummer)}
                         </Normaltekst>
                         <Normaltekst>
@@ -141,33 +131,19 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     </Normaltekst>
                 </div>
                 <SpecialInformation info={contact.spesielleOpplysninger} />
-                <div
-                    itemProp="address"
-                    itemType="http://schema.org/PostalAddress"
-                    itemScope
-                >
+                <div>
                     <Element tag="h2">Postadresse</Element>
                     <Normaltekst>
-                        <span itemProp="postOfficeBoxNumber">{address}</span>
+                        <span>{address}</span>
                         {', '}
-                        <span itemProp="postalCode">
-                            {contact.postadresse.postnummer}
-                        </span>{' '}
-                        <span itemProp="addressRegion">
-                            {contact.postadresse.poststed}
-                        </span>
+                        <span>{contact.postadresse.postnummer}</span>{' '}
+                        <span>{contact.postadresse.poststed}</span>
                     </Normaltekst>
                 </div>
                 {fax && (
-                    <div
-                        itemProp="contactPoint"
-                        itemScope
-                        itemType="http://schema.org/ContactPoint"
-                    >
-                        <Element tag="h2" itemProp="contactType">
-                            Telefaks
-                        </Element>
-                        <Normaltekst itemProp="faxNumber">{fax}</Normaltekst>
+                    <div>
+                        <Element tag="h2">Telefaks</Element>
+                        <Normaltekst>{fax}</Normaltekst>
                     </div>
                 )}
                 {unit.organisasjonsnummer && (
