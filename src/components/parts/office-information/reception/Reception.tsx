@@ -140,16 +140,6 @@ const Reception = (props: Props) => {
                         {reception.openingHours.length > 0 && (
                             <>
                                 <Element tag="h3">Åpningstider</Element>
-                                {reception.openingHours.map((oh, ix) => {
-                                    return (
-                                        oh.stengt !== 'true' && (
-                                            <meta
-                                                key={`oh-meta-${ix}`}
-                                                content={oh.meta}
-                                            />
-                                        )
-                                    );
-                                })}
                                 <OpeningHours
                                     openingHours={reception.openingHours}
                                     closedLabel={getLabel('closed')}
