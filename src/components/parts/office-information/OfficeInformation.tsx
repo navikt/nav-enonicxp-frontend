@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import Reception from './reception/Reception';
 import { SpecialInformation } from './SpecialInfo';
 import {
@@ -79,14 +78,12 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     };
     return (
         <>
-            <Head>
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(jsonSchema),
-                    }}
-                />
-            </Head>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(jsonSchema),
+                }}
+            />
             <article className={bem()}>
                 <header>
                     <ArtikkelDato
