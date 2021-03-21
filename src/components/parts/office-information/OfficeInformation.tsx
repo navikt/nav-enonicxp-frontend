@@ -77,13 +77,15 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             };
         }),
     };
-
     return (
         <>
             <Head>
-                <script type="application/ld+json">
-                    {JSON.stringify(jsonSchema)}
-                </script>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(jsonSchema),
+                    }}
+                />
             </Head>
             <article className={bem()}>
                 <header>
