@@ -10,6 +10,8 @@ import { getNestedValueFromKeyString } from 'utils/objects';
 
 const getDate = (content: ContentProps, dateLabelKey: DateTimeKey) =>
     getNestedValueFromKeyString(content, dateLabelKey) ||
+    content.publish?.from ||
+    content.publish?.first ||
     content.modifiedTime ||
     content.createdTime;
 
