@@ -4,13 +4,14 @@ export const getNestedValueFromKeyArray = (obj: object, keys: string[]) => {
         return null;
     }
 
-    if (keys.length === 1) {
-        return obj[keys[0]];
+    const [currentKey, ...rest] = keys;
+    const currentValue = obj[currentKey];
+
+    if (rest.length === 0) {
+        return currentValue;
     }
 
-    const subObj = obj[keys[0]];
-
-    return getNestedValueFromKeyArray(subObj, keys.slice(1));
+    return getNestedValueFromKeyArray(currentValue, rest);
 };
 
 // Get a nested object value from a dot-delimited string of keys

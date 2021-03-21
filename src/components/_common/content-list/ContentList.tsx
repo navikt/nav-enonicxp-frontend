@@ -4,11 +4,11 @@ import { LinkProps } from 'types/link-props';
 import { Lenkeliste } from '../lenkeliste/Lenkeliste';
 import { formatDate } from 'utils/datetime';
 import { getUrlFromContent } from 'utils/links-from-content';
-import { DateTimeContentKey } from 'types/datetime';
+import { DateTimeKey } from 'types/datetime';
 import { ContentProps } from 'types/content-props/_content-common';
 import { getNestedValueFromKeyString } from 'utils/objects';
 
-const getDate = (content: ContentProps, dateLabelKey: DateTimeContentKey) =>
+const getDate = (content: ContentProps, dateLabelKey: DateTimeKey) =>
     getNestedValueFromKeyString(content, dateLabelKey) ||
     content.modifiedTime ||
     content.createdTime;
@@ -30,14 +30,14 @@ export const ContentList = ({
         return null;
     }
 
-    const { sectionContents, dateLabelKey } = content.data;
+    const { sectionContents, sortedBy } = content.data;
 
     const lenkeData: LinkProps[] = sectionContents
         .map((scContent) => ({
             url: getUrlFromContent(scContent),
             text: scContent.displayName,
             label: showDateLabel
-                ? formatDate(getDate(scContent, dateLabelKey))
+                ? formatDate(getDate(scContent, sortedBy))
                 : undefined,
         }))
         .filter(({ url, text }) => url && text);

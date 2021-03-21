@@ -1,9 +1,9 @@
 import { ContentType, ContentProps } from './_content-common';
-import { DateTimeContentKey } from '../datetime';
+import { DateTimeKey } from '../datetime';
 
 export type ContentListData = Partial<{
     sectionContents: ContentProps[];
-    dateLabelKey?: DateTimeContentKey;
+    sortedBy?: DateTimeKey;
 }>;
 
 export interface ContentListProps extends ContentProps {

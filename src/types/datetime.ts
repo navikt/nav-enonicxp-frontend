@@ -1,4 +1,4 @@
-export type DateTimeContentKey =
+export type DateTimeKey =
     | 'createdTime'
     | 'modifiedTime'
     | 'publish.from'
