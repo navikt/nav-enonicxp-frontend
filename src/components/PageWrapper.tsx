@@ -13,6 +13,7 @@ import { getDecoratorParams } from '../utils/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getContentLanguages } from '../utils/languages';
 import { BEM, classNames } from '../utils/classnames';
+import { getInternalRelativePath } from '../utils/urls';
 
 const bem = BEM('app');
 
@@ -23,20 +24,27 @@ type Props = {
 
 export const PageWrapper = (props: Props) => {
     const { content, children } = props;
-    const { notifications } = content;
+    const { notifications, editMode } = content;
 
     const router = useRouter();
+
     const hasBreadcrumbsOrLanguageSelector =
         content?.breadcrumbs?.length > 0 || !!getContentLanguages(content);
 
     useEffect(() => {
-        onBreadcrumbClick((breadcrumb) => router.push(breadcrumb.url));
-        onLanguageSelect((language) => router.push(language.url));
+        onBreadcrumbClick((breadcrumb) =>
+            router.push(getInternalRelativePath(breadcrumb.url, editMode))
+        );
+        onLanguageSelect((language) =>
+            router.push(getInternalRelativePath(language.url, editMode))
+        );
 
         initAmplitude();
 
         const linkInterceptor = hookAndInterceptInternalLink(router);
-        const linkPrefetcher = prefetchOnMouseover(router);
+        const linkPrefetcher = editMode
+            ? undefined
+            : prefetchOnMouseover(router);
         const headerElement = document.getElementById('decorator-header');
         const footerElement = document.getElementById('decorator-footer');
 

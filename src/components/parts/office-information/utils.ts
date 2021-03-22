@@ -33,25 +33,63 @@ export const parsePhoneNumber = (phoneNumber: string, mod: number = null) => {
         return phoneNumber
             .replace(/ /g, '')
             .split('')
-            .reduce((t, e, i) => t + e + (i % modular === 1 ? ' ' : ''), '');
+            .reduce((t, e, i) => t + e + (i % modular === 1 ? ' ' : ''), '')
+            .trim();
     }
-    return null;
+    return '';
 };
 
-/** Takes special cases or comments into account when building opening hour for a specific day as a single string. */
-export const buildOpeningHourAsString = (
+/** Takes each opening our and builds into proper object as recommended by Google. */
+export const buildOpeningHoursSpecification = (
     openingHour: OpeningHoursProps
-): string => {
-    const { dag } = openingHour;
-    if (openingHour.stengt === 'true') {
-        return `${dag}: Stengt`;
+): {
+    '@type': string;
+    dayOfWeek?: string;
+    opens?: string;
+    closes?: string;
+    description?: string;
+} => {
+    const hasOpeningHours = !!(openingHour.fra && openingHour.til);
+
+    const dayOfWeekLibrary = {
+        Mandag: 'Monday',
+        Tirsdag: 'Tuesday',
+        Onsdag: 'Wednesday',
+        Torsdag: 'Thursday',
+        Fredag: 'Friday',
+    };
+
+    let part = {};
+
+    if (hasOpeningHours) {
+        part = {
+            opens: openingHour.fra,
+            closes: openingHour.til,
+        };
     }
 
     if (openingHour.kommentar) {
-        return `${dag}: ${openingHour.kommentar}`;
+        part = {
+            ...part,
+            description: openingHour.kommentar,
+        };
     }
 
-    return `${dag}: ${openingHour.fra}-${openingHour.til}`;
+    // Google says to set both opens and closed to '00:00' in order
+    // to signify that the office is closed the entire day.
+    if (openingHour.stengt === 'true') {
+        part = {
+            ...part,
+            opens: '00:00',
+            closes: '00:00',
+        };
+    }
+
+    return {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: dayOfWeekLibrary[openingHour.dag],
+        ...part,
+    };
 };
 
 /** Reception (publikumsmottak) can come in as an array, object or even undefined.
