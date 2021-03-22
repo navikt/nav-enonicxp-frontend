@@ -9,7 +9,6 @@ export type LinkSelectable = {
 };
 
 export type ContentListMixin = {
-    numLinks?: number;
     target: ContentListProps;
 };
 

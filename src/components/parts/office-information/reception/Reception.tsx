@@ -111,20 +111,9 @@ const Reception = (props: Props) => {
             {receptionArray.map((rec: AudienceReception) => {
                 const reception = formatAudienceReception(rec);
                 return (
-                    <div
-                        key={rec.id}
-                        itemScope
-                        itemProp="http://schema.org/localbusiness"
-                    >
-                        <Element tag="h3" itemProp="name">
-                            {reception.place}
-                        </Element>
-                        <Normaltekst
-                            itemProp="address"
-                            itemType="http://schema.org/postaladdress"
-                        >
-                            {reception.address}
-                        </Normaltekst>
+                    <div key={rec.id}>
+                        <Element tag="h3">{reception.place}</Element>
+                        <Normaltekst>{reception.address}</Normaltekst>
                         {/* exceptions in opening hours */}
                         {reception.openingHoursExceptions.length > 0 && (
                             <>
@@ -151,17 +140,6 @@ const Reception = (props: Props) => {
                         {reception.openingHours.length > 0 && (
                             <>
                                 <Element tag="h3">Åpningstider</Element>
-                                {reception.openingHours.map((oh, ix) => {
-                                    return (
-                                        oh.stengt !== 'true' && (
-                                            <meta
-                                                itemProp="openingHours"
-                                                key={`oh-meta-${ix}`}
-                                                content={oh.meta}
-                                            />
-                                        )
-                                    );
-                                })}
                                 <OpeningHours
                                     openingHours={reception.openingHours}
                                     closedLabel={getLabel('closed')}
