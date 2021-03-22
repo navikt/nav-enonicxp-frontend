@@ -8,6 +8,6 @@ export interface HeaderProps extends PartComponentProps {
     config: {
         title: string;
         anchorId: string;
-        tag: HeadingTag;
+        titleTag: HeadingTag;
     } & HeaderCommonConfig;
 }
