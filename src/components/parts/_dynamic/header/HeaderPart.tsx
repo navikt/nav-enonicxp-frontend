@@ -4,18 +4,20 @@ import { Header } from '../../../_common/header/Header';
 import { headingToTypoStyle } from '../../../../types/typo-style';
 import './HeaderPart.less';
 
+const defaultTag = 'h3';
+
 export const HeaderPart = ({ config }: HeaderProps) => {
     if (!config) {
         return null;
     }
 
-    const { title, typo, tag, anchorId, justify } = config;
+    const { title, typo, titleTag, anchorId, justify } = config;
 
     if (!title) {
         return null;
     }
 
-    const _tag = tag || 'h3';
+    const _tag = titleTag || defaultTag;
 
     const typoStyle =
         typo?._selected === 'custom'

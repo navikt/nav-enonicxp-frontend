@@ -10,6 +10,7 @@ import LargeTablePage from './pages/large-table-page/LargeTablePage';
 import { ClientsideRedirect } from './ClientsideRedirect';
 import { TemplatePage } from './pages/template-page/TemplatePage';
 import ErrorPage404 from '../pages/404';
+import { DynamicPageUnderDevelopment } from './pages/dynamic-page/DynamicPageUnderDevelopment';
 
 const contentToReactComponent: Partial<
     { [key in ContentType]: React.FunctionComponent<ContentProps> }
@@ -19,6 +20,7 @@ const contentToReactComponent: Partial<
     [ContentType.Fragment]: FragmentPage,
     [ContentType.TemplatePage]: TemplatePage,
 
+    [ContentType.PageWithSideMenus]: DynamicPageUnderDevelopment,
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.MainArticle]: DynamicPage,
     [ContentType.MainArticleChapter]: DynamicPage,

@@ -34,6 +34,7 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
                         className={bem('lenke')}
                         component={'link-list'}
                         linkGroup={tittel}
+                        showIconOnExternalUrl={true}
                     >
                         {lenke.text}
                     </LenkeStandalone>
