@@ -12,22 +12,26 @@ export const xpServiceUrl = `${xpOrigin}${xpServicePath}`;
 
 export type XpContentRef = string;
 
-const internalUrlPrefix = `^(${appOrigin})?(${xpContentPathPrefix})?`;
+const internalUrlPrefix = `^(${appOrigin}|${adminOrigin})?(${xpContentPathPrefix})?`;
 
 const internalUrlPrefixPattern = new RegExp(internalUrlPrefix, 'i');
 
-// This pattern matches both relative and absolute urls which points to content internal to the app
-const internalUrlPattern = new RegExp(
+// Matches both relative and absolute urls which points to content internal to the app
+const appUrlPattern = new RegExp(
     `${internalUrlPrefix}($|\\/($|no|en|se|nav.no|skjemaer|forsiden|footer-contactus-no|footer-contactus-en|sykepenger-korona|beskjed))`,
     'i'
 );
+export const isAppUrl = (url: string) => url && appUrlPattern.test(url);
+
+// Matches urls pointing directly to XP (/_/*)
+const xpUrlPattern = new RegExp(`${internalUrlPrefix}/_`, 'i');
+export const isXpUrl = (url: string) => url && xpUrlPattern.test(url);
 
 export const isInternalUrl = (url: string) =>
-    url && internalUrlPattern.test(url);
+    url && (isAppUrl(url) || isXpUrl(url));
 
 // Matches urls which should have the nofollow flag
 const nofollowPattern = new RegExp(`^(${appOrigin})?(\\/sok($|\\?|\\/))`, 'i');
-
 export const isNofollowUrl = (url: string) => nofollowPattern.test(url);
 
 export const stripXpPathPrefix = (path: string) =>
@@ -73,7 +77,7 @@ export const getInternalAbsoluteUrl = (
     return `${isDraft ? adminOrigin : appOrigin}${internalPath}`;
 };
 
-// Media url must always be absolute, to prevent internal routing loopbacks
+// Media url must always be absolute, to prevent internal nextjs routing loopbacks on redirects|
 export const getMediaUrl = (url: string, isDraft = globalState.isDraft) => {
     return url?.replace(
         internalUrlPrefixPattern,

@@ -30,14 +30,14 @@ export interface Address {
 
 export interface OpeningHoursProps {
     id: number;
-    dag: string;
-    dato: string;
-    fra: string;
-    til: string;
-    kommentar: string;
+    dag?: string;
+    dato?: string;
+    fra?: string;
+    til?: string;
+    kommentar?: string;
     // this should have been a bool put I get a string..
-    stengt: string;
-    isoDate: string;
+    stengt?: string;
+    isoDate?: string;
 }
 
 export interface AudienceReception {
@@ -57,7 +57,7 @@ interface ContactInfo {
     postadresse: Address;
     besoeksadresse: Address;
     spesielleOpplysninger: string;
-    publikumsmottak: AudienceReception;
+    publikumsmottak: AudienceReception[] | AudienceReception | undefined;
 }
 
 export type OfficeInformationData = {
