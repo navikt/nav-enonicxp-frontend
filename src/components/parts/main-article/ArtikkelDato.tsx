@@ -12,9 +12,8 @@ interface Props {
 }
 
 const ArtikkelDato = (props: Props) => {
-    const publisertDato = props.publish?.first
-        ? props.publish.first
-        : props.createdTime;
+    const publisertDato = props.publish?.first ?? props.createdTime;
+
     const publishedString = `${props.publishLabel}: ${formatDate(
         publisertDato
     )}`;
