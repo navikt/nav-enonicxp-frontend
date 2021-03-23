@@ -3,8 +3,8 @@ const { execSync } = require('child_process');
 const { Octokit } = require('@octokit/core');
 
 const accessToken = fs.readFileSync('.github-token', 'utf8').trim();
-const owner = 'anders-nom';
-const repo = 'gha-test';
+const owner = 'navikt';
+const repo = 'nav-enonicxp-frontend';
 
 const octokit = new Octokit({
     auth: accessToken,
