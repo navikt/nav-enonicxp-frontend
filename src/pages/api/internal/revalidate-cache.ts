@@ -1,5 +1,5 @@
 import { fetchWithTimeout } from '../../../utils/fetch-utils';
-import Config from '../../../Config';
+import Config from '../../../config';
 import fs from 'fs';
 
 const cacheBasePath = './.next/server/pages';

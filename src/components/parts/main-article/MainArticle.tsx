@@ -60,7 +60,6 @@ export const MainArticle = (propsInitial: ContentProps) => {
                 text={data.text}
                 className={bem('text')}
                 hasTableOfContents={hasTableOfContest}
-                isDraft={propsInitial.editMode}
             />
             <Faktaboks
                 fakta={data.fact}

@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import PageBase, { fetchPageProps } from '../components/PageBase';
-import Config from '../Config';
+import Config from '../config';
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const props = await fetchPageProps(

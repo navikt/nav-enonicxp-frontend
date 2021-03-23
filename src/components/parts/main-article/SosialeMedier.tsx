@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { xpPathToUrl } from '../../../utils/paths';
+import { getInternalAbsoluteUrl } from '../../../utils/urls';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
 import { classNames } from '../../../utils/classnames';
 import './SosialeMedier.less';
@@ -40,7 +40,7 @@ const SosialeMedier = (props: Props) => {
         href: getSocialmediaShareUrl(
             el,
             props.displayName,
-            xpPathToUrl(props.contentPath)
+            getInternalAbsoluteUrl(props.contentPath)
         ),
     }));
 

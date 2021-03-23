@@ -1,5 +1,5 @@
 import { ContentType, ContentProps } from './_content-common';
-import { XpContentRef } from '../../utils/paths';
+import { XpContentRef } from '../../utils/urls';
 
 export type InternalLinkData = {
     description?: string;

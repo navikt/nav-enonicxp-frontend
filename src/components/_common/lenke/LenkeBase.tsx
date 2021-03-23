@@ -1,5 +1,5 @@
 import React from 'react';
-import { xpPathToPathname, isInternalUrl, isNofollowUrl } from 'utils/paths';
+import { isAppUrl, isNofollowUrl, getRelativePathIfInternal } from 'utils/urls';
 import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
 
@@ -21,7 +21,7 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
-    const _href = xpPathToPathname(href) || '/';
+    const _href = getRelativePathIfInternal(href) || '/';
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);
 
@@ -39,7 +39,7 @@ export const LenkeBase = ({
         </a>
     );
 
-    return isInternalUrl(_href) ? (
+    return isAppUrl(_href) ? (
         <Link href={_href} passHref={true}>
             {linkElement}
         </Link>
