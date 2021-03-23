@@ -5,12 +5,12 @@ React/[Next.js](https://nextjs.org/) frontend for åpne sider på nav.no. Benytt
 ![Deploy-to-prod](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-prod/badge.svg) <br>
 ![Deploy-to-dev](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-dev/badge.svg) | ![Deploy-to-q1](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-q1/badge.svg) | ![Deploy-to-q6](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-q6/badge.svg)
 
-## Kjøre lokalt
+## Lokal kjøring
 
 Kjører lokalt på [http://localhost:3000](http://localhost:3000). Appen er avhengig av en
 lokalt tilgjengelig instans av [Enonic XP](https://github.com/navikt/nav-enonicxp).
 
-Dekoratøren kan kjøres med `docker-compose up`
+Dekoratøren kan startes lokalt med `docker-compose up`
 
 #### Development mode:
 
@@ -24,7 +24,7 @@ Kjør så `npm run start-clean`
 
 ## Deploy til test-miljø
 
-Generer en personal access token på Github, opprett fila .github-token, kopier inn tokenet.
+Generer en personal access token på Github med repo-tilgang (husk SSO), opprett fila .github-token og kopier inn tokenet.
 Push branchen din til Github og kjør en av følgende kommandoer for å deploye:
 
 `npm run deploy-dev`
@@ -36,9 +36,9 @@ Push branchen din til Github og kjør en av følgende kommandoer for å deploye:
 Alternativt:
 `npm run deploy <workflow-filnavn|workflow-id> <remote branch>`
 
-## Deploy til prod
+## Prodsetting
 
-Publiser en ny release på master
+Master deployes til prod ved publisering av ny release.
 
 ## Secrets
 

@@ -2,7 +2,7 @@ const fs = require('fs');
 const { execSync } = require('child_process');
 const { Octokit } = require('@octokit/core');
 
-const accessToken = fs.readFileSync('.github-access-token', 'utf8').trim();
+const accessToken = fs.readFileSync('.github-token', 'utf8').trim();
 const owner = 'anders-nom';
 const repo = 'gha-test';
 
