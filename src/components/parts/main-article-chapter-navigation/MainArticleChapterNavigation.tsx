@@ -1,7 +1,7 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
-import { xpPathToPathname } from 'utils/paths';
+import { stripXpPathPrefix } from 'utils/urls';
 import { BEM } from 'utils/classnames';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import { MainArticleChapterProps } from '../../../types/content-props/main-article-chapter-props';
@@ -26,8 +26,8 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
         return null;
     }
 
-    const currentPath = xpPathToPathname(props._path);
-    const parentPath = xpPathToPathname(props.parent?._path || props._path);
+    const currentPath = stripXpPathPrefix(props._path);
+    const parentPath = stripXpPathPrefix(props.parent?._path || props._path);
     const parentTitle = props.parent?.displayName || props.displayName;
     const parentSelected = parentPath === currentPath;
 
@@ -44,7 +44,7 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
                     )}
                 </li>
                 {chapters.map((chapter) => {
-                    const chapterPath = xpPathToPathname(chapter._path);
+                    const chapterPath = stripXpPathPrefix(chapter._path);
                     const chapterSelected = currentPath === chapterPath;
                     return (
                         <li key={chapter._path}>

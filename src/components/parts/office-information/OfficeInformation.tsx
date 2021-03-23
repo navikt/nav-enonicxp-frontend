@@ -7,7 +7,6 @@ import {
     normalizeReceptionAsArray,
     parsePhoneNumber,
 } from './utils';
-import { xpPathToUrl } from '../../../utils/paths';
 import { BEM } from 'utils/classnames';
 import { Email } from './Email';
 import { translator } from 'translations';
@@ -15,6 +14,7 @@ import ArtikkelDato from '../main-article/ArtikkelDato';
 import Lenke from 'nav-frontend-lenker';
 import { Innholdstittel, Element, Normaltekst } from 'nav-frontend-typografi';
 import { OfficeInformationProps } from '../../../types/content-props/office-information-props';
+import { getInternalAbsoluteUrl } from '../../../utils/urls';
 import './OfficeInformation.less';
 
 export const OfficeInformation = (props: OfficeInformationProps) => {
@@ -30,7 +30,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     const publikumsmottak = normalizeReceptionAsArray(contact.publikumsmottak);
 
     // Id in format of a URL required by Google for search.
-    const mainOfficeId = xpPathToUrl(props._path);
+    const mainOfficeId = getInternalAbsoluteUrl(props._path);
 
     const jsonSchema = {
         '@context': 'http://schema.org',
@@ -47,13 +47,15 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             postalCode: contact.postadresse.postnummer,
             addressCountry: 'NO',
         },
-        url: xpPathToUrl(props._path),
+        url: getInternalAbsoluteUrl(props._path),
         vatID: unit.organisasjonsnummer,
         department: publikumsmottak.map((mottak) => {
             const fullOfficeName = `${unit.navn}, ${mottak.stedsbeskrivelse}`;
             // Globally unique Id in format of a URL required by Google for search. Not required to
             // be a functioning URL
-            const departmentId = `${xpPathToUrl(props._path)}/${mottak.id}`;
+            const departmentId = `${getInternalAbsoluteUrl(props._path)}/${
+                mottak.id
+            }`;
 
             return {
                 '@type': 'GovernmentOffice',
@@ -62,7 +64,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 location: mottak.stedsbeskrivelse,
                 image: 'https://www.nav.no/gfx/google-search-nav-logo.png',
                 telephone,
-                url: xpPathToUrl(props._path),
+                url: getInternalAbsoluteUrl(props._path),
                 address: {
                     '@type': 'PostalAddress',
                     streetAddress: formatAddress(mottak.besoeksadresse, false),

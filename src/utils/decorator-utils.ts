@@ -6,7 +6,7 @@ import {
     ContentType,
 } from '../types/content-props/_content-common';
 import { LanguageProps } from '../types/language';
-import { xpPathToPathname } from './paths';
+import { stripXpPathPrefix } from './urls';
 
 type DecoratorContext = 'privatperson' | 'arbeidsgiver' | 'samarbeidspartner';
 type DecoratorLanguage = 'en' | 'nb' | 'nn' | 'pl' | 'se';
@@ -45,13 +45,13 @@ const getDecoratorLanguagesParam = (
               .map((lang) => ({
                   handleInApp: true,
                   locale: xpLangToDecoratorLang[lang.language],
-                  url: xpPathToPathname(lang._path),
+                  url: stripXpPathPrefix(lang._path),
               }))
               .concat([
                   {
                       handleInApp: true,
                       locale: xpLangToDecoratorLang[currentLang],
-                      url: xpPathToPathname(currentPath),
+                      url: stripXpPathPrefix(currentPath),
                   },
               ])
         : [];
