@@ -1,13 +1,13 @@
-const fs = require('fs');
+const { readFileSync } = require('fs');
 const { execSync } = require('child_process');
 const { Octokit } = require('@octokit/core');
 
-const accessToken = fs.readFileSync('.github-token', 'utf8').trim();
+const token = readFileSync('.github-token', 'utf8').trim();
 const owner = 'navikt';
 const repo = 'nav-enonicxp-frontend';
 
 const octokit = new Octokit({
-    auth: accessToken,
+    auth: token,
 });
 
 module.exports.triggerWorkflow = (workflow_id, branch) => {
@@ -20,12 +20,12 @@ module.exports.triggerWorkflow = (workflow_id, branch) => {
         branch || execSync('git branch --show-current').toString().trim();
 
     if (!ref) {
-        console.log('Aborting: could not determine current branch');
+        console.log('Aborting: could not determine branch');
         return;
     }
 
     console.log(
-        `Starting workflow ${workflow_id} on remote branch ${ref} - Did you remember to push your branch?`
+        `Starting workflow ${workflow_id} on remote branch ${ref} (did you remember to push your branch?)`
     );
 
     octokit
