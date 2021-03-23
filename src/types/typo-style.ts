@@ -7,7 +7,6 @@ import {
     Element,
     Feilmelding,
     Normaltekst,
-    EtikettLiten,
     Undertekst,
 } from 'nav-frontend-typografi';
 
@@ -22,7 +21,6 @@ export enum TypoStyle {
     Element = 'element',
     Feilmelding = 'feilmelding',
     Normaltekst = 'normaltekst',
-    EtikettLiten = 'etikettliten',
     Undertekst = 'undertekst',
 }
 
@@ -37,7 +35,6 @@ export const typoToComponent: {
     [TypoStyle.Element]: Element,
     [TypoStyle.Feilmelding]: Feilmelding,
     [TypoStyle.Normaltekst]: Normaltekst,
-    [TypoStyle.EtikettLiten]: EtikettLiten,
     [TypoStyle.Undertekst]: Undertekst,
 };
 
