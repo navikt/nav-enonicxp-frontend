@@ -8,7 +8,8 @@
         "start": "next start",
         "start-clean": "rm -fr .next && npm run build && npm start",
         "typeCheck": "tsc",
-        "lint": "eslint src/"
+        "lint": "eslint src/",
+        "deploy-q1": "npm "
     },
     "dependencies": {
         "@navikt/fnrvalidator": "^1.1.3",
