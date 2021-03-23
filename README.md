@@ -1,11 +1,11 @@
-# Nav.no frontend
+# Nav.no EnonicXP frontend
 
 React/[Next.js](https://nextjs.org/) frontend for åpne sider på nav.no. Benytter Enonic XP som headless CMS.
 
 ![Deploy-to-prod](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-prod/badge.svg) <br>
 ![Deploy-to-dev](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-dev/badge.svg) | ![Deploy-to-q1](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-q1/badge.svg) | ![Deploy-to-q6](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-q6/badge.svg)
 
-# Komme i gang
+## Kjøre lokalt
 
 Kjører lokalt på [http://localhost:3000](http://localhost:3000). Appen er avhengig av en
 lokalt tilgjengelig instans av [Enonic XP](https://github.com/navikt/nav-enonicxp).
@@ -21,6 +21,24 @@ Kjør `npm run dev`
 Kopier først innhold fra .env.development til .env.local
 
 Kjør så `npm run start-clean`
+
+## Deploy til test-miljø
+
+Generer en personal access token på Github, opprett fila .github-token, kopier inn tokenet.
+Push branchen din til Github og kjør en av følgende kommandoer for å deploye:
+
+`npm run deploy-dev`
+
+`npm run deploy-q1`
+
+`npm run deploy-q6`
+
+Alternativt:
+`npm run deploy <workflow-filnavn|workflow-id> <remote branch>`
+
+## Deploy til prod
+
+Publiser en ny release på master
 
 ## Secrets
 

@@ -1,8 +1,9 @@
 name: Deploy-to-prod
 on:
-  push:
-    tags:
-      - "v*-prod"
+  release:
+    branches:
+      - master
+    types: [published]
 jobs:
   deploy:
     runs-on: ubuntu-latest
