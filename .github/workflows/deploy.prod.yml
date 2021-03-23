@@ -3,7 +3,8 @@ on:
   release:
     branches:
       - master
-    types: [published]
+    types: [released]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
