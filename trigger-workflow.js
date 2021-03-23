@@ -25,7 +25,7 @@ module.exports.triggerWorkflow = (workflow_id, branch) => {
     }
 
     console.log(
-        `Starting workflow ${workflow_id} on remote branch ${ref} - Hope you remembered to push your branch!`
+        `Starting workflow ${workflow_id} on remote branch ${ref} - Did you remember to push your branch?`
     );
 
     octokit
