@@ -37,7 +37,9 @@ Alternativt:
 
 ## Prodsetting
 
-Opprett en release på master med en beskrivende tittel og oppsummering av endringene dine. Publiser release'en for å deploye til prod.
+-   Lag en PR til master, og merge inn etter godkjenning
+-   Lag en release på master med en beskrivende tittel og oppsummering av endringene dine
+-   Publiser release'en for å starte deploy til prod
 
 ## Secrets
 
