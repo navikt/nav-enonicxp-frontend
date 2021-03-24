@@ -25,8 +25,9 @@ Kjør så `npm run start-clean`
 
 ## Deploy til test-miljø
 
-Generer en personal access token på Github med repo-tilgang (husk SSO), opprett fila .github-token og kopier inn tokenet.
-Push branchen din til Github og kjør en av følgende kommandoer for å deploye:
+-   Generer en personal access token på Github med repo-tilgang (husk SSO)
+-   Opprett fila .github-token og legg tokenet inn i denne
+-   Push branchen din til Github og kjør en av følgende kommandoer for å deploye:
 
 `npm run deploy-dev`
 
@@ -38,7 +39,7 @@ Alternativt:
 ## Prodsetting
 
 -   Lag en PR til master, og merge inn etter godkjenning
--   Lag en release på master med en beskrivende tittel og oppsummering av endringene dine
+-   Lag en release på master med versjon-bump, beskrivende tittel og oppsummering av endringene dine
 -   Publiser release'en for å starte deploy til prod
 
 ## Secrets
