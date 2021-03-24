@@ -35,7 +35,7 @@ Kjør så `npm run start-clean`
 
 `npm run deploy <workflow-filnavn|workflow-id> <remote branch|tag>`
 
-####Alternativt:
+#### Alternativt:
 
 [Actions](https://github.com/navikt/nav-enonicxp-frontend/actions) -> Velg workflow -> Run workflow -> Velg branch -> Run workflow
 
