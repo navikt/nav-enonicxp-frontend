@@ -33,8 +33,11 @@ Kjør så `npm run start-clean`
 
 `npm run deploy-q6`
 
-Alternativt:
 `npm run deploy <workflow-filnavn|workflow-id> <remote branch|tag>`
+
+####Alternativt:
+
+[Actions](https://github.com/navikt/nav-enonicxp-frontend/actions) -> Velg workflow -> Run workflow -> Velg branch -> Run workflow
 
 ## Prodsetting
 
