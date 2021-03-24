@@ -50,7 +50,10 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
         url: getInternalAbsoluteUrl(props._path),
         vatID: unit.organisasjonsnummer,
         department: publikumsmottak.map((mottak) => {
-            const fullOfficeName = `${unit.navn}, ${mottak.stedsbeskrivelse}`;
+            const fullOfficeName = mottak.stedsbeskrivelse
+                ? `${unit.navn}, ${mottak.stedsbeskrivelse}`
+                : `${unit.navn}`;
+
             // Globally unique Id in format of a URL required by Google for search. Not required to
             // be a functioning URL
             const departmentId = `${getInternalAbsoluteUrl(props._path)}/${
@@ -61,15 +64,15 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 '@type': 'GovernmentOffice',
                 '@id': departmentId,
                 name: fullOfficeName,
-                location: mottak.stedsbeskrivelse,
+                location: mottak.stedsbeskrivelse || '',
                 image: 'https://www.nav.no/gfx/google-search-nav-logo.png',
                 telephone,
                 url: getInternalAbsoluteUrl(props._path),
                 address: {
                     '@type': 'PostalAddress',
                     streetAddress: formatAddress(mottak.besoeksadresse, false),
-                    addressLocality: mottak.besoeksadresse.poststed,
-                    postalCode: mottak.besoeksadresse.postboksnummer,
+                    addressLocality: mottak.besoeksadresse.poststed || '',
+                    postalCode: mottak.besoeksadresse.postboksnummer || '',
                 },
                 openingHoursSpecification: mottak.aapningstider.map(
                     (singleDayOpeningHour) =>
