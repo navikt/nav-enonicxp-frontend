@@ -1,8 +1,6 @@
 name: Deploy-to-prod
 on:
   release:
-    branches:
-      - master
     types: [released]
 
 jobs:
@@ -11,6 +9,9 @@ jobs:
     environment: prod-sbs:default
     steps:
       - uses: actions/checkout@v1
+      - name: Abort if branch is not master
+        if: github.event.release.target_commitish != 'master'
+        run: echo "Release is not on master, aborting"; exit 1;
       - name: Define build environment
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

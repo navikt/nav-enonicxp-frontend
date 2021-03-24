@@ -38,7 +38,7 @@ Alternativt:
 
 ## Prodsetting
 
-Master deployes til prod ved publisering av ny release.
+Opprett en ny release på master for å deploye til prod.
 
 ## Secrets
 
