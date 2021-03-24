@@ -11,7 +11,6 @@
         "lint": "eslint src/",
         "deploy": "npx run-func trigger-workflow.js triggerWorkflow",
         "deploy-dev": "npm run deploy -- deploy.dev.yml",
-        "deploy-q1": "npm run deploy -- deploy.q1.yml",
         "deploy-q6": "npm run deploy -- deploy.q6.yml"
     },
     "dependencies": {

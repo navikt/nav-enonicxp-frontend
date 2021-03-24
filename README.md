@@ -3,7 +3,8 @@
 React/[Next.js](https://nextjs.org/) frontend for åpne sider på nav.no. Benytter Enonic XP som headless CMS.
 
 ![Deploy-to-prod](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-prod/badge.svg) <br>
-![Deploy-to-dev](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-dev/badge.svg) | ![Deploy-to-q1](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-q1/badge.svg) | ![Deploy-to-q6](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-q6/badge.svg)
+![Deploy-to-dev](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-dev/badge.svg) <br
+![Deploy-to-q6](https://github.com/navikt/nav-enonicxp-frontend/workflows/Deploy-to-q6/badge.svg)
 
 ## Lokal kjøring
 
@@ -28,8 +29,6 @@ Generer en personal access token på Github med repo-tilgang (husk SSO), opprett
 Push branchen din til Github og kjør en av følgende kommandoer for å deploye:
 
 `npm run deploy-dev`
-
-`npm run deploy-q1`
 
 `npm run deploy-q6`
 
