@@ -37,7 +37,7 @@ Alternativt:
 
 ## Prodsetting
 
-Opprett en ny release på master for å deploye til prod.
+Opprett en release på master med en beskrivende tittel og oppsummering av endringene dine. Publiser release'en for å deploye til prod.
 
 ## Secrets
 
