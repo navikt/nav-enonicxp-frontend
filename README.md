@@ -34,7 +34,7 @@ Push branchen din til Github og kjør en av følgende kommandoer for å deploye:
 `npm run deploy-q6`
 
 Alternativt:
-`npm run deploy <workflow-filnavn|workflow-id> <remote branch>`
+`npm run deploy <workflow-filnavn|workflow-id> <remote branch|tag>`
 
 ## Prodsetting
 

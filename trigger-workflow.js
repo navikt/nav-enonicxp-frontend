@@ -10,22 +10,24 @@ const octokit = new Octokit({
     auth: token,
 });
 
-module.exports.triggerWorkflow = (workflow_id, branch) => {
+module.exports.triggerWorkflow = (workflow_id, branchOrTag) => {
     if (!workflow_id) {
         console.log('Aborting: no workflow was specified');
         return;
     }
 
     const ref =
-        branch || execSync('git branch --show-current').toString().trim();
+        branchOrTag || execSync('git branch --show-current').toString().trim();
 
     if (!ref) {
-        console.log('Aborting: could not determine branch');
+        console.log(
+            'Aborting: could not determine current branch, and no branch or tag was specified'
+        );
         return;
     }
 
     console.log(
-        `Starting workflow ${workflow_id} on remote branch ${ref} (did you remember to push your branch?)`
+        `Starting workflow ${workflow_id} on remote branch ${ref} (Friendly reminder: did you remember to push your branch?)`
     );
 
     octokit
