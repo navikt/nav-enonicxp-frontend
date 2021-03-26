@@ -8,7 +8,10 @@
         "start": "next start",
         "start-clean": "rm -fr .next && npm run build && npm start",
         "typeCheck": "tsc",
-        "lint": "eslint src/"
+        "lint": "eslint src/",
+        "deploy": "npx run-func trigger-workflow.js triggerWorkflow",
+        "deploy-dev": "npm run deploy -- deploy.dev.yml",
+        "deploy-q6": "npm run deploy -- deploy.q6.yml"
     },
     "dependencies": {
         "@navikt/fnrvalidator": "^1.1.3",
@@ -56,6 +59,7 @@
         "react-dom": "^17.0.1"
     },
     "devDependencies": {
+        "@octokit/core": "^3.3.1",
         "@types/node": "^14.14.35",
         "@types/react": "^17.0.3",
         "@types/react-collapse": "^5.0.0",
