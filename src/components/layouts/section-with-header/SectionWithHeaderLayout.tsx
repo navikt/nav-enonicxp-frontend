@@ -5,6 +5,7 @@ import Region from '../Region';
 import './SectionWithHeaderLayout.less';
 import { ProductPageLayout } from '@navikt/ds-react';
 import { LayoutContainer } from '../LayoutContainer';
+import { XpImage } from '../../_common/image/XpImage';
 
 type Props = {
     pageProps: ContentProps;
@@ -20,6 +21,8 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     const { title, anchorId, icon, highlight } = config;
 
+    const iconElement = icon?.mediaUrl && <XpImage imageProps={icon} />;
+
     return (
         <ProductPageLayout.Panel
             component={LayoutContainer}
@@ -28,7 +31,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             title={title}
             anchor={anchorId}
             highlight={highlight}
-            icon={icon?.mediaUrl && <img src={icon.mediaUrl} />}
+            icon={iconElement}
         >
             <Region pageProps={pageProps} regionProps={regions.content} />
         </ProductPageLayout.Panel>
