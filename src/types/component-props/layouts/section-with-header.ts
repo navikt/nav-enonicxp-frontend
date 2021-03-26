@@ -1,6 +1,7 @@
 import { LayoutCommonProps, LayoutType } from '../layouts';
 import { ComponentProps, ComponentType } from '../_component-common';
 import { HeaderCommonConfig } from '../_mixins';
+import { XpImageProps } from '../../media';
 
 export interface SectionWithHeaderProps extends LayoutCommonProps {
     type: ComponentType.Layout;
@@ -15,7 +16,7 @@ export interface SectionWithHeaderProps extends LayoutCommonProps {
         title: string;
         anchorId: string;
         backgroundColor?: string;
-        icon?: { mediaUrl: string };
+        icon?: XpImageProps;
         highlight?: boolean;
     } & HeaderCommonConfig;
 }
