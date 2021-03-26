@@ -33,3 +33,4 @@ yarn-error.log*
 .env
 
 url-lookup-table.json
+/.github-token
