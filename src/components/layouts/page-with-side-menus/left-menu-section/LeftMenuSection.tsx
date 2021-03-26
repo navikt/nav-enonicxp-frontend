@@ -4,7 +4,7 @@ import Region from '../../Region';
 import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
 import { RegionProps } from '../../../../types/component-props/layouts';
 import { ContentProps } from '../../../../types/content-props/_content-common';
-import { AccordionMenu } from '@navikt/ds-react';
+import { AccordionAnchorMenu, AccordionAnchorMenuItem } from '@navikt/ds-react';
 import './LeftMenuSection.less';
 
 const bem = BEM('left-menu');
@@ -21,13 +21,13 @@ export const LeftMenuSection = React.memo(
         const links = internalLinks?.length > 0 ? internalLinks : [];
         return (
             <div className={classNames(bem())}>
-                <AccordionMenu title={menuHeader}>
+                <AccordionAnchorMenu title={menuHeader}>
                     {links.map((link) => (
-                        <AccordionMenu.Item href={`#${link.anchorId}`}>
+                        <AccordionAnchorMenuItem href={`#${link.anchorId}`}>
                             {link.linkText}
-                        </AccordionMenu.Item>
+                        </AccordionAnchorMenuItem>
                     ))}
-                </AccordionMenu>
+                </AccordionAnchorMenu>
                 <Region pageProps={pageProps} regionProps={regionProps} />
             </div>
         );

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { PageWithSideMenusProps } from '../../../types/component-props/pages/page-with-side-menus';
 import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
