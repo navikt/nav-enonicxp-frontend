@@ -27,10 +27,16 @@ const cache = new Cache({
     deleteOnExpire: false, // We still want to serve expired cache while a new fetch is being fetched in background.
 });
 
+const escapeURL = (url: string) => {
+    return url.replace(/&/g, '%26');
+};
+
 const buildLanguageAlternate = (languageVersions: SitemapLanguageVersion[]) => {
     let languageLink = '';
     languageVersions.forEach((version) => {
-        languageLink = `${languageLink}<xhtml:link rel="alternate" hreflang="${version.language}" href="${version.url}" />`;
+        languageLink = `${languageLink}<xhtml:link rel="alternate" hreflang="${
+            version.language
+        }" href="${escapeURL(version.url)}" />`;
     });
 
     return languageLink;
@@ -39,7 +45,9 @@ const buildLanguageAlternate = (languageVersions: SitemapLanguageVersion[]) => {
 const buildUrlReference = (entity: SitemapEntity) => {
     const { url, modifiedTime, languageVersions = [] } = entity;
     const languageLinks = buildLanguageAlternate(languageVersions);
-    return `<url><loc>${url}</loc><lastmod>${modifiedTime}</lastmod>${languageLinks}</url>`;
+    return `<url><loc>${escapeURL(
+        url
+    )}</loc><lastmod>${modifiedTime}</lastmod>${languageLinks}</url>`;
 };
 
 const buildXMLSitemap = (jsonSitemap: SitemapEntity[]): string => {
