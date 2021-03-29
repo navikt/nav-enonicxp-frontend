@@ -32,5 +32,5 @@ jobs:
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
           SERVICE_SECRET=$SERVICE_SECRET
           EOF
-       - name: Set npm version
-         run: npm version ${{github.event.release.tag_name}}
+      - name: Set npm version
+        run: npm version ${{github.event.release.tag_name}}
