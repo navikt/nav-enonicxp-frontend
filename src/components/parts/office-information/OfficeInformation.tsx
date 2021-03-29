@@ -96,11 +96,13 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     // Google search. If we decide to implement this as a permanent feature, we should consider adding as a CMS feature
     // as well as creating a separate Structured Data builder as this component is getting quite untidy.
     if (unit.enhetNr === '0237' || unit.enhetNr === '0417') {
-        const hasOnlyAppointment = publikumsmottak.every((mottak) =>
+        const isOnlyOpenForAppointments = publikumsmottak.every((mottak) =>
             mottak.aapningstider.every((tid) => tid.stengt === 'true')
         );
 
-        const text = hasOnlyAppointment
+        // Todo: If we choose to expand SpecialAlerts to all NAV offices, this text need to be
+        // refined to cover corner cases in terms of opening hours and availability.
+        const text = isOnlyOpenForAppointments
             ? `${unit.navn} har kun åpent for publikum som har timeavtale. Du finner mer informasjon på www.nav.no.`
             : `Enkelte dager kan ${unit.navn} ha åpent kun for publikum som har timeavtale. Du finner mer informasjon på www.nav.no.`;
 
