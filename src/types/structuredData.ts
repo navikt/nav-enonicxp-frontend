@@ -1,4 +1,4 @@
-interface Address {
+interface AddressSchema {
     '@type': string;
     streetAddress: string;
     addressLocality: string;
@@ -6,7 +6,7 @@ interface Address {
     addressCountry: string;
 }
 
-interface OpeningHoursSpecification {
+interface OpeningHoursSpecificationSchema {
     '@type': string;
     dayOfWeek?: string;
     description?: string;
@@ -14,7 +14,16 @@ interface OpeningHoursSpecification {
     closes?: string;
 }
 
-interface Department {
+interface AnnouncementLocationSchema {
+    '@type': string;
+    name: string;
+    image: string;
+    telephone: string;
+    url: string;
+    address: AddressSchema;
+}
+
+interface DepartmentSchema {
     '@type': string;
     '@id': string;
     name: string;
@@ -22,20 +31,11 @@ interface Department {
     image: string;
     telephone: string;
     url: string;
-    address: Address;
-    openingHoursSpecification: OpeningHoursSpecification[];
+    address: AddressSchema;
+    openingHoursSpecification: OpeningHoursSpecificationSchema[];
 }
 
-export interface AnnouncementLocation {
-    '@type': string;
-    name: string;
-    image: string;
-    telephone: string;
-    url: string;
-    address: Address;
-}
-
-export interface SpecialAnnouncement {
+export interface SpecialAnnouncementSchema {
     '@context': string;
     '@type': string;
     name: string;
@@ -43,10 +43,10 @@ export interface SpecialAnnouncement {
     datePosted: string;
     expires: string;
     category: string;
-    announcementLocation: AnnouncementLocation;
+    announcementLocation: AnnouncementLocationSchema;
 }
 
-export interface GovernmentOffice {
+export interface GovernmentOfficeSchema {
     '@context': string;
     '@type': string;
     '@id': string;
@@ -54,8 +54,8 @@ export interface GovernmentOffice {
     image: string;
     telephone: string;
     faxNumber: string;
-    address: Address;
+    address: AddressSchema;
     url: string;
     vatID: string;
-    department: Department[];
+    department: DepartmentSchema[];
 }

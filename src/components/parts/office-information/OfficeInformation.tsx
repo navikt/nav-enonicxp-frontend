@@ -13,11 +13,14 @@ import { translator } from 'translations';
 import ArtikkelDato from '../main-article/ArtikkelDato';
 import Lenke from 'nav-frontend-lenker';
 import { Innholdstittel, Element, Normaltekst } from 'nav-frontend-typografi';
-import { OfficeInformationProps } from '../../../types/content-props/office-information-props';
+import {
+    AudienceReception,
+    OfficeInformationProps,
+} from '../../../types/content-props/office-information-props';
 import { getInternalAbsoluteUrl } from '../../../utils/urls';
 import {
-    GovernmentOffice,
-    SpecialAnnouncement,
+    GovernmentOfficeSchema,
+    SpecialAnnouncementSchema,
 } from '../../../types/structuredData';
 import './OfficeInformation.less';
 
@@ -36,7 +39,40 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
     // Id in format of a URL required by Google for search.
     const mainOfficeId = getInternalAbsoluteUrl(props._path);
 
-    const jsonSchema: (GovernmentOffice | SpecialAnnouncement)[] = [
+    const createDepartmentSchema = (mottak: AudienceReception) => {
+        const fullOfficeName = mottak.stedsbeskrivelse
+            ? `${unit.navn}, ${mottak.stedsbeskrivelse}`
+            : `${unit.navn}`;
+
+        // Globally unique Id in format of a URL required by Google for search. Not required to
+        // be a functioning URL
+        const departmentId = `${getInternalAbsoluteUrl(props._path)}/${
+            mottak.id
+        }`;
+
+        return {
+            '@type': 'GovernmentOffice',
+            '@id': departmentId,
+            name: fullOfficeName,
+            location: mottak.stedsbeskrivelse || '',
+            image: 'https://www.nav.no/gfx/google-search-nav-logo.png',
+            telephone,
+            url: getInternalAbsoluteUrl(props._path),
+            address: {
+                '@type': 'PostalAddress',
+                streetAddress: formatAddress(mottak.besoeksadresse, false),
+                addressLocality: mottak.besoeksadresse.poststed || '',
+                postalCode: mottak.besoeksadresse.postboksnummer || '',
+                addressCountry: 'NO',
+            },
+            openingHoursSpecification: mottak.aapningstider.map(
+                (singleDayOpeningHour) =>
+                    buildOpeningHoursSpecification(singleDayOpeningHour)
+            ),
+        };
+    };
+
+    const jsonSchema: (GovernmentOfficeSchema | SpecialAnnouncementSchema)[] = [
         {
             '@context': 'http://schema.org',
             '@type': 'GovernmentOffice',
@@ -54,41 +90,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             },
             url: getInternalAbsoluteUrl(props._path),
             vatID: unit.organisasjonsnummer,
-            department: publikumsmottak.map((mottak) => {
-                const fullOfficeName = mottak.stedsbeskrivelse
-                    ? `${unit.navn}, ${mottak.stedsbeskrivelse}`
-                    : `${unit.navn}`;
-
-                // Globally unique Id in format of a URL required by Google for search. Not required to
-                // be a functioning URL
-                const departmentId = `${getInternalAbsoluteUrl(props._path)}/${
-                    mottak.id
-                }`;
-
-                return {
-                    '@type': 'GovernmentOffice',
-                    '@id': departmentId,
-                    name: fullOfficeName,
-                    location: mottak.stedsbeskrivelse || '',
-                    image: 'https://www.nav.no/gfx/google-search-nav-logo.png',
-                    telephone,
-                    url: getInternalAbsoluteUrl(props._path),
-                    address: {
-                        '@type': 'PostalAddress',
-                        streetAddress: formatAddress(
-                            mottak.besoeksadresse,
-                            false
-                        ),
-                        addressLocality: mottak.besoeksadresse.poststed || '',
-                        postalCode: mottak.besoeksadresse.postboksnummer || '',
-                        addressCountry: 'NO',
-                    },
-                    openingHoursSpecification: mottak.aapningstider.map(
-                        (singleDayOpeningHour) =>
-                            buildOpeningHoursSpecification(singleDayOpeningHour)
-                    ),
-                };
-            }),
+            department: publikumsmottak.map(createDepartmentSchema),
         },
     ];
 
