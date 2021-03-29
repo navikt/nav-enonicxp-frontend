@@ -166,9 +166,11 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                         <Normaltekst>
                             {parsePhoneNumber(contact.telefonnummer)}
                         </Normaltekst>
-                        <Normaltekst>
-                            {contact.telefonnummerKommentar || ''}
-                        </Normaltekst>
+                        {contact.telefonnummerKommentar && (
+                            <Normaltekst>
+                                {contact.telefonnummerKommentar}
+                            </Normaltekst>
+                        )}
                     </div>
                 )}
                 <div>
