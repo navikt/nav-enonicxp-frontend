@@ -39,7 +39,7 @@ export const LinkPanel = ({ config }: DynamicLinkPanel) => {
                 <div className={bem('header')}>
                     {icon && (
                         <div className={bem('ikon')}>
-                            <XpImage imageProps={icon} />
+                            <XpImage imageProps={icon} alt={''} />
                         </div>
                     )}
                     <Undertittel className={bem('title')}>

@@ -3,6 +3,7 @@ import {
     ComponentType,
     ImageComponentProps,
 } from '../../../../types/component-props/_component-common';
+import { Normaltekst } from 'nav-frontend-typografi';
 import './Image.less';
 
 type Props = {
@@ -10,15 +11,13 @@ type Props = {
     editMode?: boolean;
 };
 
+const height = 800;
+const width = 800;
+
 const Image = ({ imageProps, editMode }: Props) => {
     const { image, path } = imageProps;
-    if (!image?.imageUrl) {
-        return <h2>Tomt bilde</h2>;
-    }
 
-    const height = 800;
-    const width = 800;
-    const src = image.imageUrl.replace('$scale', `block-${width}-${height}`);
+    const src = image?.imageUrl?.replace('$scale', `block-${width}-${height}`);
 
     const editorProps = editMode
         ? {
@@ -29,7 +28,11 @@ const Image = ({ imageProps, editMode }: Props) => {
 
     return (
         <div {...editorProps}>
-            <img className={'image'} src={src} alt={''} />
+            {src ? (
+                <img className={'image'} src={src} alt={''} />
+            ) : (
+                <Normaltekst>{'Bilde mangler'}</Normaltekst>
+            )}
         </div>
     );
 };

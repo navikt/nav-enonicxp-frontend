@@ -14,8 +14,8 @@ import './Notification.less';
 type Target = NotificationProps['data']['target'];
 
 const iconsForType = {
-    warning: <PublicImage imagePath={'/gfx/coronavirus.svg'} />,
-    info: <PublicImage imagePath={'/gfx/globe.svg'} />,
+    warning: <PublicImage imagePath={'/gfx/coronavirus.svg'} alt={''} />,
+    info: <PublicImage imagePath={'/gfx/globe.svg'} alt={''} />,
 };
 
 const getUrl = (target: Target) => {

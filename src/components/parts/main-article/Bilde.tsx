@@ -26,7 +26,7 @@ const Bilde = (props: Props) => {
             <figure className={imgClass}>
                 <XpImage
                     imageProps={target}
-                    alt={picture.altText}
+                    alt={picture.altText || ''}
                     scale={'max-768'}
                 />
                 {picture.caption && (
