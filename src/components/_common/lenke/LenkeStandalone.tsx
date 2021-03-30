@@ -57,6 +57,7 @@ export const LenkeStandalone = ({
                         <PublicImage
                             imagePath={'/gfx/external-link-icon.svg'}
                             className={bem('icon-external')}
+                            alt={''}
                         />
                     </span>
                 ) : (

@@ -21,7 +21,9 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     const { title, anchorId, icon, highlight } = config;
 
-    const iconElement = icon?.mediaUrl && <XpImage imageProps={icon} />;
+    const iconElement = icon?.mediaUrl && (
+        <XpImage imageProps={icon} alt={''} />
+    );
 
     return (
         <ProductPageLayout.Panel

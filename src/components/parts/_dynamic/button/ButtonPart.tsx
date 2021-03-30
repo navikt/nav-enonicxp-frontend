@@ -27,7 +27,11 @@ export const ButtonPart = ({ config }: ButtonPartProps) => {
         >
             {icon ? (
                 <>
-                    <XpImage imageProps={icon} className={bemPart('icon')} />
+                    <XpImage
+                        imageProps={icon}
+                        className={bemPart('icon')}
+                        alt={''}
+                    />
                     <span>{linkProps.text}</span>
                 </>
             ) : (

@@ -70,6 +70,7 @@ export const Header = ({
                         <PublicImage
                             imagePath={'/gfx/link.svg'}
                             className={bem('anchor-icon')}
+                            alt={'Kopier lenke'}
                         />
                     </a>
                     <span
