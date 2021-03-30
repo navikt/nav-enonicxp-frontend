@@ -1,0 +1,56 @@
+@import (reference) '../../../global';
+
+.layout {
+    &__dynamic-1-col,
+    &__dynamic-2-col,
+    &__dynamic-3-col,
+    &__dynamic-4-col {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        margin-top: 1rem;
+
+        @media @screen-mobile {
+            flex-direction: column;
+
+            //& > *:not(:first-child) {
+            //    margin-top: 1rem;
+            //}
+        }
+    }
+}
+
+.region {
+    &__dynamic-1,
+    &__dynamic-2,
+    &__dynamic-3,
+    &__dynamic-4 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        & > * {
+            display: flex;
+            flex-grow: 1;
+
+            &:not(:first-child) {
+                margin-top: 1rem;
+            }
+        }
+
+        &:not(:first-child) {
+            margin-left: 1rem;
+
+            @media @screen-mobile {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
+
+        // Fix for XP region preview
+        .xp-page-editor-item-placeholder,
+        .live-edit-drag-placeholder-container {
+            width: 100%;
+        }
+    }
+}

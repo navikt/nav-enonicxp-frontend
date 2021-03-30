@@ -15,6 +15,7 @@ const dummyPageProps: ContentProps = {
     modifiedTime: '',
     displayName: '',
     language: 'no',
+    editMode: true,
 };
 
 const postHandler = async (req, res) => {
