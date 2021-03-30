@@ -1,4 +1,8 @@
 export enum PartType {
+    Notifications = 'no.nav.navno:notifications',
+    BreakingNews = 'no.nav.navno:breaking-news',
+    PageCrumbs = 'no.nav.navno:page-crumbs',
+
     LinkPanels = 'no.nav.navno:link-panels',
     LinkLists = 'no.nav.navno:link-lists',
     PageHeading = 'no.nav.navno:page-heading',
@@ -17,11 +21,15 @@ export enum PartType {
     Header = 'no.nav.navno:dynamic-header',
     LinkList = 'no.nav.navno:dynamic-link-list',
     NewsList = 'no.nav.navno:dynamic-news-list',
-
-    Notifications = 'no.nav.navno:notifications',
-    BreakingNews = 'no.nav.navno:breaking-news',
-    PageCrumbs = 'no.nav.navno:page-crumbs',
+    HtmlArea = 'no.nav.navno:html-area',
+    PageHeader = 'no.nav.navno:page-header',
+    Button = 'no.nav.navno:button',
 }
+
+export type PartDeprecated =
+    | PartType.Notifications
+    | PartType.BreakingNews
+    | PartType.PageCrumbs;
 
 export type PartWithPageData =
     | PartType.LinkPanels
@@ -42,9 +50,7 @@ export type PartWithOwnData =
     | PartType.ReadMorePanel
     | PartType.Header
     | PartType.LinkList
-    | PartType.NewsList;
-
-export type PartDeprecated =
-    | PartType.Notifications
-    | PartType.BreakingNews
-    | PartType.PageCrumbs;
+    | PartType.NewsList
+    | PartType.HtmlArea
+    | PartType.PageHeader
+    | PartType.Button;
