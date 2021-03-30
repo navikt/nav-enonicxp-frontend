@@ -8,6 +8,7 @@ import Image from './parts/_dynamic/image/Image';
 import { PartsMapper } from './parts/PartsMapper';
 import { ContentProps } from '../types/content-props/_content-common';
 import { LayoutMapper } from './layouts/LayoutMapper';
+import { FragmentComponent } from './FragmentComponent';
 
 type Props = {
     componentProps: ComponentProps;
@@ -31,6 +32,13 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
         case ComponentType.Part:
             return (
                 <PartsMapper
+                    componentProps={componentProps}
+                    pageProps={pageProps}
+                />
+            );
+        case ComponentType.Fragment:
+            return (
+                <FragmentComponent
                     componentProps={componentProps}
                     pageProps={pageProps}
                 />
