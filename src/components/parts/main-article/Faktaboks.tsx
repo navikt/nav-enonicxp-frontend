@@ -15,7 +15,7 @@ const Faktaboks = (props: Props) => {
 
     return (
         <div className={props.className}>
-            <PublicImage imagePath={'/gfx/info-sirkel-fyll.svg'} />
+            <PublicImage imagePath={'/gfx/info-sirkel-fyll.svg'} alt={''} />
             <h3 className="decorated">{props.label}</h3>
             <ParsedHtml content={props.fakta} />
         </div>

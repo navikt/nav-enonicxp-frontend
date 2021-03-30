@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Picture } from '../../../types/content-props/main-article-props';
-import { getImageUrl } from '../../../utils/images';
+import { XpImage } from '../../_common/image/XpImage';
 
 interface Props {
     picture?: Picture;
@@ -20,16 +20,15 @@ const Bilde = (props: Props) => {
             : size === '70'
             ? 'figure-medium'
             : 'figure-full';
-    const src = getImageUrl(target, 'max-768');
-
-    if (!src) {
-        return null;
-    }
 
     return (
         <div className="figure-container">
             <figure className={imgClass}>
-                <img src={src} alt={picture.altText || ''} />
+                <XpImage
+                    imageProps={target}
+                    alt={picture.altText || ''}
+                    scale={'max-768'}
+                />
                 {picture.caption && (
                     <figcaption className="decorated">
                         {picture.caption}

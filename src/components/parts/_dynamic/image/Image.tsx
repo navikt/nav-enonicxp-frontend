@@ -1,22 +1,40 @@
 import React from 'react';
-import { BEM } from 'utils/classnames';
+import {
+    ComponentType,
+    ImageComponentProps,
+} from '../../../../types/component-props/_component-common';
+import { Normaltekst } from 'nav-frontend-typografi';
 import './Image.less';
 
 type Props = {
-    imageUrl: string;
+    imageProps: ImageComponentProps;
+    editMode?: boolean;
 };
 
-const Image = ({ imageUrl }: Props) => {
-    if (!imageUrl) {
-        return <h2>Tomt bilde</h2>;
-    }
+const height = 800;
+const width = 800;
 
-    const bem = BEM('image');
-    const height = 800;
-    const width = 800;
-    const src = imageUrl.replace('$scale', `block-${width}-${height}`);
+const Image = ({ imageProps, editMode }: Props) => {
+    const { image, path } = imageProps;
 
-    return <img className={bem()} src={src} alt={''} />;
+    const src = image?.imageUrl?.replace('$scale', `block-${width}-${height}`);
+
+    const editorProps = editMode
+        ? {
+              'data-portal-component-type': ComponentType.Image,
+              'data-portal-component': path,
+          }
+        : undefined;
+
+    return (
+        <div {...editorProps}>
+            {src ? (
+                <img className={'image'} src={src} alt={''} />
+            ) : (
+                <Normaltekst>{'Bilde mangler'}</Normaltekst>
+            )}
+        </div>
+    );
 };
 
 export default Image;
