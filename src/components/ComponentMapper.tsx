@@ -50,6 +50,13 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
                     pageProps={pageProps}
                 />
             );
+        case ComponentType.Fragment:
+            return (
+                <FragmentComponent
+                    componentProps={componentProps}
+                    pageProps={pageProps}
+                />
+            );
         default:
             return (
                 <div>{`Unimplemented component type: ${

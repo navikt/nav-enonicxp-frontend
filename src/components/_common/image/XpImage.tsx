@@ -4,8 +4,8 @@ import { getMediaUrl } from '../../../utils/urls';
 
 type Props = {
     imageProps: XpImageProps;
+    alt: string;
     scale?: string;
-    alt?: string;
     className?: string;
 };
 
@@ -22,7 +22,7 @@ export const getImageUrl = (image: XpImageProps, scale?: string) => {
     return getMediaUrl(url);
 };
 
-export const XpImage = ({ imageProps, alt = '', scale, className }: Props) => {
+export const XpImage = ({ imageProps, alt, scale, className }: Props) => {
     const imageUrl = getImageUrl(imageProps, scale);
     if (!imageUrl) {
         return null;
