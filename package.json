@@ -1,6 +1,6 @@
 {
     "name": "nav-enonicxp-frontend",
-    "version": "1.1.64-dev",
+    "version": "1.2.1",
     "private": true,
     "scripts": {
         "dev": "next dev -p 3000",
@@ -25,7 +25,6 @@
         "html-react-parser": "^0.14.3",
         "jsdom": "^16.5.1",
         "lodash.debounce": "^4.0.8",
-        "lodash.throttle": "^4.1.1",
         "nav-frontend-alertstriper": "^3.0.51",
         "nav-frontend-alertstriper-style": "^2.0.38",
         "nav-frontend-chevron": "^1.0.28",
