@@ -9,6 +9,7 @@ import Layout from './layouts/Layout';
 import { PartsMapper } from './parts/PartsMapper';
 import { ContentProps } from '../types/content-props/_content-common';
 import { BEM, classNames } from '../utils/classnames';
+import { FragmentComponent } from './FragmentComponent';
 
 const bem = BEM('region');
 
@@ -41,6 +42,13 @@ const Component = ({ componentProps, pageProps }: Props) => {
         case ComponentType.Part:
             return (
                 <PartsMapper
+                    componentProps={componentProps}
+                    pageProps={pageProps}
+                />
+            );
+        case ComponentType.Fragment:
+            return (
+                <FragmentComponent
                     componentProps={componentProps}
                     pageProps={pageProps}
                 />
