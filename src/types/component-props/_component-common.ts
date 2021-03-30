@@ -22,7 +22,7 @@ export interface PartComponentProps extends ComponentCommonProps {
 
 export interface TextComponentProps extends ComponentCommonProps {
     type: ComponentType.Text;
-    value: string;
+    text: string;
 }
 
 export interface ImageComponentProps extends ComponentCommonProps {

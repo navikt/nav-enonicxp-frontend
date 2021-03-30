@@ -18,9 +18,19 @@ type Props = {
 export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
     switch (componentProps.type) {
         case ComponentType.Text:
-            return <Text {...componentProps} />;
+            return (
+                <Text
+                    textProps={componentProps}
+                    editMode={pageProps.editMode}
+                />
+            );
         case ComponentType.Image:
-            return <Image imageUrl={componentProps.image.imageUrl} />;
+            return (
+                <Image
+                    imageProps={componentProps}
+                    editMode={pageProps.editMode}
+                />
+            );
         case ComponentType.Layout:
         case ComponentType.Page:
             return (
