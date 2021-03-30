@@ -21,8 +21,6 @@ const layoutComponents: {
     [LayoutType.Fixed3Col]: FixedColsLayout,
     [LayoutType.Fixed4Col]: FixedColsLayout,
     [LayoutType.FlexCols]: FlexColsLayout,
-    [LayoutType.SectionWithHeader]: () => null,
-    [LayoutType.PageWithSideMenus]: () => null,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {

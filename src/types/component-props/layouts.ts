@@ -16,8 +16,6 @@ export enum LayoutType {
     LegacyMain = 'no.nav.navno:main',
     LegacyMain1Col = 'no.nav.navno:main-1-col',
     MainPage = 'no.nav.navno:main-page',
-    PageWithSideMenus = 'no.nav.navno:page-with-side-menus',
-    SectionWithHeader = 'no.nav.navno:section-with-header',
 }
 
 export type RegionProps = {
