@@ -19,11 +19,7 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
     const bem = BEM('lenkeliste');
 
     return (
-        <section
-            className={classNames(bem(), className)}
-            data-portal-component-type="part"
-            aria-label={tittel}
-        >
+        <section className={classNames(bem(), className)} aria-label={tittel}>
             {tittel && (
                 <div className={bem('tittel')}>
                     <Undertittel>{tittel}</Undertittel>

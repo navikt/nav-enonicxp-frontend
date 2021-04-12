@@ -12,17 +12,24 @@ import Alert from './_dynamic/alert/Alert';
 import { LinkPanel } from './_dynamic/link-panel/LinkPanel';
 import LesMerPanel from './_dynamic/les-mer-panel/LesMerPanel';
 import { MainArticle } from './main-article/MainArticle';
-import { PartComponentProps } from '../../types/component-props/_component-common';
+import {
+    ComponentType,
+    PartComponentProps,
+} from '../../types/component-props/_component-common';
 import { ContentProps } from '../../types/content-props/_content-common';
 import Veilederpanel from './_dynamic/veilederpanel/Veilederpanel';
 import { OfficeInformation } from './office-information/OfficeInformation';
-import { Header } from './_dynamic/header/Header';
+import { HeaderPart } from './_dynamic/header/HeaderPart';
 import { LinkList } from './_dynamic/link-list/LinkList';
 import { NewsList } from './_dynamic/news-list/NewsList';
 import PublishingCalendar from './publishing-calendar/PublishingCalendar';
+import { BEM, classNames } from '../../utils/classnames';
+import { HtmlArea } from './_dynamic/html-area/HtmlArea';
+import { PageHeaderPart } from './_dynamic/page-header/PageHeaderPart';
+import { ButtonPart } from './_dynamic/button/ButtonPart';
 
 type Props = {
-    componentProps: PartComponentProps;
+    partProps: PartComponentProps;
     pageProps: ContentProps;
 };
 
@@ -45,12 +52,15 @@ const partsWithOwnData: {
     [key in PartWithOwnData]: React.FunctionComponent<PartComponentProps>;
 } = {
     [PartType.Alert]: Alert,
-    [PartType.Header]: Header,
+    [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanel,
     [PartType.ReadMorePanel]: LesMerPanel,
     [PartType.SupervisorPanel]: Veilederpanel,
     [PartType.LinkList]: LinkList,
     [PartType.NewsList]: NewsList,
+    [PartType.HtmlArea]: HtmlArea,
+    [PartType.PageHeader]: PageHeaderPart,
+    [PartType.Button]: ButtonPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {
@@ -59,8 +69,8 @@ const partsDeprecated: { [key in PartDeprecated] } = {
     [PartType.PageCrumbs]: true,
 };
 
-export const PartsMapper = ({ componentProps, pageProps }: Props) => {
-    const { descriptor } = componentProps;
+const PartComponent = ({ partProps, pageProps }: Props) => {
+    const { descriptor } = partProps;
 
     const PartWithGlobalData = partsWithPageData[descriptor];
     if (PartWithGlobalData) {
@@ -69,12 +79,41 @@ export const PartsMapper = ({ componentProps, pageProps }: Props) => {
 
     const PartWithOwnData = partsWithOwnData[descriptor];
     if (PartWithOwnData) {
-        return <PartWithOwnData {...componentProps} />;
-    }
-
-    if (partsDeprecated[descriptor]) {
-        return null;
+        return <PartWithOwnData {...partProps} />;
     }
 
     return <div>{`Unimplemented part: ${descriptor}`}</div>;
+};
+
+export const PartsMapper = ({ pageProps, partProps }: Props) => {
+    const { path, descriptor } = partProps;
+
+    if (!descriptor) {
+        return null;
+    }
+
+    const bem = BEM(ComponentType.Part);
+    const partName = descriptor.split(':')[1];
+
+    const editorProps = pageProps.editMode
+        ? {
+              'data-portal-component-type': ComponentType.Part,
+              'data-portal-component': path,
+          }
+        : undefined;
+
+    if (partsDeprecated[descriptor]) {
+        // Prevents content-studio editor crash due to missing component props
+        if (pageProps.editMode) {
+            return <div {...editorProps} />;
+        }
+
+        return null;
+    }
+
+    return (
+        <div className={classNames(bem(), bem(partName))} {...editorProps}>
+            <PartComponent pageProps={pageProps} partProps={partProps} />
+        </div>
+    );
 };

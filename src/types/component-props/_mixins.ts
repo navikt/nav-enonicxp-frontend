@@ -1,5 +1,6 @@
 import { ContentListProps } from '../content-props/content-list-props';
 import { ContentProps } from '../content-props/_content-common';
+import { TypoStyle } from '../typo-style';
 
 export type LinkSelectable = {
     _selected: 'internal' | 'external';
@@ -37,3 +38,13 @@ export type LayoutCommonConfigMixin = Partial<{
         };
     };
 }>;
+
+export type HeaderCommonConfig = {
+    justify: 'left' | 'center' | 'right';
+    typo: {
+        _selected: 'default' | 'custom';
+        custom: {
+            typo: TypoStyle;
+        };
+    };
+};
