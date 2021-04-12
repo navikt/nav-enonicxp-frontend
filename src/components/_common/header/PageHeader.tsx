@@ -4,16 +4,17 @@ import { TypoStyle } from '../../../types/typo-style';
 import './PageHeader.less';
 
 type Props = {
-    title: string;
+    children: string;
 };
 
-export const PageHeader = ({ title }: Props) => {
-    return title ? (
+export const PageHeader = ({ children }: Props) => {
+    return children ? (
         <Header
             typoStyle={TypoStyle.Sidetittel}
             tag={'h1'}
-            text={title}
             className={'page-header'}
-        />
+        >
+            {children}
+        </Header>
     ) : null;
 };

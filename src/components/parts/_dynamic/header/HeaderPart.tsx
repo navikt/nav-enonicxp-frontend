@@ -26,12 +26,13 @@ export const HeaderPart = ({ config }: HeaderProps) => {
 
     return (
         <Header
-            text={title}
             tag={_tag}
             typoStyle={typoStyle}
-            anchorId={anchorId}
+            id={anchorId}
             justify={justify}
             className={'header-part'}
-        />
+        >
+            {title}
+        </Header>
     );
 };

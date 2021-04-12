@@ -13,21 +13,23 @@ import './Header.less';
 
 const bem = BEM('header');
 
+const linkCopiedDisplayTimeMs = 2500;
+
 type Props = {
-    text: string;
+    children: string;
     tag: HeadingTag;
     typoStyle?: TypoStyle;
     justify?: HeaderCommonConfig['justify'];
-    anchorId?: string;
+    id?: string;
     className?: string;
 };
 
 export const Header = ({
-    text,
+    children,
     tag,
     typoStyle,
     justify,
-    anchorId,
+    id,
     className,
 }: Props) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
@@ -40,16 +42,15 @@ export const Header = ({
             if (baseUrl) {
                 navigator?.clipboard?.writeText(`${baseUrl}${anchor}`);
                 setShowCopyTooltip(true);
-                setTimeout(() => setShowCopyTooltip(false), 1500);
+                setTimeout(
+                    () => setShowCopyTooltip(false),
+                    linkCopiedDisplayTimeMs
+                );
             }
         }
     };
 
-    const anchor = anchorId
-        ? anchorId.startsWith('#')
-            ? anchorId
-            : `#${anchorId}`
-        : undefined;
+    const anchor = id ? (id.startsWith('#') ? id : `#${id}`) : undefined;
 
     const _typoStyle = typoStyle || headingToTypoStyle[tag];
     const TypoComponent = typoToComponent[_typoStyle] || Innholdstittel;
@@ -61,9 +62,9 @@ export const Header = ({
                 justify && bem(undefined, justify),
                 className
             )}
-            id={anchorId}
+            id={id}
         >
-            <TypoComponent tag={tag}>{text}</TypoComponent>
+            <TypoComponent tag={tag}>{children}</TypoComponent>
             {anchor && (
                 <>
                     <a href={anchor} onClick={copyLinkToClipboard}>

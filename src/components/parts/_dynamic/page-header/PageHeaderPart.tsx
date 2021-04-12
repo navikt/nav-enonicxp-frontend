@@ -3,5 +3,5 @@ import { PageHeaderProps } from '../../../../types/component-props/parts/page-he
 import { PageHeader } from '../../../_common/header/PageHeader';
 
 export const PageHeaderPart = ({ config }: PageHeaderProps) => {
-    return <PageHeader title={config.title} />;
+    return <PageHeader>{config.title}</PageHeader>;
 };
