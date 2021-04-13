@@ -21,10 +21,10 @@ export enum PartType {
     Header = 'no.nav.navno:dynamic-header',
     LinkList = 'no.nav.navno:dynamic-link-list',
     NewsList = 'no.nav.navno:dynamic-news-list',
-    PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
     HtmlArea = 'no.nav.navno:html-area',
     PageHeader = 'no.nav.navno:page-header',
     Button = 'no.nav.navno:button',
+    PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
 }
 
 export type PartDeprecated =
@@ -52,7 +52,7 @@ export type PartWithOwnData =
     | PartType.Header
     | PartType.LinkList
     | PartType.NewsList
-    | PartType.PageNavigationMenu
     | PartType.HtmlArea
     | PartType.PageHeader
-    | PartType.Button;
+    | PartType.Button
+    | PartType.PageNavigationMenu;

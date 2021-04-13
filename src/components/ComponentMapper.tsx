@@ -16,6 +16,10 @@ type Props = {
 };
 
 export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
+    if (!componentProps?.type) {
+        return <div>{'Error: missing component props'}</div>;
+    }
+
     switch (componentProps.type) {
         case ComponentType.Text:
             return (
@@ -42,13 +46,6 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
         case ComponentType.Part:
             return (
                 <PartsMapper partProps={componentProps} pageProps={pageProps} />
-            );
-        case ComponentType.Fragment:
-            return (
-                <FragmentComponent
-                    componentProps={componentProps}
-                    pageProps={pageProps}
-                />
             );
         case ComponentType.Fragment:
             return (

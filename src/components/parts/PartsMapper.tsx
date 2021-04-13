@@ -24,10 +24,10 @@ import { LinkList } from './_dynamic/link-list/LinkList';
 import { NewsList } from './_dynamic/news-list/NewsList';
 import PublishingCalendar from './publishing-calendar/PublishingCalendar';
 import { BEM, classNames } from '../../utils/classnames';
-import { PageNavigationMenuPart } from './_dynamic/page-navigation-menu/PageNavigationMenu';
 import { HtmlArea } from './_dynamic/html-area/HtmlArea';
 import { PageHeaderPart } from './_dynamic/page-header/PageHeaderPart';
 import { ButtonPart } from './_dynamic/button/ButtonPart';
+import { PageNavigationMenuPart } from './_dynamic/page-navigation-menu/PageNavigationMenu';
 
 type Props = {
     partProps: PartComponentProps;
@@ -59,10 +59,10 @@ const partsWithOwnData: {
     [PartType.SupervisorPanel]: Veilederpanel,
     [PartType.LinkList]: LinkList,
     [PartType.NewsList]: NewsList,
-    [PartType.PageNavigationMenu]: PageNavigationMenuPart,
     [PartType.HtmlArea]: HtmlArea,
     [PartType.PageHeader]: PageHeaderPart,
     [PartType.Button]: ButtonPart,
+    [PartType.PageNavigationMenu]: PageNavigationMenuPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {
