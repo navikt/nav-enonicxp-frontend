@@ -35,7 +35,11 @@
         }
 
         &:not(:first-child) {
-            margin-left: 1rem;
+            margin-left: 2rem;
+
+            @media @screen-tablet {
+                margin-left: 1rem;
+            }
 
             @media @screen-mobile {
                 margin-left: 0;
