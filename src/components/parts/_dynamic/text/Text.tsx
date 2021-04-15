@@ -1,15 +1,39 @@
 import React from 'react';
 import { ParsedHtml } from '../../../ParsedHtml';
-import { TextComponentProps } from '../../../../types/component-props/_component-common';
+import {
+    ComponentType,
+    TextComponentProps,
+} from '../../../../types/component-props/_component-common';
 
-export const Text = ({ value }: TextComponentProps) => {
-    if (!value) {
+type Props = {
+    textProps: TextComponentProps;
+    editMode?: boolean;
+};
+
+export const Text = ({ textProps, editMode }: Props) => {
+    const { text, path } = textProps;
+
+    const editorProps = editMode
+        ? {
+              'data-portal-component-type': ComponentType.Text,
+              'data-portal-component': path,
+          }
+        : undefined;
+
+    if (!text) {
+        if (editMode) {
+            return (
+                <div {...editorProps}>
+                    {'Tom tekst-komponent, klikk for å redigere'}
+                </div>
+            );
+        }
         return null;
     }
 
     return (
-        <div className={'typo-normal'}>
-            <ParsedHtml content={value} />
+        <div className={'typo-normal'} {...editorProps}>
+            <ParsedHtml content={text} />
         </div>
     );
 };

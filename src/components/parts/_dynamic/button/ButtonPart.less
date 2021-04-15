@@ -1,0 +1,26 @@
+@import (reference) '../../../../global';
+
+.button-part {
+    text-transform: none;
+    transform: none;
+    transition: transform 0.15s linear;
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+
+    &.knapp--standard:hover {
+        .button-part__anchor-icon {
+            filter: invert();
+        }
+    }
+
+    &__icon {
+        height: #round-rem(1.35rem) [];
+        margin-right: #round-rem(0.5rem) [];
+    }
+
+    &__fullwidth {
+        width: 100%;
+    }
+}

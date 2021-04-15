@@ -8,14 +8,14 @@ import { BEM } from 'utils/classnames';
 import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
 import { PublicImage } from '../image/PublicImage';
-import { getImageUrl } from '../../../utils/images';
+import { XpImage } from '../image/XpImage';
 import './Notification.less';
 
 type Target = NotificationProps['data']['target'];
 
 const iconsForType = {
-    warning: <PublicImage imagePath={'/gfx/coronavirus.svg'} />,
-    info: <PublicImage imagePath={'/gfx/globe.svg'} />,
+    warning: <PublicImage imagePath={'/gfx/coronavirus.svg'} alt={''} />,
+    info: <PublicImage imagePath={'/gfx/globe.svg'} alt={''} />,
 };
 
 const getUrl = (target: Target) => {
@@ -55,9 +55,8 @@ export const Notification = (props: NotificationProps) => {
     const bem = BEM('notification');
     const getDateLabel = translator('dates', props.language);
 
-    const iconUrl = getImageUrl(icon);
-    const IconElement = iconUrl ? (
-        <img src={iconUrl} alt={''} />
+    const IconElement = icon ? (
+        <XpImage imageProps={icon} alt={''} />
     ) : (
         iconsForType[type]
     );

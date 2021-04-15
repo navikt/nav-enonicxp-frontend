@@ -61,7 +61,7 @@ class MyDocument extends Document<DocumentProps> {
                 <Head>
                     <Decorator.Styles />
                 </Head>
-                <body data-portal-component-type="page">
+                <body>
                     <Decorator.Header />
                     <Main />
                     <Decorator.Footer />
