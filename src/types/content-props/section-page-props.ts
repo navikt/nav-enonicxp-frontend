@@ -1,6 +1,7 @@
 import { ContentType, ContentProps, SeoDataProps } from './_content-common';
 import { LinkPanel } from '../link-panel';
 import { ContentListProps } from './content-list-props';
+import { LanguageProps } from '../language';
 
 export type SectionPageData = Partial<{
     panelsHeading: string;
@@ -11,6 +12,7 @@ export type SectionPageData = Partial<{
     ntkContents: ContentListProps;
     scContents: ContentListProps;
     feedbackToggle: boolean;
+    languages: LanguageProps[];
 }> &
     SeoDataProps;
 
