@@ -1,19 +1,12 @@
-@import (reference) '../../../../global';
+@import (reference) '../../../global';
+@import (reference) '~nav-frontend-knapper-style/src/mixins';
 
-.button-part {
+.knapp-custom {
     text-transform: none;
     transform: none;
     transition: transform 0.15s linear;
-
-    &:hover {
-        transform: translateY(-2px);
-    }
-
-    &.knapp--standard:hover {
-        .button-part__anchor-icon {
-            filter: invert();
-        }
-    }
+    white-space: break-spaces;
+    text-align: center;
 
     &__icon {
         height: #round-rem(1.35rem) [];
@@ -22,5 +15,9 @@
 
     &__fullwidth {
         width: 100%;
+    }
+
+    @media @screen-mobile {
+        .knappkompakt-mixin();
     }
 }
