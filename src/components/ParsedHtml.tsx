@@ -4,6 +4,7 @@ import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LenkeInline } from './_common/lenke/LenkeInline';
 import { getMediaUrl } from '../utils/urls';
+import { Button } from './_common/button/Button';
 import '../components/macros/Quote.less';
 import '../components/macros/Video.less';
 
@@ -48,20 +49,26 @@ export const ParsedHtml = (props: Props) => {
 
             if (name?.toLowerCase() === 'a' && attribs?.href && children) {
                 const href = attribs.href.replace('https://www.nav.no', '');
-                // Noen XP-macroer må få nye klasser
+
                 if (
                     attribs?.class?.includes('macroButton') ||
                     attribs?.class?.includes('btn-link')
                 ) {
-                    let className = 'knapp';
-                    if (
-                        attribs.class.includes('macroButtonBlue') ||
-                        attribs.class.includes('btn-primary')
-                    ) {
-                        className += ' knapp--hoved';
-                    }
-                    attribs.class = className;
+                    return (
+                        <Button
+                            href={href}
+                            type={
+                                attribs.class.includes('macroButtonBlue') ||
+                                attribs.class.includes('btn-primary')
+                                    ? 'hoved'
+                                    : 'standard'
+                            }
+                        >
+                            {domToReact(children)}
+                        </Button>
+                    );
                 }
+
                 const props = attributesToProps(attribs);
 
                 return (
