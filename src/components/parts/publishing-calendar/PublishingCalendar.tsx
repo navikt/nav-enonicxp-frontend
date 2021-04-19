@@ -33,7 +33,7 @@ const processEntries = (
     children: PublishingCalendarChildren[]
 ): PublishingCalendarEntries[] => {
     return children
-        ?.map((item) => {
+        .map((item) => {
             const publDate = new Date(item.data.date);
             return {
                 displayName: item.displayName,
@@ -77,7 +77,7 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {items?.map((item, index) => {
+                    {items.map((item, index) => {
                         return (
                             <tr key={`${item.displayName}_${index}`}>
                                 <td>

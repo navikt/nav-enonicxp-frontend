@@ -27,7 +27,6 @@ import { BEM, classNames } from '../../utils/classnames';
 import { HtmlArea } from './_dynamic/html-area/HtmlArea';
 import { PageHeaderPart } from './_dynamic/page-header/PageHeaderPart';
 import { ButtonPart } from './_dynamic/button/ButtonPart';
-import { PageNavigationMenuPart } from './_dynamic/page-navigation-menu/PageNavigationMenu';
 
 type Props = {
     partProps: PartComponentProps;
@@ -62,7 +61,6 @@ const partsWithOwnData: {
     [PartType.HtmlArea]: HtmlArea,
     [PartType.PageHeader]: PageHeaderPart,
     [PartType.Button]: ButtonPart,
-    [PartType.PageNavigationMenu]: PageNavigationMenuPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {

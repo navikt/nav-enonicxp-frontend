@@ -3,13 +3,6 @@
 .global-notifications {
     display: flex;
     justify-content: center;
-
-    &__white {
-        background-color: white;
-    }
-
-    &__padding {
-    }
 }
 
 .global-notifications-inner {
@@ -40,9 +33,6 @@
 
         .notification {
             width: 100%;
-            &:not(:nth-child(@{numCols}n)):not(:last-child) {
-                margin-right: 0;
-            }
         }
     }
 }
