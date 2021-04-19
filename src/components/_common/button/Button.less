@@ -1,12 +1,18 @@
 @import (reference) '../../../global';
 @import (reference) '~nav-frontend-knapper-style/src/mixins';
 
-.knapp-custom {
-    text-transform: none;
-    transform: none;
-    transition: transform 0.15s linear;
-    white-space: break-spaces;
-    text-align: center;
+.knapp {
+    &__custom {
+        text-transform: none;
+        transform: none;
+        transition: transform 0.15s linear;
+        white-space: break-spaces;
+        text-align: center;
+
+        @media @screen-mobile {
+            .knappkompakt-mixin();
+        }
+    }
 
     &__icon {
         height: #round-rem(1.35rem) [];
@@ -15,9 +21,5 @@
 
     &__fullwidth {
         width: 100%;
-    }
-
-    @media @screen-mobile {
-        .knappkompakt-mixin();
     }
 }

@@ -6,8 +6,7 @@ import { XpImage } from '../image/XpImage';
 import { KnappBaseProps } from 'nav-frontend-knapper';
 import './Button.less';
 
-const bemDs = BEM('knapp');
-const bemCustom = BEM('knapp-custom');
+const bem = BEM('knapp');
 
 type Props = {
     href: string;
@@ -33,11 +32,11 @@ export const Button = ({
         <LenkeBase
             href={href}
             className={classNames(
-                bemDs(),
-                bemDs(undefined, type),
-                mini && bemDs('mini'),
-                kompakt && bemDs('kompakt'),
-                bemCustom(),
+                bem(),
+                bem(undefined, type),
+                mini && bem(undefined, 'mini'),
+                kompakt && bem(undefined, 'kompakt'),
+                bem('custom'),
                 className
             )}
         >
@@ -45,7 +44,7 @@ export const Button = ({
                 <>
                     <XpImage
                         imageProps={icon}
-                        className={bemCustom('icon')}
+                        className={bem('icon')}
                         alt={''}
                     />
                     <span>{children}</span>
