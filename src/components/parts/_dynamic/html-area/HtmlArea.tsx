@@ -8,6 +8,9 @@ export const HtmlArea = ({ config }: HtmlAreaProps) => {
         return <div>{'Tom innholdskomponent. Klikk for å redigere.'}</div>;
     }
 
+    const { collapsable, collapsableDefault } = config;
+    console.log('Collapsable props:', collapsable, collapsableDefault);
+
     return (
         <div className={'html-area'}>
             <ParsedHtml content={config.html} />

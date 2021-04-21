@@ -27,6 +27,11 @@ export type LinkWithIngressMixin = {
     link: LinkSelectable;
 };
 
+export type CollapsableMixin = {
+    collapsable: boolean;
+    collapsableDefault: boolean;
+};
+
 export type LayoutCommonConfigMixin = Partial<{
     marginTop: number;
     marginBottom: number;
