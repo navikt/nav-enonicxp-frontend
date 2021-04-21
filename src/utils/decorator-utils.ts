@@ -60,6 +60,7 @@ const pathToRoleContext: { [key: string]: DecoratorContext } = {
     person: 'privatperson',
     bedrift: 'arbeidsgiver',
     samarbeidspartner: 'samarbeidspartner',
+    privatperson: 'privatperson',
 };
 
 const errorParams = (content: ContentProps): DecoratorParams => ({

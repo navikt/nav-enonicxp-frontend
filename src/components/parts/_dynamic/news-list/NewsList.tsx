@@ -4,6 +4,7 @@ import { ContentList } from '../../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
 import { BEM } from '../../../../utils/classnames';
 import './NewsList.less';
+import { Collapsable } from '../../../_common/collapsable/Collapsable';
 
 const bem = BEM('news-list');
 
@@ -15,20 +16,22 @@ export const NewsList = ({ config }: DynamicNewsList) => {
     const { title, contentList, moreNews } = config;
 
     return (
-        <div className={bem()}>
-            <ContentList
-                showDateLabel={true}
-                content={contentList.target}
-                title={title}
-            />
-            {moreNews && (
-                <LenkeStandalone
-                    href={moreNews.url}
-                    className={bem('more-news')}
-                >
-                    {moreNews.text}
-                </LenkeStandalone>
-            )}
-        </div>
+        <Collapsable {...config}>
+            <div className={bem()}>
+                <ContentList
+                    showDateLabel={true}
+                    content={contentList.target}
+                    title={title}
+                />
+                {moreNews && (
+                    <LenkeStandalone
+                        href={moreNews.url}
+                        className={bem('more-news')}
+                    >
+                        {moreNews.text}
+                    </LenkeStandalone>
+                )}
+            </div>
+        </Collapsable>
     );
 };

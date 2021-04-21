@@ -1,8 +1,8 @@
 import React from 'react';
 import { HtmlAreaProps } from '../../../../types/component-props/parts/html-area';
 import { ParsedHtml } from '../../../ParsedHtml';
-import './HtmlArea.less';
 import { Collapsable } from '../../../_common/collapsable/Collapsable';
+import './HtmlArea.less';
 
 export const HtmlArea = ({ config }: HtmlAreaProps) => {
     if (!config?.html) {
