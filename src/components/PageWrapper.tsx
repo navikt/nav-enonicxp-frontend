@@ -30,7 +30,8 @@ export const PageWrapper = (props: Props) => {
     const router = useRouter();
 
     const hasBreadcrumbsOrLanguageSelector =
-        content?.breadcrumbs?.length > 0 || !!getContentLanguages(content);
+        content?.breadcrumbs?.length > 0 ||
+        getContentLanguages(content)?.length > 0;
 
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) =>
