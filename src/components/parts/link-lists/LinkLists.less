@@ -7,15 +7,15 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    @media @screen-mobile {
+    @media @mq-screen-mobile {
         flex-wrap: wrap;
     }
 
     &__column {
-        @media @screen-mobile {
+        @media @mq-screen-mobile {
             width: 100%;
         }
-        @media @screen-tablet-and-desktop {
+        @media @mq-screen-tablet-and-desktop {
             width: calc(percentage(1 / @numCols));
             &:not(:last-child) {
                 margin-right: @margin;

@@ -22,11 +22,11 @@
 @desktopMinWidth: @tabletMaxWidth;
 @desktopMaxWidth: calc(@_MQ_desktopMaxWidth / @font-size-factor);
 
-@screen-mobile: ~'only screen and (max-width: @{_MQ_mobileMaxWidth})';
-@screen-tablet: ~'only screen and (min-width: @{_MQ_tabletMinWidth}) and (max-width: @{_MQ_tabletMaxWidth})';
-@screen-tablet-and-desktop: ~'only screen and (min-width: @{_MQ_tabletMinWidth}) ';
-@screen-desktop: ~'only screen and (min-width: @{_MQ_desktopMinWidth}) ';
-@screen-desktop-large: ~'only screen and (min-width: @{_MQ_desktopMaxWidth}) ';
+@mq-screen-mobile: ~'only screen and (max-width: @{_MQ_mobileMaxWidth})';
+@mq-screen-tablet: ~'only screen and (min-width: @{_MQ_tabletMinWidth}) and (max-width: @{_MQ_tabletMaxWidth})';
+@mq-screen-tablet-and-desktop: ~'only screen and (min-width: @{_MQ_tabletMinWidth}) ';
+@mq-screen-desktop: ~'only screen and (min-width: @{_MQ_desktopMinWidth}) ';
+@mq-screen-desktop-large: ~'only screen and (min-width: @{_MQ_desktopMaxWidth}) ';
 
 @padding-sides-desktop: 3rem;
 @padding-sides-tablet: 1rem;
@@ -56,15 +56,15 @@ html {
         margin-top: 3rem;
     }
 
-    @media @screen-mobile {
+    @media @mq-screen-mobile {
         padding: 2rem @padding-sides-mobile;
     }
 
-    @media @screen-tablet {
+    @media @mq-screen-tablet {
         padding: 2rem @padding-sides-mobile;
     }
 
-    @media @screen-desktop {
+    @media @mq-screen-desktop {
         padding: 2rem @padding-sides-desktop;
     }
 }
