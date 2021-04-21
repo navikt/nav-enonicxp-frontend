@@ -30,6 +30,7 @@ export type LinkWithIngressMixin = {
 export type CollapsableMixin = {
     collapsable: boolean;
     collapsableDefault: boolean;
+    collapsableTitle: string;
 };
 
 export type LayoutCommonConfigMixin = Partial<{
