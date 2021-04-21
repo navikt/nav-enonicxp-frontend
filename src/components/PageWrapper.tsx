@@ -14,6 +14,7 @@ import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterM
 import { getContentLanguages } from '../utils/languages';
 import { BEM, classNames } from '../utils/classnames';
 import { getInternalRelativePath } from '../utils/urls';
+import { ComponentReorderHack } from '../utils/ComponentReorderHack';
 
 const bem = BEM('app');
 
@@ -29,7 +30,8 @@ export const PageWrapper = (props: Props) => {
     const router = useRouter();
 
     const hasBreadcrumbsOrLanguageSelector =
-        content?.breadcrumbs?.length > 0 || !!getContentLanguages(content);
+        content?.breadcrumbs?.length > 0 ||
+        getContentLanguages(content)?.length > 0;
 
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) =>
@@ -95,6 +97,7 @@ export const PageWrapper = (props: Props) => {
         >
             <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
+            {content.editMode && <ComponentReorderHack />}
             {notifications && (
                 <GlobalNotifications
                     language={content?.language}

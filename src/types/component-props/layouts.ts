@@ -3,13 +3,18 @@ import {
     ComponentProps,
     ComponentType,
 } from './_component-common';
+import { FlexColsLayoutProps } from './layouts/flex-cols';
+import { FixedColsLayoutProps } from './layouts/fixed-cols';
+import { LegacyLayoutProps } from './layouts/legacy-layout';
 
-enum LayoutType {
-    Dynamic2Col = 'no.nav.navno:dynamic-2-col',
-    Dynamic3Col = 'no.nav.navno:dynamic-3-col',
-    Dynamic4Col = 'no.nav.navno:dynamic-4-col',
-    Main = 'no.nav.navno:main',
-    Main1Col = 'no.nav.navno:main-1-col',
+export enum LayoutType {
+    Fixed1Col = 'no.nav.navno:dynamic-1-col',
+    Fixed2Col = 'no.nav.navno:dynamic-2-col',
+    Fixed3Col = 'no.nav.navno:dynamic-3-col',
+    Fixed4Col = 'no.nav.navno:dynamic-4-col',
+    FlexCols = 'no.nav.navno:dynamic-flex-cols',
+    LegacyMain = 'no.nav.navno:main',
+    LegacyMain1Col = 'no.nav.navno:main-1-col',
     MainPage = 'no.nav.navno:main-page',
 }
 
@@ -18,18 +23,14 @@ export type RegionProps = {
     name: string;
 };
 
-export type RegionsProps = {
-    [key: string]: RegionProps;
-};
-
-export type LayoutConfig = {
-    distribution: string;
-    margin: string;
-};
-
-export interface LayoutProps extends ComponentCommonProps {
+export interface LayoutCommonProps extends ComponentCommonProps {
     type: ComponentType.Layout | ComponentType.Page;
     descriptor: LayoutType;
-    config?: LayoutConfig;
-    regions?: RegionsProps;
+    regions?: { [key: string]: RegionProps };
+    config?: any;
 }
+
+export type LayoutProps =
+    | LegacyLayoutProps
+    | FlexColsLayoutProps
+    | FixedColsLayoutProps;
