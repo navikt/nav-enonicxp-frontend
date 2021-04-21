@@ -1,10 +1,7 @@
 import React from 'react';
-import { BEM } from '../../../utils/classnames';
 import { CollapsableMixin } from '../../../types/component-props/_mixins';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import './Collapsable.less';
-
-const bem = BEM('collapsable');
 
 type Props = {
     children: React.ReactElement;
@@ -26,7 +23,7 @@ export const Collapsable = ({
             border={false}
             apen={collapsableDefault}
             renderContentWhenClosed={true}
-            className={bem()}
+            className={'collapsable'}
         >
             {children}
         </Ekspanderbartpanel>
