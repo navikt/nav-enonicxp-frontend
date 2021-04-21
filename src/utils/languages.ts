@@ -14,7 +14,9 @@ export const getContentLanguages = (
     if (
         content.__typename === ContentType.MainArticle ||
         content.__typename === ContentType.PageList ||
-        content.__typename === ContentType.MainArticleChapter
+        content.__typename === ContentType.MainArticleChapter ||
+        content.__typename === ContentType.DynamicPage ||
+        content.__typename === ContentType.SectionPage
     ) {
         return content.data?.languages;
     }
