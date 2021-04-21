@@ -50,7 +50,7 @@
         "nav-frontend-veileder-style": "^2.0.29",
         "nav-frontend-veilederpanel": "^1.0.3",
         "nav-frontend-veilederpanel-style": "^1.0.3",
-        "next": "^10.0.9",
+        "next": "^10.1.1",
         "next-images": "^1.7.0",
         "node-cache": "^5.1.2",
         "prom-client": "^13.1.0",
