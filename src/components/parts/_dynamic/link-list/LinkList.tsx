@@ -3,7 +3,7 @@ import { DynamicLinkListProps } from '../../../../types/component-props/parts/li
 import { Lenkeliste } from '../../../_common/lenkeliste/Lenkeliste';
 import { ContentList } from '../../../_common/content-list/ContentList';
 import { getSelectableLinkProps } from '../../../../utils/links-from-content';
-import { Collapsable } from '../../../_common/collapsable/Collapsable';
+import { Expandable } from '../../../_common/expandable/Expandable';
 import './LinkList.less';
 
 const getListComponent = (config: DynamicLinkListProps['config']) => {
@@ -30,6 +30,6 @@ export const LinkList = ({ config }: DynamicLinkListProps) => {
     const ListComponent = getListComponent(config);
 
     return ListComponent ? (
-        <Collapsable {...config}>{ListComponent}</Collapsable>
+        <Expandable {...config}>{ListComponent}</Expandable>
     ) : null;
 };

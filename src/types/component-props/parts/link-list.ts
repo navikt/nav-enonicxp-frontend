@@ -1,6 +1,6 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
-import { CollapsableMixin, ContentListMixin, LinkSelectable } from '../_mixins';
+import { ExpandableMixin, ContentListMixin, LinkSelectable } from '../_mixins';
 
 export interface DynamicLinkListProps extends PartComponentProps {
     descriptor: PartType.LinkList;
@@ -13,5 +13,5 @@ export interface DynamicLinkListProps extends PartComponentProps {
                 links: LinkSelectable[];
             };
         };
-    } & CollapsableMixin;
+    } & ExpandableMixin;
 }

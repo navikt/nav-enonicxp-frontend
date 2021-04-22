@@ -1,29 +1,29 @@
 import React from 'react';
-import { CollapsableMixin } from '../../../types/component-props/_mixins';
+import { ExpandableMixin } from '../../../types/component-props/_mixins';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import './Collapsable.less';
+import './Expandable.less';
 
 type Props = {
     children: React.ReactElement;
-} & CollapsableMixin;
+} & ExpandableMixin;
 
-export const Collapsable = ({
-    collapsableTitle,
-    collapsable,
-    collapsableDefault,
+export const Expandable = ({
+    expandable,
+    expandableTitle,
+    expandableOpenByDefault,
     children,
 }: Props) => {
-    if (!collapsable) {
+    if (!expandable) {
         return children;
     }
 
     return (
         <Ekspanderbartpanel
-            tittel={collapsableTitle}
+            tittel={expandableTitle}
             border={false}
-            apen={collapsableDefault}
+            apen={expandableOpenByDefault}
             renderContentWhenClosed={true}
-            className={'collapsable'}
+            className={'expandable'}
         >
             {children}
         </Ekspanderbartpanel>

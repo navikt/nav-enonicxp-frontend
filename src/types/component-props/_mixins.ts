@@ -27,10 +27,10 @@ export type LinkWithIngressMixin = {
     link: LinkSelectable;
 };
 
-export type CollapsableMixin = {
-    collapsable: boolean;
-    collapsableDefault: boolean;
-    collapsableTitle: string;
+export type ExpandableMixin = {
+    expandable: boolean;
+    expandableOpenByDefault: boolean;
+    expandableTitle: string;
 };
 
 export type LayoutCommonConfigMixin = Partial<{

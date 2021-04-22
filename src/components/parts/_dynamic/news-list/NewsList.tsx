@@ -3,8 +3,8 @@ import { DynamicNewsList } from '../../../../types/component-props/parts/news-li
 import { ContentList } from '../../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
 import { BEM } from '../../../../utils/classnames';
+import { Expandable } from '../../../_common/expandable/Expandable';
 import './NewsList.less';
-import { Collapsable } from '../../../_common/collapsable/Collapsable';
 
 const bem = BEM('news-list');
 
@@ -16,7 +16,7 @@ export const NewsList = ({ config }: DynamicNewsList) => {
     const { title, contentList, moreNews } = config;
 
     return (
-        <Collapsable {...config}>
+        <Expandable {...config}>
             <div className={bem()}>
                 <ContentList
                     showDateLabel={true}
@@ -32,6 +32,6 @@ export const NewsList = ({ config }: DynamicNewsList) => {
                     </LenkeStandalone>
                 )}
             </div>
-        </Collapsable>
+        </Expandable>
     );
 };
