@@ -5,6 +5,7 @@ import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
 import { RightMenuSection } from './right-menu-section/RightMenuSection';
 import { MainContentSection } from './main-content-section/MainContentSection';
 import { ProductPageLayout } from '@navikt/ds-react';
+import { LayoutContainer } from '../LayoutContainer';
 import './PageWithSideMenus.less';
 
 type Props = {
@@ -31,39 +32,41 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     } = config;
 
     return (
-        <ProductPageLayout title={title}>
-            {leftMenuToggle && (
+        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+            <ProductPageLayout title={title}>
+                {leftMenuToggle && (
+                    <ProductPageLayout.Section
+                        left
+                        sticky={leftMenuSticky}
+                        whiteBackground={false}
+                        withPadding={false}
+                    >
+                        <LeftMenuSection
+                            pageProps={pageProps}
+                            regionProps={regions.leftMenu}
+                            internalLinks={showInternalNav && anchorLinks}
+                            menuHeader={leftMenuHeader}
+                        />
+                    </ProductPageLayout.Section>
+                )}
                 <ProductPageLayout.Section
-                    left
-                    sticky={leftMenuSticky}
                     whiteBackground={false}
                     withPadding={false}
                 >
-                    <LeftMenuSection
+                    <MainContentSection
                         pageProps={pageProps}
-                        regionProps={regions.leftMenu}
-                        internalLinks={showInternalNav && anchorLinks}
-                        menuHeader={leftMenuHeader}
+                        regionProps={regions.pageContent}
                     />
                 </ProductPageLayout.Section>
-            )}
-            <ProductPageLayout.Section
-                whiteBackground={false}
-                withPadding={false}
-            >
-                <MainContentSection
-                    pageProps={pageProps}
-                    regionProps={regions.pageContent}
-                />
-            </ProductPageLayout.Section>
-            {rightMenuToggle && (
-                <ProductPageLayout.Section right sticky={rightMenuSticky}>
-                    <RightMenuSection
-                        pageProps={pageProps}
-                        regionProps={regions.rightMenu}
-                    />
-                </ProductPageLayout.Section>
-            )}
-        </ProductPageLayout>
+                {rightMenuToggle && (
+                    <ProductPageLayout.Section right sticky={rightMenuSticky}>
+                        <RightMenuSection
+                            pageProps={pageProps}
+                            regionProps={regions.rightMenu}
+                        />
+                    </ProductPageLayout.Section>
+                )}
+            </ProductPageLayout>
+        </LayoutContainer>
     );
 };

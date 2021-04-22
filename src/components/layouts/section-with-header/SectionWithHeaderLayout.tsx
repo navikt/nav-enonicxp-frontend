@@ -2,10 +2,10 @@ import React from 'react';
 import { SectionWithHeaderProps } from '../../../types/component-props/layouts/section-with-header';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import Region from '../Region';
-import './SectionWithHeaderLayout.less';
 import { ProductPageLayout } from '@navikt/ds-react';
 import { LayoutContainer } from '../LayoutContainer';
 import { XpImage } from '../../_common/image/XpImage';
+import './SectionWithHeaderLayout.less';
 
 type Props = {
     pageProps: ContentProps;
