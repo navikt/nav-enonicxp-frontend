@@ -26,16 +26,15 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     );
 
     return (
-        <ProductPageLayout.Panel
-            component={LayoutContainer}
-            pageProps={pageProps}
-            layoutProps={layoutProps}
-            title={title}
-            anchor={anchorId}
-            highlight={highlight}
-            icon={iconElement}
-        >
-            <Region pageProps={pageProps} regionProps={regions.content} />
-        </ProductPageLayout.Panel>
+        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+            <ProductPageLayout.Panel
+                title={title}
+                anchor={anchorId}
+                highlight={highlight}
+                icon={iconElement}
+            >
+                <Region pageProps={pageProps} regionProps={regions.content} />
+            </ProductPageLayout.Panel>
+        </LayoutContainer>
     );
 };

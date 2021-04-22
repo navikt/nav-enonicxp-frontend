@@ -17,7 +17,6 @@ export const LayoutContainer = ({
     layoutProps,
     layoutStyle,
     children,
-    ...rest
 }: Props) => {
     const { descriptor, path, type, config } = layoutProps;
 
@@ -46,7 +45,6 @@ export const LayoutContainer = ({
             className={className}
             style={{ ...commonLayoutStyle, ...layoutStyle }}
             {...editorProps}
-            {...rest}
         >
             {children}
         </div>
