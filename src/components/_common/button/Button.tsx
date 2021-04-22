@@ -25,6 +25,7 @@ export const Button = ({
     icon,
     mini,
     kompakt,
+    fullWidth,
     className,
     children,
 }: Props) => {
@@ -34,9 +35,10 @@ export const Button = ({
             className={classNames(
                 bem(),
                 bem(undefined, type),
+                bem('custom'),
                 mini && bem(undefined, 'mini'),
                 kompakt && bem(undefined, 'kompakt'),
-                bem('custom'),
+                fullWidth && bem(undefined, 'fullWidth'),
                 className
             )}
         >
