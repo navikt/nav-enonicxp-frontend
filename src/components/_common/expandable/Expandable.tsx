@@ -4,7 +4,7 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import './Expandable.less';
 
 type Props = {
-    children: React.ReactElement;
+    children: React.ReactNode;
 } & ExpandableMixin;
 
 export const Expandable = ({
@@ -14,7 +14,7 @@ export const Expandable = ({
     children,
 }: Props) => {
     if (!expandable) {
-        return children;
+        return <>{children}</>;
     }
 
     return (
