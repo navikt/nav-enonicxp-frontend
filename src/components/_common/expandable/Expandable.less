@@ -7,10 +7,17 @@
 
     &:hover {
         box-shadow: none;
+        .ekspanderbartPanel__hode:focus {
+            .panel-inset-focus-mixin();
+        }
     }
 
     .ekspanderbartPanel__tittel,
     .ekspanderbartPanel__indikator {
         color: @navBla;
+    }
+
+    .ekspanderbartPanel__hode {
+        .panel-inset-focus-mixin();
     }
 }
