@@ -1,0 +1,23 @@
+@import (reference) '../../../global';
+
+.expandable {
+    border-radius: 0;
+    border-bottom: @navGra20 1px solid;
+    width: 100%;
+
+    &:hover {
+        box-shadow: none;
+        .ekspanderbartPanel__hode:focus {
+            .panel-inset-focus-mixin();
+        }
+    }
+
+    .ekspanderbartPanel__hode:focus {
+        .panel-inset-focus-mixin();
+    }
+
+    .ekspanderbartPanel__tittel,
+    .ekspanderbartPanel__indikator {
+        color: @navBla;
+    }
+}

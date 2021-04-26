@@ -1,7 +1,7 @@
 import { PartType } from '../parts';
 import { PartComponentProps } from '../_component-common';
 import { LinkProps } from '../../link-props';
-import { ContentListMixin } from '../_mixins';
+import { ExpandableMixin, ContentListMixin } from '../_mixins';
 
 export interface DynamicNewsList extends PartComponentProps {
     descriptor: PartType.NewsList;
@@ -9,5 +9,5 @@ export interface DynamicNewsList extends PartComponentProps {
         title?: string;
         contentList: ContentListMixin;
         moreNews?: LinkProps;
-    };
+    } & ExpandableMixin;
 }
