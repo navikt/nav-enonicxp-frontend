@@ -56,6 +56,13 @@ const getLinkData = (contentData: ContentProps | null): TableData | null => {
                 tittel: contentData.displayName,
                 ingress: contentData.data.ingress,
             };
+        case ContentType.DynamicPage:
+        case ContentType.PageWithSideMenus:
+            return {
+                url: contentData._path,
+                tittel: contentData.displayName,
+                ingress: contentData.data.description,
+            };
         default:
             return {
                 url: contentData._path,
