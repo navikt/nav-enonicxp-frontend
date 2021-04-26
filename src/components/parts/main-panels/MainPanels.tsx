@@ -14,52 +14,59 @@ type TableData = {
     ingress?: string;
 };
 
-const getLinkData = (contentData: ContentProps | null): TableData | null => {
-    if (!contentData) {
+const getLinkData = (content: ContentProps | null): TableData | null => {
+    if (!content) {
         return null;
     }
 
-    switch (contentData.__typename) {
+    switch (content.__typename) {
         case ContentType.InternalLink:
             return {
-                url: contentData.data.target._path,
-                tittel: contentData.displayName,
-                ingress: contentData.data.description,
+                url: content.data.target._path,
+                tittel: content.displayName,
+                ingress: content.data.description,
             };
         case ContentType.ExternalLink:
             return {
-                url: contentData.data.url,
-                tittel: contentData.displayName,
-                ingress: contentData.data.description,
+                url: content.data.url,
+                tittel: content.displayName,
+                ingress: content.data.description,
             };
         case ContentType.TransportPage:
             return {
-                url: contentData._path,
-                tittel: contentData.displayName,
-                ingress: contentData.data.ingress,
+                url: content._path,
+                tittel: content.displayName,
+                ingress: content.data.ingress,
             };
         case ContentType.PageList:
             return {
-                url: contentData._path,
-                tittel: contentData.displayName,
-                ingress: contentData.data.ingress,
+                url: content._path,
+                tittel: content.displayName,
+                ingress: content.data.ingress,
             };
         case ContentType.MainArticle:
             return {
-                url: contentData._path,
-                tittel: contentData.displayName,
-                ingress: contentData.data.ingress,
+                url: content._path,
+                tittel: content.displayName,
+                ingress: content.data.ingress,
             };
         case ContentType.SectionPage:
             return {
-                url: contentData._path,
-                tittel: contentData.displayName,
-                ingress: contentData.data.ingress,
+                url: content._path,
+                tittel: content.displayName,
+                ingress: content.data.ingress,
+            };
+        case ContentType.DynamicPage:
+        case ContentType.PageWithSideMenus:
+            return {
+                url: content._path,
+                tittel: content.displayName,
+                ingress: content.data.description,
             };
         default:
             return {
-                url: contentData._path,
-                tittel: contentData.displayName,
+                url: content._path,
+                tittel: content.displayName,
                 ingress: '',
             };
     }
