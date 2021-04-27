@@ -1,22 +1,28 @@
 @import (reference) '../../../../global';
 
-.lenkepanel__indikator {
-    display: none;
-}
+@padding: 1.5rem;
 
 .vertical .link-panel {
     &__ikon {
+        @marginBottom: 1rem;
         display: flex;
         width: 100%;
         justify-content: center;
         align-items: center;
-        margin-bottom: 1rem;
+        margin-bottom: @marginBottom;
 
         img {
             height: #round-rem(2rem) [];
         }
 
         &--bg {
+            margin: -@padding -@padding @marginBottom -@padding;
+            padding: @padding @padding 0 @padding;
+            width: calc(100% + @padding * 2);
+
+            img {
+                height: #round-rem(4rem) [];
+            }
         }
     }
 
@@ -55,7 +61,7 @@
 .link-panel {
     width: 100%;
     display: flex;
-    padding: 1.5rem;
+    padding: @padding;
     margin: 0;
 
     background-repeat: no-repeat;
@@ -96,5 +102,9 @@
     &__ingress {
         width: 100%;
         margin: 1rem 0 0.5rem 0;
+    }
+
+    .lenkepanel__indikator {
+        display: none;
     }
 }
