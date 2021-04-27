@@ -14,6 +14,9 @@
         "deploy-q6": "npm run deploy -- deploy.q6.yml"
     },
     "dependencies": {
+        "@navikt/ds-css": "^0.2.8",
+        "@navikt/ds-react": "^0.2.13",
+        "@navikt/ds-tokens": "^0.2.1-beta.9",
         "@navikt/fnrvalidator": "^1.1.3",
         "@navikt/nav-dekoratoren-moduler": "^1.2.9",
         "amplitude-js": "^8.1.0",
@@ -26,8 +29,10 @@
         "nav-frontend-chevron": "^1.0.28",
         "nav-frontend-chevron-style": "^1.0.4",
         "nav-frontend-core": "^5.0.11",
-        "nav-frontend-ekspanderbartpanel": "^3.0.56",
-        "nav-frontend-ekspanderbartpanel-style": "^1.0.42",
+        "nav-frontend-ekspanderbartpanel": "^3.1.2",
+        "nav-frontend-ekspanderbartpanel-style": "^1.1.2",
+        "nav-frontend-etiketter": "^2.0.32",
+        "nav-frontend-etiketter-style": "^1.0.19",
         "nav-frontend-ikoner-assets": "^2.0.10",
         "nav-frontend-js-utils": "^1.0.17",
         "nav-frontend-knapper": "^2.0.32",

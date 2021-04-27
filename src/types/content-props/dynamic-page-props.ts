@@ -4,6 +4,7 @@ import { LanguageProps } from '../language';
 export type DynamicPageData = Partial<{
     feedbackToggle: boolean;
     languages: LanguageProps[];
+    description: string;
 }> &
     SeoDataProps;
 

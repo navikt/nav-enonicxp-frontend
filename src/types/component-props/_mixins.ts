@@ -27,6 +27,12 @@ export type LinkWithIngressMixin = {
     link: LinkSelectable;
 };
 
+export type ExpandableMixin = {
+    expandable: boolean;
+    expandableOpenByDefault: boolean;
+    expandableTitle: string;
+};
+
 export type LayoutCommonConfigMixin = Partial<{
     marginTop: number;
     marginBottom: number;
