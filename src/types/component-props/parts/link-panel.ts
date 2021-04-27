@@ -7,6 +7,7 @@ interface LinkPanelConfig extends LinkWithIngressMixin {
     vertical: boolean;
     background: XpImageProps;
     icon: XpImageProps;
+    iconBg: string;
 }
 
 export interface DynamicLinkPanel extends PartComponentProps {

@@ -14,7 +14,7 @@ export const LinkPanel = ({ config }: DynamicLinkPanel) => {
     }
 
     const bem = BEM('link-panel');
-    const { link, ingress, background, icon, vertical } = config;
+    const { link, ingress, background, icon, iconBg, vertical } = config;
     const linkProps = getSelectableLinkProps(link);
 
     const bgUrl = getImageUrl(background);
@@ -38,7 +38,13 @@ export const LinkPanel = ({ config }: DynamicLinkPanel) => {
             <div className={bem('innhold')}>
                 <div className={bem('header')}>
                     {icon && (
-                        <div className={bem('ikon')}>
+                        <div
+                            className={classNames(
+                                bem('ikon'),
+                                iconBg && bem('ikon', 'bg')
+                            )}
+                            style={iconBg && { backgroundColor: iconBg }}
+                        >
                             <XpImage imageProps={icon} alt={''} />
                         </div>
                     )}
