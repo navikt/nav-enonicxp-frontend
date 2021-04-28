@@ -1,5 +1,5 @@
 import React from 'react';
-import { DynamicLinkPanel } from 'types/component-props/parts/link-panel';
+import { LinkPanelPartProps } from 'types/component-props/parts/link-panel';
 import { BEM, classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from '../../../../utils/links-from-content';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
@@ -8,7 +8,7 @@ import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { getImageUrl, XpImage } from '../../../_common/image/XpImage';
 import './LinkPanel.less';
 
-export const LinkPanel = ({ config }: DynamicLinkPanel) => {
+export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
     if (!config) {
         return <h2>Tomt lenkepanel</h2>;
     }

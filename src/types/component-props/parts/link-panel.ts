@@ -3,14 +3,23 @@ import { PartType } from '../parts';
 import { LinkWithIngressMixin } from '../_mixins';
 import { XpImageProps } from '../../media';
 
+type Variant = 'vertical' | 'verticalWithTopBg';
+
+type VariantConfigs = {
+    vertical: {};
+    verticalWithTopBg: {};
+};
+
 interface LinkPanelConfig extends LinkWithIngressMixin {
     vertical: boolean;
     background: XpImageProps;
     icon: XpImageProps;
-    iconBg: string;
+    variants: {
+        _selected: Variant;
+    } & VariantConfigs;
 }
 
-export interface DynamicLinkPanel extends PartComponentProps {
+export interface LinkPanelPartProps extends PartComponentProps {
     descriptor: PartType.LinkPanel;
     config: Partial<LinkPanelConfig>;
 }

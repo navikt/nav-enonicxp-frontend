@@ -9,7 +9,7 @@ import { RelatedInfo } from './related-info/RelatedInfo';
 import PageHeading from './page-heading/PageHeading';
 import PageList from './page-list/PageList';
 import Alert from './_dynamic/alert/Alert';
-import { LinkPanel } from './_dynamic/link-panel/LinkPanel';
+import { LinkPanelPart } from './_dynamic/link-panel/LinkPanelPart';
 import LesMerPanel from './_dynamic/les-mer-panel/LesMerPanel';
 import { MainArticle } from './main-article/MainArticle';
 import {
@@ -53,7 +53,7 @@ const partsWithOwnData: {
 } = {
     [PartType.Alert]: Alert,
     [PartType.Header]: HeaderPart,
-    [PartType.LinkPanel]: LinkPanel,
+    [PartType.LinkPanel]: LinkPanelPart,
     [PartType.ReadMorePanel]: LesMerPanel,
     [PartType.SupervisorPanel]: Veilederpanel,
     [PartType.LinkList]: LinkList,
