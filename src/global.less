@@ -1,5 +1,6 @@
 @import '~nav-frontend-core/less/_variabler';
 @import '~nav-frontend-core/less/core';
+@import '~@navikt/ds-css/dist/index.css';
 
 @font-size-factor: 1.125;
 @pixel-size-rem: 1 / (16 * @font-size-factor);
@@ -123,4 +124,8 @@ html {
     padding-right: @side-width;
     margin-left: @side-width-negative;
     margin-right: @side-width-negative;
+}
+
+.panel-inset-focus-mixin() {
+    box-shadow: 0 0 0 3px inset @fokusFarge;
 }
