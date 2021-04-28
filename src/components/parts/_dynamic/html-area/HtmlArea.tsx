@@ -2,6 +2,7 @@ import React from 'react';
 import { HtmlAreaProps } from '../../../../types/component-props/parts/html-area';
 import { ParsedHtml } from '../../../ParsedHtml';
 import { Expandable } from '../../../_common/expandable/Expandable';
+import { FilteredContent } from '../../../_common/filtered-content/FilteredContent';
 import './HtmlArea.less';
 
 export const HtmlArea = ({ config }: HtmlAreaProps) => {
@@ -10,10 +11,12 @@ export const HtmlArea = ({ config }: HtmlAreaProps) => {
     }
 
     return (
-        <Expandable {...config}>
-            <div className={'html-area'}>
-                <ParsedHtml content={config.html} />
-            </div>
-        </Expandable>
+        <FilteredContent {...config}>
+            <Expandable {...config}>
+                <div className={'html-area'}>
+                    <ParsedHtml content={config.html} />
+                </div>
+            </Expandable>
+        </FilteredContent>
     );
 };

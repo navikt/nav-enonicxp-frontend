@@ -28,6 +28,7 @@ import { HtmlArea } from './_dynamic/html-area/HtmlArea';
 import { PageHeaderPart } from './_dynamic/page-header/PageHeaderPart';
 import { ButtonPart } from './_dynamic/button/ButtonPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
+import { FiltersMenu } from './_dynamic/filters-menu/FiltersMenu';
 
 type Props = {
     partProps: PartComponentProps;
@@ -63,6 +64,7 @@ const partsWithOwnData: {
     [PartType.PageHeader]: PageHeaderPart,
     [PartType.Button]: ButtonPart,
     [PartType.PageNavigationMenu]: PageNavigationMenuPart,
+    [PartType.FiltersMenu]: FiltersMenu,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {
