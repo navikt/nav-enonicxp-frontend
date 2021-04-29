@@ -16,7 +16,7 @@
     max-width: calc((@desktopMaxWidth - @padding-sides-desktop * 2) * 0.75);
     width: 100%;
 
-    @media @screen-tablet-and-desktop {
+    @media @mq-screen-tablet-and-desktop {
         .notification {
             width: calc(100% / @numCols - @margin-width-term);
 
@@ -26,7 +26,7 @@
         }
     }
 
-    @media @screen-mobile {
+    @media @mq-screen-mobile {
         padding: 1rem 0;
         flex-direction: column;
         align-items: center;
