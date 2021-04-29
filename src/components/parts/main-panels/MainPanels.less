@@ -16,11 +16,11 @@
         margin-bottom: @margin;
         padding: 1.5rem;
 
-        @media @screen-mobile {
+        @media @mq-screen-mobile {
             width: 100%;
         }
 
-        @media @screen-tablet-and-desktop {
+        @media @mq-screen-tablet-and-desktop {
             width: calc(
                 percentage(1 / @numCols) - @margin * ((@numCols - 1) / @numCols)
             );
