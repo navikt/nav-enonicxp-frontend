@@ -1,12 +1,8 @@
 import { LayoutCommonProps, LayoutType } from '../layouts';
 import { ComponentProps, ComponentType } from '../_component-common';
+import { AnchorLink } from '../parts/page-navigation-menu';
 
 type Regions = 'leftMenu' | 'pageContent' | 'rightMenu';
-
-export type AnchorLink = {
-    anchorId: string;
-    linkText: string;
-};
 
 export interface PageWithSideMenusProps extends LayoutCommonProps {
     type: ComponentType.Page;
