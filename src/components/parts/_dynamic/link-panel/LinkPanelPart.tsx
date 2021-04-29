@@ -8,22 +8,33 @@ import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { getImageUrl, XpImage } from '../../../_common/image/XpImage';
 import './LinkPanel.less';
 
+const bem = BEM('link-panel');
+
 export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
     if (!config) {
         return <h2>Tomt lenkepanel</h2>;
     }
 
-    const bem = BEM('link-panel');
-    const { link, ingress, background, icon, iconBg, vertical } = config;
-    const linkProps = getSelectableLinkProps(link);
+    const { link, ingress, background, icon, vertical, variant } = config;
 
+    const linkProps = getSelectableLinkProps(link);
     const bgUrl = getImageUrl(background);
+
+    const selectedVariant = variant?._selected;
+    const variantConfig = selectedVariant && variant[selectedVariant];
+    const isVerticalLayout =
+        vertical ||
+        selectedVariant === 'vertical' ||
+        selectedVariant === 'verticalWithBgColor';
 
     return (
         <LenkepanelBase
             href={linkProps.url}
             border={true}
-            className={classNames(bem(), vertical ? `vertical` : 'horisontal')}
+            className={classNames(
+                bem(),
+                isVerticalLayout ? `vertical` : 'horisontal'
+            )}
             style={bgUrl && { backgroundImage: `url(${bgUrl})` }}
             linkCreator={(props) => (
                 <LenkeBase
@@ -40,10 +51,17 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                     {icon && (
                         <div
                             className={classNames(
-                                bem('ikon'),
-                                iconBg && bem('ikon', 'bg')
+                                bem('icon'),
+                                selectedVariant === 'verticalWithBgColor' &&
+                                    bem('icon', 'bg')
                             )}
-                            style={iconBg && { backgroundColor: iconBg }}
+                            style={{
+                                ...(selectedVariant ===
+                                    'verticalWithBgColor' && {
+                                    backgroundColor: variantConfig.iconBgColor,
+                                    alignItems: variantConfig.iconJustify,
+                                }),
+                            }}
                         >
                             <XpImage imageProps={icon} alt={''} />
                         </div>

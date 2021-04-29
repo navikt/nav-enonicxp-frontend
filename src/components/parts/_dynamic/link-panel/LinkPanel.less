@@ -3,8 +3,9 @@
 @padding: 1.5rem;
 
 .vertical .link-panel {
-    &__ikon {
+    &__icon {
         @marginBottom: 1rem;
+
         display: flex;
         width: 100%;
         justify-content: center;
@@ -17,11 +18,13 @@
 
         &--bg {
             margin: -@padding -@padding @marginBottom -@padding;
-            padding: @padding @padding 0 @padding;
+            padding: 0 1rem;
             width: calc(100% + @padding * 2);
+            height: #round-rem(6rem) [];
 
             img {
-                height: #round-rem(4rem) [];
+                height: auto;
+                max-height: #round-rem(5rem) [];
             }
         }
     }
@@ -36,7 +39,7 @@
 }
 
 .horisontal .link-panel {
-    &__ikon {
+    &__icon {
         margin-right: 0.5rem;
 
         img {
