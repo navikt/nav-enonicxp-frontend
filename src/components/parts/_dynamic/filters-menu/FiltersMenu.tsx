@@ -6,20 +6,26 @@ import { Expandable } from '../../../_common/expandable/Expandable';
 import { BEM } from '../../../../utils/classnames';
 import './FiltersMenu.less';
 
+import { useFilterState } from '../../../../store/hooks/useFilterState';
+
 const defaultTitle = 'Tilpass innhold';
 
 const bem = BEM('filters-menu');
 
 export const FiltersMenu = ({ config }: FilterMenuProps) => {
+    const dummyId = '1234';
+    const { contentFilters, toggleFilter } = useFilterState(dummyId);
+
+    console.log(contentFilters);
+
     if (!config?.categories) {
         return <div>{'Tom filter-meny'}</div>;
     }
 
     const { categories, title, expandable, expandableTitle } = config;
 
-    const toggleFilter = (id: string) => {
-        console.log(id);
-        // TODO: toggle filters in global state
+    const onToggleFilterHandler = (id: string) => {
+        toggleFilter({ pageId: dummyId, filterId: id });
     };
 
     return (
@@ -40,8 +46,9 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                     {category.filters.map((filter, filterIndex) => (
                         <Checkbox
                             onChange={(event) =>
-                                toggleFilter(event.target.value)
+                                onToggleFilterHandler(event.target.value)
                             }
+                            checked={contentFilters.includes(filter.id)}
                             value={filter.id}
                             label={filter.filterName}
                             key={filterIndex}
