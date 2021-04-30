@@ -6,17 +6,14 @@ import { Expandable } from '../../../_common/expandable/Expandable';
 import { BEM } from '../../../../utils/classnames';
 import './FiltersMenu.less';
 
-import { useFilterState } from '../../../../store/hooks/useFilterState';
+import { useFilterState } from '../../../../store/hooks/useFilteredContent';
 
 const defaultTitle = 'Tilpass innhold';
 
 const bem = BEM('filters-menu');
 
 export const FiltersMenu = ({ config }: FilterMenuProps) => {
-    const dummyId = '1234';
-    const { contentFilters, toggleFilter } = useFilterState(dummyId);
-
-    console.log(contentFilters);
+    const { contentFilters, toggleFilter } = useFilterState();
 
     if (!config?.categories) {
         return <div>{'Tom filter-meny'}</div>;
@@ -25,7 +22,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
     const { categories, title, expandable, expandableTitle } = config;
 
     const onToggleFilterHandler = (id: string) => {
-        toggleFilter({ pageId: dummyId, filterId: id });
+        toggleFilter(id);
     };
 
     return (

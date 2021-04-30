@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import contentFilters from './slices/contentFilters';
+import contentFilters from './slices/filteredContent';
+import pageConfig from './slices/pageConfig';
 
 export const store = configureStore({
     reducer: {
         contentFilters,
+        pageConfig,
     },
 });
 

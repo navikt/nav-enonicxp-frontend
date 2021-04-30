@@ -16,6 +16,8 @@ import { BEM, classNames } from '../utils/classnames';
 import { getInternalRelativePath } from '../utils/urls';
 import { ComponentReorderHack } from '../utils/ComponentReorderHack';
 
+import { usePageConfig } from '../store/hooks/usePageConfig';
+
 const bem = BEM('app');
 
 type Props = {
@@ -26,6 +28,10 @@ type Props = {
 export const PageWrapper = (props: Props) => {
     const { content, children } = props;
     const { notifications, editMode } = content;
+
+    const { setPageConfig } = usePageConfig();
+
+    setPageConfig({ pageId: props.content._id });
 
     const router = useRouter();
 
