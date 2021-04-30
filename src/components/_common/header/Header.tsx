@@ -38,7 +38,9 @@ export const Header = ({
         e.preventDefault();
 
         if (navigator?.clipboard?.writeText) {
-            const baseUrl = (e.target as HTMLAnchorElement)?.baseURI;
+            const baseUrl = (e.target as HTMLAnchorElement)?.baseURI?.split(
+                '#'
+            )[0];
             if (baseUrl) {
                 navigator?.clipboard?.writeText(`${baseUrl}${anchor}`);
                 setShowCopyTooltip(true);
