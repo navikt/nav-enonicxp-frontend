@@ -11,7 +11,10 @@ export const PageNavigationMenu = ({ anchorLinks, title }: Props) => {
     return (
         <AccordionAnchorMenu title={title}>
             {anchorLinks?.map((link) => (
-                <AccordionAnchorMenuItem href={`#${link.anchorId}`}>
+                <AccordionAnchorMenuItem
+                    href={`#${link.anchorId}`}
+                    key={link.anchorId}
+                >
                     {link.linkText}
                 </AccordionAnchorMenuItem>
             ))}
