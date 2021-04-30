@@ -1,8 +1,11 @@
 @import (reference) '../../../../global';
 
 .left-menu {
+    @topOffset: calc(var(--decorator-sticky-offset) + 1rem);
+    @bottomOffset: 2rem;
     overflow: auto;
-    max-height: calc(100vh);
+    max-height: calc(100vh - @topOffset - @bottomOffset);
+    top: @topOffset;
 
     .navds-accordion-anchor-menu {
         margin-bottom: 1rem;
@@ -10,8 +13,8 @@
     }
 
     @media @mq-screen-mobile {
-        max-height: none;
         overflow: visible;
+        max-height: none;
     }
 }
 
