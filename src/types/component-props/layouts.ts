@@ -8,6 +8,7 @@ import { FixedColsLayoutProps } from './layouts/fixed-cols';
 import { LegacyLayoutProps } from './layouts/legacy-layout';
 import { PageWithSideMenusProps } from './pages/page-with-side-menus';
 import { SectionWithHeaderProps } from './layouts/section-with-header';
+import { LayoutCommonConfigMixin } from './_mixins';
 
 export enum LayoutType {
     Fixed1Col = 'no.nav.navno:dynamic-1-col',
@@ -31,7 +32,7 @@ export interface LayoutCommonProps extends ComponentCommonProps {
     type: ComponentType.Layout | ComponentType.Page;
     descriptor: LayoutType;
     regions?: { [key: string]: RegionProps };
-    config?: any;
+    config?: any & LayoutCommonConfigMixin;
 }
 
 export type LayoutProps =
