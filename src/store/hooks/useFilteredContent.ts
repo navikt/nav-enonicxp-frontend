@@ -2,9 +2,12 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store';
 import {
     selectedFiltersAtPage,
+    availableFiltersAtPage,
     toggleFilterSelectionAction,
+    setAvailableFiltersAction,
 } from '../slices/filteredContent';
 import { usePageConfig } from './usePageConfig';
+import { Category } from 'types/store/filter-menu';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -12,8 +15,10 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 type FilterSelection = string[];
 
 type UseFilterState = {
-    contentFilters: FilterSelection;
+    selectedFilters: FilterSelection;
+    availableFilters: Category[];
     toggleFilter: (filterid: string) => void;
+    setAvailableFilters: (availableFilters: Category[]) => void;
 };
 
 export const useFilterState = (): UseFilterState => {
@@ -22,8 +27,12 @@ export const useFilterState = (): UseFilterState => {
     const { pageConfig } = usePageConfig();
     const { pageId } = pageConfig;
 
-    const contentFilters = useAppSelector<FilterSelection>((state) =>
+    const selectedFilters = useAppSelector<FilterSelection>((state) =>
         selectedFiltersAtPage(state, pageId)
+    );
+
+    const availableFilters = useAppSelector<Category[]>((state) =>
+        availableFiltersAtPage(state, pageId)
     );
 
     const toggleFilter = (filterId: string): void => {
@@ -31,5 +40,15 @@ export const useFilterState = (): UseFilterState => {
         dispatch(toggleFilterSelectionAction(payload));
     };
 
-    return { contentFilters, toggleFilter };
+    const setAvailableFilters = (availableFilters: Category[]) => {
+        const payload = { pageId, availableFilters };
+        dispatch(setAvailableFiltersAction(payload));
+    };
+
+    return {
+        selectedFilters,
+        availableFilters,
+        toggleFilter,
+        setAvailableFilters,
+    };
 };

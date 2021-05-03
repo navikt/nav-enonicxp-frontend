@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FilterMenuProps } from '../../../../types/component-props/parts/filter-menu';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Checkbox, CheckboxGruppe } from 'nav-frontend-skjema';
@@ -15,12 +15,6 @@ const defaultTitle = 'Tilpass innhold';
 const bem = BEM('filters-menu');
 
 export const FiltersMenu = ({ config }: FilterMenuProps) => {
-    const { contentFilters, toggleFilter } = useFilterState();
-
-    if (!config?.categories) {
-        return <div>{'Tom filter-meny'}</div>;
-    }
-
     const {
         categories,
         title,
@@ -28,6 +22,21 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         expandable,
         expandableTitle,
     } = config;
+
+    const {
+        selectedFilters,
+        toggleFilter,
+        setAvailableFilters,
+    } = useFilterState();
+
+    useEffect(() => setAvailableFilters(categories), [
+        categories,
+        setAvailableFilters,
+    ]);
+
+    if (!config?.categories) {
+        return <div>{'Tom filter-meny'}</div>;
+    }
 
     const onToggleFilterHandler = (id: string) => {
         toggleFilter(id);
@@ -59,7 +68,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                                 onChange={(event) =>
                                     onToggleFilterHandler(event.target.value)
                                 }
-                                checked={contentFilters.includes(filter.id)}
+                                checked={selectedFilters.includes(filter.id)}
                                 value={filter.id}
                                 label={filter.filterName}
                                 key={filterIndex}

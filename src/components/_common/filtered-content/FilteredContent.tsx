@@ -7,24 +7,33 @@ type Props = {
 };
 
 export const FilteredContent = ({ filters, children }: Props) => {
-    // TODO: retrieve filter-states and pass through children only if one of the
-    // filters from props are enabled (or if no filters are enabled)
+    const { selectedFilters, availableFilters } = useFilterState();
 
-    // Todo: Handle filter categories
-
-    const { contentFilters } = useFilterState();
-
+    // No filters were set for this particular content, so let children through.
     if (!filters) {
         return <>{children}</>;
     }
 
-    const normalizedFilters = typeof filters === 'string' ? [filters] : filters;
+    // If no filters are set for a catetory that this text block "belongs to"
+    // it should display as default. To achieve this, we need to find out
+    // which categories are relevant in the first place.
+    const relevantCategories = availableFilters.filter((category) => {
+        return category.filters.some((filter) => filters.includes(filter.id));
+    });
 
-    const contentMatchesFilters =
-        contentFilters.length === 0 ||
-        normalizedFilters.some((filter) => contentFilters.includes(filter));
+    const isFilteringOnRelevantCategories = relevantCategories.some(
+        (category) => {
+            return category.filters.some((filter) =>
+                selectedFilters.includes(filter.id)
+            );
+        }
+    );
 
-    if (!contentMatchesFilters) {
+    const contentMatchesFilters = filters.some((filter) =>
+        selectedFilters.includes(filter)
+    );
+
+    if (isFilteringOnRelevantCategories && !contentMatchesFilters) {
         return null;
     }
 
