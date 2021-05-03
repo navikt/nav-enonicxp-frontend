@@ -1,22 +1,73 @@
 @import (reference) '../../../global';
 
 .layout__section-with-header {
-    padding: 2.5rem;
-    background-color: white;
+    @paddingDesktop: 2.5rem;
+    @paddingTablet: 1.5rem;
+    @paddingMobile: 1rem;
+
+    @iconContainerRadius: 2.25rem;
+    @iconContainerSize: @iconContainerRadius * 2;
+
+    @defaultBgColor: white;
+
+    display: flex;
+    flex-direction: column;
+    padding: @paddingDesktop;
+    background-color: @defaultBgColor;
 
     @media @mq-screen-tablet {
-        padding: 1.5rem;
+        padding: @paddingTablet;
     }
 
     @media @mq-screen-mobile {
-        padding: 1rem;
+        padding: @paddingMobile;
+    }
+
+    &--with-icon {
+        margin-top: @iconContainerRadius;
     }
 
     .region__content {
         margin-top: 1.5rem;
 
-        & > * {
+        & > :not(:first-child) {
             margin-top: 1rem;
+        }
+    }
+
+    .icon-container {
+        .adjust-for-padding(@sectionPadding) {
+            @marginActual: 1rem;
+            top: calc(-@sectionPadding - @iconContainerRadius);
+            margin-bottom: -@iconContainerRadius - (@sectionPadding -
+                        @marginActual);
+        }
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        width: @iconContainerSize;
+        height: @iconContainerSize;
+        position: relative;
+        border-radius: 50%;
+        background-color: @defaultBgColor;
+
+        .adjust-for-padding(@paddingDesktop);
+
+        @media @mq-screen-tablet {
+            .adjust-for-padding(@paddingTablet);
+        }
+
+        @media @mq-screen-mobile {
+            .adjust-for-padding(@paddingMobile);
+        }
+
+        img {
+            @iconSize: @iconContainerRadius / sqrt(@iconContainerRadius) * 2;
+
+            height: #round-rem(@iconSize) [];
+            width: #round-rem(@iconSize) [];
         }
     }
 }
