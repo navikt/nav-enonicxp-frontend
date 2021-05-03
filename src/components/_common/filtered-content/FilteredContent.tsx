@@ -14,6 +14,10 @@ export const FilteredContent = ({ filters, children }: Props) => {
 
     const { contentFilters } = useFilterState();
 
+    if (!filters) {
+        return <>{children}</>;
+    }
+
     const normalizedFilters = typeof filters === 'string' ? [filters] : filters;
 
     const contentMatchesFilters =

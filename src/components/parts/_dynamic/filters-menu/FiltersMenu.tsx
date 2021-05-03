@@ -3,6 +3,8 @@ import { FilterMenuProps } from '../../../../types/component-props/parts/filter-
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Checkbox, CheckboxGruppe } from 'nav-frontend-skjema';
 import { Expandable } from '../../../_common/expandable/Expandable';
+import Tekstomrade from 'nav-frontend-tekstomrade';
+import { ProductPageLayout } from '@navikt/ds-react';
 import { BEM } from '../../../../utils/classnames';
 import './FiltersMenu.less';
 
@@ -19,40 +21,53 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         return <div>{'Tom filter-meny'}</div>;
     }
 
-    const { categories, title, expandable, expandableTitle } = config;
+    const {
+        categories,
+        title,
+        description,
+        expandable,
+        expandableTitle,
+    } = config;
 
     const onToggleFilterHandler = (id: string) => {
         toggleFilter(id);
     };
 
     return (
-        <Expandable
-            {...config}
-            expandableTitle={expandableTitle || defaultTitle}
+        <ProductPageLayout.Panel
+            title={title}
+            highlight
+            className={bem('wrapper')}
         >
-            {!expandable && (
-                <Systemtittel tag={'h3'} className={bem('title')}>
-                    {title || defaultTitle}
-                </Systemtittel>
-            )}
-            {categories.map((category, indexCategory) => (
-                <CheckboxGruppe
-                    legend={category.categoryName}
-                    key={indexCategory}
-                >
-                    {category.filters.map((filter, filterIndex) => (
-                        <Checkbox
-                            onChange={(event) =>
-                                onToggleFilterHandler(event.target.value)
-                            }
-                            checked={contentFilters.includes(filter.id)}
-                            value={filter.id}
-                            label={filter.filterName}
-                            key={filterIndex}
-                        />
-                    ))}
-                </CheckboxGruppe>
-            ))}
-        </Expandable>
+            <Tekstomrade>{description}</Tekstomrade>
+            <Expandable
+                {...config}
+                expandableTitle={expandableTitle || defaultTitle}
+            >
+                {!expandable && (
+                    <Systemtittel tag={'h3'} className={bem('title')}>
+                        {title || defaultTitle}
+                    </Systemtittel>
+                )}
+                {categories.map((category, indexCategory) => (
+                    <CheckboxGruppe
+                        legend={category.categoryName}
+                        key={indexCategory}
+                    >
+                        {category.filters.map((filter, filterIndex) => (
+                            <Checkbox
+                                onChange={(event) =>
+                                    onToggleFilterHandler(event.target.value)
+                                }
+                                checked={contentFilters.includes(filter.id)}
+                                value={filter.id}
+                                label={filter.filterName}
+                                key={filterIndex}
+                            />
+                        ))}
+                    </CheckboxGruppe>
+                ))}
+            </Expandable>
+        </ProductPageLayout.Panel>
     );
 };

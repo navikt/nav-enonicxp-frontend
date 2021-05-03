@@ -16,6 +16,7 @@ export interface FilterMenuProps extends PartComponentProps {
     descriptor: PartType.FiltersMenu;
     config: {
         title?: string;
+        description: string;
         categories: Category[];
     } & ExpandableMixin;
 }
