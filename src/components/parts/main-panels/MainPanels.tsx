@@ -22,46 +22,46 @@ const getLinkData = (content: ContentProps | null): TableData | null => {
     switch (content.__typename) {
         case ContentType.InternalLink:
             return {
-                url: content.data.target._path,
+                url: content.data?.target?._path,
                 tittel: content.displayName,
-                ingress: content.data.description,
+                ingress: content.data?.description,
             };
         case ContentType.ExternalLink:
             return {
-                url: content.data.url,
+                url: content.data?.url,
                 tittel: content.displayName,
-                ingress: content.data.description,
+                ingress: content.data?.description,
             };
         case ContentType.TransportPage:
             return {
                 url: content._path,
                 tittel: content.displayName,
-                ingress: content.data.ingress,
+                ingress: content.data?.ingress,
             };
         case ContentType.PageList:
             return {
                 url: content._path,
                 tittel: content.displayName,
-                ingress: content.data.ingress,
+                ingress: content.data?.ingress,
             };
         case ContentType.MainArticle:
             return {
                 url: content._path,
                 tittel: content.displayName,
-                ingress: content.data.ingress,
+                ingress: content.data?.ingress,
             };
         case ContentType.SectionPage:
             return {
                 url: content._path,
                 tittel: content.displayName,
-                ingress: content.data.ingress,
+                ingress: content.data?.ingress,
             };
         case ContentType.DynamicPage:
         case ContentType.PageWithSideMenus:
             return {
                 url: content._path,
                 tittel: content.displayName,
-                ingress: content.data.description,
+                ingress: content.data?.description,
             };
         default:
             return {
