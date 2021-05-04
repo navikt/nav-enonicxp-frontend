@@ -33,16 +33,15 @@ export const LayoutContainer = ({
           }
         : undefined;
 
-    const className = classNames(
-        bem(),
-        bem(layoutName),
-        paddingConfig === 'fullWidth' && bem('fullwidth'),
-        paddingConfig === 'standard' && bem('standard')
-    );
-
     return (
         <div
-            className={className}
+            className={classNames(
+                bem(),
+                bem(layoutName),
+                paddingConfig === 'fullWidth' && bem('fullwidth'),
+                paddingConfig === 'standard' && bem('standard'),
+                config.bgColor?.color && bem('bg')
+            )}
             style={{ ...commonLayoutStyle, ...layoutStyle }}
             {...editorProps}
         >
