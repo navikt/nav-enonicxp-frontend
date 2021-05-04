@@ -7,6 +7,7 @@ import { getMediaUrl } from '../utils/urls';
 import { Button } from './_common/button/Button';
 import '../components/macros/Quote.less';
 import '../components/macros/Video.less';
+import { LenkeStandalone } from './_common/lenke/LenkeStandalone';
 
 interface Props {
     content?: string;
@@ -49,10 +50,12 @@ export const ParsedHtml = (props: Props) => {
 
             if (name?.toLowerCase() === 'a' && attribs?.href && children) {
                 const href = attribs.href.replace('https://www.nav.no', '');
+                const className = attribs?.class;
 
                 if (
-                    attribs?.class?.includes('macroButton') ||
-                    attribs?.class?.includes('btn-link')
+                    className &&
+                    (className.includes('macroButton') ||
+                        className.includes('btn-link'))
                 ) {
                     return (
                         <Button
@@ -70,6 +73,14 @@ export const ParsedHtml = (props: Props) => {
                 }
 
                 const props = attributesToProps(attribs);
+
+                if (className && className.includes('chevron')) {
+                    return (
+                        <LenkeStandalone {...props} href={href}>
+                            {domToReact(children)}
+                        </LenkeStandalone>
+                    );
+                }
 
                 return (
                     <LenkeInline {...props} href={href}>
