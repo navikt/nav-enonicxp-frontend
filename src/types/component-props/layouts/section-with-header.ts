@@ -15,7 +15,11 @@ export interface SectionWithHeaderProps extends LayoutCommonProps {
     config: {
         title: string;
         anchorId: string;
-        icon?: XpImageProps;
-        highlight?: boolean;
+        icon?: { icon: XpImageProps; color?: string };
+        border?: {
+            color: string;
+            rounded: boolean;
+            width: number;
+        };
     } & Pick<LayoutCommonConfigMixin, 'bgColor'>;
 }

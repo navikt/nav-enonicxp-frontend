@@ -9,6 +9,7 @@ type Props = {
     pageProps: ContentProps;
     layoutProps: LayoutProps;
     layoutStyle?: React.CSSProperties;
+    modifiers?: string[];
     children: React.ReactNode;
 };
 
@@ -16,6 +17,7 @@ export const LayoutContainer = ({
     pageProps,
     layoutProps,
     layoutStyle,
+    modifiers,
     children,
 }: Props) => {
     const { descriptor, path, type, config } = layoutProps;
@@ -38,6 +40,9 @@ export const LayoutContainer = ({
             className={classNames(
                 bem(),
                 bem(layoutName),
+                ...(modifiers
+                    ? modifiers.map((mod) => bem(layoutName, mod))
+                    : []),
                 paddingConfig === 'fullWidth' && bem('fullwidth'),
                 paddingConfig === 'standard' && bem('standard'),
                 config.bgColor?.color && bem('bg')

@@ -66,10 +66,16 @@ export const Header = ({
             )}
             id={id}
         >
-            <TypoComponent tag={tag}>{children}</TypoComponent>
+            <TypoComponent tag={tag} className={bem('text')}>
+                {children}
+            </TypoComponent>
             {anchor && (
                 <>
-                    <a href={anchor} onClick={copyLinkToClipboard}>
+                    <a
+                        href={anchor}
+                        onClick={copyLinkToClipboard}
+                        className={bem('copy-link')}
+                    >
                         <PublicImage
                             imagePath={'/gfx/link.svg'}
                             className={bem('anchor-icon')}
