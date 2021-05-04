@@ -60,4 +60,3 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         </LayoutContainer>
     );
 };
-//
