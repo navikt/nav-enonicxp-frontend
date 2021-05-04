@@ -27,12 +27,13 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         selectedFilters,
         toggleFilter,
         setAvailableFilters,
+        clearFiltersForPage,
     } = useFilterState();
 
-    useEffect(() => setAvailableFilters(categories), [
-        categories,
-        setAvailableFilters,
-    ]);
+    useEffect(() => {
+        setAvailableFilters(categories);
+        clearFiltersForPage();
+    }, [categories, setAvailableFilters]);
 
     if (!config?.categories) {
         return <div>{'Tom filter-meny'}</div>;

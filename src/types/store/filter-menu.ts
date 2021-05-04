@@ -24,3 +24,7 @@ export type AvailableFiltersPayload = {
     pageId: string;
     availableFilters: Category[];
 };
+
+export type ClearFiltersPayload = {
+    pageId: string;
+};

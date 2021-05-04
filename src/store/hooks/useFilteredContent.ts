@@ -4,6 +4,7 @@ import {
     selectedFiltersAtPage,
     availableFiltersAtPage,
     toggleFilterSelectionAction,
+    clearFiltersForPageAction,
     setAvailableFiltersAction,
 } from '../slices/filteredContent';
 import { usePageConfig } from './usePageConfig';
@@ -19,6 +20,7 @@ type UseFilterState = {
     availableFilters: Category[];
     toggleFilter: (filterid: string) => void;
     setAvailableFilters: (availableFilters: Category[]) => void;
+    clearFiltersForPage: () => void;
 };
 
 export const useFilterState = (): UseFilterState => {
@@ -45,10 +47,16 @@ export const useFilterState = (): UseFilterState => {
         dispatch(setAvailableFiltersAction(payload));
     };
 
+    const clearFiltersForPage = () => {
+        const payload = { pageId };
+        dispatch(clearFiltersForPageAction(payload));
+    };
+
     return {
         selectedFilters,
         availableFilters,
         toggleFilter,
         setAvailableFilters,
+        clearFiltersForPage,
     };
 };

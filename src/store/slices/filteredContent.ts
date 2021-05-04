@@ -5,6 +5,7 @@ import {
     FilteredContentState,
     FilterSelectionPayload,
     AvailableFiltersPayload,
+    ClearFiltersPayload,
     Category,
 } from '../../types/store/filter-menu';
 
@@ -52,12 +53,27 @@ export const filteredContentSlice = createSlice({
 
             state[pageId] = { ...filtersForPage, availableFilters };
         },
+        clearFiltersForPage: (
+            state,
+            action: PayloadAction<ClearFiltersPayload>
+        ) => {
+            const { pageId } = action.payload;
+            const filtersForPage = state[pageId] || {
+                ...defaultFiltersForPage,
+            };
+
+            state[pageId] = {
+                ...filtersForPage,
+                selectedFilters: [],
+            };
+        },
     },
 });
 
 export const {
     toggleFilterSelection: toggleFilterSelectionAction,
     setAvailableFilters: setAvailableFiltersAction,
+    clearFiltersForPage: clearFiltersForPageAction,
 } = filteredContentSlice.actions;
 
 export const selectedFiltersAtPage = (
