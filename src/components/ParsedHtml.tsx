@@ -76,7 +76,11 @@ export const ParsedHtml = (props: Props) => {
 
                 if (className && className.includes('chevron')) {
                     return (
-                        <LenkeStandalone {...props} href={href}>
+                        <LenkeStandalone
+                            {...props}
+                            href={href}
+                            withChevron={true}
+                        >
                             {domToReact(children)}
                         </LenkeStandalone>
                     );
