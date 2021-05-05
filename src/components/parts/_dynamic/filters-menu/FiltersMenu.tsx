@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { FilterMenuProps } from '../../../../types/component-props/parts/filter-menu';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { Checkbox, CheckboxGruppe } from 'nav-frontend-skjema';
+import { CheckboxGruppe } from 'nav-frontend-skjema';
 import { Expandable } from '../../../_common/expandable/Expandable';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import { ProductPageLayout } from '@navikt/ds-react';
+import { FilterCheckbox } from './FilterCheckbox';
 import { BEM } from '../../../../utils/classnames';
 import './FiltersMenu.less';
 
@@ -32,8 +33,14 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
 
     useEffect(() => {
         setAvailableFilters(categories);
-        clearFiltersForPage();
     }, [categories, setAvailableFilters]);
+
+    useEffect(() => {
+        return () => {
+            clearFiltersForPage();
+        };
+        /* eslint-disable-next-line */
+    }, []);
 
     if (!config?.categories) {
         return <div>{'Tom filter-meny'}</div>;
@@ -65,13 +72,12 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                         key={indexCategory}
                     >
                         {category.filters.map((filter, filterIndex) => (
-                            <Checkbox
-                                onChange={(event) =>
-                                    onToggleFilterHandler(event.target.value)
+                            <FilterCheckbox
+                                onToggleFilterHandler={(filterId) =>
+                                    onToggleFilterHandler(filterId)
                                 }
-                                checked={selectedFilters.includes(filter.id)}
-                                value={filter.id}
-                                label={filter.filterName}
+                                filter={filter}
+                                isSelected={selectedFilters.includes(filter.id)}
                                 key={filterIndex}
                             />
                         ))}

@@ -2,12 +2,12 @@ import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 import { ExpandableMixin } from '../_mixins';
 
-type Filter = {
+export type Filter = {
     filterName: string;
     id: string;
 };
 
-type Category = {
+export type Category = {
     categoryName: string;
     filters: Filter[];
 };

@@ -58,14 +58,7 @@ export const filteredContentSlice = createSlice({
             action: PayloadAction<ClearFiltersPayload>
         ) => {
             const { pageId } = action.payload;
-            const filtersForPage = state[pageId] || {
-                ...defaultFiltersForPage,
-            };
-
-            state[pageId] = {
-                ...filtersForPage,
-                selectedFilters: [],
-            };
+            state[pageId].selectedFilters = [];
         },
     },
 });

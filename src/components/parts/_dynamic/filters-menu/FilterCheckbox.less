@@ -1,0 +1,48 @@
+@import (reference) '../../../../global';
+
+.filter-checkbox {
+    &__wrapper {
+        border-radius: 4px;
+        display: flex;
+        justify-items: center;
+        margin: 4px 0;
+        background-color: @navLysGra;
+        padding: 2px 7px 2px 5px;
+
+        &--selected {
+            background-color: @navBlaLighten80;
+            box-shadow: @navBla inset 0 0 0 1px;
+
+            .skjemaelement {
+                .skjemaelement__label {
+                    &:before {
+                        background-color: transparent;
+                        box-shadow: 0 0 0;
+                        border: 0;
+                        background-image: url('~@navikt/ds-icons/svg/SuccessStroke.svg');
+                        background-size: 100%;
+                    }
+                }
+            }
+        }
+
+        .skjemaelement {
+            margin-bottom: 0 !important;
+
+            label {
+                font-size: 0.9rem;
+                color: @navMorkGra;
+                line-height: 16px;
+                padding-left: 27px;
+
+                &:before {
+                    box-shadow: @navGra60 inset 0 0 0 1.1px;
+                    border: 0;
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 2px;
+                }
+            }
+        }
+    }
+}
