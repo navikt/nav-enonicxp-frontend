@@ -1,15 +1,14 @@
 import React from 'react';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { translator } from 'translations';
 import { BEM } from 'utils/classnames';
 import { MenuListItemKey } from 'types/menu-list-items';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { LenkeInline } from '../../_common/lenke/LenkeInline';
-import './MenuListPart.less';
+import { Expandable } from '../../_common/expandable/Expandable';
+import { Lenkeliste } from '../../_common/lenkeliste/Lenkeliste';
 
 const bem = BEM('menu-list');
 
-export const MenuListPart = (props: ContentProps) => {
+export const MenuList = (props: ContentProps) => {
     const { __typename: type, language } = props;
 
     const propsActual =
@@ -36,22 +35,14 @@ export const MenuListPart = (props: ContentProps) => {
                         type === ContentType.PageList;
 
                     return (
-                        <Ekspanderbartpanel
+                        <Expandable
                             key={key}
-                            apen={isOpen}
-                            tittel={getLabel(key) || key}
-                            className={bem('panel')}
+                            expandableOpenByDefault={isOpen}
+                            expandableTitle={getLabel(key) || key}
+                            expandable={true}
                         >
-                            <ul>
-                                {links.map((link, i) => (
-                                    <li key={i}>
-                                        <LenkeInline href={link.url}>
-                                            {link.text}
-                                        </LenkeInline>
-                                    </li>
-                                ))}
-                            </ul>
-                        </Ekspanderbartpanel>
+                            <Lenkeliste lenker={links} />
+                        </Expandable>
                     );
                 })}
             </div>

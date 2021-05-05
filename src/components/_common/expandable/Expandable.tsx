@@ -22,7 +22,7 @@ export const Expandable = ({
             tittel={expandableTitle}
             border={false}
             apen={expandableOpenByDefault}
-            renderContentWhenClosed={true}
+            renderContentWhenClosed={false}
             className={'expandable'}
         >
             {children}
