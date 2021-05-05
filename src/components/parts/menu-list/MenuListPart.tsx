@@ -22,38 +22,36 @@ export const MenuListPart = (props: ContentProps) => {
     const getLabel = translator('relatedContent', language);
 
     const { _selected, ...menuListItems } = propsActual.data.menuListItems;
-    const selectedItems = _selected.filter(
-        (item) => !!menuListItems[item]?.links
+    const validItemKeys = _selected.filter(
+        (key) => !!menuListItems[key]?.links?.length
     );
 
     return (
-        selectedItems.length > 0 && (
+        validItemKeys.length > 0 && (
             <div className={bem()}>
-                {selectedItems.map((key) => {
+                {validItemKeys.map((key) => {
                     const { links } = menuListItems[key];
                     const isOpen =
                         key === MenuListItemKey.Shortcuts &&
                         type === ContentType.PageList;
 
                     return (
-                        links.length > 0 && (
-                            <Ekspanderbartpanel
-                                key={key}
-                                apen={isOpen}
-                                tittel={getLabel(key) || key}
-                                className={bem('panel')}
-                            >
-                                <ul>
-                                    {links.map((link, i) => (
-                                        <li key={i}>
-                                            <LenkeInline href={link.url}>
-                                                {link.text}
-                                            </LenkeInline>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </Ekspanderbartpanel>
-                        )
+                        <Ekspanderbartpanel
+                            key={key}
+                            apen={isOpen}
+                            tittel={getLabel(key) || key}
+                            className={bem('panel')}
+                        >
+                            <ul>
+                                {links.map((link, i) => (
+                                    <li key={i}>
+                                        <LenkeInline href={link.url}>
+                                            {link.text}
+                                        </LenkeInline>
+                                    </li>
+                                ))}
+                            </ul>
+                        </Ekspanderbartpanel>
                     );
                 })}
             </div>
