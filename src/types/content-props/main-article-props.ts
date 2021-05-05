@@ -1,5 +1,10 @@
 import { MainArticleChapterProps } from './main-article-chapter-props';
-import { ContentType, ContentProps, SeoDataProps } from './_content-common';
+import {
+    ContentType,
+    ContentProps,
+    SeoDataProps,
+    ContentDecoratorToggles,
+} from './_content-common';
 import { MenuListItem } from '../menu-list-items';
 import { LanguageProps } from '../language';
 import { XpImageProps } from '../media';
@@ -20,10 +25,10 @@ export type MainArticleData = Partial<{
     social: string[];
     picture: Picture;
     menuListItems: MenuListItem;
-    feedbackToggle: boolean;
     chapters: MainArticleChapterProps[];
 }> &
-    SeoDataProps;
+    SeoDataProps &
+    ContentDecoratorToggles;
 
 export interface MainArticleProps extends ContentProps {
     __typename: ContentType.MainArticle;
