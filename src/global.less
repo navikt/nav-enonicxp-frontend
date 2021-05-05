@@ -62,7 +62,7 @@ html {
     }
 
     @media @mq-screen-tablet {
-        padding: 2rem @padding-sides-mobile;
+        padding: 2rem @padding-sides-tablet;
     }
 
     @media @mq-screen-desktop {
@@ -74,7 +74,7 @@ html {
     min-height: 88px;
 }
 
-@media (min-width: 48em) {
+@media @mq-screen-mobile {
     #decorator-header {
         min-height: 106px;
     }
@@ -108,11 +108,7 @@ html {
 // the current pixel size, taking global font-size into account
 #round-rem(@value: 0) {
     @valueUpper: @value + @pixel-size-rem / 2;
-    @result: if(
-        isunit(@value, rem),
-        @valueUpper - mod(@valueUpper, @pixel-size-rem),
-        0
-    );
+    @result: @valueUpper - mod(@valueUpper, @pixel-size-rem);
 }
 
 // Makes the element cover the entire screen-width

@@ -68,6 +68,11 @@ export type SeoDataProps = Partial<{
     noindex: boolean;
 }>;
 
+export type ContentDecoratorToggles = Partial<{
+    feedbackToggle: boolean;
+    chatbotToggle: boolean;
+}>;
+
 export type ContentData = Partial<
     ContentListData &
         ErrorData &

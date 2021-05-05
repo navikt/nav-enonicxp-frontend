@@ -5,6 +5,7 @@ import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
 import { RightMenuSection } from './right-menu-section/RightMenuSection';
 import { MainContentSection } from './main-content-section/MainContentSection';
 import { ProductPageLayout } from '@navikt/ds-react';
+import { ProductPageSection } from '@navikt/ds-react/esm/layouts';
 import { LayoutContainer } from '../LayoutContainer';
 import './PageWithSideMenus.less';
 
@@ -35,7 +36,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             <ProductPageLayout title={title}>
                 {leftMenuToggle && (
-                    <ProductPageLayout.Section
+                    <ProductPageSection
                         left
                         sticky={leftMenuSticky}
                         whiteBackground={false}
@@ -47,24 +48,21 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                             internalLinks={showInternalNav && anchorLinks}
                             menuHeader={leftMenuHeader}
                         />
-                    </ProductPageLayout.Section>
+                    </ProductPageSection>
                 )}
-                <ProductPageLayout.Section
-                    whiteBackground={false}
-                    withPadding={false}
-                >
+                <ProductPageSection whiteBackground={false} withPadding={false}>
                     <MainContentSection
                         pageProps={pageProps}
                         regionProps={regions.pageContent}
                     />
-                </ProductPageLayout.Section>
+                </ProductPageSection>
                 {rightMenuToggle && (
-                    <ProductPageLayout.Section right sticky={rightMenuSticky}>
+                    <ProductPageSection right sticky={rightMenuSticky}>
                         <RightMenuSection
                             pageProps={pageProps}
                             regionProps={regions.rightMenu}
                         />
-                    </ProductPageLayout.Section>
+                    </ProductPageSection>
                 )}
             </ProductPageLayout>
         </LayoutContainer>
