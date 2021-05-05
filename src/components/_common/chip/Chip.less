@@ -1,4 +1,6 @@
 @import (reference) '../../../global';
+@SuccessStroke: '~@navikt/ds-icons/svg/SuccessStroke.svg';
+@Add: '~@navikt/ds-icons/svg/Add.svg';
 
 .chip {
     &__button {
@@ -36,14 +38,14 @@
             background-color: @navBlaLighten80;
             &::before {
                 content: '';
-                background-image: url('~@navikt/ds-icons/svg/SuccessStroke.svg');
+                background-image: url(@SuccessStroke);
             }
         }
 
         &--addable {
             &::before {
+                background-image: url(@Add);
                 content: '';
-                background-image: url('~@navikt/ds-icons/svg/Add.svg');
                 filter: invert(25%) sepia(36%) saturate(4557%)
                     hue-rotate(192deg) brightness(100%) contrast(106%);
             }

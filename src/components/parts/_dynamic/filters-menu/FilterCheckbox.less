@@ -1,4 +1,5 @@
 @import (reference) '../../../../global';
+@SuccessStroke: '~@navikt/ds-icons/svg/SuccessStroke.svg';
 
 .filter-checkbox {
     &__wrapper {
@@ -19,7 +20,7 @@
                         background-color: transparent;
                         box-shadow: 0 0 0;
                         border: 0;
-                        background-image: url('~@navikt/ds-icons/svg/SuccessStroke.svg');
+                        background-image: url(@SuccessStroke);
                         background-size: 100%;
                     }
                 }
@@ -42,6 +43,11 @@
                     height: 16px;
                     border-radius: 2px;
                 }
+            }
+
+            .checkboks:checked:focus + .skjemaelement__label:before {
+                background-image: url(@SuccessStroke);
+                background-color: transparent;
             }
         }
     }
