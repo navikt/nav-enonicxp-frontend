@@ -1,6 +1,6 @@
 import React from 'react';
 import { BEM, classNames } from '../../../utils/classnames';
-import './chip.less';
+import './Chip.less';
 
 const bem = BEM('chip');
 
