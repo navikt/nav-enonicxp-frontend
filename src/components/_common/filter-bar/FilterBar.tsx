@@ -1,11 +1,10 @@
 import { Element } from 'nav-frontend-typografi';
 import { useFilterState } from 'store/hooks/useFilteredContent';
-import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { Chip } from '../chip/Chip';
 import './FilterBar.less';
 
 type FilterBarProps = {
-    layoutProps?: SectionWithHeaderProps;
+    layoutProps?: any;
 };
 
 export const FilterBar = ({ layoutProps }: FilterBarProps) => {
