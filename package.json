@@ -16,7 +16,7 @@
     "dependencies": {
         "@navikt/ds-css": "^0.2.8",
         "@navikt/ds-icons": "^0.2.2",
-        "@navikt/ds-react": "^0.2.13",
+        "@navikt/ds-react": "^0.3.2",
         "@navikt/ds-tokens": "^0.2.1-beta.9",
         "@navikt/fnrvalidator": "^1.1.4",
         "@navikt/nav-dekoratoren-moduler": "^1.2.10",

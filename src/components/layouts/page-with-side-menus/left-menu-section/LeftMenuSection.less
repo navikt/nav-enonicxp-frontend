@@ -1,23 +1,30 @@
 @import (reference) '../../../../global';
 
 .left-menu {
+    @topOffset: calc(var(--decorator-sticky-offset) + 1rem);
+    @bottomOffset: 2rem;
     overflow: auto;
-    max-height: calc(100vh);
+    max-height: calc(100vh - @topOffset - @bottomOffset);
+    top: @topOffset;
 
     .navds-accordion-anchor-menu {
-        margin-bottom: 1rem;
         background-color: white;
     }
 
     @media @mq-screen-mobile {
-        max-height: none;
         overflow: visible;
+        max-height: none;
     }
 }
 
 .region__leftMenu > * {
     padding: 1rem;
     background-color: white;
+
+    &:first-child {
+        margin-top: 1rem;
+    }
+
     &:not(:last-child) {
         margin-bottom: 1rem;
     }

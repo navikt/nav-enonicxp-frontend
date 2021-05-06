@@ -1,16 +1,26 @@
 import React from 'react';
 import { SectionWithHeaderProps } from '../../../types/component-props/layouts/section-with-header';
 import { ContentProps } from '../../../types/content-props/_content-common';
-import Region from '../Region';
-import { ProductPageLayout } from '@navikt/ds-react';
 import { LayoutContainer } from '../LayoutContainer';
+import Region from '../Region';
+import { Header } from '../../_common/header/Header';
+import { TypoStyle } from '../../../types/typo-style';
 import { XpImage } from '../../_common/image/XpImage';
 import { FilterBar } from '../../_common/filter-bar/FilterBar';
 import './SectionWithHeaderLayout.less';
 
+const getBorderStyle = ({
+    color = '#ffffff',
+    width = 3,
+    rounded,
+}: SectionWithHeaderProps['config']['border']) => ({
+    boxShadow: `0 0 0 ${width}px ${color} inset`,
+    ...(rounded && { borderRadius: `${width * 3}px` }),
+});
+
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: SectionWithHeaderProps;
+    layoutProps: SectionWithHeaderProps;
 };
 
 export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
@@ -20,23 +30,35 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const { title, anchorId, icon, highlight } = config;
+    const { title, anchorId, icon, border } = config;
 
-    const iconElement = icon?.mediaUrl && (
-        <XpImage imageProps={icon} alt={''} />
-    );
+    const iconImgProps = icon?.icon;
 
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            <ProductPageLayout.Panel
-                title={title}
-                anchor={anchorId}
-                highlight={highlight}
-                icon={iconElement}
+        <LayoutContainer
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+            layoutStyle={border && getBorderStyle(border)}
+            modifiers={icon && ['with-icon']}
+        >
+            {iconImgProps && (
+                <div
+                    className={'icon-container'}
+                    style={icon.color && { backgroundColor: icon.color }}
+                >
+                    <XpImage imageProps={iconImgProps} alt={''} />
+                </div>
+            )}
+            <Header
+                typoStyle={TypoStyle.Innholdstittel}
+                tag={'h2'}
+                justify={'left'}
+                id={anchorId}
             >
-                <FilterBar layoutProps={layoutProps} />
-                <Region pageProps={pageProps} regionProps={regions.content} />
-            </ProductPageLayout.Panel>
+                {title}
+            </Header>
+            <FilterBar layoutProps={layoutProps} />
+            <Region pageProps={pageProps} regionProps={regions.content} />
         </LayoutContainer>
     );
 };

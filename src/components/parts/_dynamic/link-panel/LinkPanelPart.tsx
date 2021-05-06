@@ -15,7 +15,7 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
         return <h2>Tomt lenkepanel</h2>;
     }
 
-    const { link, ingress, background, icon, vertical, variant } = config;
+    const { link, ingress, background, icon, variant } = config;
 
     const linkProps = getSelectableLinkProps(link);
     const bgUrl = getImageUrl(background);
@@ -23,7 +23,6 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
     const selectedVariant = variant?._selected;
     const variantConfig = selectedVariant && variant[selectedVariant];
     const isVerticalLayout =
-        vertical ||
         selectedVariant === 'vertical' ||
         selectedVariant === 'verticalWithBgColor';
 
@@ -58,7 +57,8 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                             style={{
                                 ...(selectedVariant ===
                                     'verticalWithBgColor' && {
-                                    backgroundColor: variantConfig.iconBgColor,
+                                    backgroundColor:
+                                        variantConfig.iconBg?.color,
                                     alignItems: variantConfig.iconJustify,
                                 }),
                             }}

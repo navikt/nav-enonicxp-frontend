@@ -37,10 +37,14 @@ export type FiltersMixin = {
     filters: string[];
 };
 
+export type ColorMixin = {
+    color: string;
+};
+
 export type LayoutCommonConfigMixin = Partial<{
     marginTop: number;
     marginBottom: number;
-    backgroundColor: string;
+    bgColor: ColorMixin;
     paddingSides: {
         _selected: 'standard' | 'fullWidth' | 'custom';
         custom?: {

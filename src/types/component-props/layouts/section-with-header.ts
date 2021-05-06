@@ -1,6 +1,6 @@
 import { LayoutCommonProps, LayoutType } from '../layouts';
 import { ComponentProps, ComponentType } from '../_component-common';
-import { HeaderCommonConfig } from '../_mixins';
+import { LayoutCommonConfigMixin } from '../_mixins';
 import { XpImageProps } from '../../media';
 
 export interface SectionWithHeaderProps extends LayoutCommonProps {
@@ -15,8 +15,11 @@ export interface SectionWithHeaderProps extends LayoutCommonProps {
     config: {
         title: string;
         anchorId: string;
-        backgroundColor?: string;
-        icon?: XpImageProps;
-        highlight?: boolean;
-    } & HeaderCommonConfig;
+        icon?: { icon: XpImageProps; color?: string };
+        border?: {
+            color: string;
+            rounded: boolean;
+            width: number;
+        };
+    } & Pick<LayoutCommonConfigMixin, 'bgColor'>;
 }
