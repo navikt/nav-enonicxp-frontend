@@ -4,12 +4,12 @@ import { Systemtittel } from 'nav-frontend-typografi';
 import { CheckboxGruppe } from 'nav-frontend-skjema';
 import { Expandable } from '../../../_common/expandable/Expandable';
 import Tekstomrade from 'nav-frontend-tekstomrade';
-import { ProductPageLayout } from '@navikt/ds-react';
 import { FilterCheckbox } from './FilterCheckbox';
 import { BEM } from '../../../../utils/classnames';
 import './FiltersMenu.less';
 
 import { useFilterState } from '../../../../store/hooks/useFilteredContent';
+import { Header } from 'components/_common/header/Header';
 
 const defaultTitle = 'Tilpass innhold';
 
@@ -51,11 +51,10 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
     };
 
     return (
-        <ProductPageLayout.Panel
-            title={title}
-            highlight
-            className={bem('wrapper')}
-        >
+        <div className={bem('wrapper')}>
+            <Header tag="h2" justify="left">
+                {title}
+            </Header>
             <Tekstomrade>{description}</Tekstomrade>
             <Expandable
                 {...config}
@@ -84,6 +83,6 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                     </CheckboxGruppe>
                 ))}
             </Expandable>
-        </ProductPageLayout.Panel>
+        </div>
     );
 };
