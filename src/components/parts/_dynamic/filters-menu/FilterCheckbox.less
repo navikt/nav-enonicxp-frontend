@@ -3,11 +3,11 @@
 
 .filter-checkbox {
     &__wrapper {
+        background-color: @navLysGra;
         border-radius: 4px;
         display: flex;
         justify-items: center;
         margin: 4px 0;
-        background-color: @navLysGra;
         padding: 2px 7px 2px 5px;
 
         &--selected {
@@ -18,10 +18,8 @@
                 .skjemaelement__label {
                     &:before {
                         background-color: transparent;
-                        box-shadow: 0 0 0;
-                        border: 0;
                         background-image: url(@SuccessStroke);
-                        background-size: 100%;
+                        box-shadow: 0 0 0;
                     }
                 }
             }
@@ -31,23 +29,24 @@
             margin-bottom: 0 !important;
 
             label {
-                font-size: 0.9rem;
                 color: @navMorkGra;
+                font-size: 0.9rem;
                 line-height: 16px;
                 padding-left: 27px;
 
                 &:before {
-                    box-shadow: @navGra60 inset 0 0 0 1.1px;
-                    border: 0;
-                    width: 16px;
-                    height: 16px;
+                    background-size: 100%;
                     border-radius: 2px;
+                    border: 0;
+                    box-shadow: @navGra60 inset 0 0 0 1.1px;
+                    height: 16px;
+                    width: 16px;
                 }
             }
 
             .checkboks:checked:focus + .skjemaelement__label:before {
-                background-image: url(@SuccessStroke);
                 background-color: transparent;
+                background-image: url(@SuccessStroke);
                 box-shadow: 0 0 0 3px @fokusFarge;
             }
 

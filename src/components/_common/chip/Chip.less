@@ -13,7 +13,7 @@
         cursor: pointer;
         display: inline-flex;
         font-size: 0.9rem;
-        margin: 0 5px 5px 0;
+        margin: 0 8px 5px 0;
         outline: none;
         padding: 2px 8px;
 
@@ -22,30 +22,28 @@
         }
 
         &::before {
-            content: '';
-            background-repeat: no-repeat;
             background-position: center;
+            background-repeat: no-repeat;
             background-size: cover;
+            content: '';
+            height: 15px;
+            margin-right: 5px;
+            position: relative;
             top: 0;
             width: 15px;
-            height: 15px;
-            position: relative;
-            margin-right: 5px;
         }
 
         &--added {
             color: @navMorkGra;
             background-color: @navBlaLighten80;
             &::before {
-                content: '';
                 background-image: url(@SuccessStroke);
             }
         }
 
-        &--addable {
+        &--notadded {
             &::before {
                 background-image: url(@Add);
-                content: '';
                 filter: invert(25%) sepia(36%) saturate(4557%)
                     hue-rotate(192deg) brightness(100%) contrast(106%);
             }

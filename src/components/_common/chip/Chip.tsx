@@ -27,7 +27,7 @@ export const Chip = ({
             aria-label={ariaLabel}
             className={classNames(
                 bem('button'),
-                selected ? bem('button', 'added') : bem('button', 'addable')
+                selected ? bem('button', 'added') : bem('button', 'notadded')
             )}
             onClick={onClick}
         >
