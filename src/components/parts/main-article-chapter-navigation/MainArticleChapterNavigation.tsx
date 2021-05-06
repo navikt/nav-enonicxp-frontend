@@ -3,8 +3,8 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { BEM } from 'utils/classnames';
-import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import { MainArticleChapterProps } from '../../../types/content-props/main-article-chapter-props';
+import { LenkeBase } from '../../_common/lenke/LenkeBase';
 import './MainArticleChapterNavigation.less';
 
 /*
@@ -38,9 +38,9 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
                     {parentSelected ? (
                         <Normaltekst>{parentTitle}</Normaltekst>
                     ) : (
-                        <LenkeInline href={parentPath}>
+                        <LenkeBase href={parentPath} className={'lenke'}>
                             {parentTitle}
-                        </LenkeInline>
+                        </LenkeBase>
                     )}
                 </li>
                 {chapters.map((chapter) => {
@@ -51,9 +51,12 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
                             {chapterSelected ? (
                                 <Normaltekst>{chapter.displayName}</Normaltekst>
                             ) : (
-                                <LenkeInline href={chapterPath}>
+                                <LenkeBase
+                                    href={chapterPath}
+                                    className={'lenke'}
+                                >
                                     {chapter.displayName}
-                                </LenkeInline>
+                                </LenkeBase>
                             )}
                         </li>
                     );

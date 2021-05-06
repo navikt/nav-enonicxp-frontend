@@ -51,35 +51,28 @@ html {
     max-width: @desktopMaxWidth;
     min-height: 20rem;
     margin: 0 auto;
-    transition: margin-top 0.2s ease-in-out;
-
-    &__offset {
-        margin-top: 3rem;
-    }
 
     @media @mq-screen-mobile {
-        padding: 2rem @padding-sides-mobile;
+        padding: 0 @padding-sides-mobile 2rem @padding-sides-mobile;
     }
 
     @media @mq-screen-tablet {
-        padding: 2rem @padding-sides-tablet;
+        padding: 0 @padding-sides-tablet 2rem @padding-sides-tablet;
     }
 
     @media @mq-screen-desktop {
-        padding: 2rem @padding-sides-desktop;
+        padding: 0 @padding-sides-desktop 2rem @padding-sides-desktop;
     }
 }
 
 #decorator-header {
     min-height: 88px;
-}
 
-@media @mq-screen-mobile {
-    #decorator-header {
+    @media @mq-screen-tablet-and-desktop {
         min-height: 106px;
-    }
-    #decorator-header.with-context {
-        min-height: 150px;
+        &.with-context {
+            min-height: 150px;
+        }
     }
 }
 

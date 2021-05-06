@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { setParams } from '@navikt/nav-dekoratoren-moduler';
-import { onBreadcrumbClick } from '@navikt/nav-dekoratoren-moduler';
-import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
+import {
+    onBreadcrumbClick,
+    onLanguageSelect,
+    setParams,
+} from '@navikt/nav-dekoratoren-moduler';
 import { ContentProps } from '../types/content-props/_content-common';
-import { prefetchOnMouseover } from '../utils/links';
-import { hookAndInterceptInternalLink } from '../utils/links';
-import GlobalNotifications from './_common/notifications/GlobalNotifications';
+import {
+    hookAndInterceptInternalLink,
+    prefetchOnMouseover,
+} from '../utils/links';
+import TopContainer from './_common/notifications/TopContainer';
 import { initAmplitude } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from '../utils/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
-import { getContentLanguages } from '../utils/languages';
-import { BEM, classNames } from '../utils/classnames';
 import { getInternalRelativePath } from '../utils/urls';
 import { ComponentReorderHack } from '../utils/ComponentReorderHack';
-
-const bem = BEM('app');
 
 type Props = {
     content: ContentProps;
@@ -25,13 +25,9 @@ type Props = {
 
 export const PageWrapper = (props: Props) => {
     const { content, children } = props;
-    const { notifications, editMode } = content;
+    const { editMode } = content;
 
     const router = useRouter();
-
-    const hasBreadcrumbsOrLanguageSelector =
-        content?.breadcrumbs?.length > 0 ||
-        getContentLanguages(content)?.length > 0;
 
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) =>
@@ -89,21 +85,11 @@ export const PageWrapper = (props: Props) => {
     }, [content]);
 
     return (
-        <div
-            className={classNames(
-                bem(),
-                hasBreadcrumbsOrLanguageSelector && bem('offset')
-            )}
-        >
+        <div className={'app'}>
             <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
             {content.editMode && <ComponentReorderHack />}
-            {notifications && (
-                <GlobalNotifications
-                    language={content?.language}
-                    notifications={notifications}
-                />
-            )}
+            <TopContainer content={content} />
             <div className={'content-wrapper'} id={'maincontent'}>
                 {children}
             </div>

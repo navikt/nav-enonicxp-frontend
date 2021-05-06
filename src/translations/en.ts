@@ -42,4 +42,8 @@ export const bundle: Translations = {
         selfservice: 'Selfservice',
         shortcuts: 'Shortcuts',
     },
+    header: {
+        copyLink: 'Copy link',
+        copiedLink: 'The link was copied',
+    },
 };
