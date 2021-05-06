@@ -15,11 +15,8 @@ import { initAmplitude } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from '../utils/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
-import { BEM, classNames } from '../utils/classnames';
 import { getInternalRelativePath } from '../utils/urls';
 import { ComponentReorderHack } from '../utils/ComponentReorderHack';
-
-const bem = BEM('app');
 
 type Props = {
     content: ContentProps;
@@ -88,7 +85,7 @@ export const PageWrapper = (props: Props) => {
     }, [content]);
 
     return (
-        <div className={classNames(bem())}>
+        <div className={'app'}>
             <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
             {content.editMode && <ComponentReorderHack />}
