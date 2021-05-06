@@ -66,7 +66,10 @@ export const Header = ({
             )}
             id={id}
         >
-            <TypoComponent tag={tag} className={bem('text')}>
+            <TypoComponent
+                tag={tag}
+                className={anchor && bem(undefined, 'with-anchor')}
+            >
                 {children}
             </TypoComponent>
             {anchor && (

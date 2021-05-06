@@ -1,0 +1,52 @@
+@import (reference) '../../../global';
+
+.top-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    transition: margin-top 0.2s ease-in-out;
+
+    .full-width-mixin();
+
+    &--white {
+        background-color: @navBakgrunn;
+    }
+
+    &--widgets-offset {
+        margin-top: 3rem;
+    }
+
+    &__notifications {
+        @numCols: 2;
+        @margin: 1rem;
+        @margin-width-term: @margin * (@numCols - 1) / @numCols;
+
+        padding-top: 1rem;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: calc((@desktopMaxWidth - @padding-sides-desktop * 2) * 0.75);
+        width: 100%;
+
+        @media @mq-screen-tablet-and-desktop {
+            .notification {
+                width: calc(100% / @numCols - @margin-width-term);
+
+                &:not(:nth-child(@{numCols}n)):not(:last-child) {
+                    margin-right: @margin;
+                }
+            }
+        }
+
+        @media @mq-screen-mobile {
+            padding-top: 0;
+            flex-direction: column;
+            align-items: center;
+
+            .notification {
+                width: 100%;
+            }
+        }
+    }
+}
