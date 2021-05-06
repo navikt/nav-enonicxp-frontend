@@ -53,7 +53,6 @@ export const Header = ({
     };
 
     const anchor = id ? (id.startsWith('#') ? id : `#${id}`) : undefined;
-
     const _typoStyle = typoStyle || headingToTypoStyle[tag];
     const TypoComponent = typoToComponent[_typoStyle] || Innholdstittel;
 
@@ -66,12 +65,7 @@ export const Header = ({
             )}
             id={id}
         >
-            <TypoComponent
-                tag={tag}
-                className={anchor && bem(undefined, 'with-anchor')}
-            >
-                {children}
-            </TypoComponent>
+            <TypoComponent tag={tag}>{children}</TypoComponent>
             {anchor && (
                 <span className={bem('copy-link-container')}>
                     <a
