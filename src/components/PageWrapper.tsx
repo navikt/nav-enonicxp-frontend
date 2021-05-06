@@ -20,8 +20,6 @@ import { ComponentReorderHack } from '../utils/ComponentReorderHack';
 
 import { usePageConfig } from '../store/hooks/usePageConfig';
 
-const bem = BEM('app');
-
 type Props = {
     content: ContentProps;
     children: React.ReactNode;
