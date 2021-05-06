@@ -73,7 +73,7 @@ export const Header = ({
                 {children}
             </TypoComponent>
             {anchor && (
-                <>
+                <span className={bem('copy-link-container')}>
                     <a
                         href={anchor}
                         onClick={copyLinkToClipboard}
@@ -84,6 +84,7 @@ export const Header = ({
                             className={bem('anchor-icon')}
                             alt={'Kopier lenke'}
                         />
+                        {'Kopier lenke'}
                     </a>
                     <span
                         className={classNames(
@@ -91,9 +92,9 @@ export const Header = ({
                             showCopyTooltip && bem('copy-tooltip', 'visible')
                         )}
                     >
-                        {'Lenke kopiert'}
+                        {'Lenken er kopiert'}
                     </span>
-                </>
+                </span>
             )}
         </div>
     );
