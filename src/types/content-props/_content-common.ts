@@ -13,10 +13,10 @@ import { LayoutProps } from '../component-props/layouts';
 import { MainArticleChapterData } from './main-article-chapter-props';
 import { OfficeInformationData } from './office-information-props';
 import { UrlData } from './url-props';
-import { Breadcrumb } from '../breadcrumb';
 import { NotificationProps } from '../notification-props';
 import { DynamicPageData } from './dynamic-page-props';
 import { PublishingCalendarData } from './publishing-calendar-props';
+import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 
 export enum ContentType {
     Error = 'error',
@@ -58,7 +58,7 @@ export type ContentProps = {
     data?: ContentData;
     page?: LayoutProps;
     editMode?: boolean;
-    breadcrumbs?: Breadcrumb[];
+    breadcrumbs?: DecoratorParams['breadcrumbs'];
     notifications?: NotificationProps[];
 };
 

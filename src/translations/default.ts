@@ -52,6 +52,10 @@ export const bundle = {
         event: 'Kalenderhendelse',
         publishdate: 'Publiseringsdato',
     },
+    header: {
+        copyLink: 'Kopier lenke',
+        copiedLink: 'Lenken er kopiert',
+    },
 };
 
 export type Translations = DeepPartial<typeof bundle>;
