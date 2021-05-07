@@ -1,5 +1,4 @@
 import { Language } from '../translations';
-import { Breadcrumb } from '../types/breadcrumb';
 import { getContentLanguages } from './languages';
 import {
     ContentProps,
@@ -7,26 +6,10 @@ import {
 } from '../types/content-props/_content-common';
 import { LanguageProps } from '../types/language';
 import { stripXpPathPrefix } from './urls';
-
-type DecoratorContext = 'privatperson' | 'arbeidsgiver' | 'samarbeidspartner';
-type DecoratorLanguage = 'en' | 'nb' | 'nn' | 'pl' | 'se';
-type DecoratorLanguageParams = {
-    locale: DecoratorLanguage;
-    url: string;
-    handleInApp?: boolean;
-};
-
-export type DecoratorParams = Partial<{
-    availableLanguages: DecoratorLanguageParams[];
-    breadcrumbs: Breadcrumb[];
-    chatbot: boolean;
-    feedback: boolean;
-    context: DecoratorContext;
-    language: DecoratorLanguage;
-}>;
+import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 
 const xpLangToDecoratorLang: {
-    [key in Language]: DecoratorLanguage;
+    [key in Language]: DecoratorParams['language'];
 } = {
     en: 'en',
     no: 'nb',
@@ -39,7 +22,7 @@ const getDecoratorLanguagesParam = (
     languages: LanguageProps[],
     currentLang: Language,
     currentPath: string
-): DecoratorLanguageParams[] =>
+): DecoratorParams['availableLanguages'] =>
     languages?.length > 0
         ? languages
               .map((lang) => ({
@@ -56,7 +39,7 @@ const getDecoratorLanguagesParam = (
               ])
         : [];
 
-const pathToRoleContext: { [key: string]: DecoratorContext } = {
+const pathToRoleContext: { [key: string]: DecoratorParams['context'] } = {
     person: 'privatperson',
     bedrift: 'arbeidsgiver',
     samarbeidspartner: 'samarbeidspartner',
@@ -100,5 +83,9 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         ),
         ...(feedbackEnabled && { feedback: true }),
         ...(chatbotDisabled && { chatbot: false }),
+        utilsBackground:
+            content.__typename === ContentType.PageWithSideMenus
+                ? 'white'
+                : 'gray',
     };
 };
