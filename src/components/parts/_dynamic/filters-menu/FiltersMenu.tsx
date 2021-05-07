@@ -55,7 +55,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
             <Header tag="h2" justify="left">
                 {title}
             </Header>
-            <Tekstomrade>{description}</Tekstomrade>
+            <Tekstomrade>{description || ''}</Tekstomrade>
             <Expandable
                 {...config}
                 expandableTitle={expandableTitle || defaultTitle}
