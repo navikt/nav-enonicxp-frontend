@@ -1,13 +1,13 @@
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store';
-import {
-    selectedFiltersAtPage,
-    availableFiltersAtPage,
-    toggleFilterSelectionAction,
-    clearFiltersForPageAction,
-    setAvailableFiltersAction,
-} from '../slices/filteredContent';
 import { usePageConfig } from './usePageConfig';
+import {
+    availableFiltersAtPage,
+    clearFiltersForPageAction,
+    selectedFiltersAtPage,
+    setAvailableFiltersAction,
+    toggleFilterSelectionAction,
+} from '../slices/filteredContent';
 import { Category } from 'types/store/filter-menu';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
@@ -16,11 +16,11 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 type FilterSelection = string[];
 
 type UseFilterState = {
-    selectedFilters: FilterSelection;
     availableFilters: Category[];
-    toggleFilter: (filterid: string) => void;
-    setAvailableFilters: (availableFilters: Category[]) => void;
     clearFiltersForPage: () => void;
+    selectedFilters: FilterSelection;
+    setAvailableFilters: (availableFilters: Category[]) => void;
+    toggleFilter: (filterid: string) => void;
 };
 
 export const useFilterState = (): UseFilterState => {

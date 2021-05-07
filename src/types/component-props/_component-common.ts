@@ -10,9 +10,17 @@ export enum ComponentType {
     Fragment = 'fragment',
 }
 
+type SectionWithHeaderConfig = {
+    expandable: boolean;
+    expandableOpenByDefault: boolean;
+    filters: string[];
+    html: string;
+};
+
 export type ComponentCommonProps = {
     type: ComponentType;
     path: string;
+    config?: any;
 };
 
 export interface PartComponentProps extends ComponentCommonProps {
