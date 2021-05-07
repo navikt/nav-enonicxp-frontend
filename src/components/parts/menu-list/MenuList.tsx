@@ -3,9 +3,9 @@ import { translator } from 'translations';
 import { BEM } from 'utils/classnames';
 import { MenuListItemKey } from 'types/menu-list-items';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { Expandable } from '../../_common/expandable/Expandable';
-import { Lenkeliste } from '../../_common/lenkeliste/Lenkeliste';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import './MenuList.less';
 
 const bem = BEM('menu-list');
 
@@ -36,23 +36,22 @@ export const MenuList = (props: ContentProps) => {
                         type === ContentType.PageList;
 
                     return (
-                        <Expandable
+                        <Ekspanderbartpanel
                             key={key}
-                            expandableOpenByDefault={isOpen}
-                            expandableTitle={getLabel(key) || key}
-                            expandable={true}
+                            apen={isOpen}
+                            tittel={getLabel(key) || key}
+                            className={bem('panel')}
                         >
-                            {/*{links.map((link, index) => (*/}
-                            {/*    <LenkeInline*/}
-                            {/*        href={link.url}*/}
-                            {/*        className={bem('link')}*/}
-                            {/*        key={index}*/}
-                            {/*    >*/}
-                            {/*        {link.text}*/}
-                            {/*    </LenkeInline>*/}
-                            {/*))}*/}
-                            <Lenkeliste lenker={links} withChevron={false} />
-                        </Expandable>
+                            <ul>
+                                {links.map((link, i) => (
+                                    <li key={i}>
+                                        <LenkeInline href={link.url}>
+                                            {link.text}
+                                        </LenkeInline>
+                                    </li>
+                                ))}
+                            </ul>
+                        </Ekspanderbartpanel>
                     );
                 })}
             </div>
