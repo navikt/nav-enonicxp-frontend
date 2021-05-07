@@ -5,7 +5,7 @@ import LinkLists from './link-lists/LinkLists';
 import { LinkPanels } from './link-panels/LinkPanels';
 import { MainArticleChapterNavigation } from './main-article-chapter-navigation/MainArticleChapterNavigation';
 import MainPanels from './main-panels/MainPanels';
-import { RelatedInfo } from './related-info/RelatedInfo';
+import { MenuList } from './menu-list/MenuList';
 import PageHeading from './page-heading/PageHeading';
 import PageList from './page-list/PageList';
 import Alert from './_dynamic/alert/Alert';
@@ -42,7 +42,7 @@ const partsWithPageData: {
     [PartType.MainArticle]: MainArticle,
     [PartType.MainArticleLinkedList]: MainArticleChapterNavigation,
     [PartType.MainPanels]: MainPanels,
-    [PartType.MenuList]: RelatedInfo,
+    [PartType.MenuList]: MenuList,
     [PartType.OfficeInformation]: OfficeInformation,
     [PartType.PageHeading]: PageHeading,
     [PartType.PageList]: PageList,
