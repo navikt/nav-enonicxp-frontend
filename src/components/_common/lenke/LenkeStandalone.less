@@ -3,7 +3,7 @@
 
 .navno-lenke {
     .lenke;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-decoration: none;
@@ -24,6 +24,10 @@
         .navno-lenke__lenketekst {
             text-decoration: underline;
         }
+    }
+
+    &--no-chevron {
+        .link-border-bottom-mixin();
     }
 
     &__label {
