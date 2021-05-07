@@ -26,26 +26,21 @@
             background-repeat: no-repeat;
             background-size: cover;
             content: '';
+            filter: invert(25%) sepia(36%) saturate(4557%) hue-rotate(192deg)
+                brightness(100%) contrast(106%);
             height: 15px;
             margin-right: 5px;
             position: relative;
             top: 0;
             width: 15px;
+            background-image: url(@Add);
         }
 
-        &--added {
+        &--checked {
             color: @navMorkGra;
             background-color: @navBlaLighten80;
             &::before {
                 background-image: url(@SuccessStroke);
-            }
-        }
-
-        &--notadded {
-            &::before {
-                background-image: url(@Add);
-                filter: invert(25%) sepia(36%) saturate(4557%)
-                    hue-rotate(192deg) brightness(100%) contrast(106%);
             }
         }
     }

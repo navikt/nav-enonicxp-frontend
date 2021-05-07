@@ -27,15 +27,11 @@ export const filteredContentSlice = createSlice({
             };
             const { selectedFilters } = filtersForPage;
 
-            let updatedSelectedFilters;
-
-            if (selectedFilters.includes(filterId)) {
-                updatedSelectedFilters = selectedFilters.filter(
-                    (item) => item !== filterId
-                );
-            } else {
-                updatedSelectedFilters = [...selectedFilters, filterId];
-            }
+            const updatedSelectedFilters: string[] = selectedFilters.includes(
+                filterId
+            )
+                ? selectedFilters.filter((item) => item !== filterId)
+                : [...selectedFilters, filterId];
 
             state[pageId] = {
                 ...filtersForPage,
@@ -64,9 +60,9 @@ export const filteredContentSlice = createSlice({
 });
 
 export const {
-    toggleFilterSelection: toggleFilterSelectionAction,
-    setAvailableFilters: setAvailableFiltersAction,
     clearFiltersForPage: clearFiltersForPageAction,
+    setAvailableFilters: setAvailableFiltersAction,
+    toggleFilterSelection: toggleFilterSelectionAction,
 } = filteredContentSlice.actions;
 
 export const selectedFiltersAtPage = (

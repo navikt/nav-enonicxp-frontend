@@ -5,31 +5,31 @@ import './Chip.less';
 const bem = BEM('chip');
 
 type ChipProps = {
-    children: React.ReactChild;
-    selected: boolean;
-    role: string;
     ariaLabel: string;
+    children: React.ReactChild;
     onClick: () => void;
+    role: string;
+    selected: boolean;
 };
 
 export const Chip = ({
+    ariaLabel,
     children,
-    selected,
     onClick,
     role,
-    ariaLabel,
+    selected,
 }: ChipProps) => {
     return (
         <button
-            role={role}
-            type="button"
             aria-selected={selected}
             aria-label={ariaLabel}
             className={classNames(
                 bem('button'),
-                selected ? bem('button', 'added') : bem('button', 'notadded')
+                selected && bem('button', 'checked')
             )}
             onClick={onClick}
+            role={role}
+            type="button"
         >
             {children}
         </button>

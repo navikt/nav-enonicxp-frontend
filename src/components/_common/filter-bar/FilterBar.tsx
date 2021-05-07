@@ -1,15 +1,15 @@
 import { Element } from 'nav-frontend-typografi';
 import { useFilterState } from 'store/hooks/useFilteredContent';
+import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { Chip } from '../chip/Chip';
 import './FilterBar.less';
 
 type FilterBarProps = {
-    layoutProps?: any;
+    layoutProps?: SectionWithHeaderProps;
 };
 
 export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const { components } = layoutProps.regions.content;
-
     const {
         selectedFilters,
         availableFilters,
@@ -20,7 +20,10 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         toggleFilter(filterId);
     };
 
-    const listOfFilters = components.reduce((acc, component) => {
+    // Create a flat array of all ids that any
+    // underlying part that has filter ids attached.
+    // We don't care about duplicate ids in the final array at the moment.
+    const filterIds = components.reduce((acc, component) => {
         if (component.config.filters) {
             return [...acc, ...component.config.filters];
         }
@@ -28,14 +31,17 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         return acc;
     }, []);
 
-    if (listOfFilters.length === 0) {
+    // None of the parts are using any filters, so don't show the FilterBar.
+    if (filterIds.length === 0) {
         return null;
     }
 
+    // As the previous array is a string[], we need to create a list of the
+    // actual filter objects to be able to display filterName later on.
     const filtersToDisplay = availableFilters
         .map((category) => {
             return category.filters.filter((filter) =>
-                listOfFilters.includes(filter.id)
+                filterIds.includes(filter.id)
             );
         })
         .flat();
