@@ -118,14 +118,3 @@ html {
 .panel-inset-focus-mixin() {
     box-shadow: 0 0 0 3px inset @fokusFarge;
 }
-
-.link-border-bottom-mixin() {
-    border-bottom: 1px rgba(@navBla, 0.75) solid;
-    text-decoration: none;
-    transition: border-bottom-color 0.12s ease-out;
-
-    &:hover,
-    &:focus {
-        border-bottom-color: transparent;
-    }
-}
