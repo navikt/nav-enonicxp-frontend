@@ -2,7 +2,7 @@ import { FilterCheckbox } from 'components/parts/_dynamic/filters-menu/FilterChe
 import { Element } from 'nav-frontend-typografi';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
-import { BEM, classNames } from '../../../utils/classnames';
+import { BEM } from '../../../utils/classnames';
 
 import './FilterBar.less';
 
