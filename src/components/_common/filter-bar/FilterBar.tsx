@@ -62,7 +62,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
             <FilterCheckbox
                 isSelected={isShowingAllSituations}
                 onToggleFilterHandler={() => clearFilters(filterIds)}
-                filter={{ id: '0', filterName: 'Vis alle situasjoner' }}
+                filter={{ id: '0', filterName: 'Alle situasjoner' }}
             />
             <div className={bem('container')}>
                 {filtersToDisplay.map((filter) => {
