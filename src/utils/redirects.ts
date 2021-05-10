@@ -1,18 +1,19 @@
-import {
-    ContentProps,
-    ContentType,
-} from '../types/content-props/_content-common';
-import { xpPathToPathname } from './paths';
+import { ContentType } from '../types/content-props/_content-common';
+import { ContentProps } from '../types/content-props/_content-common';
+import { stripXpPathPrefix } from './urls';
+import { getEnvUrl } from './url-lookup-table';
 
 export const getTargetIfRedirect = (contentData: ContentProps) => {
     switch (contentData?.__typename) {
         case ContentType.Site:
             return '/no/person';
         case ContentType.InternalLink:
-            return xpPathToPathname(contentData.data?.target?._path);
+            return getEnvUrl(
+                stripXpPathPrefix(contentData.data?.target?._path)
+            );
         case ContentType.ExternalLink:
         case ContentType.Url:
-            return xpPathToPathname(contentData.data?.url);
+            return getEnvUrl(stripXpPathPrefix(contentData.data?.url));
         default:
             return null;
     }

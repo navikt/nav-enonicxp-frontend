@@ -1,6 +1,6 @@
 import React from 'react';
 import { Ingress, Sidetittel } from 'nav-frontend-typografi';
-import { BEM } from 'utils/bem';
+import { BEM } from 'utils/classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import './PageHeading.less';
 
@@ -11,14 +11,14 @@ const PageHeading = (props: ContentProps) => {
     const ingress =
         props.__typename !== ContentType.SectionPage && props.data?.ingress;
     return (
-        <div className={bem('container')}>
+        <header className={bem('container')}>
             <Sidetittel>{displayName || 'Tittel'}</Sidetittel>
             {ingress && (
                 <div className={bem('ingress')}>
                     <Ingress>{ingress}</Ingress>
                 </div>
             )}
-        </div>
+        </header>
     );
 };
 

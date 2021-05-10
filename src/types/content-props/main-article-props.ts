@@ -1,11 +1,11 @@
 import { MainArticleChapterProps } from './main-article-chapter-props';
-import { ContentType, ContentProps } from './_content-common';
+import { ContentType, ContentProps, SeoDataProps } from './_content-common';
 import { MenuListItem } from '../menu-list-items';
 import { LanguageProps } from '../language';
-import { XpImage } from '../media';
+import { XpImageProps } from '../media';
 
 export type Picture = Partial<{
-    target: XpImage;
+    target: XpImageProps;
     size: '100' | '70' | '40';
     caption: string;
     altText: string;
@@ -20,10 +20,13 @@ export type MainArticleData = Partial<{
     social: string[];
     picture: Picture;
     menuListItems: MenuListItem;
-}>;
+    feedbackToggle: boolean;
+    chapters: MainArticleChapterProps[];
+}> &
+    SeoDataProps;
 
 export interface MainArticleProps extends ContentProps {
     __typename: ContentType.MainArticle;
-    children?: MainArticleChapterProps[];
+    children?: MainArticleChapterProps[]; // TODO: remove after backend chapters-update
     data: MainArticleData;
 }

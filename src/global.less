@@ -1,7 +1,9 @@
 @import '~nav-frontend-core/less/_variabler';
 @import '~nav-frontend-core/less/core';
+@import '~@navikt/ds-css/dist/index.css';
 
 @font-size-factor: 1.125;
+@pixel-size-rem: 1 / (16 * @font-size-factor);
 
 // Screen size breakpoints
 //
@@ -37,14 +39,23 @@ html {
 
 #__next,
 .decorator-utils-container {
-    background-color: #f1f1f1;
+    background-color: @navGraBakgrunn;
+}
+
+.decorator-utils-container {
+    min-height: 4rem;
+    margin-bottom: -4rem;
 }
 
 .app {
     max-width: @desktopMaxWidth;
     min-height: 20rem;
     margin: 0 auto;
-    background-color: #f1f1f1;
+    transition: margin-top 0.2s ease-in-out;
+
+    &__offset {
+        margin-top: 3rem;
+    }
 
     @media @screen-mobile {
         padding: 2rem @padding-sides-mobile;
@@ -91,4 +102,30 @@ html {
     padding: 0;
     position: absolute;
     width: 1px;
+}
+
+// Rounds a rem-value to the nearest value which is divisible by
+// the current pixel size, taking global font-size into account
+#round-rem(@value: 0) {
+    @valueUpper: @value + @pixel-size-rem / 2;
+    @result: if(
+        isunit(@value, rem),
+        @valueUpper - mod(@valueUpper, @pixel-size-rem),
+        0
+    );
+}
+
+// Makes the element cover the entire screen-width
+.full-width-mixin() {
+    @side-width: calc((100vw - 100%) / 2);
+    @side-width-negative: calc((100vw - 100%) / -2);
+
+    padding-left: @side-width;
+    padding-right: @side-width;
+    margin-left: @side-width-negative;
+    margin-right: @side-width-negative;
+}
+
+.panel-inset-focus-mixin() {
+    box-shadow: 0 0 0 3px inset @fokusFarge;
 }

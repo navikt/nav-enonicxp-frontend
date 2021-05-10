@@ -19,6 +19,7 @@ const contentToReactComponent: Partial<
     [ContentType.Fragment]: FragmentPage,
     [ContentType.TemplatePage]: TemplatePage,
 
+    [ContentType.PageWithSideMenus]: DynamicPage,
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.MainArticle]: DynamicPage,
     [ContentType.MainArticleChapter]: DynamicPage,

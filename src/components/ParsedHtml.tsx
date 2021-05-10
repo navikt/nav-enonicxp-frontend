@@ -5,11 +5,11 @@ import { parseHtmlByProps } from '../utils/parse-html';
 
 interface Props {
     content?: string;
-    isDraft?: boolean;
 }
 
 export const ParsedHtml = (props: Props) => {
     const { content } = props;
+
     if (!content) {
         return null;
     }

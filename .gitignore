@@ -31,3 +31,6 @@ yarn-error.log*
 /.idea/
 /nav-enonicxp-frontend.iml
 .env
+
+url-lookup-table.json
+/.github-token

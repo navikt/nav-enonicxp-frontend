@@ -1,11 +1,11 @@
 import React from 'react';
-import { makeErrorProps } from '../types/content-props/error-props';
-import { ErrorPage } from '../components/pages/error-page/ErrorPage';
+import { makeErrorProps } from '../utils/make-error-props';
+import PageBase from '../components/PageBase';
 
 export const ErrorPage404 = () => {
     const props = makeErrorProps('', 'Fant ikke siden', 404);
 
-    return <ErrorPage {...props} />;
+    return <PageBase content={props} />;
 };
 
 export default ErrorPage404;

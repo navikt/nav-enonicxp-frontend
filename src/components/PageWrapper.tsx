@@ -7,16 +7,16 @@ import { ContentProps } from '../types/content-props/_content-common';
 import { prefetchOnMouseover } from '../utils/links';
 import { hookAndInterceptInternalLink } from '../utils/links';
 import GlobalNotifications from './_common/notifications/GlobalNotifications';
-import { initAmplitude, logPageview } from '../utils/amplitude';
+import { initAmplitude } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
-import {
-    getContentLanguages,
-    getDecoratorLanguagesParam,
-} from '../utils/languages';
-import {
-    pathToRoleContext,
-    xpLangToDecoratorLang,
-} from '../utils/decorator-utils';
+import { getDecoratorParams } from '../utils/decorator-utils';
+import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
+import { getContentLanguages } from '../utils/languages';
+import { BEM, classNames } from '../utils/classnames';
+import { getInternalRelativePath } from '../utils/urls';
+import { ComponentReorderHack } from '../utils/ComponentReorderHack';
+
+const bem = BEM('app');
 
 type Props = {
     content: ContentProps;
@@ -25,18 +25,28 @@ type Props = {
 
 export const PageWrapper = (props: Props) => {
     const { content, children } = props;
-    const { notifications } = content;
+    const { notifications, editMode } = content;
 
     const router = useRouter();
 
+    const hasBreadcrumbsOrLanguageSelector =
+        content?.breadcrumbs?.length > 0 ||
+        getContentLanguages(content)?.length > 0;
+
     useEffect(() => {
-        onBreadcrumbClick((breadcrumb) => router.push(breadcrumb.url));
-        onLanguageSelect((language) => router.push(language.url));
+        onBreadcrumbClick((breadcrumb) =>
+            router.push(getInternalRelativePath(breadcrumb.url, editMode))
+        );
+        onLanguageSelect((language) =>
+            router.push(getInternalRelativePath(language.url, editMode))
+        );
 
         initAmplitude();
 
         const linkInterceptor = hookAndInterceptInternalLink(router);
-        const linkPrefetcher = prefetchOnMouseover(router);
+        const linkPrefetcher = editMode
+            ? undefined
+            : prefetchOnMouseover(router);
         const headerElement = document.getElementById('decorator-header');
         const footerElement = document.getElementById('decorator-footer');
 
@@ -61,55 +71,43 @@ export const PageWrapper = (props: Props) => {
                 footerElement.removeEventListener('mouseover', linkPrefetcher);
             }
         };
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         if (!content) {
             return;
         }
 
-        logPageview();
-
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
 
-        const { breadcrumbs, language } = content;
-        const rolePath = window.location.href.split('/')[4];
-        const context = pathToRoleContext[rolePath];
-
-        setParams({
-            ...(context && { context }),
-            language: (xpLangToDecoratorLang[language] || 'nb') as
-                | 'en'
-                | 'se'
-                | 'nb'
-                | 'nn', // TODO: add 'pl' to decorator-modules!,
-            breadcrumbs:
-                breadcrumbs?.map((crumb) => ({
-                    handleInApp: true,
-                    ...crumb,
-                })) || [],
-            availableLanguages: getDecoratorLanguagesParam(
-                getContentLanguages(content),
-                language,
-                content._path
-            ),
-        });
+        // Updates decorator-parameters client-side when navigating to new content
+        setParams(getDecoratorParams(content));
 
         document.documentElement.lang = content.language || 'no';
     }, [content]);
 
     return (
-        <>
+        <div
+            className={classNames(
+                bem(),
+                hasBreadcrumbsOrLanguageSelector && bem('offset')
+            )}
+        >
+            <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
+            {content.editMode && <ComponentReorderHack />}
             {notifications && (
-                <GlobalNotifications notifications={notifications} />
+                <GlobalNotifications
+                    language={content?.language}
+                    notifications={notifications}
+                />
             )}
             <div className={'content-wrapper'} id={'maincontent'}>
                 {children}
             </div>
-        </>
+        </div>
     );
 };
 

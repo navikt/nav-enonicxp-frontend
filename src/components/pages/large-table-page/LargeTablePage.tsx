@@ -1,11 +1,12 @@
 import React from 'react';
 import { LargeTableProps } from '../../../types/content-props/large-table-props';
-import { makeErrorProps } from '../../../types/content-props/error-props';
+import { makeErrorProps } from '../../../utils/make-error-props';
 import { parseHtmlByProps } from '../../../utils/parse-html';
 import { ErrorPage } from '../error-page/ErrorPage';
 import './LargeTablePage.less';
 
 export const LargeTablePage = (contentData: LargeTableProps) => {
+    console.log(contentData.data.text);
     return contentData?.data?.text || contentData?.editMode ? (
         <div className={'large-table-page'}>
             {contentData.data?.text

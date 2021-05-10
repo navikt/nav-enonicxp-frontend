@@ -1,8 +1,7 @@
 name: Deploy-to-q6
 on:
-  push:
-    tags:
-      - "v*-q6"
+  workflow_dispatch
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -23,10 +22,11 @@ jobs:
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
         run: |
           cat > .env <<EOF
+          ENV=q6
           NODE_ENV=production
           ADMIN_ORIGIN=https://portal-admin-q6.oera.no
           APP_ORIGIN=https://www-q6.nav.no
-          DECORATOR_URL=https://www-q6.nav.no/dekoratoren
+          DECORATOR_FALLBACK_URL=https://www-q6.nav.no/dekoratoren
           XP_ORIGIN=https://www-q6.nav.no
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
           SERVICE_SECRET=$SERVICE_SECRET

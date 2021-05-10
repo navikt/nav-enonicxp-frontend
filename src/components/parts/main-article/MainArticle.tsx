@@ -1,5 +1,5 @@
 import React from 'react';
-import { BEM } from '../../../utils/bem';
+import { BEM } from '../../../utils/classnames';
 import { translator } from 'translations';
 import Innholdsfortegnelse from './innholdsfortegnelse/Innholdsfortegnelse';
 import SosialeMedier from './SosialeMedier';
@@ -60,7 +60,6 @@ export const MainArticle = (propsInitial: ContentProps) => {
                 text={data.text}
                 className={bem('text')}
                 hasTableOfContents={hasTableOfContest}
-                isDraft={propsInitial.editMode}
             />
             <Faktaboks
                 fakta={data.fact}

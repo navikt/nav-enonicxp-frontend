@@ -2,7 +2,7 @@ import React from 'react';
 import { ContentList } from '../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { BEM } from 'utils/bem';
+import { BEM, classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import './LinkLists.less';
@@ -26,7 +26,12 @@ const LinkLists = (props: ContentProps) => {
                         />
                     )}
                     {newsContents?.data?.sectionContents?.length > 0 && (
-                        <div className={`${bem('column')} ${bem('nyheter')}`}>
+                        <div
+                            className={classNames(
+                                bem('column'),
+                                bem('nyheter')
+                            )}
+                        >
                             <ContentList
                                 content={newsContents}
                                 showDateLabel={true}

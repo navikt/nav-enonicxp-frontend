@@ -1,9 +1,5 @@
 @import (reference) '../../../../global';
 
-.region__dynamic-link-panel {
-    height: 100%;
-}
-
 .lenkepanel__indikator {
     display: none;
 }
@@ -16,7 +12,7 @@
         align-items: center;
         margin-bottom: 1rem;
         img {
-            height: 2rem;
+            height: #round-rem(2rem) [];
         }
     }
     &__title {
@@ -31,7 +27,8 @@
     &__ikon {
         margin-right: 0.5rem;
         img {
-            height: 1.75rem;
+            width: #round-rem(1.75rem) [];
+            height: #round-rem(1.75rem) [];
         }
     }
     &__header {
@@ -50,6 +47,7 @@
     width: 100%;
     display: flex;
     padding: 1.5rem;
+    margin: 0;
 
     background-repeat: no-repeat;
     background-position: bottom right;

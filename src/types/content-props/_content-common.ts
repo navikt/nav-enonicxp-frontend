@@ -1,7 +1,7 @@
 import { ExternalLinkData } from './external-link-props';
 import { InternalLinkData } from './internal-link-props';
 import { ContentListData } from './content-list-props';
-import { XpContentRef } from '../../utils/paths';
+import { XpContentRef } from '../../utils/urls';
 import { PageListData } from './page-list-props';
 import { MainArticleData } from './main-article-props';
 import { ErrorData } from './error-props';
@@ -15,6 +15,8 @@ import { OfficeInformationData } from './office-information-props';
 import { UrlData } from './url-props';
 import { Breadcrumb } from '../breadcrumb';
 import { NotificationProps } from '../notification-props';
+import { DynamicPageData } from './dynamic-page-props';
+import { PublishingCalendarData } from './publishing-calendar-props';
 
 export enum ContentType {
     Error = 'error',
@@ -36,6 +38,7 @@ export enum ContentType {
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
+    PageWithSideMenus = 'no_nav_navno_ContentPageWithSidemenus',
 }
 
 export type ContentProps = {
@@ -59,22 +62,25 @@ export type ContentProps = {
     notifications?: NotificationProps[];
 };
 
-type TypeSpecificData = ContentListData &
-    ErrorData &
-    ExternalLinkData &
-    InternalLinkData &
-    UrlData &
-    LargeTableData &
-    MainArticleData &
-    MainArticleChapterData &
-    OfficeInformationData &
-    PageListData &
-    SectionPageData &
-    TransportPageData;
+export type SeoDataProps = Partial<{
+    metaDescription: string;
+    canonicalUrl: string;
+    noindex: boolean;
+}>;
 
 export type ContentData = Partial<
-    {
-        canonicalUrl: string;
-        metaDescription: string;
-    } & TypeSpecificData
+    ContentListData &
+        ErrorData &
+        ExternalLinkData &
+        InternalLinkData &
+        UrlData &
+        LargeTableData &
+        MainArticleData &
+        MainArticleChapterData &
+        OfficeInformationData &
+        PageListData &
+        SectionPageData &
+        TransportPageData &
+        DynamicPageData &
+        PublishingCalendarData
 >;

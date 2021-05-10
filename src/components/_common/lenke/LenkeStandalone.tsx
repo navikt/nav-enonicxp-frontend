@@ -1,8 +1,10 @@
 import React from 'react';
 import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
-import { BEM } from 'utils/bem';
-import { LenkeUstylet } from './LenkeUstylet';
+import { BEM, classNames } from 'utils/classnames';
+import { LenkeBase } from './LenkeBase';
+import { isNavUrl } from '../../../utils/urls';
+import { PublicImage } from '../image/PublicImage';
 import './LenkeStandalone.less';
 
 type Props = {
@@ -12,6 +14,7 @@ type Props = {
     component?: string;
     linkGroup?: string;
     withChevron?: boolean;
+    showExternalLinkIcon?: boolean;
     analyticsLabel?: string;
     children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
@@ -23,6 +26,7 @@ export const LenkeStandalone = ({
     component,
     linkGroup,
     withChevron = true,
+    showExternalLinkIcon,
     children,
     analyticsLabel,
     ...rest
@@ -30,9 +34,9 @@ export const LenkeStandalone = ({
     const bem = BEM('navno-lenke');
 
     return (
-        <LenkeUstylet
+        <LenkeBase
             href={href}
-            className={`${bem()} ${className || ''}`}
+            className={classNames(bem(), className)}
             component={component}
             linkGroup={linkGroup}
             analyticsLabel={
@@ -43,13 +47,24 @@ export const LenkeStandalone = ({
         >
             <span className={bem('lenketekst')}>
                 {withChevron && (
-                    <span className={bem('ikon-container')}>
+                    <span className={bem('icon-container')}>
                         <HoyreChevron className={bem('chevron')} />
                     </span>
                 )}
-                {children}
+                {showExternalLinkIcon && !isNavUrl(href) ? (
+                    <span>
+                        {children}
+                        <PublicImage
+                            imagePath={'/gfx/external-link-icon.svg'}
+                            className={bem('icon-external')}
+                            alt={''}
+                        />
+                    </span>
+                ) : (
+                    <>{children}</>
+                )}
             </span>
             {label && <Undertekst className={bem('label')}>{label}</Undertekst>}
-        </LenkeUstylet>
+        </LenkeBase>
     );
 };

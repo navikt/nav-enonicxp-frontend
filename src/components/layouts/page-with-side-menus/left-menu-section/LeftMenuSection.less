@@ -1,0 +1,19 @@
+@import (reference) '../../../../global';
+
+.left-menu {
+    overflow: auto;
+    max-height: calc(100vh);
+
+    .navds-accordion-anchor-menu {
+        margin-bottom: 1rem;
+        background-color: white;
+    }
+}
+
+.region__leftMenu > * {
+    padding: 1rem;
+    background-color: white;
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+}
