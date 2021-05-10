@@ -10,6 +10,7 @@ import LargeTablePage from './pages/large-table-page/LargeTablePage';
 import { ClientsideRedirect } from './ClientsideRedirect';
 import { TemplatePage } from './pages/template-page/TemplatePage';
 import ErrorPage404 from '../pages/404';
+import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
 
 const contentToReactComponent: Partial<
     { [key in ContentType]: React.FunctionComponent<ContentProps> }
@@ -18,6 +19,7 @@ const contentToReactComponent: Partial<
     [ContentType.LargeTable]: LargeTablePage,
     [ContentType.Fragment]: FragmentPage,
     [ContentType.TemplatePage]: TemplatePage,
+    [ContentType.GlobalValues]: GlobalValuesPage,
 
     [ContentType.PageWithSideMenus]: DynamicPage,
     [ContentType.DynamicPage]: DynamicPage,

@@ -1,5 +1,5 @@
 import React from 'react';
-import Notification from './Notification';
+import Notification from '../notifications/Notification';
 import { translator } from 'translations';
 import { BEM, classNames } from '../../../utils/classnames';
 import {
@@ -11,18 +11,25 @@ import './TopContainer.less';
 
 const bem = BEM('top-container');
 
+const hideNotificationForContentTypes: { [key in ContentType]?: boolean } = {
+    [ContentType.LargeTable]: true,
+    [ContentType.GlobalValues]: true,
+};
+
 type Props = {
     content: ContentProps;
 };
 
 export const TopContainer = ({ content }: Props) => {
-    const { __typename, notifications, language, breadcrumbs } = content;
+    const { __typename: type, notifications, language, breadcrumbs } = content;
 
     const hasDecoratorWidgets =
         breadcrumbs?.length > 0 || getContentLanguages(content)?.length > 0;
 
-    const hasContentWithWhiteHeader =
-        __typename === ContentType.PageWithSideMenus;
+    const hasContentWithWhiteHeader = type === ContentType.PageWithSideMenus;
+
+    const showNotifications =
+        !hideNotificationForContentTypes[type] && notifications?.length > 0;
 
     const getLabel = translator('notifications', language);
 
@@ -34,7 +41,7 @@ export const TopContainer = ({ content }: Props) => {
                 hasDecoratorWidgets && bem(undefined, 'widgets-offset')
             )}
         >
-            {notifications?.length > 0 && (
+            {showNotifications && (
                 <section
                     className={bem('notifications')}
                     aria-label={getLabel('label')}

@@ -53,7 +53,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
         return {
             '@type': 'GovernmentOffice',
             '@id': departmentId,
-            name: fullOfficeName,
+            itemName: fullOfficeName,
             location: mottak.stedsbeskrivelse || '',
             image: 'https://www.nav.no/gfx/google-search-nav-logo.png',
             telephone,
@@ -119,7 +119,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             category: 'https://www.wikidata.org/wiki/Q81068910',
             announcementLocation: {
                 '@type': 'GovernmentOffice',
-                name: unit.navn,
+                itemName: unit.navn,
                 image: 'https://www.nav.no/gfx/google-search-nav-logo.png',
                 telephone,
                 url: getInternalAbsoluteUrl(props._path),

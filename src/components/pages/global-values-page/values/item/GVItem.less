@@ -1,0 +1,37 @@
+@import (reference) '../../../../../global';
+@import (reference) '~nav-frontend-typografi-style/src/index';
+
+.gv-item {
+    display: flex;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+        margin-bottom: #round-rem(0.5rem) [];
+    }
+
+    &__name {
+        .typo-element;
+    }
+
+    &__value {
+        .typo-undertekst;
+        margin-left: 1rem;
+    }
+
+    &__key-editor {
+        display: flex;
+
+        .knapp {
+            margin-left: 0.25rem;
+        }
+    }
+
+    &__right-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        & > :not(:last-child) {
+            margin-bottom: #round-rem(0.25rem) [];
+        }
+    }
+}

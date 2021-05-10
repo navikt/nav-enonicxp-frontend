@@ -23,6 +23,8 @@ module.exports = configWithAllTheThings({
     env: {
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
+        XP_ORIGIN: process.env.XP_ORIGIN,
+        ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
     },
     redirects: async () => [
         {

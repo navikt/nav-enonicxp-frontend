@@ -1,0 +1,26 @@
+@import (reference) '../../../global';
+@import (reference) '~nav-frontend-typografi-style/src/index';
+
+.global-values-page {
+    @paddingVertical: 2rem;
+    @paddingHorizontal: @paddingVertical * 1.62;
+    width: 100%;
+    background-color: white;
+    padding: @paddingVertical @paddingHorizontal;
+    border: 4px solid @navGronnLighten60;
+
+    &__header {
+        margin-bottom: 1rem;
+    }
+
+    &__left-col {
+        min-width: 60%;
+    }
+
+    &__sub-header-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+}

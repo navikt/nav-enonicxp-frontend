@@ -17,6 +17,7 @@ import { NotificationProps } from '../notification-props';
 import { DynamicPageData } from './dynamic-page-props';
 import { PublishingCalendarData } from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { GlobalValuesData } from './global-values-props';
 
 export enum ContentType {
     Error = 'error',
@@ -39,6 +40,7 @@ export enum ContentType {
     OfficeInformation = 'no_nav_navno_OfficeInformation',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
     PageWithSideMenus = 'no_nav_navno_ContentPageWithSidemenus',
+    GlobalValues = 'no_nav_navno_GlobalValueSet',
 }
 
 export type ContentProps = {
@@ -87,5 +89,6 @@ export type ContentData = Partial<
         SectionPageData &
         TransportPageData &
         DynamicPageData &
-        PublishingCalendarData
+        PublishingCalendarData &
+        GlobalValuesData
 >;
