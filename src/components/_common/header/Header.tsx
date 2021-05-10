@@ -20,6 +20,7 @@ type Props = {
     tag: HeadingTag;
     typoStyle?: TypoStyle;
     justify?: HeaderCommonConfig['justify'];
+    hideCopyButton?: boolean;
     id?: string;
     className?: string;
 };
@@ -29,6 +30,7 @@ export const Header = ({
     tag,
     typoStyle,
     justify,
+    hideCopyButton,
     id,
     className,
 }: Props) => {
@@ -66,7 +68,7 @@ export const Header = ({
             id={id}
         >
             <TypoComponent tag={tag}>{children}</TypoComponent>
-            {anchor && (
+            {anchor && !hideCopyButton && (
                 <span className={bem('copy-link-container')}>
                     <a
                         href={anchor}
