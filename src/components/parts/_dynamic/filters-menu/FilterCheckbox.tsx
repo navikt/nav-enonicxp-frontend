@@ -1,4 +1,3 @@
-import { Checkbox } from 'nav-frontend-skjema';
 import { Filter } from 'types/store/filter-menu';
 import { BEM, classNames } from '../../../../utils/classnames';
 import './FilterCheckbox.less';

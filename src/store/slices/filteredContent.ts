@@ -17,6 +17,21 @@ export const filteredContentSlice = createSlice({
     name: 'filteredContent',
     initialState,
     reducers: {
+        clearFilters: (state, action: PayloadAction<ClearFiltersPayload>) => {
+            const { pageId, filterIds = [] } = action.payload;
+
+            const updatedFilters = state[pageId].selectedFilters.filter(
+                (filterId) => !filterIds.includes(filterId)
+            );
+            state[pageId].selectedFilters = updatedFilters;
+        },
+        clearFiltersForPage: (
+            state,
+            action: PayloadAction<ClearFiltersPayload>
+        ) => {
+            const { pageId } = action.payload;
+            state[pageId].selectedFilters = [];
+        },
         toggleFilterSelection: (
             state,
             action: PayloadAction<FilterSelectionPayload>
@@ -49,18 +64,12 @@ export const filteredContentSlice = createSlice({
 
             state[pageId] = { ...filtersForPage, availableFilters };
         },
-        clearFiltersForPage: (
-            state,
-            action: PayloadAction<ClearFiltersPayload>
-        ) => {
-            const { pageId } = action.payload;
-            state[pageId].selectedFilters = [];
-        },
     },
 });
 
 export const {
     clearFiltersForPage: clearFiltersForPageAction,
+    clearFilters: clearFiltersAction,
     setAvailableFilters: setAvailableFiltersAction,
     toggleFilterSelection: toggleFilterSelectionAction,
 } = filteredContentSlice.actions;

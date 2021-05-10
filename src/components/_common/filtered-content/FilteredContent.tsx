@@ -21,19 +21,17 @@ export const FilteredContent = ({ filters, children }: Props) => {
         return category.filters.some((filter) => filters.includes(filter.id));
     });
 
-    const isFilteringOnRelevantCategories = relevantCategories.some(
-        (category) => {
-            return category.filters.some((filter) =>
-                selectedFilters.includes(filter.id)
-            );
-        }
-    );
+    const isFiltering = relevantCategories.some((category) => {
+        return category.filters.some((filter) =>
+            selectedFilters.includes(filter.id)
+        );
+    });
 
     const isContentMatchingFilters = filters.some((filter) =>
         selectedFilters.includes(filter)
     );
 
-    if (isFilteringOnRelevantCategories && !isContentMatchingFilters) {
+    if (isFiltering && !isContentMatchingFilters) {
         return null;
     }
 
