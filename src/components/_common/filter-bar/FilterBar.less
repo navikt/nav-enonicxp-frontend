@@ -1,7 +1,18 @@
-.filterBar {
-    margin-top: 1.5rem;
+.filter-bar {
+    &__wrapper {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        margin-top: 1.5rem;
 
-    .overskrift {
-        margin-bottom: 1rem;
+        .overskrift {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 }

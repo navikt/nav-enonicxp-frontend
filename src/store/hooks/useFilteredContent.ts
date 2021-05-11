@@ -7,6 +7,7 @@ import {
     selectedFiltersAtPage,
     setAvailableFiltersAction,
     toggleFilterSelectionAction,
+    clearFiltersAction,
 } from '../slices/filteredContent';
 import { Category } from 'types/store/filter-menu';
 
@@ -20,7 +21,9 @@ type UseFilterState = {
     clearFiltersForPage: () => void;
     selectedFilters: FilterSelection;
     setAvailableFilters: (availableFilters: Category[]) => void;
-    toggleFilter: (filterid: string) => void;
+    toggleFilter: (filtr: string) => void;
+    selectAllSituations: (categoryIndex: number) => void;
+    clearFilters: (filterIds: string[]) => void;
 };
 
 export const useFilterState = (): UseFilterState => {
@@ -29,17 +32,30 @@ export const useFilterState = (): UseFilterState => {
     const { pageConfig } = usePageConfig();
     const { pageId } = pageConfig;
 
-    const selectedFilters = useAppSelector<FilterSelection>((state) =>
-        selectedFiltersAtPage(state, pageId)
-    );
-
     const availableFilters = useAppSelector<Category[]>((state) =>
         availableFiltersAtPage(state, pageId)
     );
 
-    const toggleFilter = (filterId: string): void => {
-        const payload = { pageId, filterId };
-        dispatch(toggleFilterSelectionAction(payload));
+    const clearFiltersForPage = () => {
+        const payload = { pageId };
+        dispatch(clearFiltersForPageAction(payload));
+    };
+
+    const clearFilters = (filterIds: string[]): void => {
+        const payload = { pageId, filterIds };
+        dispatch(clearFiltersAction(payload));
+    };
+
+    const selectedFilters = useAppSelector<FilterSelection>((state) =>
+        selectedFiltersAtPage(state, pageId)
+    );
+
+    const selectAllSituations = (categoryIndex: number) => {
+        const filtersInCategory = availableFilters[categoryIndex].filters.map(
+            (filter) => filter.id
+        );
+
+        dispatch(clearFiltersAction({ pageId, filterIds: filtersInCategory }));
     };
 
     const setAvailableFilters = (availableFilters: Category[]) => {
@@ -47,16 +63,18 @@ export const useFilterState = (): UseFilterState => {
         dispatch(setAvailableFiltersAction(payload));
     };
 
-    const clearFiltersForPage = () => {
-        const payload = { pageId };
-        dispatch(clearFiltersForPageAction(payload));
+    const toggleFilter = (filterId: string): void => {
+        const payload = { pageId, filterId };
+        dispatch(toggleFilterSelectionAction(payload));
     };
 
     return {
-        selectedFilters,
         availableFilters,
-        toggleFilter,
-        setAvailableFilters,
+        clearFilters,
         clearFiltersForPage,
+        selectAllSituations,
+        selectedFilters,
+        setAvailableFilters,
+        toggleFilter,
     };
 };

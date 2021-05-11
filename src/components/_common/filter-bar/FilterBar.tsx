@@ -1,8 +1,12 @@
+import { FilterCheckbox } from 'components/parts/_dynamic/filters-menu/FilterCheckbox';
 import { Element } from 'nav-frontend-typografi';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
-import { Chip } from '../chip/Chip';
+import { BEM } from '../../../utils/classnames';
+
 import './FilterBar.less';
+
+const bem = BEM('filter-bar');
 
 type FilterBarProps = {
     layoutProps?: SectionWithHeaderProps;
@@ -14,11 +18,8 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         selectedFilters,
         availableFilters,
         toggleFilter,
+        clearFilters,
     } = useFilterState();
-
-    const onFilterClick = (filterId: string) => {
-        toggleFilter(filterId);
-    };
 
     // Create a flat array of all ids that any
     // underlying part that has filter ids attached.
@@ -31,7 +32,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         return acc;
     }, []);
 
-    // None of the parts are using any filters, so don't show the FilterBar.
+    // None of the parts are attached to filters, so don't show the FilterBar.
     if (filterIds.length === 0) {
         return null;
     }
@@ -46,29 +47,38 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         })
         .flat();
 
+    const selectedFilterCount = filterIds.filter((filterId) =>
+        selectedFilters.includes(filterId)
+    ).length;
+
+    const isShowingAllSituations =
+        selectedFilterCount === 0 || selectedFilterCount === filterIds.length;
+
     return (
-        <div className="filterBar">
+        <div className={bem('wrapper')}>
             <Element tag="h3" className="overskrift">
                 Viser informasjon for:
             </Element>
-            {filtersToDisplay.map((filter) => {
-                const isSelected = selectedFilters.includes(filter.id);
-                return (
-                    <Chip
-                        ariaLabel={
-                            isSelected
-                                ? `Skjul ${filter.filterName}`
-                                : `Vis  ${filter.filterName}`
-                        }
-                        role="option"
-                        key={filter.id}
-                        selected={isSelected}
-                        onClick={() => onFilterClick(filter.id)}
-                    >
-                        {filter.filterName}
-                    </Chip>
-                );
-            })}
+            <FilterCheckbox
+                isSelected={isShowingAllSituations}
+                onToggleFilterHandler={() => clearFilters(filterIds)}
+                filter={{ id: '0', filterName: 'Alle situasjoner' }}
+            />
+            <div className={bem('container')}>
+                {filtersToDisplay.map((filter) => {
+                    const isSelected = selectedFilters.includes(filter.id);
+                    return (
+                        <FilterCheckbox
+                            key={filter.id}
+                            isSelected={isSelected}
+                            onToggleFilterHandler={() =>
+                                toggleFilter(filter.id)
+                            }
+                            filter={filter}
+                        />
+                    );
+                })}
+            </div>
         </div>
     );
 };

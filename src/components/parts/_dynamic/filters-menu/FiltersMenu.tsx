@@ -29,6 +29,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         toggleFilter,
         setAvailableFilters,
         clearFiltersForPage,
+        selectAllSituations,
     } = useFilterState();
 
     useEffect(() => {
@@ -43,19 +44,15 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
     }, []);
 
     if (!config?.categories) {
-        return <div>{'Tom filter-meny'}</div>;
+        return <div>{'Det mangler filtere i denne listen.'}</div>;
     }
-
-    const onToggleFilterHandler = (id: string) => {
-        toggleFilter(id);
-    };
 
     return (
         <div className={bem('wrapper')}>
             <Header tag="h2" justify="left">
                 {title}
             </Header>
-            <Tekstomrade>{description}</Tekstomrade>
+            <Tekstomrade>{description || ''}</Tekstomrade>
             <Expandable
                 {...config}
                 expandableTitle={expandableTitle || defaultTitle}
@@ -65,23 +62,47 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                         {title || defaultTitle}
                     </Systemtittel>
                 )}
-                {categories.map((category, indexCategory) => (
-                    <CheckboxGruppe
-                        legend={category.categoryName}
-                        key={indexCategory}
-                    >
-                        {category.filters.map((filter, filterIndex) => (
+                {categories.map((category, categoryIndex) => {
+                    const selectedFilterCount = category.filters.filter(
+                        (filter) => selectedFilters.includes(filter.id)
+                    ).length;
+
+                    const isShowingAllSituations =
+                        selectedFilterCount === 0 ||
+                        selectedFilterCount === category.filters.length;
+
+                    const allSituations = {
+                        id: `CATEGORY-${categoryIndex}-ALL_SITUATIONS`,
+                        filterName: 'Alle situasjoner',
+                    };
+
+                    return (
+                        <CheckboxGruppe
+                            legend={category.categoryName}
+                            key={categoryIndex}
+                        >
                             <FilterCheckbox
-                                onToggleFilterHandler={(filterId) =>
-                                    onToggleFilterHandler(filterId)
+                                onToggleFilterHandler={() =>
+                                    selectAllSituations(categoryIndex)
                                 }
-                                filter={filter}
-                                isSelected={selectedFilters.includes(filter.id)}
-                                key={filterIndex}
+                                filter={allSituations}
+                                isSelected={isShowingAllSituations}
                             />
-                        ))}
-                    </CheckboxGruppe>
-                ))}
+                            {category.filters.map((filter, filterIndex) => (
+                                <FilterCheckbox
+                                    onToggleFilterHandler={(filterId) =>
+                                        toggleFilter(filterId)
+                                    }
+                                    filter={filter}
+                                    isSelected={selectedFilters.includes(
+                                        filter.id
+                                    )}
+                                    key={filterIndex}
+                                />
+                            ))}
+                        </CheckboxGruppe>
+                    );
+                })}
             </Expandable>
         </div>
     );

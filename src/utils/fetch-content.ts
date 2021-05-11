@@ -19,7 +19,7 @@ const fetchSiteContent = (
     const config = { headers: { secret } };
     console.log('Fetching content from ', url);
 
-    return fetchWithTimeout(url, 5000, config)
+    return fetchWithTimeout(url, 15000, config)
         .then((res) => {
             if (res.ok) {
                 return res.json();

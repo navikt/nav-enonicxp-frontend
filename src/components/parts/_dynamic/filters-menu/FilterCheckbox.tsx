@@ -1,7 +1,7 @@
-import { Checkbox } from 'nav-frontend-skjema';
 import { Filter } from 'types/store/filter-menu';
 import { BEM, classNames } from '../../../../utils/classnames';
 import './FilterCheckbox.less';
+import { v4 as uuid } from 'uuid';
 
 const bem = BEM('filter-checkbox');
 
@@ -16,6 +16,8 @@ export const FilterCheckbox = ({
     filter,
     onToggleFilterHandler,
 }: FilterCheckboxProps) => {
+    const id = uuid();
+
     return (
         <div
             className={classNames(
@@ -23,12 +25,23 @@ export const FilterCheckbox = ({
                 isSelected && bem('wrapper', 'selected')
             )}
         >
-            <Checkbox
+            <input
+                type="checkbox"
                 onChange={(event) => onToggleFilterHandler(event.target.value)}
                 checked={isSelected}
                 value={filter.id}
-                label={filter.filterName}
+                id={id}
+                className={bem('checkbox')}
             />
+            <label
+                htmlFor={id}
+                className={classNames(
+                    bem('label'),
+                    isSelected && bem('label', 'selected')
+                )}
+            >
+                {filter.filterName}
+            </label>
         </div>
     );
 };
