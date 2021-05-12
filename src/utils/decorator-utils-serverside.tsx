@@ -10,7 +10,7 @@ import { objectToQueryString } from './fetch-utils';
 const decoratorUrl = process.env.DECORATOR_FALLBACK_URL;
 const decoratorEnv = process.env.ENV as Props['env'];
 const decoratorLocalPort = process.env.DECORATOR_LOCAL_PORT || 8100;
-const fetchTimeoutMs = 5000;
+const fetchTimeoutMs = 15000;
 
 const decoratorComponentsCSR = (params?: DecoratorParams): Components => {
     const query = objectToQueryString(params);
