@@ -30,6 +30,7 @@ export const HeaderPart = ({ config }: HeaderProps) => {
             typoStyle={typoStyle}
             id={anchorId}
             justify={justify}
+            hideCopyButton={true}
             className={'header-part'}
         >
             {title}
