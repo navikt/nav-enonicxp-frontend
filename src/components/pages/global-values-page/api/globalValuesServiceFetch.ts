@@ -2,9 +2,9 @@ import {
     fetchWithTimeout,
     objectToQueryString,
 } from '../../../../utils/fetch-utils';
-import { adminOrigin, xpServicePath } from '../../../../utils/urls';
+import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
 
-const serviceUrl = `${adminOrigin}${xpServicePath}/globalValues`;
+const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/globalValues`;
 
 type GVRequestTypes = 'usage' | 'add' | 'modify' | 'remove' | 'getSet';
 

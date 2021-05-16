@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import {
-    GlobalValueItem,
-    GlobalValuesProps,
-} from '../../../types/content-props/global-values-props';
+import React, { useEffect } from 'react';
+import { GlobalValuesProps } from '../../../types/content-props/global-values-props';
 import { BEM } from '../../../utils/classnames';
 import {
     Innholdstittel,
     Undertekst,
     Undertittel,
 } from 'nav-frontend-typografi';
-import { GVMessages, MessageProps } from './messages/GVMessages';
+import { GVMessages } from './components/messages/GVMessages';
 import ErrorPage404 from '../../../pages/404';
-import { GVItems } from './values/GVItems';
-import { GVAddItem } from './values/add-item/GVAddItem';
+import { GVItems } from './components/values/GVItems';
+import { GVAddItem } from './components/values/add-item/GVAddItem';
+import { Provider } from 'react-redux';
+import { gvEditorStore } from './store/gvEditorStore';
+import { useGvEditorState } from './store/useGvEditorState';
+import { setContentIdAction, setValueItemsAction } from './store/gvEditorState';
 import './GlobalValuesPage.less';
-import { gvServiceGetValueSet } from './api/services/getSet';
 
 const bem = BEM('global-values-page');
 
@@ -30,15 +30,8 @@ const hideDecorator = () => {
     }
 };
 
-const GlobalValuesDisplay = ({
-    data,
-    displayName,
-    _id: contentId,
-}: GlobalValuesProps) => {
-    const [messages, setMessages] = useState<MessageProps[]>([]);
-    const [valueItems, setValueItems] = useState<GlobalValueItem[]>(
-        data.valueItems || []
-    );
+const GlobalValuesDisplay = ({ data, displayName, _id }: GlobalValuesProps) => {
+    const { contentId } = useGvEditorState();
 
     useEffect(() => {
         hideDecorator();
@@ -49,38 +42,41 @@ const GlobalValuesDisplay = ({
             <Innholdstittel className={bem('header')}>
                 {'Globale verdier'}
             </Innholdstittel>
-            <div className={bem('left-col')}>
-                <div className={bem('sub-header-row')}>
-                    <div className={bem('sub-header')}>
-                        <Undertittel
-                            className={bem('header-category')}
-                        >{`Kategori: ${displayName}`}</Undertittel>
-                        <Undertekst
-                            className={bem('header-id')}
-                        >{`Kategori-id: ${contentId}`}</Undertekst>
+            <div className={bem('content')}>
+                <div className={bem('left-col')}>
+                    <div className={bem('sub-header-row')}>
+                        <div className={bem('sub-header')}>
+                            <Undertittel
+                                className={bem('header-category')}
+                            >{`Kategori: ${displayName}`}</Undertittel>
+                            <Undertekst
+                                className={bem('header-id')}
+                            >{`Kategori-id: ${contentId}`}</Undertekst>
+                        </div>
+                        <GVAddItem />
                     </div>
-                    <GVAddItem
-                        allItems={valueItems}
-                        contentId={contentId}
-                        refreshValueItems={() => {
-                            gvServiceGetValueSet(contentId).then(
-                                (res) => res?.items && setValueItems(res.items)
-                            );
-                        }}
-                    />
+                    <GVItems />
                 </div>
-                <GVItems items={valueItems} contentId={contentId} />
+                <GVMessages />
             </div>
-            <GVMessages messages={messages} />
         </div>
     );
 };
 
-// This is a helper page for editors and should return 404 publically
+// This is a page for editors only and should return 404 publically
 export const GlobalValuesPage = (props: GlobalValuesProps) => {
     if (!props.editMode) {
         return <ErrorPage404 />;
     }
 
-    return <GlobalValuesDisplay {...props} />;
+    gvEditorStore.dispatch(setContentIdAction({ contentId: props._id }));
+    gvEditorStore.dispatch(
+        setValueItemsAction({ valueItems: props.data?.valueItems || [] })
+    );
+
+    return (
+        <Provider store={gvEditorStore}>
+            <GlobalValuesDisplay {...props} />
+        </Provider>
+    );
 };

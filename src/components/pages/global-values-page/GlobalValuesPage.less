@@ -13,8 +13,18 @@
         margin-bottom: 1rem;
     }
 
+    &__content {
+        display: flex;
+        width: 100%;
+
+        @media @mq-screen-mobile {
+            flex-direction: column;
+        }
+    }
+
     &__left-col {
         min-width: 60%;
+        width: 100%;
     }
 
     &__sub-header-row {

@@ -1,18 +1,24 @@
 import { globalValuesServiceFetch } from '../globalValuesServiceFetch';
 
+type ContentInfo = {
+    id: string;
+    path: string;
+    displayName: string;
+};
+
 type ServiceResponse = {
-    usage: string[];
+    usage: ContentInfo[];
 };
 
 export const gvServiceGetUsage = (
     key: string
-): Promise<ServiceResponse | null> =>
+): Promise<ServiceResponse['usage'] | null> =>
     globalValuesServiceFetch<ServiceResponse>('usage', {
         key,
     })
         .then((json) => {
             if (Array.isArray(json.usage)) {
-                return json;
+                return json.usage;
             }
 
             throw new Error(
