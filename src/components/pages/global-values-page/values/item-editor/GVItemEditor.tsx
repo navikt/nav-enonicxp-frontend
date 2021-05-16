@@ -5,10 +5,11 @@ import { BEM } from '../../../../../utils/classnames';
 import { GlobalValueItem } from '../../../../../types/content-props/global-values-props';
 import './GVItemEditor.less';
 import { nameExists } from '../../utils';
-import { gvServiceAddItem } from '../../api/addItem';
+import { gvServiceAddItem } from '../../api/services/add';
 import { useRouter } from 'next/router';
-import { gvServiceGetKeyUsage } from '../../api/checkKeyUsage';
-import { gvServiceModifyItem } from '../../api/modifyItem';
+import { gvServiceGetUsage } from '../../api/services/usage';
+import { gvServiceModifyItem } from '../../api/services/modify';
+import { gvServiceRemoveItem } from '../../api/services/remove';
 
 const bem = BEM('gv-item-editor');
 
@@ -84,14 +85,14 @@ export const GVItemEditor = ({
             gvServiceAddItem(inputState, contentId)
                 .then((res) => {
                     console.log(`Success add! ${res}`);
-                    reload();
+                    onFinish();
                 })
                 .catch((e) => console.log(`Fail add! ${e}`));
         } else {
             gvServiceModifyItem(inputState, contentId)
                 .then((res) => {
                     console.log(`Success mod! ${res}`);
-                    reload();
+                    onFinish();
                 })
                 .catch((e) => console.log(`Fail mod! ${e}`));
         }
@@ -103,7 +104,7 @@ export const GVItemEditor = ({
     };
 
     const deleteItem = () => {
-        gvServiceGetKeyUsage(item.key);
+        gvServiceRemoveItem(item, contentId);
         console.log('deleterinos');
     };
 
@@ -133,7 +134,11 @@ export const GVItemEditor = ({
                             'Tall-verdi (valgfritt - for bruk i kommende kalkulator-komponenter)'
                         }
                         name={'numberValue'}
-                        value={inputState.numberValue || ''}
+                        value={
+                            inputState.numberValue !== undefined
+                                ? inputState.numberValue
+                                : ''
+                        }
                         onChange={handleInput}
                         feil={errors.numberValue}
                     />

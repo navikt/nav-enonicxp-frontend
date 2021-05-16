@@ -1,17 +1,17 @@
-import { fetchFromGlobalValuesService } from './fetchFromGlobalValuesService';
+import { globalValuesServiceFetch } from '../globalValuesServiceFetch';
 
 type ServiceResponse = {
-    uses: string[];
+    usage: string[];
 };
 
-export const gvServiceGetKeyUsage = (
+export const gvServiceGetUsage = (
     key: string
 ): Promise<ServiceResponse | null> =>
-    fetchFromGlobalValuesService<ServiceResponse>('getKeyUsage', {
+    globalValuesServiceFetch<ServiceResponse>('usage', {
         key,
     })
         .then((json) => {
-            if (Array.isArray(json.uses)) {
+            if (Array.isArray(json.usage)) {
                 return json;
             }
 

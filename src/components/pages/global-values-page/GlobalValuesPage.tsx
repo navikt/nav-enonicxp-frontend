@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { GlobalValuesProps } from '../../../types/content-props/global-values-props';
+import {
+    GlobalValueItem,
+    GlobalValuesProps,
+} from '../../../types/content-props/global-values-props';
 import { BEM } from '../../../utils/classnames';
 import {
     Innholdstittel,
@@ -11,6 +14,7 @@ import ErrorPage404 from '../../../pages/404';
 import { GVItems } from './values/GVItems';
 import { GVAddItem } from './values/add-item/GVAddItem';
 import './GlobalValuesPage.less';
+import { gvServiceGetValueSet } from './api/services/getSet';
 
 const bem = BEM('global-values-page');
 
@@ -32,7 +36,9 @@ const GlobalValuesDisplay = ({
     _id: contentId,
 }: GlobalValuesProps) => {
     const [messages, setMessages] = useState<MessageProps[]>([]);
-    const { valueItems = [] } = data;
+    const [valueItems, setValueItems] = useState<GlobalValueItem[]>(
+        data.valueItems || []
+    );
 
     useEffect(() => {
         hideDecorator();
@@ -53,7 +59,15 @@ const GlobalValuesDisplay = ({
                             className={bem('header-id')}
                         >{`Kategori-id: ${contentId}`}</Undertekst>
                     </div>
-                    <GVAddItem allItems={valueItems} contentId={contentId} />
+                    <GVAddItem
+                        allItems={valueItems}
+                        contentId={contentId}
+                        refreshValueItems={() => {
+                            gvServiceGetValueSet(contentId).then(
+                                (res) => res?.items && setValueItems(res.items)
+                            );
+                        }}
+                    />
                 </div>
                 <GVItems items={valueItems} contentId={contentId} />
             </div>

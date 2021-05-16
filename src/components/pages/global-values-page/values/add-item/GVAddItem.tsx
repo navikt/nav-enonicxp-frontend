@@ -10,9 +10,14 @@ const bem = BEM('gv-add-item');
 type Props = {
     allItems: GlobalValueItem[];
     contentId: string;
+    refreshValueItems: () => void;
 };
 
-export const GVAddItem = ({ allItems, contentId }: Props) => {
+export const GVAddItem = ({
+    allItems,
+    contentId,
+    refreshValueItems,
+}: Props) => {
     const [isActive, setIsActive] = useState(false);
 
     return (
@@ -25,7 +30,10 @@ export const GVAddItem = ({ allItems, contentId }: Props) => {
                     <GVItemEditor
                         allItems={allItems}
                         contentId={contentId}
-                        onFinish={() => setIsActive(false)}
+                        onFinish={() => {
+                            setIsActive(false);
+                            refreshValueItems();
+                        }}
                     />
                 </>
             ) : (

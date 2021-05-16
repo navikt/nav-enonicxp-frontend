@@ -1,16 +1,16 @@
-import { fetchFromGlobalValuesService } from './fetchFromGlobalValuesService';
-import { GlobalValueItem } from '../../../../types/content-props/global-values-props';
+import { globalValuesServiceFetch } from '../globalValuesServiceFetch';
+import { GlobalValueItem } from '../../../../../types/content-props/global-values-props';
 
 type ServiceResponse = {
     message: string;
 };
 
-export const gvServiceModifyItem = (
+export const gvServiceRemoveItem = (
     item: GlobalValueItem,
     contentId: string
 ): Promise<ServiceResponse | void> =>
-    fetchFromGlobalValuesService<ServiceResponse>('modifyItem', {
-        ...item,
+    globalValuesServiceFetch<ServiceResponse>('remove', {
+        key: item.key,
         contentId,
     })
         .then((json) => {

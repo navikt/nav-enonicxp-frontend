@@ -2,14 +2,25 @@ import React, { useState } from 'react';
 import { GlobalValueItem } from '../../../../../types/content-props/global-values-props';
 import { BEM, classNames } from '../../../../../utils/classnames';
 import './GVItem.less';
-import { gvServiceGetKeyUsage } from '../../api/checkKeyUsage';
+import { gvServiceGetUsage } from '../../api/services/usage';
 import { GVButton } from '../../button/GVButton';
 import { GVItemEditor } from '../item-editor/GVItemEditor';
 
 const bem = BEM('gv-item');
 
-const ItemName = ({ itemName }: { itemName: string }) => {
-    return <div className={classNames(bem('name'))}>{itemName}</div>;
+const ItemName = ({
+    itemName,
+    itemKey,
+}: {
+    itemName: string;
+    itemKey: string;
+}) => {
+    return (
+        <div className={classNames(bem('name'))}>
+            {itemName}
+            <span className={bem('key')}>{`(id: ${itemKey})`}</span>
+        </div>
+    );
 };
 
 const ItemValues = ({
@@ -22,7 +33,7 @@ const ItemValues = ({
     return (
         <>
             <div className={bem('value')}>{`Tekst-verdi: ${textValue}`}</div>
-            {numberValue && (
+            {numberValue !== undefined && (
                 <div
                     className={bem('value')}
                 >{`Tall-verdi: ${numberValue}`}</div>
@@ -32,11 +43,11 @@ const ItemValues = ({
 };
 
 const ItemView = ({ item }: { item: GlobalValueItem }) => {
-    const { itemName, textValue, numberValue } = item;
+    const { itemName, textValue, numberValue, key } = item;
 
     return (
         <div className={bem('display')}>
-            <ItemName itemName={itemName} />
+            <ItemName itemName={itemName} itemKey={key} />
             <ItemValues textValue={textValue} numberValue={numberValue} />
         </div>
     );
@@ -79,8 +90,13 @@ export const GVItem = ({ item, contentId, allItems }: Props) => {
                 <GVButton
                     onClick={(e) => {
                         e.preventDefault();
-                        gvServiceGetKeyUsage(key).then((res) => {
-                            if (res.uses.length === 0) {
+                        gvServiceGetUsage(key).then((res) => {
+                            if (!res?.usage) {
+                                console.log('Service error');
+                                return;
+                            }
+
+                            if (res.usage.length === 0) {
                                 console.log('Key not in use');
                             } else {
                                 console.log('Key is in use!', res);

@@ -1,5 +1,5 @@
-import { fetchFromGlobalValuesService } from './fetchFromGlobalValuesService';
-import { GlobalValueItem } from '../../../../types/content-props/global-values-props';
+import { globalValuesServiceFetch } from '../globalValuesServiceFetch';
+import { GlobalValueItem } from '../../../../../types/content-props/global-values-props';
 
 type ServiceResponse = {
     message: string;
@@ -9,7 +9,7 @@ export const gvServiceAddItem = (
     item: GlobalValueItem,
     contentId: string
 ): Promise<ServiceResponse | void> =>
-    fetchFromGlobalValuesService<ServiceResponse>('addItem', {
+    globalValuesServiceFetch<ServiceResponse>('add', {
         ...item,
         contentId,
     })

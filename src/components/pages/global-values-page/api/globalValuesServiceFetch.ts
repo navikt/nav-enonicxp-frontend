@@ -6,14 +6,14 @@ import { adminOrigin, xpServicePath } from '../../../../utils/urls';
 
 const serviceUrl = `${adminOrigin}${xpServicePath}/globalValues`;
 
-type GVRequestTypes = 'selector' | 'getKeyUsage' | 'addItem' | 'modifyItem';
+type GVRequestTypes = 'usage' | 'add' | 'modify' | 'remove' | 'getSet';
 
-export const fetchFromGlobalValuesService = <ResponseType>(
+export const globalValuesServiceFetch = <ResponseType>(
     requestType: GVRequestTypes,
     params: object
 ): Promise<ResponseType> => {
-    const query = objectToQueryString({ ...params, type: requestType });
-    const url = `${serviceUrl}${query}`;
+    const query = objectToQueryString({ ...params });
+    const url = `${serviceUrl}/${requestType}${query}`;
     console.log(url);
 
     return fetchWithTimeout(url, 5000).then((res) => {

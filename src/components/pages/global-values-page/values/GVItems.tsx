@@ -5,6 +5,10 @@ import { GlobalValueItem } from '../../../../types/content-props/global-values-p
 
 const bem = BEM('gv-items');
 
+const norwegianSort = new Intl.Collator(['no', 'nb', 'nn'], {
+    usage: 'sort',
+}).compare;
+
 type Props = {
     items: GlobalValueItem[];
     contentId: string;
@@ -13,18 +17,25 @@ type Props = {
 export const GVItems = ({ items, contentId }: Props) => {
     return (
         <div className={bem()}>
-            {items.map((item, index) => {
-                return (
-                    <Fragment key={index}>
-                        <hr />
-                        <GVItem
-                            item={item}
-                            allItems={items}
-                            contentId={contentId}
-                        />
-                    </Fragment>
-                );
-            })}
+            {items
+                .sort((itemA, itemB) =>
+                    norwegianSort(
+                        itemA.itemName.toLowerCase(),
+                        itemB.itemName.toLowerCase()
+                    )
+                )
+                .map((item, index) => {
+                    return (
+                        <Fragment key={index}>
+                            <hr />
+                            <GVItem
+                                item={item}
+                                allItems={items}
+                                contentId={contentId}
+                            />
+                        </Fragment>
+                    );
+                })}
         </div>
     );
 };
