@@ -6,6 +6,7 @@ import Region from '../Region';
 import { Header } from '../../_common/header/Header';
 import { TypoStyle } from '../../../types/typo-style';
 import { XpImage } from '../../_common/image/XpImage';
+import { FilterBar } from '../../_common/filter-bar/FilterBar';
 import './SectionWithHeaderLayout.less';
 
 const getBorderStyle = ({
@@ -57,6 +58,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             >
                 {title}
             </Header>
+            <FilterBar layoutProps={layoutProps} />
             <Region pageProps={pageProps} regionProps={regions.content} />
         </LayoutContainer>
     );
