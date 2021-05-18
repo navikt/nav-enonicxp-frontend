@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { ParsedHtml } from '../../ParsedHtml';
 import { PublicImage } from '../../_common/image/PublicImage';
+import { ProcessedHtmlProps } from '../../../types/processed-html-props';
 
 interface Props {
     label: string;
-    fakta: string;
+    fakta: ProcessedHtmlProps;
     className: string;
 }
 
@@ -17,7 +18,7 @@ const Faktaboks = (props: Props) => {
         <div className={props.className}>
             <PublicImage imagePath={'/gfx/info-sirkel-fyll.svg'} alt={''} />
             <h3 className="decorated">{props.label}</h3>
-            <ParsedHtml content={props.fakta} />
+            <ParsedHtml {...props.fakta} />
         </div>
     );
 };

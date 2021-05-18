@@ -8,15 +8,12 @@ import { Button } from './_common/button/Button';
 import '../components/macros/Quote.less';
 import '../components/macros/Video.less';
 import { LenkeStandalone } from './_common/lenke/LenkeStandalone';
+import { ProcessedHtmlProps } from '../types/processed-html-props';
 
-interface Props {
-    content?: string;
-}
+export const ParsedHtml = (props: ProcessedHtmlProps) => {
+    const { processedHtml, macros } = props;
 
-export const ParsedHtml = (props: Props) => {
-    const { content } = props;
-
-    if (!content) {
+    if (!processedHtml) {
         return null;
     }
 
@@ -97,7 +94,7 @@ export const ParsedHtml = (props: Props) => {
 
     // htmlReactParser does not always handle linebreaks well...
     const htmlParsed = htmlReactParser(
-        content
+        processedHtml
             .replace(/(\r\n|\n|\r)/gm, ' ')
             .replace(/(<table)/gm, '<table class="tabell tabell--stripet"'),
         replaceElements

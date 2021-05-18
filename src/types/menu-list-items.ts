@@ -7,15 +7,15 @@ export interface LinkItem {
 
 export enum MenuListItemKey {
     Selfservice = 'selfservice',
-    FormAndApplication = 'formAndApplication',
-    ProcessTimes = 'processTimes',
-    RelatedInformation = 'relatedInformation',
+    FormAndApplication = 'form_and_application',
+    ProcessTimes = 'process_times',
+    RelatedInformation = 'related_information',
     International = 'international',
-    ReportChanges = 'reportChanges',
+    ReportChanges = 'report_changes',
     Rates = 'rates',
-    AppealRights = 'appealRights',
+    AppealRights = 'appeal_rights',
     Membership = 'membership',
-    RulesAndRegulations = 'rulesAndRegulations',
+    RulesAndRegulations = 'rules_and_regulations',
     Saksbehandling = 'saksbehandling',
     Shortcuts = 'shortcuts',
 }

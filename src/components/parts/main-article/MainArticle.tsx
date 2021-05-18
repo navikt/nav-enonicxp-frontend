@@ -27,7 +27,7 @@ export const MainArticle = (propsInitial: ContentProps) => {
     const hasTableOfContest =
         data?.hasTableOfContents && data?.hasTableOfContents !== 'none';
     const innholdsfortegnelse = parseInnholdsfortegnelse(
-        data.text,
+        data.text.processedHtml,
         hasTableOfContest
     );
     const headerClassName =
@@ -57,7 +57,7 @@ export const MainArticle = (propsInitial: ContentProps) => {
                 />
             </header>
             <MainArticleText
-                text={data.text}
+                htmlProps={data.text}
                 className={bem('text')}
                 hasTableOfContents={hasTableOfContest}
             />
