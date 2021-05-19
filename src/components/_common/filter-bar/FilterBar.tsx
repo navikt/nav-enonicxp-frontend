@@ -1,5 +1,6 @@
+import classNames from 'classnames';
 import { FilterCheckbox } from 'components/parts/_dynamic/filters-menu/FilterCheckbox';
-import { Element } from 'nav-frontend-typografi';
+import { Element, Undertekst } from 'nav-frontend-typografi';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { BEM } from '../../../utils/classnames';
@@ -18,7 +19,6 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         selectedFilters,
         availableFilters,
         toggleFilter,
-        clearFilters,
     } = useFilterState();
 
     // Create a flat array of all ids that any
@@ -51,19 +51,24 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         selectedFilters.includes(filterId)
     ).length;
 
-    const isShowingAllSituations =
-        selectedFilterCount === 0 || selectedFilterCount === filterIds.length;
+    const showingAllText = selectedFilterCount === 0;
 
     return (
         <div className={bem('wrapper')}>
             <Element tag="h3" className="overskrift">
                 Viser informasjon for:
             </Element>
-            <FilterCheckbox
-                isSelected={isShowingAllSituations}
-                onToggleFilterHandler={() => clearFilters(filterIds)}
-                filter={{ id: '0', filterName: 'Alle situasjoner' }}
-            />
+            <Undertekst
+                className={classNames(
+                    bem('showingAllExplanation'),
+                    showingAllText
+                        ? bem('showingAllExplanation', 'visible')
+                        : bem('showingAllExplanation', 'hidden')
+                )}
+            >
+                Ingen filtere er valgt, og derfor ser du alt innhold. Bruk
+                filterene nedenfor for å se relevant informasjon for deg:
+            </Undertekst>
             <div className={bem('container')}>
                 {filtersToDisplay.map((filter) => {
                     const isSelected = selectedFilters.includes(filter.id);
