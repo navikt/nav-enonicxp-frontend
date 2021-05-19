@@ -30,7 +30,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const { title, anchorId, icon, border } = config;
+    const { title, anchorId, icon, border, hideCopyButton } = config;
 
     const iconImgProps = icon?.icon;
 
@@ -54,6 +54,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                 tag={'h2'}
                 justify={'left'}
                 id={anchorId}
+                hideCopyButton={hideCopyButton}
             >
                 {title}
             </Header>
