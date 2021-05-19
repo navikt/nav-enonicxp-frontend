@@ -22,7 +22,10 @@ export const ParsedHtml = (props: Props) => {
 
     const replaceElements = {
         replace: ({ name, attribs, children }: DomElement) => {
-            if (name?.toLowerCase() === 'img' && attribs?.src) {
+            const tag = name?.toLowerCase();
+            const className = attribs?.class || '';
+
+            if (tag === 'img' && attribs?.src) {
                 return (
                     <img
                         {...attributesToProps(attribs)}
@@ -32,7 +35,7 @@ export const ParsedHtml = (props: Props) => {
                 );
             }
 
-            if (name?.toLowerCase() === 'h1' && children) {
+            if (tag === 'h1' && children) {
                 return (
                     <Innholdstittel>
                         {domToReact(children, replaceElements)}
@@ -40,7 +43,7 @@ export const ParsedHtml = (props: Props) => {
                 );
             }
 
-            if (name?.toLowerCase() === 'p' && children) {
+            if (tag === 'p' && children) {
                 return (
                     <Normaltekst>
                         {domToReact(children, replaceElements)}
@@ -48,14 +51,29 @@ export const ParsedHtml = (props: Props) => {
                 );
             }
 
-            if (name?.toLowerCase() === 'a' && attribs?.href && children) {
+            if (className.includes('macroChatbotLink')) {
+                return (
+                    <LenkeInline
+                        href={'/'}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            const chatButton = document.getElementById(
+                                'chatbot-frida-knapp'
+                            );
+                            chatButton?.click?.();
+                        }}
+                    >
+                        {domToReact(children)}
+                    </LenkeInline>
+                );
+            }
+
+            if (tag === 'a' && attribs?.href && children) {
                 const href = attribs.href.replace('https://www.nav.no', '');
-                const className = attribs?.class;
 
                 if (
-                    className &&
-                    (className.includes('macroButton') ||
-                        className.includes('btn-link'))
+                    className.includes('macroButton') ||
+                    className.includes('btn-link')
                 ) {
                     return (
                         <Button
@@ -74,7 +92,7 @@ export const ParsedHtml = (props: Props) => {
 
                 const props = attributesToProps(attribs);
 
-                if (className && className.includes('chevron')) {
+                if (className.includes('chevron')) {
                     return (
                         <LenkeStandalone
                             {...props}
