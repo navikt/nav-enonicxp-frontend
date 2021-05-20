@@ -10,42 +10,15 @@
         }
     }
 
-    &__showingAllExplanation {
-        margin-bottom: 1em;
-
-        &--visible {
-            animation: fadein 0.7s forwards;
-        }
-
-        &--hidden {
-            animation: fadeout 0.7s forwards;
-        }
+    &__filterExplanation {
+        margin-top: 0.5em;
+        display: flex;
+        align-items: center;
     }
 
     &__container {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-    }
-
-    @keyframes fadein {
-        from {
-            max-height: 0;
-            opacity: 0;
-        }
-        to {
-            max-height: 999px;
-            opacity: 1;
-        }
-    }
-    @keyframes fadeout {
-        from {
-            max-height: 999px;
-            opacity: 1;
-        }
-        to {
-            max-height: 0;
-            opacity: 0;
-        }
     }
 }

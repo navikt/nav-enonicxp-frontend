@@ -5,6 +5,8 @@ import { useFilterState } from 'store/hooks/useFilteredContent';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { BEM } from '../../../utils/classnames';
 
+import { Information } from '@navikt/ds-icons';
+
 import './FilterBar.less';
 
 const bem = BEM('filter-bar');
@@ -14,7 +16,9 @@ type FilterBarProps = {
 };
 
 export const FilterBar = ({ layoutProps }: FilterBarProps) => {
-    const { components } = layoutProps.regions.content;
+    const { content, intro } = layoutProps.regions;
+    const components = [...content.components, ...intro.components];
+
     const {
         selectedFilters,
         availableFilters,
@@ -51,24 +55,16 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         selectedFilters.includes(filterId)
     ).length;
 
-    const showingAllText = selectedFilterCount === 0;
+    const filterExplanation =
+        selectedFilterCount === 0
+            ? 'Ingen filtere er valgt, så alt innhold vises.'
+            : 'Filtere er valgt, så noe innhold kan være skjult.';
 
     return (
         <div className={bem('wrapper')}>
             <Element tag="h3" className="overskrift">
                 Viser informasjon for:
             </Element>
-            <Undertekst
-                className={classNames(
-                    bem('showingAllExplanation'),
-                    showingAllText
-                        ? bem('showingAllExplanation', 'visible')
-                        : bem('showingAllExplanation', 'hidden')
-                )}
-            >
-                Ingen filtere er valgt, og derfor ser du alt innhold. Bruk
-                filterene nedenfor for å se relevant informasjon for deg:
-            </Undertekst>
             <div className={bem('container')}>
                 {filtersToDisplay.map((filter) => {
                     const isSelected = selectedFilters.includes(filter.id);
@@ -84,6 +80,10 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                     );
                 })}
             </div>
+            <Undertekst className={classNames(bem('filterExplanation'))}>
+                <Information color="#0067c5" style={{ marginRight: '4px' }} />{' '}
+                {filterExplanation}
+            </Undertekst>
         </div>
     );
 };
