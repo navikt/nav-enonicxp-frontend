@@ -48,9 +48,11 @@ export const MainArticle = (propsInitial: ContentProps) => {
                 <Innholdstittel className={bem('title')}>
                     {props.displayName}
                 </Innholdstittel>
-                <Normaltekst className={bem('preface')}>
-                    {data.ingress}
-                </Normaltekst>
+                {data.ingress && (
+                    <Normaltekst className={bem('preface')}>
+                        {data.ingress}
+                    </Normaltekst>
+                )}
                 <Innholdsfortegnelse
                     innholdsfortegnelse={innholdsfortegnelse}
                     label={getLabel('tableOfContents')}

@@ -1,9 +1,9 @@
 import { MacroPropsCommon, MacroType } from './_macros-common';
 
-export interface MacroButtonProps extends MacroPropsCommon {
-    descriptor: MacroType.Button;
+export interface MacroButtonBlueProps extends MacroPropsCommon {
+    descriptor: MacroType.ButtonBlue;
     config: {
-        button: {
+        button_blue: {
             url: string;
             text: string;
             content: {

@@ -4,11 +4,13 @@ import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LenkeInline } from './_common/lenke/LenkeInline';
 import { getMediaUrl } from '../utils/urls';
-import { Button } from './_common/button/Button';
+import {
+    processedHtmlMacroTag,
+    ProcessedHtmlProps,
+} from '../types/processed-html-props';
+import { MacroMapper } from './macros/MacroMapper';
 import '../components/macros/Quote.less';
 import '../components/macros/Video.less';
-import { LenkeStandalone } from './_common/lenke/LenkeStandalone';
-import { ProcessedHtmlProps } from '../types/processed-html-props';
 
 export const ParsedHtml = (props: ProcessedHtmlProps) => {
     const { processedHtml, macros } = props;
@@ -20,6 +22,16 @@ export const ParsedHtml = (props: ProcessedHtmlProps) => {
     const replaceElements = {
         replace: ({ name, attribs, children }: DomElement) => {
             const tag = name?.toLowerCase();
+
+            if (tag === processedHtmlMacroTag) {
+                return (
+                    <MacroMapper
+                        macros={macros}
+                        macroRef={attribs?.['data-macro-ref']}
+                    />
+                );
+            }
+
             if (tag === 'img' && attribs?.src) {
                 return (
                     <img
@@ -46,43 +58,9 @@ export const ParsedHtml = (props: ProcessedHtmlProps) => {
                 );
             }
 
-            if (tag === 'a' && attribs?.href && children) {
-                const href = attribs.href.replace('https://www.nav.no', '');
-                const className = attribs?.class;
-
-                if (
-                    className &&
-                    (className.includes('macroButton') ||
-                        className.includes('btn-link'))
-                ) {
-                    return (
-                        <Button
-                            href={href}
-                            type={
-                                attribs.class.includes('macroButtonBlue') ||
-                                attribs.class.includes('btn-primary')
-                                    ? 'hoved'
-                                    : 'standard'
-                            }
-                        >
-                            {domToReact(children)}
-                        </Button>
-                    );
-                }
-
+            if (tag === 'a' && children) {
+                const href = attribs?.href.replace('https://www.nav.no', '');
                 const props = attributesToProps(attribs);
-
-                if (className && className.includes('chevron')) {
-                    return (
-                        <LenkeStandalone
-                            {...props}
-                            href={href}
-                            withChevron={true}
-                        >
-                            {domToReact(children)}
-                        </LenkeStandalone>
-                    );
-                }
 
                 return (
                     <LenkeInline {...props} href={href}>

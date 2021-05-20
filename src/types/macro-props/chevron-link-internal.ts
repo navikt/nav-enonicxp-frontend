@@ -1,9 +1,9 @@
 import { MacroPropsCommon, MacroType } from './_macros-common';
+import { InternalLinkMixin } from '../component-props/_mixins';
 
-interface ChevronLinkInternalMacroProps extends MacroPropsCommon {
+export interface ChevronLinkInternalMacroProps extends MacroPropsCommon {
     descriptor: MacroType.ChevronLinkInternal;
     config: {
-        target: string;
-        text: string;
+        chevron_link_internal: InternalLinkMixin;
     };
 }

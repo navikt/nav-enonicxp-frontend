@@ -2,8 +2,8 @@ import { MainArticleData } from '../../../../types/content-props/main-article-pr
 
 export const mainArticleDataMock: MainArticleData = {
     ingress: '',
-    text: '',
+    text: { processedHtml: typeof '', macros: [] },
     hasTableOfContents: 'none',
-    fact: '',
+    fact: { processedHtml: typeof '', macros: [] },
     social: [],
 };

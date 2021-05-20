@@ -1,6 +1,7 @@
 export enum MacroType {
     Button = 'no.nav.navno:button',
     ButtonBlue = 'no.nav.navno:button-blue',
+    ChatbotLink = 'no.nav.navno:chatbot-link',
     ChevronLinkInternal = 'no.nav.navno:chevron-link-internal',
     ChevronLinkExternal = 'no.nav.navno:chevron-link-external',
     Fotnote = 'no.nav.navno:fotnote',
@@ -16,4 +17,5 @@ export enum MacroType {
 export type MacroPropsCommon = {
     ref: string;
     descriptor: MacroType;
+    name: string;
 };

@@ -1,9 +1,9 @@
 import { MacroPropsCommon, MacroType } from './_macros-common';
+import { ExternalLinkMixin } from '../component-props/_mixins';
 
-interface ChevronLinkExternalMacroProps extends MacroPropsCommon {
+export interface ChevronLinkExternalMacroProps extends MacroPropsCommon {
     descriptor: MacroType.ChevronLinkExternal;
     config: {
-        url: string;
-        text: string;
+        chevron_link_external: ExternalLinkMixin;
     };
 }
