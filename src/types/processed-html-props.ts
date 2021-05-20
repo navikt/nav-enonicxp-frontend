@@ -1,13 +1,8 @@
-export type MacroProps = {
-    ref: string;
-    name: string;
-    descriptor: string;
-    config: {
-        [key in MacroProps['name']]: any;
-    };
-};
+import { MacroPropsCommon } from './macro-props/_macros-common';
+
+export const ProcessedHtmlMacroTag = 'editor-macro';
 
 export type ProcessedHtmlProps = {
     processedHtml: string;
-    macros: MacroProps[];
+    macros: MacroPropsCommon[];
 };

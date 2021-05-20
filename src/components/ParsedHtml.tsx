@@ -19,7 +19,8 @@ export const ParsedHtml = (props: ProcessedHtmlProps) => {
 
     const replaceElements = {
         replace: ({ name, attribs, children }: DomElement) => {
-            if (name?.toLowerCase() === 'img' && attribs?.src) {
+            const tag = name?.toLowerCase();
+            if (tag === 'img' && attribs?.src) {
                 return (
                     <img
                         {...attributesToProps(attribs)}
@@ -29,7 +30,7 @@ export const ParsedHtml = (props: ProcessedHtmlProps) => {
                 );
             }
 
-            if (name?.toLowerCase() === 'h1' && children) {
+            if (tag === 'h1' && children) {
                 return (
                     <Innholdstittel>
                         {domToReact(children, replaceElements)}
@@ -37,7 +38,7 @@ export const ParsedHtml = (props: ProcessedHtmlProps) => {
                 );
             }
 
-            if (name?.toLowerCase() === 'p' && children) {
+            if (tag === 'p' && children) {
                 return (
                     <Normaltekst>
                         {domToReact(children, replaceElements)}
@@ -45,7 +46,7 @@ export const ParsedHtml = (props: ProcessedHtmlProps) => {
                 );
             }
 
-            if (name?.toLowerCase() === 'a' && attribs?.href && children) {
+            if (tag === 'a' && attribs?.href && children) {
                 const href = attribs.href.replace('https://www.nav.no', '');
                 const className = attribs?.class;
 
