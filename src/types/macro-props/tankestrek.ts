@@ -1,5 +1,5 @@
-import { MacroPropsCommon, MacroType } from './_macros-common';
+import { MacroPropsCommon, MacroName } from './_macros-common';
 
-interface TankestrekMacroProps extends MacroPropsCommon {
-    descriptor: MacroType.Tankestrek;
+export interface TankestrekMacroProps extends MacroPropsCommon {
+    name: MacroName.Tankestrek;
 }

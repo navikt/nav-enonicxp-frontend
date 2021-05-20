@@ -1,7 +1,6 @@
 import React from 'react';
 import { ChevronLinkInternalMacroProps } from '../../../types/macro-props/chevron-link-internal';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
-import { ChatbotLinkMacroProps } from '../../../types/macro-props/chatbot-link';
 
 export const MacroChevronLinkInternal = ({
     config,

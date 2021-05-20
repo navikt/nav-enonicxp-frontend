@@ -1,9 +1,11 @@
-import { MacroPropsCommon, MacroType } from './_macros-common';
+import { MacroPropsCommon, MacroName } from './_macros-common';
 
-interface LenkeFilerMacroProps extends MacroPropsCommon {
-    descriptor: MacroType.LenkeFiler;
+export interface LenkeFilerMacroProps extends MacroPropsCommon {
+    name: MacroName.LenkeFiler;
     config: {
-        text: string;
-        files: string[];
+        lenkeFiler: {
+            text: string;
+            files: { _path: string }[];
+        };
     };
 }

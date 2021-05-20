@@ -9,8 +9,6 @@ import {
     ProcessedHtmlProps,
 } from '../types/processed-html-props';
 import { MacroMapper } from './macros/MacroMapper';
-import '../components/macros/Quote.less';
-import '../components/macros/Video.less';
 
 export const ParsedHtml = (props: ProcessedHtmlProps) => {
     const { processedHtml, macros } = props;

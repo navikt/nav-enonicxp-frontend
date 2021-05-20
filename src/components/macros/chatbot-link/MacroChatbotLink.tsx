@@ -1,7 +1,12 @@
 import React from 'react';
-import { ChevronLinkInternalMacroProps } from '../../../types/macro-props/chevron-link-internal';
-import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { ChatbotLinkMacroProps } from '../../../types/macro-props/chatbot-link';
+import { LenkeInline } from '../../_common/lenke/LenkeInline';
+
+const openChatbot = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const chatButton = document.getElementById('chatbot-frida-knapp');
+    chatButton?.click?.();
+};
 
 export const MacroChatbotLink = ({ config }: ChatbotLinkMacroProps) => {
     if (!config?.chatbot_link) {
@@ -10,5 +15,9 @@ export const MacroChatbotLink = ({ config }: ChatbotLinkMacroProps) => {
 
     const { text } = config.chatbot_link;
 
-    return null;
+    return (
+        <LenkeInline href={'/'} onClick={openChatbot}>
+            {text}
+        </LenkeInline>
+    );
 };

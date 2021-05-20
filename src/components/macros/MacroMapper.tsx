@@ -1,33 +1,34 @@
 import React from 'react';
 import {
     MacroPropsCommon,
-    MacroType,
+    MacroName,
 } from '../../types/macro-props/_macros-common';
 
 const macroComponents: {
-    [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
+    [key in MacroName]: React.FunctionComponent<MacroPropsCommon>;
 } = {
-    [MacroType.Button]: () => null,
-    [MacroType.ButtonBlue]: () => null,
-    [MacroType.ChevronLinkExternal]: () => null,
-    [MacroType.ChevronLinkInternal]: () => null,
-    [MacroType.Fotnote]: () => null,
-    [MacroType.Infoboks]: () => null,
-    [MacroType.LenkeFiler]: () => null,
-    [MacroType.PhoneLink]: () => null,
-    [MacroType.Quote]: () => null,
-    [MacroType.Tankestrek]: () => null,
-    [MacroType.VarselBoks]: () => null,
-    [MacroType.Video]: () => null,
+    [MacroName.Button]: MacroButton,
+    [MacroName.ButtonBlue]: MacroButtonBlue,
+    [MacroName.ChatbotLink]: MacroChatbotLink,
+    [MacroName.ChevronLinkExternal]: MacroChevronLinkExternal,
+    [MacroName.ChevronLinkInternal]: MacroChevronLinkInternal,
+    [MacroName.Fotnote]: MacroFotnote,
+    [MacroName.Infoboks]: MacroInfoBoks,
+    [MacroName.LenkeFiler]: MacroLenkeFiler,
+    [MacroName.PhoneLink]: MacroPhoneLink,
+    [MacroName.Quote]: MacroQuote,
+    [MacroName.Tankestrek]: MacroTankestrek,
+    [MacroName.VarselBoks]: MacroVarselBoks,
+    [MacroName.Video]: MacroVideo,
 };
 
 export const MacroMapper = (props: MacroPropsCommon) => {
     const { descriptor, ref } = props;
 
-    const MacroComponent = macroComponents[descriptor];
+    const MacroComponent = macroComponents[name];
     if (MacroComponent) {
         return <MacroComponent {...props} />;
     }
 
-    return <>{`Unimplemented macro: ${descriptor}`}</>;
+    return <>{`Unimplemented macro: ${name}`}</>;
 };

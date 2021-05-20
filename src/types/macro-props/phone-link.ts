@@ -1,10 +1,12 @@
-import { MacroPropsCommon, MacroType } from './_macros-common';
+import { MacroPropsCommon, MacroName } from './_macros-common';
 
-interface PhoneLinkMacroProps extends MacroPropsCommon {
-    descriptor: MacroType.PhoneLink;
+export interface PhoneLinkMacroProps extends MacroPropsCommon {
+    name: MacroName.PhoneLink;
     config: {
-        text: string;
-        phoneNumber: string;
-        chevron: boolean;
+        phone_link: {
+            text: string;
+            phoneNumber: string;
+            chevron: boolean;
+        };
     };
 }

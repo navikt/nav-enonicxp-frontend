@@ -1,7 +1,6 @@
-@import (reference) '../../global';
+@import (reference) '../../../global';
 
-.main-article blockquote,
-blockquote.macroQuote {
+.macro-quote {
     font-weight: normal;
     margin: 1.5rem 0;
     padding: 0 2.5rem;
@@ -10,10 +9,11 @@ blockquote.macroQuote {
     p:last-of-type {
         margin-bottom: 0;
     }
+
     :before {
         content: '\201C';
         font-size: 4rem;
-        color: #c30000;
+        color: @navRod;
         font-family: 'Times new roman', serif;
         position: absolute;
         left: 0;

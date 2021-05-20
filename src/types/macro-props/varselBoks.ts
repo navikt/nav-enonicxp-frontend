@@ -1,8 +1,10 @@
-import { MacroPropsCommon, MacroType } from './_macros-common';
+import { MacroPropsCommon, MacroName } from './_macros-common';
 
-interface VarselBoksMacroProps extends MacroPropsCommon {
-    descriptor: MacroType.VarselBoks;
+export interface VarselBoksMacroProps extends MacroPropsCommon {
+    name: MacroName.VarselBoks;
     config: {
-        varselBoks: string;
+        varselBoks: {
+            varselBoks: string;
+        };
     };
 }

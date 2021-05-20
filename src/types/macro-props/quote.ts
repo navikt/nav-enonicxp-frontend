@@ -1,8 +1,10 @@
-import { MacroPropsCommon, MacroType } from './_macros-common';
+import { MacroPropsCommon, MacroName } from './_macros-common';
 
-interface QuoteMacroProps extends MacroPropsCommon {
-    descriptor: MacroType.Quote;
+export interface QuoteMacroProps extends MacroPropsCommon {
+    name: MacroName.Quote;
     config: {
-        quote: string;
+        quote: {
+            quote: string;
+        };
     };
 }
