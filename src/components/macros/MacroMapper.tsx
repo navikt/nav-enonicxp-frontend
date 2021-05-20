@@ -1,25 +1,25 @@
 import React from 'react';
 import {
     MacroPropsCommon,
-    MacroName,
+    MacroType,
 } from '../../types/macro-props/_macros-common';
 
 const macroComponents: {
-    [key in MacroName]: React.FunctionComponent<MacroPropsCommon>;
+    [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
 } = {
-    [MacroName.Button]: MacroButton,
-    [MacroName.ButtonBlue]: MacroButtonBlue,
-    [MacroName.ChatbotLink]: MacroChatbotLink,
-    [MacroName.ChevronLinkExternal]: MacroChevronLinkExternal,
-    [MacroName.ChevronLinkInternal]: MacroChevronLinkInternal,
-    [MacroName.Fotnote]: MacroFotnote,
-    [MacroName.Infoboks]: MacroInfoBoks,
-    [MacroName.LenkeFiler]: MacroLenkeFiler,
-    [MacroName.PhoneLink]: MacroPhoneLink,
-    [MacroName.Quote]: MacroQuote,
-    [MacroName.Tankestrek]: MacroTankestrek,
-    [MacroName.VarselBoks]: MacroVarselBoks,
-    [MacroName.Video]: MacroVideo,
+    [MacroType.Button]: MacroButton,
+    [MacroType.ButtonBlue]: MacroButtonBlue,
+    [MacroType.ChatbotLink]: MacroChatbotLink,
+    [MacroType.ChevronLinkExternal]: MacroChevronLinkExternal,
+    [MacroType.ChevronLinkInternal]: MacroChevronLinkInternal,
+    [MacroType.Fotnote]: MacroFotnote,
+    [MacroType.Infoboks]: MacroInfoBoks,
+    [MacroType.LenkeFiler]: MacroLenkeFiler,
+    [MacroType.PhoneLink]: MacroPhoneLink,
+    [MacroType.Quote]: MacroQuote,
+    [MacroType.Tankestrek]: MacroTankestrek,
+    [MacroType.VarselBoks]: MacroVarselBoks,
+    [MacroType.Video]: MacroVideo,
 };
 
 export const MacroMapper = (props: MacroPropsCommon) => {

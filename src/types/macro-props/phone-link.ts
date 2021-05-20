@@ -1,7 +1,7 @@
-import { MacroPropsCommon, MacroName } from './_macros-common';
+import { MacroPropsCommon, MacroType } from './_macros-common';
 
 export interface PhoneLinkMacroProps extends MacroPropsCommon {
-    name: MacroName.PhoneLink;
+    name: MacroType.PhoneLink;
     config: {
         phone_link: {
             text: string;

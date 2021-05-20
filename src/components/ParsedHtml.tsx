@@ -40,12 +40,12 @@ export const ParsedHtml = (props: ProcessedHtmlProps) => {
                 );
             }
 
-            if (tag === 'h1' && children) {
-                return (
+            if (tag === 'h1') {
+                return children ? (
                     <Innholdstittel>
                         {domToReact(children, replaceElements)}
                     </Innholdstittel>
-                );
+                ) : null;
             }
 
             if (tag === 'p' && children) {
@@ -56,15 +56,15 @@ export const ParsedHtml = (props: ProcessedHtmlProps) => {
                 );
             }
 
-            if (tag === 'a' && children) {
+            if (tag === 'a') {
                 const href = attribs?.href.replace('https://www.nav.no', '');
                 const props = attributesToProps(attribs);
 
-                return (
+                return children ? (
                     <LenkeInline {...props} href={href}>
                         {domToReact(children)}
                     </LenkeInline>
-                );
+                ) : null;
             }
         },
     };

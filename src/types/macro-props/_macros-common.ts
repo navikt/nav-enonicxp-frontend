@@ -1,4 +1,4 @@
-export enum MacroName {
+export enum MacroType {
     Button = 'button',
     ButtonBlue = 'button-blue',
     ChatbotLink = 'chatbot-link',
@@ -16,5 +16,5 @@ export enum MacroName {
 
 export type MacroPropsCommon = {
     ref: string;
-    name: MacroName;
+    name: MacroType;
 };

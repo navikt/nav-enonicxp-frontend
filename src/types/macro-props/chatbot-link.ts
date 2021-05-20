@@ -1,7 +1,7 @@
-import { MacroPropsCommon, MacroName } from './_macros-common';
+import { MacroPropsCommon, MacroType } from './_macros-common';
 
 export interface ChatbotLinkMacroProps extends MacroPropsCommon {
-    name: MacroName.ChevronLinkExternal;
+    name: MacroType.ChevronLinkExternal;
     config: {
         chatbot_link: {
             text: string;

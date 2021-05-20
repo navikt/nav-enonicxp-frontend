@@ -1,7 +1,7 @@
-import { MacroPropsCommon, MacroName } from './_macros-common';
+import { MacroPropsCommon, MacroType } from './_macros-common';
 
 export interface InfoBoksMacroProps extends MacroPropsCommon {
-    name: MacroName.Infoboks;
+    name: MacroType.Infoboks;
     config: {
         infoBoks: {
             infoBoks: string;

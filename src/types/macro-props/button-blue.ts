@@ -1,7 +1,7 @@
-import { MacroPropsCommon, MacroName } from './_macros-common';
+import { MacroPropsCommon, MacroType } from './_macros-common';
 
 export interface MacroButtonBlueProps extends MacroPropsCommon {
-    name: MacroName.ButtonBlue;
+    name: MacroType.ButtonBlue;
     config: {
         button_blue: {
             url: string;
