@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Faktaboks = (props: Props) => {
-    if (!props.fakta) {
+    if (!props.fakta?.processedHtml) {
         return null;
     }
 
