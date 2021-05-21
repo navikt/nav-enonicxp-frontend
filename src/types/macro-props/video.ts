@@ -1,6 +1,6 @@
 import { MacroPropsCommon, MacroType } from './_macros-common';
 
-export interface VideoMacroProps extends MacroPropsCommon {
+export interface MacroVideoProps extends MacroPropsCommon {
     name: MacroType.Video;
     config: {
         video: {

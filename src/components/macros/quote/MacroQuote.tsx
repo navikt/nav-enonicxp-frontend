@@ -1,9 +1,9 @@
 import React from 'react';
-import { QuoteMacroProps } from '../../../types/macro-props/quote';
+import { MacroQuoteProps } from '../../../types/macro-props/quote';
 import { Normaltekst } from 'nav-frontend-typografi';
 import './MacroQuote.less';
 
-export const MacroQuote = ({ config }: QuoteMacroProps) => {
+export const MacroQuote = ({ config }: MacroQuoteProps) => {
     if (!config?.quote) {
         return null;
     }

@@ -1,6 +1,6 @@
 import { MacroPropsCommon, MacroType } from './_macros-common';
 
-export interface FotnoteMacroProps extends MacroPropsCommon {
+export interface MacroFotnoteProps extends MacroPropsCommon {
     name: MacroType.Fotnote;
     config: {
         fotnote: {

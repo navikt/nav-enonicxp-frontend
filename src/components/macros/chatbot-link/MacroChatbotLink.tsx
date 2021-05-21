@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChatbotLinkMacroProps } from '../../../types/macro-props/chatbot-link';
+import { MacroChatbotLinkProps } from '../../../types/macro-props/chatbot-link';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
 
 const openChatbot = (e: React.MouseEvent) => {
@@ -8,7 +8,7 @@ const openChatbot = (e: React.MouseEvent) => {
     chatButton?.click?.();
 };
 
-export const MacroChatbotLink = ({ config }: ChatbotLinkMacroProps) => {
+export const MacroChatbotLink = ({ config }: MacroChatbotLinkProps) => {
     if (!config?.chatbot_link) {
         return null;
     }

@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
-import { LenkeFilerMacroProps } from '../../../types/macro-props/lenkeFiler';
+import { MacroLenkeFilerProps } from '../../../types/macro-props/lenkeFiler';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
 
-export const MacroLenkeFiler = ({ config }: LenkeFilerMacroProps) => {
+export const MacroLenkeFiler = ({ config }: MacroLenkeFilerProps) => {
     if (!config?.lenkeFiler) {
         return null;
     }

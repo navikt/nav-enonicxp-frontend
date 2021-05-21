@@ -1,10 +1,10 @@
 import React from 'react';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
-import { ChevronLinkExternalMacroProps } from '../../../types/macro-props/chevron-link-external';
+import { MacroChevronLinkExternalProps } from '../../../types/macro-props/chevron-link-external';
 
 export const MacroChevronLinkExternal = ({
     config,
-}: ChevronLinkExternalMacroProps) => {
+}: MacroChevronLinkExternalProps) => {
     if (!config?.chevron_link_external) {
         return null;
     }

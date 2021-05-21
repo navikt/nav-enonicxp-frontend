@@ -1,6 +1,6 @@
 import { MacroPropsCommon, MacroType } from './_macros-common';
 
-export interface LenkeFilerMacroProps extends MacroPropsCommon {
+export interface MacroLenkeFilerProps extends MacroPropsCommon {
     name: MacroType.LenkeFiler;
     config: {
         lenkeFiler: {

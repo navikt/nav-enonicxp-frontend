@@ -13,7 +13,7 @@ const macroComponents: {
     [MacroType.ChevronLinkExternal]: MacroChevronLinkExternal,
     [MacroType.ChevronLinkInternal]: MacroChevronLinkInternal,
     [MacroType.Fotnote]: MacroFotnote,
-    [MacroType.Infoboks]: MacroInfoBoks,
+    [MacroType.InfoBoks]: MacroInfoBoks,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
     [MacroType.PhoneLink]: MacroPhoneLink,
     [MacroType.Quote]: MacroQuote,

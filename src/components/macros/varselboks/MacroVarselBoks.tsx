@@ -1,8 +1,8 @@
 import React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { VarselBoksMacroProps } from '../../../types/macro-props/varselBoks';
+import { MacroVarselBoksProps } from '../../../types/macro-props/varselBoks';
 
-export const MacroVarselBoks = ({ config }: VarselBoksMacroProps) => {
+export const MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
     if (!config?.varselBoks) {
         return null;
     }

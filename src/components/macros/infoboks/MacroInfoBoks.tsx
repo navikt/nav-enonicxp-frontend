@@ -1,8 +1,8 @@
 import React from 'react';
-import { InfoBoksMacroProps } from '../../../types/macro-props/infoBoks';
+import { MacroInfoBoksProps } from '../../../types/macro-props/infoBoks';
 import AlertStripe from 'nav-frontend-alertstriper';
 
-export const MacroInfoBoks = ({ config }: InfoBoksMacroProps) => {
+export const MacroInfoBoks = ({ config }: MacroInfoBoksProps) => {
     if (!config?.infoBoks) {
         return null;
     }

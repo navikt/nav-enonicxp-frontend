@@ -1,8 +1,8 @@
 import React from 'react';
-import { FotnoteMacroProps } from '../../../types/macro-props/fotnote';
+import { MacroFotnoteProps } from '../../../types/macro-props/fotnote';
 import './MacroFotnote.less';
 
-export const MacroFotnote = ({ config }: FotnoteMacroProps) => {
+export const MacroFotnote = ({ config }: MacroFotnoteProps) => {
     if (!config?.fotnote) {
         return null;
     }
