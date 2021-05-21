@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { FilterMenuProps } from '../../../../types/component-props/parts/filter-menu';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { CheckboxGruppe } from 'nav-frontend-skjema';
+import { Undertekst } from 'nav-frontend-typografi';
 import { Expandable } from '../../../_common/expandable/Expandable';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import { FilterCheckbox } from './FilterCheckbox';
 import { BEM } from '../../../../utils/classnames';
 import './FiltersMenu.less';
-
+import { Information } from '@navikt/ds-icons';
 import { useFilterState } from '../../../../store/hooks/useFilteredContent';
 import { Header } from 'components/_common/header/Header';
 
@@ -29,7 +30,6 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         toggleFilter,
         setAvailableFilters,
         clearFiltersForPage,
-        selectAllSituations,
     } = useFilterState();
 
     useEffect(() => {
@@ -47,6 +47,11 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         return <div>{'Det mangler filtere i denne listen.'}</div>;
     }
 
+    const filterExplanation =
+        selectedFilters.length === 0
+            ? 'Ingen filtere er valgt, så alt innhold vises.'
+            : 'Filtere er valgt, så noe innhold kan være skjult.';
+
     return (
         <div className={bem('wrapper')}>
             <Header tag="h2" justify="left">
@@ -63,31 +68,11 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                     </Systemtittel>
                 )}
                 {categories.map((category, categoryIndex) => {
-                    const selectedFilterCount = category.filters.filter(
-                        (filter) => selectedFilters.includes(filter.id)
-                    ).length;
-
-                    const isShowingAllSituations =
-                        selectedFilterCount === 0 ||
-                        selectedFilterCount === category.filters.length;
-
-                    const allSituations = {
-                        id: `CATEGORY-${categoryIndex}-ALL_SITUATIONS`,
-                        filterName: 'Alle situasjoner',
-                    };
-
                     return (
                         <CheckboxGruppe
                             legend={category.categoryName}
                             key={categoryIndex}
                         >
-                            <FilterCheckbox
-                                onToggleFilterHandler={() =>
-                                    selectAllSituations(categoryIndex)
-                                }
-                                filter={allSituations}
-                                isSelected={isShowingAllSituations}
-                            />
                             {category.filters.map((filter, filterIndex) => (
                                 <FilterCheckbox
                                     onToggleFilterHandler={(filterId) =>
@@ -103,6 +88,13 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                         </CheckboxGruppe>
                     );
                 })}
+                <Undertekst className={bem('filterExplanation')}>
+                    <Information
+                        color="#0067c5"
+                        style={{ marginRight: '4px' }}
+                    />{' '}
+                    {filterExplanation}
+                </Undertekst>
             </Expandable>
         </div>
     );

@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import { FilterCheckbox } from 'components/parts/_dynamic/filters-menu/FilterCheckbox';
 import { Element, Undertekst } from 'nav-frontend-typografi';
 import { useFilterState } from 'store/hooks/useFilteredContent';
@@ -80,7 +79,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                     );
                 })}
             </div>
-            <Undertekst className={classNames(bem('filterExplanation'))}>
+            <Undertekst className={bem('filterExplanation')}>
                 <Information color="#0067c5" style={{ marginRight: '4px' }} />{' '}
                 {filterExplanation}
             </Undertekst>
