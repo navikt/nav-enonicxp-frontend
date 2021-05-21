@@ -18,6 +18,12 @@ export enum MenuListItemKey {
     RulesAndRegulations = 'rules_and_regulations',
     Saksbehandling = 'saksbehandling',
     Shortcuts = 'shortcuts',
+    FormAndApplicationLegacy = 'formAndApplication',
+    ProcessTimesLegacy = 'processTimes',
+    RelatedInformationLegacy = 'relatedInformation',
+    ReportChangesLegacy = 'reportChanges',
+    AppealRightsLegacy = 'appealRights',
+    RulesAndRegulationsLegacy = 'rulesAndRegulations',
 }
 
 export type MenuListItem = {
