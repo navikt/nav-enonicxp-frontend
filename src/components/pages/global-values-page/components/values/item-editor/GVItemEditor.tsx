@@ -10,6 +10,7 @@ import { gvServiceRemoveItem } from '../../../api/services/remove';
 import { useGvEditorState } from '../../../store/useGvEditorState';
 import { gvServiceGetValueSet } from '../../../api/services/getSet';
 import { gvServiceGetUsage } from '../../../api/services/usage';
+import { Element } from 'nav-frontend-typografi';
 import './GVItemEditor.less';
 
 const bem = BEM('gv-item-editor');
@@ -52,9 +53,6 @@ export const GVItemEditor = ({
         setMessages(generateGvUsageMessages(usage, item.itemName));
         if (!usage || usage.length > 0) {
             setAwaitDeleteConfirm(true);
-            window.alert(
-                'Denne verdien kan være i bruk - trykk "OK" og "Bekreft sletting" dersom du fortsatt vil slette verdien'
-            );
         } else {
             deleteConfirm();
         }
@@ -173,6 +171,11 @@ export const GVItemEditor = ({
                     <div className={bem('form-buttons')}>
                         {awaitDeleteConfirm ? (
                             <>
+                                <Element className={bem('delete-confirm-msg')}>
+                                    {
+                                        'Obs: Denne verdien kan være i bruk - er du sikker?'
+                                    }
+                                </Element>
                                 <GVButton
                                     type={'fare'}
                                     htmlType={'button'}
