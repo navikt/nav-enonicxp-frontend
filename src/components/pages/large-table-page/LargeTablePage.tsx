@@ -48,10 +48,10 @@ const parseHtml = (htmlString: string) => {
 };
 
 export const LargeTablePage = (contentData: LargeTableProps) => {
-    return contentData.data?.text || contentData.editMode ? (
-        <div className={'large-table-page'}>
-            {contentData.data?.text ? parseHtml(contentData.data.text) : ''}
-        </div>
+    const html = contentData.data?.text?.processedHtml;
+
+    return html || contentData.editMode ? (
+        <div className={'large-table-page'}>{html ? parseHtml(html) : ''}</div>
     ) : (
         <ErrorPage
             {...makeErrorProps(
