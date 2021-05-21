@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
@@ -153,7 +153,9 @@ export const ParsedHtml = (props: Props) => {
                     <Innholdstittel>
                         {domToReact(children, replaceElements)}
                     </Innholdstittel>
-                ) : null;
+                ) : (
+                    <Fragment />
+                );
             }
 
             if (tag === 'p' && children) {
@@ -172,7 +174,9 @@ export const ParsedHtml = (props: Props) => {
                     <LenkeInline {...props} href={href}>
                         {domToReact(children)}
                     </LenkeInline>
-                ) : null;
+                ) : (
+                    <Fragment />
+                );
             }
         },
     };
