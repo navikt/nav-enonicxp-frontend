@@ -5,6 +5,7 @@ export interface LinkItem {
     }[];
 }
 
+// TODO: fjern legacy når XP er oppdatert
 export enum MenuListItemKey {
     Selfservice = 'selfservice',
     FormAndApplication = 'form_and_application',
