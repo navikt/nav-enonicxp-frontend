@@ -20,9 +20,9 @@ const LesMerPanel = (props: DynamicReadMorePanel) => {
         <div className={'lesMerPanel__container'} style={style}>
             <LesmerpanelModul
                 border={border === 'true'}
-                intro={<ParsedHtml {...ingress} />}
+                intro={<ParsedHtml htmlProps={ingress} />}
             >
-                <ParsedHtml {...content} />
+                <ParsedHtml htmlProps={content} />
             </LesmerpanelModul>
         </div>
     );

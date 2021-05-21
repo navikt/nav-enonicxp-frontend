@@ -53,6 +53,7 @@ const parseSpecialInfo = (infoContent: string) => {
 
     return parsedString;
 };
+
 interface Props {
     info: string;
 }
@@ -64,7 +65,7 @@ export const SpecialInformation = (props: Props) => {
         <div>
             <Element tag="h2">Opplysninger</Element>
             <Normaltekst>
-                <ParsedHtml processedHtml={specialInfo} macros={[]} />
+                <ParsedHtml htmlProps={specialInfo} />
             </Normaltekst>
         </div>
     ) : null;

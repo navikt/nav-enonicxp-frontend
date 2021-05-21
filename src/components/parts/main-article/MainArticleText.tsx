@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { ParsedHtml } from '../../ParsedHtml';
-import { ProcessedHtmlProps } from '../../../types/processed-html-props';
+import {
+    getProcessedHtmlPropsWithBackwardsCompatibility,
+    ProcessedHtmlProps,
+} from '../../../types/processed-html-props';
 
 const modifyHtml = (htmlText: string, hasTableOfContent: boolean) => {
     // Fjern tomme headings og br-tagger fra HTML
@@ -31,17 +34,12 @@ const MainArticleText = ({
     className,
     hasTableOfContents,
 }: Props) => {
-    const modifiedHtml = modifyHtml(
-        htmlProps.processedHtml,
-        hasTableOfContents
-    );
+    const html = getProcessedHtmlPropsWithBackwardsCompatibility(htmlProps);
+    const modifiedHtml = modifyHtml(html.processedHtml, hasTableOfContents);
 
     return (
         <div className={className}>
-            <ParsedHtml
-                processedHtml={modifiedHtml}
-                macros={htmlProps.macros}
-            />
+            <ParsedHtml htmlProps={{ ...html, processedHtml: modifiedHtml }} />
         </div>
     );
 };

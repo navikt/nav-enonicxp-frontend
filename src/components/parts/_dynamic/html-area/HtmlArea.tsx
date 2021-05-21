@@ -12,7 +12,7 @@ export const HtmlArea = ({ config }: HtmlAreaProps) => {
     return (
         <Expandable {...config}>
             <div className={'html-area'}>
-                <ParsedHtml {...config.html} />
+                <ParsedHtml htmlProps={config.html} />
             </div>
         </Expandable>
     );

@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Faktaboks = (props: Props) => {
-    if (!props.fakta?.processedHtml) {
+    if (!props?.fakta) {
         return null;
     }
 
@@ -18,7 +18,7 @@ const Faktaboks = (props: Props) => {
         <div className={props.className}>
             <PublicImage imagePath={'/gfx/info-sirkel-fyll.svg'} alt={''} />
             <h3 className="decorated">{props.label}</h3>
-            <ParsedHtml {...props.fakta} />
+            <ParsedHtml htmlProps={props.fakta} />
         </div>
     );
 };
