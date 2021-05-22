@@ -12,6 +12,7 @@ export enum MacroType {
     Tankestrek = 'tankestrek',
     VarselBoks = 'varselBoks',
     Video = 'video',
+    GlobalValue = 'global-value',
 }
 
 export type MacroPropsCommon = {
