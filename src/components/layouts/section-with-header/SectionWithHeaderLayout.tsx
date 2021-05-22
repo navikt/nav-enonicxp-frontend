@@ -32,21 +32,21 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     const { title, anchorId, icon, border, hideCopyButton } = config;
 
-    const iconImgProps = icon?.icon;
+    const hasIcon = !!icon?.icon;
 
     return (
         <LayoutContainer
             pageProps={pageProps}
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}
-            modifiers={icon && ['with-icon']}
+            modifiers={hasIcon && ['with-icon']}
         >
-            {iconImgProps && (
+            {hasIcon && (
                 <div
                     className={'icon-container'}
                     style={icon.color && { backgroundColor: icon.color }}
                 >
-                    <XpImage imageProps={iconImgProps} alt={''} />
+                    <XpImage imageProps={icon.icon} alt={''} />
                 </div>
             )}
             <Header

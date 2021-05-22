@@ -20,7 +20,7 @@ const Veilederpanel = (props: DynamicSupervisorPanel) => {
     return (
         <div className={'nav-veilederpanel__container'} style={style}>
             <VeilederPanelModul svg={<Veileder />}>
-                <ParsedHtml content={content} />
+                <ParsedHtml htmlProps={content} />
             </VeilederPanelModul>
         </div>
     );
