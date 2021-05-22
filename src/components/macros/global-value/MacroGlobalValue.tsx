@@ -6,5 +6,7 @@ export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
         return null;
     }
 
-    return <>{config.global_value.value}</>;
+    const { value } = config.global_value;
+
+    return <>{value || '[teknisk feil: verdi ikke tilgjengelig]'}</>;
 };

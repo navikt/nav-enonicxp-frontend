@@ -5,6 +5,8 @@ export enum MacroType {
     ChevronLinkInternal = 'chevron-link-internal',
     ChevronLinkExternal = 'chevron-link-external',
     Fotnote = 'fotnote',
+    GlobalValue = 'global-value',
+    GlobalValueWithMath = 'global-value-with-math',
     InfoBoks = 'infoBoks',
     LenkeFiler = 'lenkeFiler',
     PhoneLink = 'phone-link',
@@ -12,7 +14,6 @@ export enum MacroType {
     Tankestrek = 'tankestrek',
     VarselBoks = 'varselBoks',
     Video = 'video',
-    GlobalValue = 'global-value',
 }
 
 export type MacroPropsCommon = {

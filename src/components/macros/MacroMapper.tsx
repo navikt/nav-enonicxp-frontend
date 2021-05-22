@@ -17,6 +17,7 @@ import { MacroTankestrek } from './tankestrek/MacroTankestrek';
 import { MacroVarselBoks } from './varselboks/MacroVarselBoks';
 import { MacroVideo } from './Video/MacroVideo';
 import { MacroGlobalValue } from './global-value/MacroGlobalValue';
+import { MacroGlobalValueWithMath } from './global-value-with-math/MacroGlobalValueWithMath';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
@@ -28,6 +29,7 @@ const macroComponents: {
     [MacroType.ChevronLinkInternal]: MacroChevronLinkInternal,
     [MacroType.Fotnote]: MacroFotnote,
     [MacroType.GlobalValue]: MacroGlobalValue,
+    [MacroType.GlobalValueWithMath]: MacroGlobalValueWithMath,
     [MacroType.InfoBoks]: MacroInfoBoks,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
     [MacroType.PhoneLink]: MacroPhoneLink,
