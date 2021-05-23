@@ -8,7 +8,7 @@ type ServiceResponse = {
 export const gvServiceGetValueSet = (
     contentId: string
 ): Promise<ServiceResponse> =>
-    globalValuesServiceFetch<ServiceResponse>('getSet', {
+    globalValuesServiceFetch<ServiceResponse>('getValueSet', {
         contentId,
     })
         .then((json) => {

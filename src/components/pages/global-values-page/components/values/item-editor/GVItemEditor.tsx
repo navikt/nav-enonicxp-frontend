@@ -8,7 +8,7 @@ import { gvServiceAddItem } from '../../../api/services/add';
 import { gvServiceModifyItem } from '../../../api/services/modify';
 import { gvServiceRemoveItem } from '../../../api/services/remove';
 import { useGvEditorState } from '../../../store/useGvEditorState';
-import { gvServiceGetValueSet } from '../../../api/services/getSet';
+import { gvServiceGetValueSet } from '../../../api/services/getValueSet';
 import { gvServiceGetUsage } from '../../../api/services/usage';
 import { Element } from 'nav-frontend-typografi';
 import './GVItemEditor.less';
