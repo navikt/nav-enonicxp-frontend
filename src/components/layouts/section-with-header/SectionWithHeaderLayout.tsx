@@ -43,9 +43,22 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             {iconImgProps && (
                 <div
                     className={'icon-container'}
-                    style={icon.color && { backgroundColor: icon.color }}
+                    style={
+                        icon.color ? { backgroundColor: icon.color } : undefined
+                    }
                 >
-                    <XpImage imageProps={iconImgProps} alt={''} />
+                    <XpImage
+                        imageProps={iconImgProps}
+                        alt={''}
+                        style={
+                            icon.size
+                                ? {
+                                      height: `${icon.size}%`,
+                                      width: `${icon.size}%`,
+                                  }
+                                : undefined
+                        }
+                    />
                 </div>
             )}
             <Header
