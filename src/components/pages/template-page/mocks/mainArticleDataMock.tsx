@@ -1,9 +1,10 @@
 import { MainArticleData } from '../../../../types/content-props/main-article-props';
+import { getProcessedHtmlPropsWithBackwardsCompatibility } from '../../../../types/processed-html-props';
 
 export const mainArticleDataMock: MainArticleData = {
     ingress: '',
-    text: '',
+    text: getProcessedHtmlPropsWithBackwardsCompatibility(''),
     hasTableOfContents: 'none',
-    fact: '',
+    fact: getProcessedHtmlPropsWithBackwardsCompatibility(''),
     social: [],
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { ParsedHtml } from '../../../ParsedHtml';
 import {
     ComponentType,
     TextComponentProps,
@@ -33,7 +32,7 @@ export const Text = ({ textProps, editMode }: Props) => {
 
     return (
         <div className={'typo-normal'} {...editorProps}>
-            <ParsedHtml content={text} />
+            {text}
         </div>
     );
 };

@@ -7,7 +7,7 @@ type Props = {
     alt: string;
     scale?: string;
     className?: string;
-};
+} & React.ImgHTMLAttributes<HTMLImageElement>;
 
 export const getImageUrl = (image: XpImageProps, scale?: string) => {
     if (!image) {
@@ -22,11 +22,19 @@ export const getImageUrl = (image: XpImageProps, scale?: string) => {
     return getMediaUrl(url);
 };
 
-export const XpImage = ({ imageProps, alt, scale, className }: Props) => {
+export const XpImage = ({
+    imageProps,
+    alt,
+    scale,
+    className,
+    ...imgAttribs
+}: Props) => {
     const imageUrl = getImageUrl(imageProps, scale);
     if (!imageUrl) {
         return null;
     }
 
-    return <img src={imageUrl} alt={alt} className={className} />;
+    return (
+        <img src={imageUrl} alt={alt} className={className} {...imgAttribs} />
+    );
 };

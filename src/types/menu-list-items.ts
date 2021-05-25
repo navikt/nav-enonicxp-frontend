@@ -5,19 +5,26 @@ export interface LinkItem {
     }[];
 }
 
+// TODO: fjern legacy når XP er oppdatert
 export enum MenuListItemKey {
     Selfservice = 'selfservice',
-    FormAndApplication = 'formAndApplication',
-    ProcessTimes = 'processTimes',
-    RelatedInformation = 'relatedInformation',
+    FormAndApplication = 'form_and_application',
+    ProcessTimes = 'process_times',
+    RelatedInformation = 'related_information',
     International = 'international',
-    ReportChanges = 'reportChanges',
+    ReportChanges = 'report_changes',
     Rates = 'rates',
-    AppealRights = 'appealRights',
+    AppealRights = 'appeal_rights',
     Membership = 'membership',
-    RulesAndRegulations = 'rulesAndRegulations',
+    RulesAndRegulations = 'rules_and_regulations',
     Saksbehandling = 'saksbehandling',
     Shortcuts = 'shortcuts',
+    FormAndApplicationLegacy = 'formAndApplication',
+    ProcessTimesLegacy = 'processTimes',
+    RelatedInformationLegacy = 'relatedInformation',
+    ReportChangesLegacy = 'reportChanges',
+    AppealRightsLegacy = 'appealRights',
+    RulesAndRegulationsLegacy = 'rulesAndRegulations',
 }
 
 export type MenuListItem = {
