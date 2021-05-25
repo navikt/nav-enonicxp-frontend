@@ -50,7 +50,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
     const filterExplanation =
         selectedFilters.length === 0
             ? 'Ingen filtere er valgt, så alt innhold vises.'
-            : 'Filtere er valgt, så noe innhold kan være skjult.';
+            : 'Vi har fjernet innhold som ikke er relevant i din situasjon.';
 
     return (
         <div className={bem('wrapper')}>
