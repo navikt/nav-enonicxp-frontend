@@ -70,7 +70,6 @@ const parsedHtmlLegacy = (content: string) => {
 
             if (tag === 'a' && attribs?.href && children) {
                 const href = attribs.href.replace('https://www.nav.no', '');
-                const className = attribs?.class;
 
                 if (
                     className.includes('macroButton') ||
@@ -80,8 +79,8 @@ const parsedHtmlLegacy = (content: string) => {
                         <Button
                             href={href}
                             type={
-                                attribs.class.includes('macroButtonBlue') ||
-                                attribs.class.includes('btn-primary')
+                                className.includes('macroButtonBlue') ||
+                                className.includes('btn-primary')
                                     ? 'hoved'
                                     : 'standard'
                             }

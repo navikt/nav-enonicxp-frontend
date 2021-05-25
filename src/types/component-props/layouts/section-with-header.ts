@@ -16,7 +16,11 @@ export interface SectionWithHeaderProps extends LayoutCommonProps {
         title: string;
         anchorId: string;
         hideCopyButton: boolean;
-        icon?: { icon: XpImageProps; color?: string };
+        icon?: {
+            icon: XpImageProps;
+            color?: string;
+            size?: number;
+        };
         border?: {
             color: string;
             rounded: boolean;
