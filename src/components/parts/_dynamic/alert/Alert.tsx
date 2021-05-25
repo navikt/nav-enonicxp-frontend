@@ -24,7 +24,7 @@ const Alert = (props: DynamicAlert) => {
             form={inline === 'true' ? 'inline' : undefined}
             style={style}
         >
-            <ParsedHtml content={content} />
+            <ParsedHtml htmlProps={content} />
         </AlertStripe>
     );
 };

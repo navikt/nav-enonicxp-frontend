@@ -8,6 +8,7 @@ import {
 import { MenuListItem } from '../menu-list-items';
 import { LanguageProps } from '../language';
 import { XpImageProps } from '../media';
+import { ProcessedHtmlProps } from '../processed-html-props';
 
 export type Picture = Partial<{
     target: XpImageProps;
@@ -19,9 +20,9 @@ export type Picture = Partial<{
 export type MainArticleData = Partial<{
     languages: LanguageProps[];
     ingress: string;
-    text: string;
+    text: ProcessedHtmlProps;
     hasTableOfContents: string;
-    fact: string;
+    fact: ProcessedHtmlProps;
     social: string[];
     picture: Picture;
     menuListItems: MenuListItem;

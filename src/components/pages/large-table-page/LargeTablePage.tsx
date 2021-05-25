@@ -4,6 +4,7 @@ import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LargeTableProps } from '../../../types/content-props/large-table-props';
 import { makeErrorProps } from '../../../utils/make-error-props';
 import { ErrorPage } from '../error-page/ErrorPage';
+import { getProcessedHtmlPropsWithBackwardsCompatibility } from '../../../types/processed-html-props';
 import './LargeTablePage.less';
 
 const parseHtml = (htmlString: string) => {
@@ -48,9 +49,13 @@ const parseHtml = (htmlString: string) => {
 };
 
 export const LargeTablePage = (contentData: LargeTableProps) => {
-    return contentData.data?.text || contentData.editMode ? (
+    const html = getProcessedHtmlPropsWithBackwardsCompatibility(
+        contentData.data.text
+    );
+
+    return html || contentData.editMode ? (
         <div className={'large-table-page'}>
-            {contentData.data?.text ? parseHtml(contentData.data.text) : ''}
+            {html ? parseHtml(html.processedHtml) : ''}
         </div>
     ) : (
         <ErrorPage

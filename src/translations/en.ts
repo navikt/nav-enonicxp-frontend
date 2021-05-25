@@ -1,4 +1,5 @@
 import { Translations } from './default';
+import { MenuListItemKey } from '../types/menu-list-items';
 
 export const bundle: Translations = {
     dates: {
@@ -29,18 +30,24 @@ export const bundle: Translations = {
         label: 'Urgent notifications',
     },
     relatedContent: {
-        appealRights: 'Appeal rights',
-        formAndApplication: 'Form and application',
-        international: 'International',
-        membership: 'Membership',
-        processTimes: 'Processing times',
-        rates: 'Rates',
-        relatedInformation: 'Related information',
-        reportChanges: 'Report changes',
-        rulesAndRegulations: 'Laws and regulations',
-        saksbehandling: 'Procedural',
-        selfservice: 'Selfservice',
-        shortcuts: 'Shortcuts',
+        [MenuListItemKey.AppealRights]: 'Appeal rights',
+        [MenuListItemKey.FormAndApplication]: 'Form and application',
+        [MenuListItemKey.International]: 'International',
+        [MenuListItemKey.Membership]: 'Membership',
+        [MenuListItemKey.ProcessTimes]: 'Processing times',
+        [MenuListItemKey.Rates]: 'Rates',
+        [MenuListItemKey.RelatedInformation]: 'Related information',
+        [MenuListItemKey.ReportChanges]: 'Report changes',
+        [MenuListItemKey.RulesAndRegulations]: 'Laws and regulations',
+        [MenuListItemKey.Saksbehandling]: 'Procedural',
+        [MenuListItemKey.Selfservice]: 'Selfservice',
+        [MenuListItemKey.Shortcuts]: 'Shortcuts',
+        [MenuListItemKey.AppealRightsLegacy]: 'Appeal rights',
+        [MenuListItemKey.FormAndApplicationLegacy]: 'Form and application',
+        [MenuListItemKey.ProcessTimesLegacy]: 'Processing times',
+        [MenuListItemKey.RelatedInformationLegacy]: 'Related information',
+        [MenuListItemKey.ReportChangesLegacy]: 'Report changes',
+        [MenuListItemKey.RulesAndRegulationsLegacy]: 'Laws and regulations',
     },
     header: {
         copyLink: 'Copy link',
