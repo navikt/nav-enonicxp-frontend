@@ -26,7 +26,6 @@ const contentToReactComponent: Partial<
     [ContentType.OfficeInformation]: DynamicPage,
     [ContentType.PageList]: DynamicPage,
     [ContentType.SectionPage]: DynamicPage,
-    [ContentType.TemplatePage]: DynamicPage,
     [ContentType.TransportPage]: DynamicPage,
     [ContentType.PublishingCalendar]: DynamicPage,
     [ContentType.Melding]: DynamicPage,
