@@ -12,8 +12,9 @@ import {
     ContentType,
     ContentProps,
 } from '../../../types/content-props/_content-common';
-import './MainArticle.less';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { getProcessedHtmlPropsWithBackwardsCompatibility } from '../../../types/processed-html-props';
+import './MainArticle.less';
 
 export const MainArticle = (propsInitial: ContentProps) => {
     const props =
@@ -26,8 +27,10 @@ export const MainArticle = (propsInitial: ContentProps) => {
     const getLabel = translator('mainArticle', props.language);
     const hasTableOfContest =
         data?.hasTableOfContents && data?.hasTableOfContents !== 'none';
+
+    const html = getProcessedHtmlPropsWithBackwardsCompatibility(data.text);
     const innholdsfortegnelse = parseInnholdsfortegnelse(
-        data.text,
+        html.processedHtml,
         hasTableOfContest
     );
     const headerClassName =
@@ -48,16 +51,18 @@ export const MainArticle = (propsInitial: ContentProps) => {
                 <Innholdstittel className={bem('title')}>
                     {props.displayName}
                 </Innholdstittel>
-                <Normaltekst className={bem('preface')}>
-                    {data.ingress}
-                </Normaltekst>
+                {data.ingress && (
+                    <Normaltekst className={bem('preface')}>
+                        {data.ingress}
+                    </Normaltekst>
+                )}
                 <Innholdsfortegnelse
                     innholdsfortegnelse={innholdsfortegnelse}
                     label={getLabel('tableOfContents')}
                 />
             </header>
             <MainArticleText
-                text={data.text}
+                htmlProps={data.text}
                 className={bem('text')}
                 hasTableOfContents={hasTableOfContest}
             />

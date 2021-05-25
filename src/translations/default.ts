@@ -2,18 +2,24 @@ import { DeepPartial } from '../types/util-types';
 import { MenuListItemKey } from '../types/menu-list-items';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
-    appealRights: 'Klagerettigheter',
-    formAndApplication: 'Skjema og søknad',
-    international: 'Internasjonalt',
-    membership: 'Medlemsskap i folketrygden',
-    processTimes: 'Saksbehandlingstider',
-    rates: 'Satser',
-    relatedInformation: 'Relatert innhold',
-    reportChanges: 'Meld fra om endringer',
-    rulesAndRegulations: 'Regelverk',
-    saksbehandling: 'Saksbehandling',
-    selfservice: 'Selvbetjening',
-    shortcuts: 'Snarveier',
+    [MenuListItemKey.AppealRights]: 'Klagerettigheter',
+    [MenuListItemKey.FormAndApplication]: 'Skjema og søknad',
+    [MenuListItemKey.International]: 'Internasjonalt',
+    [MenuListItemKey.Membership]: 'Medlemsskap i folketrygden',
+    [MenuListItemKey.ProcessTimes]: 'Saksbehandlingstider',
+    [MenuListItemKey.Rates]: 'Satser',
+    [MenuListItemKey.RelatedInformation]: 'Relatert innhold',
+    [MenuListItemKey.ReportChanges]: 'Meld fra om endringer',
+    [MenuListItemKey.RulesAndRegulations]: 'Regelverk',
+    [MenuListItemKey.Saksbehandling]: 'Saksbehandling',
+    [MenuListItemKey.Selfservice]: 'Selvbetjening',
+    [MenuListItemKey.Shortcuts]: 'Snarveier',
+    [MenuListItemKey.AppealRightsLegacy]: 'Klagerettigheter',
+    [MenuListItemKey.FormAndApplicationLegacy]: 'Skjema og søknad',
+    [MenuListItemKey.ProcessTimesLegacy]: 'Saksbehandlingstider',
+    [MenuListItemKey.RelatedInformationLegacy]: 'Relatert innhold',
+    [MenuListItemKey.ReportChangesLegacy]: 'Meld fra om endringer',
+    [MenuListItemKey.RulesAndRegulationsLegacy]: 'Regelverk',
 };
 
 export const bundle = {
