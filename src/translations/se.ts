@@ -1,18 +1,26 @@
 import { Translations } from './default';
+import { MenuListItemKey } from '../types/menu-list-items';
 
 export const bundle: Translations = {
     relatedContent: {
-        appealRights: 'Váidinvuoigatvuođat',
-        formAndApplication: 'Skovit',
-        international: 'Riikkaidgaskasaš',
-        membership: 'Álbmotoaju miellahttovuohta',
-        processTimes: 'Áššemeannudanáiggit',
-        rates: 'Máksomearit',
-        relatedInformation: 'Dehálaš dieđutdehálaš dieđut',
-        reportChanges: 'Dieđit daid rievdadusaid',
-        rulesAndRegulations: 'Njuolggadusat',
-        saksbehandling: 'NAV áššemeannudanáiggit',
-        selfservice: 'Ieš-bálvaleapmi',
-        shortcuts: 'Njuolggobálgát',
+        [MenuListItemKey.AppealRights]: 'Váidinvuoigatvuođat',
+        [MenuListItemKey.FormAndApplication]: 'Skovit',
+        [MenuListItemKey.International]: 'Riikkaidgaskasaš',
+        [MenuListItemKey.Membership]: 'Álbmotoaju miellahttovuohta',
+        [MenuListItemKey.ProcessTimes]: 'Áššemeannudanáiggit',
+        [MenuListItemKey.Rates]: 'Máksomearit',
+        [MenuListItemKey.RelatedInformation]: 'Dehálaš dieđutdehálaš dieđut',
+        [MenuListItemKey.ReportChanges]: 'Dieđit daid rievdadusaid',
+        [MenuListItemKey.RulesAndRegulations]: 'Njuolggadusat',
+        [MenuListItemKey.Saksbehandling]: 'NAV áššemeannudanáiggit',
+        [MenuListItemKey.Selfservice]: 'Ieš-bálvaleapmi',
+        [MenuListItemKey.Shortcuts]: 'Njuolggobálgát',
+        [MenuListItemKey.AppealRightsLegacy]: 'Váidinvuoigatvuođat',
+        [MenuListItemKey.FormAndApplicationLegacy]: 'Skovit',
+        [MenuListItemKey.ProcessTimesLegacy]: 'Áššemeannudanáiggit',
+        [MenuListItemKey.RelatedInformationLegacy]:
+            'Dehálaš dieđutdehálaš dieđut',
+        [MenuListItemKey.ReportChangesLegacy]: 'Dieđit daid rievdadusaid',
+        [MenuListItemKey.RulesAndRegulationsLegacy]: 'Njuolggadusat',
     },
 };

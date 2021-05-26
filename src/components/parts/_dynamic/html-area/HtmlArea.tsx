@@ -15,7 +15,7 @@ export const HtmlArea = ({ config }: HtmlAreaProps) => {
         <FilteredContent {...config}>
             <Expandable {...config}>
                 <div className={'html-area'}>
-                    <ParsedHtml content={config.html} />
+                    <ParsedHtml htmlProps={config.html} />
                 </div>
             </Expandable>
         </FilteredContent>

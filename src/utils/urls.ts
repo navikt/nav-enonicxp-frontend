@@ -16,9 +16,24 @@ const internalUrlPrefix = `^(${appOrigin}|${adminOrigin})?(${xpContentPathPrefix
 
 const internalUrlPrefixPattern = new RegExp(internalUrlPrefix, 'i');
 
+const internalPaths = [
+    '$',
+    'no',
+    'en',
+    'se',
+    'nav.no',
+    'skjemaer',
+    'forsiden',
+    'footer-contactus-no',
+    'footer-contactus-en',
+    'sykepenger-korona',
+    'beskjed',
+    'person\\/kontakt-oss(?!(\\/(nb|en))?\\/(tilbakemeldinger|finnkontor|samegiella|chat))',
+];
+
 // Matches both relative and absolute urls which points to content internal to the app
 const appUrlPattern = new RegExp(
-    `${internalUrlPrefix}($|\\/($|no|en|se|nav.no|skjemaer|forsiden|footer-contactus-no|footer-contactus-en|sykepenger-korona|beskjed))`,
+    `${internalUrlPrefix}($|\\/(${internalPaths.join('|')}))`,
     'i'
 );
 export const isAppUrl = (url: string) => url && appUrlPattern.test(url);

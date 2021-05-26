@@ -1,0 +1,22 @@
+@import (reference) '../../../global';
+
+.macro-quote {
+    font-weight: normal;
+    margin: 1.5rem 0;
+    padding: 0 2.5rem;
+    position: relative;
+
+    p:last-of-type {
+        margin-bottom: 0;
+    }
+
+    :before {
+        content: '\201C';
+        font-size: 4rem;
+        color: @navRod;
+        font-family: 'Times new roman', serif;
+        position: absolute;
+        left: 0;
+        top: 0.75rem;
+    }
+}
