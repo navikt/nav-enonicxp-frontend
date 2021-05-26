@@ -16,4 +16,4 @@ export const getProcessedHtmlPropsWithBackwardsCompatibility = (
 ) =>
     typeof html === 'string'
         ? { processedHtml: html, macros: [], isLegacy: true }
-        : html;
+        : html || { processedHtml: '', macros: [] };
