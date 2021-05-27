@@ -216,7 +216,7 @@ export const ParsedHtml = (props: Props) => {
 
             if (tag === 'p' && children) {
                 return (
-                    <Normaltekst>
+                    <Normaltekst {...props}>
                         {domToReact(children, replaceElements)}
                     </Normaltekst>
                 );
