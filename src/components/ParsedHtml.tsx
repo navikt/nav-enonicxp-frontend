@@ -12,6 +12,7 @@ import {
 import { MacroMapper } from './macros/MacroMapper';
 import { Button } from './_common/button/Button';
 import { LenkeStandalone } from './_common/lenke/LenkeStandalone';
+import { headingToTypoStyle, typoToComponent } from '../types/typo-style';
 import './macros/Quote.less';
 import './macros/Video.less';
 
@@ -124,6 +125,30 @@ const parsedHtmlLegacy = (content: string) => {
     return <>{htmlParsed}</>;
 };
 
+const getNonEmptyChildren = ({ children }: DomElement) => {
+    const validChildren = children?.filter((child) => {
+        const { data, name } = child;
+
+        if (name === processedHtmlMacroTag) {
+            return true;
+        }
+
+        const grandChildren = getNonEmptyChildren(child);
+
+        if (!data && !grandChildren) {
+            return false;
+        }
+
+        if (typeof data !== 'string') {
+            return true;
+        }
+
+        const stringData = data.replace(/&nbsp;/g, ' ').trim();
+        return !!stringData;
+    });
+    return validChildren?.length > 0 && validChildren;
+};
+
 type Props = {
     htmlProps: ProcessedHtmlProps;
 };
@@ -144,8 +169,10 @@ export const ParsedHtml = (props: Props) => {
     }
 
     const replaceElements = {
-        replace: ({ name, attribs, children }: DomElement) => {
+        replace: (element: DomElement) => {
+            const { name, attribs, children } = element;
             const tag = name?.toLowerCase();
+            const props = !!attribs && attributesToProps(attribs);
 
             if (tag === processedHtmlMacroTag) {
                 return (
@@ -156,29 +183,40 @@ export const ParsedHtml = (props: Props) => {
                 );
             }
 
-            if (tag === 'img' && attribs?.src) {
-                return (
+            if (tag === 'img') {
+                return attribs?.src ? (
                     <img
-                        {...attributesToProps(attribs)}
+                        {...props}
                         alt={attribs.alt || ''}
                         src={getMediaUrl(attribs.src)}
                     />
-                );
-            }
-
-            if (tag === 'h1') {
-                return children ? (
-                    <Innholdstittel>
-                        {domToReact(children, replaceElements)}
-                    </Innholdstittel>
                 ) : (
                     <Fragment />
                 );
             }
 
+            if (tag?.match(/^h[1-6]$/)) {
+                const validChildren = getNonEmptyChildren(element);
+
+                // Header-tags should not be used as empty spacers
+                if (!validChildren) {
+                    return <p>{'&nbsp;'}</p>;
+                }
+
+                const typoStyle = headingToTypoStyle[tag];
+                const TypoComponent = typoToComponent[typoStyle];
+
+                return (
+                    // H1 tags should only be used for the page title
+                    <TypoComponent {...props} tag={tag === 'h1' ? 'h2' : tag}>
+                        {domToReact(validChildren, replaceElements)}
+                    </TypoComponent>
+                );
+            }
+
             if (tag === 'p' && children) {
                 return (
-                    <Normaltekst>
+                    <Normaltekst {...props}>
                         {domToReact(children, replaceElements)}
                     </Normaltekst>
                 );
@@ -186,24 +224,45 @@ export const ParsedHtml = (props: Props) => {
 
             if (tag === 'a') {
                 const href = attribs?.href?.replace('https://www.nav.no', '');
-                const props = attributesToProps(attribs);
+                const validChildren = getNonEmptyChildren(element);
 
-                return children ? (
+                return validChildren ? (
                     <LenkeInline {...props} href={href}>
-                        {domToReact(children)}
+                        {domToReact(validChildren, replaceElements)}
                     </LenkeInline>
                 ) : (
                     <Fragment />
                 );
             }
+
+            // Remove empty lists
+            if (tag === 'ul') {
+                const validChildren = getNonEmptyChildren(element);
+                if (!validChildren) {
+                    return <Fragment />;
+                }
+
+                return (
+                    <ul {...props}>
+                        {domToReact(validChildren, replaceElements)}
+                    </ul>
+                );
+            }
+
+            if (tag === 'table') {
+                return (
+                    <table {...props} className={'tabell tabell--stripet'}>
+                        {domToReact(children, replaceElements)}
+                    </table>
+                );
+            }
         },
     };
 
-    // htmlReactParser does not always handle linebreaks well...
     const htmlParsed = htmlReactParser(
         processedHtml
-            .replace(/(\r\n|\n|\r)/gm, ' ')
-            .replace(/(<table)/gm, '<table class="tabell tabell--stripet"'),
+            // Remove whitespace/linebreaks to prevent certain parsing errors
+            .replace(/(\r\n|\n|\r|\s)/gm, ' '),
         replaceElements
     );
 
