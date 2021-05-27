@@ -203,7 +203,7 @@ export const ParsedHtml = (props: Props) => {
 
                 return (
                     // H1 tags should only be used for the page title
-                    <TypoComponent tag={tag === 'h1' ? 'h2' : tag}>
+                    <TypoComponent {...props} tag={tag === 'h1' ? 'h2' : tag}>
                         {domToReact(children, replaceElements)}
                     </TypoComponent>
                 );
@@ -211,7 +211,7 @@ export const ParsedHtml = (props: Props) => {
 
             if (tag === 'p' && children) {
                 return (
-                    <Normaltekst>
+                    <Normaltekst {...props}>
                         {domToReact(children, replaceElements)}
                     </Normaltekst>
                 );
@@ -242,7 +242,7 @@ export const ParsedHtml = (props: Props) => {
 
             if (tag === 'table') {
                 return (
-                    <table className={'tabell tabell--stripet'} {...props}>
+                    <table {...props} className={'tabell tabell--stripet'}>
                         {domToReact(children, replaceElements)}
                     </table>
                 );
