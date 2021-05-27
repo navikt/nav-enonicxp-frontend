@@ -12,9 +12,9 @@ import {
 import { MacroMapper } from './macros/MacroMapper';
 import { Button } from './_common/button/Button';
 import { LenkeStandalone } from './_common/lenke/LenkeStandalone';
+import { headingToTypoStyle, typoToComponent } from '../types/typo-style';
 import './macros/Quote.less';
 import './macros/Video.less';
-import { headingToTypoStyle, typoToComponent } from '../types/typo-style';
 
 const parsedHtmlLegacy = (content: string) => {
     if (!content) {
@@ -125,6 +125,26 @@ const parsedHtmlLegacy = (content: string) => {
     return <>{htmlParsed}</>;
 };
 
+// Filters out empty children of an element
+const getValidChildren = ({ children }: DomElement) => {
+    const validChildren = children?.filter((child) => {
+        const { data } = child;
+        const validGrandChildren = getValidChildren(child);
+
+        if (!data && !validGrandChildren) {
+            return false;
+        }
+
+        if (typeof data !== 'string') {
+            return true;
+        }
+
+        const stringData = data.trim();
+        return stringData && stringData !== '&nbsp;';
+    });
+    return validChildren?.length > 0 && validChildren;
+};
+
 type Props = {
     htmlProps: ProcessedHtmlProps;
 };
@@ -145,10 +165,9 @@ export const ParsedHtml = (props: Props) => {
     }
 
     const replaceElements = {
-        replace: ({ name, attribs, children }: DomElement) => {
-            const isEmpty =
-                !children ||
-                children.filter((child) => !child.data?.trim?.()).length === 0;
+        replace: (element: DomElement) => {
+            const { name, attribs } = element;
+            const children = getValidChildren(element);
             const tag = name?.toLowerCase();
             const props = !!attribs && attributesToProps(attribs);
 
@@ -161,27 +180,20 @@ export const ParsedHtml = (props: Props) => {
                 );
             }
 
-            if (tag === 'img' && attribs?.src) {
-                return (
+            if (tag === 'img') {
+                return attribs?.src ? (
                     <img
                         {...props}
                         alt={attribs.alt || ''}
                         src={getMediaUrl(attribs.src)}
                     />
-                );
-            }
-
-            if (tag === 'h1') {
-                return children ? (
-                    <Innholdstittel>
-                        {domToReact(children, replaceElements)}
-                    </Innholdstittel>
                 ) : (
                     <Fragment />
                 );
             }
 
-            if (tag?.match(/^h[2-6]$/)) {
+            if (tag?.match(/^h[1-6]$/)) {
+                // Header-tags should not be used as empty spacers
                 if (!children) {
                     return <p>{'&nbsp;'}</p>;
                 }
@@ -190,7 +202,8 @@ export const ParsedHtml = (props: Props) => {
                 const TypoComponent = typoToComponent[typoStyle];
 
                 return (
-                    <TypoComponent tag={tag}>
+                    // H1 tags should only be used for the page title
+                    <TypoComponent tag={tag === 'h1' ? 'h2' : tag}>
                         {domToReact(children, replaceElements)}
                     </TypoComponent>
                 );
@@ -222,17 +235,16 @@ export const ParsedHtml = (props: Props) => {
                     return <Fragment />;
                 }
 
-                const listElementsWithContent = children.filter(
-                    (child) => !!child.children
-                );
-                if (listElementsWithContent.length === 0) {
-                    return <Fragment />;
-                }
-
                 return (
-                    <ul {...props}>
-                        {domToReact(listElementsWithContent, replaceElements)}
-                    </ul>
+                    <ul {...props}>{domToReact(children, replaceElements)}</ul>
+                );
+            }
+
+            if (tag === 'table') {
+                return (
+                    <table className={'tabell tabell--stripet'} {...props}>
+                        {domToReact(children, replaceElements)}
+                    </table>
                 );
             }
         },
@@ -240,9 +252,8 @@ export const ParsedHtml = (props: Props) => {
 
     const htmlParsed = htmlReactParser(
         processedHtml
-            // Remove whitespace/linebreaks
-            .replace(/(\r\n|\n|\r|\s)/gm, ' ')
-            .replace(/(<table)/gm, '<table class="tabell tabell--stripet"'),
+            // Remove whitespace/linebreaks to prevent certain parsing errors
+            .replace(/(\r\n|\n|\r|\s)/gm, ' '),
         replaceElements
     );
 
