@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ExpandableMixin } from '../../../types/component-props/_mixins';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { logAmplitudeEvent } from '../../../utils/amplitude';
 import './Expandable.less';
 
 type Props = {
@@ -13,6 +14,8 @@ export const Expandable = ({
     expandableOpenByDefault,
     children,
 }: Props) => {
+    const [isOpen, setIsOpen] = useState(expandableOpenByDefault);
+
     if (!expandable) {
         return <>{children}</>;
     }
@@ -24,6 +27,12 @@ export const Expandable = ({
             apen={expandableOpenByDefault}
             renderContentWhenClosed={true}
             className={'expandable'}
+            onClick={() => {
+                logAmplitudeEvent(isOpen ? 'collapsing' : 'expanding', {
+                    tittel: expandableTitle,
+                });
+                setIsOpen(!isOpen);
+            }}
         >
             {children}
         </Ekspanderbartpanel>
