@@ -14,6 +14,6 @@ const mockData = {
 };
 
 export const TemplatePage = (props: ContentProps) => {
-    const propsWithMocks = { ...props, data: { ...props.data, ...mockData } };
+    const propsWithMocks = { ...props, data: { ...mockData, ...props?.data } };
     return <DynamicPage {...propsWithMocks} />;
 };

@@ -8,6 +8,7 @@ import {
     ContentProps,
     ContentType,
 } from '../../types/content-props/_content-common';
+import globalState from '../../globalState';
 
 const dummyPageProps: ContentProps = {
     __typename: ContentType.Site,
@@ -31,6 +32,8 @@ const postHandler = async (req, res) => {
 
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
+
+    globalState.isDraft = true;
 
     const props = req.body.props as PartComponentProps;
 
