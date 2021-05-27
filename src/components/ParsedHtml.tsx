@@ -14,6 +14,7 @@ import { Button } from './_common/button/Button';
 import { LenkeStandalone } from './_common/lenke/LenkeStandalone';
 import './macros/Quote.less';
 import './macros/Video.less';
+import { headingToTypoStyle, typoToComponent } from '../types/typo-style';
 
 const parsedHtmlLegacy = (content: string) => {
     if (!content) {
@@ -145,7 +146,11 @@ export const ParsedHtml = (props: Props) => {
 
     const replaceElements = {
         replace: ({ name, attribs, children }: DomElement) => {
+            const isEmpty =
+                !children ||
+                children.filter((child) => !child.data?.trim?.()).length === 0;
             const tag = name?.toLowerCase();
+            const props = !!attribs && attributesToProps(attribs);
 
             if (tag === processedHtmlMacroTag) {
                 return (
@@ -159,7 +164,7 @@ export const ParsedHtml = (props: Props) => {
             if (tag === 'img' && attribs?.src) {
                 return (
                     <img
-                        {...attributesToProps(attribs)}
+                        {...props}
                         alt={attribs.alt || ''}
                         src={getMediaUrl(attribs.src)}
                     />
@@ -176,6 +181,21 @@ export const ParsedHtml = (props: Props) => {
                 );
             }
 
+            if (tag?.match(/^h[2-6]$/)) {
+                if (!children) {
+                    return <p>{'&nbsp;'}</p>;
+                }
+
+                const typoStyle = headingToTypoStyle[tag];
+                const TypoComponent = typoToComponent[typoStyle];
+
+                return (
+                    <TypoComponent tag={tag}>
+                        {domToReact(children, replaceElements)}
+                    </TypoComponent>
+                );
+            }
+
             if (tag === 'p' && children) {
                 return (
                     <Normaltekst>
@@ -186,23 +206,42 @@ export const ParsedHtml = (props: Props) => {
 
             if (tag === 'a') {
                 const href = attribs?.href?.replace('https://www.nav.no', '');
-                const props = attributesToProps(attribs);
 
                 return children ? (
                     <LenkeInline {...props} href={href}>
-                        {domToReact(children)}
+                        {domToReact(children, replaceElements)}
                     </LenkeInline>
                 ) : (
                     <Fragment />
                 );
             }
+
+            // Remove empty lists
+            if (tag === 'ul') {
+                if (!children) {
+                    return <Fragment />;
+                }
+
+                const listElementsWithContent = children.filter(
+                    (child) => !!child.children
+                );
+                if (listElementsWithContent.length === 0) {
+                    return <Fragment />;
+                }
+
+                return (
+                    <ul {...props}>
+                        {domToReact(listElementsWithContent, replaceElements)}
+                    </ul>
+                );
+            }
         },
     };
 
-    // htmlReactParser does not always handle linebreaks well...
     const htmlParsed = htmlReactParser(
         processedHtml
-            .replace(/(\r\n|\n|\r)/gm, ' ')
+            // Remove whitespace/linebreaks
+            .replace(/(\r\n|\n|\r|\s)/gm, ' ')
             .replace(/(<table)/gm, '<table class="tabell tabell--stripet"'),
         replaceElements
     );
