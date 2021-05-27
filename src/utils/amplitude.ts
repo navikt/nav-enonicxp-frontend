@@ -25,6 +25,7 @@ export const logLinkClick = (
         lenketekst: linkText,
     });
 };
+
 export function logAmplitudeEvent(eventName: string, data?: any): Promise<any> {
     return new Promise(function (resolve: any) {
         const eventData = data || {};
