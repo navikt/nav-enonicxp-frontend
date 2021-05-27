@@ -4,6 +4,8 @@ import { useFilterState } from 'store/hooks/useFilteredContent';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { BEM } from '../../../utils/classnames';
 
+import { logAmplitudeEvent } from 'utils/amplitude';
+
 import { Information } from '@navikt/ds-icons';
 
 import './FilterBar.less';
@@ -44,9 +46,12 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     // actual filter objects to be able to display filterName later on.
     const filtersToDisplay = availableFilters
         .map((category) => {
-            return category.filters.filter((filter) =>
-                filterIds.includes(filter.id)
-            );
+            return category.filters
+                .filter((filter) => filterIds.includes(filter.id))
+                .map((filter) => ({
+                    ...filter,
+                    categoryName: category.categoryName, // Needed when reporting category back to Amplitude
+                }));
         })
         .flat();
 
@@ -71,9 +76,14 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                         <FilterCheckbox
                             key={filter.id}
                             isSelected={isSelected}
-                            onToggleFilterHandler={() =>
-                                toggleFilter(filter.id)
-                            }
+                            onToggleFilterHandler={() => {
+                                logAmplitudeEvent('filtervalg', {
+                                    kategori: filter.categoryName,
+                                    filternavn: filter.filterName,
+                                    opprinnelse: 'innholdsblokk',
+                                });
+                                toggleFilter(filter.id);
+                            }}
                             filter={filter}
                         />
                     );

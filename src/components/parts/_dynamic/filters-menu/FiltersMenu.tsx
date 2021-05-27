@@ -12,6 +12,8 @@ import { Information } from '@navikt/ds-icons';
 import { useFilterState } from '../../../../store/hooks/useFilteredContent';
 import { Header } from 'components/_common/header/Header';
 
+import { logAmplitudeEvent } from 'utils/amplitude';
+
 const defaultTitle = 'Tilpass innhold';
 
 const bem = BEM('filters-menu');
@@ -75,9 +77,14 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                         >
                             {category.filters.map((filter, filterIndex) => (
                                 <FilterCheckbox
-                                    onToggleFilterHandler={(filterId) =>
-                                        toggleFilter(filterId)
-                                    }
+                                    onToggleFilterHandler={(filterId) => {
+                                        logAmplitudeEvent('filtervalg', {
+                                            kategori: category.categoryName,
+                                            filternavn: filter.filterName,
+                                            opprinnelse: 'filtermeny',
+                                        });
+                                        toggleFilter(filterId);
+                                    }}
                                     filter={filter}
                                     isSelected={selectedFilters.includes(
                                         filter.id
