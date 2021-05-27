@@ -125,13 +125,17 @@ const parsedHtmlLegacy = (content: string) => {
     return <>{htmlParsed}</>;
 };
 
-// Filters out empty children of an element
-const getValidChildren = ({ children }: DomElement) => {
+const getNonEmptyChildren = ({ children }: DomElement) => {
     const validChildren = children?.filter((child) => {
-        const { data } = child;
-        const validGrandChildren = getValidChildren(child);
+        const { data, name } = child;
 
-        if (!data && !validGrandChildren) {
+        if (name === processedHtmlMacroTag) {
+            return true;
+        }
+
+        const grandChildren = getNonEmptyChildren(child);
+
+        if (!data && !grandChildren) {
             return false;
         }
 
@@ -166,8 +170,7 @@ export const ParsedHtml = (props: Props) => {
 
     const replaceElements = {
         replace: (element: DomElement) => {
-            const { name, attribs } = element;
-            const children = getValidChildren(element);
+            const { name, attribs, children } = element;
             const tag = name?.toLowerCase();
             const props = !!attribs && attributesToProps(attribs);
 
@@ -193,8 +196,10 @@ export const ParsedHtml = (props: Props) => {
             }
 
             if (tag?.match(/^h[1-6]$/)) {
+                const validChildren = getNonEmptyChildren(element);
+
                 // Header-tags should not be used as empty spacers
-                if (!children) {
+                if (!validChildren) {
                     return <p>{'&nbsp;'}</p>;
                 }
 
@@ -204,14 +209,14 @@ export const ParsedHtml = (props: Props) => {
                 return (
                     // H1 tags should only be used for the page title
                     <TypoComponent {...props} tag={tag === 'h1' ? 'h2' : tag}>
-                        {domToReact(children, replaceElements)}
+                        {domToReact(validChildren, replaceElements)}
                     </TypoComponent>
                 );
             }
 
             if (tag === 'p' && children) {
                 return (
-                    <Normaltekst {...props}>
+                    <Normaltekst>
                         {domToReact(children, replaceElements)}
                     </Normaltekst>
                 );
@@ -219,10 +224,11 @@ export const ParsedHtml = (props: Props) => {
 
             if (tag === 'a') {
                 const href = attribs?.href?.replace('https://www.nav.no', '');
+                const validChildren = getNonEmptyChildren(element);
 
-                return children ? (
+                return validChildren ? (
                     <LenkeInline {...props} href={href}>
-                        {domToReact(children, replaceElements)}
+                        {domToReact(validChildren, replaceElements)}
                     </LenkeInline>
                 ) : (
                     <Fragment />
@@ -231,12 +237,15 @@ export const ParsedHtml = (props: Props) => {
 
             // Remove empty lists
             if (tag === 'ul') {
-                if (!children) {
+                const validChildren = getNonEmptyChildren(element);
+                if (!validChildren) {
                     return <Fragment />;
                 }
 
                 return (
-                    <ul {...props}>{domToReact(children, replaceElements)}</ul>
+                    <ul {...props}>
+                        {domToReact(validChildren, replaceElements)}
+                    </ul>
                 );
             }
 
