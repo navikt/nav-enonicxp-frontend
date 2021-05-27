@@ -143,8 +143,8 @@ const getNonEmptyChildren = ({ children }: DomElement) => {
             return true;
         }
 
-        const stringData = data.trim();
-        return stringData && stringData !== '&nbsp;';
+        const stringData = data.replaceAll('&nbsp;', ' ').trim();
+        return !!stringData;
     });
     return validChildren?.length > 0 && validChildren;
 };
