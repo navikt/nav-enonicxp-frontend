@@ -28,7 +28,7 @@ export const Expandable = ({
             renderContentWhenClosed={true}
             className={'expandable'}
             onClick={() => {
-                logAmplitudeEvent(isOpen ? 'collapsing' : 'expanding', {
+                logAmplitudeEvent(`panel-${isOpen ? 'kollaps' : 'ekspander'}`, {
                     tittel: expandableTitle,
                 });
                 setIsOpen(!isOpen);
