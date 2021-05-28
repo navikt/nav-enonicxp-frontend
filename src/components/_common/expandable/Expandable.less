@@ -21,9 +21,13 @@
         color: @navBla;
     }
 
+    .ekspanderbartPanel__innhold {
+        transition: visibility 250ms;
+    }
+
     &.ekspanderbartPanel--lukket {
         .ekspanderbartPanel__innhold {
-            display: none;
+            visibility: hidden;
         }
     }
 }
