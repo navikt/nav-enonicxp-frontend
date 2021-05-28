@@ -80,7 +80,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                                 logAmplitudeEvent('filtervalg', {
                                     kategori: filter.categoryName,
                                     filternavn: filter.filterName,
-                                    opprinnelse: 'innholdsblokk',
+                                    opprinnelse: 'innholdtekst',
                                 });
                                 toggleFilter(filter.id);
                             }}
