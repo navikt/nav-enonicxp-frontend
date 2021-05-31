@@ -8,7 +8,7 @@ const bem = BEM('filter-checkbox');
 type FilterCheckboxProps = {
     isSelected: boolean;
     filter: Filter;
-    onToggleFilterHandler: (filterId: string) => void;
+    onToggleFilterHandler: () => void;
 };
 
 export const FilterCheckbox = ({
@@ -27,7 +27,7 @@ export const FilterCheckbox = ({
         >
             <input
                 type="checkbox"
-                onChange={(event) => onToggleFilterHandler(event.target.value)}
+                onChange={onToggleFilterHandler}
                 checked={isSelected}
                 value={filter.id}
                 id={id}

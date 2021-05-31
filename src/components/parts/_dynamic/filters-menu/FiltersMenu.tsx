@@ -7,6 +7,7 @@ import { Expandable } from '../../../_common/expandable/Expandable';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import { FilterCheckbox } from './FilterCheckbox';
 import { BEM } from '../../../../utils/classnames';
+import { Filter } from 'types/store/filter-menu';
 import './FiltersMenu.less';
 import { Information } from '@navikt/ds-icons';
 import { useFilterState } from '../../../../store/hooks/useFilteredContent';
@@ -21,17 +22,17 @@ const bem = BEM('filters-menu');
 export const FiltersMenu = ({ config }: FilterMenuProps) => {
     const {
         categories,
-        title,
         description,
         expandable,
         expandableTitle,
+        title,
     } = config;
 
     const {
-        selectedFilters,
-        toggleFilter,
-        setAvailableFilters,
         clearFiltersForPage,
+        selectedFilters,
+        setAvailableFilters,
+        toggleFilter,
     } = useFilterState();
 
     useEffect(() => {
@@ -45,6 +46,16 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         /* eslint-disable-next-line */
     }, []);
 
+    const onToggleFilterHandler = (filter: Filter, category) => {
+        logAmplitudeEvent('filtervalg', {
+            kategori: category.categoryName,
+            filternavn: filter.filterName,
+            opprinnelse: 'filtermeny',
+        });
+        toggleFilter(filter.id);
+    };
+
+    // Will only show if editor didn't add any actual filters in the FiltersMenu part.
     if (!config?.categories) {
         return <div>{'Det mangler filtere i denne listen.'}</div>;
     }
@@ -59,7 +70,9 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
             <Header tag="h2" justify="left">
                 {title}
             </Header>
-            <Tekstomrade>{description || ''}</Tekstomrade>
+            <Tekstomrade className={bem('introduction')}>
+                {description || ''}
+            </Tekstomrade>
             <Expandable
                 {...config}
                 expandableTitle={expandableTitle || defaultTitle}
@@ -77,13 +90,8 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                         >
                             {category.filters.map((filter, filterIndex) => (
                                 <FilterCheckbox
-                                    onToggleFilterHandler={(filterId) => {
-                                        logAmplitudeEvent('filtervalg', {
-                                            kategori: category.categoryName,
-                                            filternavn: filter.filterName,
-                                            opprinnelse: 'filtermeny',
-                                        });
-                                        toggleFilter(filterId);
+                                    onToggleFilterHandler={() => {
+                                        onToggleFilterHandler(filter, category);
                                     }}
                                     filter={filter}
                                     isSelected={selectedFilters.includes(
@@ -95,7 +103,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                         </CheckboxGruppe>
                     );
                 })}
-                <Undertekst className={bem('filterExplanation')}>
+                <Undertekst className={bem('explanation')}>
                     <Information
                         color="#0067c5"
                         style={{ marginRight: '4px' }}

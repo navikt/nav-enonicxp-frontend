@@ -1,12 +1,13 @@
-import { FilterCheckbox } from 'components/parts/_dynamic/filters-menu/FilterCheckbox';
 import { Element, Undertekst } from 'nav-frontend-typografi';
-import { useFilterState } from 'store/hooks/useFilteredContent';
-import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
-import { BEM } from '../../../utils/classnames';
-
-import { logAmplitudeEvent } from 'utils/amplitude';
-
 import { Information } from '@navikt/ds-icons';
+
+import classNames from 'classnames';
+import { BEM } from '../../../utils/classnames';
+import { logAmplitudeEvent } from 'utils/amplitude';
+import { useFilterState } from 'store/hooks/useFilteredContent';
+
+import { FilterCheckbox } from 'components/parts/_dynamic/filters-menu/FilterCheckbox';
+import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 
 import './FilterBar.less';
 
@@ -66,7 +67,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
 
     return (
         <div className={bem('wrapper')}>
-            <Element tag="h3" className="overskrift">
+            <Element tag="h3" className={classNames(bem(), bem('header'))}>
                 Viser informasjon for:
             </Element>
             <div className={bem('container')}>
