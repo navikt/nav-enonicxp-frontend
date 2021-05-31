@@ -87,7 +87,7 @@ export const FiltersMenu = ({ config, ...rest }: FilterMenuProps) => {
             >
                 {!expandable && (
                     <Systemtittel tag={'h3'} className={bem('title')}>
-                        {title || defaultTitle}
+                        {title || defaultExpandableTitle}
                     </Systemtittel>
                 )}
                 {categories.map((category, categoryIndex) => {
@@ -112,10 +112,9 @@ export const FiltersMenu = ({ config, ...rest }: FilterMenuProps) => {
                     );
                 })}
                 <Undertekst className={bem('explanation')}>
-                    <Information
-                        color="#0067c5"
-                        style={{ marginRight: '4px' }}
-                    />{' '}
+                    <div className={bem('iconWrapper')}>
+                        <Information color="#0067c5" />
+                    </div>
                     {filterExplanation}
                 </Undertekst>
             </Expandable>

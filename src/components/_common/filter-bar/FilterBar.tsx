@@ -96,7 +96,9 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                 })}
             </div>
             <Undertekst className={bem('filterExplanation')}>
-                <Information color="#0067c5" style={{ marginRight: '4px' }} />{' '}
+                <div className={bem('iconWrapper')}>
+                    <Information color="#0067c5" />
+                </div>
                 {filterExplanation}
             </Undertekst>
         </div>
