@@ -1,5 +1,4 @@
-import { Element, Undertekst } from 'nav-frontend-typografi';
-import { Information } from '@navikt/ds-icons';
+import { Element } from 'nav-frontend-typografi';
 
 import classNames from 'classnames';
 import { BEM } from '../../../utils/classnames';
@@ -11,6 +10,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { FilterCheckbox } from 'components/parts/_dynamic/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
+import { FilterExplanation } from './FilterExplanation';
 
 import './FilterBar.less';
 
@@ -95,12 +95,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                     );
                 })}
             </div>
-            <Undertekst className={bem('filterExplanation')}>
-                <div className={bem('iconWrapper')}>
-                    <Information color="#0067c5" />
-                </div>
-                {filterExplanation}
-            </Undertekst>
+            <FilterExplanation filterExplanation={filterExplanation} />
         </div>
     );
 };

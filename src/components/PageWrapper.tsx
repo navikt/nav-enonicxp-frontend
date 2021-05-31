@@ -29,8 +29,6 @@ export const PageWrapper = (props: Props) => {
     const { content, children } = props;
     const { editMode } = content;
 
-    console.log(props);
-
     const { setPageConfig } = usePageConfig();
 
     setPageConfig({ pageId: props.content._id, language: content.language });

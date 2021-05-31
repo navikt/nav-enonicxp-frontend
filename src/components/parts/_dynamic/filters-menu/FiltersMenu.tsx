@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { Information } from '@navikt/ds-icons';
 import { Systemtittel } from 'nav-frontend-typografi';
 import Tekstomrade from 'nav-frontend-tekstomrade';
-import { Undertekst } from 'nav-frontend-typografi';
 import { CheckboxGruppe } from 'nav-frontend-skjema';
 
 import { logAmplitudeEvent } from 'utils/amplitude';
@@ -12,6 +10,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { FilterMenuProps } from '../../../../types/component-props/parts/filter-menu';
 import { Expandable } from '../../../_common/expandable/Expandable';
+import { FilterExplanation } from '../../../_common/filter-bar/FilterExplanation';
 import { FilterCheckbox } from './FilterCheckbox';
 import { BEM } from '../../../../utils/classnames';
 import { Filter } from 'types/store/filter-menu';
@@ -111,12 +110,7 @@ export const FiltersMenu = ({ config, ...rest }: FilterMenuProps) => {
                         </CheckboxGruppe>
                     );
                 })}
-                <Undertekst className={bem('explanation')}>
-                    <div className={bem('iconWrapper')}>
-                        <Information color="#0067c5" />
-                    </div>
-                    {filterExplanation}
-                </Undertekst>
+                <FilterExplanation filterExplanation={filterExplanation} />
             </Expandable>
         </section>
     );
