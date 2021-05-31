@@ -9,7 +9,7 @@ export interface SectionWithHeaderProps extends LayoutCommonProps {
     regions: {
         intro: {
             components: ComponentProps[];
-            name: 'content';
+            name: 'intro';
         };
         content: {
             components: ComponentProps[];
