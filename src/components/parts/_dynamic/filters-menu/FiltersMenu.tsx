@@ -1,25 +1,27 @@
 import React, { useEffect } from 'react';
-import { FilterMenuProps } from '../../../../types/component-props/parts/filter-menu';
+import { Information } from '@navikt/ds-icons';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { CheckboxGruppe } from 'nav-frontend-skjema';
-import { Undertekst } from 'nav-frontend-typografi';
-import { Expandable } from '../../../_common/expandable/Expandable';
 import Tekstomrade from 'nav-frontend-tekstomrade';
+import { Undertekst } from 'nav-frontend-typografi';
+import { CheckboxGruppe } from 'nav-frontend-skjema';
+
+import { logAmplitudeEvent } from 'utils/amplitude';
+import { translator } from 'translations';
+import { useFilterState } from '../../../../store/hooks/useFilteredContent';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+
+import { FilterMenuProps } from '../../../../types/component-props/parts/filter-menu';
+import { Expandable } from '../../../_common/expandable/Expandable';
 import { FilterCheckbox } from './FilterCheckbox';
 import { BEM } from '../../../../utils/classnames';
 import { Filter } from 'types/store/filter-menu';
-import './FiltersMenu.less';
-import { Information } from '@navikt/ds-icons';
-import { useFilterState } from '../../../../store/hooks/useFilteredContent';
 import { Header } from 'components/_common/header/Header';
 
-import { logAmplitudeEvent } from 'utils/amplitude';
-
-const defaultTitle = 'Tilpass innhold';
+import './FiltersMenu.less';
 
 const bem = BEM('filters-menu');
 
-export const FiltersMenu = ({ config }: FilterMenuProps) => {
+export const FiltersMenu = ({ config, ...rest }: FilterMenuProps) => {
     const {
         categories,
         description,
@@ -35,6 +37,8 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         toggleFilter,
     } = useFilterState();
 
+    const { language } = usePageConfig();
+
     useEffect(() => {
         setAvailableFilters(categories);
     }, [categories, setAvailableFilters]);
@@ -45,6 +49,8 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         };
         /* eslint-disable-next-line */
     }, []);
+
+    const getLabel = translator('filteredContent', language);
 
     const onToggleFilterHandler = (filter: Filter, category) => {
         logAmplitudeEvent('filtervalg', {
@@ -60,10 +66,12 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         return <div>{'Det mangler filtere i denne listen.'}</div>;
     }
 
+    const defaultExpandableTitle = getLabel('customizeContent');
+
     const filterExplanation =
         selectedFilters.length === 0
-            ? 'Ingen filtere er valgt, så alt innhold vises.'
-            : 'Vi har fjernet innhold som ikke er relevant i din situasjon.';
+            ? getLabel('noFiltersSelected')
+            : getLabel('filtersSelected');
 
     return (
         <div className={bem('wrapper')}>
@@ -75,7 +83,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
             </Tekstomrade>
             <Expandable
                 {...config}
-                expandableTitle={expandableTitle || defaultTitle}
+                expandableTitle={expandableTitle || defaultExpandableTitle}
             >
                 {!expandable && (
                     <Systemtittel tag={'h3'} className={bem('title')}>
