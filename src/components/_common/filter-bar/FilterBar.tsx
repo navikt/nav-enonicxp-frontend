@@ -1,8 +1,13 @@
-import { FilterCheckbox } from 'components/parts/_dynamic/filters-menu/FilterCheckbox';
-import { Element } from 'nav-frontend-typografi';
-import { useFilterState } from 'store/hooks/useFilteredContent';
-import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
+import { Element, Undertekst } from 'nav-frontend-typografi';
+import { Information } from '@navikt/ds-icons';
+
+import classNames from 'classnames';
 import { BEM } from '../../../utils/classnames';
+import { logAmplitudeEvent } from 'utils/amplitude';
+import { useFilterState } from 'store/hooks/useFilteredContent';
+
+import { FilterCheckbox } from 'components/parts/_dynamic/filters-menu/FilterCheckbox';
+import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 
 import './FilterBar.less';
 
@@ -13,12 +18,13 @@ type FilterBarProps = {
 };
 
 export const FilterBar = ({ layoutProps }: FilterBarProps) => {
-    const { components } = layoutProps.regions.content;
+    const { content, intro } = layoutProps.regions;
+    const components = [...content.components, ...intro.components];
+
     const {
         selectedFilters,
         availableFilters,
         toggleFilter,
-        clearFilters,
     } = useFilterState();
 
     // Create a flat array of all ids that any
@@ -41,9 +47,12 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     // actual filter objects to be able to display filterName later on.
     const filtersToDisplay = availableFilters
         .map((category) => {
-            return category.filters.filter((filter) =>
-                filterIds.includes(filter.id)
-            );
+            return category.filters
+                .filter((filter) => filterIds.includes(filter.id))
+                .map((filter) => ({
+                    ...filter,
+                    categoryName: category.categoryName, // Needed when reporting category back to Amplitude
+                }));
         })
         .flat();
 
@@ -51,19 +60,16 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         selectedFilters.includes(filterId)
     ).length;
 
-    const isShowingAllSituations =
-        selectedFilterCount === 0 || selectedFilterCount === filterIds.length;
+    const filterExplanation =
+        selectedFilterCount === 0
+            ? 'Ingen filtere er valgt, så alt innhold vises.'
+            : 'Vi har fjernet innhold som ikke er relevant i din situasjon.';
 
     return (
         <div className={bem('wrapper')}>
-            <Element tag="h3" className="overskrift">
+            <Element tag="h3" className={classNames(bem(), bem('header'))}>
                 Viser informasjon for:
             </Element>
-            <FilterCheckbox
-                isSelected={isShowingAllSituations}
-                onToggleFilterHandler={() => clearFilters(filterIds)}
-                filter={{ id: '0', filterName: 'Alle situasjoner' }}
-            />
             <div className={bem('container')}>
                 {filtersToDisplay.map((filter) => {
                     const isSelected = selectedFilters.includes(filter.id);
@@ -71,14 +77,23 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                         <FilterCheckbox
                             key={filter.id}
                             isSelected={isSelected}
-                            onToggleFilterHandler={() =>
-                                toggleFilter(filter.id)
-                            }
+                            onToggleFilterHandler={() => {
+                                logAmplitudeEvent('filtervalg', {
+                                    kategori: filter.categoryName,
+                                    filternavn: filter.filterName,
+                                    opprinnelse: 'innholdtekst',
+                                });
+                                toggleFilter(filter.id);
+                            }}
                             filter={filter}
                         />
                     );
                 })}
             </div>
+            <Undertekst className={bem('filterExplanation')}>
+                <Information color="#0067c5" style={{ marginRight: '4px' }} />{' '}
+                {filterExplanation}
+            </Undertekst>
         </div>
     );
 };

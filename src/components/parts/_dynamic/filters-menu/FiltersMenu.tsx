@@ -2,14 +2,18 @@ import React, { useEffect } from 'react';
 import { FilterMenuProps } from '../../../../types/component-props/parts/filter-menu';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { CheckboxGruppe } from 'nav-frontend-skjema';
+import { Undertekst } from 'nav-frontend-typografi';
 import { Expandable } from '../../../_common/expandable/Expandable';
 import Tekstomrade from 'nav-frontend-tekstomrade';
 import { FilterCheckbox } from './FilterCheckbox';
 import { BEM } from '../../../../utils/classnames';
+import { Filter } from 'types/store/filter-menu';
 import './FiltersMenu.less';
-
+import { Information } from '@navikt/ds-icons';
 import { useFilterState } from '../../../../store/hooks/useFilteredContent';
 import { Header } from 'components/_common/header/Header';
+
+import { logAmplitudeEvent } from 'utils/amplitude';
 
 const defaultTitle = 'Tilpass innhold';
 
@@ -18,18 +22,17 @@ const bem = BEM('filters-menu');
 export const FiltersMenu = ({ config }: FilterMenuProps) => {
     const {
         categories,
-        title,
         description,
         expandable,
         expandableTitle,
+        title,
     } = config;
 
     const {
-        selectedFilters,
-        toggleFilter,
-        setAvailableFilters,
         clearFiltersForPage,
-        selectAllSituations,
+        selectedFilters,
+        setAvailableFilters,
+        toggleFilter,
     } = useFilterState();
 
     useEffect(() => {
@@ -43,16 +46,33 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         /* eslint-disable-next-line */
     }, []);
 
+    const onToggleFilterHandler = (filter: Filter, category) => {
+        logAmplitudeEvent('filtervalg', {
+            kategori: category.categoryName,
+            filternavn: filter.filterName,
+            opprinnelse: 'filtermeny',
+        });
+        toggleFilter(filter.id);
+    };
+
+    // Will only show if editor didn't add any actual filters in the FiltersMenu part.
     if (!config?.categories) {
         return <div>{'Det mangler filtere i denne listen.'}</div>;
     }
+
+    const filterExplanation =
+        selectedFilters.length === 0
+            ? 'Ingen filtere er valgt, så alt innhold vises.'
+            : 'Vi har fjernet innhold som ikke er relevant i din situasjon.';
 
     return (
         <div className={bem('wrapper')}>
             <Header tag="h2" justify="left">
                 {title}
             </Header>
-            <Tekstomrade>{description || ''}</Tekstomrade>
+            <Tekstomrade className={bem('introduction')}>
+                {description || ''}
+            </Tekstomrade>
             <Expandable
                 {...config}
                 expandableTitle={expandableTitle || defaultTitle}
@@ -63,36 +83,16 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                     </Systemtittel>
                 )}
                 {categories.map((category, categoryIndex) => {
-                    const selectedFilterCount = category.filters.filter(
-                        (filter) => selectedFilters.includes(filter.id)
-                    ).length;
-
-                    const isShowingAllSituations =
-                        selectedFilterCount === 0 ||
-                        selectedFilterCount === category.filters.length;
-
-                    const allSituations = {
-                        id: `CATEGORY-${categoryIndex}-ALL_SITUATIONS`,
-                        filterName: 'Alle situasjoner',
-                    };
-
                     return (
                         <CheckboxGruppe
                             legend={category.categoryName}
                             key={categoryIndex}
                         >
-                            <FilterCheckbox
-                                onToggleFilterHandler={() =>
-                                    selectAllSituations(categoryIndex)
-                                }
-                                filter={allSituations}
-                                isSelected={isShowingAllSituations}
-                            />
                             {category.filters.map((filter, filterIndex) => (
                                 <FilterCheckbox
-                                    onToggleFilterHandler={(filterId) =>
-                                        toggleFilter(filterId)
-                                    }
+                                    onToggleFilterHandler={() => {
+                                        onToggleFilterHandler(filter, category);
+                                    }}
                                     filter={filter}
                                     isSelected={selectedFilters.includes(
                                         filter.id
@@ -103,6 +103,13 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                         </CheckboxGruppe>
                     );
                 })}
+                <Undertekst className={bem('explanation')}>
+                    <Information
+                        color="#0067c5"
+                        style={{ marginRight: '4px' }}
+                    />{' '}
+                    {filterExplanation}
+                </Undertekst>
             </Expandable>
         </div>
     );

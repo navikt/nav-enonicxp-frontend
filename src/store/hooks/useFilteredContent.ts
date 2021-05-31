@@ -1,5 +1,4 @@
-import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import { usePageConfig } from './usePageConfig';
 import {
     availableFiltersAtPage,
@@ -11,19 +10,15 @@ import {
 } from '../slices/filteredContent';
 import { Category } from 'types/store/filter-menu';
 
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-
 type FilterSelection = string[];
 
 type UseFilterState = {
     availableFilters: Category[];
+    clearFilters: (filterIds: string[]) => void;
     clearFiltersForPage: () => void;
     selectedFilters: FilterSelection;
     setAvailableFilters: (availableFilters: Category[]) => void;
     toggleFilter: (filtr: string) => void;
-    selectAllSituations: (categoryIndex: number) => void;
-    clearFilters: (filterIds: string[]) => void;
 };
 
 export const useFilterState = (): UseFilterState => {
@@ -50,14 +45,6 @@ export const useFilterState = (): UseFilterState => {
         selectedFiltersAtPage(state, pageId)
     );
 
-    const selectAllSituations = (categoryIndex: number) => {
-        const filtersInCategory = availableFilters[categoryIndex].filters.map(
-            (filter) => filter.id
-        );
-
-        dispatch(clearFiltersAction({ pageId, filterIds: filtersInCategory }));
-    };
-
     const setAvailableFilters = (availableFilters: Category[]) => {
         const payload = { pageId, availableFilters };
         dispatch(setAvailableFiltersAction(payload));
@@ -72,7 +59,6 @@ export const useFilterState = (): UseFilterState => {
         availableFilters,
         clearFilters,
         clearFiltersForPage,
-        selectAllSituations,
         selectedFilters,
         setAvailableFilters,
         toggleFilter,
