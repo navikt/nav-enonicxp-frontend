@@ -74,11 +74,11 @@ export const FiltersMenu = ({ config, ...rest }: FilterMenuProps) => {
             : getLabel('filtersSelected');
 
     return (
-        <div className={bem('wrapper')}>
+        <section className={bem('wrapper')} aria-describedby="description">
             <Header tag="h2" justify="left">
                 {title}
             </Header>
-            <Tekstomrade className={bem('introduction')}>
+            <Tekstomrade className={bem('introduction')} id="description">
                 {description || ''}
             </Tekstomrade>
             <Expandable
@@ -118,6 +118,6 @@ export const FiltersMenu = ({ config, ...rest }: FilterMenuProps) => {
                     {filterExplanation}
                 </Undertekst>
             </Expandable>
-        </div>
+        </section>
     );
 };
