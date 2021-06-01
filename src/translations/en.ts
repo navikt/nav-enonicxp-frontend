@@ -19,6 +19,7 @@ export const bundle: Translations = {
         filtersSelected:
             'We have hidden content not relevant for your situation.',
         customizeContent: 'Customize content',
+        showingInformationFor: 'Showing information for:',
     },
     mainArticle: {
         facts: 'Facts',

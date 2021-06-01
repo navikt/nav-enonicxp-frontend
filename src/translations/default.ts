@@ -35,6 +35,7 @@ export const bundle = {
         filtersSelected:
             'Vi har fjernet innhold som ikke er relevant i din situasjon.',
         customizeContent: 'Tilpass innhold',
+        showingInformationFor: 'Viser informasjon for:',
     },
     linkLists: {
         news: 'Nyheter',

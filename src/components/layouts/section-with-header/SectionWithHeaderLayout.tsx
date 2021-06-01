@@ -34,14 +34,14 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     const iconImgProps = icon?.icon;
 
-    const shouldShowFilterBar = regions.content.components.some(
+    const shouldShowFilterBar = regions.content?.components?.some(
         (component) =>
             component.config.filters && component.config.filters.length > 0
     );
 
     // Also make sure not to hide region if there are already components in it.
     const shouldShowIntroRegion =
-        shouldShowFilterBar || regions.intro.components.length > 0;
+        shouldShowFilterBar || regions.intro?.components?.length > 0;
 
     return (
         <LayoutContainer
