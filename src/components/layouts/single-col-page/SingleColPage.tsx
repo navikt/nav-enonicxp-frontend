@@ -7,6 +7,7 @@ import { SingleColPageProps } from '../../../types/component-props/pages/single-
 import { LayoutContainer } from '../LayoutContainer';
 import { ProductPageLayout, ProductPageSection } from '@navikt/ds-react';
 import Region from '../Region';
+import './SingleColPage.less';
 
 // TODO: refactor types after XP 7.7 components/content-type restrictions are available
 // to make checks like this unnecessary
@@ -35,7 +36,7 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            {/*TODO: Lag egen grid-komponent*/}
+            {/*TODO: Lag egen grid-komponent og header*/}
             <ProductPageLayout title={getTitle(pageProps)}>
                 <ProductPageSection whiteBackground={false} withPadding={false}>
                     <Region

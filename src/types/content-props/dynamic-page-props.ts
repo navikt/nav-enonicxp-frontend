@@ -5,7 +5,7 @@ import {
     ContentDecoratorToggles,
 } from './_content-common';
 import { LanguageProps } from '../language';
-import { AnimatedIconsProps } from './animated-icons';
+import { ProductDataMixin } from '../component-props/_mixins';
 
 export type ProductLabel = 'benefits' | 'rights';
 
@@ -16,12 +16,7 @@ export type DynamicPageData = Partial<{
     SeoDataProps &
     ContentDecoratorToggles;
 
-export type ProductData = {
-    title: string;
-    ingress?: string;
-    label?: ProductLabel;
-    illustration: AnimatedIconsProps;
-} & DynamicPageData;
+export type ProductData = ProductDataMixin & DynamicPageData;
 
 export interface ProductPageProps extends ContentProps {
     __typename: ContentType.ProductPage;

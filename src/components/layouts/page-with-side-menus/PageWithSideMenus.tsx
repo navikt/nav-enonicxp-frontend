@@ -34,6 +34,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+            {/*TODO: Lag egen grid-komponent og header*/}
             <ProductPageLayout title={title}>
                 {leftMenuToggle && (
                     <ProductPageSection

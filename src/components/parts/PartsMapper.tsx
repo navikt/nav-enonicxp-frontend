@@ -29,6 +29,7 @@ import { PageHeaderPart } from './_dynamic/page-header/PageHeaderPart';
 import { ButtonPart } from './_dynamic/button/ButtonPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { FiltersMenu } from './_dynamic/filters-menu/FiltersMenu';
+import { ProductCardPart } from './_dynamic/product-card/ProductCardPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -65,6 +66,9 @@ const partsWithOwnData: {
     [PartType.Button]: ButtonPart,
     [PartType.PageNavigationMenu]: PageNavigationMenuPart,
     [PartType.FiltersMenu]: FiltersMenu,
+    [PartType.ProductCard]: ProductCardPart,
+    [PartType.ProductCardMini]: () => null,
+    [PartType.ProductCardMicro]: () => null,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {
