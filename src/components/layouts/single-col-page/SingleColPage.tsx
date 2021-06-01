@@ -13,7 +13,7 @@ import './SingleColPage.less';
 // to make checks like this unnecessary
 const getTitle = (content: ContentProps) => {
     if (
-        content.__typename === ContentType.OverviewPage ||
+        content.__typename === ContentType.SituationPage ||
         content.__typename === ContentType.ProductPage
     ) {
         return content.data.title;

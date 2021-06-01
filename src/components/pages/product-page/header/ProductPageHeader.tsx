@@ -9,7 +9,7 @@ import { Undertekst } from 'nav-frontend-typografi';
 const bem = BEM('product-page-header');
 
 type Props = {
-    pageType: ContentType.ProductPage | ContentType.OverviewPage;
+    pageType: ContentType.ProductPage | ContentType.SituationPage;
     label?: ProductLabel;
     children: string;
 };
@@ -21,7 +21,7 @@ export const ProductPageHeader = ({ pageType, label, children }: Props) => {
                 bem(),
                 pageType === ContentType.ProductPage &&
                     bem(undefined, 'product'),
-                pageType === ContentType.OverviewPage &&
+                pageType === ContentType.SituationPage &&
                     bem(undefined, 'situation')
             )}
         >

@@ -23,7 +23,7 @@ export interface ProductPageProps extends ContentProps {
     data: ProductData;
 }
 
-export interface OverviewPageProps extends ContentProps {
-    __typename: ContentType.OverviewPage;
+export interface SituationPageProps extends ContentProps {
+    __typename: ContentType.SituationPage;
     data: ProductData;
 }

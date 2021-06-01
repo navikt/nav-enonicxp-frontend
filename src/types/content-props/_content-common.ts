@@ -40,7 +40,7 @@ export enum ContentType {
     OfficeInformation = 'no_nav_navno_OfficeInformation',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
     ProductPage = 'no_nav_navno_ContentPageWithSidemenus',
-    OverviewPage = 'no_nav_navno_OverviewPage',
+    SituationPage = 'no_nav_navno_OverviewPage',
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',
 }
 

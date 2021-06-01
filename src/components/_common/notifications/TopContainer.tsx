@@ -13,7 +13,7 @@ const bem = BEM('top-container');
 
 const contentTypesWithWhiteHeader = {
     [ContentType.ProductPage]: true,
-    [ContentType.OverviewPage]: true,
+    [ContentType.SituationPage]: true,
 };
 
 type Props = {
