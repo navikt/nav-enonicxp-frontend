@@ -10,7 +10,7 @@ import LargeTablePage from './pages/large-table-page/LargeTablePage';
 import { ClientsideRedirect } from './ClientsideRedirect';
 import { TemplatePage } from './pages/template-page/TemplatePage';
 import ErrorPage404 from '../pages/404';
-import { ProductPage } from './pages/product-page/ProductPage';
+import { SituationPage } from './pages/situation-page/SituationPage';
 
 const contentToReactComponent: Partial<
     { [key in ContentType]: React.FunctionComponent<ContentProps> }
@@ -21,8 +21,8 @@ const contentToReactComponent: Partial<
     [ContentType.TemplatePage]: TemplatePage,
     [ContentType.AnimatedIcons]: () => null, // TODO: add a preview-page for editors
 
-    [ContentType.SituationPage]: ProductPage,
-    [ContentType.ProductPage]: ProductPage,
+    [ContentType.SituationPage]: SituationPage,
+    [ContentType.ProductPage]: DynamicPage,
 
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.MainArticle]: DynamicPage,

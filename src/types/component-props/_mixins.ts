@@ -4,6 +4,12 @@ import { TypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
 import { ProductLabel } from '../content-props/dynamic-page-props';
 
+export type HeaderWithAnchorMixin = {
+    title: string;
+    anchorId: string;
+    hideCopyButton: boolean;
+};
+
 export type ProductDataMixin = {
     title: string;
     ingress?: string;

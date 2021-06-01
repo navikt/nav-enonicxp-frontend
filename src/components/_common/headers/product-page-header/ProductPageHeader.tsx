@@ -1,11 +1,11 @@
 import React from 'react';
 import { BEM, classNames } from '../../../../utils/classnames';
-import { PageHeader } from '../../../_common/header/PageHeader';
+import { PageHeader } from '../page-header/PageHeader';
 import { ContentType } from '../../../../types/content-props/_content-common';
 import { ProductLabel } from '../../../../types/content-props/dynamic-page-props';
 import { Undertekst } from 'nav-frontend-typografi';
 import './ProductPageHeader.less';
-import { PublicImage } from '../../../_common/image/PublicImage';
+import { PublicImage } from '../../image/PublicImage';
 
 const bem = BEM('product-page-header');
 
@@ -32,18 +32,16 @@ export const ProductPageHeader = ({
                     bem(undefined, 'situation')
             )}
         >
-            <div className={bem('inner')}>
-                <div className={bem('image')}>
-                    <PublicImage imagePath={'/favicon.ico'} alt={''} />
-                </div>
-                <div className={bem('text')}>
-                    <PageHeader justify={'left'}>{children}</PageHeader>
-                    {label && (
-                        <Undertekst className={bem('label')}>
-                            {label.toUpperCase()}
-                        </Undertekst>
-                    )}
-                </div>
+            <div className={bem('image')}>
+                <PublicImage imagePath={'/favicon.ico'} alt={''} />
+            </div>
+            <div className={bem('text')}>
+                <PageHeader justify={'left'}>{children}</PageHeader>
+                {label && (
+                    <Undertekst className={bem('label')}>
+                        {label.toUpperCase()}
+                    </Undertekst>
+                )}
             </div>
         </div>
     );

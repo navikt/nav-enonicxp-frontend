@@ -3,7 +3,7 @@ import { ContentProps } from '../../../types/content-props/_content-common';
 import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
 import { SituationPageFlexColsLayoutProps } from '../../../types/component-props/layouts/situation-flex-cols';
-import { Header } from '../../_common/header/Header';
+import { Header } from '../../_common/headers/Header';
 import { TypoStyle } from '../../../types/typo-style';
 import './FlexColsLayout.less';
 
@@ -23,7 +23,7 @@ export const SituationPageFlexColsLayout = ({
     }
 
     const { config } = layoutProps;
-    const { title, numCols, justifyContent } = config;
+    const { title, numCols, justifyContent, anchorId, hideCopyButton } = config;
 
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
@@ -36,6 +36,8 @@ export const SituationPageFlexColsLayout = ({
                     tag={'h2'}
                     typoStyle={TypoStyle.Systemtittel}
                     justify={'left'}
+                    hideCopyButton={hideCopyButton}
+                    id={anchorId}
                 >
                     {title}
                 </Header>

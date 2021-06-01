@@ -1,5 +1,4 @@
 @import (reference) '../../../../global';
-@import (reference) '../ProductPage';
 
 .product-page-header {
     display: flex;
@@ -8,26 +7,13 @@
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
 
+    &--situation {
+        box-shadow: 0 -4px 0 @navOransjeLighten20 inset;
+    }
+
     .full-width-mixin();
 
-    &--product {
-        box-shadow: 0 -4px 0 @productColor inset;
-    }
-
-    &--situation {
-        box-shadow: 0 -4px 0 @situationColor inset;
-    }
-
-    &__inner {
-        display: flex;
-        justify-content: flex-start;
-        width: 100%;
-        max-width: 64rem;
-    }
-
     &__image {
-        height: 5rem;
-        width: 5rem;
         margin-right: 1.5rem;
 
         img {
@@ -37,6 +23,9 @@
     }
 
     &__text {
+        width: 100%;
+        max-width: #px-to-rem(900) [] + 5rem + 1.5rem;
+
         .page-header {
             padding: 0;
         }

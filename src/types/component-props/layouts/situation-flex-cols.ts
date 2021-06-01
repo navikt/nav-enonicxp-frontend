@@ -1,5 +1,7 @@
 import { LayoutCommonProps, LayoutType } from '../layouts';
 import { ComponentProps, ComponentType } from '../_component-common';
+import { HeaderWithAnchorMixin } from '../_mixins';
+import { FlexColsLayoutProps } from './flex-cols';
 
 export interface SituationPageFlexColsLayoutProps extends LayoutCommonProps {
     type: ComponentType.Layout;
@@ -10,9 +12,6 @@ export interface SituationPageFlexColsLayoutProps extends LayoutCommonProps {
             name: 'flexcols';
         };
     };
-    config: {
-        title: string;
-        numCols: number;
-        justifyContent: 'flex-start' | 'center' | 'flex-end';
-    };
+    config: Pick<FlexColsLayoutProps['config'], 'justifyContent' | 'numCols'> &
+        HeaderWithAnchorMixin;
 }
