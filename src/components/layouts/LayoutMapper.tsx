@@ -7,6 +7,7 @@ import { LegacyLayout } from './legacy/LegacyLayout';
 import { PageWithSideMenus } from './page-with-side-menus/PageWithSideMenus';
 import { SectionWithHeaderLayout } from './section-with-header/SectionWithHeaderLayout';
 import { SingleColPage } from './single-col-page/SingleColPage';
+import { SituationPageFlexColsLayout } from './flex-cols/SituationPageFlexColsLayout';
 
 type Props = {
     pageProps: ContentProps;
@@ -27,6 +28,7 @@ const layoutComponents: {
     [LayoutType.SectionWithHeader]: SectionWithHeaderLayout,
     [LayoutType.PageWithSideMenus]: PageWithSideMenus,
     [LayoutType.SingleColPage]: SingleColPage,
+    [LayoutType.SituationPageFlexCols]: SituationPageFlexColsLayout,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {

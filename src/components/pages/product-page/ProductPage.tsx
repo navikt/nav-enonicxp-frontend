@@ -16,7 +16,7 @@ export const ProductPage = (props: ProductPageProps | SituationPageProps) => {
 
     const { label } = data;
 
-    const title = data.title || page.config.title;
+    const title = data.title || page.config.title || props.displayName;
 
     return (
         <div
@@ -30,7 +30,12 @@ export const ProductPage = (props: ProductPageProps | SituationPageProps) => {
             <ProductPageHeader pageType={type} label={label}>
                 {title}
             </ProductPageHeader>
-            <ComponentMapper componentProps={props.page} pageProps={props} />
+            <div className={bem('content')}>
+                <ComponentMapper
+                    componentProps={props.page}
+                    pageProps={props}
+                />
+            </div>
         </div>
     );
 };

@@ -1,26 +1,9 @@
 import React from 'react';
-import {
-    ContentProps,
-    ContentType,
-} from '../../../types/content-props/_content-common';
+import { ContentProps } from '../../../types/content-props/_content-common';
 import { SingleColPageProps } from '../../../types/component-props/pages/single-col-page';
 import { LayoutContainer } from '../LayoutContainer';
-import { ProductPageLayout, ProductPageSection } from '@navikt/ds-react';
 import Region from '../Region';
 import './SingleColPage.less';
-
-// TODO: refactor types after XP 7.7 components/content-type restrictions are available
-// to make checks like this unnecessary
-const getTitle = (content: ContentProps) => {
-    if (
-        content.__typename === ContentType.SituationPage ||
-        content.__typename === ContentType.ProductPage
-    ) {
-        return content.data.title;
-    }
-
-    return content.displayName;
-};
 
 type Props = {
     pageProps: ContentProps;
@@ -36,15 +19,7 @@ export const SingleColPage = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            {/*TODO: Lag egen grid-komponent og header*/}
-            <ProductPageLayout title={getTitle(pageProps)}>
-                <ProductPageSection whiteBackground={false} withPadding={false}>
-                    <Region
-                        pageProps={pageProps}
-                        regionProps={regions.pageContent}
-                    />
-                </ProductPageSection>
-            </ProductPageLayout>
+            <Region pageProps={pageProps} regionProps={regions.pageContent} />
         </LayoutContainer>
     );
 };

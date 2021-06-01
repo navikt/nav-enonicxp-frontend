@@ -2,9 +2,13 @@
 @import (reference) '../ProductPage';
 
 .product-page-header {
-    .full-width-mixin();
+    display: flex;
+    justify-content: center;
     background-color: white;
-    padding-bottom: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+
+    .full-width-mixin();
 
     &--product {
         box-shadow: 0 -4px 0 @productColor inset;
@@ -12,6 +16,30 @@
 
     &--situation {
         box-shadow: 0 -4px 0 @situationColor inset;
+    }
+
+    &__inner {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        max-width: 64rem;
+    }
+
+    &__image {
+        height: 5rem;
+        width: 5rem;
+        margin-right: 1.5rem;
+
+        img {
+            height: 5rem;
+            width: 5rem;
+        }
+    }
+
+    &__text {
+        .page-header {
+            padding: 0;
+        }
     }
 
     &__label {
