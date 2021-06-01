@@ -11,6 +11,11 @@ import './TopContainer.less';
 
 const bem = BEM('top-container');
 
+const contentTypesWithWhiteHeader = {
+    [ContentType.ProductPage]: true,
+    [ContentType.OverviewPage]: true,
+};
+
 type Props = {
     content: ContentProps;
 };
@@ -21,15 +26,14 @@ export const TopContainer = ({ content }: Props) => {
     const hasDecoratorWidgets =
         breadcrumbs?.length > 0 || getContentLanguages(content)?.length > 0;
 
-    const hasContentWithWhiteHeader = __typename === ContentType.ProductPage;
-
     const getLabel = translator('notifications', language);
 
     return (
         <div
             className={classNames(
                 bem(),
-                hasContentWithWhiteHeader && bem(undefined, 'white'),
+                contentTypesWithWhiteHeader[__typename] &&
+                    bem(undefined, 'white'),
                 hasDecoratorWidgets && bem(undefined, 'widgets-offset')
             )}
         >

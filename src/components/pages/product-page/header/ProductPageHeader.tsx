@@ -3,15 +3,18 @@ import { BEM, classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../../../_common/header/PageHeader';
 import './ProductPageHeader.less';
 import { ContentType } from '../../../../types/content-props/_content-common';
+import { ProductLabel } from '../../../../types/content-props/dynamic-page-props';
+import { Undertekst } from 'nav-frontend-typografi';
 
 const bem = BEM('product-page-header');
 
 type Props = {
-    pageType?: ContentType.ProductPage | ContentType.OverviewPage;
+    pageType: ContentType.ProductPage | ContentType.OverviewPage;
+    label?: ProductLabel;
     children: string;
 };
 
-export const ProductPageHeader = ({ pageType, children }: Props) => {
+export const ProductPageHeader = ({ pageType, label, children }: Props) => {
     return (
         <div
             className={classNames(
@@ -23,6 +26,11 @@ export const ProductPageHeader = ({ pageType, children }: Props) => {
             )}
         >
             <PageHeader justify={'left'}>{children}</PageHeader>
+            {label && (
+                <Undertekst className={bem('label')}>
+                    {label.toUpperCase()}
+                </Undertekst>
+            )}
         </div>
     );
 };
