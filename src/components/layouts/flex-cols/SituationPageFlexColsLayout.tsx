@@ -23,7 +23,13 @@ export const SituationPageFlexColsLayout = ({
     }
 
     const { config } = layoutProps;
-    const { title, numCols, justifyContent, anchorId, hideCopyButton } = config;
+    const {
+        title,
+        numCols,
+        justifyContent,
+        anchorId,
+        toggleCopyButton,
+    } = config;
 
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
@@ -36,7 +42,7 @@ export const SituationPageFlexColsLayout = ({
                     tag={'h2'}
                     typoStyle={TypoStyle.Systemtittel}
                     justify={'left'}
-                    hideCopyButton={hideCopyButton}
+                    hideCopyButton={!toggleCopyButton}
                     id={anchorId}
                 >
                     {title}

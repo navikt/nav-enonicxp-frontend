@@ -7,7 +7,7 @@ import { ProductLabel } from '../content-props/dynamic-page-props';
 export type HeaderWithAnchorMixin = {
     title: string;
     anchorId: string;
-    hideCopyButton: boolean;
+    toggleCopyButton: boolean;
 };
 
 export type ProductDataMixin = {

@@ -4,8 +4,8 @@ import { PageHeader } from '../page-header/PageHeader';
 import { ContentType } from '../../../../types/content-props/_content-common';
 import { ProductLabel } from '../../../../types/content-props/dynamic-page-props';
 import { Undertekst } from 'nav-frontend-typografi';
-import './ProductPageHeader.less';
 import { PublicImage } from '../../image/PublicImage';
+import './ProductPageHeader.less';
 
 const bem = BEM('product-page-header');
 
