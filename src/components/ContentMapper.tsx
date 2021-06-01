@@ -18,8 +18,10 @@ const contentToReactComponent: Partial<
     [ContentType.LargeTable]: LargeTablePage,
     [ContentType.Fragment]: FragmentPage,
     [ContentType.TemplatePage]: TemplatePage,
+    [ContentType.AnimatedIcons]: () => null, // TODO: add a preview-page for editors only
 
-    [ContentType.PageWithSideMenus]: DynamicPage,
+    [ContentType.OverviewPage]: DynamicPage,
+    [ContentType.ProductPage]: DynamicPage,
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.MainArticle]: DynamicPage,
     [ContentType.MainArticleChapter]: DynamicPage,

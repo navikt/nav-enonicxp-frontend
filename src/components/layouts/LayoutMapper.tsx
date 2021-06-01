@@ -25,6 +25,7 @@ const layoutComponents: {
     [LayoutType.FlexCols]: FlexColsLayout,
     [LayoutType.SectionWithHeader]: SectionWithHeaderLayout,
     [LayoutType.PageWithSideMenus]: PageWithSideMenus,
+    [LayoutType.SingleColPage]: LegacyLayout,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {

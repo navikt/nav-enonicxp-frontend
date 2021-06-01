@@ -21,8 +21,7 @@ export const TopContainer = ({ content }: Props) => {
     const hasDecoratorWidgets =
         breadcrumbs?.length > 0 || getContentLanguages(content)?.length > 0;
 
-    const hasContentWithWhiteHeader =
-        __typename === ContentType.PageWithSideMenus;
+    const hasContentWithWhiteHeader = __typename === ContentType.ProductPage;
 
     const getLabel = translator('notifications', language);
 
