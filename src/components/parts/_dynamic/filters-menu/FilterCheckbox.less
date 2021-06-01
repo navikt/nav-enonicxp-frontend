@@ -1,0 +1,90 @@
+@import (reference) '../../../../global';
+@SuccessStroke: '~@navikt/ds-icons/svg/SuccessStroke.svg';
+
+.filter-checkbox {
+    &__wrapper {
+        background-color: transparent;
+        border-radius: 4px;
+        box-shadow: @navBla inset 0 0 0 1.1px;
+        cursor: pointer;
+        display: flex;
+        justify-items: center;
+        margin: 5px 7px 5px 0;
+        padding: 5px 7px 5px 5px;
+
+        &:focus-within {
+            box-shadow: @fokusFarge inset 0 0 0 3px;
+        }
+
+        &:hover {
+            .filter-checkbox__label {
+                color: @navBla;
+
+                &:before {
+                    background-color: #c0e1ff;
+                    box-shadow: 0 0 0;
+                }
+            }
+        }
+
+        &--selected {
+            background-color: #c0e1ff;
+            box-shadow: @navBla inset 0 0 0 1px;
+
+            &:hover {
+                background-color: @navBla;
+                .filter-checkbox__label {
+                    color: white;
+
+                    &:before {
+                        box-shadow: 0 0 0;
+                        background-color: transparent;
+                        filter: invert(98%) sepia(3%) saturate(538%)
+                            hue-rotate(223deg) brightness(119%) contrast(100%);
+                    }
+                }
+            }
+        }
+    }
+
+    &__checkbox {
+        appearance: none;
+        opacity: 0;
+        padding: 0;
+        position: absolute;
+    }
+
+    &__label {
+        cursor: pointer;
+        display: flex;
+        font-size: 0.9rem;
+        line-height: 16px;
+        position: relative;
+        user-select: none;
+
+        &:before {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 16px 16px;
+            border-radius: 3px;
+            border: 0;
+            box-shadow: @navGra60 inset 0 0 0 1.1px;
+            content: '';
+            display: inline-flex;
+            height: 16px;
+            margin-right: 5px;
+            width: 16px;
+        }
+
+        &--selected {
+            &:before {
+                background-image: url(@SuccessStroke);
+                box-shadow: 0 0 0;
+            }
+
+            &:hover {
+                color: inherit;
+            }
+        }
+    }
+}

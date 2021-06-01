@@ -33,6 +33,10 @@ export type ExpandableMixin = {
     expandableTitle: string;
 };
 
+export type FiltersMixin = {
+    filters: string[];
+};
+
 export type ColorMixin = {
     color: string;
 };

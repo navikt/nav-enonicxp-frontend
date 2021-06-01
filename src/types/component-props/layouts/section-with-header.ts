@@ -7,6 +7,10 @@ export interface SectionWithHeaderProps extends LayoutCommonProps {
     type: ComponentType.Layout;
     descriptor: LayoutType.SectionWithHeader;
     regions: {
+        intro: {
+            components: ComponentProps[];
+            name: 'content';
+        };
         content: {
             components: ComponentProps[];
             name: 'content';

@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { PartComponentProps } from '../../types/component-props/_component-common';
 import { ComponentMapper } from '../../components/ComponentMapper';
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
 import {
     ContentProps,
     ContentType,
@@ -36,7 +38,12 @@ const postHandler = async (req, res) => {
     const props = req.body.props as PartComponentProps;
 
     const html = ReactDOMServer.renderToStaticMarkup(
-        <ComponentMapper componentProps={props} pageProps={dummyPageProps} />
+        <Provider store={store}>
+            <ComponentMapper
+                componentProps={props}
+                pageProps={dummyPageProps}
+            />
+        </Provider>
     );
 
     return res.send(html);
