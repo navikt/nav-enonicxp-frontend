@@ -31,7 +31,7 @@ export const PageWrapper = (props: Props) => {
 
     const { setPageConfig } = usePageConfig();
 
-    setPageConfig({ pageId: props.content._id });
+    setPageConfig({ pageId: props.content._id, language: content.language });
 
     const router = useRouter();
 

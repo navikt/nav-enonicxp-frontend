@@ -30,6 +30,12 @@ export const bundle = {
     linkPanels: {
         label: 'Valgpaneler',
     },
+    filteredContent: {
+        noFiltersSelected: 'Ingen filtere er valgt, så alt innhold vises.',
+        filtersSelected:
+            'Vi har fjernet innhold som ikke er relevant i din situasjon.',
+        customizeContent: 'Tilpass innhold',
+    },
     linkLists: {
         news: 'Nyheter',
         moreNews: 'Flere nyheter',
