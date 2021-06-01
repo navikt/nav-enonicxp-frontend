@@ -1,25 +1,30 @@
-import { Element, Undertekst } from 'nav-frontend-typografi';
-import { Information } from '@navikt/ds-icons';
+import { Element } from 'nav-frontend-typografi';
 
 import classNames from 'classnames';
 import { BEM } from '../../../utils/classnames';
 import { logAmplitudeEvent } from 'utils/amplitude';
+import { translator } from 'translations';
+
 import { useFilterState } from 'store/hooks/useFilteredContent';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { FilterCheckbox } from 'components/parts/_dynamic/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
+import { FilterExplanation } from './FilterExplanation';
 
 import './FilterBar.less';
 
 const bem = BEM('filter-bar');
 
 type FilterBarProps = {
-    layoutProps?: SectionWithHeaderProps;
+    layoutProps: SectionWithHeaderProps;
 };
 
 export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const { content, intro } = layoutProps.regions;
     const components = [...content.components, ...intro.components];
+    const { language } = usePageConfig();
+    const getLabel = translator('filteredContent', language);
 
     const {
         selectedFilters,
@@ -62,13 +67,13 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
 
     const filterExplanation =
         selectedFilterCount === 0
-            ? 'Ingen filtere er valgt, så alt innhold vises.'
-            : 'Vi har fjernet innhold som ikke er relevant i din situasjon.';
+            ? getLabel('noFiltersSelected')
+            : getLabel('filtersSelected');
 
     return (
         <div className={bem('wrapper')}>
             <Element tag="h3" className={classNames(bem(), bem('header'))}>
-                Viser informasjon for:
+                {getLabel('showingInformationFor')}
             </Element>
             <div className={bem('container')}>
                 {filtersToDisplay.map((filter) => {
@@ -90,10 +95,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                     );
                 })}
             </div>
-            <Undertekst className={bem('filterExplanation')}>
-                <Information color="#0067c5" style={{ marginRight: '4px' }} />{' '}
-                {filterExplanation}
-            </Undertekst>
+            <FilterExplanation filterExplanation={filterExplanation} />
         </div>
     );
 };
