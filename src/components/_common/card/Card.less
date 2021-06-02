@@ -1,0 +1,60 @@
+@import (reference) '../../../global';
+
+.card {
+    &__large-card {
+        display: block;
+        padding: 0.8em;
+        width: 100%;
+        text-decoration: none;
+
+        &:focus-visible {
+            outline: 3px solid var(--navds-text-focus);
+            outline-offset: -3px;
+        }
+
+        &--serviceprovider {
+            background-color: white;
+        }
+
+        &--product {
+            background-color: green;
+        }
+
+        &--tool {
+            background-color: green;
+        }
+
+        &--situation {
+            background-color: yellow;
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    &__title {
+        text-decoration: underline;
+        font-size: 1.3em;
+        line-height: 1.2em;
+        font-weight: 600;
+        margin-bottom: 0.5em;
+    }
+
+    &__description {
+        color: @navMorkGra;
+        font-weight: 400;
+        margin-bottom: 0.77em;
+    }
+
+    &__category {
+        color: @navGra80;
+        font-size: 0.77em;
+        font-weight: 400;
+        margin-top: auto; // Aligns category to bottom inside flexbox
+        text-transform: uppercase;
+        line-height: 0.77em;
+    }
+}

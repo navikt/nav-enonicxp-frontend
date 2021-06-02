@@ -27,6 +27,7 @@ import { BEM, classNames } from '../../utils/classnames';
 import { HtmlArea } from './_dynamic/html-area/HtmlArea';
 import { PageHeaderPart } from './_dynamic/page-header/PageHeaderPart';
 import { ButtonPart } from './_dynamic/button/ButtonPart';
+import { TilbyderkortPart } from './_dynamic/tilbyderkort/TilbyderkortPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 
 type Props = {
@@ -62,6 +63,7 @@ const partsWithOwnData: {
     [PartType.HtmlArea]: HtmlArea,
     [PartType.PageHeader]: PageHeaderPart,
     [PartType.Button]: ButtonPart,
+    [PartType.Tilbyderkort]: TilbyderkortPart,
     [PartType.PageNavigationMenu]: PageNavigationMenuPart,
 };
 
