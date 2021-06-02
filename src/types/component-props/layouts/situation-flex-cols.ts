@@ -12,6 +12,9 @@ export interface SituationPageFlexColsLayoutProps extends LayoutCommonProps {
             name: 'flexcols';
         };
     };
-    config: Pick<FlexColsLayoutProps['config'], 'justifyContent' | 'numCols'> &
+    config: Pick<
+        FlexColsLayoutProps['config'],
+        'justifyContent' | 'numCols' | 'bgColor'
+    > &
         HeaderWithAnchorMixin;
 }

@@ -30,6 +30,7 @@ import { ButtonPart } from './_dynamic/button/ButtonPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { FiltersMenu } from './_dynamic/filters-menu/FiltersMenu';
 import { ProductCardPart } from './_dynamic/product-card/ProductCardPart';
+import { ContactOptionPart } from './_dynamic/contact-option/ContactOptionPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -69,6 +70,7 @@ const partsWithOwnData: {
     [PartType.ProductCard]: ProductCardPart,
     [PartType.ProductCardMini]: () => null,
     [PartType.ProductCardMicro]: () => null,
+    [PartType.ContactOption]: ContactOptionPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {

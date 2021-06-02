@@ -29,6 +29,7 @@ export enum PartType {
     ProductCard = 'no.nav.navno:product-card',
     ProductCardMini = 'no.nav.navno:product-card-mini',
     ProductCardMicro = 'no.nav.navno:product-card-micro',
+    ContactOption = 'no.nav.navno:contact-option',
 }
 
 export type PartDeprecated =
@@ -63,4 +64,5 @@ export type PartWithOwnData =
     | PartType.FiltersMenu
     | PartType.ProductCard
     | PartType.ProductCardMini
-    | PartType.ProductCardMicro;
+    | PartType.ProductCardMicro
+    | PartType.ContactOption;

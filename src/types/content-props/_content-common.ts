@@ -14,7 +14,11 @@ import { MainArticleChapterData } from './main-article-chapter-props';
 import { OfficeInformationData } from './office-information-props';
 import { UrlData } from './url-props';
 import { NotificationProps } from '../notification-props';
-import { DynamicPageData, ProductData } from './dynamic-page-props';
+import {
+    DynamicPageData,
+    ProductPageData,
+    SituationPageData,
+} from './dynamic-page-props';
 import { PublishingCalendarData } from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsData } from './animated-icons';
@@ -91,6 +95,7 @@ export type ContentData = Partial<
         TransportPageData &
         DynamicPageData &
         PublishingCalendarData &
-        ProductData &
+        ProductPageData &
+        SituationPageData &
         AnimatedIconsData
 >;

@@ -1,8 +1,8 @@
 import {
-    ContentType,
-    ContentProps,
-    SeoDataProps,
     ContentDecoratorToggles,
+    ContentProps,
+    ContentType,
+    SeoDataProps,
 } from './_content-common';
 import { LanguageProps } from '../language';
 import { ProductDataMixin } from '../component-props/_mixins';
@@ -16,14 +16,16 @@ export type DynamicPageData = Partial<{
     SeoDataProps &
     ContentDecoratorToggles;
 
-export type ProductData = ProductDataMixin & DynamicPageData;
+export type ProductPageData = ProductDataMixin & DynamicPageData;
 
 export interface ProductPageProps extends ContentProps {
     __typename: ContentType.ContentPageWithSidemenus;
-    data: ProductData;
+    data: ProductPageData;
 }
+
+export type SituationPageData = ProductDataMixin & DynamicPageData;
 
 export interface SituationPageProps extends ContentProps {
     __typename: ContentType.SituationPage;
-    data: ProductData;
+    data: SituationPageData;
 }

@@ -18,12 +18,20 @@
     }
 
     .region__pageContent {
+        display: flex;
+        flex-direction: column;
+
         & > * {
-            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
 
         & > :not(.layout__situation-flex-cols) {
             max-width: @contentMaxWidth * 2/3;
+        }
+
+        // Prevent margins between adjacent situation-flex-cols layouts
+        .layout__situation-flex-cols + .layout__situation-flex-cols {
+            margin-top: -2rem;
         }
     }
 
