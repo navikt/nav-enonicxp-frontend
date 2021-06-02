@@ -19,7 +19,7 @@ export type DynamicPageData = Partial<{
 export type ProductData = ProductDataMixin & DynamicPageData;
 
 export interface ProductPageProps extends ContentProps {
-    __typename: ContentType.ProductPage;
+    __typename: ContentType.ContentPageWithSidemenus;
     data: ProductData;
 }
 

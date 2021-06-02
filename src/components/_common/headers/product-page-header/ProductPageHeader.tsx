@@ -10,7 +10,7 @@ import './ProductPageHeader.less';
 const bem = BEM('product-page-header');
 
 type Props = {
-    pageType: ContentType.ProductPage | ContentType.SituationPage;
+    pageType: ContentType.ContentPageWithSidemenus | ContentType.SituationPage;
     label?: ProductLabel;
     illustration?: any;
     children: string;
@@ -26,7 +26,7 @@ export const ProductPageHeader = ({
         <div
             className={classNames(
                 bem(),
-                pageType === ContentType.ProductPage &&
+                pageType === ContentType.ContentPageWithSidemenus &&
                     bem(undefined, 'product'),
                 pageType === ContentType.SituationPage &&
                     bem(undefined, 'situation')

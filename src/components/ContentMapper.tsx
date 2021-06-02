@@ -22,7 +22,7 @@ const contentToReactComponent: Partial<
     [ContentType.AnimatedIcons]: () => null, // TODO: add a preview-page for editors
 
     [ContentType.SituationPage]: SituationPage,
-    [ContentType.ProductPage]: DynamicPage,
+    [ContentType.ContentPageWithSidemenus]: DynamicPage,
 
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.MainArticle]: DynamicPage,

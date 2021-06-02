@@ -12,7 +12,7 @@ import './TopContainer.less';
 const bem = BEM('top-container');
 
 const contentTypesWithWhiteHeader = {
-    [ContentType.ProductPage]: true,
+    [ContentType.ContentPageWithSidemenus]: true,
     [ContentType.SituationPage]: true,
 };
 

@@ -57,7 +57,7 @@ const getLinkData = (content: ContentProps | null): TableData | null => {
                 ingress: content.data?.ingress,
             };
         case ContentType.DynamicPage:
-        case ContentType.ProductPage:
+        case ContentType.ContentPageWithSidemenus:
             return {
                 url: content._path,
                 tittel: content.displayName,
