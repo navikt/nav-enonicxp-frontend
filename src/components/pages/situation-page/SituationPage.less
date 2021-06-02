@@ -18,11 +18,12 @@
     }
 
     .region__pageContent {
+        @margin: 2rem;
         display: flex;
         flex-direction: column;
 
         & > * {
-            margin-bottom: 2rem;
+            margin-bottom: @margin;
         }
 
         & > :not(.layout__situation-flex-cols) {
@@ -31,7 +32,7 @@
 
         // Prevent margins between adjacent situation-flex-cols layouts
         .layout__situation-flex-cols + .layout__situation-flex-cols {
-            margin-top: -2rem;
+            margin-top: -@margin;
         }
     }
 
