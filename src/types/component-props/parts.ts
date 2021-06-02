@@ -25,6 +25,7 @@ export enum PartType {
     PageHeader = 'no.nav.navno:page-header',
     Button = 'no.nav.navno:button',
     PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
+    FiltersMenu = 'no.nav.navno:filters-menu',
 }
 
 export type PartDeprecated =
@@ -55,4 +56,5 @@ export type PartWithOwnData =
     | PartType.HtmlArea
     | PartType.PageHeader
     | PartType.Button
-    | PartType.PageNavigationMenu;
+    | PartType.PageNavigationMenu
+    | PartType.FiltersMenu;

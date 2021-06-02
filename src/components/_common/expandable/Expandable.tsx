@@ -16,6 +16,13 @@ export const Expandable = ({
 }: Props) => {
     const [isOpen, setIsOpen] = useState(expandableOpenByDefault);
 
+    const onExpandCollapse = () => {
+        logAmplitudeEvent(`panel-${isOpen ? 'kollaps' : 'ekspander'}`, {
+            tittel: expandableTitle,
+        });
+        setIsOpen(!isOpen);
+    };
+
     if (!expandable) {
         return <>{children}</>;
     }
@@ -27,12 +34,7 @@ export const Expandable = ({
             apen={expandableOpenByDefault}
             renderContentWhenClosed={true}
             className={'expandable'}
-            onClick={() => {
-                logAmplitudeEvent(`panel-${isOpen ? 'kollaps' : 'ekspander'}`, {
-                    tittel: expandableTitle,
-                });
-                setIsOpen(!isOpen);
-            }}
+            onClick={onExpandCollapse}
         >
             {children}
         </Ekspanderbartpanel>

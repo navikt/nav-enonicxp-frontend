@@ -14,6 +14,13 @@ export const bundle: Translations = {
         shortcuts: 'Shortcuts',
     },
     linkPanels: { label: 'Link panels' },
+    filteredContent: {
+        noFiltersSelected: 'No filters are selected. Showing all content.',
+        filtersSelected:
+            'We have hidden content not relevant for your situation.',
+        customizeContent: 'Customize content',
+        showingInformationFor: 'Showing information for:',
+    },
     mainArticle: {
         facts: 'Facts',
         lastChanged: 'Updated',

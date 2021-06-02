@@ -18,6 +18,8 @@ import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterM
 import { getInternalRelativePath } from '../utils/urls';
 import { ComponentReorderHack } from '../utils/ComponentReorderHack';
 
+import { usePageConfig } from '../store/hooks/usePageConfig';
+
 type Props = {
     content: ContentProps;
     children: React.ReactNode;
@@ -26,6 +28,10 @@ type Props = {
 export const PageWrapper = (props: Props) => {
     const { content, children } = props;
     const { editMode } = content;
+
+    const { setPageConfig } = usePageConfig();
+
+    setPageConfig({ pageId: props.content._id, language: content.language });
 
     const router = useRouter();
 
