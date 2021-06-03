@@ -37,6 +37,8 @@ export const ProductCardPart = ({ config }: ProductCardProps) => {
 
     const category = getCategoryLabel(taxonomy);
 
+    console.log(config);
+
     return (
         <Card
             link={link}

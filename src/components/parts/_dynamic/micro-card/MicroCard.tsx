@@ -1,7 +1,7 @@
 import React from 'react';
 import { MicroCardProps } from '../../../../types/component-props/parts/micro-card';
 
-export const MicroCardPart = ({ config }: MicroCardProps) => {
+export const MicroCardPart = ({ config, ...rest }: MicroCardProps) => {
     console.log(config);
     if (!config?.microcard) {
         return <div>{'Tom felt'}</div>;
