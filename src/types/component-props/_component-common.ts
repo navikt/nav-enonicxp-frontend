@@ -13,6 +13,7 @@ export enum ComponentType {
 export type ComponentCommonProps = {
     type: ComponentType;
     path: string;
+    config?: any;
 };
 
 export interface PartComponentProps extends ComponentCommonProps {

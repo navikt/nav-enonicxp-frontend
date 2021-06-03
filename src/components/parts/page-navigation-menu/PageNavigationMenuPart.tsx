@@ -11,6 +11,7 @@ export const PageNavigationMenuPart = ({ config }: PageNavigationMenuProps) => {
         <PageNavigationMenu
             anchorLinks={config.anchorLinks}
             title={config.title}
+            placement="content"
         />
     );
 };

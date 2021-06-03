@@ -26,6 +26,11 @@ export enum PartType {
     Button = 'no.nav.navno:button',
     Tilbyderkort = 'no.nav.navno:tilbyderkort',
     PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
+    FiltersMenu = 'no.nav.navno:filters-menu',
+    ProductCard = 'no.nav.navno:product-card',
+    ProductCardMini = 'no.nav.navno:product-card-mini',
+    ProductCardMicro = 'no.nav.navno:product-card-micro',
+    ContactOption = 'no.nav.navno:contact-option',
 }
 
 export type PartDeprecated =
@@ -57,4 +62,9 @@ export type PartWithOwnData =
     | PartType.PageHeader
     | PartType.Button
     | PartType.Tilbyderkort
-    | PartType.PageNavigationMenu;
+    | PartType.PageNavigationMenu
+    | PartType.FiltersMenu
+    | PartType.ProductCard
+    | PartType.ProductCardMini
+    | PartType.ProductCardMicro
+    | PartType.ContactOption;

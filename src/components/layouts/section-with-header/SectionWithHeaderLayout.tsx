@@ -3,9 +3,10 @@ import { SectionWithHeaderProps } from '../../../types/component-props/layouts/s
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
-import { Header } from '../../_common/header/Header';
+import { Header } from '../../_common/headers/Header';
 import { TypoStyle } from '../../../types/typo-style';
 import { XpImage } from '../../_common/image/XpImage';
+import { FilterBar } from '../../_common/filter-bar/FilterBar';
 import './SectionWithHeaderLayout.less';
 
 const getBorderStyle = ({
@@ -29,9 +30,18 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const { title, anchorId, icon, border, hideCopyButton } = config;
+    const { title, anchorId, icon, border, toggleCopyButton } = config;
 
     const iconImgProps = icon?.icon;
+
+    const shouldShowFilterBar = regions.content?.components?.some(
+        (component) =>
+            component.config.filters && component.config.filters.length > 0
+    );
+
+    // Also make sure not to hide region if there are already components in it.
+    const shouldShowIntroRegion =
+        shouldShowFilterBar || regions.intro?.components?.length > 0;
 
     return (
         <LayoutContainer
@@ -64,10 +74,18 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                 tag={'h2'}
                 justify={'left'}
                 id={anchorId}
-                hideCopyButton={hideCopyButton}
+                hideCopyButton={toggleCopyButton}
             >
                 {title}
             </Header>
+            {shouldShowIntroRegion && (
+                <Region pageProps={pageProps} regionProps={regions.intro} />
+            )}
+            {shouldShowFilterBar && (
+                <>
+                    <FilterBar layoutProps={layoutProps} />
+                </>
+            )}
             <Region pageProps={pageProps} regionProps={regions.content} />
         </LayoutContainer>
     );

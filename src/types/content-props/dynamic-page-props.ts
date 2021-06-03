@@ -1,10 +1,13 @@
 import {
-    ContentType,
-    ContentProps,
-    SeoDataProps,
     ContentDecoratorToggles,
+    ContentProps,
+    ContentType,
+    SeoDataProps,
 } from './_content-common';
 import { LanguageProps } from '../language';
+import { ProductDataMixin } from '../component-props/_mixins';
+
+export type ProductLabel = 'benefits' | 'rights';
 
 export type DynamicPageData = Partial<{
     languages: LanguageProps[];
@@ -13,7 +16,16 @@ export type DynamicPageData = Partial<{
     SeoDataProps &
     ContentDecoratorToggles;
 
-export interface DynamicPageProps extends ContentProps {
-    __typename: ContentType.DynamicPage;
-    data: DynamicPageData;
+export type ProductPageData = ProductDataMixin & DynamicPageData;
+
+export interface ProductPageProps extends ContentProps {
+    __typename: ContentType.ContentPageWithSidemenus;
+    data: ProductPageData;
+}
+
+export type SituationPageData = ProductDataMixin & DynamicPageData;
+
+export interface SituationPageProps extends ContentProps {
+    __typename: ContentType.SituationPage;
+    data: SituationPageData;
 }
