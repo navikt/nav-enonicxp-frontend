@@ -6,26 +6,11 @@
         padding: 0.8em;
         width: 100%;
         text-decoration: none;
+        background-color: #ffffff;
 
         &:focus-visible {
             outline: 3px solid var(--navds-text-focus);
             outline-offset: -3px;
-        }
-
-        &--serviceprovider {
-            background-color: white;
-        }
-
-        &--product {
-            background-color: green;
-        }
-
-        &--tool {
-            background-color: green;
-        }
-
-        &--situation {
-            background-color: yellow;
         }
     }
 
@@ -35,12 +20,25 @@
         height: 100%;
     }
 
+    &__illustration {
+        width: 46px;
+        height: 46px;
+        background-color: red;
+        align-self: center;
+        margin: 1em;
+    }
+
     &__title {
         text-decoration: underline;
         font-size: 1.3em;
         line-height: 1.2em;
         font-weight: 600;
         margin-bottom: 0.5em;
+        color: @navMorkGra;
+
+        .provider & {
+            color: @navBla;
+        }
     }
 
     &__description {

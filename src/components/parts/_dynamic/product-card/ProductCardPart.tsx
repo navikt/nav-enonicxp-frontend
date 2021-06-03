@@ -1,9 +1,14 @@
 import React from 'react';
 import { ProductCardProps } from '../../../../types/component-props/parts/product-card';
-import LenkepanelNavNo from '../../../_common/lenkepanel/LenkepanelNavNo';
-import { Undertekst } from 'nav-frontend-typografi';
+import { Card } from 'components/_common/card/Card';
+import { LinkProps } from 'types/link-props';
+import { CardSize, CardType } from 'types/card';
+import { translator } from 'translations';
+import { usePageConfig } from '../../../../store/hooks/usePageConfig';
 
 export const ProductCardPart = ({ config }: ProductCardProps) => {
+    const { language } = usePageConfig();
+
     if (!config?.targetPage) {
         return (
             <div>
@@ -15,16 +20,31 @@ export const ProductCardPart = ({ config }: ProductCardProps) => {
     }
 
     const { ingressOverride, targetPage } = config;
+    const getCategoryLabel = translator('taxonomies', language);
 
     const { _path, data } = targetPage;
-    const { title, ingress, label, illustration } = data;
+    const { title, ingress, label, illustration, taxonomy } = data;
 
     const ingressActual = ingressOverride || ingress;
 
+    const cardType = CardType.Product;
+
+    const link: LinkProps = {
+        url: _path,
+        text: title,
+        label: label,
+    };
+
+    const category = getCategoryLabel(taxonomy);
+
     return (
-        <LenkepanelNavNo href={_path} tittel={title} style={{ width: '100%' }}>
-            {ingressActual && <div>{ingressActual}</div>}
-            {label && <Undertekst>{`Label: ${label}`}</Undertekst>}
-        </LenkepanelNavNo>
+        <Card
+            link={link}
+            description={ingressActual}
+            size={CardSize.Large}
+            illustration={illustration}
+            type={cardType}
+            category={category}
+        />
     );
 };

@@ -2,7 +2,7 @@ export enum CardType {
     Product = 'product',
     Situation = 'situation',
     Tool = 'tool',
-    ServiceProvider = 'serviceprovider',
+    Provider = 'provider',
 }
 
 export enum CardSize {

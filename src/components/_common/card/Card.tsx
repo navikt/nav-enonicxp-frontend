@@ -5,25 +5,25 @@ import { CardSize } from 'types/card';
 
 import './Card.less';
 
-type KortProps = { size: CardSize } & StortKortProps &
+type CardProps = { size: CardSize; path?: string } & StortKortProps &
     MiniKortProps &
     MikroKortProps;
 
-export const Card = (props: KortProps) => {
-    const { link, size, type, icon, description, category } = props;
+export const Card = (props: CardProps) => {
+    const { link, size, type, illustration, description, category } = props;
 
     if (size === CardSize.Micro) {
         return <MicroCard link={link} type={type} />;
     }
 
     if (size === CardSize.Mini) {
-        return <MiniCard link={link} icon={icon} type={type} />;
+        return <MiniCard link={link} illustration={illustration} type={type} />;
     }
 
     return (
         <LargeCard
             link={link}
-            icon={icon}
+            illustration={illustration}
             description={description}
             category={category}
             type={type}

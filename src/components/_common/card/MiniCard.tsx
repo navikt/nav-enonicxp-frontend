@@ -9,7 +9,7 @@ import './Card.less';
 
 export type MiniKortProps = {
     link: LinkProps;
-    icon: XpImageProps;
+    illustration?: XpImageProps;
     type: CardType;
 };
 

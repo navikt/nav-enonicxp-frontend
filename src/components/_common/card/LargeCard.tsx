@@ -9,7 +9,7 @@ import './Card.less';
 
 export type StortKortProps = {
     link: LinkProps;
-    icon: XpImageProps;
+    illustration?: XpImageProps;
     description: string;
     category: string;
     type: CardType;
@@ -18,20 +18,21 @@ export type StortKortProps = {
 const bem = BEM('card');
 
 export const LargeCard = (props: StortKortProps) => {
-    const { link, description, type, category } = props;
+    const { link, description, type, category, illustration } = props;
     const { text, url } = link;
+
+    const hasIllustration =
+        illustration &&
+        (type === CardType.Product || type === CardType.Situation);
 
     return (
         <LenkeBase
             href={url}
             title={text}
-            className={classNames(
-                bem('large-card'),
-                bem('large-card', type),
-                bem('anchor')
-            )}
+            className={classNames(bem('large-card'), bem(type), bem('anchor'))}
         >
-            <div className={classNames(bem('large-card'), bem('wrapper'))}>
+            <div className={classNames(bem('wrapper'), type)}>
+                {hasIllustration && <div className={bem('illustration')} />}
                 <Innholdstittel tag="h3" className={bem('title')}>
                     {text}
                 </Innholdstittel>

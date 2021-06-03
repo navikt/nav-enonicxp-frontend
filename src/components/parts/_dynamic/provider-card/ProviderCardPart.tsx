@@ -5,16 +5,15 @@ import { TilbyderkortPartProps } from '../../../../types/component-props/parts/t
 import { getSelectableLinkProps } from '../../../../utils/links-from-content';
 
 export const ProviderCardPart = ({ config }: TilbyderkortPartProps) => {
-    const { icon, link, description, endnote } = config;
+    const { link, description, endnote } = config;
 
     const linkProps = getSelectableLinkProps(link);
 
     return (
         <Card
             link={linkProps}
-            type={CardType.ServiceProvider}
+            type={CardType.Provider}
             size={CardSize.Large}
-            icon={icon}
             description={description}
             category={endnote}
         />
