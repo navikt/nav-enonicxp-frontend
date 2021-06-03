@@ -29,6 +29,7 @@ import { PageHeaderPart } from './_dynamic/page-header/PageHeaderPart';
 import { ButtonPart } from './_dynamic/button/ButtonPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { FiltersMenu } from './_dynamic/filters-menu/FiltersMenu';
+import { MicroCard } from './_dynamic/micro-card/MicroCard';
 
 type Props = {
     partProps: PartComponentProps;
@@ -65,6 +66,8 @@ const partsWithOwnData: {
     [PartType.Button]: ButtonPart,
     [PartType.PageNavigationMenu]: PageNavigationMenuPart,
     [PartType.FiltersMenu]: FiltersMenu,
+    [PartType.MicroCard]: MicroCard,
+
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {

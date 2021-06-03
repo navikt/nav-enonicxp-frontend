@@ -26,6 +26,7 @@ export enum PartType {
     Button = 'no.nav.navno:button',
     PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
     FiltersMenu = 'no.nav.navno:filters-menu',
+    MicroCard = 'no.nav.navno:micro-card',
 }
 
 export type PartDeprecated =
@@ -57,4 +58,5 @@ export type PartWithOwnData =
     | PartType.PageHeader
     | PartType.Button
     | PartType.PageNavigationMenu
-    | PartType.FiltersMenu;
+    | PartType.FiltersMenu
+    | PartType.MicroCard;
