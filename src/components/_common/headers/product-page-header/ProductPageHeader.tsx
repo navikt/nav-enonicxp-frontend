@@ -2,26 +2,31 @@ import React from 'react';
 import { BEM, classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
 import { ContentType } from '../../../../types/content-props/_content-common';
-import { ProductLabel } from '../../../../types/content-props/dynamic-page-props';
 import { Undertekst } from 'nav-frontend-typografi';
 import { PublicImage } from '../../image/PublicImage';
+import { translator } from 'translations';
 import './ProductPageHeader.less';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { Taxonomies } from 'types/taxonomies';
 
 const bem = BEM('product-page-header');
 
 type Props = {
     pageType: ContentType.ContentPageWithSidemenus | ContentType.SituationPage;
-    label?: ProductLabel;
+    taxonomy?: Taxonomies;
     illustration?: any;
     children: string;
 };
 
 export const ProductPageHeader = ({
     pageType,
-    label,
     illustration,
     children,
+    taxonomy,
 }: Props) => {
+    const { language } = usePageConfig();
+    const getTaxonomyLabel = translator('taxonomies', language);
+    const taxonomyTitle = getTaxonomyLabel(taxonomy);
     return (
         <div
             className={classNames(
@@ -37,9 +42,9 @@ export const ProductPageHeader = ({
             </div>
             <div className={bem('text')}>
                 <PageHeader justify={'left'}>{children}</PageHeader>
-                {label && (
+                {taxonomyTitle && (
                     <Undertekst className={bem('label')}>
-                        {label.toUpperCase()}
+                        {taxonomyTitle.toUpperCase()}
                     </Undertekst>
                 )}
             </div>

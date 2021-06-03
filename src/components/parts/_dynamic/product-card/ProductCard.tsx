@@ -6,8 +6,10 @@ import { CardSize, CardType } from 'types/card';
 import { translator } from 'translations';
 import { usePageConfig } from '../../../../store/hooks/usePageConfig';
 
-export const ProductCardPart = ({ config }: ProductCardProps) => {
+export const ProductCardPart = ({ config, ...rest }: ProductCardProps) => {
     const { language } = usePageConfig();
+
+    console.log(config);
 
     if (!config?.targetPage) {
         return (
@@ -23,16 +25,16 @@ export const ProductCardPart = ({ config }: ProductCardProps) => {
     const getCategoryLabel = translator('taxonomies', language);
 
     const { _path, data } = targetPage;
-    const { title, ingress, label, illustration, taxonomy } = data;
+    const { title, ingress, illustration, taxonomy } = data;
 
     const ingressActual = ingressOverride || ingress;
 
-    const cardType = CardType.Product;
+    const cardType = CardType.Situation;
 
     const link: LinkProps = {
         url: _path,
         text: title,
-        label: label,
+        label: taxonomy,
     };
 
     const category = getCategoryLabel(taxonomy);

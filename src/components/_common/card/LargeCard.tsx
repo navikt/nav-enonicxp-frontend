@@ -1,7 +1,7 @@
 import { LinkProps } from 'types/link-props';
 import { classNames, BEM } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
-import { Innholdstittel, Element } from 'nav-frontend-typografi';
+import { Element, Undertittel } from 'nav-frontend-typografi';
 import { CardType } from 'types/card';
 import { XpImageProps } from 'types/media';
 
@@ -33,9 +33,9 @@ export const LargeCard = (props: StortKortProps) => {
         >
             <div className={classNames(bem('wrapper'), type)}>
                 {hasIllustration && <div className={bem('illustration')} />}
-                <Innholdstittel tag="h3" className={bem('title')}>
+                <Undertittel tag="h3" className={bem('title')}>
                     {text}
-                </Innholdstittel>
+                </Undertittel>
                 <Element className={bem('description')}>{description}</Element>
                 <Element className={bem('category')}>{category}</Element>
             </div>
