@@ -18,7 +18,7 @@ export const PageNavigationMenu = ({
 }: Props) => {
     const bem = BEM(
         placement === 'content'
-            ? 'inpage-navigation-menu'
+            ? 'incontent-navigation-menu'
             : 'sidebar-navigation-menu'
     );
 
