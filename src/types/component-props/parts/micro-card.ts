@@ -1,9 +1,13 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
+import {
+    ProductPageProps,
+    SituationPageProps,
+} from 'types/content-props/dynamic-page-props';
 
 export interface MicroCardProps extends PartComponentProps {
-    descriptor: PartType.MicroCard;
+    descriptor: PartType.ProductCardMicro;
     config: {
-        microcard: string;
+        targetPage: ProductPageProps | SituationPageProps;
     };
 }

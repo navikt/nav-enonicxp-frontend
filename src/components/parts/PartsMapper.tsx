@@ -31,7 +31,7 @@ import { ProviderCardPart } from './_dynamic/provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { FiltersMenu } from './_dynamic/filters-menu/FiltersMenu';
 import { MicroCardPart } from './_dynamic/micro-card/MicroCard';
-import { ProductCardPart } from './_dynamic/product-card/ProductCardPart';
+import { ProductCardPart } from './_dynamic/product-card/ProductCard';
 import { ContactOptionPart } from './_dynamic/contact-option/ContactOptionPart';
 
 type Props = {
