@@ -14,9 +14,14 @@ import { MainArticleChapterData } from './main-article-chapter-props';
 import { OfficeInformationData } from './office-information-props';
 import { UrlData } from './url-props';
 import { NotificationProps } from '../notification-props';
-import { DynamicPageData } from './dynamic-page-props';
+import {
+    DynamicPageData,
+    ProductPageData,
+    SituationPageData,
+} from './dynamic-page-props';
 import { PublishingCalendarData } from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { AnimatedIconsData } from './animated-icons';
 
 export enum ContentType {
     Error = 'error',
@@ -38,7 +43,9 @@ export enum ContentType {
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
-    PageWithSideMenus = 'no_nav_navno_ContentPageWithSidemenus',
+    ContentPageWithSidemenus = 'no_nav_navno_ContentPageWithSidemenus',
+    SituationPage = 'no_nav_navno_SituationPage',
+    AnimatedIcons = 'no_nav_navno_AnimatedIcons',
 }
 
 export type ContentProps = {
@@ -87,5 +94,8 @@ export type ContentData = Partial<
         SectionPageData &
         TransportPageData &
         DynamicPageData &
-        PublishingCalendarData
+        PublishingCalendarData &
+        ProductPageData &
+        SituationPageData &
+        AnimatedIconsData
 >;

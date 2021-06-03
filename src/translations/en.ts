@@ -1,5 +1,11 @@
 import { Translations } from './default';
 import { MenuListItemKey } from '../types/menu-list-items';
+import { Taxonomies } from 'types/taxonomies';
+
+const taxonomies: { [key in Taxonomies]: string } = {
+    [Taxonomies.BENEFITS]: 'Pengestøtte fra NAV',
+    [Taxonomies.RIGHTS]: 'Rettigheter',
+};
 
 export const bundle: Translations = {
     dates: {
@@ -56,6 +62,7 @@ export const bundle: Translations = {
         [MenuListItemKey.ReportChangesLegacy]: 'Report changes',
         [MenuListItemKey.RulesAndRegulationsLegacy]: 'Laws and regulations',
     },
+    taxonomies,
     header: {
         copyLink: 'Copy link',
         copiedLink: 'The link was copied',

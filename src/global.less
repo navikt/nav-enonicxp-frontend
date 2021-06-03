@@ -104,6 +104,10 @@ html {
     @result: @valueUpper - mod(@valueUpper, @pixel-size-rem);
 }
 
+#px-to-rem(@px) {
+    @rem: unit(@px * @pixel-size-rem, rem);
+}
+
 // Makes the element cover the entire screen-width
 .full-width-mixin() {
     @side-width: calc((100vw - 100%) / 2);

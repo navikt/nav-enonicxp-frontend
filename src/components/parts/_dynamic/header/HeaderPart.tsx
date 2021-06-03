@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeaderProps } from '../../../../types/component-props/parts/header';
-import { Header } from '../../../_common/header/Header';
+import { Header } from '../../../_common/headers/Header';
 import { headingToTypoStyle } from '../../../../types/typo-style';
 import './HeaderPart.less';
 

@@ -27,9 +27,12 @@ import { BEM, classNames } from '../../utils/classnames';
 import { HtmlArea } from './_dynamic/html-area/HtmlArea';
 import { PageHeaderPart } from './_dynamic/page-header/PageHeaderPart';
 import { ButtonPart } from './_dynamic/button/ButtonPart';
+import { ProviderCardPart } from './_dynamic/provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { FiltersMenu } from './_dynamic/filters-menu/FiltersMenu';
-import { MicroCard } from './_dynamic/micro-card/MicroCard';
+import { MicroCardPart } from './_dynamic/micro-card/MicroCard';
+import { ProductCardPart } from './_dynamic/product-card/ProductCardPart';
+import { ContactOptionPart } from './_dynamic/contact-option/ContactOptionPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -64,10 +67,13 @@ const partsWithOwnData: {
     [PartType.HtmlArea]: HtmlArea,
     [PartType.PageHeader]: PageHeaderPart,
     [PartType.Button]: ButtonPart,
+    [PartType.ProviderCard]: ProviderCardPart,
     [PartType.PageNavigationMenu]: PageNavigationMenuPart,
     [PartType.FiltersMenu]: FiltersMenu,
-    [PartType.MicroCard]: MicroCard,
-
+    [PartType.ProductCard]: ProductCardPart,
+    [PartType.ProductCardMini]: () => null,
+    [PartType.ProductCardMicro]: MicroCardPart,
+    [PartType.ContactOption]: ContactOptionPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {

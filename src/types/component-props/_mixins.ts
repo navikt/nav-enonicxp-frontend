@@ -1,6 +1,21 @@
 import { ContentListProps } from '../content-props/content-list-props';
 import { ContentProps } from '../content-props/_content-common';
 import { TypoStyle } from '../typo-style';
+import { AnimatedIconsProps } from '../content-props/animated-icons';
+import { ProductLabel } from '../content-props/dynamic-page-props';
+
+export type HeaderWithAnchorMixin = {
+    title: string;
+    anchorId: string;
+    toggleCopyButton: boolean;
+};
+
+export type ProductDataMixin = {
+    title: string;
+    ingress?: string;
+    label?: ProductLabel;
+    illustration: AnimatedIconsProps;
+};
 
 export type LinkSelectable = {
     _selected: 'internal' | 'external';
