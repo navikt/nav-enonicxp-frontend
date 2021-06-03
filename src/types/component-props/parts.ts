@@ -24,7 +24,7 @@ export enum PartType {
     HtmlArea = 'no.nav.navno:html-area',
     PageHeader = 'no.nav.navno:page-header',
     Button = 'no.nav.navno:button',
-    Tilbyderkort = 'no.nav.navno:tilbyderkort',
+    ProviderCard = 'no.nav.navno:provider-card',
     PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
     FiltersMenu = 'no.nav.navno:filters-menu',
     ProductCard = 'no.nav.navno:product-card',
@@ -61,7 +61,7 @@ export type PartWithOwnData =
     | PartType.HtmlArea
     | PartType.PageHeader
     | PartType.Button
-    | PartType.Tilbyderkort
+    | PartType.ProviderCard
     | PartType.PageNavigationMenu
     | PartType.FiltersMenu
     | PartType.ProductCard

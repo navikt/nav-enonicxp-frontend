@@ -9,5 +9,6 @@ export interface TilbyderkortPartProps extends PartComponentProps {
         link: LinkSelectable;
         icon: XpImageProps;
         description: string;
+        endnote: string;
     }>;
 }
