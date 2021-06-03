@@ -1,4 +1,4 @@
-import { Kort } from 'components/_common/card/Card';
+import { Card } from 'components/_common/card/Card';
 import React from 'react';
 import { CardSize, CardType } from 'types/card';
 import { TilbyderkortPartProps } from '../../../../types/component-props/parts/tilbyderkort';
@@ -10,7 +10,7 @@ export const TilbyderkortPart = ({ config }: TilbyderkortPartProps) => {
     const linkProps = getSelectableLinkProps(link);
 
     return (
-        <Kort
+        <Card
             link={linkProps}
             type={CardType.ServiceProvider}
             size={CardSize.Large}

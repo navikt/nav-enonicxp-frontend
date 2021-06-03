@@ -9,7 +9,7 @@ type KortProps = { size: CardSize } & StortKortProps &
     MiniKortProps &
     MikroKortProps;
 
-export const Kort = (props: KortProps) => {
+export const Card = (props: KortProps) => {
     const { link, size, type, icon, description, category } = props;
 
     if (size === CardSize.Micro) {
