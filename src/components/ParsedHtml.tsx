@@ -189,11 +189,6 @@ export const ParsedHtml = (props: Props) => {
             const tag = name?.toLowerCase();
             const props = !!attribs && attributesToProps(attribs);
 
-            // Block level elements should not be nested under inline elements
-            if (hasBlockLevelMacroChildren(element)) {
-                return <>{domToReact(children, replaceElements)}</>;
-            }
-
             if (tag === processedHtmlMacroTag) {
                 return (
                     <MacroMapper
@@ -235,6 +230,11 @@ export const ParsedHtml = (props: Props) => {
             }
 
             if (tag === 'p' && children) {
+                // Block level elements should not be nested under inline elements
+                if (hasBlockLevelMacroChildren(element)) {
+                    return <>{domToReact(children, replaceElements)}</>;
+                }
+
                 return (
                     <Normaltekst {...props}>
                         {domToReact(children, replaceElements)}
