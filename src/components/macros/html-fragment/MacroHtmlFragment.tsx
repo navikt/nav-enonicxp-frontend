@@ -3,15 +3,9 @@ import { MacroHtmlFragmentProps } from '../../../types/macro-props/html-fragment
 import { ParsedHtml } from '../../ParsedHtml';
 
 export const MacroHtmlFragment = ({ config }: MacroHtmlFragmentProps) => {
-    if (!config?.html_fragment) {
+    if (!config?.html_fragment?.processedHtml) {
         return null;
     }
 
-    const { processedHtml } = config.html_fragment;
-
-    if (!processedHtml) {
-        return null;
-    }
-
-    return <ParsedHtml htmlProps={processedHtml} />;
+    return <ParsedHtml htmlProps={config.html_fragment.processedHtml} />;
 };
