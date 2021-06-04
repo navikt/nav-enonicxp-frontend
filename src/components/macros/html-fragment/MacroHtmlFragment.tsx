@@ -9,9 +9,5 @@ export const MacroHtmlFragment = ({ config }: MacroHtmlFragmentProps) => {
         return null;
     }
 
-    console.log(
-        `Parsing html from fragment ${config.html_fragment.fragmentId}`
-    );
-
     return <ParsedHtml htmlProps={htmlProps} />;
 };
