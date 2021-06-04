@@ -125,6 +125,21 @@ const parsedHtmlLegacy = (content: string) => {
     return <>{htmlParsed}</>;
 };
 
+const blockLevelMacros = {
+    'html-fragment': true,
+    infoBoks: true,
+    varselBoks: true,
+    video: true,
+};
+
+const hasBlockLevelMacroChildren = (element: DomElement) => {
+    return element.children?.some(
+        (child) =>
+            child.name === processedHtmlMacroTag &&
+            blockLevelMacros[child.attribs?.['data-macro-name']]
+    );
+};
+
 const getNonEmptyChildren = ({ children }: DomElement) => {
     const validChildren = children?.filter((child) => {
         const { data, name } = child;
@@ -173,6 +188,11 @@ export const ParsedHtml = (props: Props) => {
             const { name, attribs, children } = element;
             const tag = name?.toLowerCase();
             const props = !!attribs && attributesToProps(attribs);
+
+            // Block level elements should not be nested under inline elements
+            if (hasBlockLevelMacroChildren(element)) {
+                return <>{domToReact(children, replaceElements)}</>;
+            }
 
             if (tag === processedHtmlMacroTag) {
                 return (
