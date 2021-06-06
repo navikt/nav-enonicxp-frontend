@@ -68,7 +68,7 @@ export const getInternalRelativePath = (
         return `${xpDraftPathPrefix}${relativePath}`;
     }
 
-    return relativePath;
+    return globalState.pathMap[relativePath] || relativePath;
 };
 
 export const getRelativePathIfInternal = (
@@ -137,11 +137,11 @@ export const routerQueryToXpPathOrId = async (
         return possibleId;
     }
 
-    const xpPath = `${xpContentPathPrefix}/${
+    return `${xpContentPathPrefix}/${
         typeof routerQuery === 'string' ? routerQuery : routerQuery.join('/')
     }`;
 
-    return await fetch(
-        `http://localhost:3000/api/path-map?xpPath=${xpPath}`
-    ).then((res) => res.text());
+    // return await fetch(
+    //     `http://localhost:3000/api/path-map?xpPath=${xpPath}`
+    // ).then((res) => res.text());
 };

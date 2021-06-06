@@ -14,14 +14,16 @@ import { getTargetIfRedirect } from '../utils/redirects';
 import {
     getMediaUrl,
     getRelativePathIfInternal,
-    sourcePathIsCustomPublicPath,
     routerQueryToXpPathOrId,
     sanitizeLegacyUrl,
+    sourcePathIsCustomPublicPath,
     stripXpPathPrefix,
+    xpServiceUrl,
 } from '../utils/urls';
 import { errorHandler, isNotFound } from '../utils/errors';
 import { isMediaContent } from '../types/media';
 import globalState from '../globalState';
+import { fetchWithTimeout } from '../utils/fetch-utils';
 
 type PageProps = {
     content: ContentProps;
@@ -75,6 +77,20 @@ export const fetchPageProps = async (
     isDraft = false,
     secret: string
 ): Promise<StaticProps> => {
+    globalState.pathMap = await fetchWithTimeout(
+        `${xpServiceUrl}/customPaths`,
+        15000
+    )
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+        })
+        .catch((e) => {
+            console.log(`Error fetching custom paths map - ${e}`);
+            return {};
+        });
+
     const xpPath = await routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret);
 
