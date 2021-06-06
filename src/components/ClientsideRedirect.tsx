@@ -13,7 +13,7 @@ export const ClientsideRedirect = (
     const router = useRouter();
 
     useEffect(() => {
-        const target = getTargetIfRedirect(props);
+        const target = getTargetIfRedirect(props, props._path);
         if (target) {
             console.log(`Redirecting from ${props._path} to ${target}`);
             router.push(target);

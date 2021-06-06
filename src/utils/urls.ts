@@ -1,4 +1,5 @@
 import globalState from '../globalState';
+import { ContentProps } from '../types/content-props/_content-common';
 
 export const xpContentPathPrefix = '/www.nav.no';
 export const xpServicePath = '/_/service/no.nav.navno';
@@ -118,20 +119,29 @@ export const sanitizeLegacyUrl = (url: string) =>
         .replace(/ø/g, 'o')
         .replace(/å/g, 'a');
 
+export const sourcePathIsCustomPublicPath = (
+    content: ContentProps,
+    sourcePath: string
+) => {
+    return content.data?.customPublicPath === stripXpPathPrefix(sourcePath);
+};
+
 // Requests from content-studio can be either a path or UUID, we check for both
-export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
+export const routerQueryToXpPathOrId = async (
+    routerQuery: string | string[]
+) => {
     const possibleId =
-        typeof routerQuery === 'string'
-            ? routerQuery
-            : routerQuery[1] || routerQuery[0]; // checking the 1-index can be removed when PR#746 on the backend is in production
+        typeof routerQuery === 'string' ? routerQuery : routerQuery[0];
 
     if (isUUID(possibleId)) {
         return possibleId;
     }
 
-    const path = `/${
+    const xpPath = `${xpContentPathPrefix}/${
         typeof routerQuery === 'string' ? routerQuery : routerQuery.join('/')
     }`;
 
-    return `${xpContentPathPrefix}${path}`;
+    return await fetch(
+        `http://localhost:3000/api/path-map?xpPath=${xpPath}`
+    ).then((res) => res.text());
 };
