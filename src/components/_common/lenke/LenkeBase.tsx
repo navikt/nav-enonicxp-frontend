@@ -2,6 +2,7 @@ import React from 'react';
 import { isAppUrl, isNofollowUrl, getRelativePathIfInternal } from 'utils/urls';
 import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
+import { usePathMap } from '../../../store/hooks/usePathMap';
 
 type Props = {
     href: string;
@@ -21,7 +22,11 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
-    const _href = getRelativePathIfInternal(href) || '/';
+    const { internalPathToCustomPath } = usePathMap();
+
+    const customPath = internalPathToCustomPath[href];
+    const _href = customPath || getRelativePathIfInternal(href) || '/';
+
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);
 
