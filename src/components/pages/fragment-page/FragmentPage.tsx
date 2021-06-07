@@ -16,7 +16,7 @@ export const FragmentPage = (props: FragmentPageProps) => {
 
     return (
         <div className={bem()}>
-            <div className={'usage-check'}>
+            <div className={bem('usage-check')}>
                 <MacroUsageCheck id={props._id} />
             </div>
             <div className={bem('components')}>
