@@ -1,5 +1,4 @@
 import globalState from '../globalState';
-import { ContentProps } from '../types/content-props/_content-common';
 
 export const xpContentPathPrefix = '/www.nav.no';
 export const xpServicePath = '/_/service/no.nav.navno';
@@ -80,13 +79,6 @@ export const getRelativePathIfInternal = (
     }
 
     return getInternalRelativePath(url, isDraft);
-};
-
-export const sourcePathIsCustomPublicPath = (
-    content: ContentProps,
-    sourcePath: string
-) => {
-    return content.data?.customPublicPath === stripXpPathPrefix(sourcePath);
 };
 
 export const getInternalAbsoluteUrl = (

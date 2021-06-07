@@ -3,6 +3,16 @@ import { isAppUrl, isNofollowUrl, getRelativePathIfInternal } from 'utils/urls';
 import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
 import { usePathMap } from '../../../store/hooks/usePathMap';
+import { PathMap } from '../../../types/content-props/_content-common';
+
+const getFinalHref = (href: string, pathMap: PathMap) => {
+    const internalPath = getRelativePathIfInternal(href);
+    if (internalPath) {
+        return pathMap[internalPath] || internalPath;
+    }
+
+    return href || '/';
+};
 
 type Props = {
     href: string;
@@ -24,28 +34,32 @@ export const LenkeBase = ({
 }: Props) => {
     const { internalPathToCustomPath } = usePathMap();
 
-    const customPath = internalPathToCustomPath[href];
-    const _href = customPath || getRelativePathIfInternal(href) || '/';
+    const finalHref = getFinalHref(href, internalPathToCustomPath);
 
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);
 
     const linkElement = (
         <a
-            href={_href}
+            href={finalHref}
             onClick={(e) => {
-                logLinkClick(_href, analyticsLinkText, component, linkGroup);
+                logLinkClick(
+                    finalHref,
+                    analyticsLinkText,
+                    component,
+                    linkGroup
+                );
                 onClick?.(e);
             }}
-            rel={isNofollowUrl(_href) ? 'nofollow' : undefined}
+            rel={isNofollowUrl(finalHref) ? 'nofollow' : undefined}
             {...rest}
         >
             {children}
         </a>
     );
 
-    return isAppUrl(_href) ? (
-        <Link href={_href} passHref={true}>
+    return isAppUrl(finalHref) ? (
+        <Link href={finalHref} passHref={true}>
             {linkElement}
         </Link>
     ) : (

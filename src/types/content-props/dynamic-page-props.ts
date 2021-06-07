@@ -7,7 +7,7 @@ import {
 import { LanguageProps } from '../language';
 
 export type DynamicPageData = Partial<{
-    customPublicPath: string;
+    customPath: string;
     languages: LanguageProps[];
     description: string;
 }> &
