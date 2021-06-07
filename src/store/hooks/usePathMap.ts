@@ -1,8 +1,9 @@
-import { useAppSelector } from './usePageConfig';
 import { internalPathToCustomPathSelector } from '../slices/pathMap';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 export const usePathMap = () => {
-    const internalPathToCustomPath = useAppSelector((state) =>
+    const internalPathToCustomPath = useSelector<RootState>((state) =>
         internalPathToCustomPathSelector(state)
     );
 

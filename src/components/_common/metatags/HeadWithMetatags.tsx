@@ -10,7 +10,7 @@ import {
     hasIngress,
     hasMetaDescription,
 } from '../../../types/_type-guards';
-import { appOrigin, getInternalAbsoluteUrl } from '../../../utils/urls';
+import { appOrigin, stripXpPathPrefix } from '../../../utils/urls';
 
 type Props = {
     content: ContentProps;
@@ -40,7 +40,9 @@ const getCanonicalUrl = (content: ContentProps) => {
         return content.data.canonicalUrl;
     }
 
-    return getInternalAbsoluteUrl(content.data?.customPath || content._path);
+    const path = content.data?.customPath || stripXpPathPrefix(content._path);
+
+    return `${appOrigin}${path}`;
 };
 
 export const HeadWithMetatags = ({ content, children }: Props) => {

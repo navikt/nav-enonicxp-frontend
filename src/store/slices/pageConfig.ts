@@ -9,7 +9,7 @@ interface PageConfigState {
 
 interface CurrentPageIdPayload {
     pageId: string;
-    language: 'no';
+    language: Language;
 }
 
 const initialState: PageConfigState = {
