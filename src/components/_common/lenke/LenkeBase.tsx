@@ -1,13 +1,18 @@
 import React from 'react';
-import { isAppUrl, isNofollowUrl, getRelativePathIfInternal } from 'utils/urls';
+import {
+    isAppUrl,
+    isNofollowUrl,
+    isInternalUrl,
+    getInternalRelativePath,
+} from 'utils/urls';
 import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
 import { usePathMap } from '../../../store/hooks/usePathMap';
 import { PathMap } from '../../../types/content-props/_content-common';
 
 const getFinalHref = (href: string, pathMap: PathMap) => {
-    const internalPath = getRelativePathIfInternal(href);
-    if (internalPath) {
+    if (isInternalUrl(href)) {
+        const internalPath = getInternalRelativePath(href);
         return pathMap[internalPath] || internalPath;
     }
 
