@@ -1,12 +1,12 @@
-import { internalPathToCustomPath } from '../slices/pathMap';
 import { useAppSelector } from './usePageConfig';
+import { internalPathToCustomPathSelector } from '../slices/pathMap';
 
 export const usePathMap = () => {
-    const internalPathToCustomPathSelector = useAppSelector((state) =>
-        internalPathToCustomPath(state)
+    const internalPathToCustomPath = useAppSelector((state) =>
+        internalPathToCustomPathSelector(state)
     );
 
     return {
-        internalPathToCustomPath: internalPathToCustomPathSelector,
+        internalPathToCustomPath,
     };
 };

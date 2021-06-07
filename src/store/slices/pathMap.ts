@@ -24,7 +24,7 @@ export const pathMapSlice = createSlice({
 
 export const { setPathMap: setPathMapAction } = pathMapSlice.actions;
 
-export const internalPathToCustomPath = (state: RootState) => {
+export const internalPathToCustomPathSelector = (state: RootState) => {
     return state.pathMap.internalPathToCustomPath;
 };
 
