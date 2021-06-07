@@ -1,8 +1,14 @@
 import React from 'react';
 import { FragmentPageProps } from '../../../types/content-props/fragment-page-props';
 import { ComponentMapper } from '../../ComponentMapper';
+import { ErrorPage } from '../error-page/ErrorPage';
+import { make404Props } from '../../../utils/make-error-props';
 
 export const FragmentPage = (props: FragmentPageProps) => {
+    if (!props.editMode) {
+        return <ErrorPage {...make404Props(props._path)} />;
+    }
+
     return (
         <ComponentMapper componentProps={props.fragment} pageProps={props} />
     );
