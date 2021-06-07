@@ -9,5 +9,5 @@ export const MacroQuote = ({ config }: MacroQuoteProps) => {
 
     const { quote } = config.quote;
 
-    return <span className={'macro-quote'}>{quote}</span>;
+    return <blockquote className={'macro-quote'}>{quote}</blockquote>;
 };

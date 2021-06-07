@@ -13,6 +13,8 @@ import { MacroMapper } from './macros/MacroMapper';
 import { Button } from './_common/button/Button';
 import { LenkeStandalone } from './_common/lenke/LenkeStandalone';
 import { headingToTypoStyle, typoToComponent } from '../types/typo-style';
+import { MacroType } from '../types/macro-props/_macros-common';
+
 import './macros/Quote.less';
 import './macros/Video.less';
 
@@ -126,11 +128,12 @@ const parsedHtmlLegacy = (content: string) => {
 };
 
 const blockLevelMacros = {
-    'header-with-anchor': true,
-    'html-fragment': true,
-    infoBoks: true,
-    varselBoks: true,
-    video: true,
+    [MacroType.HeaderWithAnchor]: true,
+    [MacroType.HtmlFragment]: true,
+    [MacroType.InfoBoks]: true,
+    [MacroType.Quote]: true,
+    [MacroType.VarselBoks]: true,
+    [MacroType.Video]: true,
 };
 
 const hasBlockLevelMacroChildren = (element: DomElement) => {
