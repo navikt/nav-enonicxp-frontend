@@ -35,12 +35,18 @@ const getDescription = (content: ContentProps) => {
     return content.displayName;
 };
 
+const getCanonicalUrl = (content: ContentProps) => {
+    if (hasCanonicalUrl(content)) {
+        return content.data.canonicalUrl;
+    }
+
+    return getInternalAbsoluteUrl(content.data?.customPath || content._path);
+};
+
 export const HeadWithMetatags = ({ content, children }: Props) => {
     const title = `${content.displayName} - nav.no`;
     const description = getDescription(content).slice(0, descriptionMaxLength);
-    const url = hasCanonicalUrl(content)
-        ? content.data.canonicalUrl
-        : getInternalAbsoluteUrl(content._path);
+    const url = getCanonicalUrl(content);
     const imageUrl = `${appOrigin}/gfx/social-share-fallback.png`;
     const noIndex = content.data?.noindex;
 
