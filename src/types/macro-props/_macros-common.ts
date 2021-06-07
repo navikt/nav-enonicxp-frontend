@@ -5,6 +5,7 @@ export enum MacroType {
     ChevronLinkInternal = 'chevron-link-internal',
     ChevronLinkExternal = 'chevron-link-external',
     Fotnote = 'fotnote',
+    HeaderWithAnchor = 'header-with-anchor',
     HtmlFragment = 'html-fragment',
     InfoBoks = 'infoBoks',
     LenkeFiler = 'lenkeFiler',

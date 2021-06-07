@@ -126,6 +126,7 @@ const parsedHtmlLegacy = (content: string) => {
 };
 
 const blockLevelMacros = {
+    'header-with-anchor': true,
     'html-fragment': true,
     infoBoks: true,
     varselBoks: true,
