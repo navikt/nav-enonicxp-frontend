@@ -99,7 +99,7 @@ export const fetchPageProps = async (
         return errorHandler(content);
     }
 
-    const redirectTarget = getTargetIfRedirect(content, xpPath);
+    const redirectTarget = getTargetIfRedirect(content);
     if (redirectTarget) {
         return redirectProps(
             getRelativePathIfInternal(redirectTarget, isDraft)
