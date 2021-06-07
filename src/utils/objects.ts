@@ -21,8 +21,3 @@ export const getNestedValueFromKeyString = (
 ) => {
     return getNestedValueFromKeyArray(obj, keysString?.split?.('.'));
 };
-
-export const swapKeysAndValues = (obj) =>
-    Object.entries(obj).reduce((acc, [key, value]) => {
-        return { ...acc, [value.toString()]: key };
-    }, {});
