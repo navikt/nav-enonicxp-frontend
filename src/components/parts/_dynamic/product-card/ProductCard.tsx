@@ -9,8 +9,6 @@ import { usePageConfig } from '../../../../store/hooks/usePageConfig';
 export const ProductCardPart = ({ config, ...rest }: ProductCardProps) => {
     const { language } = usePageConfig();
 
-    console.log(config);
-
     if (!config?.targetPage) {
         return (
             <div>
