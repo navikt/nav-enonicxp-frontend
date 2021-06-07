@@ -3,6 +3,11 @@ import { FragmentPageProps } from '../../../types/content-props/fragment-page-pr
 import { ComponentMapper } from '../../ComponentMapper';
 import { ErrorPage } from '../error-page/ErrorPage';
 import { make404Props } from '../../../utils/make-error-props';
+import { MacroUsageCheck } from './macro-usage-check/MacroUsageCheck';
+import { BEM } from '../../../utils/classnames';
+import './FragmentPage.less';
+
+const bem = BEM('fragment-page');
 
 export const FragmentPage = (props: FragmentPageProps) => {
     if (!props.editMode) {
@@ -10,6 +15,16 @@ export const FragmentPage = (props: FragmentPageProps) => {
     }
 
     return (
-        <ComponentMapper componentProps={props.fragment} pageProps={props} />
+        <div className={bem()}>
+            <div className={'usage-check'}>
+                <MacroUsageCheck id={props._id} />
+            </div>
+            <div className={bem('components')}>
+                <ComponentMapper
+                    componentProps={props.fragment}
+                    pageProps={props}
+                />
+            </div>
+        </div>
     );
 };
