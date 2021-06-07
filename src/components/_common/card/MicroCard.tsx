@@ -1,5 +1,5 @@
 import { LinkProps } from 'types/link-props';
-import { classNames, BEM } from 'utils/classnames';
+import { BEM } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 
 import './Card.less';

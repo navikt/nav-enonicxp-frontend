@@ -27,6 +27,7 @@ export const ProductPageHeader = ({
     const { language } = usePageConfig();
     const getTaxonomyLabel = translator('situations', language);
     const taxonomyTitle = getTaxonomyLabel('youMayHaveRightTo');
+
     return (
         <div
             className={classNames(

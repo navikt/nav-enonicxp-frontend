@@ -43,7 +43,7 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
     };
 
     return (
-        <div className={classNames('wrapper')}>
+        <div className={classNames(bem('wrapper'))}>
             <div
                 className={classNames(
                     bem('icon'),
