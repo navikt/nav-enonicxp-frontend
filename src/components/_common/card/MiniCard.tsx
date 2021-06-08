@@ -1,30 +1,28 @@
 import { LinkProps } from 'types/link-props';
 import { classNames, BEM } from 'utils/classnames';
-import { LenkeBase } from '../lenke/LenkeBase';
-import { Innholdstittel } from 'nav-frontend-typografi';
-import { CardType } from 'types/card';
-import { XpImageProps } from 'types/media';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { CardSize, CardType } from 'types/card';
 
-import './Card.less';
+import './MiniCard.less';
+import { Card } from './Card';
 
 export type MiniKortProps = {
     link: LinkProps;
-    illustration?: XpImageProps;
+    illustration?: any;
     type: CardType;
 };
 
-const bem = BEM('kort');
+const bem = BEM('card');
 
 export const MiniCard = (props: MiniKortProps) => {
-    const { link } = props;
-    const { text, url } = link;
+    const { link, illustration, type } = props;
+    const { text } = link;
+
     return (
-        <LenkeBase href={url} title={text} className={bem('anchor')}>
-            <div className={classNames(bem('wrapper'))}>
-                <Innholdstittel tag="h3" className={bem('tittel')}>
-                    {text}
-                </Innholdstittel>
-            </div>
-        </LenkeBase>
+        <Card link={link} type={type} size={CardSize.Mini}>
+            <>
+                <Normaltekst className={bem('title')}>{text}</Normaltekst>
+            </>
+        </Card>
     );
 };

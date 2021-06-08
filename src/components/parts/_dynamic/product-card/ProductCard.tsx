@@ -1,12 +1,12 @@
 import React from 'react';
 import { ProductCardProps } from '../../../../types/component-props/parts/product-card';
-import { Card } from 'components/_common/card/Card';
 import { LinkProps } from 'types/link-props';
-import { CardSize, CardType } from 'types/card';
+import { CardType } from 'types/card';
 import { translator } from 'translations';
 import { usePageConfig } from '../../../../store/hooks/usePageConfig';
+import { LargeCard } from 'components/_common/card/LargeCard';
 
-export const ProductCardPart = ({ config, ...rest }: ProductCardProps) => {
+export const ProductCardPart = ({ config }: ProductCardProps) => {
     const { language } = usePageConfig();
 
     if (!config?.targetPage) {
@@ -27,7 +27,7 @@ export const ProductCardPart = ({ config, ...rest }: ProductCardProps) => {
 
     const ingressActual = ingressOverride || ingress;
 
-    const cardType = CardType.Situation;
+    const cardType = CardType.Situation; // Must derive from link!
 
     const link: LinkProps = {
         url: _path,
@@ -38,10 +38,9 @@ export const ProductCardPart = ({ config, ...rest }: ProductCardProps) => {
     const category = getCategoryLabel(taxonomy);
 
     return (
-        <Card
+        <LargeCard
             link={link}
             description={ingressActual}
-            size={CardSize.Large}
             illustration={illustration}
             type={cardType}
             category={category}

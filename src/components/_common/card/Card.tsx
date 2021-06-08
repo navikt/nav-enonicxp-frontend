@@ -1,32 +1,30 @@
-import { LargeCard, StortKortProps } from './LargeCard';
-import { MiniCard, MiniKortProps } from './MiniCard';
-import { MicroCard, MikroKortProps } from './MicroCard';
-import { CardSize } from 'types/card';
+import { CardSize, CardType } from 'types/card';
+import { BEM, classNames } from '../../../utils/classnames';
 
 import './Card.less';
+import { LenkeBase } from '../lenke/LenkeBase';
+import { LinkProps } from 'types/link-props';
 
-type CardProps = { size: CardSize; path?: string } & StortKortProps &
-    MiniKortProps &
-    MikroKortProps;
+const bem = BEM('card');
+
+type CardProps = {
+    children: React.ReactChild;
+    link: LinkProps;
+    type: CardType;
+    size: CardSize;
+};
 
 export const Card = (props: CardProps) => {
-    const { link, size, type, illustration, description, category } = props;
-
-    if (size === CardSize.Micro) {
-        return <MicroCard link={link} type={type} />;
-    }
-
-    if (size === CardSize.Mini) {
-        return <MiniCard link={link} illustration={illustration} type={type} />;
-    }
+    const { children, link, type, size } = props;
+    const { text, url } = link;
 
     return (
-        <LargeCard
-            link={link}
-            illustration={illustration}
-            description={description}
-            category={category}
-            type={type}
-        />
+        <LenkeBase
+            href={url}
+            title={text}
+            className={classNames(bem(), bem(type), bem(size))}
+        >
+            <div className={classNames(bem('wrapper'))}>{children}</div>
+        </LenkeBase>
     );
 };

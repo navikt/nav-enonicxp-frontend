@@ -6,7 +6,7 @@ export enum CardType {
 }
 
 export enum CardSize {
-    Large = 'Large',
-    Mini = 'Mini',
-    Micro = 'Micro',
+    Large = 'large',
+    Mini = 'mini',
+    Micro = 'micro',
 }

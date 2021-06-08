@@ -22,7 +22,7 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
     const getLabels = translator('contactPoint', language);
 
     if (!config?.contactOptions?._selected) {
-        return 'Velg kanal fra listen til høyre.';
+        return <div>Velg kanal fra listen til høyre.</div>;
     }
 
     const { contactOptions } = config;
