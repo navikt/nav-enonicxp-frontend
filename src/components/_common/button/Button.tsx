@@ -9,23 +9,25 @@ import './Button.less';
 const bem = BEM('knapp');
 
 type Props = {
-    href: string;
-    type: KnappBaseProps['type'];
+    href?: string;
+    type?: KnappBaseProps['type'];
     icon?: XpImageProps;
     mini?: boolean;
     kompakt?: boolean;
     fullWidth?: boolean;
+    onClick?: (e?: React.MouseEvent) => void;
     className?: string;
     children: React.ReactNode;
 };
 
 export const Button = ({
-    href,
-    type,
+    href = '#',
+    type = 'standard',
     icon,
     mini,
     kompakt,
     fullWidth,
+    onClick,
     className,
     children,
 }: Props) => {
@@ -41,6 +43,7 @@ export const Button = ({
                 fullWidth && bem(undefined, 'fullWidth'),
                 className
             )}
+            onClick={onClick}
         >
             {icon ? (
                 <>
