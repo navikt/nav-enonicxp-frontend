@@ -73,7 +73,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     return (
         <div className={bem('wrapper')}>
             <Element tag="h3" className={classNames(bem(), bem('header'))}>
-                Viser informasjon for:
+                {getLabel('showingInformationFor')}
             </Element>
             <div className={bem('container')}>
                 {filtersToDisplay.map((filter) => {
