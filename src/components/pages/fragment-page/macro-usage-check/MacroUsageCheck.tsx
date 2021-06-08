@@ -54,9 +54,9 @@ export const MacroUsageCheck = ({ id }: Props) => {
                 const { length } = res.usage;
                 if (length > 0) {
                     setMessage(
-                        `Fragmentet brukes i makro${
-                            length > 1 ? 'er' : ''
-                        } på ${length} sider`
+                        `Fragmentet brukes i makroer på ${length} side${
+                            length > 1 ? 'r' : ''
+                        }`
                     );
                 } else {
                     setMessage('Fragmentet er ikke i bruk i macroer');
