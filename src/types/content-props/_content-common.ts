@@ -60,7 +60,10 @@ export type ContentProps = {
     editMode?: boolean;
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     notifications?: NotificationProps[];
+    pathMap?: PathMap;
 };
+
+export type PathMap = { [key: string]: string };
 
 export type SeoDataProps = Partial<{
     metaDescription: string;

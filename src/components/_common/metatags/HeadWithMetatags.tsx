@@ -10,7 +10,7 @@ import {
     hasIngress,
     hasMetaDescription,
 } from '../../../types/_type-guards';
-import { appOrigin, getInternalAbsoluteUrl } from '../../../utils/urls';
+import { appOrigin, stripXpPathPrefix } from '../../../utils/urls';
 
 type Props = {
     content: ContentProps;
@@ -35,12 +35,20 @@ const getDescription = (content: ContentProps) => {
     return content.displayName;
 };
 
+const getCanonicalUrl = (content: ContentProps) => {
+    if (hasCanonicalUrl(content)) {
+        return content.data.canonicalUrl;
+    }
+
+    const path = content.data?.customPath || stripXpPathPrefix(content._path);
+
+    return `${appOrigin}${path}`;
+};
+
 export const HeadWithMetatags = ({ content, children }: Props) => {
     const title = `${content.displayName} - nav.no`;
     const description = getDescription(content).slice(0, descriptionMaxLength);
-    const url = hasCanonicalUrl(content)
-        ? content.data.canonicalUrl
-        : getInternalAbsoluteUrl(content._path);
+    const url = getCanonicalUrl(content);
     const imageUrl = `${appOrigin}/gfx/social-share-fallback.png`;
     const noIndex = content.data?.noindex;
 
