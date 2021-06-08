@@ -121,9 +121,7 @@ export const sanitizeLegacyUrl = (url: string) =>
 // Requests from content-studio can be either a path or UUID, we check for both
 export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
     const possibleId =
-        typeof routerQuery === 'string'
-            ? routerQuery
-            : routerQuery[1] || routerQuery[0]; // checking the 1-index can be removed when PR#746 on the backend is in production
+        typeof routerQuery === 'string' ? routerQuery : routerQuery[0];
 
     if (isUUID(possibleId)) {
         return possibleId;
