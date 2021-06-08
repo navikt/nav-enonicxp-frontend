@@ -3,7 +3,7 @@ import { GlobalValueItem } from '../../../../../../types/content-props/global-va
 import { BEM, classNames } from '../../../../../../utils/classnames';
 import { GVButton } from '../../messages/button/GVButton';
 import { GVItemEditor } from '../item-editor/GVItemEditor';
-import { useGvEditorState } from '../../../store/useGvEditorState';
+import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState';
 import './GVItem.less';
 import { gvServiceGetUsage } from '../../../api/services/usage';
 import { generateGvUsageMessages } from '../../../utils';

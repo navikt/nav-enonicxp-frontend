@@ -1,6 +1,6 @@
 import React from 'react';
 import { BEM, classNames } from '../../../../../utils/classnames';
-import { useGvEditorState } from '../../store/useGvEditorState';
+import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
 import { GVButton } from './button/GVButton';
 import './GVMessages.less';
 

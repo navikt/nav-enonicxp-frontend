@@ -10,10 +10,12 @@ import { GVMessages } from './components/messages/GVMessages';
 import ErrorPage404 from '../../../pages/404';
 import { GVItems } from './components/values/GVItems';
 import { GVAddItem } from './components/values/add-item/GVAddItem';
-import { Provider } from 'react-redux';
-import { gvEditorStore } from './store/gvEditorStore';
-import { useGvEditorState } from './store/useGvEditorState';
-import { setContentIdAction, setValueItemsAction } from './store/gvEditorState';
+import { useGvEditorState } from '../../../store/hooks/useGvEditorState';
+import {
+    setContentIdAction,
+    setValueItemsAction,
+} from '../../../store/slices/gvEditorState';
+import { store } from '../../../store/store';
 import './GlobalValuesPage.less';
 
 const bem = BEM('global-values-page');
@@ -69,14 +71,10 @@ export const GlobalValuesPage = (props: GlobalValuesProps) => {
         return <ErrorPage404 />;
     }
 
-    gvEditorStore.dispatch(setContentIdAction({ contentId: props._id }));
-    gvEditorStore.dispatch(
+    store.dispatch(setContentIdAction({ contentId: props._id }));
+    store.dispatch(
         setValueItemsAction({ valueItems: props.data?.valueItems || [] })
     );
 
-    return (
-        <Provider store={gvEditorStore}>
-            <GlobalValuesDisplay {...props} />
-        </Provider>
-    );
+    return <GlobalValuesDisplay {...props} />;
 };

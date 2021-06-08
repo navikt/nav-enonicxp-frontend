@@ -7,7 +7,7 @@ import { generateGvUsageMessages, gvNameExists } from '../../../utils';
 import { gvServiceAddItem } from '../../../api/services/add';
 import { gvServiceModifyItem } from '../../../api/services/modify';
 import { gvServiceRemoveItem } from '../../../api/services/remove';
-import { useGvEditorState } from '../../../store/useGvEditorState';
+import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState';
 import { gvServiceGetValueSet } from '../../../api/services/getValueSet';
 import { gvServiceGetUsage } from '../../../api/services/usage';
 import { Element } from 'nav-frontend-typografi';

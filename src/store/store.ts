@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import contentFilters from './slices/filteredContent';
 import pageConfig from './slices/pageConfig';
+import gvEditorState from './slices/gvEditorState';
 
 export const store = configureStore({
     reducer: {
         contentFilters,
         pageConfig,
+        gvEditorState,
     },
 });
 

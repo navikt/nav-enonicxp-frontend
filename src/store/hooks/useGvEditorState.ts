@@ -1,15 +1,15 @@
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
-import { GvState, GvDispatch } from './gvEditorStore';
+import { RootState, AppDispatch } from '../store';
 import {
     GvEditorState,
     setMessagesAction,
     setValueItemsAction,
-} from './gvEditorState';
-import { GlobalValueItem } from '../../../../types/content-props/global-values-props';
-import { GVMessageProps } from '../components/messages/GVMessages';
+} from '../slices/gvEditorState';
+import { GlobalValueItem } from '../../types/content-props/global-values-props';
+import { GVMessageProps } from '../../components/pages/global-values-page/components/messages/GVMessages';
 
-export const useAppDispatch = () => useDispatch<GvDispatch>();
-export const useAppSelector: TypedUseSelectorHook<GvState> = useSelector;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const useGvEditorState = () => {
     const dispatch = useAppDispatch();
