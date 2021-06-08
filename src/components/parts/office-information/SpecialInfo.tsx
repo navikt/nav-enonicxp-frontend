@@ -65,7 +65,9 @@ export const SpecialInformation = (props: Props) => {
         <div>
             <Element tag="h2">Opplysninger</Element>
             <Normaltekst>
-                <ParsedHtml htmlProps={specialInfo} />
+                <ParsedHtml
+                    htmlProps={{ processedHtml: specialInfo, macros: [] }}
+                />
             </Normaltekst>
         </div>
     ) : null;
