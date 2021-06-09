@@ -2,12 +2,9 @@
 
 .card {
     outline: 0;
-    &:hover {
-        background-color: #ffffff;
-    }
-
-    &:hover {
+    &:hover:not(:active) {
         box-shadow: 0 0 0 2px @navBla;
+        background-color: #ffffff;
 
         .card__title,
         .card__description,
@@ -52,6 +49,10 @@
         .illustration__icon--icon1,
         .illustration__icon--icon3 {
             filter: brightness(0) invert(1);
+        }
+
+        .illustration__icon--icon2 {
+            filter: invert(1) brightness(4);
         }
     }
 }
