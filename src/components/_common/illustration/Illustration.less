@@ -1,0 +1,34 @@
+.illustration {
+    &__image {
+        height: 6rem;
+        position: relative;
+        width: 6rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__large-card {
+        align-self: center;
+    }
+
+    &__icon {
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 3rem;
+        position: absolute;
+        width: 3rem;
+
+        &--icon1 {
+            transform: translateX(-40%) translateY(30%);
+        }
+        &--icon2 {
+            align-self: center;
+            justify-self: center;
+        }
+
+        &--icon3 {
+            transform: translateX(40%) translateY(-30%);
+        }
+    }
+}

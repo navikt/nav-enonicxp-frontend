@@ -3,6 +3,7 @@ import { ProductCardProps } from '../../../../types/component-props/parts/produc
 import { LinkProps } from 'types/link-props';
 import { CardType } from 'types/card';
 import { MiniCard } from 'components/_common/card/MiniCard';
+import { ContentType } from 'types/content-props/_content-common';
 
 export const ProductCardMiniPart = ({ config, ...rest }: ProductCardProps) => {
     if (!config?.targetPage) {
@@ -13,7 +14,21 @@ export const ProductCardMiniPart = ({ config, ...rest }: ProductCardProps) => {
         );
     }
 
-    console.log(config);
+    if (!config.targetPage.data) {
+        return <div>void</div>;
+    }
+
+    const determineCardType = () => {
+        const pageTypeName = config.targetPage.__typename;
+
+        if (!pageTypeName) {
+            return CardType.Tool;
+        }
+
+        return pageTypeName === ContentType.ContentPageWithSidemenus
+            ? CardType.Product
+            : CardType.Situation;
+    };
 
     const { targetPage } = config;
 
@@ -28,5 +43,11 @@ export const ProductCardMiniPart = ({ config, ...rest }: ProductCardProps) => {
         label: title,
     };
 
-    return <MiniCard link={link} illustration={illustration} type={cardType} />;
+    return (
+        <MiniCard
+            link={link}
+            illustration={illustration}
+            type={determineCardType()}
+        />
+    );
 };

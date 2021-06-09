@@ -8,6 +8,8 @@ import { translator } from 'translations';
 import './ProductPageHeader.less';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Taxonomies } from 'types/taxonomies';
+import { Illustration } from 'components/_common/illustration/Illustration';
+import { IllustrationPlacements } from 'types/illustrationPlacements';
 
 const bem = BEM('product-page-header');
 
@@ -38,9 +40,10 @@ export const ProductPageHeader = ({
                     bem(undefined, 'situation')
             )}
         >
-            <div className={bem('image')}>
-                <PublicImage imagePath={'/favicon.ico'} alt={''} />
-            </div>
+            <Illustration
+                illustration={illustration}
+                placement={IllustrationPlacements.PRODUCT_PAGE_HEADER}
+            />
             <div className={bem('text')}>
                 <PageHeader justify={'left'}>{children}</PageHeader>
                 {taxonomyTitle && (

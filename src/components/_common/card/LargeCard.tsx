@@ -4,6 +4,8 @@ import { Element, Undertittel } from 'nav-frontend-typografi';
 import { CardSize, CardType } from 'types/card';
 import { Card } from './Card';
 import './LargeCard.less';
+import { Illustration } from '../illustration/Illustration';
+import { IllustrationPlacements } from 'types/illustrationPlacements';
 
 export type StortKortProps = {
     link: LinkProps;
@@ -26,7 +28,12 @@ export const LargeCard = (props: StortKortProps) => {
     return (
         <Card link={link} type={type} size={CardSize.Large}>
             <>
-                {hasIllustration && <div className={bem('illustration')} />}
+                {hasIllustration && (
+                    <Illustration
+                        illustration={illustration}
+                        placement={IllustrationPlacements.LARGE_CARD}
+                    />
+                )}
                 <Undertittel tag="h3" className={bem('title')}>
                     {text}
                 </Undertittel>
