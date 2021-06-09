@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchWithTimeout } from '../../../../utils/fetch-utils';
-import { xpServiceUrl } from '../../../../utils/urls';
+import { editorPathPrefix, xpServiceUrl } from '../../../../utils/urls';
 import { Undertittel } from 'nav-frontend-typografi';
 import { Button } from '../../../_common/button/Button';
 import { BEM } from '../../../../utils/classnames';
@@ -10,8 +10,6 @@ import './MacroUsageCheck.less';
 const bem = BEM('fragment-macro-usage');
 
 const serviceUrl = `${xpServiceUrl}/htmlFragmentSelector/macroUsage`;
-const editorPathPrefix =
-    '/admin/tool/com.enonic.app.contentstudio/main#/default/edit/';
 
 type PageData = {
     name: string;
@@ -84,7 +82,7 @@ export const MacroUsageCheck = ({ id }: Props) => {
                 {showUsage && (
                     <div>
                         {macroUsage.map((usage) => {
-                            const editorUrl = `${editorPathPrefix}${usage.id}`;
+                            const editorUrl = `${editorPathPrefix}/${usage.id}`;
                             return (
                                 <div
                                     className={bem('page-usage')}
