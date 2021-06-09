@@ -13,7 +13,6 @@ export type MikroKortProps = {
 const bem = BEM('card');
 
 export const MicroCard = ({ link, type }: MikroKortProps) => {
-    console.log(type);
     return (
         <LenkeBase
             href={link.url}

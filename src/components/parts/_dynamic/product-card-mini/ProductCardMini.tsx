@@ -5,7 +5,7 @@ import { CardType } from 'types/card';
 import { MiniCard } from 'components/_common/card/MiniCard';
 import { ContentType } from 'types/content-props/_content-common';
 
-export const ProductCardMiniPart = ({ config, ...rest }: ProductCardProps) => {
+export const ProductCardMiniPart = ({ config }: ProductCardProps) => {
     if (!config?.targetPage) {
         return (
             <div>
