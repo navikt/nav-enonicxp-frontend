@@ -1,9 +1,6 @@
-import { PublicImage } from '../image/PublicImage';
 import { BEM, classNames } from '../../../utils/classnames';
 
 import './Illustration.less';
-import { url } from 'node:inspector';
-
 interface IllustrationProps {
     illustration: any;
     placement: string;

@@ -3,7 +3,6 @@ import { BEM, classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
 import { ContentType } from '../../../../types/content-props/_content-common';
 import { Undertekst } from 'nav-frontend-typografi';
-import { PublicImage } from '../../image/PublicImage';
 import { translator } from 'translations';
 import './ProductPageHeader.less';
 import { usePageConfig } from 'store/hooks/usePageConfig';

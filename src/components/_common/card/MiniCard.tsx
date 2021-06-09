@@ -1,5 +1,5 @@
 import { LinkProps } from 'types/link-props';
-import { classNames, BEM } from 'utils/classnames';
+import { BEM } from 'utils/classnames';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { CardSize, CardType } from 'types/card';
 
