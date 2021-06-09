@@ -60,7 +60,7 @@ export const PageBase = (props: PageProps) => {
     );
 };
 
-const redirectProps = (destination: string, isPermanent = false) => ({
+const redirectProps = (destination: string, isPermanent = true) => ({
     props: {},
     redirect: {
         // Decode then (re)encode to ensure the destination is not double-encoded
@@ -102,7 +102,8 @@ export const fetchPageProps = async (
     const redirectTarget = getTargetIfRedirect(content);
     if (redirectTarget) {
         return redirectProps(
-            getRelativePathIfInternal(redirectTarget, isDraft)
+            getRelativePathIfInternal(redirectTarget, isDraft),
+            content.data?.permanentRedirect
         );
     }
 
