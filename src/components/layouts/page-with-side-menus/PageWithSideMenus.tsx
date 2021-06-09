@@ -39,7 +39,6 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 {leftMenuToggle && (
                     <ProductPageSection
                         left
-                        sticky={leftMenuSticky}
                         whiteBackground={false}
                         withPadding={false}
                     >
@@ -48,6 +47,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                             regionProps={regions.leftMenu}
                             internalLinks={showInternalNav && anchorLinks}
                             menuHeader={leftMenuHeader}
+                            sticky={leftMenuSticky}
                         />
                     </ProductPageSection>
                 )}
