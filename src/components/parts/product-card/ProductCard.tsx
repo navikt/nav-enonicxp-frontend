@@ -42,7 +42,7 @@ export const ProductCardPart = ({ config, descriptor }: ProductCardProps) => {
             return CardType.Tool;
         }
 
-        return pageTypeName === ContentType.ContentPageWithSidemenus
+        return pageTypeName === ContentType.ProductPage
             ? CardType.Product
             : CardType.Situation;
     };

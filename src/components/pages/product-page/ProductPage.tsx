@@ -1,13 +1,13 @@
 import React from 'react';
 import { ComponentMapper } from '../../ComponentMapper';
-import { SituationPageProps } from '../../../types/content-props/dynamic-page-props';
+import { ProductPageProps } from '../../../types/content-props/dynamic-page-props';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 import { BEM } from '../../../utils/classnames';
-import './SituationPage.less';
+import './ProductPage.less';
 
-const bem = BEM('situation-page');
+const bem = BEM('product-page');
 
-export const SituationPage = (props: SituationPageProps) => {
+export const ProductPage = (props: ProductPageProps) => {
     return (
         <div className={bem()}>
             <ThemedPageHeader contentProps={props} />

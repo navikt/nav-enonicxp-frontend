@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { PageWithSideMenusProps } from '../../../types/component-props/pages/page-with-side-menus';
 import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
@@ -7,6 +7,7 @@ import { MainContentSection } from './main-content-section/MainContentSection';
 import { ProductPageLayout } from '@navikt/ds-react';
 import { ProductPageSection } from '@navikt/ds-react/esm/layouts';
 import { LayoutContainer } from '../LayoutContainer';
+import { windowMatchMedia } from '../../../utils/match-media';
 import './PageWithSideMenus.less';
 
 type Props = {
@@ -14,8 +15,28 @@ type Props = {
     layoutProps?: PageWithSideMenusProps;
 };
 
+const mobileWidthBreakpoint = 648;
+const mqlWidthBreakpoint = windowMatchMedia(
+    `(min-width: ${mobileWidthBreakpoint}px)`
+);
+
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const updateLayout = () => {
+            setIsMobile(window.innerWidth < mobileWidthBreakpoint);
+        };
+
+        updateLayout();
+
+        mqlWidthBreakpoint.addEventListener('change', updateLayout);
+        return () => {
+            mqlWidthBreakpoint.removeEventListener('change', updateLayout);
+        };
+    }, []);
 
     if (!regions || !config) {
         return null;
@@ -36,6 +57,17 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             {/*TODO: Lag egen grid-komponent*/}
             <ProductPageLayout title={title}>
+                {isMobile && (
+                    <ProductPageSection
+                        whiteBackground={false}
+                        withPadding={false}
+                    >
+                        <MainContentSection
+                            pageProps={pageProps}
+                            regionProps={regions.pageContentTop}
+                        />
+                    </ProductPageSection>
+                )}
                 {leftMenuToggle && (
                     <ProductPageSection
                         left
@@ -52,6 +84,12 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     </ProductPageSection>
                 )}
                 <ProductPageSection whiteBackground={false} withPadding={false}>
+                    {!isMobile && (
+                        <MainContentSection
+                            pageProps={pageProps}
+                            regionProps={regions.pageContentTop}
+                        />
+                    )}
                     <MainContentSection
                         pageProps={pageProps}
                         regionProps={regions.pageContent}

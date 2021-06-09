@@ -137,8 +137,6 @@ export const PageNavigationMenu = React.memo(
             return null;
         }
 
-        console.log(scrollDir.current, currentIndex);
-
         return (
             <div className={classNames(bem(), bem('wrapper'))}>
                 {title && (
