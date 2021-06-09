@@ -3,6 +3,8 @@ import globalState from '../globalState';
 export const xpContentPathPrefix = '/www.nav.no';
 export const xpServicePath = '/_/service/no.nav.navno';
 export const xpDraftPathPrefix = '/admin/site/preview/default/draft/www.nav.no';
+export const editorPathPrefix =
+    '/admin/tool/com.enonic.app.contentstudio/main#/default/edit';
 
 export const xpOrigin = process.env.XP_ORIGIN;
 export const appOrigin = process.env.APP_ORIGIN;

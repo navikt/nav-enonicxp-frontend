@@ -9,7 +9,7 @@ import { FragmentPage } from './pages/fragment-page/FragmentPage';
 import LargeTablePage from './pages/large-table-page/LargeTablePage';
 import { ClientsideRedirect } from './ClientsideRedirect';
 import { TemplatePage } from './pages/template-page/TemplatePage';
-import ErrorPage404 from '../pages/404';
+import { make404Props } from '../utils/make-error-props';
 
 const contentToReactComponent: Partial<
     { [key in ContentType]: React.FunctionComponent<ContentProps> }
@@ -46,7 +46,11 @@ type Props = {
 export const ContentMapper = ({ content }: Props) => {
     const Component = contentToReactComponent[content.__typename];
 
-    return Component ? <Component {...content} /> : <ErrorPage404 />;
+    return Component ? (
+        <Component {...content} />
+    ) : (
+        <ErrorPage {...make404Props(content._path)} />
+    );
 };
 
 export default ContentMapper;

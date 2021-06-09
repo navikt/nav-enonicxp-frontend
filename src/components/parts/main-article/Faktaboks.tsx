@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { ParsedHtml } from '../../ParsedHtml';
 import { PublicImage } from '../../_common/image/PublicImage';
-import {
-    getProcessedHtmlPropsWithBackwardsCompatibility,
-    ProcessedHtmlProps,
-} from '../../../types/processed-html-props';
+import { ProcessedHtmlProps } from '../../../types/processed-html-props';
 
 interface Props {
     label: string;
@@ -13,8 +10,7 @@ interface Props {
 }
 
 const Faktaboks = (props: Props) => {
-    const html = getProcessedHtmlPropsWithBackwardsCompatibility(props?.fakta);
-    if (!html.processedHtml) {
+    if (!props?.fakta?.processedHtml) {
         return null;
     }
 

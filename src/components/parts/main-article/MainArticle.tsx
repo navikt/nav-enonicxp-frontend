@@ -13,7 +13,6 @@ import {
     ContentProps,
 } from '../../../types/content-props/_content-common';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import { getProcessedHtmlPropsWithBackwardsCompatibility } from '../../../types/processed-html-props';
 import './MainArticle.less';
 
 export const MainArticle = (propsInitial: ContentProps) => {
@@ -28,9 +27,8 @@ export const MainArticle = (propsInitial: ContentProps) => {
     const hasTableOfContest =
         data?.hasTableOfContents && data?.hasTableOfContents !== 'none';
 
-    const html = getProcessedHtmlPropsWithBackwardsCompatibility(data.text);
     const innholdsfortegnelse = parseInnholdsfortegnelse(
-        html.processedHtml,
+        data.text?.processedHtml,
         hasTableOfContest
     );
     const headerClassName =

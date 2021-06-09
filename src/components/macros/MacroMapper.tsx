@@ -16,6 +16,8 @@ import { MacroQuote } from './quote/MacroQuote';
 import { MacroTankestrek } from './tankestrek/MacroTankestrek';
 import { MacroVarselBoks } from './varselboks/MacroVarselBoks';
 import { MacroVideo } from './Video/MacroVideo';
+import { MacroHtmlFragment } from './html-fragment/MacroHtmlFragment';
+import { MacroHeaderWithAnchor } from './header-with-anchor/MacroHeaderWithAnchor';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
@@ -26,6 +28,8 @@ const macroComponents: {
     [MacroType.ChevronLinkExternal]: MacroChevronLinkExternal,
     [MacroType.ChevronLinkInternal]: MacroChevronLinkInternal,
     [MacroType.Fotnote]: MacroFotnote,
+    [MacroType.HeaderWithAnchor]: MacroHeaderWithAnchor,
+    [MacroType.HtmlFragment]: MacroHtmlFragment,
     [MacroType.InfoBoks]: MacroInfoBoks,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
     [MacroType.PhoneLink]: MacroPhoneLink,
