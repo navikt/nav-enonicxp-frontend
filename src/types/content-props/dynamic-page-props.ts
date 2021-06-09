@@ -22,8 +22,14 @@ export interface ProductPageProps extends ContentProps {
 }
 
 export type SituationPageData = ProductDataMixin & DynamicPageData;
+export type ToolsPageData = ProductDataMixin & DynamicPageData;
 
 export interface SituationPageProps extends ContentProps {
     __typename: ContentType.SituationPage;
     data: SituationPageData;
+}
+
+export interface ToolsPageProps extends ContentProps {
+    __typename: ContentType.ToolsPage;
+    data: ToolsPageData;
 }

@@ -42,6 +42,7 @@ export const ProductPageHeader = ({
             <Illustration
                 illustration={illustration}
                 placement={IllustrationPlacements.PRODUCT_PAGE_HEADER}
+                className={bem('illustration')}
             />
             <div className={bem('text')}>
                 <PageHeader justify={'left'}>{children}</PageHeader>

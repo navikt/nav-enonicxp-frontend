@@ -5,6 +5,8 @@ import { CardSize, CardType } from 'types/card';
 
 import './MiniCard.less';
 import { Card } from './Card';
+import { Illustration } from '../illustration/Illustration';
+import { IllustrationPlacements } from 'types/illustrationPlacements';
 
 export type MiniKortProps = {
     link: LinkProps;
@@ -21,6 +23,11 @@ export const MiniCard = (props: MiniKortProps) => {
     return (
         <Card link={link} type={type} size={CardSize.Mini}>
             <>
+                <Illustration
+                    illustration={illustration}
+                    placement={IllustrationPlacements.SMALL_CARD}
+                    className="card__illustration"
+                />
                 <Normaltekst className={bem('title')}>{text}</Normaltekst>
             </>
         </Card>

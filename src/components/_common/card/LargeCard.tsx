@@ -32,6 +32,7 @@ export const LargeCard = (props: StortKortProps) => {
                     <Illustration
                         illustration={illustration}
                         placement={IllustrationPlacements.LARGE_CARD}
+                        className={bem('illustration')}
                     />
                 )}
                 <Undertittel tag="h3" className={bem('title')}>

@@ -4,6 +4,7 @@ import './Illustration.less';
 interface IllustrationProps {
     illustration: any;
     placement: string;
+    className: string;
 }
 
 const bem = BEM('illustration');
@@ -11,6 +12,7 @@ const bem = BEM('illustration');
 export const Illustration = ({
     illustration,
     placement,
+    className,
 }: IllustrationProps) => {
     // Need baseClassName to scope this component
     // as it's being used throughout the page.
@@ -23,10 +25,8 @@ export const Illustration = ({
 
     const [icon1, icon2, icon3] = icons;
 
-    console.log(illustration);
-
     return (
-        <div className={classNames(bem('image'), bem(placement))}>
+        <div className={classNames(bem('image'), className)}>
             <div
                 className={classNames(bem('icon'), bem('icon', 'icon2'))}
                 style={{ backgroundImage: `url(${icon2.icon.mediaUrl})` }}

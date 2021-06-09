@@ -38,7 +38,7 @@ export const ProductCardPart = ({ config, descriptor }: ProductCardProps) => {
     const determineCardType = (): CardType => {
         const pageTypeName = config.targetPage.__typename;
 
-        if (!pageTypeName) {
+        if (pageTypeName === ContentType.ToolsPage) {
             return CardType.Tool;
         }
 

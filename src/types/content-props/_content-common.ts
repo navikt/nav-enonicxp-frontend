@@ -46,6 +46,7 @@ export enum ContentType {
     ContentPageWithSidemenus = 'no_nav_navno_ContentPageWithSidemenus',
     SituationPage = 'no_nav_navno_SituationPage',
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',
+    ToolsPage = 'no_nav_navno_ToolsPage',
 }
 
 export type ContentProps = {
