@@ -1,23 +1,25 @@
 import { LinkProps } from 'types/link-props';
-import { BEM } from 'utils/classnames';
+import { classNames, BEM } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 
-import './Card.less';
 import { CardType } from 'types/card';
+import './MicroCard.less';
 
 export type MikroKortProps = {
     link: LinkProps;
     type: CardType;
 };
 
-const bem = BEM('kort');
+const bem = BEM('card');
 
-export const MicroCard = (props: MikroKortProps) => {
-    const { link } = props;
-    const { text, url } = link;
+export const MicroCard = ({ link, type }: MikroKortProps) => {
+    console.log(type);
     return (
-        <LenkeBase href={url} title={text} className={bem('anchor')}>
-            {text}
+        <LenkeBase
+            href={link.url}
+            className={classNames(bem(), bem('micro'), bem('micro', type))}
+        >
+            {link.text}
         </LenkeBase>
     );
 };
