@@ -1,11 +1,13 @@
 import React from 'react';
-import { ProductCardProps } from '../../../../types/component-props/parts/product-card';
-import { LinkProps } from 'types/link-props';
 import { CardType } from 'types/card';
-import { MiniCard } from 'components/_common/card/MiniCard';
 import { ContentType } from 'types/content-props/_content-common';
+import { LinkProps } from 'types/link-props';
+import { MicroCardProps } from '../../../../types/component-props/parts/micro-card';
+import { MicroCard } from 'components/_common/card/MicroCard';
 
-export const ProductCardMiniPart = ({ config }: ProductCardProps) => {
+import './Product-card-micro.less';
+
+export const ProductCardMicroPart = ({ config }: MicroCardProps) => {
     if (!config?.targetPage) {
         return (
             <div>
@@ -17,7 +19,6 @@ export const ProductCardMiniPart = ({ config }: ProductCardProps) => {
     if (!config.targetPage.data) {
         return <div>void</div>;
     }
-
     const determineCardType = () => {
         const pageTypeName = config.targetPage.__typename;
 
@@ -33,7 +34,7 @@ export const ProductCardMiniPart = ({ config }: ProductCardProps) => {
     const { targetPage } = config;
 
     const { _path, data } = targetPage;
-    const { title, illustration } = data;
+    const { title } = data;
 
     const link: LinkProps = {
         url: _path,
@@ -41,11 +42,5 @@ export const ProductCardMiniPart = ({ config }: ProductCardProps) => {
         label: title,
     };
 
-    return (
-        <MiniCard
-            link={link}
-            illustration={illustration}
-            type={determineCardType()}
-        />
-    );
+    return <MicroCard link={link} type={determineCardType()} />;
 };

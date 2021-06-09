@@ -1,0 +1,30 @@
+@import (reference) '../../../global';
+
+.card {
+    &__micro {
+        border-radius: 16px;
+        color: @navMorkGra;
+        display: block;
+        font-size: 0.875rem;
+        margin-right: 0.5rem;
+        padding: 0.2rem 0.5rem;
+        text-decoration: none;
+
+        &--situation {
+            background-color: @navOransjeLighten60;
+        }
+
+        &--product {
+            background-color: @navGronnLighten60;
+        }
+
+        &--tools {
+            background-color: @navDypBlaLighten60;
+        }
+
+        &:focus-visible {
+            outline: 3px solid var(--navds-text-focus);
+            outline-offset: -3px;
+        }
+    }
+}
