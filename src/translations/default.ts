@@ -68,6 +68,9 @@ export const bundle = {
     },
     relatedContent: relatedContent,
     taxonomies,
+    situations: {
+        youMayHaveRightTo: 'Dette kan du ha rett til',
+    },
     publishingCalendar: {
         event: 'Kalenderhendelse',
         publishdate: 'Publiseringsdato',
@@ -75,6 +78,23 @@ export const bundle = {
     header: {
         copyLink: 'Kopier lenke',
         copiedLink: 'Lenken er kopiert',
+    },
+    contactPoint: {
+        chat: {
+            title: 'Chat med Frida',
+            ingress:
+                'Du møter først en chatbot, men kan gå videre og chatte med en veileder uten å logge inn (hverdager 09.00–14.30).',
+        },
+        write: {
+            title: 'Skriv til oss',
+            ingress:
+                'Skal du sende oss nye opplysninger i saken din? "Skriv til oss" er et sikkert alternativ til e-post.',
+        },
+        call: {
+            title: 'Ring oss på 55 55 33 33',
+            ingress:
+                'Åpningstider: hverdager 09:00–15:00. Dersom åpningstidene er midlertidig endret, får du beskjed via automatisk svarer.',
+        },
     },
 };
 

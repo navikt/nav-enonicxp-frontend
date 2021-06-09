@@ -7,8 +7,6 @@ import {
 import { LanguageProps } from '../language';
 import { ProductDataMixin } from '../component-props/_mixins';
 
-export type ProductLabel = 'benefits' | 'rights';
-
 export type DynamicPageData = Partial<{
     languages: LanguageProps[];
     description: string;

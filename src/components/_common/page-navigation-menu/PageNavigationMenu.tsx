@@ -8,7 +8,7 @@ import './PageNavigationMenu.less';
 type Props = {
     title: string;
     anchorLinks: AnchorLink[];
-    placement: string;
+    placement?: string;
 };
 
 export const PageNavigationMenu = ({

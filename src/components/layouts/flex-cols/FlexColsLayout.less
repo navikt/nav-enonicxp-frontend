@@ -1,6 +1,6 @@
 @import (reference) '../../../global';
 
-.flex-items(@numCols, @margin-sides: 1rem) {
+.flex-items(@numCols, @margin-sides: 1.33rem) {
     & > * {
         @numColsPlus1: @numCols + 1;
         display: flex;
@@ -22,7 +22,7 @@
         }
 
         &:nth-child(n + @{numColsPlus1}) {
-            margin-top: 1rem;
+            margin-top: 1.33rem;
         }
     }
 }
@@ -37,7 +37,7 @@
         .full-width-mixin();
         background-color: @navGronnLighten80;
         padding-top: 2rem;
-        padding-bottom: 1.5rem;
+        padding-bottom: 4rem;
 
         .header {
             margin-bottom: 1.5rem;
@@ -53,6 +53,10 @@
                     .flex-items(3);
                 }
             }
+        }
+
+        &:last-of-type {
+            padding-bottom: 0;
         }
     }
 }

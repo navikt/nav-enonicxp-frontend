@@ -10,13 +10,17 @@ const bem = BEM('situation-page');
 export const SituationPage = (props: SituationPageProps) => {
     const { data, __typename: type } = props;
 
-    const { label } = data;
+    const { taxonomy, illustration } = data;
 
     const title = data.title || props.displayName;
 
     return (
         <div className={classNames(bem(), bem(undefined, 'situation'))}>
-            <ProductPageHeader pageType={type} label={label}>
+            <ProductPageHeader
+                pageType={type}
+                taxonomy={taxonomy}
+                illustration={illustration}
+            >
                 {title}
             </ProductPageHeader>
             <div className={bem('content')}>

@@ -1,7 +1,16 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 
-export type ContactOption = 'chat' | 'write' | 'call';
+export enum ContactOption {
+    CHAT = 'chat',
+    WRITE = 'write',
+    CALL = 'call',
+}
+
+export interface ChannelData {
+    ingress?: string;
+    phoneNumber?: string;
+}
 
 export interface ContactOptionProps extends PartComponentProps {
     descriptor: PartType.ContactOption;
@@ -9,9 +18,9 @@ export interface ContactOptionProps extends PartComponentProps {
         contactOptions: {
             _selected: ContactOption;
         } & {
-            chat: { ingress: string };
-            write: { ingress: string };
-            call: { ingress: string; phoneNumber: string };
+            chat: ChannelData;
+            write: ChannelData;
+            call: ChannelData;
         };
     };
 }
