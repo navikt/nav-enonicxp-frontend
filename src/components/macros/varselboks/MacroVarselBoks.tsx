@@ -2,6 +2,7 @@ import React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { MacroVarselBoksProps } from '../../../types/macro-props/varselBoks';
 import { ParsedHtml } from '../../ParsedHtml';
+import './MacroVarselBoks.less';
 
 export const MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
     if (!config?.varselBoks) {
@@ -13,7 +14,7 @@ export const MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
     const { varselBoks } = config.varselBoks;
 
     return (
-        <AlertStripe type={'advarsel'}>
+        <AlertStripe type={'advarsel'} className={'macro-varselboks'}>
             <ParsedHtml htmlProps={varselBoks} />
         </AlertStripe>
     );

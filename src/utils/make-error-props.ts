@@ -20,3 +20,6 @@ export const makeErrorProps = (
     },
     breadcrumbs: [{ title: errorMessage, url: '/' }],
 });
+
+export const make404Props = (idOrPath = '') =>
+    makeErrorProps(idOrPath, 'Fant ikke siden', 404);

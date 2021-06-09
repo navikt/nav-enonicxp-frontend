@@ -4,7 +4,7 @@ import { LinkSelectable } from '../_mixins';
 import { XpImageProps } from '../../media';
 
 export interface TilbyderkortPartProps extends PartComponentProps {
-    descriptor: PartType.Tilbyderkort;
+    descriptor: PartType.ProviderCard;
     config: Partial<{
         link: LinkSelectable;
         icon: XpImageProps;

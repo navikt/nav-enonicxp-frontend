@@ -15,9 +15,7 @@ export enum PartType {
     PublishingCalendar = 'no.nav.navno:publishing-calendar',
 
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
-    SupervisorPanel = 'no.nav.navno:dynamic-supervisor-panel',
     Alert = 'no.nav.navno:dynamic-alert',
-    ReadMorePanel = 'no.nav.navno:dynamic-read-more-panel',
     Header = 'no.nav.navno:dynamic-header',
     LinkList = 'no.nav.navno:dynamic-link-list',
     NewsList = 'no.nav.navno:dynamic-news-list',
@@ -52,9 +50,7 @@ export type PartWithPageData =
 
 export type PartWithOwnData =
     | PartType.LinkPanel
-    | PartType.SupervisorPanel
     | PartType.Alert
-    | PartType.ReadMorePanel
     | PartType.Header
     | PartType.LinkList
     | PartType.NewsList

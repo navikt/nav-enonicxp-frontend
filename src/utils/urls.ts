@@ -3,6 +3,8 @@ import globalState from '../globalState';
 export const xpContentPathPrefix = '/www.nav.no';
 export const xpServicePath = '/_/service/no.nav.navno';
 export const xpDraftPathPrefix = '/admin/site/preview/default/draft/www.nav.no';
+export const editorPathPrefix =
+    '/admin/tool/com.enonic.app.contentstudio/main#/default/edit';
 
 export const xpOrigin = process.env.XP_ORIGIN;
 export const appOrigin = process.env.APP_ORIGIN;
@@ -121,9 +123,7 @@ export const sanitizeLegacyUrl = (url: string) =>
 // Requests from content-studio can be either a path or UUID, we check for both
 export const routerQueryToXpPathOrId = (routerQuery: string | string[]) => {
     const possibleId =
-        typeof routerQuery === 'string'
-            ? routerQuery
-            : routerQuery[1] || routerQuery[0]; // checking the 1-index can be removed when PR#746 on the backend is in production
+        typeof routerQuery === 'string' ? routerQuery : routerQuery[0];
 
     if (isUUID(possibleId)) {
         return possibleId;

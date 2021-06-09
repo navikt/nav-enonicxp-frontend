@@ -10,14 +10,12 @@ import PageHeading from './page-heading/PageHeading';
 import PageList from './page-list/PageList';
 import Alert from './_dynamic/alert/Alert';
 import { LinkPanelPart } from './_dynamic/link-panel/LinkPanelPart';
-import LesMerPanel from './_dynamic/les-mer-panel/LesMerPanel';
 import { MainArticle } from './main-article/MainArticle';
 import {
     ComponentType,
     PartComponentProps,
 } from '../../types/component-props/_component-common';
 import { ContentProps } from '../../types/content-props/_content-common';
-import Veilederpanel from './_dynamic/veilederpanel/Veilederpanel';
 import { OfficeInformation } from './office-information/OfficeInformation';
 import { HeaderPart } from './_dynamic/header/HeaderPart';
 import { LinkList } from './_dynamic/link-list/LinkList';
@@ -59,8 +57,6 @@ const partsWithOwnData: {
     [PartType.Alert]: Alert,
     [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanelPart,
-    [PartType.ReadMorePanel]: LesMerPanel,
-    [PartType.SupervisorPanel]: Veilederpanel,
     [PartType.LinkList]: LinkList,
     [PartType.NewsList]: NewsList,
     [PartType.HtmlArea]: HtmlArea,
