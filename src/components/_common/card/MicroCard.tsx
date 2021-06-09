@@ -1,9 +1,10 @@
 import { LinkProps } from 'types/link-props';
-import { classNames, BEM } from 'utils/classnames';
-import { LenkeBase } from '../lenke/LenkeBase';
+import { BEM } from 'utils/classnames';
 
-import { CardType } from 'types/card';
+import { CardSize, CardType } from 'types/card';
 import './MicroCard.less';
+import { Card } from './Card';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 export type MikroKortProps = {
     link: LinkProps;
@@ -14,11 +15,8 @@ const bem = BEM('card');
 
 export const MicroCard = ({ link, type }: MikroKortProps) => {
     return (
-        <LenkeBase
-            href={link.url}
-            className={classNames(bem(), bem('micro'), bem('micro', type))}
-        >
-            {link.text}
-        </LenkeBase>
+        <Card link={link} type={type} size={CardSize.Micro}>
+            <Normaltekst className={bem('title')}>{link.text}</Normaltekst>
+        </Card>
     );
 };
