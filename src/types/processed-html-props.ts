@@ -5,5 +5,4 @@ export const processedHtmlMacroTag = 'editor-macro';
 export type ProcessedHtmlProps = {
     processedHtml: string;
     macros: MacroPropsCommon[];
-    isLegacy?: boolean;
 };

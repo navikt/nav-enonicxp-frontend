@@ -54,7 +54,7 @@ const getNonEmptyChildren = ({ children }: DomElement) => {
 };
 
 type Props = {
-    htmlProps: ProcessedHtmlProps;
+    htmlProps: ProcessedHtmlProps | string;
 };
 
 export const ParsedHtml = ({ htmlProps }: Props) => {
@@ -62,7 +62,10 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
         return null;
     }
 
-    const { processedHtml, macros } = htmlProps;
+    const { processedHtml, macros } =
+        typeof htmlProps === 'string'
+            ? { processedHtml: htmlProps, macros: [] }
+            : htmlProps;
 
     if (!processedHtml) {
         return null;

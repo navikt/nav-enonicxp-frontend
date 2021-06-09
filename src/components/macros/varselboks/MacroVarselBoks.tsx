@@ -15,7 +15,7 @@ export const MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
 
     return (
         <AlertStripe type={'advarsel'} className={'macro-varselboks'}>
-            <ParsedHtml htmlProps={{ processedHtml: varselBoks, macros: [] }} />
+            <ParsedHtml htmlProps={varselBoks} />
         </AlertStripe>
     );
 };

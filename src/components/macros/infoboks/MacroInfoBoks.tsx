@@ -15,7 +15,7 @@ export const MacroInfoBoks = ({ config }: MacroInfoBoksProps) => {
 
     return (
         <AlertStripe type={'info'} className={'macro-infoboks'}>
-            <ParsedHtml htmlProps={{ processedHtml: infoBoks, macros: [] }} />
+            <ParsedHtml htmlProps={infoBoks} />
         </AlertStripe>
     );
 };
