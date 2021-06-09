@@ -44,8 +44,7 @@ export const isAppUrl = (url: string) => url && appUrlPattern.test(url);
 const xpUrlPattern = new RegExp(`${internalUrlPrefix}/_`, 'i');
 export const isXpUrl = (url: string) => url && xpUrlPattern.test(url);
 
-export const isInternalUrl = (url: string) =>
-    url && (isAppUrl(url) || isXpUrl(url));
+const isInternalUrl = (url: string) => url && (isAppUrl(url) || isXpUrl(url));
 
 // Matches urls which should have the nofollow flag
 const nofollowPattern = new RegExp(`^(${appOrigin})?(\\/sok($|\\?|\\/))`, 'i');
