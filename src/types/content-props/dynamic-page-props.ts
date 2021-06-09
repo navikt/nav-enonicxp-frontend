@@ -8,6 +8,7 @@ import { LanguageProps } from '../language';
 import { ProductDataMixin } from '../component-props/_mixins';
 
 export type DynamicPageData = Partial<{
+    customPath: string;
     languages: LanguageProps[];
     description: string;
 }> &

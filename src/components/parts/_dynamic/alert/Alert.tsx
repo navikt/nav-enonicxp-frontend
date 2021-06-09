@@ -8,7 +8,7 @@ const Alert = (props: DynamicAlert) => {
     const { config } = props;
 
     if (!config) {
-        return <h2>Tomt veilederpanel</h2>;
+        return <h2>Tomt varselpanel</h2>;
     }
 
     const { content, type, inline, margin } = config;
