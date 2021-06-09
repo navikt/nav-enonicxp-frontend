@@ -1,5 +1,10 @@
 import React from 'react';
-import { isNofollowUrl, getInternalRelativePath, isAppUrl } from 'utils/urls';
+import {
+    isNofollowUrl,
+    getInternalRelativePath,
+    isAppUrl,
+    isInternalUrl,
+} from 'utils/urls';
 import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
 import { usePathMap } from '../../../store/hooks/usePathMap';
@@ -23,10 +28,9 @@ export const LenkeBase = ({
     ...rest
 }: Props) => {
     const { internalPathToCustomPath } = usePathMap();
-    const isInternalLink = isAppUrl(href);
 
     const getFinalHref = () => {
-        if (isInternalLink) {
+        if (isInternalUrl(href)) {
             const internalPath = getInternalRelativePath(href);
             return internalPathToCustomPath[internalPath] || internalPath;
         }
@@ -58,7 +62,7 @@ export const LenkeBase = ({
         </a>
     );
 
-    return isInternalLink ? (
+    return isAppUrl(href) ? (
         <Link href={finalHref} passHref={true}>
             {linkElement}
         </Link>
