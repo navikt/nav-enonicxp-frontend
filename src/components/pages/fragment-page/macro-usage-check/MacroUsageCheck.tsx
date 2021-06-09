@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './MacroUsageCheck.less';
 import { fetchWithTimeout } from '../../../../utils/fetch-utils';
 import { xpServiceUrl } from '../../../../utils/urls';
 import { Undertittel } from 'nav-frontend-typografi';
 import { Button } from '../../../_common/button/Button';
 import { BEM } from '../../../../utils/classnames';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
+import './MacroUsageCheck.less';
 
 const bem = BEM('fragment-macro-usage');
 
@@ -28,7 +28,7 @@ const fetchMacroUsage = (id: string): Promise<ServiceResponse> =>
         if (res.ok) {
             return res.json();
         }
-        throw new Error('Teknisk feil: kunne ikke hente macro-bruk (kode 1)');
+        throw new Error('Could not fetch html-fragment macro usage');
     });
 
 type Props = {
@@ -37,9 +37,7 @@ type Props = {
 
 export const MacroUsageCheck = ({ id }: Props) => {
     const [macroUsage, setMacroUsage] = useState<PageData[]>([]);
-    const [message, setMessage] = useState(
-        'Laster makro-bruk for dette fragmentet...'
-    );
+    const [message, setMessage] = useState('');
     const [showUsage, setShowUsage] = useState(false);
 
     useEffect(() => {
@@ -47,25 +45,24 @@ export const MacroUsageCheck = ({ id }: Props) => {
             .then((res) => {
                 if (!Array.isArray(res.usage)) {
                     throw new Error(
-                        'Teknisk feil: kunne ikke hente macro-bruk (kode 2)'
+                        'Invalid html-fragment macro usage fetch response'
                     );
                 }
 
                 const { length } = res.usage;
-                if (length > 0) {
-                    setMessage(
-                        `Fragmentet brukes i makroer på ${length} side${
-                            length > 1 ? 'r' : ''
-                        }`
-                    );
-                } else {
-                    setMessage('Fragmentet er ikke i bruk i macroer');
-                }
+
+                setMessage(
+                    `Fragmentet brukes i makroer på ${length} side${
+                        length === 1 ? '' : 'r'
+                    }`
+                );
+
                 setMacroUsage(res.usage);
             })
             .catch((e) => {
-                console.error(`Failed to load macro usage for fragment ${id}`);
-                setMessage(e);
+                console.error(
+                    `Failed to load macro usage for fragment ${id} - ${e}`
+                );
             });
     }, [id]);
 
@@ -89,7 +86,10 @@ export const MacroUsageCheck = ({ id }: Props) => {
                         {macroUsage.map((usage) => {
                             const editorUrl = `${editorPathPrefix}${usage.id}`;
                             return (
-                                <div className={bem('page-usage')}>
+                                <div
+                                    className={bem('page-usage')}
+                                    key={usage.id}
+                                >
                                     {`${usage.name} - `}
                                     <LenkeInline href={editorUrl}>
                                         {usage.path}
