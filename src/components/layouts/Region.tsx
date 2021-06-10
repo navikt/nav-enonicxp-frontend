@@ -19,10 +19,6 @@ export const Region = ({
     regionStyle,
     bemModifier,
 }: Props) => {
-    if (!regionProps) {
-        return null;
-    }
-
     const { name, components } = regionProps;
 
     return (
