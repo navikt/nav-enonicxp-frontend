@@ -10,11 +10,11 @@
 
     @defaultBgColor: white;
 
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     padding: @paddingDesktop;
     background-color: @defaultBgColor;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 
     @media @mq-screen-tablet {
         padding: @paddingTablet;
@@ -25,7 +25,7 @@
     }
 
     &--with-icon {
-        margin-top: 0; //@iconContainerRadius * 2;
+        margin-top: @iconContainerRadius;
     }
 
     .region__content,
