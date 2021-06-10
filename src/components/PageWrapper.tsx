@@ -83,6 +83,7 @@ export const PageWrapper = (props: Props) => {
             setPageConfigAction({
                 pageId: content._id,
                 language: content.language,
+                editorView: content.editorView,
             })
         );
 
