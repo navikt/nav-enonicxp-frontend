@@ -3,6 +3,10 @@ import { ParsedHtml } from '../../../ParsedHtml';
 import { ProcessedHtmlProps } from '../../../../types/processed-html-props';
 
 const modifyHtml = (htmlText: string, hasTableOfContent: boolean) => {
+    if (!htmlText) {
+        return '';
+    }
+
     // Fjern tomme headings og br-tagger fra HTML
     let tmp = htmlText;
     tmp = tmp?.replace(/<h\d>\s*<\/h\d>/g, '');
@@ -32,7 +36,7 @@ const MainArticleText = ({
     hasTableOfContents,
 }: Props) => {
     const modifiedHtml = modifyHtml(
-        htmlProps.processedHtml,
+        htmlProps?.processedHtml,
         hasTableOfContents
     );
 

@@ -66,6 +66,7 @@ export type ContentProps = {
     data?: ContentData;
     page?: LayoutProps;
     editMode?: boolean;
+    editorView?: 'inline' | 'preview' | 'edit';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     notifications?: NotificationProps[];
     pathMap?: PathMap;
