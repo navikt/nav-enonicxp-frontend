@@ -1,9 +1,9 @@
 import React from 'react';
 import { BEM, classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
-import './PageNavigationLink.less';
 import { PageNavViewStyle } from '../../../types/component-props/parts/page-navigation-menu';
 import { PageNavScrollDirection } from './PageNavigationMenu';
+import './PageNavigationLink.less';
 
 const bem = BEM('page-nav-link');
 
@@ -25,13 +25,6 @@ export const PageNavigationLink = React.memo(
         viewStyle,
         children,
     }: Props) => {
-        const smoothScrollToAnchor = (e: React.MouseEvent) => {
-            e.preventDefault();
-            document
-                .getElementById(targetId)
-                ?.scrollIntoView?.({ behavior: 'smooth' });
-        };
-
         return (
             <LenkeBase
                 href={`#${targetId}`}
@@ -41,7 +34,6 @@ export const PageNavigationLink = React.memo(
                     scrollDirection && bem(undefined, scrollDirection),
                     isCurrent && bem('current')
                 )}
-                onClick={smoothScrollToAnchor}
                 id={linkId}
             >
                 {viewStyle === 'sidebar' && (
