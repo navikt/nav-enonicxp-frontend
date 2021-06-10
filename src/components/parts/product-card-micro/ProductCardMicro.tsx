@@ -8,7 +8,7 @@ import { MicroCard } from 'components/_common/card/MicroCard';
 import {
     ProductCardMicroProps,
     TargetPage,
-} from '../../../../types/component-props/parts/product-card';
+} from '../../../types/component-props/parts/product-card';
 
 export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {
     if (config?.card_list?.length === 0) {
@@ -29,7 +29,7 @@ export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {
             return CardType.Tool;
         }
 
-        return pageTypeName === ContentType.ContentPageWithSidemenus
+        return pageTypeName === ContentType.ProductPage
             ? CardType.Product
             : CardType.Situation;
     };

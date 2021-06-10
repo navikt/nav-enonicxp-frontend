@@ -29,6 +29,7 @@ export const LeftMenuSection = ({
             <PageNavigationMenu
                 title={menuHeader}
                 anchorLinks={internalLinks}
+                viewStyle={'sidebar'}
             />
             <Region pageProps={pageProps} regionProps={regionProps} />
         </div>

@@ -1,0 +1,31 @@
+@import (reference) '../../../../global';
+
+.page-nav-in-content {
+    background-color: white;
+    padding: 2rem;
+
+    &__title {
+        margin-bottom: 1rem;
+    }
+
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-nav-link {
+        padding: 1rem 0.5rem;
+        margin: 0 -0.5rem;
+        color: @navBla;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:focus {
+            .panel-inset-focus-mixin();
+        }
+    }
+}

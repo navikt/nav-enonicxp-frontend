@@ -64,7 +64,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     >
                         <MainContentSection
                             pageProps={pageProps}
-                            regionProps={regions.pageContentTop}
+                            regionProps={regions.topPageContent}
                         />
                     </ProductPageSection>
                 )}
@@ -87,7 +87,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     {!isMobile && (
                         <MainContentSection
                             pageProps={pageProps}
-                            regionProps={regions.pageContentTop}
+                            regionProps={regions.topPageContent}
                         />
                     )}
                     <MainContentSection
