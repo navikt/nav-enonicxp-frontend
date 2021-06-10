@@ -83,6 +83,7 @@ export const PageWrapper = (props: Props) => {
             setPageConfigAction({
                 pageId: content._id,
                 language: content.language,
+                editorView: content.editorView,
             })
         );
 
@@ -102,7 +103,7 @@ export const PageWrapper = (props: Props) => {
             <HeadWithMetatags content={content} />
             {content.editMode && <ComponentReorderHack />}
             <TopContainer content={content} />
-            <div className={'content-wrapper'} id={'maincontent'}>
+            <div className={'content-wrapper'} id={'maincontent'} tabIndex={-1}>
                 {children}
             </div>
         </div>
