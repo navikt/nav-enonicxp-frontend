@@ -43,5 +43,5 @@ export const hasCanonicalUrl = (
 export const isPropsWithContent = (
     props: any
 ): props is { content: ContentProps } => {
-    return !!props.content;
+    return !!props?.content;
 };
