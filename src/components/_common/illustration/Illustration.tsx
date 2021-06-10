@@ -32,8 +32,6 @@ export const Illustration = ({
 
     const [icon1, icon2, icon3] = icons;
 
-    console.log(icon1);
-
     return (
         <div className={classNames(bem('image'), className)}>
             <div

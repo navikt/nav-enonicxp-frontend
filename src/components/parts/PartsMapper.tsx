@@ -30,6 +30,7 @@ import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMen
 import { FiltersMenu } from './_dynamic/filters-menu/FiltersMenu';
 import { ProductCardPart } from './_dynamic/product-card/ProductCard';
 import { ContactOptionPart } from './_dynamic/contact-option/ContactOptionPart';
+import { ProductCardMicroPart } from './_dynamic/product-card-micro/ProductCardMicro';
 
 type Props = {
     partProps: PartComponentProps;
@@ -66,7 +67,7 @@ const partsWithOwnData: {
     [PartType.PageNavigationMenu]: PageNavigationMenuPart,
     [PartType.FiltersMenu]: FiltersMenu,
     [PartType.ProductCard]: ProductCardPart,
-    [PartType.ProductCardMicro]: ProductCardPart,
+    [PartType.ProductCardMicro]: ProductCardMicroPart,
     [PartType.ProductCardMini]: ProductCardPart,
     [PartType.ContactOption]: ContactOptionPart,
 };

@@ -6,10 +6,21 @@ import {
     ToolsPageProps,
 } from '../../content-props/dynamic-page-props';
 
+export type TargetPage = ProductPageProps | SituationPageProps | ToolsPageProps;
+
 export interface ProductCardProps extends PartComponentProps {
     descriptor: PartType.ProductCard;
     config: {
-        targetPage: ProductPageProps | SituationPageProps | ToolsPageProps;
+        targetPage: TargetPage;
         ingressOverride?: string;
+    };
+}
+
+export interface ProductCardMicroProps extends PartComponentProps {
+    descriptor: PartType.ProductCardMicro;
+    config: {
+        card_list: {
+            targetPage: TargetPage;
+        }[];
     };
 }
