@@ -1,0 +1,35 @@
+@import (reference) '../../../global';
+@import (reference) '~nav-frontend-typografi-style/src/index';
+@import (reference) '~nav-frontend-tabell-style/src/index';
+
+.html-area {
+    word-break: break-word;
+
+    & > *:not(:last-child) {
+        margin-bottom: 0.875rem;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    table {
+        float: none;
+        margin-bottom: 1rem;
+        line-height: 1.15em;
+
+        th,
+        td {
+            vertical-align: top;
+            padding: 0.625rem;
+        }
+    }
+
+    ul,
+    ol {
+        padding-left: 1.25rem;
+        margin-bottom: 0.875rem;
+    }
+}
