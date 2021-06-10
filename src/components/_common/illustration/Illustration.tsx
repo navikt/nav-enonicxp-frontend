@@ -18,8 +18,6 @@ export const Illustration = ({
     // Need baseClassName to scope this component
     // as it's being used throughout the page.
 
-    console.log(illustration);
-
     if (!illustration) {
         return null;
     }
