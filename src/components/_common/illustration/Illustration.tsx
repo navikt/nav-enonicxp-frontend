@@ -1,8 +1,9 @@
+import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { BEM, classNames } from '../../../utils/classnames';
 
 import './Illustration.less';
 interface IllustrationProps {
-    illustration: any;
+    illustration: AnimatedIconsProps;
     placement: string;
     className: string;
 }
@@ -16,6 +17,8 @@ export const Illustration = ({
 }: IllustrationProps) => {
     // Need baseClassName to scope this component
     // as it's being used throughout the page.
+
+    console.log(illustration);
 
     if (!illustration) {
         return null;
@@ -33,7 +36,11 @@ export const Illustration = ({
     const [icon1, icon2, icon3] = icons;
 
     return (
-        <div className={classNames(bem('image'), className)}>
+        <div
+            className={classNames(bem('image'), className)}
+            role="img"
+            aria-label={illustration.displayName}
+        >
             <div
                 className={classNames(bem('icon'), bem('icon', 'icon2'))}
                 style={{ backgroundImage: `url(${icon2.icon.mediaUrl})` }}
