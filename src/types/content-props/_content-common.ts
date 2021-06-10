@@ -43,7 +43,7 @@ export enum ContentType {
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
-    ContentPageWithSidemenus = 'no_nav_navno_ContentPageWithSidemenus',
+    ProductPage = 'no_nav_navno_ContentPageWithSidemenus',
     SituationPage = 'no_nav_navno_SituationPage',
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',
     ToolsPage = 'no_nav_navno_ToolsPage',
