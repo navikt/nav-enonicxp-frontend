@@ -3,8 +3,8 @@ import {
     ComponentProps,
     ComponentType,
 } from '../types/component-props/_component-common';
-import { Text } from './parts/_dynamic/text/Text';
-import Image from './parts/_dynamic/image/Image';
+import { Text } from './parts/_text/Text';
+import Image from './parts/_image/Image';
 import { PartsMapper } from './parts/PartsMapper';
 import { ContentProps } from '../types/content-props/_content-common';
 import { LayoutMapper } from './layouts/LayoutMapper';

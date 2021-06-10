@@ -1,0 +1,40 @@
+@import (reference) '../../../../global';
+
+.page-nav-sidebar {
+    background-color: white;
+    padding: 1rem 0;
+
+    &__title {
+        padding: 1rem;
+    }
+
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-nav-link {
+        padding: 1rem;
+        color: @navBla;
+
+        &:hover {
+            text-decoration: none;
+            background-color: @navGra20;
+
+            .page-nav-link__decor {
+                background-color: @navBla;
+            }
+        }
+
+        &:focus {
+            outline: 0;
+            box-shadow: 0 0 0 3px @fokusFarge inset;
+        }
+
+        &__current {
+            color: black;
+            text-decoration: none;
+        }
+    }
+}

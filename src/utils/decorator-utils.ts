@@ -84,8 +84,6 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         ...(feedbackEnabled && { feedback: true }),
         ...(chatbotDisabled && { chatbot: false }),
         utilsBackground:
-            content.__typename === ContentType.ContentPageWithSidemenus
-                ? 'white'
-                : 'gray',
+            content.__typename === ContentType.ProductPage ? 'white' : 'gray',
     };
 };

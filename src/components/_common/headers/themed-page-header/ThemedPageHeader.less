@@ -1,0 +1,39 @@
+@import (reference) '../../../../global';
+@import (reference) '../../../pages/product-page/ProductPage';
+@import (reference) '../../../pages/situation-page/SituationPage';
+
+.themed-page-header {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+
+    .full-width-mixin();
+
+    &--situation {
+        box-shadow: 0 -4px 0 @situationPageColorLight inset;
+    }
+
+    &--product {
+        box-shadow: 0 -4px 0 @productPageColorLight inset;
+    }
+
+    &__illustration {
+        width: 6.2rem;
+        height: 80px;
+    }
+
+    &__text {
+        width: 100%;
+        max-width: #px-to-rem(900) [] + 5rem + 1.5rem;
+
+        .page-header {
+            padding: 0;
+        }
+    }
+
+    &__label {
+        margin-top: 1rem;
+    }
+}

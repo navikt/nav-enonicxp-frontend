@@ -33,6 +33,10 @@
 @padding-sides-tablet: 1rem;
 @padding-sides-mobile: 1rem;
 
+@sectionPaddingDesktop: 2rem;
+@sectionPaddingTablet: 1.5rem;
+@sectionPaddingMobile: 1rem;
+
 html {
     font-size: @font-size-factor * 100%;
 }
@@ -62,6 +66,13 @@ html {
 
     @media @mq-screen-desktop {
         padding: 0 @padding-sides-desktop 2rem @padding-sides-desktop;
+    }
+}
+
+.content-wrapper {
+    &:focus {
+        outline: none;
+        box-shadow: none;
     }
 }
 
@@ -120,5 +131,22 @@ html {
 }
 
 .panel-inset-focus-mixin() {
+    outline: 0;
     box-shadow: 0 0 0 3px inset @fokusFarge;
+}
+
+.section-padding-mixin() {
+    @paddingDesktop: 2rem;
+    @paddingTablet: 1.5rem;
+    @paddingMobile: 1rem;
+
+    padding: @paddingDesktop;
+
+    @media @mq-screen-tablet {
+        padding: @paddingTablet;
+    }
+
+    @media @mq-screen-mobile {
+        padding: @paddingMobile;
+    }
 }
