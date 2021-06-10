@@ -74,9 +74,11 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
 
     return (
         <section className={bem('wrapper')} aria-describedby="description">
-            <Header tag="h2" justify="left">
-                {title}
-            </Header>
+            {title && (
+                <Header tag="h2" justify="left">
+                    {title}
+                </Header>
+            )}
             <Tekstomrade className={bem('introduction')} id="description">
                 {description || ''}
             </Tekstomrade>
