@@ -1,0 +1,64 @@
+@import (reference) '~nav-frontend-tabell-style/src/index';
+@import (reference) '../../../../global';
+
+.publishing-calendar {
+    padding: 2rem;
+    background: #fff;
+
+    h1 {
+        margin-bottom: 1rem;
+        font-size: 1.875rem;
+        font-weight: 400;
+    }
+
+    &__preface {
+        font-size: 1.125rem;
+        margin-bottom: 1rem;
+    }
+
+    header {
+        margin-bottom: 1rem;
+    }
+
+    table {
+        th {
+            padding: 0;
+        }
+
+        td {
+            padding: 1rem 0;
+
+            time {
+                width: 4rem;
+                height: 4rem;
+                display: block;
+                padding: 0.875rem;
+                border-radius: 50%;
+                background-color: #d1d1d1;
+                text-align: center;
+
+                p {
+                    text-transform: uppercase;
+                    &:last-child {
+                        margin-top: -3px;
+                    }
+                }
+            }
+
+            &.eventInfo {
+                padding-left: 1.5rem;
+
+                p {
+                    text-transform: uppercase;
+                    font-size: 0.875rem;
+                }
+
+                @media @mq-screen-mobile {
+                    h2 {
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+        }
+    }
+}

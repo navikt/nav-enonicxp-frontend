@@ -8,7 +8,7 @@ import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import { FilterCheckbox } from 'components/parts/_dynamic/filters-menu/FilterCheckbox';
+import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { FilterExplanation } from './FilterExplanation';
 

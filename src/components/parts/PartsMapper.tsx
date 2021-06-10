@@ -1,32 +1,32 @@
 import React from 'react';
 import { PartWithOwnData, PartWithPageData } from 'types/component-props/parts';
 import { PartDeprecated, PartType } from 'types/component-props/parts';
-import LinkLists from './link-lists/LinkLists';
-import { LinkPanels } from './link-panels/LinkPanels';
-import { MainArticleChapterNavigation } from './main-article-chapter-navigation/MainArticleChapterNavigation';
-import MainPanels from './main-panels/MainPanels';
-import { MenuList } from './menu-list/MenuList';
-import PageHeading from './page-heading/PageHeading';
-import PageList from './page-list/PageList';
-import Alert from './_dynamic/alert/Alert';
-import { LinkPanelPart } from './_dynamic/link-panel/LinkPanelPart';
-import { MainArticle } from './main-article/MainArticle';
+import LinkLists from './_legacy/link-lists/LinkLists';
+import { LinkPanels } from './_legacy/link-panels/LinkPanels';
+import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
+import MainPanels from './_legacy/main-panels/MainPanels';
+import { MenuList } from './_legacy/menu-list/MenuList';
+import PageHeading from './_legacy/page-heading/PageHeading';
+import PageList from './_legacy/page-list/PageList';
+import Alert from './alert/Alert';
+import { LinkPanelPart } from './link-panel/LinkPanelPart';
+import { MainArticle } from './_legacy/main-article/MainArticle';
 import {
     ComponentType,
     PartComponentProps,
 } from '../../types/component-props/_component-common';
 import { ContentProps } from '../../types/content-props/_content-common';
-import { OfficeInformation } from './office-information/OfficeInformation';
-import { HeaderPart } from './_dynamic/header/HeaderPart';
-import { LinkList } from './_dynamic/link-list/LinkList';
-import { NewsList } from './_dynamic/news-list/NewsList';
-import PublishingCalendar from './publishing-calendar/PublishingCalendar';
+import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
+import { HeaderPart } from './header/HeaderPart';
+import { LinkList } from './link-list/LinkList';
+import { NewsList } from './news-list/NewsList';
+import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar';
 import { BEM, classNames } from '../../utils/classnames';
-import { HtmlArea } from './_dynamic/html-area/HtmlArea';
-import { PageHeaderPart } from './_dynamic/page-header/PageHeaderPart';
-import { ButtonPart } from './_dynamic/button/ButtonPart';
+import { HtmlArea } from './html-area/HtmlArea';
+import { PageHeaderPart } from './page-header/PageHeaderPart';
+import { ButtonPart } from './button/ButtonPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
-import { FiltersMenu } from './_dynamic/filters-menu/FiltersMenu';
+import { FiltersMenu } from './filters-menu/FiltersMenu';
 
 type Props = {
     partProps: PartComponentProps;
