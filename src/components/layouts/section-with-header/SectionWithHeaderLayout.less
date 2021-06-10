@@ -6,9 +6,14 @@
 
     @defaultBgColor: white;
 
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     background-color: @defaultBgColor;
+    margin-bottom: 2rem;
+
+    @media @mq-screen-tablet {
+        padding: @paddingTablet;
+    }
 
     .section-padding-mixin();
 
