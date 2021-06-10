@@ -22,7 +22,7 @@ export const Card = (props: CardProps) => {
         <LenkeBase
             href={url}
             title={text}
-            className={classNames(bem(), bem(type), bem(size), bem(type))}
+            className={classNames(bem(), bem(type), bem(size))}
             analyticsLabel={link.text}
         >
             <div className={classNames(bem('wrapper'))}>{children}</div>
