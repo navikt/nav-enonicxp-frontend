@@ -14,8 +14,6 @@ import { MiniCard } from 'components/_common/card/MiniCard';
 import { PartType } from 'types/component-props/parts';
 import { ProductCardProps } from '../../../types/component-props/parts/product-card';
 
-import './ProductCard.less';
-
 export const ProductCardPart = ({ config, descriptor }: ProductCardProps) => {
     const { language } = usePageConfig();
 
@@ -80,6 +78,7 @@ export const ProductCardPart = ({ config, descriptor }: ProductCardProps) => {
     }
 
     if (descriptor === PartType.ProductCardMicro) {
+        console.log(config.targetPage);
         return <MicroCard link={link} type={determineCardType()} />;
     }
 

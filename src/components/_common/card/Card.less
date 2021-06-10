@@ -39,12 +39,17 @@
     }
 
     &:active {
-        background-color: @navBlaDarken40;
+        &.card__mini,
+        &.card__micro,
+        &.card__large {
+            background-color: @navBlaDarken40;
+        }
 
         .card__title,
         .card__description,
         .card__category {
             color: #ffffff;
+            text-decoration: none;
         }
 
         .illustration__icon--icon1,
