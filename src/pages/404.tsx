@@ -1,9 +1,9 @@
 import React from 'react';
-import { makeErrorProps } from '../utils/make-error-props';
+import { make404Props } from '../utils/make-error-props';
 import PageBase from '../components/PageBase';
 
 export const ErrorPage404 = () => {
-    const props = makeErrorProps('', 'Fant ikke siden', 404);
+    const props = make404Props();
 
     return <PageBase content={props} />;
 };

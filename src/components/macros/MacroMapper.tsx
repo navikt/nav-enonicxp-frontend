@@ -16,6 +16,8 @@ import { MacroQuote } from './quote/MacroQuote';
 import { MacroTankestrek } from './tankestrek/MacroTankestrek';
 import { MacroVarselBoks } from './varselboks/MacroVarselBoks';
 import { MacroVideo } from './Video/MacroVideo';
+import { MacroHtmlFragment } from './html-fragment/MacroHtmlFragment';
+import { MacroHeaderWithAnchor } from './header-with-anchor/MacroHeaderWithAnchor';
 import { MacroGlobalValue } from './global-value/MacroGlobalValue';
 import { MacroGlobalValueWithMath } from './global-value-with-math/MacroGlobalValueWithMath';
 
@@ -30,6 +32,8 @@ const macroComponents: {
     [MacroType.Fotnote]: MacroFotnote,
     [MacroType.GlobalValue]: MacroGlobalValue,
     [MacroType.GlobalValueWithMath]: MacroGlobalValueWithMath,
+    [MacroType.HeaderWithAnchor]: MacroHeaderWithAnchor,
+    [MacroType.HtmlFragment]: MacroHtmlFragment,
     [MacroType.InfoBoks]: MacroInfoBoks,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
     [MacroType.PhoneLink]: MacroPhoneLink,

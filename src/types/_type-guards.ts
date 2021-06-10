@@ -1,3 +1,5 @@
+import { ContentProps } from './content-props/_content-common';
+
 export const hasDescription = (
     content: any
 ): content is {
@@ -36,4 +38,10 @@ export const hasCanonicalUrl = (
     };
 } => {
     return typeof content?.data?.canonicalUrl === 'string';
+};
+
+export const isPropsWithContent = (
+    props: any
+): props is { content: ContentProps } => {
+    return !!props?.content;
 };

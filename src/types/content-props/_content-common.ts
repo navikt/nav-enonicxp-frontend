@@ -39,8 +39,8 @@ export enum ContentType {
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
-    PageWithSideMenus = 'no_nav_navno_ContentPageWithSidemenus',
     GlobalValues = 'no_nav_navno_GlobalValueSet',
+    ProductPage = 'no_nav_navno_ContentPageWithSidemenus',
 }
 
 export type ContentProps = {
@@ -60,9 +60,13 @@ export type ContentProps = {
     data?: ContentData;
     page?: LayoutProps;
     editMode?: boolean;
+    editorView?: 'inline' | 'preview' | 'edit';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     notifications?: NotificationProps[];
+    pathMap?: PathMap;
 };
+
+export type PathMap = { [key: string]: string };
 
 export type SeoDataProps = Partial<{
     metaDescription: string;

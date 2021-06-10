@@ -18,7 +18,9 @@ import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterM
 import { getInternalRelativePath } from '../utils/urls';
 import { ComponentReorderHack } from '../utils/ComponentReorderHack';
 
-import { usePageConfig } from '../store/hooks/usePageConfig';
+import { store } from '../store/store';
+import { setPathMapAction } from '../store/slices/pathMap';
+import { setPageConfigAction } from '../store/slices/pageConfig';
 
 type Props = {
     content: ContentProps;
@@ -28,10 +30,6 @@ type Props = {
 export const PageWrapper = (props: Props) => {
     const { content, children } = props;
     const { editMode } = content;
-
-    const { setPageConfig } = usePageConfig();
-
-    setPageConfig({ pageId: props.content._id, language: content.language });
 
     const router = useRouter();
 
@@ -80,6 +78,15 @@ export const PageWrapper = (props: Props) => {
             return;
         }
 
+        store.dispatch(setPathMapAction(content?.pathMap));
+        store.dispatch(
+            setPageConfigAction({
+                pageId: content._id,
+                language: content.language,
+                editorView: content.editorView,
+            })
+        );
+
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
@@ -96,7 +103,7 @@ export const PageWrapper = (props: Props) => {
             <HeadWithMetatags content={content} />
             {content.editMode && <ComponentReorderHack />}
             <TopContainer content={content} />
-            <div className={'content-wrapper'} id={'maincontent'}>
+            <div className={'content-wrapper'} id={'maincontent'} tabIndex={-1}>
                 {children}
             </div>
         </div>

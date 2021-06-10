@@ -14,6 +14,7 @@ const bem = BEM('top-container');
 const hideNotificationForContentTypes: { [key in ContentType]?: boolean } = {
     [ContentType.LargeTable]: true,
     [ContentType.GlobalValues]: true,
+    [ContentType.Fragment]: true
 };
 
 type Props = {
@@ -21,15 +22,15 @@ type Props = {
 };
 
 export const TopContainer = ({ content }: Props) => {
-    const { __typename: type, notifications, language, breadcrumbs } = content;
+    const { __typename, notifications, language, breadcrumbs } = content;
 
     const hasDecoratorWidgets =
         breadcrumbs?.length > 0 || getContentLanguages(content)?.length > 0;
 
-    const hasContentWithWhiteHeader = type === ContentType.PageWithSideMenus;
+    const hasContentWithWhiteHeader = __typename === ContentType.ProductPage;
 
     const showNotifications =
-        !hideNotificationForContentTypes[type] && notifications?.length > 0;
+        !hideNotificationForContentTypes[__typename] && notifications?.length > 0;
 
     const getLabel = translator('notifications', language);
 

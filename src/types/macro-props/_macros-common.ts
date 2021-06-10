@@ -7,6 +7,8 @@ export enum MacroType {
     Fotnote = 'fotnote',
     GlobalValue = 'global-value',
     GlobalValueWithMath = 'global-value-with-math',
+    HeaderWithAnchor = 'header-with-anchor',
+    HtmlFragment = 'html-fragment',
     InfoBoks = 'infoBoks',
     LenkeFiler = 'lenkeFiler',
     PhoneLink = 'phone-link',
