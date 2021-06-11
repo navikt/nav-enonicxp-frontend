@@ -1,7 +1,7 @@
 import {
     ContentProps,
     ContentType,
-    isContent,
+    isSituationContent,
 } from '../types/content-props/_content-common';
 import { useRouter } from 'next/router';
 import { FallbackPage } from './pages/fallback-page/FallbackPage';
@@ -78,7 +78,7 @@ export const fetchPageProps = async (
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret);
 
-    if (isContent(content) && content.data.url && !isDraft) {
+    if (isSituationContent(content) && content.data.url && !isDraft) {
         return redirectProps(stripXpPathPrefix(content.data.url));
     }
 

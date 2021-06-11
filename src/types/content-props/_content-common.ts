@@ -106,7 +106,9 @@ export type ContentData = Partial<
         AnimatedIconsData
 >;
 
-export const isContent = (content: XpResponseProps): content is ContentProps =>
+export const isSituationContent = (
+    content: XpResponseProps
+): content is ContentProps =>
     content.__typename === ContentType.SituationPage ||
     content.__typename === ContentType.ProductPage ||
     content.__typename === ContentType.ToolsPage;
