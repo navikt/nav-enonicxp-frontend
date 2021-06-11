@@ -22,6 +22,7 @@ import {
 import { PublishingCalendarData } from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsData } from './animated-icons';
+import { XpResponseProps } from 'utils/fetch-content';
 
 export enum ContentType {
     Error = 'error',
@@ -104,3 +105,8 @@ export type ContentData = Partial<
         SituationPageData &
         AnimatedIconsData
 >;
+
+export const isContent = (content: XpResponseProps): content is ContentProps =>
+    content.__typename === ContentType.SituationPage ||
+    content.__typename === ContentType.ProductPage ||
+    content.__typename === ContentType.ToolsPage;
