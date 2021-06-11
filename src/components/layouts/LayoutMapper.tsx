@@ -30,6 +30,7 @@ const layoutComponents: {
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
     const { descriptor, path } = layoutProps;
+    const isEditView = pageProps.editorView === 'edit';
 
     const editorProps = {
         'data-portal-component-type': ComponentType.Layout,
@@ -37,7 +38,7 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
     };
 
     if (!descriptor) {
-        return <div {...editorProps} />;
+        return isEditView ? <div {...editorProps} /> : null;
     }
 
     const LayoutComponent = layoutComponents[descriptor];
