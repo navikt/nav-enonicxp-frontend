@@ -10,5 +10,8 @@ type Props = {
 };
 
 export const MainContentSection = ({ pageProps, regionProps }: Props) => {
+    if (regionProps.components?.length === 0) {
+        return null;
+    }
     return <Region pageProps={pageProps} regionProps={regionProps} />;
 };
