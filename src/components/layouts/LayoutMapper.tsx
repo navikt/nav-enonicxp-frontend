@@ -6,6 +6,7 @@ import { FlexColsLayout } from './flex-cols/FlexColsLayout';
 import { LegacyLayout } from './legacy/LegacyLayout';
 import { PageWithSideMenus } from './page-with-side-menus/PageWithSideMenus';
 import { SectionWithHeaderLayout } from './section-with-header/SectionWithHeaderLayout';
+import { ComponentType } from '../../types/component-props/_component-common';
 
 type Props = {
     pageProps: ContentProps;
@@ -28,12 +29,25 @@ const layoutComponents: {
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
-    const { descriptor } = layoutProps;
+    const { descriptor, path } = layoutProps;
+
+    const editorProps = {
+        'data-portal-component-type': ComponentType.Layout,
+        'data-portal-component': path,
+    };
+
+    if (!descriptor) {
+        return <div {...editorProps} />;
+    }
 
     const LayoutComponent = layoutComponents[descriptor];
 
     if (!LayoutComponent) {
-        return <div>{`Unimplemented layout type: ${descriptor}`}</div>;
+        return (
+            <div
+                {...editorProps}
+            >{`Unimplemented layout type: ${descriptor}`}</div>
+        );
     }
 
     return <LayoutComponent pageProps={pageProps} layoutProps={layoutProps} />;
