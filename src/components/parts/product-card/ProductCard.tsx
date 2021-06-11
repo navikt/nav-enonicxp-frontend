@@ -30,7 +30,7 @@ export const ProductCardPart = ({ config, descriptor }: ProductCardProps) => {
     }
 
     const { ingressOverride, targetPage } = config;
-    const { _path, data } = targetPage;
+    const { data } = targetPage;
     const { title, ingress, illustration, taxonomy } = data;
 
     const determineCardType = (): CardType => {
@@ -45,8 +45,17 @@ export const ProductCardPart = ({ config, descriptor }: ProductCardProps) => {
             : CardType.Situation;
     };
 
+    // If the linked page is the actual page to show, use _path,
+    // however, the page (ie a tool page) can also act as an intermediate page
+    const determineCardURL = (): string => {
+        if (targetPage.__typename === ContentType.ToolsPage) {
+            return targetPage.data?.url || targetPage._path;
+        }
+        return targetPage._path;
+    };
+
     const link: LinkProps = {
-        url: _path,
+        url: determineCardURL(),
         text: title,
         label: taxonomy,
     };

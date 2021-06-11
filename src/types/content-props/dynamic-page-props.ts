@@ -5,7 +5,7 @@ import {
     SeoDataProps,
 } from './_content-common';
 import { LanguageProps } from '../language';
-import { ProductDataMixin } from '../component-props/_mixins';
+import { ProductDataMixin, ToolDataMixin } from '../component-props/_mixins';
 
 export type DynamicPageData = Partial<{
     customPath: string;
@@ -17,7 +17,7 @@ export type DynamicPageData = Partial<{
 
 export type ProductPageData = ProductDataMixin & DynamicPageData;
 export type SituationPageData = ProductDataMixin & DynamicPageData;
-export type ToolsPageData = ProductDataMixin & DynamicPageData;
+export type ToolsPageData = ToolDataMixin & ProductDataMixin & DynamicPageData;
 
 export interface ProductPageProps extends ContentProps {
     __typename: ContentType.ProductPage;

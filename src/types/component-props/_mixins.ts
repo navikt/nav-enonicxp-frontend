@@ -17,6 +17,10 @@ export type ProductDataMixin = {
     illustration: AnimatedIconsProps;
 };
 
+export type ToolDataMixin = {
+    url: string;
+};
+
 export type LinkSelectable = {
     _selected: 'internal' | 'external';
     internal: InternalLinkMixin;
