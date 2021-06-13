@@ -1,16 +1,11 @@
 import React, { useEffect } from 'react';
 import { GlobalValuesProps } from '../../../types/content-props/global-values-props';
 import { BEM } from '../../../utils/classnames';
-import {
-    Innholdstittel,
-    Undertekst,
-    Undertittel,
-} from 'nav-frontend-typografi';
+import { Innholdstittel, Undertittel } from 'nav-frontend-typografi';
 import { GVMessages } from './components/messages/GVMessages';
 import ErrorPage404 from '../../../pages/404';
 import { GVItems } from './components/values/GVItems';
 import { GVAddItem } from './components/values/add-item/GVAddItem';
-import { useGvEditorState } from '../../../store/hooks/useGvEditorState';
 import {
     setContentIdAction,
     setValueItemsAction,
@@ -32,9 +27,7 @@ const hideDecorator = () => {
     }
 };
 
-const GlobalValuesDisplay = ({ data, displayName, _id }: GlobalValuesProps) => {
-    const { contentId } = useGvEditorState();
-
+const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
     useEffect(() => {
         hideDecorator();
     }, []);
@@ -51,9 +44,6 @@ const GlobalValuesDisplay = ({ data, displayName, _id }: GlobalValuesProps) => {
                             <Undertittel
                                 className={bem('header-category')}
                             >{`Kategori: ${displayName}`}</Undertittel>
-                            <Undertekst
-                                className={bem('header-id')}
-                            >{`Kategori-id: ${contentId}`}</Undertekst>
                         </div>
                         <GVAddItem />
                     </div>

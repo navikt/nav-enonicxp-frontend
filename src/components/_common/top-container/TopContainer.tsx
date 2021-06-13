@@ -11,10 +11,14 @@ import './TopContainer.less';
 
 const bem = BEM('top-container');
 
-const hideNotificationForContentTypes: { [key in ContentType]?: boolean } = {
+const hideNotificationsForContentTypes: { [key in ContentType]?: boolean } = {
     [ContentType.LargeTable]: true,
     [ContentType.GlobalValues]: true,
-    [ContentType.Fragment]: true
+    [ContentType.Fragment]: true,
+};
+
+const contentTypesWithWhiteHeader: { [key in ContentType]?: boolean } = {
+    [ContentType.ProductPage]: true,
 };
 
 type Props = {
@@ -27,10 +31,11 @@ export const TopContainer = ({ content }: Props) => {
     const hasDecoratorWidgets =
         breadcrumbs?.length > 0 || getContentLanguages(content)?.length > 0;
 
-    const hasContentWithWhiteHeader = __typename === ContentType.ProductPage;
+    const hasWhiteHeader = contentTypesWithWhiteHeader[__typename];
 
     const showNotifications =
-        !hideNotificationForContentTypes[__typename] && notifications?.length > 0;
+        !hideNotificationsForContentTypes[__typename] &&
+        notifications?.length > 0;
 
     const getLabel = translator('notifications', language);
 
@@ -38,7 +43,7 @@ export const TopContainer = ({ content }: Props) => {
         <div
             className={classNames(
                 bem(),
-                hasContentWithWhiteHeader && bem(undefined, 'white'),
+                hasWhiteHeader && bem(undefined, 'white'),
                 hasDecoratorWidgets && bem(undefined, 'widgets-offset')
             )}
         >
