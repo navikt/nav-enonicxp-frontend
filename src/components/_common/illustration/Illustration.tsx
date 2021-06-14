@@ -31,7 +31,7 @@ export const Illustration = ({
 
     const { icons } = illustration?.data;
 
-    const [icon1, icon2, icon3] = icons;
+    const [icon1, icon2] = icons;
 
     return (
         <div
@@ -51,14 +51,6 @@ export const Illustration = ({
                 style={{
                     backgroundImage: `url(${icon2.icon?.mediaUrl})`,
                     transform: buildTransformStyling(icon2, 'none'),
-                }}
-            />
-
-            <div
-                className={classNames(bem('icon'), bem('icon', 'icon3'))}
-                style={{
-                    backgroundImage: `url(${icon3.icon?.mediaUrl})`,
-                    transform: buildTransformStyling(icon3, 'none'),
                 }}
             />
         </div>
