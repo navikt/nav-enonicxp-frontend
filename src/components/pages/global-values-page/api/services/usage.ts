@@ -12,20 +12,15 @@ type ServiceResponse = {
 
 export const gvServiceGetUsage = (
     key: string
-): Promise<ServiceResponse['usage'] | null> =>
+): Promise<ServiceResponse | null> =>
     globalValuesServiceFetch<ServiceResponse>('usage', {
         key,
-    })
-        .then((json) => {
-            if (Array.isArray(json.usage)) {
-                return json.usage;
-            }
+    }).then((json) => {
+        if (Array.isArray(json.usage)) {
+            return json;
+        }
 
-            throw new Error(
-                `Invalid response from key usage service for key ${key}`
-            );
-        })
-        .catch((e) => {
-            console.error(e);
-            return null;
-        });
+        throw new Error(
+            `Invalid response from key usage service for key ${key}`
+        );
+    });

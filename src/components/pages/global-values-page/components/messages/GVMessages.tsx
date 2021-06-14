@@ -7,7 +7,7 @@ import './GVMessages.less';
 const bem = BEM('gv-messages');
 
 export type GVMessageProps = {
-    level: 'info' | 'warning' | 'error';
+    level?: 'info' | 'warning' | 'error';
     message: React.ReactNode;
 };
 
@@ -24,7 +24,7 @@ export const GVMessages = () => {
                 <div
                     className={classNames(
                         bem('message'),
-                        bem('message', msg.level)
+                        bem('message', msg.level || 'info')
                     )}
                     key={index}
                 >
@@ -38,7 +38,7 @@ export const GVMessages = () => {
                     setMessages([]);
                 }}
             >
-                {'Lukk meldinger'}
+                {'Lukk'}
             </GVButton>
         </div>
     );

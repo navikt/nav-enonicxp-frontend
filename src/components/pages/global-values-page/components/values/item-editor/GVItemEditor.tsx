@@ -12,6 +12,7 @@ import { gvServiceGetValueSet } from '../../../api/services/getValueSet';
 import { gvServiceGetUsage } from '../../../api/services/usage';
 import { Element } from 'nav-frontend-typografi';
 import './GVItemEditor.less';
+import { GVMessageProps } from '../../messages/GVMessages';
 
 const bem = BEM('gv-item-editor');
 
@@ -41,6 +42,16 @@ export const GVItemEditor = ({
 
     const isNewItem = item.key === '';
 
+    const onFetchError = (e) => {
+        setMessages([{ message: `Server-feil: ${e}`, level: 'error' }]);
+    };
+
+    const onFetchSuccess = (msg?: GVMessageProps | void) => {
+        if (msg && msg.level !== 'info') {
+            setMessages([msg]);
+        }
+    };
+
     const updateAndClose = () => {
         onClose?.();
         gvServiceGetValueSet(contentId).then(
@@ -49,18 +60,34 @@ export const GVItemEditor = ({
     };
 
     const deleteItem = async () => {
-        const usage = await gvServiceGetUsage(item.key);
-        if (!usage || usage.length > 0) {
-            setMessages(generateGvUsageMessages(usage, item.itemName));
-            setAwaitDeleteConfirm(true);
-        } else {
-            deleteConfirm();
-        }
+        await gvServiceGetUsage(item.key)
+            .then((res) => {
+                const usage = res?.usage;
+                if (!usage || usage.length > 0) {
+                    setMessages(generateGvUsageMessages(usage, item.itemName));
+                    setAwaitDeleteConfirm(true);
+                } else {
+                    deleteConfirm();
+                }
+            })
+            .catch((e) =>
+                setMessages([
+                    {
+                        message: `Server-feil : ${e}`,
+                        level: 'error',
+                    },
+                ])
+            );
     };
 
     const deleteConfirm = () => {
         setAwaitDeleteConfirm(false);
-        gvServiceRemoveItem(item, contentId).then(() => updateAndClose());
+        gvServiceRemoveItem(item, contentId)
+            .then((res) => {
+                onFetchSuccess(res);
+                updateAndClose();
+            })
+            .catch(onFetchError);
     };
 
     const deleteCancel = () => {
@@ -111,18 +138,18 @@ export const GVItemEditor = ({
 
         if (isNewItem) {
             gvServiceAddItem(inputState, contentId)
-                .then((res) => {
-                    console.log(`Success add! ${res}`);
+                .then((msg) => {
+                    onFetchSuccess(msg);
                     updateAndClose();
                 })
-                .catch((e) => console.log(`Fail add! ${e}`));
+                .catch(onFetchError);
         } else {
             gvServiceModifyItem(inputState, contentId)
-                .then((res) => {
-                    console.log(`Success mod! ${res}`);
+                .then((msg) => {
+                    onFetchSuccess(msg);
                     updateAndClose();
                 })
-                .catch((e) => console.log(`Fail mod! ${e}`));
+                .catch(onFetchError);
         }
     };
 
@@ -145,7 +172,9 @@ export const GVItemEditor = ({
                     />
                     <Input
                         mini
-                        label={'Tekst-verdi (vises ved bruk i tekst-innhold)'}
+                        label={
+                            'Tekst-verdi (benyttes ved direkte innsetting i tekst-innhold)'
+                        }
                         name={'textValue'}
                         value={inputState.textValue}
                         onChange={handleInput}
@@ -153,9 +182,7 @@ export const GVItemEditor = ({
                     />
                     <Input
                         mini
-                        label={
-                            'Tall-verdi (valgfritt - for bruk i kommende kalkulator-komponenter)'
-                        }
+                        label={'Tall-verdi (benyttes i kalkulasjoner)'}
                         name={'numberValue'}
                         value={
                             inputState.numberValue !== undefined

@@ -16,11 +16,6 @@ export const globalValuesServiceFetch = <ResponseType>(
     const url = `${serviceUrl}/${requestType}${query}`;
 
     return fetchWithTimeout(url, 5000).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-
-        console.error(`Failed to fetch from ${url}`, res);
-        throw new Error(`Failed to fetch from ${url}`);
+        return res.json();
     });
 };

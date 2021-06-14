@@ -63,10 +63,23 @@ export const GVItem = ({ item }: Props) => {
                 <GVButton
                     onClick={async (e) => {
                         e.preventDefault();
-                        const usage = await gvServiceGetUsage(item.key);
-                        setMessages(
-                            generateGvUsageMessages(usage, item.itemName)
-                        );
+                        await gvServiceGetUsage(item.key)
+                            .then((res) =>
+                                setMessages(
+                                    generateGvUsageMessages(
+                                        res.usage,
+                                        item.itemName
+                                    )
+                                )
+                            )
+                            .catch((e) =>
+                                setMessages([
+                                    {
+                                        message: `Server-feil : ${e}`,
+                                        level: 'error',
+                                    },
+                                ])
+                            );
                     }}
                 >
                     {'Vis bruk'}
