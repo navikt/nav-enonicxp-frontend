@@ -9,6 +9,8 @@ import { ProductPageSection } from '@navikt/ds-react/esm/layouts';
 import { LayoutContainer } from '../LayoutContainer';
 import { windowMatchMedia } from '../../../utils/match-media';
 import './PageWithSideMenus.less';
+import { EditorHelp } from '../../_common/editor-help/EditorHelp';
+import { UndertekstBold } from 'nav-frontend-typografi';
 
 type Props = {
     pageProps: ContentProps;
@@ -85,10 +87,18 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 )}
                 <ProductPageSection whiteBackground={false} withPadding={false}>
                     {!isMobile && regions.topPageContent && (
-                        <MainContentSection
-                            pageProps={pageProps}
-                            regionProps={regions.topPageContent}
-                        />
+                        <>
+                            <MainContentSection
+                                pageProps={pageProps}
+                                regionProps={regions.topPageContent}
+                            />
+                            <EditorHelp>
+                                {
+                                    '^^ Komponenter ovenfor vises over menyen på mobil ^^'
+                                }
+                                <hr />
+                            </EditorHelp>
+                        </>
                     )}
                     <MainContentSection
                         pageProps={pageProps}
