@@ -48,10 +48,7 @@ export const ProductCardPart = ({ config, descriptor }: ProductCardProps) => {
     // If the linked page is the actual page to show, use _path,
     // however, the page (ie a tool page) can also act as an intermediate page
     const determineCardURL = (): string => {
-        if (targetPage.__typename === ContentType.ToolsPage) {
-            return targetPage.data?.externalProductUrl || targetPage._path;
-        }
-        return targetPage._path;
+        return targetPage.data?.externalProductUrl || targetPage._path;
     };
 
     const link: LinkProps = {
