@@ -1,5 +1,11 @@
 @import (reference) '../../../global';
 
+.part-specific-mixins() {
+    .part__product-card-mini {
+        margin-top: 0.75rem;
+    }
+}
+
 .layout__section-with-header {
     @iconContainerRadius: 2rem;
     @iconContainerSize: @iconContainerRadius * 2;
@@ -26,8 +32,10 @@
         margin-top: 1.5rem;
 
         & > :not(:first-child) {
-            margin-top: 1rem;
+            margin-top: 2.25rem;
         }
+
+        .part-specific-mixins();
     }
 
     .icon-container {
