@@ -12,6 +12,7 @@ import { TemplatePage } from './pages/template-page/TemplatePage';
 import { make404Props } from '../utils/make-error-props';
 import { SituationPage } from './pages/situation-page/SituationPage';
 import { ProductPage } from './pages/product-page/ProductPage';
+import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
 
 const contentToReactComponent: Partial<
     { [key in ContentType]: React.FunctionComponent<ContentProps> }
@@ -21,6 +22,7 @@ const contentToReactComponent: Partial<
     [ContentType.Fragment]: FragmentPage,
     [ContentType.TemplatePage]: TemplatePage,
     [ContentType.AnimatedIcons]: () => null, // TODO: add a preview-page for editors
+    [ContentType.GlobalValues]: GlobalValuesPage,
 
     [ContentType.SituationPage]: SituationPage,
     [ContentType.ProductPage]: ProductPage,

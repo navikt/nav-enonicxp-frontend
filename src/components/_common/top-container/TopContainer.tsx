@@ -1,5 +1,5 @@
 import React from 'react';
-import Notification from './Notification';
+import Notification from '../notifications/Notification';
 import { translator } from 'translations';
 import { BEM, classNames } from '../../../utils/classnames';
 import {
@@ -16,6 +16,12 @@ const contentTypesWithWhiteHeader = {
     [ContentType.SituationPage]: true,
 };
 
+const hideNotificationsForContentTypes: { [key in ContentType]?: boolean } = {
+    [ContentType.LargeTable]: true,
+    [ContentType.GlobalValues]: true,
+    [ContentType.Fragment]: true,
+};
+
 type Props = {
     content: ContentProps;
 };
@@ -26,6 +32,12 @@ export const TopContainer = ({ content }: Props) => {
     const hasDecoratorWidgets =
         breadcrumbs?.length > 0 || getContentLanguages(content)?.length > 0;
 
+    const hasWhiteHeader = contentTypesWithWhiteHeader[__typename];
+
+    const showNotifications =
+        !hideNotificationsForContentTypes[__typename] &&
+        notifications?.length > 0;
+
     const getLabel = translator('notifications', language);
 
     return (
@@ -34,10 +46,11 @@ export const TopContainer = ({ content }: Props) => {
                 bem(),
                 contentTypesWithWhiteHeader[__typename] &&
                     bem(undefined, 'white'),
+                hasWhiteHeader && bem(undefined, 'white'),
                 hasDecoratorWidgets && bem(undefined, 'widgets-offset')
             )}
         >
-            {notifications?.length > 0 && (
+            {showNotifications && (
                 <section
                     className={bem('notifications')}
                     aria-label={getLabel('label')}

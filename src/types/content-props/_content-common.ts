@@ -22,6 +22,7 @@ import {
 import { PublishingCalendarData } from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsData } from './animated-icons';
+import { GlobalValuesData } from './global-values-props';
 
 export enum ContentType {
     Error = 'error',
@@ -43,6 +44,7 @@ export enum ContentType {
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
+    GlobalValues = 'no_nav_navno_GlobalValueSet',
     ProductPage = 'no_nav_navno_ContentPageWithSidemenus',
     SituationPage = 'no_nav_navno_SituationPage',
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',
@@ -102,5 +104,6 @@ export type ContentData = Partial<
         PublishingCalendarData &
         ProductPageData &
         SituationPageData &
-        AnimatedIconsData
+        AnimatedIconsData &
+        GlobalValuesData
 >;
