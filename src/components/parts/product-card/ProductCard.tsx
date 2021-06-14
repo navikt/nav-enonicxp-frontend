@@ -60,7 +60,7 @@ export const ProductCardPart = ({ config, descriptor }: ProductCardProps) => {
         label: taxonomy,
     };
 
-    const getCategoryLabel = translator('taxonomies', language);
+    const getCategoryLabel = translator('productTaxonomies', language);
     const category = getCategoryLabel(taxonomy);
     const ingressActual = ingressOverride || ingress;
 
