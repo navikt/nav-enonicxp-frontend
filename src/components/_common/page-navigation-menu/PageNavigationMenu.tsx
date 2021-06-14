@@ -61,7 +61,7 @@ export const PageNavigationMenu = ({
     currentLinkCallback,
     viewStyle,
 }: Props) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(-1);
     const [links, setLinks] = useState<AnchorLink[]>(anchorLinks);
 
     const scrollDir = useRef<PageNavScrollDirection>('up');
