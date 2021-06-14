@@ -49,7 +49,7 @@ export const ProductCardPart = ({ config, descriptor }: ProductCardProps) => {
     // however, the page (ie a tool page) can also act as an intermediate page
     const determineCardURL = (): string => {
         if (targetPage.__typename === ContentType.ToolsPage) {
-            return targetPage.data?.url || targetPage._path;
+            return targetPage.data?.externalProductUrl || targetPage._path;
         }
         return targetPage._path;
     };
