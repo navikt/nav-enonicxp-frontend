@@ -41,12 +41,15 @@ export const Illustration = ({
         >
             <div
                 className={classNames(bem('icon'), bem('icon', 'icon2'))}
-                style={{ backgroundImage: `url(${icon2.icon.mediaUrl})` }}
+                style={{
+                    backgroundImage: `url(${icon2.icon?.mediaUrl})`,
+                    transform: buildTransformStyling(icon2, ''),
+                }}
             />
             <div
                 className={classNames(bem('icon'), bem('icon', 'icon1'))}
                 style={{
-                    backgroundImage: `url(${icon1.icon.mediaUrl})`,
+                    backgroundImage: `url(${icon1.icon?.mediaUrl})`,
                     transform: buildTransformStyling(
                         icon1,
                         'translateX(-40%) translateY(40%)'
@@ -56,7 +59,7 @@ export const Illustration = ({
             <div
                 className={classNames(bem('icon'), bem('icon', 'icon3'))}
                 style={{
-                    backgroundImage: `url(${icon3.icon.mediaUrl})`,
+                    backgroundImage: `url(${icon3.icon?.mediaUrl})`,
                     transform: buildTransformStyling(
                         icon3,
                         'translateX(40%) translateY(-40%)'
