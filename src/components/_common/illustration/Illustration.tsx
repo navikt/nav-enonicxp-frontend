@@ -1,4 +1,5 @@
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import { getMediaUrl } from 'utils/urls';
 import { BEM, classNames } from '../../../utils/classnames';
 
 import './Illustration.less';
@@ -42,14 +43,18 @@ export const Illustration = ({
             <div
                 className={classNames(bem('icon'), bem('icon', 'icon1'))}
                 style={{
-                    backgroundImage: `url(${icon1.icon?.mediaUrl})`,
+                    backgroundImage: `url(${getMediaUrl(
+                        icon1.icon?.mediaUrl
+                    )})`,
                     transform: buildTransformStyling(icon1, 'none'),
                 }}
             />
             <div
                 className={classNames(bem('icon'), bem('icon', 'icon2'))}
                 style={{
-                    backgroundImage: `url(${icon2.icon?.mediaUrl})`,
+                    backgroundImage: `url(${getMediaUrl(
+                        icon2.icon?.mediaUrl
+                    )})`,
                     transform: buildTransformStyling(icon2, 'none'),
                 }}
             />
