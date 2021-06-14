@@ -12,9 +12,8 @@ export const globalValuesServiceFetch = <ResponseType>(
     requestType: GVRequestTypes,
     params: object
 ): Promise<ResponseType> => {
-    const query = objectToQueryString({ ...params });
+    const query = objectToQueryString(params);
     const url = `${serviceUrl}/${requestType}${query}`;
-    console.log(url);
 
     return fetchWithTimeout(url, 5000).then((res) => {
         if (res.ok) {
