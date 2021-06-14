@@ -11,14 +11,15 @@ import './TopContainer.less';
 
 const bem = BEM('top-container');
 
+const contentTypesWithWhiteHeader = {
+    [ContentType.ProductPage]: true,
+    [ContentType.SituationPage]: true,
+};
+
 const hideNotificationsForContentTypes: { [key in ContentType]?: boolean } = {
     [ContentType.LargeTable]: true,
     [ContentType.GlobalValues]: true,
     [ContentType.Fragment]: true,
-};
-
-const contentTypesWithWhiteHeader: { [key in ContentType]?: boolean } = {
-    [ContentType.ProductPage]: true,
 };
 
 type Props = {
@@ -43,6 +44,8 @@ export const TopContainer = ({ content }: Props) => {
         <div
             className={classNames(
                 bem(),
+                contentTypesWithWhiteHeader[__typename] &&
+                    bem(undefined, 'white'),
                 hasWhiteHeader && bem(undefined, 'white'),
                 hasDecoratorWidgets && bem(undefined, 'widgets-offset')
             )}

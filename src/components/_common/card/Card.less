@@ -1,0 +1,64 @@
+@import (reference) '../../../global';
+
+.card {
+    outline: 0;
+    &:hover:not(:active) {
+        box-shadow: 0 0 0 2px @navBla;
+        background-color: #ffffff;
+
+        .card__title,
+        .card__description,
+        .card__category {
+            text-decoration: none;
+            color: @navMorkGra;
+        }
+
+        &.card__product,
+        &.card__tool,
+        &.card__situation {
+            background-color: #ffffff;
+
+            .card__title {
+                color: @navBla;
+            }
+        }
+    }
+
+    &:focus-visible {
+        box-shadow: 0 0 0 4px @fokusFarge;
+        &.card__product,
+        &.card__situation {
+            background-color: #ffffff;
+        }
+        .card__title,
+        .card__description,
+        .card__category {
+            color: @navBla;
+            text-decoration: none;
+        }
+    }
+
+    &:active {
+        &.card__mini,
+        &.card__micro,
+        &.card__large {
+            background-color: @navBlaDarken40;
+        }
+
+        .card__title,
+        .card__description,
+        .card__category {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .illustration__icon--icon1,
+        .illustration__icon--icon3 {
+            filter: brightness(0) invert(1);
+        }
+
+        .illustration__icon--icon2 {
+            filter: invert(1) brightness(4);
+        }
+    }
+}

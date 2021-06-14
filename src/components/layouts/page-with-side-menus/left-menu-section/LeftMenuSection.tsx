@@ -12,6 +12,7 @@ const bem = BEM('left-menu');
 type Props = {
     internalLinks: AnchorLink[];
     menuHeader: string;
+    sticky?: boolean;
     regionProps: RegionProps;
     pageProps: ContentProps;
 };
@@ -19,14 +20,16 @@ type Props = {
 export const LeftMenuSection = ({
     internalLinks,
     menuHeader,
+    sticky,
     regionProps,
     pageProps,
 }: Props) => {
     return (
-        <div className={classNames(bem())}>
+        <div className={classNames(bem(), sticky && bem(undefined, 'sticky'))}>
             <PageNavigationMenu
                 title={menuHeader}
                 anchorLinks={internalLinks}
+                viewStyle={'sidebar'}
             />
             <Region pageProps={pageProps} regionProps={regionProps} />
         </div>

@@ -33,6 +33,10 @@
 @padding-sides-tablet: 1rem;
 @padding-sides-mobile: 1rem;
 
+@sectionPaddingDesktop: 2.5rem;
+@sectionPaddingTablet: 1.5rem;
+@sectionPaddingMobile: 1rem;
+
 html {
     font-size: @font-size-factor * 100%;
 }
@@ -112,6 +116,10 @@ html {
     @result: @valueUpper - mod(@valueUpper, @pixel-size-rem);
 }
 
+#px-to-rem(@px) {
+    @rem: unit(@px * @pixel-size-rem, rem);
+}
+
 // Makes the element cover the entire screen-width
 .full-width-mixin() {
     @side-width: calc((100vw - 100%) / 2);
@@ -124,5 +132,18 @@ html {
 }
 
 .panel-inset-focus-mixin() {
+    outline: 0;
     box-shadow: 0 0 0 3px inset @fokusFarge;
+}
+
+.section-padding-mixin() {
+    padding: @sectionPaddingDesktop;
+
+    @media @mq-screen-tablet {
+        padding: @sectionPaddingTablet;
+    }
+
+    @media @mq-screen-mobile {
+        padding: @sectionPaddingMobile;
+    }
 }
