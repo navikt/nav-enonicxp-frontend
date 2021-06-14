@@ -31,7 +31,7 @@ export const Illustration = ({
 
     const { icons } = illustration?.data;
 
-    const [icon1, icon2, icon3] = icons;
+    const [icon1, icon2] = icons;
 
     return (
         <div
@@ -40,27 +40,17 @@ export const Illustration = ({
             aria-label={illustration.displayName}
         >
             <div
-                className={classNames(bem('icon'), bem('icon', 'icon2'))}
-                style={{ backgroundImage: `url(${icon2.icon.mediaUrl})` }}
-            />
-            <div
                 className={classNames(bem('icon'), bem('icon', 'icon1'))}
                 style={{
-                    backgroundImage: `url(${icon1.icon.mediaUrl})`,
-                    transform: buildTransformStyling(
-                        icon1,
-                        'translateX(-40%) translateY(40%)'
-                    ),
+                    backgroundImage: `url(${icon1.icon?.mediaUrl})`,
+                    transform: buildTransformStyling(icon1, 'none'),
                 }}
             />
             <div
-                className={classNames(bem('icon'), bem('icon', 'icon3'))}
+                className={classNames(bem('icon'), bem('icon', 'icon2'))}
                 style={{
-                    backgroundImage: `url(${icon3.icon.mediaUrl})`,
-                    transform: buildTransformStyling(
-                        icon3,
-                        'translateX(40%) translateY(-40%)'
-                    ),
+                    backgroundImage: `url(${icon2.icon?.mediaUrl})`,
+                    transform: buildTransformStyling(icon2, 'none'),
                 }}
             />
         </div>
