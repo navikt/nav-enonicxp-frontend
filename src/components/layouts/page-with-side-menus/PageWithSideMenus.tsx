@@ -57,7 +57,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             {/*TODO: Lag egen grid-komponent*/}
             <ProductPageLayout title={title}>
-                {isMobile && (
+                {isMobile && regions.topPageContent && (
                     <ProductPageSection
                         whiteBackground={false}
                         withPadding={false}
@@ -84,7 +84,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     </ProductPageSection>
                 )}
                 <ProductPageSection whiteBackground={false} withPadding={false}>
-                    {!isMobile && (
+                    {!isMobile && regions.topPageContent && (
                         <MainContentSection
                             pageProps={pageProps}
                             regionProps={regions.topPageContent}

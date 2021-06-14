@@ -62,7 +62,7 @@ export const PageNavigationMenu = ({
     viewStyle,
 }: Props) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [sortedLinks, setSortedLinks] = useState<AnchorLink[]>([]);
+    const [links, setLinks] = useState<AnchorLink[]>(anchorLinks);
 
     const scrollDir = useRef<PageNavScrollDirection>('up');
     const prevScrollPos = useRef(0);
@@ -72,7 +72,7 @@ export const PageNavigationMenu = ({
             return;
         }
 
-        const targetLink = sortedLinks[currentIndex];
+        const targetLink = links[currentIndex];
 
         currentLinkCallback({
             index: currentIndex,
@@ -81,7 +81,7 @@ export const PageNavigationMenu = ({
                 linkId: getPageNavigationLinkId(targetLink.anchorId),
             }),
         });
-    }, [currentIndex, sortedLinks, currentLinkCallback]);
+    }, [currentIndex, links, currentLinkCallback]);
 
     useEffect(() => {
         if (!anchorLinks) {
@@ -97,7 +97,9 @@ export const PageNavigationMenu = ({
             }, [])
             .sort((a, b) => a.offsetTop - b.offsetTop);
 
-        const _sortedLinks = anchorLinks.sort((a, b) => {
+        // Ensures the links in the navigation menu are sorted according to
+        // their position on the page
+        const sortedLinks = anchorLinks.sort((a, b) => {
             const aIndex = targetElementsSortedByVerticalPosition.findIndex(
                 (element) => element.id === a.anchorId
             );
@@ -107,7 +109,7 @@ export const PageNavigationMenu = ({
             return aIndex - bIndex;
         });
 
-        setSortedLinks(_sortedLinks);
+        setLinks(sortedLinks);
 
         const currentScrollPositionHandler = debounce(
             () => {
@@ -134,14 +136,14 @@ export const PageNavigationMenu = ({
             window.removeEventListener('scroll', currentScrollPositionHandler);
     }, [anchorLinks]);
 
-    if (!sortedLinks?.length) {
+    if (!links?.length) {
         return null;
     }
 
     const props = {
         currentIndex: currentIndex,
         title: title,
-        links: sortedLinks,
+        links: links,
         scrollDirection: scrollDir.current,
     };
 
