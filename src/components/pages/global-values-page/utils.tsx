@@ -21,7 +21,7 @@ export const generateGvUsageMessages = (usage, itemName) => {
             },
             {
                 message:
-                    'Prøv igjen, eller kontakt support dersom problemet vedvarer',
+                    'Prøv igjen, eller kontakt #team-personbruker dersom problemet vedvarer',
                 level: 'info',
             },
         ];
@@ -30,7 +30,7 @@ export const generateGvUsageMessages = (usage, itemName) => {
     if (usage.length === 0) {
         return [
             {
-                message: `Verdien med "${itemName}" er ikke i bruk`,
+                message: `Verdien "${itemName}" er ikke i bruk`,
                 level: 'info',
             },
         ];
@@ -44,14 +44,20 @@ export const generateGvUsageMessages = (usage, itemName) => {
                         href={content.path.replace('/www.nav.no', '')}
                         target={'_blank'}
                         withChevron={false}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                        }}
                     >
                         {content.displayName}
                     </LenkeStandalone>
-                    {' | '}
+                    {' // '}
                     <LenkeStandalone
                         href={`/admin/tool/com.enonic.app.contentstudio/main#/default/edit/${content.id}`}
                         target={'_blank'}
                         withChevron={false}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                        }}
                     >
                         {'[Åpne i editor]'}
                     </LenkeStandalone>
@@ -63,7 +69,7 @@ export const generateGvUsageMessages = (usage, itemName) => {
 
     return [
         {
-            message: `"${itemName}" er i bruk på følgende sider:`,
+            message: `Verdien "${itemName}" er i bruk på følgende sider:`,
             level: 'warning',
         },
         ...contentUseMsgs,

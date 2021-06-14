@@ -4,9 +4,9 @@ import { BEM, classNames } from '../../../../../../utils/classnames';
 import { GVButton } from '../../button/GVButton';
 import { GVItemEditor } from '../item-editor/GVItemEditor';
 import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState';
-import './GVItem.less';
 import { gvServiceGetUsage } from '../../../api/services/usage';
 import { generateGvUsageMessages } from '../../../utils';
+import './GVItem.less';
 
 const bem = BEM('gv-item');
 
@@ -15,20 +15,25 @@ type Props = {
 };
 
 const ItemView = ({ item }: Props) => {
-    const { itemName, textValue, numberValue, key } = item;
+    const { itemName, textValue, numberValue } = item;
 
     return (
         <div className={bem('display')}>
-            <div className={classNames(bem('name'))}>
-                {itemName}
-                <span className={bem('key')}>{`(id: ${key})`}</span>
+            <div className={classNames(bem('name'))}>{itemName}</div>
+            <div className={bem('value-container')}>
+                {textValue && (
+                    <div>
+                        <span className={bem('label')}>{'Tekst-verdi: '}</span>
+                        <span className={bem('value')}>{textValue}</span>
+                    </div>
+                )}
+                {numberValue !== undefined && (
+                    <div>
+                        <span className={bem('label')}>{'Tall-verdi: '}</span>
+                        <span className={bem('value')}>{numberValue}</span>
+                    </div>
+                )}
             </div>
-            <div className={bem('value')}>{`Tekst-verdi: ${textValue}`}</div>
-            {numberValue !== undefined && (
-                <div
-                    className={bem('value')}
-                >{`Tall-verdi: ${numberValue}`}</div>
-            )}
         </div>
     );
 };

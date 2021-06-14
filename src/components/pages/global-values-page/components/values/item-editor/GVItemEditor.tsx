@@ -69,7 +69,6 @@ export const GVItemEditor = ({
 
     const validateAndSubmitItem = (e) => {
         e.preventDefault();
-        console.log(inputState);
         const { itemName, numberValue, textValue } = inputState;
 
         let hasInputErrors = false;
@@ -80,21 +79,19 @@ export const GVItemEditor = ({
         };
 
         if (numberValue !== undefined && isNaN(numberValue)) {
-            console.log('Number error');
-            newErrors.numberValue = 'Tall-verdien er ikke et tall';
+            newErrors.numberValue = 'Tall-verdien må være et tall';
             hasInputErrors = true;
         } else {
             newErrors.numberValue = '';
         }
 
-        if (!textValue) {
-            newErrors.textValue = 'Tekst-verdi er påkrevd';
+        if (!textValue && numberValue === undefined) {
+            newErrors.textValue = 'Minst ett av verdi-feltene må fylles inn';
+            newErrors.numberValue = 'Minst ett av verdi-feltene må fylles inn';
             hasInputErrors = true;
         } else {
             newErrors.textValue = '';
         }
-
-        console.log(gvNameExists(itemName, valueItems), itemName, valueItems);
 
         if (!itemName) {
             newErrors.itemName = 'Navn på verdi er påkrevd';

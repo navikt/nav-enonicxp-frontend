@@ -18,9 +18,20 @@
         margin-left: 0.5rem;
     }
 
-    &__value {
+    &__value-container {
+        display: flex;
+        flex-direction: column;
+        padding-left: 1rem;
+    }
+
+    &__label {
         .typo-undertekst;
-        margin-left: 1rem;
+        display: inline-block;
+        min-width: 4.5rem;
+    }
+
+    &__value {
+        .typo-normal;
     }
 
     &__key-editor {
