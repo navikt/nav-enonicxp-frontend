@@ -10,7 +10,7 @@ export const getTargetIfRedirect = (contentData: ContentProps) => {
         case ContentType.ToolsPage:
             return !contentData.editMode
                 ? getEnvUrl(
-                      stripXpPathPrefix(contentData.data?.productRedirectUrl)
+                      stripXpPathPrefix(contentData.data?.externalProductUrl)
                   )
                 : null;
         case ContentType.Site:
