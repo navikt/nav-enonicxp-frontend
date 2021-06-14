@@ -23,7 +23,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.RulesAndRegulationsLegacy]: 'Regelverk',
 };
 
-const taxonomies: { [key in Taxonomies]: string } = {
+const productTaxonomies: { [key in Taxonomies]: string } = {
     [Taxonomies.BENEFITS]: 'Pengestøtte fra NAV',
     [Taxonomies.RIGHTS]: 'Rettigheter',
 };
@@ -67,7 +67,7 @@ export const bundle = {
         closed: 'Stengt',
     },
     relatedContent: relatedContent,
-    taxonomies,
+    productTaxonomies,
     situations: {
         youMayHaveRightTo: 'Dette kan du ha rett til',
     },
