@@ -96,29 +96,22 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
 
 export const PartsMapper = ({ pageProps, partProps }: Props) => {
     const { path, descriptor } = partProps;
+    const isEditView = pageProps.editorView === 'edit';
 
-    if (!descriptor) {
-        return null;
-    }
-
-    const bem = BEM(ComponentType.Part);
-    const partName = descriptor.split(':')[1];
-
-    const editorProps = pageProps.editMode
+    const editorProps = isEditView
         ? {
               'data-portal-component-type': ComponentType.Part,
               'data-portal-component': path,
           }
         : undefined;
 
-    if (partsDeprecated[descriptor]) {
+    if (!descriptor || partsDeprecated[descriptor]) {
         // Prevents content-studio editor crash due to missing component props
-        if (pageProps.editMode) {
-            return <div {...editorProps} />;
-        }
-
-        return null;
+        return isEditView ? <div {...editorProps} /> : null;
     }
+
+    const bem = BEM(ComponentType.Part);
+    const partName = descriptor.split(':')[1];
 
     return (
         <div className={classNames(bem(), bem(partName))} {...editorProps}>
