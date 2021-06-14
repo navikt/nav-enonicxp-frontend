@@ -22,7 +22,6 @@ import {
 import { PublishingCalendarData } from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsData } from './animated-icons';
-import { XpResponseProps } from 'utils/fetch-content';
 
 export enum ContentType {
     Error = 'error',
