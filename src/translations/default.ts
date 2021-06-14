@@ -24,8 +24,8 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 };
 
 const productTaxonomies: { [key in Taxonomies]: string } = {
-    [Taxonomies.BENEFITS]: 'Pengestøtte fra NAV',
-    [Taxonomies.RIGHTS]: 'Rettigheter',
+    [Taxonomies.BENEFITS]: 'Pengestøtte',
+    [Taxonomies.RIGHTS]: 'Råd og veiledning',
 };
 
 export const bundle = {

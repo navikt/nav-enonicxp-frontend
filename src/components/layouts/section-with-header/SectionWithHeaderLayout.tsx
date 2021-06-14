@@ -69,15 +69,17 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     />
                 </div>
             )}
-            <Header
-                typoStyle={TypoStyle.Innholdstittel}
-                tag={'h2'}
-                justify={'left'}
-                id={anchorId}
-                hideCopyButton={toggleCopyButton}
-            >
-                {title}
-            </Header>
+            {title && (
+                <Header
+                    typoStyle={TypoStyle.Innholdstittel}
+                    tag={'h2'}
+                    justify={'left'}
+                    id={anchorId}
+                    hideCopyButton={toggleCopyButton}
+                >
+                    {title}
+                </Header>
+            )}
             {shouldShowIntroRegion && (
                 <Region pageProps={pageProps} regionProps={regions.intro} />
             )}
