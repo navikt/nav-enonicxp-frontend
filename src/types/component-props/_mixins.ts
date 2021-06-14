@@ -15,7 +15,7 @@ export type ProductDataMixin = {
     ingress?: string;
     taxonomy?: Taxonomies;
     illustration: AnimatedIconsProps;
-    productRedirectUrl: string;
+    externalProductUrl?: string;
 };
 
 export type LinkSelectable = {

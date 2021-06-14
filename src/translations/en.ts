@@ -2,7 +2,7 @@ import { Translations } from './default';
 import { MenuListItemKey } from '../types/menu-list-items';
 import { Taxonomies } from 'types/taxonomies';
 
-const taxonomies: { [key in Taxonomies]: string } = {
+const productTaxonomies: { [key in Taxonomies]: string } = {
     [Taxonomies.BENEFITS]: 'Pengestøtte fra NAV',
     [Taxonomies.RIGHTS]: 'Rettigheter',
 };
@@ -65,7 +65,7 @@ export const bundle: Translations = {
     situations: {
         youMayHaveRightTo: 'Dette kan du ha rett til',
     },
-    taxonomies,
+    productTaxonomies,
     header: {
         copyLink: 'Copy link',
         copiedLink: 'The link was copied',

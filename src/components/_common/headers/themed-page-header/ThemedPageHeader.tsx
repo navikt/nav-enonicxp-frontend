@@ -24,10 +24,19 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
     const { title, illustration, taxonomy } = data;
 
     const { language } = usePageConfig();
-    const getTaxonomyLabel = translator('situations', language);
-    const taxonomyTitle = getTaxonomyLabel('youMayHaveRightTo');
+
+    const getSubtitle = () => {
+        if (pageType === ContentType.SituationPage) {
+            const getTaxonomyLabel = translator('situations', language);
+            return getTaxonomyLabel('youMayHaveRightTo');
+        }
+        const getTaxonomyLabel = translator('productTaxonomies', language);
+        return taxonomy ? getTaxonomyLabel(taxonomy) : null;
+    };
 
     const pageTitle = title || displayName;
+
+    const subTitle = getSubtitle();
 
     return (
         <div
@@ -46,9 +55,9 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             />
             <div className={bem('text')}>
                 <PageHeader justify={'left'}>{pageTitle}</PageHeader>
-                {taxonomyTitle && (
+                {subTitle && (
                     <Undertekst className={bem('label')}>
-                        {taxonomyTitle.toUpperCase()}
+                        {subTitle.toUpperCase()}
                     </Undertekst>
                 )}
             </div>
