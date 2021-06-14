@@ -27,6 +27,6 @@ export interface SectionWithHeaderProps extends LayoutCommonProps {
             rounded: boolean;
             width: number;
         };
-    } & HeaderWithAnchorMixin &
+    } & Partial<HeaderWithAnchorMixin> &
         Pick<LayoutCommonConfigMixin, 'bgColor'>;
 }

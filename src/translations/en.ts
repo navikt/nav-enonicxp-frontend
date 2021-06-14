@@ -3,8 +3,8 @@ import { MenuListItemKey } from '../types/menu-list-items';
 import { Taxonomies } from 'types/taxonomies';
 
 const productTaxonomies: { [key in Taxonomies]: string } = {
-    [Taxonomies.BENEFITS]: 'Pengestøtte fra NAV',
-    [Taxonomies.RIGHTS]: 'Rettigheter',
+    [Taxonomies.BENEFITS]: 'Pengestøtte',
+    [Taxonomies.RIGHTS]: 'Råd og veiledning',
 };
 
 export const bundle: Translations = {
