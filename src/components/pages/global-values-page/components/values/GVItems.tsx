@@ -10,14 +10,12 @@ export const GVItems = () => {
 
     return (
         <div className={bem()}>
-            {valueItems.map((item, index) => {
-                return (
-                    <Fragment key={index}>
-                        <hr />
-                        <GVItem item={item} />
-                    </Fragment>
-                );
-            })}
+            {valueItems.map((item) => (
+                <Fragment key={item.key}>
+                    <hr />
+                    <GVItem item={item} />
+                </Fragment>
+            ))}
         </div>
     );
 };

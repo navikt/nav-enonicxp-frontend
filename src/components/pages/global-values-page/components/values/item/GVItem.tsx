@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
 import { BEM, classNames } from '../../../../../../utils/classnames';
-import { GVButton } from '../../messages/button/GVButton';
+import { GVButton } from '../../button/GVButton';
 import { GVItemEditor } from '../item-editor/GVItemEditor';
 import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState';
 import './GVItem.less';

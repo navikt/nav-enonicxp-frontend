@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GVButton } from '../../messages/button/GVButton';
+import { GVButton } from '../../button/GVButton';
 import { Input, SkjemaGruppe } from 'nav-frontend-skjema';
 import { BEM } from '../../../../../../utils/classnames';
 import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
@@ -50,8 +50,8 @@ export const GVItemEditor = ({
 
     const deleteItem = async () => {
         const usage = await gvServiceGetUsage(item.key);
-        setMessages(generateGvUsageMessages(usage, item.itemName));
         if (!usage || usage.length > 0) {
+            setMessages(generateGvUsageMessages(usage, item.itemName));
             setAwaitDeleteConfirm(true);
         } else {
             deleteConfirm();

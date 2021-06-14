@@ -1,7 +1,7 @@
 import React from 'react';
 import { BEM, classNames } from '../../../../../utils/classnames';
 import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
-import { GVButton } from './button/GVButton';
+import { GVButton } from '../button/GVButton';
 import './GVMessages.less';
 
 const bem = BEM('gv-messages');

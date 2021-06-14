@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GVButton } from '../../messages/button/GVButton';
+import { GVButton } from '../../button/GVButton';
 import { BEM, classNames } from '../../../../../../utils/classnames';
 import { GVItemEditor } from '../item-editor/GVItemEditor';
 import './GVAddItem.less';
@@ -23,11 +23,7 @@ export const GVAddItem = () => {
                     />
                 </>
             ) : (
-                <GVButton
-                    type={'hoved'}
-                    onClick={() => setIsActive(true)}
-                    className={bem('add-button')}
-                >
+                <GVButton type={'hoved'} onClick={() => setIsActive(true)}>
                     {'Legg til ny verdi'}
                 </GVButton>
             )}
