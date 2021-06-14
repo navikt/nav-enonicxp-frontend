@@ -11,8 +11,8 @@ import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState
 import { gvServiceGetValueSet } from '../../../api/services/getValueSet';
 import { gvServiceGetUsage } from '../../../api/services/usage';
 import { Element } from 'nav-frontend-typografi';
-import './GVItemEditor.less';
 import { GVMessageProps } from '../../messages/GVMessages';
+import './GVItemEditor.less';
 
 const bem = BEM('gv-item-editor');
 
