@@ -22,8 +22,13 @@ export enum PartType {
     HtmlArea = 'no.nav.navno:html-area',
     PageHeader = 'no.nav.navno:page-header',
     Button = 'no.nav.navno:button',
+    ProviderCard = 'no.nav.navno:provider-card',
     PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
     FiltersMenu = 'no.nav.navno:filters-menu',
+    ProductCard = 'no.nav.navno:product-card',
+    ProductCardMini = 'no.nav.navno:product-card-mini',
+    ProductCardMicro = 'no.nav.navno:product-card-micro',
+    ContactOption = 'no.nav.navno:contact-option',
 }
 
 export type PartDeprecated =
@@ -52,5 +57,10 @@ export type PartWithOwnData =
     | PartType.HtmlArea
     | PartType.PageHeader
     | PartType.Button
+    | PartType.ProviderCard
     | PartType.PageNavigationMenu
-    | PartType.FiltersMenu;
+    | PartType.FiltersMenu
+    | PartType.ProductCard
+    | PartType.ProductCardMini
+    | PartType.ProductCardMicro
+    | PartType.ContactOption;

@@ -3,7 +3,7 @@ import { SectionWithHeaderProps } from '../../../types/component-props/layouts/s
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
-import { Header } from '../../_common/header/Header';
+import { Header } from '../../_common/headers/Header';
 import { TypoStyle } from '../../../types/typo-style';
 import { XpImage } from '../../_common/image/XpImage';
 import { FilterBar } from '../../_common/filter-bar/FilterBar';
@@ -30,7 +30,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const { title, anchorId, icon, border, hideCopyButton } = config;
+    const { title, anchorId, icon, border, toggleCopyButton } = config;
 
     const iconImgProps = icon?.icon;
 
@@ -74,7 +74,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                 tag={'h2'}
                 justify={'left'}
                 id={anchorId}
-                hideCopyButton={hideCopyButton}
+                hideCopyButton={toggleCopyButton}
             >
                 {title}
             </Header>

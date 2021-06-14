@@ -1,26 +1,19 @@
 @import (reference) '../../../global';
 
 .layout__section-with-header {
-    @paddingDesktop: 2.5rem;
-    @paddingTablet: 1.5rem;
-    @paddingMobile: 1rem;
-
-    @iconContainerRadius: 2.25rem;
+    @iconContainerRadius: 2rem;
     @iconContainerSize: @iconContainerRadius * 2;
 
     @defaultBgColor: white;
 
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
-    padding: @paddingDesktop;
     background-color: @defaultBgColor;
 
-    @media @mq-screen-tablet {
-        padding: @paddingTablet;
-    }
+    .section-padding-mixin();
 
-    @media @mq-screen-mobile {
-        padding: @paddingMobile;
+    &:not(:last-child) {
+        margin-bottom: 2rem;
     }
 
     &--with-icon {
@@ -55,14 +48,14 @@
         background-color: @defaultBgColor;
         overflow: hidden;
 
-        .adjust-for-padding(@paddingDesktop);
+        .adjust-for-padding(@sectionPaddingDesktop);
 
         @media @mq-screen-tablet {
-            .adjust-for-padding(@paddingTablet);
+            .adjust-for-padding(@sectionPaddingTablet);
         }
 
         @media @mq-screen-mobile {
-            .adjust-for-padding(@paddingMobile);
+            .adjust-for-padding(@sectionPaddingMobile);
         }
 
         img {

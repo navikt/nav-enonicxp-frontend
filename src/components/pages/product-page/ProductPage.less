@@ -1,0 +1,25 @@
+@import (reference) '../../../global';
+
+@productPageColorLight: @navBlaLighten40;
+@productPageColorDark: @navDypBlaLighten40;
+
+.product-page {
+    display: flex;
+    flex-direction: column;
+
+    .navds-layout__header {
+        display: none;
+    }
+
+    .icon-container {
+        background-color: @productPageColorDark;
+        img {
+            width: 50%;
+            height: 50%;
+        }
+    }
+
+    &__content {
+        margin-top: 2rem;
+    }
+}

@@ -1,0 +1,29 @@
+@import (reference) '../../../global';
+
+.card {
+    &__micro {
+        border-radius: 16px;
+        color: @navMorkGra;
+        display: inline-flex;
+        font-size: 0.875rem;
+        margin: 0.2rem 0.5rem 0.2rem 0;
+        padding: 0.2rem 0.5rem;
+        text-decoration: none;
+
+        &.card__situation {
+            background-color: @navOransjeLighten60;
+        }
+
+        &.card__product {
+            background-color: @navGronnLighten60;
+        }
+
+        &.card__tools {
+            background-color: @navDypBlaLighten60;
+        }
+
+        .card__title {
+            font-size: 0.875rem;
+        }
+    }
+}

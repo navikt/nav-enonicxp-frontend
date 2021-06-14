@@ -6,6 +6,9 @@ import { FlexColsLayout } from './flex-cols/FlexColsLayout';
 import { LegacyLayout } from './legacy/LegacyLayout';
 import { PageWithSideMenus } from './page-with-side-menus/PageWithSideMenus';
 import { SectionWithHeaderLayout } from './section-with-header/SectionWithHeaderLayout';
+import { ComponentType } from '../../types/component-props/_component-common';
+import { SingleColPage } from './single-col-page/SingleColPage';
+import { SituationPageFlexColsLayout } from './flex-cols/SituationPageFlexColsLayout';
 
 type Props = {
     pageProps: ContentProps;
@@ -25,15 +28,31 @@ const layoutComponents: {
     [LayoutType.FlexCols]: FlexColsLayout,
     [LayoutType.SectionWithHeader]: SectionWithHeaderLayout,
     [LayoutType.PageWithSideMenus]: PageWithSideMenus,
+    [LayoutType.SingleColPage]: SingleColPage,
+    [LayoutType.SituationPageFlexCols]: SituationPageFlexColsLayout,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
-    const { descriptor } = layoutProps;
+    const { descriptor, path } = layoutProps;
+    const isEditView = pageProps.editorView === 'edit';
+
+    const editorProps = {
+        'data-portal-component-type': ComponentType.Layout,
+        'data-portal-component': path,
+    };
+
+    if (!descriptor) {
+        return isEditView ? <div {...editorProps} /> : null;
+    }
 
     const LayoutComponent = layoutComponents[descriptor];
 
     if (!LayoutComponent) {
-        return <div>{`Unimplemented layout type: ${descriptor}`}</div>;
+        return (
+            <div
+                {...editorProps}
+            >{`Unimplemented layout type: ${descriptor}`}</div>
+        );
     }
 
     return <LayoutComponent pageProps={pageProps} layoutProps={layoutProps} />;

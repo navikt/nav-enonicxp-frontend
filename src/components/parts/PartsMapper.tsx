@@ -25,8 +25,12 @@ import { BEM, classNames } from '../../utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';
+import { ProviderCardPart } from './provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { FiltersMenu } from './filters-menu/FiltersMenu';
+import { ProductCardPart } from './product-card/ProductCard';
+import { ContactOptionPart } from './contact-option/ContactOptionPart';
+import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 
 type Props = {
     partProps: PartComponentProps;
@@ -59,8 +63,13 @@ const partsWithOwnData: {
     [PartType.HtmlArea]: HtmlArea,
     [PartType.PageHeader]: PageHeaderPart,
     [PartType.Button]: ButtonPart,
+    [PartType.ProviderCard]: ProviderCardPart,
     [PartType.PageNavigationMenu]: PageNavigationMenuPart,
     [PartType.FiltersMenu]: FiltersMenu,
+    [PartType.ProductCard]: ProductCardPart,
+    [PartType.ProductCardMicro]: ProductCardMicroPart,
+    [PartType.ProductCardMini]: ProductCardPart,
+    [PartType.ContactOption]: ContactOptionPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {
@@ -87,29 +96,22 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
 
 export const PartsMapper = ({ pageProps, partProps }: Props) => {
     const { path, descriptor } = partProps;
+    const isEditView = pageProps.editorView === 'edit';
 
-    if (!descriptor) {
-        return null;
-    }
-
-    const bem = BEM(ComponentType.Part);
-    const partName = descriptor.split(':')[1];
-
-    const editorProps = pageProps.editMode
+    const editorProps = isEditView
         ? {
               'data-portal-component-type': ComponentType.Part,
               'data-portal-component': path,
           }
         : undefined;
 
-    if (partsDeprecated[descriptor]) {
+    if (!descriptor || partsDeprecated[descriptor]) {
         // Prevents content-studio editor crash due to missing component props
-        if (pageProps.editMode) {
-            return <div {...editorProps} />;
-        }
-
-        return null;
+        return isEditView ? <div {...editorProps} /> : null;
     }
+
+    const bem = BEM(ComponentType.Part);
+    const partName = descriptor.split(':')[1];
 
     return (
         <div className={classNames(bem(), bem(partName))} {...editorProps}>

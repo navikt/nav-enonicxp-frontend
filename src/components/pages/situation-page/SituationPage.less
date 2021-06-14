@@ -1,0 +1,51 @@
+@import (reference) '../../../global';
+
+@situationPageColorLight: @navOransjeLighten60;
+@situationPageColorDark: @navOransjeLighten20;
+
+.situation-page {
+    @contentMaxWidth: #px-to-rem(900) [];
+
+    display: flex;
+    flex-direction: column;
+
+    .icon-container {
+        background-color: @situationPageColorDark;
+        img {
+            width: 50%;
+            height: 50%;
+        }
+    }
+
+    .region__pageContent {
+        @margin: 2rem;
+        display: flex;
+        flex-direction: column;
+
+        & > * {
+            margin-bottom: @margin;
+        }
+
+        & > :not(.layout__situation-flex-cols) {
+            max-width: @contentMaxWidth * 2/3;
+        }
+
+        // Prevent margins between adjacent situation-flex-cols layouts
+        .layout__situation-flex-cols + .layout__situation-flex-cols {
+            // margin-top: -@margin;
+        }
+    }
+
+    &__content {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-start;
+        align-self: center;
+        width: 100%;
+        max-width: @contentMaxWidth;
+
+        & > * {
+            width: 100%;
+        }
+    }
+}
