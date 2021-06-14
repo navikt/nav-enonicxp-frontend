@@ -1,0 +1,18 @@
+// This is an override mixin specific for product and livesituation pages.
+// To be removed when DS has updated design packages.
+
+.product-mixins() {
+    .part__html-area:not(:first-child) {
+        margin-top: 2.27rem;
+    }
+    .html-area .typo-normal {
+        margin-bottom: 2.25rem;
+        &:last-child {
+            margin-bottom: 0.75rem;
+        }
+    }
+
+    .part__dynamic-header + .part__product-card-micro {
+        margin-top: -0.5rem;
+    }
+}
