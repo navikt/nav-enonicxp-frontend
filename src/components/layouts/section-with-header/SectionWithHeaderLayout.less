@@ -9,9 +9,12 @@
     display: inline-flex;
     flex-direction: column;
     background-color: @defaultBgColor;
-    margin-bottom: 2rem;
 
     .section-padding-mixin();
+
+    &:not(:last-child) {
+        margin-bottom: 2rem;
+    }
 
     &--with-icon {
         margin-top: @iconContainerRadius;
