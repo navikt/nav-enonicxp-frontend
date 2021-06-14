@@ -136,17 +136,13 @@ html {
 }
 
 .section-padding-mixin() {
-    @paddingDesktop: 2rem;
-    @paddingTablet: 1.5rem;
-    @paddingMobile: 1rem;
-
-    padding: @paddingDesktop;
+    padding: @sectionPaddingDesktop;
 
     @media @mq-screen-tablet {
-        padding: @paddingTablet;
+        padding: @sectionPaddingTablet;
     }
 
     @media @mq-screen-mobile {
-        padding: @paddingMobile;
+        padding: @sectionPaddingMobile;
     }
 }
