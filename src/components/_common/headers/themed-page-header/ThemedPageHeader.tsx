@@ -5,7 +5,6 @@ import { ContentType } from '../../../../types/content-props/_content-common';
 import { Undertekst } from 'nav-frontend-typografi';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { Taxonomies } from 'types/taxonomies';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { IllustrationPlacements } from 'types/illustrationPlacements';
 import './ThemedPageHeader.less';

@@ -9,7 +9,9 @@ export const getTargetIfRedirect = (contentData: ContentProps) => {
         case ContentType.ProductPage:
         case ContentType.ToolsPage:
             return !contentData.editMode
-                ? getEnvUrl(stripXpPathPrefix(contentData.data?.url))
+                ? getEnvUrl(
+                      stripXpPathPrefix(contentData.data?.productRedirectUrl)
+                  )
                 : null;
         case ContentType.Site:
             return '/no/person';
