@@ -1,0 +1,29 @@
+.illustration {
+    &__image {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__icon {
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        background-size: contain;
+        width: 50%;
+        height: 50%;
+
+        &--icon1 {
+            transform: translateX(-40%) translateY(30%);
+        }
+        &--icon2 {
+            align-self: center;
+            justify-self: center;
+        }
+
+        &--icon3 {
+            transform: translateX(40%) translateY(-30%);
+        }
+    }
+}

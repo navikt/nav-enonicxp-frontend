@@ -1,10 +1,17 @@
 @import (reference) '../../../../global';
 
-.region__pageContent {
-    display: flex;
-    flex-direction: column;
+.page__page-with-side-menus {
+    .region__pageContent,
+    .region__topPageContent {
+        display: flex;
+        flex-direction: column;
 
-    & > :not(:last-child) {
-        margin-bottom: 1.5rem;
+        & > :not(:last-child) {
+            margin-bottom: 2rem;
+        }
+
+        &:empty {
+            margin-bottom: 0;
+        }
     }
 }

@@ -3,17 +3,18 @@
 .left-menu {
     @topOffset: calc(var(--decorator-sticky-offset) + 1rem);
     @bottomOffset: 2rem;
+
     overflow: auto;
     max-height: calc(100vh - @topOffset - @bottomOffset);
     top: @topOffset;
 
-    .navds-accordion-anchor-menu {
-        background-color: white;
-    }
-
     @media @mq-screen-mobile {
         overflow: visible;
         max-height: none;
+    }
+
+    &--sticky {
+        position: sticky;
     }
 }
 

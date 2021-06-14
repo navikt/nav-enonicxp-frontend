@@ -6,10 +6,13 @@ export type AnchorLink = {
     linkText: string;
 };
 
+export type PageNavViewStyle = 'sidebar' | 'inContent';
+
 export interface PageNavigationMenuProps extends PartComponentProps {
     descriptor: PartType.PageNavigationMenu;
     config: {
         title: string;
         anchorLinks: AnchorLink[];
+        viewStyle: PageNavViewStyle;
     };
 }

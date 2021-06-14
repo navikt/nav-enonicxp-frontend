@@ -5,6 +5,14 @@ import { getEnvUrl } from './url-lookup-table';
 
 export const getTargetIfRedirect = (contentData: ContentProps) => {
     switch (contentData?.__typename) {
+        case ContentType.SituationPage:
+        case ContentType.ProductPage:
+        case ContentType.ToolsPage:
+            return !contentData.editMode
+                ? getEnvUrl(
+                      stripXpPathPrefix(contentData.data?.externalProductUrl)
+                  )
+                : null;
         case ContentType.Site:
             return '/no/person';
         case ContentType.InternalLink:

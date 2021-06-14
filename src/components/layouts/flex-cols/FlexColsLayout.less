@@ -1,41 +1,68 @@
 @import (reference) '../../../global';
 
+.flex-items(@numCols, @margin-sides: 1.33rem) {
+    & > * {
+        @numColsPlus1: @numCols + 1;
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: calc(percentage(1 / (@numCols + 1)) + 1px);
+
+        max-width: calc(
+            percentage(1 / @numCols) - (@margin-sides * (@numCols - 1)) /
+                @numCols + 1px
+        );
+
+        &:not(:last-child) {
+            margin-right: @margin-sides;
+        }
+
+        &:nth-child(@{numCols}n + @{numCols}) {
+            margin-right: 0;
+        }
+
+        &:nth-child(n + @{numColsPlus1}) {
+            margin-top: 1.33rem;
+        }
+    }
+}
+
 .layout {
     &__dynamic-flex-cols {
         display: flex;
         justify-content: center;
     }
-}
 
-.region {
-    &__flexcols {
-        .flex-items(@numCols, @margin-sides: 1rem) {
-            & > * {
-                @numColsPlus1: @numCols + 1;
-                display: flex;
-                flex-grow: 1;
-                flex-shrink: 0;
-                flex-basis: calc(percentage(1 / (@numCols + 1)) + 1px);
+    &__situation-flex-cols {
+        .full-width-mixin();
+        background-color: @navGronnLighten80;
+        padding-top: 2rem;
+        padding-bottom: 4rem;
 
-                max-width: calc(
-                    percentage(1 / @numCols) - (@margin-sides * (@numCols - 1)) /
-                        @numCols + 1px
-                );
+        .header {
+            margin-bottom: 1.5rem;
+        }
 
-                &:not(:last-child) {
-                    margin-right: @margin-sides;
-                }
+        .region__flexcols {
+            &--2-cols {
+                .flex-items(2);
+            }
 
-                &:nth-child(@{numCols}n + @{numCols}) {
-                    margin-right: 0;
-                }
-
-                &:nth-child(n + @{numColsPlus1}) {
-                    margin-top: 1rem;
+            &--3-cols {
+                @media @mq-screen-desktop {
+                    .flex-items(3);
                 }
             }
         }
 
+        &:last-of-type {
+            padding-bottom: 0;
+        }
+    }
+}
+
+.region {
+    &__flexcols {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;

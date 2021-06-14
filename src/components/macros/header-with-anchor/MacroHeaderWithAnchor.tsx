@@ -1,6 +1,6 @@
 import React from 'react';
 import { MacroHeaderWithAnchorProps } from '../../../types/macro-props/header-with-anchor';
-import { Header } from '../../_common/header/Header';
+import { Header } from '../../_common/headers/Header';
 
 export const MacroHeaderWithAnchor = ({
     config,
