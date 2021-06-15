@@ -1,0 +1,18 @@
+@import (reference) '../../../global';
+
+.editor-help {
+    @navGronnLighten40Filter: invert(98%) sepia(83%) saturate(920%) hue-rotate(62deg) brightness(85%) contrast(80%);
+    display: flex;
+    margin: 1rem 0;
+
+    &__icon {
+        height: #round-rem(1.75rem) [];
+        width: #round-rem(1.75rem) [];
+        margin-right: 1rem;
+        filter: @navGronnLighten40Filter;
+    }
+
+    &__content {
+        align-self: center;
+    }
+}
