@@ -65,7 +65,9 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
     ) => {
         if (channel === ContactOption.CALL) {
             return {
-                href: `tel:+47${data?.phoneNumber || '55553333'}`,
+                href: `tel:+47${
+                    data?.phoneNumber?.replace(/ /g, '') || '55553333'
+                }`,
             };
         }
 
