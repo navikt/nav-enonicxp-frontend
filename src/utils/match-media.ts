@@ -16,6 +16,8 @@ const matchMediaLegacy = (mql: MediaQueryList) => {
         _: string,
         callback: (e: MediaQueryListEvent) => void
     ) => mql.removeListener(callback);
+
+    return mql;
 };
 
 export const windowMatchMedia = (mediaQuery: string) => {
