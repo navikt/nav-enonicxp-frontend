@@ -16,9 +16,6 @@ type Props = {
 };
 
 const mobileWidthBreakpoint = 648;
-const mqlWidthBreakpoint = windowMatchMedia(
-    `(min-width: ${mobileWidthBreakpoint}px)`
-);
 
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
@@ -31,6 +28,10 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         };
 
         updateLayout();
+
+        const mqlWidthBreakpoint = windowMatchMedia(
+            `(min-width: ${mobileWidthBreakpoint}px)`
+        );
 
         mqlWidthBreakpoint.addEventListener('change', updateLayout);
         return () => {
