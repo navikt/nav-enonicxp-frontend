@@ -16,6 +16,8 @@ const matchMediaLegacy = (mql: MediaQueryList) => {
         _: string,
         callback: (e: MediaQueryListEvent) => void
     ) => mql.removeListener(callback);
+
+    return mql;
 };
 
 export const windowMatchMedia = (mediaQuery: string) => {
@@ -23,11 +25,7 @@ export const windowMatchMedia = (mediaQuery: string) => {
         return noMatchMediaSupportFallback;
     }
 
-    console.log(`mql 1: ${typeof window.matchMedia}`)
-
     const mql = window.matchMedia(mediaQuery);
-
-    console.log(`mql 2: ${typeof mql}`)
 
     if (!mql.addEventListener || !mql.removeEventListener) {
         return matchMediaLegacy(mql);

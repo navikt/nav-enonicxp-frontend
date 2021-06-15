@@ -33,8 +33,6 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
             `(min-width: ${mobileWidthBreakpoint}px)`
         );
 
-        console.log(`mql 2: ${typeof mqlWidthBreakpoint}`)
-
         mqlWidthBreakpoint.addEventListener('change', updateLayout);
         return () => {
             mqlWidthBreakpoint.removeEventListener('change', updateLayout);
