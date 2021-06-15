@@ -12,7 +12,7 @@ export type ProductTarget = {
     targetPage: TargetPage;
 };
 
-export interface Product0CardProps extends PartComponentProps {
+export interface ProductCardProps extends PartComponentProps {
     descriptor: PartType.ProductCard;
     config: {
         ingressOverride?: string;
