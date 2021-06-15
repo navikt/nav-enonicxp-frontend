@@ -1,3 +1,4 @@
+import React from 'react';
 import { CardSize, CardType } from 'types/card';
 import { BEM, classNames } from '../../../utils/classnames';
 

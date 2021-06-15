@@ -7,10 +7,11 @@ import './MiniCard.less';
 import { Card } from './Card';
 import { Illustration } from '../illustration/Illustration';
 import { IllustrationPlacements } from 'types/illustrationPlacements';
+import { AnimatedIconsProps } from '../../../types/content-props/animated-icons';
 
 export type MiniKortProps = {
     link: LinkProps;
-    illustration?: any;
+    illustration?: AnimatedIconsProps;
     type: CardType;
 };
 

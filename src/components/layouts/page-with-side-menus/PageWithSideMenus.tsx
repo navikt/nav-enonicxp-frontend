@@ -18,6 +18,7 @@ type Props = {
 };
 
 const mobileWidthBreakpoint = 648;
+
 const mqlWidthBreakpoint = windowMatchMedia(
     `(min-width: ${mobileWidthBreakpoint}px)`
 );

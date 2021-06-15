@@ -1,7 +1,7 @@
 @import (reference) '../../../global';
 
 .layout__section-with-header {
-    @iconContainerRadius: 2rem;
+    @iconContainerRadius: 1.77rem;
     @iconContainerSize: @iconContainerRadius * 2;
 
     @defaultBgColor: white;
@@ -13,7 +13,7 @@
     .section-padding-mixin();
 
     &:not(:last-child) {
-        margin-bottom: 2rem;
+        margin-bottom: 1.33rem;
     }
 
     &--with-icon {
@@ -27,6 +27,10 @@
         & > :not(:first-child) {
             margin-top: 1rem;
         }
+    }
+
+    .header {
+        margin-top: 0.61rem;
     }
 
     .icon-container {
