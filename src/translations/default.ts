@@ -81,7 +81,7 @@ export const bundle = {
     },
     contactPoint: {
         chat: {
-            title: 'Chat med Frida',
+            title: 'Chat med oss',
             ingress:
                 'Du møter først en chatbot, men kan gå videre og chatte med en veileder uten å logge inn (hverdager 09.00–14.30).',
         },
@@ -91,7 +91,7 @@ export const bundle = {
                 'Skal du sende oss nye opplysninger i saken din? "Skriv til oss" er et sikkert alternativ til e-post.',
         },
         call: {
-            title: 'Ring oss på 55 55 33 33',
+            title: 'Ring oss på',
             ingress:
                 'Åpningstider: hverdager 09:00–15:00. Dersom åpningstidene er midlertidig endret, får du beskjed via automatisk svarer.',
         },
