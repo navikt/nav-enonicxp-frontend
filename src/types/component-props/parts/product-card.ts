@@ -8,19 +8,25 @@ import {
 
 export type TargetPage = ProductPageProps | SituationPageProps | ToolsPageProps;
 
-export interface ProductCardProps extends PartComponentProps {
+export type ProductTarget = {
+    targetPage: TargetPage;
+};
+
+export interface Product0CardProps extends PartComponentProps {
     descriptor: PartType.ProductCard;
     config: {
-        targetPage: TargetPage;
         ingressOverride?: string;
-    };
+    } & ProductTarget;
+}
+
+export interface ProductCardMiniProps extends PartComponentProps {
+    descriptor: PartType.ProductCardMini;
+    config: ProductTarget;
 }
 
 export interface ProductCardMicroProps extends PartComponentProps {
     descriptor: PartType.ProductCardMicro;
     config: {
-        card_list: {
-            targetPage: TargetPage;
-        }[];
+        card_list: ProductTarget[];
     };
 }

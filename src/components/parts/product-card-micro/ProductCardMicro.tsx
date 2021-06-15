@@ -1,16 +1,13 @@
 import React from 'react';
 
-import { LinkProps } from 'types/link-props';
-import { CardType } from 'types/card';
-
-import { ContentType } from 'types/content-props/_content-common';
 import { MicroCard } from 'components/_common/card/MicroCard';
-import {
-    ProductCardMicroProps,
-    TargetPage,
-} from '../../../types/component-props/parts/product-card';
+import { ProductCardMicroProps } from '../../../types/component-props/parts/product-card';
+import { getCardProps } from '../../_common/card/card-utils';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {
+    const { language } = usePageConfig();
+
     if (config?.card_list?.length === 0 || !config?.card_list) {
         return (
             <div>
@@ -22,33 +19,12 @@ export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {
 
     const { card_list } = config;
 
-    const determineCardType = (_targetPage: TargetPage): CardType => {
-        const pageTypeName = _targetPage.__typename;
-
-        if (pageTypeName === ContentType.ToolsPage) {
-            return CardType.Tool;
-        }
-
-        return pageTypeName === ContentType.ProductPage
-            ? CardType.Product
-            : CardType.Situation;
-    };
-
     return (
         <>
             {card_list.map((card) => {
-                const { _path, data } = card.targetPage;
-                const link: LinkProps = {
-                    url: _path,
-                    text: data.title,
-                    label: data.taxonomy,
-                };
+                const props = getCardProps(card.targetPage, language);
                 return (
-                    <MicroCard
-                        key={card.targetPage._id}
-                        link={link}
-                        type={determineCardType(card.targetPage)}
-                    />
+                    props && <MicroCard {...props} key={card.targetPage._id} />
                 );
             })}
         </>

@@ -12,6 +12,7 @@ export enum MacroType {
     InfoBoks = 'infoBoks',
     LenkeFiler = 'lenkeFiler',
     PhoneLink = 'phone-link',
+    ProductCardMini = 'product-card-mini',
     Quote = 'quote',
     Tankestrek = 'tankestrek',
     VarselBoks = 'varselBoks',
