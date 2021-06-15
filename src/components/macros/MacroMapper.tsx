@@ -20,6 +20,7 @@ import { MacroHtmlFragment } from './html-fragment/MacroHtmlFragment';
 import { MacroHeaderWithAnchor } from './header-with-anchor/MacroHeaderWithAnchor';
 import { MacroGlobalValue } from './global-value/MacroGlobalValue';
 import { MacroGlobalValueWithMath } from './global-value-with-math/MacroGlobalValueWithMath';
+import { MacroProductCardMini } from './product-card-mini/MacroProductCardMini';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
@@ -37,6 +38,7 @@ const macroComponents: {
     [MacroType.InfoBoks]: MacroInfoBoks,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
     [MacroType.PhoneLink]: MacroPhoneLink,
+    [MacroType.ProductCardMini]: MacroProductCardMini,
     [MacroType.Quote]: MacroQuote,
     [MacroType.Tankestrek]: MacroTankestrek,
     [MacroType.VarselBoks]: MacroVarselBoks,
