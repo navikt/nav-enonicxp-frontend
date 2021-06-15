@@ -25,6 +25,10 @@ export const windowMatchMedia = (mediaQuery: string) => {
 
     const mql = window.matchMedia(mediaQuery);
 
+    if (!mql) {
+        return noMatchMediaSupportFallback;
+    }
+
     if (!mql.addEventListener || !mql.removeEventListener) {
         return matchMediaLegacy(mql);
     }
