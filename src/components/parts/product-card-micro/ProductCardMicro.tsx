@@ -11,7 +11,7 @@ import {
 } from '../../../types/component-props/parts/product-card';
 
 export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {
-    if (config?.card_list?.length === 0) {
+    if (config?.card_list?.length === 0 || !config?.card_list) {
         return (
             <div>
                 Velg minst én produktside eller livssituasjon for å aktivere

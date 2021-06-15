@@ -2,16 +2,47 @@
 // To be removed when DS has updated design packages.
 
 .product-mixins() {
-    .part__html-area:not(:first-child) {
-        margin-top: 2.27rem;
-    }
-    .html-area .typo-normal {
-        margin-bottom: 2.25rem;
-        &:last-child {
-            margin-bottom: 0.75rem;
+    .part__html-area {
+        &:not(:first-child) {
+            margin-top: 0;
+        }
+
+        .html-area {
+            margin-top: 0;
+
+            > .typo-normal,
+            ul {
+                margin-bottom: 1.55rem;
+            }
+        }
+
+        // The very final paragraph in a section to have no margin-bottom.
+        &:last-of-type {
+            .typo-normal:last-of-type {
+                margin-bottom: 0;
+            }
         }
     }
 
+    // Cards that immediately follows a html-area should
+    // have less distance to text above. Counteract with negative margin-top.
+    .part__html-area + .part__product-card-mini {
+        .card {
+            margin-top: -0.9rem;
+        }
+    }
+
+    .part__product-card-micro {
+        margin-bottom: 2.25rem;
+    }
+
+    // Correct spacing for multiple mini cards.
+    .part__product-card-mini + .part__product-card-mini {
+        margin-top: 0;
+    }
+
+    // Microcards should have less distance to header if used, so
+    // counteract with negative margin-top.
     .part__dynamic-header + .part__product-card-micro {
         margin-top: -0.5rem;
     }
