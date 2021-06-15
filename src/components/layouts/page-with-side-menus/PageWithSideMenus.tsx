@@ -22,22 +22,24 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
     const [isMobile, setIsMobile] = useState(false);
 
-    // useEffect(() => {
-    //     const updateLayout = () => {
-    //         setIsMobile(window.innerWidth < mobileWidthBreakpoint);
-    //     };
-    //
-    //     updateLayout();
-    //
-    //     const mqlWidthBreakpoint = windowMatchMedia(
-    //         `(min-width: ${mobileWidthBreakpoint}px)`
-    //     );
-    //
-    //     mqlWidthBreakpoint.addEventListener('change', updateLayout);
-    //     return () => {
-    //         mqlWidthBreakpoint.removeEventListener('change', updateLayout);
-    //     };
-    // }, []);
+    useEffect(() => {
+        const updateLayout = () => {
+            setIsMobile(window.innerWidth < mobileWidthBreakpoint);
+        };
+
+        updateLayout();
+
+        const mqlWidthBreakpoint = windowMatchMedia(
+            `(min-width: ${mobileWidthBreakpoint}px)`
+        );
+
+        console.log(`mql 2: ${typeof mqlWidthBreakpoint}`)
+
+        mqlWidthBreakpoint.addEventListener('change', updateLayout);
+        return () => {
+            mqlWidthBreakpoint.removeEventListener('change', updateLayout);
+        };
+    }, []);
 
     if (!regions || !config) {
         return null;
