@@ -12,7 +12,14 @@
 
             > .typo-normal,
             ul {
-                margin-bottom: 2.25rem;
+                margin-bottom: 1.55rem;
+            }
+        }
+
+        // The very final paragraph in a section to have no margin-bottom.
+        &:last-of-type {
+            .typo-normal:last-of-type {
+                margin-bottom: 0;
             }
         }
     }
@@ -21,12 +28,17 @@
     // have less distance to text above. Counteract with negative margin-top.
     .part__html-area + .part__product-card-mini {
         .card {
-            margin-top: -1.25rem;
+            margin-top: -0.9rem;
         }
     }
 
     .part__product-card-micro {
         margin-bottom: 2.25rem;
+    }
+
+    // Correct spacing for multiple mini cards.
+    .part__product-card-mini + .part__product-card-mini {
+        margin-top: 0;
     }
 
     // Microcards should have less distance to header if used, so

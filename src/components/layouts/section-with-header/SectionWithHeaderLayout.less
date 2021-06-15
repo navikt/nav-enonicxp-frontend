@@ -1,13 +1,7 @@
 @import (reference) '../../../global';
 
-.part-specific-mixins() {
-    .part__product-card-mini {
-        margin-top: 0.75rem;
-    }
-}
-
 .layout__section-with-header {
-    @iconContainerRadius: 2rem;
+    @iconContainerRadius: 1.77rem;
     @iconContainerSize: @iconContainerRadius * 2;
 
     @defaultBgColor: white;
@@ -19,7 +13,7 @@
     .section-padding-mixin();
 
     &:not(:last-child) {
-        margin-bottom: 2rem;
+        margin-bottom: 1.33rem;
     }
 
     &--with-icon {
@@ -33,8 +27,10 @@
         & > :not(:first-child) {
             margin-top: 1rem;
         }
+    }
 
-        .part-specific-mixins();
+    .header {
+        margin-top: 0.61rem;
     }
 
     .icon-container {
