@@ -48,6 +48,9 @@ const getCurrentIndex = (sortedTargetElements: HTMLElement[]) => {
     return Math.max(foundIndex - 1, 0);
 };
 
+const removeEmptyLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
+    anchorLinks.filter((link) => link.anchorId && link.linkText);
+
 type Props = {
     anchorLinks: AnchorLink[];
     title?: string;
@@ -62,7 +65,9 @@ export const PageNavigationMenu = ({
     viewStyle,
 }: Props) => {
     const [currentIndex, setCurrentIndex] = useState(-1);
-    const [links, setLinks] = useState<AnchorLink[]>(anchorLinks);
+    const [links, setLinks] = useState<AnchorLink[]>(
+        removeEmptyLinks(anchorLinks)
+    );
 
     const scrollDir = useRef<PageNavScrollDirection>('up');
     const prevScrollPos = useRef(0);
@@ -88,7 +93,9 @@ export const PageNavigationMenu = ({
             return;
         }
 
-        const targetElementsSortedByVerticalPosition = anchorLinks
+        const validLinks = removeEmptyLinks(anchorLinks);
+
+        const targetElementsSortedByVerticalPosition = validLinks
             .reduce((targetsAcc, link) => {
                 const targetElement = document.getElementById(link.anchorId);
                 return targetElement
@@ -99,7 +106,7 @@ export const PageNavigationMenu = ({
 
         // Ensures the links in the navigation menu are sorted according to
         // their position on the page
-        const sortedLinks = anchorLinks.sort((a, b) => {
+        const sortedLinks = validLinks.sort((a, b) => {
             const aIndex = targetElementsSortedByVerticalPosition.findIndex(
                 (element) => element.id === a.anchorId
             );
