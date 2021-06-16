@@ -48,8 +48,8 @@ const getCurrentIndex = (sortedTargetElements: HTMLElement[]) => {
     return Math.max(foundIndex - 1, 0);
 };
 
-const removeEmptyLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
-    anchorLinks.filter((link) => link.anchorId && link.linkText);
+const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
+    anchorLinks?.filter((link) => link.anchorId && link.linkText) || [];
 
 type Props = {
     anchorLinks: AnchorLink[];
@@ -66,7 +66,7 @@ export const PageNavigationMenu = ({
 }: Props) => {
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [links, setLinks] = useState<AnchorLink[]>(
-        removeEmptyLinks(anchorLinks)
+        getValidLinks(anchorLinks)
     );
 
     const scrollDir = useRef<PageNavScrollDirection>('up');
@@ -93,7 +93,7 @@ export const PageNavigationMenu = ({
             return;
         }
 
-        const validLinks = removeEmptyLinks(anchorLinks);
+        const validLinks = getValidLinks(anchorLinks);
 
         const targetElementsSortedByVerticalPosition = validLinks
             .reduce((targetsAcc, link) => {
