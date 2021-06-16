@@ -81,9 +81,9 @@ export const bundle = {
     },
     contactPoint: {
         chat: {
-            title: 'Chat med oss',
+            title: 'Chat med Frida',
             ingress:
-                'Du møter først en chatbot, men kan gå videre og chatte med en veileder uten å logge inn (hverdager 09.00–14.30).',
+                'Du møter først en chatbot, men kan gå videre og chatte med en veileder uten å logge inn (hverdager 09.00–15.00).',
         },
         write: {
             title: 'Skriv til oss',
