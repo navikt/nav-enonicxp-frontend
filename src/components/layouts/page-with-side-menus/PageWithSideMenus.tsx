@@ -55,9 +55,9 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         rightMenuSticky,
     } = config;
 
-    // The purpose of the topPageContent region is to insert components which
-    // should appear above the left menu on mobile.
-    // Only render the region if the left menu is enabled, or if it already
+    // The purpose of the topPageContent region is to separate components
+    // which should be placed above the left menu in the mobile view
+    // Only render this region if the left menu is enabled, or if it already
     // contains components
     const shouldRenderTopContentRegion =
         leftMenuToggle || regions.topPageContent?.components.length > 0;
