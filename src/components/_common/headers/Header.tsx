@@ -66,6 +66,7 @@ export const Header = ({
                 className
             )}
             id={id}
+            tabIndex={-1}
         >
             <TypoComponent tag={tag}>{children}</TypoComponent>
             {anchor && !hideCopyButton && (
