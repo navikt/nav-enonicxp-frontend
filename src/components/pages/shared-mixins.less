@@ -15,6 +15,12 @@
                 margin-bottom: 1.55rem;
             }
         }
+        .expandable {
+            margin-bottom: 1.55rem;
+            .typo-normal:last-of-type {
+                margin-bottom: 0;
+            }
+        }
 
         // The very final paragraph in a section to have no margin-bottom.
         &:last-of-type {
@@ -39,6 +45,13 @@
     // Correct spacing for multiple mini cards.
     .part__product-card-mini + .part__product-card-mini {
         margin-top: 0;
+    }
+
+    // If mini card is the very last element, skip margin bottom.
+    .part__product-card-mini:last-child {
+        .card {
+            margin-bottom: 0;
+        }
     }
 
     // Microcards should have less distance to header if used, so
