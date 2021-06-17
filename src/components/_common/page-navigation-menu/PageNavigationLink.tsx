@@ -2,7 +2,10 @@ import React from 'react';
 import { BEM, classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { PageNavViewStyle } from '../../../types/component-props/parts/page-navigation-menu';
-import { PageNavScrollDirection } from './PageNavigationMenu';
+import {
+    pageNavigationAnchorOffsetPx,
+    PageNavScrollDirection,
+} from './PageNavigationMenu';
 import { smoothScrollToTarget } from '../../../utils/scroll-to';
 import './PageNavigationLink.less';
 
@@ -31,7 +34,10 @@ export const PageNavigationLink = React.memo(
                 href={`#${targetId}`}
                 onClick={(e) => {
                     e.preventDefault();
-                    smoothScrollToTarget(targetId, 200);
+                    smoothScrollToTarget(
+                        targetId,
+                        pageNavigationAnchorOffsetPx
+                    );
                 }}
                 className={classNames(
                     bem(),
