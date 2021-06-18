@@ -15,7 +15,9 @@
     }
 
     .page-nav-link {
-        padding: 0.7rem 1rem;
+        @verticalPadding: 0.7rem;
+        @horizontalPadding: 1rem;
+        padding: @verticalPadding @horizontalPadding;
 
         &:hover {
             background-color: @navGra20;
@@ -30,9 +32,50 @@
             box-shadow: 0 0 0 3px @fokusFarge inset;
         }
 
+        &--up {
+            .page-nav-link__decor {
+                transform-origin: top;
+            }
+
+            &.page-nav-link__current {
+                .page-nav-link__decor {
+                    transform-origin: bottom;
+                }
+            }
+        }
+
+        &--down {
+            .page-nav-link__decor {
+                transform-origin: bottom;
+            }
+
+            &.page-nav-link__current {
+                .page-nav-link__decor {
+                    transform-origin: top;
+                }
+            }
+        }
+
         &__current {
             color: black;
             text-decoration: none;
+
+            .page-nav-link__decor {
+                transform: scaleY(1);
+            }
+        }
+
+        &__decor {
+            @width: 0.5rem;
+            min-width: @width;
+            margin: -@verticalPadding calc(@horizontalPadding - @width) -@verticalPadding -@horizontalPadding;
+            background-color: @navBla;
+
+            transform: scaleY(0);
+
+            transition-property: transform;
+            transition-duration: 0.12s;
+            transition-timing-function: linear;
         }
     }
 }
