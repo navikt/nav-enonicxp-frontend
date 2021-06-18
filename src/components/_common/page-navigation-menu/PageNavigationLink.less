@@ -11,49 +11,6 @@
         text-decoration: underline;
     }
 
-    &--up {
-        .page-nav-link__decor {
-            transform-origin: top;
-        }
-
-        &.page-nav-link__current {
-            .page-nav-link__decor {
-                transform-origin: bottom;
-            }
-        }
-    }
-
-    &--down {
-        .page-nav-link__decor {
-            transform-origin: bottom;
-        }
-
-        &.page-nav-link__current {
-            .page-nav-link__decor {
-                transform-origin: top;
-            }
-        }
-    }
-
-    &__current {
-        .page-nav-link__decor {
-            transform: scaleY(1);
-        }
-    }
-
-    &__decor {
-        @width: 0.5rem;
-        min-width: @width;
-        margin: -@padding calc(@padding - @width) -@padding -@padding;
-        background-color: @navBla;
-
-        transform: scaleY(0);
-
-        transition-property: transform;
-        transition-duration: 0.12s;
-        transition-timing-function: linear;
-    }
-
     &__text {
         .typo-element;
     }
