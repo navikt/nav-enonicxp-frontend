@@ -10,6 +10,7 @@ export enum MacroType {
     HeaderWithAnchor = 'header-with-anchor',
     HtmlFragment = 'html-fragment',
     InfoBoks = 'infoBoks',
+    Ingress = 'ingress',
     LenkeFiler = 'lenkeFiler',
     PhoneLink = 'phone-link',
     ProductCardMini = 'product-card-mini',

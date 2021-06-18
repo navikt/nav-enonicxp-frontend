@@ -16,6 +16,7 @@ const blockLevelMacros = {
     [MacroType.HeaderWithAnchor]: true,
     [MacroType.HtmlFragment]: true,
     [MacroType.InfoBoks]: true,
+    [MacroType.Ingress]: true,
     [MacroType.ProductCardMini]: true,
     [MacroType.Quote]: true,
     [MacroType.VarselBoks]: true,
