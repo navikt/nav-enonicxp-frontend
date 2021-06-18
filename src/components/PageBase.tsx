@@ -66,7 +66,7 @@ const redirectProps = (destination: string, isTemporary: boolean) => ({
         // Decode then (re)encode to ensure the destination is not double-encoded
         destination: encodeURI(decodeURI(destination).trim()),
         // If isTemporary is valid negate this, else default to true
-        permanent: isTemporary ? !isTemporary : true,
+        permanent: !isTemporary,
     },
 });
 
