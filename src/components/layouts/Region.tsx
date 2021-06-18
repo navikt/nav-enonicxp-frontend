@@ -3,6 +3,7 @@ import { ContentProps } from '../../types/content-props/_content-common';
 import { BEM, classNames } from '../../utils/classnames';
 import { ComponentMapper } from '../ComponentMapper';
 import { RegionProps } from '../../types/component-props/layouts';
+import { EditorHelp } from 'components/_common/editor-help/EditorHelp';
 
 type Props = {
     pageProps: ContentProps;
@@ -19,6 +20,15 @@ export const Region = ({
     regionStyle,
     bemModifier,
 }: Props) => {
+    if (!regionProps) {
+        return (
+            <EditorHelp
+                text={'Error: missing region props, could not render region'}
+                type={'error'}
+            />
+        );
+    }
+
     const { name, components } = regionProps;
 
     return (

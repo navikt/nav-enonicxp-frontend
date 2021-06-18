@@ -39,6 +39,14 @@
 
 html {
     font-size: @font-size-factor * 100%;
+
+    // override ds-css scroll behaviour
+    animation: none;
+    scroll-behavior: auto;
+    &:focus-within {
+        animation: none;
+        scroll-behavior: auto;
+    }
 }
 
 #__next,
