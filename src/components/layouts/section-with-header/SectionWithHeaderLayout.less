@@ -16,21 +16,23 @@
         margin-bottom: 1.33rem;
     }
 
-    &--with-icon {
-        margin-top: @iconContainerRadius;
+    .header {
+        margin-bottom: 1.5rem;
     }
 
-    .region__content,
-    .region__intro {
-        margin-top: 1.5rem;
+    &--with-icon {
+        margin-top: @iconContainerRadius;
 
-        & > :not(:first-child) {
+        .header {
             margin-top: 1rem;
         }
     }
 
-    .header {
-        margin-top: 0.61rem;
+    .region__content,
+    .region__intro {
+        & > :not(:first-child) {
+            margin-top: 1rem;
+        }
     }
 
     .icon-container {
