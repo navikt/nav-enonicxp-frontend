@@ -15,6 +15,12 @@
                 margin-bottom: 1.55rem;
             }
         }
+        .expandable {
+            margin-bottom: 1.55rem;
+            .typo-normal:last-of-type {
+                margin-bottom: 0;
+            }
+        }
 
         // The very final paragraph in a section to have no margin-bottom.
         &:last-of-type {
@@ -32,6 +38,12 @@
         }
     }
 
+    // If a mini card has been placed within a html-area via macros
+    .part__html-area .html-area .card {
+        margin-top: -0.9rem;
+        margin-bottom: 2.25rem;
+    }
+
     .part__product-card-micro {
         margin-bottom: 2.25rem;
     }
@@ -39,6 +51,13 @@
     // Correct spacing for multiple mini cards.
     .part__product-card-mini + .part__product-card-mini {
         margin-top: 0;
+    }
+
+    // If mini card is the very last element, skip margin bottom.
+    .part__product-card-mini:last-child {
+        .card {
+            margin-bottom: 0;
+        }
     }
 
     // Microcards should have less distance to header if used, so
