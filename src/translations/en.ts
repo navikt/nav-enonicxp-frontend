@@ -4,7 +4,7 @@ import { Taxonomies } from 'types/taxonomies';
 
 const productTaxonomies: { [key in Taxonomies]: string } = {
     [Taxonomies.BENEFITS]: 'Benefits',
-    [Taxonomies.RIGHTS]: 'Advice and guidance',
+    [Taxonomies.RIGHTS]: 'Advice and counselling',
     [Taxonomies.BENEFITS_AND_FOLLOWUP]: 'Benefits and follow-up',
 };
 
