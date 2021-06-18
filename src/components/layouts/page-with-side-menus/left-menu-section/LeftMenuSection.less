@@ -18,15 +18,21 @@
     }
 }
 
-.region__leftMenu > * {
-    padding: 1rem;
+.region__leftMenu,
+.region__topLeftMenu {
     background-color: white;
 
-    &:first-child {
-        margin-top: 1rem;
-    }
+    & > * {
+        padding: 1rem;
 
-    &:not(:last-child) {
-        margin-bottom: 1rem;
+        &:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.region__leftMenu {
+    & > :first-child {
+        margin-top: 1rem;
     }
 }
