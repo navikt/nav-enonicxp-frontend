@@ -86,5 +86,14 @@ module.exports = configWithAllTheThings({
                 },
             ],
         },
+        {
+            source: '/(.*)',
+            headers: [
+                {
+                    key: 'Permissions-Policy',
+                    value: 'interest-cohort=()',
+                },
+            ],
+        },
     ],
 });
