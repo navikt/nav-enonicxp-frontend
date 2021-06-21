@@ -11,7 +11,7 @@ import './TopContainer.less';
 
 const bem = BEM('top-container');
 
-const contentTypesWithWhiteHeader = {
+export const contentTypesWithWhiteHeader = {
     [ContentType.ProductPage]: true,
     [ContentType.SituationPage]: true,
 };

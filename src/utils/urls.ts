@@ -69,7 +69,7 @@ export const getInternalRelativePath = (
         return `${xpDraftPathPrefix}${relativePath}`;
     }
 
-    return relativePath;
+    return relativePath || '/';
 };
 
 export const getRelativePathIfInternal = (
