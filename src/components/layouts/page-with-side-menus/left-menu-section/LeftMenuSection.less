@@ -4,17 +4,21 @@
     @topOffset: calc(var(--decorator-sticky-offset) + 1rem);
     @bottomOffset: 2rem;
 
-    overflow: auto;
-    max-height: calc(100vh - @topOffset - @bottomOffset);
     top: @topOffset;
+    overflow: visible;
+    max-height: none;
 
-    @media @mq-screen-mobile {
-        overflow: visible;
-        max-height: none;
+    @media (min-width: @_MQ_mobileMaxWidthDs) {
+        overflow: auto;
+        max-height: calc(100vh - @topOffset - @bottomOffset);
     }
 
     &--sticky {
         position: sticky;
+    }
+
+    & * {
+        word-break: break-word;
     }
 }
 
