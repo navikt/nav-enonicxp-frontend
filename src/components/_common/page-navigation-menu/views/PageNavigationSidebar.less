@@ -59,30 +59,33 @@
         }
 
         &__current {
-            @media @mq-screen-tablet-and-desktop {
-                color: black;
-                text-decoration: none;
-            }
-
             .page-nav-link__decor {
                 transform: scaleY(1);
             }
         }
 
         &__decor {
-            min-width: @decorWidth;
-            margin: -@verticalPadding @decorWidth -@verticalPadding
-                (-@decorWidth - @horizontalPadding);
-            background-color: @navBla;
+            visibility: hidden;
+        }
 
-            transform: scaleY(0);
+        @media (min-width: @_MQ_mobileMaxWidthDs) {
+            &__current {
+                color: black;
+                text-decoration: none;
+            }
 
-            transition-property: transform;
-            transition-duration: 0.12s;
-            transition-timing-function: linear;
+            &__decor {
+                visibility: visible;
+                min-width: @decorWidth;
+                margin: -@verticalPadding @decorWidth -@verticalPadding
+                    (-@decorWidth - @horizontalPadding);
+                background-color: @navBla;
 
-            @media @mq-screen-mobile {
-                display: none;
+                transform: scaleY(0);
+
+                transition-property: transform;
+                transition-duration: 0.12s;
+                transition-timing-function: linear;
             }
         }
     }
