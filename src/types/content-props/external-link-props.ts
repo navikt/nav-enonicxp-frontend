@@ -1,8 +1,9 @@
 import { ContentType, ContentProps } from './_content-common';
 
 export type ExternalLinkData = {
-    description: string;
+    description?: string;
     url: string;
+    tempRedirect?: boolean;
 };
 
 export interface ExternalLinkProps extends ContentProps {
