@@ -13,10 +13,19 @@ type CardProps = {
     link: LinkProps;
     type: CardType;
     size: CardSize;
+    onMouseLeaveHandler?: (e: React.MouseEvent) => void;
+    onMouseEnterHandler?: (e: React.MouseEvent) => void;
 };
 
 export const Card = (props: CardProps) => {
-    const { children, link, type, size } = props;
+    const {
+        children,
+        link,
+        type,
+        size,
+        onMouseLeaveHandler,
+        onMouseEnterHandler,
+    } = props;
     const { text, url } = link;
 
     return (
@@ -25,6 +34,8 @@ export const Card = (props: CardProps) => {
             title={text}
             className={classNames(bem(), bem(type), bem(size))}
             analyticsLabel={link.text}
+            onMouseEnter={onMouseEnterHandler || null}
+            onMouseLeave={onMouseLeaveHandler || null}
         >
             <div className={classNames(bem('wrapper'))}>{children}</div>
         </LenkeBase>

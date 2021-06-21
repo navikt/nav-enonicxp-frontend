@@ -17,7 +17,6 @@
         }
 
         .card__illustration {
-            width: 5.4rem;
             height: 5.4rem;
             align-self: center;
             margin-top: 0;
@@ -28,11 +27,7 @@
             text-decoration: underline;
             color: @navMorkGra;
             margin-bottom: 1rem;
-            color: @navBla;
-
-            .provider & {
-                color: @navBla;
-            }
+            color: @navMorkGra;
         }
 
         .card__description {
@@ -63,6 +58,10 @@
         &.card__provider {
             &:not(:focus-visible) {
                 box-shadow: none;
+            }
+
+            .card__title {
+                color: @navBla;
             }
         }
     }
