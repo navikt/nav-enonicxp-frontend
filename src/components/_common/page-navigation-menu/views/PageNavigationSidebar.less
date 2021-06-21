@@ -17,10 +17,12 @@
     .page-nav-link {
         @verticalPadding: 0.7rem;
         @horizontalPadding: 1rem;
+        @decorWidth: 0.5rem;
         padding: @verticalPadding @horizontalPadding;
+        margin: 0 @decorWidth;
 
         &:hover {
-            background-color: @navGra20;
+            background-color: @navBlaLighten80;
 
             .page-nav-link__decor {
                 background-color: @navBla;
@@ -57,8 +59,10 @@
         }
 
         &__current {
-            color: black;
-            text-decoration: none;
+            @media @mq-screen-tablet-and-desktop {
+                color: black;
+                text-decoration: none;
+            }
 
             .page-nav-link__decor {
                 transform: scaleY(1);
@@ -66,9 +70,9 @@
         }
 
         &__decor {
-            @width: 0.5rem;
-            min-width: @width;
-            margin: -@verticalPadding calc(@horizontalPadding - @width) -@verticalPadding -@horizontalPadding;
+            min-width: @decorWidth;
+            margin: -@verticalPadding @decorWidth -@verticalPadding
+                (-@decorWidth - @horizontalPadding);
             background-color: @navBla;
 
             transform: scaleY(0);
@@ -76,6 +80,10 @@
             transition-property: transform;
             transition-duration: 0.12s;
             transition-timing-function: linear;
+
+            @media @mq-screen-mobile {
+                display: none;
+            }
         }
     }
 }
