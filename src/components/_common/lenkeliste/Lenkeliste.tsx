@@ -8,10 +8,11 @@ import './Lenkeliste.less';
 type Props = {
     lenker: LinkProps[];
     tittel?: string;
+    chevron?: boolean;
     className?: string;
 };
 
-export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
+export const Lenkeliste = ({ tittel, lenker, chevron, className }: Props) => {
     if (!lenker || lenker.length === 0) {
         return null;
     }
@@ -34,7 +35,8 @@ export const Lenkeliste = ({ tittel, lenker, className }: Props) => {
                         className={bem('lenke')}
                         component={'link-list'}
                         linkGroup={tittel}
-                        showExternalLinkIcon={true}
+                        showExternalLinkLabel={true}
+                        withChevron={chevron}
                     >
                         {lenke.text}
                     </LenkeStandalone>

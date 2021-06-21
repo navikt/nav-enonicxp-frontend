@@ -14,6 +14,14 @@
     }
 
     &__lenke {
-        padding: 0.5rem 0;
+        @horizontalPadding: 0.5rem;
+        padding: #px-to-rem(11) [] @horizontalPadding;
+        margin: 0 -@horizontalPadding;
+
+        &:focus {
+            .panel-inset-focus-mixin();
+            background-color: transparent;
+            color: @navBla;
+        }
     }
 }

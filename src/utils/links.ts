@@ -1,5 +1,8 @@
-import { getInternalRelativePath, isAppUrl } from './urls';
+import { getInternalRelativePath, isAppUrl, isNavUrl } from './urls';
 import { NextRouter } from 'next/router';
+import { parseDomain, ParseResultType } from 'parse-domain';
+
+const absoluteUrlPrefix = new RegExp(/^https?:\/\//);
 
 const getLinkHref = (element: HTMLElement | null): string | null => {
     if (!element) {
@@ -32,4 +35,18 @@ export const prefetchOnMouseover = (router: NextRouter) => (e: MouseEvent) => {
         const path = new URL(href).pathname;
         router.prefetch(path);
     }
+};
+
+export const getExternalDomain = (url: string) => {
+    if (isNavUrl(url) || !url?.match(absoluteUrlPrefix)) {
+        return '';
+    }
+
+    const parseResult = parseDomain(url.replace(absoluteUrlPrefix, ''));
+    if (parseResult.type === ParseResultType.Listed) {
+        const { domain, topLevelDomains } = parseResult;
+        return [domain, ...topLevelDomains].join('.');
+    }
+
+    return '';
 };
