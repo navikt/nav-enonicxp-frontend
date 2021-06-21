@@ -12,7 +12,12 @@ type Props = {
     className?: string;
 };
 
-export const Lenkeliste = ({ tittel, lenker, withChevron, className }: Props) => {
+export const Lenkeliste = ({
+    tittel,
+    lenker,
+    withChevron = false,
+    className,
+}: Props) => {
     if (!lenker || lenker.length === 0) {
         return null;
     }
