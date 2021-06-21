@@ -2,7 +2,7 @@ import { getInternalRelativePath, isAppUrl, isNavUrl } from './urls';
 import { NextRouter } from 'next/router';
 import { parseDomain, ParseResultType } from 'parse-domain';
 
-const absoluteUrlPrefix = new RegExp(/^https?:\/\//);
+const absoluteUrlPrefix = new RegExp(/^https?:\/\//i);
 
 const getLinkHref = (element: HTMLElement | null): string | null => {
     if (!element) {
@@ -42,7 +42,9 @@ export const getExternalDomain = (url: string) => {
         return '';
     }
 
-    const parseResult = parseDomain(url.replace(absoluteUrlPrefix, ''));
+    const hostname = url.replace(absoluteUrlPrefix, '').split('/')[0];
+    const parseResult = parseDomain(hostname);
+
     if (parseResult.type === ParseResultType.Listed) {
         const { domain, topLevelDomains } = parseResult;
         return [domain, ...topLevelDomains].join('.');
