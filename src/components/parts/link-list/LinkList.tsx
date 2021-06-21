@@ -11,12 +11,12 @@ const getListComponent = (config: DynamicLinkListProps['config']) => {
     const { _selected, contentList, linkList } = list;
 
     if (_selected === 'contentList') {
-        return <ContentList content={contentList?.target} title={title} />;
+        return <ContentList content={contentList?.target} title={title} withChevron={chevron} />;
     }
 
     if (_selected === 'linkList') {
         const links = linkList?.links?.map(getSelectableLinkProps);
-        return <Lenkeliste tittel={title} lenker={links} chevron={chevron} />;
+        return <Lenkeliste tittel={title} lenker={links} withChevron={chevron} />;
     }
 
     return null;

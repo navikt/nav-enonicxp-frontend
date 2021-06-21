@@ -18,7 +18,7 @@ type Props = {
     content: ContentListProps;
     title?: string;
     showDateLabel?: boolean;
-    chevron?: boolean;
+    withChevron?: boolean;
     className?: string;
 };
 
@@ -26,7 +26,7 @@ export const ContentList = ({
     content,
     title,
     showDateLabel,
-    chevron,
+    withChevron,
     className,
 }: Props) => {
     if (!content?.data?.sectionContents) {
@@ -49,7 +49,7 @@ export const ContentList = ({
         <Lenkeliste
             lenker={lenkeData}
             tittel={title || content.displayName}
-            chevron={chevron}
+            withChevron={withChevron}
             className={className}
         />
     ) : null;
