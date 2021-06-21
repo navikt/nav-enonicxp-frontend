@@ -22,6 +22,7 @@ const LinkLists = (props: ContentProps) => {
                     {ntkContents && (
                         <ContentList
                             content={ntkContents}
+                            withChevron={true}
                             className={bem('column')}
                         />
                     )}
@@ -35,6 +36,7 @@ const LinkLists = (props: ContentProps) => {
                             <ContentList
                                 content={newsContents}
                                 showDateLabel={true}
+                                withChevron={true}
                             />
                             {moreNewsUrl && (
                                 <LenkeStandalone
@@ -54,6 +56,7 @@ const LinkLists = (props: ContentProps) => {
                     {scContents && (
                         <ContentList
                             content={scContents}
+                            withChevron={true}
                             className={bem('column')}
                         />
                     )}
