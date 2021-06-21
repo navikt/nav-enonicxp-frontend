@@ -6,6 +6,7 @@ export interface DynamicLinkListProps extends PartComponentProps {
     descriptor: PartType.LinkList;
     config: {
         title?: string;
+        chevron?: boolean;
         list: {
             _selected: 'contentList' | 'linkList';
             contentList: ContentListMixin;

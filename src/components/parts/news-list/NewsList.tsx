@@ -22,6 +22,7 @@ export const NewsList = ({ config }: DynamicNewsList) => {
                     showDateLabel={true}
                     content={contentList.target}
                     title={title}
+                    withChevron={true}
                 />
                 {moreNews && (
                     <LenkeStandalone
