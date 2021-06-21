@@ -2,6 +2,15 @@ import React from 'react';
 import { MacroHeaderWithAnchorProps } from '../../../types/macro-props/header-with-anchor';
 import { Header } from '../../_common/headers/Header';
 
+type ValidTag = MacroHeaderWithAnchorProps['config']['header_with_anchor']['tag'];
+
+const getValidTag = (tag: string): ValidTag => {
+    if (tag !== 'h3' && tag !== 'h4') {
+        return 'h3';
+    }
+    return tag;
+};
+
 export const MacroHeaderWithAnchor = ({
     config,
 }: MacroHeaderWithAnchorProps) => {
@@ -9,11 +18,16 @@ export const MacroHeaderWithAnchor = ({
         return null;
     }
 
-    const { id, tag, text } = config.header_with_anchor;
+    const { id, tag, text, body } = config.header_with_anchor;
 
     return (
-        <Header tag={tag} id={id} hideCopyButton={true} justify={'left'}>
-            {text}
+        <Header
+            tag={getValidTag(tag)}
+            id={id}
+            hideCopyButton={true}
+            justify={'left'}
+        >
+            {body || text}
         </Header>
     );
 };
