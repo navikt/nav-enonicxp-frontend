@@ -15,10 +15,13 @@
 
     &__lenke {
         @horizontalPadding: 0.5rem;
-        padding: #px-to-rem(11) [] @horizontalPadding;
+        @verticalPadding: #px-to-rem(11) [];
+        padding: @verticalPadding @horizontalPadding;
         margin: 0 -@horizontalPadding;
 
-        &:focus {
+        &:focus,
+        &:focus-visible,
+        &:active {
             .panel-inset-focus-mixin();
             background-color: transparent;
             color: @navBla;
