@@ -30,17 +30,16 @@ export const getCardProps = (
     language: Language,
     ingressOverride?: string
 ): CardProps | null => {
-    const { data, __typename } = content;
-
-    if (!data) {
+    if (!content?.data) {
         return null;
     }
 
+    const { data, __typename, _path, displayName } = content;
     const { title, ingress, illustration, taxonomy, externalProductUrl } = data;
 
     const cardType = cardTypeMap[__typename];
-    const cardUrl = externalProductUrl || content._path;
-    const cardTitle = title || content.displayName;
+    const cardUrl = externalProductUrl || _path;
+    const cardTitle = title || displayName;
 
     const link = {
         url: cardUrl,
