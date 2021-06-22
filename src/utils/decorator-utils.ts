@@ -7,6 +7,7 @@ import {
 import { LanguageProps } from '../types/language';
 import { stripXpPathPrefix } from './urls';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { contentTypesWithWhiteHeader } from '../components/_common/top-container/TopContainer';
 
 const xpLangToDecoratorLang: {
     [key in Language]: DecoratorParams['language'];
@@ -83,7 +84,8 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         ),
         ...(feedbackEnabled && { feedback: true }),
         ...(chatbotDisabled && { chatbot: false }),
-        utilsBackground:
-            content.__typename === ContentType.ProductPage ? 'white' : 'gray',
+        utilsBackground: contentTypesWithWhiteHeader[content.__typename]
+            ? 'white'
+            : 'gray',
     };
 };

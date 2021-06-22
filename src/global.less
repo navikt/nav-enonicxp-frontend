@@ -11,6 +11,7 @@
 // but they do when used as CSS attribute values. We use separate variable sets to ensure
 // width and breakpoints scale consistently with browser font-size without being affected
 // by CSS font-size.
+@_MQ_mobileMaxWidthDs: 648px;
 @_MQ_mobileMaxWidth: 48em; // 768px
 @_MQ_tabletMinWidth: @_MQ_mobileMaxWidth;
 @_MQ_tabletMaxWidth: 64em; // 1024px
@@ -153,5 +154,16 @@ html {
 
     @media @mq-screen-mobile {
         padding: @sectionPaddingMobile;
+    }
+}
+
+.link-border-bottom-mixin() {
+    border-bottom: 1px @navBla solid;
+    text-decoration: none;
+    transition: border-bottom-color 0.12s ease-out;
+
+    &:hover,
+    &:focus {
+        border-bottom-color: transparent;
     }
 }
