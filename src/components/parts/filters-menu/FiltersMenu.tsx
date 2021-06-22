@@ -112,7 +112,10 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                         </CheckboxGruppe>
                     );
                 })}
-                <FilterExplanation filterExplanation={filterExplanation} />
+                <FilterExplanation
+                    filterExplanation={filterExplanation}
+                    selectedFilters={selectedFilters}
+                />
             </Expandable>
         </section>
     );

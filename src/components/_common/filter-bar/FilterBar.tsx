@@ -95,7 +95,10 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                     );
                 })}
             </div>
-            <FilterExplanation filterExplanation={filterExplanation} />
+            <FilterExplanation
+                filterExplanation={filterExplanation}
+                selectedFilters={selectedFilters}
+            />
         </div>
     );
 };

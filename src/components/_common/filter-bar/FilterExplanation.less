@@ -2,9 +2,17 @@
 
 .filterExplanation {
     .typo-undertekst;
-    margin-top: 0.5em;
+    margin: 0.5rem 0.5rem 0.5rem -0.3rem;
+    padding: 0.3rem 0.3rem 0.3rem 0.3rem;
     display: flex;
     align-items: center;
+    transition: all 0.5s;
+    border-radius: 2px;
+
+    &--highlight {
+        background-color: @navBla;
+        color: white;
+    }
 
     &__iconWrapper {
         display: flex;
