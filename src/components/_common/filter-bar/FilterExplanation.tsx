@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { BEM, classNames } from '../../../utils/classnames';
 import { Information } from '@navikt/ds-icons';
+import { translator } from 'translations';
+
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import './FilterExplanation.less';
-import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 
 const bem = BEM('filterExplanation');
 
@@ -40,7 +41,7 @@ export const FilterExplanation = ({
                 setShowHighlight(false);
             }, 2000);
         }
-    }, [relevantSelectedFilters]);
+    }, [relevantSelectedFilters, selectCount]);
 
     const getLabel = translator('filteredContent', language);
 
