@@ -5,12 +5,11 @@ import { BEM, classNames } from '../../../utils/classnames';
 
 import './Illustration.less';
 
-const animationData = require('./kontantstotte_hover.json');
-
 interface IllustrationAnimatedProps {
     illustration: AnimatedIconsProps;
     className: string;
     isHovering: boolean;
+    isPressed: boolean;
 }
 
 const bem = BEM('illustration');
@@ -19,6 +18,7 @@ export const IllustrationAnimated = ({
     illustration,
     className,
     isHovering,
+    isPressed,
 }: IllustrationAnimatedProps) => {
     // Need baseClassName to scope this component
     // as it's being used throughout the page.
@@ -27,6 +27,23 @@ export const IllustrationAnimated = ({
     const lottiePlayer = useRef(null);
 
     const { lottieActive, lottieHover } = illustration.data;
+
+    const updateLottieContainer = (lottieData) => {
+        const container = lottieContainer.current;
+
+        if (container.innerHTML) {
+            container.innerHTML = '';
+        }
+
+        const player = lottie.loadAnimation({
+            container: container,
+            animationData: JSON.parse(JSON.parse(lottieData)),
+            autoplay: false,
+            loop: false,
+        });
+
+        lottiePlayer.current = player;
+    };
 
     useEffect(() => {
         const newDirection = isHovering ? 1 : -1;
@@ -38,19 +55,17 @@ export const IllustrationAnimated = ({
     }, [isHovering, direction]);
 
     useEffect(() => {
-        const container = lottieContainer.current;
-        if (container.innerHTML) {
-            container.innerHTML = '';
-        }
-        const player = lottie.loadAnimation({
-            container: container,
-            animationData: JSON.parse(JSON.parse(lottieHover)),
-            autoplay: false,
-            loop: false,
-        });
-
-        lottiePlayer.current = player;
+        const lottieData = isPressed ? lottieActive : lottieHover;
+        updateLottieContainer(lottieData);
     }, []);
+
+    useEffect(() => {
+        const lottieData = isPressed ? lottieActive : lottieHover;
+        updateLottieContainer(lottieData);
+        if (isPressed) {
+            lottiePlayer.current.play();
+        }
+    }, [isPressed, lottieActive, lottieHover]);
 
     if (!illustration) {
         return null;

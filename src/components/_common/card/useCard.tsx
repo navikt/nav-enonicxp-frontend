@@ -1,21 +1,32 @@
 import { useState } from 'react';
+import { Interaction } from 'types/interaction';
 
 interface UseCardState {
     isHovering: boolean;
-    setHoverState: (newHoverState: boolean) => void;
+    isPressed: boolean;
+    cardInteractionHandler: (type: Interaction) => void;
 }
 
 export const useCardState = (): UseCardState => {
     const [isHovering, setIsHovering] = useState(false);
+    const [isPressed, setIsPressed] = useState(false);
 
-    const setHoverState = (newHoverState: boolean): void => {
-        if (newHoverState === null) {
-            return;
+    const cardInteractionHandler = (type: Interaction): void => {
+        if (
+            type === Interaction.mouseenter ||
+            type === Interaction.mouseleave
+        ) {
+            setIsHovering(type === Interaction.mouseenter);
         }
-        if (isHovering !== newHoverState) {
-            setIsHovering(newHoverState);
+
+        if (type === Interaction.mouseleave) {
+            setIsPressed(false);
+        }
+
+        if (type === Interaction.mousedown || type === Interaction.mouseup) {
+            setIsPressed(type === Interaction.mousedown);
         }
     };
 
-    return { isHovering, setHoverState };
+    return { isHovering, isPressed, cardInteractionHandler };
 };

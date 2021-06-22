@@ -9,12 +9,14 @@ interface IllustrationProps {
     placement: string;
     className: string;
     isHovering?: boolean;
+    isPressed?: boolean;
 }
 
 export const Illustration = ({
     className,
     illustration,
     isHovering,
+    isPressed,
 }: IllustrationProps) => {
     if (!illustration) {
         return null;
@@ -29,6 +31,7 @@ export const Illustration = ({
                 illustration={illustration}
                 className={className}
                 isHovering={isHovering}
+                isPressed={isPressed}
             />
         );
     }
