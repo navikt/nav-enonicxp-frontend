@@ -36,16 +36,18 @@ export const IllustrationAnimated = ({
             container.innerHTML = '';
         }
 
-        const player = lottie.loadAnimation({
-            container: container,
-            animationData: JSON.parse(lottieData),
-            autoplay: false,
-            loop: false,
-        });
+        try {
+            const player = lottie.loadAnimation({
+                container: container,
+                animationData: JSON.parse(lottieData),
+                autoplay: false,
+                loop: false,
+            });
 
-        console.log(player);
-
-        lottiePlayer.current = player;
+            lottiePlayer.current = player;
+        } catch (error) {
+            return;
+        }
     };
 
     useEffect(() => {
