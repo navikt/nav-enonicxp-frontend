@@ -32,9 +32,7 @@ export const IllustrationAnimated = ({
     const updateLottieContainer = (lottieData: string) => {
         const container = lottieContainer.current;
 
-        if (container.innerHTML) {
-            container.innerHTML = '';
-        }
+        lottie.destroy();
 
         const player = lottie.loadAnimation({
             container: container,
@@ -42,6 +40,8 @@ export const IllustrationAnimated = ({
             autoplay: false,
             loop: false,
         });
+
+        console.log(player);
 
         lottiePlayer.current = player;
     };

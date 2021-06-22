@@ -8,6 +8,12 @@
 
     &__lottie-container {
         display: inline-flex;
+
+        > * {
+            // Needed because we're swapping out DOM elements (lottie animation) on mousedown
+            // which would cancel the oncoming clickEvent to target URL
+            pointer-events: none;
+        }
     }
 
     &__icon {
