@@ -7,16 +7,24 @@ import { Expandable } from '../../_common/expandable/Expandable';
 import './LinkList.less';
 
 const getListComponent = (config: DynamicLinkListProps['config']) => {
-    const { title, list } = config;
+    const { title, list, chevron } = config;
     const { _selected, contentList, linkList } = list;
 
     if (_selected === 'contentList') {
-        return <ContentList content={contentList?.target} title={title} />;
+        return (
+            <ContentList
+                content={contentList?.target}
+                title={title}
+                withChevron={chevron}
+            />
+        );
     }
 
     if (_selected === 'linkList') {
         const links = linkList?.links?.map(getSelectableLinkProps);
-        return <Lenkeliste tittel={title} lenker={links} />;
+        return (
+            <Lenkeliste tittel={title} lenker={links} withChevron={chevron} />
+        );
     }
 
     return null;

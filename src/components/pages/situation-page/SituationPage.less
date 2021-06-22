@@ -2,10 +2,10 @@
 @import (reference) '../shared-mixins.less';
 
 @situationPageColor: @navOransjeLighten60;
+@situationPageContentMaxWidth: #px-to-rem(900) [];
+@situationPageSectionMaxWidth: @situationPageContentMaxWidth * 2/3;
 
 .situation-page {
-    @contentMaxWidth: #px-to-rem(900) [];
-
     display: flex;
     flex-direction: column;
 
@@ -27,12 +27,12 @@
         }
 
         & > :not(.layout__situation-flex-cols) {
-            max-width: @contentMaxWidth * 2/3;
+            max-width: @situationPageSectionMaxWidth;
         }
 
         // Prevent margins between adjacent situation-flex-cols layouts
         .layout__situation-flex-cols + .layout__situation-flex-cols {
-            // margin-top: -@margin;
+            margin-top: -@margin;
         }
     }
 
@@ -42,7 +42,7 @@
         justify-content: flex-start;
         align-self: center;
         width: 100%;
-        max-width: @contentMaxWidth;
+        max-width: @situationPageContentMaxWidth;
 
         & > * {
             width: 100%;
