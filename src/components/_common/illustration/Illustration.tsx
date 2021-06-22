@@ -23,7 +23,8 @@ export const Illustration = ({
     }
 
     const isAnimated =
-        illustration.data?.lottieActive && illustration.data?.lottieHover;
+        illustration.data?.lottieActive?.mediaText &&
+        illustration.data?.lottieHover?.mediaText;
 
     if (isAnimated) {
         return (

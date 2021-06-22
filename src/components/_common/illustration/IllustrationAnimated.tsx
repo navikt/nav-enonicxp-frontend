@@ -26,9 +26,10 @@ export const IllustrationAnimated = ({
     const lottieContainer = useRef(null);
     const lottiePlayer = useRef(null);
 
-    const { lottieActive, lottieHover } = illustration.data;
+    const lottieDataHover = illustration.data?.lottieHover?.mediaText;
+    const lottieDataActive = illustration.data?.lottieActive?.mediaText;
 
-    const updateLottieContainer = (lottieData) => {
+    const updateLottieContainer = (lottieData: string) => {
         const container = lottieContainer.current;
 
         if (container.innerHTML) {
@@ -37,7 +38,7 @@ export const IllustrationAnimated = ({
 
         const player = lottie.loadAnimation({
             container: container,
-            animationData: JSON.parse(JSON.parse(lottieData)),
+            animationData: JSON.parse(lottieData),
             autoplay: false,
             loop: false,
         });
@@ -55,17 +56,17 @@ export const IllustrationAnimated = ({
     }, [isHovering, direction]);
 
     useEffect(() => {
-        const lottieData = isPressed ? lottieActive : lottieHover;
+        const lottieData = isPressed ? lottieDataActive : lottieDataHover;
         updateLottieContainer(lottieData);
     }, []);
 
     useEffect(() => {
-        const lottieData = isPressed ? lottieActive : lottieHover;
+        const lottieData = isPressed ? lottieDataActive : lottieDataHover;
         updateLottieContainer(lottieData);
         if (isPressed) {
             lottiePlayer.current.play();
         }
-    }, [isPressed, lottieActive, lottieHover]);
+    }, [isPressed, lottieDataActive, lottieDataHover]);
 
     if (!illustration) {
         return null;
