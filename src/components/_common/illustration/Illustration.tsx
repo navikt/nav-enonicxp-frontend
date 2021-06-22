@@ -20,7 +20,8 @@ export const Illustration = ({
         return null;
     }
 
-    const isAnimated = true; // Check for lottie file here lates
+    const isAnimated =
+        illustration.data?.lottieActive && illustration.data?.lottieHover;
 
     if (isAnimated) {
         return (

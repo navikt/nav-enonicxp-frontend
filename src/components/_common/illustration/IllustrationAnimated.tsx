@@ -26,6 +26,8 @@ export const IllustrationAnimated = ({
     const lottieContainer = useRef(null);
     const lottiePlayer = useRef(null);
 
+    const { lottieActive, lottieHover } = illustration.data;
+
     useEffect(() => {
         const newDirection = isHovering ? 1 : -1;
         if (direction !== newDirection && lottiePlayer.current) {
@@ -42,7 +44,7 @@ export const IllustrationAnimated = ({
         }
         const player = lottie.loadAnimation({
             container: container,
-            animationData: JSON.parse(animationData),
+            animationData: JSON.parse(JSON.parse(lottieHover)),
             autoplay: false,
             loop: false,
         });
