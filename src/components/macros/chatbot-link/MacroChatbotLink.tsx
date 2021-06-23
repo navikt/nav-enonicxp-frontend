@@ -1,12 +1,7 @@
 import React from 'react';
 import { MacroChatbotLinkProps } from '../../../types/macro-props/chatbot-link';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
-
-const openChatbot = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const chatButton = document.getElementById('chatbot-frida-knapp');
-    chatButton?.click?.();
-};
+import { openChatbot } from '../../../utils/chatbot';
 
 export const MacroChatbotLink = ({ config }: MacroChatbotLinkProps) => {
     if (!config?.chatbot_link) {

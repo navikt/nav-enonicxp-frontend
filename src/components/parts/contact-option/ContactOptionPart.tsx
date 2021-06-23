@@ -12,6 +12,8 @@ import {
     ContactOptionProps,
 } from '../../../types/component-props/parts/contact-option';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { openChatbot } from '../../../utils/chatbot';
+import { EditorHelp } from '../../_common/editor-help/EditorHelp';
 
 import './ContactOptionPart.less';
 
@@ -22,19 +24,13 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
     const getTranslations = translator('contactPoint', language);
 
     if (!config?.contactOptions?._selected) {
-        return <div>Velg kanal fra listen til høyre.</div>;
+        return <EditorHelp text={'Velg kanal fra listen til høyre'} />;
     }
 
     const { contactOptions } = config;
     const selectedChannel = contactOptions._selected;
     const channelData = contactOptions[selectedChannel];
     const translations = getTranslations(selectedChannel);
-
-    const openChatbot = (e: React.MouseEvent) => {
-        e.preventDefault();
-        const chatButton = document.getElementById('chatbot-frida-knapp');
-        chatButton?.click?.();
-    };
 
     const getTitle = (channel: ContactOption, data: ChannelData) => {
         const abroadPrefix = language !== 'no' ? '+47' : '';
@@ -66,46 +62,44 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
         if (channel === ContactOption.CALL) {
             return {
                 href: `tel:+47${
-                    data?.phoneNumber?.replace(/ /g, '') || '55553333'
+                    data?.phoneNumber?.replace(/\s/g, '') || '55553333'
                 }`,
             };
         }
 
         if (channel === ContactOption.WRITE) {
             return {
-                href: 'https://www.nav.no/person/kontakt-oss/nb/skriv-til-oss',
+                href: '/person/kontakt-oss/nb/skriv-til-oss',
             };
         }
 
         if (channel === ContactOption.CHAT) {
             return {
+                href: '#',
                 onClick: openChatbot,
             };
         }
 
-        return { href: '/' };
+        return { href: '#' };
     };
 
     return (
-        <div className={classNames(bem('wrapper'))}>
+        <LenkeBase
+            className={classNames(bem())}
+            {...getUrlOrClickHandler(selectedChannel, channelData)}
+        >
             <div
                 className={classNames(
                     bem('icon'),
                     bem('icon', selectedChannel)
                 )}
             />
-            <LenkeBase
-                className={classNames(bem('link'))}
-                href="/"
-                {...getUrlOrClickHandler(selectedChannel, channelData)}
-            >
-                <Undertittel tag="h3" className={classNames(bem('title'))}>
-                    {getTitle(selectedChannel, channelData)}
-                </Undertittel>
-            </LenkeBase>
-            <Tekstomrade>
+            <Undertittel tag="h3" className={bem('title')}>
+                {getTitle(selectedChannel, channelData)}
+            </Undertittel>
+            <Tekstomrade className={bem('text')}>
                 {getIngress(selectedChannel, channelData)}
             </Tekstomrade>
-        </div>
+        </LenkeBase>
     );
 };
