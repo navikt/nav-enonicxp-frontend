@@ -3,9 +3,23 @@ import { HoyreChevron } from 'nav-frontend-chevron';
 import { Undertekst } from 'nav-frontend-typografi';
 import { BEM, classNames } from 'utils/classnames';
 import { LenkeBase } from './LenkeBase';
-import { isNavUrl } from '../../../utils/urls';
-import { PublicImage } from '../image/PublicImage';
+import { getExternalDomain } from '../../../utils/links';
 import './LenkeStandalone.less';
+
+const getExternalUrlString = (url: string, linkText: string) => {
+    const externalDomain = getExternalDomain(url);
+
+    if (externalDomain) {
+        // Don't append the domain name if the link text already includes it...
+        if (linkText.includes(externalDomain)) {
+            return null;
+        }
+
+        return ` (${externalDomain})`;
+    }
+
+    return null;
+};
 
 type Props = {
     href: string;
@@ -14,7 +28,7 @@ type Props = {
     component?: string;
     linkGroup?: string;
     withChevron?: boolean;
-    showExternalLinkIcon?: boolean;
+    showExternalLinkLabel?: boolean;
     analyticsLabel?: string;
     children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
@@ -26,7 +40,7 @@ export const LenkeStandalone = ({
     component,
     linkGroup,
     withChevron = true,
-    showExternalLinkIcon,
+    showExternalLinkLabel,
     children,
     analyticsLabel,
     ...rest
@@ -36,7 +50,11 @@ export const LenkeStandalone = ({
     return (
         <LenkeBase
             href={href}
-            className={classNames(bem(), className)}
+            className={classNames(
+                bem(),
+                withChevron && bem(undefined, 'chevron'),
+                className
+            )}
             component={component}
             linkGroup={linkGroup}
             analyticsLabel={
@@ -51,18 +69,11 @@ export const LenkeStandalone = ({
                         <HoyreChevron className={bem('chevron')} />
                     </span>
                 )}
-                {showExternalLinkIcon && !isNavUrl(href) ? (
-                    <span>
-                        {children}
-                        <PublicImage
-                            imagePath={'/gfx/external-link-icon.svg'}
-                            className={bem('icon-external')}
-                            alt={''}
-                        />
-                    </span>
-                ) : (
-                    <>{children}</>
-                )}
+                <>
+                    {children}
+                    {showExternalLinkLabel &&
+                        getExternalUrlString(href, children.toString())}
+                </>
             </span>
             {label && <Undertekst className={bem('label')}>{label}</Undertekst>}
         </LenkeBase>

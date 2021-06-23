@@ -7,7 +7,7 @@ import debounce from 'lodash.debounce';
 import { PageNavigationSidebar } from './views/PageNavigationSidebar';
 import { PageNavigationInContent } from './views/PageNavigationInContent';
 
-const anchorNavigationOffsetPx = 24;
+export const pageNavigationAnchorOffsetPx = 32;
 const menuCurrentIndexMinUpdateRateMs = 1000 / 30;
 
 export type PageNavCallbackArgs = {
@@ -21,7 +21,7 @@ export type PageNavScrollDirection = 'up' | 'down';
 export const getPageNavigationLinkId = (anchorId: string) => `${anchorId}-a`;
 
 const getCurrentIndex = (sortedTargetElements: HTMLElement[]) => {
-    const scrollTarget = window.scrollY + anchorNavigationOffsetPx;
+    const scrollTarget = window.scrollY + pageNavigationAnchorOffsetPx;
 
     const scrolledToTop =
         !sortedTargetElements?.length ||

@@ -4,29 +4,47 @@
     @topOffset: calc(var(--decorator-sticky-offset) + 1rem);
     @bottomOffset: 2rem;
 
-    overflow: auto;
-    max-height: calc(100vh - @topOffset - @bottomOffset);
     top: @topOffset;
+    overflow: visible;
+    max-height: none;
 
-    @media @mq-screen-mobile {
-        overflow: visible;
-        max-height: none;
+    @media (min-width: @_MQ_mobileMaxWidthDs) {
+        overflow: auto;
+        max-height: calc(100vh - @topOffset - @bottomOffset);
     }
 
     &--sticky {
         position: sticky;
     }
+
+    & * {
+        word-break: break-word;
+    }
 }
 
-.region__leftMenu > * {
-    padding: 1rem;
-    background-color: white;
+.region__leftMenu,
+.region__topLeftMenu {
+    & > * {
+        padding: 1rem;
 
-    &:first-child {
+        &:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.region__leftMenu {
+    & > * {
+        background-color: white;
+    }
+
+    & > :first-child {
         margin-top: 1rem;
     }
+}
 
-    &:not(:last-child) {
-        margin-bottom: 1rem;
-    }
+// The top region should have a consistent background color behind all components
+// to make it blend in with the navigation-menu
+.region__topLeftMenu {
+    background-color: white;
 }

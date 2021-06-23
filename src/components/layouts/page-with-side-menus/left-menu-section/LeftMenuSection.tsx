@@ -6,6 +6,7 @@ import { ContentProps } from '../../../../types/content-props/_content-common';
 import { PageNavigationMenu } from '../../../_common/page-navigation-menu/PageNavigationMenu';
 import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
 import './LeftMenuSection.less';
+import { EditorHelp } from '../../../_common/editor-help/EditorHelp';
 
 const bem = BEM('left-menu');
 
@@ -13,7 +14,8 @@ type Props = {
     internalLinks: AnchorLink[];
     menuHeader: string;
     sticky?: boolean;
-    regionProps: RegionProps;
+    topRegionProps: RegionProps;
+    mainRegionProps: RegionProps;
     pageProps: ContentProps;
 };
 
@@ -21,7 +23,8 @@ export const LeftMenuSection = ({
     internalLinks,
     menuHeader,
     sticky,
-    regionProps,
+    topRegionProps,
+    mainRegionProps,
     pageProps,
 }: Props) => {
     return (
@@ -31,7 +34,13 @@ export const LeftMenuSection = ({
                 anchorLinks={internalLinks}
                 viewStyle={'sidebar'}
             />
-            <Region pageProps={pageProps} regionProps={regionProps} />
+            <Region pageProps={pageProps} regionProps={topRegionProps} />
+            <EditorHelp
+                text={
+                    'Komponenter ovenfor legges inn rett under innholdsmenyen'
+                }
+            />
+            <Region pageProps={pageProps} regionProps={mainRegionProps} />
         </div>
     );
 };

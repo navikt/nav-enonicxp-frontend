@@ -3,8 +3,9 @@ import { MenuListItemKey } from '../types/menu-list-items';
 import { Taxonomies } from 'types/taxonomies';
 
 const productTaxonomies: { [key in Taxonomies]: string } = {
-    [Taxonomies.BENEFITS]: 'Pengestøtte',
-    [Taxonomies.RIGHTS]: 'Råd og veiledning',
+    [Taxonomies.BENEFITS]: 'Benefits',
+    [Taxonomies.RIGHTS]: 'Advice and counselling',
+    [Taxonomies.BENEFITS_AND_FOLLOWUP]: 'Benefits and follow-up',
 };
 
 export const bundle: Translations = {

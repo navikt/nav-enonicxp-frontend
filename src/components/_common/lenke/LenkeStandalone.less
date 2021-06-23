@@ -3,27 +3,31 @@
 
 .navno-lenke {
     .lenke;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
     text-decoration: none;
-    box-sizing: border-box;
 
-    &:focus {
-        .navno-lenke__chevron,
-        .navno-lenke__label {
-            fill: white;
-            color: white;
+    &--chevron {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &:hover {
+            .navno-lenke__chevron {
+                left: 0.25rem;
+            }
+
+            .navno-lenke__lenketekst {
+                text-decoration: underline;
+            }
+        }
+
+        .navno-lenke__lenketekst {
+            display: inline-flex;
+            border-bottom: none;
         }
     }
 
-    &:hover {
-        .navno-lenke__chevron {
-            left: 0.25rem;
-        }
-        .navno-lenke__lenketekst {
-            text-decoration: underline;
-        }
+    &__lenketekst {
+        .link-border-bottom-mixin();
     }
 
     &__label {
@@ -32,17 +36,8 @@
         color: black;
     }
 
-    &__lenketekst {
-        display: flex;
-    }
-
     &__icon-container {
         min-width: 1.75rem;
-    }
-
-    &__icon-external {
-        height: #round-rem(1.25rem) [];
-        margin-left: 0.25rem;
     }
 
     &__chevron {

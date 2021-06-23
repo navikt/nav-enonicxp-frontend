@@ -55,11 +55,18 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         rightMenuSticky,
     } = config;
 
+    // The purpose of the topPageContent region is to separate components
+    // which should be placed above the left menu in the mobile view
+    // Only render this region if the left menu is enabled, or if it already
+    // contains components
+    const shouldRenderTopContentRegion =
+        leftMenuToggle || regions.topPageContent?.components.length > 0;
+
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             {/*TODO: Lag egen grid-komponent*/}
             <ProductPageLayout title={title}>
-                {isMobile && regions.topPageContent && (
+                {isMobile && shouldRenderTopContentRegion && (
                     <ProductPageSection
                         whiteBackground={false}
                         withPadding={false}
@@ -78,7 +85,8 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     >
                         <LeftMenuSection
                             pageProps={pageProps}
-                            regionProps={regions.leftMenu}
+                            topRegionProps={regions.topLeftMenu}
+                            mainRegionProps={regions.leftMenu}
                             internalLinks={showInternalNav && anchorLinks}
                             menuHeader={leftMenuHeader}
                             sticky={leftMenuSticky}
@@ -86,14 +94,14 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     </ProductPageSection>
                 )}
                 <ProductPageSection whiteBackground={false} withPadding={false}>
-                    {!isMobile && regions.topPageContent && (
+                    {!isMobile && shouldRenderTopContentRegion && (
                         <>
                             <MainContentSection
                                 pageProps={pageProps}
                                 regionProps={regions.topPageContent}
                             />
                             <EditorHelp
-                                helpText={
+                                text={
                                     'Komponenter ovenfor legges over menyen på mobil'
                                 }
                             />

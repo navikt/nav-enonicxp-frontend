@@ -21,6 +21,7 @@ import { MacroHeaderWithAnchor } from './header-with-anchor/MacroHeaderWithAncho
 import { MacroGlobalValue } from './global-value/MacroGlobalValue';
 import { MacroGlobalValueWithMath } from './global-value-with-math/MacroGlobalValueWithMath';
 import { MacroProductCardMini } from './product-card-mini/MacroProductCardMini';
+import { MacroIngress } from './ingress/MacroIngress';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
@@ -36,6 +37,7 @@ const macroComponents: {
     [MacroType.HeaderWithAnchor]: MacroHeaderWithAnchor,
     [MacroType.HtmlFragment]: MacroHtmlFragment,
     [MacroType.InfoBoks]: MacroInfoBoks,
+    [MacroType.Ingress]: MacroIngress,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
     [MacroType.PhoneLink]: MacroPhoneLink,
     [MacroType.ProductCardMini]: MacroProductCardMini,

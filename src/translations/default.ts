@@ -26,6 +26,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 const productTaxonomies: { [key in Taxonomies]: string } = {
     [Taxonomies.BENEFITS]: 'Pengestøtte',
     [Taxonomies.RIGHTS]: 'Råd og veiledning',
+    [Taxonomies.BENEFITS_AND_FOLLOWUP]: 'Pengestøtte og oppfølging',
 };
 
 export const bundle = {

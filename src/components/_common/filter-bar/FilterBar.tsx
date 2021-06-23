@@ -61,15 +61,6 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         })
         .flat();
 
-    const selectedFilterCount = filterIds.filter((filterId) =>
-        selectedFilters.includes(filterId)
-    ).length;
-
-    const filterExplanation =
-        selectedFilterCount === 0
-            ? getLabel('noFiltersSelected')
-            : getLabel('filtersSelected');
-
     return (
         <div className={bem('wrapper')}>
             <Element tag="h3" className={classNames(bem(), bem('header'))}>
@@ -95,7 +86,10 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                     );
                 })}
             </div>
-            <FilterExplanation filterExplanation={filterExplanation} />
+            <FilterExplanation
+                selectedFilters={selectedFilters}
+                availableFilters={filtersToDisplay.map((filter) => filter.id)}
+            />
         </div>
     );
 };
