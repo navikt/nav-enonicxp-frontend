@@ -67,11 +67,6 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
 
     const defaultExpandableTitle = getLabel('customizeContent');
 
-    const filterExplanation =
-        selectedFilters.length === 0
-            ? getLabel('noFiltersSelected')
-            : getLabel('filtersSelected');
-
     return (
         <section className={bem('wrapper')} aria-describedby="description">
             {title && (
@@ -109,10 +104,15 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                                     key={filterIndex}
                                 />
                             ))}
+                            <FilterExplanation
+                                selectedFilters={selectedFilters}
+                                availableFilters={category.filters.map(
+                                    (filter) => filter.id
+                                )}
+                            />
                         </CheckboxGruppe>
                     );
                 })}
-                <FilterExplanation filterExplanation={filterExplanation} />
             </Expandable>
         </section>
     );
