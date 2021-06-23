@@ -25,7 +25,9 @@ export const Card = (props: CardProps) => {
         const eventType = e.type.toString() as keyof typeof Interaction;
         const type: Interaction = Interaction[eventType];
 
-        interactionHandler(type);
+        if (interactionHandler) {
+            interactionHandler(type);
+        }
     };
 
     return (
