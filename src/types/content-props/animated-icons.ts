@@ -10,6 +10,8 @@ type AnimatedIcon = {
 
 export type AnimatedIconsData = {
     icons: AnimatedIcon[];
+    lottieActive?: { mediaText: string };
+    lottieHover?: { mediaText: string };
 };
 
 export interface AnimatedIconsProps extends ContentProps {
