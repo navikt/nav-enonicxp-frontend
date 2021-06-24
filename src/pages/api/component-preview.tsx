@@ -10,6 +10,8 @@ import {
 } from '../../types/content-props/_content-common';
 import globalState from '../../globalState';
 
+import { setPageConfigAction } from '../../store/slices/pageConfig';
+
 const dummyPageProps: ContentProps = {
     __typename: ContentType.Site,
     _id: '',
@@ -36,6 +38,14 @@ const postHandler = async (req, res) => {
     globalState.isDraft = true;
 
     const props = req.body.props as PartComponentProps;
+
+    store.dispatch(
+        setPageConfigAction({
+            pageId: dummyPageProps._id,
+            language: dummyPageProps.language,
+            editorView: 'edit',
+        })
+    );
 
     const html = ReactDOMServer.renderToStaticMarkup(
         <Provider store={store}>

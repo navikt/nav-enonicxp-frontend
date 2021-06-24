@@ -10,6 +10,7 @@ import { AnimatedIconsProps } from '../../../types/content-props/animated-icons'
 
 import { useCardState } from './useCard';
 import { Interaction } from 'types/interaction';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 export type StortKortProps = {
     link: LinkProps;
@@ -30,6 +31,7 @@ export const LargeCard = (props: StortKortProps) => {
         (type === CardType.Product || type === CardType.Situation);
 
     const { isHovering, isPressed, cardInteractionHandler } = useCardState();
+    const { pageConfig } = usePageConfig();
 
     return (
         <Card
@@ -48,6 +50,9 @@ export const LargeCard = (props: StortKortProps) => {
                         className={bem('illustration')}
                         isHovering={isHovering}
                         isPressed={isPressed}
+                        preferStaticIllustration={
+                            pageConfig.editorView === 'edit'
+                        }
                     />
                 )}
                 <Undertittel tag="h3" className={bem('title')}>

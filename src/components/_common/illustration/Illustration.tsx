@@ -10,6 +10,7 @@ interface IllustrationProps {
     className: string;
     isHovering?: boolean;
     isPressed?: boolean;
+    preferStaticIllustration?: boolean;
 }
 
 export const Illustration = ({
@@ -17,6 +18,7 @@ export const Illustration = ({
     illustration,
     isHovering,
     isPressed,
+    preferStaticIllustration,
 }: IllustrationProps) => {
     if (!illustration) {
         return null;
@@ -26,7 +28,7 @@ export const Illustration = ({
         illustration.data?.lottieActive?.mediaText &&
         illustration.data?.lottieHover?.mediaText;
 
-    if (isAnimated) {
+    if (isAnimated && !preferStaticIllustration) {
         return (
             <IllustrationAnimated
                 illustration={illustration}

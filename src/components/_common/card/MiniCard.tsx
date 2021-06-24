@@ -10,6 +10,7 @@ import { IllustrationPlacements } from 'types/illustrationPlacements';
 import { AnimatedIconsProps } from '../../../types/content-props/animated-icons';
 import { useCardState } from './useCard';
 import { Interaction } from 'types/interaction';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 export type MiniKortProps = {
     link: LinkProps;
@@ -24,6 +25,7 @@ export const MiniCard = (props: MiniKortProps) => {
     const { text } = link;
 
     const { isHovering, isPressed, cardInteractionHandler } = useCardState();
+    const { pageConfig } = usePageConfig();
 
     return (
         <Card
@@ -41,6 +43,7 @@ export const MiniCard = (props: MiniKortProps) => {
                     className="card__illustration"
                     isHovering={isHovering}
                     isPressed={isPressed}
+                    preferStaticIllustration={pageConfig.editorView === 'edit'}
                 />
                 <Normaltekst className={bem('title')}>{text}</Normaltekst>
             </>
