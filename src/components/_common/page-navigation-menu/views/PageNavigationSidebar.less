@@ -19,7 +19,10 @@
         @horizontalPadding: 1rem;
         @decorWidth: 0.5rem;
         padding: @verticalPadding @horizontalPadding;
-        margin: 0 @decorWidth;
+
+        @media @mq-screen-tablet-and-desktop {
+            margin: 0 @decorWidth;
+        }
 
         &:hover {
             background-color: @navBlaLighten80;
