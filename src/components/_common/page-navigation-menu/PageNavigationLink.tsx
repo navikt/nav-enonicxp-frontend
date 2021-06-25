@@ -34,6 +34,12 @@ export const PageNavigationLink = React.memo(
                 href={`#${targetId}`}
                 onClick={(e) => {
                     e.preventDefault();
+                    window.history.pushState(
+                        window.history.state,
+                        undefined,
+                        `#${targetId}`
+                    );
+
                     smoothScrollToTarget(
                         targetId,
                         pageNavigationAnchorOffsetPx
