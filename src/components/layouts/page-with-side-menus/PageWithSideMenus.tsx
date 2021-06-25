@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { PageWithSideMenusProps } from '../../../types/component-props/pages/page-with-side-menus';
-import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
-import { RightMenuSection } from './right-menu-section/RightMenuSection';
-import { MainContentSection } from './main-content-section/MainContentSection';
-import { ProductPageLayout } from '@navikt/ds-react';
-import { ProductPageSection } from '@navikt/ds-react/esm/layouts';
 import { LayoutContainer } from '../LayoutContainer';
-import { windowMatchMedia } from '../../../utils/match-media';
+import { MainContentSection } from './main-content-section/MainContentSection';
+import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
 import { EditorHelp } from '../../_common/editor-help/EditorHelp';
+import { RightMenuSection } from './right-menu-section/RightMenuSection';
 import './PageWithSideMenus.less';
 
 type Props = {
@@ -16,36 +13,14 @@ type Props = {
     layoutProps?: PageWithSideMenusProps;
 };
 
-const mobileWidthBreakpoint = 648;
-
-const mqlWidthBreakpoint = windowMatchMedia(
-    `(min-width: ${mobileWidthBreakpoint}px)`
-);
-
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
-
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const updateLayout = () => {
-            setIsMobile(window.innerWidth < mobileWidthBreakpoint);
-        };
-
-        updateLayout();
-
-        mqlWidthBreakpoint.addEventListener('change', updateLayout);
-        return () => {
-            mqlWidthBreakpoint.removeEventListener('change', updateLayout);
-        };
-    }, []);
 
     if (!regions || !config) {
         return null;
     }
 
     const {
-        title,
         leftMenuToggle,
         leftMenuSticky,
         leftMenuHeader,
@@ -64,63 +39,52 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            {/*TODO: Lag egen grid-komponent*/}
-            <ProductPageLayout title={title}>
-                {isMobile && shouldRenderTopContentRegion && (
-                    <ProductPageSection
-                        whiteBackground={false}
-                        withPadding={false}
-                    >
+            <div className={'left-col'}>
+                {shouldRenderTopContentRegion && (
+                    <MainContentSection
+                        pageProps={pageProps}
+                        regionProps={regions.topPageContent}
+                    />
+                )}
+                {leftMenuToggle && (
+                    <LeftMenuSection
+                        pageProps={pageProps}
+                        topRegionProps={regions.topLeftMenu}
+                        mainRegionProps={regions.leftMenu}
+                        internalLinks={showInternalNav && anchorLinks}
+                        menuHeader={leftMenuHeader}
+                        sticky={leftMenuSticky}
+                    />
+                )}
+            </div>
+            <div className={'main-col'}>
+                {shouldRenderTopContentRegion && (
+                    <>
                         <MainContentSection
                             pageProps={pageProps}
                             regionProps={regions.topPageContent}
                         />
-                    </ProductPageSection>
-                )}
-                {leftMenuToggle && (
-                    <ProductPageSection
-                        left
-                        whiteBackground={false}
-                        withPadding={false}
-                    >
-                        <LeftMenuSection
-                            pageProps={pageProps}
-                            topRegionProps={regions.topLeftMenu}
-                            mainRegionProps={regions.leftMenu}
-                            internalLinks={showInternalNav && anchorLinks}
-                            menuHeader={leftMenuHeader}
-                            sticky={leftMenuSticky}
+                        <EditorHelp
+                            text={
+                                'Komponenter ovenfor legges over menyen på mobil'
+                            }
                         />
-                    </ProductPageSection>
+                    </>
                 )}
-                <ProductPageSection whiteBackground={false} withPadding={false}>
-                    {!isMobile && shouldRenderTopContentRegion && (
-                        <>
-                            <MainContentSection
-                                pageProps={pageProps}
-                                regionProps={regions.topPageContent}
-                            />
-                            <EditorHelp
-                                text={
-                                    'Komponenter ovenfor legges over menyen på mobil'
-                                }
-                            />
-                        </>
-                    )}
-                    <MainContentSection
+                <MainContentSection
+                    pageProps={pageProps}
+                    regionProps={regions.pageContent}
+                />
+            </div>
+            {rightMenuToggle && (
+                <div className={'right-col'}>
+                    <RightMenuSection
                         pageProps={pageProps}
-                        regionProps={regions.pageContent}
+                        regionProps={regions.rightMenu}
+                        sticky={rightMenuSticky}
                     />
-                </ProductPageSection>
-                {rightMenuToggle && (
-                    <ProductPageSection right sticky={rightMenuSticky}>
-                        <RightMenuSection
-                            pageProps={pageProps}
-                            regionProps={regions.rightMenu}
-                        />
-                    </ProductPageSection>
-                )}
-            </ProductPageLayout>
+                </div>
+            )}
         </LayoutContainer>
     );
 };

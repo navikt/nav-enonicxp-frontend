@@ -1,7 +1,93 @@
 @import (reference) '../../../global';
 
 .page__page-with-side-menus {
-    .navds-layout__body > .navds-content-container {
-        padding: 0;
+    @sectionMaxWidth: #px-to-rem(600) [];
+    @sectionGutterLarge: 1.5rem;
+    @sectionGutterSmall: 0.75rem;
+    @verticalMargin: 1.33rem;
+
+    display: flex;
+    flex-direction: column;
+    margin-top: @verticalMargin;
+
+    @media @mq-screen-tablet-and-desktop {
+        flex-direction: row;
+    }
+
+    .left-col,
+    .right-col {
+        @maxWidthDesktop: #px-to-rem(342) [];
+
+        width: 100%;
+        max-width: @sectionMaxWidth;
+
+        @media @mq-screen-tablet-and-desktop {
+            width: @maxWidthDesktop;
+            max-width: @maxWidthDesktop;
+        }
+    }
+
+    .left-col {
+        @media @mq-screen-tablet-and-desktop {
+            margin-right: @sectionGutterSmall;
+
+            .region__topPageContent {
+                display: none;
+            }
+        }
+
+        @media @mq-screen-desktop {
+            margin-right: @sectionGutterLarge;
+        }
+    }
+
+    .main-col {
+        max-width: 100%;
+
+        .region__topPageContent {
+            display: none;
+
+            @media @mq-screen-tablet-and-desktop {
+                display: flex;
+            }
+        }
+    }
+
+    .right-col {
+        @media @mq-screen-tablet-and-desktop {
+            margin-left: @sectionGutterSmall;
+        }
+
+        @media @mq-screen-desktop-large {
+            margin-left: @sectionGutterLarge;
+        }
+    }
+
+    .region__pageContent,
+    .region__topPageContent {
+        display: flex;
+        flex-direction: column;
+
+        &:empty {
+            margin-bottom: 0;
+        }
+
+        & > * {
+            width: 100%;
+            max-width: @sectionMaxWidth;
+            margin-bottom: @verticalMargin;
+        }
+    }
+
+    .region__pageContent {
+        margin-top: @verticalMargin;
+
+        @media @mq-screen-tablet-and-desktop {
+            margin-top: 0;
+        }
+
+        & > :last-child {
+            margin-bottom: 0;
+        }
     }
 }
