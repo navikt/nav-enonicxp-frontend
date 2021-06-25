@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { PageWithSideMenusProps } from '../../../types/component-props/pages/page-with-side-menus';
 import { LayoutContainer } from '../LayoutContainer';
 import { MainContentSection } from './main-content-section/MainContentSection';
 import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
-import { EditorHelp } from '../../_common/editor-help/EditorHelp';
 import { RightMenuSection } from './right-menu-section/RightMenuSection';
+import { windowMatchMedia } from '../../../utils/match-media';
+import { EditorHelp } from '../../_common/editor-help/EditorHelp';
 import './PageWithSideMenus.less';
 
 type Props = {
@@ -13,8 +14,33 @@ type Props = {
     layoutProps?: PageWithSideMenusProps;
 };
 
+const mobileWidthBreakpoint = 768;
+
+const mqlWidthBreakpoint = windowMatchMedia(
+    `(min-width: ${mobileWidthBreakpoint}px)`
+);
+
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
+
+    // This is used for positioning elements specifically for desktop or mobile
+    // We use both a CSS and javascript matchmedia solution, to avoid "jumpy" behaviour
+    // on client-side hydration, and to avoid duplicating elements in the DOM on the client
+    // (prevents issues such as duplicate ids)
+    const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
+
+    useEffect(() => {
+        const updateLayout = () => {
+            setIsMobile(window.innerWidth < mobileWidthBreakpoint);
+        };
+
+        updateLayout();
+
+        mqlWidthBreakpoint.addEventListener('change', updateLayout);
+        return () => {
+            mqlWidthBreakpoint.removeEventListener('change', updateLayout);
+        };
+    }, []);
 
     if (!regions || !config) {
         return null;
@@ -42,7 +68,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             <div className={'left-col'}>
-                {shouldRenderTopContentRegion && (
+                {isMobile !== false && shouldRenderTopContentRegion && (
                     <MainContentSection
                         pageProps={pageProps}
                         regionProps={regions.topPageContent}
@@ -60,7 +86,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                 )}
             </div>
             <div className={'main-col'}>
-                {shouldRenderTopContentRegion && (
+                {isMobile !== true && shouldRenderTopContentRegion && (
                     <>
                         <MainContentSection
                             pageProps={pageProps}

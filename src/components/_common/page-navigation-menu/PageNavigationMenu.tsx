@@ -95,22 +95,27 @@ export const PageNavigationMenu = ({
 
         const validLinks = getValidLinks(anchorLinks);
 
-        const targetElementsSortedByVerticalPosition = validLinks
-            .reduce((targetsAcc, link) => {
-                const targetElement = document.getElementById(link.anchorId);
-                return targetElement
-                    ? [...targetsAcc, targetElement]
-                    : targetsAcc;
-            }, [])
-            .sort((a, b) => a.offsetTop - b.offsetTop);
+        const targetElementsSortedByVerticalPosition = () =>
+            validLinks
+                .reduce((targetsAcc, link) => {
+                    const targetElement = document.getElementById(
+                        link.anchorId
+                    );
+                    return targetElement
+                        ? [...targetsAcc, targetElement]
+                        : targetsAcc;
+                }, [])
+                .sort((a, b) => a.offsetTop - b.offsetTop);
 
         // Ensures the links in the navigation menu are sorted according to
         // their position on the page
         const sortedLinks = validLinks.sort((a, b) => {
-            const aIndex = targetElementsSortedByVerticalPosition.findIndex(
+            const elements = targetElementsSortedByVerticalPosition();
+
+            const aIndex = elements.findIndex(
                 (element) => element.id === a.anchorId
             );
-            const bIndex = targetElementsSortedByVerticalPosition.findIndex(
+            const bIndex = elements.findIndex(
                 (element) => element.id === b.anchorId
             );
             return aIndex - bIndex;
@@ -121,7 +126,7 @@ export const PageNavigationMenu = ({
         const currentScrollPositionHandler = debounce(
             () => {
                 const index = getCurrentIndex(
-                    targetElementsSortedByVerticalPosition
+                    targetElementsSortedByVerticalPosition()
                 );
 
                 const scrollPos = window.pageYOffset;
