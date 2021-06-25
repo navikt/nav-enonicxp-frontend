@@ -21,7 +21,7 @@ export const Card = (props: CardProps) => {
     const { children, link, type, size, interactionHandler } = props;
     const { text, url } = link;
 
-    const handleMouseEvent = (e: React.MouseEvent): void => {
+    const handleMouseEvent = (e: React.MouseEvent | React.TouchEvent): void => {
         const eventType = e.type.toString() as keyof typeof Interaction;
         const type: Interaction = Interaction[eventType];
 
@@ -40,6 +40,10 @@ export const Card = (props: CardProps) => {
             onMouseLeave={handleMouseEvent}
             onMouseDown={handleMouseEvent}
             onMouseUp={handleMouseEvent}
+            onTouchStart={handleMouseEvent}
+            onTouchEnd={handleMouseEvent}
+            onTouchCancel={handleMouseEvent}
+            onTouchMove={handleMouseEvent}
         >
             <div className={classNames(bem('wrapper'))}>{children}</div>
         </LenkeBase>
