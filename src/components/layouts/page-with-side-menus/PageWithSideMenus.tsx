@@ -35,7 +35,9 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     // Only render this region if the left menu is enabled, or if it already
     // contains components
     const shouldRenderTopContentRegion =
-        leftMenuToggle || regions.topPageContent?.components.length > 0;
+        leftMenuToggle &&
+        (regions.topPageContent?.components.length > 0 ||
+            pageProps.editorView === 'edit');
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>

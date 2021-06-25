@@ -77,6 +77,15 @@
             max-width: @sectionMaxWidth;
             margin-bottom: @verticalMargin;
         }
+
+        // Ensure the first section is aligned with the menu if it has an icon
+        @media @mq-screen-tablet-and-desktop {
+            &:first-child {
+                .layout__section-with-header--with-icon {
+                    margin-top: 0;
+                }
+            }
+        }
     }
 
     .region__pageContent {
