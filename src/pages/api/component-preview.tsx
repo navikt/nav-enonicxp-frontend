@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { PartComponentProps } from '../../types/component-props/_component-common';
 import { ComponentMapper } from '../../components/ComponentMapper';
 import { Provider } from 'react-redux';
-import { store } from '../../store/store';
+import { mockStore } from '../../store/store';
 import {
     ContentProps,
     ContentType,
@@ -39,7 +39,7 @@ const postHandler = async (req, res) => {
 
     const props = req.body.props as PartComponentProps;
 
-    store.dispatch(
+    mockStore.dispatch(
         setPageConfigAction({
             pageId: dummyPageProps._id,
             language: dummyPageProps.language,
@@ -48,7 +48,7 @@ const postHandler = async (req, res) => {
     );
 
     const html = ReactDOMServer.renderToStaticMarkup(
-        <Provider store={store}>
+        <Provider store={mockStore}>
             <ComponentMapper
                 componentProps={props}
                 pageProps={dummyPageProps}
