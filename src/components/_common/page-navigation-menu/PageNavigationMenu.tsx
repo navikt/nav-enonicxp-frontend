@@ -21,12 +21,14 @@ export type PageNavScrollDirection = 'up' | 'down';
 
 export const getPageNavigationLinkId = (anchorId: string) => `${anchorId}-a`;
 
-const getCurrentIndex = (sortedTargetElements: HTMLElement[]) => {
+const getCurrentLinkIndex = (links: AnchorLink[]) => {
+    const targetElements = links.map((link) =>
+        document.getElementById(link.anchorId)
+    );
     const scrollTarget = window.scrollY + pageNavigationAnchorOffsetPx;
 
     const scrolledToTop =
-        !sortedTargetElements?.length ||
-        sortedTargetElements[0].offsetTop > scrollTarget;
+        !targetElements?.length || targetElements[0].offsetTop > scrollTarget;
     if (scrolledToTop) {
         return -1;
     }
@@ -35,22 +37,29 @@ const getCurrentIndex = (sortedTargetElements: HTMLElement[]) => {
         window.scrollY + window.innerHeight >=
         document.documentElement.scrollHeight;
     if (scrolledToBottom) {
-        return sortedTargetElements.length - 1;
+        return targetElements.length - 1;
     }
 
-    const foundIndex = sortedTargetElements.findIndex((target) => {
+    const foundIndex = targetElements.findIndex((target) => {
         return target.offsetTop > scrollTarget;
     });
 
     if (foundIndex === -1) {
-        return sortedTargetElements.length - 1;
+        return targetElements.length - 1;
     }
 
     return Math.max(foundIndex - 1, 0);
 };
 
 const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
-    anchorLinks?.filter((link) => link.anchorId && link.linkText) || [];
+    anchorLinks?.filter(
+        (link) =>
+            link.anchorId &&
+            link.linkText &&
+            // On the client-side we also check if the element is in the DOM
+            (typeof document === 'undefined' ||
+                !!document.getElementById(link.anchorId))
+    ) || [];
 
 type Props = {
     anchorLinks: AnchorLink[];
@@ -94,36 +103,15 @@ export const PageNavigationMenu = ({
             return;
         }
 
-        const validLinks = getValidLinks(anchorLinks);
-
-        const targetElementsSortedByVerticalPosition = validLinks
-            .reduce((targetsAcc, link) => {
-                const targetElement = document.getElementById(link.anchorId);
-                return targetElement
-                    ? [...targetsAcc, targetElement]
-                    : targetsAcc;
-            }, [])
-            .sort((a, b) => a.offsetTop - b.offsetTop);
-
-        // Ensures the links in the navigation menu are sorted according to
-        // their position on the page
-        const sortedLinks = validLinks.sort((a, b) => {
-            const aIndex = targetElementsSortedByVerticalPosition.findIndex(
-                (element) => element.id === a.anchorId
-            );
-            const bIndex = targetElementsSortedByVerticalPosition.findIndex(
-                (element) => element.id === b.anchorId
-            );
-            return aIndex - bIndex;
+        const sortedLinks = getValidLinks(anchorLinks).sort((a, b) => {
+            const elementA = document.getElementById(a.anchorId);
+            const elementB = document.getElementById(b.anchorId);
+            return elementA.offsetTop - elementB.offsetTop;
         });
-
-        setLinks(sortedLinks);
 
         const currentScrollPositionHandler = debounce(
             () => {
-                const index = getCurrentIndex(
-                    targetElementsSortedByVerticalPosition
-                );
+                const index = getCurrentLinkIndex(sortedLinks);
 
                 const scrollPos = window.pageYOffset;
 
@@ -137,6 +125,7 @@ export const PageNavigationMenu = ({
             { maxWait: menuCurrentIndexMinUpdateRateMs }
         );
 
+        setLinks(sortedLinks);
         currentScrollPositionHandler();
 
         window.addEventListener('scroll', currentScrollPositionHandler);

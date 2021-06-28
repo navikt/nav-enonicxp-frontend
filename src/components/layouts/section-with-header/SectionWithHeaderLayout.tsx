@@ -49,7 +49,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}
             modifiers={!!iconImgProps && ['with-icon']}
-            id={!iconImgProps && anchorId}
+            id={iconImgProps ? undefined : anchorId}
             tabIndex={-1}
         >
             {iconImgProps && (
