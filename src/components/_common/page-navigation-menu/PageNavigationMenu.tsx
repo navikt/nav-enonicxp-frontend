@@ -6,8 +6,9 @@ import {
 import debounce from 'lodash.debounce';
 import { PageNavigationSidebar } from './views/PageNavigationSidebar';
 import { PageNavigationInContent } from './views/PageNavigationInContent';
+import Config from '../../../config';
 
-export const pageNavigationAnchorOffsetPx = 32;
+export const pageNavigationAnchorOffsetPx = Config.vars.pxPerRem;
 const menuCurrentIndexMinUpdateRateMs = 1000 / 30;
 
 export type PageNavCallbackArgs = {

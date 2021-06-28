@@ -11,7 +11,7 @@ type Props = {
     layoutStyle?: React.CSSProperties;
     modifiers?: string[];
     children: React.ReactNode;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export const LayoutContainer = ({
     pageProps,
@@ -19,6 +19,7 @@ export const LayoutContainer = ({
     layoutStyle,
     modifiers,
     children,
+    ...divElementProps
 }: Props) => {
     const { descriptor, path, type, config } = layoutProps;
 
@@ -37,6 +38,8 @@ export const LayoutContainer = ({
 
     return (
         <div
+            {...divElementProps}
+            {...editorProps}
             className={classNames(
                 bem(),
                 bem(layoutName),
@@ -48,7 +51,6 @@ export const LayoutContainer = ({
                 config.bgColor?.color && bem('bg')
             )}
             style={{ ...commonLayoutStyle, ...layoutStyle }}
-            {...editorProps}
         >
             {children}
         </div>
