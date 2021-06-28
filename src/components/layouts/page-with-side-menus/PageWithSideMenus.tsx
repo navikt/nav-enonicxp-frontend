@@ -7,18 +7,19 @@ import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
 import { RightMenuSection } from './right-menu-section/RightMenuSection';
 import { windowMatchMedia } from '../../../utils/match-media';
 import { EditorHelp } from '../../_common/editor-help/EditorHelp';
+import Config from '../../../config';
 import './PageWithSideMenus.less';
+
+const mobileWidthBreakpoint = Config.vars.mobileBreakpointPx;
+
+const mqlWidthBreakpoint = windowMatchMedia(
+    `(min-width: ${mobileWidthBreakpoint}px)`
+);
 
 type Props = {
     pageProps: ContentProps;
     layoutProps?: PageWithSideMenusProps;
 };
-
-const mobileWidthBreakpoint = 768;
-
-const mqlWidthBreakpoint = windowMatchMedia(
-    `(min-width: ${mobileWidthBreakpoint}px)`
-);
 
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
