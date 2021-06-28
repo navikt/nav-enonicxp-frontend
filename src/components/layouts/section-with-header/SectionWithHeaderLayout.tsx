@@ -79,6 +79,8 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     tag={'h2'}
                     justify={'left'}
                     hideCopyButton={toggleCopyButton}
+                    anchorId={anchorId}
+                    setId={false}
                 >
                     {title}
                 </Header>
