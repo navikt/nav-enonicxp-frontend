@@ -71,7 +71,7 @@ export const Header = ({
                 justify && bem(undefined, justify),
                 className
             )}
-            id={setId && anchorId}
+            id={setId ? anchorId : undefined}
             tabIndex={-1}
         >
             <TypoComponent tag={tag}>{children}</TypoComponent>
