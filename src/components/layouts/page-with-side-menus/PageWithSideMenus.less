@@ -2,6 +2,8 @@
 
 .page__page-with-side-menus {
     @sectionMaxWidth: #px-to-rem(600) [];
+    @sideMenusMaxWidth: #px-to-rem(288) [];
+
     @sectionGutterLarge: 1.5rem;
     @sectionGutterSmall: 0.75rem;
     @verticalMargin: 1.33rem;
@@ -16,14 +18,12 @@
 
     .left-col,
     .right-col {
-        @maxWidthDesktop: #px-to-rem(342) [];
-
         width: 100%;
         max-width: @sectionMaxWidth;
 
         @media @mq-screen-tablet-and-desktop {
-            width: @maxWidthDesktop;
-            max-width: @maxWidthDesktop;
+            width: @sideMenusMaxWidth;
+            max-width: @sideMenusMaxWidth;
         }
     }
 
