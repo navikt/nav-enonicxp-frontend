@@ -29,22 +29,21 @@ export const PageNavigationLink = React.memo(
         viewStyle,
         children,
     }: Props) => {
+        const onClick = (e) => {
+            e.preventDefault();
+            window.history.pushState(
+                window.history.state,
+                undefined,
+                `#${targetId}`
+            );
+
+            smoothScrollToTarget(targetId, pageNavigationAnchorOffsetPx);
+        };
+
         return (
             <LenkeBase
                 href={`#${targetId}`}
-                onClick={(e) => {
-                    e.preventDefault();
-                    window.history.pushState(
-                        window.history.state,
-                        undefined,
-                        `#${targetId}`
-                    );
-
-                    smoothScrollToTarget(
-                        targetId,
-                        pageNavigationAnchorOffsetPx
-                    );
-                }}
+                onClick={onClick}
                 className={classNames(
                     bem(),
                     bem(undefined, viewStyle),
