@@ -29,8 +29,9 @@ export const PageNavigationLink = React.memo(
         viewStyle,
         children,
     }: Props) => {
-        const onClick = (e) => {
+        const setLocationHashAndScrollToTarget = (e) => {
             e.preventDefault();
+
             window.history.pushState(
                 window.history.state,
                 undefined,
@@ -43,7 +44,7 @@ export const PageNavigationLink = React.memo(
         return (
             <LenkeBase
                 href={`#${targetId}`}
-                onClick={onClick}
+                onClick={setLocationHashAndScrollToTarget}
                 className={classNames(
                     bem(),
                     bem(undefined, viewStyle),
