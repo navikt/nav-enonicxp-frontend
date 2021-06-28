@@ -1,7 +1,7 @@
 @import (reference) '../../../../global';
 
 .left-menu {
-    @topOffset: calc(var(--decorator-sticky-offset) + 1rem);
+    @topOffset: calc(var(--decorator-sticky-offset, 0px) + 1rem);
     @bottomOffset: 2rem;
 
     top: @topOffset;
