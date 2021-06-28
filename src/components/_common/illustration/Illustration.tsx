@@ -24,11 +24,33 @@ export const Illustration = ({
         return null;
     }
 
-    const isAnimated =
-        illustration.data?.lottieActive?.mediaText &&
-        illustration.data?.lottieHover?.mediaText;
+    const hasStaticIllustration = () => {
+        const { icons } = illustration.data;
+        if (!icons) {
+            return false;
+        }
 
-    if (isAnimated && !preferStaticIllustration) {
+        const icon1 = icons[0] && icons[0].icon;
+        const icon2 = icons[1] && icons[1].icon;
+
+        return !!(icon1 && icon2);
+    };
+
+    const isAnimated = !!(
+        illustration.data?.lottieActive?.mediaText &&
+        illustration.data?.lottieHover?.mediaText
+    );
+
+    if (hasStaticIllustration() && (!isAnimated || preferStaticIllustration)) {
+        return (
+            <IllustrationStatic
+                illustration={illustration}
+                className={className}
+            />
+        );
+    }
+
+    if (isAnimated) {
         return (
             <IllustrationAnimated
                 illustration={illustration}
@@ -39,7 +61,5 @@ export const Illustration = ({
         );
     }
 
-    return (
-        <IllustrationStatic illustration={illustration} className={className} />
-    );
+    return null;
 };
