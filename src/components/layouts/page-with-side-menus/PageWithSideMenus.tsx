@@ -25,7 +25,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
 
     // This is used for positioning elements specifically for desktop or mobile
-    // We use both a CSS and javascript matchmedia solution, to avoid "jumpy" behaviour
+    // We use both a CSS and javascript matchmedia solution, to avoid visible layout-shifts
     // on client-side hydration, and to avoid duplicating elements in the DOM on the client
     // (prevents issues such as duplicate ids)
     const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
