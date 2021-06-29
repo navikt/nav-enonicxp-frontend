@@ -10,7 +10,7 @@
 
     display: flex;
     flex-direction: column;
-    margin: @verticalMargin auto 0 auto;
+    margin: 0 auto;
 
     @media @mq-screen-tablet-and-desktop {
         flex-direction: row;
@@ -69,6 +69,7 @@
     .region__topPageContent {
         display: flex;
         flex-direction: column;
+        margin-top: @verticalMargin;
 
         & > * {
             width: 100%;
@@ -76,8 +77,10 @@
             margin-bottom: @verticalMargin;
         }
 
-        // Ensure the first section is aligned with the menu if it has an icon
         @media @mq-screen-tablet-and-desktop {
+            margin-top: 0;
+
+            // Ensure the first section is aligned with the menu if it has an icon
             &:first-child {
                 .layout__section-with-header--with-icon:first-child {
                     margin-top: 0;
@@ -87,12 +90,6 @@
     }
 
     .region__pageContent {
-        margin-top: @verticalMargin;
-
-        @media @mq-screen-tablet-and-desktop {
-            margin-top: 0;
-        }
-
         & > :last-child {
             margin-bottom: 0;
         }
