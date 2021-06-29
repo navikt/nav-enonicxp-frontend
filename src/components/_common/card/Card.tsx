@@ -21,7 +21,7 @@ export const Card = (props: CardProps) => {
     const { children, link, type, size, interactionHandler } = props;
     const { text, url } = link;
 
-    const handleMouseEvent = (e: React.MouseEvent): void => {
+    const handleUserEvent = (e: React.MouseEvent | React.TouchEvent): void => {
         const eventType = e.type.toString() as keyof typeof Interaction;
         const type: Interaction = Interaction[eventType];
 
@@ -36,10 +36,14 @@ export const Card = (props: CardProps) => {
             title={text}
             className={classNames(bem(), bem(type), bem(size))}
             analyticsLabel={link.text}
-            onMouseEnter={handleMouseEvent}
-            onMouseLeave={handleMouseEvent}
-            onMouseDown={handleMouseEvent}
-            onMouseUp={handleMouseEvent}
+            onMouseEnter={handleUserEvent}
+            onMouseLeave={handleUserEvent}
+            onMouseDown={handleUserEvent}
+            onMouseUp={handleUserEvent}
+            onTouchStart={handleUserEvent}
+            onTouchEnd={handleUserEvent}
+            onTouchCancel={handleUserEvent}
+            onTouchMove={handleUserEvent}
         >
             <div className={classNames(bem('wrapper'))}>{children}</div>
         </LenkeBase>
