@@ -51,7 +51,9 @@ export const TopContainer = ({ content }: Props) => {
             <input
                 type={'date'}
                 className={bem('version-picker')}
-                onInput={(e) => setVersionDate(e.target.value)}
+                onInput={(e: any) => {
+                    setVersionDate(e.target.value);
+                }}
             />
             <Button
                 kompakt={true}
