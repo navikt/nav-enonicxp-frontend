@@ -2,7 +2,8 @@
 
 .top-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     padding: 1rem 0;
 
     .full-width-mixin();
@@ -16,7 +17,18 @@
     }
 
     &__version-picker {
-        margin: 1rem 1rem 1rem 0;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        & > * {
+            height: 2rem;
+        }
+    }
+
+    &__version-picker-date {
+        margin-right: 1rem;
     }
 
     &__notifications {

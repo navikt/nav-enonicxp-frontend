@@ -47,50 +47,51 @@ export const TopContainer = ({ content }: Props) => {
     const getLabel = translator('notifications', language);
 
     return (
-        <>
-            <input
-                type={'date'}
-                className={bem('version-picker')}
-                onInput={(e: any) => {
-                    setVersionDate(e.target.value);
-                }}
-            />
-            <Button
-                kompakt={true}
-                mini={true}
-                onClick={() => {
-                    if (versionDate) {
-                        router.push(
-                            `${appOrigin}/version${stripXpPathPrefix(
-                                content._path
-                            )}?time=${versionDate}`
-                        );
-                    }
-                }}
-            >
-                {'Hent side fra denne datoen'}
-            </Button>
-            <div
-                className={classNames(
-                    bem(),
-                    contentTypesWithWhiteHeader[__typename] &&
-                        bem(undefined, 'white'),
-                    hasWhiteHeader && bem(undefined, 'white'),
-                    hasDecoratorWidgets && bem(undefined, 'widgets-offset')
-                )}
-            >
-                {showNotifications && (
-                    <section
-                        className={bem('notifications')}
-                        aria-label={getLabel('label')}
-                    >
-                        {notifications.map((props, index) => (
-                            <Notification {...props} key={index} />
-                        ))}
-                    </section>
-                )}
+        <div
+            className={classNames(
+                bem(),
+                contentTypesWithWhiteHeader[__typename] &&
+                    bem(undefined, 'white'),
+                hasWhiteHeader && bem(undefined, 'white'),
+                hasDecoratorWidgets && bem(undefined, 'widgets-offset')
+            )}
+        >
+            <div className={bem('version-picker')}>
+                <input
+                    type={'date'}
+                    className={bem('version-picker-date')}
+                    onInput={(e: any) => {
+                        setVersionDate(e.target.value);
+                    }}
+                />
+                <Button
+                    kompakt={true}
+                    mini={true}
+                    className={bem('version-picker-button')}
+                    onClick={() => {
+                        if (versionDate) {
+                            router.push(
+                                `${appOrigin}/version${stripXpPathPrefix(
+                                    content._path
+                                )}?time=${versionDate}`
+                            );
+                        }
+                    }}
+                >
+                    {'Hent side fra denne datoen'}
+                </Button>
             </div>
-        </>
+            {showNotifications && (
+                <section
+                    className={bem('notifications')}
+                    aria-label={getLabel('label')}
+                >
+                    {notifications.map((props, index) => (
+                        <Notification {...props} key={index} />
+                    ))}
+                </section>
+            )}
+        </div>
     );
 };
 
