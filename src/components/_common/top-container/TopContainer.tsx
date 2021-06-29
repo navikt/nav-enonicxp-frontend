@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Notification from '../notifications/Notification';
 import { translator } from 'translations';
 import { BEM, classNames } from '../../../utils/classnames';
@@ -7,7 +7,10 @@ import {
     ContentType,
 } from '../../../types/content-props/_content-common';
 import { getContentLanguages } from '../../../utils/languages';
+import { Button } from '../button/Button';
 import './TopContainer.less';
+import { useRouter } from 'next/router';
+import { appOrigin, stripXpPathPrefix } from '../../../utils/urls';
 
 const bem = BEM('top-container');
 
@@ -27,6 +30,9 @@ type Props = {
 };
 
 export const TopContainer = ({ content }: Props) => {
+    const [versionDate, setVersionDate] = useState<string | undefined>();
+    const router = useRouter();
+
     const { __typename, notifications, language, breadcrumbs } = content;
 
     const hasDecoratorWidgets =
@@ -41,26 +47,48 @@ export const TopContainer = ({ content }: Props) => {
     const getLabel = translator('notifications', language);
 
     return (
-        <div
-            className={classNames(
-                bem(),
-                contentTypesWithWhiteHeader[__typename] &&
-                    bem(undefined, 'white'),
-                hasWhiteHeader && bem(undefined, 'white'),
-                hasDecoratorWidgets && bem(undefined, 'widgets-offset')
-            )}
-        >
-            {showNotifications && (
-                <section
-                    className={bem('notifications')}
-                    aria-label={getLabel('label')}
-                >
-                    {notifications.map((props, index) => (
-                        <Notification {...props} key={index} />
-                    ))}
-                </section>
-            )}
-        </div>
+        <>
+            <input
+                type={'date'}
+                className={bem('version-picker')}
+                onInput={(e) => setVersionDate(e.target.value)}
+            />
+            <Button
+                kompakt={true}
+                mini={true}
+                onClick={() => {
+                    if (versionDate) {
+                        router.push(
+                            `${appOrigin}/version${stripXpPathPrefix(
+                                content._path
+                            )}?time=${versionDate}`
+                        );
+                    }
+                }}
+            >
+                {'Hent side fra denne datoen'}
+            </Button>
+            <div
+                className={classNames(
+                    bem(),
+                    contentTypesWithWhiteHeader[__typename] &&
+                        bem(undefined, 'white'),
+                    hasWhiteHeader && bem(undefined, 'white'),
+                    hasDecoratorWidgets && bem(undefined, 'widgets-offset')
+                )}
+            >
+                {showNotifications && (
+                    <section
+                        className={bem('notifications')}
+                        aria-label={getLabel('label')}
+                    >
+                        {notifications.map((props, index) => (
+                            <Notification {...props} key={index} />
+                        ))}
+                    </section>
+                )}
+            </div>
+        </>
     );
 };
 
