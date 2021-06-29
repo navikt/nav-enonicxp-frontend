@@ -17,13 +17,13 @@ type PageConfig = {
     editorView: ContentProps['editorView'];
 };
 
-type UseFilterState = {
+type UsePageConfig = {
     pageConfig: PageConfig;
     setPageConfig: (payload: any) => void;
     language: Language;
 };
 
-export const usePageConfig = (): UseFilterState => {
+export const usePageConfig = (): UsePageConfig => {
     const dispatch = useAppDispatch();
 
     const pageId = useAppSelector<string>((state) => currentPageId(state));

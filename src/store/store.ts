@@ -14,6 +14,18 @@ export const store = configureStore({
     },
 });
 
+// MockStore is used by component-preview etc in order to be able to
+// provide a store to the underlying components to get them to work on a basic level,
+// without affecting the entire pages store.
+export const mockStore = configureStore({
+    reducer: {
+        contentFilters,
+        pageConfig,
+        pathMap,
+        gvEditorState,
+    },
+});
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
