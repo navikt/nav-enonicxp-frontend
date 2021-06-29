@@ -3,15 +3,13 @@ import PageBase, { fetchPageProps } from '../../components/PageBase';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const pathSegments = context?.params?.versionRouter;
-    const time = context.query.time.toString();
-
-    console.log(time);
+    const { time, id } = context.query;
 
     const pageProps = await fetchPageProps(
-        pathSegments,
+        id || pathSegments,
         false,
         process.env.SERVICE_SECRET,
-        time
+        time.toString()
     );
 
     return pageProps;

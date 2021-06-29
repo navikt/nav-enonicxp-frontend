@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
-    const regionProps = layoutProps.regions.flexcols;
+    const regionProps = layoutProps.regions?.flexcols;
 
     if (!regionProps) {
         return null;

@@ -10,7 +10,7 @@ import { getContentLanguages } from '../../../utils/languages';
 import { Button } from '../button/Button';
 import './TopContainer.less';
 import { useRouter } from 'next/router';
-import { appOrigin, stripXpPathPrefix } from '../../../utils/urls';
+import { appOrigin, xpContentPathPrefix } from '../../../utils/urls';
 
 const bem = BEM('top-container');
 
@@ -46,6 +46,8 @@ export const TopContainer = ({ content }: Props) => {
 
     const getLabel = translator('notifications', language);
 
+    const path = content._path.split(xpContentPathPrefix)[1];
+
     return (
         <div
             className={classNames(
@@ -71,9 +73,7 @@ export const TopContainer = ({ content }: Props) => {
                     onClick={() => {
                         if (versionDate) {
                             router.push(
-                                `${appOrigin}/version${stripXpPathPrefix(
-                                    content._path
-                                )}?time=${versionDate}`
+                                `${appOrigin}/version${path}?time=${versionDate}&id=${content._id}`
                             );
                         }
                     }}
