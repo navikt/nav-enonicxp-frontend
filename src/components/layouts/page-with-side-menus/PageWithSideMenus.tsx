@@ -68,24 +68,26 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            <div className={'left-col'}>
-                {isMobile !== false && shouldRenderTopContentRegion && (
-                    <MainContentSection
-                        pageProps={pageProps}
-                        regionProps={regions.topPageContent}
-                    />
-                )}
-                {leftMenuToggle && (
-                    <LeftMenuSection
-                        pageProps={pageProps}
-                        topRegionProps={regions.topLeftMenu}
-                        mainRegionProps={regions.leftMenu}
-                        internalLinks={showInternalNav && anchorLinks}
-                        menuHeader={leftMenuHeader}
-                        sticky={leftMenuSticky}
-                    />
-                )}
-            </div>
+            {(leftMenuToggle || shouldRenderTopContentRegion) && (
+                <div className={'left-col'}>
+                    {isMobile !== false && shouldRenderTopContentRegion && (
+                        <MainContentSection
+                            pageProps={pageProps}
+                            regionProps={regions.topPageContent}
+                        />
+                    )}
+                    {leftMenuToggle && (
+                        <LeftMenuSection
+                            pageProps={pageProps}
+                            topRegionProps={regions.topLeftMenu}
+                            mainRegionProps={regions.leftMenu}
+                            internalLinks={showInternalNav && anchorLinks}
+                            menuHeader={leftMenuHeader}
+                            sticky={leftMenuSticky}
+                        />
+                    )}
+                </div>
+            )}
             <div className={'main-col'}>
                 {isMobile !== true && shouldRenderTopContentRegion && (
                     <>
