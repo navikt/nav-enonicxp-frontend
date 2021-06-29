@@ -1,6 +1,5 @@
 const windowScrollTo = (targetElement: HTMLElement, offset: number) => {
-    const { scrollY } = window;
-    const top = targetElement.getBoundingClientRect().top + scrollY;
+    const top = targetElement.getBoundingClientRect().top + window.scrollY;
 
     targetElement.focus({ preventScroll: true });
 
