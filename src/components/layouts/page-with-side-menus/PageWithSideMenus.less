@@ -10,10 +10,12 @@
 
     display: flex;
     flex-direction: column;
+    margin: @verticalMargin auto 0 auto;
 
     @media @mq-screen-tablet-and-desktop {
         flex-direction: row;
         margin-top: 3rem;
+        max-width: #px-to-rem(1080) [];
     }
 
     .left-col,
@@ -67,10 +69,6 @@
     .region__topPageContent {
         display: flex;
         flex-direction: column;
-
-        &:empty {
-            margin-bottom: 0;
-        }
 
         & > * {
             width: 100%;
