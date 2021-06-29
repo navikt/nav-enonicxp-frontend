@@ -7,10 +7,6 @@
     display: flex;
     flex-direction: column;
 
-    .navds-layout__header {
-        display: none;
-    }
-
     .icon-container {
         background-color: @productPageColor;
         img {
@@ -20,7 +16,20 @@
     }
 
     &__content {
-        margin-top: 2rem;
+        align-self: center;
+        width: 100%;
+
+        // Break out of the global app padding for better screen-width usage
+        // on narrower screens
+        @media @mq-screen-tablet-and-desktop {
+            margin-left: -@padding-sides-tablet;
+            margin-right: -@padding-sides-tablet;
+        }
+
+        @media @mq-screen-desktop {
+            margin-left: -@padding-sides-desktop;
+            margin-right: -@padding-sides-desktop;
+        }
     }
 
     .product-mixins();

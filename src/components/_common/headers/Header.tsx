@@ -21,7 +21,8 @@ type Props = {
     typoStyle?: TypoStyle;
     justify?: HeaderCommonConfig['justify'];
     hideCopyButton?: boolean;
-    id?: string;
+    anchorId?: string;
+    setId?: boolean;
     className?: string;
 };
 
@@ -31,7 +32,8 @@ export const Header = ({
     typoStyle,
     justify,
     hideCopyButton,
-    id,
+    anchorId,
+    setId = true,
     className,
 }: Props) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
@@ -54,7 +56,11 @@ export const Header = ({
         }
     };
 
-    const anchor = id ? (id.startsWith('#') ? id : `#${id}`) : undefined;
+    const anchor = anchorId
+        ? anchorId.startsWith('#')
+            ? anchorId
+            : `#${anchorId}`
+        : undefined;
     const _typoStyle = typoStyle || headingToTypoStyle[tag];
     const TypoComponent = typoToComponent[_typoStyle] || Innholdstittel;
 
@@ -65,7 +71,7 @@ export const Header = ({
                 justify && bem(undefined, justify),
                 className
             )}
-            id={id}
+            id={setId ? anchorId : undefined}
             tabIndex={-1}
         >
             <TypoComponent tag={tag}>{children}</TypoComponent>

@@ -10,11 +10,12 @@ const bem = BEM('right-menu');
 type Props = {
     pageProps: ContentProps;
     regionProps: RegionProps;
+    sticky: boolean;
 };
 
-export const RightMenuSection = ({ pageProps, regionProps }: Props) => {
+export const RightMenuSection = ({ pageProps, regionProps, sticky }: Props) => {
     return (
-        <div className={classNames(bem())}>
+        <div className={classNames(bem(), sticky && bem(undefined, 'sticky'))}>
             <Region pageProps={pageProps} regionProps={regionProps} />
         </div>
     );

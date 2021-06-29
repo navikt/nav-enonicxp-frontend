@@ -1,31 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { PageWithSideMenusProps } from '../../../types/component-props/pages/page-with-side-menus';
+import { LayoutContainer } from '../LayoutContainer';
+import { MainContentSection } from './main-content-section/MainContentSection';
 import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
 import { RightMenuSection } from './right-menu-section/RightMenuSection';
-import { MainContentSection } from './main-content-section/MainContentSection';
-import { ProductPageLayout } from '@navikt/ds-react';
-import { ProductPageSection } from '@navikt/ds-react/esm/layouts';
-import { LayoutContainer } from '../LayoutContainer';
 import { windowMatchMedia } from '../../../utils/match-media';
 import { EditorHelp } from '../../_common/editor-help/EditorHelp';
+import Config from '../../../config';
 import './PageWithSideMenus.less';
+
+const mobileWidthBreakpoint = Config.vars.mobileBreakpointPx;
+
+const mqlWidthBreakpoint = windowMatchMedia(
+    `(min-width: ${mobileWidthBreakpoint}px)`
+);
 
 type Props = {
     pageProps: ContentProps;
     layoutProps?: PageWithSideMenusProps;
 };
 
-const mobileWidthBreakpoint = 648;
-
-const mqlWidthBreakpoint = windowMatchMedia(
-    `(min-width: ${mobileWidthBreakpoint}px)`
-);
-
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
 
-    const [isMobile, setIsMobile] = useState(false);
+    // This is used for positioning elements specifically for desktop or mobile
+    // We use both a CSS and javascript matchmedia solution, to avoid visible layout-shifts
+    // on client-side hydration, and to avoid duplicating elements in the DOM on the client
+    // (prevents issues such as duplicate ids)
+    const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
 
     useEffect(() => {
         const updateLayout = () => {
@@ -45,7 +48,6 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     }
 
     const {
-        title,
         leftMenuToggle,
         leftMenuSticky,
         leftMenuHeader,
@@ -60,29 +62,21 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
     // Only render this region if the left menu is enabled, or if it already
     // contains components
     const shouldRenderTopContentRegion =
-        leftMenuToggle || regions.topPageContent?.components.length > 0;
+        leftMenuToggle &&
+        (regions.topPageContent?.components.length > 0 ||
+            pageProps.editorView === 'edit');
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            {/*TODO: Lag egen grid-komponent*/}
-            <ProductPageLayout title={title}>
-                {isMobile && shouldRenderTopContentRegion && (
-                    <ProductPageSection
-                        whiteBackground={false}
-                        withPadding={false}
-                    >
+            {(leftMenuToggle || shouldRenderTopContentRegion) && (
+                <div className={'left-col'}>
+                    {isMobile !== false && shouldRenderTopContentRegion && (
                         <MainContentSection
                             pageProps={pageProps}
                             regionProps={regions.topPageContent}
                         />
-                    </ProductPageSection>
-                )}
-                {leftMenuToggle && (
-                    <ProductPageSection
-                        left
-                        whiteBackground={false}
-                        withPadding={false}
-                    >
+                    )}
+                    {leftMenuToggle && (
                         <LeftMenuSection
                             pageProps={pageProps}
                             topRegionProps={regions.topLeftMenu}
@@ -91,36 +85,37 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                             menuHeader={leftMenuHeader}
                             sticky={leftMenuSticky}
                         />
-                    </ProductPageSection>
-                )}
-                <ProductPageSection whiteBackground={false} withPadding={false}>
-                    {!isMobile && shouldRenderTopContentRegion && (
-                        <>
-                            <MainContentSection
-                                pageProps={pageProps}
-                                regionProps={regions.topPageContent}
-                            />
-                            <EditorHelp
-                                text={
-                                    'Komponenter ovenfor legges over menyen på mobil'
-                                }
-                            />
-                        </>
                     )}
-                    <MainContentSection
-                        pageProps={pageProps}
-                        regionProps={regions.pageContent}
-                    />
-                </ProductPageSection>
-                {rightMenuToggle && (
-                    <ProductPageSection right sticky={rightMenuSticky}>
-                        <RightMenuSection
+                </div>
+            )}
+            <div className={'main-col'}>
+                {isMobile !== true && shouldRenderTopContentRegion && (
+                    <>
+                        <MainContentSection
                             pageProps={pageProps}
-                            regionProps={regions.rightMenu}
+                            regionProps={regions.topPageContent}
                         />
-                    </ProductPageSection>
+                        <EditorHelp
+                            text={
+                                'Komponenter ovenfor legges over menyen på mobil'
+                            }
+                        />
+                    </>
                 )}
-            </ProductPageLayout>
+                <MainContentSection
+                    pageProps={pageProps}
+                    regionProps={regions.pageContent}
+                />
+            </div>
+            {rightMenuToggle && (
+                <div className={'right-col'}>
+                    <RightMenuSection
+                        pageProps={pageProps}
+                        regionProps={regions.rightMenu}
+                        sticky={rightMenuSticky}
+                    />
+                </div>
+            )}
         </LayoutContainer>
     );
 };

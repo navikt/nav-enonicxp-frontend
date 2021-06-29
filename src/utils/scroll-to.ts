@@ -1,23 +1,25 @@
+const hasScrollOptionsSupport =
+    typeof document !== 'undefined' &&
+    'scrollBehavior' in document.documentElement.style;
+
+const scrollToCurrent = (position: number) => {
+    window.scrollTo({
+        behavior: 'smooth',
+        top: position,
+    });
+};
+
+const scrollToLegacy = (position: number) => {
+    window.scrollTo(0, position);
+};
+
+const scrollTo = hasScrollOptionsSupport ? scrollToCurrent : scrollToLegacy;
+
 export const smoothScrollToTarget = (targetId: string, offset = 0) => {
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-        const { scrollX, scrollY } = window;
-        const top = targetElement.getBoundingClientRect().top + scrollY;
-
-        // Ensure the target element gets focus...
-        targetElement.focus();
-
-        // ...but immediately scroll back to the current position
-        // so we can specify our own scroll behavior and position
-        window.scrollTo({
-            behavior: 'auto',
-            left: scrollX,
-            top: scrollY,
-        });
-
-        window.scrollTo({
-            behavior: 'smooth',
-            top: top - offset,
-        });
+        const top = targetElement.getBoundingClientRect().top + window.scrollY;
+        scrollTo(top - offset);
+        targetElement.focus({ preventScroll: true });
     }
 };

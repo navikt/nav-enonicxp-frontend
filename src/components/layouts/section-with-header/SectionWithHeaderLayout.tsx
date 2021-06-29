@@ -49,10 +49,14 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
             layoutStyle={border && getBorderStyle(border)}
             modifiers={!!iconImgProps && ['with-icon']}
+            id={iconImgProps ? undefined : anchorId}
+            tabIndex={-1}
         >
             {iconImgProps && (
                 <div
                     className={'icon-container'}
+                    id={anchorId} // Ensures anchor links scrolls to the correct position if the icon is rendered
+                    tabIndex={-1}
                     style={{
                         ...(icon.color && { backgroundColor: icon.color }),
                     }}
@@ -74,8 +78,9 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     typoStyle={TypoStyle.Innholdstittel}
                     tag={'h2'}
                     justify={'left'}
-                    id={anchorId}
                     hideCopyButton={toggleCopyButton}
+                    anchorId={anchorId}
+                    setId={false}
                 >
                     {title}
                 </Header>
