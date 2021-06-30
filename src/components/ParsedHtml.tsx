@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { BodyLong } from '@navikt/ds-react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LenkeInline } from './_common/lenke/LenkeInline';
@@ -126,9 +126,9 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 }
 
                 return (
-                    <Normaltekst {...props}>
+                    <BodyLong {...props}>
                         {domToReact(children, replaceElements)}
-                    </Normaltekst>
+                    </BodyLong>
                 );
             }
 

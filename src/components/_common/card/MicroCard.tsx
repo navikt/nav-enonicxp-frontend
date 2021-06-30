@@ -2,9 +2,9 @@ import { LinkProps } from 'types/link-props';
 import { BEM } from 'utils/classnames';
 
 import { CardSize, CardType } from 'types/card';
-import './MicroCard.less';
 import { Card } from './Card';
-import { Normaltekst } from 'nav-frontend-typografi';
+
+import './MicroCard.less';
 
 export type MikroKortProps = {
     link: LinkProps;
@@ -16,7 +16,7 @@ const bem = BEM('card');
 export const MicroCard = ({ link, type }: MikroKortProps) => {
     return (
         <Card link={link} type={type} size={CardSize.Micro}>
-            <Normaltekst className={bem('title')}>{link.text}</Normaltekst>
+            <span className={bem('title')}>{link.text}</span>
         </Card>
     );
 };
