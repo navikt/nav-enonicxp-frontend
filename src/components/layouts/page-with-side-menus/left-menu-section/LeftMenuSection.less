@@ -1,14 +1,12 @@
 @import (reference) '../../../../global';
 
 .left-menu {
-    @topOffset: calc(var(--decorator-sticky-offset) + 1rem);
+    @topOffset: calc(var(--decorator-sticky-offset, 0px) + 1rem);
     @bottomOffset: 2rem;
 
     top: @topOffset;
-    overflow: visible;
-    max-height: none;
 
-    @media (min-width: @_MQ_mobileMaxWidthDs) {
+    @media @mq-screen-tablet-and-desktop {
         overflow: auto;
         max-height: calc(100vh - @topOffset - @bottomOffset);
     }
@@ -20,31 +18,31 @@
     & * {
         word-break: break-word;
     }
-}
 
-.region__leftMenu,
-.region__topLeftMenu {
-    & > * {
-        padding: 1rem;
+    .region__leftMenu,
+    .region__topLeftMenu {
+        & > * {
+            padding: 1rem;
 
-        &:not(:last-child) {
-            margin-bottom: 1rem;
+            &:not(:last-child) {
+                margin-bottom: 1rem;
+            }
         }
     }
-}
 
-.region__leftMenu {
-    & > * {
+    .region__leftMenu {
+        & > * {
+            background-color: white;
+        }
+
+        & > :first-child {
+            margin-top: 1rem;
+        }
+    }
+
+    // The top region should have a consistent background color behind all components
+    // to make it blend in with the navigation-menu
+    .region__topLeftMenu {
         background-color: white;
     }
-
-    & > :first-child {
-        margin-top: 1rem;
-    }
-}
-
-// The top region should have a consistent background color behind all components
-// to make it blend in with the navigation-menu
-.region__topLeftMenu {
-    background-color: white;
 }

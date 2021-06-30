@@ -1,4 +1,5 @@
 @import (reference) '../../../../global';
+@import (reference) '~nav-frontend-typografi-style/src/index';
 @import (reference) '../../../pages/product-page/ProductPage';
 @import (reference) '../../../pages/situation-page/SituationPage';
 
@@ -27,10 +28,17 @@
 
     &__text {
         width: 100%;
-        max-width: #px-to-rem(900) [] + 5rem + 1.5rem;
+        max-width: 56.5rem;
 
         .page-header {
             padding: 0;
+            h1 {
+                .typo-innholdstittel;
+
+                @media @mq-screen-tablet-and-desktop {
+                    .typo-sidetittel;
+                }
+            }
         }
     }
 

@@ -4,24 +4,26 @@
     outline: 0;
     transition: all 0.3s;
 
-    &:hover:not(:active) {
-        box-shadow: 0 0 0 2px @navBla;
-        background-color: #ffffff;
-
-        .card__title,
-        .card__description,
-        .card__category {
-            text-decoration: none;
-            color: @navMorkGra;
-        }
-
-        &.card__product,
-        &.card__tool,
-        &.card__situation {
+    @media (hover: hover) {
+        &:hover:not(:active) {
+            box-shadow: 0 0 0 2px @navBla;
             background-color: #ffffff;
 
-            .card__title {
-                color: @navBla;
+            .card__title,
+            .card__description,
+            .card__category {
+                text-decoration: none;
+                color: @navMorkGra;
+            }
+
+            &.card__product,
+            &.card__tool,
+            &.card__situation {
+                background-color: #ffffff;
+
+                .card__title {
+                    color: @navBla;
+                }
             }
         }
     }

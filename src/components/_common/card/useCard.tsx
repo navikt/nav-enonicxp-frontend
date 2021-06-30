@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useState } from 'react';
 import { Interaction } from 'types/interaction';
 
@@ -25,6 +26,14 @@ export const useCardState = (): UseCardState => {
 
         if (type === Interaction.mousedown || type === Interaction.mouseup) {
             setIsPressed(type === Interaction.mousedown);
+        }
+
+        if (type === Interaction.touchstart) {
+            setIsPressed(true);
+        }
+
+        if (type === Interaction.touchend || type === Interaction.touchcancel) {
+            setIsPressed(false);
         }
     };
 

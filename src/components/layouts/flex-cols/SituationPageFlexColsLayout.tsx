@@ -43,7 +43,7 @@ export const SituationPageFlexColsLayout = ({
                     typoStyle={TypoStyle.Systemtittel}
                     justify={'left'}
                     hideCopyButton={!toggleCopyButton}
-                    id={anchorId}
+                    anchorId={anchorId}
                 >
                     {title}
                 </Header>

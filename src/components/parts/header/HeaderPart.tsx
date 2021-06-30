@@ -28,7 +28,7 @@ export const HeaderPart = ({ config }: HeaderProps) => {
         <Header
             tag={_tag}
             typoStyle={typoStyle}
-            id={anchorId}
+            anchorId={anchorId}
             justify={justify}
             hideCopyButton={true}
             className={'header-part'}

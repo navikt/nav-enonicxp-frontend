@@ -19,7 +19,10 @@
         @horizontalPadding: 1rem;
         @decorWidth: 0.5rem;
         padding: @verticalPadding @horizontalPadding;
-        margin: 0 @decorWidth;
+
+        @media @mq-screen-tablet-and-desktop {
+            margin: 0 @decorWidth;
+        }
 
         &:hover {
             background-color: @navBlaLighten80;
@@ -58,20 +61,18 @@
             }
         }
 
-        &__current {
-            .page-nav-link__decor {
-                transform: scaleY(1);
-            }
-        }
-
         &__decor {
             visibility: hidden;
         }
 
-        @media (min-width: @_MQ_mobileMaxWidthDs) {
+        @media @mq-screen-tablet-and-desktop {
             &__current {
                 color: black;
                 text-decoration: none;
+
+                .page-nav-link__decor {
+                    transform: scaleY(1);
+                }
             }
 
             &__decor {

@@ -23,7 +23,7 @@ export const MacroHeaderWithAnchor = ({
     return (
         <Header
             tag={getValidTag(tag)}
-            id={id}
+            anchorId={id}
             hideCopyButton={true}
             justify={'left'}
         >
