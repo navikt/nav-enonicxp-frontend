@@ -1,19 +1,35 @@
 @import (reference) '../../../global';
 
 .expandable {
+    @boxShadow: inset 0px -1px 0px 0px @navGra20;
     border-radius: 0;
-    border-bottom: @navGra20 1px solid;
+    box-shadow: @boxShadow;
     width: 100%;
 
     &:hover {
-        box-shadow: none;
+        box-shadow: @boxShadow;
+
         .ekspanderbartPanel__hode:focus {
             .panel-inset-focus-mixin();
         }
+
+        .ekspanderbartPanel__tittel {
+            text-decoration: none;
+        }
     }
 
-    .ekspanderbartPanel__hode:focus {
-        .panel-inset-focus-mixin();
+    .ekspanderbartPanel__hode {
+        border-radius: @border-radius-base;
+        &:hover {
+            .ekspanderbartPanel__tittel {
+                text-decoration: none;
+                border-bottom-color: @navBla;
+            }
+        }
+
+        &:focus {
+            .panel-inset-focus-mixin();
+        }
     }
 
     .ekspanderbartPanel__tittel,
@@ -21,8 +37,27 @@
         color: @navBla;
     }
 
+    .ekspanderbartPanel__tittel {
+        font-size: 1.125rem;
+        border-bottom: 1px transparent solid;
+        transition: border-bottom-color 0.12s ease-out;
+    }
+
     .ekspanderbartPanel__innhold {
         transition: visibility 250ms;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .ekspanderbartPanel__flex-wrapper {
+        margin: 0 -1rem;
+    }
+
+    .ekspanderbartPanel__hode {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        margin: 0 -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     &.ekspanderbartPanel--lukket {

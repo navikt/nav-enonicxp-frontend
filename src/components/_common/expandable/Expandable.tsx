@@ -12,6 +12,7 @@ export const Expandable = ({
     expandable,
     expandableTitle,
     expandableOpenByDefault,
+    expandableAnchorId,
     children,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(expandableOpenByDefault);
@@ -35,6 +36,7 @@ export const Expandable = ({
             renderContentWhenClosed={true}
             className={'expandable'}
             onClick={onExpandCollapse}
+            id={expandableAnchorId}
         >
             {children}
         </Ekspanderbartpanel>
