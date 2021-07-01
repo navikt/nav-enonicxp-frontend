@@ -1,4 +1,5 @@
 import React from 'react';
+import { Label } from '@navikt/ds-react';
 import { BEM, classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { PageNavViewStyle } from '../../../types/component-props/parts/page-navigation-menu';
@@ -56,7 +57,7 @@ export const PageNavigationLink = React.memo(
                 {viewStyle === 'sidebar' && (
                     <span className={bem('decor')} aria-hidden={true} />
                 )}
-                <span className={bem('text')}>{children}</span>
+                <Label>{children}</Label>
             </LenkeBase>
         );
     }

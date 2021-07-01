@@ -1,3 +1,4 @@
+@import (reference) '../../../global';
 @import (reference) '~nav-frontend-typografi-style/src/index';
 
 .filterExplanation {
@@ -7,11 +8,12 @@
     align-items: center;
     transition: all 0.8s linear;
     border-radius: 3px;
+    width: 100%;
+    font-size: #px-to-rem(14px) [];
 
     &--highlight {
-        background-color: @navBla;
+        background-color: @navLysBlaLighten80;
         transition: all 0.4s linear;
-        color: white;
     }
 
     &__iconWrapper {
