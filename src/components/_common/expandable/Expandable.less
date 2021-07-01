@@ -1,19 +1,28 @@
 @import (reference) '../../../global';
 
 .expandable {
+    @boxShadow: inset 0px -1px 0px 0px @navGra20;
+    @focusPadding: 0.5rem;
+    @containerPadding: 1rem;
+
     border-radius: 0;
-    border-bottom: @navGra20 1px solid;
+    box-shadow: @boxShadow;
     width: 100%;
 
     &:hover {
-        box-shadow: none;
-        .ekspanderbartPanel__hode:focus {
+        box-shadow: @boxShadow;
+    }
+
+    .ekspanderbartPanel__hode {
+        border-radius: @border-radius-base;
+
+        &:focus {
             .panel-inset-focus-mixin();
         }
     }
 
-    .ekspanderbartPanel__hode:focus {
-        .panel-inset-focus-mixin();
+    .ekspanderbartPanel__tittel {
+        font-size: #px-to-rem(20) [];
     }
 
     .ekspanderbartPanel__tittel,
@@ -23,6 +32,20 @@
 
     .ekspanderbartPanel__innhold {
         transition: visibility 250ms;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .ekspanderbartPanel__flex-wrapper {
+        margin: 0 -@containerPadding;
+    }
+
+    .ekspanderbartPanel__hode {
+        @padding: @containerPadding + @focusPadding;
+        padding-left: @padding;
+        padding-right: @padding;
+        margin: 0 -@focusPadding;
+        width: calc(100% + @focusPadding * 2);
     }
 
     &.ekspanderbartPanel--lukket {
