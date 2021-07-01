@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Notification from '../notifications/Notification';
+import React from 'react';
+import Notification from './notifications/Notification';
 import { translator } from 'translations';
 import { BEM, classNames } from '../../../utils/classnames';
 import {
@@ -7,10 +7,8 @@ import {
     ContentType,
 } from '../../../types/content-props/_content-common';
 import { getContentLanguages } from '../../../utils/languages';
-import { Button } from '../button/Button';
 import './TopContainer.less';
-import { useRouter } from 'next/router';
-import { appOrigin, xpContentPathPrefix } from '../../../utils/urls';
+import { VersionPicker } from './version-picker/VersionPicker';
 
 const bem = BEM('top-container');
 
@@ -30,9 +28,6 @@ type Props = {
 };
 
 export const TopContainer = ({ content }: Props) => {
-    const [versionDate, setVersionDate] = useState<string | undefined>();
-    const router = useRouter();
-
     const { __typename, notifications, language, breadcrumbs } = content;
 
     const hasDecoratorWidgets =
@@ -46,8 +41,6 @@ export const TopContainer = ({ content }: Props) => {
 
     const getLabel = translator('notifications', language);
 
-    const path = content._path.split(xpContentPathPrefix)[1];
-
     return (
         <div
             className={classNames(
@@ -58,29 +51,7 @@ export const TopContainer = ({ content }: Props) => {
                 hasDecoratorWidgets && bem(undefined, 'widgets-offset')
             )}
         >
-            <div className={bem('version-picker')}>
-                <input
-                    type={'date'}
-                    className={bem('version-picker-date')}
-                    onInput={(e: any) => {
-                        setVersionDate(e.target.value);
-                    }}
-                />
-                <Button
-                    kompakt={true}
-                    mini={true}
-                    className={bem('version-picker-button')}
-                    onClick={() => {
-                        if (versionDate) {
-                            router.push(
-                                `${appOrigin}/version${path}?time=${versionDate}&id=${content._id}`
-                            );
-                        }
-                    }}
-                >
-                    {'Hent side fra denne datoen'}
-                </Button>
-            </div>
+            <VersionPicker content={content} />
             {showNotifications && (
                 <section
                     className={bem('notifications')}

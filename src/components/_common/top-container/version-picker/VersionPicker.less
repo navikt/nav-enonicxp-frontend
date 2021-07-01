@@ -1,0 +1,54 @@
+@import (reference) '../../../../global';
+
+.version-picker {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__toggle {
+    }
+
+    &__toggle-chevron {
+        margin-left: 0.5rem;
+    }
+
+    &__selector-wrapper {
+        position: relative;
+        top: 0.5rem;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    &__selector {
+        position: absolute;
+        visibility: hidden;
+        max-height: 0;
+        overflow: hidden;
+
+        display: flex;
+        align-items: center;
+
+        transition-property: visibility, max-height, padding;
+        transition-duration: 0.15s;
+        transition-timing-function: linear;
+
+        background-color: white;
+        border-radius: @border-radius-base;
+        box-shadow: 0 0 0 2px @navGronnLighten60 inset;
+        padding: 0 2rem;
+
+        &--open {
+            visibility: visible;
+            max-height: 5rem;
+            padding: 2rem;
+        }
+    }
+
+    &__date {
+        margin-right: 1rem;
+    }
+}
