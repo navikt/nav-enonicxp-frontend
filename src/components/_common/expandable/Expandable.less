@@ -8,39 +8,23 @@
 
     &:hover {
         box-shadow: @boxShadow;
-
-        .ekspanderbartPanel__hode:focus {
-            .panel-inset-focus-mixin();
-        }
-
-        .ekspanderbartPanel__tittel {
-            text-decoration: none;
-        }
     }
 
     .ekspanderbartPanel__hode {
         border-radius: @border-radius-base;
-        &:hover {
-            .ekspanderbartPanel__tittel {
-                text-decoration: none;
-                border-bottom-color: @navBla;
-            }
-        }
 
         &:focus {
             .panel-inset-focus-mixin();
         }
     }
 
+    .ekspanderbartPanel__tittel {
+        font-size: #px-to-rem(20) [];
+    }
+
     .ekspanderbartPanel__tittel,
     .ekspanderbartPanel__indikator {
         color: @navBla;
-    }
-
-    .ekspanderbartPanel__tittel {
-        font-size: 1.125rem;
-        border-bottom: 1px transparent solid;
-        transition: border-bottom-color 0.12s ease-out;
     }
 
     .ekspanderbartPanel__innhold {
