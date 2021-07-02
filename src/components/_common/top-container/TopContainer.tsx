@@ -38,6 +38,8 @@ export const TopContainer = ({ content }: Props) => {
     const showNotifications =
         !hideNotificationsForContentTypes[__typename] &&
         notifications?.length > 0;
+    const showVersionPicker =
+        content.editMode || (content.serverEnv && content.serverEnv !== 'prod');
 
     const getLabel = translator('notifications', language);
 
@@ -51,7 +53,7 @@ export const TopContainer = ({ content }: Props) => {
                 hasDecoratorWidgets && bem(undefined, 'widgets-offset')
             )}
         >
-            <VersionPicker content={content} />
+            {showVersionPicker && <VersionPicker content={content} />}
             {showNotifications && (
                 <section
                     className={bem('notifications')}

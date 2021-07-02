@@ -56,10 +56,6 @@ export const VersionPicker = ({ content }: Props) => {
         }
     }, [content]);
 
-    if (!content.editMode && content.serverEnv === 'prod') {
-        return null;
-    }
-
     const requestedTimeFormatted = formatDateTime(dateTimeRequested);
     const contentTimeFormatted = formatDateTime(contentTime);
     const url = getUrl(content, dateSelected, timeSelected);
