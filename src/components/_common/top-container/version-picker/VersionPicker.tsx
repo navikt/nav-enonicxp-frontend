@@ -81,7 +81,10 @@ export const VersionPicker = ({ content }: Props) => {
             <LenkeStandalone
                 withChevron={false}
                 href={'#'}
-                onClick={() => setSelectorIsOpen(!selectorIsOpen)}
+                onClick={(e) => {
+                    e.preventDefault();
+                    setSelectorIsOpen(!selectorIsOpen);
+                }}
                 className={bem('toggle')}
             >
                 {'Vis historisk innhold'}
