@@ -74,13 +74,13 @@ export const VersionPicker = ({ content }: Props) => {
                         href={content.livePath}
                         className={bem('back-to-live')}
                     >
-                        {'Tilbake til live'}
+                        {'Tilbake til dagens'}
                     </LenkeStandalone>
                 </div>
             )}
             <LenkeStandalone
                 withChevron={false}
-                href={'#'}
+                href={''}
                 onClick={(e) => {
                     e.preventDefault();
                     setSelectorIsOpen(!selectorIsOpen);
