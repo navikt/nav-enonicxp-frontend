@@ -77,6 +77,7 @@ export type ContentProps = {
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     notifications?: NotificationProps[];
     pathMap?: PathMap;
+    livePath?: string;
 } & MediaContentCommonProps;
 
 export type PathMap = { [key: string]: string };

@@ -67,11 +67,20 @@ export const VersionPicker = ({ content }: Props) => {
     return (
         <div className={bem()}>
             {!waitingForContent && dateTimeRequested && (
-                <Normaltekst className={bem('status')}>
-                    {reqTimeIsValid
-                        ? `Viser innhold fra ${requestedTimeFormatted}`
-                        : `Innhold fra valgt tid ${requestedTimeFormatted} er ikke tilgjengelig - viser innhold fra ${contentTimeFormatted}`}
-                </Normaltekst>
+                <div className={bem('status')}>
+                    <Normaltekst>
+                        {reqTimeIsValid
+                            ? `Viser innhold fra ${requestedTimeFormatted}`
+                            : `Innhold fra valgt tid ${requestedTimeFormatted} er ikke tilgjengelig - viser innhold fra ${contentTimeFormatted}`}
+                    </Normaltekst>
+                    <LenkeStandalone
+                        withChevron={false}
+                        href={content.livePath}
+                        className={bem('back-to-live')}
+                    >
+                        {'Tilbake til live'}
+                    </LenkeStandalone>
+                </div>
             )}
             <LenkeStandalone
                 withChevron={false}
