@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '../../button/Button';
-import { appOrigin, xpContentPathPrefix } from '../../../../utils/urls';
+import { xpContentPathPrefix, xpDraftPathPrefix } from '../../../../utils/urls';
 import { BEM, classNames } from '../../../../utils/classnames';
 import { useRouter } from 'next/router';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { LenkeStandalone } from '../../lenke/LenkeStandalone';
 import NavFrontendChevron from 'nav-frontend-chevron';
-import './VersionPicker.less';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { formatDateTime } from '../../../../utils/datetime';
+import './VersionPicker.less';
 
 const bem = BEM('version-picker');
+
+const getUrl = (
+    content: ContentProps,
+    dateSelected: string,
+    timeSelected: string
+) => {
+    const contentPath = content._path.split(xpContentPathPrefix)[1];
+    const query = `?time=${dateSelected}T${timeSelected}&id=${content._id}`;
+
+    return content.editMode
+        ? `${xpDraftPathPrefix}${query}`
+        : `/version${contentPath}${query}`;
+};
 
 type Props = {
     content: ContentProps;
@@ -43,14 +56,13 @@ export const VersionPicker = ({ content }: Props) => {
         }
     }, [content]);
 
-    if (process.env.ENV === 'prod' && !content.editMode) {
+    if (!content.editMode && content.serverEnv === 'prod') {
         return null;
     }
 
-    const path = content._path.split(xpContentPathPrefix)[1];
     const requestedTimeFormatted = formatDateTime(dateTimeRequested);
     const contentTimeFormatted = formatDateTime(contentTime);
-    const requestUrl = `${appOrigin}/version${path}?time=${dateSelected}T${timeSelected}&id=${content._id}`;
+    const url = getUrl(content, dateSelected, timeSelected);
 
     return (
         <div className={bem()}>
@@ -101,16 +113,18 @@ export const VersionPicker = ({ content }: Props) => {
                         />
                     </div>
                     <Button
+                        href={url}
                         kompakt={true}
                         mini={true}
                         className={bem('button')}
-                        onClick={() => {
-                            if (dateSelected) {
-                                router.push(requestUrl);
-                                setSelectorIsOpen(false);
-                                setWaitingForContent(true);
-                                setDateTimeRequested(dateSelected);
-                            }
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setSelectorIsOpen(false);
+                            setWaitingForContent(true);
+                            setDateTimeRequested(
+                                `${dateSelected}T${timeSelected}`
+                            );
+                            router.push(url);
                         }}
                     >
                         {'Hent historisk innhold'}

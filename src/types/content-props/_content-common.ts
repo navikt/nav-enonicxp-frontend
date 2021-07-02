@@ -51,8 +51,7 @@ export enum ContentType {
     ToolsPage = 'no_nav_navno_ToolsPage',
 }
 
-export type ContentProps = {
-    __typename: ContentType;
+export type MediaContentCommonProps = {
     _id: XpContentRef;
     _path: XpContentRef;
     createdTime: string;
@@ -63,17 +62,22 @@ export type ContentProps = {
         first?: string;
         from?: string;
     };
+    editMode?: boolean;
+    timeRequested?: string;
+    serverEnv?: string;
+};
+
+export type ContentProps = {
+    __typename: ContentType;
     children?: ContentProps[];
     parent?: ContentProps;
     data?: ContentData;
     page?: LayoutProps;
-    editMode?: boolean;
     editorView?: 'inline' | 'preview' | 'edit';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     notifications?: NotificationProps[];
     pathMap?: PathMap;
-    timeRequested?: string;
-};
+} & MediaContentCommonProps;
 
 export type PathMap = { [key: string]: string };
 

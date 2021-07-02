@@ -50,6 +50,7 @@ export const fetchPage = async (
               ...content,
               editMode: isDraft,
               ...(timeRequested && { timeRequested: timeRequested }),
+              serverEnv: process.env.ENV,
           }
         : makeErrorProps(idOrPath, `Ukjent feil`, 500);
 };

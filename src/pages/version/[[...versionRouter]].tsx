@@ -21,10 +21,11 @@ const noContentToRenderResponse = (path: string, msg: string) => {
     };
 };
 
-const fetchVersionPageProps = async (
-    context: GetServerSidePropsContext<ParsedUrlQuery>
+export const fetchVersionPageProps = async (
+    context: GetServerSidePropsContext<ParsedUrlQuery>,
+    isDraft: boolean
 ) => {
-    const { time, id, draft } = context.query;
+    const { time, id } = context.query;
 
     const xpPath = routerQueryToXpPathOrId(
         id || context?.params?.versionRouter
@@ -32,7 +33,7 @@ const fetchVersionPageProps = async (
 
     const content = await fetchPage(
         xpPath,
-        draft === 'true',
+        isDraft,
         process.env.SERVICE_SECRET,
         getValidDateTime(time)
     );
@@ -68,11 +69,11 @@ const prodRouter = async (context) => {
         };
     }
 
-    return fetchVersionPageProps(context);
+    return fetchVersionPageProps(context, false);
 };
 
 const devRouter = async (context) => {
-    return fetchVersionPageProps(context);
+    return fetchVersionPageProps(context, false);
 };
 
 export const getServerSideProps: GetServerSideProps =

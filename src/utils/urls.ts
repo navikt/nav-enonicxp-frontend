@@ -31,6 +31,7 @@ const internalPaths = [
     'sykepenger-korona',
     'beskjed',
     'person\\/kontakt-oss(?!(\\/(nb|en))?\\/(tilbakemeldinger|finnkontor|samegiella|chat))',
+    'version',
 ];
 
 // Matches both relative and absolute urls which points to content internal to the app

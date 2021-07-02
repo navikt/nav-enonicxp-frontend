@@ -1,6 +1,5 @@
-import { XpContentRef } from '../utils/urls';
-import { Language } from '../translations';
 import { XpResponseProps } from '../utils/fetch-content';
+import { MediaContentCommonProps } from './content-props/_content-common';
 
 export enum MediaType {
     Archive = 'media_Archive',
@@ -20,20 +19,8 @@ export enum MediaType {
 
 export type MediaProps = {
     __typename: MediaType;
-    _id: XpContentRef;
-    _path: XpContentRef;
-    createdTime: string;
-    modifiedTime: string;
-    displayName: string;
-    language: Language;
-    publish?: {
-        first?: string;
-        from?: string;
-    };
     mediaUrl: string;
-    editMode?: boolean;
-    timeRequested?: string;
-};
+} & MediaContentCommonProps;
 
 export type VectorImage = {
     __typename: MediaType.Vector;
