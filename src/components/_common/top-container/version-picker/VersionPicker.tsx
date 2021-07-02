@@ -84,7 +84,7 @@ export const VersionPicker = ({ content }: Props) => {
                 onClick={() => setSelectorIsOpen(!selectorIsOpen)}
                 className={bem('toggle')}
             >
-                {'Historisk innhold'}
+                {'Vis historisk innhold'}
                 <NavFrontendChevron
                     type={selectorIsOpen ? 'opp' : 'ned'}
                     className={bem('toggle-chevron')}
