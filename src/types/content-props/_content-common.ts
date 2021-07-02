@@ -72,6 +72,7 @@ export type ContentProps = {
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     notifications?: NotificationProps[];
     pathMap?: PathMap;
+    timeRequested?: string;
 };
 
 export type PathMap = { [key: string]: string };

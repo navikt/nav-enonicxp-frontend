@@ -36,11 +36,20 @@ export const fetchPage = async (
     idOrPath: string,
     isDraft = false,
     secret: string,
-    time?: string
+    timeRequested?: string
 ): Promise<XpResponseProps> => {
-    const content = await fetchSiteContent(idOrPath, isDraft, secret, time);
+    const content = await fetchSiteContent(
+        idOrPath,
+        isDraft,
+        secret,
+        timeRequested
+    );
 
     return content?.__typename
-        ? { ...content, editMode: isDraft }
+        ? {
+              ...content,
+              editMode: isDraft,
+              ...(timeRequested && { timeRequested: timeRequested }),
+          }
         : makeErrorProps(idOrPath, `Ukjent feil`, 500);
 };

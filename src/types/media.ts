@@ -32,6 +32,7 @@ export type MediaProps = {
     };
     mediaUrl: string;
     editMode?: boolean;
+    timeRequested?: string;
 };
 
 export type VectorImage = {
