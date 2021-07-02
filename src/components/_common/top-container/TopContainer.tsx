@@ -38,6 +38,7 @@ export const TopContainer = ({ content }: Props) => {
     const showNotifications =
         !hideNotificationsForContentTypes[__typename] &&
         notifications?.length > 0;
+
     const showVersionPicker =
         content.editMode || (content.serverEnv && content.serverEnv !== 'prod');
 

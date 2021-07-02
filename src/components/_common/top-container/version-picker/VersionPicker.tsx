@@ -67,7 +67,7 @@ export const VersionPicker = ({ content }: Props) => {
                     <Normaltekst>
                         {reqTimeIsValid
                             ? `Viser innhold fra ${requestedTimeFormatted}`
-                            : `Innhold fra valgt tid ${requestedTimeFormatted} er ikke tilgjengelig - viser innhold fra ${contentTimeFormatted}`}
+                            : `Innhold fra valgt tid ${requestedTimeFormatted} finnes ikke - viser innhold fra ${contentTimeFormatted}`}
                     </Normaltekst>
                     <LenkeStandalone
                         withChevron={false}
@@ -84,7 +84,7 @@ export const VersionPicker = ({ content }: Props) => {
                 onClick={() => setSelectorIsOpen(!selectorIsOpen)}
                 className={bem('toggle')}
             >
-                {'Velg historisk innhold'}
+                {'Historisk innhold'}
                 <NavFrontendChevron
                     type={selectorIsOpen ? 'opp' : 'ned'}
                     className={bem('toggle-chevron')}
@@ -98,6 +98,7 @@ export const VersionPicker = ({ content }: Props) => {
                     )}
                 >
                     <div className={bem('input')}>
+                        <Normaltekst>{'Velg tid og dato:'}</Normaltekst>
                         <input
                             type={'time'}
                             className={bem('time')}
@@ -132,7 +133,7 @@ export const VersionPicker = ({ content }: Props) => {
                             router.push(url);
                         }}
                     >
-                        {'Hent historisk innhold'}
+                        {'Hent innhold'}
                     </Button>
                 </div>
             </div>
