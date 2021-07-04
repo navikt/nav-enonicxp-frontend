@@ -39,9 +39,11 @@ type Props = {
 };
 
 export const VersionPicker = ({ content }: Props) => {
-    const contentDateTime = content.modifiedTime || content.createdTime;
-    const [contentDate, contentTime] = contentDateTime.split(/[T.]/);
+    const [contentDate, contentTime] = (
+        content.modifiedTime || content.createdTime
+    ).split(/[T.]/);
     const [currentDate, currentTime] = new Date().toISOString().split(/[T.]/);
+    const contentDateTime = `${contentDate}T${contentTime}`;
 
     const [waitingForContent, setWaitingForContent] = useState(false);
     const [selectorIsOpen, setSelectorIsOpen] = useState(false);
@@ -72,8 +74,8 @@ export const VersionPicker = ({ content }: Props) => {
         }
     }, [content]);
 
-    const requestedTimeFormatted = formatDateTime(dateTimeRequested);
-    const contentTimeFormatted = formatDateTime(contentDateTime);
+    const requestedTimeFormatted = formatDateTime(`${dateTimeRequested}Z`);
+    const contentTimeFormatted = formatDateTime(`${contentDateTime}Z`);
     const url = getUrl(content, dateSelected, timeSelected, branchSelected);
 
     return (
