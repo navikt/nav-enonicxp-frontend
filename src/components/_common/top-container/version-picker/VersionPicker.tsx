@@ -135,7 +135,7 @@ export const VersionPicker = ({ content }: Props) => {
                                     setDateSelected(e.target.value);
                                 }}
                                 min={startDate}
-                                max={contentDate}
+                                max={currentDate}
                                 value={dateSelected}
                             />
                         </div>
