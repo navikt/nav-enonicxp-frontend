@@ -51,7 +51,7 @@ export const PageBase = (props: PageProps) => {
 
     const { content } = props;
 
-    globalState.isDraft = !!content.editMode;
+    globalState.isDraft = !!content.isDraft;
 
     return (
         <PageWrapper content={content}>

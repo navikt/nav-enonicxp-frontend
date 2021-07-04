@@ -40,7 +40,7 @@ export const TopContainer = ({ content }: Props) => {
         notifications?.length > 0;
 
     const showVersionPicker =
-        content.editMode || (content.serverEnv && content.serverEnv !== 'prod');
+        content.isDraft || (content.serverEnv && content.serverEnv !== 'prod');
 
     const getLabel = translator('notifications', language);
 

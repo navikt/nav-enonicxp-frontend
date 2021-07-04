@@ -23,16 +23,13 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
     switch (componentProps.type) {
         case ComponentType.Text:
             return (
-                <Text
-                    textProps={componentProps}
-                    editMode={pageProps.editMode}
-                />
+                <Text textProps={componentProps} editMode={pageProps.isDraft} />
             );
         case ComponentType.Image:
             return (
                 <Image
                     imageProps={componentProps}
-                    editMode={pageProps.editMode}
+                    editMode={pageProps.isDraft}
                 />
             );
         case ComponentType.Layout:

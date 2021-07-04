@@ -62,7 +62,7 @@ export type MediaContentCommonProps = {
         first?: string;
         from?: string;
     };
-    editMode?: boolean;
+    isDraft?: boolean;
     timeRequested?: string;
     serverEnv?: string;
 };

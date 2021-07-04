@@ -29,7 +29,7 @@ export const LayoutContainer = ({
     const commonLayoutStyle = getCommonLayoutStyle(config);
     const paddingConfig = config?.paddingSides?._selected;
 
-    const editorProps = pageProps.editMode
+    const editorProps = pageProps.isDraft
         ? {
               'data-portal-component-type': type,
               'data-portal-component': path,

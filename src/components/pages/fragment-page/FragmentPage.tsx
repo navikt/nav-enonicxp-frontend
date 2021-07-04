@@ -10,7 +10,7 @@ import './FragmentPage.less';
 const bem = BEM('fragment-page');
 
 export const FragmentPage = (props: FragmentPageProps) => {
-    if (!props.editMode) {
+    if (!props.isDraft) {
         return <ErrorPage {...make404Props(props._path)} />;
     }
 

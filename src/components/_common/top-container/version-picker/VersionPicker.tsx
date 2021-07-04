@@ -27,7 +27,7 @@ const getUrl = (
     const contentPath = content._path.split(xpContentPathPrefix)[1];
     const query = `?time=${date}T${time}&id=${content._id}&branch=${branch}`;
 
-    return content.editMode
+    return content.editorView
         ? `${xpDraftPathPrefix}${query}`
         : `/version${contentPath}${query}`;
 };
@@ -50,7 +50,7 @@ export const VersionPicker = ({ content }: Props) => {
         contentTime || currentTime
     );
     const [branchSelected, setBranchSelected] = useState<Branch>(
-        content.editMode ? 'draft' : 'master'
+        content.isDraft ? 'draft' : 'master'
     );
 
     const [dateTimeRequested, setDateTimeRequested] = useState<

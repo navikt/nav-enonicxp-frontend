@@ -50,7 +50,7 @@ const parseHtml = (htmlString: string) => {
 export const LargeTablePage = (contentData: LargeTableProps) => {
     const html = contentData.data?.text;
 
-    return html || contentData.editMode ? (
+    return html || contentData.isDraft ? (
         <div className={'large-table-page'}>
             {html ? parseHtml(html.processedHtml) : ''}
         </div>
