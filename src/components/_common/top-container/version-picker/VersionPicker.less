@@ -39,9 +39,11 @@
         visibility: hidden;
         max-height: 0;
         overflow: hidden;
+        max-width: 500px;
 
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        justify-content: center;
 
         transition-property: visibility, max-height, padding;
         transition-duration: 0.15s;
@@ -54,15 +56,20 @@
 
         &--open {
             visibility: visible;
-            max-height: 8rem;
+            max-height: 16rem;
             padding: 1rem 2rem;
         }
     }
 
     &__input {
         display: flex;
+    }
+
+    &__date-time-input {
+        display: flex;
         flex-direction: column;
         margin-right: 1rem;
+        width: 50%;
     }
 
     &__time {
@@ -74,11 +81,16 @@
 
     &__submit {
         align-self: flex-end;
+        width: 50%;
     }
 
     &__button {
         margin-top: 0.5rem;
         width: 100%;
+    }
+
+    &__help-text {
+        //width: 100%;
     }
 
     &__spinner-container {

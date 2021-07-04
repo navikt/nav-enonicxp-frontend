@@ -7,7 +7,7 @@ import { ContentProps } from '../../../../types/content-props/_content-common';
 import { LenkeStandalone } from '../../lenke/LenkeStandalone';
 import NavFrontendChevron from 'nav-frontend-chevron';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertekst, Undertittel } from 'nav-frontend-typografi';
 import { formatDateTime } from '../../../../utils/datetime';
 import { Checkbox } from 'nav-frontend-skjema';
 import './VersionPicker.less';
@@ -111,56 +111,66 @@ export const VersionPicker = ({ content }: Props) => {
                     )}
                 >
                     <div className={bem('input')}>
-                        <Normaltekst>{'Velg tid og dato:'}</Normaltekst>
-                        <input
-                            type={'time'}
-                            className={bem('time')}
-                            onInput={(e: any) => {
-                                setTimeSelected(e.target.value);
-                            }}
-                            value={timeSelected.slice(0, 5)}
-                        />
-                        <input
-                            type={'date'}
-                            className={bem('date')}
-                            onInput={(e: any) => {
-                                setDateSelected(e.target.value);
-                            }}
-                            min={'2019-12-01'}
-                            max={currentDate}
-                            value={dateSelected}
-                        />
+                        <div className={bem('date-time-input')}>
+                            <Normaltekst>{'Velg tid og dato:'}</Normaltekst>
+                            <input
+                                type={'time'}
+                                className={bem('time')}
+                                onInput={(e: any) => {
+                                    setTimeSelected(e.target.value);
+                                }}
+                                value={timeSelected.slice(0, 5)}
+                            />
+                            <input
+                                type={'date'}
+                                className={bem('date')}
+                                onInput={(e: any) => {
+                                    setDateSelected(e.target.value);
+                                }}
+                                min={'2019-12-01'}
+                                max={currentDate}
+                                value={dateSelected}
+                            />
+                        </div>
+                        <div className={bem('submit')}>
+                            <Checkbox
+                                label={'Kun publisert innhold'}
+                                checked={branchSelected === 'master'}
+                                id={'version-branch-input'}
+                                onChange={(
+                                    e: React.ChangeEvent<HTMLInputElement>
+                                ) => {
+                                    setBranchSelected(
+                                        e.target.checked ? 'master' : 'draft'
+                                    );
+                                }}
+                            />
+                            <Button
+                                href={url}
+                                kompakt={true}
+                                mini={true}
+                                className={bem('button')}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setSelectorIsOpen(false);
+                                    setWaitingForContent(true);
+                                    setDateTimeRequested(
+                                        `${dateSelected}T${timeSelected}`
+                                    );
+                                    router.push(url);
+                                }}
+                            >
+                                {'Hent innhold'}
+                            </Button>
+                        </div>
                     </div>
-                    <div className={bem('submit')}>
-                        <Checkbox
-                            label={'Kun publisert innhold'}
-                            checked={branchSelected === 'master'}
-                            id={'version-branch-input'}
-                            onChange={(
-                                e: React.ChangeEvent<HTMLInputElement>
-                            ) => {
-                                setBranchSelected(
-                                    e.target.checked ? 'master' : 'draft'
-                                );
-                            }}
-                        />
-                        <Button
-                            href={url}
-                            kompakt={true}
-                            mini={true}
-                            className={bem('button')}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setSelectorIsOpen(false);
-                                setWaitingForContent(true);
-                                setDateTimeRequested(
-                                    `${dateSelected}T${timeSelected}`
-                                );
-                                router.push(url);
-                            }}
-                        >
-                            {'Hent innhold'}
-                        </Button>
+                    <div className={bem('help-text')}>
+                        <hr />
+                        <Undertekst>
+                            {
+                                'Av tekniske årsaker går denne versjonshistorikken kun tilbake til desember 2019. Ta kontakt med redaksjonen dersom du har behov for tidligere historikk. Vi jobber med å integrere dette i denne løsningen.'
+                            }
+                        </Undertekst>
                     </div>
                 </div>
             </div>
