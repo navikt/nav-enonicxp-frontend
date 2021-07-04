@@ -38,12 +38,17 @@ type Props = {
 
 export const VersionPicker = ({ content }: Props) => {
     const contentDateTime = content.modifiedTime || content.createdTime;
-    const [currentDate, currentTime] = contentDateTime.split(/[T.]/);
+    const [contentDate, contentTime] = contentDateTime.split(/[T.]/);
+    const [currentDate, currentTime] = new Date().toISOString().split(/[T.]/);
 
     const [waitingForContent, setWaitingForContent] = useState(false);
     const [selectorIsOpen, setSelectorIsOpen] = useState(false);
-    const [dateSelected, setDateSelected] = useState(currentDate);
-    const [timeSelected, setTimeSelected] = useState(currentTime);
+    const [dateSelected, setDateSelected] = useState(
+        contentDate || currentDate
+    );
+    const [timeSelected, setTimeSelected] = useState(
+        contentTime || currentTime
+    );
     const [branchSelected, setBranchSelected] = useState<Branch>(
         content.editMode ? 'draft' : 'master'
     );
@@ -130,7 +135,7 @@ export const VersionPicker = ({ content }: Props) => {
                                     setDateSelected(e.target.value);
                                 }}
                                 min={startDate}
-                                max={currentDate}
+                                max={contentDate}
                                 value={dateSelected}
                             />
                         </div>
