@@ -16,6 +16,8 @@ const bem = BEM('version-picker');
 
 type Branch = 'master' | 'draft';
 
+const startDate = '2019-12-01';
+
 const getUrl = (
     content: ContentProps,
     date: string,
@@ -116,7 +118,7 @@ export const VersionPicker = ({ content }: Props) => {
                             <input
                                 type={'time'}
                                 className={bem('time')}
-                                onInput={(e: any) => {
+                                onChange={(e) => {
                                     setTimeSelected(e.target.value);
                                 }}
                                 value={timeSelected.slice(0, 5)}
@@ -124,10 +126,10 @@ export const VersionPicker = ({ content }: Props) => {
                             <input
                                 type={'date'}
                                 className={bem('date')}
-                                onInput={(e: any) => {
+                                onChange={(e) => {
                                     setDateSelected(e.target.value);
                                 }}
-                                min={'2019-12-01'}
+                                min={startDate}
                                 max={currentDate}
                                 value={dateSelected}
                             />
@@ -137,9 +139,7 @@ export const VersionPicker = ({ content }: Props) => {
                                 label={'Kun publisert innhold'}
                                 checked={branchSelected === 'master'}
                                 id={'version-branch-input'}
-                                onChange={(
-                                    e: React.ChangeEvent<HTMLInputElement>
-                                ) => {
+                                onChange={(e) => {
                                     setBranchSelected(
                                         e.target.checked ? 'master' : 'draft'
                                     );
