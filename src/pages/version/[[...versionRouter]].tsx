@@ -73,8 +73,7 @@ const prodRouter = async (context) => {
 };
 
 const devRouter = async (context) => {
-    const { branch } = context.query;
-    return fetchVersionPageProps(context, branch === 'draft');
+    return fetchVersionPageProps(context, false);
 };
 
 export const getServerSideProps: GetServerSideProps =

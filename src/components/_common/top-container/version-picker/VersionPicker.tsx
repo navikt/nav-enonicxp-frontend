@@ -25,7 +25,9 @@ const getUrl = (
     branch: Branch
 ) => {
     const contentPath = content._path.split(xpContentPathPrefix)[1];
-    const query = `?time=${date}T${time}&id=${content._id}&branch=${branch}`;
+    const query = `?time=${date}T${time}&id=${content._id}${
+        branch === 'draft' ? '&branch=draft' : ''
+    }`;
 
     return content.editorView
         ? `${xpDraftPathPrefix}${query}`
@@ -140,16 +142,20 @@ export const VersionPicker = ({ content }: Props) => {
                             />
                         </div>
                         <div className={bem('submit')}>
-                            <Checkbox
-                                label={'Kun publisert innhold'}
-                                checked={branchSelected === 'master'}
-                                id={'version-branch-input'}
-                                onChange={(e) => {
-                                    setBranchSelected(
-                                        e.target.checked ? 'master' : 'draft'
-                                    );
-                                }}
-                            />
+                            {content.editorView && (
+                                <Checkbox
+                                    label={'Kun publisert innhold'}
+                                    checked={branchSelected === 'master'}
+                                    id={'version-branch-input'}
+                                    onChange={(e) => {
+                                        setBranchSelected(
+                                            e.target.checked
+                                                ? 'master'
+                                                : 'draft'
+                                        );
+                                    }}
+                                />
+                            )}
                             <Button
                                 href={url}
                                 kompakt={true}
@@ -169,14 +175,16 @@ export const VersionPicker = ({ content }: Props) => {
                             </Button>
                         </div>
                     </div>
-                    <div className={bem('help-text')}>
-                        <hr />
-                        <Undertekst>
-                            {
-                                'Av tekniske årsaker går denne versjonshistorikken kun tilbake til desember 2019. Ta kontakt med redaksjonen dersom du har behov for tidligere historikk. Vi jobber med å integrere dette i denne løsningen.'
-                            }
-                        </Undertekst>
-                    </div>
+                    {content.editorView && (
+                        <div className={bem('help-text')}>
+                            <hr />
+                            <Undertekst>
+                                {
+                                    'Av tekniske årsaker går denne versjonshistorikken kun tilbake til desember 2019. Ta kontakt med redaksjonen dersom du har behov for tidligere historikk. Vi jobber med å integrere dette i denne løsningen.'
+                                }
+                            </Undertekst>
+                        </div>
+                    )}
                 </div>
             </div>
             {waitingForContent && (
