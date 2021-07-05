@@ -58,7 +58,11 @@ export const FilterExplanation = ({
             )}
         >
             <div className={bem('iconWrapper')}>
-                {showHighlight ? <InformationFilled /> : <Information />}
+                {showHighlight ? (
+                    <InformationFilled color="#006A23" />
+                ) : (
+                    <Information />
+                )}
             </div>
             <div className={bem('text')}>{filterExplanation}</div>
         </div>

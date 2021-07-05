@@ -1,17 +1,19 @@
 @import (reference) '../../../global';
 
 .filterExplanation {
-    margin: 0.5rem 0.5rem 0.5rem -0.5rem;
-    padding: 0.3rem 0.3rem 0.3rem 0.5rem;
+    margin: 0.5rem 0rem 0.5rem -0.5rem;
+    padding: 0.8rem 0.3rem 0.8rem 0.5rem;
     display: flex;
     align-items: center;
     transition: all 0.8s linear;
     border-radius: 3px;
-    width: 100%;
+    width: calc(100% + 0.5rem);
     font-size: #px-to-rem(14px) [];
+    border: 1px solid transparent;
 
     &--highlight {
-        background-color: @navLysBlaLighten80;
+        background-color: @navGronnLighten80;
+        border: 1px solid @navGronn;
         transition: all 0.4s linear;
     }
 
