@@ -98,9 +98,9 @@ export const VersionPicker = ({ content }: Props) => {
             )}
             <LenkeStandalone
                 withChevron={false}
-                href={''}
+                href={'#'}
                 onClick={(e) => {
-                    if (content.editorView === 'inline') {
+                    if (content.editorView) {
                         e.stopPropagation();
                     }
                     e.preventDefault();
@@ -164,6 +164,9 @@ export const VersionPicker = ({ content }: Props) => {
                                 mini={true}
                                 className={bem('button')}
                                 onClick={(e) => {
+                                    if (content.editorView === 'inline') {
+                                        e.stopPropagation();
+                                    }
                                     e.preventDefault();
                                     setSelectorIsOpen(false);
                                     setWaitingForContent(true);
