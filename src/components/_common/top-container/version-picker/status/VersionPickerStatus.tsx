@@ -26,7 +26,7 @@ export const VersionPickerStatus = ({
             <Normaltekst>
                 {requestedUnixTime >= contentUnixTime
                     ? `Viser innhold fra ${contentTimeFormatted}`
-                    : `Innhold fra valgt tid ${contentTimeFormatted} finnes ikke - viser innhold fra ${requestedTimeFormatted}`}
+                    : `Innhold fra valgt tid ${requestedTimeFormatted} finnes ikke - viser innhold fra ${contentTimeFormatted}`}
                 {' - '}
                 <LenkeStandalone withChevron={false} href={livePath}>
                     {'Tilbake til nåtid'}
