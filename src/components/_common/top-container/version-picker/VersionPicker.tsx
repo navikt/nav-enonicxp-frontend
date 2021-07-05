@@ -49,7 +49,7 @@ export const VersionPicker = ({ content }: Props) => {
     const [branchSelected, setBranchSelected] = useState<Branch>(
         content.isDraft ? 'draft' : 'master'
     );
-    const [dateTimeRequested, setDateTimeRequested] = useState<
+    const [dateTimeSelected, setDateTimeSelected] = useState<
         string | undefined
     >(content.timeRequested);
 
@@ -58,7 +58,7 @@ export const VersionPicker = ({ content }: Props) => {
     useEffect(() => {
         const { timeRequested } = content;
 
-        setDateTimeRequested(timeRequested);
+        setDateTimeSelected(timeRequested);
         setWaitingForContent(false);
 
         // Reset the current date/time selection when receiving live content
@@ -73,10 +73,10 @@ export const VersionPicker = ({ content }: Props) => {
 
     return (
         <div className={bem()}>
-            {!waitingForContent && dateTimeRequested && (
+            {!waitingForContent && dateTimeSelected && (
                 <VersionPickerStatus
                     content={content}
-                    requestedDateTime={dateTimeRequested}
+                    requestedDateTime={dateTimeSelected}
                 />
             )}
             <LenkeStandalone
@@ -153,7 +153,7 @@ export const VersionPicker = ({ content }: Props) => {
                                     e.preventDefault();
                                     setSelectorIsOpen(false);
                                     setWaitingForContent(true);
-                                    setDateTimeRequested(
+                                    setDateTimeSelected(
                                         `${dateSelected}T${timeSelected}`
                                     );
                                     router.push(url);

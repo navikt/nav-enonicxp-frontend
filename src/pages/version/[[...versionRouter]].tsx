@@ -17,7 +17,7 @@ const getValidDateTime = (dateTime: string | string[]) => {
 // Using error-page for now
 const noContentToRenderResponse = (path: string, msg: string) => {
     return {
-        props: makeErrorProps(path, msg, 200),
+        props: { content: makeErrorProps(path, msg, 200) },
     };
 };
 
