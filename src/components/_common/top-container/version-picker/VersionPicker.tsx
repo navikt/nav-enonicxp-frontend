@@ -10,6 +10,7 @@ import NavFrontendSpinner from 'nav-frontend-spinner';
 import { Normaltekst, Undertekst, Undertittel } from 'nav-frontend-typografi';
 import { Checkbox } from 'nav-frontend-skjema';
 import { VersionPickerStatus } from './status/VersionPickerStatus';
+import { getCurrentDateAndTime } from '../../../../utils/datetime';
 import './VersionPicker.less';
 
 const bem = BEM('version-picker');
@@ -39,24 +40,15 @@ type Props = {
 };
 
 export const VersionPicker = ({ content }: Props) => {
-    const [contentDate, contentTime] = (
-        content.modifiedTime || content.createdTime
-    ).split(/[T.]/);
-    const [currentDate, currentTime] = new Date().toISOString().split(/[T.]/);
-    const contentDateTime = `${contentDate}T${contentTime}`;
+    const [initialDate, initialTime] = getCurrentDateAndTime();
 
     const [waitingForContent, setWaitingForContent] = useState(false);
     const [selectorIsOpen, setSelectorIsOpen] = useState(false);
-    const [dateSelected, setDateSelected] = useState(
-        contentDate || currentDate
-    );
-    const [timeSelected, setTimeSelected] = useState(
-        contentTime || currentTime
-    );
+    const [dateSelected, setDateSelected] = useState(initialDate);
+    const [timeSelected, setTimeSelected] = useState(initialTime);
     const [branchSelected, setBranchSelected] = useState<Branch>(
         content.isDraft ? 'draft' : 'master'
     );
-
     const [dateTimeRequested, setDateTimeRequested] = useState<
         string | undefined
     >(content.timeRequested);
@@ -64,8 +56,17 @@ export const VersionPicker = ({ content }: Props) => {
     const router = useRouter();
 
     useEffect(() => {
+        const { timeRequested } = content;
+
+        setDateTimeRequested(timeRequested);
         setWaitingForContent(false);
-        setDateTimeRequested(content.timeRequested);
+
+        // Reset the current date/time selection when receiving live content
+        if (!timeRequested) {
+            const [currentDate, currentTime] = getCurrentDateAndTime();
+            setDateSelected(currentDate);
+            setTimeSelected(currentTime);
+        }
     }, [content]);
 
     const url = getUrl(content, dateSelected, timeSelected, branchSelected);
@@ -74,9 +75,8 @@ export const VersionPicker = ({ content }: Props) => {
         <div className={bem()}>
             {!waitingForContent && dateTimeRequested && (
                 <VersionPickerStatus
-                    contentTime={contentDateTime}
+                    content={content}
                     requestedTime={dateTimeRequested}
-                    livePath={content.livePath}
                 />
             )}
             <LenkeStandalone
@@ -122,7 +122,7 @@ export const VersionPicker = ({ content }: Props) => {
                                     setDateSelected(e.target.value);
                                 }}
                                 min={startDate}
-                                max={currentDate}
+                                max={initialDate}
                                 value={dateSelected}
                             />
                         </div>

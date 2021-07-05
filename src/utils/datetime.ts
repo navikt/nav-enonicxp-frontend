@@ -22,3 +22,6 @@ export const formatDateTime = (
               .format(short ? 'lll' : 'LLL')
         : datetime;
 };
+
+export const getCurrentDateAndTime = () =>
+    new Date().toISOString().split(/[TZ.]/);

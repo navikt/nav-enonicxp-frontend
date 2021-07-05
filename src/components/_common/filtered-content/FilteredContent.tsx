@@ -18,11 +18,11 @@ export const FilteredContent = ({ filters, children }: Props) => {
     // the part should display as default. To achieve this, we need to find out
     // which categories the part belongs to in the first place.
     const relevantCategories = availableFilters.filter((category) => {
-        return category.filters.some((filter) => filters.includes(filter.id));
+        return category.filters?.some((filter) => filters.includes(filter.id));
     });
 
     const isFiltering = relevantCategories.some((category) => {
-        return category.filters.some((filter) =>
+        return category.filters?.some((filter) =>
             selectedFilters.includes(filter.id)
         );
     });
