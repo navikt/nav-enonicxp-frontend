@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { GlobalValuesProps } from '../../../types/content-props/global-values-props';
 import { BEM } from '../../../utils/classnames';
-import { Innholdstittel, Undertittel } from 'nav-frontend-typografi';
+import { Title } from '@navikt/ds-react';
 import { GVMessages } from './components/messages/GVMessages';
 import ErrorPage404 from '../../../pages/404';
 import { GVItems } from './components/values/GVItems';
@@ -34,16 +34,18 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
 
     return (
         <div className={bem()}>
-            <Innholdstittel className={bem('header')}>
+            <Title level={1} size="xl" className={bem('header')}>
                 {'Globale verdier'}
-            </Innholdstittel>
+            </Title>
             <div className={bem('content')}>
                 <div className={bem('left-col')}>
                     <div className={bem('sub-header-row')}>
                         <div className={bem('sub-header')}>
-                            <Undertittel
+                            <Title
+                                level={2}
+                                size="m"
                                 className={bem('header-category')}
-                            >{`Kategori: ${displayName}`}</Undertittel>
+                            >{`Kategori: ${displayName}`}</Title>
                         </div>
                         <GVAddItem />
                     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { BodyShort } from '@navikt/ds-react';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { BEM } from 'utils/classnames';
@@ -36,7 +36,7 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
             <ul>
                 <li>
                     {parentSelected ? (
-                        <Normaltekst>{parentTitle}</Normaltekst>
+                        <BodyShort>{parentTitle}</BodyShort>
                     ) : (
                         <LenkeBase href={parentPath} className={'lenke'}>
                             {parentTitle}
@@ -49,7 +49,7 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
                     return (
                         <li key={chapter._path}>
                             {chapterSelected ? (
-                                <Normaltekst>{chapter.displayName}</Normaltekst>
+                                <BodyShort>{chapter.displayName}</BodyShort>
                             ) : (
                                 <LenkeBase
                                     href={chapterPath}

@@ -69,7 +69,7 @@ export const OpeningHours = (props: {
     );
 
     return (
-        <table className="tabell tabell--stripet">
+        <table className="tabell tabell--stripet openinghours">
             <tbody>
                 {openingHours.map((opening, ix) => {
                     // TODO: check why stengt is a string?

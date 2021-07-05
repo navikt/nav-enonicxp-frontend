@@ -7,7 +7,7 @@ import {
     AudienceReception,
     OpeningHoursProps,
 } from '../../../../../types/content-props/office-information-props';
-import { Normaltekst, Element, Systemtittel } from 'nav-frontend-typografi';
+import { Title, BodyShort } from '@navikt/ds-react';
 import { MetaOpeningHours, OpeningHours } from './OpeningHours';
 import { BEM } from '../../../../../utils/classnames';
 import './Reception.less';
@@ -105,21 +105,23 @@ const Reception = (props: Props) => {
 
     return (
         <div className={bem()}>
-            <Systemtittel className={bem('header')}>
+            <Title level={2} size="m" className={bem('header')}>
                 Publikumsmottak
-            </Systemtittel>
+            </Title>
             {receptionArray.map((rec: AudienceReception) => {
                 const reception = formatAudienceReception(rec);
                 return (
                     <div key={rec.id}>
-                        <Element tag="h3">{reception.place}</Element>
-                        <Normaltekst>{reception.address}</Normaltekst>
+                        <Title level={3} size="s">
+                            {reception.place}
+                        </Title>
+                        <BodyShort>{reception.address}</BodyShort>
                         {/* exceptions in opening hours */}
                         {reception.openingHoursExceptions.length > 0 && (
                             <>
-                                <Element tag="h3">
+                                <Title level={4} size="s">
                                     Spesielle åpningstider
-                                </Element>
+                                </Title>
                                 <MetaOpeningHours
                                     openingHours={
                                         reception.openingHoursExceptions
@@ -139,7 +141,9 @@ const Reception = (props: Props) => {
                         {/* opening hours */}
                         {reception.openingHours.length > 0 && (
                             <>
-                                <Element tag="h3">Åpningstider</Element>
+                                <Title level={4} size="s">
+                                    Åpningstider
+                                </Title>
                                 <OpeningHours
                                     openingHours={reception.openingHours}
                                     closedLabel={getLabel('closed')}

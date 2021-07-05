@@ -1,7 +1,6 @@
 import React from 'react';
+import { Ingress } from '@navikt/ds-react';
 import { MacroIngressProps } from '../../../types/macro-props/ingress';
-import { Normaltekst } from 'nav-frontend-typografi';
-import './MacroIngress.less';
 
 export const MacroIngress = ({ config }: MacroIngressProps) => {
     if (!config?.ingress) {
@@ -10,5 +9,5 @@ export const MacroIngress = ({ config }: MacroIngressProps) => {
 
     const { body } = config.ingress;
 
-    return <Normaltekst className={'macro-ingress'}>{body}</Normaltekst>;
+    return <Ingress>{body}</Ingress>;
 };

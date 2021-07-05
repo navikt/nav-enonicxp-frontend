@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-    Innholdstittel,
-    Normaltekst,
-    Undertittel,
-    Element,
-} from 'nav-frontend-typografi';
+
+import { Title, BodyShort, Ingress, Label } from '@navikt/ds-react';
 import { BEM } from '../../../../utils/classnames';
 import { translator } from '../../../../translations';
 import './PublishingCalendar.less';
@@ -54,11 +50,13 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
     return (
         <div className={bem()}>
             <header>
-                <Innholdstittel>{props.displayName}</Innholdstittel>
+                <Title level={1} size="l">
+                    {props.displayName}
+                </Title>
                 {props.data.ingress && (
-                    <Normaltekst className={bem('preface')}>
+                    <Ingress className={bem('preface')}>
                         {props.data.ingress}
-                    </Normaltekst>
+                    </Ingress>
                 )}
             </header>
             <table className="tabell">
@@ -82,15 +80,15 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
                             <tr key={`${item.displayName}_${index}`}>
                                 <td>
                                     <time>
-                                        <Element>{item.day}</Element>
-                                        <Element>{item.month}</Element>
+                                        <div>{item.day}</div>
+                                        <div>{item.month}</div>
                                     </time>
                                 </td>
                                 <td className="eventInfo">
-                                    <Normaltekst>{item.period}</Normaltekst>
-                                    <Undertittel>
-                                        {item.displayName}
-                                    </Undertittel>
+                                    <BodyShort className="dateInfo">
+                                        {item.period}
+                                    </BodyShort>
+                                    <Label>{item.displayName}</Label>
                                 </td>
                             </tr>
                         );

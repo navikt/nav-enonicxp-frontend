@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchWithTimeout } from '../../../../utils/fetch-utils';
 import { editorPathPrefix, xpServiceUrl } from '../../../../utils/urls';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Title } from '@navikt/ds-react';
 import { Button } from '../../../_common/button/Button';
 import { BEM } from '../../../../utils/classnames';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
@@ -68,7 +68,9 @@ export const MacroUsageCheck = ({ id }: Props) => {
         macroUsage.length > 0 && (
             <div className={bem()}>
                 <div className={bem('header')}>
-                    <Undertittel>{message}</Undertittel>
+                    <Title level={3} size="s">
+                        {message}
+                    </Title>
                     <Button
                         type={'flat'}
                         mini={true}

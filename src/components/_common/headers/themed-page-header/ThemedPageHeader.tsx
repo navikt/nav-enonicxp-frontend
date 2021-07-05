@@ -2,16 +2,16 @@ import React from 'react';
 import { BEM, classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
 import { ContentType } from '../../../../types/content-props/_content-common';
-import { Undertekst } from 'nav-frontend-typografi';
+import { BodyShort } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { IllustrationPlacements } from 'types/illustrationPlacements';
-import './ThemedPageHeader.less';
 import {
     ProductPageProps,
     SituationPageProps,
 } from '../../../../types/content-props/dynamic-page-props';
+import './ThemedPageHeader.less';
 
 const bem = BEM('themed-page-header');
 
@@ -56,9 +56,9 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             <div className={bem('text')}>
                 <PageHeader justify={'left'}>{pageTitle}</PageHeader>
                 {subTitle && (
-                    <Undertekst className={bem('label')}>
+                    <BodyShort size="s" className={bem('label')}>
                         {subTitle.toUpperCase()}
-                    </Undertekst>
+                    </BodyShort>
                 )}
             </div>
         </div>
