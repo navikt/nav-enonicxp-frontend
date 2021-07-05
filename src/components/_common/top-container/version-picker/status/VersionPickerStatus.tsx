@@ -27,7 +27,7 @@ export const VersionPickerStatus = ({ content, requestedDateTime }: Props) => {
         <div className={'version-status'}>
             <Normaltekst>
                 {requestedUnixTime >= contentUnixTime
-                    ? `Viser innhold fra ${contentTimeFormatted}`
+                    ? `Viser innhold fra ${requestedTimeFormatted}`
                     : `Innhold fra valgt tid ${requestedTimeFormatted} finnes ikke - viser innhold fra ${contentTimeFormatted}`}
                 {' - '}
                 <LenkeStandalone withChevron={false} href={content.livePath}>
