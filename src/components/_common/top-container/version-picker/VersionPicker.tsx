@@ -86,14 +86,14 @@ export const VersionPicker = ({ content }: Props) => {
                         {reqTimeIsValid
                             ? `Viser innhold fra ${requestedTimeFormatted}`
                             : `Innhold fra valgt tid ${requestedTimeFormatted} finnes ikke - viser innhold fra ${contentTimeFormatted}`}
+                        {' - '}
+                        <LenkeStandalone
+                            withChevron={false}
+                            href={content.livePath}
+                        >
+                            {'Tilbake til nåtid'}
+                        </LenkeStandalone>
                     </Normaltekst>
-                    <LenkeStandalone
-                        withChevron={false}
-                        href={content.livePath}
-                        className={bem('back-to-live')}
-                    >
-                        {'Tilbake til nåtid'}
-                    </LenkeStandalone>
                 </div>
             )}
             <LenkeStandalone
