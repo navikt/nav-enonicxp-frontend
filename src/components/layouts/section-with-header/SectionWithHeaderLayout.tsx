@@ -27,7 +27,7 @@ type Props = {
 export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
 
-    if (!config || !regions) {
+    if (!config) {
         return (
             <EditorHelp
                 type={'error'}

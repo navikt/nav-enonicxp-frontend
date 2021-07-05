@@ -33,7 +33,7 @@ const layoutComponents: {
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
-    const { descriptor, path } = layoutProps;
+    const { descriptor, path, regions } = layoutProps;
     const isEditView = pageProps.editorView === 'edit';
 
     const editorProps = {
@@ -41,7 +41,7 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
         'data-portal-component': path,
     };
 
-    if (!descriptor) {
+    if (!descriptor || !regions) {
         return isEditView ? <div {...editorProps} /> : null;
     }
 
