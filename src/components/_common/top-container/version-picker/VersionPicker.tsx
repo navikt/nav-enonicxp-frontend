@@ -92,7 +92,7 @@ export const VersionPicker = ({ content }: Props) => {
                         href={content.livePath}
                         className={bem('back-to-live')}
                     >
-                        {'Tilbake til dagens'}
+                        {'Tilbake til nåtid'}
                     </LenkeStandalone>
                 </div>
             )}
