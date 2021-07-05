@@ -11,6 +11,14 @@ export const formatDate = (datetime: string, language: string = 'nb') => {
         : datetime;
 };
 
-export const formatDateTime = (datetime: string, locale: string = 'nb') => {
-    return datetime ? dayjs(datetime).locale(locale).format('LLL') : datetime;
+export const formatDateTime = (
+    datetime: string,
+    locale: string = 'nb',
+    short = false
+) => {
+    return datetime
+        ? dayjs(datetime)
+              .locale(locale)
+              .format(short ? 'lll' : 'LLL')
+        : datetime;
 };

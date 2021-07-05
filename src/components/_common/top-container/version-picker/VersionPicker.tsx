@@ -8,8 +8,8 @@ import { LenkeStandalone } from '../../lenke/LenkeStandalone';
 import NavFrontendChevron from 'nav-frontend-chevron';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { Normaltekst, Undertekst, Undertittel } from 'nav-frontend-typografi';
-import { formatDateTime } from '../../../../utils/datetime';
 import { Checkbox } from 'nav-frontend-skjema';
+import { VersionPickerStatus } from './status/VersionPickerStatus';
 import './VersionPicker.less';
 
 const bem = BEM('version-picker');
@@ -60,41 +60,24 @@ export const VersionPicker = ({ content }: Props) => {
     const [dateTimeRequested, setDateTimeRequested] = useState<
         string | undefined
     >(content.timeRequested);
-    const [reqTimeIsValid, setReqTimeIsValid] = useState(true);
 
     const router = useRouter();
 
     useEffect(() => {
         setWaitingForContent(false);
         setDateTimeRequested(content.timeRequested);
-        if (dateTimeRequested) {
-            const contentUnixTime = new Date(contentDateTime).getTime();
-            const requestedUnixTime = new Date(dateTimeRequested).getTime();
-            setReqTimeIsValid(requestedUnixTime >= contentUnixTime);
-        }
     }, [content]);
 
-    const requestedTimeFormatted = formatDateTime(`${dateTimeRequested}Z`);
-    const contentTimeFormatted = formatDateTime(`${contentDateTime}Z`);
     const url = getUrl(content, dateSelected, timeSelected, branchSelected);
 
     return (
         <div className={bem()}>
             {!waitingForContent && dateTimeRequested && (
-                <div className={bem('status')}>
-                    <Normaltekst>
-                        {reqTimeIsValid
-                            ? `Viser innhold fra ${requestedTimeFormatted}`
-                            : `Innhold fra valgt tid ${requestedTimeFormatted} finnes ikke - viser innhold fra ${contentTimeFormatted}`}
-                        {' - '}
-                        <LenkeStandalone
-                            withChevron={false}
-                            href={content.livePath}
-                        >
-                            {'Tilbake til nåtid'}
-                        </LenkeStandalone>
-                    </Normaltekst>
-                </div>
+                <VersionPickerStatus
+                    contentTime={contentDateTime}
+                    requestedTime={dateTimeRequested}
+                    livePath={content.livePath}
+                />
             )}
             <LenkeStandalone
                 withChevron={false}
