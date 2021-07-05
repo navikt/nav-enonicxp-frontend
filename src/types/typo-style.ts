@@ -1,16 +1,6 @@
-import {
-    Ingress,
-    Innholdstittel,
-    Sidetittel,
-    Systemtittel,
-    Undertittel,
-    Element,
-    Feilmelding,
-    Normaltekst,
-    Undertekst,
-} from 'nav-frontend-typografi';
-
 export type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+export type Level = 1 | 2 | 3 | 4 | 5;
+export type Size = '2xl' | 'xl' | 'l' | 'm' | 's';
 
 export enum TypoStyle {
     Sidetittel = 'sidetittel',
@@ -24,27 +14,24 @@ export enum TypoStyle {
     Undertekst = 'undertekst',
 }
 
-export const typoToComponent: {
-    [key in TypoStyle];
+export const headingToLevel: {
+    [key in HeadingTag]: Level;
 } = {
-    [TypoStyle.Sidetittel]: Sidetittel,
-    [TypoStyle.Innholdstittel]: Innholdstittel,
-    [TypoStyle.Systemtittel]: Systemtittel,
-    [TypoStyle.Undertittel]: Undertittel,
-    [TypoStyle.Ingress]: Ingress,
-    [TypoStyle.Element]: Element,
-    [TypoStyle.Feilmelding]: Feilmelding,
-    [TypoStyle.Normaltekst]: Normaltekst,
-    [TypoStyle.Undertekst]: Undertekst,
+    h1: 1,
+    h2: 2,
+    h3: 3,
+    h4: 4,
+    h5: 5,
+    h6: 5, // The new design system only allows for 5 levels.
 };
 
-export const headingToTypoStyle: {
-    [key in HeadingTag]: TypoStyle;
+export const headingToSize: {
+    [key in HeadingTag]: Size;
 } = {
-    h1: TypoStyle.Sidetittel,
-    h2: TypoStyle.Innholdstittel,
-    h3: TypoStyle.Systemtittel,
-    h4: TypoStyle.Undertittel,
-    h5: TypoStyle.Undertittel,
-    h6: TypoStyle.Element,
+    h1: '2xl',
+    h2: 'xl',
+    h3: 'l',
+    h4: 'm',
+    h5: 's',
+    h6: 's',
 };

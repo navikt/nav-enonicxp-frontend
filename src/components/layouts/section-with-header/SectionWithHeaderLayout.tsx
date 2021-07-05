@@ -75,8 +75,8 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             )}
             {title && (
                 <Header
-                    typoStyle={TypoStyle.Innholdstittel}
-                    tag={'h2'}
+                    size="xl"
+                    level={2}
                     justify={'left'}
                     hideCopyButton={toggleCopyButton}
                     anchorId={anchorId}

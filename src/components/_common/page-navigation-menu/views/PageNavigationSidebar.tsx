@@ -1,7 +1,6 @@
 import React from 'react';
 import { Title } from '@navikt/ds-react';
 import { BEM, classNames } from '../../../../utils/classnames';
-import { Header } from '../../headers/Header';
 import { PageNavigationLink } from '../PageNavigationLink';
 import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
 import {
@@ -9,7 +8,6 @@ import {
     PageNavScrollDirection,
 } from '../PageNavigationMenu';
 import './PageNavigationSidebar.less';
-import { TypoStyle } from '../../../../types/typo-style';
 
 const bem = BEM('page-nav-sidebar');
 

@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import {
-    HeadingTag,
-    headingToTypoStyle,
-    TypoStyle,
-    typoToComponent,
-} from '../../../types/typo-style';
+import { Title } from '@navikt/ds-react';
+import { Level, Size } from '../../../types/typo-style';
 import { BEM, classNames } from '../../../utils/classnames';
-import { Innholdstittel } from 'nav-frontend-typografi';
 import { PublicImage } from '../image/PublicImage';
 import { HeaderCommonConfig } from '../../../types/component-props/_mixins';
 import './Header.less';
@@ -17,8 +12,8 @@ const linkCopiedDisplayTimeMs = 2500;
 
 type Props = {
     children: string;
-    tag: HeadingTag;
-    typoStyle?: TypoStyle;
+    level?: Level;
+    size?: Size;
     justify?: HeaderCommonConfig['justify'];
     hideCopyButton?: boolean;
     anchorId?: string;
@@ -28,8 +23,8 @@ type Props = {
 
 export const Header = ({
     children,
-    tag,
-    typoStyle,
+    size,
+    level,
     justify,
     hideCopyButton,
     anchorId,
@@ -61,8 +56,6 @@ export const Header = ({
             ? anchorId
             : `#${anchorId}`
         : undefined;
-    const _typoStyle = typoStyle || headingToTypoStyle[tag];
-    const TypoComponent = typoToComponent[_typoStyle] || Innholdstittel;
 
     return (
         <div
@@ -74,7 +67,9 @@ export const Header = ({
             id={setId ? anchorId : undefined}
             tabIndex={-1}
         >
-            <TypoComponent tag={tag}>{children}</TypoComponent>
+            <Title size={size} level={level}>
+                {children}
+            </Title>
             {anchor && !hideCopyButton && (
                 <span className={bem('copy-link-container')}>
                     <a

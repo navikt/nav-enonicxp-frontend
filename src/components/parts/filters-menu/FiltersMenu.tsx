@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { Systemtittel } from 'nav-frontend-typografi';
-import Tekstomrade from 'nav-frontend-tekstomrade';
+import { Title, BodyLong } from '@navikt/ds-react';
 import { CheckboxGruppe } from 'nav-frontend-skjema';
 
 import { logAmplitudeEvent } from 'utils/amplitude';
@@ -70,21 +69,21 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
     return (
         <section className={bem('wrapper')} aria-describedby="description">
             {title && (
-                <Header tag="h2" justify="left">
+                <Header level={2} size="xl" justify="left">
                     {title}
                 </Header>
             )}
-            <Tekstomrade className={bem('introduction')} id="description">
+            <BodyLong className={bem('introduction')} id="description">
                 {description || ''}
-            </Tekstomrade>
+            </BodyLong>
             <Expandable
                 {...config}
                 expandableTitle={expandableTitle || defaultExpandableTitle}
             >
                 {!expandable && (
-                    <Systemtittel tag={'h3'} className={bem('title')}>
+                    <Title level={3} size="l" className={bem('title')}>
                         {title || defaultExpandableTitle}
-                    </Systemtittel>
+                    </Title>
                 )}
                 {categories.map((category, categoryIndex) => {
                     return (
