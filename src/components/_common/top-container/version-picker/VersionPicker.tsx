@@ -76,7 +76,7 @@ export const VersionPicker = ({ content }: Props) => {
             {!waitingForContent && dateTimeRequested && (
                 <VersionPickerStatus
                     content={content}
-                    requestedTime={dateTimeRequested}
+                    requestedDateTime={dateTimeRequested}
                 />
             )}
             <LenkeStandalone

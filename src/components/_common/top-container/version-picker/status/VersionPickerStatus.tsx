@@ -7,16 +7,20 @@ import './VersionPickerStatus.less';
 
 type Props = {
     content: ContentProps;
-    requestedTime: string;
+    requestedDateTime: string;
 };
 
-export const VersionPickerStatus = ({ content, requestedTime }: Props) => {
+export const VersionPickerStatus = ({ content, requestedDateTime }: Props) => {
     const contentDateTime = content.modifiedTime || content.createdTime;
 
-    const requestedUnixTime = new Date(requestedTime).getTime();
+    const requestedUnixTime = new Date(requestedDateTime).getTime();
     const contentUnixTime = new Date(contentDateTime).getTime();
 
-    const requestedTimeFormatted = formatDateTime(requestedTime, 'nb', true);
+    const requestedTimeFormatted = formatDateTime(
+        requestedDateTime,
+        'nb',
+        true
+    );
     const contentTimeFormatted = formatDateTime(contentDateTime, 'nb', true);
 
     return (
