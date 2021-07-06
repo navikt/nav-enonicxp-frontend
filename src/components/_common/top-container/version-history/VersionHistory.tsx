@@ -66,6 +66,7 @@ export const VersionHistory = ({ content }: Props) => {
             <VersionSelector
                 content={content}
                 isOpen={selectorIsOpen}
+                setIsOpen={setSelectorIsOpen}
                 submitVersionUrl={setVersionUrlRequested}
             />
             {versionUrlRequested && (

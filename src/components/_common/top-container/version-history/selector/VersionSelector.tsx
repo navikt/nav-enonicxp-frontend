@@ -18,6 +18,8 @@ const bem = BEM('version-selector');
 
 const startDate = '2019-12-01';
 
+const containerId = 'version-selector';
+
 type Branch = 'master' | 'draft';
 
 const getUrl = (
@@ -40,18 +42,41 @@ const getUrl = (
 type Props = {
     content: ContentProps;
     isOpen: boolean;
+    setIsOpen: (isOpen: boolean) => void;
     submitVersionUrl: (dateTime: string) => void;
 };
 
 export const VersionSelector = ({
     content,
     isOpen,
+    setIsOpen,
     submitVersionUrl,
 }: Props) => {
     const [initialDate, initialTime] = getCurrentDateAndTime();
     const [dateSelected, setDateSelected] = useState(initialDate);
     const [timeSelected, setTimeSelected] = useState(initialTime);
     const [branchSelected, setBranchSelected] = useState<Branch>('master');
+
+    useEffect(() => {
+        const closeMe = (e: MouseEvent) => {
+            const clickedMe = !!(e.target as HTMLElement)?.closest?.(
+                `#${containerId}`
+            );
+            if (!clickedMe) {
+                setIsOpen(false);
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener('click', closeMe);
+        } else {
+            document.removeEventListener('click', closeMe);
+        }
+
+        return () => {
+            document.removeEventListener('click', closeMe);
+        };
+    }, [isOpen, setIsOpen]);
 
     useEffect(() => {
         // Reset the current date/time selection when receiving live content
@@ -65,7 +90,7 @@ export const VersionSelector = ({
     const url = getUrl(content, dateSelected, timeSelected, branchSelected);
 
     return (
-        <div className={bem()}>
+        <div className={bem()} id={containerId}>
             <div
                 className={classNames(
                     bem('inner'),
