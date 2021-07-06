@@ -23,9 +23,6 @@ export const VersionStatus = ({ content, requestedDateTime }: Props) => {
     );
     const contentTimeFormatted = formatDateTime(contentDateTime, 'nb', true);
 
-    console.log(requestedDateTime, contentDateTime);
-    console.log(requestedTimeFormatted, contentTimeFormatted);
-
     return (
         <div className={'version-status'}>
             <Normaltekst>

@@ -7,6 +7,7 @@ import NavFrontendSpinner from 'nav-frontend-spinner';
 import { Undertittel } from 'nav-frontend-typografi';
 import { VersionStatus } from './status/VersionStatus';
 import { VersionSelector } from './selector/VersionSelector';
+import { useRouter } from 'next/router';
 import './VersionHistory.less';
 
 const bem = BEM('version-history');
@@ -16,25 +17,32 @@ type Props = {
 };
 
 export const VersionHistory = ({ content }: Props) => {
-    const [selectorIsOpen, setSelectorIsOpen] = useState(false);
-    const [dateTimeSubmitted, setDateTimeSubmitted] = useState<string | null>();
+    const { timeRequested } = content;
 
-    const dateTimeRequested = dateTimeSubmitted || content.timeRequested;
+    const [selectorIsOpen, setSelectorIsOpen] = useState(false);
+    const [versionUrlRequested, setVersionUrlRequested] = useState<
+        string | null
+    >();
+
+    const router = useRouter();
 
     useEffect(() => {
-        setDateTimeSubmitted(null);
+        setVersionUrlRequested(null);
     }, [content]);
 
     useEffect(() => {
         setSelectorIsOpen(false);
-    }, [dateTimeSubmitted]);
+        if (versionUrlRequested) {
+            router.push(versionUrlRequested);
+        }
+    }, [versionUrlRequested, router]);
 
     return (
         <div className={bem()}>
-            {!dateTimeSubmitted && dateTimeRequested && (
+            {!versionUrlRequested && timeRequested && (
                 <VersionStatus
                     content={content}
-                    requestedDateTime={dateTimeRequested}
+                    requestedDateTime={timeRequested}
                 />
             )}
             <LenkeStandalone
@@ -47,7 +55,6 @@ export const VersionHistory = ({ content }: Props) => {
                     e.preventDefault();
                     setSelectorIsOpen(!selectorIsOpen);
                 }}
-                className={bem('toggle')}
             >
                 {'Vis historisk innhold'}
                 <NavFrontendChevron
@@ -58,9 +65,9 @@ export const VersionHistory = ({ content }: Props) => {
             <VersionSelector
                 content={content}
                 isOpen={selectorIsOpen}
-                submitDateTime={setDateTimeSubmitted}
+                submitVersionUrl={setVersionUrlRequested}
             />
-            {dateTimeSubmitted && (
+            {versionUrlRequested && (
                 <div className={bem('spinner-container')}>
                     <Undertittel>{'Laster historisk innhold...'}</Undertittel>
                     <NavFrontendSpinner className={bem('spinner')} />

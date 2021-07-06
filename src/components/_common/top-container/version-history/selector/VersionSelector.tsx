@@ -5,7 +5,6 @@ import { getCurrentDateAndTime } from '../../../../../utils/datetime';
 import { ContentProps } from '../../../../../types/content-props/_content-common';
 import { Checkbox } from 'nav-frontend-skjema';
 import { Button } from '../../../button/Button';
-import { useRouter } from 'next/router';
 import {
     xpContentPathPrefix,
     xpDraftPathPrefix,
@@ -15,6 +14,8 @@ import './VersionSelector.less';
 const bem = BEM('version-selector');
 
 const startDate = '2019-12-01';
+
+type Branch = 'master' | 'draft';
 
 const getUrl = (
     content: ContentProps,
@@ -32,15 +33,17 @@ const getUrl = (
         : `/version${contentPath}${query}`;
 };
 
-type Branch = 'master' | 'draft';
-
 type Props = {
     content: ContentProps;
     isOpen: boolean;
-    submitDateTime: (dateTime: string) => void;
+    submitVersionUrl: (dateTime: string) => void;
 };
 
-export const VersionSelector = ({ content, isOpen, submitDateTime }: Props) => {
+export const VersionSelector = ({
+    content,
+    isOpen,
+    submitVersionUrl,
+}: Props) => {
     const [initialDate, initialTime] = getCurrentDateAndTime();
     const [dateSelected, setDateSelected] = useState(initialDate);
     const [timeSelected, setTimeSelected] = useState(initialTime);
@@ -48,13 +51,9 @@ export const VersionSelector = ({ content, isOpen, submitDateTime }: Props) => {
         content.isDraft ? 'draft' : 'master'
     );
 
-    const router = useRouter();
-
     useEffect(() => {
-        const { timeRequested } = content;
-
         // Reset the current date/time selection when receiving live content
-        if (!timeRequested) {
+        if (!content.timeRequested) {
             const [currentDate, currentTime] = getCurrentDateAndTime();
             setDateSelected(currentDate);
             setTimeSelected(currentTime);
@@ -116,10 +115,7 @@ export const VersionSelector = ({ content, isOpen, submitDateTime }: Props) => {
                                     e.stopPropagation();
                                 }
                                 e.preventDefault();
-                                submitDateTime(
-                                    `${dateSelected}T${timeSelected}`
-                                );
-                                router.push(url);
+                                submitVersionUrl(url);
                             }}
                         >
                             {'Hent innhold'}
