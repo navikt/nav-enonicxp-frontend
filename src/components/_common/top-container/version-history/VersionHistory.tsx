@@ -35,7 +35,7 @@ export const VersionHistory = ({ content }: Props) => {
         if (versionUrlRequested) {
             router.push(versionUrlRequested);
         }
-    }, [versionUrlRequested, router]);
+    }, [versionUrlRequested]);
 
     return (
         <div className={bem()}>
