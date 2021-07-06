@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { BEM, classNames } from '../../../../../utils/classnames';
 import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
-import { getCurrentDateAndTime } from '../../../../../utils/datetime';
+import {
+    getCurrentDateAndTime,
+    getUtcTimeFromLocal,
+} from '../../../../../utils/datetime';
 import { ContentProps } from '../../../../../types/content-props/_content-common';
 import { Checkbox } from 'nav-frontend-skjema';
 import { Button } from '../../../button/Button';
@@ -24,7 +27,8 @@ const getUrl = (
     branch: Branch
 ) => {
     const contentPath = content._path.split(xpContentPathPrefix)[1];
-    const query = `?time=${date}T${time}&id=${content._id}${
+    const dateTime = getUtcTimeFromLocal(`${date}T${time}`);
+    const query = `?time=${dateTime}&id=${content._id}${
         branch === 'draft' ? '&branch=draft' : ''
     }`;
 

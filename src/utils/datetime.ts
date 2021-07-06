@@ -2,8 +2,11 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/nb';
 import 'dayjs/locale/en';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
+import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(localizedFormat);
+dayjs.extend(utc);
+
 export const formatDate = (datetime: string, language: string = 'nb') => {
     const currentLocale = language === 'en' ? 'en-gb' : 'nb';
     return datetime
@@ -25,3 +28,7 @@ export const formatDateTime = (
 
 export const getCurrentDateAndTime = () =>
     new Date().toISOString().split(/[TZ.]/);
+
+export const getUtcTimeFromLocal = (datetime: string) => {
+    return dayjs(datetime).utc().format();
+};
