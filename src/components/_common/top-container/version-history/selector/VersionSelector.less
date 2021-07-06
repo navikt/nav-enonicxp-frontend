@@ -11,27 +11,27 @@
     &__inner {
         position: absolute;
         visibility: hidden;
-        max-height: 0;
         overflow: hidden;
-        max-width: 500px;
 
         display: flex;
         flex-direction: column;
         justify-content: center;
 
-        transition-property: visibility, max-height, padding;
-        transition-duration: 0.15s;
+        transform: rotateX(90deg);
+        transform-origin: top;
+
+        transition-property: visibility, transform;
+        transition-duration: 0.25s;
         transition-timing-function: ease-out;
 
         background-color: white;
         border-radius: @border-radius-base;
         box-shadow: 0 0 0 2px @navGronnLighten60 inset;
-        padding: 0 2rem;
+        padding: 1rem 2rem;
 
         &--open {
             visibility: visible;
-            max-height: 16rem;
-            padding: 1rem 2rem;
+            transform: rotateX(0);
         }
     }
 
