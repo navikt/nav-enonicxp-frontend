@@ -18,7 +18,7 @@ const dummyPageProps: ContentProps = {
     modifiedTime: '',
     displayName: '',
     language: 'no',
-    isEditorView: true,
+    isDraft: true,
 };
 
 const postHandler = async (req, res) => {
