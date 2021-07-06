@@ -28,6 +28,7 @@ export const VersionHistory = ({ content }: Props) => {
 
     useEffect(() => {
         setVersionUrlRequested(null);
+        setSelectorIsOpen(false);
     }, [content]);
 
     useEffect(() => {
