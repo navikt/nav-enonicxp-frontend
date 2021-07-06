@@ -7,8 +7,8 @@ import {
     ContentType,
 } from '../../../types/content-props/_content-common';
 import { getContentLanguages } from '../../../utils/languages';
+import { VersionHistory } from './version-history/VersionHistory';
 import './TopContainer.less';
-import { VersionPicker } from './version-picker/VersionPicker';
 
 const bem = BEM('top-container');
 
@@ -54,7 +54,7 @@ export const TopContainer = ({ content }: Props) => {
                 hasDecoratorWidgets && bem(undefined, 'widgets-offset')
             )}
         >
-            {showVersionPicker && <VersionPicker content={content} />}
+            {showVersionPicker && <VersionHistory content={content} />}
             {showNotifications && (
                 <section
                     className={bem('notifications')}

@@ -3,14 +3,14 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { LenkeStandalone } from '../../../lenke/LenkeStandalone';
 import { formatDateTime } from '../../../../../utils/datetime';
 import { ContentProps } from '../../../../../types/content-props/_content-common';
-import './VersionPickerStatus.less';
+import './VersionStatus.less';
 
 type Props = {
     content: ContentProps;
     requestedDateTime: string;
 };
 
-export const VersionPickerStatus = ({ content, requestedDateTime }: Props) => {
+export const VersionStatus = ({ content, requestedDateTime }: Props) => {
     const contentDateTime = content.modifiedTime || content.createdTime;
 
     const requestedUnixTime = new Date(requestedDateTime).getTime();
@@ -22,6 +22,9 @@ export const VersionPickerStatus = ({ content, requestedDateTime }: Props) => {
         true
     );
     const contentTimeFormatted = formatDateTime(contentDateTime, 'nb', true);
+
+    console.log(requestedDateTime, contentDateTime);
+    console.log(requestedTimeFormatted, contentTimeFormatted);
 
     return (
         <div className={'version-status'}>

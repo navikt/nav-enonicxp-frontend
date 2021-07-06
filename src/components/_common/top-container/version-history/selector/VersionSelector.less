@@ -1,27 +1,14 @@
-@import (reference) '../../../../global';
+@import (reference) '../../../../../global';
 
-.version-picker {
-    width: 100%;
+.version-selector {
+    position: relative;
+    top: 0.5rem;
+    z-index: 1;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    margin-bottom: 1rem;
+    width: 100%;
 
-    &__toggle-chevron {
-        margin-left: 0.5rem;
-    }
-
-    &__selector-wrapper {
-        position: relative;
-        top: 0.5rem;
-        z-index: 1;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-    }
-
-    &__selector {
+    &__inner {
         position: absolute;
         visibility: hidden;
         max-height: 0;
@@ -52,7 +39,7 @@
         display: flex;
     }
 
-    &__date-time-input {
+    &__input-left {
         display: flex;
         flex-direction: column;
         margin-right: 1rem;
@@ -66,7 +53,7 @@
     &__date {
     }
 
-    &__submit {
+    &__input-right {
         align-self: flex-end;
         width: 50%;
     }
@@ -78,18 +65,5 @@
 
     &__help-text {
         //width: 100%;
-    }
-
-    &__spinner-container {
-        margin-top: 1rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    &__spinner {
-        width: 5rem;
-        height: 5rem;
-        margin-top: 0.5rem;
     }
 }
