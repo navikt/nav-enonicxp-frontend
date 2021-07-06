@@ -39,7 +39,7 @@ export const Region = ({
                 bem(name),
                 bemModifier && bem(name, bemModifier)
             )}
-            data-portal-region={pageProps.isDraft ? name : undefined}
+            data-portal-region={!!pageProps.editorView ? name : undefined}
         >
             {components.map((component) => (
                 <ComponentMapper

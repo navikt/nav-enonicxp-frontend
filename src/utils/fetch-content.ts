@@ -48,7 +48,7 @@ export const fetchPage = async (
     return content?.__typename
         ? {
               ...content,
-              isDraft: isDraft,
+              isDraft,
               ...(timeRequested && { timeRequested: timeRequested }),
               serverEnv: process.env.ENV,
           }

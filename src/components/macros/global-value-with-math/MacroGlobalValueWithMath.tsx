@@ -29,7 +29,7 @@ const evaluateExpression = ({
         const result = math.eval(expressionWithDotSeparators, scope);
         return formatNumber(result, decimals);
     } catch (e) {
-        if (globalState.isDraft) {
+        if (globalState.isEditorView) {
             return `[feil ved evaluering av uttrykk: ${e}]`;
         }
         return '[teknisk feil: verdi ikke tilgjengelig]';

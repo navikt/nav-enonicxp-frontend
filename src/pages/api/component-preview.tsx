@@ -18,7 +18,7 @@ const dummyPageProps: ContentProps = {
     modifiedTime: '',
     displayName: '',
     language: 'no',
-    isDraft: true,
+    isEditorView: true,
 };
 
 const postHandler = async (req, res) => {
@@ -33,7 +33,7 @@ const postHandler = async (req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
 
-    globalState.isDraft = true;
+    globalState.isEditorView = true;
 
     const props = req.body.props as PartComponentProps;
 
