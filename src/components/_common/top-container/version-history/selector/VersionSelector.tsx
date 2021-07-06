@@ -51,9 +51,7 @@ export const VersionSelector = ({
     const [initialDate, initialTime] = getCurrentDateAndTime();
     const [dateSelected, setDateSelected] = useState(initialDate);
     const [timeSelected, setTimeSelected] = useState(initialTime);
-    const [branchSelected, setBranchSelected] = useState<Branch>(
-        content.isDraft ? 'draft' : 'master'
-    );
+    const [branchSelected, setBranchSelected] = useState<Branch>('master');
 
     useEffect(() => {
         // Reset the current date/time selection when receiving live content
