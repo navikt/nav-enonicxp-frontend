@@ -126,7 +126,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 }
 
                 return (
-                    <BodyLong {...props}>
+                    <BodyLong spacing {...props}>
                         {domToReact(children, replaceElements)}
                     </BodyLong>
                 );
