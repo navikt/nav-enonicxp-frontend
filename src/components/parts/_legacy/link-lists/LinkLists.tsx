@@ -1,7 +1,6 @@
 import React from 'react';
 import { ContentList } from '../../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
-import { BodyLong } from '@navikt/ds-react';
 import { BEM, classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import { ContentProps } from '../../../../types/content-props/_content-common';
@@ -46,7 +45,7 @@ const LinkLists = (props: ContentProps) => {
                                     withChevron={false}
                                     analyticsLabel={'Flere nyheter'}
                                 >
-                                    <BodyLong>{getLabel('moreNews')}</BodyLong>
+                                    {getLabel('moreNews')}
                                 </LenkeStandalone>
                             )}
                         </div>
