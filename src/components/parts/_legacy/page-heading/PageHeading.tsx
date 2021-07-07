@@ -10,6 +10,7 @@ const PageHeading = (props: ContentProps) => {
     const displayName = props.displayName;
     const ingress =
         props.__typename !== ContentType.SectionPage && props.data?.ingress;
+
     return (
         <header className={bem('container')}>
             <Title level={1} size="2xl">

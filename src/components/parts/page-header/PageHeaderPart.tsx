@@ -3,5 +3,5 @@ import { PageHeaderProps } from '../../../types/component-props/parts/page-heade
 import { PageHeader } from '../../_common/headers/page-header/PageHeader';
 
 export const PageHeaderPart = ({ config }: PageHeaderProps) => {
-    return <PageHeader>{config.title}</PageHeader>;
+    return <PageHeader justify="center">{config.title}</PageHeader>;
 };
