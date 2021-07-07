@@ -7,6 +7,8 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    perspective: 500px;
+    perspective-origin: top;
 
     &__inner {
         position: absolute;
@@ -17,7 +19,7 @@
         flex-direction: column;
         justify-content: center;
 
-        transform: rotateX(90deg);
+        transform: rotateX(-90deg);
         transform-origin: top;
 
         transition-property: visibility, transform;
