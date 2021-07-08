@@ -87,5 +87,6 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         utilsBackground: contentTypesWithWhiteHeader[content.__typename]
             ? 'white'
             : 'gray',
+        utloggingsvarsel: true,
     };
 };
