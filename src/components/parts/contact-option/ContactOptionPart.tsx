@@ -1,5 +1,4 @@
-import Tekstomrade from 'nav-frontend-tekstomrade';
-import { Title } from '@navikt/ds-react';
+import { Title, BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { BEM, classNames } from 'utils/classnames';
 
@@ -94,12 +93,12 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
                     bem('icon', selectedChannel)
                 )}
             />
-            <Title level={2} size="s" className={bem('title')}>
+            <Title level={2} size="m" className={bem('title')}>
                 {getTitle(selectedChannel, channelData)}
             </Title>
-            <Tekstomrade className={bem('text')}>
+            <BodyLong className={bem('text')}>
                 {getIngress(selectedChannel, channelData)}
-            </Tekstomrade>
+            </BodyLong>
         </LenkeBase>
     );
 };

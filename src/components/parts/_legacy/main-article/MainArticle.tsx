@@ -46,7 +46,7 @@ export const MainArticle = (propsInitial: ContentProps) => {
                     publishLabel={getLabel('published')}
                     modifiedLabel={getLabel('lastChanged')}
                 />
-                <Title level={1} size="xl" className={bem('title')}>
+                <Title level={1} size="2xl" className={bem('title')}>
                     {props.displayName}
                 </Title>
                 {data.ingress && <Ingress>{data.ingress}</Ingress>}

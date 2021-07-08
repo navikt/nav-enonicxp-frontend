@@ -9,5 +9,5 @@ export const MacroIngress = ({ config }: MacroIngressProps) => {
 
     const { body } = config.ingress;
 
-    return <Ingress>{body}</Ingress>;
+    return <Ingress spacing>{body}</Ingress>;
 };

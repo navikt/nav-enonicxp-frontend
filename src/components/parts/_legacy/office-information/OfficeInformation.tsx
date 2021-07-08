@@ -159,7 +159,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 </header>
                 {['HMS', 'ALS', 'TILTAK'].includes(unit.type) && location && (
                     <div>
-                        <Title level={2} size="m">
+                        <Title level={2} size="s">
                             Besøksadresse
                         </Title>
                         <BodyShort>{location}</BodyShort>
@@ -168,7 +168,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 <Email email={contact.epost} unitType={unit.type} />
                 {contact?.telefonnummer && (
                     <div>
-                        <Title level={2} size="m">
+                        <Title level={2} size="s">
                             Telefon
                         </Title>
                         <BodyShort>
@@ -182,7 +182,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     </div>
                 )}
                 <div>
-                    <Title level={2} size="m">
+                    <Title level={2} size="s">
                         Innsending av skjemaer
                     </Title>
                     <BodyLong>
@@ -199,7 +199,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 </div>
                 <SpecialInformation info={contact.spesielleOpplysninger} />
                 <div>
-                    <Title level={2} size="m">
+                    <Title level={2} size="s">
                         Postadresse
                     </Title>
                     <BodyShort>
@@ -211,7 +211,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 </div>
                 {fax && (
                     <div>
-                        <Title level={2} size="m">
+                        <Title level={2} size="s">
                             Telefaks
                         </Title>
                         <BodyShort>{fax}</BodyShort>
@@ -219,7 +219,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 )}
                 {unit.organisasjonsnummer && (
                     <div>
-                        <Title level={2} size="m">
+                        <Title level={2} size="s">
                             Organisasjonsnummer
                         </Title>
                         <BodyShort>{unit.organisasjonsnummer}</BodyShort>
@@ -227,7 +227,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 )}
                 {unit.enhetNr && (
                     <div>
-                        <Title level={2} size="m">
+                        <Title level={2} size="s">
                             Kontornummer
                         </Title>
                         <BodyShort>{unit.enhetNr}</BodyShort>

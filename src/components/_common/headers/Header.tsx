@@ -12,8 +12,8 @@ const linkCopiedDisplayTimeMs = 2500;
 
 type Props = {
     children: string;
-    level?: Level;
-    size?: Size;
+    level: Level;
+    size: Size;
     justify?: HeaderCommonConfig['justify'];
     hideCopyButton?: boolean;
     anchorId?: string;

@@ -66,7 +66,7 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                             <XpImage imageProps={icon} alt={''} />
                         </div>
                     )}
-                    <Title level={2} size="s" className={bem('title')}>
+                    <Title level={2} size="m" className={bem('title')}>
                         {linkProps.text}
                     </Title>
                 </div>

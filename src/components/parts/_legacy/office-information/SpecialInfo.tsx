@@ -66,7 +66,7 @@ export const SpecialInformation = (props: Props) => {
     const specialInfo = parseSpecialInfo(props.info);
     return specialInfo ? (
         <div className={classNames(bem())}>
-            <Title level={2} size="m">
+            <Title level={2} size="s">
                 Opplysninger
             </Title>
             <ParsedHtml htmlProps={specialInfo} />

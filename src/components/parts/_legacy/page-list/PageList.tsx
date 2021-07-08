@@ -25,7 +25,7 @@ const PageList = (props: PageListProps) => {
 
     return (
         <div className={bem()}>
-            <Title level={1} size="l">
+            <Title level={1} size="2xl">
                 {props.displayName}
             </Title>
             <div className={bem('ingress')}>
