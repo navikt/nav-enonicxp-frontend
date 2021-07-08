@@ -27,8 +27,10 @@ const getCurrentLinkIndex = (links: AnchorLink[]) => {
     );
     const scrollTarget = window.scrollY + pageNavigationAnchorOffsetPx;
 
-    const scrolledToTop =
-        !targetElements?.length || targetElements[0].offsetTop > scrollTarget;
+    const scrolledToTop = !!(
+        targetElements?.length && targetElements[0].offsetTop > scrollTarget
+    );
+
     if (scrolledToTop) {
         return -1;
     }
@@ -36,6 +38,7 @@ const getCurrentLinkIndex = (links: AnchorLink[]) => {
     const scrolledToBottom =
         window.scrollY + window.innerHeight >=
         document.documentElement.scrollHeight;
+
     if (scrolledToBottom) {
         return targetElements.length - 1;
     }
