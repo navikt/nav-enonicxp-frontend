@@ -28,7 +28,9 @@ const getCurrentLinkIndex = (links: AnchorLink[]) => {
     const scrollTarget = window.scrollY + pageNavigationAnchorOffsetPx;
 
     const scrolledToTop = !!(
-        targetElements?.length && targetElements[0].offsetTop > scrollTarget
+        targetElements?.length &&
+        targetElements[0] &&
+        targetElements[0].offsetTop > scrollTarget
     );
 
     if (scrolledToTop) {
