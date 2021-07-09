@@ -16,7 +16,7 @@ export const SituationPageFlexColsLayout = ({
     pageProps,
     layoutProps,
 }: Props) => {
-    const regionProps = layoutProps.regions.flexcols;
+    const regionProps = layoutProps.regions?.flexcols;
 
     if (!regionProps) {
         return null;

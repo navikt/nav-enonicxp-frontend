@@ -31,6 +31,7 @@ const internalPaths = [
     'sykepenger-korona',
     'beskjed',
     'person\\/kontakt-oss(?!(\\/(nb|en))?\\/(tilbakemeldinger|finnkontor|samegiella|chat))',
+    'version',
 ];
 
 // Matches both relative and absolute urls which points to content internal to the app
@@ -61,11 +62,11 @@ export const stripXpPathPrefix = (path: string) =>
 
 export const getInternalRelativePath = (
     url: string,
-    isDraft = globalState.isDraft
+    isEditorView = globalState.isEditorView
 ) => {
     const relativePath = url.replace(internalUrlPrefixPattern, '');
 
-    if (isDraft) {
+    if (isEditorView) {
         return `${xpDraftPathPrefix}${relativePath}`;
     }
 
@@ -74,34 +75,37 @@ export const getInternalRelativePath = (
 
 export const getRelativePathIfInternal = (
     url: string,
-    isDraft = globalState.isDraft
+    isEditorView = globalState.isEditorView
 ) => {
     if (!isInternalUrl(url)) {
         return url;
     }
 
-    return getInternalRelativePath(url, isDraft);
+    return getInternalRelativePath(url, isEditorView);
 };
 
 export const getInternalAbsoluteUrl = (
     url: string,
-    isDraft = globalState.isDraft
+    isEditorView = globalState.isEditorView
 ) => {
     if (!isInternalUrl(url)) {
         console.log(`Warning: ${url} is not an internal url`);
         return url;
     }
 
-    const internalPath = getInternalRelativePath(url, isDraft);
+    const internalPath = getInternalRelativePath(url, isEditorView);
 
-    return `${isDraft ? adminOrigin : appOrigin}${internalPath}`;
+    return `${isEditorView ? adminOrigin : appOrigin}${internalPath}`;
 };
 
 // Media url must always be absolute, to prevent internal nextjs routing loopbacks on redirects|
-export const getMediaUrl = (url: string, isDraft = globalState.isDraft) => {
+export const getMediaUrl = (
+    url: string,
+    isEditorView = globalState.isEditorView
+) => {
     return url?.replace(
         internalUrlPrefixPattern,
-        isDraft ? `${adminOrigin}${xpDraftPathPrefix}` : appOrigin
+        isEditorView ? `${adminOrigin}${xpDraftPathPrefix}` : appOrigin
     );
 };
 

@@ -1,5 +1,5 @@
 export const globalState = {
-    isDraft: false,
+    isEditorView: false,
 };
 
 export default globalState;

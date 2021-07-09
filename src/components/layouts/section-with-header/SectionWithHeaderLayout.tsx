@@ -7,6 +7,7 @@ import { Header } from '../../_common/headers/Header';
 import { TypoStyle } from '../../../types/typo-style';
 import { XpImage } from '../../_common/image/XpImage';
 import { FilterBar } from '../../_common/filter-bar/FilterBar';
+import { EditorHelp } from '../../_common/editor-help/EditorHelp';
 import './SectionWithHeaderLayout.less';
 
 const getBorderStyle = ({
@@ -27,7 +28,12 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions, config } = layoutProps;
 
     if (!config) {
-        return null;
+        return (
+            <EditorHelp
+                type={'error'}
+                text={'Feil: Komponenten mangler data'}
+            />
+        );
     }
 
     const { title, anchorId, icon, border, toggleCopyButton } = config;

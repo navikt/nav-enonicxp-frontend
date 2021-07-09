@@ -21,15 +21,15 @@ export const LayoutContainer = ({
     children,
     ...divElementProps
 }: Props) => {
-    const { descriptor, path, type, config } = layoutProps;
+    const { descriptor, path, type, config = {} } = layoutProps;
 
     const bem = BEM(type);
     const layoutName = descriptor.split(':')[1];
 
     const commonLayoutStyle = getCommonLayoutStyle(config);
-    const paddingConfig = config?.paddingSides?._selected;
+    const paddingConfig = config.paddingSides?._selected;
 
-    const editorProps = pageProps.editMode
+    const editorProps = !!pageProps.editorView
         ? {
               'data-portal-component-type': type,
               'data-portal-component': path,
