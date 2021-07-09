@@ -154,7 +154,12 @@ export const VersionSelector = ({
                         <hr />
                         <Undertekst>
                             {
-                                'Av tekniske årsaker går denne versjonshistorikken kun tilbake til desember 2019. Ta kontakt med redaksjonen dersom du har behov for tidligere historikk.'
+                                'Obs: Løsningen er under utvikling og kan ha noen svakheter.'
+                            }
+                        </Undertekst>
+                        <Undertekst>
+                            {
+                                'Denne historikken går foreløpig kun tilbake til desember 2019. Ta kontakt med redaksjonen dersom du har behov for tidligere historikk.'
                             }
                         </Undertekst>
                     </div>
