@@ -39,9 +39,11 @@ export const TopContainer = ({ content }: Props) => {
         !hideNotificationsForContentTypes[__typename] &&
         notifications?.length > 0;
 
+    // Should not be show in CS edit view or production public view
     const showVersionPicker =
-        !!content.editorView ||
-        (content.serverEnv && content.serverEnv !== 'prod');
+        content.serverEnv &&
+        (content.editorView || content.serverEnv !== 'prod') &&
+        content.editorView !== 'edit';
 
     const getLabel = translator('notifications', language);
 
