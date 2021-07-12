@@ -1,6 +1,6 @@
 import React from 'react';
+import { Title } from '@navikt/ds-react';
 import { BEM, classNames } from '../../../../utils/classnames';
-import { Header } from '../../headers/Header';
 import { PageNavigationLink } from '../PageNavigationLink';
 import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
 import {
@@ -8,7 +8,6 @@ import {
     PageNavScrollDirection,
 } from '../PageNavigationMenu';
 import './PageNavigationSidebar.less';
-import { TypoStyle } from '../../../../types/typo-style';
 
 const bem = BEM('page-nav-sidebar');
 
@@ -28,14 +27,9 @@ export const PageNavigationSidebar = ({
     return (
         <div className={classNames(bem())}>
             {title && (
-                <Header
-                    tag={'h2'}
-                    typoStyle={TypoStyle.Undertittel}
-                    className={bem('title')}
-                    justify={'left'}
-                >
+                <Title level={3} size="m" className={bem('title')}>
                     {title}
-                </Header>
+                </Title>
             )}
             <nav role={'navigation'} aria-label={'Innhold'}>
                 <ul className={bem('list')}>

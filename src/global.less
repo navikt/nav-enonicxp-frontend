@@ -2,8 +2,9 @@
 @import '~nav-frontend-core/less/core';
 @import '~@navikt/ds-css/dist/index.css';
 
-@font-size-factor: 1.125;
+@font-size-factor: 1;
 @pixel-size-rem: 1 / (16 * @font-size-factor);
+@regular-font-size: unit(@font-size-factor * 1.125, rem);
 
 // Screen size breakpoints
 //
@@ -33,8 +34,8 @@
 @padding-sides-tablet: 1rem;
 @padding-sides-mobile: 0.5rem;
 
-@sectionPaddingDesktop: 2.5rem;
-@sectionPaddingTablet: 1.5rem;
+@sectionPaddingDesktop: 2.8rem;
+@sectionPaddingTablet: 1.6rem;
 @sectionPaddingMobile: 1rem;
 
 html {
@@ -61,7 +62,7 @@ html {
 
 .app {
     max-width: @desktopMaxWidth;
-    min-height: 20rem;
+    min-height: 22.5rem;
     margin: 0 auto;
 
     @media @mq-screen-mobile {

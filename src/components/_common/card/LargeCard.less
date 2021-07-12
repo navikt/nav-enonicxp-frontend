@@ -6,7 +6,7 @@
         border-radius: 4px;
 
         display: block;
-        padding: 1.33rem;
+        padding: 1.5rem;
         text-decoration: none;
         width: 100%;
 
@@ -28,7 +28,7 @@
             width: #px-to-rem(96px) [];
             align-self: center;
             margin-top: 0;
-            margin-bottom: 2rem;
+            margin-bottom: 2.3rem;
         }
 
         .card__title {
@@ -47,12 +47,12 @@
         .card__description {
             color: @navMorkGra;
             font-weight: 400;
-            margin-bottom: 1.8rem;
+            margin-bottom: 2rem;
         }
 
         .card__category {
             color: @navGra80;
-            font-size: 0.777rem;
+            font-size: 0.875rem;
             font-weight: 400;
             margin-top: auto; // Aligns category to bottom inside flexbox
             text-transform: uppercase;
@@ -62,6 +62,8 @@
         /* Card type specific styling */
         &.card__product,
         &.card__situation {
+            min-height: #px-to-rem(400px) [];
+
             &:not(:focus-visible)&:not(:hover) {
                 box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
                     0px 2px 1px rgba(38, 38, 38, 0.12),

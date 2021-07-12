@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Title } from '@navikt/ds-react';
 import { ClearIcon } from '../clear-icon/ClearIcon';
 import { Input } from 'nav-frontend-skjema';
 import { BEM } from '../../../../../utils/classnames';
@@ -23,9 +23,14 @@ export const SearchForm = () => {
 
     return (
         <div className={bem()}>
-            <Undertittel className={bem('header')} id={'search-header'}>
+            <Title
+                level={2}
+                size="l"
+                className={bem('header')}
+                id={'search-header'}
+            >
                 {'Hva leter du etter?'}
-            </Undertittel>
+            </Title>
 
             <form onSubmit={onSearchSubmit} className={bem('form')}>
                 <Input

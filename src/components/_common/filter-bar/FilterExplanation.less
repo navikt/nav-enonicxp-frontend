@@ -1,26 +1,24 @@
-@import (reference) '~nav-frontend-typografi-style/src/index';
+@import (reference) '../../../global';
 
 .filterExplanation {
-    .typo-undertekst;
-    margin: 0.5rem 0.5rem 0.5rem -0.4rem;
-    padding: 0.3rem 0.3rem 0.3rem 0.4rem;
+    margin: 0.5rem 0rem 0.5rem -0.5rem;
+    padding: 0.8rem 0.3rem 0.8rem 0.5rem;
     display: flex;
     align-items: center;
     transition: all 0.8s linear;
     border-radius: 3px;
+    width: calc(100% + 0.5rem);
+    font-size: #px-to-rem(14px) [];
+    border: 1px solid transparent;
 
     &--highlight {
-        background-color: @navBla;
+        background-color: @navGronnLighten80;
+        border: 1px solid @navGronn;
         transition: all 0.4s linear;
-        color: white;
     }
 
     &__iconWrapper {
         display: flex;
         margin-right: 0.5em;
-    }
-
-    &__text {
-        margin-top: 0.1em;
     }
 }

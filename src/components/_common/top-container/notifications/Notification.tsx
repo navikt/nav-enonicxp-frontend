@@ -2,7 +2,7 @@ import React from 'react';
 import { NotificationProps } from 'types/notification-props';
 import LenkepanelNavNo from '../../lenkepanel/LenkepanelNavNo';
 import { ContentType } from 'types/content-props/_content-common';
-import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
+import { BodyShort, BodyLong } from '@navikt/ds-react';
 import { hasDescription, hasIngress } from 'types/_type-guards';
 import { BEM } from 'utils/classnames';
 import { formatDate } from 'utils/datetime';
@@ -71,16 +71,16 @@ export const Notification = (props: NotificationProps) => {
         >
             <>
                 {description && (
-                    <Normaltekst className={bem('description')}>
+                    <BodyLong className={bem('description')}>
                         {description}
-                    </Normaltekst>
+                    </BodyLong>
                 )}
                 {showUpdated && (
-                    <Undertekst className={bem('updated')}>
+                    <BodyShort size="s" className={bem('updated')}>
                         {`${getDateLabel('lastChanged')}: ${formatDate(
                             modifiedTime
                         )}`}
-                    </Undertekst>
+                    </BodyShort>
                 )}
             </>
         </LenkepanelNavNo>

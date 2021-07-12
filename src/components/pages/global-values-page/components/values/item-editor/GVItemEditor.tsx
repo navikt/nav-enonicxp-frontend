@@ -10,7 +10,7 @@ import { gvServiceRemoveItem } from '../../../api/services/remove';
 import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState';
 import { gvServiceGetValueSet } from '../../../api/services/getValueSet';
 import { gvServiceGetUsage } from '../../../api/services/usage';
-import { Element } from 'nav-frontend-typografi';
+import { BodyShort } from '@navikt/ds-react';
 import { GVMessageProps } from '../../messages/GVMessages';
 import './GVItemEditor.less';
 
@@ -195,11 +195,13 @@ export const GVItemEditor = ({
                     <div className={bem('form-buttons')}>
                         {awaitDeleteConfirm ? (
                             <>
-                                <Element className={bem('delete-confirm-msg')}>
+                                <BodyShort
+                                    className={bem('delete-confirm-msg')}
+                                >
                                     {
                                         'Obs: Denne verdien kan være i bruk - er du sikker?'
                                     }
-                                </Element>
+                                </BodyShort>
                                 <GVButton
                                     type={'fare'}
                                     htmlType={'button'}

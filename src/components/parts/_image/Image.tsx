@@ -3,7 +3,7 @@ import {
     ComponentType,
     ImageComponentProps,
 } from '../../../types/component-props/_component-common';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { BodyShort } from '@navikt/ds-react';
 import './Image.less';
 
 type Props = {
@@ -31,7 +31,7 @@ const Image = ({ imageProps, editMode }: Props) => {
             {src ? (
                 <img className={'image'} src={src} alt={''} />
             ) : (
-                <Normaltekst>{'Bilde mangler'}</Normaltekst>
+                <BodyShort>{'Bilde mangler'}</BodyShort>
             )}
         </div>
     );

@@ -1,6 +1,9 @@
 import React from 'react';
 import { ParsedHtml } from '../../../ParsedHtml';
-import { Normaltekst, Element } from 'nav-frontend-typografi';
+import { Title } from '@navikt/ds-react';
+import classNames from 'classnames';
+import { BEM } from 'utils/classnames';
+import './SpecialInfo.less';
 
 function specialInfoParseLink(infoContent: string) {
     const isTextClean = (str: string) => {
@@ -59,14 +62,14 @@ interface Props {
 }
 
 export const SpecialInformation = (props: Props) => {
-    // contact.spesielleOpplysninger
+    const bem = BEM('specialInformation');
     const specialInfo = parseSpecialInfo(props.info);
     return specialInfo ? (
-        <div>
-            <Element tag="h2">Opplysninger</Element>
-            <Normaltekst>
-                <ParsedHtml htmlProps={specialInfo} />
-            </Normaltekst>
+        <div className={classNames(bem())}>
+            <Title level={2} size="s">
+                Opplysninger
+            </Title>
+            <ParsedHtml htmlProps={specialInfo} />
         </div>
     ) : null;
 };

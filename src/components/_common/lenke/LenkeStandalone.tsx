@@ -1,6 +1,6 @@
 import React from 'react';
 import { HoyreChevron } from 'nav-frontend-chevron';
-import { Undertekst } from 'nav-frontend-typografi';
+import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { BEM, classNames } from 'utils/classnames';
 import { LenkeBase } from './LenkeBase';
 import { getExternalDomain } from '../../../utils/links';
@@ -63,7 +63,7 @@ export const LenkeStandalone = ({
             }
             {...rest}
         >
-            <span className={bem('lenketekst')}>
+            <BodyShort className={bem('lenketekst')}>
                 {withChevron && (
                     <span className={bem('icon-container')}>
                         <HoyreChevron className={bem('chevron')} />
@@ -74,8 +74,12 @@ export const LenkeStandalone = ({
                     {showExternalLinkLabel &&
                         getExternalUrlString(href, children.toString())}
                 </>
-            </span>
-            {label && <Undertekst className={bem('label')}>{label}</Undertekst>}
+            </BodyShort>
+            {label && (
+                <BodyLong size="s" className={bem('label')}>
+                    {label}
+                </BodyLong>
+            )}
         </LenkeBase>
     );
 };

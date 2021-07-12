@@ -1,7 +1,7 @@
 import React from 'react';
 import { BEM, classNames } from 'utils/classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { BodyLong } from '@navikt/ds-react';
 import LenkepanelNavNo from '../../../_common/lenkepanel/LenkepanelNavNo';
 import './MainPanels.less';
 import { translator } from '../../../../translations';
@@ -98,11 +98,11 @@ export const MainPanels = (props: ContentProps) => {
                                 component={'main-panels'}
                             >
                                 {ingress && (
-                                    <Normaltekst>
+                                    <BodyLong>
                                         {ingress.slice(0, ingressMaxLength)}
                                         {ingress.length > ingressMaxLength &&
                                             '...'}
-                                    </Normaltekst>
+                                    </BodyLong>
                                 )}
                             </LenkepanelNavNo>
                         )

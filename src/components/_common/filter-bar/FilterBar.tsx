@@ -1,4 +1,4 @@
-import { Element } from 'nav-frontend-typografi';
+import { Title } from '@navikt/ds-react';
 
 import classNames from 'classnames';
 import { BEM } from '../../../utils/classnames';
@@ -63,9 +63,13 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
 
     return (
         <div className={bem('wrapper')}>
-            <Element tag="h3" className={classNames(bem(), bem('header'))}>
+            <Title
+                level={3}
+                size="s"
+                className={classNames(bem(), bem('header'))}
+            >
                 {getLabel('showingInformationFor')}
-            </Element>
+            </Title>
             <div className={bem('container')}>
                 {filtersToDisplay.map((filter) => {
                     const isSelected = selectedFilters.includes(filter.id);

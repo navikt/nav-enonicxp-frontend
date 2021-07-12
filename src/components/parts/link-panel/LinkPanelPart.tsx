@@ -1,9 +1,9 @@
 import React from 'react';
 import { LinkPanelPartProps } from 'types/component-props/parts/link-panel';
+import { Title, BodyLong } from '@navikt/ds-react';
 import { BEM, classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
-import { Undertittel } from 'nav-frontend-typografi';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { getImageUrl, XpImage } from '../../_common/image/XpImage';
 import './LinkPanel.less';
@@ -66,11 +66,11 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                             <XpImage imageProps={icon} alt={''} />
                         </div>
                     )}
-                    <Undertittel className={bem('title')}>
+                    <Title level={2} size="m" className={bem('title')}>
                         {linkProps.text}
-                    </Undertittel>
+                    </Title>
                 </div>
-                <div className={bem('ingress')}>{ingress}</div>
+                <BodyLong className={bem('ingress')}>{ingress}</BodyLong>
             </div>
         </LenkepanelBase>
     );

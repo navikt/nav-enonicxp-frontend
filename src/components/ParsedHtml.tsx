@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { BodyLong, Title } from '@navikt/ds-react';
 import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LenkeInline } from './_common/lenke/LenkeInline';
@@ -9,7 +9,7 @@ import {
     ProcessedHtmlProps,
 } from '../types/processed-html-props';
 import { MacroMapper } from './macros/MacroMapper';
-import { headingToTypoStyle, typoToComponent } from '../types/typo-style';
+import { headingToLevel, headingToSize } from '../types/typo-style';
 import { MacroType } from '../types/macro-props/_macros-common';
 
 const blockLevelMacros = {
@@ -108,14 +108,14 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <p>{'&nbsp;'}</p>;
                 }
 
-                const typoStyle = headingToTypoStyle[tag];
-                const TypoComponent = typoToComponent[typoStyle];
+                const level = headingToLevel[tag] || 2; //Level 1 reserved for page title
+                const size = headingToSize[tag];
 
                 return (
                     // H1 tags should only be used for the page title
-                    <TypoComponent {...props} tag={tag === 'h1' ? 'h2' : tag}>
+                    <Title {...props} size={size} level={level}>
                         {domToReact(validChildren, replaceElements)}
-                    </TypoComponent>
+                    </Title>
                 );
             }
 
@@ -126,9 +126,9 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 }
 
                 return (
-                    <Normaltekst {...props}>
+                    <BodyLong spacing {...props}>
                         {domToReact(children, replaceElements)}
-                    </Normaltekst>
+                    </BodyLong>
                 );
             }
 

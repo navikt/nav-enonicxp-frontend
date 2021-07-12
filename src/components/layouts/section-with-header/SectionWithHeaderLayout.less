@@ -1,7 +1,7 @@
 @import (reference) '../../../global';
 
 .layout__section-with-header {
-    @iconContainerRadius: 1.77rem;
+    @iconContainerRadius: #px-to-rem(64px / 2) [];
     @iconContainerSize: @iconContainerRadius * 2;
 
     @defaultBgColor: white;
@@ -11,10 +11,6 @@
     background-color: @defaultBgColor;
 
     .section-padding-mixin();
-
-    &:not(:last-child) {
-        margin-bottom: 1.33rem;
-    }
 
     .header {
         margin-bottom: 1.5rem;
