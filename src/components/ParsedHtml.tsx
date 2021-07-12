@@ -113,7 +113,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
                 return (
                     // H1 tags should only be used for the page title
-                    <Title {...props} size={size} level={level}>
+                    <Title {...props} size={size} level={level} spacing>
                         {domToReact(validChildren, replaceElements)}
                     </Title>
                 );
