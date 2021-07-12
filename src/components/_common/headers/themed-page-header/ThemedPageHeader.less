@@ -34,13 +34,14 @@
         margin-top: -0.75rem;
     }
 
+    // Following section is a temp fix until we determine responsive breakpoints
+    // and where the responsibility for this lies (us vs design system)
+    // (2rem is the correct mobile page header size (2xl) according to Figma (12. july))
     @media @mq-screen-mobile {
         .page-header {
-            // Temp fix until we determine responsive breakpoints
-            // and where the responsibility for this lies (us vs design system)
             padding-top: 0;
             .navds-title--2xl {
-                font-size: #px-to-rem(32px) [];
+                font-size: 2rem;
             }
         }
 
