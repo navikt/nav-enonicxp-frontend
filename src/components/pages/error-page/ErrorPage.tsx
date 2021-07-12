@@ -37,7 +37,7 @@ export const ErrorPage = (props: ErrorProps) => {
                 </Title>
                 <Ingress
                     className={bem('header-code')}
-                >{`Feilkode ${errorCode}`}</Ingress>
+                >{`Statuskode ${errorCode}`}</Ingress>
             </div>
             <div className={bem('content')}>
                 <ErrorContent code={errorCode} />

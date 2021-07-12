@@ -19,6 +19,7 @@ export const makeErrorProps = (
         errorCode: errorCode,
     },
     breadcrumbs: [{ title: errorMessage, url: '/' }],
+    serverEnv: process.env.ENV,
 });
 
 export const make404Props = (idOrPath = '') =>

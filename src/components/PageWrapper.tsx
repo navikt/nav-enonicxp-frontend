@@ -29,22 +29,22 @@ type Props = {
 
 export const PageWrapper = (props: Props) => {
     const { content, children } = props;
-    const { editMode } = content;
+    const { editorView } = content;
 
     const router = useRouter();
 
     useEffect(() => {
         onBreadcrumbClick((breadcrumb) =>
-            router.push(getInternalRelativePath(breadcrumb.url, editMode))
+            router.push(getInternalRelativePath(breadcrumb.url, !!editorView))
         );
         onLanguageSelect((language) =>
-            router.push(getInternalRelativePath(language.url, editMode))
+            router.push(getInternalRelativePath(language.url, !!editorView))
         );
 
         initAmplitude();
 
         const linkInterceptor = hookAndInterceptInternalLink(router);
-        const linkPrefetcher = editMode
+        const linkPrefetcher = !!editorView
             ? undefined
             : prefetchOnMouseover(router);
         const headerElement = document.getElementById('decorator-header');
@@ -101,7 +101,7 @@ export const PageWrapper = (props: Props) => {
         <div className={'app'}>
             <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
-            {content.editMode && <ComponentReorderHack />}
+            {content.editorView === 'edit' && <ComponentReorderHack />}
             <TopContainer content={content} />
             <div className={'content-wrapper'} id={'maincontent'} tabIndex={-1}>
                 {children}

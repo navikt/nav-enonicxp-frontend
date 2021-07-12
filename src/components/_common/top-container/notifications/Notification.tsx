@@ -1,14 +1,14 @@
 import React from 'react';
 import { NotificationProps } from 'types/notification-props';
-import LenkepanelNavNo from '../lenkepanel/LenkepanelNavNo';
+import LenkepanelNavNo from '../../lenkepanel/LenkepanelNavNo';
 import { ContentType } from 'types/content-props/_content-common';
 import { BodyShort, BodyLong } from '@navikt/ds-react';
 import { hasDescription, hasIngress } from 'types/_type-guards';
 import { BEM } from 'utils/classnames';
 import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
-import { PublicImage } from '../image/PublicImage';
-import { XpImage } from '../image/XpImage';
+import { PublicImage } from '../../image/PublicImage';
+import { XpImage } from '../../image/XpImage';
 import './Notification.less';
 
 type Target = NotificationProps['data']['target'];

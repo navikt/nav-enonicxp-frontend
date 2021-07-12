@@ -59,7 +59,7 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
 
 // This is a page for editors only and should return 404 publically
 export const GlobalValuesPage = (props: GlobalValuesProps) => {
-    if (!props.editMode) {
+    if (!props.editorView) {
         return <ErrorPage404 />;
     }
 

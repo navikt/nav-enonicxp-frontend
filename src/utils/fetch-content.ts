@@ -9,11 +9,13 @@ export type XpResponseProps = ContentProps | MediaProps;
 const fetchSiteContent = (
     idOrPath: string,
     isDraft = false,
-    secret: string
+    secret: string,
+    time?: string
 ): Promise<XpResponseProps> => {
     const params = objectToQueryString({
         ...(isDraft && { branch: 'draft' }),
         id: idOrPath,
+        ...(time && { time }),
     });
     const url = `${xpServiceUrl}/sitecontent${params}`;
     const config = { headers: { secret } };
@@ -33,11 +35,22 @@ const fetchSiteContent = (
 export const fetchPage = async (
     idOrPath: string,
     isDraft = false,
-    secret: string
+    secret: string,
+    timeRequested?: string
 ): Promise<XpResponseProps> => {
-    const content = await fetchSiteContent(idOrPath, isDraft, secret);
+    const content = await fetchSiteContent(
+        idOrPath,
+        isDraft,
+        secret,
+        timeRequested
+    );
 
     return content?.__typename
-        ? { ...content, editMode: isDraft }
+        ? {
+              ...content,
+              isDraft,
+              ...(timeRequested && { timeRequested: timeRequested }),
+              serverEnv: process.env.ENV,
+          }
         : makeErrorProps(idOrPath, `Ukjent feil`, 500);
 };

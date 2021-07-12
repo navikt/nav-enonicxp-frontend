@@ -1,5 +1,5 @@
 import React from 'react';
-import Notification from '../notifications/Notification';
+import Notification from './notifications/Notification';
 import { translator } from 'translations';
 import { BEM, classNames } from '../../../utils/classnames';
 import {
@@ -7,6 +7,7 @@ import {
     ContentType,
 } from '../../../types/content-props/_content-common';
 import { getContentLanguages } from '../../../utils/languages';
+import { VersionHistory } from './version-history/VersionHistory';
 import './TopContainer.less';
 
 const bem = BEM('top-container');
@@ -38,6 +39,12 @@ export const TopContainer = ({ content }: Props) => {
         !hideNotificationsForContentTypes[__typename] &&
         notifications?.length > 0;
 
+    // Should not be show in CS edit view or production public view
+    const showVersionPicker =
+        content.serverEnv &&
+        (content.editorView || content.serverEnv !== 'prod') &&
+        content.editorView !== 'edit';
+
     const getLabel = translator('notifications', language);
 
     return (
@@ -50,6 +57,7 @@ export const TopContainer = ({ content }: Props) => {
                 hasDecoratorWidgets && bem(undefined, 'widgets-offset')
             )}
         >
+            {showVersionPicker && <VersionHistory content={content} />}
             {showNotifications && (
                 <section
                     className={bem('notifications')}
