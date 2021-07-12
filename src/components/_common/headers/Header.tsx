@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Title } from '@navikt/ds-react';
-import { Level, Size } from '../../../types/typo-style';
+import { Level, levelToSize, Size } from '../../../types/typo-style';
 import { BEM, classNames } from '../../../utils/classnames';
 import { PublicImage } from '../image/PublicImage';
 import { HeaderCommonConfig } from '../../../types/component-props/_mixins';
@@ -13,7 +13,7 @@ const linkCopiedDisplayTimeMs = 2500;
 type Props = {
     children: string;
     level: Level;
-    size: Size;
+    size?: Size;
     justify?: HeaderCommonConfig['justify'];
     hideCopyButton?: boolean;
     anchorId?: string;
@@ -57,6 +57,8 @@ export const Header = ({
             : `#${anchorId}`
         : undefined;
 
+    const fallbackSizeByLevel = levelToSize[level] || 'l';
+
     return (
         <div
             className={classNames(
@@ -67,7 +69,7 @@ export const Header = ({
             id={setId ? anchorId : undefined}
             tabIndex={-1}
         >
-            <Title size={size} level={level}>
+            <Title size={size || fallbackSizeByLevel} level={level}>
                 {children}
             </Title>
             {anchor && !hideCopyButton && (

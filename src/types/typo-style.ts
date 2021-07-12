@@ -44,6 +44,18 @@ export const headingToSize: {
     h6: 's',
 };
 
+// Used if no size is set, so we need to check level and determine
+// the size from there.
+export const levelToSize: {
+    [key in Level]: Size;
+} = {
+    1: '2xl',
+    2: 'xl',
+    3: 'l',
+    4: 'm',
+    5: 's',
+};
+
 export const typoToSize: {
     [key in HeaderTypoStyle]: Size;
 } = {

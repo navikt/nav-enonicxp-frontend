@@ -38,6 +38,10 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
 
     const subTitle = getSubtitle();
 
+    const hasRoomForIllustrationOnMobile = pageTitle
+        .split(' ')
+        .every((word) => word.length < 18);
+
     return (
         <div
             className={classNames(
@@ -51,7 +55,11 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             <Illustration
                 illustration={illustration}
                 placement={IllustrationPlacements.PRODUCT_PAGE_HEADER}
-                className={bem('illustration')}
+                className={classNames(
+                    bem('illustration'),
+                    !hasRoomForIllustrationOnMobile &&
+                        bem('illustration', 'mobile-hidden')
+                )}
             />
             <div className={bem('text')}>
                 <PageHeader justify={'left'}>{pageTitle}</PageHeader>

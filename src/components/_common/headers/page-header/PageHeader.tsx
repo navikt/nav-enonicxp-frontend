@@ -1,24 +1,26 @@
 import React from 'react';
-import { Title } from '@navikt/ds-react';
+import { Header } from '../Header';
 import { HeaderCommonConfig } from '../../../../types/component-props/_mixins';
-import { BEM, classNames } from '../../../../utils/classnames';
 import './PageHeader.less';
+import { Level, Size } from 'types/typo-style';
 
 type Props = {
     justify?: HeaderCommonConfig['justify'];
+    level?: Level;
+    size?: Size;
     children: string;
 };
 
-const bem = BEM('page-header');
-
-export const PageHeader = ({ justify, children }: Props) => {
+export const PageHeader = ({ justify, children, level, size }: Props) => {
     return children ? (
-        <Title
-            level={1}
-            size="2xl"
-            className={classNames(bem(), justify ? bem('title', justify) : '')}
+        <Header
+            level={level || 1}
+            size={size || '2xl'}
+            justify={justify}
+            className={'page-header'}
+            hideCopyButton
         >
             {children}
-        </Title>
+        </Header>
     ) : null;
 };

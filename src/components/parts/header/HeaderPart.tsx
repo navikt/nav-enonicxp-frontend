@@ -8,8 +8,6 @@ import {
 } from '../../../types/typo-style';
 import './HeaderPart.less';
 
-const defaultTag = 'h3';
-
 export const HeaderPart = ({ config }: HeaderProps) => {
     if (!config) {
         return null;
@@ -21,7 +19,7 @@ export const HeaderPart = ({ config }: HeaderProps) => {
         return null;
     }
 
-    const _tag = titleTag || defaultTag;
+    const _tag = titleTag || 'h3';
     const level = headingToLevel[_tag];
 
     const sizeFromTypo =
