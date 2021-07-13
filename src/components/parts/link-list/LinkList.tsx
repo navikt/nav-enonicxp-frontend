@@ -13,8 +13,6 @@ const getListComponent = (config: DynamicLinkListProps['config']) => {
     const { title, list, chevron } = config;
     const { _selected, contentList, linkList } = list;
 
-    console.log(config);
-
     if (_selected === 'contentList') {
         return (
             <ContentList
