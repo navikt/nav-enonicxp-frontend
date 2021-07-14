@@ -7,7 +7,8 @@ import {
     SituationPageProps,
     ToolsPageProps,
 } from '../../../types/content-props/dynamic-page-props';
-import { Language, translator } from '../../../translations';
+import { Language } from '../../../translations';
+import { buildTaxonomyString } from 'utils/string';
 
 type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
 
@@ -44,11 +45,9 @@ export const getCardProps = (
     const link = {
         url: cardUrl,
         text: cardTitle,
-        label: taxonomy,
     };
 
-    const getCategoryLabel = translator('productTaxonomies', language);
-    const category = getCategoryLabel(taxonomy);
+    const category = buildTaxonomyString(taxonomy, language);
     const description = ingressOverride || ingress;
 
     return {

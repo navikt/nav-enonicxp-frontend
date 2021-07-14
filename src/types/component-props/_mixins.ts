@@ -2,7 +2,7 @@ import { ContentListProps } from '../content-props/content-list-props';
 import { ContentProps } from '../content-props/_content-common';
 import { TypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
-import { Taxonomies } from 'types/taxonomies';
+import { Taxonomy } from 'types/taxonomies';
 
 export type HeaderWithAnchorMixin = {
     title: string;
@@ -13,7 +13,7 @@ export type HeaderWithAnchorMixin = {
 export type ProductDataMixin = {
     title: string;
     ingress?: string;
-    taxonomy?: Taxonomies;
+    taxonomy?: Taxonomy[];
     illustration: AnimatedIconsProps;
     externalProductUrl?: string;
 };
