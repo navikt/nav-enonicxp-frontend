@@ -80,11 +80,6 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                 {...config}
                 expandableTitle={expandableTitle || defaultExpandableTitle}
             >
-                {!expandable && (
-                    <Title level={3} size="l" className={bem('title')}>
-                        {title || defaultExpandableTitle}
-                    </Title>
-                )}
                 {categories.map((category, categoryIndex) => {
                     return (
                         <CheckboxGruppe
