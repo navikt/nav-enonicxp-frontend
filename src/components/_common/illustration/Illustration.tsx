@@ -5,7 +5,7 @@ import { IllustrationAnimated } from './IllustrationAnimated';
 import './Illustration.less';
 
 interface IllustrationProps {
-    illustration: AnimatedIconsProps;
+    illustration?: AnimatedIconsProps;
     placement: string;
     className: string;
     isHovering?: boolean;
@@ -16,8 +16,8 @@ interface IllustrationProps {
 export const Illustration = ({
     className,
     illustration,
-    isHovering,
-    isPressed,
+    isHovering = false,
+    isPressed = false,
     preferStaticIllustration,
 }: IllustrationProps) => {
     if (!illustration) {

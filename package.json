@@ -8,7 +8,8 @@
         "start": "next start",
         "start-clean": "rm -fr .next && npm run build && npm start",
         "typeCheck": "tsc",
-        "lint": "eslint src/",
+        "check-types": "tsc --noemit",
+        "lint": "eslint ./src",
         "deploy": "npx run-func trigger-workflow.js triggerWorkflow",
         "deploy-dev": "npm run deploy -- deploy.dev.yml",
         "deploy-q6": "npm run deploy -- deploy.q6.yml"
@@ -81,7 +82,7 @@
         "@types/react-collapse": "^5.0.0",
         "@types/react-dom": "^17.0.3",
         "@typescript-eslint/eslint-plugin": "^4.22.0",
-        "@typescript-eslint/parser": "^4.22.0",
+        "@typescript-eslint/parser": "^4.28.3",
         "@zeit/next-less": "^1.0.1",
         "babel-eslint": "^10.1.0",
         "eslint": "^7.24.0",

@@ -22,7 +22,7 @@ export type StortKortProps = {
 
 const bem = BEM('card');
 
-export const LargeCard = (props: StortKortProps) => {
+export const LargeCard = (props: StortKortProps): React.ReactChild => {
     const { link, description, type, category, illustration } = props;
     const { text } = link;
 

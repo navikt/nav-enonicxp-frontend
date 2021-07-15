@@ -45,7 +45,7 @@ export const PageWrapper = (props: Props) => {
 
         const linkInterceptor = hookAndInterceptInternalLink(router);
         const linkPrefetcher = !!editorView
-            ? undefined
+            ? () => null
             : prefetchOnMouseover(router);
         const headerElement = document.getElementById('decorator-header');
         const footerElement = document.getElementById('decorator-footer');
@@ -71,14 +71,16 @@ export const PageWrapper = (props: Props) => {
                 footerElement.removeEventListener('mouseover', linkPrefetcher);
             }
         };
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         if (!content) {
             return;
         }
 
-        store.dispatch(setPathMapAction(content?.pathMap));
+        if (content?.pathMap) {
+            store.dispatch(setPathMapAction(content?.pathMap));
+        }
         store.dispatch(
             setPageConfigAction({
                 pageId: content._id,
