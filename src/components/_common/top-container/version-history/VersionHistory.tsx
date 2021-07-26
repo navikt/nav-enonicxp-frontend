@@ -4,7 +4,7 @@ import { ContentProps } from '../../../../types/content-props/_content-common';
 import { LenkeStandalone } from '../../lenke/LenkeStandalone';
 import NavFrontendChevron from 'nav-frontend-chevron';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Title } from '@navikt/ds-react';
 import { VersionStatus } from './status/VersionStatus';
 import { VersionSelector } from './selector/VersionSelector';
 import { useRouter } from 'next/router';
@@ -71,7 +71,9 @@ export const VersionHistory = ({ content }: Props) => {
             />
             {versionUrlRequested && (
                 <div className={bem('spinner-container')}>
-                    <Undertittel>{'Laster historisk innhold...'}</Undertittel>
+                    <Title size={'m'} level={2}>
+                        {'Laster historisk innhold...'}
+                    </Title>
                     <NavFrontendSpinner className={bem('spinner')} />
                 </div>
             )}
