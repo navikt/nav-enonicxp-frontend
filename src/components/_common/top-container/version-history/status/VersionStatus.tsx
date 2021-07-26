@@ -1,5 +1,5 @@
 import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { BodyLong } from '@navikt/ds-react';
 import { LenkeStandalone } from '../../../lenke/LenkeStandalone';
 import { formatDateTime } from '../../../../../utils/datetime';
 import { ContentProps } from '../../../../../types/content-props/_content-common';
@@ -25,7 +25,7 @@ export const VersionStatus = ({ content, requestedDateTime }: Props) => {
 
     return (
         <div className={'version-status'}>
-            <Normaltekst>
+            <BodyLong>
                 {requestedUnixTime >= contentUnixTime
                     ? `Viser innhold fra ${requestedTimeFormatted}`
                     : `Innhold fra valgt tid ${requestedTimeFormatted} finnes ikke - viser innhold fra ${contentTimeFormatted}`}
@@ -33,7 +33,7 @@ export const VersionStatus = ({ content, requestedDateTime }: Props) => {
                 <LenkeStandalone withChevron={false} href={content.livePath}>
                     {'Tilbake til nåtid'}
                 </LenkeStandalone>
-            </Normaltekst>
+            </BodyLong>
         </div>
     );
 };
