@@ -17,7 +17,6 @@ const withTranspileModules = require('next-transpile-modules')([
 
 module.exports = withPlugins([withTranspileModules, withLess, withImages], {
     webpack5: false,
-    eslint: { ignoreDuringBuilds: true },
     assetPrefix: process.env.APP_ORIGIN,
     env: {
         ENV: process.env.ENV,
