@@ -1,7 +1,9 @@
 import React from 'react';
 import { MacroGlobalValueWithMathProps } from '../../../types/macro-props/global-value-with-math';
-import math from 'mathjs-expression-parser';
+import { create, all } from 'mathjs/lib/cjs/number';
 import globalState from '../../../globalState';
+
+const math = create(all);
 
 type ExpressionProps = MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 
@@ -26,7 +28,7 @@ const evaluateExpression = ({
         // Mathjs only accepts . as decimal separator
         const expressionWithDotSeparators = expression.replace(',', '.');
 
-        const result = math.eval(expressionWithDotSeparators, scope);
+        const result = math.evaluate(expressionWithDotSeparators, scope);
         return formatNumber(result, decimals);
     } catch (e) {
         if (globalState.isEditorView) {
