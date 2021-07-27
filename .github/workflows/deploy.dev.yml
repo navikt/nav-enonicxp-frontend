@@ -32,7 +32,13 @@ jobs:
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
           SERVICE_SECRET=$SERVICE_SECRET
           EOF
-      - uses: actions/cache@v2
+      - name: Node modules cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Nextjs cache
+        uses: actions/cache@v2
         with:
           path: ${{ github.workspace }}/.next/cache
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
