@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { BodyLong, Title } from '@navikt/ds-react';
-import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
+import htmlReactParser, { Element, domToReact } from 'html-react-parser';
+import { isTag, isText } from 'domhandler';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LenkeInline } from './_common/lenke/LenkeInline';
 import { getMediaUrl } from '../utils/urls';
@@ -23,34 +24,32 @@ const blockLevelMacros = {
     [MacroType.Video]: true,
 };
 
-const hasBlockLevelMacroChildren = (element: DomElement) => {
+const hasBlockLevelMacroChildren = (element: Element) => {
     return element.children?.some(
         (child) =>
+            isTag(child) &&
             child.name === processedHtmlMacroTag &&
             blockLevelMacros[child.attribs?.['data-macro-name']]
     );
 };
 
-const getNonEmptyChildren = ({ children }: DomElement) => {
+const getNonEmptyChildren = ({ children }: Element) => {
     const validChildren = children?.filter((child) => {
-        const { data, name } = child;
+        if (isTag(child)) {
+            if (child.name === processedHtmlMacroTag) {
+                return true;
+            }
 
-        if (name === processedHtmlMacroTag) {
-            return true;
+            const grandChildren = getNonEmptyChildren(child);
+            return !!grandChildren;
         }
 
-        const grandChildren = getNonEmptyChildren(child);
-
-        if (!data && !grandChildren) {
-            return false;
+        if (isText(child)) {
+            const stringData = child.data?.replace?.(/&nbsp;/g, ' ').trim();
+            return !!stringData;
         }
 
-        if (typeof data !== 'string') {
-            return true;
-        }
-
-        const stringData = data.replace(/&nbsp;/g, ' ').trim();
-        return !!stringData;
+        return false;
     });
     return validChildren?.length > 0 && validChildren;
 };
@@ -74,7 +73,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
     }
 
     const replaceElements = {
-        replace: (element: DomElement) => {
+        replace: (element: Element) => {
             const { name, attribs, children } = element;
             const tag = name?.toLowerCase();
             const props = !!attribs && attributesToProps(attribs);
