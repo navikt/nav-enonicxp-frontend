@@ -1,11 +1,12 @@
 import React from 'react';
 import { MacroGlobalValueWithMathProps } from '../../../types/macro-props/global-value-with-math';
-import { create, all } from 'mathjs/lib/cjs/number';
+import { create, all } from 'mathjs/lib/esm/number';
 import globalState from '../../../globalState';
 
 const math = create(all);
 
-type ExpressionProps = MacroGlobalValueWithMathProps['config']['global_value_with_math'];
+type ExpressionProps =
+    MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 
 const formatNumber = (num: number, decimals: number = 0) => {
     const decimalsOOM = 10 ** decimals;
