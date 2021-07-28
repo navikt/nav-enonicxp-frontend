@@ -35,6 +35,7 @@ const evaluateExpression = ({
         if (globalState.isEditorView) {
             return `[feil ved evaluering av uttrykk: ${e}]`;
         }
+        console.error(`Global values calculation error: ${e}`);
         return '[teknisk feil: verdi ikke tilgjengelig]';
     }
 };
