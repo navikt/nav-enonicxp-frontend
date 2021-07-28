@@ -49,7 +49,7 @@ const getNonEmptyChildren = ({ children }: Element) => {
             return !!stringData;
         }
 
-        return false;
+        return true;
     });
     return validChildren?.length > 0 && validChildren;
 };
