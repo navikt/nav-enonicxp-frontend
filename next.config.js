@@ -1,5 +1,5 @@
+const withPlugins = require('next-compose-plugins');
 const withLess = require('@zeit/next-less');
-const withCSS = require('@zeit/next-css');
 const withImages = require('next-images');
 const packageJson = require('./package.json');
 
@@ -15,10 +15,8 @@ const withTranspileModules = require('next-transpile-modules')([
     '@navikt/ds-icons',
 ]);
 
-const configWithAllTheThings = (config) =>
-    withTranspileModules(withLess(withCSS(withImages(config))));
-
-module.exports = configWithAllTheThings({
+module.exports = withPlugins([withTranspileModules, withLess, withImages], {
+    webpack5: false,
     assetPrefix: process.env.APP_ORIGIN,
     env: {
         ENV: process.env.ENV,
