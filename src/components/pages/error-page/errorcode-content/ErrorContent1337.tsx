@@ -10,7 +10,7 @@ export const error1337ReloadProps = (path: string) =>
 
 // "Error 1337" should be generated when a static page fails to build in a
 // non-production environment. This will reload the page and trigger a cache revalidation
-export const Error1337ReloadOnDevBuildError = () => {
+export const ErrorContent1337 = () => {
     useEffect(() => {
         window.location.reload();
     }, []);

@@ -3,7 +3,7 @@ import {
     ContentType,
 } from '../types/content-props/_content-common';
 import { isContentTypeImplemented } from '../components/ContentMapper';
-import { error1337ReloadProps } from '../components/pages/error-page/errorcode-content/Error1337ReloadOnDevBuildError';
+import { error1337ReloadProps } from '../components/pages/error-page/errorcode-content/ErrorContent1337';
 
 export const logPageLoadError = (errorId: string, message: string) =>
     console.error(`[Page load error] ${errorId} - ${message}`);

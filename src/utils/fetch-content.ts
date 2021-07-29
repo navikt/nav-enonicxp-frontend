@@ -8,7 +8,12 @@ import { logPageLoadError } from './errors';
 
 export type XpResponseProps = ContentProps | MediaProps;
 
-const fetchSiteContent = (
+// The message returned from the sitecontent-service if the requested content
+// was not found. Used to distinquish between content not found and the service
+// itself not being found (ie if the nav.no app is turned off)
+const contentNotFoundMessage = 'Site path not found';
+
+const fetchSiteContent = async (
     idOrPath: string,
     isDraft = false,
     secret: string,
@@ -23,20 +28,34 @@ const fetchSiteContent = (
     const config = { headers: { secret } };
     console.log('Fetching content from ', url);
 
-    return fetchWithTimeout(url, 15000, config)
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            const errorId = uuid();
-            const errorMsg = `Failed to fetch content from ${idOrPath}: ${res.statusText}`;
-            logPageLoadError(
-                errorId,
-                `Fetch error: ${res.status} - ${errorMsg}`
-            );
-            return makeErrorProps(idOrPath, errorMsg, res.status, errorId);
-        })
-        .catch(console.error);
+    const res = await fetchWithTimeout(url, 15000, config);
+
+    if (res.ok) {
+        return res.json();
+    }
+
+    const errorRes = await res.json();
+    const errorId = uuid();
+
+    // If we get an unexpected 404-error from the sitecontent-service (meaning the service is down)
+    // treat the error as a server error in order to prevent cache-invalidation
+    if (res.status === 404 && errorRes.message !== contentNotFoundMessage) {
+        logPageLoadError(
+            errorId,
+            `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath}: sitecontent-service returned not found!`
+        );
+        return makeErrorProps(idOrPath, undefined, 500, errorId);
+    }
+
+    logPageLoadError(
+        errorId,
+        `Fetch error: ${
+            res.status
+        } - Failed to fetch content from ${idOrPath}: ${
+            errorRes.message || res.statusText
+        }`
+    );
+    return makeErrorProps(idOrPath, undefined, res.status, errorId);
 };
 
 export const fetchPage = async (

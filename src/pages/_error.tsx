@@ -19,7 +19,7 @@ Error.getInitialProps = ({ res, err, asPath }): ContentProps => {
         `Unhandled error on path ${asPath} - ${err.toString()}`
     );
 
-    return makeErrorProps(asPath, 'Ukjent feil', res.statusCode, errorId);
+    return makeErrorProps(asPath, undefined, res.statusCode, errorId);
 };
 
 export default Error;
