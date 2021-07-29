@@ -26,7 +26,7 @@ const fetchSiteContent = async (
     });
     const url = `${xpServiceUrl}/sitecontent${params}`;
     const config = { headers: { secret } };
-    console.log('Fetching content from ', url);
+    console.log(`Fetching content from ${url}`);
 
     const res = await fetchWithTimeout(url, 15000, config);
 
