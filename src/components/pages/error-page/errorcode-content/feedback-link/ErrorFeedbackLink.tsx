@@ -15,9 +15,8 @@ export const ErrorFeedbackLink = ({ errorId }: Props) => {
                 <LenkeInline href={Config.urls.errorFeedback}>
                     {'melde fra om teknisk feil.'}
                 </LenkeInline>
-                {errorId
-                    ? " Inkluder gjerne feil-id'en under i din tilbakemelding."
-                    : ''}
+                {errorId &&
+                    " Inkluder gjerne feil-id'en under i din tilbakemelding."}
             </BodyLong>
             {errorId && <BodyLong size={'s'}>{`Feil-id: ${errorId}`}</BodyLong>}
         </>
