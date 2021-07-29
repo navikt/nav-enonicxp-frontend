@@ -3,6 +3,8 @@ import { makeErrorProps } from './make-error-props';
 import { xpServiceUrl } from './urls';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { MediaProps } from '../types/media';
+import { v4 as uuid } from 'uuid';
+import { logPageLoadError } from './errors';
 
 export type XpResponseProps = ContentProps | MediaProps;
 
@@ -26,9 +28,13 @@ const fetchSiteContent = (
             if (res.ok) {
                 return res.json();
             }
+            const errorId = uuid();
             const errorMsg = `Failed to fetch content from ${idOrPath}: ${res.statusText}`;
-            console.error(`${res.status} - ${errorMsg}`);
-            return makeErrorProps(idOrPath, errorMsg, res.status);
+            logPageLoadError(
+                errorId,
+                `Fetch error: ${res.status} - ${errorMsg}`
+            );
+            return makeErrorProps(idOrPath, errorMsg, res.status, errorId);
         })
         .catch(console.error);
 };
@@ -47,10 +53,12 @@ export const fetchPage = async (
     );
 
     if (!content?.__typename) {
-        console.error(
-            `Unknown fetch error for ${idOrPath} - no valid content received`
+        const errorId = uuid();
+        logPageLoadError(
+            errorId,
+            `Fetch error: Unknown error for ${idOrPath} - no valid content received`
         );
-        return makeErrorProps(idOrPath, `Ukjent feil`, 500);
+        return makeErrorProps(idOrPath, `Ukjent feil`, 500, errorId);
     }
 
     return {

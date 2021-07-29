@@ -4,7 +4,8 @@ import { ErrorProps } from '../types/content-props/error-props';
 export const makeErrorProps = (
     idOrPath = '/',
     errorMessage = 'Ukjent feil',
-    errorCode = 500
+    errorCode = 500,
+    errorId?: string
 ): ErrorProps => ({
     __typename: ContentType.Error,
     _path: idOrPath,
@@ -17,6 +18,7 @@ export const makeErrorProps = (
         feedback: false,
         errorMessage: errorMessage,
         errorCode: errorCode,
+        errorId: errorId,
     },
     breadcrumbs: [{ title: errorMessage, url: '/' }],
     serverEnv: process.env.ENV,
