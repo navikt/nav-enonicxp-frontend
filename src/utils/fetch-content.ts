@@ -77,7 +77,7 @@ export const fetchPage = async (
             errorId,
             `Fetch error: Unknown error for ${idOrPath} - no valid content received`
         );
-        return makeErrorProps(idOrPath, `Ukjent feil`, 500, errorId);
+        return makeErrorProps(idOrPath, undefined, 500, errorId);
     }
 
     return {
