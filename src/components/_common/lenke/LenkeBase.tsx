@@ -15,6 +15,7 @@ type Props = {
     component?: string;
     linkGroup?: string;
     analyticsLabel?: string;
+    prefetch?: boolean;
     children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
@@ -24,6 +25,7 @@ export const LenkeBase = ({
     component,
     linkGroup,
     analyticsLabel,
+    prefetch = true,
     children,
     ...rest
 }: Props) => {
@@ -63,7 +65,7 @@ export const LenkeBase = ({
     );
 
     return isAppUrl(href) ? (
-        <Link href={finalHref} passHref={true}>
+        <Link href={finalHref} passHref={true} prefetch={prefetch}>
             {linkElement}
         </Link>
     ) : (
