@@ -17,9 +17,6 @@ const ErrorContent = ({ code }: { code: number }) =>
 
 export const ErrorPage = (props: ErrorProps) => {
     const { errorMessage, errorCode } = props.data;
-    const message = `Error code ${errorCode} - ${errorMessage}`;
-
-    console.error(message);
 
     return (
         <div className={bem()}>

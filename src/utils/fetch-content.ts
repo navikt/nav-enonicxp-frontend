@@ -10,7 +10,7 @@ const fetchSiteContent = (
     idOrPath: string,
     isDraft = false,
     secret: string,
-    time?: string
+    time?: string,
 ): Promise<XpResponseProps> => {
     const params = objectToQueryString({
         ...(isDraft && { branch: 'draft' }),
@@ -26,8 +26,9 @@ const fetchSiteContent = (
             if (res.ok) {
                 return res.json();
             }
-            const error = `Failed to fetch content from ${idOrPath}: ${res.statusText}`;
-            return makeErrorProps(idOrPath, error, res.status);
+            const errorMsg = `Failed to fetch content from ${idOrPath}: ${res.statusText}`;
+            console.error(`${res.status} - ${errorMsg}`);
+            return makeErrorProps(idOrPath, errorMsg, res.status);
         })
         .catch(console.error);
 };
@@ -36,21 +37,21 @@ export const fetchPage = async (
     idOrPath: string,
     isDraft = false,
     secret: string,
-    timeRequested?: string
+    timeRequested?: string,
 ): Promise<XpResponseProps> => {
     const content = await fetchSiteContent(
         idOrPath,
         isDraft,
         secret,
-        timeRequested
+        timeRequested,
     );
 
     return content?.__typename
         ? {
-              ...content,
-              isDraft,
-              ...(timeRequested && { timeRequested: timeRequested }),
-              serverEnv: process.env.ENV,
-          }
+            ...content,
+            isDraft,
+            ...(timeRequested && { timeRequested: timeRequested }),
+            serverEnv: process.env.ENV,
+        }
         : makeErrorProps(idOrPath, `Ukjent feil`, 500);
 };
