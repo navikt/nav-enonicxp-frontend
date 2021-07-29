@@ -4,7 +4,7 @@ import { LenkeInline } from '../../../../_common/lenke/LenkeInline';
 import Config from '../../../../../config';
 
 type Props = {
-    errorId: string;
+    errorId?: string;
 };
 
 export const ErrorFeedbackLink = ({ errorId }: Props) => {
