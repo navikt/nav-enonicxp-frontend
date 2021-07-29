@@ -11,7 +11,7 @@ import './ErrorPage.less';
 
 const bem = BEM('error-page');
 
-const errorContentSpecific = {
+const errorContentByCode = {
     404: ErrorContent404,
     408: ErrorContent408,
     1337: ErrorContent1337,
@@ -20,7 +20,7 @@ const errorContentSpecific = {
 export const ErrorPage = (props: ErrorProps) => {
     const { errorMessage, errorCode } = props.data;
 
-    const ErrorContent = errorContentSpecific[errorCode] || ErrorContentDefault;
+    const ErrorContent = errorContentByCode[errorCode] || ErrorContentDefault;
 
     return (
         <div className={bem()}>
