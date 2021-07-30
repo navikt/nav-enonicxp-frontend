@@ -10,7 +10,7 @@ export type XpResponseProps = ContentProps | MediaProps;
 
 // The message returned from the sitecontent-service if the requested content
 // was not found. Used to distinquish between content not found and the service
-// itself not being found (ie if the nav.no app is turned off)
+// itself not being found (ie if something is wrong with the nav.no app)
 const contentNotFoundMessage = 'Site path not found';
 
 const fetchSiteContent = async (
@@ -34,13 +34,13 @@ const fetchSiteContent = async (
         return res.json();
     }
 
-    const errorRes = await res.json();
+    const errorJson = await res.json();
     const errorId = uuid();
 
     if (res.status === 404) {
         // If we get an unexpected 404-error from the sitecontent-service (meaning the service itself
         // was not found), treat the error as a server error in order to prevent cache-invalidation
-        if (errorRes.message !== contentNotFoundMessage) {
+        if (errorJson.message !== contentNotFoundMessage) {
             logPageLoadError(
                 errorId,
                 `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath}: sitecontent service not found!`
@@ -57,7 +57,7 @@ const fetchSiteContent = async (
         `Fetch error: ${
             res.status
         } - Failed to fetch content from ${idOrPath}: ${
-            errorRes.message || res.statusText
+            errorJson.message || res.statusText
         }`
     );
     return makeErrorProps(idOrPath, undefined, res.status, errorId);
