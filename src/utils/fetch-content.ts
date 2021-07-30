@@ -8,10 +8,12 @@ import { logPageLoadError } from './errors';
 
 export type XpResponseProps = ContentProps | MediaProps;
 
-// The message returned from the sitecontent-service if the requested content
+// This message is returned from the sitecontent-service if the requested content
 // was not found. Used to distinquish between content not found and the service
 // itself not being found (ie if something is wrong with the nav.no app)
 const contentNotFoundMessage = 'Site path not found';
+
+const fetchTimeoutMs = 15000;
 
 const fetchSiteContent = async (
     idOrPath: string,
@@ -28,7 +30,7 @@ const fetchSiteContent = async (
     const config = { headers: { secret } };
     console.log(`Fetching content from ${url}`);
 
-    const res = await fetchWithTimeout(url, 15000, config);
+    const res = await fetchWithTimeout(url, fetchTimeoutMs, config);
     const isJson = res.headers
         .get('content-type')
         ?.includes?.('application/json');
