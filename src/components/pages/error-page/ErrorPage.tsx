@@ -11,7 +11,9 @@ import './ErrorPage.less';
 
 const bem = BEM('error-page');
 
-const errorContentByCode = {
+const errorContentByCode: {
+    [key: number]: React.FunctionComponent<ErrorProps>;
+} = {
     404: ErrorContent404,
     408: ErrorContent408,
     1337: ErrorContent1337,
