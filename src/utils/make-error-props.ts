@@ -17,14 +17,15 @@ export const makeErrorProps = (
     const msg =
         errorMessage || errorMessageByCode[errorCode] || errorMessageDefault;
     const title = `Feil: ${msg}`;
+    const time = Date.now().toString();
 
     return {
         __typename: ContentType.Error,
         _path: idOrPath,
         _id: idOrPath,
         displayName: title,
-        createdTime: Date.now().toString(),
-        modifiedTime: Date.now().toString(),
+        createdTime: time,
+        modifiedTime: time,
         language: 'no',
         data: {
             feedback: false,
@@ -32,7 +33,6 @@ export const makeErrorProps = (
             errorCode: errorCode,
             errorId: errorId,
         },
-        breadcrumbs: [{ title: title, url: '/' }],
         serverEnv: process.env.ENV,
     };
 };
