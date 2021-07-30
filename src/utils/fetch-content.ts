@@ -37,14 +37,19 @@ const fetchSiteContent = async (
     const errorRes = await res.json();
     const errorId = uuid();
 
-    // If we get an unexpected 404-error from the sitecontent-service (meaning the service itself
-    // was not found), treat the error as a server error in order to prevent cache-invalidation
-    if (res.status === 404 && errorRes.message !== contentNotFoundMessage) {
-        logPageLoadError(
-            errorId,
-            `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath}: sitecontent service not found!`
-        );
-        return makeErrorProps(idOrPath, undefined, 500, errorId);
+    if (res.status === 404) {
+        // If we get an unexpected 404-error from the sitecontent-service (meaning the service itself
+        // was not found), treat the error as a server error in order to prevent cache-invalidation
+        if (errorRes.message !== contentNotFoundMessage) {
+            logPageLoadError(
+                errorId,
+                `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath}: sitecontent service not found!`
+            );
+            return makeErrorProps(idOrPath, undefined, 500, errorId);
+        }
+
+        console.log(`Content not found ${idOrPath}`);
+        return makeErrorProps(idOrPath, undefined, res.status, errorId);
     }
 
     logPageLoadError(
