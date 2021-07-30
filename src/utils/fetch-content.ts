@@ -29,13 +29,25 @@ const fetchSiteContent = async (
     console.log(`Fetching content from ${url}`);
 
     const res = await fetchWithTimeout(url, 15000, config);
+    const isJson = res.headers
+        .get('content-type')
+        ?.includes?.('application/json');
 
-    if (res.ok) {
+    if (res.ok && isJson) {
         return res.json();
     }
 
-    const errorJson = await res.json();
     const errorId = uuid();
+
+    if (!isJson) {
+        logPageLoadError(
+            errorId,
+            `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath} - did not receive a JSON response`
+        );
+        return makeErrorProps(idOrPath, undefined, 500, errorId);
+    }
+
+    const errorJson = await res.json();
 
     if (res.status === 404) {
         // If we get an unexpected 404-error from the sitecontent-service (meaning the service itself
@@ -43,11 +55,12 @@ const fetchSiteContent = async (
         if (errorJson.message !== contentNotFoundMessage) {
             logPageLoadError(
                 errorId,
-                `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath}: sitecontent service not found!`
+                `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath} - invalid 404-response from sitecontent service: ${errorJson.message}`
             );
             return makeErrorProps(idOrPath, undefined, 500, errorId);
         }
 
+        // Regular 404 should not be logged as errors
         console.log(`Content not found ${idOrPath}`);
         return makeErrorProps(idOrPath, undefined, res.status, errorId);
     }
