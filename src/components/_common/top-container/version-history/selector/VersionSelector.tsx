@@ -29,6 +29,10 @@ const getUrl = (
     branch: Branch
 ) => {
     const contentPath = content._path.split(xpContentPathPrefix)[1];
+    if (!contentPath) {
+        return null;
+    }
+
     const dateTime = getUtcTimeFromLocal(`${date}T${time}`);
     const query = `?time=${dateTime}&id=${content._id}${
         branch === 'draft' ? '&branch=draft' : ''
@@ -144,6 +148,8 @@ export const VersionSelector = ({
                                 e.preventDefault();
                                 submitVersionUrl(url);
                             }}
+                            prefetch={false}
+                            disabled={!url}
                         >
                             {'Hent innhold'}
                         </Button>
