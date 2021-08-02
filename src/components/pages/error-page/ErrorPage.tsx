@@ -7,6 +7,7 @@ import { ErrorContentDefault } from './errorcode-content/ErrorContentDefault';
 import { ErrorContent408 } from './errorcode-content/ErrorContent408';
 import { BEM } from '../../../utils/classnames';
 import Head from 'next/head';
+import { ErrorContent400 } from './errorcode-content/ErrorContent400';
 import './ErrorPage.less';
 
 const bem = BEM('error-page');
@@ -14,6 +15,7 @@ const bem = BEM('error-page');
 const errorContentByCode: {
     [key: number]: React.FunctionComponent<ErrorProps>;
 } = {
+    400: ErrorContent400,
     404: ErrorContent404,
     408: ErrorContent408,
     1337: ErrorContent1337,

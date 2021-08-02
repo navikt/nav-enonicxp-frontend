@@ -25,7 +25,7 @@ export const LenkeBase = ({
     component,
     linkGroup,
     analyticsLabel,
-    prefetch = true,
+    prefetch,
     children,
     ...rest
 }: Props) => {
