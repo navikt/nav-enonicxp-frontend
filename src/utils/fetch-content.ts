@@ -44,7 +44,7 @@ const fetchSiteContent = async (
 
         logPageLoadError(
             errorId,
-            `Fetch error: Received ok-response for ${idOrPath}, but did not receive a JSON response`
+            `Fetch error: Received an ok-response for ${idOrPath}, but did not receive JSON content`
         );
         return makeErrorProps(idOrPath, undefined, 500, errorId);
     }
