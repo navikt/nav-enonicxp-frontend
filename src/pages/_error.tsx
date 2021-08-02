@@ -3,6 +3,9 @@ import PageBase from '../components/PageBase';
 import { ContentProps } from '../types/content-props/_content-common';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from '../utils/errors';
+import { paramDecodeErrorMsgExternal } from '../components/pages/error-page/errorcode-content/ErrorContent400';
+
+const paramDecodeErrorMsg = 'failed to decode param';
 
 const Error = (props: ContentProps) => <PageBase content={props} />;
 
@@ -16,8 +19,19 @@ Error.getInitialProps = ({ res, err, asPath }): ContentProps => {
 
     logPageLoadError(
         errorId,
-        `Unhandled error on path ${asPath} - ${err.toString()}`
+        `Unhandled error on path ${asPath} - ${
+            err ? err.toString() : 'Empty error message'
+        }`
     );
+
+    if (err?.includes(paramDecodeErrorMsg)) {
+        return makeErrorProps(
+            asPath,
+            paramDecodeErrorMsgExternal,
+            400,
+            errorId
+        );
+    }
 
     return makeErrorProps(asPath, undefined, res.statusCode, errorId);
 };

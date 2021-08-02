@@ -4,6 +4,9 @@ import { ErrorProps } from '../types/content-props/error-props';
 const errorMessageDefault = 'Ukjent feil';
 
 const errorMessageByCode = {
+    400: 'Ugyldig forespørsel',
+    401: 'Ingen tilgang',
+    403: 'Ingen tilgang',
     404: 'Fant ikke siden',
     408: 'Tidsavbrudd',
 };
