@@ -32,7 +32,7 @@ const fetchSiteContent = async (
 
     const res = await fetchWithTimeout(url, fetchTimeoutMs, config);
     const isJson = res.headers
-        .get('content-type')
+        ?.get('content-type')
         ?.includes?.('application/json');
 
     if (res.ok && isJson) {
