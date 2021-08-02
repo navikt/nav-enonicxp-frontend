@@ -16,15 +16,14 @@ Error.getInitialProps = ({ res, err, asPath }): ContentProps => {
     }
 
     const errorId = uuid();
+    const errorMsg = err?.toString() || 'Empty error message';
 
     logPageLoadError(
         errorId,
-        `Unhandled error on path ${asPath} - ${
-            err ? err.toString() : 'Empty error message'
-        }`
+        `Unhandled error on path ${asPath} - ${errorMsg}`
     );
 
-    if (err?.includes(paramDecodeErrorMsg)) {
+    if (errorMsg.includes(paramDecodeErrorMsg)) {
         return makeErrorProps(
             asPath,
             paramDecodeErrorMsgExternal,
