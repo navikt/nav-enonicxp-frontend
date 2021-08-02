@@ -50,7 +50,7 @@ const fetchSiteContent = async (
     }
 
     const errorMsg = isJson
-        ? (await res.json().message) || res.statusText
+        ? (await res.json()).message || res.statusText
         : res.statusText;
 
     if (res.status === 404) {
