@@ -35,13 +35,13 @@ const fetchSiteContent = async (
         ?.get('content-type')
         ?.includes?.('application/json');
 
+    if (res.ok && isJson) {
+        return res.json();
+    }
+
     const errorId = uuid();
 
     if (res.ok) {
-        if (isJson) {
-            return res.json();
-        }
-
         logPageLoadError(
             errorId,
             `Fetch error: Received an ok-response for ${idOrPath}, but did not receive JSON content`
