@@ -59,7 +59,7 @@ const fetchSiteContent = async (
         if (errorMsg !== contentNotFoundMessage) {
             logPageLoadError(
                 errorId,
-                `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath} - invalid 404-response from sitecontent service: ${errorMsg}`
+                `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath} - unexpected 404-response from sitecontent service: ${errorMsg}`
             );
             return makeErrorProps(idOrPath, undefined, 500, errorId);
         }
