@@ -32,7 +32,7 @@ const fetchSiteContent = async (
 
     const res = await fetchWithTimeout(url, fetchTimeoutMs, config);
     const isJson = res.headers
-        .get('content-type')
+        ?.get('content-type')
         ?.includes?.('application/json');
 
     if (res.ok && isJson) {
@@ -41,39 +41,37 @@ const fetchSiteContent = async (
 
     const errorId = uuid();
 
-    if (!isJson) {
+    if (res.ok) {
         logPageLoadError(
             errorId,
-            `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath} - did not receive a JSON response`
+            `Fetch error: Received an ok-response for ${idOrPath}, but did not receive JSON content`
         );
         return makeErrorProps(idOrPath, undefined, 500, errorId);
     }
 
-    const errorJson = await res.json();
+    const errorMsg = isJson
+        ? (await res.json()).message || res.statusText
+        : res.statusText;
 
     if (res.status === 404) {
         // If we get an unexpected 404-error from the sitecontent-service (meaning the service itself
         // was not found), treat the error as a server error in order to prevent cache-invalidation
-        if (errorJson.message !== contentNotFoundMessage) {
+        if (errorMsg !== contentNotFoundMessage) {
             logPageLoadError(
                 errorId,
-                `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath} - invalid 404-response from sitecontent service: ${errorJson.message}`
+                `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath} - unexpected 404-response from sitecontent service: ${errorMsg}`
             );
-            return makeErrorProps(idOrPath, undefined, 500, errorId);
+            return makeErrorProps(idOrPath, undefined, 503, errorId);
         }
 
         // Regular 404 should not be logged as errors
         console.log(`Content not found ${idOrPath}`);
-        return makeErrorProps(idOrPath, undefined, res.status, errorId);
+        return makeErrorProps(idOrPath, undefined, 404, errorId);
     }
 
     logPageLoadError(
         errorId,
-        `Fetch error: ${
-            res.status
-        } - Failed to fetch content from ${idOrPath}: ${
-            errorJson.message || res.statusText
-        }`
+        `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath}: ${errorMsg}`
     );
     return makeErrorProps(idOrPath, undefined, res.status, errorId);
 };
