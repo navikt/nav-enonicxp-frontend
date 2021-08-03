@@ -6,7 +6,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: prod-sbs:default
+    environment: prod-sbs:personbruker
     steps:
       - uses: actions/checkout@v1
       - name: Abort if branch is not master
