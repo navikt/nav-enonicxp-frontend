@@ -61,12 +61,12 @@ const fetchSiteContent = async (
                 errorId,
                 `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath} - unexpected 404-response from sitecontent service: ${errorMsg}`
             );
-            return makeErrorProps(idOrPath, undefined, 500, errorId);
+            return makeErrorProps(idOrPath, undefined, 503, errorId);
         }
 
         // Regular 404 should not be logged as errors
         console.log(`Content not found ${idOrPath}`);
-        return makeErrorProps(idOrPath, undefined, res.status, errorId);
+        return makeErrorProps(idOrPath, undefined, 404, errorId);
     }
 
     logPageLoadError(
