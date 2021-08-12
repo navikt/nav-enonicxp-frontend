@@ -3,13 +3,13 @@ import { Title, BodyLong } from '@navikt/ds-react';
 import { BEM } from '../../../../utils/classnames';
 import { SearchForm } from './search-form/SearchForm';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
-import './Error404Content.less';
+import './ErrorContent404.less';
 
 const origin = process.env.APP_ORIGIN;
 const frontpageHref = origin;
 const feedbackHref = `${origin}/person/kontakt-oss/tilbakemeldinger/feil-og-mangler`;
 
-export const Error404Content = () => {
+export const ErrorContent404 = () => {
     const bem = BEM('error404');
 
     return (

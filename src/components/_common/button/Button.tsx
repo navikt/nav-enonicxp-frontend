@@ -15,6 +15,8 @@ type Props = {
     mini?: boolean;
     kompakt?: boolean;
     fullWidth?: boolean;
+    disabled?: boolean;
+    prefetch?: boolean;
     onClick?: (e?: React.MouseEvent) => void;
     className?: string;
     children: React.ReactNode;
@@ -27,6 +29,8 @@ export const Button = ({
     mini,
     kompakt,
     fullWidth,
+    disabled,
+    prefetch,
     onClick,
     className,
     children,
@@ -41,9 +45,11 @@ export const Button = ({
                 mini && bem(undefined, 'mini'),
                 kompakt && bem(undefined, 'kompakt'),
                 fullWidth && bem(undefined, 'fullWidth'),
+                disabled && bem(undefined, 'disabled'),
                 className
             )}
             onClick={onClick}
+            prefetch={prefetch}
         >
             {icon ? (
                 <>

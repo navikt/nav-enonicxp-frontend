@@ -98,7 +98,7 @@ export const PageWrapper = (props: Props) => {
     }, [content]);
 
     return (
-        <div className={'app'}>
+        <div className={'app-container'}>
             <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
             {content.editorView === 'edit' && <ComponentReorderHack />}

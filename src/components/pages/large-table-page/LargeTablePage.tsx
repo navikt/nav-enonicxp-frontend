@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
+import htmlReactParser, { Element, domToReact } from 'html-react-parser';
+import { isTag } from 'domhandler';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LargeTableProps } from '../../../types/content-props/large-table-props';
 import { makeErrorProps } from '../../../utils/make-error-props';
@@ -8,12 +9,13 @@ import './LargeTablePage.less';
 
 const parseHtml = (htmlString: string) => {
     const options = {
-        replace: ({ name, attribs, children }: DomElement) => {
+        replace: ({ name, attribs, children }: Element) => {
             // Replace rows with no content with an easily styled element
             if (
                 name?.toLowerCase() === 'tr' &&
                 (!children ||
-                    children.filter((col) => col.children?.length).length === 0)
+                    children.filter((col) => isTag(col) && col.children?.length)
+                        .length === 0)
             ) {
                 return (
                     <tr

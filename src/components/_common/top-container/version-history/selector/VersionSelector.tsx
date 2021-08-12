@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BEM, classNames } from '../../../../../utils/classnames';
-import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
+import { BodyLong } from '@navikt/ds-react';
 import {
     getCurrentDateAndTime,
     getUtcTimeFromLocal,
@@ -29,6 +29,10 @@ const getUrl = (
     branch: Branch
 ) => {
     const contentPath = content._path.split(xpContentPathPrefix)[1];
+    if (!contentPath) {
+        return null;
+    }
+
     const dateTime = getUtcTimeFromLocal(`${date}T${time}`);
     const query = `?time=${dateTime}&id=${content._id}${
         branch === 'draft' ? '&branch=draft' : ''
@@ -99,7 +103,7 @@ export const VersionSelector = ({
             >
                 <div className={bem('input')}>
                     <div className={bem('input-left')}>
-                        <Normaltekst>{'Velg tid og dato:'}</Normaltekst>
+                        <BodyLong>{'Velg tid og dato:'}</BodyLong>
                         <input
                             type={'time'}
                             className={bem('time')}
@@ -144,6 +148,8 @@ export const VersionSelector = ({
                                 e.preventDefault();
                                 submitVersionUrl(url);
                             }}
+                            prefetch={false}
+                            disabled={!url}
                         >
                             {'Hent innhold'}
                         </Button>
@@ -152,16 +158,16 @@ export const VersionSelector = ({
                 {content.editorView && (
                     <div className={bem('help-text')}>
                         <hr />
-                        <Undertekst>
+                        <BodyLong size={'s'}>
                             {
                                 'Obs: Løsningen er under utvikling og kan ha noen svakheter.'
                             }
-                        </Undertekst>
-                        <Undertekst>
+                        </BodyLong>
+                        <BodyLong size={'s'}>
                             {
                                 'Denne historikken går foreløpig kun tilbake til desember 2019. Ta kontakt med redaksjonen dersom du har behov for tidligere historikk.'
                             }
-                        </Undertekst>
+                        </BodyLong>
                     </div>
                 )}
             </div>

@@ -70,11 +70,11 @@
 
 .layout__situation-flex-cols {
     @singleColMaxWidth: (
-            @situationPageSectionMaxWidth + 2 * @padding-sides-mobile
-        ) * @font-size-factor;
+        @situationPageSectionMaxWidth + 2 * @padding-sides-mobile
+    );
     @doubleColMaxWidth: (
-            @situationPageContentMaxWidth + 2 * @padding-sides-tablet
-        ) * @font-size-factor;
+        @situationPageContentMaxWidth + 2 * @padding-sides-tablet
+    );
 
     @mqSingleCol: ~'only screen and (max-width: @{singleColMaxWidth})';
     @mqDoubleCol: ~'only screen and (max-width: @{doubleColMaxWidth})';
