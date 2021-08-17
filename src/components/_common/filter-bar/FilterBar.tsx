@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Title } from '@navikt/ds-react';
 
 import classNames from 'classnames';
@@ -26,11 +27,31 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const { language } = usePageConfig();
     const getLabel = translator('filteredContent', language);
 
-    const {
-        selectedFilters,
-        availableFilters,
-        toggleFilter,
-    } = useFilterState();
+    const { selectedFilters, availableFilters, toggleFilter } =
+        useFilterState();
+
+    const barRef = useRef(null);
+
+    const onToggleFilterHandler = (filter) => {
+        const barPosition = barRef.current; //?.getBoundingClientRect();
+
+        logAmplitudeEvent('filtervalg', {
+            kategori: filter.categoryName,
+            filternavn: filter.filterName,
+            opprinnelse: 'innholdtekst',
+        });
+        toggleFilter(filter.id);
+
+        setTimeout(() => {
+            if (barPosition) {
+                const scrollOptions = {
+                    block: 'center',
+                    behavior: 'smooth',
+                };
+                barPosition.scrollIntoView(scrollOptions);
+            }
+        }, 100);
+    };
 
     // Create a flat array of all ids that any
     // underlying part that has filter ids attached.
@@ -62,7 +83,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         .flat();
 
     return (
-        <div className={bem('wrapper')}>
+        <div className={bem('wrapper')} ref={barRef}>
             <Title
                 level={3}
                 size="s"
@@ -77,14 +98,9 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                         <FilterCheckbox
                             key={filter.id}
                             isSelected={isSelected}
-                            onToggleFilterHandler={() => {
-                                logAmplitudeEvent('filtervalg', {
-                                    kategori: filter.categoryName,
-                                    filternavn: filter.filterName,
-                                    opprinnelse: 'innholdtekst',
-                                });
-                                toggleFilter(filter.id);
-                            }}
+                            onToggleFilterHandler={() =>
+                                onToggleFilterHandler(filter)
+                            }
                             filter={filter}
                         />
                     );
