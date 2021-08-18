@@ -30,27 +30,40 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const { selectedFilters, availableFilters, toggleFilter } =
         useFilterState();
 
-    const barRef = useRef(null);
+    const filterBarRef = useRef(null);
 
     const onToggleFilterHandler = (filter) => {
-        const barPosition = barRef.current; //?.getBoundingClientRect();
+        const barElement = filterBarRef.current;
+        const originalBarY = barElement
+            ? barElement.getBoundingClientRect().top
+            : 0;
 
         logAmplitudeEvent('filtervalg', {
             kategori: filter.categoryName,
             filternavn: filter.filterName,
             opprinnelse: 'innholdtekst',
         });
+
         toggleFilter(filter.id);
 
+        // Though not the intended use, it's possible in CS to cross link filters, resulting in
+        // content above a current FilterBar to be hidden. This will result in a percieved scroll
+        // for the user as the rest of the content will shift upwards and out of portview.
+        // Offset this by calculating the bars position and scrolling back so that
+        // content in the viewport will not seem to have moved at all. (Drawback: results in
+        // minor flicker...)
         setTimeout(() => {
-            if (barPosition) {
-                const scrollOptions = {
-                    block: 'center',
-                    behavior: 'smooth',
-                };
-                barPosition.scrollIntoView(scrollOptions);
+            if (barElement) {
+                const newBarY = barElement
+                    ? barElement.getBoundingClientRect().top
+                    : 0;
+
+                const newScroll =
+                    document.documentElement.scrollTop + newBarY - originalBarY;
+
+                window.scrollTo({ top: newScroll });
             }
-        }, 100);
+        }, 0);
     };
 
     // Create a flat array of all ids that any
@@ -83,7 +96,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         .flat();
 
     return (
-        <div className={bem('wrapper')} ref={barRef}>
+        <div className={bem('wrapper')} ref={filterBarRef}>
             <Title
                 level={3}
                 size="s"
