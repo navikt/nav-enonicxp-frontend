@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import './useContentUpdate.less';
+import './useUpdateFlash.less';
 
 /**  Will flash the page (without Dekoratøren) white, indicating that content changed.
  * Mainly used by filters to indicate a change, but can also be used to indicate other significant
