@@ -14,6 +14,7 @@ import { SectionWithHeaderProps } from 'types/component-props/layouts/section-wi
 import { FilterExplanation } from './FilterExplanation';
 
 import './FilterBar.less';
+import { useUpdateFlash } from 'utils/hooks/useUpdateFlash';
 
 const bem = BEM('filter-bar');
 
@@ -26,6 +27,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const components = [...content.components, ...intro.components];
     const { language } = usePageConfig();
     const getLabel = translator('filteredContent', language);
+    const { startContentChange } = useUpdateFlash();
 
     const { selectedFilters, availableFilters, toggleFilter } =
         useFilterState();
@@ -38,20 +40,23 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
             ? barElement.getBoundingClientRect().top
             : 0;
 
+        startContentChange();
+
         logAmplitudeEvent('filtervalg', {
             kategori: filter.categoryName,
             filternavn: filter.filterName,
             opprinnelse: 'innholdtekst',
         });
 
-        toggleFilter(filter.id);
+        setTimeout(() => {
+            toggleFilter(filter.id);
+        }, 200);
 
-        // Though not the intended use, it's possible in CS to cross link filters, resulting in
-        // content above a current FilterBar to be hidden. This will result in a percieved scroll
+        // It's possible in CS to cross link filters, resulting in content above a current FilterBar to
+        // be hidden. This will result in a percieved scroll
         // for the user as the rest of the content will shift upwards and out of portview.
         // Offset this by calculating the bars position and scrolling back so that
-        // content in the viewport will not seem to have moved at all. (Drawback: results in
-        // minor flicker...)
+        // content in the viewport will not seem to have moved at all.
         setTimeout(() => {
             if (barElement) {
                 const newBarY = barElement
@@ -63,7 +68,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
 
                 window.scrollTo({ top: newScroll });
             }
-        }, 0);
+        }, 200);
     };
 
     // Create a flat array of all ids that any

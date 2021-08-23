@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Title, BodyLong } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import { CheckboxGruppe } from 'nav-frontend-skjema';
 
 import { logAmplitudeEvent } from 'utils/amplitude';
@@ -15,18 +15,14 @@ import { BEM } from '../../../utils/classnames';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
 
+import { useUpdateFlash } from 'utils/hooks/useUpdateFlash';
+
 import './FiltersMenu.less';
 
 const bem = BEM('filters-menu');
 
 export const FiltersMenu = ({ config }: FilterMenuProps) => {
-    const {
-        categories,
-        description,
-        expandable,
-        expandableTitle,
-        title,
-    } = config;
+    const { categories, description, expandableTitle, title } = config;
 
     const {
         clearFiltersForPage,
@@ -36,6 +32,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
     } = useFilterState();
 
     const { language } = usePageConfig();
+    const { startContentChange } = useUpdateFlash();
 
     useEffect(() => {
         setAvailableFilters(categories);
@@ -57,6 +54,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
             opprinnelse: 'filtermeny',
         });
         toggleFilter(filter.id);
+        startContentChange();
     };
 
     // Will only show if editor didn't add any actual filters in the FiltersMenu part.
@@ -108,6 +106,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                     );
                 })}
             </Expandable>
+            <div className="filterCover" id="filterCover" />
         </section>
     );
 };
