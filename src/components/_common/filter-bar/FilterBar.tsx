@@ -8,13 +8,13 @@ import { translator } from 'translations';
 
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { useUpdateFlash } from 'utils/hooks/useUpdateFlash';
 
 import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { FilterExplanation } from './FilterExplanation';
 
 import './FilterBar.less';
-import { useUpdateFlash } from 'utils/hooks/useUpdateFlash';
 
 const bem = BEM('filter-bar');
 
@@ -27,7 +27,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const components = [...content.components, ...intro.components];
     const { language } = usePageConfig();
     const getLabel = translator('filteredContent', language);
-    const { startContentChange } = useUpdateFlash();
+    const { flashContentChange } = useUpdateFlash();
 
     const { selectedFilters, availableFilters, toggleFilter } =
         useFilterState();
@@ -35,12 +35,12 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const filterBarRef = useRef(null);
 
     const onToggleFilterHandler = (filter) => {
-        const barElement = filterBarRef.current;
-        const originalBarY = barElement
-            ? barElement.getBoundingClientRect().top
+        const filterBarElement = filterBarRef.current;
+        const originalBarY: number = filterBarElement
+            ? filterBarElement.getBoundingClientRect().top
             : 0;
 
-        startContentChange();
+        flashContentChange();
 
         logAmplitudeEvent('filtervalg', {
             kategori: filter.categoryName,
@@ -58,9 +58,9 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         // Offset this by calculating the bars position and scrolling back so that
         // content in the viewport will not seem to have moved at all.
         setTimeout(() => {
-            if (barElement) {
-                const newBarY = barElement
-                    ? barElement.getBoundingClientRect().top
+            if (filterBarElement) {
+                const newBarY: number = filterBarElement
+                    ? filterBarElement.getBoundingClientRect().top
                     : 0;
 
                 const newScroll =

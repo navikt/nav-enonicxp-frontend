@@ -14,14 +14,14 @@ export const useUpdateFlash = () => {
         cover.current = document.getElementById('contentUpdateCover');
         if (!cover.current) {
             const coverElement = document.createElement('div');
-            coverElement.classList.add('filterCover');
+            coverElement.classList.add('contentUpdateCover');
             coverElement.id = 'contentUpdateCover';
             document.body.appendChild(coverElement);
             cover.current = coverElement;
         }
     }, []);
 
-    const startContentChange = () => {
+    const flashContentChange = () => {
         cover.current?.classList.add('visible');
 
         setTimeout(() => {
@@ -29,5 +29,5 @@ export const useUpdateFlash = () => {
         }, 300);
     };
 
-    return { startContentChange };
+    return { flashContentChange };
 };

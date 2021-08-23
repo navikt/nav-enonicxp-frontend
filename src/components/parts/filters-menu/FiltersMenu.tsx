@@ -6,6 +6,7 @@ import { logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from '../../../store/hooks/useFilteredContent';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { useUpdateFlash } from 'utils/hooks/useUpdateFlash';
 
 import { FilterMenuProps } from '../../../types/component-props/parts/filter-menu';
 import { Expandable } from '../../_common/expandable/Expandable';
@@ -14,8 +15,6 @@ import { FilterCheckbox } from './FilterCheckbox';
 import { BEM } from '../../../utils/classnames';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
-
-import { useUpdateFlash } from 'utils/hooks/useUpdateFlash';
 
 import './FiltersMenu.less';
 
@@ -32,7 +31,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
     } = useFilterState();
 
     const { language } = usePageConfig();
-    const { startContentChange } = useUpdateFlash();
+    const { flashContentChange } = useUpdateFlash();
 
     useEffect(() => {
         setAvailableFilters(categories);
@@ -54,7 +53,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
             opprinnelse: 'filtermeny',
         });
         toggleFilter(filter.id);
-        startContentChange();
+        flashContentChange();
     };
 
     // Will only show if editor didn't add any actual filters in the FiltersMenu part.
