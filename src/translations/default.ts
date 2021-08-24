@@ -25,7 +25,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.BENEFITS]: 'Pengestøtte',
-    [Taxonomy.RIGHTS]: 'Råd og veiledning',
+    [Taxonomy.RIGHTS]: 'Veiledning',
     [Taxonomy.FOLLOWUP]: 'Oppfølging',
 };
 
