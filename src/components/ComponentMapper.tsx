@@ -25,14 +25,14 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
             return (
                 <Text
                     textProps={componentProps}
-                    editMode={pageProps.editMode}
+                    editMode={!!pageProps.editorView}
                 />
             );
         case ComponentType.Image:
             return (
                 <Image
                     imageProps={componentProps}
-                    editMode={pageProps.editMode}
+                    editMode={!!pageProps.editorView}
                 />
             );
         case ComponentType.Layout:

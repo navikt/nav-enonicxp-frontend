@@ -1,6 +1,7 @@
 import React from 'react';
 import { BEM } from '../../../../utils/classnames';
 import { translator } from 'translations';
+import { Title, Ingress } from '@navikt/ds-react';
 import Innholdsfortegnelse from './innholdsfortegnelse/Innholdsfortegnelse';
 import SosialeMedier from './SosialeMedier';
 import ArtikkelDato from './ArtikkelDato';
@@ -12,7 +13,6 @@ import {
     ContentType,
     ContentProps,
 } from '../../../../types/content-props/_content-common';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import './MainArticle.less';
 
 export const MainArticle = (propsInitial: ContentProps) => {
@@ -46,14 +46,10 @@ export const MainArticle = (propsInitial: ContentProps) => {
                     publishLabel={getLabel('published')}
                     modifiedLabel={getLabel('lastChanged')}
                 />
-                <Innholdstittel className={bem('title')}>
+                <Title level={1} size="2xl" className={bem('title')}>
                     {props.displayName}
-                </Innholdstittel>
-                {data.ingress && (
-                    <Normaltekst className={bem('preface')}>
-                        {data.ingress}
-                    </Normaltekst>
-                )}
+                </Title>
+                {data.ingress && <Ingress>{data.ingress}</Ingress>}
                 <Innholdsfortegnelse
                     innholdsfortegnelse={innholdsfortegnelse}
                     label={getLabel('tableOfContents')}

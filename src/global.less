@@ -2,44 +2,31 @@
 @import '~nav-frontend-core/less/core';
 @import '~@navikt/ds-css/dist/index.css';
 
-@font-size-factor: 1.125;
-@pixel-size-rem: 1 / (16 * @font-size-factor);
+@pixel-size-rem: 1 / 16;
+@regular-font-size: 1.125rem;
 
 // Screen size breakpoints
-//
-// Relative units does not take CSS font-size into account when used in media queries,
-// but they do when used as CSS attribute values. We use separate variable sets to ensure
-// width and breakpoints scale consistently with browser font-size without being affected
-// by CSS font-size.
-@_MQ_mobileMaxWidth: 48em; // 768px
-@_MQ_tabletMinWidth: @_MQ_mobileMaxWidth;
-@_MQ_tabletMaxWidth: 64em; // 1024px
-@_MQ_desktopMinWidth: @_MQ_tabletMaxWidth;
-@_MQ_desktopMaxWidth: 90em; // 1440px
-
-@mobileMaxWidth: calc(@_MQ_mobileMaxWidth / @font-size-factor);
+@mobileMaxWidth: 48rem; // 768px
 @tabletMinWidth: @mobileMaxWidth;
-@tabletMaxWidth: calc(@_MQ_tabletMaxWidth / @font-size-factor);
+@tabletMaxWidth: 64rem; // 1024px
 @desktopMinWidth: @tabletMaxWidth;
-@desktopMaxWidth: calc(@_MQ_desktopMaxWidth / @font-size-factor);
+@desktopMaxWidth: 90rem; // 1440px
 
-@mq-screen-mobile: ~'only screen and (max-width: @{_MQ_mobileMaxWidth})';
-@mq-screen-tablet: ~'only screen and (min-width: @{_MQ_tabletMinWidth}) and (max-width: @{_MQ_tabletMaxWidth})';
-@mq-screen-tablet-and-desktop: ~'only screen and (min-width: @{_MQ_tabletMinWidth}) ';
-@mq-screen-desktop: ~'only screen and (min-width: @{_MQ_desktopMinWidth}) ';
-@mq-screen-desktop-large: ~'only screen and (min-width: @{_MQ_desktopMaxWidth}) ';
+@mq-screen-mobile: ~'only screen and (max-width: @{mobileMaxWidth})';
+@mq-screen-tablet: ~'only screen and (min-width: @{tabletMinWidth}) and (max-width: @{tabletMaxWidth})';
+@mq-screen-tablet-and-desktop: ~'only screen and (min-width: @{tabletMinWidth}) ';
+@mq-screen-desktop: ~'only screen and (min-width: @{desktopMinWidth}) ';
+@mq-screen-desktop-large: ~'only screen and (min-width: @{desktopMaxWidth}) ';
 
 @padding-sides-desktop: 3rem;
 @padding-sides-tablet: 1rem;
 @padding-sides-mobile: 0.5rem;
 
-@sectionPaddingDesktop: 2.5rem;
-@sectionPaddingTablet: 1.5rem;
+@sectionPaddingDesktop: 2.8rem;
+@sectionPaddingTablet: 1.6rem;
 @sectionPaddingMobile: 1rem;
 
 html {
-    font-size: @font-size-factor * 100%;
-
     // override ds-css scroll behaviour
     animation: none;
     scroll-behavior: auto;
@@ -59,10 +46,12 @@ html {
     margin-bottom: -4rem;
 }
 
-.app {
+.app-container {
     max-width: @desktopMaxWidth;
-    min-height: 20rem;
+    min-height: 22.5rem;
     margin: 0 auto;
+    font-size: var(--navds-front-size-l);
+    line-height: var(--navds-font-line-height-m);
 
     @media @mq-screen-mobile {
         padding: 0 @padding-sides-mobile 2rem @padding-sides-mobile;

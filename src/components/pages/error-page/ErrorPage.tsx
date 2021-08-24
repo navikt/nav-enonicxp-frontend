@@ -1,25 +1,30 @@
 import React from 'react';
 import { ErrorProps } from 'types/content-props/error-props';
-import { Ingress, Innholdstittel } from 'nav-frontend-typografi';
-import { Error404Content } from './errorcode-content/Error404Content';
-import { Error1337ReloadOnDevBuildError } from './errorcode-content/Error1337ReloadOnDevBuildError';
+import { Ingress, Title } from '@navikt/ds-react';
+import { ErrorContent404 } from './errorcode-content/ErrorContent404';
+import { ErrorContent1337 } from './errorcode-content/ErrorContent1337';
+import { ErrorContentDefault } from './errorcode-content/ErrorContentDefault';
+import { ErrorContent408 } from './errorcode-content/ErrorContent408';
 import { BEM } from '../../../utils/classnames';
 import Head from 'next/head';
+import { ErrorContent400 } from './errorcode-content/ErrorContent400';
 import './ErrorPage.less';
 
 const bem = BEM('error-page');
 
-const ErrorContent = ({ code }: { code: number }) =>
-    ({
-        404: <Error404Content />,
-        1337: <Error1337ReloadOnDevBuildError />,
-    }[code] || null);
+const errorContentByCode: {
+    [key: number]: React.FunctionComponent<ErrorProps>;
+} = {
+    400: ErrorContent400,
+    404: ErrorContent404,
+    408: ErrorContent408,
+    1337: ErrorContent1337,
+};
 
 export const ErrorPage = (props: ErrorProps) => {
     const { errorMessage, errorCode } = props.data;
-    const message = `Error code ${errorCode} - ${errorMessage}`;
 
-    console.error(message);
+    const ErrorContent = errorContentByCode[errorCode] || ErrorContentDefault;
 
     return (
         <div className={bem()}>
@@ -32,15 +37,15 @@ export const ErrorPage = (props: ErrorProps) => {
                 </style>
             </Head>
             <div className={bem('header')}>
-                <Innholdstittel className={bem('header-msg')}>
+                <Title level={1} size="xl" className={bem('header-msg')}>
                     {errorMessage}
-                </Innholdstittel>
+                </Title>
                 <Ingress
                     className={bem('header-code')}
-                >{`Feilkode ${errorCode}`}</Ingress>
+                >{`Statuskode ${errorCode}`}</Ingress>
             </div>
             <div className={bem('content')}>
-                <ErrorContent code={errorCode} />
+                <ErrorContent {...props} />
             </div>
         </div>
     );

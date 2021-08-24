@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { BEM, classNames } from '../../../utils/classnames';
-import { Information } from '@navikt/ds-icons';
+import { Information, InformationFilled } from '@navikt/ds-icons';
 import { translator } from 'translations';
 
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -58,7 +58,11 @@ export const FilterExplanation = ({
             )}
         >
             <div className={bem('iconWrapper')}>
-                <Information color={showHighlight ? '#ffffff' : '#0067c5'} />
+                {showHighlight ? (
+                    <InformationFilled color="#006A23" />
+                ) : (
+                    <Information />
+                )}
             </div>
             <div className={bem('text')}>{filterExplanation}</div>
         </div>

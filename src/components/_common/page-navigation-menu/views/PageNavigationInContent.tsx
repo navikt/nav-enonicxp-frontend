@@ -4,7 +4,6 @@ import { Header } from '../../headers/Header';
 import { PageNavigationLink } from '../PageNavigationLink';
 import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
 import { getPageNavigationLinkId } from '../PageNavigationMenu';
-import { TypoStyle } from '../../../../types/typo-style';
 import './PageNavigationInContent.less';
 
 const bem = BEM('page-nav-in-content');
@@ -19,10 +18,10 @@ export const PageNavigationInContent = ({ title, links }: Props) => {
         <div className={classNames(bem())}>
             {title && (
                 <Header
-                    tag={'h2'}
+                    level={2}
                     className={bem('title')}
                     justify={'left'}
-                    typoStyle={TypoStyle.Systemtittel}
+                    size="m"
                 >
                     {title}
                 </Header>

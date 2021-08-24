@@ -2,7 +2,7 @@ import React from 'react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { PublicImage } from '../image/PublicImage';
 import { BEM, classNames } from '../../../utils/classnames';
-import { Undertekst } from 'nav-frontend-typografi';
+import { BodyShort } from '@navikt/ds-react';
 import './EditorHelp.less';
 
 const bem = BEM('editor-help');
@@ -32,7 +32,9 @@ export const EditorHelp = ({ text, type = 'info' }: Props) => {
                 alt={''}
                 className={classNames(bem('icon'), bem('icon', type))}
             />
-            <Undertekst className={bem('content')}>{text}</Undertekst>
+            <BodyShort spacing={false} size="s" className={bem('content')}>
+                {text}
+            </BodyShort>
         </div>
     );
 };

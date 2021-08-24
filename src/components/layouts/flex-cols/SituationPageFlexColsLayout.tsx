@@ -4,7 +4,6 @@ import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
 import { SituationPageFlexColsLayoutProps } from '../../../types/component-props/layouts/situation-flex-cols';
 import { Header } from '../../_common/headers/Header';
-import { TypoStyle } from '../../../types/typo-style';
 import './FlexColsLayout.less';
 
 type Props = {
@@ -16,7 +15,7 @@ export const SituationPageFlexColsLayout = ({
     pageProps,
     layoutProps,
 }: Props) => {
-    const regionProps = layoutProps.regions.flexcols;
+    const regionProps = layoutProps.regions?.flexcols;
 
     if (!regionProps) {
         return null;
@@ -39,8 +38,8 @@ export const SituationPageFlexColsLayout = ({
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             {title && (
                 <Header
-                    tag={'h2'}
-                    typoStyle={TypoStyle.Systemtittel}
+                    level={2}
+                    size="xl"
                     justify={'left'}
                     hideCopyButton={!toggleCopyButton}
                     anchorId={anchorId}

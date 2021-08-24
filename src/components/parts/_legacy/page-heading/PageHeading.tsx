@@ -1,5 +1,5 @@
 import React from 'react';
-import { Ingress, Sidetittel } from 'nav-frontend-typografi';
+import { Title, Ingress } from '@navikt/ds-react';
 import { BEM } from 'utils/classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import './PageHeading.less';
@@ -10,9 +10,12 @@ const PageHeading = (props: ContentProps) => {
     const displayName = props.displayName;
     const ingress =
         props.__typename !== ContentType.SectionPage && props.data?.ingress;
+
     return (
         <header className={bem('container')}>
-            <Sidetittel>{displayName || 'Tittel'}</Sidetittel>
+            <Title level={1} size="2xl">
+                {displayName || 'Tittel'}
+            </Title>
             {ingress && (
                 <div className={bem('ingress')}>
                     <Ingress>{ingress}</Ingress>

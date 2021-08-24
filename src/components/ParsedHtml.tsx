@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
-import htmlReactParser, { DomElement, domToReact } from 'html-react-parser';
+import { BodyLong, Title } from '@navikt/ds-react';
+import htmlReactParser, { Element, domToReact } from 'html-react-parser';
+import { isTag, isText } from 'domhandler';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LenkeInline } from './_common/lenke/LenkeInline';
 import { getMediaUrl } from '../utils/urls';
@@ -9,7 +10,7 @@ import {
     ProcessedHtmlProps,
 } from '../types/processed-html-props';
 import { MacroMapper } from './macros/MacroMapper';
-import { headingToTypoStyle, typoToComponent } from '../types/typo-style';
+import { headingToLevel, headingToSize } from '../types/typo-style';
 import { MacroType } from '../types/macro-props/_macros-common';
 
 const blockLevelMacros = {
@@ -23,34 +24,32 @@ const blockLevelMacros = {
     [MacroType.Video]: true,
 };
 
-const hasBlockLevelMacroChildren = (element: DomElement) => {
+const hasBlockLevelMacroChildren = (element: Element) => {
     return element.children?.some(
         (child) =>
+            isTag(child) &&
             child.name === processedHtmlMacroTag &&
             blockLevelMacros[child.attribs?.['data-macro-name']]
     );
 };
 
-const getNonEmptyChildren = ({ children }: DomElement) => {
+const getNonEmptyChildren = ({ children }: Element) => {
     const validChildren = children?.filter((child) => {
-        const { data, name } = child;
+        if (isTag(child)) {
+            if (child.name === processedHtmlMacroTag) {
+                return true;
+            }
 
-        if (name === processedHtmlMacroTag) {
-            return true;
+            const grandChildren = getNonEmptyChildren(child);
+            return !!grandChildren;
         }
 
-        const grandChildren = getNonEmptyChildren(child);
-
-        if (!data && !grandChildren) {
-            return false;
+        if (isText(child)) {
+            const stringData = child.data?.replace?.(/&nbsp;/g, ' ').trim();
+            return !!stringData;
         }
 
-        if (typeof data !== 'string') {
-            return true;
-        }
-
-        const stringData = data.replace(/&nbsp;/g, ' ').trim();
-        return !!stringData;
+        return true;
     });
     return validChildren?.length > 0 && validChildren;
 };
@@ -74,7 +73,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
     }
 
     const replaceElements = {
-        replace: (element: DomElement) => {
+        replace: (element: Element) => {
             const { name, attribs, children } = element;
             const tag = name?.toLowerCase();
             const props = !!attribs && attributesToProps(attribs);
@@ -108,14 +107,14 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <p>{'&nbsp;'}</p>;
                 }
 
-                const typoStyle = headingToTypoStyle[tag];
-                const TypoComponent = typoToComponent[typoStyle];
+                const level = headingToLevel[tag] || 2; //Level 1 reserved for page title
+                const size = headingToSize[tag];
 
                 return (
                     // H1 tags should only be used for the page title
-                    <TypoComponent {...props} tag={tag === 'h1' ? 'h2' : tag}>
+                    <Title {...props} size={size} level={level} spacing>
                         {domToReact(validChildren, replaceElements)}
-                    </TypoComponent>
+                    </Title>
                 );
             }
 
@@ -126,9 +125,9 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 }
 
                 return (
-                    <Normaltekst {...props}>
+                    <BodyLong spacing {...props}>
                         {domToReact(children, replaceElements)}
-                    </Normaltekst>
+                    </BodyLong>
                 );
             }
 

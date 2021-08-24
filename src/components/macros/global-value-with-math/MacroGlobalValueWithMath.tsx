@@ -1,9 +1,12 @@
 import React from 'react';
 import { MacroGlobalValueWithMathProps } from '../../../types/macro-props/global-value-with-math';
-import math from 'mathjs-expression-parser';
+import { create, all } from 'mathjs/lib/esm/number';
 import globalState from '../../../globalState';
 
-type ExpressionProps = MacroGlobalValueWithMathProps['config']['global_value_with_math'];
+const math = create(all);
+
+type ExpressionProps =
+    MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 
 const formatNumber = (num: number, decimals: number = 0) => {
     const decimalsOOM = 10 ** decimals;
@@ -26,12 +29,13 @@ const evaluateExpression = ({
         // Mathjs only accepts . as decimal separator
         const expressionWithDotSeparators = expression.replace(',', '.');
 
-        const result = math.eval(expressionWithDotSeparators, scope);
+        const result = math.evaluate(expressionWithDotSeparators, scope);
         return formatNumber(result, decimals);
     } catch (e) {
-        if (globalState.isDraft) {
+        if (globalState.isEditorView) {
             return `[feil ved evaluering av uttrykk: ${e}]`;
         }
+        console.error(`Global values calculation error: ${e}`);
         return '[teknisk feil: verdi ikke tilgjengelig]';
     }
 };

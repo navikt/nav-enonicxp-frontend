@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const FragmentComponent = ({ componentProps, pageProps }: Props) => {
-    if (pageProps.editMode) {
+    if (!!pageProps.editorView) {
         const editorProps = {
             'data-portal-component-type': ComponentType.Fragment,
             'data-portal-component': componentProps.path,

@@ -1,7 +1,7 @@
 @import (reference) '../../../global';
 @import (reference) '../../pages/situation-page/SituationPage';
 
-.flex-items(@numCols, @margin-sides: 1.33rem) {
+.flex-items(@numCols, @margin-sides: 1.5rem) {
     & > * {
         @numColsPlus1: @numCols + 1;
         display: flex;
@@ -23,7 +23,7 @@
         }
 
         &:nth-child(n + @{numColsPlus1}) {
-            margin-top: 1.33rem;
+            margin-top: 1.5rem;
         }
     }
 }
@@ -70,22 +70,22 @@
 
 .layout__situation-flex-cols {
     @singleColMaxWidth: (
-            @situationPageSectionMaxWidth + 2 * @padding-sides-mobile
-        ) * @font-size-factor;
+        @situationPageSectionMaxWidth + 2 * @padding-sides-mobile
+    );
     @doubleColMaxWidth: (
-            @situationPageContentMaxWidth + 2 * @padding-sides-tablet
-        ) * @font-size-factor;
+        @situationPageContentMaxWidth + 2 * @padding-sides-tablet
+    );
 
     @mqSingleCol: ~'only screen and (max-width: @{singleColMaxWidth})';
     @mqDoubleCol: ~'only screen and (max-width: @{doubleColMaxWidth})';
 
     .full-width-mixin();
     background-color: @navGronnLighten80;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
 
     .header {
-        margin-bottom: 3rem;
+        margin-bottom: 3.3rem;
     }
 
     .region__flexcols {

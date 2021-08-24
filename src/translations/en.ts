@@ -1,14 +1,17 @@
 import { Translations } from './default';
 import { MenuListItemKey } from '../types/menu-list-items';
-import { Taxonomies } from 'types/taxonomies';
+import { Taxonomy } from 'types/taxonomies';
 
-const productTaxonomies: { [key in Taxonomies]: string } = {
-    [Taxonomies.BENEFITS]: 'Benefits',
-    [Taxonomies.RIGHTS]: 'Advice and counselling',
-    [Taxonomies.BENEFITS_AND_FOLLOWUP]: 'Benefits and follow-up',
+const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.BENEFITS]: 'Benefits',
+    [Taxonomy.RIGHTS]: 'Counselling',
+    [Taxonomy.FOLLOWUP]: 'Follow-up',
 };
 
 export const bundle: Translations = {
+    stringParts: {
+        conjunction: 'and',
+    },
     dates: {
         published: 'Published',
         lastChanged: 'Updated',

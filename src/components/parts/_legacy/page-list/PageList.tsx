@@ -1,7 +1,6 @@
 import React from 'react';
 import { BEM } from 'utils/classnames';
-import { Normaltekst, Undertekst } from 'nav-frontend-typografi';
-import { Innholdstittel } from 'nav-frontend-typografi';
+import { Title, BodyLong, Ingress, BodyShort } from '@navikt/ds-react';
 import { formatDate } from 'utils/datetime';
 import { Language, translator } from 'translations';
 import { PageListProps } from 'types/content-props/page-list-props';
@@ -26,9 +25,11 @@ const PageList = (props: PageListProps) => {
 
     return (
         <div className={bem()}>
-            <Innholdstittel>{props.displayName}</Innholdstittel>
+            <Title level={1} size="2xl">
+                {props.displayName}
+            </Title>
             <div className={bem('ingress')}>
-                <Normaltekst>{props.data.ingress}</Normaltekst>
+                <Ingress>{props.data.ingress}</Ingress>
             </div>
             {!hideDatesOnPage && (
                 <CreatedAndModifiedDate
@@ -47,14 +48,14 @@ const PageList = (props: PageListProps) => {
                     const createdTime = section.createdTime;
                     return (
                         <div key={section._path} className={bem('row')}>
-                            <Normaltekst>
+                            <BodyLong>
                                 <LenkeInline href={_path}>
                                     {displayName}
                                 </LenkeInline>
-                            </Normaltekst>
+                            </BodyLong>
                             {ingress && (
                                 <div className={bem('ingress')}>
-                                    <Normaltekst>{ingress}</Normaltekst>
+                                    <BodyLong>{ingress}</BodyLong>
                                 </div>
                             )}
                             {!hideDatesInList && (
@@ -85,11 +86,11 @@ const CreatedAndModifiedDate = (props: DatesProps) => {
     const getDateLabel = translator('dates', language);
     return (
         <div className={className}>
-            <Undertekst>
+            <BodyShort size="s">
                 {`${getDateLabel('published')}: ${formatDate(createdTime)}`}
                 {' | '}
                 {`${getDateLabel('lastChanged')}: ${formatDate(modifiedTime)}`}
-            </Undertekst>
+            </BodyShort>
         </div>
     );
 };

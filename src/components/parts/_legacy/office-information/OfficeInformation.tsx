@@ -12,7 +12,7 @@ import { Email } from './Email';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/ArtikkelDato';
 import Lenke from 'nav-frontend-lenker';
-import { Innholdstittel, Element, Normaltekst } from 'nav-frontend-typografi';
+import { Title, BodyLong, BodyShort } from '@navikt/ds-react';
 import {
     AudienceReception,
     OfficeInformationProps,
@@ -151,33 +151,41 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                         publishLabel={getLabelMain('published')}
                         modifiedLabel={getLabelMain('lastChanged')}
                     />
-                    <Innholdstittel
+                    <Title
+                        level={1}
+                        size="l"
                         className={bem('header')}
-                    >{`${unit.navn} - kontorinformasjon`}</Innholdstittel>
+                    >{`${unit.navn} - kontorinformasjon`}</Title>
                 </header>
                 {['HMS', 'ALS', 'TILTAK'].includes(unit.type) && location && (
                     <div>
-                        <Element tag="h2">Besøksadresse</Element>
-                        <Normaltekst>{location}</Normaltekst>
+                        <Title level={2} size="s">
+                            Besøksadresse
+                        </Title>
+                        <BodyShort>{location}</BodyShort>
                     </div>
                 )}
                 <Email email={contact.epost} unitType={unit.type} />
                 {contact?.telefonnummer && (
                     <div>
-                        <Element tag="h2">Telefon</Element>
-                        <Normaltekst>
+                        <Title level={2} size="s">
+                            Telefon
+                        </Title>
+                        <BodyShort>
                             {parsePhoneNumber(contact.telefonnummer)}
-                        </Normaltekst>
+                        </BodyShort>
                         {contact.telefonnummerKommentar && (
-                            <Normaltekst>
+                            <BodyShort>
                                 {contact.telefonnummerKommentar}
-                            </Normaltekst>
+                            </BodyShort>
                         )}
                     </div>
                 )}
                 <div>
-                    <Element tag="h2">Innsending av skjemaer</Element>
-                    <Normaltekst>
+                    <Title level={2} size="s">
+                        Innsending av skjemaer
+                    </Title>
+                    <BodyLong>
                         Skal du sende søknader og skjemaer, må du bruke{' '}
                         <Lenke
                             href="https://www.nav.no/soknader/nb/person"
@@ -187,34 +195,42 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                         </Lenke>{' '}
                         Skjemaveilederen gir deg hjelp til å velge rett skjema
                         og rett adresse det skal sendes til.
-                    </Normaltekst>
+                    </BodyLong>
                 </div>
                 <SpecialInformation info={contact.spesielleOpplysninger} />
                 <div>
-                    <Element tag="h2">Postadresse</Element>
-                    <Normaltekst>
+                    <Title level={2} size="s">
+                        Postadresse
+                    </Title>
+                    <BodyShort>
                         <span>{address}</span>
                         {', '}
                         <span>{contact.postadresse.postnummer}</span>{' '}
                         <span>{contact.postadresse.poststed}</span>
-                    </Normaltekst>
+                    </BodyShort>
                 </div>
                 {fax && (
                     <div>
-                        <Element tag="h2">Telefaks</Element>
-                        <Normaltekst>{fax}</Normaltekst>
+                        <Title level={2} size="s">
+                            Telefaks
+                        </Title>
+                        <BodyShort>{fax}</BodyShort>
                     </div>
                 )}
                 {unit.organisasjonsnummer && (
                     <div>
-                        <Element tag="h2">Organisasjonsnummer</Element>
-                        <Normaltekst>{unit.organisasjonsnummer}</Normaltekst>
+                        <Title level={2} size="s">
+                            Organisasjonsnummer
+                        </Title>
+                        <BodyShort>{unit.organisasjonsnummer}</BodyShort>
                     </div>
                 )}
                 {unit.enhetNr && (
                     <div>
-                        <Element tag="h2">Kontornummer</Element>
-                        <Normaltekst>{unit.enhetNr}</Normaltekst>
+                        <Title level={2} size="s">
+                            Kontornummer
+                        </Title>
+                        <BodyShort>{unit.enhetNr}</BodyShort>
                     </div>
                 )}
                 <Reception

@@ -1,6 +1,6 @@
 import { DeepPartial } from '../types/util-types';
 import { MenuListItemKey } from '../types/menu-list-items';
-import { Taxonomies } from 'types/taxonomies';
+import { Taxonomy } from 'types/taxonomies';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.AppealRights]: 'Klagerettigheter',
@@ -23,13 +23,16 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.RulesAndRegulationsLegacy]: 'Regelverk',
 };
 
-const productTaxonomies: { [key in Taxonomies]: string } = {
-    [Taxonomies.BENEFITS]: 'Pengestøtte',
-    [Taxonomies.RIGHTS]: 'Råd og veiledning',
-    [Taxonomies.BENEFITS_AND_FOLLOWUP]: 'Pengestøtte og oppfølging',
+const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.BENEFITS]: 'Pengestøtte',
+    [Taxonomy.RIGHTS]: 'Veiledning',
+    [Taxonomy.FOLLOWUP]: 'Oppfølging',
 };
 
 export const bundle = {
+    stringParts: {
+        conjunction: 'og',
+    },
     dates: {
         lastChanged: 'Sist endret',
         published: 'Publisert',

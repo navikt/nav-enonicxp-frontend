@@ -1,15 +1,7 @@
 import React from 'react';
+import { headingToLevel, headingToSize } from 'types/typo-style';
 import { MacroHeaderWithAnchorProps } from '../../../types/macro-props/header-with-anchor';
 import { Header } from '../../_common/headers/Header';
-
-type ValidTag = MacroHeaderWithAnchorProps['config']['header_with_anchor']['tag'];
-
-const getValidTag = (tag: string): ValidTag => {
-    if (tag !== 'h3' && tag !== 'h4') {
-        return 'h3';
-    }
-    return tag;
-};
 
 export const MacroHeaderWithAnchor = ({
     config,
@@ -20,9 +12,13 @@ export const MacroHeaderWithAnchor = ({
 
     const { id, tag, text, body } = config.header_with_anchor;
 
+    const level = headingToLevel[tag] || 3;
+    const size = headingToSize[tag] || 'xl';
+
     return (
         <Header
-            tag={getValidTag(tag)}
+            level={level}
+            size={size}
             anchorId={id}
             hideCopyButton={true}
             justify={'left'}

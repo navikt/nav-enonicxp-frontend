@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { formatDate } from '../../../../utils/datetime';
+import { BodyShort } from '@navikt/ds-react';
 
 interface Props {
     publish?: {
@@ -29,6 +30,10 @@ const ArtikkelDato = (props: Props) => {
 
     const innhold = publishedString + modifiedString;
 
-    return <time dateTime={props.publish?.first}>{innhold}</time>;
+    return (
+        <time dateTime={props.publish?.first}>
+            <BodyShort>{innhold}</BodyShort>
+        </time>
+    );
 };
 export default ArtikkelDato;

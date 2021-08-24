@@ -1,13 +1,8 @@
 @import (reference) '../../../global';
-@import (reference) '~nav-frontend-typografi-style/src/index';
 @import (reference) '~nav-frontend-tabell-style/src/index';
 
 .html-area {
     word-break: break-word;
-
-    & > *:not(:last-child) {
-        margin-bottom: 0.875rem;
-    }
 
     img {
         display: block;
@@ -18,18 +13,20 @@
     table {
         float: none;
         margin-bottom: 1rem;
-        line-height: 1.15em;
+        line-height: 1.3em;
 
         th,
         td {
             vertical-align: top;
-            padding: 0.625rem;
+            padding: 0.7rem;
+            font-size: 1.125rem;
         }
     }
 
     ul,
     ol {
-        padding-left: 1.25rem;
-        margin-bottom: 0.875rem;
+        padding-left: 1.4rem;
+        margin-bottom: 1rem;
+        font-size: 1.125rem;
     }
 }

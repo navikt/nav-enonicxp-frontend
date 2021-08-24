@@ -1,57 +1,55 @@
 import React from 'react';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Title, BodyLong } from '@navikt/ds-react';
 import { BEM } from '../../../../utils/classnames';
 import { SearchForm } from './search-form/SearchForm';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
-import './Error404Content.less';
+import './ErrorContent404.less';
 
 const origin = process.env.APP_ORIGIN;
 const frontpageHref = origin;
 const feedbackHref = `${origin}/person/kontakt-oss/tilbakemeldinger/feil-og-mangler`;
 
-export const Error404Content = () => {
+export const ErrorContent404 = () => {
     const bem = BEM('error404');
 
     return (
         <div className={bem()}>
             <div className={bem('content')}>
-                <Normaltekst>
+                <BodyLong>
                     {
                         'Beklager, siden kan være slettet eller flyttet, eller det var en feil i lenken som førte deg hit.'
                     }
-                </Normaltekst>
+                </BodyLong>
 
-                <Normaltekst>
+                <BodyLong>
                     {'Bruk gjerne søket, menyen eller '}
                     <LenkeInline href={frontpageHref}>
                         {'gå til forsiden'}
                     </LenkeInline>
                     {'.'}
-                </Normaltekst>
+                </BodyLong>
 
-                <Normaltekst>
+                <BodyLong>
                     <LenkeInline href={feedbackHref}>
                         {'Meld gjerne fra om denne lenken'}
                     </LenkeInline>
-                </Normaltekst>
+                </BodyLong>
             </div>
 
             <SearchForm />
 
             <div className={bem('content-en')}>
-                <Undertittel className={bem('en-header')}>
+                <Title level={2} size="l" className={bem('en-header')}>
                     {'In English'}
-                </Undertittel>
-                <Normaltekst>
-                    {'The page you requested cannot be found.'}
-                </Normaltekst>
-                <Normaltekst>
+                </Title>
+                <BodyLong>{'The page you requested cannot be found.'}</BodyLong>
+                <BodyLong>
                     {'Go to the '}
                     <LenkeInline href={frontpageHref}>
                         {'front page'}
                     </LenkeInline>
                     {', or use one of the links in the menu.'}
-                </Normaltekst>
+                </BodyLong>
             </div>
         </div>
     );

@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { useState } from 'react';
 import { Interaction } from 'types/interaction';
 

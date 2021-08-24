@@ -1,6 +1,6 @@
 import { LinkProps } from 'types/link-props';
 import { BEM } from 'utils/classnames';
-import { Element, Undertittel } from 'nav-frontend-typografi';
+import { Title, BodyLong, BodyShort } from '@navikt/ds-react';
 import { CardSize, CardType } from 'types/card';
 import { Card } from './Card';
 import './LargeCard.less';
@@ -55,11 +55,13 @@ export const LargeCard = (props: StortKortProps) => {
                         }
                     />
                 )}
-                <Undertittel tag="h3" className={bem('title')}>
+                <Title level={3} size="m" className={bem('title')}>
                     {text}
-                </Undertittel>
-                <Element className={bem('description')}>{description}</Element>
-                <Element className={bem('category')}>{category}</Element>
+                </Title>
+                <BodyLong className={bem('description')}>
+                    {description}
+                </BodyLong>
+                <BodyShort className={bem('category')}>{category}</BodyShort>
             </div>
         </Card>
     );

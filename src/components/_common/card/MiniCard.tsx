@@ -1,6 +1,6 @@
 import { LinkProps } from 'types/link-props';
 import { BEM } from 'utils/classnames';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { BodyLong } from '@navikt/ds-react';
 import { CardSize, CardType } from 'types/card';
 
 import './MiniCard.less';
@@ -45,7 +45,7 @@ export const MiniCard = (props: MiniKortProps) => {
                     isPressed={isPressed}
                     preferStaticIllustration={pageConfig.editorView === 'edit'}
                 />
-                <Normaltekst className={bem('title')}>{text}</Normaltekst>
+                <BodyLong className={bem('title')}>{text}</BodyLong>
             </>
         </Card>
     );

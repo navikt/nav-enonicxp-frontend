@@ -1,10 +1,12 @@
 import React from 'react';
 import { HeaderProps } from '../../../types/component-props/parts/header';
 import { Header } from '../../_common/headers/Header';
-import { headingToTypoStyle } from '../../../types/typo-style';
+import {
+    headingToLevel,
+    headingToSize,
+    typoToSize,
+} from '../../../types/typo-style';
 import './HeaderPart.less';
-
-const defaultTag = 'h3';
 
 export const HeaderPart = ({ config }: HeaderProps) => {
     if (!config) {
@@ -17,17 +19,17 @@ export const HeaderPart = ({ config }: HeaderProps) => {
         return null;
     }
 
-    const _tag = titleTag || defaultTag;
+    const _tag = titleTag || 'h3';
+    const level = headingToLevel[_tag];
 
-    const typoStyle =
-        typo?._selected === 'custom'
-            ? typo.custom.typo
-            : headingToTypoStyle[_tag];
+    const sizeFromTypo =
+        typo._selected === 'custom' ? typoToSize[typo?.custom?.typo] : null;
+    const size = sizeFromTypo || headingToSize[_tag];
 
     return (
         <Header
-            tag={_tag}
-            typoStyle={typoStyle}
+            level={level}
+            size={size}
             anchorId={anchorId}
             justify={justify}
             hideCopyButton={true}
