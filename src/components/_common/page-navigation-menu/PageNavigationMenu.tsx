@@ -22,15 +22,15 @@ export type PageNavScrollDirection = 'up' | 'down';
 export const getPageNavigationLinkId = (anchorId: string) => `${anchorId}-a`;
 
 const getCurrentLinkIndex = (links: AnchorLink[]) => {
-    const targetElements = links.map((link) =>
-        document.getElementById(link.anchorId)
-    );
+    const targetElements = links.reduce((elements, link) => {
+        const element = document.getElementById(link.anchorId);
+        return element ? [...elements, element] : elements;
+    }, []);
+
     const scrollTarget = window.scrollY + pageNavigationAnchorOffsetPx;
 
     const scrolledToTop = !!(
-        targetElements?.length &&
-        targetElements[0] &&
-        targetElements[0].offsetTop > scrollTarget
+        targetElements?.length && targetElements[0].offsetTop > scrollTarget
     );
 
     if (scrolledToTop) {
