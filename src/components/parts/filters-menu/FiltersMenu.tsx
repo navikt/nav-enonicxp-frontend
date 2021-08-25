@@ -76,6 +76,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
             <Expandable
                 {...config}
                 expandableTitle={expandableTitle || defaultExpandableTitle}
+                analyticsOriginTag="filter"
             >
                 {categories.map((category, categoryIndex) => {
                     return (
