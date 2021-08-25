@@ -12,6 +12,7 @@ import {
     SituationPageProps,
 } from '../../../../types/content-props/dynamic-page-props';
 import './ThemedPageHeader.less';
+import { buildTaxonomyString } from 'utils/string';
 
 const bem = BEM('themed-page-header');
 
@@ -30,8 +31,8 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             const getTaxonomyLabel = translator('situations', language);
             return getTaxonomyLabel('youMayHaveRightTo');
         }
-        const getTaxonomyLabel = translator('productTaxonomies', language);
-        return taxonomy ? getTaxonomyLabel(taxonomy) : null;
+
+        return buildTaxonomyString(taxonomy, language);
     };
 
     const pageTitle = title || displayName;

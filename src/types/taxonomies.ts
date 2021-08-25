@@ -1,5 +1,5 @@
-export enum Taxonomies {
+export enum Taxonomy {
     BENEFITS = 'benefits',
     RIGHTS = 'rights',
-    BENEFITS_AND_FOLLOWUP = 'benefitsAndFollowup',
+    FOLLOWUP = 'followup',
 }
