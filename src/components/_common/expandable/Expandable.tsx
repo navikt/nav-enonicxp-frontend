@@ -13,6 +13,7 @@ export const Expandable = ({
     expandableTitle,
     expandableOpenByDefault,
     expandableAnchorId,
+    analyticsOriginTag = '',
     children,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(expandableOpenByDefault);
@@ -20,6 +21,7 @@ export const Expandable = ({
     const onExpandCollapse = () => {
         logAmplitudeEvent(`panel-${isOpen ? 'kollaps' : 'ekspander'}`, {
             tittel: expandableTitle,
+            opprinnelse: analyticsOriginTag,
         });
         setIsOpen(!isOpen);
     };

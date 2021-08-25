@@ -48,6 +48,7 @@ export type ExpandableMixin = {
     expandableOpenByDefault: boolean;
     expandableTitle: string;
     expandableAnchorId?: string;
+    analyticsOriginTag?: string;
 };
 
 export type FiltersMixin = {
