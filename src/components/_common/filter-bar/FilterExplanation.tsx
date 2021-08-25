@@ -30,16 +30,18 @@ export const FilterExplanation = ({
 
     useEffect(() => {
         if (selectCount !== relevantSelectedFilters.length) {
-            setShowHighlight(true);
+            highlightTimeoutRef.current = setTimeout(() => {
+                setShowHighlight(true);
+            }, 500);
             setSelectCount(relevantSelectedFilters.length);
 
             if (highlightTimeoutRef.current) {
-                clearTimeout(highlightTimeoutRef.current);
+                //clearTimeout(highlightTimeoutRef.current);
             }
 
             highlightTimeoutRef.current = setTimeout(() => {
                 setShowHighlight(false);
-            }, 2000);
+            }, 2500);
         }
     }, [relevantSelectedFilters, selectCount]);
 
