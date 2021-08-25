@@ -58,6 +58,7 @@ export const FilterExplanation = ({
                 bem(),
                 showHighlight && bem(undefined, 'highlight')
             )}
+            role={showHighlight ? 'alert' : ''}
         >
             <div className={bem('iconWrapper')}>
                 {showHighlight ? (
