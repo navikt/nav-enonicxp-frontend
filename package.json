@@ -62,7 +62,7 @@
         "nav-frontend-veileder-style": "^2.1.2",
         "nav-frontend-veilederpanel": "^1.1.4",
         "nav-frontend-veilederpanel-style": "^1.1.1",
-        "next": "^11.1.0",
+        "next": "^11.1.1",
         "next-images": "^1.8.1",
         "node-cache": "^5.1.2",
         "parse-domain": "^3.0.3",
