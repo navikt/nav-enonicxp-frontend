@@ -7,10 +7,16 @@ export const fetchAndSetAuthStatus = () => {
             if (res.ok) {
                 return res.json();
             }
-            console.error('Could not fetch auth');
-            setLoginStateAction({ isLoggedIn: false });
+
+            throw new Error(
+                `Bad response from auth api: ${res.status} - ${res.statusText}`
+            );
         })
         .then((json) => {
             setLoginStateAction({ isLoggedIn: json.isLoggedIn });
+        })
+        .catch((e) => {
+            console.error(`Error while fetching auth status: ${e}`);
+            setLoginStateAction({ isLoggedIn: false });
         });
 };
