@@ -42,7 +42,7 @@ const contentToReactComponent: Partial<
     [ContentType.Site]: ClientsideRedirect,
     [ContentType.Url]: ClientsideRedirect,
 
-    [ContentType.ToolsPage]: ClientsideRedirect,
+    [ContentType.ToolsPage]: ProductPage,
 };
 
 export const isContentTypeImplemented = (content: ContentProps) =>
