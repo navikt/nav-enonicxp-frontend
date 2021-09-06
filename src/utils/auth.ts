@@ -1,5 +1,6 @@
 import { fetchWithTimeout } from './fetch-utils';
 import { setLoginStateAction } from '../store/slices/loginState';
+import { store } from '../store/store';
 
 export const fetchAndSetAuthStatus = () => {
     fetchWithTimeout(`${process.env.APP_ORIGIN}/api/auth`, 1000)
@@ -13,10 +14,14 @@ export const fetchAndSetAuthStatus = () => {
             );
         })
         .then((json) => {
-            setLoginStateAction({ isLoggedIn: json.isLoggedIn });
+            store.dispatch(
+                setLoginStateAction({
+                    authState: json.isLoggedIn ? 'loggedIn' : 'loggedOut',
+                })
+            );
         })
         .catch((e) => {
             console.error(`Error while fetching auth status: ${e}`);
-            setLoginStateAction({ isLoggedIn: false });
+            store.dispatch(setLoginStateAction({ authState: 'loggedOut' }));
         });
 };

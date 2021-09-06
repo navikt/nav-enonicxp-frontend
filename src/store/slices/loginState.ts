@@ -1,21 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 
+export type AuthState = 'loggedIn' | 'loggedOut' | 'waiting';
+
 export type LoginState = {
-    isLoggedIn?: boolean;
+    authState: AuthState;
 };
 
 const initialState: LoginState = {
-    isLoggedIn: undefined,
+    authState: 'waiting',
 };
 
 export const loginStateSlice = createSlice({
-    name: 'login',
+    name: 'loginState',
     initialState,
     reducers: {
         setLoginState: (state, action: PayloadAction<LoginState>) => {
             if (action.payload) {
-                state.isLoggedIn = action.payload.isLoggedIn;
+                state.authState = action.payload.authState;
             }
         },
     },

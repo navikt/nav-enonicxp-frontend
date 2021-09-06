@@ -1,6 +1,9 @@
-import { useSelector } from 'react-redux';
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { RootState } from '../store';
+import { LoginState } from '../slices/loginState';
 
-export const useLoginState = () => {
-    return useSelector<RootState>((state) => state.loginState);
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+export const useLoginState = (): LoginState => {
+    return useAppSelector((state) => state.loginState);
 };

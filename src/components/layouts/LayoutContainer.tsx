@@ -3,6 +3,7 @@ import { ContentProps } from '../../types/content-props/_content-common';
 import { LayoutProps } from '../../types/component-props/layouts';
 import { BEM, classNames } from '../../utils/classnames';
 import { getCommonLayoutStyle } from './LayoutStyle';
+import { AuthDependantRender } from '../_common/auth-dependant-render/AuthDependantRender';
 import './LayoutContainer.less';
 
 type Props = {
@@ -37,22 +38,24 @@ export const LayoutContainer = ({
         : undefined;
 
     return (
-        <div
-            {...divElementProps}
-            {...editorProps}
-            className={classNames(
-                bem(),
-                bem(layoutName),
-                ...(modifiers
-                    ? modifiers.map((mod) => bem(layoutName, mod))
-                    : []),
-                paddingConfig === 'fullWidth' && bem('fullwidth'),
-                paddingConfig === 'standard' && bem('standard'),
-                config.bgColor?.color && bem('bg')
-            )}
-            style={{ ...commonLayoutStyle, ...layoutStyle }}
-        >
-            {children}
-        </div>
+        <AuthDependantRender renderOn={config.renderOnAuthState}>
+            <div
+                {...divElementProps}
+                {...editorProps}
+                className={classNames(
+                    bem(),
+                    bem(layoutName),
+                    ...(modifiers
+                        ? modifiers.map((mod) => bem(layoutName, mod))
+                        : []),
+                    paddingConfig === 'fullWidth' && bem('fullwidth'),
+                    paddingConfig === 'standard' && bem('standard'),
+                    config.bgColor?.color && bem('bg')
+                )}
+                style={{ ...commonLayoutStyle, ...layoutStyle }}
+            >
+                {children}
+            </div>
+        </AuthDependantRender>
     );
 };

@@ -3,6 +3,7 @@ import { ContentProps } from '../content-props/_content-common';
 import { TypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
 import { Taxonomy } from 'types/taxonomies';
+import { AuthState } from '../../store/slices/loginState';
 
 export type HeaderWithAnchorMixin = {
     title: string;
@@ -69,6 +70,7 @@ export type LayoutCommonConfigMixin = Partial<{
             remValue: number;
         };
     };
+    renderOnAuthState: AuthState;
 }>;
 
 export type HeaderCommonConfig = {
