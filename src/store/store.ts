@@ -4,7 +4,7 @@ import contentFilters from './slices/filteredContent';
 import pageConfig from './slices/pageConfig';
 import pathMap from './slices/pathMap';
 import gvEditorState from './slices/gvEditorState';
-import loginState from './slices/loginState';
+import authState from './slices/authState';
 
 export const store = configureStore({
     reducer: {
@@ -12,7 +12,7 @@ export const store = configureStore({
         pageConfig,
         pathMap,
         gvEditorState,
-        loginState,
+        authState,
     },
 });
 
@@ -25,7 +25,7 @@ export const mockStore = configureStore({
         pageConfig,
         pathMap,
         gvEditorState,
-        loginState,
+        authState,
     },
 });
 

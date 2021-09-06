@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useLoginState } from '../../../store/hooks/useLoginState';
-import { AuthState } from '../../../store/slices/loginState';
+import { useAuthState } from '../../../store/hooks/useAuthState';
+import { AuthStateType } from '../../../store/slices/authState';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { EditorHelp } from '../editor-help/EditorHelp';
 import NavFrontendSpinner from 'nav-frontend-spinner';
+import { BEM } from '../../../utils/classnames';
 import './AuthDependantRender.less';
 
+const bem = BEM('auth-waiting');
+
 type Props = {
-    renderOn: AuthState | 'always';
+    renderOn: AuthStateType | 'always';
     children: React.ReactNode;
 };
 
@@ -16,7 +19,7 @@ export const AuthDependantRender = ({
     renderOn = 'always',
 }: Props) => {
     const { pageConfig } = usePageConfig();
-    const { authState } = useLoginState();
+    const { authState } = useAuthState();
     const [shouldRender, setShouldRender] = useState(renderOn === 'always');
 
     useEffect(() => {
@@ -47,7 +50,7 @@ export const AuthDependantRender = ({
         );
     }
 
-    // If login state has not yet been determined, render a placeholder for logged out
+    // If auth state has not yet been determined, render a placeholder for logged out
     // components, and nothing for logged in components
     if (authState === 'waiting') {
         if (renderOn === 'loggedIn') {
@@ -56,8 +59,8 @@ export const AuthDependantRender = ({
 
         if (renderOn === 'loggedOut') {
             return (
-                <div className={'auth-waiting'}>
-                    <div className={'auth-waiting__placeholder'}>
+                <div className={bem()}>
+                    <div className={bem('placeholder')}>
                         <NavFrontendSpinner />
                     </div>
                     {children}
