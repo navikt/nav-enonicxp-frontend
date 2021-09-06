@@ -3,7 +3,7 @@ import { setAuthStateAction } from '../store/slices/authState';
 import { store } from '../store/store';
 
 export const fetchAndSetAuthStatus = () => {
-    fetchWithTimeout(`${process.env.APP_ORIGIN}/api/auth`, 1000)
+    fetchWithTimeout(`${process.env.APP_ORIGIN}/api/auth`, 2000)
         .then((res) => {
             if (res.ok) {
                 return res.json();

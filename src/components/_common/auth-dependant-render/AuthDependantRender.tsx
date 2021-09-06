@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from '../../../store/hooks/useAuthState';
 import { AuthStateType } from '../../../store/slices/authState';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import NavFrontendSpinner from 'nav-frontend-spinner';
-import { BEM } from '../../../utils/classnames';
 import './AuthDependantRender.less';
-
-const bem = BEM('auth-waiting');
 
 type Props = {
     renderOn: AuthStateType | 'always';
@@ -19,10 +15,12 @@ export const AuthDependantRender = ({
 }: Props) => {
     const { pageConfig } = usePageConfig();
     const { authState } = useAuthState();
-    const [shouldRender, setShouldRender] = useState(renderOn === 'always');
+    const [shouldRender, setShouldRender] = useState(renderOn !== 'loggedIn');
 
     useEffect(() => {
-        setShouldRender(renderOn === 'always' || renderOn === authState);
+        if (authState !== 'waiting') {
+            setShouldRender(renderOn === 'always' || renderOn === authState);
+        }
     }, [renderOn, authState]);
 
     // Always render components in editor view
@@ -32,21 +30,8 @@ export const AuthDependantRender = ({
 
     // If auth state has not yet been determined, render a placeholder for logged out
     // components, and nothing for logged in components
-    if (authState === 'waiting') {
-        if (renderOn === 'loggedIn') {
-            return null;
-        }
-
-        if (renderOn === 'loggedOut') {
-            return (
-                <div className={bem()}>
-                    <div className={bem('placeholder')}>
-                        <NavFrontendSpinner />
-                    </div>
-                    {children}
-                </div>
-            );
-        }
+    if (authState === 'waiting' && renderOn === 'loggedIn') {
+        return null;
     }
 
     return shouldRender ? <>{children}</> : null;
