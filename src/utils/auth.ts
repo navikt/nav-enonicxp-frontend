@@ -2,8 +2,18 @@ import { fetchWithTimeout } from './fetch-utils';
 import { setAuthStateAction } from '../store/slices/authState';
 import { store } from '../store/store';
 
+type AuthResponse =
+    | {
+          authenticated: true;
+          name: string;
+          securityLevel: '4' | '3';
+      }
+    | { authenticated: false };
+
 export const fetchAndSetAuthStatus = () => {
-    fetchWithTimeout(`${process.env.APP_ORIGIN}/api/auth`, 2000)
+    fetchWithTimeout(process.env.INNLOGGINGSTATUS_URL, 2000, {
+        credentials: 'include',
+    })
         .then((res) => {
             if (res.ok) {
                 return res.json();
@@ -13,10 +23,10 @@ export const fetchAndSetAuthStatus = () => {
                 `Bad response from auth api: ${res.status} - ${res.statusText}`
             );
         })
-        .then((json) => {
+        .then((json: AuthResponse) => {
             store.dispatch(
                 setAuthStateAction({
-                    authState: json.isLoggedIn ? 'loggedIn' : 'loggedOut',
+                    authState: json.authenticated ? 'loggedIn' : 'loggedOut',
                 })
             );
         })
