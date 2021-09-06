@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { useAuthState } from '../../../store/hooks/useAuthState';
 import { AuthStateType } from '../../../store/slices/authState';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
@@ -17,7 +17,7 @@ export const AuthDependantRender = ({
     const { authState } = useAuthState();
     const [shouldRender, setShouldRender] = useState(renderOn !== 'loggedIn');
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (authState !== 'waiting') {
             setShouldRender(renderOn === 'always' || renderOn === authState);
         }
