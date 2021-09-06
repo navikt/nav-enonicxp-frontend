@@ -43,3 +43,7 @@ export const numberToFormattedValue = (
         return value.toLocaleString('no');
     }
 };
+
+export const insertHTMLBreaks = (value: string) => {
+    return value.replace('\n', '<br>');
+};

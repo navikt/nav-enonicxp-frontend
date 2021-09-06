@@ -11,10 +11,11 @@ interface FieldProps {
     field: CalculatorField;
     onChange: (variableName: string, value: string) => void;
     fieldType: FieldType;
+    value: number;
 }
 
 export const Field = (props: FieldProps) => {
-    const { field, onChange, fieldType } = props;
+    const { field, onChange, fieldType, value } = props;
     const { inputField, dropdownField } = field;
 
     return (
@@ -24,6 +25,7 @@ export const Field = (props: FieldProps) => {
                     name={inputField.variableName}
                     label={inputField.label}
                     type="number"
+                    value={value}
                     onChange={(e) =>
                         onChange(
                             field.inputField.variableName,
@@ -42,6 +44,7 @@ export const Field = (props: FieldProps) => {
                             e.currentTarget.value
                         )
                     }
+                    value={value}
                 >
                     {dropdownField.optionItems.map((option, index) => (
                         <option

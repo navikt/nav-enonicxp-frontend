@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useEffect } from 'react';
 
 import { Knapp } from 'nav-frontend-knapper';
 import { Calculator as CalculatorIcon } from '@navikt/ds-icons';
@@ -13,15 +13,48 @@ import {
 import './Calculator.less';
 import { Field } from './Field';
 import { Panel } from '@navikt/ds-react';
-import { numberToFormattedValue } from 'utils/string';
+import { insertHTMLBreaks, numberToFormattedValue } from 'utils/string';
 
 const bem = BEM('calculator');
 
 export const Calculator = ({ config }: CalculatorProps) => {
+    const [fieldValues, setFieldValues] = useState<any>({});
+    const [calculatedValue, setCalculatedValue] = useState(null);
+
     const { data: calculatorData } = config?.targetCalculator;
     const { fields } = calculatorData;
     const useThousandSeparator = calculatorData.useThousandSeparator === 'true';
 
+    useEffect(() => {
+        if (!fields) {
+            return;
+        }
+
+        const values = fields.reduce((collection, field) => {
+            if (getFieldType(field) === FieldType.GLOBAL_VALUE) {
+                return {
+                    ...collection,
+                    [field.globalValue.variableName]: field.globalValue.value,
+                };
+            }
+
+            const variableName =
+                field.dropdownField?.variableName ||
+                field.inputField?.variableName;
+
+            return { ...collection, [variableName]: '' };
+        }, {});
+
+        setFieldValues(values);
+    }, [fields]);
+
+    if (!config || !calculatorData) {
+        return <div>{'Ingen kalkulatordata tilgjengelig'}</div>;
+    }
+
+    /** Determine field type by looking at which of the field objects (inputField, dropdownField or globalValues)
+     * that have variableName.
+     */
     const getFieldType = (field: CalculatorField): FieldType => {
         const { inputField, dropdownField } = field;
 
@@ -36,7 +69,10 @@ export const Calculator = ({ config }: CalculatorProps) => {
         return FieldType.GLOBAL_VALUE;
     };
 
-    const getDefaultValues = () => {
+    /** Fields with global values are not user accessible, but has to be
+     * made available to the calculator.
+     */
+    const getGlobalValues = () => {
         return fields.reduce((collection, field) => {
             if (getFieldType(field) === FieldType.GLOBAL_VALUE) {
                 return {
@@ -49,22 +85,18 @@ export const Calculator = ({ config }: CalculatorProps) => {
         }, {});
     };
 
-    const [fieldValues, setFieldValues] = useState<any>(getDefaultValues());
-    const [calculatedValue, setCalculatedValue] = useState(null);
-
-    console.log(typeof useThousandSeparator);
-    if (!config || !calculatorData) {
-        return <div>{'Ingen kalkulatordata tilgjengelig'}</div>;
-    }
-
+    /* Returns a function based on the incoming calculation script */
     const calculationFactory = (variableNames: string[]) => {
         const { calculation } = calculatorData;
         return new Function(...variableNames, calculation);
     };
 
-    const calculateValues = () => {
-        const variableNames = Object.keys(fieldValues);
-        const variableValues = Object.values(fieldValues);
+    const handleCalculateButtonClick = () => {
+        const globalValues = getGlobalValues();
+        const allValues = { ...globalValues, ...fieldValues };
+
+        const variableNames = Object.keys(allValues);
+        const variableValues = Object.values(allValues);
 
         const total = calculationFactory(variableNames)(...variableValues);
 
@@ -72,12 +104,23 @@ export const Calculator = ({ config }: CalculatorProps) => {
     };
 
     const handleInputChange = (fieldName: string, value: string) => {
-        const parsedValue = parseInt(value, 10) || 0;
+        const parsedValue = parseInt(value, 10) || '';
         setFieldValues({ ...fieldValues, [fieldName]: parsedValue });
     };
 
+    /* Prevent any enter pressing or other means of submitting the form. */
     const handleDefaultFormSubmit = (e: FormEvent) => {
         e.preventDefault();
+    };
+
+    const buildSummaryHTML = () => {
+        const { summaryText } = calculatorData;
+
+        const sumAsHtml = `<strong>${numberToFormattedValue(calculatedValue, {
+            useThousandSeparator,
+        })}</strong>`;
+
+        return insertHTMLBreaks(summaryText).replace('[result]', sumAsHtml);
     };
 
     return (
@@ -98,6 +141,7 @@ export const Calculator = ({ config }: CalculatorProps) => {
                                 key={fieldKey}
                                 field={field}
                                 onChange={handleInputChange}
+                                value={fieldValues[fieldKey]}
                                 fieldType={getFieldType(field)}
                             />
                         );
@@ -105,7 +149,7 @@ export const Calculator = ({ config }: CalculatorProps) => {
                 <Knapp
                     kompakt
                     htmlType="button"
-                    onClick={calculateValues}
+                    onClick={handleCalculateButtonClick}
                     className={classNames(bem(), bem('calculateButton'))}
                 >
                     <CalculatorIcon
@@ -120,17 +164,7 @@ export const Calculator = ({ config }: CalculatorProps) => {
                     >
                         <div
                             dangerouslySetInnerHTML={{
-                                __html: calculatorData.summaryText
-                                    .replace('\n', '<br/><br/>')
-                                    .replace(
-                                        '[result]',
-                                        `<strong>${numberToFormattedValue(
-                                            calculatedValue,
-                                            {
-                                                useThousandSeparator,
-                                            }
-                                        )}</strong>`
-                                    ),
+                                __html: buildSummaryHTML(),
                             }}
                         ></div>
                     </Panel>
