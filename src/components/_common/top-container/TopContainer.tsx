@@ -39,7 +39,7 @@ export const TopContainer = ({ content }: Props) => {
         !hideNotificationsForContentTypes[__typename] &&
         notifications?.length > 0;
 
-    // Should not be show in CS edit view or production public view
+    // Should not be shown in CS edit view or production public view
     const showVersionPicker =
         content.serverEnv &&
         (content.editorView || content.serverEnv !== 'prod') &&

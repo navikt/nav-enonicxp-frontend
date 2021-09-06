@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useAuthState } from '../../../store/hooks/useAuthState';
 import { AuthStateType } from '../../../store/slices/authState';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import { EditorHelp } from '../editor-help/EditorHelp';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { BEM } from '../../../utils/classnames';
 import './AuthDependantRender.less';
@@ -27,27 +26,8 @@ export const AuthDependantRender = ({
     }, [renderOn, authState]);
 
     // Always render components in editor view
-    if (!!pageConfig.editorView) {
-        return (
-            <>
-                {renderOn === 'loggedIn' ? (
-                    <EditorHelp
-                        text={
-                            'Komponenten under vises kun for innlogget bruker'
-                        }
-                        type={'info'}
-                    />
-                ) : renderOn === 'loggedOut' ? (
-                    <EditorHelp
-                        text={
-                            'Komponenten under vises kun for uinnlogget bruker'
-                        }
-                        type={'info'}
-                    />
-                ) : null}
-                {children}
-            </>
-        );
+    if (pageConfig.editorView === 'edit') {
+        return <>{children}</>;
     }
 
     // If auth state has not yet been determined, render a placeholder for logged out

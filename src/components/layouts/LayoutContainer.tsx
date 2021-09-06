@@ -4,6 +4,7 @@ import { LayoutProps } from '../../types/component-props/layouts';
 import { BEM, classNames } from '../../utils/classnames';
 import { getCommonLayoutStyle } from './LayoutStyle';
 import { AuthDependantRender } from '../_common/auth-dependant-render/AuthDependantRender';
+import { usePageConfig } from '../../store/hooks/usePageConfig';
 import './LayoutContainer.less';
 
 type Props = {
@@ -22,12 +23,16 @@ export const LayoutContainer = ({
     children,
     ...divElementProps
 }: Props) => {
+    const { pageConfig } = usePageConfig();
     const { descriptor, path, type, config = {} } = layoutProps;
 
     const bem = BEM(type);
     const layoutName = descriptor.split(':')[1];
 
-    const commonLayoutStyle = getCommonLayoutStyle(config);
+    const commonLayoutStyle = getCommonLayoutStyle(
+        config,
+        pageConfig.editorView === 'edit'
+    );
     const paddingConfig = config.paddingSides?._selected;
 
     const editorProps = !!pageProps.editorView
