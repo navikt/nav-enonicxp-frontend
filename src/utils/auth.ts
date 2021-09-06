@@ -11,7 +11,7 @@ type AuthResponse =
     | { authenticated: false };
 
 export const fetchAndSetAuthStatus = () => {
-    fetchWithTimeout(process.env.INNLOGGINGSTATUS_URL, 2000, {
+    fetchWithTimeout(process.env.INNLOGGINGSTATUS_URL, 5000, {
         credentials: 'include',
     })
         .then((res) => {
