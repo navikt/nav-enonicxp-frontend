@@ -3,6 +3,9 @@ import React, { FormEvent, useState, useEffect } from 'react';
 import { Knapp } from 'nav-frontend-knapper';
 import { Calculator as CalculatorIcon } from '@navikt/ds-icons';
 import { classNames, BEM } from 'utils/classnames';
+import { translator } from 'translations';
+import { Field } from './Field';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import {
     CalculatorField,
@@ -10,20 +13,57 @@ import {
     FieldType,
 } from 'types/component-props/parts/calculator';
 
+import { Result } from './Result';
 import './Calculator.less';
-import { Field } from './Field';
-import { Panel } from '@navikt/ds-react';
-import { insertHTMLBreaks, numberToFormattedValue } from 'utils/string';
 
 const bem = BEM('calculator');
 
 export const Calculator = ({ config }: CalculatorProps) => {
-    const [fieldValues, setFieldValues] = useState<any>({});
-    const [calculatedValue, setCalculatedValue] = useState(null);
-
     const { data: calculatorData } = config?.targetCalculator;
     const { fields } = calculatorData;
     const useThousandSeparator = calculatorData.useThousandSeparator === 'true';
+    const { language } = usePageConfig();
+    const getLabel = translator('calculator', language);
+
+    /** Determine field type by looking at which of the field objects (inputField, dropdownField or globalValues)
+     * that have variableName.
+     */
+    const getFieldType = (field: CalculatorField): FieldType => {
+        const { inputField, dropdownField } = field;
+
+        if (inputField && inputField.variableName) {
+            return FieldType.INPUT;
+        }
+
+        if (dropdownField && dropdownField.variableName) {
+            return FieldType.DROPDOWN;
+        }
+
+        return FieldType.GLOBAL_VALUE;
+    };
+
+    const populateDefaultValues = () => {
+        return fields.reduce((collection, field) => {
+            const variableName =
+                field.inputField.variableName ||
+                field.dropdownField.variableName ||
+                field.globalValue.variableName;
+
+            return {
+                ...collection,
+                [variableName]:
+                    getFieldType(field) === FieldType.GLOBAL_VALUE
+                        ? field.globalValue.value
+                        : '',
+            };
+        });
+    };
+
+    const [fieldValues, setFieldValues] = useState<any>(
+        populateDefaultValues()
+    );
+    const [calculatedValue, setCalculatedValue] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         if (!fields) {
@@ -52,23 +92,6 @@ export const Calculator = ({ config }: CalculatorProps) => {
         return <div>{'Ingen kalkulatordata tilgjengelig'}</div>;
     }
 
-    /** Determine field type by looking at which of the field objects (inputField, dropdownField or globalValues)
-     * that have variableName.
-     */
-    const getFieldType = (field: CalculatorField): FieldType => {
-        const { inputField, dropdownField } = field;
-
-        if (inputField && inputField.variableName) {
-            return FieldType.INPUT;
-        }
-
-        if (dropdownField && dropdownField.variableName) {
-            return FieldType.DROPDOWN;
-        }
-
-        return FieldType.GLOBAL_VALUE;
-    };
-
     /** Fields with global values are not user accessible, but has to be
      * made available to the calculator.
      */
@@ -88,7 +111,16 @@ export const Calculator = ({ config }: CalculatorProps) => {
     /* Returns a function based on the incoming calculation script */
     const calculationFactory = (variableNames: string[]) => {
         const { calculation } = calculatorData;
-        return new Function(...variableNames, calculation);
+        try {
+            const fn = new Function(...variableNames, calculation);
+            return fn;
+        } catch (error) {
+            setErrorMessage(`${error.name}: ${error.message}`);
+            console.log(error.name);
+            return () => {
+                return null;
+            };
+        }
     };
 
     const handleCalculateButtonClick = () => {
@@ -98,9 +130,16 @@ export const Calculator = ({ config }: CalculatorProps) => {
         const variableNames = Object.keys(allValues);
         const variableValues = Object.values(allValues);
 
-        const total = calculationFactory(variableNames)(...variableValues);
-
-        setCalculatedValue(total);
+        // Make sure that calculator script from Enonic only returns numbers.
+        let calculated: number | null;
+        try {
+            calculated = calculationFactory(variableNames)(...variableValues);
+            setCalculatedValue(calculated);
+            //setErrorMessage(null);
+        } catch (error) {
+            setErrorMessage(`${error.name}: ${error.message}`);
+            setCalculatedValue(null);
+        }
     };
 
     const handleInputChange = (fieldName: string, value: string) => {
@@ -111,16 +150,6 @@ export const Calculator = ({ config }: CalculatorProps) => {
     /* Prevent any enter pressing or other means of submitting the form. */
     const handleDefaultFormSubmit = (e: FormEvent) => {
         e.preventDefault();
-    };
-
-    const buildSummaryHTML = () => {
-        const { summaryText } = calculatorData;
-
-        const sumAsHtml = `<strong>${numberToFormattedValue(calculatedValue, {
-            useThousandSeparator,
-        })}</strong>`;
-
-        return insertHTMLBreaks(summaryText).replace('[result]', sumAsHtml);
     };
 
     return (
@@ -155,20 +184,14 @@ export const Calculator = ({ config }: CalculatorProps) => {
                     <CalculatorIcon
                         className={classNames(bem(), bem('calculateIcon'))}
                     />
-                    <span>Beregn</span>
+                    <span>{getLabel('calculate')}</span>
                 </Knapp>
-                {calculatedValue !== null && (
-                    <Panel
-                        border
-                        className={classNames(bem(), bem('summaryText'))}
-                    >
-                        <div
-                            dangerouslySetInnerHTML={{
-                                __html: buildSummaryHTML(),
-                            }}
-                        ></div>
-                    </Panel>
-                )}
+                <Result
+                    sum={calculatedValue}
+                    summaryText={calculatorData.summaryText}
+                    useThousandSeparator={useThousandSeparator}
+                    errorMessage={errorMessage}
+                />
             </form>
         </div>
     );

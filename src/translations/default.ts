@@ -33,6 +33,10 @@ export const bundle = {
     stringParts: {
         conjunction: 'og',
     },
+    calculator: {
+        calculate: 'Beregn',
+        error: 'Beklager, det har oppstått en feil i kalkulatoren med følgende feilmelding:',
+    },
     dates: {
         lastChanged: 'Sist endret',
         published: 'Publisert',
