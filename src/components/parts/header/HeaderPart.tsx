@@ -23,7 +23,7 @@ export const HeaderPart = ({ config }: HeaderProps) => {
     const level = headingToLevel[_tag];
 
     const sizeFromTypo =
-        typo._selected === 'custom' ? typoToSize[typo?.custom?.typo] : null;
+        typo?._selected === 'custom' ? typoToSize[typo?.custom?.typo] : null;
     const size = sizeFromTypo || headingToSize[_tag];
 
     return (
