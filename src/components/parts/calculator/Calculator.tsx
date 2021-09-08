@@ -148,27 +148,29 @@ export const Calculator = ({ config }: CalculatorProps) => {
     return (
         <div className={bem()}>
             <form onSubmit={handleDefaultFormSubmit}>
-                {fields
-                    .filter(
-                        (field) =>
-                            // Don't display global values as an input field.
-                            getFieldType(field) !== FieldType.GLOBAL_VALUE
-                    )
-                    .map((field) => {
-                        const fieldKey =
-                            field.dropdownField?.variableName ||
-                            field.inputField?.variableName;
+                <div className={classNames(bem(), 'fields')}>
+                    {fields
+                        .filter(
+                            (field) =>
+                                // Don't display global values as an input field.
+                                getFieldType(field) !== FieldType.GLOBAL_VALUE
+                        )
+                        .map((field) => {
+                            const fieldKey =
+                                field.dropdownField?.variableName ||
+                                field.inputField?.variableName;
 
-                        return (
-                            <Field
-                                key={fieldKey}
-                                field={field}
-                                onChange={handleInputChange}
-                                value={fieldValues[fieldKey]}
-                                fieldType={getFieldType(field)}
-                            />
-                        );
-                    })}
+                            return (
+                                <Field
+                                    key={fieldKey}
+                                    field={field}
+                                    onChange={handleInputChange}
+                                    value={fieldValues[fieldKey]}
+                                    fieldType={getFieldType(field)}
+                                />
+                            );
+                        })}
+                </div>
                 <Knapp
                     kompakt
                     htmlType="button"
