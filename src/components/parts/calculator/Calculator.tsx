@@ -110,13 +110,13 @@ export const Calculator = ({ config }: CalculatorProps) => {
 
     /* Returns a function based on the incoming calculation script */
     const calculationFactory = (variableNames: string[]) => {
-        const { calculation } = calculatorData;
+        const { calculationScript } = calculatorData;
         try {
-            const fn = new Function(...variableNames, calculation);
+            /* eslint-disable-next-line */
+            const fn = new Function(...variableNames, calculationScript);
             return fn;
         } catch (error) {
             setErrorMessage(`${error.name}: ${error.message}`);
-            console.log(error.name);
             return () => {
                 return null;
             };

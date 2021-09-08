@@ -35,7 +35,7 @@ export interface CalculatorField {
 
 export interface CalculatorData {
     fields: CalculatorField[];
-    calculation: string;
+    calculationScript: string;
     useThousandSeparator: string;
     summaryText: string;
 }
