@@ -55,9 +55,9 @@ export const Calculator = ({ config }: CalculatorProps) => {
             // Only the actively selected input type at CS will contain a variableName
             // which is why we can do a short circuit eval.
             const variableName =
-                field.inputField.variableName ||
-                field.dropdownField.variableName ||
-                field.globalValue.variableName;
+                field.inputField?.variableName ||
+                field.dropdownField?.variableName ||
+                field.globalValue?.variableName;
 
             return {
                 ...collection,
@@ -66,7 +66,7 @@ export const Calculator = ({ config }: CalculatorProps) => {
                         ? field.globalValue.value
                         : '',
             };
-        });
+        }, {});
     };
 
     const [fieldValues, setFieldValues] = useState<any>(
