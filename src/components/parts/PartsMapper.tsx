@@ -23,6 +23,7 @@ import { NewsList } from './news-list/NewsList';
 import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar';
 import { BEM, classNames } from '../../utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
+import { Calculator } from './calculator/Calculator';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
@@ -61,6 +62,7 @@ const partsWithOwnData: {
     [PartType.LinkList]: LinkList,
     [PartType.NewsList]: NewsList,
     [PartType.HtmlArea]: HtmlArea,
+    [PartType.Calculator]: Calculator,
     [PartType.PageHeader]: PageHeaderPart,
     [PartType.Button]: ButtonPart,
     [PartType.ProviderCard]: ProviderCardPart,

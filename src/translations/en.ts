@@ -16,6 +16,10 @@ export const bundle: Translations = {
         published: 'Published',
         lastChanged: 'Updated',
     },
+    calculator: {
+        calculate: 'Beregn',
+        error: 'Sorry, an error has occurred in the calculator with the following error message:',
+    },
     linkLists: {
         label: 'Links',
         moreNews: 'More news',
