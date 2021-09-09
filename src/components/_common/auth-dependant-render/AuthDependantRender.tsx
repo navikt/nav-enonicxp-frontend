@@ -2,9 +2,8 @@ import React, { useLayoutEffect, useState } from 'react';
 import { useAuthState } from '../../../store/hooks/useAuthState';
 import { AuthStateType } from '../../../store/slices/authState';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import './AuthDependantRender.less';
 
-// Hack to prevent meaningless react warning for useLayoutEffect server-side
+// Hack to prevent irrelevant React warning for useLayoutEffect server-side
 const useLayoutEffectClientSide =
     typeof window !== 'undefined' ? useLayoutEffect : () => {};
 
@@ -32,7 +31,7 @@ export const AuthDependantRender = ({
         return <>{children}</>;
     }
 
-    // Never render components for logged in users until auth-state
+    // Do not render components for logged in users until auth-state
     // has been confirmed
     if (authState === 'waiting' && renderOn === 'loggedIn') {
         return null;

@@ -27,6 +27,7 @@ export const getCommonLayoutStyle = (
             paddingLeft: `${paddingSides.custom?.remValue}rem`,
             paddingRight: `${paddingSides.custom?.remValue}rem`,
         }),
+        // Show an indicator color on auth-dependant components in the editor view
         ...(isEditMode && {
             ...(renderOnAuthState === 'loggedIn' && {
                 boxShadow: '0 0 0 2px green',
