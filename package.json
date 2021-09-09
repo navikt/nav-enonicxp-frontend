@@ -118,6 +118,12 @@
     "browser": {
         "jsdom": false
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged",
+            "pre-push": "npm run typeCheck && npm run lint"
+        }
+    },
     "lint-staged": {
         "*.{js,jsx,json,md,ts,tsx,less, css}": "prettier --write"
     },
