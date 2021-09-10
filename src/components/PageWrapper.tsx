@@ -21,6 +21,7 @@ import { ComponentReorderHack } from '../utils/ComponentReorderHack';
 import { store } from '../store/store';
 import { setPathMapAction } from '../store/slices/pathMap';
 import { setPageConfigAction } from '../store/slices/pageConfig';
+import { fetchAndSetAuthStatus } from '../utils/auth';
 
 type Props = {
     content: ContentProps;
@@ -34,6 +35,8 @@ export const PageWrapper = (props: Props) => {
     const router = useRouter();
 
     useEffect(() => {
+        fetchAndSetAuthStatus();
+
         onBreadcrumbClick((breadcrumb) =>
             router.push(getInternalRelativePath(breadcrumb.url, !!editorView))
         );
