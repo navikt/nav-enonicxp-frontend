@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+
 import React, { FormEvent, useState } from 'react';
 import { Knapp } from 'nav-frontend-knapper';
 import { Calculator as CalculatorIcon } from '@navikt/ds-icons';
@@ -21,7 +23,11 @@ import './Calculator.less';
 const bem = BEM('calculator');
 
 export const Calculator = ({ config }: CalculatorProps) => {
+    if (!config?.targetCalculator) {
+        return <div>Velg kalkulator fra listen.</div>;
+    }
     const { data: calculatorData } = config?.targetCalculator;
+
     const { fields } = calculatorData;
 
     const useThousandSeparator = calculatorData.useThousandSeparator === 'true';
