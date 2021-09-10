@@ -60,18 +60,23 @@ export type ColorMixin = {
     color: string;
 };
 
-export type LayoutCommonConfigMixin = Partial<{
-    marginTop: number;
-    marginBottom: number;
-    bgColor: ColorMixin;
-    paddingSides: {
-        _selected: 'standard' | 'fullWidth' | 'custom';
-        custom?: {
-            remValue: number;
+export type RenderOnAuthStateMixin = {
+    renderOnAuthState?: AuthStateType;
+};
+
+export type LayoutCommonConfigMixin = Partial<
+    {
+        marginTop: number;
+        marginBottom: number;
+        bgColor: ColorMixin;
+        paddingSides: {
+            _selected: 'standard' | 'fullWidth' | 'custom';
+            custom?: {
+                remValue: number;
+            };
         };
-    };
-    renderOnAuthState: AuthStateType;
-}>;
+    } & RenderOnAuthStateMixin
+>;
 
 export type HeaderCommonConfig = {
     justify: 'left' | 'center' | 'right';

@@ -97,13 +97,22 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
 };
 
 export const PartsMapper = ({ pageProps, partProps }: Props) => {
-    const { path, descriptor } = partProps;
+    const { path, descriptor, config } = partProps;
     const isEditView = pageProps.editorView === 'edit';
+    const renderOnAuthState = config?.renderOnAuthState;
 
     const editorProps = isEditView
         ? {
               'data-portal-component-type': ComponentType.Part,
               'data-portal-component': path,
+              style: {
+                  ...(renderOnAuthState === 'loggedIn' && {
+                      boxShadow: '0 0 0 2px green',
+                  }),
+                  ...(renderOnAuthState === 'loggedOut' && {
+                      boxShadow: '0 0 0 2px red',
+                  }),
+              },
           }
         : undefined;
 

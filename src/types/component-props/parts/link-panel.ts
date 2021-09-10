@@ -1,6 +1,10 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
-import { ColorMixin, LinkWithIngressMixin } from '../_mixins';
+import {
+    ColorMixin,
+    LinkWithIngressMixin,
+    RenderOnAuthStateMixin,
+} from '../_mixins';
 import { XpImageProps } from '../../media';
 
 type Variant = 'vertical' | 'verticalWithBgColor';
@@ -12,7 +16,7 @@ type VariantConfigs = {
     };
 };
 
-interface LinkPanelConfig extends LinkWithIngressMixin {
+interface LinkPanelConfig extends LinkWithIngressMixin, RenderOnAuthStateMixin {
     background: XpImageProps;
     icon: XpImageProps;
     variant: {
