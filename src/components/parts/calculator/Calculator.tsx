@@ -136,8 +136,9 @@ export const Calculator = ({ config }: CalculatorProps) => {
     };
 
     const handleInputChange = (fieldName: string, value: string) => {
-        const parsedValue = parseInt(value, 10) || '';
-        setFieldValues({ ...fieldValues, [fieldName]: parsedValue });
+        const parsedValue = parseInt(value, 10);
+        const numericValue = Number.isNaN(parsedValue) ? '' : parsedValue;
+        setFieldValues({ ...fieldValues, [fieldName]: numericValue });
     };
 
     /* Prevent any enter pressing or other means of submitting the form. */
