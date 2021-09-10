@@ -32,6 +32,7 @@ import { FiltersMenu } from './filters-menu/FiltersMenu';
 import { ProductCardPart } from './product-card/ProductCard';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
+import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
 
 type Props = {
     partProps: PartComponentProps;
@@ -105,14 +106,6 @@ export const PartsMapper = ({ pageProps, partProps }: Props) => {
         ? {
               'data-portal-component-type': ComponentType.Part,
               'data-portal-component': path,
-              style: {
-                  ...(renderOnAuthState === 'loggedIn' && {
-                      boxShadow: '0 0 0 2px green',
-                  }),
-                  ...(renderOnAuthState === 'loggedOut' && {
-                      boxShadow: '0 0 0 2px red',
-                  }),
-              },
           }
         : undefined;
 
@@ -125,7 +118,14 @@ export const PartsMapper = ({ pageProps, partProps }: Props) => {
     const partName = descriptor.split(':')[1];
 
     return (
-        <div className={classNames(bem(), bem(partName))} {...editorProps}>
+        <div
+            className={classNames(
+                bem(),
+                bem(partName),
+                isEditView && editorAuthstateClassname(renderOnAuthState)
+            )}
+            {...editorProps}
+        >
             <PartComponent pageProps={pageProps} partProps={partProps} />
         </div>
     );

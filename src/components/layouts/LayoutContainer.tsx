@@ -4,6 +4,7 @@ import { LayoutProps } from '../../types/component-props/layouts';
 import { BEM, classNames } from '../../utils/classnames';
 import { getCommonLayoutStyle } from './LayoutStyle';
 import { usePageConfig } from '../../store/hooks/usePageConfig';
+import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
 import './LayoutContainer.less';
 
 type Props = {
@@ -28,10 +29,7 @@ export const LayoutContainer = ({
     const bem = BEM(type);
     const layoutName = descriptor.split(':')[1];
 
-    const commonLayoutStyle = getCommonLayoutStyle(
-        config,
-        pageConfig.editorView === 'edit'
-    );
+    const commonLayoutStyle = getCommonLayoutStyle(config);
     const paddingConfig = config.paddingSides?._selected;
 
     const editorProps = !!pageProps.editorView
@@ -53,7 +51,9 @@ export const LayoutContainer = ({
                     : []),
                 paddingConfig === 'fullWidth' && bem('fullwidth'),
                 paddingConfig === 'standard' && bem('standard'),
-                config.bgColor?.color && bem('bg')
+                config.bgColor?.color && bem('bg'),
+                pageConfig.editorView === 'edit' &&
+                    editorAuthstateClassname(config.renderOnAuthState)
             )}
             style={{ ...commonLayoutStyle, ...layoutStyle }}
         >
