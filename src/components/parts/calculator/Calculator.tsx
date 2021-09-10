@@ -148,7 +148,7 @@ export const Calculator = ({ config }: CalculatorProps) => {
     return (
         <div className={bem()}>
             <form onSubmit={handleDefaultFormSubmit}>
-                <div className={classNames(bem(), 'fields')}>
+                <div className={classNames(bem('fields'))}>
                     {fields
                         .filter(
                             (field) =>
@@ -175,10 +175,10 @@ export const Calculator = ({ config }: CalculatorProps) => {
                     kompakt
                     htmlType="button"
                     onClick={handleCalculateButtonClick}
-                    className={classNames(bem(), bem('calculateButton'))}
+                    className={classNames(bem('calculateButton'))}
                 >
                     <CalculatorIcon
-                        className={classNames(bem(), bem('calculateIcon'))}
+                        className={classNames(bem('calculateIcon'))}
                     />
                     <span>{getLabel('calculate')}</span>
                 </Knapp>
