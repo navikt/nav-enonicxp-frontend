@@ -23,11 +23,10 @@ import './Calculator.less';
 const bem = BEM('calculator');
 
 export const Calculator = ({ config }: CalculatorProps) => {
-    const { data: calculatorData } = config?.targetCalculator;
-
     if (!config?.targetCalculator) {
         return <div>Velg kalkulator fra listen.</div>;
     }
+    const { data: calculatorData } = config?.targetCalculator;
 
     const { fields } = calculatorData;
 
