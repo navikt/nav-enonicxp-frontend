@@ -1,5 +1,6 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
+import { RenderOnAuthStateMixin } from '../_mixins';
 
 export enum ContactOption {
     CHAT = 'chat',
@@ -22,5 +23,5 @@ export interface ContactOptionProps extends PartComponentProps {
             write: ChannelData;
             call: ChannelData;
         };
-    };
+    } & RenderOnAuthStateMixin;
 }
