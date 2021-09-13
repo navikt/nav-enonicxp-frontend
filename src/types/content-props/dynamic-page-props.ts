@@ -25,7 +25,7 @@ export interface ProductPageProps extends ContentProps {
 }
 
 export interface SituationPageProps extends ContentProps {
-    __typename: ContentType.SituationPage;
+    __typename: ContentType.SituationPage | ContentType.EmployerSituationPage;
     data: SituationPageData;
 }
 
