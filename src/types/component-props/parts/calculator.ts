@@ -42,7 +42,9 @@ export interface CalculatorData {
 
 export interface CalculatorProps extends PartComponentProps {
     descriptor: PartType.Calculator;
-    targetCalculator: {
-        data: CalculatorData;
-    };
+    config: Partial<{
+        targetCalculator: {
+            data: CalculatorData;
+        };
+    }>;
 }
