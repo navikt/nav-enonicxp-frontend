@@ -3,7 +3,7 @@ import { FragmentPageProps } from '../../../types/content-props/fragment-page-pr
 import { ComponentMapper } from '../../ComponentMapper';
 import { ErrorPage } from '../error-page/ErrorPage';
 import { make404Props } from '../../../utils/make-error-props';
-import { MacroUsageCheck } from './macro-usage-check/MacroUsageCheck';
+import { FragmentUsageCheck } from './fragment-usage-check/FragmentUsageCheck';
 import { BEM } from '../../../utils/classnames';
 import './FragmentPage.less';
 
@@ -16,7 +16,7 @@ export const FragmentPage = (props: FragmentPageProps) => {
 
     return (
         <div className={bem()}>
-            <MacroUsageCheck id={props._id} />
+            <FragmentUsageCheck id={props._id} />
             <div className={bem('components')}>
                 <ComponentMapper
                     componentProps={props.fragment}
