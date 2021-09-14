@@ -71,7 +71,8 @@ export const bundle: Translations = {
         [MenuListItemKey.RulesAndRegulationsLegacy]: 'Laws and regulations',
     },
     situations: {
-        youMayHaveRightTo: 'Dette kan du ha rett til',
+        youMayHaveRightTo: 'You may rights to this',
+        employerNeedToKnow: 'As an employer, you need to know this',
     },
     productTaxonomies,
     header: {
