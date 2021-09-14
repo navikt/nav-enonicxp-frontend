@@ -92,7 +92,7 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                     </>
                 ) : (
                     <Title level={3} size="s">
-                        {`Fragmentet er ikke i bruk på publiserte side.`}
+                        {`Fragmentet er ikke i bruk på publiserte sider`}
                     </Title>
                 )}
             </div>
