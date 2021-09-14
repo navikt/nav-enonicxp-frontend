@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { fetchWithTimeout } from '../../../../utils/fetch-utils';
-import { editorPathPrefix, xpServiceUrl } from '../../../../utils/urls';
+import {
+    editorPathPrefix,
+    xpDraftPathPrefix,
+    xpServicePath,
+} from '../../../../utils/urls';
 import { Title } from '@navikt/ds-react';
 import { Button } from '../../../_common/button/Button';
 import { BEM } from '../../../../utils/classnames';
@@ -9,7 +13,7 @@ import './FragmentUsageCheck.less';
 
 const bem = BEM('fragment-usage');
 
-const serviceUrl = `${xpServiceUrl}/htmlFragmentSelector/fragmentUsage`;
+const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/htmlFragmentSelector/fragmentUsage`;
 
 type ContentData = {
     name: string;
