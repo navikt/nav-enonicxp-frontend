@@ -25,6 +25,7 @@ const contentToReactComponent: Partial<
     [ContentType.GlobalValues]: GlobalValuesPage,
 
     [ContentType.SituationPage]: SituationPage,
+    [ContentType.EmployerSituationPage]: SituationPage,
     [ContentType.ProductPage]: ProductPage,
 
     [ContentType.DynamicPage]: DynamicPage,
