@@ -42,6 +42,8 @@ export const numberToFormattedValue = (
     if (useThousandSeparator) {
         return value.toLocaleString('no');
     }
+
+    return value;
 };
 
 export const insertHTMLBreaks = (value: string) => {

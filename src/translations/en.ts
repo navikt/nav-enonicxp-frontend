@@ -17,7 +17,7 @@ export const bundle: Translations = {
         lastChanged: 'Updated',
     },
     calculator: {
-        calculate: 'Beregn',
+        calculate: 'Calculate',
         error: 'Sorry, an error has occurred in the calculator with the following error message:',
     },
     linkLists: {
