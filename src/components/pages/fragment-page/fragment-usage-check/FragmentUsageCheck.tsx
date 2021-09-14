@@ -46,15 +46,8 @@ type Props = {
 };
 
 export const FragmentUsageCheck = ({ id }: Props) => {
-    const [usages, setUsages] = useState<FragmentUsage>({
-        componentUsage: [],
-        macroUsage: [],
-    });
+    const [usages, setUsages] = useState<FragmentUsage | null>(null);
     const [showUsage, setShowUsage] = useState(false);
-
-    const { componentUsage, macroUsage } = usages;
-
-    const numUniqueUsages = getNumUniqueUsages(usages);
 
     useEffect(() => {
         fetchMacroUsage(id)
@@ -74,6 +67,14 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                 );
             });
     }, [id]);
+
+    if (!usages) {
+        return null;
+    }
+
+    const { componentUsage, macroUsage } = usages;
+
+    const numUniqueUsages = getNumUniqueUsages(usages);
 
     return (
         <div className={bem()}>
