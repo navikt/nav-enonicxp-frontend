@@ -41,10 +41,9 @@ export const FragmentUsageCheck = ({ id }: Props) => {
     });
     const [showUsage, setShowUsage] = useState(false);
 
-    const numUniqueUsages = [
-        ...usages.macroUsage,
-        ...usages.componentUsage,
-    ].filter(
+    const { componentUsage, macroUsage } = usages;
+
+    const numUniqueUsages = [...macroUsage, ...componentUsage].filter(
         (content, index, array) => array.indexOf(content) === index
     ).length;
 
@@ -68,71 +67,85 @@ export const FragmentUsageCheck = ({ id }: Props) => {
     }, [id]);
 
     return (
-        usages && (
-            <div className={bem()}>
-                <div className={bem('header')}>
-                    <Title level={3} size="m">
-                        {`Fragmentet er i bruk på ${numUniqueUsages} side${
-                            numUniqueUsages === 1 ? '' : 'r'
-                        }`}
+        <div className={bem()}>
+            <div className={bem('header')}>
+                {numUniqueUsages > 0 ? (
+                    <>
+                        <Title level={3} size="m">
+                            {`Fragmentet er i bruk på ${numUniqueUsages} publisert${
+                                numUniqueUsages === 1 ? '' : 'e'
+                            } side${numUniqueUsages === 1 ? '' : 'r'}`}
+                        </Title>
+                        <Button
+                            type={'flat'}
+                            mini={true}
+                            kompakt={true}
+                            className={bem('button')}
+                            onClick={() => setShowUsage(!showUsage)}
+                        >
+                            {showUsage ? 'Skjul' : 'Vis'}
+                        </Button>
+                    </>
+                ) : (
+                    <Title level={3} size="s">
+                        {`Fragmentet er ikke i bruk på publiserte side.`}
                     </Title>
-                    <Button
-                        type={'flat'}
-                        mini={true}
-                        kompakt={true}
-                        className={bem('button')}
-                        onClick={() => setShowUsage(!showUsage)}
-                    >
-                        {showUsage ? 'Skjul' : 'Vis'}
-                    </Button>
-                </div>
-                {showUsage && (
-                    <div>
-                        <Title
-                            level={3}
-                            size={'s'}
-                            className={bem('usage-header')}
-                        >
-                            {'I bruk som komponent:'}
-                        </Title>
-                        {usages.componentUsage.map((content) => {
-                            const editorUrl = `${editorPathPrefix}/${content.id}`;
-                            return (
-                                <div
-                                    className={bem('page-usage')}
-                                    key={content.id}
-                                >
-                                    {`${content.name} - `}
-                                    <LenkeInline href={editorUrl}>
-                                        {content.path}
-                                    </LenkeInline>
-                                </div>
-                            );
-                        })}
-                        <Title
-                            level={3}
-                            size={'s'}
-                            className={bem('usage-header')}
-                        >
-                            {'I bruk som macro:'}
-                        </Title>
-                        {usages.macroUsage.map((content) => {
-                            const editorUrl = `${editorPathPrefix}/${content.id}`;
-                            return (
-                                <div
-                                    className={bem('page-usage')}
-                                    key={content.id}
-                                >
-                                    {`${content.name} - `}
-                                    <LenkeInline href={editorUrl}>
-                                        {content.path}
-                                    </LenkeInline>
-                                </div>
-                            );
-                        })}
-                    </div>
                 )}
             </div>
-        )
+            {showUsage && (
+                <div>
+                    {componentUsage.length > 0 && (
+                        <>
+                            <Title
+                                level={3}
+                                size={'s'}
+                                className={bem('usage-header')}
+                            >
+                                {'I bruk som komponent:'}
+                            </Title>
+                            {componentUsage.map((content) => {
+                                const editorUrl = `${editorPathPrefix}/${content.id}`;
+                                return (
+                                    <div
+                                        className={bem('page-usage')}
+                                        key={content.id}
+                                    >
+                                        {`${content.name} - `}
+                                        <LenkeInline href={editorUrl}>
+                                            {content.path}
+                                        </LenkeInline>
+                                    </div>
+                                );
+                            })}
+                        </>
+                    )}
+                    {macroUsage.length > 0 && (
+                        <>
+                            <Title
+                                level={3}
+                                size={'s'}
+                                className={bem('usage-header')}
+                            >
+                                {'I bruk som macro:'}
+                            </Title>
+                            {macroUsage.map((content) => {
+                                const editorUrl = `${editorPathPrefix}/${content.id}`;
+                                return (
+                                    <div
+                                        className={bem('page-usage')}
+                                        key={content.id}
+                                    >
+                                        {`${content.name} - `}
+                                        <LenkeInline href={editorUrl}>
+                                            {content.path}
+                                        </LenkeInline>
+                                    </div>
+                                );
+                            })}
+                        </>
+                    )}
+                </div>
+            )}
+        </div>
     );
 };
