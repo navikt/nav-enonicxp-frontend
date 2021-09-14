@@ -31,6 +31,10 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             const getTaxonomyLabel = translator('situations', language);
             return getTaxonomyLabel('youMayHaveRightTo');
         }
+        if (pageType === ContentType.EmployerSituationPage) {
+            const getTaxonomyLabel = translator('situations', language);
+            return getTaxonomyLabel('employerNeedToKnow');
+        }
 
         return buildTaxonomyString(taxonomy, language);
     };
