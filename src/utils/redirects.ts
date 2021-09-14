@@ -7,6 +7,7 @@ export const getTargetIfRedirect = (contentData: ContentProps) => {
     switch (contentData?.__typename) {
         case ContentType.SituationPage:
         case ContentType.ProductPage:
+        case ContentType.EmployerSituationPage:
         case ContentType.ToolsPage:
             return !contentData.isDraft
                 ? getEnvUrl(
