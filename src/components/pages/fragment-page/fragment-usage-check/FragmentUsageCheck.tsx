@@ -34,6 +34,13 @@ const fetchMacroUsage = (id: string): Promise<FragmentUsage> =>
         throw new Error('Could not fetch fragment usage');
     });
 
+const getNumUniqueUsages = ({ macroUsage, componentUsage }: FragmentUsage) => {
+    return [...macroUsage, ...componentUsage].filter((item1, index1, array) => {
+        const index2 = array.findIndex((item2) => item2.id === item1.id);
+        return index1 === index2;
+    }).length;
+};
+
 type Props = {
     id: string;
 };
@@ -47,9 +54,7 @@ export const FragmentUsageCheck = ({ id }: Props) => {
 
     const { componentUsage, macroUsage } = usages;
 
-    const numUniqueUsages = [...macroUsage, ...componentUsage].filter(
-        (content, index, array) => array.indexOf(content) === index
-    ).length;
+    const numUniqueUsages = getNumUniqueUsages(usages);
 
     useEffect(() => {
         fetchMacroUsage(id)
