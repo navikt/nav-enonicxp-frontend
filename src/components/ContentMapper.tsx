@@ -25,6 +25,7 @@ const contentToReactComponent: Partial<
     [ContentType.GlobalValues]: GlobalValuesPage,
 
     [ContentType.SituationPage]: SituationPage,
+    [ContentType.EmployerSituationPage]: SituationPage,
     [ContentType.ProductPage]: ProductPage,
 
     [ContentType.DynamicPage]: DynamicPage,
@@ -42,7 +43,7 @@ const contentToReactComponent: Partial<
     [ContentType.Site]: ClientsideRedirect,
     [ContentType.Url]: ClientsideRedirect,
 
-    [ContentType.ToolsPage]: ClientsideRedirect,
+    [ContentType.ToolsPage]: ProductPage,
 };
 
 export const isContentTypeImplemented = (content: ContentProps) =>

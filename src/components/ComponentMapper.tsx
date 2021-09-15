@@ -9,13 +9,14 @@ import { PartsMapper } from './parts/PartsMapper';
 import { ContentProps } from '../types/content-props/_content-common';
 import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
+import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependantRender';
 
 type Props = {
     componentProps: ComponentProps;
     pageProps: ContentProps;
 };
 
-export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
+export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
     if (!componentProps?.type) {
         return <div>{'Error: missing component props'}</div>;
     }
@@ -61,4 +62,17 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
                 }`}</div>
             );
     }
+};
+
+export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
+    return (
+        <AuthDependantRender
+            renderOn={componentProps?.config?.renderOnAuthState}
+        >
+            <ComponentToRender
+                componentProps={componentProps}
+                pageProps={pageProps}
+            />
+        </AuthDependantRender>
+    );
 };
