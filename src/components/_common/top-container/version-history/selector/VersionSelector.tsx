@@ -10,9 +10,9 @@ const bem = BEM('version-selector');
 
 const containerId = 'version-selector';
 
-const defaultType: SelectorType = 'published';
-
 type SelectorType = 'datetime' | 'published';
+
+const defaultType: SelectorType = 'datetime';
 
 type Props = {
     content: ContentProps;
