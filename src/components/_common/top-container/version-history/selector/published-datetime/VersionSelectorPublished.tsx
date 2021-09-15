@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Select } from '@navikt/ds-react';
 import { BEM } from '../../../../../../utils/classnames';
 import { ContentProps } from '../../../../../../types/content-props/_content-common';
@@ -15,13 +15,20 @@ export const VersionSelectorPublished = ({
     content,
     submitVersionUrl,
 }: Props) => {
-    const { versionTimestamps, editorView } = content;
+    const { versionTimestamps, editorView, timeRequested } = content;
 
     const currentVersionTimestamp = versionTimestamps?.[0];
 
     const [selectedDateTime, setSelectedDateTime] = useState(
         currentVersionTimestamp
     );
+
+    useEffect(() => {
+        // Reset the current selection when receiving live content
+        if (!timeRequested) {
+            setSelectedDateTime(currentVersionTimestamp);
+        }
+    }, [timeRequested]);
 
     if (!currentVersionTimestamp) {
         return <div>{'Fant ingen publiseringer for dette innholdet'}</div>;

@@ -49,7 +49,7 @@ export const VersionSelectorDateTime = ({
 
     return (
         <>
-            <div className={bem('input-left')}>
+            <div className={bem('left')}>
                 <Label>{'Velg tid og dato:'}</Label>
                 <input
                     type={'time'}
@@ -70,7 +70,7 @@ export const VersionSelectorDateTime = ({
                     value={dateSelected}
                 />
             </div>
-            <div className={bem('input-right')}>
+            <div className={bem('right')}>
                 {editorView && (
                     <Checkbox
                         label={'Kun publisert innhold'}
