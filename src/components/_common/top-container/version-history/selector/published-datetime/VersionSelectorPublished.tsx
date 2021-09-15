@@ -9,7 +9,10 @@ import './VersionSelectorPublished.less';
 
 const bem = BEM('version-selector-published');
 
-type Props = { content: ContentProps; submitVersionUrl: (url: string) => void };
+type Props = {
+    content: ContentProps;
+    submitVersionUrl: (url: string) => void;
+};
 
 export const VersionSelectorPublished = ({
     content,

@@ -100,7 +100,7 @@ export const VersionSelector = ({
                             submitVersionUrl={submitVersionUrl}
                         />
                     ) : (
-                        <div>{'Velg'}</div>
+                        <div>{'Feil: velg en input-type'}</div>
                     )}
                 </div>
                 {editorView && (
