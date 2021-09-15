@@ -77,7 +77,7 @@ export const bundle: Translations = {
     productTaxonomies,
     header: {
         copyLink: 'Copy link',
-        copiedLink: 'The link was copied',
+        copiedLink: 'Link successfully copied',
     },
     contactPoint: {
         chat: {
