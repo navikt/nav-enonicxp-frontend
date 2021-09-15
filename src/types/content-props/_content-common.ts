@@ -80,6 +80,7 @@ export type ContentProps = {
     notifications?: NotificationProps[];
     pathMap?: PathMap;
     livePath?: string;
+    versionTimestamps?: string[];
 } & MediaContentCommonProps;
 
 export type PathMap = { [key: string]: string };
