@@ -16,6 +16,10 @@ export const bundle: Translations = {
         published: 'Published',
         lastChanged: 'Updated',
     },
+    calculator: {
+        calculate: 'Calculate',
+        error: 'Sorry, an error has occurred in the calculator with the following error message:',
+    },
     linkLists: {
         label: 'Links',
         moreNews: 'More news',
@@ -67,7 +71,8 @@ export const bundle: Translations = {
         [MenuListItemKey.RulesAndRegulationsLegacy]: 'Laws and regulations',
     },
     situations: {
-        youMayHaveRightTo: 'Dette kan du ha rett til',
+        youMayHaveRightTo: 'You may rights to this',
+        employerNeedToKnow: 'As an employer, you need to know this',
     },
     productTaxonomies,
     header: {

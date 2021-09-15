@@ -31,6 +31,7 @@ jobs:
           XP_ORIGIN=https://www-q6.nav.no
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
           SERVICE_SECRET=$SERVICE_SECRET
+          INNLOGGINGSTATUS_URL=https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth
           EOF
       - name: Npm cache
         uses: actions/cache@v2

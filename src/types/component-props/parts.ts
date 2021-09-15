@@ -20,6 +20,7 @@ export enum PartType {
     LinkList = 'no.nav.navno:dynamic-link-list',
     NewsList = 'no.nav.navno:dynamic-news-list',
     HtmlArea = 'no.nav.navno:html-area',
+    Calculator = 'no.nav.navno:calculator',
     PageHeader = 'no.nav.navno:page-header',
     Button = 'no.nav.navno:button',
     ProviderCard = 'no.nav.navno:provider-card',
@@ -55,6 +56,7 @@ export type PartWithOwnData =
     | PartType.LinkList
     | PartType.NewsList
     | PartType.HtmlArea
+    | PartType.Calculator
     | PartType.PageHeader
     | PartType.Button
     | PartType.ProviderCard

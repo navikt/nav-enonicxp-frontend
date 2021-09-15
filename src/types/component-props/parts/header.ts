@@ -1,7 +1,7 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 import { HeadingTag } from '../../typo-style';
-import { HeaderCommonConfig } from '../_mixins';
+import { HeaderCommonConfig, RenderOnAuthStateMixin } from '../_mixins';
 
 export interface HeaderProps extends PartComponentProps {
     descriptor: PartType.Header;
@@ -9,5 +9,6 @@ export interface HeaderProps extends PartComponentProps {
         title: string;
         anchorId: string;
         titleTag: HeadingTag;
-    } & HeaderCommonConfig;
+    } & HeaderCommonConfig &
+        RenderOnAuthStateMixin;
 }

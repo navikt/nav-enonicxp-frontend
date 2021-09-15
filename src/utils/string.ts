@@ -28,3 +28,24 @@ export const buildTaxonomyString = (
 
     return joinWithConjunction(taxonomyLabels, language);
 };
+
+export const numberToFormattedValue = (
+    value: number,
+    options: { useThousandSeparator: boolean }
+) => {
+    const { useThousandSeparator } = options;
+
+    if (typeof value !== 'number') {
+        return '';
+    }
+
+    if (useThousandSeparator) {
+        return value.toLocaleString('no');
+    }
+
+    return value;
+};
+
+export const insertHTMLBreaks = (value: string) => {
+    return value.replace('\n', '<br>');
+};
