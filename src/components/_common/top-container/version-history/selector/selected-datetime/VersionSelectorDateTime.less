@@ -1,6 +1,8 @@
 @import (reference) '../../../../../../global';
 
 .version-selector-datetime {
+    @selectorHeight: 3rem;
+
     &__left {
         display: flex;
         flex-direction: column;
@@ -8,12 +10,14 @@
         width: 50%;
     }
 
-
     &__time {
         margin: 0.5rem 0;
     }
 
-    &__date {
+    &__date,
+    &__time {
+        min-height: @selectorHeight;
+        padding: 0.5rem;
     }
 
     &__right {
@@ -24,5 +28,9 @@
     &__button {
         margin-top: 0.5rem;
         width: 100%;
+
+        &.knapp {
+            min-height: @selectorHeight;
+        }
     }
 }
