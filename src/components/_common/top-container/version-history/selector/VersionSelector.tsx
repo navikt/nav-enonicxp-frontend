@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { BEM, classNames } from '../../../../../utils/classnames';
-import { BodyLong, Radio, RadioGroup } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import { ContentProps } from '../../../../../types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
+import { Radio, RadioGruppe } from 'nav-frontend-skjema';
 import './VersionSelector.less';
 
 const bem = BEM('version-selector');
@@ -11,8 +12,6 @@ const bem = BEM('version-selector');
 const containerId = 'version-selector';
 
 type SelectorType = 'datetime' | 'published';
-
-const defaultType: SelectorType = 'datetime';
 
 type Props = {
     content: ContentProps;
@@ -27,7 +26,7 @@ export const VersionSelector = ({
     setIsOpen,
     submitVersionUrl,
 }: Props) => {
-    const [selectorType, setSelectorType] = useState<SelectorType>(defaultType);
+    const [selectorType, setSelectorType] = useState<SelectorType>('datetime');
 
     const { editorView } = content;
 
@@ -61,32 +60,26 @@ export const VersionSelector = ({
                 )}
             >
                 <div className={bem('type-selector')}>
-                    <RadioGroup
-                        legend={
-                            'Velg egendefinert eller fra et publiseringstidspunkt'
-                        }
-                        size={'s'}
-                        hideLegend={true}
-                        defaultValue={defaultType}
-                        value={selectorType}
+                    <RadioGruppe
+                        legend={'Velg input-type'}
+                        onChange={(e) => {
+                            const selection = (e.target as HTMLInputElement)
+                                .value as SelectorType;
+                            setSelectorType(selection);
+                        }}
                     >
                         <Radio
+                            label={'Egendefinert tidspunkt'}
+                            name={'selectorType'}
                             value={'datetime'}
-                            onClick={() => {
-                                setSelectorType('datetime');
-                            }}
-                        >
-                            {'Egendefinert tidspunkt'}
-                        </Radio>
+                            defaultChecked={true}
+                        />
                         <Radio
+                            label={'Publiseringstidspunkt'}
+                            name={'selectorType'}
                             value={'published'}
-                            onClick={() => {
-                                setSelectorType('published');
-                            }}
-                        >
-                            {'Publiseringstidspunkt'}
-                        </Radio>
-                    </RadioGroup>
+                        />
+                    </RadioGruppe>
                 </div>
                 <div className={bem('input')}>
                     {selectorType === 'datetime' ? (

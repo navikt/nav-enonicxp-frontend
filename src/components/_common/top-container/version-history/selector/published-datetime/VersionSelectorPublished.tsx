@@ -3,8 +3,8 @@ import { Select } from '@navikt/ds-react';
 import { BEM } from '../../../../../../utils/classnames';
 import { ContentProps } from '../../../../../../types/content-props/_content-common';
 import { formatDateTime } from '../../../../../../utils/datetime';
-import { Button } from '../../../../button/Button';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
+import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
 import './VersionSelectorPublished.less';
 
 const bem = BEM('version-selector-published');
@@ -54,22 +54,11 @@ export const VersionSelectorPublished = ({
                     </option>
                 ))}
             </Select>
-            <Button
-                href={url}
-                kompakt={true}
-                className={bem('button')}
-                onClick={(e) => {
-                    if (editorView) {
-                        e.stopPropagation();
-                    }
-                    e.preventDefault();
-                    submitVersionUrl(url);
-                }}
-                prefetch={false}
-                disabled={!url}
-            >
-                {'Hent innhold'}
-            </Button>
+            <VersionSelectorSubmitButton
+                url={url}
+                isEditorView={!!editorView}
+                submitVersionUrl={submitVersionUrl}
+            />
         </div>
     );
 };
