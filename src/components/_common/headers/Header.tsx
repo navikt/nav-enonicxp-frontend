@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Title } from '@navikt/ds-react';
 
+import { BEM, classNames } from '../../../utils/classnames';
 import { translator } from 'translations';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { Level, levelToSize, Size } from '../../../types/typo-style';
-import { BEM, classNames } from '../../../utils/classnames';
 import { PublicImage } from '../image/PublicImage';
 import { HeaderCommonConfig } from '../../../types/component-props/_mixins';
+
 import './Header.less';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 
 const bem = BEM('header');
 
