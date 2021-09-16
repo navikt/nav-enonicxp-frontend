@@ -58,6 +58,7 @@ jobs:
           namespace: personbruker
           ingresses:
             - https://www.dev.nav.no
+            - https://www.dev.nav.no/soknad-dagpenger-utdanning
           image: $IMAGE_REGISTRY/$IMAGE_NAME
           version: $IMAGE_VERSION
           EOF
