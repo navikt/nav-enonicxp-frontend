@@ -15,6 +15,7 @@ COPY public /app/public/
 COPY next.config.js /app/
 COPY .env  /app/
 
+# Set permission/ownership needed for nextjs html/json cache
 RUN chown -R 1069 /app/.next
 
 # Start app
