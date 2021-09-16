@@ -2,12 +2,21 @@
 
 .card {
     outline: 0;
-    transition: all 0.3s;
+    text-decoration: none;
+    display: block;
+
+    .card__bed {
+        transition: all 0.3s;
+        height: 100%;
+    }
 
     @media (hover: hover) {
         &:hover:not(:active) {
-            box-shadow: 0 0 0 2px @navBla;
-            background-color: #ffffff;
+            .card__bed {
+                height: 100%;
+                box-shadow: 0 0 0 2px @navBla;
+                background-color: #ffffff;
+            }
 
             .card__title,
             .card__description,
@@ -16,9 +25,9 @@
                 color: @navMorkGra;
             }
 
-            &.card__product,
-            &.card__tool,
-            &.card__situation {
+            .card__product,
+            .card__tool,
+            .card__situation {
                 background-color: #ffffff;
 
                 .card__title {
@@ -29,9 +38,11 @@
     }
 
     &:focus-visible {
-        box-shadow: 0 0 0 4px @fokusFarge;
-        &.card__product,
-        &.card__situation {
+        .card__bed {
+            box-shadow: 0 0 0 4px @fokusFarge;
+        }
+        .card__product,
+        .card__situation {
             background-color: #ffffff;
         }
         .card__title,
@@ -43,9 +54,9 @@
     }
 
     &:active {
-        &.card__mini,
-        &.card__micro,
-        &.card__large {
+        .card__mini,
+        .card__micro,
+        .card__large {
             background-color: @navBlaDarken40;
         }
 
