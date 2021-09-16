@@ -58,11 +58,19 @@ export const FilterExplanation = ({
             )}
         >
             <div className={bem('iconWrapper')}>
-                {showHighlight ? (
-                    <InformationFilled color="#006A23" />
-                ) : (
-                    <Information />
-                )}
+                <InformationFilled
+                    color="#006A23"
+                    className={classNames(
+                        bem('icon'),
+                        bem('icon', showHighlight ? 'visible' : 'hidden')
+                    )}
+                />
+                <Information
+                    className={classNames(
+                        bem('icon'),
+                        bem('icon', showHighlight ? 'hidden' : 'visible')
+                    )}
+                />
             </div>
             <div className={bem('text')}>{filterExplanation}</div>
         </div>
