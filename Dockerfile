@@ -11,9 +11,13 @@ RUN npm ci
 COPY .next /app/.next/
 COPY public /app/public/
 
-# Copy necesarry files
+# Copy necessary files
 COPY next.config.js /app/
 COPY .env  /app/
+
+# Set permission/ownership needed for nextjs html/json cache
+# (1069 is the uid for the app process in containers on nais)
+RUN chown -R 1069 /app/.next
 
 # Start app
 EXPOSE 3000
