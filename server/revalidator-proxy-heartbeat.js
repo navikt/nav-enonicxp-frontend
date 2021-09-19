@@ -9,7 +9,7 @@ const heartbeatPeriodMs = 5000;
 
 const getPodAddress = () => {
     if (process.env.ENV === 'localhost') {
-        // If the revalidator-proxy app is running in a docker container you need to
+        // If the revalidator-proxy app is running in a docker container, you need to
         // set DOCKER_HOST_ADDRESS to a host address reachable from your docker network
         return process.env.DOCKER_HOST_ADDRESS || 'localhost';
     }
@@ -54,6 +54,4 @@ const initHeartbeat = () => {
     };
 };
 
-const noop = () => {};
-
-exports.initHeartbeat = NODE_ENV === 'production' ? initHeartbeat() : noop;
+exports.initHeartbeat = initHeartbeat();
