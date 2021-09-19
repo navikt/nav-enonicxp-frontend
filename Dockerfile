@@ -1,5 +1,7 @@
 FROM node:16-alpine
 
+ENV NODE_ENV=production
+
 # Create app directory
 WORKDIR /app
 
@@ -14,8 +16,9 @@ COPY public /app/public/
 # Copy necessary files
 COPY next.config.js /app/
 COPY .env  /app/
+COPY server /app/server/
 
-# Set permission/ownership needed for nextjs html/json cache
+# Set permission/ownership needed for next.js cache
 # (1069 is the uid for the app process in containers on nais)
 RUN chown -R 1069 /app/.next
 

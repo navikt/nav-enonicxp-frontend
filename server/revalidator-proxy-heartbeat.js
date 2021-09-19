@@ -1,9 +1,8 @@
 // Sends periodic heartbeat signals to an internal app which proxies revalidation
 // requests from Enonic XP to all frontend pods
 // See: https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy
-
-import { networkInterfaces } from 'os';
-import { fetchWithTimeout } from './utils/fetch-utils';
+const fetch = require('node-fetch');
+const { networkInterfaces } = require('os');
 
 const { NODE_ENV, REVALIDATOR_PROXY_ORIGIN, SERVICE_SECRET } = process.env;
 const heartbeatPeriodMs = 5000;
@@ -15,7 +14,9 @@ const getPodAddress = () => {
     if (!podAddress) {
         const isLocal = REVALIDATOR_PROXY_ORIGIN.includes('localhost');
         if (isLocal) {
-            return 'localhost';
+            return process.env.USE_LOCAL_REVALIDATOR
+                ? 'localhost'
+                : 'host.docker.internal';
         }
 
         console.error(
@@ -35,7 +36,7 @@ const getProxyLivenessUrl = () => {
         : null;
 };
 
-const heartbeatSingleton = (() => {
+const initHeartbeat = () => {
     let heartbeatInterval;
     const url = getProxyLivenessUrl();
 
@@ -43,7 +44,7 @@ const heartbeatSingleton = (() => {
         if (!heartbeatInterval && url) {
             console.log('Starting heartbeat loop');
             const heartbeatFunc = () =>
-                fetchWithTimeout(url, 1000, {
+                fetch(url, {
                     headers: { secret: SERVICE_SECRET },
                 }).catch((e) =>
                     console.error(`Failed to send heartbeat signal - ${e}`)
@@ -52,9 +53,8 @@ const heartbeatSingleton = (() => {
             heartbeatInterval = setInterval(heartbeatFunc, heartbeatPeriodMs);
         }
     };
-})();
+};
 
 const noop = () => {};
 
-export const initHeartbeat =
-    NODE_ENV === 'production' ? heartbeatSingleton : noop;
+exports.initHeartbeat = NODE_ENV === 'production' ? initHeartbeat() : noop;

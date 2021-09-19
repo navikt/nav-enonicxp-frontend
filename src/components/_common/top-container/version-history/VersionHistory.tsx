@@ -19,12 +19,17 @@ type Props = {
 export const VersionHistory = ({ content }: Props) => {
     const { timeRequested } = content;
 
+    const [isLoaded, setIsLoaded] = useState(false);
     const [selectorIsOpen, setSelectorIsOpen] = useState(false);
     const [versionUrlRequested, setVersionUrlRequested] = useState<
         string | null
     >();
 
     const router = useRouter();
+
+    useEffect(() => {
+        setIsLoaded(true);
+    }, []);
 
     useEffect(() => {
         setVersionUrlRequested(null);
@@ -37,6 +42,10 @@ export const VersionHistory = ({ content }: Props) => {
             router.push(versionUrlRequested);
         }
     }, [versionUrlRequested]);
+
+    if (!isLoaded) {
+        return null;
+    }
 
     return (
         <div className={bem()}>
