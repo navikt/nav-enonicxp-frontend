@@ -30,6 +30,9 @@ app.prepare().then(() => {
         if (error) {
             throw error;
         }
+        if (!serviceSecret) {
+            throw new Error('Could not retrieve authentication token');
+        }
 
         console.log(`Server started on port ${port}`);
         initHeartbeat();

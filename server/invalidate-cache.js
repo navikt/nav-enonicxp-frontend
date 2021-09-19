@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const cacheBasePath = './.next/server/pages';
 
-const invalidateCacheForPath = (path, app) => {
+const invalidateCache = (path, app) => {
     try {
         const htmlPath = `${cacheBasePath}${path}.html`;
         const jsonPath = `${cacheBasePath}${path}.json`;
@@ -25,4 +25,4 @@ const invalidateCacheForPath = (path, app) => {
     }
 };
 
-exports.invalidateCache = invalidateCacheForPath;
+exports.invalidateCache = invalidateCache;
