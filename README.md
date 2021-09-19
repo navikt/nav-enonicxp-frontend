@@ -12,7 +12,7 @@ Kjører lokalt på [http://localhost:3000](http://localhost:3000).
 
 Appen er avhengig av en lokalt tilgjengelig instans av [Enonic XP](https://github.com/navikt/nav-enonicxp).
 
-Øvrige avhengigheter kan startes ved å kjøre `docker compose up`.
+Øvrige avhengigheter kan startes ved å kjøre `docker compose up`
 
 #### Development mode:
 
@@ -20,7 +20,7 @@ Kjør `npm run dev`
 
 #### Production mode:
 
-Kopier først innhold fra .env.development til .env.local
+Kopier innhold fra .env.development til .env.local, og sett `NODE_ENV=production`
 
 Kjør så `npm run start-clean`
 
