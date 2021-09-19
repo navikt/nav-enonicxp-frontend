@@ -20,7 +20,7 @@ Kjør `npm run dev`
 
 #### Production mode:
 
-Kopier innhold fra .env.development til .env.local, og sett `NODE_ENV=production`
+Kopier .env.development til .env.local, og sett `NODE_ENV=production`
 
 Kjør så `npm run start-clean`
 

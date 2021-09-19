@@ -4,14 +4,20 @@
 const fetch = require('node-fetch');
 const { networkInterfaces } = require('os');
 
-const { NODE_ENV, REVALIDATOR_PROXY_ORIGIN, SERVICE_SECRET } = process.env;
+const {
+    ENV,
+    NODE_ENV,
+    DOCKER_HOST_ADDRESS,
+    REVALIDATOR_PROXY_ORIGIN,
+    SERVICE_SECRET,
+} = process.env;
 const heartbeatPeriodMs = 5000;
 
 const getPodAddress = () => {
-    if (process.env.ENV === 'localhost') {
+    if (ENV === 'localhost') {
         // If the revalidator-proxy app is running in a docker container, you need to
         // set DOCKER_HOST_ADDRESS to a host address reachable from your docker network
-        return process.env.DOCKER_HOST_ADDRESS || 'localhost';
+        return DOCKER_HOST_ADDRESS || 'localhost';
     }
 
     const nets = networkInterfaces();
@@ -36,6 +42,10 @@ const getProxyLivenessUrl = () => {
 };
 
 const initHeartbeat = () => {
+    if (NODE_ENV === 'development') {
+        return () => {};
+    }
+
     let heartbeatInterval;
     const url = getProxyLivenessUrl();
 
