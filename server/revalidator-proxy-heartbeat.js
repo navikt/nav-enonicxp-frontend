@@ -8,17 +8,16 @@ const { NODE_ENV, REVALIDATOR_PROXY_ORIGIN, SERVICE_SECRET } = process.env;
 const heartbeatPeriodMs = 5000;
 
 const getPodAddress = () => {
+    if (process.env.ENV === 'localhost') {
+        // If the revalidator-proxy app is running in a docker container you need to
+        // set DOCKER_HOST_ADDRESS to a host address reachable from your docker network
+        return process.env.DOCKER_HOST_ADDRESS || 'localhost';
+    }
+
     const nets = networkInterfaces();
     const podAddress = nets?.eth0?.[0]?.address;
 
     if (!podAddress) {
-        const isLocal = REVALIDATOR_PROXY_ORIGIN.includes('localhost');
-        if (isLocal) {
-            return process.env.USE_LOCAL_REVALIDATOR
-                ? 'localhost'
-                : 'host.docker.internal';
-        }
-
         console.error(
             'Error: pod IP address could not be determined' +
                 ' - Event driven cache regeneration will not be active for this instance'
