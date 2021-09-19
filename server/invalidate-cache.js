@@ -8,11 +8,11 @@ const invalidateCacheForPath = (path, app) => {
         const jsonPath = `${cacheBasePath}${path}.json`;
 
         if (fs.existsSync(htmlPath)) {
-            fs.unlinkSync(`${cacheBasePath}${path}.html`);
+            fs.unlinkSync(htmlPath);
         }
 
         if (fs.existsSync(jsonPath)) {
-            fs.unlinkSync(`${cacheBasePath}${path}.json`);
+            fs.unlinkSync(jsonPath);
         }
 
         app.server.incrementalCache.cache.del(path);
