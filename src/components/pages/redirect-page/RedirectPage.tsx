@@ -33,7 +33,7 @@ export const RedirectPage = (
     return editorView ? (
         <div className={'redirect-page'}>
             <BodyLong size={'m'}>
-                {`Denne siden redirecter til `}
+                {`Dette er en redirect til `}
                 <LenkeInline href={target}>{target}</LenkeInline>
             </BodyLong>
         </div>
