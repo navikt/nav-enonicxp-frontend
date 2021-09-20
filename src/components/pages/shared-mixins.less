@@ -10,8 +10,7 @@
         .html-area {
             margin-top: 0;
 
-            > .typo-normal,
-            ul {
+            > .navds-body-long ul {
                 margin-bottom: 2rem;
             }
         }
@@ -24,14 +23,14 @@
 
         .expandable {
             margin-bottom: 1rem;
-            .typo-normal:last-of-type {
+            .navds-body-long:last-of-type {
                 margin-bottom: 0;
             }
         }
 
         // The very final paragraph in a section to have no margin-bottom.
         &:last-of-type {
-            .typo-normal:last-of-type {
+            .navds-body-long:last-of-type {
                 margin-bottom: 0;
             }
         }
@@ -50,7 +49,7 @@
         margin-top: -0.9rem;
     }
 
-    .part__product-card-micro {
+    .part__product-card-micro:not(:last-child) {
         margin-bottom: 2.5rem;
     }
 
