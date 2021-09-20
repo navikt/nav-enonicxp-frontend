@@ -2,6 +2,7 @@ import React from 'react';
 import { GlobalValueItem } from '../../../types/content-props/global-values-props';
 import { GVMessageProps } from './components/messages/GVMessages';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
+import { editorPathPrefix } from '../../../utils/urls';
 
 export const gvNameExists = (
     itemName: string,
@@ -33,7 +34,7 @@ const getUsageMessages = (usage) => {
                     </LenkeStandalone>
                     {' // '}
                     <LenkeStandalone
-                        href={`/admin/tool/com.enonic.app.contentstudio/main#/default/edit/${content.id}`}
+                        href={`${editorPathPrefix}/${content.id}`}
                         target={'_blank'}
                         withChevron={false}
                         onClick={(e) => {
