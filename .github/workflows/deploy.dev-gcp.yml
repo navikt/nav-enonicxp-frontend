@@ -26,7 +26,7 @@ jobs:
           ENV=dev
           NODE_ENV=production
           ADMIN_ORIGIN=https://portal-admin-dev.oera.no
-          APP_ORIGIN=https://xp.dev.nav.no
+          APP_ORIGIN=https://www-gcp.dev.nav.no
           DECORATOR_FALLBACK_URL=https://dekoratoren.dev.nav.no
           XP_ORIGIN=https://www.dev.nav.no
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
@@ -57,8 +57,8 @@ jobs:
           cat > .nais/vars.yaml <<EOF
           namespace: personbruker
           ingresses:
-            - https://xp.dev.nav.no
-            - https://xp.dev.nav.no/soknad-dagpenger-utdanning
+            - https://www-gcp.dev.nav.no
+            - https://www-gcp.dev.nav.no/soknad-dagpenger-utdanning
           image: $IMAGE_REGISTRY/$IMAGE_NAME
           version: $IMAGE_VERSION
           EOF
