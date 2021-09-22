@@ -15,8 +15,6 @@ const withTranspileModules = require('next-transpile-modules')([
     '@navikt/ds-icons',
 ]);
 
-console.log(process.env);
-
 module.exports = withPlugins([withTranspileModules, withLess, withImages], {
     webpack5: false,
     assetPrefix: process.env.APP_ORIGIN,
