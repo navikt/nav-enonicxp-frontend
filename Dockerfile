@@ -1,7 +1,5 @@
 FROM node:16-alpine
 
-ENV NODE_ENV=production
-
 # Create app directory
 WORKDIR /app
 
@@ -24,4 +22,4 @@ RUN chown -R 1069 /app/.next
 
 # Start app
 EXPOSE 3000
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start-docker"]
