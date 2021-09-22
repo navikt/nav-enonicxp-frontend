@@ -33,12 +33,8 @@ export const GVItemEditor = ({
     });
     const [awaitDeleteConfirm, setAwaitDeleteConfirm] = useState(false);
 
-    const {
-        valueItems,
-        contentId,
-        setValueItems,
-        setMessages,
-    } = useGvEditorState();
+    const { valueItems, contentId, setValueItems, setMessages } =
+        useGvEditorState();
 
     const isNewItem = item.key === '';
 
@@ -60,11 +56,17 @@ export const GVItemEditor = ({
     };
 
     const deleteItem = async () => {
-        await gvServiceGetUsage(item.key)
+        await gvServiceGetUsage(item.key, contentId)
             .then((res) => {
                 const usage = res?.usage;
                 if (!usage || usage.length > 0) {
-                    setMessages(generateGvUsageMessages(usage, item.itemName));
+                    setMessages(
+                        generateGvUsageMessages(
+                            usage,
+                            item.itemName,
+                            res?.legacyUsage
+                        )
+                    );
                     setAwaitDeleteConfirm(true);
                 } else {
                     deleteConfirm();

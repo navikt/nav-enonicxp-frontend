@@ -11,6 +11,7 @@
         "typeCheck": "tsc",
         "lint": "eslint src/",
         "deploy": "npx run-func trigger-workflow.js triggerWorkflow",
+        "deploy-dev-gcp": "npm run deploy -- deploy.dev-gcp.yml",
         "deploy-dev": "npm run deploy -- deploy.dev.yml",
         "deploy-q6": "npm run deploy -- deploy.q6.yml"
     },
