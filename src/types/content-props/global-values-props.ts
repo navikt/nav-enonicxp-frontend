@@ -4,7 +4,7 @@ export type GlobalValueItem = {
     key: string;
     itemName: string;
     textValue: string;
-    numberValue?: number;
+    numberValue?: string;
 };
 
 export type GlobalValuesData = {
