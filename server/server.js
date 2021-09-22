@@ -29,7 +29,7 @@ app.prepare().then(() => {
             throw error;
         }
         if (!serviceSecret) {
-            throw new Error('Could not retrieve authentication token');
+            throw new Error('Authentication key is not defined!');
         }
 
         console.log(`Server started on port ${port}`);
