@@ -156,8 +156,8 @@ export const GVItemEditor = ({
     };
 
     const handleInput = (e) => {
-        const { name } = e.target;
-        setInputState({ ...inputState, [name]: e.target.value });
+        const { name, value } = e.target;
+        setInputState({ ...inputState, [name]: value?.trim() });
     };
 
     return (
