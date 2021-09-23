@@ -15,21 +15,38 @@ import './GlobalValuesPage.less';
 
 const bem = BEM('global-values-page');
 
-const hideDecorator = () => {
-    const header = document.getElementById('decorator-header');
-    if (header) {
-        header.style.display = 'none';
-    }
-
-    const footer = document.getElementById('decorator-footer');
-    if (footer) {
-        footer.style.display = 'none';
-    }
-};
-
 const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
     useEffect(() => {
-        hideDecorator();
+        const header = document.getElementById('decorator-header');
+        if (header) {
+            header.style.display = 'none';
+        }
+
+        const footer = document.getElementById('decorator-footer');
+        if (footer) {
+            footer.style.display = 'none';
+        }
+
+        // Hide overlay-elements in the editor
+        const callback = (mutations) => {
+            mutations.forEach((mutation) => {
+                if (
+                    mutation.target.classList.contains('xp-page-editor-shader')
+                ) {
+                    mutation.target.style.display = 'none';
+                }
+            });
+        };
+
+        const observer = new MutationObserver(callback);
+        const config = {
+            childList: true,
+            subtree: true,
+            attributes: true,
+        };
+        observer.observe(window.document, config);
+
+        return () => observer.disconnect();
     }, []);
 
     return (
