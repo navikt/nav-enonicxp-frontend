@@ -38,10 +38,14 @@ export const ProductCardPart = ({
 
     if (descriptor === PartType.ProductCardMini) {
         return (
-            <div>
-                {title && <Label size="m">{title}</Label>}
+            <>
+                {title && (
+                    <Label size="m" className="card-heading">
+                        {title}
+                    </Label>
+                )}
                 <MiniCard {...props} />
-            </div>
+            </>
         );
     }
 
