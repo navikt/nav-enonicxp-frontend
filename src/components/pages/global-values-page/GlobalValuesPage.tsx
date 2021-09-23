@@ -15,21 +15,28 @@ import './GlobalValuesPage.less';
 
 const bem = BEM('global-values-page');
 
-const hideDecorator = () => {
+const removeDistractions = () => {
     const header = document.getElementById('decorator-header');
     if (header) {
-        header.style.display = 'none';
+        header.remove();
     }
 
     const footer = document.getElementById('decorator-footer');
     if (footer) {
-        footer.style.display = 'none';
+        footer.remove();
+    }
+
+    const pageEditorOverlays = document.getElementsByClassName(
+        'xp-page-editor-shader'
+    );
+    if (pageEditorOverlays) {
+        Array.from(pageEditorOverlays).forEach((element) => element.remove());
     }
 };
 
 const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
     useEffect(() => {
-        hideDecorator();
+        removeDistractions();
     }, []);
 
     return (
