@@ -101,7 +101,10 @@ export const GVItemEditor = ({
         const inputTrimmed = {
             ...inputState,
             itemName: inputState.itemName?.trim(),
-            numberValue: inputState.numberValue?.trim(),
+            numberValue:
+                typeof inputState.numberValue === 'string'
+                    ? inputState.numberValue.trim()
+                    : inputState.numberValue,
             textValue: inputState.textValue?.trim(),
         };
 
