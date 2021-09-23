@@ -11,10 +11,18 @@
 
     // h3 signifies a new "sub chapter" within a section.
     // should have extra spacing above content, but only if
-    // not the topmost element within region
+    // not the topmost element within region. Except first-child.
     .part {
         h3 {
             margin-top: 2.75rem;
+        }
+    }
+
+    .region__content {
+        > :first-child {
+            h3:first-child {
+                margin-top: 0;
+            }
         }
     }
 
@@ -26,6 +34,7 @@
         > :last-child {
             .tabell:last-child,
             .card:last-child,
+            .calculator,
             ul:last-child,
             p:last-child {
                 margin-bottom: 0rem;
