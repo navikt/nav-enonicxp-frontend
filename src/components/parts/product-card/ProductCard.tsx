@@ -24,7 +24,7 @@ export const ProductCardPart = ({
         );
     }
 
-    const { targetPage, title } = config;
+    const { targetPage, header } = config;
 
     const props = getCardProps(targetPage, language);
 
@@ -38,10 +38,14 @@ export const ProductCardPart = ({
 
     if (descriptor === PartType.ProductCardMini) {
         return (
-            <div>
-                {title && <Label size="m">{title}</Label>}
+            <>
+                {header && (
+                    <Label size="m" className="card-heading">
+                        {header}
+                    </Label>
+                )}
                 <MiniCard {...props} />
-            </div>
+            </>
         );
     }
 

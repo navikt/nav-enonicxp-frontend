@@ -17,17 +17,17 @@ export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {
         );
     }
 
-    const { card_list, title } = config;
+    const { card_list, header } = config;
 
     return (
-        <div>
-            {title && <Label size="m">{title}</Label>}
+        <>
+            {header && <Label size="m">{header}</Label>}
             {card_list.map((card) => {
                 const props = getCardProps(card.targetPage, language);
                 return (
                     props && <MicroCard {...props} key={card.targetPage._id} />
                 );
             })}
-        </div>
+        </>
     );
 };
