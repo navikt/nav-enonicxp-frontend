@@ -89,9 +89,7 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                                 mini={true}
                                 kompakt={true}
                                 className={bem('button')}
-                                onClick={() => {
-                                    setShowUsage(!showUsage);
-                                }}
+                                onClick={() => setShowUsage(!showUsage)}
                             >
                                 {showUsage ? 'Skjul' : 'Vis'}
                             </Button>
