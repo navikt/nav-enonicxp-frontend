@@ -2,6 +2,7 @@ import React from 'react';
 import { GlobalValueItem } from '../../../types/content-props/global-values-props';
 import { GVMessageProps } from './components/messages/GVMessages';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
+import { editorPathPrefix } from '../../../utils/urls';
 
 export const gvNameExists = (
     itemName: string,
@@ -12,31 +13,12 @@ export const gvNameExists = (
         (item) => item.itemName === itemName && (!key || item.key !== key)
     );
 
-export const generateGvUsageMessages = (usage, itemName) => {
-    if (!usage) {
-        return [
-            {
-                message: 'Teknisk feil - kunne ikke hente bruk av verdier',
-                level: 'error',
-            },
-            {
-                message:
-                    'Prøv igjen, eller kontakt #team-personbruker dersom problemet vedvarer',
-                level: 'info',
-            },
-        ];
+const getUsageMessages = (usage) => {
+    if (!usage || usage.length === 0) {
+        return [];
     }
 
-    if (usage.length === 0) {
-        return [
-            {
-                message: `Verdien "${itemName}" er ikke i bruk`,
-                level: 'info',
-            },
-        ];
-    }
-
-    const contentUseMsgs = usage.map(
+    return usage.map(
         (content): GVMessageProps => ({
             message: (
                 <>
@@ -52,7 +34,7 @@ export const generateGvUsageMessages = (usage, itemName) => {
                     </LenkeStandalone>
                     {' // '}
                     <LenkeStandalone
-                        href={`/admin/tool/com.enonic.app.contentstudio/main#/default/edit/${content.id}`}
+                        href={`${editorPathPrefix}/${content.id}`}
                         target={'_blank'}
                         withChevron={false}
                         onClick={(e) => {
@@ -66,12 +48,50 @@ export const generateGvUsageMessages = (usage, itemName) => {
             level: 'info',
         })
     );
+};
+
+export const generateGvUsageMessages = (
+    usage,
+    itemName,
+    legacyUsage
+): GVMessageProps[] => {
+    if (!usage) {
+        return [
+            {
+                message: 'Teknisk feil - kunne ikke hente bruk av verdier',
+                level: 'error',
+            },
+            {
+                message:
+                    'Prøv igjen, eller kontakt #team-personbruker dersom problemet vedvarer',
+                level: 'info',
+            },
+        ];
+    }
+
+    const usageMessages = getUsageMessages(usage);
+
+    const legacyUsageMessages = getUsageMessages(legacyUsage);
+
+    if (usageMessages.length === 0 && legacyUsageMessages.length === 0) {
+        return [
+            {
+                message: `Verdien "${itemName}" er ikke i bruk`,
+                level: 'info',
+            },
+        ];
+    }
 
     return [
-        {
+        usageMessages.length > 0 && {
             message: `Verdien "${itemName}" er i bruk på følgende sider:`,
+            level: 'info',
+        },
+        ...usageMessages,
+        legacyUsageMessages.length > 0 && {
+            message: `Verdien "${itemName}" er i bruk på følgende sider med gammelt format:`,
             level: 'warning',
         },
-        ...contentUseMsgs,
+        ...legacyUsageMessages,
     ];
 };

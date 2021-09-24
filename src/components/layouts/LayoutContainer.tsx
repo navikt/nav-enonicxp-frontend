@@ -3,8 +3,8 @@ import { ContentProps } from '../../types/content-props/_content-common';
 import { LayoutProps } from '../../types/component-props/layouts';
 import { BEM, classNames } from '../../utils/classnames';
 import { getCommonLayoutStyle } from './LayoutStyle';
-import { AuthDependantRender } from '../_common/auth-dependant-render/AuthDependantRender';
 import { usePageConfig } from '../../store/hooks/usePageConfig';
+import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
 import './LayoutContainer.less';
 
 type Props = {
@@ -29,10 +29,7 @@ export const LayoutContainer = ({
     const bem = BEM(type);
     const layoutName = descriptor.split(':')[1];
 
-    const commonLayoutStyle = getCommonLayoutStyle(
-        config,
-        pageConfig.editorView === 'edit'
-    );
+    const commonLayoutStyle = getCommonLayoutStyle(config);
     const paddingConfig = config.paddingSides?._selected;
 
     const editorProps = !!pageProps.editorView
@@ -43,24 +40,24 @@ export const LayoutContainer = ({
         : undefined;
 
     return (
-        <AuthDependantRender renderOn={config.renderOnAuthState}>
-            <div
-                {...divElementProps}
-                {...editorProps}
-                className={classNames(
-                    bem(),
-                    bem(layoutName),
-                    ...(modifiers
-                        ? modifiers.map((mod) => bem(layoutName, mod))
-                        : []),
-                    paddingConfig === 'fullWidth' && bem('fullwidth'),
-                    paddingConfig === 'standard' && bem('standard'),
-                    config.bgColor?.color && bem('bg')
-                )}
-                style={{ ...commonLayoutStyle, ...layoutStyle }}
-            >
-                {children}
-            </div>
-        </AuthDependantRender>
+        <div
+            {...divElementProps}
+            {...editorProps}
+            className={classNames(
+                bem(),
+                bem(layoutName),
+                ...(modifiers
+                    ? modifiers.map((mod) => bem(layoutName, mod))
+                    : []),
+                paddingConfig === 'fullWidth' && bem('fullwidth'),
+                paddingConfig === 'standard' && bem('standard'),
+                config.bgColor?.color && bem('bg'),
+                pageConfig.editorView === 'edit' &&
+                    editorAuthstateClassname(config.renderOnAuthState)
+            )}
+            style={{ ...commonLayoutStyle, ...layoutStyle }}
+        >
+            {children}
+        </div>
     );
 };

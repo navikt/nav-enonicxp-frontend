@@ -40,7 +40,7 @@ const ItemView = ({ item }: Props) => {
 
 export const GVItem = ({ item }: Props) => {
     const [editMode, setEditMode] = useState(false);
-    const { setMessages } = useGvEditorState();
+    const { setMessages, contentId } = useGvEditorState();
 
     return (
         <div className={bem()}>
@@ -63,12 +63,13 @@ export const GVItem = ({ item }: Props) => {
                 <GVButton
                     onClick={async (e) => {
                         e.preventDefault();
-                        await gvServiceGetUsage(item.key)
+                        await gvServiceGetUsage(item.key, contentId)
                             .then((res) =>
                                 setMessages(
                                     generateGvUsageMessages(
                                         res.usage,
-                                        item.itemName
+                                        item.itemName,
+                                        res.legacyUsage
                                     )
                                 )
                             )

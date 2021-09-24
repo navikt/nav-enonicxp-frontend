@@ -1,53 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { BEM, classNames } from '../../../../../utils/classnames';
 import { BodyLong } from '@navikt/ds-react';
-import {
-    getCurrentDateAndTime,
-    getUtcTimeFromLocal,
-} from '../../../../../utils/datetime';
 import { ContentProps } from '../../../../../types/content-props/_content-common';
-import { Checkbox } from 'nav-frontend-skjema';
-import { Button } from '../../../button/Button';
-import {
-    xpContentPathPrefix,
-    xpDraftPathPrefix,
-} from '../../../../../utils/urls';
+import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
+import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
+import { Radio, RadioGruppe } from 'nav-frontend-skjema';
 import './VersionSelector.less';
 
 const bem = BEM('version-selector');
 
-const startDate = '2019-12-01';
-
 const containerId = 'version-selector';
 
-type Branch = 'master' | 'draft';
-
-const getUrl = (
-    content: ContentProps,
-    date: string,
-    time: string,
-    branch: Branch
-) => {
-    const contentPath = content._path.split(xpContentPathPrefix)[1];
-    if (!contentPath) {
-        return null;
-    }
-
-    const dateTime = getUtcTimeFromLocal(`${date}T${time}`);
-    const query = `?time=${dateTime}&id=${content._id}${
-        branch === 'draft' ? '&branch=draft' : ''
-    }`;
-
-    return content.editorView
-        ? `${xpDraftPathPrefix}${query}`
-        : `/version${contentPath}${query}`;
-};
+type SelectorType = 'datetime' | 'published';
 
 type Props = {
     content: ContentProps;
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
-    submitVersionUrl: (dateTime: string) => void;
+    submitVersionUrl: (url: string) => void;
 };
 
 export const VersionSelector = ({
@@ -56,13 +26,12 @@ export const VersionSelector = ({
     setIsOpen,
     submitVersionUrl,
 }: Props) => {
-    const [initialDate, initialTime] = getCurrentDateAndTime();
-    const [dateSelected, setDateSelected] = useState(initialDate);
-    const [timeSelected, setTimeSelected] = useState(initialTime);
-    const [branchSelected, setBranchSelected] = useState<Branch>('master');
+    const [selectorType, setSelectorType] = useState<SelectorType>('datetime');
+
+    const { editorView } = content;
 
     useEffect(() => {
-        const closeMe = (e: MouseEvent) => {
+        const closeSelector = (e: MouseEvent) => {
             const clickedMe = !!(e.target as HTMLElement)?.closest?.(
                 `#${containerId}`
             );
@@ -72,26 +41,15 @@ export const VersionSelector = ({
         };
 
         if (isOpen) {
-            document.addEventListener('click', closeMe);
+            document.addEventListener('click', closeSelector);
         } else {
-            document.removeEventListener('click', closeMe);
+            document.removeEventListener('click', closeSelector);
         }
 
         return () => {
-            document.removeEventListener('click', closeMe);
+            document.removeEventListener('click', closeSelector);
         };
     }, [isOpen, setIsOpen]);
-
-    useEffect(() => {
-        // Reset the current date/time selection when receiving live content
-        if (!content.timeRequested) {
-            const [currentDate, currentTime] = getCurrentDateAndTime();
-            setDateSelected(currentDate);
-            setTimeSelected(currentTime);
-        }
-    }, [content]);
-
-    const url = getUrl(content, dateSelected, timeSelected, branchSelected);
 
     return (
         <div className={bem()} id={containerId}>
@@ -101,68 +59,46 @@ export const VersionSelector = ({
                     isOpen && bem('inner', 'open')
                 )}
             >
-                <div className={bem('input')}>
-                    <div className={bem('input-left')}>
-                        <BodyLong>{'Velg tid og dato:'}</BodyLong>
-                        <input
-                            type={'time'}
-                            className={bem('time')}
-                            onChange={(e) => {
-                                setTimeSelected(e.target.value);
-                            }}
-                            value={timeSelected.slice(0, 5)}
+                <div className={bem('type-selector')}>
+                    <RadioGruppe
+                        legend={'Velg input-type'}
+                        onChange={(e) => {
+                            const selection = (e.target as HTMLInputElement)
+                                .value as SelectorType;
+                            setSelectorType(selection);
+                        }}
+                    >
+                        <Radio
+                            label={'Egendefinert tidspunkt'}
+                            name={'selectorType'}
+                            value={'datetime'}
+                            defaultChecked={true}
                         />
-                        <input
-                            type={'date'}
-                            className={bem('date')}
-                            onChange={(e) => {
-                                setDateSelected(e.target.value);
-                            }}
-                            min={startDate}
-                            max={initialDate}
-                            value={dateSelected}
+                        <Radio
+                            label={'Publiseringstidspunkt'}
+                            name={'selectorType'}
+                            value={'published'}
                         />
-                    </div>
-                    <div className={bem('input-right')}>
-                        {content.editorView && (
-                            <Checkbox
-                                label={'Kun publisert innhold'}
-                                checked={branchSelected === 'master'}
-                                id={'version-branch-input'}
-                                onChange={(e) => {
-                                    setBranchSelected(
-                                        e.target.checked ? 'master' : 'draft'
-                                    );
-                                }}
-                            />
-                        )}
-                        <Button
-                            href={url}
-                            kompakt={true}
-                            mini={true}
-                            className={bem('button')}
-                            onClick={(e) => {
-                                if (content.editorView) {
-                                    e.stopPropagation();
-                                }
-                                e.preventDefault();
-                                submitVersionUrl(url);
-                            }}
-                            prefetch={false}
-                            disabled={!url}
-                        >
-                            {'Hent innhold'}
-                        </Button>
-                    </div>
+                    </RadioGruppe>
                 </div>
-                {content.editorView && (
+                <div className={bem('input')}>
+                    {selectorType === 'datetime' ? (
+                        <VersionSelectorDateTime
+                            content={content}
+                            submitVersionUrl={submitVersionUrl}
+                        />
+                    ) : selectorType === 'published' ? (
+                        <VersionSelectorPublished
+                            content={content}
+                            submitVersionUrl={submitVersionUrl}
+                        />
+                    ) : (
+                        <div>{'Feil: velg en input-type'}</div>
+                    )}
+                </div>
+                {editorView && (
                     <div className={bem('help-text')}>
                         <hr />
-                        <BodyLong size={'s'}>
-                            {
-                                'Obs: Løsningen er under utvikling og kan ha noen svakheter.'
-                            }
-                        </BodyLong>
                         <BodyLong size={'s'}>
                             {
                                 'Denne historikken går foreløpig kun tilbake til desember 2019. Ta kontakt med redaksjonen dersom du har behov for tidligere historikk.'

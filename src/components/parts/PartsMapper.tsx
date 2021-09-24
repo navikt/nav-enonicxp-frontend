@@ -23,6 +23,7 @@ import { NewsList } from './news-list/NewsList';
 import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar';
 import { BEM, classNames } from '../../utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
+import { CalculatorPart } from './calculator/Calculator';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
@@ -31,6 +32,7 @@ import { FiltersMenu } from './filters-menu/FiltersMenu';
 import { ProductCardPart } from './product-card/ProductCard';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
+import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
 
 type Props = {
     partProps: PartComponentProps;
@@ -61,6 +63,7 @@ const partsWithOwnData: {
     [PartType.LinkList]: LinkList,
     [PartType.NewsList]: NewsList,
     [PartType.HtmlArea]: HtmlArea,
+    [PartType.Calculator]: CalculatorPart,
     [PartType.PageHeader]: PageHeaderPart,
     [PartType.Button]: ButtonPart,
     [PartType.ProviderCard]: ProviderCardPart,
@@ -95,8 +98,9 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
 };
 
 export const PartsMapper = ({ pageProps, partProps }: Props) => {
-    const { path, descriptor } = partProps;
+    const { path, descriptor, config } = partProps;
     const isEditView = pageProps.editorView === 'edit';
+    const renderOnAuthState = config?.renderOnAuthState;
 
     const editorProps = isEditView
         ? {
@@ -114,7 +118,14 @@ export const PartsMapper = ({ pageProps, partProps }: Props) => {
     const partName = descriptor.split(':')[1];
 
     return (
-        <div className={classNames(bem(), bem(partName))} {...editorProps}>
+        <div
+            className={classNames(
+                bem(),
+                bem(partName),
+                isEditView && editorAuthstateClassname(renderOnAuthState)
+            )}
+            {...editorProps}
+        >
             <PartComponent pageProps={pageProps} partProps={partProps} />
         </div>
     );

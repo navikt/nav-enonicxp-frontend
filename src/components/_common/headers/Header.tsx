@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { Title } from '@navikt/ds-react';
-import { Level, levelToSize, Size } from '../../../types/typo-style';
+
 import { BEM, classNames } from '../../../utils/classnames';
+import { translator } from 'translations';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+
+import { Level, levelToSize, Size } from '../../../types/typo-style';
 import { PublicImage } from '../image/PublicImage';
 import { HeaderCommonConfig } from '../../../types/component-props/_mixins';
+
 import './Header.less';
 
 const bem = BEM('header');
@@ -32,6 +37,9 @@ export const Header = ({
     className,
 }: Props) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
+    const { language } = usePageConfig();
+
+    const getLabel = translator('header', language);
 
     const copyLinkToClipboard = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -82,9 +90,9 @@ export const Header = ({
                         <PublicImage
                             imagePath={'/gfx/link.svg'}
                             className={bem('anchor-icon')}
-                            alt={'Kopier lenke'}
+                            alt={getLabel('copyLink')}
                         />
-                        {'Kopier lenke'}
+                        {getLabel('copyLink')}
                     </a>
                     <span
                         className={classNames(
@@ -92,7 +100,7 @@ export const Header = ({
                             showCopyTooltip && bem('copy-tooltip', 'visible')
                         )}
                     >
-                        {'Lenken er kopiert'}
+                        {getLabel('copiedLink')}
                     </span>
                 </span>
             )}
