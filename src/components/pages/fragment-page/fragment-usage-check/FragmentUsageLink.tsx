@@ -10,7 +10,9 @@ export const FragmentUsageLink = ({ id, name, path }: FragmentUsageData) => {
         <div className={'fragment-usage-link'} key={id}>
             {`${name} - `}
             <EditorLinkWrapper>
-                <LenkeInline href={editorUrl}>{path}</LenkeInline>
+                <LenkeInline href={editorUrl} target={'_blank'}>
+                    {path}
+                </LenkeInline>
             </EditorLinkWrapper>
         </div>
     );

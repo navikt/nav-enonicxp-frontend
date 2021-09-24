@@ -15,7 +15,7 @@ export const EditorLinkWrapper = ({ children }: Props) => {
     const { pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
 
-    if (editorView !== 'edit') {
+    if (!editorView || editorView === 'preview') {
         return <>{children}</>;
     }
 
@@ -32,12 +32,18 @@ export const EditorLinkWrapper = ({ children }: Props) => {
         <span
             className={className}
             onClick={(e) => {
+                e.stopPropagation();
+
                 if (onClick) {
                     // @ts-ignore
                     onClick(e);
                 }
                 if (href) {
-                    window.open(href, target);
+                    if (target === '_blank') {
+                        window.open(href, target);
+                    } else {
+                        window.location.assign(href);
+                    }
                 }
             }}
         >
