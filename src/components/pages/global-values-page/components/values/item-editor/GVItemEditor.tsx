@@ -22,7 +22,7 @@ type Props = {
 };
 
 export const GVItemEditor = ({
-    item = { itemName: '', textValue: '', key: '' },
+    item = { itemName: '', textValue: '', numberValue: '', key: '' },
     onClose,
 }: Props) => {
     const [inputState, setInputState] = useState(item);
@@ -100,9 +100,12 @@ export const GVItemEditor = ({
         e.preventDefault();
         const inputTrimmed = {
             ...inputState,
-            itemName: inputState.itemName.trim(),
-            numberValue: inputState.numberValue.trim(),
-            textValue: inputState.textValue.trim(),
+            itemName: inputState.itemName?.trim(),
+            numberValue:
+                typeof inputState.numberValue === 'string'
+                    ? inputState.numberValue.trim()
+                    : inputState.numberValue,
+            textValue: inputState.textValue?.trim(),
         };
 
         const { itemName, numberValue, textValue } = inputTrimmed;
