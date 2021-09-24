@@ -1,29 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { fetchWithTimeout } from '../../../../utils/fetch-utils';
-import {
-    editorPathPrefix,
-    xpDraftPathPrefix,
-    xpServicePath,
-} from '../../../../utils/urls';
+import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
 import { Title } from '@navikt/ds-react';
 import { Button } from '../../../_common/button/Button';
 import { BEM } from '../../../../utils/classnames';
-import { LenkeInline } from '../../../_common/lenke/LenkeInline';
+import { EditorLinkWrapper } from '../../../_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
+import { FragmentUsageLink } from './FragmentUsageLink';
 import './FragmentUsageCheck.less';
 
 const bem = BEM('fragment-usage');
 
 const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/htmlFragmentSelector/fragmentUsage`;
 
-type ContentData = {
+export type FragmentUsageData = {
     name: string;
     path: string;
     id: string;
 };
 
 type FragmentUsage = {
-    macroUsage: ContentData[];
-    componentUsage: ContentData[];
+    macroUsage: FragmentUsageData[];
+    componentUsage: FragmentUsageData[];
 };
 
 const fetchMacroUsage = (id: string): Promise<FragmentUsage> =>
@@ -86,15 +83,19 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                                 numUniqueUsages === 1 ? '' : 'e'
                             } side${numUniqueUsages === 1 ? '' : 'r'}`}
                         </Title>
-                        <Button
-                            type={'flat'}
-                            mini={true}
-                            kompakt={true}
-                            className={bem('button')}
-                            onClick={() => setShowUsage(!showUsage)}
-                        >
-                            {showUsage ? 'Skjul' : 'Vis'}
-                        </Button>
+                        <EditorLinkWrapper>
+                            <Button
+                                type={'flat'}
+                                mini={true}
+                                kompakt={true}
+                                className={bem('button')}
+                                onClick={() => {
+                                    setShowUsage(!showUsage);
+                                }}
+                            >
+                                {showUsage ? 'Skjul' : 'Vis'}
+                            </Button>
+                        </EditorLinkWrapper>
                     </>
                 ) : (
                     <Title level={3} size="s">
@@ -113,20 +114,9 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                             >
                                 {'I bruk som komponent:'}
                             </Title>
-                            {componentUsage.map((content) => {
-                                const editorUrl = `${editorPathPrefix}/${content.id}`;
-                                return (
-                                    <div
-                                        className={bem('page-usage')}
-                                        key={content.id}
-                                    >
-                                        {`${content.name} - `}
-                                        <LenkeInline href={editorUrl}>
-                                            {content.path}
-                                        </LenkeInline>
-                                    </div>
-                                );
-                            })}
+                            {componentUsage.map((content) => (
+                                <FragmentUsageLink {...content} />
+                            ))}
                         </>
                     )}
                     {macroUsage.length > 0 && (
@@ -138,20 +128,9 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                             >
                                 {'I bruk som macro:'}
                             </Title>
-                            {macroUsage.map((content) => {
-                                const editorUrl = `${editorPathPrefix}/${content.id}`;
-                                return (
-                                    <div
-                                        className={bem('page-usage')}
-                                        key={content.id}
-                                    >
-                                        {`${content.name} - `}
-                                        <LenkeInline href={editorUrl}>
-                                            {content.path}
-                                        </LenkeInline>
-                                    </div>
-                                );
-                            })}
+                            {macroUsage.map((content) => (
+                                <FragmentUsageLink {...content} />
+                            ))}
                         </>
                     )}
                 </div>
