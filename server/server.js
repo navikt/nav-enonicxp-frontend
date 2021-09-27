@@ -13,6 +13,10 @@ const serviceSecret = process.env.SERVICE_SECRET;
 
 app.prepare().then(() => {
     const server = express();
+    if (process.env.ENV !== 'localhost') {
+        app.server.incrementalCache.incrementalOptions.pagesDir = '/tmp/pages';
+    }
+    console.log(app.server.incrementalCache.incrementalOptions.pagesDir);
 
     server.all('*', (req, res) => {
         const { secret, invalidate } = req.headers;
