@@ -20,14 +20,15 @@ app.prepare().then(() => {
     }
 
     server.all('*', (req, res) => {
-        const { secret, invalidate, wipeCache } = req.headers;
+        const { secret } = req.headers;
+        const { invalidate, wipeAll } = req.query;
 
         if (invalidate && secret === serviceSecret) {
             invalidateCachedPage(req.path, app);
             return res.status(200).send(`Invalidating cache for ${req.path}`);
         }
 
-        if (wipeCache && secret === serviceSecret) {
+        if (wipeAll && secret === serviceSecret) {
             wipePageCache(app);
             return res.status(200).send('Wiping page cache');
         }
