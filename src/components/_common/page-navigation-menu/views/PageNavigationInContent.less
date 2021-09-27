@@ -19,6 +19,16 @@
         padding: #round-rem(0.66rem) [] 0.5rem;
         margin: 0 -0.5rem;
 
+        &:hover {
+            background-color: @navBlaLighten80;
+            color: @navMorkGra;
+            text-decoration: none;
+
+            .page-nav-link__decor {
+                background-color: @navBla;
+            }
+        }
+
         &:focus {
             .panel-inset-focus-mixin();
         }

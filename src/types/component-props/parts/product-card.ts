@@ -9,6 +9,7 @@ import {
 export type TargetPage = ProductPageProps | SituationPageProps | ToolsPageProps;
 
 export type ProductTarget = {
+    header?: string;
     targetPage: TargetPage;
 };
 
@@ -27,6 +28,7 @@ export interface ProductCardMiniProps extends PartComponentProps {
 export interface ProductCardMicroProps extends PartComponentProps {
     descriptor: PartType.ProductCardMicro;
     config: {
+        header?: string;
         card_list: ProductTarget[];
     };
 }

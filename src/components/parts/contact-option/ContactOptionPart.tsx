@@ -12,7 +12,7 @@ import {
 } from '../../../types/component-props/parts/contact-option';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { openChatbot } from '../../../utils/chatbot';
-import { EditorHelp } from '../../_common/editor-help/EditorHelp';
+import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
 
 import './ContactOptionPart.less';
 

@@ -4,6 +4,10 @@
 .html-area {
     word-break: break-word;
 
+    .navds-body-long + .card {
+        margin-top: -1.2rem;
+    }
+
     img {
         display: block;
         max-width: 100%;
@@ -12,21 +16,27 @@
 
     table {
         float: none;
-        margin-bottom: 1rem;
-        line-height: 1.3em;
+        margin-bottom: 1.75rem;
 
         th,
         td {
-            vertical-align: top;
-            padding: 0.7rem;
             font-size: 1.125rem;
+            line-height: 150%;
+            padding: 0.7rem;
+            vertical-align: top;
         }
     }
 
     ul,
     ol {
         padding-left: 1.4rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.75rem;
         font-size: 1.125rem;
+    }
+
+    // pull lists upward to text above if any.
+    .navds-body-long + ul,
+    .navds-body-long + ol {
+        margin-top: -1rem;
     }
 }
