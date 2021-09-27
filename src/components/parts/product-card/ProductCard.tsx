@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Label } from '@navikt/ds-react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { PartType } from 'types/component-props/parts';
 import {
@@ -24,7 +24,9 @@ export const ProductCardPart = ({
         );
     }
 
-    const props = getCardProps(config.targetPage, language);
+    const { targetPage, header } = config;
+
+    const props = getCardProps(targetPage, language);
 
     if (!props) {
         return null;
@@ -35,7 +37,16 @@ export const ProductCardPart = ({
     }
 
     if (descriptor === PartType.ProductCardMini) {
-        return <MiniCard {...props} />;
+        return (
+            <>
+                {header && (
+                    <Label size="m" className="card-heading">
+                        {header}
+                    </Label>
+                )}
+                <MiniCard {...props} />
+            </>
+        );
     }
 
     return null;

@@ -34,8 +34,11 @@ export const Card = (props: CardProps) => {
         <LenkeBase
             href={url}
             title={text}
-            className={classNames(bem(), bem(type), bem(size))}
             analyticsLabel={link.text}
+            className={classNames(
+                bem(),
+                size === CardSize.Micro ? bem('inline') : ''
+            )}
             onMouseEnter={handleUserEvent}
             onMouseLeave={handleUserEvent}
             onMouseDown={handleUserEvent}
@@ -45,7 +48,9 @@ export const Card = (props: CardProps) => {
             onTouchCancel={handleUserEvent}
             onTouchMove={handleUserEvent}
         >
-            <div className={classNames(bem('wrapper'))}>{children}</div>
+            <div className={classNames(bem('bed'), bem(type), bem(size))}>
+                {children}
+            </div>
         </LenkeBase>
     );
 };

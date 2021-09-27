@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Label } from '@navikt/ds-react';
 import { MicroCard } from 'components/_common/card/MicroCard';
 import { ProductCardMicroProps } from '../../../types/component-props/parts/product-card';
 import { getCardProps } from '../../_common/card/card-utils';
@@ -17,10 +17,11 @@ export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {
         );
     }
 
-    const { card_list } = config;
+    const { card_list, header } = config;
 
     return (
         <>
+            {header && <Label size="m">{header}</Label>}
             {card_list.map((card) => {
                 const props = getCardProps(card.targetPage, language);
                 return (

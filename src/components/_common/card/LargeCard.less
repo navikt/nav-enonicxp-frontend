@@ -17,6 +17,7 @@
         }
 
         .product,
+        .provider,
         .situation {
             display: flex;
             flex-direction: column;
@@ -59,22 +60,18 @@
         }
 
         /* Card type specific styling */
+        &:not(:focus-visible)&:not(:hover) {
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
+                0px 2px 1px rgba(38, 38, 38, 0.12),
+                0px 1px 3px rgba(38, 38, 38, 0.2);
+        }
+
         &.card__product,
         &.card__situation {
             min-height: #px-to-rem(400) [];
-
-            &:not(:focus-visible)&:not(:hover) {
-                box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
-                    0px 2px 1px rgba(38, 38, 38, 0.12),
-                    0px 1px 3px rgba(38, 38, 38, 0.2);
-            }
         }
 
         &.card__provider {
-            &:not(:focus-visible) {
-                box-shadow: none;
-            }
-
             .card__title {
                 color: @navBla;
             }
