@@ -12,6 +12,7 @@ import {
     SituationPageProps,
 } from '../../../../types/content-props/dynamic-page-props';
 import './ThemedPageHeader.less';
+import { buildTaxonomyString } from 'utils/string';
 
 const bem = BEM('themed-page-header');
 
@@ -30,8 +31,12 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             const getTaxonomyLabel = translator('situations', language);
             return getTaxonomyLabel('youMayHaveRightTo');
         }
-        const getTaxonomyLabel = translator('productTaxonomies', language);
-        return taxonomy ? getTaxonomyLabel(taxonomy) : null;
+        if (pageType === ContentType.EmployerSituationPage) {
+            const getTaxonomyLabel = translator('situations', language);
+            return getTaxonomyLabel('employerNeedToKnow');
+        }
+
+        return buildTaxonomyString(taxonomy, language);
     };
 
     const pageTitle = title || displayName;
@@ -50,7 +55,8 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
                 bem(),
                 pageType === ContentType.ProductPage &&
                     bem(undefined, 'product'),
-                pageType === ContentType.SituationPage &&
+                (pageType === ContentType.SituationPage ||
+                    pageType === ContentType.EmployerSituationPage) &&
                     bem(undefined, 'situation')
             )}
         >

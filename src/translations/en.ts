@@ -1,17 +1,24 @@
 import { Translations } from './default';
 import { MenuListItemKey } from '../types/menu-list-items';
-import { Taxonomies } from 'types/taxonomies';
+import { Taxonomy } from 'types/taxonomies';
 
-const productTaxonomies: { [key in Taxonomies]: string } = {
-    [Taxonomies.BENEFITS]: 'Benefits',
-    [Taxonomies.RIGHTS]: 'Advice and counselling',
-    [Taxonomies.BENEFITS_AND_FOLLOWUP]: 'Benefits and follow-up',
+const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.BENEFITS]: 'Benefits',
+    [Taxonomy.RIGHTS]: 'Counselling',
+    [Taxonomy.FOLLOWUP]: 'Follow-up',
 };
 
 export const bundle: Translations = {
+    stringParts: {
+        conjunction: 'and',
+    },
     dates: {
         published: 'Published',
         lastChanged: 'Updated',
+    },
+    calculator: {
+        calculate: 'Calculate',
+        error: 'Sorry, an error has occurred in the calculator with the following error message:',
     },
     linkLists: {
         label: 'Links',
@@ -64,12 +71,13 @@ export const bundle: Translations = {
         [MenuListItemKey.RulesAndRegulationsLegacy]: 'Laws and regulations',
     },
     situations: {
-        youMayHaveRightTo: 'Dette kan du ha rett til',
+        youMayHaveRightTo: 'You may rights to this',
+        employerNeedToKnow: 'As an employer, you need to know this',
     },
     productTaxonomies,
     header: {
         copyLink: 'Copy link',
-        copiedLink: 'The link was copied',
+        copiedLink: 'Link successfully copied',
     },
     contactPoint: {
         chat: {

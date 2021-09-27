@@ -7,7 +7,7 @@ import { ErrorPage } from './pages/error-page/ErrorPage';
 import { DynamicPage } from './pages/dynamic-page/DynamicPage';
 import { FragmentPage } from './pages/fragment-page/FragmentPage';
 import LargeTablePage from './pages/large-table-page/LargeTablePage';
-import { ClientsideRedirect } from './ClientsideRedirect';
+import { RedirectPage } from './pages/redirect-page/RedirectPage';
 import { TemplatePage } from './pages/template-page/TemplatePage';
 import { make404Props } from '../utils/make-error-props';
 import { SituationPage } from './pages/situation-page/SituationPage';
@@ -25,6 +25,7 @@ const contentToReactComponent: Partial<
     [ContentType.GlobalValues]: GlobalValuesPage,
 
     [ContentType.SituationPage]: SituationPage,
+    [ContentType.EmployerSituationPage]: SituationPage,
     [ContentType.ProductPage]: ProductPage,
 
     [ContentType.DynamicPage]: DynamicPage,
@@ -37,12 +38,12 @@ const contentToReactComponent: Partial<
     [ContentType.PublishingCalendar]: DynamicPage,
     [ContentType.Melding]: DynamicPage,
 
-    [ContentType.ExternalLink]: ClientsideRedirect,
-    [ContentType.InternalLink]: ClientsideRedirect,
-    [ContentType.Site]: ClientsideRedirect,
-    [ContentType.Url]: ClientsideRedirect,
+    [ContentType.ExternalLink]: RedirectPage,
+    [ContentType.InternalLink]: RedirectPage,
+    [ContentType.Site]: RedirectPage,
+    [ContentType.Url]: RedirectPage,
 
-    [ContentType.ToolsPage]: ClientsideRedirect,
+    [ContentType.ToolsPage]: ProductPage,
 };
 
 export const isContentTypeImplemented = (content: ContentProps) =>

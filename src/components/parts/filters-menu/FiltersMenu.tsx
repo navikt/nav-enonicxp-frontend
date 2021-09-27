@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Title, BodyLong } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import { CheckboxGruppe } from 'nav-frontend-skjema';
 
 import { logAmplitudeEvent } from 'utils/amplitude';
@@ -20,13 +20,7 @@ import './FiltersMenu.less';
 const bem = BEM('filters-menu');
 
 export const FiltersMenu = ({ config }: FilterMenuProps) => {
-    const {
-        categories,
-        description,
-        expandable,
-        expandableTitle,
-        title,
-    } = config;
+    const { categories, description, expandableTitle, title } = config;
 
     const {
         clearFiltersForPage,
@@ -79,12 +73,8 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
             <Expandable
                 {...config}
                 expandableTitle={expandableTitle || defaultExpandableTitle}
+                analyticsOriginTag="filter"
             >
-                {!expandable && (
-                    <Title level={3} size="l" className={bem('title')}>
-                        {title || defaultExpandableTitle}
-                    </Title>
-                )}
                 {categories.map((category, categoryIndex) => {
                     return (
                         <CheckboxGruppe

@@ -1,6 +1,10 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
-import { ExpandableMixin, FiltersMixin } from '../_mixins';
+import {
+    ExpandableMixin,
+    FiltersMixin,
+    RenderOnAuthStateMixin,
+} from '../_mixins';
 import { ProcessedHtmlProps } from '../../processed-html-props';
 
 export interface HtmlAreaProps extends PartComponentProps {
@@ -8,5 +12,6 @@ export interface HtmlAreaProps extends PartComponentProps {
     config: {
         html: ProcessedHtmlProps;
     } & ExpandableMixin &
-        FiltersMixin;
+        FiltersMixin &
+        RenderOnAuthStateMixin;
 }

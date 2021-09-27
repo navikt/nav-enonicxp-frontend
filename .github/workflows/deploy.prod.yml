@@ -6,7 +6,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: prod-sbs:default
+    environment: prod-sbs:personbruker
     steps:
       - uses: actions/checkout@v1
       - name: Abort if branch is not master
@@ -35,13 +35,20 @@ jobs:
           XP_ORIGIN=https://www.nav.no
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
           SERVICE_SECRET=$SERVICE_SECRET
+          INNLOGGINGSTATUS_URL=https://www.nav.no/person/innloggingsstatus/auth
           EOF
-      - uses: actions/cache@v1
+      - name: Npm cache
+        uses: actions/cache@v2
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - name: Nextjs cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci
       - run: npm run build
       - name: Docker build and push
@@ -52,9 +59,10 @@ jobs:
       - name: Generate nais variables
         run: |
           cat > .nais/vars.yaml <<EOF
-          namespace: default
+          namespace: personbruker
           ingresses:
             - https://www.nav.no
+            - https://www.nav.no/soknad-dagpenger-utdanning
           image: $IMAGE_REGISTRY/$IMAGE_NAME
           version: $IMAGE_VERSION
           EOF
