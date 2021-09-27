@@ -6,7 +6,7 @@ import { MainContentSection } from './main-content-section/MainContentSection';
 import { LeftMenuSection } from './left-menu-section/LeftMenuSection';
 import { RightMenuSection } from './right-menu-section/RightMenuSection';
 import { windowMatchMedia } from '../../../utils/match-media';
-import { EditorHelp } from '../../_common/editor-help/EditorHelp';
+import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
 import Config from '../../../config';
 import './PageWithSideMenus.less';
 

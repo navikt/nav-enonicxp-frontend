@@ -23,6 +23,7 @@ module.exports = withPlugins([withTranspileModules, withLess, withImages], {
         APP_ORIGIN: process.env.APP_ORIGIN,
         XP_ORIGIN: process.env.XP_ORIGIN,
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
+        INNLOGGINGSTATUS_URL: process.env.INNLOGGINGSTATUS_URL,
     },
     redirects: async () => [
         {

@@ -5,7 +5,7 @@ import { RegionProps } from '../../../../types/component-props/layouts';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { PageNavigationMenu } from '../../../_common/page-navigation-menu/PageNavigationMenu';
 import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
-import { EditorHelp } from '../../../_common/editor-help/EditorHelp';
+import { EditorHelp } from '../../../_common/editor-utils/editor-help/EditorHelp';
 import './LeftMenuSection.less';
 
 const bem = BEM('left-menu');
