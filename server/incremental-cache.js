@@ -32,7 +32,7 @@ const wipePageCache = (app) => {
             app.server.incrementalCache.incrementalOptions.pagesDir;
 
         if (fs.existsSync(pageCacheBasePath)) {
-            fs.unlinkSync(pageCacheBasePath);
+            fs.rmdirSync(pageCacheBasePath, { recursive: true });
         }
 
         app.server.incrementalCache.cache.reset();
