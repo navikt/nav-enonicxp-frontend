@@ -7,15 +7,12 @@ const invalidateCachedPage = (path, app) => {
 
         const htmlPath = `${pageCacheBasePath}${path}.html`;
         const jsonPath = `${pageCacheBasePath}${path}.json`;
-        console.log('paths:', htmlPath, jsonPath);
 
         if (fs.existsSync(htmlPath)) {
-            console.log('removing html');
             fs.unlinkSync(htmlPath);
         }
 
         if (fs.existsSync(jsonPath)) {
-            console.log('removing json');
             fs.unlinkSync(jsonPath);
         }
 
