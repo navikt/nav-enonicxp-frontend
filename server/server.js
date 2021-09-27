@@ -2,26 +2,27 @@ require('dotenv').config();
 
 const express = require('express');
 const next = require('next');
+const { invalidateCachedPage } = require('./invalidate-cached-page');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat.js');
-const { invalidateCache } = require('./invalidate-cache');
 
 const app = next({ dev: process.env.NODE_ENV !== 'production' });
 const handle = app.getRequestHandler();
 const port = 3000;
 
 const serviceSecret = process.env.SERVICE_SECRET;
+const pageCacheBaseDirNais = '/tmp/pages';
 
 app.prepare().then(() => {
     const server = express();
     if (process.env.ENV !== 'localhost') {
-        app.server.incrementalCache.incrementalOptions.pagesDir = '/tmp/pages';
+        app.server.incrementalCache.incrementalOptions.pagesDir =
+            pageCacheBaseDirNais;
     }
-    console.log(app.server.incrementalCache.incrementalOptions.pagesDir);
 
     server.all('*', (req, res) => {
         const { secret, invalidate } = req.headers;
         if (invalidate && secret === serviceSecret) {
-            invalidateCache(req.path, app);
+            invalidateCachedPage(req.path, app);
             return res.status(200).send(`Invalidating cache for ${req.path}`);
         }
 

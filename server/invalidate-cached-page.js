@@ -1,11 +1,12 @@
 const fs = require('fs');
 
-const cacheBasePath = './.next/server/pages';
-
-const invalidateCache = (path, app) => {
+const invalidateCachedPage = (path, app) => {
     try {
-        const htmlPath = `${cacheBasePath}${path}.html`;
-        const jsonPath = `${cacheBasePath}${path}.json`;
+        const pageCacheBasePath =
+            app.server.incrementalCache.incrementalOptions.pagesDir;
+
+        const htmlPath = `${pageCacheBasePath}${path}.html`;
+        const jsonPath = `${pageCacheBasePath}${path}.json`;
 
         if (fs.existsSync(htmlPath)) {
             fs.unlinkSync(htmlPath);
@@ -25,4 +26,4 @@ const invalidateCache = (path, app) => {
     }
 };
 
-exports.invalidateCache = invalidateCache;
+module.exports = { invalidateCachedPage };
