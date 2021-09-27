@@ -15,8 +15,8 @@
         "deploy-q6": "npm run deploy -- deploy.q6.yml"
     },
     "dependencies": {
-        "@navikt/ds-css": "^0.6.14",
-        "@navikt/ds-icons": "^0.3.3",
+        "@navikt/ds-css": "^0.8.4",
+        "@navikt/ds-icons": "^0.5.4",
         "@navikt/ds-react": "^0.7.7",
         "@navikt/ds-tokens": "^0.4.3",
         "@navikt/fnrvalidator": "^1.1.4",
