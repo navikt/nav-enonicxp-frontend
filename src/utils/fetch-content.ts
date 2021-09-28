@@ -36,9 +36,8 @@ const fetchSiteContent = async (
         ?.includes?.('application/json');
 
     if (res.ok && isJson) {
-        console.log('Response headers:');
         for (const header of res.headers) {
-            console.log(header);
+            console.log(`Response header for ${idOrPath} - ${header}`);
         }
         return res.json();
     }
