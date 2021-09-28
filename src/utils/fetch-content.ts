@@ -36,6 +36,7 @@ const fetchSiteContent = async (
         ?.includes?.('application/json');
 
     if (res.ok && isJson) {
+        console.log(`headers: ${JSON.stringify(res.headers)}`);
         return res.json();
     }
 
