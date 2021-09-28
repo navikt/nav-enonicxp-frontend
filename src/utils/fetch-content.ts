@@ -30,7 +30,7 @@ const fetchSiteContent = async (
     const config = {
         headers: {
             secret,
-            'Cache-Control': 'no-store, no-cache, must-revalidate',
+            //'Cache-Control': 'no-store, no-cache, must-revalidate',
         },
     };
     console.log(`Fetching content from ${url}`);
