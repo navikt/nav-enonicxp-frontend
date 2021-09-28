@@ -10,14 +10,12 @@ const handle = app.getRequestHandler();
 const port = 3000;
 
 const serviceSecret = process.env.SERVICE_SECRET;
-const pageCacheBaseDirNais = '/tmp/pages';
 
 app.prepare().then(() => {
     const server = express();
-    if (process.env.ENV !== 'localhost') {
-        app.server.incrementalCache.incrementalOptions.pagesDir =
-            pageCacheBaseDirNais;
-    }
+
+    app.server.incrementalCache.incrementalOptions.pagesDir =
+        process.env.PAGE_CACHE_DIR;
 
     server.all('*', (req, res) => {
         const { secret } = req.headers;
