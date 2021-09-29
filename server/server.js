@@ -45,4 +45,16 @@ app.prepare().then(() => {
         console.log(`Server started on port ${port}`);
         initHeartbeat();
     });
+
+    const shutdown = () => {
+        console.log('Server shutting down');
+
+        server.close(() => {
+            console.log('Shutdown complete!');
+            process.exit(0);
+        });
+    };
+
+    process.on('SIGTERM', shutdown);
+    process.on('SIGINT', shutdown);
 });
