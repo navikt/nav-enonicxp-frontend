@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const next = require('next');
+const { setJsonCacheHeaders } = require('./set-json-cache-headers');
 const { invalidateCachedPage, wipePageCache } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat.js');
 
@@ -32,6 +33,8 @@ app.prepare().then(() => {
             wipePageCache(app);
             return res.status(200).send('Wiping page cache');
         }
+
+        setJsonCacheHeaders(req, res);
 
         return handle(req, res);
     });

@@ -72,6 +72,7 @@
         "next-transpile-modules": "^8.0.0",
         "node-cache": "^5.1.2",
         "node-fetch": "^2.6.2",
+        "on-headers": "^1.0.2",
         "parse-domain": "^3.0.3",
         "prom-client": "^13.1.0",
         "prop-types": "^15.7.2",
