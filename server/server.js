@@ -9,24 +9,26 @@ const app = next({ dev: process.env.NODE_ENV !== 'production' });
 const handle = app.getRequestHandler();
 const port = 3000;
 
-const serviceSecret = process.env.SERVICE_SECRET;
-
 app.prepare().then(() => {
     const server = express();
 
-    app.server.incrementalCache.incrementalOptions.pagesDir =
-        process.env.PAGE_CACHE_DIR;
+    const { SERVICE_SECRET, PAGE_CACHE_DIR } = process.env;
+
+    if (PAGE_CACHE_DIR) {
+        app.server.incrementalCache.incrementalOptions.pagesDir =
+            PAGE_CACHE_DIR;
+    }
 
     server.all('*', (req, res) => {
         const { secret } = req.headers;
         const { invalidate, wipeAll } = req.query;
 
-        if (invalidate && secret === serviceSecret) {
+        if (invalidate && secret === SERVICE_SECRET) {
             invalidateCachedPage(req.path, app);
             return res.status(200).send(`Invalidating cache for ${req.path}`);
         }
 
-        if (wipeAll && secret === serviceSecret) {
+        if (wipeAll && secret === SERVICE_SECRET) {
             wipePageCache(app);
             return res.status(200).send('Wiping page cache');
         }
@@ -38,7 +40,7 @@ app.prepare().then(() => {
         if (error) {
             throw error;
         }
-        if (!serviceSecret) {
+        if (!SERVICE_SECRET) {
             throw new Error('Authentication key is not defined!');
         }
 
