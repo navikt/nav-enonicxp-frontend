@@ -16,7 +16,11 @@ const invalidateCachedPage = (path, app) => {
             fs.unlinkSync(jsonPath);
         }
 
-        app.server.incrementalCache.cache.del(path);
+        app.server.incrementalCache.cache.set(path, {
+            isStale: true,
+            revalidateAfter: new Date().getTime() - 1000,
+            value: null,
+        });
 
         console.log(`Invalidated page cache for path ${path}`);
     } catch (e) {
