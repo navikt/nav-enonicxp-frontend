@@ -30,7 +30,7 @@ const fetchSiteContent = async (
     const config = {
         headers: {
             secret,
-            //'Cache-Control': 'no-store, no-cache, must-revalidate',
+            'Cache-Control': 'no-store, no-cache',
         },
     };
     console.log(`Fetching content from ${url}`);
@@ -41,9 +41,6 @@ const fetchSiteContent = async (
         ?.includes?.('application/json');
 
     if (res.ok && isJson) {
-        for (const header of res.headers) {
-            console.log(`Response header for ${idOrPath} - ${header}`);
-        }
         return res.json();
     }
 
