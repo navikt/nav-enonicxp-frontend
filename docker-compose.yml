@@ -1,5 +1,13 @@
 version: '3.7'
 services:
+  revalidator-proxy:
+    container_name: revalidator-proxy-xpfrontend
+    image: 'docker.pkg.github.com/navikt/nav-enonicxp-frontend-revalidator-proxy/nav-enonicxp-frontend-revalidator-proxy:latest'
+    ports:
+      - '3002:3002'
+    environment:
+      SERVICE_SECRET: 'dummyToken'
+
   oidc-provider:
     container_name: oidc-provider-xpfrontend
     image: 'docker.pkg.github.com/navikt/stub-oidc-provider/stub-oidc-provider:latest'

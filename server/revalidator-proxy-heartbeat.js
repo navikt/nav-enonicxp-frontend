@@ -1,23 +1,29 @@
 // Sends periodic heartbeat signals to an internal app which proxies revalidation
 // requests from Enonic XP to all frontend pods
 // See: https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy
+const fetch = require('node-fetch');
+const { networkInterfaces } = require('os');
 
-import { networkInterfaces } from 'os';
-import { fetchWithTimeout } from './utils/fetch-utils';
-
-const { NODE_ENV, REVALIDATOR_PROXY_ORIGIN, SERVICE_SECRET } = process.env;
+const {
+    ENV,
+    NODE_ENV,
+    DOCKER_HOST_ADDRESS,
+    REVALIDATOR_PROXY_ORIGIN,
+    SERVICE_SECRET,
+} = process.env;
 const heartbeatPeriodMs = 5000;
 
 const getPodAddress = () => {
+    if (ENV === 'localhost') {
+        // If the revalidator-proxy app is running in a docker container, you need to
+        // set DOCKER_HOST_ADDRESS to a host address reachable from your docker network
+        return DOCKER_HOST_ADDRESS || 'localhost';
+    }
+
     const nets = networkInterfaces();
     const podAddress = nets?.eth0?.[0]?.address;
 
     if (!podAddress) {
-        const isLocal = REVALIDATOR_PROXY_ORIGIN.includes('localhost');
-        if (isLocal) {
-            return 'localhost';
-        }
-
         console.error(
             'Error: pod IP address could not be determined' +
                 ' - Event driven cache regeneration will not be active for this instance'
@@ -35,7 +41,11 @@ const getProxyLivenessUrl = () => {
         : null;
 };
 
-const heartbeatSingleton = (() => {
+const initHeartbeat = () => {
+    if (NODE_ENV === 'development') {
+        return () => {};
+    }
+
     let heartbeatInterval;
     const url = getProxyLivenessUrl();
 
@@ -43,7 +53,7 @@ const heartbeatSingleton = (() => {
         if (!heartbeatInterval && url) {
             console.log('Starting heartbeat loop');
             const heartbeatFunc = () =>
-                fetchWithTimeout(url, 1000, {
+                fetch(url, {
                     headers: { secret: SERVICE_SECRET },
                 }).catch((e) =>
                     console.error(`Failed to send heartbeat signal - ${e}`)
@@ -52,9 +62,6 @@ const heartbeatSingleton = (() => {
             heartbeatInterval = setInterval(heartbeatFunc, heartbeatPeriodMs);
         }
     };
-})();
+};
 
-const noop = () => {};
-
-export const initHeartbeat =
-    NODE_ENV === 'production' ? heartbeatSingleton : noop;
+exports.initHeartbeat = initHeartbeat();
