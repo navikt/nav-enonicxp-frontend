@@ -34,7 +34,7 @@ app.prepare().then(() => {
         return handle(req, res);
     });
 
-    server.listen(port, (error) => {
+    const serverInstance = server.listen(port, (error) => {
         if (error) {
             throw error;
         }
@@ -49,7 +49,7 @@ app.prepare().then(() => {
     const shutdown = () => {
         console.log('Server shutting down');
 
-        server.close(() => {
+        serverInstance.close(() => {
             console.log('Shutdown complete!');
             process.exit(0);
         });
