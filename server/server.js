@@ -6,7 +6,10 @@ const { setJsonCacheHeaders } = require('./set-json-cache-headers');
 const { invalidateCachedPage, wipePageCache } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat.js');
 
-const app = next({ dev: process.env.NODE_ENV !== 'production' });
+const app = next({
+    dev: process.env.NODE_ENV !== 'production',
+    quiet: process.env.ENV === 'prod',
+});
 const handle = app.getRequestHandler();
 const port = 3000;
 
@@ -19,6 +22,18 @@ app.prepare().then(() => {
         app.server.incrementalCache.incrementalOptions.pagesDir =
             PAGE_CACHE_DIR;
     }
+
+    // Handle malformed urls
+    server.use((req, res, next) => {
+        try {
+            decodeURIComponent(req.url);
+        } catch (e) {
+            res.status(400);
+            return app.renderError(e, req, res, req.path);
+        }
+
+        next();
+    });
 
     server.all('*', (req, res) => {
         const { secret } = req.headers;
