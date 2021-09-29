@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const { parse } = require('url');
 const next = require('next');
 const { invalidateCachedPage, wipePageCache } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat.js');
@@ -33,7 +34,9 @@ app.prepare().then(() => {
             return res.status(200).send('Wiping page cache');
         }
 
-        return handle(req, res);
+        const parsedUrl = parse(req.url, true);
+
+        return handle(req, res, parsedUrl);
     });
 
     const serverInstance = server.listen(port, (error) => {
