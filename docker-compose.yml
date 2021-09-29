@@ -2,7 +2,7 @@ version: '3.7'
 services:
   revalidator-proxy:
     container_name: revalidator-proxy-xpfrontend
-    image: 'docker.pkg.github.com/navikt/nav-enonicxp-frontend-revalidator-proxy/nav-enonicxp-frontend-revalidator-proxy:Deploy-to-dev-2e5a2fcddfbb47c35a3a28ce93421d6e8e7a1c6e'
+    image: 'docker.pkg.github.com/navikt/nav-enonicxp-frontend-revalidator-proxy/nav-enonicxp-frontend-revalidator-proxy:latest'
     ports:
       - '3002:3002'
     environment:
