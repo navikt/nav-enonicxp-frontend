@@ -30,6 +30,7 @@
         "express": "^4.17.1",
         "html-react-parser": "^1.2.7",
         "jsdom": "^16.6.0",
+        "immer": "^9.0.6",
         "lodash": "^4.17.21",
         "lodash.debounce": "^4.0.8",
         "lottie-web": "^5.7.12",

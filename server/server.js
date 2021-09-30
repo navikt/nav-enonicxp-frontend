@@ -6,7 +6,10 @@ const { setJsonCacheHeaders } = require('./set-json-cache-headers');
 const { invalidateCachedPage, wipePageCache } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat.js');
 
-const app = next({ dev: process.env.NODE_ENV !== 'production' });
+const app = next({
+    dev: process.env.NODE_ENV !== 'production',
+    quiet: process.env.ENV === 'prod',
+});
 const handle = app.getRequestHandler();
 const port = 3000;
 
@@ -37,6 +40,18 @@ app.prepare().then(() => {
         setJsonCacheHeaders(req, res);
 
         return handle(req, res);
+    });
+
+    // Handle errors
+    server.use((err, req, res, next) => {
+        const { path } = req;
+        const { status, stack } = err;
+        const msg = stack?.split('\n')[0];
+
+        console.log(`Express error on path ${path}: ${status} ${msg}`);
+
+        res.status(status);
+        return app.renderError(msg, req, res, path);
     });
 
     const serverInstance = server.listen(port, (error) => {
