@@ -29,9 +29,11 @@ app.prepare().then(() => {
 
         try {
             const url = new URL(path, APP_ORIGIN);
+            console.log(`decoding url: ${url.href}`);
             decodeURIComponent(url.href);
         } catch (e) {
             res.status(400);
+            console.log(`decoding failed! ${e} ${path}`);
             return app.renderError(e, req, res, path);
         }
 
