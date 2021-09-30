@@ -16,29 +16,12 @@ const port = 3000;
 app.prepare().then(() => {
     const server = express();
 
-    const { SERVICE_SECRET, PAGE_CACHE_DIR, APP_ORIGIN } = process.env;
+    const { SERVICE_SECRET, PAGE_CACHE_DIR } = process.env;
 
     if (PAGE_CACHE_DIR) {
         app.server.incrementalCache.incrementalOptions.pagesDir =
             PAGE_CACHE_DIR;
     }
-
-    // Handle malformed urls
-    server.use((req, res, next) => {
-        const { path } = req;
-
-        try {
-            const url = new URL(path, APP_ORIGIN);
-            console.log(`decoding url: ${url.href}`);
-            decodeURIComponent(url.href);
-        } catch (e) {
-            res.status(400);
-            console.log(`decoding failed! ${e} ${path}`);
-            return app.renderError(e, req, res, path);
-        }
-
-        next();
-    });
 
     server.all('*', (req, res) => {
         const { secret } = req.headers;
@@ -57,6 +40,15 @@ app.prepare().then(() => {
         setJsonCacheHeaders(req, res);
 
         return handle(req, res);
+    });
+
+    // Handle errors
+    server.use((err, req, res, next) => {
+        const { path } = req;
+        const msg = err?.stack?.split('\n')[0];
+        res.status(err.status);
+        console.log(`Express error on path ${path}: ${err.status} ${msg}`);
+        return app.renderError(msg, req, res, path);
     });
 
     const serverInstance = server.listen(port, (error) => {
