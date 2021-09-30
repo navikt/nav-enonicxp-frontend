@@ -16,7 +16,7 @@ const port = 3000;
 app.prepare().then(() => {
     const server = express();
 
-    const { SERVICE_SECRET, PAGE_CACHE_DIR } = process.env;
+    const { SERVICE_SECRET, PAGE_CACHE_DIR, APP_ORIGIN } = process.env;
 
     if (PAGE_CACHE_DIR) {
         app.server.incrementalCache.incrementalOptions.pagesDir =
@@ -25,11 +25,14 @@ app.prepare().then(() => {
 
     // Handle malformed urls
     server.use((req, res, next) => {
+        const { path } = req;
+
         try {
-            decodeURIComponent(req.url);
+            const url = new URL(path, APP_ORIGIN);
+            decodeURIComponent(url.href);
         } catch (e) {
             res.status(400);
-            return app.renderError(e, req, res, req.path);
+            return app.renderError(e, req, res, path);
         }
 
         next();
