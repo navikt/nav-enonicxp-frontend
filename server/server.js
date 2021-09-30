@@ -45,8 +45,8 @@ app.prepare().then(() => {
     // Handle errors
     server.use((err, req, res, next) => {
         const { path } = req;
-        const { status } = err;
-        const msg = err.stack?.split('\n')[0];
+        const { status, stack } = err;
+        const msg = stack?.split('\n')[0];
 
         console.log(`Express error on path ${path}: ${status} ${msg}`);
 
