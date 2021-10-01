@@ -32,6 +32,7 @@ const internalPaths = [
     'beskjed',
     'person\\/kontakt-oss(?!(\\/(nb|en))?\\/(tilbakemeldinger|finnkontor|samegiella|chat))',
     'version',
+    '(?!/se/samigiella/bestilling-av-samtale.?)',
 ];
 
 // Matches both relative and absolute urls which points to content internal to the app
