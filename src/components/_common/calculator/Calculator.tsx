@@ -1,4 +1,5 @@
 import React, { FormEvent, useState } from 'react';
+import { Title } from '@navikt/ds-react';
 import { Knapp } from 'nav-frontend-knapper';
 import { Calculator as CalculatorIcon } from '@navikt/ds-icons';
 import { translator } from 'translations';
@@ -20,8 +21,10 @@ import './Calculator.less';
 const bem = BEM('calculator');
 
 export const Calculator = ({
+    header,
     calculatorData,
 }: {
+    header: string;
     calculatorData: CalculatorData;
 }) => {
     const { fields } = calculatorData;
@@ -146,6 +149,11 @@ export const Calculator = ({
 
     return (
         <div className={bem()}>
+            {header && (
+                <Title level={3} size="m" className={classNames(bem('title'))}>
+                    {header}
+                </Title>
+            )}
             <form onSubmit={handleDefaultFormSubmit}>
                 <div className={classNames(bem('fields'))}>
                     {fields
