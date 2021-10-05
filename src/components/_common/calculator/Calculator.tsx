@@ -150,7 +150,7 @@ export const Calculator = ({
     return (
         <div className={bem()}>
             {header && (
-                <Title level={3} size="m" className={classNames(bem('title'))}>
+                <Title level={4} size="m" className={classNames(bem('title'))}>
                     {header}
                 </Title>
             )}
