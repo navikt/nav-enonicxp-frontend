@@ -17,5 +17,10 @@ export const CalculatorPart = ({ config }: CalculatorProps) => {
         return null;
     }
 
-    return <Calculator calculatorData={config.targetCalculator.data} />;
+    return (
+        <Calculator
+            calculatorData={config.targetCalculator.data}
+            header={config.header}
+        />
+    );
 };
