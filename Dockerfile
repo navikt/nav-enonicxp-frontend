@@ -11,9 +11,10 @@ RUN npm ci
 COPY .next /app/.next/
 COPY public /app/public/
 
-# Copy necesarry files
+# Copy necessary files
 COPY next.config.js /app/
 COPY .env  /app/
+COPY server /app/server/
 
 # Start app
 EXPOSE 3000

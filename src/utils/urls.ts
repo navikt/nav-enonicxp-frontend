@@ -22,7 +22,7 @@ const internalPaths = [
     '$',
     'no',
     'en',
-    'se',
+    'se(?!\\/samegiella\\/bestilling-av-samtale)',
     'nav.no',
     'skjemaer',
     'forsiden',

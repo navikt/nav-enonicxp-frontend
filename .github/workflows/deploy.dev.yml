@@ -31,6 +31,8 @@ jobs:
           XP_ORIGIN=https://www.dev.nav.no
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
           SERVICE_SECRET=$SERVICE_SECRET
+          INNLOGGINGSTATUS_URL=https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth
+          PAGE_CACHE_DIR=/tmp/pages
           EOF
       - name: Npm cache
         uses: actions/cache@v2
@@ -57,6 +59,7 @@ jobs:
           namespace: personbruker
           ingresses:
             - https://www.dev.nav.no
+            - https://www.dev.nav.no/soknad-dagpenger-utdanning
           image: $IMAGE_REGISTRY/$IMAGE_NAME
           version: $IMAGE_VERSION
           EOF

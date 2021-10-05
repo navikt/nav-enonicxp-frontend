@@ -3,6 +3,7 @@ import { ContentProps } from '../content-props/_content-common';
 import { TypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
 import { Taxonomy } from 'types/taxonomies';
+import { AuthStateType } from '../../store/slices/authState';
 
 export type HeaderWithAnchorMixin = {
     title: string;
@@ -48,6 +49,7 @@ export type ExpandableMixin = {
     expandableOpenByDefault: boolean;
     expandableTitle: string;
     expandableAnchorId?: string;
+    analyticsOriginTag?: string;
 };
 
 export type FiltersMixin = {
@@ -58,17 +60,23 @@ export type ColorMixin = {
     color: string;
 };
 
-export type LayoutCommonConfigMixin = Partial<{
-    marginTop: number;
-    marginBottom: number;
-    bgColor: ColorMixin;
-    paddingSides: {
-        _selected: 'standard' | 'fullWidth' | 'custom';
-        custom?: {
-            remValue: number;
+export type RenderOnAuthStateMixin = {
+    renderOnAuthState?: AuthStateType;
+};
+
+export type LayoutCommonConfigMixin = Partial<
+    {
+        marginTop: number;
+        marginBottom: number;
+        bgColor: ColorMixin;
+        paddingSides: {
+            _selected: 'standard' | 'fullWidth' | 'custom';
+            custom?: {
+                remValue: number;
+            };
         };
-    };
-}>;
+    } & RenderOnAuthStateMixin
+>;
 
 export type HeaderCommonConfig = {
     justify: 'left' | 'center' | 'right';

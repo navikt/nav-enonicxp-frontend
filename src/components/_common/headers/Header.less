@@ -14,13 +14,16 @@
     }
 
     &__copy-link-container {
+        display: flex;
         align-self: flex-start;
-        margin-top: 1rem;
     }
 
     &__copy-link {
+        display: flex;
         text-decoration: none;
         font-size: #px-to-rem(14) [];
+        padding: 0.8rem 0.8rem 0.8rem 0;
+        align-items: center;
 
         &:hover {
             font-weight: 600;
@@ -40,18 +43,21 @@
     }
 
     &__copy-tooltip {
+        display: flex;
         margin-left: 1rem;
         visibility: hidden;
         background-color: @navGronnLighten80;
         color: black;
-        padding: 0.25rem 0.75rem;
+        padding: 0.5rem 0.75rem;
         border: 1px @navGronn solid;
+
         border-radius: @border-radius-small;
         pointer-events: none;
         opacity: 0;
         transition-property: visibility, opacity;
         transition-duration: 0.15s;
         transition-timing-function: ease-in;
+        transform: translateY(2px);
 
         &--visible {
             visibility: visible;

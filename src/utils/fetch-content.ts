@@ -27,7 +27,12 @@ const fetchSiteContent = async (
         ...(time && { time }),
     });
     const url = `${xpServiceUrl}/sitecontent${params}`;
-    const config = { headers: { secret } };
+    const config = {
+        headers: {
+            secret,
+            'Cache-Control': 'no-store, no-cache',
+        },
+    };
     console.log(`Fetching content from ${url}`);
 
     const res = await fetchWithTimeout(url, fetchTimeoutMs, config);
