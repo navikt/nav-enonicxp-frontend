@@ -30,7 +30,7 @@ const internalPaths = [
     'footer-contactus-en',
     'sykepenger-korona',
     'beskjed',
-    'person\\/kontakt-oss(?!(\\/(nb|en))?\\/(tilbakemeldinger|finnkontor|samegiella|chat))',
+    'person\\/kontakt-oss(?!(\\/(nb|en))?\\/tilbakemeldinger)',
     'version',
 ];
 
