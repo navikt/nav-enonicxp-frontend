@@ -96,4 +96,9 @@ export const bundle: Translations = {
                 'Opening hours: weekdays 09:00–15:00. If the opening hours are changed, you will be notified by voice message.',
         },
     },
+    versionHistory: {
+        label: 'Version history',
+        title: 'Historic versions',
+        loading: 'Loading historic version...',
+    },
 };

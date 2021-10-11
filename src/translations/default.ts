@@ -105,6 +105,11 @@ export const bundle = {
                 'Åpningstider: hverdager 09:00–15:00. Dersom åpningstidene er midlertidig endret, får du beskjed via automatisk svarer.',
         },
     },
+    versionHistory: {
+        label: 'Versjonshistorikk',
+        title: 'Vis historisk innhold',
+        loading: 'Laster historisk innhold...',
+    },
 };
 
 export type Translations = DeepPartial<typeof bundle>;

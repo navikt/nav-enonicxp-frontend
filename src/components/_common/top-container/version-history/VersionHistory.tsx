@@ -7,6 +7,7 @@ import NavFrontendSpinner from 'nav-frontend-spinner';
 import { Title } from '@navikt/ds-react';
 import { VersionStatus } from './status/VersionStatus';
 import { VersionSelector } from './selector/VersionSelector';
+import { translator } from 'translations';
 import { useRouter } from 'next/router';
 import './VersionHistory.less';
 
@@ -17,7 +18,7 @@ type Props = {
 };
 
 export const VersionHistory = ({ content }: Props) => {
-    const { timeRequested } = content;
+    const { timeRequested, language } = content;
 
     const [selectorIsOpen, setSelectorIsOpen] = useState(false);
     const [versionUrlRequested, setVersionUrlRequested] = useState<
@@ -25,6 +26,7 @@ export const VersionHistory = ({ content }: Props) => {
     >();
 
     const router = useRouter();
+    const getLabel = translator('versionHistory', language);
 
     useEffect(() => {
         setVersionUrlRequested(null);
@@ -39,7 +41,10 @@ export const VersionHistory = ({ content }: Props) => {
     }, [versionUrlRequested]);
 
     return (
-        <div role={'navigation'} className={bem()}>
+        <div role={'navigation'}
+             className={bem()}
+             aria-label={getLabel('label')}
+        >
             {!versionUrlRequested && timeRequested && (
                 <VersionStatus
                     content={content}
@@ -57,7 +62,7 @@ export const VersionHistory = ({ content }: Props) => {
                     setSelectorIsOpen(!selectorIsOpen);
                 }}
             >
-                {'Vis historisk innhold'}
+                {getLabel('title')}
                 <NavFrontendChevron
                     type={selectorIsOpen ? 'opp' : 'ned'}
                     className={bem('toggle-chevron')}
@@ -72,7 +77,7 @@ export const VersionHistory = ({ content }: Props) => {
             {versionUrlRequested && (
                 <div className={bem('spinner-container')}>
                     <Title size={'m'} level={2}>
-                        {'Laster historisk innhold...'}
+                        {getLabel('loading')}
                     </Title>
                     <NavFrontendSpinner className={bem('spinner')} />
                 </div>
