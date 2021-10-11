@@ -39,7 +39,7 @@ export const VersionHistory = ({ content }: Props) => {
     }, [versionUrlRequested]);
 
     return (
-        <div className={bem()}>
+        <div role={'navigation'} className={bem()}>
             {!versionUrlRequested && timeRequested && (
                 <VersionStatus
                     content={content}
