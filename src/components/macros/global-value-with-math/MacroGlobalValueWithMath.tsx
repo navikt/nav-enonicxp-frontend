@@ -2,23 +2,27 @@ import React from 'react';
 import { MacroGlobalValueWithMathProps } from '../../../types/macro-props/global-value-with-math';
 import { create, all } from 'mathjs/lib/esm/number';
 import globalState from '../../../globalState';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 const math = create(all);
 
 type ExpressionProps =
     MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 
-const formatNumber = (num: number, decimals: number = 0) => {
+const formatNumber = (
+    num: number,
+    decimals: number = 0,
+    language: string = 'no'
+) => {
     const decimalsOOM = 10 ** decimals;
     const rounded = Math.floor(num * decimalsOOM + 0.5) / decimalsOOM;
-    return rounded.toLocaleString('nb');
+    return rounded.toLocaleString(language);
 };
 
-const evaluateExpression = ({
-    expression,
-    decimals,
-    variables,
-}: ExpressionProps) => {
+const evaluateExpression = (
+    { expression, decimals, variables }: ExpressionProps,
+    language: string
+) => {
     try {
         // Map variable values to placeholder names used in the expression ($1, $2, etc...)
         const scope = variables.reduce(
@@ -30,7 +34,7 @@ const evaluateExpression = ({
         const expressionWithDotSeparators = expression.replace(',', '.');
 
         const result = math.evaluate(expressionWithDotSeparators, scope);
-        return formatNumber(result, decimals);
+        return formatNumber(result, decimals, language);
     } catch (e) {
         if (globalState.isEditorView) {
             return `[feil ved evaluering av uttrykk: ${e}]`;
@@ -43,11 +47,13 @@ const evaluateExpression = ({
 export const MacroGlobalValueWithMath = ({
     config,
 }: MacroGlobalValueWithMathProps) => {
+    const { language } = usePageConfig();
+
     if (!config?.global_value_with_math) {
         return null;
     }
 
-    const value = evaluateExpression(config.global_value_with_math);
+    const value = evaluateExpression(config.global_value_with_math, language);
 
     return <>{value}</>;
 };
