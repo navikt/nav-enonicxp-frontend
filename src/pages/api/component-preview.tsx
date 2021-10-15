@@ -42,7 +42,7 @@ const postHandler = async (req, res) => {
     mockStore.dispatch(
         setPageConfigAction({
             pageId: dummyPageProps._id,
-            language: dummyPageProps.language,
+            language: req.body?.props?.language || dummyPageProps.language,
             editorView: 'edit',
         })
     );

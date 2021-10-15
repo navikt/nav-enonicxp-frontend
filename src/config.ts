@@ -1,7 +1,8 @@
 const vars = {
-    revalidatePeriod: 1,
+    revalidatePeriod: 3600,
     pxPerRem: 16,
     mobileBreakpointPx: 768,
+    dekoratorenHeight: 104,
 };
 
 const urls = {

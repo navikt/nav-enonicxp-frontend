@@ -6,7 +6,7 @@ export type InternalLinkData = {
     target: {
         _path: XpContentRef;
     };
-    tempRedirect?: boolean;
+    permanentRedirect?: boolean;
 };
 
 export interface InternalLinkProps extends ContentProps {

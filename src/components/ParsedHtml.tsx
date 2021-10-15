@@ -12,6 +12,10 @@ import {
 import { MacroMapper } from './macros/MacroMapper';
 import { headingToLevel, headingToSize } from '../types/typo-style';
 import { MacroType } from '../types/macro-props/_macros-common';
+import './ParsedHtml.less';
+import { BEM } from '../utils/classnames';
+import classNames from 'classnames';
+
 
 const blockLevelMacros = {
     [MacroType.HeaderWithAnchor]: true,
@@ -23,6 +27,8 @@ const blockLevelMacros = {
     [MacroType.VarselBoks]: true,
     [MacroType.Video]: true,
 };
+
+const bem = BEM('tabell');
 
 const hasBlockLevelMacroChildren = (element: Element) => {
     return element.children?.some(
@@ -160,9 +166,11 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             if (tag === 'table') {
                 return (
+                    <div className={classNames(bem('horisontal-scroll'))}>
                     <table {...props} className={'tabell tabell--stripet'}>
                         {domToReact(children, replaceElements)}
                     </table>
+                    </div>
                 );
             }
         },

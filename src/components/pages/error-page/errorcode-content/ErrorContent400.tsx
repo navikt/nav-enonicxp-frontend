@@ -6,10 +6,10 @@ import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import Config from '../../../../config';
 import { appOrigin } from '../../../../utils/urls';
 
-export const paramDecodeErrorMsgExternal = 'Ugyldig adresseformat';
+export const errorMessageParamDecodePublic = 'Ugyldig adresseformat';
 
 export const ErrorContent400 = (props: ErrorProps) => {
-    if (props.data.errorMessage === paramDecodeErrorMsgExternal) {
+    if (props.data.errorMessage === errorMessageParamDecodePublic) {
         return (
             <>
                 <BodyLong>{'Den forespurte adressen er ikke gyldig:'}</BodyLong>

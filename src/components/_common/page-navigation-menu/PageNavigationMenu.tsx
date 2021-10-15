@@ -22,13 +22,17 @@ export type PageNavScrollDirection = 'up' | 'down';
 export const getPageNavigationLinkId = (anchorId: string) => `${anchorId}-a`;
 
 const getCurrentLinkIndex = (links: AnchorLink[]) => {
-    const targetElements = links.map((link) =>
-        document.getElementById(link.anchorId)
-    );
-    const scrollTarget = window.scrollY + pageNavigationAnchorOffsetPx;
+    const targetElements = links.reduce((elements, link) => {
+        const element = document.getElementById(link.anchorId);
+        return element ? [...elements, element] : elements;
+    }, []);
 
-    const scrolledToTop =
-        !targetElements?.length || targetElements[0].offsetTop > scrollTarget;
+    const scrollTarget = window.scrollY + Config.vars.dekoratorenHeight;
+
+    const scrolledToTop = !!(
+        targetElements?.length && targetElements[0].offsetTop > scrollTarget
+    );
+
     if (scrolledToTop) {
         return -1;
     }
@@ -36,6 +40,7 @@ const getCurrentLinkIndex = (links: AnchorLink[]) => {
     const scrolledToBottom =
         window.scrollY + window.innerHeight >=
         document.documentElement.scrollHeight;
+
     if (scrolledToBottom) {
         return targetElements.length - 1;
     }

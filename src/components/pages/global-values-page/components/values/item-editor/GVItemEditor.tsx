@@ -22,7 +22,7 @@ type Props = {
 };
 
 export const GVItemEditor = ({
-    item = { itemName: '', textValue: '', key: '' },
+    item = { itemName: '', textValue: '', numberValue: '', key: '' },
     onClose,
 }: Props) => {
     const [inputState, setInputState] = useState(item);
@@ -98,7 +98,17 @@ export const GVItemEditor = ({
 
     const validateAndSubmitItem = (e) => {
         e.preventDefault();
-        const { itemName, numberValue, textValue } = inputState;
+        const inputTrimmed = {
+            ...inputState,
+            itemName: inputState.itemName?.trim(),
+            numberValue:
+                typeof inputState.numberValue === 'string'
+                    ? inputState.numberValue.trim()
+                    : inputState.numberValue,
+            textValue: inputState.textValue?.trim(),
+        };
+
+        const { itemName, numberValue, textValue } = inputTrimmed;
 
         let hasInputErrors = false;
         const newErrors = {
@@ -107,7 +117,7 @@ export const GVItemEditor = ({
             numberValue: '',
         };
 
-        if (numberValue !== undefined && isNaN(numberValue)) {
+        if (numberValue !== undefined && isNaN(Number(numberValue))) {
             newErrors.numberValue = 'Tall-verdien må være et tall';
             hasInputErrors = true;
         } else {
@@ -139,14 +149,14 @@ export const GVItemEditor = ({
         }
 
         if (isNewItem) {
-            gvServiceAddItem(inputState, contentId)
+            gvServiceAddItem(inputTrimmed, contentId)
                 .then((msg) => {
                     onFetchSuccess(msg);
                     updateAndClose();
                 })
                 .catch(onFetchError);
         } else {
-            gvServiceModifyItem(inputState, contentId)
+            gvServiceModifyItem(inputTrimmed, contentId)
                 .then((msg) => {
                     onFetchSuccess(msg);
                     updateAndClose();
@@ -156,8 +166,8 @@ export const GVItemEditor = ({
     };
 
     const handleInput = (e) => {
-        const { name } = e.target;
-        setInputState({ ...inputState, [name]: e.target.value });
+        const { name, value } = e.target;
+        setInputState({ ...inputState, [name]: value });
     };
 
     return (

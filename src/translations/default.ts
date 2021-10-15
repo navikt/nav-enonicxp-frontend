@@ -6,7 +6,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.AppealRights]: 'Klagerettigheter',
     [MenuListItemKey.FormAndApplication]: 'Skjema og søknad',
     [MenuListItemKey.International]: 'Internasjonalt',
-    [MenuListItemKey.Membership]: 'Medlemsskap i folketrygden',
+    [MenuListItemKey.Membership]: 'Medlemskap i folketrygden',
     [MenuListItemKey.ProcessTimes]: 'Saksbehandlingstider',
     [MenuListItemKey.Rates]: 'Satser',
     [MenuListItemKey.RelatedInformation]: 'Relatert innhold',
@@ -104,6 +104,11 @@ export const bundle = {
             ingress:
                 'Åpningstider: hverdager 09:00–15:00. Dersom åpningstidene er midlertidig endret, får du beskjed via automatisk svarer.',
         },
+    },
+    versionHistory: {
+        label: 'Versjonshistorikk',
+        title: 'Vis historisk innhold',
+        loading: 'Laster historisk innhold...',
     },
 };
 

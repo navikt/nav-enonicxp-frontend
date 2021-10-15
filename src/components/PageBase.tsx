@@ -73,13 +73,13 @@ export const PageBase = (props: PageProps) => {
     );
 };
 
-const redirectProps = (destination: string, isTemporary: boolean) => ({
+const redirectProps = (destination: string, isPermanent: boolean) => ({
     props: {},
     redirect: {
         // Decode then (re)encode to ensure the destination is not double-encoded
         destination: encodeURI(decodeURI(destination).trim()),
-        // Negate IsTemporary (if not valid/null, permanent will be true)
-        permanent: false,
+        // False if not defined
+        permanent: isPermanent || false,
     },
 });
 
@@ -119,7 +119,7 @@ export const fetchPageProps = async (
         if (redirectTarget) {
             return redirectProps(
                 getRelativePathIfInternal(redirectTarget, isDraft),
-                content.data?.tempRedirect
+                content.data?.permanentRedirect
             );
         }
     }
