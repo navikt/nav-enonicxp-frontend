@@ -1,11 +1,12 @@
 import React from 'react';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Label, Title } from '@navikt/ds-react';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { BEM } from 'utils/classnames';
 import { MainArticleChapterProps } from '../../../../types/content-props/main-article-chapter-props';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import './MainArticleChapterNavigation.less';
+import classNames from 'classnames';
 
 /*
     Render of XP part named main-article-linked-list
@@ -33,29 +34,50 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
 
     return (
         <nav className={bem()}>
+            <Title level={3} size="m" className={bem('title')}>
+                Navigasjon
+            </Title>
             <ul>
                 <li>
                     {parentSelected ? (
-                        <BodyShort>{parentTitle}</BodyShort>
-                    ) : (
-                        <LenkeBase href={parentPath} className={'lenke'}>
+                        <Label
+                            className={classNames(
+                                bem('item'),
+                                bem('item', 'active')
+                            )}
+                        >
                             {parentTitle}
+                        </Label>
+                    ) : (
+                        <LenkeBase
+                            href={parentPath}
+                            className={classNames(bem('item'))}
+                        >
+                            <Label>{parentTitle}</Label>
                         </LenkeBase>
                     )}
                 </li>
                 {chapters.map((chapter) => {
                     const chapterPath = stripXpPathPrefix(chapter._path);
                     const chapterSelected = currentPath === chapterPath;
+
                     return (
                         <li key={chapter._path}>
                             {chapterSelected ? (
-                                <BodyShort>{chapter.displayName}</BodyShort>
+                                <Label
+                                    className={classNames(
+                                        bem('item'),
+                                        bem('item', 'active')
+                                    )}
+                                >
+                                    {chapter.displayName}
+                                </Label>
                             ) : (
                                 <LenkeBase
                                     href={chapterPath}
-                                    className={'lenke'}
+                                    className={classNames(bem('item'))}
                                 >
-                                    {chapter.displayName}
+                                    <Label>{chapter.displayName}</Label>
                                 </LenkeBase>
                             )}
                         </li>
