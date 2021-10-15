@@ -56,6 +56,10 @@ const defaultParams = {
     language: 'nb',
 };
 
+const taSurveys = {
+    taSurveys: '12345',
+};
+
 export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     if (!content || content.__typename === ContentType.Error) {
         return errorParams(content);
@@ -87,5 +91,6 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         utilsBackground: contentTypesWithWhiteHeader[content.__typename]
             ? 'white'
             : 'gray',
+        ...taSurveys,
     };
 };
