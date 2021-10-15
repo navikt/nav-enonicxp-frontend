@@ -36,7 +36,6 @@ class MyDocument extends Document<DocumentProps> {
             initialProps,
             DocumentParameter.DecoratorParams
         );
-        console.log(decoratorParams);
 
         const language = getDocumentParameter(
             initialProps,
