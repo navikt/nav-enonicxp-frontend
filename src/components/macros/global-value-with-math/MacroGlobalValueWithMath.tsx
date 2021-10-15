@@ -22,7 +22,7 @@ const formatNumber = (
 
 const evaluateExpression = (
     { expression, decimals, variables }: ExpressionProps,
-    language: string
+    language: Language
 ) => {
     try {
         // Map variable values to placeholder names used in the expression ($1, $2, etc...)
