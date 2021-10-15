@@ -1,64 +1,79 @@
 @import (reference) '~nav-frontend-core/less/_variabler';
 @import (reference) '../../../../global';
 
+@verticalPadding: 0.75rem;
+@horizontalPadding: 0.5rem;
+@decorWidth: 0.5rem;
+
 .main-article-chapter-navigation {
+    background-color: white;
+    border-radius: 0.28rem;
     display: flex;
+    flex-direction: column;
     margin-bottom: 2rem;
+    margin: 0;
+    padding: 1rem 0;
     width: 100%;
+
+    &__title.navds-title {
+        padding: 1rem;
+    }
 
     ul {
         list-style: none;
-        width: 100%;
-        background-color: white;
-        border-radius: 0.28rem;
-        padding: 1rem 0.2rem;
+        padding: 0;
         margin: 0;
-        & li {
-            a,
-            p {
-                z-index: 1;
-                position: relative;
-                font-size: 1.125rem;
-                padding: 0.73rem 1.96rem;
-                display: block;
-            }
+        width: 100%;
 
-            p {
-                z-index: 0;
-                &:before {
-                    background-color: @navGra80;
-                }
-            }
+        .main-article-chapter-navigation__item {
+            display: block;
+            font-size: 1.125rem;
+            margin: 0 @decorWidth;
+            padding: @verticalPadding @horizontalPadding;
+            position: relative;
+            text-decoration: none;
+            z-index: 1;
 
-            a {
-                &:hover {
-                    z-index: 0;
-                    &:before {
-                        background-color: #0067cc;
-                    }
-                }
-                &:focus {
-                    color: @navBla;
-                    background: none;
-                    text-decoration: underline;
-                    cursor: pointer;
-                    box-shadow: 0 0 0 0.2rem @fokusFarge;
-                    outline: none;
-                    &:before {
-                        left: 0rem;
-                    }
-                }
-            }
-
-            p:before,
-            a:before {
-                display: inline-block;
+            &:before {
                 content: ' ';
-                position: absolute;
-                left: -0.2rem;
+                display: inline-block;
                 height: 100%;
-                width: 0.84rem;
+                left: -0.5rem;
+                position: absolute;
                 top: 0;
+                width: @decorWidth;
+            }
+
+            &--active {
+                &:before {
+                    background-color: @navBla;
+                    content: '';
+                    display: inline-block;
+                    height: 100%;
+                    left: -@decorWidth;
+                    position: absolute;
+                    top: 0;
+                    width: @decorWidth;
+                }
+            }
+        }
+
+        a {
+            &:hover {
+                background-color: @navBlaLighten80;
+                color: @navMorkGra;
+                text-decoration: none;
+            }
+            &:focus {
+                background: none;
+                box-shadow: 0 0 0 0.2rem @fokusFarge;
+                color: @navBla;
+                cursor: pointer;
+                outline: none;
+
+                &:before {
+                    left: 0rem;
+                }
             }
         }
     }
