@@ -3,6 +3,7 @@ import { MacroGlobalValueWithMathProps } from '../../../types/macro-props/global
 import { create, all } from 'mathjs/lib/esm/number';
 import globalState from '../../../globalState';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { Language } from 'translations';
 
 const math = create(all);
 
@@ -12,7 +13,7 @@ type ExpressionProps =
 const formatNumber = (
     num: number,
     decimals: number = 0,
-    language: string = 'no'
+    language: Language = 'no'
 ) => {
     const decimalsOOM = 10 ** decimals;
     const rounded = Math.floor(num * decimalsOOM + 0.5) / decimalsOOM;
