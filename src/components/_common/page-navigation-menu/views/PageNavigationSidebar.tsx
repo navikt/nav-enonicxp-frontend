@@ -27,11 +27,11 @@ export const PageNavigationSidebar = ({
     return (
         <div className={classNames(bem())}>
             {title && (
-                <Title level={3} size="m" className={bem('title')}>
+                <Title level={2} size="m" className={bem('title')}>
                     {title}
                 </Title>
             )}
-            <nav role={'navigation'} aria-label={'Innhold'}>
+            <nav aria-label={'Innhold'}>
                 <ul className={bem('list')}>
                     {links.map((anchorLink, index) => (
                         <li key={anchorLink.anchorId}>

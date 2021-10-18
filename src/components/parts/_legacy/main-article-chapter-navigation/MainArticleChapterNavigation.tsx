@@ -34,7 +34,7 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
 
     return (
         <nav className={bem()}>
-            <Title level={3} size="m" className={bem('title')}>
+            <Title level={2} size="m" className={bem('title')}>
                 Navigasjon
             </Title>
             <ul>
