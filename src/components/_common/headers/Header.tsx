@@ -99,6 +99,7 @@ export const Header = ({
                             bem('copy-tooltip'),
                             showCopyTooltip && bem('copy-tooltip', 'visible')
                         )}
+                        aria-live="assertive"
                     >
                         {getLabel('copiedLink')}
                     </span>

@@ -56,6 +56,7 @@ export const FilterExplanation = ({
                 bem(),
                 showHighlight && bem(undefined, 'highlight')
             )}
+            aria-live="assertive"
         >
             <div className={bem('iconWrapper')}>
                 <InformationFilled
