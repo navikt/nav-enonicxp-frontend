@@ -1,12 +1,16 @@
 import React from 'react';
-import { BodyShort, Label, Title } from '@navikt/ds-react';
+import { Label, Title } from '@navikt/ds-react';
+import { translator } from 'translations';
+
+import classNames from 'classnames';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { BEM } from 'utils/classnames';
 import { MainArticleChapterProps } from '../../../../types/content-props/main-article-chapter-props';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+
 import './MainArticleChapterNavigation.less';
-import classNames from 'classnames';
 
 /*
     Render of XP part named main-article-linked-list
@@ -14,6 +18,8 @@ import classNames from 'classnames';
 
 export const MainArticleChapterNavigation = (props: ContentProps) => {
     const bem = BEM('main-article-chapter-navigation');
+    const { language } = usePageConfig();
+    const getLabel = translator('mainArticle', language);
     const chapters =
         props.data?.chapters ||
         props.parent?.data?.chapters ||
@@ -35,7 +41,7 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
     return (
         <nav className={bem()}>
             <Title level={3} size="m" className={bem('title')}>
-                Navigasjon
+                {getLabel('contents')}
             </Title>
             <ul>
                 <li>
