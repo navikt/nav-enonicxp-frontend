@@ -64,6 +64,7 @@ export const bundle = {
         linkedListDescription: 'Kapitler',
         published: 'Publisert',
         tableOfContents: 'Innholdsfortegnelse',
+        contents: 'Innhold',
     },
     mainPanels: {
         label: 'Hovedvalg',
