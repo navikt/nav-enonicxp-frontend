@@ -8,6 +8,7 @@ import { RightMenuSection } from './right-menu-section/RightMenuSection';
 import { windowMatchMedia } from '../../../utils/match-media';
 import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
 import Config from '../../../config';
+import Region from '../Region';
 import './PageWithSideMenus.less';
 
 const mobileWidthBreakpoint = Config.vars.mobileBreakpointPx;
@@ -57,65 +58,77 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         rightMenuSticky,
     } = config;
 
+    const {
+        pageContent,
+        topPageContent,
+        topLeftMenu,
+        rightMenu,
+        leftMenu,
+        bottomRow,
+    } = regions;
+
     // The purpose of the topPageContent region is to separate components
     // which should be placed above the left menu in the mobile view
     // Only render this region if the left menu is enabled, or if it already
     // contains components
     const shouldRenderTopContentRegion =
         leftMenuToggle &&
-        (regions.topPageContent?.components.length > 0 ||
+        (topPageContent?.components.length > 0 ||
             pageProps.editorView === 'edit');
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            {(leftMenuToggle || shouldRenderTopContentRegion) && (
-                <div className={'left-col'}>
-                    {isMobile !== false && shouldRenderTopContentRegion && (
-                        <MainContentSection
-                            pageProps={pageProps}
-                            regionProps={regions.topPageContent}
-                        />
-                    )}
-                    {leftMenuToggle && (
-                        <LeftMenuSection
-                            pageProps={pageProps}
-                            topRegionProps={regions.topLeftMenu}
-                            mainRegionProps={regions.leftMenu}
-                            internalLinks={showInternalNav && anchorLinks}
-                            menuHeader={leftMenuHeader}
-                            sticky={leftMenuSticky}
-                        />
-                    )}
-                </div>
-            )}
-            <div className={'main-col'}>
-                {isMobile !== true && shouldRenderTopContentRegion && (
-                    <>
-                        <MainContentSection
-                            pageProps={pageProps}
-                            regionProps={regions.topPageContent}
-                        />
-                        <EditorHelp
-                            text={
-                                'Komponenter ovenfor legges over menyen på mobil'
-                            }
-                        />
-                    </>
+            <div className={'top-row'}>
+                {(leftMenuToggle || shouldRenderTopContentRegion) && (
+                    <div className={'left-col'}>
+                        {isMobile !== false && shouldRenderTopContentRegion && (
+                            <MainContentSection
+                                pageProps={pageProps}
+                                regionProps={topPageContent}
+                            />
+                        )}
+                        {leftMenuToggle && (
+                            <LeftMenuSection
+                                pageProps={pageProps}
+                                topRegionProps={topLeftMenu}
+                                mainRegionProps={leftMenu}
+                                internalLinks={showInternalNav && anchorLinks}
+                                menuHeader={leftMenuHeader}
+                                sticky={leftMenuSticky}
+                            />
+                        )}
+                    </div>
                 )}
-                <MainContentSection
-                    pageProps={pageProps}
-                    regionProps={regions.pageContent}
-                />
-            </div>
-            {rightMenuToggle && (
-                <div className={'right-col'}>
-                    <RightMenuSection
+                <div className={'main-col'}>
+                    {isMobile !== true && shouldRenderTopContentRegion && (
+                        <>
+                            <MainContentSection
+                                pageProps={pageProps}
+                                regionProps={topPageContent}
+                            />
+                            <EditorHelp
+                                text={
+                                    'Komponenter ovenfor legges over menyen på mobil'
+                                }
+                            />
+                        </>
+                    )}
+                    <MainContentSection
                         pageProps={pageProps}
-                        regionProps={regions.rightMenu}
-                        sticky={rightMenuSticky}
+                        regionProps={pageContent}
                     />
                 </div>
-            )}
+                {rightMenuToggle && (
+                    <div className={'right-col'}>
+                        <RightMenuSection
+                            pageProps={pageProps}
+                            regionProps={rightMenu}
+                            sticky={rightMenuSticky}
+                        />
+                    </div>
+                )}
+            </div>
+            <Region pageProps={pageProps} regionProps={bottomRow} />
         </LayoutContainer>
     );
 };

@@ -8,14 +8,17 @@
     @sectionGutterSmall: 0.75rem;
     @verticalMargin: 1.75rem;
 
-    display: flex;
-    flex-direction: column;
+    max-width: #px-to-rem(1080) [];
     margin: 0 auto;
 
-    @media @mq-screen-tablet-and-desktop {
-        flex-direction: row;
-        margin-top: 3rem;
-        max-width: #px-to-rem(1080) [];
+    .top-row {
+        display: flex;
+        flex-direction: column;
+
+        @media @mq-screen-tablet-and-desktop {
+            flex-direction: row;
+            margin-top: 3rem;
+        }
     }
 
     .left-col,
@@ -93,5 +96,8 @@
         & > :last-child {
             margin-bottom: 0;
         }
+    }
+
+    .region__bottomRow {
     }
 }

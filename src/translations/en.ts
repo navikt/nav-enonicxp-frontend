@@ -41,6 +41,7 @@ export const bundle: Translations = {
         linkedListDescription: 'Chapters',
         published: 'Published',
         tableOfContents: 'Table of contents',
+        contents: 'Contents',
     },
     mainPanels: { label: 'Main panels' },
     publishingCalendar: {

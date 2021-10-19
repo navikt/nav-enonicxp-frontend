@@ -7,7 +7,8 @@ type Regions =
     | 'leftMenu'
     | 'pageContent'
     | 'topPageContent'
-    | 'rightMenu';
+    | 'rightMenu'
+    | 'bottomRow';
 
 export interface PageWithSideMenusProps extends LayoutCommonProps {
     type: ComponentType.Page;
