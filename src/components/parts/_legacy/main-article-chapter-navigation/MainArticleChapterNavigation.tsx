@@ -1,14 +1,16 @@
 import React from 'react';
 import { Label, Title } from '@navikt/ds-react';
 import { translator } from 'translations';
+
+import classNames from 'classnames';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { BEM } from 'utils/classnames';
 import { MainArticleChapterProps } from '../../../../types/content-props/main-article-chapter-props';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
-import './MainArticleChapterNavigation.less';
-import classNames from 'classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+
+import './MainArticleChapterNavigation.less';
 
 /*
     Render of XP part named main-article-linked-list
