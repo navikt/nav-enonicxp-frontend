@@ -55,6 +55,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
     return (
         <Head>
             <title>{title}</title>
+            <meta name="pageID" content={content._id} />
             {content.__typename !== ContentType.Error && !noIndex && (
                 <link rel={'canonical'} href={url} />
             )}
