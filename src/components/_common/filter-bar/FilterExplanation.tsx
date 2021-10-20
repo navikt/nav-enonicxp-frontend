@@ -9,7 +9,6 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import './FilterExplanation.less';
 
 const bem = BEM('filterExplanation');
-const explanationId = uuid();
 
 interface FilterExplanationProps {
     selectedFilters: string[];
@@ -20,6 +19,7 @@ export const FilterExplanation = ({
     selectedFilters,
     availableFilters,
 }: FilterExplanationProps) => {
+    const [explanationId] = useState(uuid());
     const [selectCount, setSelectCount] = useState(0);
     const [showHighlight, setShowHighlight] = useState(false);
 
