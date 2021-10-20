@@ -77,7 +77,11 @@ export const IllustrationAnimated = ({
     }
 
     return (
-        <div className={classNames(bem('image'), className)} aria-hidden="true">
+        <div
+            className={classNames(bem('image'), className)}
+            aria-hidden="true"
+            role="presentation"
+        >
             <div
                 ref={lottieContainer}
                 className={classNames(bem('lottie-container'))}
