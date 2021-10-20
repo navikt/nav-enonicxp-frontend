@@ -37,11 +37,7 @@ export const Result = (props: ResultProps) => {
 
     if (errorMessage) {
         return (
-            <Panel
-                border
-                className={classNames(bem(), bem('summaryError'))}
-                role="alert"
-            >
+            <Panel border className={classNames(bem(), bem('summaryError'))}>
                 <div>{getLabel('error')}</div>
                 <em>"{errorMessage}"</em>
             </Panel>
@@ -51,6 +47,7 @@ export const Result = (props: ResultProps) => {
     return (
         <Panel border className={classNames(bem(), bem('summaryText'))}>
             <div
+                aria-live="assertive"
                 dangerouslySetInnerHTML={{
                     __html: buildSummaryHTML(),
                 }}
