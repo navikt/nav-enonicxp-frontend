@@ -15,7 +15,8 @@ import { MacroType } from '../types/macro-props/_macros-common';
 import './ParsedHtml.less';
 import { BEM } from '../utils/classnames';
 import classNames from 'classnames';
-
+import { usePageConfig } from '../store/hooks/usePageConfig';
+import { EditorHelp } from './_common/editor-utils/editor-help/EditorHelp';
 
 const blockLevelMacros = {
     [MacroType.HeaderWithAnchor]: true,
@@ -65,6 +66,9 @@ type Props = {
 };
 
 export const ParsedHtml = ({ htmlProps }: Props) => {
+    const { pageConfig } = usePageConfig();
+    const { editorView } = pageConfig;
+
     if (!htmlProps) {
         return null;
     }
@@ -167,9 +171,9 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag === 'table') {
                 return (
                     <div className={classNames(bem('horisontal-scroll'))}>
-                    <table {...props} className={'tabell tabell--stripet'}>
-                        {domToReact(children, replaceElements)}
-                    </table>
+                        <table {...props} className={'tabell tabell--stripet'}>
+                            {domToReact(children, replaceElements)}
+                        </table>
                     </div>
                 );
             }
@@ -182,6 +186,10 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             .replace(/(\r\n|\n|\r|\s)/gm, ' '),
         replaceElements
     );
+
+    if (editorView === 'edit' && !htmlParsed?.toString().trim?.()) {
+        return <EditorHelp text={"HTML'en er tom eller innholder feil."} />;
+    }
 
     return <>{htmlParsed}</>;
 };
