@@ -2,12 +2,14 @@ import { useState, useEffect, useRef } from 'react';
 import { BEM, classNames } from '../../../utils/classnames';
 import { Information, InformationFilled } from '@navikt/ds-icons';
 import { translator } from 'translations';
+import { v4 as uuid } from 'uuid';
 
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import './FilterExplanation.less';
 
 const bem = BEM('filterExplanation');
+const explanationId = uuid();
 
 interface FilterExplanationProps {
     selectedFilters: string[];
@@ -64,15 +66,23 @@ export const FilterExplanation = ({
                         bem('icon'),
                         bem('icon', showHighlight ? 'visible' : 'hidden')
                     )}
+                    role="img"
+                    focusable="false"
+                    aria-labelledby={explanationId}
                 />
                 <Information
                     className={classNames(
                         bem('icon'),
                         bem('icon', showHighlight ? 'hidden' : 'visible')
                     )}
+                    role="img"
+                    focusable="false"
+                    aria-labelledby={explanationId}
                 />
             </div>
-            <div className={bem('text')}>{filterExplanation}</div>
+            <div className={bem('text')} id={explanationId}>
+                {filterExplanation}
+            </div>
         </div>
     );
 };
