@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { BEM, classNames } from '../../../utils/classnames';
 import { Information, InformationFilled } from '@navikt/ds-icons';
 import { translator } from 'translations';
+import { v4 as uuid } from 'uuid';
 
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
@@ -18,6 +19,7 @@ export const FilterExplanation = ({
     selectedFilters,
     availableFilters,
 }: FilterExplanationProps) => {
+    const [explanationId] = useState(uuid());
     const [selectCount, setSelectCount] = useState(0);
     const [showHighlight, setShowHighlight] = useState(false);
 
@@ -56,6 +58,7 @@ export const FilterExplanation = ({
                 bem(),
                 showHighlight && bem(undefined, 'highlight')
             )}
+            aria-live="assertive"
         >
             <div className={bem('iconWrapper')}>
                 <InformationFilled
@@ -64,15 +67,23 @@ export const FilterExplanation = ({
                         bem('icon'),
                         bem('icon', showHighlight ? 'visible' : 'hidden')
                     )}
+                    role="img"
+                    focusable="false"
+                    aria-labelledby={explanationId}
                 />
                 <Information
                     className={classNames(
                         bem('icon'),
                         bem('icon', showHighlight ? 'hidden' : 'visible')
                     )}
+                    role="img"
+                    focusable="false"
+                    aria-labelledby={explanationId}
                 />
             </div>
-            <div className={bem('text')}>{filterExplanation}</div>
+            <div className={bem('text')} id={explanationId}>
+                {filterExplanation}
+            </div>
         </div>
     );
 };
