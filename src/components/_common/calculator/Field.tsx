@@ -12,10 +12,11 @@ interface FieldProps {
     onChange: (variableName: string, value: string) => void;
     fieldType: FieldType;
     value: number;
+    autoComplete: boolean;
 }
 
 export const Field = (props: FieldProps) => {
-    const { field, onChange, fieldType, value } = props;
+    const { field, onChange, fieldType, value, autoComplete } = props;
     const { inputField, dropdownField } = field;
 
     return (
@@ -32,6 +33,7 @@ export const Field = (props: FieldProps) => {
                             e.currentTarget.value
                         )
                     }
+                    autoComplete={autoComplete ? 'on' : 'off'}
                 />
             )}
             {fieldType === FieldType.DROPDOWN && (
@@ -45,6 +47,7 @@ export const Field = (props: FieldProps) => {
                         )
                     }
                     value={value}
+                    autoComplete={autoComplete ? 'on' : 'off'}
                 >
                     {dropdownField.optionItems.map((option, index) => (
                         <option

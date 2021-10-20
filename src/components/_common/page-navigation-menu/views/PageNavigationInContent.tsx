@@ -26,7 +26,7 @@ export const PageNavigationInContent = ({ title, links }: Props) => {
                     {title}
                 </Header>
             )}
-            <nav role={'navigation'} aria-label={'Innhold'}>
+            <nav aria-label={'Innhold'}>
                 <ul className={bem('list')}>
                     {links.map((anchorLink) => (
                         <li key={anchorLink.anchorId}>

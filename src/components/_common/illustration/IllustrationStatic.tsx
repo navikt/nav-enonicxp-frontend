@@ -32,8 +32,8 @@ export const IllustrationStatic = ({
     return (
         <div
             className={classNames(bem('image'), className)}
-            role="img"
-            aria-label={illustration.displayName}
+            aria-hidden="true"
+            role="presentation"
         >
             <div
                 className={classNames(bem('icon'), bem('icon', 'icon1'))}

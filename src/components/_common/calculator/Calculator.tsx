@@ -174,6 +174,7 @@ export const Calculator = ({
                                     onChange={handleInputChange}
                                     value={fieldValues[fieldKey]}
                                     fieldType={getFieldType(field)}
+                                    autoComplete={false}
                                 />
                             );
                         })}
