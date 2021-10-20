@@ -25,6 +25,9 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
     const isVerticalLayout =
         selectedVariant === 'vertical' ||
         selectedVariant === 'verticalWithBgColor';
+    const legacyAnalyticsComponentLabel = isVerticalLayout
+        ? 'main-panels'
+        : 'link-panel';
 
     return (
         <LenkepanelBase
@@ -32,13 +35,14 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
             border={true}
             className={classNames(
                 bem(),
-                isVerticalLayout ? `vertical` : 'horisontal'
+                isVerticalLayout ? `vertical` : 'horisontal',
             )}
             style={bgUrl && { backgroundImage: `url(${bgUrl})` }}
             linkCreator={(props) => (
                 <LenkeBase
                     href={props.href}
                     analyticsLabel={linkProps.text}
+                    component={legacyAnalyticsComponentLabel}
                     {...props}
                 >
                     {props.children}
@@ -52,21 +56,21 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                             className={classNames(
                                 bem('icon'),
                                 selectedVariant === 'verticalWithBgColor' &&
-                                    bem('icon', 'bg')
+                                bem('icon', 'bg'),
                             )}
                             style={{
                                 ...(selectedVariant ===
                                     'verticalWithBgColor' && {
-                                    backgroundColor:
+                                        backgroundColor:
                                         variantConfig.iconBg?.color,
-                                    alignItems: variantConfig.iconJustify,
-                                }),
+                                        alignItems: variantConfig.iconJustify,
+                                    }),
                             }}
                         >
                             <XpImage imageProps={icon} alt={''} />
                         </div>
                     )}
-                    <Title level={2} size="m" className={bem('title')}>
+                    <Title level={2} size='m' className={bem('title')}>
                         {linkProps.text}
                     </Title>
                 </div>
