@@ -17,7 +17,6 @@ export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
     }
 
     if (!isOnlyDigits(value)) {
-        console.log('was not only digits', value);
         return value;
     }
 
