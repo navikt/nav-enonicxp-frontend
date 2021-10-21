@@ -200,9 +200,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
         if (!htmlRaw) {
             return (
                 <EditorHelp
-                    text={
-                        "HTML'en er tom eller inneholder feil. Klikk for å redigere."
-                    }
+                    text={"HTML'en er tom eller inneholder feil."}
                     type={'error'}
                 />
             );
