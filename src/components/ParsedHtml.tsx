@@ -12,11 +12,14 @@ import {
 import { MacroMapper } from './macros/MacroMapper';
 import { headingToLevel, headingToSize } from '../types/typo-style';
 import { MacroType } from '../types/macro-props/_macros-common';
-import './ParsedHtml.less';
 import { BEM } from '../utils/classnames';
 import classNames from 'classnames';
 import { usePageConfig } from '../store/hooks/usePageConfig';
 import { EditorHelp } from './_common/editor-utils/editor-help/EditorHelp';
+import ReactDOMServer from 'react-dom/server';
+import { store } from '../store/store';
+import { Provider } from 'react-redux';
+import './ParsedHtml.less';
 
 const blockLevelMacros = {
     [MacroType.HeaderWithAnchor]: true,
@@ -187,8 +190,23 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
         replaceElements
     );
 
-    if (editorView === 'edit' && !htmlParsed?.toString().trim?.()) {
-        return <EditorHelp text={"HTML'en er tom eller innholder feil."} />;
+    // If the html contains only malformed tags or macros, resulting in an empty
+    // render output, show an error message in the editor
+    if (editorView === 'edit') {
+        const htmlRaw = ReactDOMServer.renderToStaticMarkup(
+            <Provider store={store}>{htmlParsed}</Provider>
+        ).trim();
+
+        if (!htmlRaw) {
+            return (
+                <EditorHelp
+                    text={
+                        "HTML'en er tom eller inneholder feil. Klikk for å redigere."
+                    }
+                    type={'error'}
+                />
+            );
+        }
     }
 
     return <>{htmlParsed}</>;
