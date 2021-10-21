@@ -190,8 +190,8 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
         replaceElements
     );
 
-    // If the html contains only malformed tags or macros, resulting in an empty
-    // render output, show an error message in the editor
+    // If the html renders to an empty string (or whitespace only), show an
+    // error message in the editor
     if (editorView === 'edit') {
         const htmlRaw = ReactDOMServer.renderToStaticMarkup(
             <Provider store={store}>{htmlParsed}</Provider>
