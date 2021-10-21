@@ -50,4 +50,8 @@ export const insertHTMLBreaks = (value: string) => {
     return value.replace('\n', '<br>');
 };
 
-export const stripLineBreaks = (str: string) => str.replace(/\r?\n|\r/g, ' ');
+export const stripLineBreaks = (str: string) =>
+    str.replace(
+        /\r?\n|\r/g,
+        (value) => ({ '\n': '\\n', '\r': '\\r', '\r\n': '\\r\\n' }[value])
+    );
