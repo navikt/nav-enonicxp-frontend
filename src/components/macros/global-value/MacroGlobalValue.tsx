@@ -20,6 +20,6 @@ export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
         return value;
     }
 
-    const number = parseInt(value, 10);
-    return formatNumber(number, 0, language);
+    const number = parseFloat(value);
+    return formatNumber(number, 2, language);
 };

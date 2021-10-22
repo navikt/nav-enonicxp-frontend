@@ -22,13 +22,12 @@ type Props = {
 };
 
 export const GVItemEditor = ({
-    item = { itemName: '', textValue: '', numberValue: '', key: '' },
+    item = { itemName: '', numberValue: '', key: '' },
     onClose,
 }: Props) => {
     const [inputState, setInputState] = useState(item);
     const [errors, setErrors] = useState({
         itemName: '',
-        textValue: '',
         numberValue: '',
     });
     const [awaitDeleteConfirm, setAwaitDeleteConfirm] = useState(false);
@@ -105,31 +104,24 @@ export const GVItemEditor = ({
                 typeof inputState.numberValue === 'string'
                     ? inputState.numberValue.trim()
                     : inputState.numberValue,
-            textValue: inputState.textValue?.trim(),
         };
 
-        const { itemName, numberValue, textValue } = inputTrimmed;
+        const { itemName, numberValue } = inputTrimmed;
 
         let hasInputErrors = false;
         const newErrors = {
             itemName: '',
-            textValue: '',
             numberValue: '',
         };
 
         if (numberValue !== undefined && isNaN(Number(numberValue))) {
             newErrors.numberValue = 'Tall-verdien må være et tall';
             hasInputErrors = true;
-        } else {
-            newErrors.numberValue = '';
         }
 
-        if (!textValue && numberValue === undefined) {
-            newErrors.textValue = 'Minst ett av verdi-feltene må fylles inn';
-            newErrors.numberValue = 'Minst ett av verdi-feltene må fylles inn';
+        if (numberValue === undefined) {
+            newErrors.numberValue = 'Feltet må fylles inn';
             hasInputErrors = true;
-        } else {
-            newErrors.textValue = '';
         }
 
         if (!itemName) {
@@ -138,9 +130,9 @@ export const GVItemEditor = ({
         } else if (gvNameExists(itemName, valueItems, item.key)) {
             newErrors.itemName = 'Navnet er allerede i bruk i dette settet';
             hasInputErrors = true;
-        } else {
-            newErrors.itemName = '';
         }
+
+        console.log(newErrors, hasInputErrors);
 
         setErrors(newErrors);
 
@@ -167,7 +159,11 @@ export const GVItemEditor = ({
 
     const handleInput = (e) => {
         const { name, value } = e.target;
-        setInputState({ ...inputState, [name]: value });
+        const formattedValue =
+            name === 'numberValue'
+                ? value.replace(' ', '').replace(',', '.')
+                : value;
+        setInputState({ ...inputState, [name]: formattedValue });
     };
 
     return (
@@ -184,17 +180,10 @@ export const GVItemEditor = ({
                     />
                     <Input
                         mini
-                        label={
-                            'Tekst-verdi (benyttes ved direkte innsetting i tekst-innhold)'
+                        label={'Tallverdi'}
+                        description={
+                            'Blir automatisk formattert avhengig av språket i artikkelen. Benytt kun tall, samt evt punktum som desimalskilletegn.'
                         }
-                        name={'textValue'}
-                        value={inputState.textValue}
-                        onChange={handleInput}
-                        feil={errors.textValue}
-                    />
-                    <Input
-                        mini
-                        label={'Tall-verdi (benyttes i kalkulasjoner)'}
                         name={'numberValue'}
                         value={
                             inputState.numberValue !== undefined

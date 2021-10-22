@@ -15,18 +15,12 @@ type Props = {
 };
 
 const ItemView = ({ item }: Props) => {
-    const { itemName, textValue, numberValue } = item;
+    const { itemName, numberValue } = item;
 
     return (
         <div className={bem('display')}>
             <div className={classNames(bem('name'))}>{itemName}</div>
             <div className={bem('value-container')}>
-                {textValue && (
-                    <div>
-                        <span className={bem('label')}>{'Tekst-verdi: '}</span>
-                        <span className={bem('value')}>{textValue}</span>
-                    </div>
-                )}
                 {numberValue !== undefined && (
                     <div>
                         <span className={bem('label')}>{'Tall-verdi: '}</span>
