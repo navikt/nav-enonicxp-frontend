@@ -10,9 +10,11 @@ export const formatNumber = (
     return rounded.toLocaleString(language);
 };
 
-export const isOnlyDigits = (numberAsString: string) => {
+export const isStringOnlyNumber = (numberAsString: string) => {
     if (!numberAsString || typeof numberAsString !== 'string') {
         return numberAsString !== 'number';
     }
-    return !!numberAsString.match(/^-?\d*\.?\d*$/);
+
+    const parsed = parseFloat(numberAsString);
+    return !isNaN(parsed);
 };

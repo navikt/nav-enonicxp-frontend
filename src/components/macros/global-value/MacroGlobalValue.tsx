@@ -1,8 +1,7 @@
 import React from 'react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { MacroGlobalValueProps } from '../../../types/macro-props/global-value';
-
-import { formatNumber, isOnlyDigits } from '../../../utils/math';
+import { formatNumber, isStringOnlyNumber } from '../../../utils/math';
 
 export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
     const { language } = usePageConfig();
@@ -16,7 +15,8 @@ export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
         return <>[teknisk feil: verdi ikke tilgjengelig]</>;
     }
 
-    if (!isOnlyDigits(value)) {
+    // This is a failsafe. Value should normally be digits and decimal separator only.
+    if (!isStringOnlyNumber(value)) {
         return value;
     }
 
