@@ -2,10 +2,10 @@ import { Language } from 'translations';
 
 export const formatNumber = (
     num: number,
-    decimals: number = 0,
+    maxPlaces: number = 0,
     language: Language = 'no'
 ) => {
-    const decimalsOOM = 10 ** decimals;
+    const decimalsOOM = 10 ** maxPlaces;
     const rounded = Math.floor(num * decimalsOOM + 0.5) / decimalsOOM;
     return rounded.toLocaleString(language);
 };
