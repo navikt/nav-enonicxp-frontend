@@ -17,9 +17,9 @@ export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
 
     // This is a failsafe. Value should normally be digits and decimal separator only.
     if (!isStringOnlyNumber(value)) {
-        return value;
+        return <>{value}</>;
     }
 
     const number = parseFloat(value);
-    return formatNumber(number, 2, language);
+    return <>{formatNumber(number, 2, language)}</>;
 };
