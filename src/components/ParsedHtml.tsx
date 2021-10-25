@@ -12,10 +12,14 @@ import {
 import { MacroMapper } from './macros/MacroMapper';
 import { headingToLevel, headingToSize } from '../types/typo-style';
 import { MacroType } from '../types/macro-props/_macros-common';
-import './ParsedHtml.less';
 import { BEM } from '../utils/classnames';
 import classNames from 'classnames';
-
+import { usePageConfig } from '../store/hooks/usePageConfig';
+import { EditorHelp } from './_common/editor-utils/editor-help/EditorHelp';
+import ReactDOMServer from 'react-dom/server';
+import { store } from '../store/store';
+import { Provider } from 'react-redux';
+import './ParsedHtml.less';
 
 const blockLevelMacros = {
     [MacroType.HeaderWithAnchor]: true,
@@ -65,6 +69,9 @@ type Props = {
 };
 
 export const ParsedHtml = ({ htmlProps }: Props) => {
+    const { pageConfig } = usePageConfig();
+    const { editorView } = pageConfig;
+
     if (!htmlProps) {
         return null;
     }
@@ -167,9 +174,9 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag === 'table') {
                 return (
                     <div className={classNames(bem('horisontal-scroll'))}>
-                    <table {...props} className={'tabell tabell--stripet'}>
-                        {domToReact(children, replaceElements)}
-                    </table>
+                        <table {...props} className={'tabell tabell--stripet'}>
+                            {domToReact(children, replaceElements)}
+                        </table>
                     </div>
                 );
             }
@@ -182,6 +189,23 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             .replace(/(\r\n|\n|\r|\s)/gm, ' '),
         replaceElements
     );
+
+    // If the html renders to an empty string (or whitespace only), show an
+    // error message in the editor
+    if (editorView === 'edit') {
+        const htmlRaw = ReactDOMServer.renderToStaticMarkup(
+            <Provider store={store}>{htmlParsed}</Provider>
+        ).trim();
+
+        if (!htmlRaw) {
+            return (
+                <EditorHelp
+                    text={"HTML'en er tom eller inneholder feil."}
+                    type={'error'}
+                />
+            );
+        }
+    }
 
     return <>{htmlParsed}</>;
 };
