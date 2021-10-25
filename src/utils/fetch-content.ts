@@ -5,6 +5,7 @@ import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { MediaProps } from '../types/media';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from './errors';
+import { stripLineBreaks } from './string';
 
 export type XpResponseProps = ContentProps | MediaProps;
 
@@ -70,7 +71,7 @@ const fetchSiteContent = async (
         }
 
         // Regular 404 should not be logged as errors
-        console.log(`Content not found ${idOrPath}`);
+        console.log(`Content not found ${stripLineBreaks(idOrPath)}`);
         return makeErrorProps(idOrPath, undefined, 404, errorId);
     }
 
