@@ -3,7 +3,6 @@ import { ContentProps, ContentType } from './_content-common';
 export type GlobalValueItem = {
     key: string;
     itemName: string;
-    textValue: string;
     numberValue?: string | number;
 };
 

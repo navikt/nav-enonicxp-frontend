@@ -5,20 +5,12 @@ import globalState from '../../../globalState';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language } from 'translations';
 
+import { formatNumber } from '../../../utils/math';
+
 const math = create(all);
 
 type ExpressionProps =
     MacroGlobalValueWithMathProps['config']['global_value_with_math'];
-
-const formatNumber = (
-    num: number,
-    decimals: number = 0,
-    language: Language = 'no'
-) => {
-    const decimalsOOM = 10 ** decimals;
-    const rounded = Math.floor(num * decimalsOOM + 0.5) / decimalsOOM;
-    return rounded.toLocaleString(language);
-};
 
 const evaluateExpression = (
     { expression, decimals, variables }: ExpressionProps,
