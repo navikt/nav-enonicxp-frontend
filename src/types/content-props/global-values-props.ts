@@ -1,13 +1,18 @@
 import { ContentProps, ContentType } from './_content-common';
 
 export type GlobalValueItem = {
-    key: string;
-    itemName: string;
     numberValue?: string | number;
 };
 
 export type GlobalValuesData = {
-    valueItems?: GlobalValueItem[];
+    valueItems?: GlobalValueItem;
+    valueUsage: GlobalValuesUsage[];
+};
+
+export type GlobalValuesUsage = {
+    id: string;
+    path: string;
+    displayName: string;
 };
 
 export interface GlobalValuesProps extends ContentProps {

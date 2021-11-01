@@ -3,7 +3,6 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import contentFilters from './slices/filteredContent';
 import pageConfig from './slices/pageConfig';
 import pathMap from './slices/pathMap';
-import gvEditorState from './slices/gvEditorState';
 import authState from './slices/authState';
 
 export const store = configureStore({
@@ -11,7 +10,6 @@ export const store = configureStore({
         contentFilters,
         pageConfig,
         pathMap,
-        gvEditorState,
         authState,
     },
 });
@@ -24,7 +22,6 @@ export const mockStore = configureStore({
         contentFilters,
         pageConfig,
         pathMap,
-        gvEditorState,
         authState,
     },
 });

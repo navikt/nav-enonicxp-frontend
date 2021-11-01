@@ -1,21 +1,19 @@
 import React, { useEffect } from 'react';
 import { GlobalValuesProps } from '../../../types/content-props/global-values-props';
 import { BEM } from '../../../utils/classnames';
-import { Title } from '@navikt/ds-react';
-import { GVMessages } from './components/messages/GVMessages';
+import { BodyShort, Title } from '@navikt/ds-react';
 import ErrorPage404 from '../../../pages/404';
-import { GVItems } from './components/values/GVItems';
-import { GVAddItem } from './components/values/add-item/GVAddItem';
-import {
-    setContentIdAction,
-    setValueItemsAction,
-} from '../../../store/slices/gvEditorState';
-import { store } from '../../../store/store';
+import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
+import { editorPathPrefix } from '../../../utils/urls';
 import './GlobalValuesPage.less';
 
 const bem = BEM('global-values-page');
 
-const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
+const GlobalValuesDisplay = ({ displayName, data }: GlobalValuesProps) => {
+    const { valueItems, valueUsage } = data;
+
+    const value = valueItems?.numberValue;
+
     useEffect(() => {
         const header = document.getElementById('decorator-header');
         if (header) {
@@ -51,24 +49,44 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
 
     return (
         <div className={bem()}>
-            <Title level={1} size="xl" className={bem('header')}>
-                {'Globale verdier'}
+            <Title level={1} size={'l'} className={bem('header')}>
+                {displayName}
             </Title>
-            <div className={bem('content')}>
-                <div className={bem('left-col')}>
-                    <div className={bem('sub-header-row')}>
-                        <div className={bem('sub-header')}>
-                            <Title
-                                level={2}
-                                size="m"
-                                className={bem('header-category')}
-                            >{`Kategori: ${displayName}`}</Title>
-                        </div>
-                        <GVAddItem />
-                    </div>
-                    <GVItems />
-                </div>
-                <GVMessages />
+            <BodyShort size={'m'}>
+                {value !== undefined ? 'Verdi: ' : 'Ingen verdi definert'}
+                {value && <>{value}</>}
+            </BodyShort>
+            <div className={bem('usage')}>
+                <Title level={2} size={'s'}>
+                    {valueUsage.length > 0
+                        ? 'Verdien er i bruk på disse sidene:'
+                        : 'Verdien er ikke i bruk'}
+                </Title>
+                {valueUsage.map((usage) => (
+                    <span>
+                        <LenkeStandalone
+                            href={usage.path.replace('/www.nav.no', '')}
+                            target={'_blank'}
+                            withChevron={false}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                            }}
+                        >
+                            {usage.displayName}
+                        </LenkeStandalone>
+                        {' - '}
+                        <LenkeStandalone
+                            href={`${editorPathPrefix}/${usage.id}`}
+                            target={'_blank'}
+                            withChevron={false}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                            }}
+                        >
+                            {'[Åpne i editor]'}
+                        </LenkeStandalone>
+                    </span>
+                ))}
             </div>
         </div>
     );
@@ -79,11 +97,6 @@ export const GlobalValuesPage = (props: GlobalValuesProps) => {
     if (!props.editorView) {
         return <ErrorPage404 />;
     }
-
-    store.dispatch(setContentIdAction({ contentId: props._id }));
-    store.dispatch(
-        setValueItemsAction({ valueItems: props.data?.valueItems || [] })
-    );
 
     return <GlobalValuesDisplay {...props} />;
 };
