@@ -53,8 +53,9 @@ const GlobalValuesDisplay = ({ displayName, data }: GlobalValuesProps) => {
                 {displayName}
             </Title>
             <BodyShort size={'m'}>
-                {value !== undefined ? 'Verdi: ' : 'Ingen verdi definert'}
-                {value && <>{value}</>}
+                {value !== undefined
+                    ? `Verdi: ${value}`
+                    : 'Ingen verdi definert'}
             </BodyShort>
             <div className={bem('usage')}>
                 <Title level={2} size={'s'}>
