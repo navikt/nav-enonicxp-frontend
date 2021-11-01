@@ -67,7 +67,7 @@
         "nav-frontend-veileder-style": "^2.1.2",
         "nav-frontend-veilederpanel": "^1.1.4",
         "nav-frontend-veilederpanel-style": "^1.1.1",
-        "next": "^11.1.2",
+        "next": "^12.0.2",
         "next-compose-plugins": "^2.2.1",
         "next-images": "^1.8.1",
         "next-transpile-modules": "^8.0.0",
