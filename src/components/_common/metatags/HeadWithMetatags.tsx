@@ -71,6 +71,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image:src" content={imageUrl} />
+            <meta property={'description'} content={description} />
             {children}
         </Head>
     );
