@@ -2,26 +2,42 @@ import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 import { RenderOnAuthStateMixin } from '../_mixins';
 
-export enum ContactOption {
+export enum ChannelType {
     CHAT = 'chat',
     WRITE = 'write',
     CALL = 'call',
 }
 
-export interface ChannelData {
+export interface SpecialOpeningHour {
+    status: string;
+    from: string;
+    to: string;
+    date: string;
+}
+export interface ContactData {
+    title?: string;
     ingress?: string;
     phoneNumber?: string;
+    channel: ChannelType;
+    text?: string;
+    regularOpeningHours?: {
+        [key: string]: {
+            from: string;
+            to: string;
+        };
+    };
+    specialOpeningHours?: SpecialOpeningHour[];
 }
 
 export interface ContactOptionProps extends PartComponentProps {
     descriptor: PartType.ContactOption;
     config: {
         contactOptions: {
-            _selected: ContactOption;
+            _selected: ChannelType;
         } & {
-            chat: ChannelData;
-            write: ChannelData;
-            call: ChannelData;
+            chat: ContactData;
+            write: ContactData;
+            call: ContactData;
         };
     } & RenderOnAuthStateMixin;
 }

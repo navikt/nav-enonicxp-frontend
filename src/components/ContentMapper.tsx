@@ -6,6 +6,7 @@ import {
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { DynamicPage } from './pages/dynamic-page/DynamicPage';
 import { FragmentPage } from './pages/fragment-page/FragmentPage';
+import { ContactInformationPage } from './pages/contact-information-page/ContactInformationPage';
 import LargeTablePage from './pages/large-table-page/LargeTablePage';
 import { RedirectPage } from './pages/redirect-page/RedirectPage';
 import { TemplatePage } from './pages/template-page/TemplatePage';
@@ -23,6 +24,7 @@ const contentToReactComponent: Partial<
     [ContentType.TemplatePage]: TemplatePage,
     [ContentType.AnimatedIcons]: () => null, // TODO: add a preview-page for editors
     [ContentType.GlobalValues]: GlobalValuesPage,
+    [ContentType.ContactInformationPage]: ContactInformationPage,
 
     [ContentType.SituationPage]: SituationPage,
     [ContentType.EmployerSituationPage]: SituationPage,
