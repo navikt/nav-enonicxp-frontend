@@ -16,43 +16,28 @@ import './DefaultOption.less';
 
 const bem = BEM('contactOption');
 
-export const ContactOption = (props: ContactData) => {
-    const { title, ingress, phoneNumber, channel } = props;
+export const DefaultOption = (props: ContactData) => {
+    const { ingress, channel } = props;
     const { language } = usePageConfig();
 
     const getTranslations = translator('contactPoint', language);
     const translations = getTranslations(channel);
 
-    const getTitle = (channel: ChannelType) => {
-        const abroadPrefix = language !== 'no' ? '+47' : '';
-
+    const getTitle = () => {
         if (!translations) {
             return '';
         }
 
-        if (channel !== ChannelType.CALL) {
-            // Only CALL section is allowed to change title.
-            return translations.title;
-        }
-
-        return `${translations.title} ${abroadPrefix} ${
-            title || '55 55 33 33'
-        }`;
+        return translations.title;
     };
 
-    const getIngress = (channel: ChannelType) => {
+    const getIngress = () => {
         return ingress || (translations && translations.ingress);
     };
 
     // In order to open chatbot, onClick is needed instead of href. Therefore
     // return an object which is destructed into Lenkebase with the proper props (href | onClick)
     const getUrlOrClickHandler = (channel: ChannelType) => {
-        if (channel === ChannelType.CALL) {
-            return {
-                href: `tel:+47${phoneNumber?.replace(/\s/g, '') || '55553333'}`,
-            };
-        }
-
         if (channel === ChannelType.WRITE) {
             return {
                 href: '/person/kontakt-oss/nb/skriv-til-oss',
@@ -76,9 +61,9 @@ export const ContactOption = (props: ContactData) => {
         >
             <div className={classNames(bem('icon'), bem('icon', channel))} />
             <Title level={2} size="m" className={bem('title')}>
-                {getTitle(channel)}
+                {getTitle()}
             </Title>
-            <BodyLong className={bem('text')}>{getIngress(channel)}</BodyLong>
+            <BodyLong className={bem('text')}>{getIngress()}</BodyLong>
         </LenkeBase>
     );
 };

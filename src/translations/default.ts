@@ -105,6 +105,23 @@ export const bundle = {
             ingress:
                 'Åpningstider: hverdager 09:00–15:00. Dersom åpningstidene er midlertidig endret, får du beskjed via automatisk svarer.',
         },
+        shared: {
+            generalOpeningHours: 'Ordinære åpningstider',
+            openingHours: 'Åpningstider',
+            specialHours: 'Spesielle åpningstider',
+            closed: 'Stengt',
+        },
+    },
+    dateTime: {
+        weekDayNames: [
+            'Mandag',
+            'Tirsdag',
+            'Onsdag',
+            'Torsdag',
+            'Fredag',
+            'Lørdag',
+            'Søndag',
+        ],
     },
     versionHistory: {
         label: 'Versjonshistorikk',

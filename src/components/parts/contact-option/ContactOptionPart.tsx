@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { ContactOption } from 'components/_common/contact-option/DefaultOption';
+import { ChannelType } from '../../../types/component-props/parts/contact-option';
+
+import { DefaultOption } from 'components/_common/contact-option/DefaultOption';
+import { CallOption } from 'components/_common/contact-option/CallOption';
 import { ContactOptionProps } from '../../../types/component-props/parts/contact-option';
 import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
 
@@ -13,5 +16,9 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
 
     const channelData = config.contactOptions[channel];
 
-    return <ContactOption {...channelData} channel={channel} />;
+    if (channel === ChannelType.CALL) {
+        return <CallOption {...channelData} channel={channel} />;
+    }
+
+    return <DefaultOption {...channelData} channel={channel} />;
 };

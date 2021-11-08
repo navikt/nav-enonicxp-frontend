@@ -26,7 +26,14 @@ export interface ContactData {
             to: string;
         };
     };
-    specialOpeningHours?: SpecialOpeningHour[];
+    specialOpeningHours?: {
+        title?: string;
+        text?: string;
+        footNote?: string;
+        validFrom: string;
+        validTo: string;
+        hours: SpecialOpeningHour[];
+    };
 }
 
 export interface ContactOptionProps extends PartComponentProps {
