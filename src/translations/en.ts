@@ -61,6 +61,10 @@ export const bundle: Translations = {
             'Saturday',
             'Sunday',
         ],
+        relatives: {
+            today: 'today',
+            tomorrow: 'i morgen',
+        },
     },
     relatedContent: {
         [MenuListItemKey.AppealRights]: 'Appeal rights',
@@ -112,6 +116,11 @@ export const bundle: Translations = {
             openingHours: 'Opening hours',
             specialHours: 'Other opening hours',
             closed: 'Closed',
+            openNow: 'Open now',
+            opensAt: 'Opens {$1} at {$2}',
+            closedNow: 'Closed now',
+            closingInAbout: 'Closing in about {$1} minutter',
+            closingNow: 'Closing now',
         },
     },
     versionHistory: {
