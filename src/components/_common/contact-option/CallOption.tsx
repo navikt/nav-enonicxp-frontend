@@ -1,14 +1,12 @@
-import { ContactData } from '../../../types/component-props/parts/contact-option';
-
 import { translator } from 'translations';
 import { Title, BodyLong, Accordion, BodyShort } from '@navikt/ds-react';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { TelephoneData } from '../../../types/component-props/parts/contact-option';
 
 import { BEM, classNames } from 'utils/classnames';
 
-import './CallOption.less';
 import {
     dateDiff,
     formatDate,
@@ -16,16 +14,22 @@ import {
     getDayNameFromNumber,
 } from 'utils/datetime';
 
+import './CallOption.less';
+
 const bem = BEM('callOption');
 
-export const CallOption = (props: ContactData) => {
+interface CallOptionProps extends TelephoneData {
+    ingress: string;
+}
+
+export const CallOption = (props: CallOptionProps) => {
     const {
-        title,
-        text,
         phoneNumber,
-        channel,
         regularOpeningHours,
         specialOpeningHours,
+        text,
+        ingress,
+        title,
     } = props;
 
     const { language } = usePageConfig();
@@ -52,27 +56,23 @@ export const CallOption = (props: ContactData) => {
         return '';
     };
 
-    const findNextOpeningDayFromNow = () => {
+    const prioritizeAndMergeOpeningHours = () => {
+        const totalDaysToCheck = 7 + specialOpeningHours.hours.length;
         const today = Date.now();
-        let nextOpeningDay: any;
-        for (let day = 1; day < 5; day++) {
-            const nextDay = new Date(today + 86400000 * day);
-            const nextDayAsISO = nextDay.toISOString().split('T')[0];
-            const nameOfDay = getDayNameFromNumber(nextDay.getDay());
+        const openingHours = [];
+
+        for (let day = 0; day < totalDaysToCheck; day++) {
+            const dayToCheck = new Date(today + 86400000 * day);
+            const dayToCheckISO = dayToCheck.toISOString().split('T')[0];
+            const nameOfDay = getDayNameFromNumber(dayToCheck.getDay());
 
             // Special opening hours take precidence, so check these first.
             const specialOpeningHour = specialOpeningHours.hours.find(
-                (hour) => hour.date === nextDayAsISO
+                (hour) => hour.date === dayToCheckISO
             );
 
-            if (specialOpeningHour && specialOpeningHour.status === 'OPEN') {
-                nextOpeningDay = specialOpeningHour;
-                return { ...nextOpeningDay };
-            }
-
-            // If this particular day is special closed, continue loop to next day
-            // so not to catch a regular opening hour.
-            if (specialOpeningHour && specialOpeningHour.status === 'CLOSED') {
+            if (specialOpeningHour) {
+                openingHours.push(specialOpeningHour);
                 continue;
             }
 
@@ -83,11 +83,50 @@ export const CallOption = (props: ContactData) => {
             );
 
             if (regularOpeningHour.status === 'OPEN') {
-                return { ...regularOpeningHour, date: nextDayAsISO };
+                openingHours.push({
+                    ...regularOpeningHour,
+                    date: dayToCheckISO,
+                });
             }
         }
 
-        return nextOpeningDay;
+        return openingHours;
+    };
+
+    const findTodaysOpeningHour = () => {
+        const today = new Date();
+        const todayISO = today.toISOString().split('T')[0];
+        const allOpeningHours = prioritizeAndMergeOpeningHours();
+
+        const todaysOpeningHour = allOpeningHours.find(
+            (hour) => hour.date === todayISO
+        );
+
+        return todaysOpeningHour;
+    };
+
+    const findNextOpeningDayAfterToday = () => {
+        const today = new Date();
+        const todayISO = today.toISOString().split('T')[0];
+        const allOpeningHours = prioritizeAndMergeOpeningHours();
+
+        for (let day = 0; day < allOpeningHours.length; day++) {
+            const openingHour = allOpeningHours[day];
+            if (openingHour.status === 'OPEN' && openingHour.date > todayISO) {
+                return openingHour;
+            }
+        }
+
+        return null;
+    };
+
+    const buildOpeningSoonString = (time: string) => {
+        const opensTemplate = sharedTranslations['opensAt'];
+        const todayTemplate = relatives['today'];
+
+        return `${opensTemplate
+            .replace('{$1}', todayTemplate)
+            .replace('{$2}', time)}`;
     };
 
     const buildFutureOpenString = (date: string, time: string) => {
@@ -140,7 +179,7 @@ export const CallOption = (props: ContactData) => {
         }
 
         if (isClosedForToday) {
-            const nextOpeningHour = findNextOpeningDayFromNow();
+            const nextOpeningHour = findNextOpeningDayAfterToday();
 
             return buildFutureOpenString(
                 nextOpeningHour.date,
@@ -149,30 +188,37 @@ export const CallOption = (props: ContactData) => {
         }
 
         if (isOpeningSoon) {
-            return 'closed now - opening soon';
+            return buildOpeningSoonString(from);
         }
         return `${isOpenText}: ${from} - ${to}`;
     };
 
-    const getOpeningHoursForToday = () => {
-        return { from: '09:00', to: '10:15' };
+    const shouldShowSpecialHours = () => {
+        const validFrom = new Date(specialOpeningHours.validFrom);
+        const validTo = new Date(specialOpeningHours.validTo);
+        const timeNow = new Date();
+
+        return validFrom < timeNow && validTo > timeNow;
     };
 
     return (
-        <div className={classNames(bem(), bem('preview-wrapper'))}>
+        <div className={classNames(bem())}>
             <LenkeBase
                 className={classNames(bem())}
-                href={`tel:+47${phoneNumber?.replace(/\s/g, '')}`}
+                href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
             >
                 <div
-                    className={classNames(bem('icon'), bem('icon', channel))}
+                    className={classNames(
+                        'defaultOption__icon',
+                        'defaultOption__icon--call'
+                    )}
                 />
                 <Title level={2} size="m" className={bem('title')}>
                     {title}
                 </Title>
             </LenkeBase>
             <BodyLong className={bem('text')} spacing>
-                {text}
+                {ingress || text}
             </BodyLong>
             {regularOpeningHours && (
                 <div className={classNames(bem('regular-openinghours'))}>
@@ -185,33 +231,39 @@ export const CallOption = (props: ContactData) => {
                         heading={
                             <BodyShort>
                                 {buildOpenInformationText(
-                                    getOpeningHoursForToday()
+                                    findTodaysOpeningHour()
                                 )}
                             </BodyShort>
                         }
                     >
                         <table className={bem('openingHoursTable')}>
-                            {regularOpeningHours.hours.map((hour, index) => (
-                                <tr key={index}>
-                                    <td>{getWeekDayName(index)}</td>
-                                    <td>
-                                        {hour.status === 'OPEN'
-                                            ? `${hour.from} - ${hour.to}`
-                                            : sharedTranslations['closed']}
-                                    </td>
-                                </tr>
-                            ))}
+                            <tbody>
+                                {regularOpeningHours.hours.map(
+                                    (hour, index) => (
+                                        <tr key={index}>
+                                            <td>{getWeekDayName(index)}</td>
+                                            <td>
+                                                {hour.status === 'OPEN'
+                                                    ? `${hour.from} - ${hour.to}`
+                                                    : sharedTranslations[
+                                                          'closed'
+                                                      ]}
+                                            </td>
+                                        </tr>
+                                    )
+                                )}
+                            </tbody>
                         </table>
                     </Accordion>
                 </div>
             )}
-            {specialOpeningHours && (
+            {specialOpeningHours && shouldShowSpecialHours() && (
                 <>
                     <Title level={2} size="s" spacing>
                         {specialOpeningHours.title}
                     </Title>
                     <BodyLong spacing>{specialOpeningHours.text}</BodyLong>
-                    <table className={bem('openingHoursTable')}>
+                    <table className={bem('specialOpeningHoursTable')}>
                         <tbody>
                             {specialOpeningHours.hours.map(
                                 (openingHour, index) => (

@@ -1,6 +1,6 @@
 import {
-    ContactData,
     ChannelType,
+    DefaultContactData,
 } from '../../../types/component-props/parts/contact-option';
 
 import { translator } from 'translations';
@@ -14,9 +14,13 @@ import { BEM, classNames } from 'utils/classnames';
 
 import './DefaultOption.less';
 
-const bem = BEM('contactOption');
+const bem = BEM('defaultOption');
 
-export const DefaultOption = (props: ContactData) => {
+interface DefaultContactProps extends DefaultContactData {
+    channel: ChannelType;
+}
+
+export const DefaultOption = (props: DefaultContactProps) => {
     const { ingress, channel } = props;
     const { language } = usePageConfig();
 
@@ -55,15 +59,19 @@ export const DefaultOption = (props: ContactData) => {
     };
 
     return (
-        <LenkeBase
-            className={classNames(bem())}
-            {...getUrlOrClickHandler(channel)}
-        >
-            <div className={classNames(bem('icon'), bem('icon', channel))} />
-            <Title level={2} size="m" className={bem('title')}>
-                {getTitle()}
-            </Title>
+        <div className={classNames(bem())}>
+            <LenkeBase
+                {...getUrlOrClickHandler(channel)}
+                className={bem('link')}
+            >
+                <div
+                    className={classNames(bem('icon'), bem('icon', channel))}
+                />
+                <Title level={2} size="m" className={bem('title')}>
+                    {getTitle()}
+                </Title>
+            </LenkeBase>
             <BodyLong className={bem('text')}>{getIngress()}</BodyLong>
-        </LenkeBase>
+        </div>
     );
 };

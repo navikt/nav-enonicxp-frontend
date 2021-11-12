@@ -1,8 +1,4 @@
 .callOption {
-    &__preview-wrapper {
-        width: 33%;
-    }
-
     &__regular-openinghours {
         margin-bottom: 1.75rem;
 
@@ -20,8 +16,8 @@
         }
     }
 
-    &__openingHoursTable {
-        margin: 0 0 1.75rem 0;
+    &__openingHoursTable,
+    &__specialOpeningHoursTable {
         border-collapse: collapse;
 
         td,
@@ -29,5 +25,9 @@
             padding: 0 1rem 0 0;
             margin: 0;
         }
+    }
+
+    &__specialOpeningHoursTable {
+        margin-bottom: 1.75rem;
     }
 }

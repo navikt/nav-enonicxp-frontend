@@ -20,11 +20,23 @@ export interface SpecialOpeningHour {
     to: string;
     date: string;
 }
-export interface ContactData {
-    title?: string;
+
+export interface DefaultContactData {
     ingress?: string;
+}
+
+export interface SharedContactInformationData extends DefaultContactData {
+    sharedContactInformation: {
+        data: {
+            contactType: {
+                telephone?: TelephoneData;
+            };
+        };
+    };
+}
+export interface TelephoneData {
+    title?: string;
     phoneNumber?: string;
-    channel: ChannelType;
     text?: string;
     regularOpeningHours?: {
         hours: RegularOpeningHour[];
@@ -45,9 +57,9 @@ export interface ContactOptionProps extends PartComponentProps {
         contactOptions: {
             _selected: ChannelType;
         } & {
-            chat: ContactData;
-            write: ContactData;
-            call: ContactData;
+            chat: DefaultContactData;
+            write: DefaultContactData;
+            call: SharedContactInformationData;
         };
     } & RenderOnAuthStateMixin;
 }

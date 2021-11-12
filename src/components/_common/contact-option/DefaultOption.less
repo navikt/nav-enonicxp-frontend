@@ -1,6 +1,6 @@
 @import (reference) '../../../global';
 
-.contactOption {
+.defaultOption {
     // Set a padding with equivalent negative margins to allow focus-highlight
     // to break out of the container
     @outerPadding: 0.6rem;
@@ -12,27 +12,9 @@
     text-decoration: none;
     border-radius: @border-radius-base;
 
-    &__preview-wrapper {
-        width: 33%;
-    }
-
     &:hover {
-        .contactOption__title {
+        .defaultOption__title {
             text-decoration: none;
-        }
-
-        .contactOption__icon {
-            &--chat {
-                background-image: url('/gfx/chat-filled.svg');
-            }
-
-            &--call {
-                background-image: url('/gfx/phone-filled.svg');
-            }
-
-            &--write {
-                background-image: url('/gfx/message-filled.svg');
-            }
         }
     }
 
@@ -40,7 +22,25 @@
         .panel-inset-focus-mixin();
     }
 
-    &__title {
+    &__link {
+        &:hover {
+            .defaultOption__icon {
+                &--chat {
+                    background-image: url('/gfx/chat-filled.svg');
+                }
+
+                &--call {
+                    background-image: url('/gfx/phone-filled.svg');
+                }
+
+                &--write {
+                    background-image: url('/gfx/message-filled.svg');
+                }
+            }
+        }
+    }
+
+    &__defaultOption {
         &.navds-title {
             margin-bottom: 1rem;
         }

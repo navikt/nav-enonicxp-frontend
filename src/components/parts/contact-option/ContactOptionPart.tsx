@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { ChannelType } from '../../../types/component-props/parts/contact-option';
+import {
+    ChannelType,
+    SharedContactInformationData,
+} from '../../../types/component-props/parts/contact-option';
 
 import { DefaultOption } from 'components/_common/contact-option/DefaultOption';
 import { CallOption } from 'components/_common/contact-option/CallOption';
@@ -16,8 +19,24 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
 
     const channelData = config.contactOptions[channel];
 
+    if (channel === ChannelType.CALL && Object.keys(channelData).length === 0) {
+        return (
+            <EditorHelp
+                text={'Velg telefonnummer før denne kontaktkanalen kan vises.'}
+            />
+        );
+    }
+
     if (channel === ChannelType.CALL) {
-        return <CallOption {...channelData} channel={channel} />;
+        const { sharedContactInformation } =
+            channelData as SharedContactInformationData;
+
+        return (
+            <CallOption
+                {...sharedContactInformation.data.contactType.telephone}
+                ingress={channelData.ingress}
+            />
+        );
     }
 
     return <DefaultOption {...channelData} channel={channel} />;
