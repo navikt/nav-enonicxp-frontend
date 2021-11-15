@@ -150,14 +150,19 @@ export const CallOption = (props: CallOptionProps) => {
     };
 
     const buildOpenInformationText = (openingHours) => {
+        if (!openingHours) {
+            return '';
+        }
         const { from, to } = openingHours;
         const currentISODate = getCurrentISODate();
         const currentTime = Date.now();
 
-        const startOfDay = new Date(`${currentISODate}T00:00:00`).getTime();
-        const endOfDay = new Date(`${currentISODate}T23:59:59`).getTime();
-        const fromTime = new Date(`${currentISODate}T${from}`).getTime();
-        const toTime = new Date(`${currentISODate}T${to}`).getTime();
+        const startOfDay = new Date(
+            `${currentISODate}T00:00:00+01:00`
+        ).getTime();
+        const endOfDay = new Date(`${currentISODate}T23:59:59+01:00`).getTime();
+        const fromTime = new Date(`${currentISODate}T${from}+01:00`).getTime();
+        const toTime = new Date(`${currentISODate}T${to}+01:00`).getTime();
 
         const isOpen = currentTime > fromTime && currentTime < toTime;
         const isOpenText = isOpen
