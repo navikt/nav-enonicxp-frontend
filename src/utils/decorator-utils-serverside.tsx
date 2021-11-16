@@ -8,7 +8,10 @@ import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { objectToQueryString } from './fetch-utils';
 
 const decoratorUrl = process.env.DECORATOR_FALLBACK_URL;
-const decoratorEnv = process.env.ENV as Props['env'];
+const decoratorEnv =
+    process.env.ENV === 'dev'
+        ? 'eksternDev'
+        : (process.env.ENV as Props['env']);
 const decoratorLocalPort = process.env.DECORATOR_LOCAL_PORT || 8100;
 const fetchTimeoutMs = 15000;
 
