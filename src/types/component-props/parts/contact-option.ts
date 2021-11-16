@@ -38,6 +38,7 @@ export interface TelephoneData {
     title?: string;
     phoneNumber?: string;
     text?: string;
+    alertText?: string;
     regularOpeningHours?: {
         hours: RegularOpeningHour[];
     };

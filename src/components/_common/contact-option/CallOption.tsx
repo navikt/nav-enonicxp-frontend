@@ -15,6 +15,7 @@ import {
 } from 'utils/datetime';
 
 import './CallOption.less';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 const bem = BEM('callOption');
 
@@ -24,11 +25,12 @@ interface CallOptionProps extends TelephoneData {
 
 export const CallOption = (props: CallOptionProps) => {
     const {
+        alertText,
+        ingress,
         phoneNumber,
         regularOpeningHours,
         specialOpeningHours,
         text,
-        ingress,
         title,
     } = props;
 
@@ -225,6 +227,11 @@ export const CallOption = (props: CallOptionProps) => {
             <BodyLong className={bem('text')} spacing>
                 {ingress || text}
             </BodyLong>
+            {alertText && (
+                <AlertStripe type="advarsel" className={bem('alertText')}>
+                    {alertText}
+                </AlertStripe>
+            )}
             {regularOpeningHours && (
                 <div className={classNames(bem('regular-openinghours'))}>
                     <Title level={2} size="s">
