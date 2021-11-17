@@ -31,7 +31,7 @@ spec:
     outbound:
       external:
         - host: nav.no
-        - host: dekoratoren.dev.nav.no
+        - host: dekoratoren.ekstern.dev.nav.no
   resources:
     limits:
       cpu: '3'
