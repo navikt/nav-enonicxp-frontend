@@ -187,10 +187,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             // Replace empty rows with stylable element
             if (tag === 'tr' && !validChildren) {
                 return (
-                    <tr
-                        {...attributesToProps(attribs)}
-                        className={'spacer-row'}
-                    />
+                    <tr {...props} className={'spacer-row'} />
                 );
             }
 
