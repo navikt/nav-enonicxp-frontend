@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Label, BodyLong, Title } from '@navikt/ds-react';
+import { BodyLong, Title } from '@navikt/ds-react';
 import htmlReactParser, { Element, domToReact } from 'html-react-parser';
 import { isTag, isText } from 'domhandler';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
@@ -140,7 +140,6 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 if (hasBlockLevelMacroChildren(element)) {
                     return <>{domToReact(children, replaceElements)}</>;
                 }
-
                 return (
                     <BodyLong spacing {...props}>
                         {domToReact(children, replaceElements)}
@@ -193,14 +192,6 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                         className={'spacer-row'}
                     />
                 );
-            }
-
-            // strong -> Label
-            if (tag === 'strong') {
-                if (!validChildren) {
-                    return <Fragment />
-                }
-                return <Label>{domToReact(validChildren)}</Label>;
             }
 
             // Remove empty divs
