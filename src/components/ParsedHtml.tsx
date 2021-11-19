@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { BodyLong, Title } from '@navikt/ds-react';
+import { Label, BodyLong, Title } from '@navikt/ds-react';
 import htmlReactParser, { Element, domToReact } from 'html-react-parser';
 import { isTag, isText } from 'domhandler';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
@@ -185,14 +185,8 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 );
             }
 
-            // Special handling for large-table (fucked up html from source)
-            if (attribs?.class === 'statTab' &&
-                tag === 'tr' &&
-                (!children ||
-                    children.filter((col) => isTag(col) && col.children?.length)
-                        .length === 0
-                )
-            ) {
+            // Replace empty rows with stylable element
+            if (tag === 'tr' && !validChildren) {
                 return (
                     <tr
                         {...attributesToProps(attribs)}
@@ -201,17 +195,17 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 );
             }
 
-            // Remove strong, as it is inconsistently used and we apply font-styling in css instead
+            // strong -> Label
             if (tag === 'strong') {
-                return <>{domToReact(children)}</>;
+                if (!validChildren) {
+                    return <Fragment />
+                }
+                return <Label>{domToReact(validChildren)}</Label>;
             }
 
-            // Remove empty footers etc
-            if (tag === 'div')
-            {
-                if (!validChildren) {
-                    return <Fragment />;
-                }
+            // Remove empty divs
+            if (tag === 'div' && !validChildren) {
+                return <Fragment />;
             }
         },
     };
