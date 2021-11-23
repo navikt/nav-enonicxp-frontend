@@ -38,14 +38,13 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
             return '';
         }
 
-        if (channel !== ContactOption.CALL) {
-            // Only CALL section is allowed to change title.
-            return translations.title;
+        if (channel === ContactOption.CALL) {
+            return `${translations.title} ${abroadPrefix} ${
+                data.phoneNumber || '55 55 33 33'
+            }`;
         }
 
-        return `${translations.title} ${abroadPrefix} ${
-            data.phoneNumber || '55 55 33 33'
-        }`;
+        return data.title || translations.title;
     };
 
     const getIngress = (channel: ContactOption, data: ChannelData) => {
@@ -68,7 +67,7 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
 
         if (channel === ContactOption.WRITE) {
             return {
-                href: '/person/kontakt-oss/nb/skriv-til-oss',
+                href: data.url || '/person/kontakt-oss/nb/skriv-til-oss',
             };
         }
 

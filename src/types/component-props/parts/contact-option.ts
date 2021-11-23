@@ -11,6 +11,8 @@ export enum ContactOption {
 export interface ChannelData {
     ingress?: string;
     phoneNumber?: string;
+    title?: string;
+    url?: string;
 }
 
 export interface ContactOptionProps extends PartComponentProps {
