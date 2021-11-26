@@ -5,6 +5,7 @@ import { BodyShort, Title } from '@navikt/ds-react';
 import ErrorPage404 from '../../../pages/404';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { editorPathPrefix } from '../../../utils/urls';
+import { EditorLinkWrapper } from '../../_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
 import './GlobalValuesPage.less';
 
 const bem = BEM('global-values-page');
@@ -65,27 +66,25 @@ const GlobalValuesDisplay = ({ displayName, data }: GlobalValuesProps) => {
                 </Title>
                 {valueUsage.map((usage) => (
                     <span>
-                        <LenkeStandalone
-                            href={usage.path.replace('/www.nav.no', '')}
-                            target={'_blank'}
-                            withChevron={false}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                            }}
-                        >
-                            {usage.displayName}
-                        </LenkeStandalone>
+                        <EditorLinkWrapper>
+                            <LenkeStandalone
+                                href={usage.path.replace('/www.nav.no', '')}
+                                target={'_blank'}
+                                withChevron={false}
+                            >
+                                {usage.displayName}
+                            </LenkeStandalone>
+                        </EditorLinkWrapper>
                         {' - '}
-                        <LenkeStandalone
-                            href={`${editorPathPrefix}/${usage.id}`}
-                            target={'_blank'}
-                            withChevron={false}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                            }}
-                        >
-                            {'[Åpne i editor]'}
-                        </LenkeStandalone>
+                        <EditorLinkWrapper>
+                            <LenkeStandalone
+                                href={`${editorPathPrefix}/${usage.id}`}
+                                target={'_blank'}
+                                withChevron={false}
+                            >
+                                {'[Åpne i editor]'}
+                            </LenkeStandalone>
+                        </EditorLinkWrapper>
                     </span>
                 ))}
             </div>
