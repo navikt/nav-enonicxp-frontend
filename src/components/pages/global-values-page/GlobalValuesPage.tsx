@@ -4,7 +4,7 @@ import { BEM } from '../../../utils/classnames';
 import { BodyShort, Title } from '@navikt/ds-react';
 import ErrorPage404 from '../../../pages/404';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
-import { editorPathPrefix } from '../../../utils/urls';
+import { editorPathPrefix, getInternalRelativePath } from '../../../utils/urls';
 import { EditorLinkWrapper } from '../../_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
 import './GlobalValuesPage.less';
 
@@ -64,11 +64,11 @@ const GlobalValuesDisplay = ({ displayName, data }: GlobalValuesProps) => {
                         ? 'Verdien er i bruk på disse sidene:'
                         : 'Verdien er ikke i bruk'}
                 </Title>
-                {valueUsage.map((usage) => (
-                    <span>
+                {valueUsage.map((usage, index) => (
+                    <span key={index}>
                         <EditorLinkWrapper>
                             <LenkeStandalone
-                                href={usage.path.replace('/www.nav.no', '')}
+                                href={getInternalRelativePath(usage.path)}
                                 target={'_blank'}
                                 withChevron={false}
                             >
