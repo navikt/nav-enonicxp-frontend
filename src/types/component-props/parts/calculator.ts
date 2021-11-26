@@ -47,5 +47,6 @@ export interface CalculatorProps extends PartComponentProps {
         targetCalculator: {
             data: CalculatorData;
         };
+        filters: string[];
     }>;
 }
