@@ -5,6 +5,7 @@ import React from 'react';
 import { CalculatorProps } from 'types/component-props/parts/calculator';
 import { Calculator } from 'components/_common/calculator/Calculator';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { FilteredContent } from 'components/_common/filtered-content/FilteredContent';
 
 export const CalculatorPart = ({ config }: CalculatorProps) => {
     const { pageConfig } = usePageConfig();
@@ -18,9 +19,11 @@ export const CalculatorPart = ({ config }: CalculatorProps) => {
     }
 
     return (
-        <Calculator
-            calculatorData={config.targetCalculator.data}
-            header={config.header}
-        />
+        <FilteredContent filters={config.filters}>
+            <Calculator
+                calculatorData={config.targetCalculator.data}
+                header={config.header}
+            />
+        </FilteredContent>
     );
 };
