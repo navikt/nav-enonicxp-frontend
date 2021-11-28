@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Title, BodyShort, Ingress, Label } from '@navikt/ds-react';
+import { Title, BodyLong, Ingress } from '@navikt/ds-react';
 import { BEM } from '../../../../utils/classnames';
 import { translator } from '../../../../translations';
 import './PublishingCalendar.less';
@@ -85,10 +85,10 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
                                     </time>
                                 </td>
                                 <td className="eventInfo">
-                                    <BodyShort className="dateInfo">
+                                    <BodyLong className="dateInfo">
                                         {item.period}
-                                    </BodyShort>
-                                    <Label>{item.displayName}</Label>
+                                    </BodyLong>
+                                    <BodyLong>{item.displayName}</BodyLong>
                                 </td>
                             </tr>
                         );

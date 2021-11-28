@@ -79,7 +79,7 @@ export const bundle = {
     productTaxonomies,
     situations: {
         youMayHaveRightTo: 'Dette kan du ha rett til',
-        employerNeedToKnow: 'Dette må du som arbeidsgiver vite nå',
+        employerNeedToKnow: 'Som arbeidsgiver må du vite dette',
     },
     publishingCalendar: {
         event: 'Kalenderhendelse',

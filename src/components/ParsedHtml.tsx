@@ -90,7 +90,9 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             const { name, attribs, children } = element;
             const tag = name?.toLowerCase();
             const props = !!attribs && attributesToProps(attribs);
+            const validChildren = getNonEmptyChildren(element);
 
+            // Handle macros
             if (tag === processedHtmlMacroTag) {
                 return (
                     <MacroMapper
@@ -100,24 +102,25 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 );
             }
 
+            // Remove img without src
             if (tag === 'img') {
-                return attribs?.src ? (
+                if ( !attribs?.src ) {
+                    return <Fragment />;
+                }
+                return (
                     <img
                         {...props}
                         alt={attribs.alt || ''}
                         src={getMediaUrl(attribs.src)}
                     />
-                ) : (
-                    <Fragment />
                 );
             }
 
+            // Fix header-tags
             if (tag?.match(/^h[1-6]$/)) {
-                const validChildren = getNonEmptyChildren(element);
-
                 // Header-tags should not be used as empty spacers
                 if (!validChildren) {
-                    return <p>{'&nbsp;'}</p>;
+                    return <p>{' '}</p>;
                 }
 
                 const level = headingToLevel[tag] || 2; //Level 1 reserved for page title
@@ -131,12 +134,12 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 );
             }
 
+            // Handle paragraphs
             if (tag === 'p' && children) {
                 // Block level elements should not be nested under inline elements
                 if (hasBlockLevelMacroChildren(element)) {
                     return <>{domToReact(children, replaceElements)}</>;
                 }
-
                 return (
                     <BodyLong spacing {...props}>
                         {domToReact(children, replaceElements)}
@@ -144,26 +147,25 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 );
             }
 
+            // Handle links
             if (tag === 'a') {
                 const href = attribs?.href?.replace('https://www.nav.no', '');
-                const validChildren = getNonEmptyChildren(element);
 
-                return validChildren ? (
+                if (!validChildren) {
+                    return <Fragment />;
+                }
+                return (
                     <LenkeInline {...props} href={href}>
                         {domToReact(validChildren, replaceElements)}
                     </LenkeInline>
-                ) : (
-                    <Fragment />
                 );
             }
 
             // Remove empty lists
             if (tag === 'ul') {
-                const validChildren = getNonEmptyChildren(element);
                 if (!validChildren) {
                     return <Fragment />;
                 }
-
                 return (
                     <ul {...props}>
                         {domToReact(validChildren, replaceElements)}
@@ -171,7 +173,8 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 );
             }
 
-            if (tag === 'table') {
+            // Table class fix, excluding large-table (statistics pages)
+            if (tag === 'table' && attribs?.class !== 'statTab') {
                 return (
                     <div className={classNames(bem('horisontal-scroll'))}>
                         <table {...props} className={'tabell tabell--stripet'}>
@@ -179,6 +182,18 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                         </table>
                     </div>
                 );
+            }
+
+            // Replace empty rows with stylable element
+            if (tag === 'tr' && !validChildren) {
+                return (
+                    <tr {...props} className={'spacer-row'} />
+                );
+            }
+
+            // Remove empty divs
+            if (tag === 'div' && !validChildren) {
+                return <Fragment />;
             }
         },
     };

@@ -8,6 +8,13 @@ import {
 import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
 import { usePathMap } from '../../../store/hooks/usePathMap';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
+
+/**
+ * This component handles client-side async navigation for URLs internal to this app (as well as analytics for links)
+ * This is necessary as there are many other apps sharing the nav.no domain, and attempting async navigation to other
+ * apps may result in errors
+ **/
 
 type Props = {
     href: string;
@@ -30,6 +37,11 @@ export const LenkeBase = ({
     ...rest
 }: Props) => {
     const { internalPathToCustomPath } = usePathMap();
+    const { pageConfig } = usePageConfig();
+
+    // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
+    const shouldPrefetch =
+        prefetch === false || !!pageConfig.editorView ? false : undefined;
 
     const getFinalHref = () => {
         if (isInternalUrl(href)) {
@@ -65,7 +77,7 @@ export const LenkeBase = ({
     );
 
     return isAppUrl(href) ? (
-        <Link href={finalHref} passHref={true} prefetch={prefetch}>
+        <Link href={finalHref} passHref={true} prefetch={shouldPrefetch}>
             {linkElement}
         </Link>
     ) : (

@@ -23,6 +23,8 @@ export interface SpecialOpeningHour {
 
 export interface DefaultContactData {
     ingress?: string;
+    title?: string;
+    url?: string;
 }
 
 export interface SharedContactInformationData extends DefaultContactData {
@@ -35,7 +37,6 @@ export interface SharedContactInformationData extends DefaultContactData {
     };
 }
 export interface TelephoneData {
-    title?: string;
     phoneNumber?: string;
     text?: string;
     alertText?: string;
