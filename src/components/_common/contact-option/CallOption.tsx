@@ -84,12 +84,10 @@ export const CallOption = (props: CallOptionProps) => {
                 (hour) => hour.day === nameOfDay
             );
 
-            if (regularOpeningHour.status === 'OPEN') {
-                openingHours.push({
-                    ...regularOpeningHour,
-                    date: dayToCheckISO,
-                });
-            }
+            openingHours.push({
+                ...regularOpeningHour,
+                date: dayToCheckISO,
+            });
         }
 
         return openingHours;
@@ -174,7 +172,9 @@ export const CallOption = (props: CallOptionProps) => {
         const minutesToClosing = Math.round((toTime - currentTime) / 60000);
         const isClosingSoon = isOpen && minutesToClosing < 31;
 
-        const isClosedForToday = toTime < currentTime && toTime < endOfDay;
+        const isClosedForToday =
+            (toTime < currentTime && toTime < endOfDay) ||
+            openingHours.status === 'CLOSED';
 
         const isOpeningSoon =
             startOfDay < currentTime && currentTime < fromTime;
@@ -188,24 +188,18 @@ export const CallOption = (props: CallOptionProps) => {
         if (isClosedForToday) {
             const nextOpeningHour = findNextOpeningDayAfterToday();
 
-            return buildFutureOpenString(
+            const futureOpeningString = buildFutureOpenString(
                 nextOpeningHour.date,
                 nextOpeningHour.from
             );
+
+            return `${sharedTranslations['closedNow']} • ${futureOpeningString}`;
         }
 
         if (isOpeningSoon) {
             return buildOpeningSoonString(from);
         }
         return `${isOpenText}: ${from} - ${to}`;
-    };
-
-    const shouldShowSpecialHours = () => {
-        const validFrom = new Date(specialOpeningHours.validFrom);
-        const validTo = new Date(specialOpeningHours.validTo);
-        const timeNow = new Date();
-
-        return validFrom < timeNow && validTo > timeNow;
     };
 
     return (
@@ -232,70 +226,10 @@ export const CallOption = (props: CallOptionProps) => {
                     {alertText}
                 </AlertStripe>
             )}
-            {regularOpeningHours && (
-                <div className={classNames(bem('regular-openinghours'))}>
-                    <Title level={2} size="s">
-                        {specialOpeningHours
-                            ? sharedTranslations['generalOpeningHours']
-                            : sharedTranslations['openingHours']}
-                    </Title>
-                    <Accordion
-                        heading={
-                            <BodyShort>
-                                {buildOpenInformationText(
-                                    findTodaysOpeningHour()
-                                )}
-                            </BodyShort>
-                        }
-                    >
-                        <table className={bem('openingHoursTable')}>
-                            <tbody>
-                                {regularOpeningHours.hours.map(
-                                    (hour, index) => (
-                                        <tr key={index}>
-                                            <td>{getWeekDayName(index)}</td>
-                                            <td>
-                                                {hour.status === 'OPEN'
-                                                    ? `${hour.from} - ${hour.to}`
-                                                    : sharedTranslations[
-                                                          'closed'
-                                                      ]}
-                                            </td>
-                                        </tr>
-                                    )
-                                )}
-                            </tbody>
-                        </table>
-                    </Accordion>
-                </div>
-            )}
-            {specialOpeningHours && shouldShowSpecialHours() && (
-                <>
-                    <Title level={2} size="s" spacing>
-                        {specialOpeningHours.title}
-                    </Title>
-                    <BodyLong spacing>{specialOpeningHours.text}</BodyLong>
-                    <table className={bem('specialOpeningHoursTable')}>
-                        <tbody>
-                            {specialOpeningHours.hours.map(
-                                (openingHour, index) => (
-                                    <tr key={index}>
-                                        <td>
-                                            {formatDate(openingHour.date, 'no')}
-                                        </td>
-                                        <td>
-                                            {openingHour.status === 'OPEN'
-                                                ? `${openingHour.from} - ${openingHour.to}`
-                                                : sharedTranslations['closed']}
-                                        </td>
-                                    </tr>
-                                )
-                            )}
-                        </tbody>
-                    </table>
-                    <BodyLong spacing>{specialOpeningHours.footNote}</BodyLong>
-                </>
-            )}
+            <Title level={3} size="s" className={bem('apningstider')}>
+                Åpningstider
+            </Title>
+            <div>{buildOpenInformationText(findTodaysOpeningHour())}</div>
         </div>
     );
 };

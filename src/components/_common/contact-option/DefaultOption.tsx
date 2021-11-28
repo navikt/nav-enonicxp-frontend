@@ -21,18 +21,22 @@ interface DefaultContactProps extends DefaultContactData {
 }
 
 export const DefaultOption = (props: DefaultContactProps) => {
-    const { ingress, channel } = props;
+    const { ingress, channel, title, url } = props;
     const { language } = usePageConfig();
 
     const getTranslations = translator('contactPoint', language);
     const translations = getTranslations(channel);
 
     const getTitle = () => {
-        if (!translations) {
-            return '';
+        if (title) {
+            return title;
         }
 
-        return translations.title;
+        if (translations && translations.title) {
+            return translations.title;
+        }
+
+        return '';
     };
 
     const getIngress = () => {
@@ -44,7 +48,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
     const getUrlOrClickHandler = (channel: ChannelType) => {
         if (channel === ChannelType.WRITE) {
             return {
-                href: '/person/kontakt-oss/nb/skriv-til-oss',
+                href: url || '/person/kontakt-oss/nb/skriv-til-oss',
             };
         }
 

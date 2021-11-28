@@ -38,6 +38,7 @@ export interface SharedContactInformationData extends DefaultContactData {
 }
 export interface TelephoneData {
     phoneNumber?: string;
+    title?: string;
     text?: string;
     alertText?: string;
     regularOpeningHours?: {
