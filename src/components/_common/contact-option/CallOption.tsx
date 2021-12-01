@@ -1,25 +1,24 @@
 import { translator } from 'translations';
-import { Title, BodyLong, Accordion, BodyShort } from '@navikt/ds-react';
+import { Title, BodyLong, Alert } from '@navikt/ds-react';
+
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { TelephoneData } from '../../../types/component-props/parts/contact-option';
 
 import { BEM, classNames } from 'utils/classnames';
+import { dateDiff, formatDate, getCurrentISODate } from 'utils/datetime';
 
-import {
-    dateDiff,
-    formatDate,
-    getCurrentISODate,
-    getDayNameFromNumber,
-} from 'utils/datetime';
+import { stripXpPathPrefix } from 'utils/urls';
+
+import { mergeOpeningHours } from '../contact-details/contactHelpers';
 
 import './CallOption.less';
-import AlertStripe from 'nav-frontend-alertstriper';
 
 const bem = BEM('callOption');
 
 interface CallOptionProps extends TelephoneData {
+    _path: string;
     ingress: string;
 }
 
@@ -32,20 +31,16 @@ export const CallOption = (props: CallOptionProps) => {
         specialOpeningHours,
         text,
         title,
+        _path,
     } = props;
 
     const { language } = usePageConfig();
 
     const getDateTimeTranslations = translator('dateTime', language);
-    const weekDayNames = getDateTimeTranslations('weekDayNames');
     const relatives = getDateTimeTranslations('relatives');
 
     const getContactTranslations = translator('contactPoint', language);
     const sharedTranslations = getContactTranslations('shared');
-
-    const getWeekDayName = (day: number) => {
-        return weekDayNames[day];
-    };
 
     const getIsClosingSoonText = (mins: number): string => {
         if (mins < 5) {
@@ -58,45 +53,13 @@ export const CallOption = (props: CallOptionProps) => {
         return '';
     };
 
-    const prioritizeAndMergeOpeningHours = () => {
-        const totalDaysToCheck = 7 + specialOpeningHours.hours.length;
-        const today = Date.now();
-        const openingHours = [];
-
-        for (let day = 0; day < totalDaysToCheck; day++) {
-            const dayToCheck = new Date(today + 86400000 * day);
-            const dayToCheckISO = dayToCheck.toISOString().split('T')[0];
-            const nameOfDay = getDayNameFromNumber(dayToCheck.getDay());
-
-            // Special opening hours take precidence, so check these first.
-            const specialOpeningHour = specialOpeningHours.hours.find(
-                (hour) => hour.date === dayToCheckISO
-            );
-
-            if (specialOpeningHour) {
-                openingHours.push(specialOpeningHour);
-                continue;
-            }
-
-            // No special hours were found for this particular date, so
-            // look at regular opening hours
-            const regularOpeningHour = regularOpeningHours.hours.find(
-                (hour) => hour.day === nameOfDay
-            );
-
-            openingHours.push({
-                ...regularOpeningHour,
-                date: dayToCheckISO,
-            });
-        }
-
-        return openingHours;
-    };
-
     const findTodaysOpeningHour = () => {
         const today = new Date();
         const todayISO = today.toISOString().split('T')[0];
-        const allOpeningHours = prioritizeAndMergeOpeningHours();
+        const allOpeningHours = mergeOpeningHours(
+            regularOpeningHours.hours,
+            specialOpeningHours.hours
+        );
 
         const todaysOpeningHour = allOpeningHours.find(
             (hour) => hour.date === todayISO
@@ -108,7 +71,10 @@ export const CallOption = (props: CallOptionProps) => {
     const findNextOpeningDayAfterToday = () => {
         const today = new Date();
         const todayISO = today.toISOString().split('T')[0];
-        const allOpeningHours = prioritizeAndMergeOpeningHours();
+        const allOpeningHours = mergeOpeningHours(
+            regularOpeningHours.hours,
+            specialOpeningHours.hours
+        );
 
         for (let day = 0; day < allOpeningHours.length; day++) {
             const openingHour = allOpeningHours[day];
@@ -199,7 +165,7 @@ export const CallOption = (props: CallOptionProps) => {
         if (isOpeningSoon) {
             return buildOpeningSoonString(from);
         }
-        return `${isOpenText}: ${from} - ${to}`;
+        return `${isOpenText} • ${from} - ${to}`;
     };
 
     return (
@@ -221,15 +187,18 @@ export const CallOption = (props: CallOptionProps) => {
             <BodyLong className={bem('text')} spacing>
                 {ingress || text}
             </BodyLong>
-            {alertText && (
-                <AlertStripe type="advarsel" className={bem('alertText')}>
-                    {alertText}
-                </AlertStripe>
-            )}
             <Title level={3} size="s" className={bem('apningstider')}>
-                Åpningstider
+                {sharedTranslations['openingHours']}:
             </Title>
             <div>{buildOpenInformationText(findTodaysOpeningHour())}</div>
+            {alertText && (
+                <Alert variant="warning" className={bem('alertText')}>
+                    {alertText}
+                </Alert>
+            )}
+            <LenkeBase href={stripXpPathPrefix(_path)}>
+                {sharedTranslations['seeAllOpeningHours']}
+            </LenkeBase>
         </div>
     );
 };

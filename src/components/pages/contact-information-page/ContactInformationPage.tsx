@@ -1,7 +1,5 @@
 import React from 'react';
-import { ErrorPage } from '../error-page/ErrorPage';
-import { make404Props } from '../../../utils/make-error-props';
-import { CallOption } from 'components/_common/contact-option/CallOption';
+import { TelephoneDetails } from 'components/_common/contact-details/TelephoneDetails';
 
 import { classNames, BEM } from 'utils/classnames';
 
@@ -13,13 +11,11 @@ export const ContactInformationPage = (props: any) => {
     const { data } = props;
     const { contactType } = data;
 
-    if (!props.editorView) {
-        return <ErrorPage {...make404Props(props._path)} />;
-    }
-
     return (
-        <div className={classNames(bem(), bem('preview-wrapper'))}>
-            <CallOption {...contactType.telephone} />
+        <div className={classNames(bem())}>
+            <div className={classNames(bem('content'))}>
+                <TelephoneDetails {...contactType.telephone} />
+            </div>
         </div>
     );
 };

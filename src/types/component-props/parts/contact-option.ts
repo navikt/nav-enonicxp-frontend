@@ -29,6 +29,7 @@ export interface DefaultContactData {
 
 export interface SharedContactInformationData extends DefaultContactData {
     sharedContactInformation: {
+        _path: string;
         data: {
             contactType: {
                 telephone?: TelephoneData;

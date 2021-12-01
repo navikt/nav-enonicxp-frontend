@@ -31,9 +31,14 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
         const { sharedContactInformation } =
             channelData as SharedContactInformationData;
 
+        if (!sharedContactInformation) {
+            return null;
+        }
+
         return (
             <CallOption
                 {...sharedContactInformation.data.contactType.telephone}
+                _path={sharedContactInformation._path}
                 ingress={channelData.ingress}
             />
         );

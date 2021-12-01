@@ -110,11 +110,12 @@ export const bundle = {
             openingHours: 'Åpningstider',
             specialHours: 'Spesielle åpningstider',
             closed: 'Stengt',
-            openNow: 'Åpent nå',
+            openNow: 'Åpent',
             opensAt: 'Åpner {$1} kl {$2}',
             closedNow: 'Stengt nå',
             closingInAbout: 'Stenger om ca {$1} minutter',
             closingNow: 'Stenger straks',
+            seeAllOpeningHours: 'Se alle åpningstider',
         },
     },
     dateTime: {
@@ -131,6 +132,7 @@ export const bundle = {
             today: 'i dag',
             tomorrow: 'i morgen',
         },
+        day: 'dag',
     },
     versionHistory: {
         label: 'Versjonshistorikk',

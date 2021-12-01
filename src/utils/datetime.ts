@@ -8,7 +8,7 @@ dayjs.extend(localizedFormat);
 dayjs.extend(utc);
 
 // JS starts week on a Sunday.
-const days = [
+export const days = [
     'sunday',
     'monday',
     'tuesday',
@@ -18,10 +18,17 @@ const days = [
     'saturday',
 ];
 
-export const formatDate = (datetime: string, language: string = 'nb') => {
+export const formatDate = (
+    datetime: string,
+    language: string = 'nb',
+    short = false
+) => {
     const currentLocale = language === 'en' ? 'en-gb' : 'nb';
+
+    const format = short ? 'DD. MMMM' : 'L';
+
     return datetime
-        ? dayjs(datetime).locale(currentLocale).format('L')
+        ? dayjs(datetime).locale(currentLocale).format(format)
         : datetime;
 };
 
@@ -64,4 +71,11 @@ export const dateDiff = (date1: string, date2: string): number => {
     } catch (error) {
         throw new Error(error);
     }
+};
+
+export const getStartOfWeek = () => {
+    const currentDate = new Date(getCurrentISODate());
+    var day = currentDate.getDay(),
+        diff = currentDate.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
+    return new Date(currentDate.setDate(diff));
 };
