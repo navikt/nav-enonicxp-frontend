@@ -3,8 +3,21 @@ import { Alert, AlertProps } from '@navikt/ds-react';
 import { classNames } from '../../../utils/classnames';
 import './AlertStripe.less';
 
+export type AlertTypeLegacy = 'info' | 'advarsel' | 'feil' | 'suksess';
+
+type Variant = AlertProps['variant'];
+
+const legacyTypeToVariant: {
+    [type in AlertTypeLegacy]: Variant;
+} = {
+    info: 'info',
+    advarsel: 'warning',
+    feil: 'error',
+    suksess: 'success',
+};
+
 type Props = {
-    variant: AlertProps['variant'];
+    variant: Variant | AlertTypeLegacy;
     size?: AlertProps['size'];
     className?: string;
     children: React.ReactNode;
@@ -19,7 +32,7 @@ export const AlertStripe = ({
 }: Props) => {
     return (
         <Alert
-            variant={variant}
+            variant={legacyTypeToVariant[variant] || variant}
             size={size}
             className={classNames('alert-part', className)}
             {...rest}
