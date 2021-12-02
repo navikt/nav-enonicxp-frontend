@@ -12,8 +12,6 @@ import {
 import { MacroMapper } from './macros/MacroMapper';
 import { headingToLevel, headingToSize } from '../types/typo-style';
 import { MacroType } from '../types/macro-props/_macros-common';
-import { BEM } from '../utils/classnames';
-import classNames from 'classnames';
 import { usePageConfig } from '../store/hooks/usePageConfig';
 import { EditorHelp } from './_common/editor-utils/editor-help/EditorHelp';
 import ReactDOMServer from 'react-dom/server';
@@ -21,7 +19,8 @@ import { store } from '../store/store';
 import { Provider } from 'react-redux';
 import './ParsedHtml.less';
 
-const blockLevelMacros = {
+const blockLevelMacros: { [key in MacroType]?: boolean } = {
+    [MacroType.AlertBox]: true,
     [MacroType.HeaderWithAnchor]: true,
     [MacroType.HtmlFragment]: true,
     [MacroType.InfoBoks]: true,
@@ -32,7 +31,16 @@ const blockLevelMacros = {
     [MacroType.Video]: true,
 };
 
-const bem = BEM('tabell');
+const macroTagOpenFilter = new RegExp(`<p><${processedHtmlMacroTag}`, 'ig');
+const macroTagCloseFilter = new RegExp(`</p></${processedHtmlMacroTag}`, 'ig');
+
+const cleanHtml = (html: string) =>
+    html
+        // Remove whitespace/linebreaks to prevent certain parsing errors
+        .replace(/(\r\n|\n|\r|\s)/gm, ' ')
+        // Remove <p>-tags surrounding macro-tags, which may cause invalid nesting
+        .replace(macroTagOpenFilter, `<${processedHtmlMacroTag}`)
+        .replace(macroTagCloseFilter, `</${processedHtmlMacroTag}>`);
 
 const hasBlockLevelMacroChildren = (element: Element) => {
     return element.children?.some(
@@ -104,7 +112,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Remove img without src
             if (tag === 'img') {
-                if ( !attribs?.src ) {
+                if (!attribs?.src) {
                     return <Fragment />;
                 }
                 return (
@@ -120,7 +128,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag?.match(/^h[1-6]$/)) {
                 // Header-tags should not be used as empty spacers
                 if (!validChildren) {
-                    return <p>{' '}</p>;
+                    return <p> </p>;
                 }
 
                 const level = headingToLevel[tag] || 2; //Level 1 reserved for page title
@@ -138,6 +146,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag === 'p' && children) {
                 // Block level elements should not be nested under inline elements
                 if (hasBlockLevelMacroChildren(element)) {
+                    console.error('This should not happen!');
                     return <>{domToReact(children, replaceElements)}</>;
                 }
                 return (
@@ -176,7 +185,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             // Table class fix, excluding large-table (statistics pages)
             if (tag === 'table' && attribs?.class !== 'statTab') {
                 return (
-                    <div className={classNames(bem('horisontal-scroll'))}>
+                    <div className={'tabell__horisontal-scroll'}>
                         <table {...props} className={'tabell tabell--stripet'}>
                             {domToReact(children, replaceElements)}
                         </table>
@@ -186,9 +195,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Replace empty rows with stylable element
             if (tag === 'tr' && !validChildren) {
-                return (
-                    <tr {...props} className={'spacer-row'} />
-                );
+                return <tr {...props} className={'spacer-row'} />;
             }
 
             // Remove empty divs
@@ -199,9 +206,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
     };
 
     const htmlParsed = htmlReactParser(
-        processedHtml
-            // Remove whitespace/linebreaks to prevent certain parsing errors
-            .replace(/(\r\n|\n|\r|\s)/gm, ' '),
+        cleanHtml(processedHtml),
         replaceElements
     );
 

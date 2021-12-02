@@ -22,10 +22,12 @@ import { MacroGlobalValue } from './global-value/MacroGlobalValue';
 import { MacroGlobalValueWithMath } from './global-value-with-math/MacroGlobalValueWithMath';
 import { MacroProductCardMini } from './product-card-mini/MacroProductCardMini';
 import { MacroIngress } from './ingress/MacroIngress';
+import { MacroAlertBox } from './alert-box/MacroAlertBox';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
 } = {
+    [MacroType.AlertBox]: MacroAlertBox,
     [MacroType.Button]: MacroButton,
     [MacroType.ButtonBlue]: MacroButtonBlue,
     [MacroType.ChatbotLink]: MacroChatbotLink,
