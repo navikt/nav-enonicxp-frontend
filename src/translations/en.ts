@@ -124,6 +124,11 @@ export const bundle: Translations = {
             closingNow: 'Closing now',
             seeAllOpeningHours: 'See all opening hours',
         },
+        information: {
+            callCostTitle: 'What are the calling rates for NAV?',
+            callCostIngress:
+                'From your cell phone: Individual rates depending on your plan. /n From a landline: Same cost as a local call. Calling technical support is free.',
+        },
     },
     versionHistory: {
         label: 'Version history',

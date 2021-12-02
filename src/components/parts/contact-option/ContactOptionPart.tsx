@@ -32,7 +32,11 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
             channelData as SharedContactInformationData;
 
         if (!sharedContactInformation) {
-            return null;
+            return (
+                <EditorHelp
+                    text={'Kunne ikke vise den delte kontaktinformasjonen!'}
+                />
+            );
         }
 
         return (

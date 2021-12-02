@@ -12,7 +12,7 @@ export interface RegularOpeningHour {
     status: string;
     from: string;
     to: string;
-    day: string;
+    dayName: string;
 }
 export interface SpecialOpeningHour {
     status: string;

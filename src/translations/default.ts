@@ -117,6 +117,11 @@ export const bundle = {
             closingNow: 'Stenger straks',
             seeAllOpeningHours: 'Se alle åpningstider',
         },
+        information: {
+            callCostTitle: 'Hva koster det å ringe NAV?',
+            callCostIngress:
+                'Fra mobiltelefon: Egne takster avhengig av abonnementet ditt. /n Fra fasttelefon: Samme pris som for å ringe et lokalt telefonnummer. Det er gratis å ringe teknisk brukerstøtte.',
+        },
     },
     dateTime: {
         weekDayNames: [
