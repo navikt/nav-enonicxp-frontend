@@ -34,7 +34,7 @@ export const AlertStripe = ({
         <Alert
             variant={legacyTypeToVariant[variant] || variant}
             size={size}
-            className={classNames('alert-part', className)}
+            className={classNames('alert-stripe', className)}
             {...rest}
         >
             {children}

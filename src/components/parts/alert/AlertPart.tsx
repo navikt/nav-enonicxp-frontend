@@ -11,11 +11,12 @@ export const AlertPart = (props: AlertPartProps) => {
         return <EditorHelp text={'Tomt varselpanel'} />;
     }
 
-    const { content, type, margin } = config;
+    const { content, type, size, margin } = config;
 
     return (
         <AlertStripe
             variant={type || 'info'}
+            size={size === 'small' ? 's' : 'm'}
             style={{
                 ...(margin && { margin }),
             }}

@@ -8,6 +8,7 @@ export interface AlertPartProps extends PartComponentProps {
     descriptor: PartType.Alert;
     config: {
         type: AlertTypeLegacy;
+        size: 'small' | 'medium';
         content: ProcessedHtmlProps;
         margin: string;
     } & RenderOnAuthStateMixin;
