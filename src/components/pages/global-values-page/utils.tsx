@@ -3,6 +3,7 @@ import { GlobalValueItem } from '../../../types/content-props/global-values-prop
 import { GVMessageProps } from './components/messages/GVMessages';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { editorPathPrefix } from '../../../utils/urls';
+import { EditorLinkWrapper } from '../../_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
 
 export const gvNameExists = (
     itemName: string,
@@ -22,27 +23,31 @@ const getUsageMessages = (usage) => {
         (content): GVMessageProps => ({
             message: (
                 <>
-                    <LenkeStandalone
-                        href={content.path.replace('/www.nav.no', '')}
-                        target={'_blank'}
-                        withChevron={false}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                        }}
-                    >
-                        {content.displayName}
-                    </LenkeStandalone>
+                    <EditorLinkWrapper>
+                        <LenkeStandalone
+                            href={content.path.replace('/www.nav.no', '')}
+                            target={'_blank'}
+                            withChevron={false}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                            }}
+                        >
+                            {content.displayName}
+                        </LenkeStandalone>
+                    </EditorLinkWrapper>
                     {' // '}
-                    <LenkeStandalone
-                        href={`${editorPathPrefix}/${content.id}`}
-                        target={'_blank'}
-                        withChevron={false}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                        }}
-                    >
-                        {'[Åpne i editor]'}
-                    </LenkeStandalone>
+                    <EditorLinkWrapper>
+                        <LenkeStandalone
+                            href={`${editorPathPrefix}/${content.id}`}
+                            target={'_blank'}
+                            withChevron={false}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                            }}
+                        >
+                            {'[Åpne i editor]'}
+                        </LenkeStandalone>
+                    </EditorLinkWrapper>
                 </>
             ),
             level: 'info',
