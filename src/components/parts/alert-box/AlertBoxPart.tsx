@@ -8,15 +8,16 @@ export const AlertBoxPart = (props: AlertBoxPartProps) => {
     const { config } = props;
 
     if (!config) {
-        return <EditorHelp text={'Tomt varselpanel'} />;
+        return <EditorHelp text={'Varselboksen er ikke konfigurert'} />;
     }
 
-    const { content, type, size, margin } = config;
+    const { content, type, size, inline, margin } = config;
 
     return (
         <AlertBox
             variant={type || 'info'}
             size={size}
+            inline={inline}
             style={{
                 ...(margin && { margin }),
             }}

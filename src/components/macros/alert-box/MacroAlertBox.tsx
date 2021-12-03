@@ -8,10 +8,10 @@ export const MacroAlertBox = ({ config }: MacroAlertBoxProps) => {
         return null;
     }
 
-    const { body, size, type } = config.alert_box;
+    const { body, size, type, inline } = config.alert_box;
 
     return (
-        <AlertBox variant={type} size={size}>
+        <AlertBox variant={type} size={size} inline={inline}>
             <ParsedHtml htmlProps={body} />
         </AlertBox>
     );

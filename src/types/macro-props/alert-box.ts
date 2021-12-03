@@ -6,7 +6,8 @@ export interface MacroAlertBoxProps extends MacroPropsCommon {
         alert_box: {
             body: string;
             type: 'error' | 'warning' | 'info' | 'success';
-            size: 'small' | 'medium';
+            size?: 'small' | 'medium';
+            inline?: boolean;
         };
     };
 }

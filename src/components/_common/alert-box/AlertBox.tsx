@@ -20,6 +20,7 @@ const legacyTypeToVariant: {
 type Props = {
     variant: Variant | AlertTypeLegacy;
     size?: AlertProps['size'];
+    inline?: AlertProps['inline'];
     className?: string;
     children: React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>;
@@ -27,6 +28,7 @@ type Props = {
 export const AlertBox = ({
     variant,
     size,
+    inline,
     className,
     children,
     ...rest
@@ -35,6 +37,7 @@ export const AlertBox = ({
         <Alert
             variant={legacyTypeToVariant[variant] || variant}
             size={size}
+            inline={inline}
             className={classNames('alert-box', className)}
             {...rest}
         >
