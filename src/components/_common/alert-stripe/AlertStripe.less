@@ -1,7 +1,11 @@
 .alert-stripe {
     width: 100%;
 
-    p:last-child {
+    &:not(:last-child) {
+        margin-bottom: 1.5rem;
+    }
+
+    * > :last-child {
         margin-bottom: 0;
     }
 }
