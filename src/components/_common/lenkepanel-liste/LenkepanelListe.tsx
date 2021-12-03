@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinkPanel } from 'types/link-panel';
 import { BEM } from 'utils/classnames';
-import { BodyLong, Title, Ingress } from '@navikt/ds-react';
+import { BodyLong, Heading, Ingress } from '@navikt/ds-react';
 import LenkepanelNavNo from '../lenkepanel/LenkepanelNavNo';
 import { getUrlFromContent } from '../../../utils/links-from-content';
 import './LenkepanelListe.less';
@@ -20,9 +20,9 @@ export const LenkepanelListe = ({ title, ingress, items }: Props) => {
         <section className={bem()} aria-label={title}>
             {title && (
                 <div className={bem('tittel')}>
-                    <Title level={2} size="xl">
+                    <Heading level="2" size="xlarge">
                         {title}
-                    </Title>
+                    </Heading>
                 </div>
             )}
             {ingress && <Ingress className={bem('ingress')}>{ingress}</Ingress>}

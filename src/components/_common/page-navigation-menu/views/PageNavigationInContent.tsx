@@ -18,10 +18,10 @@ export const PageNavigationInContent = ({ title, links }: Props) => {
         <div className={classNames(bem())}>
             {title && (
                 <Header
-                    level={2}
+                    level="2"
                     className={bem('title')}
                     justify={'left'}
-                    size="m"
+                    size="medium"
                 >
                     {title}
                 </Header>

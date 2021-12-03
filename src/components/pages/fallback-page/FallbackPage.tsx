@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import './FallbackPage.less';
 
@@ -9,9 +9,9 @@ export const FallbackPage = () => {
             <div className={'fallback-page__spinner'}>
                 <NavFrontendSpinner />
             </div>
-            <Title level={1} size="m">
+            <Heading level="1" size="medium">
                 {'Laster side-innhold...'}
-            </Title>
+            </Heading>
         </div>
     );
 };

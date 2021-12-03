@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, BodyLong } from '@navikt/ds-react';
+import { Heading, BodyLong } from '@navikt/ds-react';
 import { BEM } from '../../../../utils/classnames';
 import { SearchForm } from './search-form/SearchForm';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
@@ -39,9 +39,9 @@ export const ErrorContent404 = () => {
             <SearchForm />
 
             <div className={bem('content-en')}>
-                <Title level={2} size="l" className={bem('en-header')}>
+                <Heading level="2" size="large" className={bem('en-header')}>
                     {'In English'}
-                </Title>
+                </Heading>
                 <BodyLong>{'The page you requested cannot be found.'}</BodyLong>
                 <BodyLong>
                     {'Go to the '}

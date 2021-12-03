@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { BodyLong, Title } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import htmlReactParser, { Element, domToReact } from 'html-react-parser';
 import { isTag, isText } from 'domhandler';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
@@ -104,7 +104,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Remove img without src
             if (tag === 'img') {
-                if ( !attribs?.src ) {
+                if (!attribs?.src) {
                     return <Fragment />;
                 }
                 return (
@@ -120,17 +120,17 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag?.match(/^h[1-6]$/)) {
                 // Header-tags should not be used as empty spacers
                 if (!validChildren) {
-                    return <p>{' '}</p>;
+                    return <p> </p>;
                 }
 
-                const level = headingToLevel[tag] || 2; //Level 1 reserved for page title
+                const level = headingToLevel[tag] || 2; //Level 1 reserved for page heading
                 const size = headingToSize[tag];
 
                 return (
-                    // H1 tags should only be used for the page title
-                    <Title {...props} size={size} level={level} spacing>
+                    // H1 tags should only be used for the page heading
+                    <Heading {...props} size={size} level={level} spacing>
                         {domToReact(validChildren, replaceElements)}
-                    </Title>
+                    </Heading>
                 );
             }
 
@@ -186,9 +186,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Replace empty rows with stylable element
             if (tag === 'tr' && !validChildren) {
-                return (
-                    <tr {...props} className={'spacer-row'} />
-                );
+                return <tr {...props} className={'spacer-row'} />;
             }
 
             // Remove empty divs

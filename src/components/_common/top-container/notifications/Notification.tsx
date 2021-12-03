@@ -76,7 +76,7 @@ export const Notification = (props: NotificationProps) => {
                     </BodyLong>
                 )}
                 {showUpdated && (
-                    <BodyShort size="s" className={bem('updated')}>
+                    <BodyShort size="small" className={bem('updated')}>
                         {`${getDateLabel('lastChanged')}: ${formatDate(
                             modifiedTime
                         )}`}

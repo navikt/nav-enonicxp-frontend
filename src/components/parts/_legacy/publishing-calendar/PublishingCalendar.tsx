@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Title, BodyLong, Ingress } from '@navikt/ds-react';
+import { Heading, BodyLong, Ingress } from '@navikt/ds-react';
 import { BEM } from '../../../../utils/classnames';
 import { translator } from '../../../../translations';
 import './PublishingCalendar.less';
@@ -50,9 +50,9 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
     return (
         <div className={bem()}>
             <header>
-                <Title level={1} size="xl">
+                <Heading level="1" size="xlarge">
                     {props.displayName}
-                </Title>
+                </Heading>
                 {props.data.ingress && (
                     <Ingress className={bem('preface')}>
                         {props.data.ingress}
