@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchWithTimeout } from '../../../../utils/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { Button } from '../../../_common/button/Button';
 import { BEM } from '../../../../utils/classnames';
 import { EditorLinkWrapper } from '../../../_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
@@ -78,11 +78,11 @@ export const FragmentUsageCheck = ({ id }: Props) => {
             <div className={bem('header')}>
                 {numUniqueUsages > 0 ? (
                     <>
-                        <Title level={3} size="m">
+                        <Heading level="3" size="medium">
                             {`Fragmentet er i bruk på ${numUniqueUsages} publisert${
                                 numUniqueUsages === 1 ? '' : 'e'
                             } side${numUniqueUsages === 1 ? '' : 'r'}`}
-                        </Title>
+                        </Heading>
                         <EditorLinkWrapper>
                             <Button
                                 type={'flat'}
@@ -96,22 +96,22 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                         </EditorLinkWrapper>
                     </>
                 ) : (
-                    <Title level={3} size="s">
+                    <Heading level="3" size="small">
                         {`Fragmentet er ikke i bruk på publiserte sider`}
-                    </Title>
+                    </Heading>
                 )}
             </div>
             {showUsage && (
                 <div>
                     {componentUsage.length > 0 && (
                         <>
-                            <Title
-                                level={3}
-                                size={'s'}
+                            <Heading
+                                level="3"
+                                size="small"
                                 className={bem('usage-header')}
                             >
                                 {'I bruk som komponent:'}
-                            </Title>
+                            </Heading>
                             {componentUsage.map((content) => (
                                 <FragmentUsageLink {...content} />
                             ))}
@@ -119,13 +119,13 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                     )}
                     {macroUsage.length > 0 && (
                         <>
-                            <Title
-                                level={3}
-                                size={'s'}
+                            <Heading
+                                level="3"
+                                size="small"
                                 className={bem('usage-header')}
                             >
                                 {'I bruk som macro:'}
-                            </Title>
+                            </Heading>
                             {macroUsage.map((content) => (
                                 <FragmentUsageLink {...content} />
                             ))}

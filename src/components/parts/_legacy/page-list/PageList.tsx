@@ -1,6 +1,6 @@
 import React from 'react';
 import { BEM } from 'utils/classnames';
-import { Title, BodyLong, Ingress, BodyShort } from '@navikt/ds-react';
+import { Heading, BodyLong, Ingress, BodyShort } from '@navikt/ds-react';
 import { formatDate } from 'utils/datetime';
 import { Language, translator } from 'translations';
 import { PageListProps } from 'types/content-props/page-list-props';
@@ -25,9 +25,9 @@ const PageList = (props: PageListProps) => {
 
     return (
         <div className={bem()}>
-            <Title level={1} size="2xl">
+            <Heading level="1" size="2xlarge">
                 {props.displayName}
-            </Title>
+            </Heading>
             <div className={bem('ingress')}>
                 <Ingress>{props.data.ingress}</Ingress>
             </div>
@@ -86,7 +86,7 @@ const CreatedAndModifiedDate = (props: DatesProps) => {
     const getDateLabel = translator('dates', language);
     return (
         <div className={className}>
-            <BodyShort size="s">
+            <BodyShort size="small">
                 {`${getDateLabel('published')}: ${formatDate(createdTime)}`}
                 {' | '}
                 {`${getDateLabel('lastChanged')}: ${formatDate(modifiedTime)}`}

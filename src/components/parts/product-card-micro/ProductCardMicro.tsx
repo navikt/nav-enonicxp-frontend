@@ -21,7 +21,7 @@ export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {
 
     return (
         <>
-            {header && <Label size="m">{header}</Label>}
+            {header && <Label size="medium">{header}</Label>}
             {card_list.map((card) => {
                 const props = getCardProps(card.targetPage, language);
                 return (

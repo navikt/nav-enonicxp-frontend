@@ -1,4 +1,4 @@
-import { Title, BodyLong } from '@navikt/ds-react';
+import { Heading, BodyLong } from '@navikt/ds-react';
 import React from 'react';
 import { BEM, classNames } from 'utils/classnames';
 
@@ -92,9 +92,9 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
                     bem('icon', selectedChannel)
                 )}
             />
-            <Title level={2} size="m" className={bem('title')}>
+            <Heading level="2" size="medium" className={bem('title')}>
                 {getTitle(selectedChannel, channelData)}
-            </Title>
+            </Heading>
             <BodyLong className={bem('text')}>
                 {getIngress(selectedChannel, channelData)}
             </BodyLong>

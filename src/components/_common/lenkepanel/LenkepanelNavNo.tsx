@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import { BEM, classNames } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
@@ -55,9 +55,13 @@ const LenkepanelNavNo = ({
         >
             {ikon && <div className={bem('ikon')}>{ikon}</div>}
             <div className={bem('innhold')}>
-                <Title level={2} size="s" className={'lenkepanel__heading'}>
+                <Heading
+                    level="2"
+                    size="small"
+                    className={'lenkepanel__heading'}
+                >
                     {tittel}
-                </Title>
+                </Heading>
                 {separator && <hr className={bem('separator')} />}
                 {children && <div className={bem('ingress')}>{children}</div>}
             </div>

@@ -1,4 +1,4 @@
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 
 import classNames from 'classnames';
 import { BEM } from '../../../utils/classnames';
@@ -26,11 +26,8 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const { language } = usePageConfig();
     const getLabel = translator('filteredContent', language);
 
-    const {
-        selectedFilters,
-        availableFilters,
-        toggleFilter,
-    } = useFilterState();
+    const { selectedFilters, availableFilters, toggleFilter } =
+        useFilterState();
 
     // Create a flat array of all ids that any
     // underlying part that has filter ids attached.
@@ -63,13 +60,13 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
 
     return (
         <div className={bem('wrapper')}>
-            <Title
-                level={3}
-                size="s"
+            <Heading
+                level="3"
+                size="small"
                 className={classNames(bem(), bem('header'))}
             >
                 {getLabel('showingInformationFor')}
-            </Title>
+            </Heading>
             <div className={bem('container')}>
                 {filtersToDisplay.map((filter) => {
                     const isSelected = selectedFilters.includes(filter.id);

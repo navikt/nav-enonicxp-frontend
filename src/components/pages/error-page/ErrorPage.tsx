@@ -1,6 +1,6 @@
 import React from 'react';
 import { ErrorProps } from 'types/content-props/error-props';
-import { Ingress, Title } from '@navikt/ds-react';
+import { Ingress, Heading } from '@navikt/ds-react';
 import { ErrorContent404 } from './errorcode-content/ErrorContent404';
 import { ErrorContent1337 } from './errorcode-content/ErrorContent1337';
 import { ErrorContentDefault } from './errorcode-content/ErrorContentDefault';
@@ -37,9 +37,9 @@ export const ErrorPage = (props: ErrorProps) => {
                 </style>
             </Head>
             <div className={bem('header')}>
-                <Title level={1} size="xl" className={bem('header-msg')}>
+                <Heading level="1" size="xlarge" className={bem('header-msg')}>
                     {errorMessage}
-                </Title>
+                </Heading>
                 <Ingress
                     className={bem('header-code')}
                 >{`Statuskode ${errorCode}`}</Ingress>

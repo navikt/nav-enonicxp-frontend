@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label, Title } from '@navikt/ds-react';
+import { Label, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 
 import classNames from 'classnames';
@@ -40,9 +40,9 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
 
     return (
         <nav className={bem()}>
-            <Title level={2} size="m" className={bem('title')}>
+            <Heading level="2" size="medium" className={bem('title')}>
                 {getLabel('contents')}
-            </Title>
+            </Heading>
             <ul>
                 <li>
                     {parentSelected ? (

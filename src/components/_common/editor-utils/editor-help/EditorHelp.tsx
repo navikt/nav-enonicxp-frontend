@@ -32,7 +32,7 @@ export const EditorHelp = ({ text, type = 'info' }: Props) => {
                 alt={''}
                 className={classNames(bem('icon'), bem('icon', type))}
             />
-            <BodyShort spacing={false} size="s" className={bem('content')}>
+            <BodyShort spacing={false} size="small" className={bem('content')}>
                 {text}
             </BodyShort>
         </div>

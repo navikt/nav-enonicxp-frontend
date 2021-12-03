@@ -1,6 +1,12 @@
 export type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-export type Level = 1 | 2 | 3 | 4 | 5;
-export type Size = '2xl' | 'xl' | 'l' | 'm' | 's';
+export type Level = '1' | '2' | '3' | '4' | '5' | '6';
+export type Size =
+    | '2xlarge'
+    | 'xlarge'
+    | 'large'
+    | 'medium'
+    | 'small'
+    | 'xsmall';
 
 export enum HeaderTypoStyle {
     Sidetittel = 'sidetittel',
@@ -25,23 +31,23 @@ export enum TypoStyle {
 export const headingToLevel: {
     [key in HeadingTag]: Level;
 } = {
-    h1: 1,
-    h2: 2,
-    h3: 3,
-    h4: 4,
-    h5: 5,
-    h6: 5, // The new design system only allows for 5 levels.
+    h1: '1',
+    h2: '2',
+    h3: '3',
+    h4: '4',
+    h5: '5',
+    h6: '6', // The new design system only allows for 5 levels.
 };
 
 export const headingToSize: {
     [key in HeadingTag]: Size;
 } = {
-    h1: '2xl',
-    h2: 'xl',
-    h3: 'l',
-    h4: 'm',
-    h5: 's',
-    h6: 's',
+    h1: '2xlarge',
+    h2: 'xlarge',
+    h3: 'large',
+    h4: 'medium',
+    h5: 'small',
+    h6: 'xsmall',
 };
 
 // Used if no size is set, so we need to check level and determine
@@ -49,19 +55,20 @@ export const headingToSize: {
 export const levelToSize: {
     [key in Level]: Size;
 } = {
-    1: '2xl',
-    2: 'xl',
-    3: 'l',
-    4: 'm',
-    5: 's',
+    1: '2xlarge',
+    2: 'xlarge',
+    3: 'large',
+    4: 'medium',
+    5: 'small',
+    6: 'xsmall',
 };
 
 export const typoToSize: {
     [key in HeaderTypoStyle]: Size;
 } = {
-    [HeaderTypoStyle.Sidetittel]: '2xl',
-    [HeaderTypoStyle.Innholdstittel]: 'xl',
-    [HeaderTypoStyle.Systemtittel]: 'l',
-    [HeaderTypoStyle.Undertittel]: 'm',
-    [HeaderTypoStyle.Element]: 's',
+    [HeaderTypoStyle.Sidetittel]: '2xlarge',
+    [HeaderTypoStyle.Innholdstittel]: 'xlarge',
+    [HeaderTypoStyle.Systemtittel]: 'large',
+    [HeaderTypoStyle.Undertittel]: 'medium',
+    [HeaderTypoStyle.Element]: 'small',
 };

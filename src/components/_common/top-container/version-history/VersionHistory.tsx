@@ -4,7 +4,7 @@ import { ContentProps } from '../../../../types/content-props/_content-common';
 import { LenkeStandalone } from '../../lenke/LenkeStandalone';
 import NavFrontendChevron from 'nav-frontend-chevron';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { VersionStatus } from './status/VersionStatus';
 import { VersionSelector } from './selector/VersionSelector';
 import { translator } from 'translations';
@@ -41,9 +41,10 @@ export const VersionHistory = ({ content }: Props) => {
     }, [versionUrlRequested]);
 
     return (
-        <div role={'navigation'}
-             className={bem()}
-             aria-label={getLabel('label')}
+        <div
+            role={'navigation'}
+            className={bem()}
+            aria-label={getLabel('label')}
         >
             {!versionUrlRequested && timeRequested && (
                 <VersionStatus
@@ -76,9 +77,9 @@ export const VersionHistory = ({ content }: Props) => {
             />
             {versionUrlRequested && (
                 <div className={bem('spinner-container')}>
-                    <Title size={'m'} level={2}>
+                    <Heading size="medium" level="2">
                         {getLabel('loading')}
-                    </Title>
+                    </Heading>
                     <NavFrontendSpinner className={bem('spinner')} />
                 </div>
             )}
