@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GlobalValuesProps } from '../../../types/content-props/global-values-props';
 import { BEM } from '../../../utils/classnames';
-import { Heading } from '@navikt/ds-react';
+import { Select, Heading } from '@navikt/ds-react';
 import { GVMessages } from './components/messages/GVMessages';
 import ErrorPage404 from '../../../pages/404';
-import { GVItems } from './components/values/GVItems';
+import { GlobalValueSortOrder, GVItems } from './components/values/GVItems';
 import { GVAddItem } from './components/values/add-item/GVAddItem';
 import {
     setContentIdAction,
@@ -16,6 +16,8 @@ import './GlobalValuesPage.less';
 const bem = BEM('global-values-page');
 
 const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
+    const [sortOrder, setSortOrder] = useState<GlobalValueSortOrder>('default');
+
     useEffect(() => {
         const header = document.getElementById('decorator-header');
         if (header) {
@@ -51,9 +53,27 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
 
     return (
         <div className={bem()}>
-            <Heading level="1" size="xlarge" className={bem('header')}>
-                {'Globale verdier'}
-            </Heading>
+            <div className={bem('header-row')}>
+                <Heading level="1" size="xlarge" className={bem('header')}>
+                    {'Globale verdier'}
+                </Heading>
+                <Select
+                    size={'small'}
+                    label={'Sortering'}
+                    hideLabel={true}
+                    onChange={(e) => {
+                        const selection = e.target.value;
+                        if (selection) {
+                            setSortOrder(selection as GlobalValueSortOrder);
+                        }
+                    }}
+                    className={bem('sort-selector')}
+                >
+                    <option value={''}>{'Velg sortering'}</option>
+                    <option value={'default'}>{'Standard'}</option>
+                    <option value={'alphabetical'}>{'Alfabetisk'}</option>
+                </Select>
+            </div>
             <div className={bem('content')}>
                 <div className={bem('left-col')}>
                     <div className={bem('sub-header-row')}>
@@ -66,7 +86,7 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
                         </div>
                         <GVAddItem />
                     </div>
-                    <GVItems />
+                    <GVItems sortOrder={sortOrder} />
                 </div>
                 <GVMessages />
             </div>

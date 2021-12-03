@@ -2,30 +2,38 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { GVItem } from './item/GVItem';
 import { BEM } from '../../../../../utils/classnames';
 import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
-import { GlobalValueItem } from '../../../../../types/content-props/global-values-props';
 
 const bem = BEM('gv-items');
 
-const norwegianSort = new Intl.Collator(['no', 'nb', 'nn'], {
+const norwegianCompare = new Intl.Collator(['no', 'nb', 'nn'], {
     usage: 'sort',
 }).compare;
 
-const sortByDate = (a: GlobalValueItem, b: GlobalValueItem) =>
-    norwegianSort(a.itemName.toLowerCase(), b.itemName.toLowerCase());
+export type GlobalValueSortOrder = 'default' | 'alphabetical' | 'custom';
 
 type Props = {
-    sortBy?: 'default' | 'date';
+    sortOrder?: GlobalValueSortOrder;
 };
 
-export const GVItems = ({ sortBy = 'default' }: Props) => {
+export const GVItems = ({ sortOrder = 'default' }: Props) => {
     const { valueItems } = useGvEditorState();
     const [sortedItems, setSortedItems] = useState(valueItems);
 
+    // TODO: add custom ordering/drag
     useEffect(() => {
-        if (sortBy === 'date') {
-            setSortedItems(valueItems.sort(sortByDate));
+        if (sortOrder === 'alphabetical') {
+            setSortedItems(
+                [...valueItems].sort((a, b) =>
+                    norwegianCompare(
+                        a.itemName.toLowerCase(),
+                        b.itemName.toLowerCase()
+                    )
+                )
+            );
+        } else {
+            setSortedItems(valueItems);
         }
-    }, [sortBy, valueItems]);
+    }, [sortOrder, valueItems]);
 
     return (
         <div className={bem()}>
