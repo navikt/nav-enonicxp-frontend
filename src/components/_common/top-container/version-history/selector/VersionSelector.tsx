@@ -99,7 +99,7 @@ export const VersionSelector = ({
                 {editorView && (
                     <div className={bem('help-text')}>
                         <hr />
-                        <BodyLong size={'s'}>
+                        <BodyLong size="small">
                             {
                                 'Denne historikken går foreløpig kun tilbake til desember 2019. Ta kontakt med redaksjonen dersom du har behov for tidligere historikk.'
                             }

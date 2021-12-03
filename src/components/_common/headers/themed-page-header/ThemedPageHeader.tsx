@@ -72,7 +72,7 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             <div className={bem('text')}>
                 <PageHeader justify={'left'}>{pageTitle}</PageHeader>
                 {subTitle && (
-                    <BodyShort size="s" className={bem('label')}>
+                    <BodyShort size="small" className={bem('label')}>
                         {subTitle.toUpperCase()}
                     </BodyShort>
                 )}

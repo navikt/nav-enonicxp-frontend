@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { BEM, classNames } from '../../../../utils/classnames';
 import { PageNavigationLink } from '../PageNavigationLink';
 import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
@@ -27,9 +27,9 @@ export const PageNavigationSidebar = ({
     return (
         <div className={classNames(bem())}>
             {title && (
-                <Title level={2} size="m" className={bem('title')}>
+                <Heading level="2" size="medium" className={bem('title')}>
                     {title}
-                </Title>
+                </Heading>
             )}
             <nav aria-label={'Innhold'}>
                 <ul className={bem('list')}>

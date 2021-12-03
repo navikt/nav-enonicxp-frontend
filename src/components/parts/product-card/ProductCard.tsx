@@ -40,7 +40,7 @@ export const ProductCardPart = ({
         return (
             <>
                 {header && (
-                    <Label size="m" className="card-heading">
+                    <Label size="medium" className="card-heading">
                         {header}
                     </Label>
                 )}

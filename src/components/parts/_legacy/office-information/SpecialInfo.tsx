@@ -1,6 +1,6 @@
 import React from 'react';
 import { ParsedHtml } from '../../../ParsedHtml';
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import classNames from 'classnames';
 import { BEM } from 'utils/classnames';
 import './SpecialInfo.less';
@@ -66,9 +66,9 @@ export const SpecialInformation = (props: Props) => {
     const specialInfo = parseSpecialInfo(props.info);
     return specialInfo ? (
         <div className={classNames(bem())}>
-            <Title level={2} size="s">
+            <Heading level="2" size="small">
                 Opplysninger
-            </Title>
+            </Heading>
             <ParsedHtml htmlProps={specialInfo} />
         </div>
     ) : null;

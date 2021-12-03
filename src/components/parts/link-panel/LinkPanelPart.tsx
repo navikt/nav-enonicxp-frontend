@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkPanelPartProps } from 'types/component-props/parts/link-panel';
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { BEM, classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
@@ -35,7 +35,7 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
             border={true}
             className={classNames(
                 bem(),
-                isVerticalLayout ? `vertical` : 'horisontal',
+                isVerticalLayout ? `vertical` : 'horisontal'
             )}
             style={bgUrl && { backgroundImage: `url(${bgUrl})` }}
             linkCreator={(props) => (
@@ -56,23 +56,23 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                             className={classNames(
                                 bem('icon'),
                                 selectedVariant === 'verticalWithBgColor' &&
-                                bem('icon', 'bg'),
+                                    bem('icon', 'bg')
                             )}
                             style={{
                                 ...(selectedVariant ===
                                     'verticalWithBgColor' && {
-                                        backgroundColor:
+                                    backgroundColor:
                                         variantConfig.iconBg?.color,
-                                        alignItems: variantConfig.iconJustify,
-                                    }),
+                                    alignItems: variantConfig.iconJustify,
+                                }),
                             }}
                         >
                             <XpImage imageProps={icon} alt={''} />
                         </div>
                     )}
-                    <Title level={2} size='m' className={bem('title')}>
+                    <Heading level="2" size="medium" className={bem('title')}>
                         {linkProps.text}
-                    </Title>
+                    </Heading>
                 </div>
                 <div className={bem('ingress')}>{ingress}</div>
             </div>

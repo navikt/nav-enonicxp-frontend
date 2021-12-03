@@ -18,7 +18,9 @@ export const ErrorFeedbackLink = ({ errorId }: Props) => {
                 {errorId &&
                     " Inkluder gjerne feil-id'en under i din tilbakemelding."}
             </BodyLong>
-            {errorId && <BodyLong size={'s'}>{`Feil-id: ${errorId}`}</BodyLong>}
+            {errorId && (
+                <BodyLong size="small">{`Feil-id: ${errorId}`}</BodyLong>
+            )}
         </>
     );
 };
