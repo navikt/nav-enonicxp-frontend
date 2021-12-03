@@ -19,7 +19,7 @@ export const GVItems = ({ sortOrder = 'default' }: Props) => {
     const { valueItems } = useGvEditorState();
     const [sortedItems, setSortedItems] = useState(valueItems);
 
-    // TODO: add custom ordering/drag
+    // TODO: add custom ordering
     useEffect(() => {
         if (sortOrder === 'alphabetical') {
             setSortedItems(
