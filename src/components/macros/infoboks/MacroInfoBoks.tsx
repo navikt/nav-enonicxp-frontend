@@ -1,6 +1,6 @@
 import React from 'react';
 import { MacroInfoBoksProps } from '../../../types/macro-props/infoBoks';
-import { AlertStripe } from '../../_common/alert-stripe/AlertStripe';
+import { AlertBox } from '../../_common/alert-box/AlertBox';
 import { ParsedHtml } from '../../ParsedHtml';
 import './MacroInfoBoks.less';
 
@@ -14,8 +14,8 @@ export const MacroInfoBoks = ({ config }: MacroInfoBoksProps) => {
     const { infoBoks } = config.infoBoks;
 
     return (
-        <AlertStripe variant={'info'} className={'macro-infoboks'}>
+        <AlertBox variant={'info'} className={'macro-infoboks'}>
             <ParsedHtml htmlProps={infoBoks} />
-        </AlertStripe>
+        </AlertBox>
     );
 };

@@ -1,10 +1,10 @@
 import React from 'react';
-import { AlertPartProps } from 'types/component-props/parts/alert';
+import { AlertBoxPartProps } from 'types/component-props/parts/alert-box';
 import { ParsedHtml } from '../../ParsedHtml';
-import { AlertStripe } from '../../_common/alert-stripe/AlertStripe';
+import { AlertBox } from '../../_common/alert-box/AlertBox';
 import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
 
-export const AlertPart = (props: AlertPartProps) => {
+export const AlertBoxPart = (props: AlertBoxPartProps) => {
     const { config } = props;
 
     if (!config) {
@@ -14,14 +14,14 @@ export const AlertPart = (props: AlertPartProps) => {
     const { content, type, size, margin } = config;
 
     return (
-        <AlertStripe
+        <AlertBox
             variant={type || 'info'}
-            size={size === 'small' ? 's' : 'm'}
+            size={size}
             style={{
                 ...(margin && { margin }),
             }}
         >
             <ParsedHtml htmlProps={content} />
-        </AlertStripe>
+        </AlertBox>
     );
 };

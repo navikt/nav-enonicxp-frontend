@@ -2,12 +2,11 @@ import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 import { ProcessedHtmlProps } from '../../processed-html-props';
 import { RenderOnAuthStateMixin } from '../_mixins';
-import { AlertTypeLegacy } from '../../../components/_common/alert-stripe/AlertStripe';
 
-export interface AlertPartProps extends PartComponentProps {
-    descriptor: PartType.Alert;
+export interface AlertBoxPartProps extends PartComponentProps {
+    descriptor: PartType.AlertBox;
     config: {
-        type: AlertTypeLegacy;
+        type: 'info' | 'advarsel' | 'feil' | 'suksess';
         size: 'small' | 'medium';
         content: ProcessedHtmlProps;
         margin: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ParsedHtml } from '../../ParsedHtml';
 import { MacroAlertBoxProps } from '../../../types/macro-props/alert-box';
-import { AlertStripe } from '../../_common/alert-stripe/AlertStripe';
+import { AlertBox } from '../../_common/alert-box/AlertBox';
 
 export const MacroAlertBox = ({ config }: MacroAlertBoxProps) => {
     if (!config?.alert_box) {
@@ -11,8 +11,8 @@ export const MacroAlertBox = ({ config }: MacroAlertBoxProps) => {
     const { body, size, type } = config.alert_box;
 
     return (
-        <AlertStripe variant={type} size={size === 'small' ? 's' : 'm'}>
+        <AlertBox variant={type} size={size}>
             <ParsedHtml htmlProps={body} />
-        </AlertStripe>
+        </AlertBox>
     );
 };

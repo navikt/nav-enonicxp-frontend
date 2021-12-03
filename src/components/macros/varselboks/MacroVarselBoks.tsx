@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertStripe } from '../../_common/alert-stripe/AlertStripe';
+import { AlertBox } from '../../_common/alert-box/AlertBox';
 import { MacroVarselBoksProps } from '../../../types/macro-props/varselBoks';
 import { ParsedHtml } from '../../ParsedHtml';
 import './MacroVarselBoks.less';
@@ -14,8 +14,8 @@ export const MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
     const { varselBoks } = config.varselBoks;
 
     return (
-        <AlertStripe variant={'advarsel'} className={'macro-varselboks'}>
+        <AlertBox variant={'advarsel'} className={'macro-varselboks'}>
             <ParsedHtml htmlProps={varselBoks} />
-        </AlertStripe>
+        </AlertBox>
     );
 };
