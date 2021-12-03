@@ -9,8 +9,19 @@
     padding: @paddingVertical @paddingHorizontal;
     border: 4px solid @navGronnLighten60;
 
-    &__header {
+    &__header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 1rem;
+    }
+
+    &__header {
+    }
+
+    &__sort-selector {
+        width: 100%;
+        max-width: 10rem;
     }
 
     &__content {

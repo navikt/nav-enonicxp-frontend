@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { BodyLong, Title } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import htmlReactParser, { Element, domToReact } from 'html-react-parser';
 import { isTag, isText } from 'domhandler';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
@@ -98,14 +98,14 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <p> </p>;
                 }
 
-                const level = headingToLevel[tag] || 2; //Level 1 reserved for page title
+                const level = headingToLevel[tag] || 2; //Level 1 reserved for page heading
                 const size = headingToSize[tag];
 
                 return (
-                    // H1 tags should only be used for the page title
-                    <Title {...props} size={size} level={level} spacing>
+                    // H1 tags should only be used for the page heading
+                    <Heading {...props} size={size} level={level} spacing>
                         {domToReact(validChildren, replaceElements)}
-                    </Title>
+                    </Heading>
                 );
             }
 

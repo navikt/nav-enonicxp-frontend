@@ -1,7 +1,7 @@
 import React from 'react';
 import { BEM } from '../../../../utils/classnames';
 import { translator } from 'translations';
-import { Title, Ingress } from '@navikt/ds-react';
+import { Heading, Ingress } from '@navikt/ds-react';
 import Innholdsfortegnelse from './innholdsfortegnelse/Innholdsfortegnelse';
 import SosialeMedier from './SosialeMedier';
 import ArtikkelDato from './ArtikkelDato';
@@ -46,9 +46,14 @@ export const MainArticle = (propsInitial: ContentProps) => {
                     publishLabel={getLabel('published')}
                     modifiedLabel={getLabel('lastChanged')}
                 />
-                <Title level={1} size="2xl" className={bem('title')}>
+                <Heading
+                    level="1"
+                    size="2xlarge"
+                    className={bem('title')}
+                    spacing
+                >
                     {props.displayName}
-                </Title>
+                </Heading>
                 {data.ingress && <Ingress>{data.ingress}</Ingress>}
                 <Innholdsfortegnelse
                     innholdsfortegnelse={innholdsfortegnelse}

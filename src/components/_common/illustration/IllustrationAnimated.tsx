@@ -62,6 +62,7 @@ export const IllustrationAnimated = ({
     useEffect(() => {
         const lottieData = isPressed ? lottieDataActive : lottieDataHover;
         updateLottieContainer(lottieData);
+        /* eslint-disable-next-line */
     }, []);
 
     useEffect(() => {

@@ -20,21 +20,12 @@ const initialState: GvEditorState = {
     messages: [],
 };
 
-const norwegianSort = new Intl.Collator(['no', 'nb', 'nn'], {
-    usage: 'sort',
-}).compare;
-
 export const gvEditorStateSlice = createSlice({
     name: 'gvEditorState',
     initialState,
     reducers: {
         setValueItems: (state, action: PayloadAction<GvItemsPayload>) => {
-            state.valueItems = action.payload.valueItems.sort((itemA, itemB) =>
-                norwegianSort(
-                    itemA.itemName.toLowerCase(),
-                    itemB.itemName.toLowerCase()
-                )
-            );
+            state.valueItems = action.payload.valueItems;
         },
         setContentId: (state, action: PayloadAction<GvContentIdPayload>) => {
             state.contentId = action.payload.contentId;

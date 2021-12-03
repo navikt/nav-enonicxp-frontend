@@ -13,7 +13,7 @@ export const ErrorContent400 = (props: ErrorProps) => {
         return (
             <>
                 <BodyLong>{'Den forespurte adressen er ikke gyldig:'}</BodyLong>
-                <BodyLong spacing={true} size={'s'}>
+                <BodyLong spacing={true} size="small">
                     {`${appOrigin}${props._path}`}
                 </BodyLong>
                 <BodyLong spacing={true}>
