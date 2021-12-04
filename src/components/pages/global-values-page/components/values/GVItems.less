@@ -24,7 +24,12 @@
         margin: 0 -0.5rem;
         background-color: white;
         border-radius: @border-radius-base;
-        border: 3px solid transparent;
+        border: 2px solid transparent;
+        box-shadow: 1px 2px 3px 1px @navGra40;
+
+        &:not(:last-child) {
+            margin-bottom: 0.5rem;
+        }
 
         &--dragged {
             border-color: @navOransje;

@@ -12,21 +12,17 @@ const norwegianCompare = new Intl.Collator(['no', 'nb', 'nn'], {
 
 export const GVItemsAlphabetical = () => {
     const { valueItems } = useGvEditorState();
+    const sortedItems = [...valueItems].sort((a, b) =>
+        norwegianCompare(a.itemName.toLowerCase(), b.itemName.toLowerCase())
+    );
 
     return (
         <div className={bem()}>
-            {valueItems
-                .sort((a, b) =>
-                    norwegianCompare(
-                        a.itemName.toLowerCase(),
-                        b.itemName.toLowerCase()
-                    )
-                )
-                .map((item) => (
-                    <div className={bem('item')}>
-                        <GVItem item={item} />
-                    </div>
-                ))}
+            {sortedItems.map((item) => (
+                <div className={bem('item')}>
+                    <GVItem item={item} />
+                </div>
+            ))}
         </div>
     );
 };
