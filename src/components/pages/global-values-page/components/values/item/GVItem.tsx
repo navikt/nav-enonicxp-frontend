@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
 import { BEM, classNames } from '../../../../../../utils/classnames';
 import { GVButton } from '../../button/GVButton';
@@ -33,13 +33,20 @@ const ItemView = ({ item }: Props) => {
 };
 
 export const GVItem = ({ item }: Props) => {
-    const [editMode, setEditMode] = useState(false);
-    const { setMessages, contentId } = useGvEditorState();
+    const { setMessages, contentId, itemsEditState, setItemEditState } =
+        useGvEditorState();
+
+    const { key } = item;
+
+    const editMode = itemsEditState[key];
 
     return (
         <div className={bem()}>
             {editMode ? (
-                <GVItemEditor item={item} onClose={() => setEditMode(false)} />
+                <GVItemEditor
+                    item={item}
+                    onClose={() => setItemEditState(key, false)}
+                />
             ) : (
                 <ItemView item={item} />
             )}
@@ -48,7 +55,7 @@ export const GVItem = ({ item }: Props) => {
                     <GVButton
                         onClick={(e) => {
                             e.preventDefault();
-                            setEditMode(!editMode);
+                            setItemEditState(key, !editMode);
                         }}
                     >
                         {'Endre verdi'}

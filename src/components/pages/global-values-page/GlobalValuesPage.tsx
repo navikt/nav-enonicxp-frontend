@@ -70,7 +70,7 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
                     className={bem('sort-selector')}
                 >
                     <option value={''}>{'Velg sortering'}</option>
-                    <option value={'default'}>{'Standard'}</option>
+                    <option value={'default'}>{'Egendefinert'}</option>
                     <option value={'alphabetical'}>{'Alfabetisk'}</option>
                 </Select>
             </div>
@@ -86,6 +86,7 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
                         </div>
                         <GVAddItem />
                     </div>
+                    <hr />
                     <GVItems sortOrder={sortOrder} />
                 </div>
                 <GVMessages />

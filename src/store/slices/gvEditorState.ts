@@ -6,6 +6,7 @@ export type GvEditorState = {
     contentId: string;
     valueItems: GlobalValueItem[];
     messages: GVMessageProps[];
+    itemsEditState: { [key: string]: boolean };
 };
 
 export type GvItemsPayload = Pick<GvEditorState, 'valueItems'>;
@@ -14,10 +15,13 @@ export type GvContentIdPayload = Pick<GvEditorState, 'contentId'>;
 
 export type GvMessagesPayload = Pick<GvEditorState, 'messages'>;
 
+export type GvItemStatePayload = { key: string; isEditMode: boolean };
+
 const initialState: GvEditorState = {
     contentId: '',
     valueItems: [],
     messages: [],
+    itemsEditState: {},
 };
 
 export const gvEditorStateSlice = createSlice({
@@ -33,6 +37,13 @@ export const gvEditorStateSlice = createSlice({
         setMessages: (state, action: PayloadAction<GvMessagesPayload>) => {
             state.messages = action.payload.messages;
         },
+        setItemEditState: (
+            state,
+            action: PayloadAction<GvItemStatePayload>
+        ) => {
+            state.itemsEditState[action.payload.key] =
+                action.payload.isEditMode;
+        },
     },
 });
 
@@ -40,6 +51,7 @@ export const {
     setValueItems: setValueItemsAction,
     setContentId: setContentIdAction,
     setMessages: setMessagesAction,
+    setItemEditState: setItemEditStateAction,
 } = gvEditorStateSlice.actions;
 
 export default gvEditorStateSlice.reducer;
