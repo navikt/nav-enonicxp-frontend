@@ -4,16 +4,19 @@ import { BEM } from '../../../utils/classnames';
 import { Select, Heading } from '@navikt/ds-react';
 import { GVMessages } from './components/messages/GVMessages';
 import ErrorPage404 from '../../../pages/404';
-import { GlobalValueSortOrder, GVItems } from './components/values/GVItems';
 import { GVAddItem } from './components/values/add-item/GVAddItem';
 import {
     setContentIdAction,
     setValueItemsAction,
 } from '../../../store/slices/gvEditorState';
 import { store } from '../../../store/store';
+import { GVItemsOrdered } from './components/values/GVItemsOrdered';
+import { GVItemsAlphabetical } from './components/values/GVItemsAlphabetical';
 import './GlobalValuesPage.less';
 
 const bem = BEM('global-values-page');
+
+type GlobalValueSortOrder = 'default' | 'alphabetical';
 
 const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
     const [sortOrder, setSortOrder] = useState<GlobalValueSortOrder>('default');
@@ -87,7 +90,11 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
                         <GVAddItem />
                     </div>
                     <hr />
-                    <GVItems sortOrder={sortOrder} />
+                    {sortOrder === 'default' ? (
+                        <GVItemsOrdered />
+                    ) : (
+                        <GVItemsAlphabetical />
+                    )}
                 </div>
                 <GVMessages />
             </div>
