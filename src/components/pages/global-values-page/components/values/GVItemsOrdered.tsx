@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { List, arrayMove } from 'react-movable';
 import { GVItem } from './item/GVItem';
 import { BEM, classNames } from '../../../../../utils/classnames';
@@ -17,13 +17,12 @@ const ReorderIcon = () => (
 );
 
 export const GVItemsOrdered = () => {
-    const { valueItems, contentId } = useGvEditorState();
-    const [sortedItems, setSortedItems] = useState(valueItems);
+    const { valueItems, setValueItems, contentId } = useGvEditorState();
 
     const reorderItems = ({ oldIndex, newIndex }) => {
-        const newSortedItems = arrayMove(sortedItems, oldIndex, newIndex);
+        const newSortedItems = arrayMove(valueItems, oldIndex, newIndex);
 
-        setSortedItems(newSortedItems);
+        setValueItems(newSortedItems);
 
         gvServiceReorderItems(
             newSortedItems.map((item) => item.key),
@@ -43,7 +42,7 @@ export const GVItemsOrdered = () => {
 
     return (
         <List
-            values={sortedItems}
+            values={valueItems}
             onChange={reorderItems}
             lockVertically={true}
             renderList={({ children, props }) => (

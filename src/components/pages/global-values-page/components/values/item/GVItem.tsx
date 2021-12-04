@@ -7,6 +7,7 @@ import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState
 import { gvServiceGetUsage } from '../../../api/services/usage';
 import { generateGvUsageMessages } from '../../../utils';
 import './GVItem.less';
+import { BodyShort, Heading } from '@navikt/ds-react';
 
 const bem = BEM('gv-item');
 
@@ -19,15 +20,19 @@ const ItemView = ({ item }: Props) => {
 
     return (
         <div className={bem('display')}>
-            <div className={classNames(bem('name'))}>{itemName}</div>
-            <div className={bem('value-container')}>
-                {numberValue !== undefined && (
-                    <div>
-                        <span className={bem('label')}>{'Tall-verdi: '}</span>
-                        <span className={bem('value')}>{numberValue}</span>
-                    </div>
-                )}
-            </div>
+            <Heading
+                level={'3'}
+                size={'small'}
+                className={classNames(bem('name'))}
+            >
+                {itemName}
+            </Heading>
+            <BodyShort size={'small'} as={'span'}>
+                {'Verdi: '}
+            </BodyShort>
+            <BodyShort className={bem('value')} as={'span'}>
+                {numberValue}
+            </BodyShort>
         </div>
     );
 };
