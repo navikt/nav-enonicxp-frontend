@@ -52,15 +52,16 @@ export const GVItemsCustomOrder = () => {
             )}
             renderItem={({ value, props, isDragged }) => {
                 return (
-                    <div
-                        {...props}
-                        className={classNames(
-                            bem('item'),
-                            isDragged && bem('item', 'dragged')
-                        )}
-                    >
-                        <ReorderIcon />
-                        <GVItem item={value} />
+                    <div {...props} className={bem('item-drag-container')}>
+                        <div
+                            className={classNames(
+                                bem('item'),
+                                isDragged && bem('item', 'dragged')
+                            )}
+                        >
+                            <ReorderIcon />
+                            <GVItem item={value} />
+                        </div>
                     </div>
                 );
             }}

@@ -18,6 +18,10 @@
         }
     }
 
+    &__item-drag-container {
+        padding: 0.5rem;
+    }
+
     &__item {
         display: flex;
         padding: 0.5rem;
@@ -25,10 +29,6 @@
         background-color: white;
         border-radius: @border-radius-base;
         box-shadow: 1px 2px 3px 2px @navGra40;
-
-        &:not(:last-child) {
-            margin-bottom: 0.75rem;
-        }
 
         &--dragged {
             box-shadow: 0 0 3px 3px @navGronnLighten40;
