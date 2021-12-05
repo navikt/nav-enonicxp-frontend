@@ -16,7 +16,7 @@ const ReorderIcon = () => (
     </span>
 );
 
-export const GVItemsOrdered = () => {
+export const GVItemsCustomOrder = () => {
     const { valueItems, setValueItems, contentId } = useGvEditorState();
 
     const reorderItems = ({ oldIndex, newIndex }) => {

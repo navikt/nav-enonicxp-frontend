@@ -10,7 +10,7 @@ const norwegianCompare = new Intl.Collator(['no', 'nb', 'nn'], {
     usage: 'sort',
 }).compare;
 
-export const GVItemsAlphabetical = () => {
+export const GVItemsSorted = () => {
     const { valueItems } = useGvEditorState();
     const sortedItems = [...valueItems].sort((a, b) =>
         norwegianCompare(a.itemName.toLowerCase(), b.itemName.toLowerCase())
@@ -19,7 +19,7 @@ export const GVItemsAlphabetical = () => {
     return (
         <div className={bem()}>
             {sortedItems.map((item) => (
-                <div className={bem('item')}>
+                <div className={bem('item')} key={item.key}>
                     <GVItem item={item} />
                 </div>
             ))}
