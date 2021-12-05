@@ -19,8 +19,10 @@ export const GVItemsSorted = () => {
     return (
         <div className={bem()}>
             {sortedItems.map((item) => (
-                <div className={bem('item')} key={item.key}>
-                    <GVItem item={item} />
+                <div className={bem('item-outer')}>
+                    <div className={bem('item')} key={item.key}>
+                        <GVItem item={item} />
+                    </div>
                 </div>
             ))}
         </div>
