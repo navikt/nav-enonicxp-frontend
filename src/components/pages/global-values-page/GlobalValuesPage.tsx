@@ -96,7 +96,6 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
                         </div>
                         <GVAddItem />
                     </div>
-                    <hr />
                     {listOrder === 'sorted' || valueItems.length < 2 ? (
                         <GVItemsSorted />
                     ) : (
