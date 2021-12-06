@@ -4,10 +4,10 @@ import { GVMessageProps } from '../../components/messages/GVMessages';
 type ServiceResponse = GVMessageProps;
 
 export const gvServiceReorderItems = (
-    keys: string[],
+    orderedKeys: string[],
     contentId: string
 ): Promise<ServiceResponse> =>
     globalValuesServiceFetch<ServiceResponse>('reorder', {
-        keys,
+        orderedKeys,
         contentId,
     });
