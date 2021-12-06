@@ -9,15 +9,9 @@ import './GVItems.less';
 
 const bem = BEM('gv-items');
 
-const ReorderIcon = () => (
-    <span data-movable-handle={true} className={bem('drag-handle')}>
-        <Up />
-        <Down />
-    </span>
-);
-
 export const GVItemsCustomOrder = () => {
-    const { valueItems, setValueItems, contentId } = useGvEditorState();
+    const { valueItems, setValueItems, contentId, setMessages } =
+        useGvEditorState();
 
     const reorderItems = ({ oldIndex, newIndex }) => {
         const newSortedItems = arrayMove(valueItems, oldIndex, newIndex);
@@ -28,16 +22,22 @@ export const GVItemsCustomOrder = () => {
             newSortedItems.map((item) => item.key),
             contentId
         )
-            .then((res) =>
-                console.log(
-                    `Response from reorder request on ${contentId} - ${res.message}`
-                )
-            )
-            .catch((e) =>
+            .then((res) => {
+                if (res.level === 'error') {
+                    throw new Error(res.message.toString());
+                }
+            })
+            .catch((e) => {
                 console.error(
                     `Error from reorder request on ${contentId} - ${e}`
-                )
-            );
+                );
+                setMessages([
+                    {
+                        message: `Feil ved omsortering av verdier: ${e}`,
+                        level: 'error',
+                    },
+                ]);
+            });
     };
 
     return (
@@ -58,7 +58,13 @@ export const GVItemsCustomOrder = () => {
                             isDragged && bem('item', 'dragged')
                         )}
                     >
-                        <ReorderIcon />
+                        <span
+                            data-movable-handle={true}
+                            className={bem('drag-handle')}
+                        >
+                            <Up />
+                            <Down />
+                        </span>
                         <GVItem item={value} />
                     </div>
                 </div>
