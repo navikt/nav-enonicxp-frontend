@@ -12,8 +12,6 @@ import {
 import { MacroMapper } from './macros/MacroMapper';
 import { headingToLevel, headingToSize } from '../types/typo-style';
 import { MacroType } from '../types/macro-props/_macros-common';
-import { BEM } from '../utils/classnames';
-import classNames from 'classnames';
 import { usePageConfig } from '../store/hooks/usePageConfig';
 import { EditorHelp } from './_common/editor-utils/editor-help/EditorHelp';
 import ReactDOMServer from 'react-dom/server';
@@ -21,7 +19,8 @@ import { store } from '../store/store';
 import { Provider } from 'react-redux';
 import './ParsedHtml.less';
 
-const blockLevelMacros = {
+const blockLevelMacros: { [macroType in MacroType]?: boolean } = {
+    [MacroType.AlertBox]: true,
     [MacroType.HeaderWithAnchor]: true,
     [MacroType.HtmlFragment]: true,
     [MacroType.InfoBoks]: true,
@@ -31,8 +30,6 @@ const blockLevelMacros = {
     [MacroType.VarselBoks]: true,
     [MacroType.Video]: true,
 };
-
-const bem = BEM('tabell');
 
 const hasBlockLevelMacroChildren = (element: Element) => {
     return element.children?.some(
@@ -176,7 +173,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             // Table class fix, excluding large-table (statistics pages)
             if (tag === 'table' && attribs?.class !== 'statTab') {
                 return (
-                    <div className={classNames(bem('horisontal-scroll'))}>
+                    <div className={'tabell__horisontal-scroll'}>
                         <table {...props} className={'tabell tabell--stripet'}>
                             {domToReact(children, replaceElements)}
                         </table>
@@ -196,12 +193,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
         },
     };
 
-    const htmlParsed = htmlReactParser(
-        processedHtml
-            // Remove whitespace/linebreaks to prevent certain parsing errors
-            .replace(/(\r\n|\n|\r|\s)/gm, ' '),
-        replaceElements
-    );
+    const htmlParsed = htmlReactParser(processedHtml, replaceElements);
 
     // If the html renders to an empty string (or whitespace only), show an
     // error message in the editor

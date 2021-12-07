@@ -35,8 +35,6 @@
         "lodash.debounce": "^4.0.8",
         "lottie-web": "^5.7.12",
         "mathjs": "^9.4.4",
-        "nav-frontend-alertstriper": "^3.1.2",
-        "nav-frontend-alertstriper-style": "^2.1.1",
         "nav-frontend-chevron": "^1.0.30",
         "nav-frontend-chevron-style": "^1.0.4",
         "nav-frontend-core": "^6.0.1",

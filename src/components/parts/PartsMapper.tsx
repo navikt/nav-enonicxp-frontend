@@ -8,7 +8,7 @@ import MainPanels from './_legacy/main-panels/MainPanels';
 import { MenuList } from './_legacy/menu-list/MenuList';
 import PageHeading from './_legacy/page-heading/PageHeading';
 import PageList from './_legacy/page-list/PageList';
-import Alert from './alert/Alert';
+import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './link-panel/LinkPanelPart';
 import { MainArticle } from './_legacy/main-article/MainArticle';
 import {
@@ -57,7 +57,7 @@ const partsWithPageData: {
 const partsWithOwnData: {
     [key in PartWithOwnData]: React.FunctionComponent<PartComponentProps>;
 } = {
-    [PartType.Alert]: Alert,
+    [PartType.AlertBox]: AlertBoxPart,
     [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanelPart,
     [PartType.LinkList]: LinkList,
