@@ -2,6 +2,7 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store';
 import {
     GvEditorState,
+    setItemEditStateAction,
     setMessagesAction,
     setValueItemsAction,
 } from '../slices/gvEditorState';
@@ -14,9 +15,8 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const useGvEditorState = () => {
     const dispatch = useAppDispatch();
 
-    const { contentId, valueItems, messages } = useAppSelector<GvEditorState>(
-        (state) => state.gvEditorState
-    );
+    const { contentId, valueItems, messages, itemsEditState } =
+        useAppSelector<GvEditorState>((state) => state.gvEditorState);
 
     const setValueItems = (valueItems: GlobalValueItem[]) => {
         dispatch(setValueItemsAction({ valueItems }));
@@ -26,5 +26,17 @@ export const useGvEditorState = () => {
         dispatch(setMessagesAction({ messages }));
     };
 
-    return { contentId, valueItems, messages, setValueItems, setMessages };
+    const setItemEditState = (key: string, isEditMode: boolean) => {
+        dispatch(setItemEditStateAction({ key, isEditMode }));
+    };
+
+    return {
+        contentId,
+        valueItems,
+        messages,
+        setValueItems,
+        setMessages,
+        itemsEditState,
+        setItemEditState,
+    };
 };

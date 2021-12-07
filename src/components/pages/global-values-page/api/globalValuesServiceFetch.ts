@@ -6,7 +6,13 @@ import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
 
 const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/globalValues`;
 
-type GVRequestTypes = 'usage' | 'add' | 'modify' | 'remove' | 'getValueSet';
+type GVRequestTypes =
+    | 'usage'
+    | 'add'
+    | 'modify'
+    | 'remove'
+    | 'getValueSet'
+    | 'reorder';
 
 export const globalValuesServiceFetch = <ResponseType>(
     requestType: GVRequestTypes,
