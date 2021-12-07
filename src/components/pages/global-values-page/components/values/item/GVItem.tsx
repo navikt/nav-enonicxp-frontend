@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
 import { BEM, classNames } from '../../../../../../utils/classnames';
 import { GVButton } from '../../button/GVButton';
@@ -7,6 +7,7 @@ import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState
 import { gvServiceGetUsage } from '../../../api/services/usage';
 import { generateGvUsageMessages } from '../../../utils';
 import './GVItem.less';
+import { BodyShort, Heading } from '@navikt/ds-react';
 
 const bem = BEM('gv-item');
 
@@ -19,27 +20,38 @@ const ItemView = ({ item }: Props) => {
 
     return (
         <div className={bem('display')}>
-            <div className={classNames(bem('name'))}>{itemName}</div>
-            <div className={bem('value-container')}>
-                {numberValue !== undefined && (
-                    <div>
-                        <span className={bem('label')}>{'Tall-verdi: '}</span>
-                        <span className={bem('value')}>{numberValue}</span>
-                    </div>
-                )}
-            </div>
+            <Heading
+                level={'3'}
+                size={'small'}
+                className={classNames(bem('name'))}
+            >
+                {itemName}
+            </Heading>
+            <BodyShort size={'small'} as={'span'}>
+                {'Verdi: '}
+            </BodyShort>
+            <BodyShort className={bem('value')} as={'span'}>
+                {numberValue}
+            </BodyShort>
         </div>
     );
 };
 
 export const GVItem = ({ item }: Props) => {
-    const [editMode, setEditMode] = useState(false);
-    const { setMessages, contentId } = useGvEditorState();
+    const { setMessages, contentId, itemsEditState, setItemEditState } =
+        useGvEditorState();
+
+    const { key } = item;
+
+    const editMode = itemsEditState[key];
 
     return (
         <div className={bem()}>
             {editMode ? (
-                <GVItemEditor item={item} onClose={() => setEditMode(false)} />
+                <GVItemEditor
+                    item={item}
+                    onClose={() => setItemEditState(key, false)}
+                />
             ) : (
                 <ItemView item={item} />
             )}
@@ -48,7 +60,7 @@ export const GVItem = ({ item }: Props) => {
                     <GVButton
                         onClick={(e) => {
                             e.preventDefault();
-                            setEditMode(!editMode);
+                            setItemEditState(key, !editMode);
                         }}
                     >
                         {'Endre verdi'}
