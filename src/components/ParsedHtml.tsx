@@ -11,12 +11,34 @@ import {
 } from '../types/processed-html-props';
 import { MacroMapper } from './macros/MacroMapper';
 import { headingToLevel, headingToSize } from '../types/typo-style';
+import { MacroType } from '../types/macro-props/_macros-common';
 import { usePageConfig } from '../store/hooks/usePageConfig';
 import { EditorHelp } from './_common/editor-utils/editor-help/EditorHelp';
 import ReactDOMServer from 'react-dom/server';
 import { store } from '../store/store';
 import { Provider } from 'react-redux';
 import './ParsedHtml.less';
+
+const blockLevelMacros: { [macroType in MacroType]?: boolean } = {
+    [MacroType.AlertBox]: true,
+    [MacroType.HeaderWithAnchor]: true,
+    [MacroType.HtmlFragment]: true,
+    [MacroType.InfoBoks]: true,
+    [MacroType.Ingress]: true,
+    [MacroType.ProductCardMini]: true,
+    [MacroType.Quote]: true,
+    [MacroType.VarselBoks]: true,
+    [MacroType.Video]: true,
+};
+
+const hasBlockLevelMacroChildren = (element: Element) => {
+    return element.children?.some(
+        (child) =>
+            isTag(child) &&
+            child.name === processedHtmlMacroTag &&
+            blockLevelMacros[child.attribs?.['data-macro-name']]
+    );
+};
 
 const getNonEmptyChildren = ({ children }: Element) => {
     const validChildren = children?.filter((child) => {
@@ -111,6 +133,10 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Handle paragraphs
             if (tag === 'p' && children) {
+                // Block level elements should not be nested under inline elements
+                if (hasBlockLevelMacroChildren(element)) {
+                    return <>{domToReact(children, replaceElements)}</>;
+                }
                 return (
                     <BodyLong spacing {...props}>
                         {domToReact(children, replaceElements)}
