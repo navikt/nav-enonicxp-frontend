@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from '../lenke/LenkeStandalone';
 import { BEM, classNames } from 'utils/classnames';
@@ -28,9 +28,9 @@ export const Lenkeliste = ({
         <section className={classNames(bem(), className)} aria-label={tittel}>
             {tittel && (
                 <div className={bem('tittel')}>
-                    <Title size="s" level={2}>
+                    <Heading size="small" level="2">
                         {tittel}
-                    </Title>
+                    </Heading>
                 </div>
             )}
             <nav className={bem('lenker')}>

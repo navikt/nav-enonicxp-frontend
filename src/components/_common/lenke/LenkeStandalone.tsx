@@ -63,7 +63,7 @@ export const LenkeStandalone = ({
             }
             {...rest}
         >
-            <BodyShort className={bem('lenketekst')} component={'span'}>
+            <BodyShort className={bem('lenketekst')} as={'span'}>
                 {withChevron && (
                     <span className={bem('icon-container')}>
                         <HoyreChevron className={bem('chevron')} />
@@ -76,7 +76,7 @@ export const LenkeStandalone = ({
                 </>
             </BodyShort>
             {label && (
-                <BodyLong size="s" className={bem('label')} component={'span'}>
+                <BodyLong size="small" className={bem('label')} as={'span'}>
                     {label}
                 </BodyLong>
             )}

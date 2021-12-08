@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, Ingress } from '@navikt/ds-react';
+import { Heading, Ingress } from '@navikt/ds-react';
 import { BEM } from 'utils/classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import './PageHeading.less';
@@ -13,9 +13,9 @@ const PageHeading = (props: ContentProps) => {
 
     return (
         <header className={bem('container')}>
-            <Title level={1} size="2xl">
+            <Heading level="1" size="2xlarge">
                 {displayName || 'Tittel'}
-            </Title>
+            </Heading>
             {ingress && (
                 <div className={bem('ingress')}>
                     <Ingress>{ingress}</Ingress>

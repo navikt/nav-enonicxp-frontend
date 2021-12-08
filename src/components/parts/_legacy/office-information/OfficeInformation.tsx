@@ -12,7 +12,7 @@ import { Email } from './Email';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/ArtikkelDato';
 import Lenke from 'nav-frontend-lenker';
-import { Title, BodyLong, BodyShort } from '@navikt/ds-react';
+import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
 import {
     AudienceReception,
     OfficeInformationProps,
@@ -111,8 +111,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
         jsonSchema.push({
             '@context': 'https://schema.org',
             '@type': 'SpecialAnnouncement',
-            name:
-                'Åpningstider og bestilling av time med hensyn til smittevern',
+            name: 'Åpningstider og bestilling av time med hensyn til smittevern',
             text,
             datePosted: '2021-03-26T08:00Z',
             expires: '2021-07-24T23:59Z',
@@ -151,26 +150,26 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                         publishLabel={getLabelMain('published')}
                         modifiedLabel={getLabelMain('lastChanged')}
                     />
-                    <Title
-                        level={1}
-                        size="l"
+                    <Heading
+                        level="1"
+                        size="large"
                         className={bem('header')}
-                    >{`${unit.navn} - kontorinformasjon`}</Title>
+                    >{`${unit.navn} - kontorinformasjon`}</Heading>
                 </header>
                 {['HMS', 'ALS', 'TILTAK'].includes(unit.type) && location && (
                     <div>
-                        <Title level={2} size="s">
+                        <Heading level="2" size="small">
                             Besøksadresse
-                        </Title>
+                        </Heading>
                         <BodyShort>{location}</BodyShort>
                     </div>
                 )}
                 <Email email={contact.epost} unitType={unit.type} />
                 {contact?.telefonnummer && (
                     <div>
-                        <Title level={2} size="s">
+                        <Heading level="2" size="small">
                             Telefon
-                        </Title>
+                        </Heading>
                         <BodyShort>
                             {parsePhoneNumber(contact.telefonnummer)}
                         </BodyShort>
@@ -182,9 +181,9 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     </div>
                 )}
                 <div>
-                    <Title level={2} size="s">
+                    <Heading level="2" size="small">
                         Innsending av skjemaer
-                    </Title>
+                    </Heading>
                     <BodyLong>
                         Skal du sende søknader og skjemaer, må du bruke{' '}
                         <Lenke
@@ -199,9 +198,9 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 </div>
                 <SpecialInformation info={contact.spesielleOpplysninger} />
                 <div>
-                    <Title level={2} size="s">
+                    <Heading level="2" size="small">
                         Postadresse
-                    </Title>
+                    </Heading>
                     <BodyShort>
                         <span>{address}</span>
                         {', '}
@@ -211,25 +210,25 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 </div>
                 {fax && (
                     <div>
-                        <Title level={2} size="s">
+                        <Heading level="2" size="small">
                             Telefaks
-                        </Title>
+                        </Heading>
                         <BodyShort>{fax}</BodyShort>
                     </div>
                 )}
                 {unit.organisasjonsnummer && (
                     <div>
-                        <Title level={2} size="s">
+                        <Heading level="2" size="small">
                             Organisasjonsnummer
-                        </Title>
+                        </Heading>
                         <BodyShort>{unit.organisasjonsnummer}</BodyShort>
                     </div>
                 )}
                 {unit.enhetNr && (
                     <div>
-                        <Title level={2} size="s">
+                        <Heading level="2" size="small">
                             Kontornummer
-                        </Title>
+                        </Heading>
                         <BodyShort>{unit.enhetNr}</BodyShort>
                     </div>
                 )}

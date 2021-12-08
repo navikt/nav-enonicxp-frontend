@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, BodyShort } from '@navikt/ds-react';
+import { Heading, BodyShort } from '@navikt/ds-react';
 import { EMail } from 'types/content-props/office-information-props';
 
 interface Props {
@@ -12,9 +12,9 @@ export const Email = (props: Props) => {
         props.email?.adresse &&
         props.email?.kunIntern !== 'true' ? (
         <div>
-            <Title level={2} size="m">
+            <Heading level="2" size="medium">
                 Epost
-            </Title>
+            </Heading>
             <BodyShort>{props.email.adresse}</BodyShort>
         </div>
     ) : null;

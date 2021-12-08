@@ -16,10 +16,10 @@
         "deploy-q6": "npm run deploy -- deploy.q6.yml"
     },
     "dependencies": {
-        "@navikt/ds-css": "^0.7.4",
-        "@navikt/ds-icons": "^0.5.4",
-        "@navikt/ds-react": "^0.7.7",
-        "@navikt/ds-tokens": "^0.4.3",
+        "@navikt/ds-css": "^0.11.4",
+        "@navikt/ds-icons": "^0.6.3",
+        "@navikt/ds-react": "^0.13.2",
+        "@navikt/ds-tokens": "^0.6.3",
         "@navikt/fnrvalidator": "^1.1.4",
         "@navikt/nav-dekoratoren-moduler": "^1.6.6",
         "@reduxjs/toolkit": "^1.6.1",
@@ -35,8 +35,6 @@
         "lodash.debounce": "^4.0.8",
         "lottie-web": "^5.7.12",
         "mathjs": "^9.4.4",
-        "nav-frontend-alertstriper": "^3.1.2",
-        "nav-frontend-alertstriper-style": "^2.1.1",
         "nav-frontend-chevron": "^1.0.30",
         "nav-frontend-chevron-style": "^1.0.4",
         "nav-frontend-core": "^6.0.1",
@@ -81,12 +79,13 @@
         "react-collapse": "^5.1.0",
         "react-dom": "^17.0.2",
         "react-redux": "^7.2.4",
+        "react-movable": "2.5.4",
         "ssri": "^6.0.2"
     },
     "devDependencies": {
         "@octokit/core": "^3.5.1",
         "@types/node": "^16.7.1",
-        "@types/react": "^17.0.19",
+        "@types/react": "^17.0.37",
         "@types/react-collapse": "^5.0.1",
         "@types/react-dom": "^17.0.9",
         "@types/react-redux": "^7.1.18",

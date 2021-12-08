@@ -3,12 +3,13 @@ import { PartType } from '../parts';
 import { ProcessedHtmlProps } from '../../processed-html-props';
 import { RenderOnAuthStateMixin } from '../_mixins';
 
-export interface DynamicAlert extends PartComponentProps {
-    descriptor: PartType.Alert;
+export interface AlertBoxPartProps extends PartComponentProps {
+    descriptor: PartType.AlertBox;
     config: {
-        type: 'info' | 'suksess' | 'advarsel' | 'feil';
-        inline: string;
         content: ProcessedHtmlProps;
+        type: 'info' | 'advarsel' | 'feil' | 'suksess';
+        size?: 'small' | 'medium';
+        inline?: boolean;
         margin: string;
     } & RenderOnAuthStateMixin;
 }

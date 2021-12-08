@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { BodyLong, Title } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import htmlReactParser, { Element, domToReact } from 'html-react-parser';
 import { isTag, isText } from 'domhandler';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
@@ -12,8 +12,6 @@ import {
 import { MacroMapper } from './macros/MacroMapper';
 import { headingToLevel, headingToSize } from '../types/typo-style';
 import { MacroType } from '../types/macro-props/_macros-common';
-import { BEM } from '../utils/classnames';
-import classNames from 'classnames';
 import { usePageConfig } from '../store/hooks/usePageConfig';
 import { EditorHelp } from './_common/editor-utils/editor-help/EditorHelp';
 import ReactDOMServer from 'react-dom/server';
@@ -21,7 +19,8 @@ import { store } from '../store/store';
 import { Provider } from 'react-redux';
 import './ParsedHtml.less';
 
-const blockLevelMacros = {
+const blockLevelMacros: { [macroType in MacroType]?: boolean } = {
+    [MacroType.AlertBox]: true,
     [MacroType.HeaderWithAnchor]: true,
     [MacroType.HtmlFragment]: true,
     [MacroType.InfoBoks]: true,
@@ -31,8 +30,6 @@ const blockLevelMacros = {
     [MacroType.VarselBoks]: true,
     [MacroType.Video]: true,
 };
-
-const bem = BEM('tabell');
 
 const hasBlockLevelMacroChildren = (element: Element) => {
     return element.children?.some(
@@ -104,7 +101,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Remove img without src
             if (tag === 'img') {
-                if ( !attribs?.src ) {
+                if (!attribs?.src) {
                     return <Fragment />;
                 }
                 return (
@@ -120,17 +117,17 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag?.match(/^h[1-6]$/)) {
                 // Header-tags should not be used as empty spacers
                 if (!validChildren) {
-                    return <p>{' '}</p>;
+                    return <p> </p>;
                 }
 
-                const level = headingToLevel[tag] || 2; //Level 1 reserved for page title
+                const level = headingToLevel[tag] || 2; //Level 1 reserved for page heading
                 const size = headingToSize[tag];
 
                 return (
-                    // H1 tags should only be used for the page title
-                    <Title {...props} size={size} level={level} spacing>
+                    // H1 tags should only be used for the page heading
+                    <Heading {...props} size={size} level={level} spacing>
                         {domToReact(validChildren, replaceElements)}
-                    </Title>
+                    </Heading>
                 );
             }
 
@@ -176,7 +173,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             // Table class fix, excluding large-table (statistics pages)
             if (tag === 'table' && attribs?.class !== 'statTab') {
                 return (
-                    <div className={classNames(bem('horisontal-scroll'))}>
+                    <div className={'tabell__horisontal-scroll'}>
                         <table {...props} className={'tabell tabell--stripet'}>
                             {domToReact(children, replaceElements)}
                         </table>
@@ -186,9 +183,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Replace empty rows with stylable element
             if (tag === 'tr' && !validChildren) {
-                return (
-                    <tr {...props} className={'spacer-row'} />
-                );
+                return <tr {...props} className={'spacer-row'} />;
             }
 
             // Remove empty divs
@@ -198,12 +193,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
         },
     };
 
-    const htmlParsed = htmlReactParser(
-        processedHtml
-            // Remove whitespace/linebreaks to prevent certain parsing errors
-            .replace(/(\r\n|\n|\r|\s)/gm, ' '),
-        replaceElements
-    );
+    const htmlParsed = htmlReactParser(processedHtml, replaceElements);
 
     // If the html renders to an empty string (or whitespace only), show an
     // error message in the editor

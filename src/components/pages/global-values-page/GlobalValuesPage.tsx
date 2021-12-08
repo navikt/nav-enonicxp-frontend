@@ -1,21 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GlobalValuesProps } from '../../../types/content-props/global-values-props';
 import { BEM } from '../../../utils/classnames';
-import { Title } from '@navikt/ds-react';
+import { Select, Heading } from '@navikt/ds-react';
 import { GVMessages } from './components/messages/GVMessages';
 import ErrorPage404 from '../../../pages/404';
-import { GVItems } from './components/values/GVItems';
 import { GVAddItem } from './components/values/add-item/GVAddItem';
 import {
     setContentIdAction,
     setValueItemsAction,
 } from '../../../store/slices/gvEditorState';
 import { store } from '../../../store/store';
+import { GVItemsCustomOrder } from './components/values/GVItemsCustomOrder';
+import { GVItemsSorted } from './components/values/GVItemsSorted';
+import { useGvEditorState } from '../../../store/hooks/useGvEditorState';
 import './GlobalValuesPage.less';
 
 const bem = BEM('global-values-page');
 
+type ListOrder = 'custom' | 'sorted';
+
 const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
+    const { valueItems } = useGvEditorState();
+    const [listOrder, setListOrder] = useState<ListOrder>('custom');
+
     useEffect(() => {
         const header = document.getElementById('decorator-header');
         if (header) {
@@ -27,7 +34,7 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
             footer.style.display = 'none';
         }
 
-        // Hide overlay-elements in the editor
+        // Hide overlay elements in the editor-view, which prevents interaction
         const callback = (mutations) => {
             mutations.forEach((mutation) => {
                 if (
@@ -51,22 +58,49 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
 
     return (
         <div className={bem()}>
-            <Title level={1} size="xl" className={bem('header')}>
-                {'Globale verdier'}
-            </Title>
+            <div className={bem('header-row')}>
+                <Heading level="1" size="xlarge" className={bem('header')}>
+                    {'Globale verdier'}
+                </Heading>
+                <Select
+                    size={'small'}
+                    label={'Sortering'}
+                    defaultValue={''}
+                    hideLabel={true}
+                    onChange={(e) => {
+                        const selection = e.target.value;
+                        if (selection) {
+                            setListOrder(selection as ListOrder);
+                        }
+                    }}
+                    className={bem('sort-selector')}
+                >
+                    <option value={''} disabled={true}>
+                        {'Velg sortering'}
+                    </option>
+                    <option value={'custom'}>{'Egendefinert'}</option>
+                    <option value={'sorted'}>{'Alfabetisk'}</option>
+                </Select>
+            </div>
             <div className={bem('content')}>
                 <div className={bem('left-col')}>
                     <div className={bem('sub-header-row')}>
                         <div className={bem('sub-header')}>
-                            <Title
-                                level={2}
-                                size="m"
+                            <Heading
+                                level="2"
+                                size="medium"
                                 className={bem('header-category')}
-                            >{`Kategori: ${displayName}`}</Title>
+                            >
+                                {displayName}
+                            </Heading>
                         </div>
                         <GVAddItem />
                     </div>
-                    <GVItems />
+                    {listOrder === 'sorted' || valueItems.length < 2 ? (
+                        <GVItemsSorted />
+                    ) : (
+                        <GVItemsCustomOrder />
+                    )}
                 </div>
                 <GVMessages />
             </div>

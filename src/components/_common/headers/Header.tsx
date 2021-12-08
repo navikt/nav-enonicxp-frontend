@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 
 import { BEM, classNames } from '../../../utils/classnames';
 import { translator } from 'translations';
@@ -65,7 +65,7 @@ export const Header = ({
             : `#${anchorId}`
         : undefined;
 
-    const fallbackSizeByLevel = levelToSize[level] || 'l';
+    const fallbackSizeByLevel = levelToSize[level] || 'large';
 
     return (
         <div
@@ -77,9 +77,9 @@ export const Header = ({
             id={setId ? anchorId : undefined}
             tabIndex={-1}
         >
-            <Title size={size || fallbackSizeByLevel} level={level}>
+            <Heading size={size || fallbackSizeByLevel} level={level}>
                 {children}
-            </Title>
+            </Heading>
             {anchor && !hideCopyButton && (
                 <span className={bem('copy-link-container')}>
                     <a
