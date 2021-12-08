@@ -4,7 +4,7 @@ import {
 } from '../../../types/component-props/parts/contact-option';
 
 import { translator } from 'translations';
-import { Title, BodyLong } from '@navikt/ds-react';
+import { Heading, BodyLong } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
@@ -71,9 +71,9 @@ export const DefaultOption = (props: DefaultContactProps) => {
                 <div
                     className={classNames(bem('icon'), bem('icon', channel))}
                 />
-                <Title level={2} size="m" className={bem('title')}>
+                <Heading level="2" size="medium" className={bem('title')}>
                     {getTitle()}
-                </Title>
+                </Heading>
             </LenkeBase>
             <BodyLong className={bem('text')}>{getIngress()}</BodyLong>
         </div>

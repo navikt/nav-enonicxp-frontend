@@ -2,7 +2,7 @@ import React from 'react';
 
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
-import { Title, BodyLong } from '@navikt/ds-react';
+import { Heading, BodyLong } from '@navikt/ds-react';
 import { formatDate } from 'utils/datetime';
 
 import { BEM } from 'utils/classnames';
@@ -25,9 +25,9 @@ export const SpecialOpeningHours = ({ specialOpeningHours }) => {
 
     return (
         <>
-            <Title level={2} size="m" spacing>
+            <Heading level="2" size="medium" spacing>
                 {specialOpeningHours.title}
-            </Title>
+            </Heading>
             <BodyLong spacing>{specialOpeningHours.text}</BodyLong>
             <table className={bem('special-opening-hours')}>
                 <thead>

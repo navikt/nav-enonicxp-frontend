@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
-import { Title, BodyLong, Alert } from '@navikt/ds-react';
+import { Heading, BodyLong, Alert } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 import { BEM, classNames } from 'utils/classnames';
@@ -47,9 +47,9 @@ export const TelephoneDetails = (props: TelephoneData) => {
 
     return (
         <>
-            <Title level={1} size="l" spacing>
+            <Heading level="1" size="large" spacing>
                 {title}
-            </Title>
+            </Heading>
             <LenkeBase
                 className={classNames(bem('phoneNumber'))}
                 href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
@@ -58,7 +58,7 @@ export const TelephoneDetails = (props: TelephoneData) => {
             </LenkeBase>
             {alertText && (
                 <Alert
-                    size="s"
+                    size="small"
                     variant="warning"
                     className={classNames(bem('alertText'))}
                 >
@@ -68,8 +68,8 @@ export const TelephoneDetails = (props: TelephoneData) => {
             <div className={bem('text')}>
                 <BodyLong spacing>{text}</BodyLong>
             </div>
-            <RegularOpeningHours regularOpeningHours={thisWeeksOpeningHours} />
             <SpecialOpeningHours specialOpeningHours={specialOpeningHours} />
+            <RegularOpeningHours regularOpeningHours={thisWeeksOpeningHours} />
             <CallingCosts />
         </>
     );

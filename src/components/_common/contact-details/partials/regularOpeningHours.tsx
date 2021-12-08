@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 
 import { BEM } from 'utils/classnames';
 
@@ -21,9 +21,9 @@ export const RegularOpeningHours = ({ regularOpeningHours }) => {
 
     return (
         <>
-            <Title level={2} size="m" spacing>
+            <Heading level="2" size="medium" spacing>
                 {sharedTranslations['openingHours']}
-            </Title>
+            </Heading>
             <table className={bem('regular-opening-hours')}>
                 <thead>
                     <tr>

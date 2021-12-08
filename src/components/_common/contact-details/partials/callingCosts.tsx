@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Title, BodyLong } from '@navikt/ds-react';
+import { Heading, BodyLong } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 
@@ -13,9 +13,9 @@ export const CallingCosts = () => {
 
     return (
         <>
-            <Title level={2} size="s">
+            <Heading level="2" size="small">
                 {informationText['callCostTitle']}
-            </Title>
+            </Heading>
             <BodyLong>{informationText['callCostIngress']}</BodyLong>
         </>
     );
