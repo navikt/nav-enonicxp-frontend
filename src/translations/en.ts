@@ -123,6 +123,7 @@ export const bundle: Translations = {
             closingInAbout: 'Closing in about {$1} minutter',
             closingNow: 'Closing now',
             seeAllOpeningHours: 'See all opening hours',
+            todaysPhoneOpeningHours: 'Phone hours today',
         },
         information: {
             callCostTitle: 'What are the calling rates for NAV?',

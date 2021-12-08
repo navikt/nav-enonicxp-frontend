@@ -16,6 +16,7 @@ import {
 import { SpecialOpeningHours } from './partials/specialOpeningHours';
 import { CallingCosts } from './partials/callingCosts';
 import { RegularOpeningHours } from './partials/regularOpeningHours';
+import { TodaysOpeningHour } from './partials/todaysOpeningHour';
 
 import './TelephoneDetails.less';
 
@@ -66,7 +67,10 @@ export const TelephoneDetails = (props: TelephoneData) => {
                 </Alert>
             )}
             <div className={bem('text')}>
-                <BodyLong spacing>{text}</BodyLong>
+                <>
+                    <BodyLong spacing>{text}</BodyLong>
+                    <TodaysOpeningHour openingHours={thisWeeksOpeningHours} />
+                </>
             </div>
             <SpecialOpeningHours specialOpeningHours={specialOpeningHours} />
             <RegularOpeningHours regularOpeningHours={thisWeeksOpeningHours} />

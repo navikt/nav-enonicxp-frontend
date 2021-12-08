@@ -8,19 +8,13 @@ export enum ChannelType {
     CALL = 'call',
 }
 
-export interface RegularOpeningHour {
+export interface OpeningHour {
     status: string;
     from: string;
     to: string;
-    dayName: string;
+    dayName?: string;
+    date?: string;
 }
-export interface SpecialOpeningHour {
-    status: string;
-    from: string;
-    to: string;
-    date: string;
-}
-
 export interface DefaultContactData {
     ingress?: string;
     title?: string;
@@ -43,7 +37,7 @@ export interface TelephoneData {
     text?: string;
     alertText?: string;
     regularOpeningHours?: {
-        hours: RegularOpeningHour[];
+        hours: OpeningHour[];
     };
     specialOpeningHours?: {
         title?: string;
@@ -51,7 +45,7 @@ export interface TelephoneData {
         footNote?: string;
         validFrom: string;
         validTo: string;
-        hours: SpecialOpeningHour[];
+        hours: OpeningHour[];
     };
 }
 

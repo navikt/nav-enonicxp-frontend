@@ -11,7 +11,10 @@ import { dateDiff, formatDate, getCurrentISODate } from 'utils/datetime';
 
 import { stripXpPathPrefix } from 'utils/urls';
 
-import { mergeOpeningHours } from '../contact-details/contactHelpers';
+import {
+    mergeOpeningHours,
+    findTodaysOpeningHour,
+} from '../contact-details/contactHelpers';
 
 import './CallOption.less';
 
@@ -42,6 +45,11 @@ export const CallOption = (props: CallOptionProps) => {
     const getContactTranslations = translator('contactPoint', language);
     const sharedTranslations = getContactTranslations('shared');
 
+    const allOpeningHours = mergeOpeningHours(
+        regularOpeningHours.hours,
+        specialOpeningHours.hours
+    );
+
     const getIsClosingSoonText = (mins: number): string => {
         if (mins < 5) {
             return sharedTranslations['closingNow'];
@@ -51,21 +59,6 @@ export const CallOption = (props: CallOptionProps) => {
         }
 
         return '';
-    };
-
-    const findTodaysOpeningHour = () => {
-        const today = new Date();
-        const todayISO = today.toISOString().split('T')[0];
-        const allOpeningHours = mergeOpeningHours(
-            regularOpeningHours.hours,
-            specialOpeningHours.hours
-        );
-
-        const todaysOpeningHour = allOpeningHours.find(
-            (hour) => hour.date === todayISO
-        );
-
-        return todaysOpeningHour;
     };
 
     const findNextOpeningDayAfterToday = () => {
@@ -190,7 +183,11 @@ export const CallOption = (props: CallOptionProps) => {
             <Heading level="3" size="small" className={bem('apningstider')}>
                 {sharedTranslations['openingHours']}:
             </Heading>
-            <div>{buildOpenInformationText(findTodaysOpeningHour())}</div>
+            <div>
+                {buildOpenInformationText(
+                    findTodaysOpeningHour(allOpeningHours)
+                )}
+            </div>
             {alertText && (
                 <Alert variant="warning" className={bem('alertText')}>
                     {alertText}

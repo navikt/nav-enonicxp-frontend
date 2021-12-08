@@ -1,7 +1,4 @@
-import {
-    RegularOpeningHour,
-    SpecialOpeningHour,
-} from 'types/component-props/parts/contact-option';
+import { OpeningHour } from 'types/component-props/parts/contact-option';
 import { getStartOfWeek, getDayNameFromNumber } from 'utils/datetime';
 
 /** Special opening hours take precidence over regular opening hours,
@@ -9,8 +6,8 @@ import { getStartOfWeek, getDayNameFromNumber } from 'utils/datetime';
  * hours for this current week.
  */
 export const mergeOpeningHours = (
-    regularOpeningHours: RegularOpeningHour[] = [],
-    specialOpeningHours: SpecialOpeningHour[] = []
+    regularOpeningHours: OpeningHour[] = [],
+    specialOpeningHours: OpeningHour[] = []
 ) => {
     const totalDaysToCheck = 7 + specialOpeningHours.length;
     const today = getStartOfWeek().getTime();
@@ -37,14 +34,30 @@ export const mergeOpeningHours = (
             (hour) => hour.dayName === dayName
         );
 
+        const status = regularOpeningHour
+            ? regularOpeningHour.status
+            : 'CLOSED';
+
         openingHours.push({
             ...regularOpeningHour,
+            status,
             date: dayToCheckISO,
             dayName,
         });
     }
 
     return openingHours;
+};
+
+export const findTodaysOpeningHour = (openingHours: OpeningHour[]) => {
+    const today = new Date();
+    const todayISO = today.toISOString().split('T')[0];
+
+    const todaysOpeningHour = openingHours.find(
+        (hour) => hour.date === todayISO
+    );
+
+    return todaysOpeningHour;
 };
 
 export const getThisWeeksOpeningHours = (allOpeningHours) => {

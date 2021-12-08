@@ -116,6 +116,7 @@ export const bundle = {
             closingInAbout: 'Stenger om ca {$1} minutter',
             closingNow: 'Stenger straks',
             seeAllOpeningHours: 'Se alle åpningstider',
+            todaysPhoneOpeningHours: 'Åpningstider på telefon i dag',
         },
         information: {
             callCostTitle: 'Hva koster det å ringe NAV?',
