@@ -101,7 +101,7 @@ export const bundle = {
                 'Skal du sende oss nye opplysninger i saken din? "Skriv til oss" er et sikkert alternativ til e-post.',
         },
         call: {
-            title: 'Ring oss på',
+            title: 'Ring oss på 55 55 33 33',
             ingress:
                 'Åpningstider: hverdager 09:00–15:00. Dersom åpningstidene er midlertidig endret, får du beskjed via automatisk svarer.',
         },

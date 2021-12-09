@@ -108,7 +108,7 @@ export const bundle: Translations = {
                 'Need to send us updated information about your case? "Write to us" is a secure alternative to e-mail.',
         },
         call: {
-            title: 'Call us at',
+            title: 'Call us at +47 55 55 33 33',
             ingress:
                 'Opening hours: weekdays 09:00–15:00. If the opening hours are changed, you will be notified by voice message.',
         },

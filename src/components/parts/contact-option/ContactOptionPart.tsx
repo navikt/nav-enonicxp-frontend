@@ -31,12 +31,10 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
         const { sharedContactInformation } =
             channelData as SharedContactInformationData;
 
+        // For backwards compatibility, show default call information
+        // if no sharedContactInformation has been selected.
         if (!sharedContactInformation) {
-            return (
-                <EditorHelp
-                    text={'Kunne ikke vise den delte kontaktinformasjonen!'}
-                />
-            );
+            return <DefaultOption {...channelData} channel={channel} />;
         }
 
         return (

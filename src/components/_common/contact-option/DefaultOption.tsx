@@ -52,6 +52,12 @@ export const DefaultOption = (props: DefaultContactProps) => {
             };
         }
 
+        if (channel === ChannelType.CALL) {
+            return {
+                href: 'tel:+4755553333',
+            };
+        }
+
         if (channel === ChannelType.CHAT) {
             return {
                 href: '#',
