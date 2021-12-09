@@ -44,7 +44,7 @@ export const TelephoneDetails = (props: TelephoneData) => {
     );
 
     const thisWeeksOpeningHours = getThisWeeksOpeningHours(allOpeningHours);
-    const callLabel = getContactTranslations('call');
+    const sharedLabels = getContactTranslations('shared');
 
     return (
         <>
@@ -55,7 +55,8 @@ export const TelephoneDetails = (props: TelephoneData) => {
                 className={classNames(bem('phoneNumber'))}
                 href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
             >
-                {callLabel['title']} {parsePhoneNumber(phoneNumber, language)}
+                {sharedLabels['callUsAt']}{' '}
+                {parsePhoneNumber(phoneNumber, language)}
             </LenkeBase>
             {alertText && (
                 <Alert

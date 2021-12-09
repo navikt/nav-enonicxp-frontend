@@ -88,7 +88,7 @@ export const bundle: Translations = {
         [MenuListItemKey.RulesAndRegulationsLegacy]: 'Laws and regulations',
     },
     situations: {
-        youMayHaveRightTo: 'You may rights to this',
+        youMayHaveRightTo: 'You may have right to this',
         employerNeedToKnow: 'As an employer, you need to know this',
     },
     productTaxonomies,
@@ -124,6 +124,7 @@ export const bundle: Translations = {
             closingNow: 'Closing now',
             seeAllOpeningHours: 'See all opening hours',
             todaysPhoneOpeningHours: 'Phone hours today',
+            callUsAt: 'Call us at',
         },
         information: {
             callCostTitle: 'What are the calling rates for NAV?',

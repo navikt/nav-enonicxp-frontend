@@ -117,6 +117,7 @@ export const bundle = {
             closingNow: 'Stenger straks',
             seeAllOpeningHours: 'Se alle åpningstider',
             todaysPhoneOpeningHours: 'Åpningstider på telefon i dag',
+            callUsAt: 'Ring oss på',
         },
         information: {
             callCostTitle: 'Hva koster det å ringe NAV?',

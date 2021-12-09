@@ -69,12 +69,12 @@ export const parsePhoneNumber = (
     language: string = 'no'
 ) => {
     // First normalize number for reliable result when inserting spaces later.
-    let parsedNumber = phoneNumber.replace(' ', '');
-    if (language === 'no') {
-        parsedNumber = parsedNumber.replace('+47', '');
-    }
+    let parsedNumber = phoneNumber
+        .replace(/^\+47|\s/, '')
+        .match(/.{1,2}/g)
+        .join(' ');
 
-    return parsedNumber.match(/.{1,2}/g).join(' ');
+    return language === 'no' ? parsedNumber : `+47 ${parsedNumber}`;
 };
 
 export const shouldShowSpecialHours = (specialOpeningHours) => {

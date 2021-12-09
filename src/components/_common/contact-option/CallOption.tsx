@@ -14,6 +14,7 @@ import { stripXpPathPrefix } from 'utils/urls';
 import {
     mergeOpeningHours,
     findTodaysOpeningHour,
+    parsePhoneNumber,
 } from '../contact-details/contactHelpers';
 
 import './CallOption.less';
@@ -174,7 +175,8 @@ export const CallOption = (props: CallOptionProps) => {
                     )}
                 />
                 <Heading level="2" size="medium" className={bem('title')}>
-                    {title}
+                    {sharedTranslations['callUsAt']}{' '}
+                    {parsePhoneNumber(phoneNumber, language)}
                 </Heading>
             </LenkeBase>
             {alertText && (
