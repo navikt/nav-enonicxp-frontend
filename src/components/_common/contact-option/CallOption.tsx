@@ -1,5 +1,5 @@
 import { translator } from 'translations';
-import { Heading, BodyLong, Alert } from '@navikt/ds-react';
+import { Heading, BodyLong, Alert, BodyShort } from '@navikt/ds-react';
 
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -177,22 +177,22 @@ export const CallOption = (props: CallOptionProps) => {
                     {title}
                 </Heading>
             </LenkeBase>
+            {alertText && (
+                <Alert variant="warning" inline className={bem('alertText')}>
+                    {alertText}
+                </Alert>
+            )}
             <BodyLong className={bem('text')} spacing>
                 {ingress || text}
             </BodyLong>
             <Heading level="3" size="small" className={bem('apningstider')}>
                 {sharedTranslations['openingHours']}:
             </Heading>
-            <div>
+            <BodyShort spacing>
                 {buildOpenInformationText(
                     findTodaysOpeningHour(allOpeningHours)
                 )}
-            </div>
-            {alertText && (
-                <Alert variant="warning" className={bem('alertText')}>
-                    {alertText}
-                </Alert>
-            )}
+            </BodyShort>
             <LenkeBase href={stripXpPathPrefix(_path)}>
                 {sharedTranslations['seeAllOpeningHours']}
             </LenkeBase>

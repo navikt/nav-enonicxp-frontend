@@ -5,6 +5,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { findTodaysOpeningHour } from '../contactHelpers';
 import { OpeningHour } from 'types/component-props/parts/contact-option';
+import { BodyLong } from '@navikt/ds-react';
 
 interface TodaysOpeningHourProps {
     openingHours: OpeningHour[];
@@ -24,8 +25,8 @@ export const TodaysOpeningHour = ({ openingHours }: TodaysOpeningHourProps) => {
             : `${todaysOpeningHour.from} - ${todaysOpeningHour.to}`;
 
     return (
-        <>
+        <BodyLong spacing>
             {`${sharedTranslations['todaysPhoneOpeningHours']}: ${todayOpeningHoursText}`}
-        </>
+        </BodyLong>
     );
 };
