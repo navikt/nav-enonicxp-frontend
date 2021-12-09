@@ -1,6 +1,5 @@
 import React from 'react';
 import { MacroFotnoteProps } from '../../../types/macro-props/fotnote';
-import './MacroFotnote.less';
 
 export const MacroFotnote = ({ config }: MacroFotnoteProps) => {
     if (!config?.fotnote) {

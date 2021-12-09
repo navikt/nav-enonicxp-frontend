@@ -9,7 +9,6 @@ import { VersionStatus } from './status/VersionStatus';
 import { VersionSelector } from './selector/VersionSelector';
 import { translator } from 'translations';
 import { useRouter } from 'next/router';
-import './VersionHistory.less';
 
 const bem = BEM('version-history');
 

@@ -3,8 +3,6 @@ import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import lottie from 'lottie-web';
 import { BEM, classNames } from '../../../utils/classnames';
 
-import './Illustration.less';
-
 interface IllustrationAnimatedProps {
     illustration: AnimatedIconsProps;
     className: string;

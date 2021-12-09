@@ -4,7 +4,6 @@ import { LenkeBase } from '../lenke/LenkeBase';
 import { XpImageProps } from '../../../types/media';
 import { XpImage } from '../image/XpImage';
 import { KnappBaseProps } from 'nav-frontend-knapper';
-import './Button.less';
 
 const bem = BEM('knapp');
 

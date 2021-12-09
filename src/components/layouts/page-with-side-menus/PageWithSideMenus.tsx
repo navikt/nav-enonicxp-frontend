@@ -9,7 +9,6 @@ import { windowMatchMedia } from '../../../utils/match-media';
 import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
 import Config from '../../../config';
 import Region from '../Region';
-import './PageWithSideMenus.less';
 
 const mobileWidthBreakpoint = Config.vars.mobileBreakpointPx;
 

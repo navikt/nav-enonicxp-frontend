@@ -1,6 +1,5 @@
 const withPlugins = require('next-compose-plugins');
 const withImages = require('next-images');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const withLess = require('next-with-less');
 const packageJson = require('./package.json');
 
@@ -11,7 +10,6 @@ const navFrontendModuler = Object.keys(packageJson.dependencies).reduce(
 
 const withTranspileModules = require('next-transpile-modules')([
     ...navFrontendModuler,
-    '@navikt/nav-dekoratoren-moduler',
     '@navikt/ds-react',
     '@navikt/ds-icons',
 ]);
@@ -95,30 +93,4 @@ module.exports = withPlugins([withLess, withImages, withTranspileModules], {
             ],
         },
     ],
-    // webpack: (config) => {
-    //     config.module.rules.push({
-    //         test: /\.(le|c)ss$/,
-    //         use: [
-    //             MiniCssExtractPlugin.loader,
-    //             {
-    //                 loader: 'css-loader',
-    //             },
-    //             {
-    //                 loader: 'less-loader',
-    //                 options: {
-    //                     sourceMap: true,
-    //                 },
-    //             },
-    //         ],
-    //     });
-    //
-    //     config.plugins.push(
-    //         new MiniCssExtractPlugin({
-    //             filename: 'static/css/[name].css',
-    //             chunkFilename: 'static/css/[contenthash].css',
-    //         })
-    //     );
-    //
-    //     return config;
-    // },
 });

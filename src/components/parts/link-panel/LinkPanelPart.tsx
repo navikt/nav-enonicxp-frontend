@@ -6,7 +6,6 @@ import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { getImageUrl, XpImage } from '../../_common/image/XpImage';
-import './LinkPanelPart.less';
 
 const bem = BEM('link-panel');
 

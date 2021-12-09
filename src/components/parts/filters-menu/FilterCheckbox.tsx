@@ -1,6 +1,5 @@
 import { Filter } from 'types/store/filter-menu';
 import { BEM, classNames } from '../../../utils/classnames';
-import './FilterCheckbox.less';
 import { v4 as uuid } from 'uuid';
 
 const bem = BEM('filter-checkbox');

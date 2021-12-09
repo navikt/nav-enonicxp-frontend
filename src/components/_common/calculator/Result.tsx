@@ -7,8 +7,6 @@ import {
 } from '../../../utils/string';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import './Result.less';
-
 interface ResultProps {
     summaryText: string;
     sum: number;

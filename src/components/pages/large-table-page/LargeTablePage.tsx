@@ -2,15 +2,14 @@ import React from 'react';
 import { LargeTableProps } from '../../../types/content-props/large-table-props';
 import { makeErrorProps } from '../../../utils/make-error-props';
 import { ErrorPage } from '../error-page/ErrorPage';
-import { ParsedHtml } from '../../ParsedHtml'
-import './LargeTablePage.less';
+import { ParsedHtml } from '../../ParsedHtml';
 
 export const LargeTablePage = (contentData: LargeTableProps) => {
     const html = contentData.data?.text;
 
     return html || !!contentData.editorView ? (
         <div className={'large-table-page'}>
-           <ParsedHtml htmlProps={html} />
+            <ParsedHtml htmlProps={html} />
         </div>
     ) : (
         <ErrorPage

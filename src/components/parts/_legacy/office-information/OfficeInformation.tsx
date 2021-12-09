@@ -22,7 +22,6 @@ import {
     GovernmentOfficeSchema,
     SpecialAnnouncementSchema,
 } from '../../../../types/structuredData';
-import './OfficeInformation.less';
 
 export const OfficeInformation = (props: OfficeInformationProps) => {
     const unit = props.data.enhet;

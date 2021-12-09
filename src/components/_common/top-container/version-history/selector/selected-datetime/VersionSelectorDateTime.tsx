@@ -10,7 +10,6 @@ import {
 import { Branch } from '../../../../../../types/branch';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
-import './VersionSelectorDateTime.less';
 
 const startDate = '2019-12-01';
 

@@ -3,7 +3,6 @@ import * as React from 'react';
 import { Heading, BodyLong, Ingress } from '@navikt/ds-react';
 import { BEM } from '../../../../utils/classnames';
 import { translator } from '../../../../translations';
-import './PublishingCalendar.less';
 import {
     PublishingCalendarChildren,
     PublishingCalendarEntries,

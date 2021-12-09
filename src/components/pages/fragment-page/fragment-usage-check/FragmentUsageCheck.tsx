@@ -6,7 +6,6 @@ import { Button } from '../../../_common/button/Button';
 import { BEM } from '../../../../utils/classnames';
 import { EditorLinkWrapper } from '../../../_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
 import { FragmentUsageLink } from './FragmentUsageLink';
-import './FragmentUsageCheck.less';
 
 const bem = BEM('fragment-usage');
 

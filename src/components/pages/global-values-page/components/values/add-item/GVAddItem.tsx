@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { GVButton } from '../../button/GVButton';
 import { BEM, classNames } from '../../../../../../utils/classnames';
 import { GVItemEditor } from '../item-editor/GVItemEditor';
-import './GVAddItem.less';
 
 const bem = BEM('gv-add-item');
 

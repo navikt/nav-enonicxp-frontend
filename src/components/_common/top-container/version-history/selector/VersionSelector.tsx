@@ -5,7 +5,6 @@ import { ContentProps } from '../../../../../types/content-props/_content-common
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
 import { Radio, RadioGruppe } from 'nav-frontend-skjema';
-import './VersionSelector.less';
 
 const bem = BEM('version-selector');
 

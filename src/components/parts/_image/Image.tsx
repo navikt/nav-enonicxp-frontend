@@ -4,7 +4,6 @@ import {
     ImageComponentProps,
 } from '../../../types/component-props/_component-common';
 import { BodyShort } from '@navikt/ds-react';
-import './Image.less';
 
 type Props = {
     imageProps: ImageComponentProps;

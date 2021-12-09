@@ -2,7 +2,6 @@ import React from 'react';
 import { AlertBox } from '../../_common/alert-box/AlertBox';
 import { MacroVarselBoksProps } from '../../../types/macro-props/varselBoks';
 import { ParsedHtml } from '../../ParsedHtml';
-import './MacroVarselBoks.less';
 
 export const MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
     if (!config?.varselBoks) {

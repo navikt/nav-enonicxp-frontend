@@ -5,7 +5,6 @@ import { MenuListItemKey } from 'types/menu-list-items';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import './MenuList.less';
 
 const bem = BEM('menu-list');
 

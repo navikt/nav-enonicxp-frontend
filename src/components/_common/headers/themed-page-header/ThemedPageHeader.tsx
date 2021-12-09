@@ -11,7 +11,6 @@ import {
     ProductPageProps,
     SituationPageProps,
 } from '../../../../types/content-props/dynamic-page-props';
-import './ThemedPageHeader.less';
 import { buildTaxonomyString } from 'utils/string';
 
 const bem = BEM('themed-page-header');

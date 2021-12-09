@@ -4,7 +4,6 @@ import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
 import { SituationPageFlexColsLayoutProps } from '../../../types/component-props/layouts/situation-flex-cols';
 import { Header } from '../../_common/headers/Header';
-import './FlexColsLayout.less';
 
 type Props = {
     pageProps: ContentProps;

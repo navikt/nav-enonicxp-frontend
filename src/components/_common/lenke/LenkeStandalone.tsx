@@ -4,7 +4,6 @@ import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { BEM, classNames } from 'utils/classnames';
 import { LenkeBase } from './LenkeBase';
 import { getExternalDomain } from '../../../utils/links';
-import './LenkeStandalone.less';
 
 const getExternalUrlString = (url: string, linkText: string) => {
     const externalDomain = getExternalDomain(url);

@@ -1,5 +1,4 @@
 import React from 'react';
-import './ClearIcon.less';
 
 export const ClearIcon = () => (
     <div className={'cross-icon'}>

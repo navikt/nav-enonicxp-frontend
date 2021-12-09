@@ -1,7 +1,6 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import './FallbackPage.less';
 
 export const FallbackPage = () => {
     return (

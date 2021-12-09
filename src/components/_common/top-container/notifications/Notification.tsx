@@ -9,7 +9,6 @@ import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
 import { PublicImage } from '../../image/PublicImage';
 import { XpImage } from '../../image/XpImage';
-import './Notification.less';
 
 type Target = NotificationProps['data']['target'];
 

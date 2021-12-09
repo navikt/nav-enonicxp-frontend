@@ -3,7 +3,6 @@ import { Heading } from '@navikt/ds-react';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import { BEM, classNames } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
-import './LenkepanelNavNo.less';
 
 export type LenkepanelProps = {
     href: string;

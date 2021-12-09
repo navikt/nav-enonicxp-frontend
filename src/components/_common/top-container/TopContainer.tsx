@@ -8,7 +8,6 @@ import {
 } from '../../../types/content-props/_content-common';
 import { getContentLanguages } from '../../../utils/languages';
 import { VersionHistory } from './version-history/VersionHistory';
-import './TopContainer.less';
 
 const bem = BEM('top-container');
 

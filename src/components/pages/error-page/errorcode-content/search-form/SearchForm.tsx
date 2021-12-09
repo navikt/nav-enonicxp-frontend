@@ -4,7 +4,6 @@ import { ClearIcon } from '../clear-icon/ClearIcon';
 import { Input } from 'nav-frontend-skjema';
 import { BEM } from '../../../../../utils/classnames';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
-import './SearchForm.less';
 
 const origin = process.env.APP_ORIGIN;
 const maxSearchLength = 200;

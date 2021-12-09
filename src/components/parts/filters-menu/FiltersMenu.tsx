@@ -15,8 +15,6 @@ import { BEM } from '../../../utils/classnames';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
 
-import './FiltersMenu.less';
-
 const bem = BEM('filters-menu');
 
 export const FiltersMenu = ({ config }: FilterMenuProps) => {

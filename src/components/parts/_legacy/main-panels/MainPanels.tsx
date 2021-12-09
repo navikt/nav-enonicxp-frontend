@@ -3,7 +3,6 @@ import { BEM, classNames } from 'utils/classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { BodyLong } from '@navikt/ds-react';
 import LenkepanelNavNo from '../../../_common/lenkepanel/LenkepanelNavNo';
-import './MainPanels.less';
 import { translator } from '../../../../translations';
 
 const ingressMaxLength = 140;

@@ -2,7 +2,6 @@ import React from 'react';
 import { GVItem } from './item/GVItem';
 import { BEM } from '../../../../../utils/classnames';
 import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
-import './GVItems.less';
 
 const bem = BEM('gv-items');
 

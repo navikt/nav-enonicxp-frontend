@@ -6,7 +6,6 @@ import { GVItemEditor } from '../item-editor/GVItemEditor';
 import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState';
 import { gvServiceGetUsage } from '../../../api/services/usage';
 import { generateGvUsageMessages } from '../../../utils';
-import './GVItem.less';
 import { BodyShort, Heading } from '@navikt/ds-react';
 
 const bem = BEM('gv-item');

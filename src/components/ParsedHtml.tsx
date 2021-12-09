@@ -17,7 +17,6 @@ import { EditorHelp } from './_common/editor-utils/editor-help/EditorHelp';
 import ReactDOMServer from 'react-dom/server';
 import { store } from '../store/store';
 import { Provider } from 'react-redux';
-import './ParsedHtml.less';
 
 const blockLevelMacros: { [macroType in MacroType]?: boolean } = {
     [MacroType.AlertBox]: true,

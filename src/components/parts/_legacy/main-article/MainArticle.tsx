@@ -13,7 +13,6 @@ import {
     ContentType,
     ContentProps,
 } from '../../../../types/content-props/_content-common';
-import './MainArticle.less';
 
 export const MainArticle = (propsInitial: ContentProps) => {
     const props =

@@ -5,7 +5,6 @@ import { formatDate } from 'utils/datetime';
 import { Language, translator } from 'translations';
 import { PageListProps } from 'types/content-props/page-list-props';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
-import './PageList.less';
 
 const PageList = (props: PageListProps) => {
     const bem = BEM('page-list');

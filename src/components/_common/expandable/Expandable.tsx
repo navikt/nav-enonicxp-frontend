@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { ExpandableMixin } from '../../../types/component-props/_mixins';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { logAmplitudeEvent } from '../../../utils/amplitude';
-import './Expandable.less';
 
 type Props = {
     children: React.ReactNode;

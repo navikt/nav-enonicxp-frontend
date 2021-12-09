@@ -16,8 +16,6 @@ import {
     FieldType,
 } from 'types/component-props/parts/calculator';
 
-import './Calculator.less';
-
 const bem = BEM('calculator');
 
 export const Calculator = ({
