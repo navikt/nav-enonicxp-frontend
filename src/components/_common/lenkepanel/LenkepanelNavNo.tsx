@@ -4,6 +4,8 @@ import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
 import { BEM, classNames } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 
+const bem = BEM('lenkepanel-navno');
+
 export type LenkepanelProps = {
     href: string;
     tittel: string;
@@ -28,8 +30,6 @@ const LenkepanelNavNo = ({
     children,
     ...rest
 }: LenkepanelProps) => {
-    const bem = BEM('lenkepanel-navno');
-
     return (
         <LenkepanelBase
             href={href}
