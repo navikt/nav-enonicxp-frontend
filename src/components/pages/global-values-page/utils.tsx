@@ -55,11 +55,7 @@ const getUsageMessages = (usage) => {
     );
 };
 
-export const generateGvUsageMessages = (
-    usage,
-    itemName,
-    legacyUsage
-): GVMessageProps[] => {
+export const generateGvUsageMessages = (usage, itemName): GVMessageProps[] => {
     if (!usage) {
         return [
             {
@@ -76,9 +72,7 @@ export const generateGvUsageMessages = (
 
     const usageMessages = getUsageMessages(usage);
 
-    const legacyUsageMessages = getUsageMessages(legacyUsage);
-
-    if (usageMessages.length === 0 && legacyUsageMessages.length === 0) {
+    if (usageMessages.length === 0) {
         return [
             {
                 message: `Verdien "${itemName}" er ikke i bruk`,
@@ -93,10 +87,5 @@ export const generateGvUsageMessages = (
             level: 'info',
         },
         ...usageMessages,
-        legacyUsageMessages.length > 0 && {
-            message: `Verdien "${itemName}" er i bruk på følgende sider med gammelt format:`,
-            level: 'warning',
-        },
-        ...legacyUsageMessages,
     ];
 };
