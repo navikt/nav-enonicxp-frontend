@@ -126,7 +126,7 @@ const handler = async (
 
     if (!sitemapContent) {
         return res
-            .status(500)
+            .status(503)
             .send('Server error: sitemap is currently unavailable');
     }
 
