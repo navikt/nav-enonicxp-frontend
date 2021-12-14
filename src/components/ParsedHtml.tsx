@@ -174,7 +174,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag === 'table' && attribs?.class !== 'statTab') {
                 return (
                     <div className={'tabell__horisontal-scroll'}>
-                        <table {...props} className={'tabell tabell--stripet'}>
+                        <table {...props} role={'presentation'} className={'tabell tabell--stripet'}>
                             {domToReact(children, replaceElements)}
                         </table>
                     </div>
