@@ -74,8 +74,7 @@ export const GVItem = ({ item }: Props) => {
                                 setMessages(
                                     generateGvUsageMessages(
                                         res.usage,
-                                        item.itemName,
-                                        res.legacyUsage
+                                        item.itemName
                                     )
                                 )
                             )
