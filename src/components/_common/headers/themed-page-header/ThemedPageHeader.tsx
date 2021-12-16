@@ -10,6 +10,7 @@ import { IllustrationPlacements } from 'types/illustrationPlacements';
 import {
     ProductPageProps,
     SituationPageProps,
+    GuidePageProps
 } from '../../../../types/content-props/dynamic-page-props';
 import './ThemedPageHeader.less';
 import { buildTaxonomyString } from 'utils/string';
@@ -17,7 +18,7 @@ import { buildTaxonomyString } from 'utils/string';
 const bem = BEM('themed-page-header');
 
 type Props = {
-    contentProps: SituationPageProps | ProductPageProps;
+    contentProps: SituationPageProps | ProductPageProps | GuidePageProps;
 };
 
 export const ThemedPageHeader = ({ contentProps }: Props) => {
@@ -36,8 +37,29 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             return getTaxonomyLabel('employerNeedToKnow');
         }
 
+        if (pageType === ContentType.GuidePage) {
+            const getTaxonomyLabel = translator('guides', language);
+            return getTaxonomyLabel('howTo');
+        }
+
         return buildTaxonomyString(taxonomy, language);
     };
+
+    const getPageTypeClass = (_pageType: ContentType) => {
+        if (_pageType === ContentType.EmployerSituationPage || _pageType === ContentType.SituationPage) {
+            return 'situation'
+        }
+
+        if (_pageType === ContentType.ProductPage) {
+            return 'product'
+        }
+
+        if (_pageType === ContentType.GuidePage) {
+            return 'guide'
+        }
+
+        return ''
+    }
 
     const pageTitle = title || displayName;
 
@@ -53,11 +75,7 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
         <div
             className={classNames(
                 bem(),
-                pageType === ContentType.ProductPage &&
-                    bem(undefined, 'product'),
-                (pageType === ContentType.SituationPage ||
-                    pageType === ContentType.EmployerSituationPage) &&
-                    bem(undefined, 'situation')
+                bem(undefined,getPageTypeClass(pageType))
             )}
         >
             <Illustration
