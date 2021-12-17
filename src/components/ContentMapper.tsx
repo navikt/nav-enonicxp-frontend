@@ -11,6 +11,7 @@ import { RedirectPage } from './pages/redirect-page/RedirectPage';
 import { TemplatePage } from './pages/template-page/TemplatePage';
 import { make404Props } from '../utils/make-error-props';
 import { SituationPage } from './pages/situation-page/SituationPage';
+import { GuidePage } from './pages/guide-page/GuidePage';
 import { ProductPage } from './pages/product-page/ProductPage';
 import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
 
@@ -27,6 +28,7 @@ const contentToReactComponent: Partial<
     [ContentType.SituationPage]: SituationPage,
     [ContentType.EmployerSituationPage]: SituationPage,
     [ContentType.ProductPage]: ProductPage,
+    [ContentType.GuidePage]: GuidePage,
 
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.MainArticle]: DynamicPage,

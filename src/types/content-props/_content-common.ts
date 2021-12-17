@@ -46,6 +46,7 @@ export enum ContentType {
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
     GlobalValues = 'no_nav_navno_GlobalValueSet',
     ProductPage = 'no_nav_navno_ContentPageWithSidemenus',
+    GuidePage = 'no_nav_navno_GuidePage',
     SituationPage = 'no_nav_navno_SituationPage',
     EmployerSituationPage = 'no_nav_navno_EmployerSituationPage',
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',

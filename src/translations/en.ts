@@ -75,6 +75,9 @@ export const bundle: Translations = {
         youMayHaveRightTo: 'You may rights to this',
         employerNeedToKnow: 'As an employer, you need to know this',
     },
+    guides: {
+        howTo: 'How to',
+    },
     productTaxonomies,
     header: {
         copyLink: 'Copy link',
