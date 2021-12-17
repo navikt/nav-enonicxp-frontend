@@ -1,6 +1,7 @@
 @import (reference) '../../../../global';
 @import (reference) '../../../pages/product-page/ProductPage';
 @import (reference) '../../../pages/situation-page/SituationPage';
+@import (reference) '../../../pages/guide-page/GuidePage';
 
 .themed-page-header {
     display: flex;
@@ -16,6 +17,10 @@
 
     &--product {
         box-shadow: 0 -4px 0 @productPageColor inset;
+    }
+
+    &--guide {
+        box-shadow: 0 -4px 0 @guidePageColor inset;
     }
 
     &__illustration {

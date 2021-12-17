@@ -81,6 +81,9 @@ export const bundle = {
         youMayHaveRightTo: 'Dette kan du ha rett til',
         employerNeedToKnow: 'Som arbeidsgiver må du vite dette',
     },
+    guides: {
+        howTo: 'Slik gjør du',
+    },
     publishingCalendar: {
         event: 'Kalenderhendelse',
         publishdate: 'Publiseringsdato',
