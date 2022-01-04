@@ -40,6 +40,7 @@ export const bundle = {
     dates: {
         lastChanged: 'Sist endret',
         published: 'Publisert',
+        updated: 'Oppdatert'
     },
     linkPanels: {
         label: 'Valgpaneler',

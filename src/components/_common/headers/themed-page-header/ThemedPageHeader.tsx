@@ -1,8 +1,9 @@
 import React from 'react';
 import { BEM, classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
+import { formatDate } from '../../../../utils/datetime';
 import { ContentType } from '../../../../types/content-props/_content-common';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Illustration } from 'components/_common/illustration/Illustration';
@@ -22,11 +23,9 @@ type Props = {
 };
 
 export const ThemedPageHeader = ({ contentProps }: Props) => {
-    const { __typename: pageType, displayName, data } = contentProps;
+    const { __typename: pageType, displayName, modifiedTime, data } = contentProps;
     const { title, illustration, taxonomy } = data;
-
     const { language } = usePageConfig();
-
     const getSubtitle = () => {
         if (pageType === ContentType.SituationPage) {
             const getTaxonomyLabel = translator('situations', language);
@@ -44,7 +43,7 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
 
         return buildTaxonomyString(taxonomy, language);
     };
-
+    const getDatesLabel = translator('dates', language);
     const getPageTypeClass = (_pageType: ContentType) => {
         if (_pageType === ContentType.EmployerSituationPage || _pageType === ContentType.SituationPage) {
             return 'situation'
@@ -59,11 +58,10 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
         }
 
         return ''
-    }
-
+    };
     const pageTitle = title || displayName;
-
     const subTitle = getSubtitle();
+    const modified = getDatesLabel('updated') + ' ' + formatDate(modifiedTime, language, true);
 
     // This is a temporaty fix, especially for "Arbeidsavklaringspenger".
     // Will work with design to find solution for how long titles and illustration can stack better on mobile.
@@ -89,10 +87,20 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             />
             <div className={bem('text')}>
                 <PageHeader justify={'left'}>{pageTitle}</PageHeader>
-                {subTitle && (
-                    <BodyShort size="small" className={bem('label')}>
-                        {subTitle.toUpperCase()}
-                    </BodyShort>
+                {(subTitle || modified) && (
+                    <BodyLong size="small" className={bem('label')}>
+                        {subTitle && subTitle.toUpperCase()}
+                        {(subTitle && modified) &&
+                            <span aria-hidden='true'
+                                  className={'page-modified divider'}
+                            >
+                                {'|'}
+                            </span>
+                        }
+                        {modified &&
+                            <span className={'page-modified'}>{modified}</span>
+                        }
+                    </BodyLong>
                 )}
             </div>
         </div>

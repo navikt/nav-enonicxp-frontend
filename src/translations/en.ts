@@ -15,6 +15,7 @@ export const bundle: Translations = {
     dates: {
         published: 'Published',
         lastChanged: 'Updated',
+        updated: 'Updated'
     },
     calculator: {
         calculate: 'Calculate',
