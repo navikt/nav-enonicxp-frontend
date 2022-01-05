@@ -15,7 +15,6 @@ export const bundle: Translations = {
     dates: {
         published: 'Published',
         lastChanged: 'Updated',
-        updated: 'Updated'
     },
     calculator: {
         calculate: 'Calculate',
@@ -38,7 +37,7 @@ export const bundle: Translations = {
     },
     mainArticle: {
         facts: 'Facts',
-        lastChanged: 'Updated',
+        lastChanged: 'updated',
         linkedListDescription: 'Chapters',
         published: 'Published',
         tableOfContents: 'Table of contents',

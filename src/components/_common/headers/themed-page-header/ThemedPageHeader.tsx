@@ -61,7 +61,7 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
     };
     const pageTitle = title || displayName;
     const subTitle = getSubtitle();
-    const modified = getDatesLabel('updated') + ' ' + formatDate(modifiedTime, language, true);
+    const modified = getDatesLabel('lastChanged') + ' ' + formatDate(modifiedTime, language, true);
 
     // This is a temporaty fix, especially for "Arbeidsavklaringspenger".
     // Will work with design to find solution for how long titles and illustration can stack better on mobile.
@@ -70,7 +70,7 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
         .every((word) => word.length < 18);
 
     return (
-        <div
+        <header
             className={classNames(
                 bem(),
                 bem(undefined,getPageTypeClass(pageType))
@@ -92,17 +92,17 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
                         {subTitle && subTitle.toUpperCase()}
                         {(subTitle && modified) &&
                             <span aria-hidden='true'
-                                  className={'page-modified divider'}
+                                  className={'page-modified-info divider'}
                             >
                                 {'|'}
                             </span>
                         }
                         {modified &&
-                            <span className={'page-modified'}>{modified}</span>
+                            <span className={'page-modified-info'}>{modified}</span>
                         }
                     </BodyLong>
                 )}
             </div>
-        </div>
+        </header>
     );
 };

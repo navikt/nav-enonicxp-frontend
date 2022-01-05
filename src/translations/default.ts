@@ -38,9 +38,8 @@ export const bundle = {
         error: 'Beklager, det har oppstått en feil i kalkulatoren med følgende feilmelding:',
     },
     dates: {
-        lastChanged: 'Sist endret',
+        lastChanged: 'Oppdatert',
         published: 'Publisert',
-        updated: 'Oppdatert'
     },
     linkPanels: {
         label: 'Valgpaneler',
@@ -61,7 +60,7 @@ export const bundle = {
     },
     mainArticle: {
         facts: 'Fakta',
-        lastChanged: 'Sist endret',
+        lastChanged: 'oppdatert',
         linkedListDescription: 'Kapitler',
         published: 'Publisert',
         tableOfContents: 'Innholdsfortegnelse',
