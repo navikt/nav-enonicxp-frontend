@@ -16,21 +16,21 @@ interface Props {
 
 const ArtikkelDato = (props: Props) => {
     const { language } = usePageConfig();
-    const publisertDato = props.publish?.first ?? props.createdTime;
-    const publishedString = `${props.publishLabel}: ${formatDate(
-        publisertDato, language, true
+    const { publish, createdTime, modifiedTime, publishLabel, modifiedLabel} = props;
+    const publishedDate = publish?.first ?? createdTime;
+    const publishedString = `${publishLabel} ${formatDate(
+        publishedDate, language, true
     )}`;
     const getStringParts = translator('stringParts', language);
     let modifiedString = '';
-    const modifiedDato = props.modifiedTime;
-    if (new Date(modifiedDato) > new Date(publisertDato)) {
-        const lastModified = `${props.modifiedLabel}: ${formatDate(
-            props.modifiedTime, language, true
+    if (new Date(modifiedTime) > new Date(publishedDate)) {
+        const lastModified = `${modifiedLabel} ${formatDate(
+            modifiedTime, language, true
         )}`;
         modifiedString = ` ${getStringParts('conjunction')} ${lastModified}`;
     }
     return (
-        <time dateTime={props.publish?.first}>
+        <time dateTime={publishedDate}>
             <BodyLong className={'page-modified-info'}>
                 {publishedString + modifiedString}
             </BodyLong>

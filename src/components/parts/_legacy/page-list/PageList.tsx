@@ -1,16 +1,18 @@
 import React from 'react';
 import { BEM } from 'utils/classnames';
-import { Heading, BodyLong, Ingress, BodyShort } from '@navikt/ds-react';
-import { formatDate } from 'utils/datetime';
-import { Language, translator } from 'translations';
+import { Heading, BodyLong, Ingress } from '@navikt/ds-react';
+import ArtikkelDato from '../main-article/ArtikkelDato'
+import { translator } from 'translations';
 import { PageListProps } from 'types/content-props/page-list-props';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import './PageList.less';
 
 const PageList = (props: PageListProps) => {
     const bem = BEM('page-list');
-    const { modifiedTime, createdTime, language } = props;
-    const data = props.data;
+    const { publish, modifiedTime, createdTime, language, data } = props;
+    const getDateLabel = translator('mainArticle', language);
+    const publishLabel = getDateLabel('published');
+    const modifiedLabel = getDateLabel('lastChanged');
     const hideDatesOnPage = data?.hide_date;
     const hideDatesInList = data?.hideSectionContentsDate;
     const orderListByPublishedDate = data?.orderSectionContentsByPublished;
@@ -25,29 +27,29 @@ const PageList = (props: PageListProps) => {
 
     return (
         <div className={bem()}>
-            <Heading level="1" size="2xlarge">
-                {props.displayName}
-            </Heading>
-            <div className={bem('ingress')}>
-                <Ingress>{props.data.ingress}</Ingress>
-            </div>
-            {!hideDatesOnPage && (
-                <CreatedAndModifiedDate
-                    language={language}
-                    className={bem('date')}
-                    createdTime={createdTime}
-                    modifiedTime={modifiedTime}
-                />
-            )}
+            <header>
+                <Heading level="1" size="2xlarge">
+                    {props.displayName}
+                </Heading>
+                <div className={bem('ingress')}>
+                    <Ingress>{data.ingress}</Ingress>
+                </div>
+                {!hideDatesOnPage && (
+                    <ArtikkelDato
+                        publish={publish}
+                        createdTime={createdTime}
+                        modifiedTime={modifiedTime}
+                        publishLabel={publishLabel}
+                        modifiedLabel={modifiedLabel}
+                    />
+                )}
+            </header>
             <div className={bem('list')}>
                 {sectionContents.map((section) => {
-                    const { displayName, _path } = section;
-                    const data = section.data;
+                    const { displayName, _path, publish, modifiedTime, createdTime, data } = section;
                     const ingress = data?.ingress || data?.description;
-                    const modifiedTime = section.modifiedTime;
-                    const createdTime = section.createdTime;
                     return (
-                        <div key={section._path} className={bem('row')}>
+                        <article key={_path} className={bem('row')}>
                             <BodyLong>
                                 <LenkeInline href={_path}>
                                     {displayName}
@@ -59,38 +61,18 @@ const PageList = (props: PageListProps) => {
                                 </div>
                             )}
                             {!hideDatesInList && (
-                                <CreatedAndModifiedDate
-                                    language={language}
-                                    className={bem('date')}
+                                <ArtikkelDato
+                                    publish={publish}
                                     createdTime={createdTime}
                                     modifiedTime={modifiedTime}
+                                    publishLabel={publishLabel}
+                                    modifiedLabel={modifiedLabel}
                                 />
                             )}
-                        </div>
+                        </article>
                     );
                 })}
             </div>
-        </div>
-    );
-};
-
-interface DatesProps {
-    language: Language;
-    className: string;
-    createdTime: string;
-    modifiedTime: string;
-}
-
-const CreatedAndModifiedDate = (props: DatesProps) => {
-    const { createdTime, modifiedTime, language, className } = props;
-    const getDateLabel = translator('dates', language);
-    return (
-        <div className={className}>
-            <BodyShort size="small">
-                {`${getDateLabel('published')}: ${formatDate(createdTime)}`}
-                {' | '}
-                {`${getDateLabel('lastChanged')}: ${formatDate(modifiedTime)}`}
-            </BodyShort>
         </div>
     );
 };
