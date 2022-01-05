@@ -60,7 +60,7 @@ export const bundle = {
     },
     mainArticle: {
         facts: 'Fakta',
-        lastChanged: 'oppdatert',
+        lastChanged: 'Sist endret',
         linkedListDescription: 'Kapitler',
         published: 'Publisert',
         tableOfContents: 'Innholdsfortegnelse',

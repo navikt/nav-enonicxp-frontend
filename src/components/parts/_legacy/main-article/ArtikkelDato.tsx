@@ -2,7 +2,6 @@ import * as React from 'react';
 import { formatDate } from '../../../../utils/datetime';
 import { BodyLong } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { translator } from '../../../../translations';
 
 interface Props {
     publish?: {
@@ -19,20 +18,24 @@ const ArtikkelDato = (props: Props) => {
     const { publish, createdTime, modifiedTime, publishLabel, modifiedLabel} = props;
     const publishedDate = publish?.first ?? createdTime;
     const publishedString = `${publishLabel} ${formatDate(
-        publishedDate, language, true
+        publishedDate, language
     )}`;
-    const getStringParts = translator('stringParts', language);
     let modifiedString = '';
     if (new Date(modifiedTime) > new Date(publishedDate)) {
-        const lastModified = `${modifiedLabel} ${formatDate(
-            modifiedTime, language, true
+        modifiedString = ` ${modifiedLabel} ${formatDate(
+            modifiedTime, language
         )}`;
-        modifiedString = ` ${getStringParts('conjunction')} ${lastModified}`;
     }
     return (
         <time dateTime={publishedDate}>
             <BodyLong className={'page-modified-info'}>
-                {publishedString + modifiedString}
+                {publishedString}
+                {modifiedString &&
+                    <>
+                        <span aria-hidden='true'>{' |'}</span>
+                        {modifiedString}
+                    </>
+                }
             </BodyLong>
         </time>
     );

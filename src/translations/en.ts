@@ -37,7 +37,7 @@ export const bundle: Translations = {
     },
     mainArticle: {
         facts: 'Facts',
-        lastChanged: 'updated',
+        lastChanged: 'Updated',
         linkedListDescription: 'Chapters',
         published: 'Published',
         tableOfContents: 'Table of contents',
