@@ -82,7 +82,7 @@ export const bundle = {
         employerNeedToKnow: 'Som arbeidsgiver må du vite dette',
     },
     guides: {
-        howTo: 'Slik gjør du',
+        howTo: 'Slik gjør du det',
     },
     publishingCalendar: {
         event: 'Kalenderhendelse',
