@@ -35,13 +35,15 @@ const PageList = (props: PageListProps) => {
                     <Ingress>{data.ingress}</Ingress>
                 </div>
                 {!hideDatesOnPage && (
-                    <ArtikkelDato
-                        publish={publish}
-                        createdTime={createdTime}
-                        modifiedTime={modifiedTime}
-                        publishLabel={publishLabel}
-                        modifiedLabel={modifiedLabel}
-                    />
+                    <div className={'page-list__date'}>
+                        <ArtikkelDato
+                            publish={publish}
+                            createdTime={createdTime}
+                            modifiedTime={modifiedTime}
+                            publishLabel={publishLabel}
+                            modifiedLabel={modifiedLabel}
+                        />
+                    </div>
                 )}
             </header>
             <div className={bem('list')}>
@@ -61,13 +63,15 @@ const PageList = (props: PageListProps) => {
                                 </div>
                             )}
                             {!hideDatesInList && (
-                                <ArtikkelDato
-                                    publish={publish}
-                                    createdTime={createdTime}
-                                    modifiedTime={modifiedTime}
-                                    publishLabel={publishLabel}
-                                    modifiedLabel={modifiedLabel}
-                                />
+                                <div className={'page-list__date'}>
+                                    <ArtikkelDato
+                                        publish={publish}
+                                        createdTime={createdTime}
+                                        modifiedTime={modifiedTime}
+                                        publishLabel={publishLabel}
+                                        modifiedLabel={modifiedLabel}
+                                    />
+                                </div>
                             )}
                         </article>
                     );
