@@ -38,7 +38,7 @@ export const bundle = {
         error: 'Beklager, det har oppstått en feil i kalkulatoren med følgende feilmelding:',
     },
     dates: {
-        lastChanged: 'Sist endret',
+        lastChanged: 'Oppdatert',
         published: 'Publisert',
     },
     linkPanels: {

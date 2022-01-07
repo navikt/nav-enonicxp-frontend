@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { formatDate } from '../../../../utils/datetime';
 import { BodyLong } from '@navikt/ds-react';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 interface Props {
     publish?: {
@@ -13,26 +14,29 @@ interface Props {
 }
 
 const ArtikkelDato = (props: Props) => {
-    const publisertDato = props.publish?.first ?? props.createdTime;
-
-    const publishedString = `${props.publishLabel}: ${formatDate(
-        publisertDato
+    const { language } = usePageConfig();
+    const { publish, createdTime, modifiedTime, publishLabel, modifiedLabel} = props;
+    const publishedDate = publish?.first ?? createdTime;
+    const publishedString = `${publishLabel} ${formatDate(
+        publishedDate, language
     )}`;
-
     let modifiedString = '';
-    const modifiedDato = props.modifiedTime;
-    if (new Date(modifiedDato) > new Date(publisertDato)) {
-        const lastModified = `${props.modifiedLabel}: ${formatDate(
-            props.modifiedTime
+    if (new Date(modifiedTime) > new Date(publishedDate)) {
+        modifiedString = ` ${modifiedLabel} ${formatDate(
+            modifiedTime, language
         )}`;
-        modifiedString = ` | ${lastModified}`;
     }
-
-    const innhold = publishedString + modifiedString;
-
     return (
-        <time dateTime={props.publish?.first}>
-            <BodyLong>{innhold}</BodyLong>
+        <time dateTime={publishedDate}>
+            <BodyLong className={'page-modified-info'}>
+                {publishedString}
+                {modifiedString &&
+                    <>
+                        <span aria-hidden='true'>{' |'}</span>
+                        {modifiedString}
+                    </>
+                }
+            </BodyLong>
         </time>
     );
 };
