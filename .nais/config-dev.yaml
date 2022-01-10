@@ -30,12 +30,10 @@ spec:
   accessPolicy:
     outbound:
       external:
-        - host: nav.no
         - host: dekoratoren.ekstern.dev.nav.no
   resources:
     limits:
       cpu: '3'
-      memory: 1500Mi
+      memory: 2000Mi
     requests:
-      cpu: 500m
       memory: 1500Mi
