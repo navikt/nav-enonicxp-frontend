@@ -1,0 +1,39 @@
+---
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  name: nav-enonicxp-frontend
+  namespace: {{namespace}}
+  labels:
+    team: personbruker
+spec:
+  image: {{image}}:{{version}}
+  team: personbruker
+  port: 3000
+  liveness:
+    path: /api/internal/isAlive
+    initialDelay: 10
+  readiness:
+    path: /api/internal/isReady
+    initialDelay: 10
+  prometheus:
+    enabled: true
+    path: /api/internal/metrics
+  ingresses:
+  {{#each ingresses as |url|}}
+    - {{url}}
+  {{/each}}
+  replicas:
+    min: 2
+    max: 4
+  webproxy: true
+  accessPolicy:
+    outbound:
+      external:
+        - host: dekoratoren.ekstern.dev.nav.no
+  resources:
+    limits:
+      cpu: '3'
+      memory: 3000Mi
+    requests:
+      memory: 1500Mi
