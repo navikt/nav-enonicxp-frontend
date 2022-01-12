@@ -65,7 +65,7 @@
         "nav-frontend-veileder-style": "^3.0.1",
         "nav-frontend-veilederpanel": "^2.0.2",
         "nav-frontend-veilederpanel-style": "^2.0.1",
-        "next": "^12.0.7",
+        "next": "^12.0.8",
         "next-compose-plugins": "^2.2.1",
         "next-images": "^1.8.4",
         "next-transpile-modules": "^9.0.0",
@@ -84,7 +84,7 @@
         "ssri": "^6.0.2"
     },
     "devDependencies": {
-        "@next/eslint-plugin-next": "^12.0.7",
+        "@next/eslint-plugin-next": "^12.0.8",
         "@octokit/core": "^3.5.1",
         "@types/amplitude-js": "^8.0.2",
         "@types/node": "^16.11.12",
