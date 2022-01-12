@@ -3,13 +3,14 @@ import { BEM, classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { XpImageProps } from '../../../types/media';
 import { XpImage } from '../image/XpImage';
-import { KnappBaseProps } from 'nav-frontend-knapper';
 
 const bem = BEM('knapp');
 
+type LegacyTypes = 'standard' | 'hoved' | 'fare' | 'flat';
+
 type Props = {
     href?: string;
-    type?: KnappBaseProps['type'];
+    type?: LegacyTypes;
     icon?: XpImageProps;
     mini?: boolean;
     kompakt?: boolean;

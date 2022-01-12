@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Heading, TextField } from '@navikt/ds-react';
 import { ClearIcon } from '../clear-icon/ClearIcon';
 import { BEM } from '../../../../../utils/classnames';
-import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
+import { Button } from '../../../../_common/button/Button';
 
 const origin = process.env.APP_ORIGIN;
 const maxSearchLength = 200;
@@ -46,19 +46,26 @@ export const SearchForm = () => {
                 />
                 <div className={bem('buttons-container')}>
                     {searchTerm && (
-                        <Flatknapp
+                        <Button
+                            type={'flat'}
                             className={bem('button')}
                             mini={true}
                             aria-label={'Nullstill søk'}
-                            onClick={() => setSearchTerm('')}
-                            htmlType={'button'}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setSearchTerm('');
+                            }}
                         >
                             <ClearIcon />
-                        </Flatknapp>
+                        </Button>
                     )}
-                    <Hovedknapp className={bem('button')} htmlType={'submit'}>
+                    <Button
+                        className={bem('button')}
+                        type={'hoved'}
+                        onClick={onSearchSubmit}
+                    >
                         {'Søk'}
-                    </Hovedknapp>
+                    </Button>
                 </div>
             </form>
         </div>
