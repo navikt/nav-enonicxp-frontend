@@ -2,7 +2,7 @@ import React from 'react';
 import { LargeTableProps } from '../../../types/content-props/large-table-props';
 import { makeErrorProps } from '../../../utils/make-error-props';
 import { ErrorPage } from '../error-page/ErrorPage';
-import { ParsedHtml } from '../../ParsedHtml';
+import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
 
 export const LargeTablePage = (contentData: LargeTableProps) => {
     const html = contentData.data?.text;

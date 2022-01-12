@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ParsedHtml } from '../../../ParsedHtml';
+import { ParsedHtml } from '../../../_common/parsed-html/ParsedHtml';
 import { PublicImage } from '../../../_common/image/PublicImage';
 import { ProcessedHtmlProps } from '../../../../types/processed-html-props';
 

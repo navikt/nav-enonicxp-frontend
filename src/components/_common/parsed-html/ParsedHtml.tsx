@@ -3,20 +3,21 @@ import { BodyLong, Heading } from '@navikt/ds-react';
 import htmlReactParser, { Element, domToReact } from 'html-react-parser';
 import { isTag, isText } from 'domhandler';
 import attributesToProps from 'html-react-parser/lib/attributes-to-props';
-import { LenkeInline } from './_common/lenke/LenkeInline';
-import { getMediaUrl } from '../utils/urls';
+import { LenkeInline } from '../lenke/LenkeInline';
+import { getMediaUrl } from '../../../utils/urls';
 import {
     processedHtmlMacroTag,
     ProcessedHtmlProps,
-} from '../types/processed-html-props';
-import { MacroMapper } from './macros/MacroMapper';
-import { headingToLevel, headingToSize } from '../types/typo-style';
-import { MacroType } from '../types/macro-props/_macros-common';
-import { usePageConfig } from '../store/hooks/usePageConfig';
-import { EditorHelp } from './_common/editor-utils/editor-help/EditorHelp';
+} from '../../../types/processed-html-props';
+import { MacroMapper } from '../../macros/MacroMapper';
+import { headingToLevel, headingToSize } from '../../../types/typo-style';
+import { MacroType } from '../../../types/macro-props/_macros-common';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { EditorHelp } from '../editor-utils/editor-help/EditorHelp';
 import ReactDOMServer from 'react-dom/server';
-import { store } from '../store/store';
+import { store } from '../../../store/store';
 import { Provider } from 'react-redux';
+import { ParsedHtmlTable } from './ParsedHtmlTable';
 
 const blockLevelMacros: { [macroType in MacroType]?: boolean } = {
     [MacroType.AlertBox]: true,
@@ -81,7 +82,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
         return null;
     }
 
-    const replaceElements = {
+    const parserOptions = {
         replace: (element: Element) => {
             const { name, attribs, children } = element;
             const tag = name?.toLowerCase();
@@ -116,7 +117,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag?.match(/^h[1-6]$/)) {
                 // Header-tags should not be used as empty spacers
                 if (!validChildren) {
-                    return <p> </p>;
+                    return <p></p>;
                 }
 
                 const level = headingToLevel[tag] || 2; //Level 1 reserved for page heading
@@ -125,7 +126,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 return (
                     // H1 tags should only be used for the page heading
                     <Heading {...props} size={size} level={level} spacing>
-                        {domToReact(validChildren, replaceElements)}
+                        {domToReact(validChildren, parserOptions)}
                     </Heading>
                 );
             }
@@ -134,11 +135,11 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag === 'p' && children) {
                 // Block level elements should not be nested under inline elements
                 if (hasBlockLevelMacroChildren(element)) {
-                    return <>{domToReact(children, replaceElements)}</>;
+                    return <>{domToReact(children, parserOptions)}</>;
                 }
                 return (
                     <BodyLong spacing {...props}>
-                        {domToReact(children, replaceElements)}
+                        {domToReact(children, parserOptions)}
                     </BodyLong>
                 );
             }
@@ -152,7 +153,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 }
                 return (
                     <LenkeInline {...props} href={href}>
-                        {domToReact(validChildren, replaceElements)}
+                        {domToReact(validChildren, parserOptions)}
                     </LenkeInline>
                 );
             }
@@ -164,7 +165,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 }
                 return (
                     <ul {...props}>
-                        {domToReact(validChildren, replaceElements)}
+                        {domToReact(validChildren, parserOptions)}
                     </ul>
                 );
             }
@@ -172,11 +173,11 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             // Table class fix, excluding large-table (statistics pages)
             if (tag === 'table' && attribs?.class !== 'statTab') {
                 return (
-                    <div className={'tabell__horisontal-scroll'}>
-                        <table {...props} role={'presentation'} className={'tabell tabell--stripet'}>
-                            {domToReact(children, replaceElements)}
-                        </table>
-                    </div>
+                    <ParsedHtmlTable
+                        {...props}
+                        tableElements={children}
+                        parentParserOptions={parserOptions}
+                    />
                 );
             }
 
@@ -192,7 +193,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
         },
     };
 
-    const htmlParsed = htmlReactParser(processedHtml, replaceElements);
+    const htmlParsed = htmlReactParser(processedHtml, parserOptions);
 
     // If the html renders to an empty string (or whitespace only), show an
     // error message in the editor

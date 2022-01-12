@@ -1,5 +1,5 @@
 import React from 'react';
-import { ParsedHtml } from '../../../ParsedHtml';
+import { ParsedHtml } from '../../../_common/parsed-html/ParsedHtml';
 import { Heading } from '@navikt/ds-react';
 import classNames from 'classnames';
 import { BEM } from 'utils/classnames';
