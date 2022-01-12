@@ -24,9 +24,9 @@ export const ProductCardPart = ({
         );
     }
 
-    const { targetPage, header } = config;
+    const { targetPage, header, ingressOverride } = config;
 
-    const props = getCardProps(targetPage, language);
+    const props = getCardProps(targetPage, language, ingressOverride);
 
     if (!props) {
         return null;
