@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { BodyLong } from '@navikt/ds-react';
-import { CheckboxGruppe } from 'nav-frontend-skjema';
+import { BodyLong, CheckboxGroup } from '@navikt/ds-react';
 
 import { logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
@@ -75,9 +74,10 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
             >
                 {categories.map((category, categoryIndex) => {
                     return (
-                        <CheckboxGruppe
+                        <CheckboxGroup
                             legend={category.categoryName}
                             key={categoryIndex}
+                            className={bem('category')}
                         >
                             {category.filters.map((filter, filterIndex) => (
                                 <FilterCheckbox
@@ -97,7 +97,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                                     (filter) => filter.id
                                 )}
                             />
-                        </CheckboxGruppe>
+                        </CheckboxGroup>
                     );
                 })}
             </Expandable>
