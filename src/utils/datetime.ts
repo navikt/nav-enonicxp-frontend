@@ -7,10 +7,13 @@ import utc from 'dayjs/plugin/utc';
 dayjs.extend(localizedFormat);
 dayjs.extend(utc);
 
-export const formatDate = (datetime: string, language: string = 'nb') => {
+export const formatDate = (
+    datetime: string,
+    language: string = 'nb',
+    month: boolean = false) => {
     const currentLocale = language === 'en' ? 'en-gb' : 'nb';
     return datetime
-        ? dayjs(datetime).locale(currentLocale).format('L')
+        ? dayjs(datetime).locale(currentLocale).format( month ? 'LL': 'L')
         : datetime;
 };
 

@@ -8,7 +8,6 @@ type ContentInfo = {
 
 type ServiceResponse = {
     usage: ContentInfo[];
-    legacyUsage: ContentInfo[];
 };
 
 export const gvServiceGetUsage = (

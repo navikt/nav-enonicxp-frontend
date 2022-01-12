@@ -40,7 +40,7 @@ const getDescription = ({ data }: Target) => {
 };
 
 export const Notification = (props: NotificationProps) => {
-    const { data, modifiedTime } = props;
+    const { data, language, modifiedTime } = props;
     if (!data) {
         return null;
     }
@@ -52,7 +52,7 @@ export const Notification = (props: NotificationProps) => {
 
     const description = showDescription && getDescription(target);
     const bem = BEM('notification');
-    const getDateLabel = translator('dates', props.language);
+    const getDateLabel = translator('dates', language);
 
     const IconElement = icon ? (
         <XpImage imageProps={icon} alt={''} />
@@ -77,7 +77,7 @@ export const Notification = (props: NotificationProps) => {
                 {showUpdated && (
                     <BodyShort size="small" className={bem('updated')}>
                         {`${getDateLabel('lastChanged')}: ${formatDate(
-                            modifiedTime
+                            modifiedTime, language, true
                         )}`}
                     </BodyShort>
                 )}

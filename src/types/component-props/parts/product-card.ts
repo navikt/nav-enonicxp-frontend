@@ -11,13 +11,12 @@ export type TargetPage = ProductPageProps | SituationPageProps | ToolsPageProps;
 export type ProductTarget = {
     header?: string;
     targetPage: TargetPage;
+    ingressOverride?: string;
 };
 
 export interface ProductCardProps extends PartComponentProps {
     descriptor: PartType.ProductCard;
-    config: {
-        ingressOverride?: string;
-    } & ProductTarget;
+    config: ProductTarget;
 }
 
 export interface ProductCardMiniProps extends PartComponentProps {

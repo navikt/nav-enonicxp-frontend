@@ -1,6 +1,7 @@
 @import (reference) '../../../../global';
 @import (reference) '../../../pages/product-page/ProductPage';
 @import (reference) '../../../pages/situation-page/SituationPage';
+@import (reference) '../../../pages/guide-page/GuidePage';
 
 .themed-page-header {
     display: flex;
@@ -18,6 +19,10 @@
         box-shadow: 0 -4px 0 @productPageColor inset;
     }
 
+    &--guide {
+        box-shadow: 0 -4px 0 @guidePageColor inset;
+    }
+
     &__illustration {
         width: #px-to-rem(80) [];
         height: #px-to-rem(80) [];
@@ -32,6 +37,10 @@
 
     &__label {
         margin-top: -0.75rem;
+
+        .divider {
+            padding: 0 1rem;
+        }
     }
 
     // Following section is a temp fix until we determine responsive breakpoints

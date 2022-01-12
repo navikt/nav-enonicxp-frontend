@@ -67,5 +67,5 @@ jobs:
         env:
           CLUSTER: dev-gcp
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          RESOURCE: .nais/config.yaml
+          RESOURCE: .nais/config-dev.yaml
           VARS: .nais/vars.yaml

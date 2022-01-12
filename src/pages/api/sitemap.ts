@@ -66,9 +66,10 @@ const processResponse = async (response: Response) => {
         const sitemap: SitemapEntity[] = await response.json();
         return sitemap;
     } else {
-        throw Error(
-            `Could not fetch sitemap from service. ${response.statusText}.`
+        console.error(
+            `Error while fetching sitemap data: ${response.status} - ${response.statusText}`
         );
+        return null;
     }
 };
 
@@ -85,7 +86,12 @@ const fetchSitemapAndUpdateCache = async (url: string) => {
         millisecondsToFetchTimeout,
         fetchOptions
     );
+
     const jsonSitemap = await processResponse(response);
+    if (!jsonSitemap) {
+        return null;
+    }
+
     const xmlSitemap = buildXMLSitemap(jsonSitemap);
     saveToCache(xmlSitemap);
     return xmlSitemap;
@@ -98,8 +104,7 @@ const getSitemapFromCache = async () => {
 
     // There's nothing in the cache, so we're forced to await for the fetch to return.
     if (!cache.has(cacheKey)) {
-        const xmlSitemap = await fetchSitemapAndUpdateCache(sitemapUrl);
-        return xmlSitemap;
+        return await fetchSitemapAndUpdateCache(sitemapUrl);
     }
 
     // Although the cache IS expired, we don't want to wait for the new 10-ish second fetch to return.
@@ -108,7 +113,7 @@ const getSitemapFromCache = async () => {
         fetchSitemapAndUpdateCache(sitemapUrl);
     }
 
-    return await cache.get(cacheKey);
+    return cache.get(cacheKey);
 };
 
 const handler = async (
@@ -118,9 +123,15 @@ const handler = async (
     const sitemapContent = await getSitemapFromCache();
 
     res.setHeader('X-Robots-Tag', 'noindex');
+
+    if (!sitemapContent) {
+        return res
+            .status(503)
+            .send('Server error: sitemap is currently unavailable');
+    }
+
     res.setHeader('Content-Type', 'application/xml');
-    res.status(200);
-    res.end(sitemapContent);
+    res.status(200).end(sitemapContent);
 };
 
 export default handler;
