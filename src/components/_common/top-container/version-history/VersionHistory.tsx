@@ -3,8 +3,7 @@ import { BEM } from '../../../../utils/classnames';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { LenkeStandalone } from '../../lenke/LenkeStandalone';
 import NavFrontendChevron from 'nav-frontend-chevron';
-import NavFrontendSpinner from 'nav-frontend-spinner';
-import { Heading } from '@navikt/ds-react';
+import { Heading, Loader } from '@navikt/ds-react';
 import { VersionStatus } from './status/VersionStatus';
 import { VersionSelector } from './selector/VersionSelector';
 import { translator } from 'translations';
@@ -79,7 +78,7 @@ export const VersionHistory = ({ content }: Props) => {
                     <Heading size="medium" level="2">
                         {getLabel('loading')}
                     </Heading>
-                    <NavFrontendSpinner className={bem('spinner')} />
+                    <Loader size={'2xlarge'} />
                 </div>
             )}
         </div>
