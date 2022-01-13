@@ -25,18 +25,18 @@
         }
 
         &:hover {
-            background-color: @navBlaLighten80;
-            color: @navMorkGra;
+            background-color: @navds-global-color-blue-100;
+            color: @navds-global-color-gray-900;
             text-decoration: none;
 
             .page-nav-link__decor {
-                background-color: @navBla;
+                background-color: @navds-semantic-color-link;
             }
         }
 
         &:focus {
             outline: 0;
-            box-shadow: 0 0 0 3px @fokusFarge inset;
+            box-shadow: 0 0 0 3px @navds-semantic-color-focus inset;
         }
 
         &--up {
@@ -82,7 +82,7 @@
                 min-width: @decorWidth;
                 margin: -@verticalPadding @decorWidth -@verticalPadding
                     (-@decorWidth - @horizontalPadding);
-                background-color: @navBla;
+                background-color: @navds-semantic-color-link;
 
                 transform: scaleY(0);
 

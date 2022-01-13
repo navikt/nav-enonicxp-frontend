@@ -34,9 +34,8 @@
 
         .card__title {
             text-decoration: underline;
-            color: @navMorkGra;
+            color: @navds-global-color-gray-900;
             margin-bottom: 1rem;
-            color: @navMorkGra;
         }
 
         .illustration__lottie-container {
@@ -46,13 +45,13 @@
         }
 
         .card__description {
-            color: @navMorkGra;
+            color: @navds-global-color-gray-900;
             font-weight: 400;
             margin-bottom: 2rem;
         }
 
         .card__category {
-            color: @navGra80;
+            color: @navds-global-color-gray-800;
             font-size: 0.875rem;
             font-weight: 400;
             margin-top: auto; // Aligns category to bottom inside flexbox
@@ -61,9 +60,9 @@
 
         /* Card type specific styling */
         &:not(:focus-visible)&:not(:hover) {
-            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
-                0px 2px 1px rgba(38, 38, 38, 0.12),
-                0px 1px 3px rgba(38, 38, 38, 0.2);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.14),
+                0 2px 1px rgba(38, 38, 38, 0.12),
+                0 1px 3px rgba(38, 38, 38, 0.2);
         }
 
         &.card__product,
@@ -73,7 +72,7 @@
 
         &.card__provider {
             .card__title {
-                color: @navBla;
+                color: @navds-semantic-color-link;
             }
         }
     }

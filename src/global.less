@@ -1,5 +1,3 @@
-@import '~nav-frontend-core/less/_variabler';
-@import '~nav-frontend-core/less/core';
 @import './shared-mixins';
 @import (reference) '@navikt/ds-tokens/dist/tokens.less';
 
@@ -27,6 +25,10 @@
 @sectionPaddingTablet: 1.6rem;
 @sectionPaddingMobile: 1rem;
 
+@border-radius-small: 2px;
+@border-radius-base: 4px;
+@border-radius-large: 6px;
+
 html {
     // override ds-css scroll behaviour
     animation: none;
@@ -39,7 +41,7 @@ html {
 
 #__next,
 .decorator-utils-container {
-    background-color: @navGraBakgrunn;
+    background-color: @navds-semantic-color-canvas-background;
 }
 
 .decorator-utils-container {
@@ -137,7 +139,7 @@ article .page-modified-info {
 
 .panel-inset-focus-mixin() {
     outline: 0;
-    box-shadow: 0 0 0 3px inset @fokusFarge;
+    box-shadow: 0 0 0 3px inset @navds-semantic-color-focus;
 }
 
 .section-padding-mixin() {
@@ -153,7 +155,7 @@ article .page-modified-info {
 }
 
 .link-border-bottom-mixin() {
-    border-bottom: 1px @navBla solid;
+    border-bottom: 1px @navds-semantic-color-link solid;
     text-decoration: none;
     transition: border-bottom-color 0.12s ease-out;
 

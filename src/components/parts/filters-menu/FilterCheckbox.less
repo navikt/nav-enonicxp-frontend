@@ -4,7 +4,7 @@
     &__wrapper {
         background-color: transparent;
         border-radius: 0.25rem;
-        box-shadow: @navBla inset 0 0 0 1px;
+        box-shadow: @navds-semantic-color-link inset 0 0 0 1px;
         cursor: pointer;
         display: flex;
         justify-items: center;
@@ -12,12 +12,12 @@
         padding: 0.3rem 0.6rem 0.3rem 0.3rem;
 
         &:focus-within {
-            box-shadow: @fokusFarge inset 0 0 0 3px;
+            box-shadow: @navds-semantic-color-focus inset 0 0 0 3px;
         }
 
         &:hover {
             .filter-checkbox__label {
-                color: @navBla;
+                color: @navds-semantic-color-link;
 
                 &:before {
                     background-color: #c0e1ff;
@@ -28,10 +28,10 @@
 
         &--selected {
             background-color: #c0e1ff;
-            box-shadow: @navBla inset 0 0 0 1px;
+            box-shadow: @navds-semantic-color-link inset 0 0 0 1px;
 
             &:hover {
-                background-color: @navBla;
+                background-color: @navds-semantic-color-link;
                 .filter-checkbox__label {
                     color: white;
 
@@ -67,7 +67,7 @@
             background-size: 1rem;
             border-radius: 2px;
             border: 0;
-            box-shadow: @navGra60 inset 0 0 0 1px;
+            box-shadow: @navds-global-color-gray-600 inset 0 0 0 1px;
             content: '';
             display: inline-flex;
             height: 1rem;

@@ -1,15 +1,8 @@
 const withPlugins = require('next-compose-plugins');
 const withImages = require('next-images');
 const withLess = require('next-with-less');
-const packageJson = require('./package.json');
-
-const navFrontendModuler = Object.keys(packageJson.dependencies).reduce(
-    (acc, key) => (key.startsWith('nav-frontend-') ? acc.concat(key) : acc),
-    []
-);
 
 const withTranspileModules = require('next-transpile-modules')([
-    ...navFrontendModuler,
     '@navikt/ds-react',
     '@navikt/ds-icons',
 ]);

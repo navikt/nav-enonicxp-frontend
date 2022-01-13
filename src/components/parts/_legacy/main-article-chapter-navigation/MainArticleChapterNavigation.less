@@ -1,4 +1,3 @@
-@import (reference) '~nav-frontend-core/less/_variabler';
 @import (reference) '../../../../global';
 
 @verticalPadding: 0.75rem;
@@ -45,7 +44,7 @@
 
             &--active {
                 &:before {
-                    background-color: @navBla;
+                    background-color: @navds-semantic-color-link;
                     content: '';
                     display: inline-block;
                     height: 100%;
@@ -59,14 +58,14 @@
 
         a {
             &:hover {
-                background-color: @navBlaLighten80;
-                color: @navMorkGra;
+                background-color: @navds-global-color-blue-100;
+                color: @navds-global-color-gray-900;
                 text-decoration: none;
             }
             &:focus {
                 background: none;
-                box-shadow: 0 0 0 0.2rem @fokusFarge;
-                color: @navBla;
+                box-shadow: 0 0 0 0.2rem @navds-semantic-color-focus;
+                color: @navds-semantic-color-link;
                 cursor: pointer;
                 outline: none;
 
