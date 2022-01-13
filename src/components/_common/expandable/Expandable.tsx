@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ExpandableMixin } from '../../../types/component-props/_mixins';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { Accordion } from '@navikt/ds-react';
 import { logAmplitudeEvent } from '../../../utils/amplitude';
 
 type Props = {
@@ -17,6 +17,10 @@ export const Expandable = ({
 }: Props) => {
     const [isOpen, setIsOpen] = useState(expandableOpenByDefault);
 
+    if (!expandable) {
+        return <>{children}</>;
+    }
+
     const onExpandCollapse = () => {
         logAmplitudeEvent(`panel-${isOpen ? 'kollaps' : 'ekspander'}`, {
             tittel: expandableTitle,
@@ -25,21 +29,16 @@ export const Expandable = ({
         setIsOpen(!isOpen);
     };
 
-    if (!expandable) {
-        return <>{children}</>;
-    }
-
     return (
-        <Ekspanderbartpanel
-            tittel={expandableTitle}
-            border={false}
-            apen={expandableOpenByDefault}
-            renderContentWhenClosed={true}
-            className={'expandable'}
-            onClick={onExpandCollapse}
-            id={expandableAnchorId}
-        >
-            {children}
-        </Ekspanderbartpanel>
+        <Accordion onClick={onExpandCollapse} id={expandableAnchorId}>
+            <Accordion.Item
+                open={isOpen}
+                renderContentWhenClosed={true}
+                className={'expandable'}
+            >
+                <Accordion.Header>{expandableTitle}</Accordion.Header>
+                <Accordion.Content>{children}</Accordion.Content>
+            </Accordion.Item>
+        </Accordion>
     );
 };

@@ -1,6 +1,7 @@
 @import '~nav-frontend-core/less/_variabler';
 @import '~nav-frontend-core/less/core';
 @import './shared-mixins';
+@import (reference) '@navikt/ds-tokens/dist/tokens.less';
 
 @pixel-size-rem: 1 / 16;
 @regular-font-size: 1.125rem;
@@ -105,7 +106,8 @@ html {
     width: 1px;
 }
 
-header .page-modified-info, article .page-modified-info {
+header .page-modified-info,
+article .page-modified-info {
     letter-spacing: 0.004em;
     color: var(--navds-color-gray-60);
 }
