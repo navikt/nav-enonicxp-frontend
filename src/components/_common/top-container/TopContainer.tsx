@@ -15,6 +15,7 @@ const bem = BEM('top-container');
 export const contentTypesWithWhiteHeader = {
     [ContentType.ProductPage]: true,
     [ContentType.SituationPage]: true,
+    [ContentType.GuidePage]: true,
     [ContentType.EmployerSituationPage]: true,
 };
 

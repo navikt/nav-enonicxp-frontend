@@ -1,8 +1,9 @@
 import React from 'react';
 import { BEM, classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
+import { formatDate } from '../../../../utils/datetime';
 import { ContentType } from '../../../../types/content-props/_content-common';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Illustration } from 'components/_common/illustration/Illustration';
@@ -10,6 +11,7 @@ import { IllustrationPlacements } from 'types/illustrationPlacements';
 import {
     ProductPageProps,
     SituationPageProps,
+    GuidePageProps
 } from '../../../../types/content-props/dynamic-page-props';
 import './ThemedPageHeader.less';
 import { buildTaxonomyString } from 'utils/string';
@@ -17,15 +19,13 @@ import { buildTaxonomyString } from 'utils/string';
 const bem = BEM('themed-page-header');
 
 type Props = {
-    contentProps: SituationPageProps | ProductPageProps;
+    contentProps: SituationPageProps | ProductPageProps | GuidePageProps;
 };
 
 export const ThemedPageHeader = ({ contentProps }: Props) => {
-    const { __typename: pageType, displayName, data } = contentProps;
+    const { __typename: pageType, displayName, modifiedTime, data } = contentProps;
     const { title, illustration, taxonomy } = data;
-
     const { language } = usePageConfig();
-
     const getSubtitle = () => {
         if (pageType === ContentType.SituationPage) {
             const getTaxonomyLabel = translator('situations', language);
@@ -36,12 +36,32 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             return getTaxonomyLabel('employerNeedToKnow');
         }
 
+        if (pageType === ContentType.GuidePage) {
+            const getTaxonomyLabel = translator('guides', language);
+            return getTaxonomyLabel('howTo');
+        }
+
         return buildTaxonomyString(taxonomy, language);
     };
+    const getDatesLabel = translator('dates', language);
+    const getPageTypeClass = (_pageType: ContentType) => {
+        if (_pageType === ContentType.EmployerSituationPage || _pageType === ContentType.SituationPage) {
+            return 'situation'
+        }
 
+        if (_pageType === ContentType.ProductPage) {
+            return 'product'
+        }
+
+        if (_pageType === ContentType.GuidePage) {
+            return 'guide'
+        }
+
+        return ''
+    };
     const pageTitle = title || displayName;
-
     const subTitle = getSubtitle();
+    const modified = getDatesLabel('lastChanged') + ' ' + formatDate(modifiedTime, language, true);
 
     // This is a temporaty fix, especially for "Arbeidsavklaringspenger".
     // Will work with design to find solution for how long titles and illustration can stack better on mobile.
@@ -50,14 +70,10 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
         .every((word) => word.length < 18);
 
     return (
-        <div
+        <header
             className={classNames(
                 bem(),
-                pageType === ContentType.ProductPage &&
-                    bem(undefined, 'product'),
-                (pageType === ContentType.SituationPage ||
-                    pageType === ContentType.EmployerSituationPage) &&
-                    bem(undefined, 'situation')
+                bem(undefined,getPageTypeClass(pageType))
             )}
         >
             <Illustration
@@ -71,12 +87,22 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             />
             <div className={bem('text')}>
                 <PageHeader justify={'left'}>{pageTitle}</PageHeader>
-                {subTitle && (
-                    <BodyShort size="small" className={bem('label')}>
-                        {subTitle.toUpperCase()}
-                    </BodyShort>
+                {(subTitle || modified) && (
+                    <BodyLong size="small" className={bem('label')}>
+                        {subTitle && subTitle.toUpperCase()}
+                        {(subTitle && modified) &&
+                            <span aria-hidden='true'
+                                  className={'page-modified-info divider'}
+                            >
+                                {'|'}
+                            </span>
+                        }
+                        {modified &&
+                            <span className={'page-modified-info'}>{modified}</span>
+                        }
+                    </BodyLong>
                 )}
             </div>
-        </div>
+        </header>
     );
 };
