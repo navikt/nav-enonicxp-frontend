@@ -111,8 +111,8 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                             >
                                 {'I bruk som komponent:'}
                             </Heading>
-                            {componentUsage.map((content) => (
-                                <FragmentUsageLink {...content} />
+                            {componentUsage.map((content, index) => (
+                                <FragmentUsageLink {...content} key={index} />
                             ))}
                         </>
                     )}
@@ -125,8 +125,8 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                             >
                                 {'I bruk som macro:'}
                             </Heading>
-                            {macroUsage.map((content) => (
-                                <FragmentUsageLink {...content} />
+                            {macroUsage.map((content, index) => (
+                                <FragmentUsageLink {...content} key={index} />
                             ))}
                         </>
                     )}

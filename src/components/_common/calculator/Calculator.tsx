@@ -7,7 +7,7 @@ import { classNames, BEM } from 'utils/classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { Field } from './Field';
-import { Result } from './Result';
+import { CalculatorResult } from './CalculatorResult';
 
 import {
     CalculatorData,
@@ -191,7 +191,7 @@ export const Calculator = ({
                     />
                     <span>{getLabel('calculate')}</span>
                 </Button>
-                <Result
+                <CalculatorResult
                     sum={calculatedValue}
                     summaryText={calculatorData.summaryText}
                     useThousandSeparator={useThousandSeparator}

@@ -3,8 +3,7 @@ import { BEM, classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { XpImageProps } from '../../../types/media';
 import { XpImage } from '../image/XpImage';
-import { Button as DsButton } from '@navikt/ds-react';
-import { ButtonProps } from '@navikt/ds-react/src/button/Button';
+import { Button as DsButton, ButtonProps } from '@navikt/ds-react';
 
 const bem = BEM('button');
 

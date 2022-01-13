@@ -16,7 +16,7 @@ interface ResultProps {
 
 const bem = BEM('calculator-result');
 
-export const Result = (props: ResultProps) => {
+export const CalculatorResult = (props: ResultProps) => {
     const { summaryText, sum, useThousandSeparator, errorMessage } = props;
     const { language } = usePageConfig();
     const getLabel = translator('calculator', language);
@@ -37,7 +37,7 @@ export const Result = (props: ResultProps) => {
         return (
             <Panel border className={classNames(bem(), bem('summaryError'))}>
                 <div>{getLabel('error')}</div>
-                <em>"{errorMessage}"</em>
+                <em>{`"${errorMessage}"`}</em>
             </Panel>
         );
     }

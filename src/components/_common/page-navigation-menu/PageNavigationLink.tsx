@@ -61,3 +61,5 @@ export const PageNavigationLink = React.memo(
         );
     }
 );
+
+PageNavigationLink.displayName = 'PageNavigationLink';
