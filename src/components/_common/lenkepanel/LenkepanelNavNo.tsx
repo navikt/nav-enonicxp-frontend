@@ -36,7 +36,6 @@ const LenkepanelNavNo = ({
                 vertikal && bem('vertikal'),
                 className
             )}
-            border={true}
             as={(props) => (
                 <LenkeBase
                     href={href}

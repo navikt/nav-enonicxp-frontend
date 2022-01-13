@@ -1,17 +1,17 @@
 import React from 'react';
 import { LinkPanelPartProps } from 'types/component-props/parts/link-panel';
-import { Heading } from '@navikt/ds-react';
+import { Heading, Panel } from '@navikt/ds-react';
 import { BEM, classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
-import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { getImageUrl, XpImage } from '../../_common/image/XpImage';
+import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
 
 const bem = BEM('link-panel');
 
 export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
     if (!config) {
-        return <h2>Tomt lenkepanel</h2>;
+        return <EditorHelp text={'Tomt lenkepanel'} />;
     }
 
     const { link, ingress, background, icon, variant } = config;
@@ -29,15 +29,15 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
         : 'link-panel';
 
     return (
-        <LenkepanelBase
+        <Panel
             href={linkProps.url}
-            border={true}
             className={classNames(
                 bem(),
-                isVerticalLayout ? `vertical` : 'horisontal'
+                isVerticalLayout ? `vertical` : 'horizontal'
             )}
+            border={true}
             style={bgUrl && { backgroundImage: `url(${bgUrl})` }}
-            linkCreator={(props) => (
+            as={(props) => (
                 <LenkeBase
                     href={props.href}
                     analyticsLabel={linkProps.text}
@@ -75,6 +75,6 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                 </div>
                 <div className={bem('ingress')}>{ingress}</div>
             </div>
-        </LenkepanelBase>
+        </Panel>
     );
 };
