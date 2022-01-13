@@ -137,9 +137,9 @@ article .page-modified-info {
     margin-right: @side-width-negative;
 }
 
-.panel-inset-focus-mixin() {
+.panel-focus-mixin(@inset: true) {
     outline: 0;
-    box-shadow: 0 0 0 3px inset @navds-semantic-color-focus;
+    box-shadow: 0 0 0 3px if((@inset), inset) @navds-semantic-color-focus;
 }
 
 .section-padding-mixin() {
