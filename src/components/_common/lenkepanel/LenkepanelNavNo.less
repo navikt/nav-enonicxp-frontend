@@ -17,12 +17,10 @@
     &__innhold {
         display: flex;
         flex-direction: column;
-        flex-basis: 100%;
+        justify-content: center;
     }
 
     &__ikon {
-        position: relative;
-
         display: flex;
         align-self: center;
         align-items: center;
@@ -34,23 +32,33 @@
         height: 3rem;
 
         & > img {
-            max-width: #round-rem(2rem) [];
-            max-height: #round-rem(2rem) [];
+            max-width: 2rem;
+            max-height: 2rem;
         }
+    }
+
+    &__separator {
+        width: 6rem;
+        border: none;
+        background-color: @navGra60;
+        height: 1px;
+        margin: 1rem auto;
     }
 
     &__vertikal {
         flex-direction: column;
-        .lenkepanel__indikator {
+        text-align: center;
+
+        .navds-link-panel__chevron {
             display: none;
         }
-    }
 
-    &__vertikal &__ikon {
-        width: 100%;
-        padding: 0 0 1rem 0;
-        & > img {
-            max-width: 100%;
+        &__ikon {
+            width: 100%;
+            padding: 0 0 1rem 0;
+            & > img {
+                max-width: 100%;
+            }
         }
     }
 

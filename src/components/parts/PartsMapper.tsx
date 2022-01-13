@@ -2,7 +2,7 @@ import React from 'react';
 import { PartWithOwnData, PartWithPageData } from 'types/component-props/parts';
 import { PartDeprecated, PartType } from 'types/component-props/parts';
 import LinkLists from './_legacy/link-lists/LinkLists';
-import { LinkPanels } from './_legacy/link-panels/LinkPanels';
+import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
 import MainPanels from './_legacy/main-panels/MainPanels';
 import { MenuList } from './_legacy/menu-list/MenuList';
@@ -43,7 +43,7 @@ const partsWithPageData: {
     [key in PartWithPageData]: React.FunctionComponent<ContentProps>;
 } = {
     [PartType.LinkLists]: LinkLists,
-    [PartType.LinkPanels]: LinkPanels,
+    [PartType.LinkPanels]: LinkPanelsLegacyPart,
     [PartType.MainArticle]: MainArticle,
     [PartType.MainArticleLinkedList]: MainArticleChapterNavigation,
     [PartType.MainPanels]: MainPanels,

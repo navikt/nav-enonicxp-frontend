@@ -31,7 +31,6 @@ const LenkepanelNavNo = ({
 }: LenkepanelProps) => {
     return (
         <LinkPanel
-            href={href}
             className={classNames(
                 bem(),
                 vertikal && bem('vertikal'),
@@ -53,7 +52,13 @@ const LenkepanelNavNo = ({
         >
             {ikon && <div className={bem('ikon')}>{ikon}</div>}
             <div className={bem('innhold')}>
-                <LinkPanel.Title>{tittel}</LinkPanel.Title>
+                <Heading
+                    level="2"
+                    size="small"
+                    className={'navds-link-panel__title'}
+                >
+                    {tittel}
+                </Heading>
                 {separator && <hr className={bem('separator')} />}
                 {children && <div className={bem('ingress')}>{children}</div>}
             </div>

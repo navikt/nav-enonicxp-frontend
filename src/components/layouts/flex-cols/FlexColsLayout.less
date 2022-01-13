@@ -1,68 +1,41 @@
 @import (reference) '../../../global';
 @import (reference) '../../pages/situation-page/SituationPage';
 
-.flex-items(@numCols, @margin-sides: 1.5rem) {
-    & > * {
-        @numColsPlus1: @numCols + 1;
-        display: flex;
-        flex-grow: 1;
-        flex-shrink: 0;
-        flex-basis: calc(percentage(1 / (@numCols + 1)) + 1px);
-
-        max-width: calc(
-            percentage(1 / @numCols) - (@margin-sides * (@numCols - 1)) /
-                @numCols + 1px
-        );
-
-        &:not(:last-child) {
-            margin-right: @margin-sides;
-        }
-
-        &:nth-child(@{numCols}n + @{numCols}) {
-            margin-right: 0;
-        }
-
-        &:nth-child(n + @{numColsPlus1}) {
-            margin-top: 1.5rem;
-        }
-    }
-}
-
 .layout__dynamic-flex-cols {
     .region__flexcols {
         &--1-cols {
-            .flex-items(1);
+            .flex-cols-mixin(1);
         }
 
         &--2-cols {
-            .flex-items(2, 2rem);
+            .flex-cols-mixin(2, 2rem);
         }
 
         &--3-cols {
             @media @mq-screen-desktop {
-                .flex-items(3, 2rem);
+                .flex-cols-mixin(3, 2rem);
             }
 
             @media @mq-screen-tablet {
-                .flex-items(2);
+                .flex-cols-mixin(2);
             }
         }
 
         @media @mq-screen-mobile {
-            .flex-items(1);
+            .flex-cols-mixin(1);
         }
 
         &--4-cols {
             @media @mq-screen-desktop {
-                .flex-items(4);
+                .flex-cols-mixin(4);
             }
 
             @media @mq-screen-tablet {
-                .flex-items(3);
+                .flex-cols-mixin(3);
             }
 
             @media @mq-screen-mobile {
-                .flex-items(2);
+                .flex-cols-mixin(2);
             }
         }
     }
@@ -98,23 +71,23 @@
 
     .region__flexcols {
         &--1-cols {
-            .flex-items(1);
+            .flex-cols-mixin(1);
         }
 
         &--2-cols {
-            .flex-items(2);
+            .flex-cols-mixin(2);
         }
 
         &--3-cols {
-            .flex-items(3);
+            .flex-cols-mixin(3);
 
             @media @mqDoubleCol {
-                .flex-items(2);
+                .flex-cols-mixin(2);
             }
         }
 
         @media @mqSingleCol {
-            .flex-items(1);
+            .flex-cols-mixin(1);
         }
     }
 
