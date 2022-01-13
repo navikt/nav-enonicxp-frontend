@@ -68,20 +68,25 @@ export const Notification = (props: NotificationProps) => {
             className={bem()}
             component={'notifications'}
         >
-            <>
-                {description && (
-                    <BodyLong className={bem('description')}>
-                        {description}
-                    </BodyLong>
-                )}
-                {showUpdated && (
-                    <BodyShort size="small" className={bem('updated')}>
-                        {`${getDateLabel('lastChanged')}: ${formatDate(
-                            modifiedTime, language, true
-                        )}`}
-                    </BodyShort>
-                )}
-            </>
+            {description ||
+                (showUpdated && (
+                    <>
+                        {description && (
+                            <BodyLong className={bem('description')}>
+                                {description}
+                            </BodyLong>
+                        )}
+                        {showUpdated && (
+                            <BodyShort size="small" className={bem('updated')}>
+                                {`${getDateLabel('lastChanged')}: ${formatDate(
+                                    modifiedTime,
+                                    language,
+                                    true
+                                )}`}
+                            </BodyShort>
+                        )}
+                    </>
+                ))}
         </LenkepanelNavNo>
     );
 };
