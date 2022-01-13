@@ -3,17 +3,28 @@ import { BEM, classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { XpImageProps } from '../../../types/media';
 import { XpImage } from '../image/XpImage';
+import { Button as DsButton } from '@navikt/ds-react';
+import { ButtonProps } from '@navikt/ds-react/src/button/Button';
 
-const bem = BEM('knapp');
+const bem = BEM('button');
 
-type LegacyTypes = 'standard' | 'hoved' | 'fare' | 'flat';
+type LegacyType = 'standard' | 'hoved' | 'fare' | 'flat';
+type Variant = ButtonProps['variant'];
+
+const legacyTypeToVariant: { [type in LegacyType]: Variant } = {
+    hoved: 'primary',
+    standard: 'secondary',
+    flat: 'tertiary',
+    fare: 'danger',
+};
 
 type Props = {
     href?: string;
-    type?: LegacyTypes;
+    type?: Variant | LegacyType;
     icon?: XpImageProps;
     mini?: boolean;
     kompakt?: boolean;
+    size?: ButtonProps['size'];
     fullWidth?: boolean;
     disabled?: boolean;
     prefetch?: boolean;
@@ -23,11 +34,12 @@ type Props = {
 };
 
 export const Button = ({
-    href = '#',
+    href,
     type = 'standard',
     icon,
     mini,
     kompakt,
+    size,
     fullWidth,
     disabled,
     prefetch,
@@ -36,20 +48,24 @@ export const Button = ({
     children,
 }: Props) => {
     return (
-        <LenkeBase
+        <DsButton
+            as={LenkeBase}
             href={href}
             className={classNames(
                 bem(),
-                bem(undefined, type),
-                bem('custom'),
-                mini && bem(undefined, 'mini'),
-                kompakt && bem(undefined, 'kompakt'),
                 fullWidth && bem(undefined, 'fullWidth'),
-                disabled && bem(undefined, 'disabled'),
                 className
             )}
-            onClick={onClick}
+            onClick={(e) => {
+                if (href) {
+                    e.preventDefault();
+                }
+                onClick?.();
+            }}
             prefetch={prefetch}
+            variant={legacyTypeToVariant[type] || type}
+            size={size || (mini || kompakt ? 'small' : 'medium')}
+            disabled={disabled}
         >
             {icon ? (
                 <>
@@ -63,6 +79,6 @@ export const Button = ({
             ) : (
                 <>{children}</>
             )}
-        </LenkeBase>
+        </DsButton>
     );
 };

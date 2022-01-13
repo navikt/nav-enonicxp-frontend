@@ -1,17 +1,10 @@
 @import (reference) '../../../global';
-@import (reference) '~nav-frontend-knapper-style/src/mixins';
 
-.knapp {
-    &.knapp__custom {
-        text-transform: none;
-        transition: transform 0.15s linear;
-        white-space: break-spaces;
-        text-align: center;
-
-        @media @mq-screen-mobile {
-            .knappkompakt-mixin();
-        }
-    }
+.button {
+    text-transform: none;
+    transition: transform 0.15s linear;
+    white-space: break-spaces;
+    text-align: center;
 
     &__icon {
         height: #round-rem(1.5rem) [];

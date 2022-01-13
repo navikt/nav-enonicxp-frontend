@@ -1,6 +1,5 @@
 import React, { FormEvent, useState } from 'react';
 import { Heading } from '@navikt/ds-react';
-import { Knapp } from 'nav-frontend-knapper';
 import { Calculator as CalculatorIcon } from '@navikt/ds-icons';
 import { translator } from 'translations';
 import { classNames, BEM } from 'utils/classnames';
@@ -15,6 +14,7 @@ import {
     CalculatorField,
     FieldType,
 } from 'types/component-props/parts/calculator';
+import { Button } from '../button/Button';
 
 const bem = BEM('calculator');
 
@@ -181,9 +181,8 @@ export const Calculator = ({
                             );
                         })}
                 </div>
-                <Knapp
-                    kompakt
-                    htmlType="button"
+                <Button
+                    size={'small'}
                     onClick={handleCalculateButtonClick}
                     className={classNames(bem('calculateButton'))}
                 >
@@ -191,7 +190,7 @@ export const Calculator = ({
                         className={classNames(bem('calculateIcon'))}
                     />
                     <span>{getLabel('calculate')}</span>
-                </Knapp>
+                </Button>
                 <Result
                     sum={calculatedValue}
                     summaryText={calculatorData.summaryText}
