@@ -1,6 +1,6 @@
 import React from 'react';
 import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
-import { BEM, classNames } from '../../../../../../utils/classnames';
+import { BEM } from '../../../../../../utils/classnames';
 import { GVButton } from '../../button/GVButton';
 import { GVItemEditor } from '../item-editor/GVItemEditor';
 import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState';
@@ -19,11 +19,7 @@ const ItemView = ({ item }: Props) => {
 
     return (
         <div className={bem('display')}>
-            <Heading
-                level={'3'}
-                size={'small'}
-                className={classNames(bem('name'))}
-            >
+            <Heading level={'3'} size={'xsmall'}>
                 {itemName}
             </Heading>
             <BodyShort size={'small'} as={'span'}>

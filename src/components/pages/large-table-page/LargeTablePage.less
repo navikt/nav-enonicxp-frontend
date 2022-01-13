@@ -1,15 +1,14 @@
-@import (reference) '~nav-frontend-typografi-style/src/index';
-@import (reference) '~nav-frontend-core/less/_variabler';
+@import (reference) '../../../global';
 
 .large-table-page {
-    .typo-normal;
+    font-size: @navds-font-size-medium;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     overflow-x: auto;
 
     h1 {
-        .typo-systemtittel;
+        font-size: @navds-font-size-heading-medium;
         margin-bottom: 1rem;
         &:not(:first-child) {
             margin-top: 2rem;
@@ -24,8 +23,7 @@
     }
 
     th {
-        .typo-element;
-        font-size: 110%;
+        font-weight: @navds-font-weight-bold;
         padding: 0.5rem 0.25rem;
         text-align: left;
     }
@@ -38,7 +36,7 @@
 
     tbody {
         tr:first-child {
-            .typo-element;
+            font-weight: @navds-font-weight-bold;
             td {
                 padding-top: 0.5rem;
             }
@@ -50,7 +48,6 @@
 
         td {
             white-space: nowrap;
-            font-size: 1.125rem;
         }
     }
 
@@ -69,7 +66,7 @@
     .statGroupRest {
         padding: 0.125rem 0.5rem;
         &:not(th) {
-            .typo-element;
+            font-weight: @navds-font-weight-bold;
         }
     }
 

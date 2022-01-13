@@ -11,7 +11,6 @@ import { BEM } from 'utils/classnames';
 import { Email } from './Email';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/ArtikkelDato';
-import Lenke from 'nav-frontend-lenker';
 import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
 import {
     AudienceReception,
@@ -22,6 +21,7 @@ import {
     GovernmentOfficeSchema,
     SpecialAnnouncementSchema,
 } from '../../../../types/structuredData';
+import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 
 export const OfficeInformation = (props: OfficeInformationProps) => {
     const unit = props.data.enhet;
@@ -185,12 +185,12 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     </Heading>
                     <BodyLong>
                         Skal du sende søknader og skjemaer, må du bruke{' '}
-                        <Lenke
+                        <LenkeInline
                             href="https://www.nav.no/soknader/nb/person"
                             className={bem('lenke')}
                         >
                             NAVs skjemaveileder.
-                        </Lenke>{' '}
+                        </LenkeInline>{' '}
                         Skjemaveilederen gir deg hjelp til å velge rett skjema
                         og rett adresse det skal sendes til.
                     </BodyLong>

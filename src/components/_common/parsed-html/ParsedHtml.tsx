@@ -117,7 +117,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag?.match(/^h[1-6]$/)) {
                 // Header-tags should not be used as empty spacers
                 if (!validChildren) {
-                    return <p></p>;
+                    return <p>{''}</p>;
                 }
 
                 const level = headingToLevel[tag] || 2; //Level 1 reserved for page heading

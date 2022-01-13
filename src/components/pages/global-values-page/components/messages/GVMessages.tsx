@@ -23,7 +23,8 @@ export const GVMessages = () => {
                 <div
                     className={classNames(
                         bem('message'),
-                        bem('message', msg.level || 'info')
+                        bem('message', msg.level || 'info'),
+                        'navds-body-long'
                     )}
                     key={index}
                 >
