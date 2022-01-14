@@ -106,10 +106,11 @@ export const PageWrapper = (props: Props) => {
             <HeadWithMetatags content={content} />
             {content.editorView === 'edit' && <ComponentReorderHack />}
             <TopContainer content={content} />
-            <div role={'main'}
-                 className={'content-wrapper'}
-                 id={'maincontent'}
-                 tabIndex={-1}
+            <div
+                role={'main'}
+                className={'content-wrapper'}
+                id={'maincontent'}
+                tabIndex={-1}
             >
                 {children}
             </div>
