@@ -42,7 +42,7 @@ export const Button = ({
                 className
             )}
             onClick={(e) => {
-                if (href) {
+                if (!href) {
                     e.preventDefault();
                 }
                 onClick?.();
