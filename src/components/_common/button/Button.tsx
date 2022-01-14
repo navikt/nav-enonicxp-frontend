@@ -7,23 +7,11 @@ import { Button as DsButton, ButtonProps } from '@navikt/ds-react';
 
 const bem = BEM('button');
 
-type LegacyType = 'standard' | 'hoved' | 'fare' | 'flat';
-type Variant = ButtonProps['variant'];
-
-const legacyTypeToVariant: { [type in LegacyType]: Variant } = {
-    hoved: 'primary',
-    standard: 'secondary',
-    flat: 'tertiary',
-    fare: 'danger',
-};
-
 type Props = {
     href?: string;
-    type?: Variant | LegacyType;
-    icon?: XpImageProps;
-    mini?: boolean;
-    kompakt?: boolean;
+    variant?: ButtonProps['variant'];
     size?: ButtonProps['size'];
+    icon?: XpImageProps;
     fullWidth?: boolean;
     disabled?: boolean;
     prefetch?: boolean;
@@ -34,11 +22,9 @@ type Props = {
 
 export const Button = ({
     href,
-    type = 'standard',
+    variant = 'secondary',
+    size = 'medium',
     icon,
-    mini,
-    kompakt,
-    size,
     fullWidth,
     disabled,
     prefetch,
@@ -49,7 +35,7 @@ export const Button = ({
     return (
         <DsButton
             as={LenkeBase}
-            href={href}
+            href={href || '#'}
             className={classNames(
                 bem(),
                 fullWidth && bem(undefined, 'fullWidth'),
@@ -62,8 +48,8 @@ export const Button = ({
                 onClick?.();
             }}
             prefetch={prefetch}
-            variant={legacyTypeToVariant[type] || type}
-            size={size || (mini || kompakt ? 'small' : 'medium')}
+            variant={variant}
+            size={size}
             disabled={disabled}
         >
             {icon ? (

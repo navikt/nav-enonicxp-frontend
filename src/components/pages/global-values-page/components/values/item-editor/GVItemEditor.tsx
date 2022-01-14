@@ -193,14 +193,14 @@ export const GVItemEditor = ({
                                 }
                             </BodyShort>
                             <GVButton
-                                type={'fare'}
+                                variant={'fare'}
                                 // htmlType={'button'}
                                 onClick={deleteConfirm}
                             >
                                 {'Bekreft sletting'}
                             </GVButton>
                             <GVButton
-                                type={'standard'}
+                                variant={'standard'}
                                 // htmlType={'button'}
                                 onClick={deleteCancel}
                             >
@@ -210,13 +210,13 @@ export const GVItemEditor = ({
                     ) : (
                         <>
                             <GVButton
-                                type={'hoved'}
+                                variant={'hoved'}
                                 // htmlType={'submit'}
                             >
                                 {'Lagre verdi'}
                             </GVButton>
                             <GVButton
-                                type={'hoved'}
+                                variant={'hoved'}
                                 // htmlType={'reset'}
                                 onClick={() => onClose()}
                             >
@@ -224,7 +224,7 @@ export const GVItemEditor = ({
                             </GVButton>
                             {!isNewItem && (
                                 <GVButton
-                                    type={'fare'}
+                                    variant={'fare'}
                                     // htmlType={'button'}
                                     onClick={deleteItem}
                                 >

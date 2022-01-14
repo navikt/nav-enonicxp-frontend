@@ -47,9 +47,9 @@ export const SearchForm = () => {
                 <div className={bem('buttons-container')}>
                     {searchTerm && (
                         <Button
-                            type={'flat'}
+                            variant={'tertiary'}
                             className={bem('button')}
-                            mini={true}
+                            size={'small'}
                             aria-label={'Nullstill søk'}
                             onClick={(e) => {
                                 e.preventDefault();
@@ -61,7 +61,7 @@ export const SearchForm = () => {
                     )}
                     <Button
                         className={bem('button')}
-                        type={'hoved'}
+                        variant={'primary'}
                         onClick={onSearchSubmit}
                     >
                         {'Søk'}

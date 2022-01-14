@@ -7,12 +7,14 @@ export type ButtonPartSizePropLegacy = 'normal' | 'kompakt' | 'mini';
 
 export type ButtonPartSizeProp = 'medium' | 'small';
 
+export type ButtonPartTypeProp = 'standard' | 'hoved' | 'fare' | 'flat';
+
 export interface ButtonPartProps extends PartComponentProps {
     descriptor: PartType.Button;
     config: Partial<
         {
             link: LinkSelectable;
-            type: 'standard' | 'hoved' | 'fare' | 'flat';
+            type: ButtonPartTypeProp;
             size: ButtonPartSizePropLegacy | ButtonPartSizeProp;
             icon: XpImageProps;
             fullwidth: boolean;
