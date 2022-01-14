@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { Heading } from '@navikt/ds-react';
+import { Button } from '../button/Button';
 import { Calculator as CalculatorIcon } from '@navikt/ds-icons';
 import { translator } from 'translations';
 import { classNames, BEM } from 'utils/classnames';
@@ -14,7 +15,6 @@ import {
     CalculatorField,
     FieldType,
 } from 'types/component-props/parts/calculator';
-import { Button } from '../button/Button';
 
 const bem = BEM('calculator');
 

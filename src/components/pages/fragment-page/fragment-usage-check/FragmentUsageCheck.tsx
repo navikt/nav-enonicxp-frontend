@@ -84,7 +84,7 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                         </Heading>
                         <EditorLinkWrapper>
                             <Button
-                                variant={'flat'}
+                                variant={'tertiary'}
                                 size={'small'}
                                 className={bem('button')}
                                 onClick={() => setShowUsage(!showUsage)}

@@ -45,7 +45,7 @@ export const Button = ({
                 if (!href) {
                     e.preventDefault();
                 }
-                onClick?.();
+                onClick?.(e);
             }}
             prefetch={prefetch}
             variant={variant}

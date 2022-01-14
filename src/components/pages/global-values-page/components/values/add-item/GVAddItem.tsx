@@ -22,7 +22,7 @@ export const GVAddItem = () => {
                     />
                 </>
             ) : (
-                <GVButton variant={'hoved'} onClick={() => setIsActive(true)}>
+                <GVButton variant={'primary'} onClick={() => setIsActive(true)}>
                     {'Legg til ny verdi'}
                 </GVButton>
             )}

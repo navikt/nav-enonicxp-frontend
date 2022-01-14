@@ -193,15 +193,13 @@ export const GVItemEditor = ({
                                 }
                             </BodyShort>
                             <GVButton
-                                variant={'fare'}
-                                // htmlType={'button'}
+                                variant={'danger'}
                                 onClick={deleteConfirm}
                             >
                                 {'Bekreft sletting'}
                             </GVButton>
                             <GVButton
-                                variant={'standard'}
-                                // htmlType={'button'}
+                                variant={'secondary'}
                                 onClick={deleteCancel}
                             >
                                 {'Avbryt sletting'}
@@ -209,23 +207,18 @@ export const GVItemEditor = ({
                         </>
                     ) : (
                         <>
-                            <GVButton
-                                variant={'hoved'}
-                                // htmlType={'submit'}
-                            >
+                            <GVButton variant={'primary'}>
                                 {'Lagre verdi'}
                             </GVButton>
                             <GVButton
-                                variant={'hoved'}
-                                // htmlType={'reset'}
+                                variant={'primary'}
                                 onClick={() => onClose()}
                             >
                                 {'Avbryt'}
                             </GVButton>
                             {!isNewItem && (
                                 <GVButton
-                                    variant={'fare'}
-                                    // htmlType={'button'}
+                                    variant={'danger'}
                                     onClick={deleteItem}
                                 >
                                     {'Slett'}
