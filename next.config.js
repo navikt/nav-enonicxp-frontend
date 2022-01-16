@@ -14,7 +14,7 @@ const cssModulesCamelCaseOnly = (config) => {
                 if (typeof moduleLoader.options.modules === 'object') {
                     moduleLoader.options.modules = {
                         ...moduleLoader.options.modules,
-                        exportLocalsConvention: 'camelCaseOnly',
+                        exportLocalsConvention: 'dashesOnly',
                     };
                 }
             }

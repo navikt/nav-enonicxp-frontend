@@ -18,12 +18,21 @@
     "isolatedModules": true,
     "baseUrl": "src",
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "classnameTransform": "dashesOnly",
+          "customRenderer": "node_modules/less-plugin-aliases/lib/customRender.js"
+        }
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
+    "src/**/*.ts",
+    "src/**/*.tsx",
   ],
   "exclude": [
     "node_modules"
