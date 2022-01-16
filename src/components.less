@@ -1,3 +1,5 @@
+// TODO: rewrite most/all of these to modules
+
 @import './components/layouts/fixed-cols/FixedColsLayout.less';
 @import './components/layouts/flex-cols/FlexColsLayout.less';
 @import './components/layouts/LayoutContainer.less';
@@ -51,7 +53,6 @@
 @import './components/parts/_legacy/page-list/PageList.less';
 @import './components/parts/_legacy/publishing-calendar/PublishingCalendar.less';
 @import './components/_common/auth-dependant-render/AuthDependantRender.less';
-@import './components/_common/button/Button.less';
 @import './components/_common/calculator/Calculator.less';
 @import './components/_common/calculator/Field.less';
 @import './components/_common/calculator/Result.less';
@@ -63,7 +64,7 @@
 @import './components/_common/expandable/Expandable.less';
 @import './components/_common/filter-bar/FilterBar.less';
 @import './components/_common/filter-bar/FilterExplanation.less';
-@import './components/_common/headers/Header.less';
+@import 'src/components/_common/headers/Header.module.less';
 @import './components/_common/headers/page-header/PageHeader.less';
 @import './components/_common/headers/themed-page-header/ThemedPageHeader.less';
 @import './components/_common/illustration/Illustration.less';

@@ -1,11 +1,10 @@
 import React from 'react';
-import { BEM, classNames } from '../../../utils/classnames';
+import { classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { XpImageProps } from '../../../types/media';
 import { XpImage } from '../image/XpImage';
 import { Button as DsButton, ButtonProps } from '@navikt/ds-react';
-
-const bem = BEM('button');
+import style from './Button.module.less';
 
 type Props = {
     href?: string;
@@ -37,8 +36,8 @@ export const Button = ({
             as={LenkeBase}
             href={href || '#'}
             className={classNames(
-                bem(),
-                fullWidth && bem(undefined, 'fullWidth'),
+                style.button,
+                fullWidth && style.buttonFullWidth,
                 className
             )}
             onClick={(e) => {
@@ -56,7 +55,7 @@ export const Button = ({
                 <>
                     <XpImage
                         imageProps={icon}
-                        className={bem('icon')}
+                        className={style.button__icon}
                         alt={''}
                     />
                     <span>{children}</span>
