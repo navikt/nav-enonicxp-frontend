@@ -1,6 +1,7 @@
 import React from 'react';
 import { Alert, AlertProps } from '@navikt/ds-react';
 import { classNames } from '../../../utils/classnames';
+import style from './AlertBox.module.less';
 
 // These types were used by a previous version of the design system component
 type AlertTypeLegacy = 'info' | 'advarsel' | 'feil' | 'suksess';
@@ -34,11 +35,11 @@ export const AlertBox = ({
 }: Props) => {
     return (
         <Alert
+            {...rest}
             variant={legacyTypeToVariant[variant] || variant}
             size={size}
             inline={inline}
-            className={classNames('alert-box', className)}
-            {...rest}
+            className={classNames(style.alertBox, className)}
         >
             {children}
         </Alert>

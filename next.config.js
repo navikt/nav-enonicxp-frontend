@@ -2,6 +2,26 @@ const withPlugins = require('next-compose-plugins');
 const withImages = require('next-images');
 const withLess = require('next-with-less');
 
+// Ensures classnames generated from CSS modules are camelCase only
+const cssModulesCamelCaseOnly = (config) => {
+    const rules = config.module.rules
+        .find((rule) => typeof rule.oneOf === 'object')
+        .oneOf.filter((rule) => Array.isArray(rule.use));
+
+    rules.forEach((rule) => {
+        rule.use.forEach((moduleLoader) => {
+            if (/css-loader\/(?:cjs|dist|src)/.test(moduleLoader.loader)) {
+                if (typeof moduleLoader.options.modules === 'object') {
+                    moduleLoader.options.modules = {
+                        ...moduleLoader.options.modules,
+                        exportLocalsConvention: 'camelCaseOnly',
+                    };
+                }
+            }
+        });
+    });
+};
+
 const withTranspileModules = require('next-transpile-modules')([
     '@navikt/ds-react',
     '@navikt/ds-icons',
@@ -15,6 +35,10 @@ module.exports = withPlugins([withLess, withImages, withTranspileModules], {
         XP_ORIGIN: process.env.XP_ORIGIN,
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
         INNLOGGINGSTATUS_URL: process.env.INNLOGGINGSTATUS_URL,
+    },
+    webpack: (config) => {
+        cssModulesCamelCaseOnly(config);
+        return config;
     },
     redirects: async () => [
         {
