@@ -24,7 +24,6 @@
         "name": "typescript-plugin-css-modules",
         "options": {
           "classnameTransform": "dashesOnly",
-          "customRenderer": "node_modules/less-plugin-aliases/lib/customRender.js"
         }
       }
     ]

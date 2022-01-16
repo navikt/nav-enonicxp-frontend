@@ -2,8 +2,9 @@ const withPlugins = require('next-compose-plugins');
 const withImages = require('next-images');
 const withLess = require('next-with-less');
 
-// Ensures classnames generated from CSS modules are camelCase only
-const cssModulesCamelCaseOnly = (config) => {
+// Remove dashes from js variable names for classnames generated from CSS-modules
+// Enables all CSS-classes to be accessed from javascript with dot-notation
+const cssModulesNoDashesInClassnames = (config) => {
     const rules = config.module.rules
         .find((rule) => typeof rule.oneOf === 'object')
         .oneOf.filter((rule) => Array.isArray(rule.use));
@@ -37,7 +38,7 @@ module.exports = withPlugins([withLess, withImages, withTranspileModules], {
         INNLOGGINGSTATUS_URL: process.env.INNLOGGINGSTATUS_URL,
     },
     webpack: (config) => {
-        cssModulesCamelCaseOnly(config);
+        cssModulesNoDashesInClassnames(config);
         return config;
     },
     redirects: async () => [

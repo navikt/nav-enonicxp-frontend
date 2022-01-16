@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, AlertProps } from '@navikt/ds-react';
 import { classNames } from '../../../utils/classnames';
-import style from './AlertBox.module.less';
+import style from './AlertBox.module.scss';
 
 // These types were used by a previous version of the design system component
 type AlertTypeLegacy = 'info' | 'advarsel' | 'feil' | 'suksess';

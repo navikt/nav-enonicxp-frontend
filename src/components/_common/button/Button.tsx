@@ -4,7 +4,7 @@ import { LenkeBase } from '../lenke/LenkeBase';
 import { XpImageProps } from '../../../types/media';
 import { XpImage } from '../image/XpImage';
 import { Button as DsButton, ButtonProps } from '@navikt/ds-react';
-import style from './Button.module.less';
+import style from './Button.module.scss';
 
 type Props = {
     href?: string;
@@ -37,7 +37,7 @@ export const Button = ({
             href={href || '#'}
             className={classNames(
                 style.button,
-                fullWidth && style.buttonFullWidth,
+                fullWidth && style.fullWidth,
                 className
             )}
             onClick={(e) => {
@@ -55,7 +55,7 @@ export const Button = ({
                 <>
                     <XpImage
                         imageProps={icon}
-                        className={style.button__icon}
+                        className={style.icon}
                         alt={''}
                     />
                     <span>{children}</span>
