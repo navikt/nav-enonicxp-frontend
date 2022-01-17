@@ -9,8 +9,6 @@ import { TelephoneData } from '../../../types/component-props/parts/contact-opti
 import { BEM, classNames } from 'utils/classnames';
 import { dateDiff, formatDate, getCurrentISODate } from 'utils/datetime';
 
-import { stripXpPathPrefix } from 'utils/urls';
-
 import {
     mergeOpeningHours,
     findTodaysOpeningHour,
@@ -20,6 +18,8 @@ import {
 import './CallOption.less';
 
 const bem = BEM('callOption');
+const contactUrlNO = '/person/kontakt-oss/nb';
+const contactUrlEN = '/person/kontakt-oss/en';
 
 interface CallOptionProps extends TelephoneData {
     _path: string;
@@ -34,8 +34,6 @@ export const CallOption = (props: CallOptionProps) => {
         regularOpeningHours,
         specialOpeningHours,
         text,
-        title,
-        _path,
     } = props;
 
     const { language } = usePageConfig();
@@ -51,27 +49,15 @@ export const CallOption = (props: CallOptionProps) => {
         specialOpeningHours.hours
     );
 
-    const getIsClosingSoonText = (mins: number): string => {
-        if (mins < 5) {
-            return sharedTranslations['closingNow'];
-        }
-        if (mins < 31) {
-            return sharedTranslations['closingInAbout'].replace('{$1}', mins);
-        }
-
-        return '';
-    };
-
     const findNextOpeningDayAfterToday = () => {
-        const today = new Date();
-        const todayISO = today.toISOString().split('T')[0];
-        const allOpeningHours = mergeOpeningHours(
+        const todayISO = getCurrentISODate();
+        const allDays = mergeOpeningHours(
             regularOpeningHours.hours,
             specialOpeningHours.hours
         );
 
-        for (let day = 0; day < allOpeningHours.length; day++) {
-            const openingHour = allOpeningHours[day];
+        for (let day = 0; day < allDays.length; day++) {
+            const openingHour = allDays[day];
             if (openingHour.status === 'OPEN' && openingHour.date > todayISO) {
                 return openingHour;
             }
@@ -89,9 +75,10 @@ export const CallOption = (props: CallOptionProps) => {
             .replace('{$2}', time)}`;
     };
 
-    const buildFutureOpenString = (date: string, time: string) => {
-        const daysToNextOpeningHour = dateDiff(date, getCurrentISODate());
+    const buildFutureOpenString = (futureDate: string, futureTime: string) => {
+        const daysToNextOpeningHour = dateDiff(futureDate, getCurrentISODate());
 
+        // Pull in template strings from dictionary
         const closedNowTemplate = sharedTranslations['closedNow'];
         const opensTemplate = sharedTranslations['opensAt'];
         const todayTemplate = relatives['today'];
@@ -99,14 +86,14 @@ export const CallOption = (props: CallOptionProps) => {
 
         if (daysToNextOpeningHour > 1) {
             return `${closedNowTemplate} - ${opensTemplate
-                .replace('{$1}', formatDate(date, language))
-                .replace('{$2}', time)}`;
+                .replace('{$1}', formatDate(futureDate, language))
+                .replace('{$2}', futureTime)}`;
         }
 
-        const dayTemplate =
+        const openingTemplate =
             daysToNextOpeningHour === 0 ? todayTemplate : tomorrowTemplate;
 
-        return opensTemplate.replace('{$1}', dayTemplate).replace('{$2}', time);
+        return opensTemplate.replace('{$1}', openingTemplate).replace('{$2}', futureTime);
     };
 
     const buildOpenInformationText = (openingHours) => {
@@ -114,36 +101,29 @@ export const CallOption = (props: CallOptionProps) => {
             return '';
         }
         const { from, to } = openingHours;
-        const currentISODate = getCurrentISODate();
-        const currentTime = Date.now();
 
-        const startOfDay = new Date(
+        const currentISODate = getCurrentISODate();
+        const currentEpoch = Date.now();
+
+        const startOfToday = new Date(
             `${currentISODate}T00:00:00+01:00`
         ).getTime();
-        const endOfDay = new Date(`${currentISODate}T23:59:59+01:00`).getTime();
-        const fromTime = new Date(`${currentISODate}T${from}+01:00`).getTime();
-        const toTime = new Date(`${currentISODate}T${to}+01:00`).getTime();
+        const endOfToday = new Date(`${currentISODate}T23:59:59+01:00`).getTime();
 
-        const isOpen = currentTime > fromTime && currentTime < toTime;
-        const isOpenText = isOpen
-            ? sharedTranslations['openNow']
-            : sharedTranslations['closedNow'];
+        const opensEpoch = new Date(`${currentISODate}T${from}+01:00`).getTime();
+        const closesEpoch = new Date(`${currentISODate}T${to}+01:00`).getTime();
 
-        const minutesToClosing = Math.round((toTime - currentTime) / 60000);
-        const isClosingSoon = isOpen && minutesToClosing < 31;
-
+        // Misc opening / closed states
+        const isOpenNow = currentEpoch > opensEpoch && currentEpoch < closesEpoch;
+        const isOpeningSoon =
+            startOfToday < currentEpoch && currentEpoch < opensEpoch;
         const isClosedForToday =
-            (toTime < currentTime && toTime < endOfDay) ||
+            (closesEpoch < currentEpoch && closesEpoch < endOfToday) ||
             openingHours.status === 'CLOSED';
 
-        const isOpeningSoon =
-            startOfDay < currentTime && currentTime < fromTime;
-
-        const closingSoonText = getIsClosingSoonText(minutesToClosing);
-
-        if (isClosingSoon) {
-            return `${isOpenText} - ${closingSoonText}`;
-        }
+        const openClosedText = isOpenNow
+            ? sharedTranslations['openNow']
+            : sharedTranslations['closedNow'];
 
         if (isClosedForToday) {
             const nextOpeningHour = findNextOpeningDayAfterToday();
@@ -153,13 +133,14 @@ export const CallOption = (props: CallOptionProps) => {
                 nextOpeningHour.from
             );
 
-            return `${sharedTranslations['closedNow']} • ${futureOpeningString}`;
+            return `${openClosedText} • ${futureOpeningString}`;
         }
 
         if (isOpeningSoon) {
             return buildOpeningSoonString(from);
         }
-        return `${isOpenText} • ${from} - ${to}`;
+
+        return `${openClosedText} • ${from} - ${to}`;
     };
 
     return (
@@ -187,15 +168,12 @@ export const CallOption = (props: CallOptionProps) => {
             <BodyLong className={bem('text')} spacing>
                 {ingress || text}
             </BodyLong>
-            <Heading level="3" size="small" className={bem('apningstider')}>
-                {sharedTranslations['openingHours']}:
-            </Heading>
             <BodyShort spacing>
                 {buildOpenInformationText(
                     findTodaysOpeningHour(allOpeningHours)
                 )}
             </BodyShort>
-            <LenkeBase href={stripXpPathPrefix(_path)}>
+            <LenkeBase href={language === 'no' ? contactUrlNO : contactUrlEN}>
                 {sharedTranslations['seeAllOpeningHours']}
             </LenkeBase>
         </div>

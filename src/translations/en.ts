@@ -123,8 +123,6 @@ export const bundle: Translations = {
             openNow: 'Open',
             opensAt: 'Opens {$1} at {$2}',
             closedNow: 'Closed now',
-            closingInAbout: 'Closing in about {$1} minutter',
-            closingNow: 'Closing now',
             seeAllOpeningHours: 'See all opening hours',
             todaysPhoneOpeningHours: 'Phone hours today',
             callUsAt: 'Call us at',
