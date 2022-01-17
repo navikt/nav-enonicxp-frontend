@@ -37,7 +37,7 @@ export const Button = ({
             href={href || '#'}
             className={classNames(
                 style.button,
-                fullWidth && style.fullWidth,
+                fullWidth && style.buttonFullWidth,
                 className
             )}
             onClick={(e) => {
@@ -55,7 +55,7 @@ export const Button = ({
                 <>
                     <XpImage
                         imageProps={icon}
-                        className={style.icon}
+                        className={style.button__icon}
                         alt={''}
                     />
                     <span>{children}</span>

@@ -1,12 +1,12 @@
 .button {
     white-space: break-spaces;
-}
 
-.icon {
-    height: 1.5rem;
-    margin-right: 0.5rem;
-}
+    &__icon {
+        height: 1.5rem;
+        margin-right: 0.5rem;
+    }
 
-.fullWidth {
-    width: 100%;
+    &--fullWidth {
+        width: 100%;
+    }
 }
