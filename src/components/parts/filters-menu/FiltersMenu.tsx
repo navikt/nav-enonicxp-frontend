@@ -55,7 +55,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
 
     // Will only show if editor didn't add any actual filters in the FiltersMenu part.
     if (!config?.categories) {
-        return <div>{'Det mangler filtere i denne listen.'}</div>;
+        return <div>{'Det mangler filtre i denne listen.'}</div>;
     }
 
     const defaultExpandableTitle = getLabel('customizeContent');
