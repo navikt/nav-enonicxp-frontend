@@ -1,5 +1,5 @@
 import { OpeningHour } from 'types/component-props/parts/contact-option';
-import { getStartOfWeek, getDayNameFromNumber } from 'utils/datetime';
+import { getDayNameFromNumber } from 'utils/datetime';
 
 /** Special opening hours take precidence over regular opening hours,
  * so merge the two in order to create a correct list of opening
@@ -10,7 +10,7 @@ export const mergeOpeningHours = (
     specialOpeningHours: OpeningHour[] = []
 ) => {
     const totalDaysToCheck = 7 + specialOpeningHours.length;
-    const today = getStartOfWeek().getTime();
+    const today = Date.now();
     const openingHours = [];
 
     for (let day = 0; day < totalDaysToCheck; day++) {
@@ -34,6 +34,8 @@ export const mergeOpeningHours = (
             (hour) => hour.dayName === dayName
         );
 
+        // If no opening hours for this particular regular day was added
+        // consider the day CLOSED (ie. Saturday or Sunday)
         const status = regularOpeningHour
             ? regularOpeningHour.status
             : 'CLOSED';

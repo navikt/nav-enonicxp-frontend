@@ -36,6 +36,7 @@ export const CallOption = (props: CallOptionProps) => {
         text,
     } = props;
 
+
     const { language } = usePageConfig();
 
     const getDateTimeTranslations = translator('dateTime', language);
@@ -129,6 +130,10 @@ export const CallOption = (props: CallOptionProps) => {
 
         if (isClosedForToday) {
             const nextOpeningHour = findNextOpeningDayAfterToday();
+
+            if (!nextOpeningHour) {
+                return 'no opening hour found'
+            }
 
             const futureOpeningString = buildFutureOpenString(
                 nextOpeningHour.date,

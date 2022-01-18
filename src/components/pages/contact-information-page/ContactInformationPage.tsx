@@ -18,7 +18,16 @@ export const ContactInformationPage = (props: ContentProps) => {
     const { data } = props;
     const { contactType } = data;
 
-    if (!contactType?.telephone.regularOpeningHours) {
+    const hasSpecialHours = !!contactType?.telephone?.specialOpeningHours;
+    const hasRegularHours = !!contactType?.telephone?.regularOpeningHours;
+
+    if (!hasSpecialHours && !hasRegularHours) {
+        return <div className={classNames(bem('content'))}>
+            (Ingen kontakttype eller åpningstider er lagt inn ennå, så forhåndsvisning er ikke mulig!)
+        </div>;
+    }
+
+    if (hasSpecialHours && !hasRegularHours) {
         return <div className={classNames(bem())}>
             <div className={classNames(bem('content'))}>
                 (Spesielle åpningstider kan ikke forhåndsvises som komponent på egenhånd.)
