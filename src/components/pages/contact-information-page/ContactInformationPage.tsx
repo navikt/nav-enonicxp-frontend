@@ -18,6 +18,14 @@ export const ContactInformationPage = (props: ContentProps) => {
     const { data } = props;
     const { contactType } = data;
 
+    if (!contactType?.telephone.regularOpeningHours) {
+        return <div className={classNames(bem())}>
+            <div className={classNames(bem('content'))}>
+                (Spesielle åpningstider kan ikke forhåndsvises som komponent på egenhånd.)
+            </div>
+        </div>
+    }
+
     return (
         <div className={classNames(bem())}>
             <div className={classNames(bem('content'))}>

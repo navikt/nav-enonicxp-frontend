@@ -113,7 +113,7 @@ export const bundle = {
             openingHours: 'Åpningstider',
             specialHours: 'Spesielle åpningstider',
             closed: 'Stengt',
-            openNow: 'Åpent',
+            openNow: 'Åpent nå',
             opensAt: 'Åpner {$1} kl {$2}',
             closedNow: 'Stengt nå',
             seeAllOpeningHours: 'Se alle åpningstider',

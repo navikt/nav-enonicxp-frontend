@@ -5,6 +5,7 @@ import { TelephoneData } from 'types/component-props/parts/contact-option';
 
 export const TelephoneDetails = (props: TelephoneData) => {
     const {
+        title,
         alertText,
         phoneNumber,
         regularOpeningHours,
@@ -14,6 +15,7 @@ export const TelephoneDetails = (props: TelephoneData) => {
 
     return (
         <CallOption 
+            title={title}
             alertText={alertText}
             ingress={text}
             phoneNumber={phoneNumber}

@@ -12,7 +12,6 @@ import { dateDiff, formatDate, getCurrentISODate } from 'utils/datetime';
 import {
     mergeOpeningHours,
     findTodaysOpeningHour,
-    parsePhoneNumber,
 } from '../contact-details/contactHelpers';
 
 import './CallOption.less';
@@ -28,6 +27,7 @@ interface CallOptionProps extends TelephoneData {
 
 export const CallOption = (props: CallOptionProps) => {
     const {
+        title,
         alertText,
         ingress,
         phoneNumber,
@@ -46,14 +46,14 @@ export const CallOption = (props: CallOptionProps) => {
 
     const allOpeningHours = mergeOpeningHours(
         regularOpeningHours.hours,
-        specialOpeningHours.hours
+        specialOpeningHours?.hours
     );
 
     const findNextOpeningDayAfterToday = () => {
         const todayISO = getCurrentISODate();
         const allDays = mergeOpeningHours(
             regularOpeningHours.hours,
-            specialOpeningHours.hours
+            specialOpeningHours?.hours
         );
 
         for (let day = 0; day < allDays.length; day++) {
@@ -156,8 +156,7 @@ export const CallOption = (props: CallOptionProps) => {
                     )}
                 />
                 <Heading level="2" size="medium" className={bem('title')}>
-                    {sharedTranslations['callUsAt']}{' '}
-                    {parsePhoneNumber(phoneNumber, language)}
+                    {title}
                 </Heading>
             </LenkeBase>
             {alertText && (

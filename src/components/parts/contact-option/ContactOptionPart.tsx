@@ -37,6 +37,8 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
             return <DefaultOption {...channelData} channel={channel} />;
         }
 
+        console.log(sharedContactInformation)
+
         return (
             <CallOption
                 {...sharedContactInformation.data.contactType.telephone}
