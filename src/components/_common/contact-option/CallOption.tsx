@@ -66,26 +66,27 @@ export const CallOption = (props: CallOptionProps) => {
         return null;
     };
 
-    const buildOpeningSoonString = (time: string) => {
+    const buildOpeningLaterTodayString = (time: string) => {
+        const closedNowTemplate = sharedTranslations['closedNow'];
         const opensTemplate = sharedTranslations['opensAt'];
         const todayTemplate = relatives['today'];
 
-        return `${opensTemplate
+        return `${closedNowTemplate} • ${opensTemplate
             .replace('{$1}', todayTemplate)
-            .replace('{$2}', time)}`;
+            .replace('{$2}', time)
+            .toLowerCase()}`;
     };
 
     const buildFutureOpenString = (futureDate: string, futureTime: string) => {
         const daysToNextOpeningHour = dateDiff(futureDate, getCurrentISODate());
 
         // Pull in template strings from dictionary
-        const closedNowTemplate = sharedTranslations['closedNow'];
         const opensTemplate = sharedTranslations['opensAt'];
         const todayTemplate = relatives['today'];
         const tomorrowTemplate = relatives['tomorrow'];
 
         if (daysToNextOpeningHour > 1) {
-            return `${closedNowTemplate} - ${opensTemplate
+            return `${opensTemplate
                 .replace('{$1}', formatDate(futureDate, language))
                 .replace('{$2}', futureTime)}`;
         }
@@ -115,8 +116,9 @@ export const CallOption = (props: CallOptionProps) => {
 
         // Misc opening / closed states
         const isOpenNow = currentEpoch > opensEpoch && currentEpoch < closesEpoch;
-        const isOpeningSoon =
-            startOfToday < currentEpoch && currentEpoch < opensEpoch;
+        const isOpeningLaterToday =
+            startOfToday < currentEpoch && endOfToday > currentEpoch && currentEpoch < opensEpoch;
+
         const isClosedForToday =
             (closesEpoch < currentEpoch && closesEpoch < endOfToday) ||
             openingHours.status === 'CLOSED';
@@ -133,11 +135,11 @@ export const CallOption = (props: CallOptionProps) => {
                 nextOpeningHour.from
             );
 
-            return `${openClosedText} • ${futureOpeningString}`;
+            return `${openClosedText} • ${futureOpeningString.toLowerCase()}`;
         }
 
-        if (isOpeningSoon) {
-            return buildOpeningSoonString(from);
+        if (isOpeningLaterToday) {
+            return buildOpeningLaterTodayString(from);
         }
 
         return `${openClosedText} • ${from} - ${to}`;
