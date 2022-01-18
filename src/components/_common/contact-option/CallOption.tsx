@@ -168,7 +168,7 @@ export const CallOption = (props: CallOptionProps) => {
                 {ingress || text}
             </BodyLong>
             <BodyShort spacing>
-                {buildOpenInformationText(
+                {process.browser && buildOpenInformationText( // Force client side render only
                     findTodaysOpeningHour(allOpeningHours)
                 )}
             </BodyShort>
