@@ -22,7 +22,7 @@ const contactUrlNO = '/person/kontakt-oss/nb';
 const contactUrlEN = '/person/kontakt-oss/en';
 
 interface CallOptionProps extends TelephoneData {
-    _path: string;
+    _path?: string;
     ingress: string;
 }
 

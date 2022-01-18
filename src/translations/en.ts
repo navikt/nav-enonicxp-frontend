@@ -127,11 +127,6 @@ export const bundle: Translations = {
             todaysPhoneOpeningHours: 'Phone hours today',
             callUsAt: 'Call us at',
         },
-        information: {
-            callCostTitle: 'What are the calling rates for NAV?',
-            callCostIngress:
-                'From your cell phone: Individual rates depending on your plan. /n From a landline: Same cost as a local call. Calling technical support is free.',
-        },
     },
     versionHistory: {
         label: 'Version history',

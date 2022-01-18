@@ -23,6 +23,7 @@ import { PublishingCalendarData } from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsData } from './animated-icons';
 import { GlobalValuesData } from './global-values-props';
+import { ContactInformationData } from './contact-information-props';
 
 export enum ContentType {
     Error = 'error',
@@ -101,6 +102,7 @@ export type ContentDecoratorToggles = Partial<{
 export type ContentData = Partial<
     ContentListData &
         ErrorData &
+        ContactInformationData &
         ExternalLinkData &
         InternalLinkData &
         UrlData &
