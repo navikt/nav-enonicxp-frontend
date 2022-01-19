@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Alert } from '@navikt/ds-react'
+
 import { TelephoneDetails } from 'components/_common/contact-details/TelephoneDetails';
 import ErrorPage404 from 'pages/404';
 
@@ -38,6 +40,7 @@ export const ContactInformationPage = (props: ContentProps) => {
     return (
         <div className={classNames(bem())}>
             <div className={classNames(bem('content'))}>
+                <Alert variant="warning" className="editorAlert" >OBS: Denne informasjonen kan være i bruk på flere livssituasjonssider.</Alert>
                 <TelephoneDetails {...contactType.telephone} />
             </div>
         </div>

@@ -17,8 +17,8 @@ import {
 import './CallOption.less';
 
 const bem = BEM('callOption');
-const contactUrlNO = '/person/kontakt-oss/nb';
-const contactUrlEN = '/person/kontakt-oss/en';
+const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
+const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
 
 interface CallOptionProps extends TelephoneData {
     _path?: string;
