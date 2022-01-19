@@ -40,7 +40,7 @@ export const ContactInformationPage = (props: ContentProps) => {
     return (
         <div className={classNames(bem())}>
             <div className={classNames(bem('content'))}>
-                <Alert variant="warning" className="editorAlert" >OBS: Denne informasjonen kan være i bruk på flere livssituasjonssider.</Alert>
+                <Alert variant="warning" className="editorAlert" >Redaktørvarsel: Denne informasjonen kan være i bruk på tvers av livssituasjonssider. Endres med varsomhet.</Alert>
                 <TelephoneDetails {...contactType.telephone} />
             </div>
         </div>
