@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ExpandableMixin } from '../../../types/component-props/_mixins';
 import { Accordion } from '@navikt/ds-react';
 import { logAmplitudeEvent } from '../../../utils/amplitude';
+import style from './Expandable.module.scss';
 
 type Props = {
     children: React.ReactNode;
@@ -34,7 +35,7 @@ export const Expandable = ({
             <Accordion.Item
                 open={isOpen}
                 renderContentWhenClosed={true}
-                className={'expandable'}
+                className={style.expandable}
             >
                 <Accordion.Header>{expandableTitle}</Accordion.Header>
                 <Accordion.Content>{children}</Accordion.Content>
