@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = {
     imagePath: string;
-    alt?: string;
+    alt: string;
     className?: string;
 };
 

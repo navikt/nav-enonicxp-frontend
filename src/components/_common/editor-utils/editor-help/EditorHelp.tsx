@@ -29,6 +29,7 @@ export const EditorHelp = ({ text, type = 'info' }: Props) => {
         <div className={bem()}>
             <PublicImage
                 imagePath={imagePath[type]}
+                alt={''}
                 className={classNames(bem('icon'), bem('icon', type))}
             />
             <BodyShort spacing={false} size="small" className={bem('content')}>
