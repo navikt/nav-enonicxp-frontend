@@ -160,7 +160,7 @@ export const GVItemEditor = ({
 
     return (
         <div className={bem()}>
-            <form onSubmit={validateAndSubmitItem} className={bem('form')}>
+            <form className={bem('form')}>
                 <TextField
                     size={'small'}
                     label={'Navn'}
@@ -207,7 +207,10 @@ export const GVItemEditor = ({
                         </>
                     ) : (
                         <>
-                            <GVButton variant={'primary'}>
+                            <GVButton
+                                variant={'primary'}
+                                onClick={validateAndSubmitItem}
+                            >
                                 {'Lagre verdi'}
                             </GVButton>
                             <GVButton
