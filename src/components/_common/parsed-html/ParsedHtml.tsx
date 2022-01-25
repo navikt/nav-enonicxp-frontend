@@ -170,6 +170,17 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 );
             }
 
+            if (tag === 'li') {
+                if (!validChildren) {
+                    return <Fragment />;
+                }
+                return (
+                    <BodyLong {...props} as={'li'}>
+                        {domToReact(validChildren, parserOptions)}
+                    </BodyLong>
+                );
+            }
+
             // Table class fix, excluding large-table (statistics pages)
             if (tag === 'table' && attribs?.class !== 'statTab') {
                 return (
