@@ -17,7 +17,7 @@ import { EditorHelp } from '../editor-utils/editor-help/EditorHelp';
 import ReactDOMServer from 'react-dom/server';
 import { store } from '../../../store/store';
 import { Provider } from 'react-redux';
-import { ParsedHtmlTable } from './ParsedHtmlTable';
+import { Table } from '../table/Table';
 
 const blockLevelMacros: { [macroType in MacroType]?: boolean } = {
     [MacroType.AlertBox]: true,
@@ -173,11 +173,9 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             // Table class fix, excluding large-table (statistics pages)
             if (tag === 'table' && attribs?.class !== 'statTab') {
                 return (
-                    <ParsedHtmlTable
-                        {...props}
-                        tableElements={children}
-                        parentParserOptions={parserOptions}
-                    />
+                    <Table zebraStripes={true}>
+                        {domToReact(validChildren, parserOptions)}
+                    </Table>
                 );
             }
 

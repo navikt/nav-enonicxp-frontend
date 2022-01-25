@@ -1,6 +1,6 @@
 import { OpeningHoursProps } from '../../../../../types/content-props/office-information-props';
 import React from 'react';
-import { Table } from '@navikt/ds-react';
+import { Table } from '../../../../_common/table/Table';
 
 export const MetaOpeningHours = (props: {
     openingHours: OpeningHoursProps[];
@@ -71,7 +71,7 @@ export const OpeningHours = (props: {
 
     return (
         <Table zebraStripes={true}>
-            <Table.Body>
+            <tbody>
                 {openingHours.map((opening, ix) => {
                     // TODO: check why stengt is a string?
                     const compKey = `${props.metaKey}-${ix}`;
@@ -80,27 +80,25 @@ export const OpeningHours = (props: {
                     const openingInformation = buildOpeningInformation(opening);
 
                     return (
-                        <Table.Row key={compKey}>
-                            <Table.DataCell className="dayInformation">
-                                {dayInformation}
-                            </Table.DataCell>
-                            <Table.DataCell className="openingInformation">
+                        <tr key={compKey}>
+                            <td className="dayInformation">{dayInformation}</td>
+                            <td className="openingInformation">
                                 {openingInformation || ''}
                                 {(!openingInformation &&
                                     !hasSomeOpeningInformationAndComments &&
                                     opening.kommentar) ||
                                     ''}
-                            </Table.DataCell>
-                            <Table.DataCell>
+                            </td>
+                            <td>
                                 {openingInformation ||
                                 hasSomeOpeningInformationAndComments
                                     ? opening.kommentar
                                     : ''}
-                            </Table.DataCell>
-                        </Table.Row>
+                            </td>
+                        </tr>
                     );
                 })}
-            </Table.Body>
+            </tbody>
         </Table>
     );
 };
