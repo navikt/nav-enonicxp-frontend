@@ -31,13 +31,15 @@ export const Expandable = ({
     };
 
     return (
-        <Accordion onClick={onExpandCollapse} id={expandableAnchorId}>
+        <Accordion id={expandableAnchorId}>
             <Accordion.Item
                 open={isOpen}
                 renderContentWhenClosed={true}
                 className={style.expandable}
             >
-                <Accordion.Header>{expandableTitle}</Accordion.Header>
+                <Accordion.Header onClick={onExpandCollapse}>
+                    {expandableTitle}
+                </Accordion.Header>
                 <Accordion.Content>{children}</Accordion.Content>
             </Accordion.Item>
         </Accordion>
