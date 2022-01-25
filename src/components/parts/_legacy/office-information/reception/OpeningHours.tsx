@@ -70,7 +70,7 @@ export const OpeningHours = (props: {
     );
 
     return (
-        <Table zebraStripes={true}>
+        <Table>
             <tbody>
                 {openingHours.map((opening, ix) => {
                     // TODO: check why stengt is a string?

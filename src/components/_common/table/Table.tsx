@@ -46,10 +46,10 @@ const TableElement = ({ element }: { element?: React.ReactNode }) => {
     return <>{children}</>;
 };
 
-export const Table = ({ children, ...rest }: Props) => {
+export const Table = ({ children, zebraStripes = true, ...rest }: Props) => {
     return (
         <div className={style.tableWrapper}>
-            <DsTable {...rest}>
+            <DsTable {...rest} zebraStripes={zebraStripes}>
                 <TableElement element={children} />
             </DsTable>
         </div>

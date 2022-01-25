@@ -173,9 +173,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             // Table class fix, excluding large-table (statistics pages)
             if (tag === 'table' && attribs?.class !== 'statTab') {
                 return (
-                    <Table zebraStripes={true}>
-                        {domToReact(validChildren, parserOptions)}
-                    </Table>
+                    <Table>{domToReact(validChildren, parserOptions)}</Table>
                 );
             }
 
