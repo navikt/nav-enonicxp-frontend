@@ -92,11 +92,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             {shouldShowIntroRegion && (
                 <Region pageProps={pageProps} regionProps={regions.intro} />
             )}
-            {shouldShowFilterBar && (
-                <>
-                    <FilterBar layoutProps={layoutProps} />
-                </>
-            )}
+            {shouldShowFilterBar && <FilterBar layoutProps={layoutProps} />}
             <Region pageProps={pageProps} regionProps={regions.content} />
         </LayoutContainer>
     );

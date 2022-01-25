@@ -18,13 +18,16 @@
     }
 
     &__category.navds-fieldset {
-        align-items: flex-start;
-        display: flex;
-        flex-direction: column;
         margin-top: 1.5em;
 
         .navds-fieldset__legend {
             font-size: @navds-font-size-large;
+        }
+
+        .navds-checkboxes {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
         }
 
         .filter-checkbox__label {
