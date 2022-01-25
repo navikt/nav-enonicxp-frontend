@@ -58,7 +58,7 @@ export const GVItemEditor = ({
                 const usage = res?.usage;
                 if (!usage || usage.length > 0) {
                     setMessages(generateGvUsageMessages(usage, item.itemName));
-                    setAwaitDeleteConfirm(true);
+                    setTimeout(() => setAwaitDeleteConfirm(true), 1000);
                 } else {
                     deleteConfirm();
                 }
