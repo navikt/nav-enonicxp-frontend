@@ -89,7 +89,7 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
                 <PageHeader justify={'left'}>{pageTitle}</PageHeader>
                 {(subTitle || modified) && (
                     <div className={bem('tagline-wrapper')}>
-                        {subTitle &&<BodyShort size="small" spacing className={bem('tagline-label')}>
+                        {subTitle &&<BodyShort size="small" className={bem('tagline-label')}>
                             {subTitle.toUpperCase()}
                         </BodyShort>}
                         {(subTitle && modified) &&
@@ -99,7 +99,7 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
                                 {'|'}
                             </span>
                         }
-                        {modified && <BodyShort size="small"className={bem('tagline-label')}>
+                        {modified && <BodyShort size="small"className={bem('modified-label')}>
                                 <span className={'page-modified-info'}>{modified}</span>
                         </BodyShort>}
                     </div>
