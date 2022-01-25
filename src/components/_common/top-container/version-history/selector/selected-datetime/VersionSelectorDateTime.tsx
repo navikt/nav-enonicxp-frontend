@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Label } from '@navikt/ds-react';
-import { Checkbox } from 'nav-frontend-skjema';
+import { Checkbox, Label } from '@navikt/ds-react';
 import { BEM } from '../../../../../../utils/classnames';
 import { ContentProps } from '../../../../../../types/content-props/_content-common';
 import {
@@ -10,7 +9,6 @@ import {
 import { Branch } from '../../../../../../types/branch';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
-import './VersionSelectorDateTime.less';
 
 const startDate = '2019-12-01';
 
@@ -73,7 +71,6 @@ export const VersionSelectorDateTime = ({
             <div className={bem('right')}>
                 {editorView && (
                     <Checkbox
-                        label={'Kun publisert innhold'}
                         checked={branchSelected === 'master'}
                         id={'version-branch-input'}
                         onChange={(e) => {
@@ -81,7 +78,10 @@ export const VersionSelectorDateTime = ({
                                 e.target.checked ? 'master' : 'draft'
                             );
                         }}
-                    />
+                        size={'small'}
+                    >
+                        {'Kun publisert innhold'}
+                    </Checkbox>
                 )}
                 <VersionSelectorSubmitButton
                     url={url}

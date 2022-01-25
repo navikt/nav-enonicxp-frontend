@@ -1,4 +1,4 @@
-@import (reference) '../../../global';
+@import (reference) '../../../common';
 
 .top-container {
     display: flex;
@@ -9,7 +9,7 @@
     .full-width-mixin();
 
     &--white {
-        background-color: @navBakgrunn;
+        background-color: @navds-semantic-color-canvas-background-light;
     }
 
     &--widgets-offset {
@@ -21,7 +21,7 @@
         @margin: 1rem;
         @margin-width-term: @margin * (@numCols - 1) / @numCols;
 
-        padding-top: 1rem;
+        padding: 1rem 0;
 
         display: flex;
         flex-wrap: wrap;
@@ -46,6 +46,10 @@
 
             .notification {
                 width: 100%;
+
+                &:not(:last-child) {
+                    margin-bottom: 1rem;
+                }
             }
         }
     }

@@ -5,7 +5,6 @@ import { ContentProps } from '../../../../../../types/content-props/_content-com
 import { formatDateTime } from '../../../../../../utils/datetime';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
-import './VersionSelectorPublished.less';
 
 const bem = BEM('version-selector-published');
 

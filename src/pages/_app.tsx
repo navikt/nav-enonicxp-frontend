@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from '../store/store';
 
 import '../global.less';
+import '../components.less';
 
 const App = ({ Component, pageProps }: AppProps) => {
     return (

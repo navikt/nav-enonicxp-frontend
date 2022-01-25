@@ -1,8 +1,8 @@
-@import (reference) '../../../global';
+@import (reference) '../../../common';
 
 .filters-menu {
     &__wrapper {
-        box-shadow: @navBlaLighten60 inset 0 0 0 8px;
+        box-shadow: @navds-global-color-blue-200 inset 0 0 0 8px;
         border-radius: 0.2em;
         background-color: white;
 
@@ -15,21 +15,23 @@
                 padding-left: 0;
             }
         }
+    }
 
-        .checkboxgruppe {
-            align-items: flex-start;
+    &__category.navds-fieldset {
+        margin-top: 1.5em;
+
+        .navds-fieldset__legend {
+            font-size: @navds-font-size-large;
+        }
+
+        .navds-checkboxes {
             display: flex;
+            align-items: flex-start;
             flex-direction: column;
-            margin-top: 1.5em;
+        }
 
-            .skjemagruppe__legend {
-                font-size: @regular-font-size;
-                margin-bottom: 0.3rem;
-            }
-
-            .filter-checkbox__label {
-                font-size: #px-to-rem(14px) [];
-            }
+        .filter-checkbox__label {
+            font-size: #px-to-rem(14px) [];
         }
     }
 

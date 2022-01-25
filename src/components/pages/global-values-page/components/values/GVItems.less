@@ -1,4 +1,4 @@
-@import (reference) '../../../../../global';
+@import (reference) '../../../../../common';
 
 .gv-items {
     display: flex;
@@ -28,10 +28,10 @@
         margin: 0 -0.5rem;
         background-color: white;
         border-radius: @border-radius-base;
-        box-shadow: 1px 2px 3px 2px @navGra40;
+        box-shadow: 1px 2px 3px 2px @navds-global-color-gray-400;
 
         &--dragged {
-            box-shadow: 0 0 3px 3px @navGronnLighten40;
+            box-shadow: 0 0 3px 3px @navds-global-color-green-300;
             cursor: grabbing;
 
             .gv-items__drag-handle {

@@ -1,5 +1,6 @@
 import { OpeningHoursProps } from '../../../../../types/content-props/office-information-props';
 import React from 'react';
+import { Table } from '../../../../_common/table/Table';
 
 export const MetaOpeningHours = (props: {
     openingHours: OpeningHoursProps[];
@@ -69,7 +70,7 @@ export const OpeningHours = (props: {
     );
 
     return (
-        <table className="tabell tabell--stripet openinghours">
+        <Table>
             <tbody>
                 {openingHours.map((opening, ix) => {
                     // TODO: check why stengt is a string?
@@ -98,6 +99,6 @@ export const OpeningHours = (props: {
                     );
                 })}
             </tbody>
-        </table>
+        </Table>
     );
 };

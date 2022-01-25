@@ -3,8 +3,8 @@ import {
     ComponentProps,
     ComponentType,
 } from '../types/component-props/_component-common';
-import { Text } from './parts/_text/Text';
-import Image from './parts/_image/Image';
+import { TextComponentXp } from './parts/_text/TextComponentXp';
+import { ImageComponentXp } from './parts/_image/ImageComponent';
 import { PartsMapper } from './parts/PartsMapper';
 import { ContentProps } from '../types/content-props/_content-common';
 import { LayoutMapper } from './layouts/LayoutMapper';
@@ -24,14 +24,14 @@ export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
     switch (componentProps.type) {
         case ComponentType.Text:
             return (
-                <Text
+                <TextComponentXp
                     textProps={componentProps}
                     editMode={!!pageProps.editorView}
                 />
             );
         case ComponentType.Image:
             return (
-                <Image
+                <ImageComponentXp
                     imageProps={componentProps}
                     editMode={!!pageProps.editorView}
                 />

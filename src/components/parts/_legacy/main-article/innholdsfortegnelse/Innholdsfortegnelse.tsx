@@ -1,6 +1,5 @@
 import React from 'react';
 import { LenkeBase } from '../../../../_common/lenke/LenkeBase';
-import './Innholdsfortegnelse.less';
 
 interface Props {
     label: string;

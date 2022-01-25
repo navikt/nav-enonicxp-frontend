@@ -4,8 +4,6 @@ import { BEM } from 'utils/classnames';
 import { CardSize, CardType } from 'types/card';
 import { Card } from './Card';
 
-import './MicroCard.less';
-
 export type MikroKortProps = {
     link: LinkProps;
     type: CardType;

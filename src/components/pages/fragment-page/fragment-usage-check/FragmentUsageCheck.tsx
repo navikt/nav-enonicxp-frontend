@@ -6,7 +6,6 @@ import { Button } from '../../../_common/button/Button';
 import { BEM } from '../../../../utils/classnames';
 import { EditorLinkWrapper } from '../../../_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
 import { FragmentUsageLink } from './FragmentUsageLink';
-import './FragmentUsageCheck.less';
 
 const bem = BEM('fragment-usage');
 
@@ -85,9 +84,8 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                         </Heading>
                         <EditorLinkWrapper>
                             <Button
-                                type={'flat'}
-                                mini={true}
-                                kompakt={true}
+                                variant={'tertiary'}
+                                size={'small'}
                                 className={bem('button')}
                                 onClick={() => setShowUsage(!showUsage)}
                             >
@@ -112,8 +110,8 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                             >
                                 {'I bruk som komponent:'}
                             </Heading>
-                            {componentUsage.map((content) => (
-                                <FragmentUsageLink {...content} />
+                            {componentUsage.map((content, index) => (
+                                <FragmentUsageLink {...content} key={index} />
                             ))}
                         </>
                     )}
@@ -126,8 +124,8 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                             >
                                 {'I bruk som macro:'}
                             </Heading>
-                            {macroUsage.map((content) => (
-                                <FragmentUsageLink {...content} />
+                            {macroUsage.map((content, index) => (
+                                <FragmentUsageLink {...content} key={index} />
                             ))}
                         </>
                     )}

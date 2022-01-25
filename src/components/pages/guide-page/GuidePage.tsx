@@ -4,8 +4,6 @@ import { GuidePageProps } from '../../../types/content-props/dynamic-page-props'
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 import { BEM } from '../../../utils/classnames';
 
-import './GuidePage.less';
-
 const bem = BEM('product-page');
 
 export const GuidePage = (props: GuidePageProps) => {

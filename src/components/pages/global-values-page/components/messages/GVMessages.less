@@ -1,11 +1,10 @@
-@import (reference) '../../../../../global';
-@import (reference) '~nav-frontend-typografi-style/src/index';
+@import (reference) '../../../../../common';
 
 .gv-messages {
     display: flex;
     flex-direction: column;
     width: 40%;
-    border-left: 2px dotted @navGra60;
+    border-left: 2px dotted @navds-global-color-gray-600;
     padding-left: 1rem;
     margin-left: 1rem;
 
@@ -17,19 +16,17 @@
         padding-top: 1rem;
 
         border-left: none;
-        border-top: 2px dotted @navGra60;
+        border-top: 2px dotted @navds-global-color-gray-600;
     }
 
     &__message {
-        .typo-normal;
-
         &--warning {
             font-weight: bold;
         }
 
         &--error {
             font-weight: bold;
-            color: @redError;
+            color: @navds-global-color-red-500;
         }
     }
 

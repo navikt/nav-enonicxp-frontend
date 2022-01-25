@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { GVButton } from '../../button/GVButton';
-import { Input, SkjemaGruppe } from 'nav-frontend-skjema';
 import { BEM } from '../../../../../../utils/classnames';
 import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
 import { generateGvUsageMessages, gvNameExists } from '../../../utils';
@@ -10,9 +9,8 @@ import { gvServiceRemoveItem } from '../../../api/services/remove';
 import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState';
 import { gvServiceGetValueSet } from '../../../api/services/getValueSet';
 import { gvServiceGetUsage } from '../../../api/services/usage';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, TextField } from '@navikt/ds-react';
 import { GVMessageProps } from '../../messages/GVMessages';
-import './GVItemEditor.less';
 
 const bem = BEM('gv-item-editor');
 
@@ -60,7 +58,7 @@ export const GVItemEditor = ({
                 const usage = res?.usage;
                 if (!usage || usage.length > 0) {
                     setMessages(generateGvUsageMessages(usage, item.itemName));
-                    setAwaitDeleteConfirm(true);
+                    setTimeout(() => setAwaitDeleteConfirm(true), 1000);
                 } else {
                     deleteConfirm();
                 }
@@ -162,81 +160,76 @@ export const GVItemEditor = ({
 
     return (
         <div className={bem()}>
-            <form onSubmit={validateAndSubmitItem}>
-                <SkjemaGruppe>
-                    <Input
-                        mini
-                        label={'Navn'}
-                        name={'itemName'}
-                        value={inputState.itemName}
-                        onChange={handleInput}
-                        feil={errors.itemName}
-                    />
-                    <Input
-                        mini
-                        label={'Tallverdi'}
-                        description={
-                            'Blir automatisk formattert avhengig av språket i artikkelen. Benytt kun tall, samt evt punktum som desimalskilletegn.'
-                        }
-                        name={'numberValue'}
-                        value={
-                            inputState.numberValue !== undefined
-                                ? inputState.numberValue
-                                : ''
-                        }
-                        onChange={handleInput}
-                        feil={errors.numberValue}
-                    />
-                    <div className={bem('form-buttons')}>
-                        {awaitDeleteConfirm ? (
-                            <>
-                                <BodyShort
-                                    className={bem('delete-confirm-msg')}
-                                >
-                                    {
-                                        'Obs: Denne verdien kan være i bruk - er du sikker?'
-                                    }
-                                </BodyShort>
+            <form className={bem('form')}>
+                <TextField
+                    size={'small'}
+                    label={'Navn'}
+                    name={'itemName'}
+                    value={inputState.itemName}
+                    onChange={handleInput}
+                    error={errors.itemName}
+                />
+                <TextField
+                    size={'small'}
+                    label={'Tallverdi'}
+                    description={
+                        'Blir automatisk formattert avhengig av språket i artikkelen. Benytt kun tall, samt evt punktum som desimalskilletegn.'
+                    }
+                    name={'numberValue'}
+                    value={
+                        inputState.numberValue !== undefined
+                            ? inputState.numberValue
+                            : ''
+                    }
+                    onChange={handleInput}
+                    error={errors.numberValue}
+                />
+                <div className={bem('form-buttons')}>
+                    {awaitDeleteConfirm ? (
+                        <>
+                            <BodyShort className={bem('delete-confirm-msg')}>
+                                {
+                                    'Obs: Denne verdien kan være i bruk - er du sikker?'
+                                }
+                            </BodyShort>
+                            <GVButton
+                                variant={'danger'}
+                                onClick={deleteConfirm}
+                            >
+                                {'Bekreft sletting'}
+                            </GVButton>
+                            <GVButton
+                                variant={'secondary'}
+                                onClick={deleteCancel}
+                            >
+                                {'Avbryt sletting'}
+                            </GVButton>
+                        </>
+                    ) : (
+                        <>
+                            <GVButton
+                                variant={'primary'}
+                                onClick={validateAndSubmitItem}
+                            >
+                                {'Lagre verdi'}
+                            </GVButton>
+                            <GVButton
+                                variant={'primary'}
+                                onClick={() => onClose()}
+                            >
+                                {'Avbryt'}
+                            </GVButton>
+                            {!isNewItem && (
                                 <GVButton
-                                    type={'fare'}
-                                    htmlType={'button'}
-                                    onClick={deleteConfirm}
+                                    variant={'danger'}
+                                    onClick={deleteItem}
                                 >
-                                    {'Bekreft sletting'}
+                                    {'Slett'}
                                 </GVButton>
-                                <GVButton
-                                    type={'standard'}
-                                    htmlType={'button'}
-                                    onClick={deleteCancel}
-                                >
-                                    {'Avbryt sletting'}
-                                </GVButton>
-                            </>
-                        ) : (
-                            <>
-                                <GVButton type={'hoved'} htmlType={'submit'}>
-                                    {'Lagre verdi'}
-                                </GVButton>
-                                <GVButton
-                                    type={'hoved'}
-                                    htmlType={'reset'}
-                                    onClick={() => onClose()}
-                                >
-                                    {'Avbryt'}
-                                </GVButton>
-                                {!isNewItem && (
-                                    <GVButton
-                                        type={'fare'}
-                                        htmlType={'button'}
-                                        onClick={deleteItem}
-                                    >
-                                        {'Slett'}
-                                    </GVButton>
-                                )}
-                            </>
-                        )}
-                    </div>
-                </SkjemaGruppe>
+                            )}
+                        </>
+                    )}
+                </div>
             </form>
         </div>
     );

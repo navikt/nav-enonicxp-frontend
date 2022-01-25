@@ -1,19 +1,16 @@
 import React from 'react';
-import { BEM, classNames } from '../../../utils/classnames';
+import { classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { XpImageProps } from '../../../types/media';
 import { XpImage } from '../image/XpImage';
-import { KnappBaseProps } from 'nav-frontend-knapper';
-import './Button.less';
-
-const bem = BEM('knapp');
+import { Button as DsButton, ButtonProps } from '@navikt/ds-react';
+import style from './Button.module.scss';
 
 type Props = {
     href?: string;
-    type?: KnappBaseProps['type'];
+    variant?: ButtonProps['variant'];
+    size?: ButtonProps['size'];
     icon?: XpImageProps;
-    mini?: boolean;
-    kompakt?: boolean;
     fullWidth?: boolean;
     disabled?: boolean;
     prefetch?: boolean;
@@ -23,11 +20,10 @@ type Props = {
 };
 
 export const Button = ({
-    href = '#',
-    type = 'standard',
+    href,
+    variant = 'secondary',
+    size = 'medium',
     icon,
-    mini,
-    kompakt,
     fullWidth,
     disabled,
     prefetch,
@@ -36,26 +32,30 @@ export const Button = ({
     children,
 }: Props) => {
     return (
-        <LenkeBase
-            href={href}
+        <DsButton
+            as={LenkeBase}
+            href={href || '#'}
             className={classNames(
-                bem(),
-                bem(undefined, type),
-                bem('custom'),
-                mini && bem(undefined, 'mini'),
-                kompakt && bem(undefined, 'kompakt'),
-                fullWidth && bem(undefined, 'fullWidth'),
-                disabled && bem(undefined, 'disabled'),
+                style.button,
+                fullWidth && style.buttonFullWidth,
                 className
             )}
-            onClick={onClick}
+            onClick={(e) => {
+                if (!href) {
+                    e.preventDefault();
+                }
+                onClick?.(e);
+            }}
             prefetch={prefetch}
+            variant={variant}
+            size={size}
+            disabled={disabled}
         >
             {icon ? (
                 <>
                     <XpImage
                         imageProps={icon}
-                        className={bem('icon')}
+                        className={style.button__icon}
                         alt={''}
                     />
                     <span>{children}</span>
@@ -63,6 +63,6 @@ export const Button = ({
             ) : (
                 <>{children}</>
             )}
-        </LenkeBase>
+        </DsButton>
     );
 };

@@ -3,7 +3,6 @@ import { BEM } from 'utils/classnames';
 import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
 import { CardSize, CardType } from 'types/card';
 import { Card } from './Card';
-import './LargeCard.less';
 import { Illustration } from '../illustration/Illustration';
 import { IllustrationPlacements } from 'types/illustrationPlacements';
 import { AnimatedIconsProps } from '../../../types/content-props/animated-icons';

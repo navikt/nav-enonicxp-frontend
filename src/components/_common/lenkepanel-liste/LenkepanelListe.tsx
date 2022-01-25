@@ -4,7 +4,6 @@ import { BEM } from 'utils/classnames';
 import { BodyLong, Heading, Ingress } from '@navikt/ds-react';
 import LenkepanelNavNo from '../lenkepanel/LenkepanelNavNo';
 import { getUrlFromContent } from '../../../utils/links-from-content';
-import './LenkepanelListe.less';
 
 type Props = {
     title?: string;

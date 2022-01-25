@@ -1,44 +1,9 @@
-@import '~nav-frontend-core/less/_variabler';
-@import '~nav-frontend-core/less/core';
-@import '~@navikt/ds-css/dist/index.css';
-
-@pixel-size-rem: 1 / 16;
-@regular-font-size: 1.125rem;
-
-// Screen size breakpoints
-@mobileMaxWidth: 48rem; // 768px
-@tabletMinWidth: @mobileMaxWidth;
-@tabletMaxWidth: 64rem; // 1024px
-@desktopMinWidth: @tabletMaxWidth;
-@desktopMaxWidth: 90rem; // 1440px
-
-@mq-screen-mobile: ~'only screen and (max-width: @{mobileMaxWidth})';
-@mq-screen-tablet: ~'only screen and (min-width: @{tabletMinWidth}) and (max-width: @{tabletMaxWidth})';
-@mq-screen-tablet-and-desktop: ~'only screen and (min-width: @{tabletMinWidth}) ';
-@mq-screen-desktop: ~'only screen and (min-width: @{desktopMinWidth}) ';
-@mq-screen-desktop-large: ~'only screen and (min-width: @{desktopMaxWidth}) ';
-
-@padding-sides-desktop: 3rem;
-@padding-sides-tablet: 1rem;
-@padding-sides-mobile: 0.5rem;
-
-@sectionPaddingDesktop: 2.5rem;
-@sectionPaddingTablet: 1.6rem;
-@sectionPaddingMobile: 1rem;
-
-html {
-    // override ds-css scroll behaviour
-    animation: none;
-    scroll-behavior: auto;
-    &:focus-within {
-        animation: none;
-        scroll-behavior: auto;
-    }
-}
+@import '@navikt/ds-css/dist/index.css';
+@import './common.less';
 
 #__next,
 .decorator-utils-container {
-    background-color: @navGraBakgrunn;
+    background-color: @navds-semantic-color-canvas-background;
 }
 
 .decorator-utils-container {
@@ -90,73 +55,6 @@ html {
     }
 }
 
-.hidden {
-    display: none;
-}
-
-.visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-}
-
-header .page-modified-info, article .page-modified-info {
-    letter-spacing: 0.004em;
-    color: var(--navds-color-gray-60);
-}
-
-// Rounds a rem-value to the nearest value which is divisible by
-// the current pixel size, taking global font-size into account
-// This is useful for cases where 1px rounding-errors are noticable
-#round-rem(@value: 0) {
-    @valueUpper: @value + @pixel-size-rem / 2;
-    @result: @valueUpper - mod(@valueUpper, @pixel-size-rem);
-}
-
-#px-to-rem(@px) {
-    @rem: unit(@px * @pixel-size-rem, rem);
-}
-
-// Makes the element cover the entire screen-width
-.full-width-mixin() {
-    @side-width: calc((100vw - 100%) / 2);
-    @side-width-negative: calc((100vw - 100%) / -2);
-
-    padding-left: @side-width;
-    padding-right: @side-width;
-    margin-left: @side-width-negative;
-    margin-right: @side-width-negative;
-}
-
-.panel-inset-focus-mixin() {
-    outline: 0;
-    box-shadow: 0 0 0 3px inset @fokusFarge;
-}
-
-.section-padding-mixin() {
-    padding: @sectionPaddingDesktop;
-
-    @media @mq-screen-tablet {
-        padding: @sectionPaddingTablet;
-    }
-
-    @media @mq-screen-mobile {
-        padding: @sectionPaddingMobile;
-    }
-}
-
-.link-border-bottom-mixin() {
-    border-bottom: 1px @navBla solid;
-    text-decoration: none;
-    transition: border-bottom-color 0.12s ease-out;
-
-    &:hover,
-    &:focus {
-        border-bottom-color: transparent;
-    }
+.navds-heading {
+    word-break: break-word;
 }

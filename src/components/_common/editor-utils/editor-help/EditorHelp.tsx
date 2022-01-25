@@ -3,7 +3,6 @@ import { usePageConfig } from '../../../../store/hooks/usePageConfig';
 import { PublicImage } from '../../image/PublicImage';
 import { BEM, classNames } from '../../../../utils/classnames';
 import { BodyShort } from '@navikt/ds-react';
-import './EditorHelp.less';
 
 const bem = BEM('editor-help');
 

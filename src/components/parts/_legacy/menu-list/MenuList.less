@@ -1,3 +1,5 @@
+@import (reference) '../../../../common';
+
 .menu-list {
     display: flex;
     flex-direction: column;
@@ -5,6 +7,19 @@
 
     &__panel {
         margin-bottom: 0.5rem;
+        background-color: @navds-global-color-white;
+        border-radius: @border-radius-base;
+
+        .navds-accordion__header {
+            border-radius: @border-radius-base;
+        }
+
+        &.navds-accordion__item--open {
+            .navds-accordion__header {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
 
         ul {
             list-style: none;

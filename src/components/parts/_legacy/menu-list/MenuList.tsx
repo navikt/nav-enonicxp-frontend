@@ -4,8 +4,7 @@ import { BEM } from 'utils/classnames';
 import { MenuListItemKey } from 'types/menu-list-items';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import './MenuList.less';
+import { Accordion } from '@navikt/ds-react';
 
 const bem = BEM('menu-list');
 
@@ -36,22 +35,27 @@ export const MenuList = (props: ContentProps) => {
                         type === ContentType.PageList;
 
                     return (
-                        <Ekspanderbartpanel
-                            key={key}
-                            apen={isOpen}
-                            tittel={getLabel(key) || key}
-                            className={bem('panel')}
-                        >
-                            <ul>
-                                {links.map((link, i) => (
-                                    <li key={i}>
-                                        <LenkeInline href={link.url}>
-                                            {link.text}
-                                        </LenkeInline>
-                                    </li>
-                                ))}
-                            </ul>
-                        </Ekspanderbartpanel>
+                        <Accordion key={key}>
+                            <Accordion.Item
+                                defaultOpen={isOpen}
+                                className={bem('panel')}
+                            >
+                                <Accordion.Header>
+                                    {getLabel(key) || key}
+                                </Accordion.Header>
+                                <Accordion.Content>
+                                    <ul>
+                                        {links.map((link, i) => (
+                                            <li key={i}>
+                                                <LenkeInline href={link.url}>
+                                                    {link.text}
+                                                </LenkeInline>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </Accordion.Content>
+                            </Accordion.Item>
+                        </Accordion>
                     );
                 })}
             </div>

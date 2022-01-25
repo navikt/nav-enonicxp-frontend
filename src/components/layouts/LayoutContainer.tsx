@@ -5,7 +5,6 @@ import { BEM, classNames } from '../../utils/classnames';
 import { getCommonLayoutStyle } from './LayoutStyle';
 import { usePageConfig } from '../../store/hooks/usePageConfig';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
-import './LayoutContainer.less';
 
 type Props = {
     pageProps: ContentProps;

@@ -8,7 +8,6 @@ import { ErrorContent408 } from './errorcode-content/ErrorContent408';
 import { BEM } from '../../../utils/classnames';
 import Head from 'next/head';
 import { ErrorContent400 } from './errorcode-content/ErrorContent400';
-import './ErrorPage.less';
 
 const bem = BEM('error-page');
 

@@ -1,9 +1,8 @@
-@import (reference) '../../../../global';
+@import (reference) '../../../../common';
 
-.link-panels {
-    @numCols: 3;
-    @incCols: 2;
+.main-panels {
     @margin: 1rem;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -11,25 +10,19 @@
     text-align: center;
     width: 100%;
 
-    &__item {
-        text-align: start;
-        margin-bottom: @margin;
+    @media @mq-screen-mobile {
+        .flex-cols-mixin(1, @margin, @margin);
+    }
+
+    @media @mq-screen-tablet {
+        .flex-cols-mixin(2, @margin, @margin);
+    }
+
+    @media @mq-screen-desktop {
+        .flex-cols-mixin(3, @margin, @margin);
+    }
+
+    &__item.navds-panel {
         padding: 1.5rem;
-
-        @media @mq-screen-mobile {
-            width: 100%;
-        }
-
-        @media @mq-screen-tablet-and-desktop {
-            width: calc(
-                percentage(1 / @numCols) - @margin * ((@numCols - 1) / @numCols)
-            );
-            &:not(:nth-child(@{numCols}n)):not(:last-child) {
-                margin-right: @margin / 2;
-            }
-            &:not(:nth-child(@{numCols}n-@{incCols})) {
-                margin-left: @margin / 2;
-            }
-        }
     }
 }

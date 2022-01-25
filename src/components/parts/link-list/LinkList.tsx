@@ -5,7 +5,6 @@ import { Lenkeliste } from '../../_common/lenkeliste/Lenkeliste';
 import { ContentList } from '../../_common/content-list/ContentList';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { Expandable } from '../../_common/expandable/Expandable';
-import './LinkList.less';
 
 const bem = BEM('link-list');
 

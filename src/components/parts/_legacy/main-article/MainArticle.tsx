@@ -5,17 +5,17 @@ import { Heading, Ingress } from '@navikt/ds-react';
 import Innholdsfortegnelse from './innholdsfortegnelse/Innholdsfortegnelse';
 import SosialeMedier from './SosialeMedier';
 import ArtikkelDato from './ArtikkelDato';
-import Faktaboks from './Faktaboks';
+import { Faktaboks } from './Faktaboks';
 import Bilde from './Bilde';
 import MainArticleText from './MainArticleText';
 import { parseInnholdsfortegnelse } from './innholdsfortegnelse/parseInnholdsfortegnelse';
-import {
-    ContentType,
-    ContentProps,
-} from '../../../../types/content-props/_content-common';
-import './MainArticle.less';
+import { ContentType } from '../../../../types/content-props/_content-common';
+import { MainArticleProps } from '../../../../types/content-props/main-article-props';
+import { MainArticleChapterProps } from '../../../../types/content-props/main-article-chapter-props';
 
-export const MainArticle = (propsInitial: ContentProps) => {
+export const MainArticle = (
+    propsInitial: MainArticleProps | MainArticleChapterProps
+) => {
     const props =
         propsInitial.__typename === ContentType.MainArticleChapter
             ? propsInitial.data.article
