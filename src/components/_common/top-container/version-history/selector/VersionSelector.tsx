@@ -60,11 +60,12 @@ export const VersionSelector = ({
                 <div className={bem('type-selector')}>
                     <RadioGroup
                         legend={'Velg input-type'}
+                        defaultValue={'datetime'}
                         onChange={(value) => {
                             setSelectorType(value as SelectorType);
                         }}
                     >
-                        <Radio value={'datetime'} defaultChecked={true}>
+                        <Radio value={'datetime'}>
                             {'Egendefinert tidspunkt'}
                         </Radio>
                         <Radio value={'published'}>
