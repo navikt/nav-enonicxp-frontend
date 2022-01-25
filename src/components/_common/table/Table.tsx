@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
-import { Table as DsTable } from '@navikt/ds-react';
-import { TableProps } from '@navikt/ds-react/src/table/Table';
+import { Table as DsTable, TableProps } from '@navikt/ds-react';
 import style from './Table.module.scss';
 
 type Props = {
