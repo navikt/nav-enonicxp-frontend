@@ -1,5 +1,6 @@
 import { OpeningHoursProps } from '../../../../../types/content-props/office-information-props';
 import React from 'react';
+import { Table } from '@navikt/ds-react';
 
 export const MetaOpeningHours = (props: {
     openingHours: OpeningHoursProps[];
@@ -69,8 +70,8 @@ export const OpeningHours = (props: {
     );
 
     return (
-        <table className="tabell tabell--stripet openinghours">
-            <tbody>
+        <Table zebraStripes={true}>
+            <Table.Body>
                 {openingHours.map((opening, ix) => {
                     // TODO: check why stengt is a string?
                     const compKey = `${props.metaKey}-${ix}`;
@@ -79,25 +80,27 @@ export const OpeningHours = (props: {
                     const openingInformation = buildOpeningInformation(opening);
 
                     return (
-                        <tr key={compKey}>
-                            <td className="dayInformation">{dayInformation}</td>
-                            <td className="openingInformation">
+                        <Table.Row key={compKey}>
+                            <Table.DataCell className="dayInformation">
+                                {dayInformation}
+                            </Table.DataCell>
+                            <Table.DataCell className="openingInformation">
                                 {openingInformation || ''}
                                 {(!openingInformation &&
                                     !hasSomeOpeningInformationAndComments &&
                                     opening.kommentar) ||
                                     ''}
-                            </td>
-                            <td>
+                            </Table.DataCell>
+                            <Table.DataCell>
                                 {openingInformation ||
                                 hasSomeOpeningInformationAndComments
                                     ? opening.kommentar
                                     : ''}
-                            </td>
-                        </tr>
+                            </Table.DataCell>
+                        </Table.Row>
                     );
                 })}
-            </tbody>
-        </table>
+            </Table.Body>
+        </Table>
     );
 };

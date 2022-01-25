@@ -109,13 +109,6 @@
 // This is an override mixin specific for product and livesituation pages.
 // To be removed when DS has updated design packages.
 .product-mixins() {
-    .part__html-area {
-        .expandable {
-            // Override Ekspanderbart Panel styling
-            margin-bottom: 1.75rem;
-        }
-    }
-
     // h3 signifies a new "sub chapter" within a section.
     // should have extra spacing above content, but only if
     // not the topmost element within region. Except first-child.
@@ -142,7 +135,6 @@
     // so just select any child that may contain any of the elements.
     .region__content {
         > :last-child {
-            .tabell:last-child,
             .card:last-child,
             .calculator,
             ul:last-child,
