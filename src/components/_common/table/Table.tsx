@@ -32,10 +32,9 @@ const TableElement = ({ element }: { element?: React.ReactNode }) => {
 
         if (TableComponent) {
             return (
-                <TableComponent
-                    {...props}
-                    children={<TableElement element={props.children} />}
-                />
+                <TableComponent {...props}>
+                    <TableElement element={props.children} />
+                </TableComponent>
             );
         }
 
