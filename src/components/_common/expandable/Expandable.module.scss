@@ -1,0 +1,46 @@
+@use '../../../common' as common;
+
+.expandable {
+    &:global(.navds-accordion__item) {
+        border-bottom: 1px common.$navds-global-color-gray-400 solid;
+    }
+
+    &:global(.navds-accordion__item--open) {
+        :global(.navds-accordion__content) {
+            visibility: visible;
+        }
+    }
+
+    :global(.navds-accordion__header) {
+        $focusPadding: 0.5rem;
+
+        color: common.$navds-semantic-color-link;
+        border-radius: common.$border-radius-base;
+        border-bottom: 0;
+        padding-left: $focusPadding;
+        padding-right: $focusPadding;
+        margin: 0 (-$focusPadding);
+        width: calc(100% + #{$focusPadding} * 2);
+
+        &:focus {
+            @include common.panel-focus-mixin(false);
+        }
+    }
+
+    :global(.navds-accordion__content) {
+        visibility: hidden;
+        transition: visibility 250ms;
+        padding: 1rem 0 0.5rem 0;
+    }
+}
+
+// TODO: move this to the respective SCSS-files when these page types have
+// been migrated to SCSS?
+$page-classes: '.product-page', '.situation-page', '.guide-page';
+@each $page-class in $page-classes {
+    :global(#{$page-class} .part__html-area) {
+        .expandable {
+            margin-bottom: 1.75rem;
+        }
+    }
+}

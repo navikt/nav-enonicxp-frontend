@@ -2,7 +2,6 @@ import React from 'react';
 import { CardSize, CardType } from 'types/card';
 import { BEM, classNames } from '../../../utils/classnames';
 
-import './Card.less';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { Interaction } from 'types/interaction';

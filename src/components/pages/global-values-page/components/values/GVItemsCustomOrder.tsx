@@ -5,7 +5,6 @@ import { BEM, classNames } from '../../../../../utils/classnames';
 import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
 import { Up, Down } from '@navikt/ds-icons';
 import { gvServiceReorderItems } from '../../api/services/reorder';
-import './GVItems.less';
 
 const bem = BEM('gv-items');
 

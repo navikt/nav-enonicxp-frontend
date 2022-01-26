@@ -2,7 +2,6 @@ import * as React from 'react';
 import { getInternalAbsoluteUrl } from '../../../../utils/urls';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import { classNames } from '../../../../utils/classnames';
-import './SosialeMedier.less';
 
 const getSocialmediaShareUrl = (
     el: string,

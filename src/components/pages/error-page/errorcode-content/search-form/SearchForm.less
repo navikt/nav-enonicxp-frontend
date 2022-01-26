@@ -1,8 +1,7 @@
-@import (reference) '../../../../../global';
-@import (reference) '~nav-frontend-knapper-style/src/mixins';
+@import (reference) '../../../../../common';
 
 .search {
-    &__header {
+    &__header.navds-heading {
         margin-bottom: 0.5rem;
     }
 
@@ -17,7 +16,7 @@
         input {
             font-size: 150%;
             border-width: 2px;
-            border-color: @navBla;
+            border-color: @navds-semantic-color-link;
             border-radius: @border-radius-base;
             padding-right: 13rem;
             @media @mq-screen-mobile {
@@ -49,10 +48,6 @@
         &:hover {
             transform: none;
             box-shadow: none;
-        }
-
-        @media @mq-screen-mobile {
-            .knappmini-mixin;
         }
     }
 }

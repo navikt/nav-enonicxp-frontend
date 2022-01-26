@@ -7,7 +7,6 @@ import { getTargetIfRedirect } from '../../../utils/redirects';
 import { UrlProps } from '../../../types/content-props/url-props';
 import { BodyLong } from '@navikt/ds-react';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
-import './RedirectPage.less';
 
 export const RedirectPage = (
     props: ExternalLinkProps | InternalLinkProps | SiteProps | UrlProps

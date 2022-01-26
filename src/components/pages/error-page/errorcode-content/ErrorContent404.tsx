@@ -3,7 +3,6 @@ import { Heading, BodyLong } from '@navikt/ds-react';
 import { BEM } from '../../../../utils/classnames';
 import { SearchForm } from './search-form/SearchForm';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
-import './ErrorContent404.less';
 
 const origin = process.env.APP_ORIGIN;
 const frontpageHref = origin;

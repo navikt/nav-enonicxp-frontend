@@ -4,7 +4,6 @@ import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
 import { BEM, classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import { ContentProps } from '../../../../types/content-props/_content-common';
-import './LinkLists.less';
 
 const LinkLists = (props: ContentProps) => {
     const getLabel = translator('linkLists', props.language);

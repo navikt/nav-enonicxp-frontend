@@ -17,12 +17,21 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "baseUrl": "src",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "classnameTransform": "dashesOnly",
+        }
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
+    "src/**/*.ts",
+    "src/**/*.tsx",
   ],
   "exclude": [
     "node_modules"

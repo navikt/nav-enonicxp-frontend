@@ -1,4 +1,4 @@
-@import (reference) '../../../global';
+@import (reference) '../../../common';
 
 .lenkeliste {
     &__tittel {
@@ -22,9 +22,9 @@
         &:focus,
         &:focus-visible,
         &:active {
-            .panel-inset-focus-mixin();
+            .panel-focus-mixin();
             background-color: transparent;
-            color: @navBla;
+            color: @navds-semantic-color-link;
         }
     }
 }

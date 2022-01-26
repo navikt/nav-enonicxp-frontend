@@ -5,7 +5,6 @@ import { ErrorPage } from '../error-page/ErrorPage';
 import { make404Props } from '../../../utils/make-error-props';
 import { FragmentUsageCheck } from './fragment-usage-check/FragmentUsageCheck';
 import { BEM } from '../../../utils/classnames';
-import './FragmentPage.less';
 
 const bem = BEM('fragment-page');
 

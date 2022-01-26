@@ -3,7 +3,6 @@ import { BodyLong } from '@navikt/ds-react';
 import { LenkeStandalone } from '../../../lenke/LenkeStandalone';
 import { formatDateTime } from '../../../../../utils/datetime';
 import { ContentProps } from '../../../../../types/content-props/_content-common';
-import './VersionStatus.less';
 
 type Props = {
     content: ContentProps;

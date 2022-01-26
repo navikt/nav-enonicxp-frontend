@@ -8,7 +8,6 @@ import {
     PageNavScrollDirection,
 } from './PageNavigationMenu';
 import { smoothScrollToTarget } from '../../../utils/scroll-to';
-import './PageNavigationLink.less';
 
 const bem = BEM('page-nav-link');
 
@@ -62,3 +61,5 @@ export const PageNavigationLink = React.memo(
         );
     }
 );
+
+PageNavigationLink.displayName = 'PageNavigationLink';

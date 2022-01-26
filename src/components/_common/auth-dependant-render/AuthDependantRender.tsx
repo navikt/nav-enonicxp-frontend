@@ -3,7 +3,6 @@ import { useAuthState } from '../../../store/hooks/useAuthState';
 import { AuthStateType } from '../../../store/slices/authState';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { BEM } from '../../../utils/classnames';
-import './AuthDependantRender.less';
 
 // Hack to prevent irrelevant React warning for useLayoutEffect server-side
 const useLayoutEffectClientSide =

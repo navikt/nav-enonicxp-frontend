@@ -10,7 +10,6 @@ import {
 import { Heading, BodyShort } from '@navikt/ds-react';
 import { MetaOpeningHours, OpeningHours } from './OpeningHours';
 import { BEM } from '../../../../../utils/classnames';
-import './Reception.less';
 
 interface FormattedOpeningHours extends OpeningHoursProps {
     meta: string;

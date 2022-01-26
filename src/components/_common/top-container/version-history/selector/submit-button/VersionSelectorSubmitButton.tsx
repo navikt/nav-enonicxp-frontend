@@ -15,7 +15,7 @@ export const VersionSelectorSubmitButton = ({
     return (
         <Button
             href={url}
-            kompakt={true}
+            size={'small'}
             className={'version-selector-submit'}
             onClick={(e) => {
                 if (isEditorView) {

@@ -2,7 +2,6 @@ import React from 'react';
 import { Heading, Ingress } from '@navikt/ds-react';
 import { BEM } from 'utils/classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import './PageHeading.less';
 
 const bem = BEM('page-heading');
 

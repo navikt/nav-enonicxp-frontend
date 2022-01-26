@@ -1,9 +1,7 @@
-// Hindrer crash ved server-side kjøring (amplitude.js fungerer kun i browser)
-const amplitude =
-    typeof window !== 'undefined' ? require('amplitude-js') : () => null;
+import amplitude from 'amplitude-js';
 
 export const initAmplitude = () => {
-    amplitude?.getInstance().init('default', '', {
+    amplitude.getInstance().init('default', '', {
         apiEndpoint: 'amplitude.nav.no/collect-auto',
         saveEvents: false,
         includeUtm: true,
@@ -32,6 +30,6 @@ export function logAmplitudeEvent(eventName: string, data?: any): Promise<any> {
         eventData.app = 'nav-enonicxp-frontend';
         eventData.origin = 'navno-frontend';
         eventData.originVersion = 'unknown';
-        amplitude?.getInstance().logEvent(eventName, eventData, resolve);
+        amplitude.getInstance().logEvent(eventName, eventData, resolve);
     });
 }

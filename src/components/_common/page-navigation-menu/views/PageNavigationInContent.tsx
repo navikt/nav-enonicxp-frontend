@@ -4,7 +4,6 @@ import { Header } from '../../headers/Header';
 import { PageNavigationLink } from '../PageNavigationLink';
 import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
 import { getPageNavigationLinkId } from '../PageNavigationMenu';
-import './PageNavigationInContent.less';
 
 const bem = BEM('page-nav-in-content');
 

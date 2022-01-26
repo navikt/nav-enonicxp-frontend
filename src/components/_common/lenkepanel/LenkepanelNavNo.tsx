@@ -1,9 +1,9 @@
 import React from 'react';
-import { Heading } from '@navikt/ds-react';
-import { LenkepanelBase } from 'nav-frontend-lenkepanel/lib';
+import { Heading, LinkPanel } from '@navikt/ds-react';
 import { BEM, classNames } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
-import './LenkepanelNavNo.less';
+
+const bem = BEM('lenkepanel-navno');
 
 export type LenkepanelProps = {
     href: string;
@@ -29,18 +29,14 @@ const LenkepanelNavNo = ({
     children,
     ...rest
 }: LenkepanelProps) => {
-    const bem = BEM('lenkepanel-navno');
-
     return (
-        <LenkepanelBase
-            href={href}
+        <LinkPanel
             className={classNames(
                 bem(),
                 vertikal && bem('vertikal'),
                 className
             )}
-            border={true}
-            linkCreator={(props) => (
+            as={(props) => (
                 <LenkeBase
                     href={href}
                     component={component}
@@ -58,14 +54,14 @@ const LenkepanelNavNo = ({
                 <Heading
                     level="2"
                     size="small"
-                    className={'lenkepanel__heading'}
+                    className={'navds-link-panel__title'}
                 >
                     {tittel}
                 </Heading>
                 {separator && <hr className={bem('separator')} />}
                 {children && <div className={bem('ingress')}>{children}</div>}
             </div>
-        </LenkepanelBase>
+        </LinkPanel>
     );
 };
 
