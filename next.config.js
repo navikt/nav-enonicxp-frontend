@@ -47,6 +47,15 @@ module.exports = withPlugins([withTranspileModules, withLess, withImages], {
             source: '/sitemap.xml',
             destination: '/api/sitemap',
         },
+        {
+            source: '/rss',
+            destination: '/api/rss',
+        },
+        // The historic url for RSS
+        {
+            source: '/no/rss',
+            destination: '/api/rss',
+        },
         // Send some very common 404-resulting requests directly to 404
         // to prevent unnecessary backend-calls
         {
