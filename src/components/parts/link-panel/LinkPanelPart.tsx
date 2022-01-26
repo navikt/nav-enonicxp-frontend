@@ -51,7 +51,7 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
             <div className={bem('innhold')}>
                 <div className={bem('header')}>
                     {icon && (
-                        <div
+                        <div aria-hidden={'true'}
                             className={classNames(
                                 bem('icon'),
                                 selectedVariant === 'verticalWithBgColor' &&
