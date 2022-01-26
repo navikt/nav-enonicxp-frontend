@@ -45,7 +45,9 @@
     }
 
     &__tagline-label.navds-body-short {
-        margin-bottom: 1rem;
+        @media @mq-screen-mobile {
+            margin-bottom: 1rem;
+        }
     }
 
     &__divider {
@@ -72,7 +74,7 @@
             }
         }
 
-        &__illustration {
+        &__illustration.illustration__image {
             display: none;
         }
     }
