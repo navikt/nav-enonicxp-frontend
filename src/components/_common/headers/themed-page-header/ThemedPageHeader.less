@@ -28,6 +28,7 @@
         height: #px-to-rem(80) [];
         margin-right: 2rem;
         pointer-events: none;
+
     }
 
     &__text {
@@ -44,6 +45,10 @@
         }
     }
 
+    &__tagline-label.navds-body-short, &__modified-label.navds-body-short {
+        font-size: #px-to-rem(14) [];;
+    }
+
     &__tagline-label.navds-body-short {
         @media @mq-screen-mobile {
             margin-bottom: 1rem;
@@ -56,11 +61,6 @@
         @media @mq-screen-mobile {
             display: none;
         }
-    }
-
-    &__tagline-category,
-    &__tagline-changedate {
-        display: none;
     }
 
     // Following section is a temp fix until we determine responsive breakpoints
