@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { Heading } from '@navikt/ds-react';
+import { Heading, TextField } from '@navikt/ds-react';
 import { ClearIcon } from '../clear-icon/ClearIcon';
-import { Input } from 'nav-frontend-skjema';
 import { BEM } from '../../../../../utils/classnames';
-import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
-import './SearchForm.less';
+import { Button } from '../../../../_common/button/Button';
 
 const origin = process.env.APP_ORIGIN;
 const maxSearchLength = 200;
 
 // Replace the localhost port number to support local integration with the search-app
 const searchHref = `${origin.replace('3000', '3001')}/sok`;
+
+const label = 'Hva leter du etter?';
 
 export const SearchForm = () => {
     const bem = BEM('search');
@@ -29,11 +29,11 @@ export const SearchForm = () => {
                 className={bem('header')}
                 id={'search-header'}
             >
-                {'Hva leter du etter?'}
+                {label}
             </Heading>
 
             <form onSubmit={onSearchSubmit} className={bem('form')}>
-                <Input
+                <TextField
                     aria-labelledby={'search-header'}
                     className={bem('input')}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -41,22 +41,31 @@ export const SearchForm = () => {
                     placeholder={'Søk på nav.no'}
                     value={searchTerm}
                     id={'search-input'}
+                    label={label}
+                    hideLabel={true}
                 />
                 <div className={bem('buttons-container')}>
                     {searchTerm && (
-                        <Flatknapp
+                        <Button
+                            variant={'tertiary'}
                             className={bem('button')}
-                            mini={true}
+                            size={'small'}
                             aria-label={'Nullstill søk'}
-                            onClick={() => setSearchTerm('')}
-                            htmlType={'button'}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setSearchTerm('');
+                            }}
                         >
                             <ClearIcon />
-                        </Flatknapp>
+                        </Button>
                     )}
-                    <Hovedknapp className={bem('button')} htmlType={'submit'}>
+                    <Button
+                        className={bem('button')}
+                        variant={'primary'}
+                        onClick={onSearchSubmit}
+                    >
                         {'Søk'}
-                    </Hovedknapp>
+                    </Button>
                 </div>
             </form>
         </div>

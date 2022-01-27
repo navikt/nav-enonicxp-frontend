@@ -1,4 +1,4 @@
-@import (reference) '../../../../global';
+@import (reference) '../../../../common';
 
 .page-nav-in-content {
     background-color: white;
@@ -20,17 +20,17 @@
         margin: 0 -0.5rem;
 
         &:hover {
-            background-color: @navBlaLighten80;
-            color: @navMorkGra;
+            background-color: @navds-global-color-blue-100;
+            color: @navds-global-color-gray-900;
             text-decoration: none;
 
             .page-nav-link__decor {
-                background-color: @navBla;
+                background-color: @navds-semantic-color-link;
             }
         }
 
         &:focus {
-            .panel-inset-focus-mixin();
+            .panel-focus-mixin();
         }
     }
 }

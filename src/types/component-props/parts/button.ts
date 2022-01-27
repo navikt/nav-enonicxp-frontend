@@ -2,15 +2,20 @@ import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 import { LinkSelectable, RenderOnAuthStateMixin } from '../_mixins';
 import { XpImageProps } from '../../media';
-import { KnappBaseProps } from 'nav-frontend-knapper';
+
+export type ButtonPartSizePropLegacy = 'normal' | 'kompakt' | 'mini';
+
+export type ButtonPartSizeProp = 'medium' | 'small';
+
+export type ButtonPartTypeProp = 'standard' | 'hoved' | 'fare' | 'flat';
 
 export interface ButtonPartProps extends PartComponentProps {
     descriptor: PartType.Button;
     config: Partial<
         {
             link: LinkSelectable;
-            type: KnappBaseProps['type'];
-            size: 'normal' | 'kompakt' | 'mini';
+            type: ButtonPartTypeProp;
+            size: ButtonPartSizePropLegacy | ButtonPartSizeProp;
             icon: XpImageProps;
             fullwidth: boolean;
         } & RenderOnAuthStateMixin

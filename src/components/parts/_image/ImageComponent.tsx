@@ -4,7 +4,6 @@ import {
     ImageComponentProps,
 } from '../../../types/component-props/_component-common';
 import { BodyShort } from '@navikt/ds-react';
-import './Image.less';
 
 type Props = {
     imageProps: ImageComponentProps;
@@ -14,7 +13,7 @@ type Props = {
 const height = 800;
 const width = 800;
 
-const Image = ({ imageProps, editMode }: Props) => {
+export const ImageComponentXp = ({ imageProps, editMode }: Props) => {
     const { image, path } = imageProps;
 
     const src = image?.imageUrl?.replace('$scale', `block-${width}-${height}`);
@@ -36,5 +35,3 @@ const Image = ({ imageProps, editMode }: Props) => {
         </div>
     );
 };
-
-export default Image;

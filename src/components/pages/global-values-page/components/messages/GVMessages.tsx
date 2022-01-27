@@ -2,7 +2,6 @@ import React from 'react';
 import { BEM, classNames } from '../../../../../utils/classnames';
 import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
 import { GVButton } from '../button/GVButton';
-import './GVMessages.less';
 
 const bem = BEM('gv-messages');
 
@@ -24,7 +23,8 @@ export const GVMessages = () => {
                 <div
                     className={classNames(
                         bem('message'),
-                        bem('message', msg.level || 'info')
+                        bem('message', msg.level || 'info'),
+                        'navds-body-long'
                     )}
                     key={index}
                 >

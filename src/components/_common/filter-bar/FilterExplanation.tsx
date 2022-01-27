@@ -6,8 +6,6 @@ import { v4 as uuid } from 'uuid';
 
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import './FilterExplanation.less';
-
 const bem = BEM('filterExplanation');
 
 interface FilterExplanationProps {

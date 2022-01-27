@@ -3,7 +3,6 @@ import { Heading } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from '../lenke/LenkeStandalone';
 import { BEM, classNames } from 'utils/classnames';
-import './Lenkeliste.less';
 
 type Props = {
     lenker: LinkProps[];

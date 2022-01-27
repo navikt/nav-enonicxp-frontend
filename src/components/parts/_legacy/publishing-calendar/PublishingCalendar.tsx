@@ -3,12 +3,14 @@ import * as React from 'react';
 import { Heading, BodyLong, Ingress } from '@navikt/ds-react';
 import { BEM } from '../../../../utils/classnames';
 import { translator } from '../../../../translations';
-import './PublishingCalendar.less';
 import {
     PublishingCalendarChildren,
     PublishingCalendarEntries,
     PublishingCalendarProps,
 } from '../../../../types/content-props/publishing-calendar-props';
+import { Table } from '../../../_common/table/Table';
+
+const bem = BEM('publishing-calendar');
 
 const monthShortName = [
     'JAN',
@@ -43,7 +45,6 @@ const processEntries = (
 };
 
 const PublishingCalendar = (props: PublishingCalendarProps) => {
-    const bem = BEM('publishing-calendar');
     const getLabel = translator('publishingCalendar', props.language);
     const items = processEntries(props.children);
 
@@ -59,7 +60,7 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
                     </Ingress>
                 )}
             </header>
-            <table className="tabell">
+            <Table>
                 <thead>
                     <tr>
                         <th scope="col">
@@ -94,7 +95,7 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
                         );
                     })}
                 </tbody>
-            </table>
+            </Table>
         </div>
     );
 };

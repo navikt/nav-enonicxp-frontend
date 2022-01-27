@@ -1,9 +1,14 @@
-@import (reference) '../../../global';
-@import (reference) '~nav-frontend-lenker-style/src/lenker-style';
+@import (reference) '../../../common';
 
 .navno-lenke {
-    .lenke;
     text-decoration: none;
+
+    .chevron {
+        position: relative;
+        transition: left 250ms;
+        top: 0.0625rem;
+        left: 0;
+    }
 
     &--chevron {
         display: inline-flex;
@@ -11,8 +16,8 @@
         align-items: flex-start;
 
         &:hover {
-            .navno-lenke__chevron {
-                left: 0.3rem;
+            .chevron {
+                left: 0.325rem;
             }
 
             .navno-lenke__lenketekst {
@@ -39,11 +44,5 @@
 
     &__icon-container {
         min-width: 1.8rem;
-    }
-
-    &__chevron {
-        transition: left 250ms;
-        top: -0.0625rem;
-        left: -0.125rem;
     }
 }

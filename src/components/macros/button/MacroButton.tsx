@@ -12,7 +12,7 @@ export const MacroButton = ({ config }: MacroButtonProps) => {
     const href = content?._path || url;
 
     return (
-        <Button type={'standard'} href={href}>
+        <Button variant={'secondary'} href={href}>
             {text}
         </Button>
     );

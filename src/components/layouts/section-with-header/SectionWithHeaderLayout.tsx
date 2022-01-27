@@ -7,7 +7,6 @@ import { Header } from '../../_common/headers/Header';
 import { XpImage } from '../../_common/image/XpImage';
 import { FilterBar } from '../../_common/filter-bar/FilterBar';
 import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
-import './SectionWithHeaderLayout.less';
 
 const getBorderStyle = ({
     color = '#ffffff',
@@ -93,11 +92,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             {shouldShowIntroRegion && (
                 <Region pageProps={pageProps} regionProps={regions.intro} />
             )}
-            {shouldShowFilterBar && (
-                <>
-                    <FilterBar layoutProps={layoutProps} />
-                </>
-            )}
+            {shouldShowFilterBar && <FilterBar layoutProps={layoutProps} />}
             <Region pageProps={pageProps} regionProps={regions.content} />
         </LayoutContainer>
     );

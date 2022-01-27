@@ -9,7 +9,7 @@ type Props = {
     editMode?: boolean;
 };
 
-export const Text = ({ textProps, editMode }: Props) => {
+export const TextComponentXp = ({ textProps, editMode }: Props) => {
     const { text, path } = textProps;
 
     const editorProps = editMode

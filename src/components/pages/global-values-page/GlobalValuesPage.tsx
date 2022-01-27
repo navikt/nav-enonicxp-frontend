@@ -13,7 +13,6 @@ import { store } from '../../../store/store';
 import { GVItemsCustomOrder } from './components/values/GVItemsCustomOrder';
 import { GVItemsSorted } from './components/values/GVItemsSorted';
 import { useGvEditorState } from '../../../store/hooks/useGvEditorState';
-import './GlobalValuesPage.less';
 
 const bem = BEM('global-values-page');
 

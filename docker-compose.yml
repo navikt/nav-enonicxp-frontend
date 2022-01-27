@@ -2,7 +2,7 @@ version: '3.7'
 services:
   revalidator-proxy:
     container_name: revalidator-proxy-xpfrontend
-    image: 'docker.pkg.github.com/navikt/nav-enonicxp-frontend-revalidator-proxy/nav-enonicxp-frontend-revalidator-proxy:latest'
+    image: 'ghcr.io/navikt/nav-enonicxp-frontend-revalidator-proxy/nav-enonicxp-frontend-revalidator-proxy:latest'
     ports:
       - '3002:3002'
     environment:
@@ -10,7 +10,7 @@ services:
 
   oidc-provider:
     container_name: oidc-provider-xpfrontend
-    image: 'docker.pkg.github.com/navikt/stub-oidc-provider/stub-oidc-provider:latest'
+    image: 'ghcr.io/navikt/stub-oidc-provider/stub-oidc-provider:latest'
     ports:
       - '9000:9000'
     environment:
@@ -20,7 +20,7 @@ services:
 
   oidc-provider-gui:
     container_name: oidc-provider-gui-xpfrontend
-    image: 'docker.pkg.github.com/navikt/pb-oidc-provider-gui/pb-oidc-provider-gui:latest'
+    image: 'ghcr.io/navikt/pb-oidc-provider-gui/pb-oidc-provider-gui:latest'
     ports:
       - '5000:5000'
     environment:
@@ -31,7 +31,7 @@ services:
 
   mocks:
     container_name: mocks-xpfrontend
-    image: 'docker.pkg.github.com/navikt/pb-nav-mocked/pb-nav-mocked:latest'
+    image: 'ghcr.io/navikt/pb-nav-mocked/pb-nav-mocked:latest'
     ports:
       - '8095:8080'
     environment:
@@ -46,7 +46,7 @@ services:
 
   dekoratoren:
     container_name: dekoratoren-xpfrontend
-    image: 'docker.pkg.github.com/navikt/nav-dekoratoren/nav-dekoratoren:latest'
+    image: 'ghcr.io/navikt/nav-dekoratoren/nav-dekoratoren:latest'
     ports:
       - '8100:8088'
     environment:

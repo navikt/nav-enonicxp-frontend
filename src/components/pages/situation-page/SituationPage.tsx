@@ -3,7 +3,6 @@ import { ComponentMapper } from '../../ComponentMapper';
 import { SituationPageProps } from '../../../types/content-props/dynamic-page-props';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 import { BEM } from '../../../utils/classnames';
-import './SituationPage.less';
 
 const bem = BEM('situation-page');
 

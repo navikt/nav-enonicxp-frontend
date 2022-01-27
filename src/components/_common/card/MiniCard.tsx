@@ -3,7 +3,6 @@ import { BEM } from 'utils/classnames';
 import { BodyLong } from '@navikt/ds-react';
 import { CardSize, CardType } from 'types/card';
 
-import './MiniCard.less';
 import { Card } from './Card';
 import { Illustration } from '../illustration/Illustration';
 import { IllustrationPlacements } from 'types/illustrationPlacements';

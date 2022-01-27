@@ -2,7 +2,6 @@ import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { getMediaUrl } from 'utils/urls';
 import { BEM, classNames } from '../../../utils/classnames';
 
-import './Illustration.less';
 interface IllustrationStaticProps {
     illustration: AnimatedIconsProps;
     className: string;

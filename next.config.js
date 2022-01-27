@@ -1,22 +1,34 @@
 const withPlugins = require('next-compose-plugins');
-const withLess = require('@zeit/next-less');
 const withImages = require('next-images');
-const packageJson = require('./package.json');
+const withLess = require('next-with-less');
 
-const navFrontendModuler = Object.keys(packageJson.dependencies).reduce(
-    (acc, key) => (key.startsWith('nav-frontend-') ? acc.concat(key) : acc),
-    []
-);
+// Remove dashes from js variable names for classnames generated from CSS-modules
+// Enables all CSS-classes to be accessed from javascript with dot-notation
+const cssModulesNoDashesInClassnames = (config) => {
+    const rules = config.module.rules
+        .find((rule) => typeof rule.oneOf === 'object')
+        .oneOf.filter((rule) => Array.isArray(rule.use));
+
+    rules.forEach((rule) => {
+        rule.use.forEach((moduleLoader) => {
+            if (/css-loader([\/\\])(cjs|dist|src)/.test(moduleLoader.loader)) {
+                if (typeof moduleLoader.options.modules === 'object') {
+                    moduleLoader.options.modules = {
+                        ...moduleLoader.options.modules,
+                        exportLocalsConvention: 'dashesOnly',
+                    };
+                }
+            }
+        });
+    });
+};
 
 const withTranspileModules = require('next-transpile-modules')([
-    ...navFrontendModuler,
-    '@navikt/nav-dekoratoren-moduler',
     '@navikt/ds-react',
     '@navikt/ds-icons',
 ]);
 
-module.exports = withPlugins([withTranspileModules, withLess, withImages], {
-    webpack5: false,
+module.exports = withPlugins([withLess, withImages, withTranspileModules], {
     assetPrefix: process.env.APP_ORIGIN,
     env: {
         ENV: process.env.ENV,
@@ -24,6 +36,10 @@ module.exports = withPlugins([withTranspileModules, withLess, withImages], {
         XP_ORIGIN: process.env.XP_ORIGIN,
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
         INNLOGGINGSTATUS_URL: process.env.INNLOGGINGSTATUS_URL,
+    },
+    webpack: (config) => {
+        cssModulesNoDashesInClassnames(config);
+        return config;
     },
     redirects: async () => [
         {

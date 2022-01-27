@@ -1,6 +1,5 @@
 import React from 'react';
 import { MacroVideoProps } from '../../../types/macro-props/video';
-import './MacroVideo.less';
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
     if (!config?.video) {

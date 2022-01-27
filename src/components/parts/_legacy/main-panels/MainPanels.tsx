@@ -1,10 +1,11 @@
 import React from 'react';
-import { BEM, classNames } from 'utils/classnames';
+import { BEM } from 'utils/classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { BodyLong } from '@navikt/ds-react';
 import LenkepanelNavNo from '../../../_common/lenkepanel/LenkepanelNavNo';
-import './MainPanels.less';
 import { translator } from '../../../../translations';
+
+const bem = BEM('main-panels');
 
 const ingressMaxLength = 140;
 
@@ -75,7 +76,6 @@ const getLinkData = (content: ContentProps | null): TableData | null => {
 export const MainPanels = (props: ContentProps) => {
     const tableContents = props.data?.tableContents;
     const getLabel = translator('mainPanels', props.language);
-    const bem = BEM('link-panels');
 
     return (
         tableContents?.length > 0 && (
@@ -89,12 +89,10 @@ export const MainPanels = (props: ContentProps) => {
                             <LenkepanelNavNo
                                 href={url}
                                 separator={true}
+                                vertikal={true}
                                 tittel={tittel}
                                 key={content._id}
-                                className={classNames(
-                                    'lenkepanel-vertical',
-                                    bem('item')
-                                )}
+                                className={bem('item')}
                                 component={'main-panels'}
                             >
                                 {ingress && (

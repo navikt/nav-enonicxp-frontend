@@ -12,8 +12,6 @@ import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { FilterExplanation } from './FilterExplanation';
 
-import './FilterBar.less';
-
 const bem = BEM('filter-bar');
 
 type FilterBarProps = {

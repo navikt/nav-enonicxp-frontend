@@ -3,7 +3,6 @@ import Region from '../../Region';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { RegionProps } from '../../../../types/component-props/layouts';
 import { BEM, classNames } from '../../../../utils/classnames';
-import './RightMenuSection.less';
 
 const bem = BEM('right-menu');
 

@@ -6,7 +6,6 @@ import {
     headingToSize,
     typoToSize,
 } from '../../../types/typo-style';
-import './HeaderPart.less';
 
 export const HeaderPart = ({ config }: HeaderProps) => {
     if (!config) {

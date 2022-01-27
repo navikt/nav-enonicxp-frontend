@@ -1,5 +1,5 @@
 import React from 'react';
-import { ParsedHtml } from '../../ParsedHtml';
+import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
 import { MacroAlertBoxProps } from '../../../types/macro-props/alert-box';
 import { AlertBox } from '../../_common/alert-box/AlertBox';
 

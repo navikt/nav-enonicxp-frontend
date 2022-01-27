@@ -3,7 +3,6 @@ import { ContentProps } from '../../../types/content-props/_content-common';
 import { SingleColPageProps } from '../../../types/component-props/pages/single-col-page';
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
-import './SingleColPage.less';
 
 type Props = {
     pageProps: ContentProps;
