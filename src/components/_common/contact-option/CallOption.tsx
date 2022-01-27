@@ -14,8 +14,6 @@ import {
     findTodaysOpeningHour,
 } from '../contact-details/contactHelpers';
 
-import './CallOption.less';
-
 const bem = BEM('callOption');
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
@@ -108,12 +106,12 @@ export const CallOption = (props: CallOptionProps) => {
         const currentEpoch = Date.now();
 
         const startOfToday = new Date(
-            `${currentISODate}T00:00:00+01:00`
+            `${currentISODate}T00:00:00`
         ).getTime();
-        const endOfToday = new Date(`${currentISODate}T23:59:59+01:00`).getTime();
+        const endOfToday = new Date(`${currentISODate}T23:59:59`).getTime();
 
-        const opensEpoch = new Date(`${currentISODate}T${from}+01:00`).getTime();
-        const closesEpoch = new Date(`${currentISODate}T${to}+01:00`).getTime();
+        const opensEpoch = new Date(`${currentISODate}T${from}`).getTime();
+        const closesEpoch = new Date(`${currentISODate}T${to}`).getTime();
 
         // Misc opening / closed states
         const isOpenNow = currentEpoch > opensEpoch && currentEpoch < closesEpoch;

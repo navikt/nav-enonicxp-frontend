@@ -12,8 +12,6 @@ import { openChatbot } from '../../../utils/chatbot';
 
 import { BEM, classNames } from 'utils/classnames';
 
-import './DefaultOption.less';
-
 const bem = BEM('defaultOption');
 
 interface DefaultContactProps extends DefaultContactData {

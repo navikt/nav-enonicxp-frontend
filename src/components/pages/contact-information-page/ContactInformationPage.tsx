@@ -8,7 +8,6 @@ import ErrorPage404 from 'pages/404';
 import { classNames, BEM } from 'utils/classnames';
 import { ContentProps } from 'types/content-props/_content-common';
 
-import './ContactInformationPage.less';
 
 const bem = BEM('contactInformationPage');
 
