@@ -1,16 +1,15 @@
-@import (reference) '../../../common';
+@use '../../../common' as common;
 
-.defaultOption {
+.contactOption {
     // Set a padding with equivalent negative margins to allow focus-highlight
     // to break out of the container
-    @outerPadding: 0.6rem;
-    @bottomMargin: 1rem-@outerPadding;
-    padding: @outerPadding;
-    margin: -@outerPadding -@outerPadding @bottomMargin -@outerPadding;
+    $outerPadding: 0.6rem;
+    $bottomMargin: 1rem-$outerPadding;
+    padding: $outerPadding;
+    margin: -$outerPadding -$outerPadding $bottomMargin -$outerPadding;
     background-color: transparent;
     display: block;
     text-decoration: none;
-    border-radius: @border-radius-base;
 
     &:hover {
         .defaultOption__title {
@@ -18,18 +17,18 @@
         }
     }
 
-    &__link {
+    .link {
         &:hover {
-            .defaultOption__icon {
-                &--chat {
+            .icon {
+                &.chat {
                     background-image: url('/gfx/chat-filled.svg');
                 }
 
-                &--write {
+                &.write {
                     background-image: url('/gfx/message-filled.svg');
                 }
 
-                &--call {
+                &.call {
                     background-image: url('/gfx/phone-filled.svg');
                 }
             }
@@ -37,33 +36,33 @@
     }
 
     &:focus {
-        .panel-focus-mixin();
+        @include common.panel-focus-mixin();
     }
 
-    &__title {
-        &.navds-title {
+    .title {
+        &:global(.navds-heading) {
             margin-bottom: 1rem;
         }
-        color: @navds-semantic-color-link;
+        color: common.$navds-semantic-color-link;
         text-decoration: underline;
     }
 
-    &__icon {
-        height: #round-rem(2.53rem) [];
-        background-size: #round-rem(2rem) [];
+    .icon {
+        height: 2.53rem;
+        background-size: 2rem;
         background-repeat: no-repeat;
         background-position: center left;
         margin-bottom: 1rem;
 
-        &--chat {
+        &.chat {
             background-image: url('/gfx/chat.svg');
         }
 
-        &--write {
+        &.write {
             background-image: url('/gfx/message.svg');
         }
 
-        &--call {
+        &.call {
             background-image: url('/gfx/phone.svg');
         }
 
@@ -71,11 +70,11 @@
             // preload mouseover icons
             position: absolute;
             z-index: -1;
-            content: url('/gfx/chat-filled.svg') url('/gfx/message-filled.svg');
+            content: url('/gfx/chat-filled.svg') url('/gfx/message-filled.svg') url('/gfx/message-phone.svg');
         }
     }
 
-    &__text {
+    .text {
         color: black;
     }
 }

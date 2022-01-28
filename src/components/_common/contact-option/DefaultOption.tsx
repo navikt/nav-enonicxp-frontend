@@ -12,7 +12,7 @@ import { openChatbot } from '../../../utils/chatbot';
 
 import { BEM, classNames } from 'utils/classnames';
 
-const bem = BEM('defaultOption');
+import style from './ContactOption.module.scss'
 
 interface DefaultContactProps extends DefaultContactData {
     channel: ChannelType;
@@ -67,19 +67,19 @@ export const DefaultOption = (props: DefaultContactProps) => {
     };
 
     return (
-        <div className={classNames(bem())}>
+        <div className={style.contactOption}>
             <LenkeBase
                 {...getUrlOrClickHandler(channel)}
-                className={bem('link')}
+                className={style.link}
             >
                 <div
-                    className={classNames(bem('icon'), bem('icon', channel))}
+                    className={classNames(style.icon, style[channel])}
                 />
-                <Heading level="2" size="medium" className={bem('title')}>
+                <Heading level="2" size="medium" className={style.title}>
                     {getTitle()}
                 </Heading>
             </LenkeBase>
-            <BodyLong className={bem('text')}>{getIngress()}</BodyLong>
+            <BodyLong className={style.text}>{getIngress()}</BodyLong>
         </div>
     );
 };

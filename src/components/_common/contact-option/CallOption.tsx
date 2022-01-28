@@ -6,15 +6,17 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { TelephoneData } from '../../../types/component-props/parts/contact-option';
 
-import { BEM, classNames } from 'utils/classnames';
+import { classNames } from 'utils/classnames';
 import { dateDiff, formatDate, getCurrentISODate } from 'utils/datetime';
+
 
 import {
     mergeOpeningHours,
     findTodaysOpeningHour,
 } from '../contact-details/contactHelpers';
 
-const bem = BEM('callOption');
+import style from './ContactOption.module.scss'
+
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
 
@@ -149,27 +151,27 @@ export const CallOption = (props: CallOptionProps) => {
     };
 
     return (
-        <div className={classNames(bem())}>
+        <div className={style.contactOption}>
             <LenkeBase
-                className={classNames(bem())}
                 href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
+                className={style.link}
             >
                 <div
                     className={classNames(
-                        'defaultOption__icon',
-                        'defaultOption__icon--call'
+                        style.icon,
+                        style.call
                     )}
                 />
-                <Heading level="2" size="medium" className={bem('title')}>
+                <Heading level="2" size="medium" className={style.title}>
                     {title}
                 </Heading>
             </LenkeBase>
             {alertText && (
-                <Alert variant="warning" inline className={bem('alertText')}>
+                <Alert variant="warning" inline>
                     {alertText}
                 </Alert>
             )}
-            <BodyLong className={bem('text')} spacing>
+            <BodyLong spacing>
                 {ingress || text}
             </BodyLong>
             <BodyShort spacing>
