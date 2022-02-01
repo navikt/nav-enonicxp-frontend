@@ -65,8 +65,6 @@ const fetchRSSFeedAndUpdateCache = async (url: string) => {
         rssFeed.item(item);
     });
     const xml = rssFeed.xml({indent: true});
-    console.log(xml);
-
     saveToCache(xml);
     return xml;
 };
