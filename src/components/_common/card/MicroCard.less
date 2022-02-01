@@ -1,4 +1,4 @@
-@import (reference) '../../../global';
+@import (reference) '../../../common';
 
 .card {
     &__inline {
@@ -8,22 +8,22 @@
 
     &__micro {
         border-radius: 16px;
-        color: @navMorkGra;
+        color: @navds-global-color-gray-900;
         display: inline-flex;
-        margin: 0rem 0.5rem 0 0;
-        padding: 0rem 0.5rem;
+        margin: 0 0.5rem 0 0;
+        padding: 0 0.5rem;
         line-height: 1.5625rem;
 
         &.card__situation {
-            background-color: @navOransjeLighten60;
+            background-color: @navds-global-color-orange-200;
         }
 
         &.card__product {
-            background-color: @navGronnLighten60;
+            background-color: @navds-global-color-green-200;
         }
 
         &.card__tools {
-            background-color: @navDypBlaLighten60;
+            background-color: @navds-global-color-deepblue-200;
         }
 
         .card__title {

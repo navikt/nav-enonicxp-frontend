@@ -7,7 +7,6 @@ import {
     getPageNavigationLinkId,
     PageNavScrollDirection,
 } from '../PageNavigationMenu';
-import './PageNavigationSidebar.less';
 
 const bem = BEM('page-nav-sidebar');
 

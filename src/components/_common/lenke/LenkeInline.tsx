@@ -1,7 +1,6 @@
 import React from 'react';
 import { LenkeBase } from './LenkeBase';
 import { classNames } from '../../../utils/classnames';
-import './LenkeInline.less';
 
 type Props = {
     href: string;

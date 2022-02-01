@@ -1,8 +1,8 @@
 import React from 'react';
-import KnappBase from 'nav-frontend-knapper';
+import { Button } from '../../../../_common/button/Button';
 
-export const GVButton = (props: React.ComponentProps<typeof KnappBase>) => (
-    <KnappBase mini={true} kompakt={true} {...props}>
+export const GVButton = (props: React.ComponentProps<typeof Button>) => (
+    <Button {...props} size={'small'}>
         {props.children}
-    </KnappBase>
+    </Button>
 );

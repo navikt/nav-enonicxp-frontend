@@ -10,8 +10,6 @@ import { MainArticleChapterProps } from '../../../../types/content-props/main-ar
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import './MainArticleChapterNavigation.less';
-
 /*
     Render of XP part named main-article-linked-list
 */

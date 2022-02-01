@@ -1,5 +1,4 @@
-@import (reference) '../../../global';
-@import (reference) '~nav-frontend-tabell-style/src/index';
+@import (reference) '../../../common';
 
 .html-area {
     word-break: break-word;
@@ -32,6 +31,10 @@
         padding-left: 1.4rem;
         margin-bottom: 1.75rem;
         font-size: 1.125rem;
+
+        li:not(:last-child) {
+            margin-bottom: 0.25rem;
+        }
     }
 
     // pull lists upward to text above if any.

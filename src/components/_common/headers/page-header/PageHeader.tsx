@@ -1,7 +1,6 @@
 import React from 'react';
 import { Header } from '../Header';
 import { HeaderCommonConfig } from '../../../../types/component-props/_mixins';
-import './PageHeader.less';
 import { Level, Size } from 'types/typo-style';
 
 type Props = {

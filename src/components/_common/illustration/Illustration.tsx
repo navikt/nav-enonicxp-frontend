@@ -2,8 +2,6 @@ import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { IllustrationStatic } from './IllustrationStatic';
 import { IllustrationAnimated } from './IllustrationAnimated';
 
-import './Illustration.less';
-
 interface IllustrationProps {
     illustration: AnimatedIconsProps;
     placement: string;

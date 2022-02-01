@@ -4,7 +4,6 @@ import { ContentList } from '../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { BEM } from '../../../utils/classnames';
 import { Expandable } from '../../_common/expandable/Expandable';
-import './NewsList.less';
 
 const bem = BEM('news-list');
 

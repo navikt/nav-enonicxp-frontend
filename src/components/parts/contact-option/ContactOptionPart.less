@@ -1,4 +1,4 @@
-@import (reference) '../../../global';
+@import (reference) '../../../common';
 
 .contactOption {
     // Set a padding with equivalent negative margins to allow focus-highlight
@@ -33,14 +33,14 @@
     }
 
     &:focus {
-        .panel-inset-focus-mixin();
+        .panel-focus-mixin();
     }
 
     &__title {
         &.navds-title {
             margin-bottom: 1rem;
         }
-        color: @navBla;
+        color: @navds-semantic-color-link;
         text-decoration: underline;
     }
 

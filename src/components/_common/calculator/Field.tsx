@@ -5,8 +5,6 @@ import {
     FieldType,
 } from 'types/component-props/parts/calculator';
 
-import './Field.less';
-
 interface FieldProps {
     field: CalculatorField;
     onChange: (variableName: string, value: string) => void;

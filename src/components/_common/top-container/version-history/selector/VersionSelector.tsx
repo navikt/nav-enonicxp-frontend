@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { BEM, classNames } from '../../../../../utils/classnames';
-import { BodyLong } from '@navikt/ds-react';
+import { BodyLong, Radio, RadioGroup } from '@navikt/ds-react';
 import { ContentProps } from '../../../../../types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
-import { Radio, RadioGruppe } from 'nav-frontend-skjema';
-import './VersionSelector.less';
 
 const bem = BEM('version-selector');
 
@@ -60,26 +58,20 @@ export const VersionSelector = ({
                 )}
             >
                 <div className={bem('type-selector')}>
-                    <RadioGruppe
+                    <RadioGroup
                         legend={'Velg input-type'}
-                        onChange={(e) => {
-                            const selection = (e.target as HTMLInputElement)
-                                .value as SelectorType;
-                            setSelectorType(selection);
+                        defaultValue={'datetime'}
+                        onChange={(value) => {
+                            setSelectorType(value as SelectorType);
                         }}
                     >
-                        <Radio
-                            label={'Egendefinert tidspunkt'}
-                            name={'selectorType'}
-                            value={'datetime'}
-                            defaultChecked={true}
-                        />
-                        <Radio
-                            label={'Publiseringstidspunkt'}
-                            name={'selectorType'}
-                            value={'published'}
-                        />
-                    </RadioGruppe>
+                        <Radio value={'datetime'}>
+                            {'Egendefinert tidspunkt'}
+                        </Radio>
+                        <Radio value={'published'}>
+                            {'Publiseringstidspunkt'}
+                        </Radio>
+                    </RadioGroup>
                 </div>
                 <div className={bem('input')}>
                     {selectorType === 'datetime' ? (

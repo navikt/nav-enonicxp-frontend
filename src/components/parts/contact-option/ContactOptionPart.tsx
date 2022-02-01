@@ -14,8 +14,6 @@ import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { openChatbot } from '../../../utils/chatbot';
 import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
 
-import './ContactOptionPart.less';
-
 const bem = BEM('contactOption');
 
 export const ContactOptionPart = ({ config }: ContactOptionProps) => {

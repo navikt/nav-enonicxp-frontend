@@ -9,8 +9,6 @@ import { Level, levelToSize, Size } from '../../../types/typo-style';
 import { PublicImage } from '../image/PublicImage';
 import { HeaderCommonConfig } from '../../../types/component-props/_mixins';
 
-import './Header.less';
-
 const bem = BEM('header');
 
 const linkCopiedDisplayTimeMs = 2500;
@@ -89,8 +87,8 @@ export const Header = ({
                     >
                         <PublicImage
                             imagePath={'/gfx/link.svg'}
+                            alt={''}
                             className={bem('anchor-icon')}
-                            alt={getLabel('copyLink')}
                         />
                         {getLabel('copyLink')}
                     </a>

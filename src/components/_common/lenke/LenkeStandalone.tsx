@@ -1,10 +1,9 @@
 import React from 'react';
-import { HoyreChevron } from 'nav-frontend-chevron';
 import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { BEM, classNames } from 'utils/classnames';
 import { LenkeBase } from './LenkeBase';
 import { getExternalDomain } from '../../../utils/links';
-import './LenkeStandalone.less';
+import { Chevron } from '../chevron/Chevron';
 
 const getExternalUrlString = (url: string, linkText: string) => {
     const externalDomain = getExternalDomain(url);
@@ -20,6 +19,8 @@ const getExternalUrlString = (url: string, linkText: string) => {
 
     return null;
 };
+
+const bem = BEM('navno-lenke');
 
 type Props = {
     href: string;
@@ -45,8 +46,6 @@ export const LenkeStandalone = ({
     analyticsLabel,
     ...rest
 }: Props) => {
-    const bem = BEM('navno-lenke');
-
     return (
         <LenkeBase
             href={href}
@@ -66,7 +65,7 @@ export const LenkeStandalone = ({
             <BodyShort className={bem('lenketekst')} as={'span'}>
                 {withChevron && (
                     <span className={bem('icon-container')}>
-                        <HoyreChevron className={bem('chevron')} />
+                        <Chevron />
                     </span>
                 )}
                 <>

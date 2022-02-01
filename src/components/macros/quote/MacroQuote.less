@@ -1,8 +1,6 @@
-@import (reference) '../../../global';
-@import (reference) '~nav-frontend-typografi-style/src/index';
+@import (reference) '../../../common';
 
 .macro-quote {
-    .typo-normal;
     margin: 1.5rem 0;
     padding: 0 2.5rem;
     position: relative;
@@ -10,7 +8,7 @@
     &:before {
         content: '\201C';
         font-size: 4rem;
-        color: @navRod;
+        color: @navds-global-color-nav-red;
         font-family: 'Times new roman', serif;
         position: absolute;
         left: 0;
