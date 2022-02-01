@@ -1,11 +1,13 @@
 FROM node:16-alpine
 
+ARG NEXT_VERSION
+
 # Create app directory
 WORKDIR /app
 
 # Installing dependencies
 COPY package*.json /app/
-RUN npm ci
+RUN npm install next@$NEXT_VERSION
 
 # Copying build folders
 COPY .next /app/.next/
