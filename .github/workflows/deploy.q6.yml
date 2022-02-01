@@ -24,7 +24,8 @@ jobs:
           echo "IMAGE_NAME=$(echo ${GITHUB_REPOSITORY##*/})" >> $GITHUB_ENV
           echo "IMAGE_VERSION=${IMAGE_VERSION_RAW,,}" >> $GITHUB_ENV
           echo "GITHUB_TOKEN=$(echo ${GITHUB_TOKEN})" >> $GITHUB_ENV
-          echo "NEXT_VERSION=$(npm list next --json | jq '.dependencies.next.version')" >> $GITHUB_ENV
+          NEXT_VERSION=$(npm list next --json | jq '.dependencies.next.version')
+          echo "NEXT_VERSION=$NEXT_VERSION" >> $GITHUB_ENV
       - name: Define app environmment
         env:
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
