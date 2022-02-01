@@ -24,11 +24,6 @@ jobs:
           echo "IMAGE_NAME=$(echo ${GITHUB_REPOSITORY##*/})" >> $GITHUB_ENV
           echo "IMAGE_VERSION=${IMAGE_VERSION_RAW,,}" >> $GITHUB_ENV
           echo "GITHUB_TOKEN=$(echo ${GITHUB_TOKEN})" >> $GITHUB_ENV
-          NEXT_VERSION=$(npm list --json | jq '.dependencies.next.version' --raw-output)
-          echo $NEXT_VERSION
-          echo $(npm list --json)
-          echo "NEXT_VERSION=$NEXT_VERSION" >> $GITHUB_ENV
-
       - name: Define app environmment
         env:
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
@@ -65,6 +60,9 @@ jobs:
         run: npm run build
       - name: Docker build and push
         run: |
+          NEXT_VERSION=$(npm list --json | jq '.dependencies.next.version' --raw-output)
+          echo $NEXT_VERSION
+          echo $(npm list --json)
           echo $GITHUB_TOKEN | docker login $IMAGE_REGISTRY -u ${GITHUB_REPOSITORY} --password-stdin
           docker build --build-arg NEXT_VERSION=$NEXT_VERSION -t $IMAGE_REGISTRY/$IMAGE_NAME:$IMAGE_VERSION .
           docker push $IMAGE_REGISTRY/$IMAGE_NAME:$IMAGE_VERSION
