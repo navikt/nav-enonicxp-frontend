@@ -61,8 +61,6 @@ jobs:
       - name: Docker build and push
         run: |
           NEXT_VERSION=$(npm list --json | jq '.dependencies.next.version' --raw-output)
-          echo $NEXT_VERSION
-          echo $(npm list --json)
           echo $GITHUB_TOKEN | docker login $IMAGE_REGISTRY -u ${GITHUB_REPOSITORY} --password-stdin
           docker build --build-arg NEXT_VERSION=$NEXT_VERSION -t $IMAGE_REGISTRY/$IMAGE_NAME:$IMAGE_VERSION .
           docker push $IMAGE_REGISTRY/$IMAGE_NAME:$IMAGE_VERSION
