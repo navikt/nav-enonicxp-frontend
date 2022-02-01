@@ -87,8 +87,8 @@ export const Header = ({
                     >
                         <PublicImage
                             imagePath={'/gfx/link.svg'}
+                            alt={''}
                             className={bem('anchor-icon')}
-                            alt={getLabel('copyLink')}
                         />
                         {getLabel('copyLink')}
                     </a>
