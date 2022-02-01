@@ -73,7 +73,8 @@ jobs:
           image: $IMAGE_REGISTRY/$IMAGE_NAME
           version: $IMAGE_VERSION
           EOF
-      - uses: nais/deploy/actions/deploy@master
+      - name: Deploy to nais k8s
+        uses: nais/deploy/actions/deploy@master
         env:
           CLUSTER: dev-sbs
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
