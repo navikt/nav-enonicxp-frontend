@@ -7,7 +7,6 @@ interface IllustrationProps {
     placement: string;
     className: string;
     isHovering?: boolean;
-    isPressed?: boolean;
     preferStaticIllustration?: boolean;
 }
 
@@ -15,7 +14,6 @@ export const Illustration = ({
     className,
     illustration,
     isHovering,
-    isPressed,
     preferStaticIllustration,
 }: IllustrationProps) => {
     if (!illustration) {
@@ -34,10 +32,7 @@ export const Illustration = ({
         return !!(icon1 && icon2);
     };
 
-    const isAnimated = !!(
-        illustration.data?.lottieActive?.mediaText &&
-        illustration.data?.lottieHover?.mediaText
-    );
+    const isAnimated = !!illustration.data?.lottieHover?.mediaText;
 
     if (hasStaticIllustration() && (!isAnimated || preferStaticIllustration)) {
         return (
@@ -54,7 +49,6 @@ export const Illustration = ({
                 illustration={illustration}
                 className={className}
                 isHovering={isHovering}
-                isPressed={isPressed}
             />
         );
     }

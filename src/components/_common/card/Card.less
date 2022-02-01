@@ -6,10 +6,10 @@
     }
 
     .card {
-        outline: 0;
-        text-decoration: none;
         display: block;
         margin-bottom: 1.75rem;
+        outline: 0;
+        text-decoration: none;
         width: 100%;
 
         &__inline {
@@ -26,12 +26,20 @@
             height: 100%;
         }
 
+        
         @media (hover: hover) {
-            &:hover:not(:active) {
-                .card__bed {
-                    height: 100%;
-                    box-shadow: 0 0 0 2px @navds-semantic-color-link;
-                    background-color: #ffffff;
+            &:hover, &:focus-visible {
+
+                .card__situation {
+                    background-color: @navds-global-color-orange-200;
+                }
+        
+                .card__product {
+                    background-color: @navds-global-color-green-200;
+                }
+        
+                .card__tool {
+                    background-color: @navds-global-color-deepblue-200;
                 }
 
                 .card__title,
@@ -40,56 +48,51 @@
                     text-decoration: none;
                     color: @navds-global-color-gray-900;
                 }
+            }
+        }
 
-                .card__product,
-                .card__tool,
-                .card__situation {
-                    background-color: #ffffff;
+        &:focus-visible, &:active {
+            .card__bed {
+                position: relative;
+                box-shadow: 0 0 0 3px @navds-semantic-color-link;
 
-                    .card__title {
-                        color: @navds-semantic-color-link;
-                    }
+                &:after {
+                    content: '';
+                    box-shadow: 0 0 0 4px #ffffff inset;
+                    width:100%;
+                    height: 100%;
+                    display: block;
+                    background-color: transparent;
+                    border-radius: 8px;
+                    margin:0px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
                 }
             }
-        }
 
-        &:focus-visible {
-            .card__bed {
-                box-shadow: 0 0 0 4px @navds-semantic-color-focus;
-            }
-            .card__product,
-            .card__situation {
-                background-color: #ffffff;
-            }
-            .card__title,
-            .card__description,
-            .card__category {
-                color: @navds-semantic-color-link;
-                text-decoration: none;
-            }
-        }
+            .card__bed.card__micro {
 
-        &:active {
-            .card__mini,
-            .card__micro,
-            .card__large {
-                background-color: @navds-global-color-blue-700;
+                &:after {
+                    content: '';
+                    box-shadow: 0 0 0 2px #ffffff inset;
+                    width:100%;
+                    height: 100%;
+                    display: block;
+                    background-color: transparent;
+                    border-radius: 16px;
+                    margin:0px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
             }
+            
 
             .card__title,
             .card__description,
             .card__category {
-                color: #ffffff;
                 text-decoration: none;
-            }
-
-            .illustration__icon--icon2 {
-                filter: brightness(0) invert(1);
-            }
-
-            .illustration__icon--icon1 {
-                filter: invert(49%) sepia(37%) saturate(3786%)
-                    hue-rotate(192deg) brightness(92%) contrast(90%);
             }
         }
     }
