@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-
 import { fetchWithTimeout } from 'utils/fetch-utils';
 import Cache from 'node-cache';
+import RSS from 'rss';
 
 interface feedItem {
     title: string;
-    link: string;
+    url: string;
     pubDate: string;
     description: string;
 }
@@ -49,15 +49,26 @@ const fetchRSSFeedAndUpdateCache = async (url: string) => {
         millisecondsToFetchTimeout,
         fetchOptions
     );
-
     const jsonFeed = await processResponse(response);
     if (!jsonFeed) {
         return null;
     }
+    const rssFeed = new RSS({
+        title: 'Nyheter fra NAV',
+        description: 'www.nav.no',
+        feed_url: 'https://www.nav.no/no/rss',
+        site_url: 'https://www.nav.no',
+        language: 'no',
+        pubDate: Date.now(),
+    });
+    jsonFeed.forEach((item)=>{
+        rssFeed.item(item);
+    });
+    const xml = rssFeed.xml({indent: true});
+    console.log(xml);
 
-    const rssFeed = jsonFeed;
-    saveToCache(rssFeed);
-    return rssFeed;
+    saveToCache(xml);
+    return xml;
 };
 
 const getRSSFeedFromCache = async () => {
@@ -84,8 +95,6 @@ const handler = async (
     res: NextApiResponse
 ): Promise<void> => {
     const rssFeed = await getRSSFeedFromCache();
-
-    res.setHeader('X-Robots-Tag', 'noindex');
 
     if (!rssFeed) {
         return res
