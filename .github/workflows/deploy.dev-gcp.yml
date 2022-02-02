@@ -28,4 +28,4 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/config.yaml
           VAR: image=${{ needs.build.outputs.image }}
-          VARS: .nais/vars-dev.yaml
+          VARS: .nais/vars-dev-gcp.yaml
