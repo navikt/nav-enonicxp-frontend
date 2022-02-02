@@ -1,0 +1,33 @@
+name: Deploy-to-prod
+on:
+  release:
+    types: [released]
+
+jobs:
+  build:
+    if: github.event.release.target_commitish != 'master'
+    uses: ./.github/workflows/build-image.yml
+    with:
+      environment: prod-sbs:personbruker
+      imagename: release-${{ github.ref_name }}
+      ENV: prod
+      ADMIN_ORIGIN: https://portal-admin.oera.no
+      APP_ORIGIN: https://www.nav.no
+      DECORATOR_FALLBACK_URL: https://www.nav.no/dekoratoren
+      XP_ORIGIN: https://www.nav.no
+      INNLOGGINGSSTATUS_URL: https://www.nav.no/person/innloggingsstatus/auth
+    secrets:
+      READER_TOKEN: ${{ secrets.READER_TOKEN }}
+      SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to nais
+        uses: nais/deploy/actions/deploy@master
+        env:
+          CLUSTER: prod-sbs
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          RESOURCE: .nais/config.yaml
+          VAR: image=${{ needs.build.outputs.image }}
+          VARS: .nais/vars-prod.yaml

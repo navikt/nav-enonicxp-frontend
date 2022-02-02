@@ -7,7 +7,7 @@ metadata:
   labels:
     team: personbruker
 spec:
-  image: {{image}}
+  image: {{image}}:{{version}}
   team: personbruker
   port: 3000
   liveness:
@@ -30,9 +30,7 @@ spec:
   accessPolicy:
     outbound:
       external:
-      {{ #each outboundExternalHosts as |host|}}
-        - host: {{url}}
-      {{/each}}
+        - host: nav.no
   resources:
     limits:
       cpu: '3'
