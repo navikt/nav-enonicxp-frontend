@@ -31,9 +31,13 @@ on:
         required: true
       SERVICE_SECRET:
         required: true
+    outputs:
+      image:
+        description: "Url to docker image"
+        value: ${{ jobs.build_image.outputs.image }}
 
 jobs:
-  build-image:
+  build_image:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:
@@ -81,6 +85,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push docker image
+        id: build_image
         run: |
           docker build -t ${{ env.image }} .
           docker push ${{ env.image }}
