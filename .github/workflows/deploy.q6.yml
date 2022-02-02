@@ -16,7 +16,7 @@ jobs:
       INNLOGGINGSTATUS_URL: https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth
   deploy:
     runs-on: ubuntu-latest
-    needs: buildImage
+    needs: build
     steps:
       - name: Deploy to nais
         uses: nais/deploy/actions/deploy@master
