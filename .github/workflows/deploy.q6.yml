@@ -7,7 +7,7 @@ jobs:
     uses: ./.github/workflows/build-image.yml
     with:
       environment: dev-sbs:q6
-      imagename: q6
+      imagename: q6-deploy
       ENV: q6
       ADMIN_ORIGIN: https://portal-admin-q6.oera.no
       APP_ORIGIN: https://www-q6.nav.no
