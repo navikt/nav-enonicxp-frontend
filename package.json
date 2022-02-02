@@ -5,8 +5,8 @@
     "scripts": {
         "build": "next build",
         "start": "node server/server.js",
-        "dev": "cp .env.development .env && NODE_OPTIONS='-r dotenv/config' node server/server.js",
-        "start-local": "cp .env.local .env && NODE_OPTIONS='-r dotenv/config' node server/server.js",
+        "dev": "cp .env.development .env && npm start",
+        "start-local": "cp .env.local .env && npm start",
         "start-clean": "rm -fr .next && npm run build && npm run start-local",
         "typeCheck": "tsc",
         "lint": "eslint src/",

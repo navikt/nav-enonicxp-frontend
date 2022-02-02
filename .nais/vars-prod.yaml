@@ -1,0 +1,6 @@
+namespace: personbruker
+ingresses:
+  - https://www.nav.no
+  - https://www.nav.no/soknad-dagpenger-utdanning
+outboundExternalHosts:
+  - nav.no

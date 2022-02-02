@@ -3,67 +3,26 @@ on:
   workflow_dispatch
 
 jobs:
+  build:
+    uses: ./.github/workflows/build-image.yml
+    with:
+      environment: dev-sbs:q6
+      imagename: q6
+      ENV: q6
+      ADMIN_ORIGIN: https://portal-admin-q6.oera.no
+      APP_ORIGIN: https://www-q6.nav.no
+      DECORATOR_FALLBACK_URL: https://www-q6.nav.no/dekoratoren
+      XP_ORIGIN: https://www-q6.nav.no
+      INNLOGGINGSTATUS_URL: https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth
   deploy:
     runs-on: ubuntu-latest
-    environment: dev-sbs:q6
-    env:
-      image: ghcr.io/${{ github.repository }}:nav-enonicxp-frontend-q6-${{ github.sha }}
+    needs: buildImage
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-      - name: Setup node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          registry-url: 'https://npm.pkg.github.com'
-          cache: 'npm'
-      - name: Define app environmment
-        run: |
-          cat > .env <<EOF
-          ENV=q6
-          NODE_ENV=production
-          ADMIN_ORIGIN=https://portal-admin-q6.oera.no
-          APP_ORIGIN=https://www-q6.nav.no
-          DECORATOR_FALLBACK_URL=https://www-q6.nav.no/dekoratoren
-          XP_ORIGIN=https://www-q6.nav.no
-          REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
-          SERVICE_SECRET=${{ secrets.SERVICE_SECRET }}
-          INNLOGGINGSTATUS_URL=https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth
-          PAGE_CACHE_DIR=/tmp/pages
-          EOF
-      - name: Nextjs cache
-        uses: actions/cache@v2
-        with:
-          path: ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-      - name: Build application
-        run: npm run build
-      - name: Login to Docker
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push docker image
-        run: |
-          docker build -t ${{ env.image }} .
-          docker push ${{ env.image }}
-      - name: Generate nais variables
-        run: |
-          cat > .nais/vars.yaml <<EOF
-          namespace: q6
-          ingresses:
-            - https://www-q6.nav.no
-          image: ${{ env.image }}
-          EOF
       - name: Deploy to nais
         uses: nais/deploy/actions/deploy@master
         env:
           CLUSTER: dev-sbs
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          RESOURCE: .nais/config-dev.yaml
-          VARS: .nais/vars.yaml
+          RESOURCE: .nais/config.yaml
+          VAR: image=${{ env.image }}
+          VARS: .nais/vars-q6.yaml
