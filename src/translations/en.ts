@@ -51,6 +51,22 @@ export const bundle: Translations = {
     notifications: {
         label: 'Urgent notifications',
     },
+    dateTime: {
+        weekDayNames: [
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+            'Sunday',
+        ],
+        relatives: {
+            today: 'today',
+            tomorrow: 'i morgen',
+        },
+        day: 'day',
+    },
     relatedContent: {
         [MenuListItemKey.AppealRights]: 'Appeal rights',
         [MenuListItemKey.FormAndApplication]: 'Form and application',
@@ -72,7 +88,7 @@ export const bundle: Translations = {
         [MenuListItemKey.RulesAndRegulationsLegacy]: 'Laws and regulations',
     },
     situations: {
-        youMayHaveRightTo: 'You may rights to this',
+        youMayHaveRightTo: 'You may have right to this',
         employerNeedToKnow: 'As an employer, you need to know this',
     },
     guides: {
@@ -95,9 +111,21 @@ export const bundle: Translations = {
                 'Need to send us updated information about your case? "Write to us" is a secure alternative to e-mail.',
         },
         call: {
-            title: 'Call us at',
+            title: 'Call us at +47 55 55 33 33',
             ingress:
                 'Opening hours: weekdays 09:00–15:00. If the opening hours are changed, you will be notified by voice message.',
+        },
+        shared: {
+            generalOpeningHours: 'General opening hours',
+            openingHours: 'Opening hours',
+            specialHours: 'Other opening hours',
+            closed: 'Closed',
+            openNow: 'Open',
+            opensAt: 'Opens {$1} at {$2}',
+            closedNow: 'Closed now',
+            seeAllOpeningHours: 'See all opening hours',
+            todaysPhoneOpeningHours: 'Phone hours today',
+            callUsAt: 'Call us at',
         },
     },
     versionHistory: {
