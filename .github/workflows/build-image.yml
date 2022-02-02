@@ -23,9 +23,14 @@ on:
       XP_ORIGIN:
         required: true
         type: string
-      INNLOGGINGSTATUS_URL:
+      INNLOGGINGSSTATUS_URL:
         required: true
         type: string
+    secrets:
+      READER_TOKEN:
+        required: true
+      SERVICE_SECRET:
+        required: true
 
 jobs:
   build-image:
@@ -55,7 +60,7 @@ jobs:
           XP_ORIGIN=${{ inputs.XP_ORIGIN }}
           REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
           SERVICE_SECRET=${{ secrets.SERVICE_SECRET }}
-          INNLOGGINGSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
+          INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
           PAGE_CACHE_DIR=/tmp/pages
           EOF
       - name: Nextjs cache
