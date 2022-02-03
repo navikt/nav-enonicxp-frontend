@@ -30,8 +30,8 @@ spec:
   accessPolicy:
     outbound:
       external:
-      {{ #each outboundExternalHosts as |host|}}
-         - host: {{url}}
+      {{#each outboundExternalHosts as |host|}}
+         - host: {{host}}
       {{/each}}
   resources:
     limits:
