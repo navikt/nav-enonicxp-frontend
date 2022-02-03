@@ -67,7 +67,7 @@ jobs:
           image: $IMAGE_REGISTRY/$IMAGE_NAME
           version: $IMAGE_VERSION
           EOF
-      - uses: nais/deploy/actions/deploy@master
+      - uses: nais/deploy/actions/deploy@v1
         env:
           CLUSTER: prod-sbs
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

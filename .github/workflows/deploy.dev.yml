@@ -22,7 +22,7 @@ jobs:
     needs: build
     steps:
       - name: Deploy to nais
-        uses: nais/deploy/actions/deploy@master
+        uses: nais/deploy/actions/deploy@v1
         env:
           CLUSTER: dev-sbs
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

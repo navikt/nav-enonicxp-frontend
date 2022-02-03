@@ -26,6 +26,6 @@ jobs:
         env:
           CLUSTER: dev-sbs
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          RESOURCE: .nais/config-dev.yaml
+          RESOURCE: .nais/config.yaml
           VAR: image=${{ needs.build.outputs.image }}
-          VARS: .nais/config-dev.yaml
+          VARS: .nais/vars-q6.yaml
