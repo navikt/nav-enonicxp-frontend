@@ -6,19 +6,18 @@ import {
     RenderOnAuthStateMixin,
 } from '../_mixins';
 import { XpImageProps } from '../../media';
-
-type Variant = 'vertical' | 'verticalWithBgColor';
+import { EmptyObject, OptionSetSingle } from '../../util-types';
 
 type LinkPanelConfig = {
     background: XpImageProps;
     icon: XpImageProps;
-    variant: {
-        _selected: Variant;
+    variant: OptionSetSingle<{
+        vertical: EmptyObject;
         verticalWithBgColor: {
             iconBg: ColorMixin;
             iconJustify: 'flex-start' | 'center' | 'flex-end';
         };
-    };
+    }>;
 } & LinkWithIngressMixin &
     RenderOnAuthStateMixin;
 

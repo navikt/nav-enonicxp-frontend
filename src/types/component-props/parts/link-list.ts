@@ -6,19 +6,19 @@ import {
     LinkSelectable,
     RenderOnAuthStateMixin,
 } from '../_mixins';
+import { OptionSetSingle } from '../../util-types';
 
 export interface DynamicLinkListProps extends PartComponentProps {
     descriptor: PartType.LinkList;
     config: {
         title?: string;
         chevron?: boolean;
-        list: {
-            _selected: 'contentList' | 'linkList';
+        list: OptionSetSingle<{
             contentList: ContentListMixin;
             linkList: {
                 links: LinkSelectable[];
             };
-        };
+        }>;
     } & ExpandableMixin &
         RenderOnAuthStateMixin;
 }
