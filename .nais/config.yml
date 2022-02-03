@@ -21,7 +21,7 @@ spec:
     path: /api/internal/metrics
   ingresses:
   {{#each ingresses as |url|}}
-     - {{url}}
+    - {{url}}
   {{/each}}
   replicas:
     min: 2
@@ -31,7 +31,7 @@ spec:
     outbound:
       external:
       {{#each outboundExternalHosts as |host|}}
-         - host: {{host}}
+        - host: {{host}}
       {{/each}}
   resources:
     limits:

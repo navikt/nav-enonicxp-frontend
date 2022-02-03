@@ -4,7 +4,7 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/build-image.yml
+    uses: ./.github/workflows/common/build-image.yml
     with:
       environment: dev-sbs:q6
       imagename: q6-deploy
@@ -18,21 +18,11 @@ jobs:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
   deploy:
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/common/deploy-to-nais.yml
     needs: build
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-      - name: print vars
-        run: |
-          echo ${{ github.workspace }}
-          echo $(cat .nais/vars-q6.yaml)
-          echo $(cat ${{ github.workspace }}/.nais/vars-q6.yaml)
-      - name: Deploy to nais
-        uses: nais/deploy/actions/deploy@v1
-        env:
-          CLUSTER: dev-sbs
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          RESOURCE: .nais/config.yaml
-          VAR: image=${{ needs.build.outputs.image }}
-          VARS: ${{ github.workspace }}/.nais/vars-q6.yaml
+    with:
+      image: ${{ needs.build.outputs.image }}
+      cluster: dev-sbs
+      vars_file: vars-q6.yml
+    secrets:
+      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

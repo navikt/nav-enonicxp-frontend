@@ -18,14 +18,11 @@ jobs:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
   deploy:
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/common/deploy-to-nais.yml
     needs: build
-    steps:
-      - name: Deploy to nais
-        uses: nais/deploy/actions/deploy@v1
-        env:
-          CLUSTER: dev-sbs
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          RESOURCE: .nais/config.yaml
-          VAR: image=${{ needs.build.outputs.image }}
-          VARS: .nais/vars-dev.yaml
+    with:
+      image: ${{ needs.build.outputs.image }}
+      cluster: dev-sbs
+      vars_file: vars-dev.yml
+    secrets:
+      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
