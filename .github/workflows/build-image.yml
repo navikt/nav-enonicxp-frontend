@@ -38,6 +38,7 @@ on:
 
 jobs:
   build_image:
+    name: Build docker image
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:

@@ -17,6 +17,7 @@ on:
 
 jobs:
   deploy:
+    name: Deploy to nais k8s
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
