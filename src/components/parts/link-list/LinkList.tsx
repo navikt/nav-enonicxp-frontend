@@ -10,9 +10,10 @@ const bem = BEM('link-list');
 
 const getListComponent = (config: DynamicLinkListProps['config']) => {
     const { title, list, chevron } = config;
-    const { _selected, contentList, linkList } = list;
+    const { _selected } = list;
 
     if (_selected === 'contentList') {
+        const { contentList } = list;
         return (
             <ContentList
                 content={contentList?.target}
@@ -23,6 +24,7 @@ const getListComponent = (config: DynamicLinkListProps['config']) => {
     }
 
     if (_selected === 'linkList') {
+        const { linkList } = list;
         const links = linkList?.links?.map(getSelectableLinkProps);
         return (
             <Lenkeliste tittel={title} lenker={links} withChevron={chevron} />
