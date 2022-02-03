@@ -10,27 +10,26 @@
     background-color: transparent;
     display: block;
     text-decoration: none;
+    width: 100%;
+    border-radius: common.$border-radius-base;
 
-    .link {
-        &:hover {
+    &:hover,
+    &:focus {
+        .title {
             text-decoration: none;
+        }
 
-            .title {
-                text-decoration: none;
+        .icon {
+            &.chat {
+                background-image: url('/gfx/chat-filled.svg');
             }
 
-            .icon {
-                &.chat {
-                    background-image: url('/gfx/chat-filled.svg');
-                }
+            &.write {
+                background-image: url('/gfx/message-filled.svg');
+            }
 
-                &.write {
-                    background-image: url('/gfx/message-filled.svg');
-                }
-
-                &.call {
-                    background-image: url('/gfx/phone-filled.svg');
-                }
+            &.call {
+                background-image: url('/gfx/phone-filled.svg');
             }
         }
     }

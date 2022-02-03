@@ -67,17 +67,15 @@ export const DefaultOption = (props: DefaultContactProps) => {
     };
 
     return (
-        <div className={style.contactOption}>
-            <LenkeBase
-                {...getUrlOrClickHandler(channel)}
-                className={style.link}
-            >
-                <div className={classNames(style.icon, style[channel])} />
-                <Heading level="2" size="medium" className={style.title}>
-                    {getTitle()}
-                </Heading>
-            </LenkeBase>
+        <LenkeBase
+            {...getUrlOrClickHandler(channel)}
+            className={style.contactOption}
+        >
+            <div className={classNames(style.icon, style[channel])} />
+            <Heading level="2" size="medium" className={style.title}>
+                {getTitle()}
+            </Heading>
             <BodyLong className={style.text}>{getIngress()}</BodyLong>
-        </div>
+        </LenkeBase>
     );
 };
