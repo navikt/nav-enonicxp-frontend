@@ -4,21 +4,21 @@
     // Set a padding with equivalent negative margins to allow focus-highlight
     // to break out of the container
     $outerPadding: 0.6rem;
-    $bottomMargin: 1rem-$outerPadding;
+    $bottomMargin: 1rem - $outerPadding;
     padding: $outerPadding;
     margin: (-$outerPadding) (-$outerPadding) $bottomMargin (-$outerPadding);
     background-color: transparent;
     display: block;
     text-decoration: none;
 
-    &:hover {
-        .title {
-            text-decoration: none;
-        }
-    }
-
     .link {
         &:hover {
+            text-decoration: none;
+
+            .title {
+                text-decoration: none;
+            }
+
             .icon {
                 &.chat {
                     background-image: url('/gfx/chat-filled.svg');
