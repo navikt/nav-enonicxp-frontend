@@ -23,9 +23,9 @@ jobs:
     steps:
       - name: print vars
         run: |
-          echo $GITHUB_WORKSPACE
+          echo ${{ github.workspace }}
           echo $(cat .nais/vars-q6.yaml)
-          echo $(cat ${{ GITHUB_WORKSPACE }}/.nais/vars-q6.yaml)
+          echo $(cat ${{ github.workspace }}/.nais/vars-q6.yaml)
       - name: Deploy to nais
         uses: nais/deploy/actions/deploy@v1
         env:
@@ -33,4 +33,4 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/config.yaml
           VAR: image=${{ needs.build.outputs.image }}
-          VARS: ${{ GITHUB_WORKSPACE }}/.nais/vars-q6.yaml
+          VARS: ${{ github.workspace }}/.nais/vars-q6.yaml
