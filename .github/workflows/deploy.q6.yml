@@ -4,7 +4,7 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/common/build-image.yml
+    uses: ./.github/workflows/build-image.yml
     with:
       environment: dev-sbs:q6
       imagename: q6-deploy
@@ -18,7 +18,7 @@ jobs:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
   deploy:
-    uses: ./.github/workflows/common/deploy-to-nais.yml
+    uses: ./.github/workflows/deploy-to-nais.yml
     needs: build
     with:
       image: ${{ needs.build.outputs.image }}
