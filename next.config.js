@@ -35,7 +35,7 @@ module.exports = withPlugins([withLess, withImages, withTranspileModules], {
         APP_ORIGIN: process.env.APP_ORIGIN,
         XP_ORIGIN: process.env.XP_ORIGIN,
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
-        INNLOGGINGSTATUS_URL: process.env.INNLOGGINGSTATUS_URL,
+        INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
     },
     webpack: (config) => {
         cssModulesNoDashesInClassnames(config);

@@ -1,0 +1,6 @@
+namespace: personbruker
+ingresses:
+  - https://www.dev.nav.no
+  - https://www.dev.nav.no/soknad-dagpenger-utdanning
+outboundExternalHosts:
+  - dekoratoren.ekstern.dev.nav.no
