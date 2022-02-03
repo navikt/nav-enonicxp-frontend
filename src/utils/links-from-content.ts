@@ -32,9 +32,11 @@ export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
         return invalidLinkProps;
     }
 
-    const { _selected, external, internal } = link;
+    const { _selected } = link;
 
     if (_selected === 'internal') {
+        const { internal } = link;
+
         if (!internal?.target) {
             return invalidLinkProps;
         }
@@ -46,6 +48,8 @@ export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
     }
 
     if (_selected === 'external') {
+        const { external } = link;
+
         if (!external) {
             return invalidLinkProps;
         }
