@@ -10,9 +10,9 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { openChatbot } from '../../../utils/chatbot';
 
-import { BEM, classNames } from 'utils/classnames';
+import { classNames } from 'utils/classnames';
 
-import style from './ContactOption.module.scss'
+import style from './ContactOption.module.scss';
 
 interface DefaultContactProps extends DefaultContactData {
     channel: ChannelType;
@@ -44,19 +44,19 @@ export const DefaultOption = (props: DefaultContactProps) => {
     // In order to open chatbot, onClick is needed instead of href. Therefore
     // return an object which is destructed into Lenkebase with the proper props (href | onClick)
     const getUrlOrClickHandler = (channel: ChannelType) => {
-        if (channel === ChannelType.WRITE) {
+        if (channel === 'write') {
             return {
                 href: url || '/person/kontakt-oss/nb/skriv-til-oss',
             };
         }
 
-        if (channel === ChannelType.CALL) {
+        if (channel === 'call') {
             return {
                 href: 'tel:+4755553333',
             };
         }
 
-        if (channel === ChannelType.CHAT) {
+        if (channel === 'chat') {
             return {
                 href: '#',
                 onClick: openChatbot,
@@ -72,9 +72,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
                 {...getUrlOrClickHandler(channel)}
                 className={style.link}
             >
-                <div
-                    className={classNames(style.icon, style[channel])}
-                />
+                <div className={classNames(style.icon, style[channel])} />
                 <Heading level="2" size="medium" className={style.title}>
                     {getTitle()}
                 </Heading>

@@ -80,12 +80,6 @@ export const bundle: Translations = {
         [MenuListItemKey.Saksbehandling]: 'Procedural',
         [MenuListItemKey.Selfservice]: 'Selfservice',
         [MenuListItemKey.Shortcuts]: 'Shortcuts',
-        [MenuListItemKey.AppealRightsLegacy]: 'Appeal rights',
-        [MenuListItemKey.FormAndApplicationLegacy]: 'Form and application',
-        [MenuListItemKey.ProcessTimesLegacy]: 'Processing times',
-        [MenuListItemKey.RelatedInformationLegacy]: 'Related information',
-        [MenuListItemKey.ReportChangesLegacy]: 'Report changes',
-        [MenuListItemKey.RulesAndRegulationsLegacy]: 'Laws and regulations',
     },
     situations: {
         youMayHaveRightTo: 'You may have right to this',

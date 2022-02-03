@@ -1,12 +1,19 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 import { RenderOnAuthStateMixin } from '../_mixins';
+import { OptionSetSingle } from '../../util-types';
 
-export enum ChannelType {
-    CHAT = 'chat',
-    WRITE = 'write',
-    CALL = 'call',
+interface LegacyCall {
+    phoneNumber?: string;
 }
+
+interface Options {
+    chat: DefaultContactData;
+    write: DefaultContactData;
+    call: SharedContactInformationData & LegacyCall;
+}
+
+export type ChannelType = keyof Options;
 
 export interface OpeningHour {
     status: string;
@@ -15,6 +22,7 @@ export interface OpeningHour {
     dayName?: string;
     date?: string;
 }
+
 export interface DefaultContactData {
     ingress?: string;
     title?: string;
@@ -31,6 +39,7 @@ export interface SharedContactInformationData extends DefaultContactData {
         };
     };
 }
+
 export interface TelephoneData {
     phoneNumber?: string;
     title?: string;
@@ -52,12 +61,6 @@ export interface TelephoneData {
 export interface ContactOptionProps extends PartComponentProps {
     descriptor: PartType.ContactOption;
     config: {
-        contactOptions: {
-            _selected: ChannelType;
-        } & {
-            chat: DefaultContactData;
-            write: DefaultContactData;
-            call: SharedContactInformationData;
-        };
+        contactOptions: OptionSetSingle<Options>;
     } & RenderOnAuthStateMixin;
 }

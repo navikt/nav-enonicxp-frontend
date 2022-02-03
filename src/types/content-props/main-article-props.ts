@@ -33,6 +33,5 @@ export type MainArticleData = Partial<{
 
 export interface MainArticleProps extends ContentProps {
     __typename: ContentType.MainArticle;
-    children?: MainArticleChapterProps[]; // TODO: remove after backend chapters-update
     data: MainArticleData;
 }

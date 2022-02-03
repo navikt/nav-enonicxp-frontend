@@ -6,13 +6,13 @@
     $outerPadding: 0.6rem;
     $bottomMargin: 1rem-$outerPadding;
     padding: $outerPadding;
-    margin: -$outerPadding -$outerPadding $bottomMargin -$outerPadding;
+    margin: (-$outerPadding) (-$outerPadding) $bottomMargin (-$outerPadding);
     background-color: transparent;
     display: block;
     text-decoration: none;
 
     &:hover {
-        .defaultOption__title {
+        .title {
             text-decoration: none;
         }
     }
@@ -70,7 +70,8 @@
             // preload mouseover icons
             position: absolute;
             z-index: -1;
-            content: url('/gfx/chat-filled.svg') url('/gfx/message-filled.svg') url('/gfx/message-phone.svg');
+            content: url('/gfx/chat-filled.svg') url('/gfx/message-filled.svg')
+                url('/gfx/message-phone.svg');
         }
     }
 
