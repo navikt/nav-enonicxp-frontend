@@ -21,6 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: print vars
+        run: |
+          echo $GITHUB_WORKSPACE
+          echo $(cat .nais/vars-q6.yaml)
+          echo $(cat ${{ GITHUB_WORKSPACE }}/.nais/vars-q6.yaml)
       - name: Deploy to nais
         uses: nais/deploy/actions/deploy@v1
         env:
@@ -28,4 +33,4 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/config.yaml
           VAR: image=${{ needs.build.outputs.image }}
-          VARS: .nais/vars-q6.yaml
+          VARS: ${{ GITHUB_WORKSPACE }}/.nais/vars-q6.yaml
