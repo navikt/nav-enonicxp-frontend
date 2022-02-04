@@ -13,11 +13,5 @@ export const bundle: Translations = {
         [MenuListItemKey.ReportChanges]: 'Zgłoś zmiany',
         [MenuListItemKey.RulesAndRegulations]: 'Przepisy',
         [MenuListItemKey.Selfservice]: 'Samoobsługa',
-        [MenuListItemKey.AppealRightsLegacy]: 'Prawo do złożenia odwołania',
-        [MenuListItemKey.FormAndApplicationLegacy]: 'Formularze i wnioski',
-        [MenuListItemKey.ProcessTimesLegacy]: 'Czas rozpatrywania spraw',
-        [MenuListItemKey.RelatedInformationLegacy]: 'Powiązane informacje',
-        [MenuListItemKey.ReportChangesLegacy]: 'Zgłoś zmiany',
-        [MenuListItemKey.RulesAndRegulationsLegacy]: 'Przepisy',
     },
 };

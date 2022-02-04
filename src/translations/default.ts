@@ -15,12 +15,6 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.Saksbehandling]: 'Saksbehandling',
     [MenuListItemKey.Selfservice]: 'Selvbetjening',
     [MenuListItemKey.Shortcuts]: 'Snarveier',
-    [MenuListItemKey.AppealRightsLegacy]: 'Klagerettigheter',
-    [MenuListItemKey.FormAndApplicationLegacy]: 'Skjema og søknad',
-    [MenuListItemKey.ProcessTimesLegacy]: 'Saksbehandlingstider',
-    [MenuListItemKey.RelatedInformationLegacy]: 'Relatert innhold',
-    [MenuListItemKey.ReportChangesLegacy]: 'Meld fra om endringer',
-    [MenuListItemKey.RulesAndRegulationsLegacy]: 'Regelverk',
 };
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
@@ -116,7 +110,7 @@ export const bundle = {
             openNow: 'Åpent nå',
             opensAt: 'Åpner {$1} kl {$2}',
             closedNow: 'Stengt nå',
-            seeAllOpeningHours: 'Se alle åpningstider',
+            seeMoreOptions: 'Mer om tastevalg',
             todaysPhoneOpeningHours: 'Åpningstider på telefon i dag',
             callUsAt: 'Ring oss på',
         },

@@ -1,0 +1,5 @@
+namespace: q6
+ingresses:
+  - https://www-q6.nav.no
+outboundExternalHosts:
+  - www-q6.nav.no

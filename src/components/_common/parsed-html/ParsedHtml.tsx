@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import htmlReactParser, { Element, domToReact } from 'html-react-parser';
+import htmlReactParser, {
+    Element,
+    domToReact,
+    attributesToProps,
+} from 'html-react-parser';
 import { isTag, isText } from 'domhandler';
-import attributesToProps from 'html-react-parser/lib/attributes-to-props';
 import { LenkeInline } from '../lenke/LenkeInline';
 import { getMediaUrl } from '../../../utils/urls';
 import {

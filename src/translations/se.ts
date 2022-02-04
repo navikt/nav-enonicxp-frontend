@@ -15,12 +15,5 @@ export const bundle: Translations = {
         [MenuListItemKey.Saksbehandling]: 'NAV áššemeannudanáiggit',
         [MenuListItemKey.Selfservice]: 'Ieš-bálvaleapmi',
         [MenuListItemKey.Shortcuts]: 'Njuolggobálgát',
-        [MenuListItemKey.AppealRightsLegacy]: 'Váidinvuoigatvuođat',
-        [MenuListItemKey.FormAndApplicationLegacy]: 'Skovit',
-        [MenuListItemKey.ProcessTimesLegacy]: 'Áššemeannudanáiggit',
-        [MenuListItemKey.RelatedInformationLegacy]:
-            'Dehálaš dieđutdehálaš dieđut',
-        [MenuListItemKey.ReportChangesLegacy]: 'Dieđit daid rievdadusaid',
-        [MenuListItemKey.RulesAndRegulationsLegacy]: 'Njuolggadusat',
     },
 };

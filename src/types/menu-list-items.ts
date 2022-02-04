@@ -1,3 +1,5 @@
+import { OptionSetMulti } from './util-types';
+
 export interface LinkItem {
     links?: {
         text: string;
@@ -5,7 +7,6 @@ export interface LinkItem {
     }[];
 }
 
-// TODO: fjern legacy når XP er oppdatert
 export enum MenuListItemKey {
     Selfservice = 'selfservice',
     FormAndApplication = 'form_and_application',
@@ -19,14 +20,8 @@ export enum MenuListItemKey {
     RulesAndRegulations = 'rules_and_regulations',
     Saksbehandling = 'saksbehandling',
     Shortcuts = 'shortcuts',
-    FormAndApplicationLegacy = 'formAndApplication',
-    ProcessTimesLegacy = 'processTimes',
-    RelatedInformationLegacy = 'relatedInformation',
-    ReportChangesLegacy = 'reportChanges',
-    AppealRightsLegacy = 'appealRights',
-    RulesAndRegulationsLegacy = 'rulesAndRegulations',
 }
 
-export type MenuListItem = {
+export type MenuListItem = OptionSetMulti<{
     [key in MenuListItemKey]: LinkItem;
-} & { _selected: MenuListItemKey[] };
+}>;
