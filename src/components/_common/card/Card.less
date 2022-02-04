@@ -54,40 +54,46 @@
         &:focus-visible, &:active {
             .card__bed {
                 position: relative;
-                border: 1px solid transparent;
                 box-shadow: 0 0 0 3px #00347d;
 
                 &:after {
                     background-color: transparent;
                     content: '';
                     display: block;
-                    height: calc(100% - 2px);
                     left: 0;
-                    margin: 1px;
                     pointer-events: none;
                     position: absolute;
                     top: 0;
-                    width: calc(100% - 2px);
                 }
             }
-
+            
             .card__bed.card__large {
                 &:after {
-                    box-shadow: 0 0 0 3px #ffffff;
+                    box-shadow: 0 0 0 4px #ffffff;
                     border-radius: 6px;
+                    height: calc(100% - 8px);
+                    width: calc(100% - 8px);
+                    margin: 4px;
+                }
+            }
+            
+            .card__bed.card__mini, .card__bed.card__micro {
+                &:after {
+                    box-shadow: 0 0 0 2px #ffffff;
+                    height: calc(100% - 2px);
+                    margin: 1px;
+                    width: calc(100% - 2px);
                 }
             }
             
             .card__bed.card__mini {
                 &:after {
-                    box-shadow: 0 0 0 2px #ffffff;
                     border-radius: 6px;
                 }
             }
             
             .card__bed.card__micro {
                 &:after {
-                    box-shadow: 0 0 0 2px #ffffff;
                     border-radius: 16px;
                 }
             }
