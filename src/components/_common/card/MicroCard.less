@@ -8,21 +8,23 @@
 
     &__micro {
         border-radius: 16px;
-        position: relative;
-        display: flex;
+        border: 1px solid #B0B0B0;
         box-shadow: 0 0 0 3px @navds-semantic-color-link;
         color: @navds-global-color-gray-900;
+        display: flex;
         display: inline-flex;
         font-size: #px-to-rem(14) [];
         line-height: 1.5625rem;
         margin: 0 0.5rem 0 0;
         padding: 0 0.5rem;
-
+        position: relative;
+        
         &:not(:hover):not(:active) {
             box-shadow: 0px 1px 3px rgba(38, 38, 38, 0.2), 0px 1px 6px rgba(0, 0, 0, 0.14), 0px 2px 8px rgba(38, 38, 38, 0.12);
         }
-
+        
         &:hover {
+            border: 1px solid transparent;
             box-shadow: 0px 1px 3px rgba(38, 38, 38, 0.2), 0px 1px 6px rgba(0, 0, 0, 0.14), 0px 2px 8px rgba(38, 38, 38, 0.12);
         }
         
