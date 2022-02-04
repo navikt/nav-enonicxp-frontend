@@ -117,7 +117,7 @@ export const bundle: Translations = {
             openNow: 'Open',
             opensAt: 'Opens {$1} at {$2}',
             closedNow: 'Closed now',
-            seeAllOpeningHours: 'See all opening hours',
+            seeMoreOptions: 'See more options',
             todaysPhoneOpeningHours: 'Phone hours today',
             callUsAt: 'Call us at',
         },

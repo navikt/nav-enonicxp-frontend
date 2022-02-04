@@ -180,7 +180,7 @@ export const CallOption = (props: CallOptionProps) => {
                 )}
             </BodyShort>
             <LenkeBase href={language === 'no' ? contactUrlNO : contactUrlEN}>
-                {sharedTranslations['seeAllOpeningHours']}
+                {sharedTranslations['seeMoreOptions']}
             </LenkeBase>
         </div>
     );
