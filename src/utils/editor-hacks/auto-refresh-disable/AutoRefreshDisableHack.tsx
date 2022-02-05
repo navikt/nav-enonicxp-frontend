@@ -25,25 +25,28 @@ type Props = {
     contentId: string;
 };
 
-/* Prevents refresh of the frontend iframe and component editor when changes are
- * made by other editors or programmatically. Instead of refreshing the view, we
- * show an alert-box which notifies of changes having occured, and offers a
- * manual refresh option.
+/*
+ * Prevents refresh of the frontend iframe and component editor when changes are
+ * made by other editor users, or programmatically. This behaviour makes for a
+ * confusing user experience, and may cause the user to lose their unsaved work.
+ *
+ * Instead of refreshing the view automatically, we show an alert-box which
+ * notifies of changes having occured, and offers a manual refresh option.
  *
  * */
 
 export const AutoRefreshDisableHack = ({ contentId }: Props) => {
-    // Save the most recent event, so we can dispatch this if the user wants to
-    // trigger it later
+    // Save the most recent BatchContentServerEvent, so we can dispatch this if
+    // the user wants to trigger it manually
     const [lastEvent, setLastEvent] = useState<CustomEvent>();
 
-    // If the content was updated by another user, we want to show a warning
-    // to the current user, with an option to trigger the event manually
     const [contentUpdated, setContentUpdated] = useState(false);
 
+    // Hook the parent window's event dispatch function
     useEffect(() => {
-        // Hook the parent window's event dispatch function, but preserve
-        // the original function for use in our hook.
+        // Keep the original function reference for use in our hook. We put it on
+        // the parent window object rather than as a local variable, in order to
+        // preserve it after the current frontend iframe is destroyed.
         if (!parent.window.dispatchEventActual) {
             parent.window.dispatchEventActual = parent.window.dispatchEvent;
         }
@@ -56,7 +59,8 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
             const { type, detail } = event;
 
             // This event is triggered by Content Studio whenever an operation
-            // is performed on content on the server
+            // is performed on content on the server. On the client side, this
+            // causes the CS UI to refresh for certain operations.
             if (type === 'BatchContentServerEvent') {
                 if (allowNextEvent) {
                     parentLog('BatchContentServerEvent allowed');
@@ -71,8 +75,8 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
                 }
             }
 
-            // This event is triggered when the current user saves their changes
-            // ('Mark as ready'). We want to let the next BatchContentServerEvent
+            // This event is triggered when the current user commits their changes
+            // ('Mark as ready'). We now want to let the next BatchContentServerEvent
             // through, in order to trigger the expected Content Studio UI response
             if (type === 'BeforeContentSavedEvent') {
                 parentLog('Allowing next event');
