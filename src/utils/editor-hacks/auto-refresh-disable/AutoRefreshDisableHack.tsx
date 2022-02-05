@@ -8,12 +8,11 @@ import { Branch } from '../../../types/branch';
 import style from './AutoRefreshDisableHack.module.scss';
 
 type BatchContentServerEventDetail = {
-    name: 'BatchContentServerEvent';
     items?: Array<{ id: string; branch: Branch }>;
     alwaysAllow?: boolean;
 };
 
-const contentDraftDidUpdate = (
+const currentContentDraftDidUpdate = (
     detail: BatchContentServerEventDetail,
     contentId: string
 ) =>
@@ -49,17 +48,21 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
             parent.window.dispatchEventActual = parent.window.dispatchEvent;
         }
 
+        const parentLog = parent.window.console.log;
+
         let allowNextEvent = false;
 
         parent.window.dispatchEvent = (event: CustomEvent) => {
             const { type, detail } = event;
 
+            // This event is triggered by Content Studio whenever an operation
+            // is performed on content on the server
             if (type === 'BatchContentServerEvent') {
                 if (allowNextEvent) {
-                    parent.window.console.log('Event allowed');
+                    parentLog('BatchContentServerEvent allowed');
                     allowNextEvent = false;
-                } else if (contentDraftDidUpdate(detail, contentId)) {
-                    parent.window.console.log('Event blocked');
+                } else if (currentContentDraftDidUpdate(detail, contentId)) {
+                    parentLog('BatchContentServerEvent blocked');
 
                     setContentUpdated(true);
                     setLastEvent(event);
@@ -68,11 +71,11 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
                 }
             }
 
-            // When the current user makes a change of their own, we want to let the
-            // next BatchContentServerEvent through, in order to trigger the expected
-            // Content Studio UI response
+            // This event is triggered when the current user saves their changes
+            // ('Mark as ready'). We want to let the next BatchContentServerEvent
+            // through, in order to trigger the expected Content Studio UI response
             if (type === 'BeforeContentSavedEvent') {
-                parent.window.console.log('Allowing next event');
+                parentLog('Allowing next event');
                 allowNextEvent = true;
             }
 
