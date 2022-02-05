@@ -18,8 +18,13 @@ type Props = {
     contentId: string;
 };
 
-// Closes the left-side data editor for content which is primarily configured
-// with the right-side components editor
+/*
+ * Closes the left-side data editor panel for content which has been customized
+ * for use with the right-side components editor. The left panel is rarely used
+ * for such content, so we close it by default as a convenience
+ *
+ * */
+
 export const SetSidepanelToggleHack = ({ contentId }: Props) => {
     const url = getCsContentApiUrl(contentId);
 
@@ -32,8 +37,8 @@ export const SetSidepanelToggleHack = ({ contentId }: Props) => {
                 throw new Error(res.status);
             })
             .then((json) => {
-                // If isPage === true, the page has been customized and the component editor
-                // will be active
+                // If isPage === true, the page has been customized and the
+                // component editor will be active
                 if (json.isPage) {
                     minimizeLeftPanel();
                 }

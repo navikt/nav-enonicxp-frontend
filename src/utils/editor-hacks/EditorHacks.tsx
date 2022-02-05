@@ -1,7 +1,12 @@
 import { ContentProps } from '../../types/content-props/_content-common';
-import { ReorderComponentsHack } from './reorder-components/ReorderComponentsHack';
 import { AutoRefreshDisableHack } from './auto-refresh-disable/AutoRefreshDisableHack';
 import { SetSidepanelToggleHack } from './set-sidepanels-defaults/SetSidepanelToggleHack';
+
+/*
+ * This contains ugly "fixes" to improve the experiences for Content Studio
+ * editor users :)
+ *
+ * */
 
 export const EditorHacks = (content: ContentProps) => {
     const { editorView, _id } = content;
@@ -12,7 +17,6 @@ export const EditorHacks = (content: ContentProps) => {
 
     return (
         <>
-            <ReorderComponentsHack />
             <AutoRefreshDisableHack contentId={_id} />
             <SetSidepanelToggleHack contentId={_id} />
         </>
