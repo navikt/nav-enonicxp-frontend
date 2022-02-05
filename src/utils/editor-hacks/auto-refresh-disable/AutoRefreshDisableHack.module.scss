@@ -6,7 +6,7 @@
     top: calc(var(--decorator-sticky-offset) + 1rem);
     left: 0;
     width: 100%;
-    z-index: 2147483601;
+    z-index: 2147483601; // +1 from the content studio overlay
 
     :global(.navds-alert__wrapper) {
         display: flex;

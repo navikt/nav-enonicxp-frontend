@@ -90,7 +90,7 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
     return (
         contentUpdated && (
             <div className={style.warningWrapper}>
-                <AlertBox variant={'advarsel'} size={'small'}>
+                <AlertBox variant={'warning'} size={'small'}>
                     {'Innhold på siden ble endret av noen andre.'}
                     <EditorLinkWrapper>
                         <LenkeInline

@@ -3,22 +3,8 @@ import { Alert, AlertProps } from '@navikt/ds-react';
 import { classNames } from '../../../utils/classnames';
 import style from './AlertBox.module.scss';
 
-// These types were used by a previous version of the design system component
-type AlertTypeLegacy = 'info' | 'advarsel' | 'feil' | 'suksess';
-
-type Variant = AlertProps['variant'];
-
-const legacyTypeToVariant: {
-    [type in AlertTypeLegacy]: Variant;
-} = {
-    info: 'info',
-    advarsel: 'warning',
-    feil: 'error',
-    suksess: 'success',
-};
-
 type Props = {
-    variant: Variant | AlertTypeLegacy;
+    variant: AlertProps['variant'];
     size?: AlertProps['size'];
     inline?: AlertProps['inline'];
     className?: string;
@@ -36,7 +22,7 @@ export const AlertBox = ({
     return (
         <Alert
             {...rest}
-            variant={legacyTypeToVariant[variant] || variant}
+            variant={variant}
             size={size}
             inline={inline}
             className={classNames(style.alertBox, className)}

@@ -13,7 +13,7 @@ export const MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
     const { varselBoks } = config.varselBoks;
 
     return (
-        <AlertBox variant={'advarsel'} className={'macro-varselboks'}>
+        <AlertBox variant={'warning'} className={'macro-varselboks'}>
             <ParsedHtml htmlProps={varselBoks} />
         </AlertBox>
     );
