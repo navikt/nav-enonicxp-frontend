@@ -15,7 +15,7 @@ import { MacroPhoneLink } from './phone-link/MacroPhoneLink';
 import { MacroQuote } from './quote/MacroQuote';
 import { MacroTankestrek } from './tankestrek/MacroTankestrek';
 import { MacroVarselBoks } from './varselboks/MacroVarselBoks';
-import { MacroVideo } from './Video/MacroVideo';
+import { MacroVideo } from './video/MacroVideo';
 import { MacroHtmlFragment } from './html-fragment/MacroHtmlFragment';
 import { MacroHeaderWithAnchor } from './header-with-anchor/MacroHeaderWithAnchor';
 import { MacroGlobalValue } from './global-value/MacroGlobalValue';

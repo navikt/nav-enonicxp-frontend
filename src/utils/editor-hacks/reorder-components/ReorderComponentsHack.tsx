@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 
-export const ComponentReorderHack = () => {
-    // Hack to allow layout-components to be reordered in the content studio
-    // components-view (may have unintended side-effects!)
+// Allow layout components to be reordered in the content studio components view
+export const ReorderComponentsHack = () => {
     useEffect(() => {
         const callback = (mutations) => {
             mutations.forEach((mutation) => {
