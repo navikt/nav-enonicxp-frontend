@@ -34,6 +34,7 @@ export const EditorLinkWrapper = ({ children }: Props) => {
     return (
         <span
             className={className}
+            style={{ cursor: 'pointer' }}
             onClick={(e) => {
                 e.stopPropagation();
 

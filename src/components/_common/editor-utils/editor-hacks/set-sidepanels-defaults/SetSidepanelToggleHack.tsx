@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { adminOrigin } from '../../urls';
-import { fetchWithTimeout } from '../../fetch-utils';
+import { adminOrigin } from '../../../../../utils/urls';
+import { fetchWithTimeout } from '../../../../../utils/fetch-utils';
 
 const getCsContentApiUrl = (contentId: string) =>
     `${adminOrigin}/admin/rest-v2/cs/cms/default/content/content?id=${contentId}`;

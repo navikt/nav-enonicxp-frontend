@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { AlertBox } from '../../../components/_common/alert-box/AlertBox';
-import { EditorLinkWrapper } from '../../../components/_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
-import { Button } from '../../../components/_common/button/Button';
-import { ClearIcon } from '../../../components/pages/error-page/errorcode-content/clear-icon/ClearIcon';
-import { LenkeInline } from '../../../components/_common/lenke/LenkeInline';
-import { Branch } from '../../../types/branch';
+import { AlertBox } from '../../../alert-box/AlertBox';
+import { EditorLinkWrapper } from '../../editor-link-wrapper/EditorLinkWrapper';
+import { Button } from '../../../button/Button';
+import { ClearIcon } from '../../../../pages/error-page/errorcode-content/clear-icon/ClearIcon';
+import { LenkeInline } from '../../../lenke/LenkeInline';
+import { Branch } from '../../../../../types/branch';
 import style from './AutoRefreshDisableHack.module.scss';
 
 type BatchContentServerEventDetail = {
