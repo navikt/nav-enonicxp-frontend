@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react';
-import { adminOrigin } from '../../../../../utils/urls';
-import { fetchWithTimeout } from '../../../../../utils/fetch-utils';
-
-const getCsContentApiUrl = (contentId: string) =>
-    `${adminOrigin}/admin/rest-v2/cs/cms/default/content/content?id=${contentId}`;
+import { fetchCsContentApi } from '../EditorHacks';
 
 const minimizeLeftPanel = () => {
     const minimizeLeftButton = parent.window.document.getElementsByClassName(
@@ -26,26 +22,12 @@ type Props = {
  * */
 
 export const SetSidepanelToggleHack = ({ contentId }: Props) => {
-    const url = getCsContentApiUrl(contentId);
-
     useEffect(() => {
-        fetchWithTimeout(url, 5000)
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                throw new Error(res.status);
-            })
-            .then((json) => {
-                // If isPage === true, the page has been customized and the
-                // component editor will be active
-                if (json.isPage) {
-                    minimizeLeftPanel();
-                }
-            })
-            .catch((e) =>
-                console.error(`Error fetching content from CS api - ${e}`)
-            );
+        fetchCsContentApi(contentId).then((res) => {
+            if (res?.isPage) {
+                minimizeLeftPanel();
+            }
+        });
     }, []);
 
     return null;

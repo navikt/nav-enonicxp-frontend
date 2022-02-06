@@ -5,6 +5,7 @@ import { Button } from '../../../button/Button';
 import { ClearIcon } from '../../../../pages/error-page/errorcode-content/clear-icon/ClearIcon';
 import { LenkeInline } from '../../../lenke/LenkeInline';
 import { Branch } from '../../../../../types/branch';
+import { fetchCsContentApi, ContentWorkflowState } from '../EditorHacks';
 import style from './AutoRefreshDisableHack.module.scss';
 
 type BatchContentServerEventDetail = {
@@ -16,14 +17,16 @@ const currentContentDraftDidUpdate = (
     detail: BatchContentServerEventDetail,
     contentId: string
 ) =>
+    detail &&
     !detail.alwaysAllow &&
-    detail?.items?.some(
+    detail.items?.some(
         (item) => item.id === contentId && item.branch === 'draft'
     );
 
-type Props = {
-    contentId: string;
-};
+const fetchWorkflowState = async (
+    contentId: string
+): Promise<ContentWorkflowState | null> =>
+    fetchCsContentApi(contentId).then((json) => json.workflow.state);
 
 /*
  * Prevents refresh of the frontend iframe and component editor when changes are
@@ -35,52 +38,78 @@ type Props = {
  *
  * */
 
-export const AutoRefreshDisableHack = ({ contentId }: Props) => {
-    // Save the most recent BatchContentServerEvent, so we can dispatch this if
-    // the user wants to trigger it manually
-    const [lastEvent, setLastEvent] = useState<CustomEvent>();
+type Props = {
+    contentId: string;
+};
 
+export const AutoRefreshDisableHack = ({ contentId }: Props) => {
+    // Save the most recent BatchContentServerEvent from external changes, so we can dispatch this if the user wants
+    // to trigger it manually
+    const [lastExternalEvent, setLastExternalEvent] = useState<CustomEvent>();
     const [contentUpdated, setContentUpdated] = useState(false);
 
-    // Hook the parent window's event dispatch function
     useEffect(() => {
-        // Keep the original function reference for use in our hook. We put it on
-        // the parent window object rather than as a local variable, in order to
-        // preserve it after the current frontend iframe is destroyed.
+        // Keep the original function reference for use in our hook. We put it on the parent window object rather than
+        // as a local variable, in order to preserve it after the current frontend iframe is destroyed.
         if (!parent.window.dispatchEventActual) {
             parent.window.dispatchEventActual = parent.window.dispatchEvent;
         }
 
-        const parentLog = parent.window.console.log;
+        let checkNextEvent = false;
+        let prevWorkflowState;
 
-        let allowNextEvent = false;
+        fetchWorkflowState(contentId).then((workflowState) => {
+            if (workflowState) {
+                prevWorkflowState = workflowState;
+            }
+        });
 
+        // Hook the dispatchEvent function so we can prevent certain events from propagating
         parent.window.dispatchEvent = (event: CustomEvent) => {
             const { type, detail } = event;
 
-            // This event is triggered by Content Studio whenever an operation
-            // is performed on content on the server. On the client side, this
-            // causes the CS UI to refresh for certain operations.
+            console.log(event);
+
+            // This event is triggered by Content Studio whenever an operation is performed on content on the server.
+            // On the client side, this causes the CS UI to refresh for certain operations.
             if (type === 'BatchContentServerEvent') {
-                if (allowNextEvent) {
-                    parentLog('BatchContentServerEvent allowed');
-                    allowNextEvent = false;
+                if (checkNextEvent) {
+                    checkNextEvent = false;
+
+                    fetchWorkflowState(contentId).then((workflowState) => {
+                        console.log('Workflow state: ', workflowState);
+
+                        // If the workflow state has changed, we must dispatch the event in order to trigger an UI
+                        // update for showing the correct publishing action ("Mark as ready" etc)
+                        if (
+                            workflowState &&
+                            workflowState !== prevWorkflowState
+                        ) {
+                            prevWorkflowState = workflowState;
+                            console.log(
+                                'Workflow state changed, dispatching last BatchContentServerEvent'
+                            );
+                            return parent.window.dispatchEventActual(event);
+                        }
+                    });
                 } else if (currentContentDraftDidUpdate(detail, contentId)) {
-                    parentLog('BatchContentServerEvent blocked');
-
+                    console.log(
+                        'External content update detected - showing warning'
+                    );
                     setContentUpdated(true);
-                    setLastEvent(event);
-
-                    return false;
+                    setLastExternalEvent(event);
                 }
+
+                return false;
             }
 
-            // This event is triggered when the current user commits their changes
-            // ('Mark as ready'). We now want to let the next BatchContentServerEvent
-            // through, in order to trigger the expected Content Studio UI response
-            if (type === 'BeforeContentSavedEvent') {
-                parentLog('Allowing next event');
-                allowNextEvent = true;
+            // This event is triggered after the current user has saved their content, either via applying changes to
+            // a component, or marking the content as ready
+            if (type === 'AfterContentSavedEvent') {
+                console.log(
+                    'Content saved, checking next BatchContentServerEvent event'
+                );
+                checkNextEvent = true;
             }
 
             return parent.window.dispatchEventActual(event);
@@ -99,9 +128,11 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
                             onClick={(e) => {
                                 e.preventDefault();
                                 setContentUpdated(false);
-                                if (lastEvent) {
-                                    lastEvent.detail.alwaysAllow = true;
-                                    parent.window.dispatchEvent(lastEvent);
+                                if (lastExternalEvent) {
+                                    lastExternalEvent.detail.alwaysAllow = true;
+                                    parent.window.dispatchEvent(
+                                        lastExternalEvent
+                                    );
                                 }
                             }}
                         >
