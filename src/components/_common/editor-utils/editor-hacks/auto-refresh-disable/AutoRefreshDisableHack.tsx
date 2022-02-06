@@ -72,7 +72,7 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
 
             // This event is triggered by Content Studio whenever an operation is performed on content on the server.
             // On the client side, this causes the CS UI to refresh for certain operations.
-            if (type === 'BatchContentServerEvent') {
+            if (type === 'BatchContentServerEvent' && !detail.alwaysAllow) {
                 if (checkNextEvent) {
                     checkNextEvent = false;
 
