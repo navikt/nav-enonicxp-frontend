@@ -6,8 +6,8 @@ import RSS from 'rss';
 interface feedItem {
     title: string;
     url: string;
-    pubDate: string;
-    description: string;
+    pubDate?: string;
+    description?: string;
 }
 
 // Misc config settings
@@ -61,7 +61,7 @@ const fetchRSSFeedAndUpdateCache = async (url: string) => {
         language: 'no',
         pubDate: Date.now(),
     });
-    jsonFeed.forEach((item)=>{
+    jsonFeed.forEach((item:feedItem)=>{
         rssFeed.item(item);
     });
     const xml = rssFeed.xml({indent: true});
