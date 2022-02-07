@@ -35,7 +35,9 @@ export const PageWrapper = (props: Props) => {
     const router = useRouter();
 
     useEffect(() => {
-        fetchAndSetAuthStatus();
+        if (!editorView) {
+            fetchAndSetAuthStatus();
+        }
 
         onBreadcrumbClick((breadcrumb) =>
             router.push(getInternalRelativePath(breadcrumb.url, !!editorView))
