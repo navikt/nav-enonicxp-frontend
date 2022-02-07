@@ -8,25 +8,49 @@ import { Branch } from '../../../../../types/branch';
 import { fetchCsContentApi, ContentWorkflowState } from '../EditorHacks';
 import style from './AutoRefreshDisableHack.module.scss';
 
+type ContentItem = {
+    id: string;
+    branch: Branch;
+    path: {
+        refString: string;
+    };
+};
+
 type BatchContentServerEventDetail = {
-    items?: Array<{ id: string; branch: Branch }>;
+    items?: ContentItem[];
+    // We add this field as true to the event detail when an event should be
+    // dispatched by the user via the alertbox dialog
     alwaysAllow?: boolean;
 };
 
 const currentContentDraftDidUpdate = (
-    detail: BatchContentServerEventDetail,
+    eventDetail: BatchContentServerEventDetail,
     contentId: string
 ) =>
-    detail &&
-    !detail.alwaysAllow &&
-    detail.items?.some(
+    eventDetail?.items?.some(
         (item) => item.id === contentId && item.branch === 'draft'
+    );
+
+// New content objects are named '__unnamed__<uuid>' before they are given an actual
+// name in the editor. We check for this to ensure events are dispatched correctly for
+// newly created contents
+const contentNamePlaceholderPrefix = '__unnamed__';
+
+const shouldDispatchBatchContentServerEvent = (
+    eventDetail: BatchContentServerEventDetail,
+    contentId: string
+) =>
+    eventDetail?.items?.some(
+        (item) =>
+            item.id === contentId &&
+            (eventDetail.alwaysAllow ||
+                item.path.refString.includes(contentNamePlaceholderPrefix))
     );
 
 const fetchWorkflowState = async (
     contentId: string
 ): Promise<ContentWorkflowState | null> =>
-    fetchCsContentApi(contentId).then((json) => json.workflow.state);
+    fetchCsContentApi(contentId).then((res) => res?.workflow.state);
 
 /*
  * Prevents refresh of the frontend iframe and component editor when changes are
@@ -68,12 +92,15 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
         parent.window.dispatchEvent = (event: CustomEvent) => {
             const { type, detail } = event;
 
-            console.log(event);
+            console.log(type, JSON.stringify(detail));
 
             // This event is triggered by Content Studio whenever an operation is performed on content on the server.
             // On the client side, this causes the CS UI to refresh for certain operations. We generally don't want
             // this refresh to happen, except when it is necessary for updating the workflow state in the UI
-            if (type === 'BatchContentServerEvent' && !detail.alwaysAllow) {
+            if (
+                type === 'BatchContentServerEvent' &&
+                !shouldDispatchBatchContentServerEvent(detail, contentId)
+            ) {
                 if (checkNextEvent) {
                     checkNextEvent = false;
 
