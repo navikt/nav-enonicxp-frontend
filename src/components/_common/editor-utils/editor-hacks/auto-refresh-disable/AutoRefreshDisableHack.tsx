@@ -2,11 +2,26 @@ import { useEffect, useState } from 'react';
 import { AlertBox } from '../../../alert-box/AlertBox';
 import { EditorLinkWrapper } from '../../editor-link-wrapper/EditorLinkWrapper';
 import { Button } from '../../../button/Button';
-import { ClearIcon } from '../../../../pages/error-page/errorcode-content/clear-icon/ClearIcon';
+import { Close } from '@navikt/ds-icons';
 import { LenkeInline } from '../../../lenke/LenkeInline';
 import { Branch } from '../../../../../types/branch';
 import { fetchCsContentApi, ContentWorkflowState } from '../EditorHacks';
 import style from './AutoRefreshDisableHack.module.scss';
+
+// From lib-admin-ui
+enum NodeServerChangeType {
+    UNKNOWN,
+    PUBLISH,
+    DUPLICATE,
+    CREATE,
+    UPDATE,
+    DELETE,
+    PENDING,
+    RENAME,
+    SORT,
+    MOVE,
+    UPDATE_PERMISSIONS,
+}
 
 type ContentItem = {
     id: string;
@@ -16,11 +31,13 @@ type ContentItem = {
     };
 };
 
+// Incomplete type, only the fields we use are specified here
 type BatchContentServerEventDetail = {
+    type: NodeServerChangeType;
     items?: ContentItem[];
-    // We add this field as true to the event detail when an event should be
-    // dispatched by the user via the alertbox dialog
-    alwaysAllow?: boolean;
+    // We add this field to the event detail when an event should be
+    // dispatched on behalf of the user via the alertbox dialog
+    userTriggered?: true;
 };
 
 const currentContentDraftDidUpdate = (
@@ -36,6 +53,8 @@ const currentContentDraftDidUpdate = (
 // newly created contents
 const contentNamePlaceholderPrefix = '__unnamed__';
 
+// We only want this event to dispatch immediately if it includes the current content AND the event was either triggered
+// by the user, OR from a publish action, OR if the content was newly created
 const shouldDispatchBatchContentServerEvent = (
     eventDetail: BatchContentServerEventDetail,
     contentId: string
@@ -43,7 +62,8 @@ const shouldDispatchBatchContentServerEvent = (
     eventDetail?.items?.some(
         (item) =>
             item.id === contentId &&
-            (eventDetail.alwaysAllow ||
+            (eventDetail.type === NodeServerChangeType.PUBLISH ||
+                eventDetail.userTriggered ||
                 item.path.refString.includes(contentNamePlaceholderPrefix))
     );
 
@@ -92,7 +112,7 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
         parent.window.dispatchEvent = (event: CustomEvent) => {
             const { type, detail } = event;
 
-            console.log(type, JSON.stringify(detail));
+            console.log(type, detail);
 
             // This event is triggered by Content Studio whenever an operation is performed on content on the server.
             // On the client side, this causes the CS UI to refresh for certain operations. We generally don't want
@@ -131,11 +151,14 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
                 return false;
             }
 
-            // This event is triggered after the current user has saved their content, either via applying changes to
-            // a component, or marking the content as ready
-            if (type === 'AfterContentSavedEvent') {
+            // This event is triggered after the current user has commited their changes, either via applying changes
+            // to a component, or marking the content as ready, or publishing the content
+            if (
+                type === 'AfterContentSavedEvent' ||
+                type === 'ContentPublishPromptEvent'
+            ) {
                 console.log(
-                    'Content saved, checking next BatchContentServerEvent event'
+                    'Changes were committed, checking next BatchContentServerEvent'
                 );
                 checkNextEvent = true;
             }
@@ -157,7 +180,8 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
                                 e.preventDefault();
                                 setContentUpdated(false);
                                 if (lastExternalEvent) {
-                                    lastExternalEvent.detail.alwaysAllow = true;
+                                    lastExternalEvent.detail.userTriggered =
+                                        true;
                                     parent.window.dispatchEvent(
                                         lastExternalEvent
                                     );
@@ -175,7 +199,7 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
                                 setContentUpdated(false);
                             }}
                         >
-                            <ClearIcon />
+                            <Close />
                         </Button>
                     </EditorLinkWrapper>
                 </AlertBox>
