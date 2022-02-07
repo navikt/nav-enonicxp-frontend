@@ -104,7 +104,7 @@ export const PageWrapper = (props: Props) => {
 
     return (
         <div className={'app-container'}>
-            <EditorHacks {...content} />
+            <EditorHacks content={content} />
             <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
             <TopContainer content={content} />

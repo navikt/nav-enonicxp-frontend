@@ -37,7 +37,11 @@ export const fetchCsContentApi = async (
  *
  * */
 
-export const EditorHacks = (content: ContentProps) => {
+type Props = {
+    content: ContentProps;
+};
+
+export const EditorHacks = ({ content }: Props) => {
     const { editorView, _id } = content;
 
     if (editorView !== 'edit') {
