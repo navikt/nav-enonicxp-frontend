@@ -32,8 +32,8 @@ export const fetchCsContentApi = async (
         });
 
 /*
- * This contains ugly "fixes" to improve the experiences for Content Studio
- * editor users :)
+ * This contains various Quality of Life fixes to improve the experiences for
+ * Content Studio editor users
  *
  * */
 
