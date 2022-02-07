@@ -1,0 +1,16 @@
+@use '../../../common' as common;
+
+.contactInformationPage {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.content {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    width: 37.5rem;
+}
+.editorAlert {
+    margin-bottom: 2rem;
+}

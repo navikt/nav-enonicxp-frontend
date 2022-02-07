@@ -3,7 +3,7 @@ import { BEM, classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
 import { formatDate } from '../../../../utils/datetime';
 import { ContentType } from '../../../../types/content-props/_content-common';
-import { BodyLong } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Illustration } from 'components/_common/illustration/Illustration';
@@ -87,19 +87,21 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             <div className={bem('text')}>
                 <PageHeader justify={'left'}>{pageTitle}</PageHeader>
                 {(subTitle || modified) && (
-                    <BodyLong size="small" className={bem('label')}>
-                        {subTitle && subTitle.toUpperCase()}
+                    <div className={bem('tagline-wrapper')}>
+                        {subTitle &&<BodyShort size="small" className={bem('tagline-label')}>
+                            {subTitle.toUpperCase()}
+                        </BodyShort>}
                         {(subTitle && modified) &&
                             <span aria-hidden='true'
-                                  className={'page-modified-info divider'}
+                                className={classNames('page-modified-info', bem('divider'))}
                             >
                                 {'|'}
                             </span>
                         }
-                        {modified &&
-                            <span className={'page-modified-info'}>{modified}</span>
-                        }
-                    </BodyLong>
+                        {modified && <BodyShort size="small"className={bem('modified-label')}>
+                                <span className={'page-modified-info'}>{modified}</span>
+                        </BodyShort>}
+                    </div>
                 )}
             </div>
         </header>
