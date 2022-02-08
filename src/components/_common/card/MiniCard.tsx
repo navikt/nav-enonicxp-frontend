@@ -23,7 +23,7 @@ export const MiniCard = (props: MiniKortProps) => {
     const { link, illustration, type } = props;
     const { text } = link;
 
-    const { isHovering, isPressed, cardInteractionHandler } = useCardState();
+    const { isHovering, cardInteractionHandler } = useCardState();
     const { pageConfig } = usePageConfig();
 
     return (
@@ -37,11 +37,10 @@ export const MiniCard = (props: MiniKortProps) => {
         >
             <>
                 <Illustration
-                    illustration={illustration}
-                    placement={IllustrationPlacements.SMALL_CARD}
                     className="card__illustration"
+                    illustration={illustration}
                     isHovering={isHovering}
-                    isPressed={isPressed}
+                    placement={IllustrationPlacements.SMALL_CARD}
                     preferStaticIllustration={pageConfig.editorView === 'edit'}
                 />
                 <BodyLong className={bem('title')}>{text}</BodyLong>
