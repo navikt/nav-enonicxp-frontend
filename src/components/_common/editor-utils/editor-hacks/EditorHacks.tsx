@@ -10,6 +10,7 @@ export type ContentWorkflowState = 'READY' | 'IN_PROGRESS';
 export type CsContentApiResponse = {
     isPage: boolean;
     workflow: { state: ContentWorkflowState };
+    type: string;
 };
 
 export const fetchCsContentApi = async (

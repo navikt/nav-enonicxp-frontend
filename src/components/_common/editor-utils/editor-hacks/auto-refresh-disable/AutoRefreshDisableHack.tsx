@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { AlertBox } from '../../../alert-box/AlertBox';
 import { EditorLinkWrapper } from '../../editor-link-wrapper/EditorLinkWrapper';
-import { Button } from '../../../button/Button';
-import { Close } from '@navikt/ds-icons';
 import { LenkeInline } from '../../../lenke/LenkeInline';
 import { Branch } from '../../../../../types/branch';
-import { fetchCsContentApi, ContentWorkflowState } from '../EditorHacks';
+import { fetchCsContentApi } from '../EditorHacks';
+import { BodyLong } from '@navikt/ds-react';
 import style from './AutoRefreshDisableHack.module.scss';
 
 // From lib-admin-ui
@@ -67,11 +66,6 @@ const shouldDispatchBatchContentServerEvent = (
                 item.path.refString.includes(contentNamePlaceholderPrefix))
     );
 
-const fetchWorkflowState = async (
-    contentId: string
-): Promise<ContentWorkflowState | null> =>
-    fetchCsContentApi(contentId).then((res) => res?.workflow.state);
-
 /*
  * Prevents refresh of the frontend iframe and component editor when changes are
  * made by other editor users, or programmatically. This behaviour makes for a
@@ -99,11 +93,12 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
             parent.window.dispatchEventActual = parent.window.dispatchEvent;
         }
 
-        let checkNextEvent = false;
+        let userHasCommitedChanges = false;
         let prevWorkflowState;
 
-        fetchWorkflowState(contentId).then((workflowState) => {
-            if (workflowState) {
+        fetchCsContentApi(contentId).then((res) => {
+            const workflowState = res?.workflow.state;
+            if (workflowState !== prevWorkflowState) {
                 prevWorkflowState = workflowState;
             }
         });
@@ -117,36 +112,42 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
             // This event is triggered by Content Studio whenever an operation is performed on content on the server.
             // On the client side, this causes the CS UI to refresh for certain operations. We generally don't want
             // this refresh to happen, except when it is necessary for updating the workflow state in the UI
-            if (
-                type === 'BatchContentServerEvent' &&
-                !shouldDispatchBatchContentServerEvent(detail, contentId)
-            ) {
-                if (checkNextEvent) {
-                    checkNextEvent = false;
+            if (type === 'BatchContentServerEvent') {
+                fetchCsContentApi(contentId).then((res) => {
+                    if (
+                        !res ||
+                        shouldDispatchBatchContentServerEvent(detail, contentId)
+                    ) {
+                        return parent.window.dispatchEventActual(event);
+                    }
 
-                    fetchWorkflowState(contentId).then((workflowState) => {
-                        console.log('Workflow state: ', workflowState);
+                    const workflowState = res.workflow.state;
 
-                        // If the workflow state has changed, we must dispatch the event in order to trigger an UI
-                        // update for showing the correct publishing action ("Mark as ready" etc)
-                        if (
-                            workflowState &&
-                            workflowState !== prevWorkflowState
-                        ) {
+                    // If the user commited their changes, we want to dispatch the event if the workflow state changed,
+                    // in order to trigger the UI update for showing the correct publishing action ("Mark as ready" etc)
+                    if (userHasCommitedChanges) {
+                        userHasCommitedChanges = false;
+
+                        if (workflowState !== prevWorkflowState) {
                             prevWorkflowState = workflowState;
                             console.log(
                                 'Workflow state changed, dispatching last BatchContentServerEvent'
                             );
                             return parent.window.dispatchEventActual(event);
                         }
-                    });
-                } else if (currentContentDraftDidUpdate(detail, contentId)) {
-                    console.log(
-                        'External content update detected - showing warning'
-                    );
-                    setContentUpdated(true);
-                    setLastExternalEvent(event);
-                }
+                    } else if (
+                        // global-value-set is modified with a custom editor and does not trigger the
+                        // usual AfterContentSavedEvent
+                        res.type !== 'no.nav.navno:global-value-set' &&
+                        currentContentDraftDidUpdate(detail, contentId)
+                    ) {
+                        console.log(
+                            'External content update detected - showing warning'
+                        );
+                        setContentUpdated(true);
+                        setLastExternalEvent(event);
+                    }
+                });
 
                 return false;
             }
@@ -160,7 +161,7 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
                 console.log(
                     'Changes were committed, checking next BatchContentServerEvent'
                 );
-                checkNextEvent = true;
+                userHasCommitedChanges = true;
             }
 
             return parent.window.dispatchEventActual(event);
@@ -171,37 +172,29 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
         contentUpdated && (
             <div className={style.warningWrapper}>
                 <AlertBox variant={'warning'} size={'small'}>
-                    {'Innhold på siden ble endret av noen andre.'}
-                    <EditorLinkWrapper>
-                        <LenkeInline
-                            className={style.link}
-                            href={'#'}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setContentUpdated(false);
-                                if (lastExternalEvent) {
-                                    lastExternalEvent.detail.userTriggered =
-                                        true;
-                                    parent.window.dispatchEvent(
-                                        lastExternalEvent
-                                    );
-                                }
-                            }}
-                        >
-                            {'Last inn på nytt'}
-                        </LenkeInline>
-                    </EditorLinkWrapper>
-                    {'for å se endringene.'}
-                    <EditorLinkWrapper>
-                        <Button
-                            variant={'tertiary'}
-                            onClick={() => {
-                                setContentUpdated(false);
-                            }}
-                        >
-                            <Close />
-                        </Button>
-                    </EditorLinkWrapper>
+                    <BodyLong>
+                        {'Innhold på siden ble endret av noen andre.'}
+                        <EditorLinkWrapper>
+                            <LenkeInline
+                                className={style.link}
+                                href={'#'}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setContentUpdated(false);
+                                    if (lastExternalEvent) {
+                                        lastExternalEvent.detail.userTriggered =
+                                            true;
+                                        parent.window.dispatchEvent(
+                                            lastExternalEvent
+                                        );
+                                    }
+                                }}
+                            >
+                                {'Last inn på nytt'}
+                            </LenkeInline>
+                        </EditorLinkWrapper>
+                        {'for å se endringene.'}
+                    </BodyLong>
                 </AlertBox>
             </div>
         )
