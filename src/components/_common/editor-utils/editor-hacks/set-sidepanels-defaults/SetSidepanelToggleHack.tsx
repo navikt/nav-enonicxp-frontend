@@ -28,7 +28,7 @@ export const SetSidepanelToggleHack = ({ contentId }: Props) => {
                 minimizeLeftPanel();
             }
         });
-    }, []);
+    }, [contentId]);
 
     return null;
 };

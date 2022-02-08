@@ -165,7 +165,7 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
 
             return parent.window.dispatchEventActual(event);
         };
-    }, []);
+    }, [contentId]);
 
     return (
         contentUpdated && (
