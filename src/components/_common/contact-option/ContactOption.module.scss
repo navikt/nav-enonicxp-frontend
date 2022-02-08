@@ -1,49 +1,47 @@
 @use '../../../common' as common;
 
 .contactOption {
-    // Set a padding with equivalent negative margins to allow focus-highlight
-    // to break out of the container
-    $outerPadding: 0.6rem;
-    $bottomMargin: 1rem - $outerPadding;
-    padding: $outerPadding;
-    margin: (-$outerPadding) (-$outerPadding) $bottomMargin (-$outerPadding);
     background-color: transparent;
     display: block;
-    text-decoration: none;
     width: 100%;
-    border-radius: common.$border-radius-base;
 
-    &:hover,
-    &:focus {
-        .title {
-            text-decoration: none;
-        }
-
-        .icon {
-            &.chat {
-                background-image: url('/gfx/chat-filled.svg');
-            }
-
-            &.write {
-                background-image: url('/gfx/message-filled.svg');
-            }
-
-            &.call {
-                background-image: url('/gfx/phone-filled.svg');
-            }
-        }
-    }
-
-    &:focus {
-        @include common.panel-focus-mixin();
-    }
-
-    .title {
-        &:global(.navds-heading) {
-            margin-bottom: 1rem;
-        }
+    .link {
         color: common.$navds-semantic-color-link;
-        text-decoration: underline;
+
+        &:focus {
+            .link-content {
+                @include common.panel-focus-mixin();
+            }
+        }
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+
+            .icon {
+                &.chat {
+                    background-image: url('/gfx/chat-filled.svg');
+                }
+
+                &.write {
+                    background-image: url('/gfx/message-filled.svg');
+                }
+
+                &.call {
+                    background-image: url('/gfx/phone-filled.svg');
+                }
+            }
+        }
+    }
+
+    .link-content {
+        // Set a padding with equivalent negative margins to allow focus-highlight
+        // to break out of the container
+        $outerPadding: 0.5rem;
+        $bottomMargin: 1rem - $outerPadding;
+        padding: $outerPadding;
+        margin: (-$outerPadding) (-$outerPadding) $bottomMargin (-$outerPadding);
+        border-radius: common.$border-radius-base;
     }
 
     .icon {
