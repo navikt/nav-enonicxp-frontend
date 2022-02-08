@@ -107,6 +107,8 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
         parent.window.dispatchEvent = (event: CustomEvent) => {
             const { type, detail } = event;
 
+            console.log(type, detail);
+
             // This event is triggered by Content Studio whenever an operation is performed on content on the server.
             // On the client side, this causes the CS UI to refresh for certain operations. We generally don't want
             // this refresh to happen, except when it is necessary for updating the workflow state in the UI
