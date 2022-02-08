@@ -9,13 +9,12 @@ import { TelephoneData } from '../../../types/component-props/parts/contact-opti
 import { classNames } from 'utils/classnames';
 import { dateDiff, formatDate, getCurrentISODate } from 'utils/datetime';
 
-
 import {
     mergeOpeningHours,
     findTodaysOpeningHour,
 } from '../contact-details/contactHelpers';
 
-import style from './ContactOption.module.scss'
+import style from './ContactOption.module.scss';
 
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
@@ -36,7 +35,6 @@ export const CallOption = (props: CallOptionProps) => {
         text,
     } = props;
 
-
     const { language } = usePageConfig();
 
     const getDateTimeTranslations = translator('dateTime', language);
@@ -46,14 +44,14 @@ export const CallOption = (props: CallOptionProps) => {
     const sharedTranslations = getContactTranslations('shared');
 
     const allOpeningHours = mergeOpeningHours(
-        regularOpeningHours.hours,
+        regularOpeningHours?.hours,
         specialOpeningHours?.hours
     );
 
     const findNextOpeningDayAfterToday = () => {
         const todayISO = getCurrentISODate();
         const allDays = mergeOpeningHours(
-            regularOpeningHours.hours,
+            regularOpeningHours?.hours,
             specialOpeningHours?.hours
         );
 
@@ -95,7 +93,9 @@ export const CallOption = (props: CallOptionProps) => {
         const openingTemplate =
             daysToNextOpeningHour === 0 ? todayTemplate : tomorrowTemplate;
 
-        return opensTemplate.replace('{$1}', openingTemplate).replace('{$2}', futureTime);
+        return opensTemplate
+            .replace('{$1}', openingTemplate)
+            .replace('{$2}', futureTime);
     };
 
     const buildOpenInformationText = (openingHours) => {
@@ -107,18 +107,19 @@ export const CallOption = (props: CallOptionProps) => {
         const currentISODate = getCurrentISODate();
         const currentEpoch = Date.now();
 
-        const startOfToday = new Date(
-            `${currentISODate}T00:00:00`
-        ).getTime();
+        const startOfToday = new Date(`${currentISODate}T00:00:00`).getTime();
         const endOfToday = new Date(`${currentISODate}T23:59:59`).getTime();
 
         const opensEpoch = new Date(`${currentISODate}T${from}`).getTime();
         const closesEpoch = new Date(`${currentISODate}T${to}`).getTime();
 
         // Misc opening / closed states
-        const isOpenNow = currentEpoch > opensEpoch && currentEpoch < closesEpoch;
+        const isOpenNow =
+            currentEpoch > opensEpoch && currentEpoch < closesEpoch;
         const isOpeningLaterToday =
-            startOfToday < currentEpoch && endOfToday > currentEpoch && currentEpoch < opensEpoch;
+            startOfToday < currentEpoch &&
+            endOfToday > currentEpoch &&
+            currentEpoch < opensEpoch;
 
         const isClosedForToday =
             (closesEpoch < currentEpoch && closesEpoch < endOfToday) ||
@@ -132,7 +133,7 @@ export const CallOption = (props: CallOptionProps) => {
             const nextOpeningHour = findNextOpeningDayAfterToday();
 
             if (!nextOpeningHour) {
-                return 'no opening hour found'
+                return 'no opening hour found';
             }
 
             const futureOpeningString = buildFutureOpenString(
@@ -156,28 +157,25 @@ export const CallOption = (props: CallOptionProps) => {
                 href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
                 className={style.link}
             >
-                <div
-                    className={classNames(
-                        style.icon,
-                        style.call
-                    )}
-                />
-                <Heading level="2" size="medium" className={style.title}>
-                    {title}
-                </Heading>
+                <div className={style.linkContent}>
+                    <div className={classNames(style.icon, style.call)} />
+                    <Heading level="2" size="medium" className={style.link}>
+                        {title}
+                    </Heading>
+                </div>
             </LenkeBase>
             {alertText && (
                 <Alert variant="warning" inline>
                     {alertText}
                 </Alert>
             )}
-            <BodyLong spacing>
-                {ingress || text}
-            </BodyLong>
+            <BodyLong spacing>{ingress || text}</BodyLong>
             <BodyShort spacing>
-                {process.browser && buildOpenInformationText( // Force client side render only
-                    findTodaysOpeningHour(allOpeningHours)
-                )}
+                {process.browser &&
+                    buildOpenInformationText(
+                        // Force client side render only
+                        findTodaysOpeningHour(allOpeningHours)
+                    )}
             </BodyShort>
             <LenkeBase href={language === 'no' ? contactUrlNO : contactUrlEN}>
                 {sharedTranslations['seeMoreOptions']}
