@@ -70,7 +70,8 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     const context = pathToRoleContext[rolePath];
     const decoratorLanguage = xpLangToDecoratorLang[language];
     const feedbackEnabled = content.data?.feedbackToggle;
-    const chatbotDisabled = content.data?.chatbotToggle === false;
+    const chatbotDisabled =
+        content.data?.chatbotToggle === false || content.editorView === 'edit';
 
     return {
         ...defaultParams,

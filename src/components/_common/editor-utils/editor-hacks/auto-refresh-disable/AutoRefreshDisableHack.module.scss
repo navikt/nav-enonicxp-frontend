@@ -8,11 +8,6 @@
     width: 100%;
     z-index: 2147483601; // +1 from the content studio overlay
 
-    :global(.navds-alert__wrapper) {
-        display: flex;
-        align-items: center;
-    }
-
     .link {
         margin: 0 0.15rem;
     }
