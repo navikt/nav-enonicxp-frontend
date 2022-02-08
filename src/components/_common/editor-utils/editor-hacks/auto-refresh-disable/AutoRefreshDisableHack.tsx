@@ -7,6 +7,16 @@ import { fetchCsContentApi } from '../EditorHacks';
 import { BodyLong } from '@navikt/ds-react';
 import style from './AutoRefreshDisableHack.module.scss';
 
+/*
+ * Prevent unnecessary reloads of the frontend iframe and component editor. This may happen when the content is changed
+ * by the current user, or by other users, or programmatically via a task or service. This behaviour makes for a
+ * confusing user experience, and may sometimes cause the user to lose their unsaved work.
+ *
+ * When external changes are detected, we show an alert-box which notifies of changes having occured, and offer a
+ * manual reload option.
+ *
+ * */
+
 // From lib-admin-ui
 enum NodeServerChangeType {
     UNKNOWN,
@@ -66,16 +76,6 @@ const shouldDispatchBatchContentServerEvent = (
                 item.path.refString.includes(contentNamePlaceholderPrefix))
     );
 
-/*
- * Prevents refresh of the frontend iframe and component editor when changes are
- * made by other editor users, or programmatically. This behaviour makes for a
- * confusing user experience, and may cause the user to lose their unsaved work.
- *
- * Instead of refreshing the view automatically, we show an alert-box which
- * notifies of changes having occured, and offers a manual refresh option.
- *
- * */
-
 type Props = {
     contentId: string;
 };
@@ -107,8 +107,6 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
         parent.window.dispatchEvent = (event: CustomEvent) => {
             const { type, detail } = event;
 
-            console.log(type, detail);
-
             // This event is triggered by Content Studio whenever an operation is performed on content on the server.
             // On the client side, this causes the CS UI to refresh for certain operations. We generally don't want
             // this refresh to happen, except when it is necessary for updating the workflow state in the UI
@@ -121,12 +119,11 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
                         return parent.window.dispatchEventActual(event);
                     }
 
-                    const workflowState = res.workflow.state;
-
                     // If the user commited their changes, we want to dispatch the event if the workflow state changed,
                     // in order to trigger the UI update for showing the correct publishing action ("Mark as ready" etc)
                     if (userHasCommitedChanges) {
                         userHasCommitedChanges = false;
+                        const workflowState = res.workflow.state;
 
                         if (workflowState !== prevWorkflowState) {
                             prevWorkflowState = workflowState;
