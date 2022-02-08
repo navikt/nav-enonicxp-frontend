@@ -3,6 +3,20 @@ import { AlertBoxPartProps } from 'types/component-props/parts/alert-box';
 import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
 import { AlertBox } from '../../_common/alert-box/AlertBox';
 import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
+import { AlertProps } from '@navikt/ds-react';
+
+// These types were used by a previous version of the design system component
+// and are still used for the type property on the backend
+type AlertTypeLegacy = 'info' | 'advarsel' | 'feil' | 'suksess';
+
+const legacyTypeToVariant: {
+    [type in AlertTypeLegacy]: AlertProps['variant'];
+} = {
+    info: 'info',
+    advarsel: 'warning',
+    feil: 'error',
+    suksess: 'success',
+};
 
 export const AlertBoxPart = (props: AlertBoxPartProps) => {
     const { config } = props;
@@ -15,7 +29,7 @@ export const AlertBoxPart = (props: AlertBoxPartProps) => {
 
     return (
         <AlertBox
-            variant={type || 'info'}
+            variant={legacyTypeToVariant[type] || 'info'}
             size={size}
             inline={inline}
             style={{
