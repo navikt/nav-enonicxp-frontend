@@ -1,7 +1,10 @@
-@import (reference) '../../../../common';
-@import (reference) '../../../pages/product-page/ProductPage';
-@import (reference) '../../../pages/situation-page/SituationPage';
-@import (reference) '../../../pages/guide-page/GuidePage';
+@use '../../../../common' as common;
+// @use '../../../pages/product-page/ProductPage' as ProductPage;
+// @import (reference) '../../../pages/product-page/ProductPage';
+// @use '../../../pages/situation-page/SituationPage' as SituationPage;
+// @import (reference) '../../../pages/guide-page/GuidePage';
+
+@use 'sass:string';
 
 .themed-page-header {
     display: flex;
@@ -9,26 +12,28 @@
     background-color: white;
     padding-bottom: 1.5rem;
 
-    .full-width-mixin();
+    @include common.full-width-mixin;
 
     &--situation {
-        box-shadow: 0 -4px 0 @situationPageColor inset;
+        // box-shadow: 0 -4px 0 SituationPage.situationPageColor inset;
+        box-shadow: 0 -4px 0 orange inset;
     }
 
     &--product {
-        box-shadow: 0 -4px 0 @productPageColor inset;
+        // box-shadow: 0 -4px 0 ProductPage.$productPageColor inset;
+        box-shadow: 0 -4px 0 green inset;
     }
 
     &--guide {
-        box-shadow: 0 -4px 0 @guidePageColor inset;
+        // box-shadow: 0 -4px 0 @guidePageColor inset;
+        box-shadow: 0 -4px 0 blue inset;
     }
 
     &__illustration {
-        width: #px-to-rem(80) [];
-        height: #px-to-rem(80) [];
+        width: 5rem;
+        height: 5rem;
         margin-right: 2rem;
         pointer-events: none;
-
     }
 
     &__text {
@@ -40,17 +45,18 @@
         display: flex;
         flex-wrap: wrap;
 
-        @media @mq-screen-mobile {
+        @media #{common.$mq-screen-mobile} {
             flex-direction: column;
         }
     }
 
-    &__tagline-label.navds-body-short, &__modified-label.navds-body-short {
-        font-size: #px-to-rem(14) [];;
+    &__tagline-label,
+    &__modified-label {
+        font-size: 0.875rem;
     }
 
-    &__tagline-label.navds-body-short {
-        @media @mq-screen-mobile {
+    &__tagline-label {
+        @media #{common.$mq-screen-mobile} {
             margin-bottom: 1rem;
         }
     }
@@ -58,7 +64,7 @@
     &__divider {
         padding: 0 1rem;
 
-        @media @mq-screen-mobile {
+        @media #{common.$mq-screen-mobile} {
             display: none;
         }
     }
@@ -66,7 +72,7 @@
     // Following section is a temp fix until we determine responsive breakpoints
     // and where the responsibility for this lies (us vs design system)
     // (2rem is the correct mobile page header size (2xl) according to Figma (12. july))
-    @media @mq-screen-mobile {
+    @media #{common.$mq-screen-mobile} {
         .page-header {
             padding-top: 0;
             .navds-title--2xl {
@@ -74,7 +80,7 @@
             }
         }
 
-        &__illustration.illustration__image {
+        &__illustration {
             display: none;
         }
     }

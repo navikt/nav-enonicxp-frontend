@@ -1,5 +1,5 @@
 import React from 'react';
-import { BEM, classNames } from '../../../../utils/classnames';
+import { classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
 import { formatDate } from '../../../../utils/datetime';
 import { ContentType } from '../../../../types/content-props/_content-common';
@@ -11,18 +11,23 @@ import { IllustrationPlacements } from 'types/illustrationPlacements';
 import {
     ProductPageProps,
     SituationPageProps,
-    GuidePageProps
+    GuidePageProps,
 } from '../../../../types/content-props/dynamic-page-props';
 import { buildTaxonomyString } from 'utils/string';
 
-const bem = BEM('themed-page-header');
+import style from './ThemedPageHeader.module.scss';
 
 type Props = {
     contentProps: SituationPageProps | ProductPageProps | GuidePageProps;
 };
 
 export const ThemedPageHeader = ({ contentProps }: Props) => {
-    const { __typename: pageType, displayName, modifiedTime, data } = contentProps;
+    const {
+        __typename: pageType,
+        displayName,
+        modifiedTime,
+        data,
+    } = contentProps;
     const { title, illustration, taxonomy } = data;
     const { language } = usePageConfig();
     const getSubtitle = () => {
@@ -34,73 +39,82 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             const getTaxonomyLabel = translator('situations', language);
             return getTaxonomyLabel('employerNeedToKnow');
         }
-
         if (pageType === ContentType.GuidePage) {
             const getTaxonomyLabel = translator('guides', language);
             return getTaxonomyLabel('howTo');
         }
-
         return buildTaxonomyString(taxonomy, language);
     };
     const getDatesLabel = translator('dates', language);
     const getPageTypeClass = (_pageType: ContentType) => {
-        if (_pageType === ContentType.EmployerSituationPage || _pageType === ContentType.SituationPage) {
-            return 'situation'
+        if (
+            _pageType === ContentType.EmployerSituationPage ||
+            _pageType === ContentType.SituationPage
+        ) {
+            return 'Situation';
         }
-
         if (_pageType === ContentType.ProductPage) {
-            return 'product'
+            return 'Product';
         }
-
         if (_pageType === ContentType.GuidePage) {
-            return 'guide'
+            return 'Guide';
         }
-
-        return ''
+        return '';
     };
     const pageTitle = title || displayName;
     const subTitle = getSubtitle();
-    const modified = getDatesLabel('lastChanged') + ' ' + formatDate(modifiedTime, language, true);
-
-    // This is a temporaty fix, especially for "Arbeidsavklaringspenger".
-    // Will work with design to find solution for how long titles and illustration can stack better on mobile.
-    const hasRoomForIllustrationOnMobile = pageTitle
-        .split(' ')
-        .every((word) => word.length < 18);
+    const modified =
+        getDatesLabel('lastChanged') +
+        ' ' +
+        formatDate(modifiedTime, language, true);
 
     return (
         <header
             className={classNames(
-                bem(),
-                bem(undefined,getPageTypeClass(pageType))
+                style.themedPageHeader,
+                style[`themedPageHeader${getPageTypeClass(pageType)}`]
             )}
         >
             <Illustration
                 illustration={illustration}
                 placement={IllustrationPlacements.PRODUCT_PAGE_HEADER}
-                className={classNames(
-                    bem('illustration'),
-                    !hasRoomForIllustrationOnMobile &&
-                        bem('illustration', 'mobile-hidden')
-                )}
+                className={style.themedPageHeader__illustration}
             />
-            <div className={bem('text')}>
+            <div className={style.themedPageHeader__text}>
                 <PageHeader justify={'left'}>{pageTitle}</PageHeader>
                 {(subTitle || modified) && (
-                    <div className={bem('tagline-wrapper')}>
-                        {subTitle &&<BodyShort size="small" className={bem('tagline-label')}>
-                            {subTitle.toUpperCase()}
-                        </BodyShort>}
-                        {(subTitle && modified) &&
-                            <span aria-hidden='true'
-                                className={classNames('page-modified-info', bem('divider'))}
+                    <div className={style.themedPageHeader__taglineWrapper}>
+                        {subTitle && (
+                            <BodyShort
+                                size="small"
+                                className={style.themedPageHeader__taglineLabel}
+                            >
+                                {subTitle.toUpperCase()}
+                            </BodyShort>
+                        )}
+                        {subTitle && modified && (
+                            <span
+                                aria-hidden="true"
+                                className={classNames(
+                                    'page-modified-info',
+                                    style.themedPageHeader__divider
+                                )}
                             >
                                 {'|'}
                             </span>
-                        }
-                        {modified && <BodyShort size="small"className={bem('modified-label')}>
-                                <span className={'page-modified-info'}>{modified}</span>
-                        </BodyShort>}
+                        )}
+                        {modified && (
+                            <BodyShort
+                                size="small"
+                                className={
+                                    style.themedPageHeader__modifiedLabel
+                                }
+                            >
+                                <span className={'page-modified-info'}>
+                                    {modified}
+                                </span>
+                            </BodyShort>
+                        )}
                     </div>
                 )}
             </div>

@@ -28,6 +28,17 @@ $border-radius-small: 2px;
 $border-radius-base: 4px;
 $border-radius-large: 6px;
 
+// Makes the element cover the entire screen-width
+@mixin full-width-mixin() {
+    $side-width: calc((100vw - 100%) / 2);
+    $side-width-negative: calc((100vw - 100%) / -2);
+
+    padding-left: $side-width;
+    padding-right: $side-width;
+    margin-left: $side-width-negative;
+    margin-right: $side-width-negative;
+}
+
 @mixin panel-focus-mixin($inset: true) {
     outline: unset;
     box-shadow: 0 0 0 3px if($inset, inset, null) $navds-semantic-color-focus;
