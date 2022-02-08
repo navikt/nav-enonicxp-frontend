@@ -1,3 +1,5 @@
+@use '../../../common' as common;
+
 .header {
     display: flex;
     flex-direction: column;
@@ -18,7 +20,7 @@
     &__copy-link {
         display: flex;
         text-decoration: none;
-        font-size: #px-to-rem(14) [];
+        font-size: common.px-to-rem(14);
         padding: 0.8rem 0.8rem 0.8rem 0;
         align-items: center;
         white-space: nowrap;
@@ -44,12 +46,12 @@
         display: flex;
         margin-left: 1rem;
         visibility: hidden;
-        background-color: @navds-global-color-green-100;
+        background-color: common.$navds-global-color-green-100;
         color: black;
         padding: 0.5rem 0.75rem;
-        border: 1px @navds-global-color-green-500 solid;
+        border: 1px common.$navds-global-color-green-500 solid;
 
-        border-radius: @border-radius-small;
+        border-radius: common.$border-radius-small;
         pointer-events: none;
         opacity: 0;
         transition-property: visibility, opacity;

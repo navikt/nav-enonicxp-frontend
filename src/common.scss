@@ -33,11 +33,7 @@ $border-radius-large: 6px;
     box-shadow: 0 0 0 3px if($inset, inset, null) $navds-semantic-color-focus;
 }
 
-@function withUnit($value, $unit) {
-    $result: "#{$value}#{unit}"
-}
-
 @function px-to-rem($px) {
-    $rem: withUnit($px * $pixel-size-rem, 'rem');
+    $result: $px * $pixel-size-rem;
+    @return #{$result}rem;
 }
-

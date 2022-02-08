@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Heading } from '@navikt/ds-react';
 
-import { BEM, classNames } from '../../../utils/classnames';
+import { classNames } from '../../../utils/classnames';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
@@ -9,7 +9,7 @@ import { Level, levelToSize, Size } from '../../../types/typo-style';
 import { PublicImage } from '../image/PublicImage';
 import { HeaderCommonConfig } from '../../../types/component-props/_mixins';
 
-const bem = BEM('header');
+import style from './Header.module.scss';
 
 const linkCopiedDisplayTimeMs = 2500;
 
@@ -65,11 +65,15 @@ export const Header = ({
 
     const fallbackSizeByLevel = levelToSize[level] || 'large';
 
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
     return (
         <div
             className={classNames(
-                bem(),
-                justify && bem(undefined, justify),
+                style.header,
+                style[`header${capitalizeFirstLetter(justify)}`],
                 className
             )}
             id={setId ? anchorId : undefined}
@@ -79,23 +83,23 @@ export const Header = ({
                 {children}
             </Heading>
             {anchor && !hideCopyButton && (
-                <span className={bem('copy-link-container')}>
+                <span className={style.header__copyLinkContainer}>
                     <a
                         href={anchor}
                         onClick={copyLinkToClipboard}
-                        className={bem('copy-link')}
+                        className={style.header__copyLink}
                     >
                         <PublicImage
                             imagePath={'/gfx/link.svg'}
                             alt={''}
-                            className={bem('anchor-icon')}
+                            className={style.header__anchorIcon}
                         />
                         {getLabel('copyLink')}
                     </a>
                     <span
                         className={classNames(
-                            bem('copy-tooltip'),
-                            showCopyTooltip && bem('copy-tooltip', 'visible')
+                            style.header__copyTooltip,
+                            showCopyTooltip && style.header__copyTooltipVisible
                         )}
                         aria-live="assertive"
                     >
