@@ -7,7 +7,6 @@ interface IllustrationAnimatedProps {
     illustration: AnimatedIconsProps;
     className: string;
     isHovering: boolean;
-    isPressed: boolean;
 }
 
 const bem = BEM('illustration');
@@ -16,7 +15,6 @@ export const IllustrationAnimated = ({
     illustration,
     className,
     isHovering,
-    isPressed,
 }: IllustrationAnimatedProps) => {
     // Need baseClassName to scope this component
     // as it's being used throughout the page.
@@ -25,7 +23,6 @@ export const IllustrationAnimated = ({
     const lottiePlayer = useRef(null);
 
     const lottieDataHover = illustration.data?.lottieHover?.mediaText;
-    const lottieDataActive = illustration.data?.lottieActive?.mediaText;
 
     const updateLottieContainer = (lottieData: string) => {
         const container = lottieContainer.current;
@@ -58,18 +55,8 @@ export const IllustrationAnimated = ({
     }, [isHovering, direction]);
 
     useEffect(() => {
-        const lottieData = isPressed ? lottieDataActive : lottieDataHover;
-        updateLottieContainer(lottieData);
-        /* eslint-disable-next-line */
-    }, []);
-
-    useEffect(() => {
-        const lottieData = isPressed ? lottieDataActive : lottieDataHover;
-        updateLottieContainer(lottieData);
-        if (isPressed) {
-            lottiePlayer.current.play();
-        }
-    }, [isPressed, lottieDataActive, lottieDataHover]);
+        updateLottieContainer(lottieDataHover);
+    }, [lottieDataHover]);
 
     if (!illustration) {
         return null;

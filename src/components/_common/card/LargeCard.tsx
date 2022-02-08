@@ -29,7 +29,7 @@ export const LargeCard = (props: StortKortProps) => {
         illustration &&
         (type === CardType.Product || type === CardType.Situation);
 
-    const { isHovering, isPressed, cardInteractionHandler } = useCardState();
+    const { isHovering, cardInteractionHandler } = useCardState();
     const { pageConfig } = usePageConfig();
 
     return (
@@ -48,7 +48,6 @@ export const LargeCard = (props: StortKortProps) => {
                         placement={IllustrationPlacements.LARGE_CARD}
                         className={bem('illustration')}
                         isHovering={isHovering}
-                        isPressed={isPressed}
                         preferStaticIllustration={
                             pageConfig.editorView === 'edit'
                         }
