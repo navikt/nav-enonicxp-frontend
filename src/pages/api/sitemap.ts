@@ -2,11 +2,13 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { fetchWithTimeout } from 'utils/fetch-utils';
 import Cache from 'node-cache';
+import { apiErrorHandler } from '../../utils/api-error-handler';
 
 interface SitemapLanguageVersion {
     language: string;
     url: string;
 }
+
 interface SitemapEntity {
     url: string;
     modifiedTime: string;
@@ -34,9 +36,9 @@ const escapeURL = (url: string) => {
 const buildLanguageAlternate = (languageVersions: SitemapLanguageVersion[]) => {
     let languageLink = '';
     languageVersions.forEach((version) => {
-        languageLink = `${languageLink}<xhtml:link rel="alternate" hreflang="${
+        languageLink = `${languageLink}<xhtml:link rel='alternate' hreflang='${
             version.language
-        }" href="${escapeURL(version.url)}" />`;
+        }' href='${escapeURL(version.url)}' />`;
     });
 
     return languageLink;
@@ -116,22 +118,20 @@ const getSitemapFromCache = async () => {
     return cache.get(cacheKey);
 };
 
-const handler = async (
-    req: NextApiRequest,
-    res: NextApiResponse
-): Promise<void> => {
-    const sitemapContent = await getSitemapFromCache();
+const handler = async (req: NextApiRequest, res: NextApiResponse) =>
+    apiErrorHandler(req, res, async () => {
+        const sitemapContent = await getSitemapFromCache();
 
-    res.setHeader('X-Robots-Tag', 'noindex');
+        res.setHeader('X-Robots-Tag', 'noindex');
 
-    if (!sitemapContent) {
-        return res
-            .status(503)
-            .send('Server error: sitemap is currently unavailable');
-    }
+        if (!sitemapContent) {
+            return res
+                .status(503)
+                .send('Server error: sitemap is currently unavailable');
+        }
 
-    res.setHeader('Content-Type', 'application/xml');
-    res.status(200).end(sitemapContent);
-};
+        res.setHeader('Content-Type', 'application/xml');
+        res.status(200).end(sitemapContent);
+    });
 
 export default handler;

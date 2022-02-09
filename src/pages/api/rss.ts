@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { fetchWithTimeout } from 'utils/fetch-utils';
 import Cache from 'node-cache';
 import RSS from 'rss';
+import { apiErrorHandler } from '../../utils/api-error-handler';
 
 interface feedItem {
     title: string;
@@ -61,10 +62,10 @@ const fetchRSSFeedAndUpdateCache = async (url: string) => {
         language: 'no',
         pubDate: Date.now(),
     });
-    jsonFeed.forEach((item:feedItem)=>{
+    jsonFeed.forEach((item: feedItem) => {
         rssFeed.item(item);
     });
-    const xml = rssFeed.xml({indent: true});
+    const xml = rssFeed.xml({ indent: true });
     saveToCache(xml);
     return xml;
 };
@@ -88,20 +89,18 @@ const getRSSFeedFromCache = async () => {
     return cache.get(cacheKey);
 };
 
-const handler = async (
-    req: NextApiRequest,
-    res: NextApiResponse
-): Promise<void> => {
-    const rssFeed = await getRSSFeedFromCache();
+const handler = async (req: NextApiRequest, res: NextApiResponse) =>
+    apiErrorHandler(req, res, async () => {
+        const rssFeed = await getRSSFeedFromCache();
 
-    if (!rssFeed) {
-        return res
-            .status(503)
-            .send('Server error: RSS-feed is currently unavailable');
-    }
+        if (!rssFeed) {
+            return res
+                .status(503)
+                .send('Server error: RSS-feed is currently unavailable');
+        }
 
-    res.setHeader('Content-Type', 'application/xml');
-    res.status(200).end(rssFeed);
-};
+        res.setHeader('Content-Type', 'application/xml');
+        return res.status(200).end(rssFeed);
+    });
 
 export default handler;
