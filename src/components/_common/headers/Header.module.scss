@@ -65,15 +65,15 @@
         }
     }
 
-    &--left {
+    &__left {
         align-items: flex-start;
     }
 
-    &--center {
+    &__center {
         align-items: center;
     }
 
-    &--right {
+    &__right {
         align-items: flex-end;
     }
 }

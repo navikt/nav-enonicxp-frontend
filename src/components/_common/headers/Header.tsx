@@ -65,15 +65,11 @@ export const Header = ({
 
     const fallbackSizeByLevel = levelToSize[level] || 'large';
 
-    const capitalizeFirstLetter = (string) => {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    };
-
     return (
         <div
             className={classNames(
                 style.header,
-                style[`header${capitalizeFirstLetter(justify)}`],
+                style[`header__${justify}`],
                 className
             )}
             id={setId ? anchorId : undefined}
