@@ -123,7 +123,10 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
 
                     // If the user commited their changes, we want to dispatch the event if the workflow state changed,
                     // in order to trigger the UI update for showing the correct publishing action ("Mark as ready" etc)
-                    if (userHasCommitedChanges) {
+                    if (
+                        userHasCommitedChanges ||
+                        res.type !== 'no.nav.navno:global-value-set'
+                    ) {
                         userHasCommitedChanges = false;
                         const workflowState = res.workflow.state;
 
@@ -135,9 +138,6 @@ export const AutoRefreshDisableHack = ({ contentId }: Props) => {
                             return parent.window.dispatchEventActual(event);
                         }
                     } else if (
-                        // global-value-set is modified with a custom editor and does not trigger the
-                        // usual AfterContentSavedEvent
-                        res.type !== 'no.nav.navno:global-value-set' &&
                         currentContentDraftDidUpdate(detail, contentId)
                     ) {
                         console.log(
