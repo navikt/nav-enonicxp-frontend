@@ -1,7 +1,8 @@
-import { GetServerSideProps } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { fetchWithTimeout } from 'utils/fetch-utils';
 import Cache from 'node-cache';
 import RSS from 'rss';
+import { apiErrorHandler } from '../../utils/api-error-handler';
 
 interface feedItem {
     title: string;
@@ -88,25 +89,18 @@ const getRSSFeedFromCache = async () => {
     return cache.get(cacheKey);
 };
 
-// Rewriting to an api-route causes the req/res objects to be empty when triggered by
-// prefetching from the client, so we do it like this instead
-export const rssFeedApi = async ({ res }) => {
-    const rssFeed = await getRSSFeedFromCache();
+const handler = async (req: NextApiRequest, res: NextApiResponse) =>
+    apiErrorHandler(req, res, async () => {
+        const rssFeed = await getRSSFeedFromCache();
 
-    if (!rssFeed) {
-        res.statusCode = 503;
-        res.end('Server error: RSS-feed is currently unavailable');
-    } else {
-        res.statusCode = 200;
+        if (!rssFeed) {
+            return res
+                .status(503)
+                .send('Server error: RSS-feed is currently unavailable');
+        }
+
         res.setHeader('Content-Type', 'application/xml');
-        res.end(rssFeed);
-    }
+        return res.status(200).end(rssFeed);
+    });
 
-    return { props: {} };
-};
-
-export const getServerSideProps: GetServerSideProps = rssFeedApi;
-
-const DummyComponent = () => null;
-
-export default DummyComponent;
+export default handler;

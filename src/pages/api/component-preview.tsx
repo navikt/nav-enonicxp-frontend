@@ -11,6 +11,7 @@ import {
 import globalState from '../../globalState';
 
 import { setPageConfigAction } from '../../store/slices/pageConfig';
+import { apiErrorHandler } from '../../utils/api-error-handler';
 
 const dummyPageProps: ContentProps = {
     __typename: ContentType.Site,
@@ -24,40 +25,41 @@ const dummyPageProps: ContentProps = {
     editorView: 'edit',
 };
 
-const postHandler = async (req, res) => {
-    if (req.method !== 'POST') {
-        return res.status(405).send({ message: 'Method not allowed' });
-    }
+const postHandler = async (req, res) =>
+    apiErrorHandler(req, res, () => {
+        if (req.method !== 'POST') {
+            return res.status(405).send({ message: 'Method not allowed' });
+        }
 
-    if (!req.body?.props) {
-        return res.status(400).send({ message: 'Invalid request' });
-    }
+        if (!req.body?.props) {
+            return res.status(400).send({ message: 'Invalid request' });
+        }
 
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/html');
 
-    globalState.isEditorView = true;
+        globalState.isEditorView = true;
 
-    const props = req.body.props as PartComponentProps;
+        const props = req.body.props as PartComponentProps;
 
-    mockStore.dispatch(
-        setPageConfigAction({
-            pageId: dummyPageProps._id,
-            language: req.body?.props?.language || dummyPageProps.language,
-            editorView: 'edit',
-        })
-    );
+        mockStore.dispatch(
+            setPageConfigAction({
+                pageId: dummyPageProps._id,
+                language: req.body?.props?.language || dummyPageProps.language,
+                editorView: 'edit',
+            })
+        );
 
-    const html = ReactDOMServer.renderToStaticMarkup(
-        <Provider store={mockStore}>
-            <ComponentMapper
-                componentProps={props}
-                pageProps={dummyPageProps}
-            />
-        </Provider>
-    );
+        const html = ReactDOMServer.renderToStaticMarkup(
+            <Provider store={mockStore}>
+                <ComponentMapper
+                    componentProps={props}
+                    pageProps={dummyPageProps}
+                />
+            </Provider>
+        );
 
-    return res.send(html);
-};
+        return res.send(html);
+    });
 
 export default postHandler;
