@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { GetServerSideProps } from 'next';
 import { fetchWithTimeout } from 'utils/fetch-utils';
 import Cache from 'node-cache';
 import RSS from 'rss';
@@ -61,10 +61,10 @@ const fetchRSSFeedAndUpdateCache = async (url: string) => {
         language: 'no',
         pubDate: Date.now(),
     });
-    jsonFeed.forEach((item:feedItem)=>{
+    jsonFeed.forEach((item: feedItem) => {
         rssFeed.item(item);
     });
-    const xml = rssFeed.xml({indent: true});
+    const xml = rssFeed.xml({ indent: true });
     saveToCache(xml);
     return xml;
 };
@@ -88,20 +88,25 @@ const getRSSFeedFromCache = async () => {
     return cache.get(cacheKey);
 };
 
-const handler = async (
-    req: NextApiRequest,
-    res: NextApiResponse
-): Promise<void> => {
+// Rewriting to an api-route causes the req/res objects to be empty when triggered by
+// prefetching from the client, so we do it like this instead
+export const rssFeedApi = async ({ res }) => {
     const rssFeed = await getRSSFeedFromCache();
 
     if (!rssFeed) {
-        return res
-            .status(503)
-            .send('Server error: RSS-feed is currently unavailable');
+        res.statusCode = 503;
+        res.end('Server error: RSS-feed is currently unavailable');
+    } else {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/xml');
+        res.end(rssFeed);
     }
 
-    res.setHeader('Content-Type', 'application/xml');
-    res.status(200).end(rssFeed);
+    return { props: {} };
 };
 
-export default handler;
+export const getServerSideProps: GetServerSideProps = rssFeedApi;
+
+const DummyComponent = () => null;
+
+export default DummyComponent;
