@@ -12,6 +12,7 @@ import globalState from '../../globalState';
 
 import { setPageConfigAction } from '../../store/slices/pageConfig';
 import { apiErrorHandler } from '../../utils/api-error-handler';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const dummyPageProps: ContentProps = {
     __typename: ContentType.Site,
@@ -25,8 +26,12 @@ const dummyPageProps: ContentProps = {
     editorView: 'edit',
 };
 
-const postHandler = async (req, res) =>
-    apiErrorHandler(req, res, () => {
+const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
+    apiErrorHandler(req, res, async () => {
+        if (res.getHeader('secret') !== process.env.SERVICE_SECRET) {
+            return res.status(401).send({ message: 'Unauthorized' });
+        }
+
         if (req.method !== 'POST') {
             return res.status(405).send({ message: 'Method not allowed' });
         }
