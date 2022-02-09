@@ -18,7 +18,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 };
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
-    [Taxonomy.BENEFITS]: 'Pengestøtte',
+    [Taxonomy.BENEFITS]: 'Pengestønad',
     [Taxonomy.RIGHTS]: 'Rettleiing',
     [Taxonomy.FOLLOWUP]: 'Oppfylging',
 };
@@ -39,7 +39,7 @@ export const bundle = {
         label: 'Valpanel',
     },
     filteredContent: {
-        noFiltersSelected: 'Ingen filter er valt, så vi viser alt innhald.',
+        noFiltersSelected: 'Ingen filter er valde, så vi viser alt innhald.',
         filtersSelected:
             'Vi har fjerna innhald som ikkje er relevant i situasjonen din.',
         customizeContent: 'Tilpass innhald',
@@ -47,7 +47,7 @@ export const bundle = {
     },
     linkLists: {
         news: 'Nyheiter',
-        moreNews: 'Nyttig å vete',
+        moreNews: 'Fleire nyheiter',
         niceToKnow: 'Nyttig å vete',
         shortcuts: 'Snarvegar',
         label: 'Lenker',
@@ -61,7 +61,7 @@ export const bundle = {
         contents: 'Innhald',
     },
     mainPanels: {
-        label: 'Hovedvalg',
+        label: 'Hovudval',
     },
     notifications: {
         label: 'Viktige varsel',
