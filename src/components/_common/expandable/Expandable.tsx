@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { ExpandableMixin } from '../../../types/component-props/_mixins';
 import { Accordion } from '@navikt/ds-react';
 import { logAmplitudeEvent } from '../../../utils/amplitude';
@@ -11,29 +10,25 @@ type Props = {
 export const Expandable = ({
     expandable,
     expandableTitle,
-    expandableOpenByDefault,
     expandableAnchorId,
     analyticsOriginTag = '',
     children,
 }: Props) => {
-    const [isOpen, setIsOpen] = useState(expandableOpenByDefault);
 
     if (!expandable) {
         return <>{children}</>;
     }
 
     const onExpandCollapse = () => {
-        logAmplitudeEvent(`panel-${isOpen ? 'kollaps' : 'ekspander'}`, {
+        logAmplitudeEvent(`panel-${'kollaps'}`, {
             tittel: expandableTitle,
             opprinnelse: analyticsOriginTag,
         });
-        setIsOpen(!isOpen);
     };
 
     return (
         <Accordion id={expandableAnchorId}>
             <Accordion.Item
-                open={isOpen}
                 renderContentWhenClosed={true}
                 className={style.expandable}
             >
