@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { ExpandableMixin } from '../../../types/component-props/_mixins';
 import { Accordion } from '@navikt/ds-react';
 import { logAmplitudeEvent } from '../../../utils/amplitude';
@@ -14,13 +15,14 @@ export const Expandable = ({
     analyticsOriginTag = '',
     children,
 }: Props) => {
+    const [isOpen] = useState(false);
 
     if (!expandable) {
         return <>{children}</>;
     }
 
     const onExpandCollapse = () => {
-        logAmplitudeEvent(`panel-${'kollaps'}`, {
+        logAmplitudeEvent(`panel-${isOpen ? 'kollaps' : 'ekspander'}`, {
             tittel: expandableTitle,
             opprinnelse: analyticsOriginTag,
         });
