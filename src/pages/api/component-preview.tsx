@@ -28,7 +28,7 @@ const dummyPageProps: ContentProps = {
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
     apiErrorHandler(req, res, async () => {
-        if (res.getHeader('secret') !== process.env.SERVICE_SECRET) {
+        if (req.headers.secret !== process.env.SERVICE_SECRET) {
             return res.status(401).send({ message: 'Unauthorized' });
         }
 
