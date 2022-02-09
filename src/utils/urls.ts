@@ -20,7 +20,7 @@ const internalUrlPrefixPattern = new RegExp(internalUrlPrefix, 'i');
 
 const internalPaths = [
     '$',
-    'no',
+    'no(?!\\/rss)',
     'en',
     'se(?!\\/samegiella\\/bestilling-av-samtale)',
     'nav.no',
