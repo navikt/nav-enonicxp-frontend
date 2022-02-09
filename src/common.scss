@@ -43,8 +43,3 @@ $border-radius-large: 6px;
     outline: unset;
     box-shadow: 0 0 0 3px if($inset, inset, null) $navds-semantic-color-focus;
 }
-
-@function px-to-rem($px) {
-    $result: $px * $pixel-size-rem;
-    @return #{$result}rem;
-}
