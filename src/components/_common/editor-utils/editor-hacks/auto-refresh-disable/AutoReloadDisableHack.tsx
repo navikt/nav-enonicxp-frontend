@@ -128,7 +128,7 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
         parent.window.dispatchEvent = (event: CustomEvent) => {
             const { type, detail } = event;
 
-            console.log(type, detail);
+            console.log(type, detail, detail.items);
 
             // We only want to intercept events of the BatchContentServerEvent type, which is what triggers UI updates
             // for content changes on the client. All other events should be dispatched as normal.
@@ -144,6 +144,10 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
                 contentIsNew(detail, contentId) ||
                 contentType === ContentType.GlobalValues
             ) {
+                if (type === 'AfterContentSavedEvent') {
+                    setWorkflowState('IN_PROGRESS');
+                }
+
                 return dispatchEvent(event);
             }
 
