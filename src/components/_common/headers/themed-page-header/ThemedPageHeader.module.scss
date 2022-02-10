@@ -1,8 +1,7 @@
 @use '../../../../common' as common;
-// @use '../../../pages/product-page/ProductPage' as ProductPage;
-// @import (reference) '../../../pages/product-page/ProductPage';
 // @use '../../../pages/situation-page/SituationPage' as SituationPage;
-// @import (reference) '../../../pages/guide-page/GuidePage';
+// @use '../../../pages/product-page/ProductPage' as ProductPage;
+// @use '../../../pages/guide-page/GuidePage' as GuidePage;
 
 .themed-page-header {
     display: flex;
@@ -13,18 +12,18 @@
     @include common.full-width-mixin;
 
     &--situation {
-        // box-shadow: 0 -4px 0 SituationPage.situationPageColor inset;
-        box-shadow: 0 -4px 0 orange inset;
+        //endre til SituationPage.$situationPageColor når den er skrevet om til Scss
+        box-shadow: 0 -4px 0 common.$navds-global-color-orange-200 inset;
     }
 
     &--product {
-        // box-shadow: 0 -4px 0 ProductPage.$productPageColor inset;
-        box-shadow: 0 -4px 0 green inset;
+        //endre til ProductPage.$productPageColor når den er skrevet om til Scss
+        box-shadow: 0 -4px 0 common.$navds-global-color-green-200 inset;
     }
 
     &--guide {
-        // box-shadow: 0 -4px 0 @guidePageColor inset;
-        box-shadow: 0 -4px 0 blue inset;
+        //endre til GuidePage.$guidePageColor når den er skrevet om til Scss
+        box-shadow: 0 -4px 0 common.$navds-global-color-blue-200 inset;
     }
 
     &__illustration {
