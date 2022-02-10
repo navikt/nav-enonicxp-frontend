@@ -48,15 +48,9 @@
         }
     }
 
-    &__tagline-label,
-    &__modified-label,
-    &__divider {
-        font-size: 0.875rem;
-    }
-
     &__tagline-label {
         @media #{common.$mq-screen-mobile} {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
     }
 
@@ -68,16 +62,21 @@
         }
     }
 
+    &__divider,
+    &__modified-label {
+        color: common.$navds-global-color-gray-600;
+    }
+
     // Following section is a temp fix until we determine responsive breakpoints
     // and where the responsibility for this lies (us vs design system)
     // (2rem is the correct mobile page header size (2xl) according to Figma (12. july))
     @media #{common.$mq-screen-mobile} {
-        .page-header {
-            padding-top: 0;
-            .navds-title--2xl {
-                font-size: 2rem;
-            }
-        }
+        // .page-header {
+        //     padding-top: 0;
+        //     .navds-title--2xl {
+        //         font-size: 2rem;
+        //     }
+        // }
 
         &__illustration {
             display: none;
