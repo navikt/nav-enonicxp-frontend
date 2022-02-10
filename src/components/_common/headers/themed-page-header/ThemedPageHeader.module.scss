@@ -73,16 +73,10 @@
         font-size: 0.875rem;
     }
 
-    // Following section is a temp fix until we determine responsive breakpoints
-    // and where the responsibility for this lies (us vs design system)
-    // (2rem is the correct mobile page header size (2xl) according to Figma (12. july))
     @media #{common.$mq-screen-mobile} {
-        // .page-header {
-        //     padding-top: 0;
-        //     .navds-title--2xl {
-        //         font-size: 2rem;
-        //     }
-        // }
+        //Når vi oppgraderer til nyeste versjon av designsystemet og bruker
+        //xlarge vil headingen settes til font-size 2rem (32px) på mobil
+
         padding-left: 1rem;
         padding-right: 1rem;
 
