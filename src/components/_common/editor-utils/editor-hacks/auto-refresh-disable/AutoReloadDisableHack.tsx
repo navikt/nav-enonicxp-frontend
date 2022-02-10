@@ -8,6 +8,7 @@ import {
     ContentWorkflowState,
     fetchAdminContent,
     fetchAdminUserId,
+    fetchUserInfo,
 } from '../editor-fetch-utils';
 import {
     ContentProps,
@@ -93,7 +94,10 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
     const [externalUpdateEvent, setExternalUpdateEvent] =
         useState<CustomEvent | null>(null);
     const [externalContentChange, setExternalContentChange] =
-        useState<NodeServerChangeType | null>(null);
+        useState<boolean>(false);
+    const [externalUserName, setExternalUserName] = useState<string | null>(
+        null
+    );
     const [userId, setUserId] = useState<string | null>(null);
     const [workflowState, setWorkflowState] =
         useState<ContentWorkflowState | null>(null);
@@ -124,11 +128,36 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
 
         const dispatchEvent = parent.window.dispatchEventActual;
 
+        let beforeWorkflowState;
+
         // Hook the dispatchEvent function so we can prevent certain events from propagating
         parent.window.dispatchEvent = (event: CustomEvent) => {
             const { type, detail } = event;
 
-            console.log(type, detail, detail.items);
+            console.log(type, detail, detail?.items);
+
+            if (type === 'BeforeContentSavedEvent') {
+                fetchAdminContent(contentId).then((content) => {
+                    beforeWorkflowState = content?.workflow.state;
+                    console.log(
+                        `Workflow state before: ${content?.workflow.state}`
+                    );
+                });
+            }
+
+            if (type === 'AfterContentSavedEvent') {
+                fetchAdminContent(contentId).then((content) => {
+                    if (
+                        beforeWorkflowState === 'READY' &&
+                        content?.workflow.state === 'READY'
+                    ) {
+                        setWorkflowState('IN_PROGRESS');
+                    }
+                    console.log(
+                        `Workflow state after: ${content?.workflow.state}`
+                    );
+                });
+            }
 
             // We only want to intercept events of the BatchContentServerEvent type, which is what triggers UI updates
             // for content changes on the client. All other events should be dispatched as normal.
@@ -144,16 +173,16 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
                 contentIsNew(detail, contentId) ||
                 contentType === ContentType.GlobalValues
             ) {
-                if (type === 'AfterContentSavedEvent') {
-                    setWorkflowState('IN_PROGRESS');
-                }
+                console.log('Dispatching event');
 
                 return dispatchEvent(event);
             }
 
             if (contentDidUpdate(detail, contentId)) {
-                fetchAdminContent(contentId).then((res) => {
-                    if (!res) {
+                console.log('Content updated');
+
+                fetchAdminContent(contentId).then((content) => {
+                    if (!content) {
                         // In the unexpected event that this call fails, just dispatch the event as normal to ensure we
                         // don't break anything :)
                         console.log(
@@ -163,13 +192,19 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
                     } else if (detail.type === NodeServerChangeType.PUBLISH) {
                         console.log('Content published - dispatching event');
                         dispatchEvent(event);
-                    } else if (res.modifier === userId) {
+                    } else if (content.modifier === userId) {
                         // If the content was modified by the current user, we want to dispatch the event if the
                         // workflow state or publish state was changed. The content itself updates dynamically via our
                         // component-preview api, so UI updates are only needed to keep the state of the
                         // "publish"/"mark as ready" button consistent
 
-                        const newWorkflowState = res.workflow.state;
+                        const newWorkflowState = content.workflow.state;
+
+                        console.log(
+                            'Own update detected',
+                            newWorkflowState,
+                            workflowState
+                        );
 
                         if (newWorkflowState !== workflowState) {
                             console.log(
@@ -182,46 +217,53 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
                         // If another user (or service call/scheduled task/etc) updated the content, we never want to
                         // automatically reload, as this may cause the current user to lose their changes. Show a
                         // a warning overlay instead, and let the user dispatch the update event manually
+                        console.log('External update detected');
 
-                        console.log(
-                            'External change detected - showing warning'
-                        );
-                        setExternalContentChange(detail.type);
+                        fetchUserInfo(content.modifier).then((userInfo) => {
+                            if (userInfo) {
+                                setExternalUserName(
+                                    userInfo.displayName
+                                        ?.split('@')[0]
+                                        .replace('.', ' ')
+                                );
+                            }
+                            console.log(
+                                'External change detected - showing warning'
+                            );
+                            setExternalContentChange(true);
 
-                        // Save the most recent update event for an eventual user-triggered dispatch
-                        if (detail.type === NodeServerChangeType.UPDATE) {
-                            setExternalUpdateEvent(event);
-                        }
+                            // Save the most recent update event for an eventual user-triggered dispatch
+                            if (detail.type === NodeServerChangeType.UPDATE) {
+                                setExternalUpdateEvent(event);
+                            }
+                        });
                     }
                 });
+            } else {
+                console.log('Content NOT updated');
             }
+
+            console.log('Returning false');
 
             return false;
         };
     }, [contentId, contentType, userId, workflowState]);
 
+    console.log(externalContentChange);
+
     return externalContentChange ? (
         <div className={style.warningWrapper}>
-            <AlertBox
-                variant={
-                    externalContentChange === NodeServerChangeType.PUBLISH
-                        ? 'success'
-                        : 'warning'
-                }
-                size={'small'}
-            >
+            <AlertBox variant={'warning'} size={'small'}>
                 <BodyLong>
-                    {`Siden ble ${
-                        externalContentChange === NodeServerChangeType.PUBLISH
-                            ? 'publisert'
-                            : 'endret'
-                    } av noen andre. `}
+                    {`OBS! ${
+                        externalUserName || 'Noen andre'
+                    } redigerte denne siden nå. Hvis du gjør endringer, vil du overskrive det som allerede er gjort. `}
                     <EditorLinkWrapper>
                         <LenkeInline
                             href={'#'}
                             onClick={(e) => {
                                 e.preventDefault();
-                                setExternalContentChange(undefined);
+                                setExternalContentChange(false);
                                 if (externalUpdateEvent) {
                                     externalUpdateEvent.detail.userTriggered =
                                         true;
