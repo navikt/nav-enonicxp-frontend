@@ -15,7 +15,7 @@ export const Expandable = ({
     analyticsOriginTag = '',
     children,
 }: Props) => {
-    const [isOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     if (!expandable) {
         return <>{children}</>;
@@ -26,6 +26,7 @@ export const Expandable = ({
             tittel: expandableTitle,
             opprinnelse: analyticsOriginTag,
         });
+        setIsOpen(!isOpen);
     };
 
     return (
