@@ -4,7 +4,6 @@ import { EditorLinkWrapper } from '../../editor-link-wrapper/EditorLinkWrapper';
 import { LenkeInline } from '../../../lenke/LenkeInline';
 import { Branch } from '../../../../../types/branch';
 import { BodyLong } from '@navikt/ds-react';
-import style from './AutoRefreshDisableHack.module.scss';
 import {
     ContentWorkflowState,
     fetchAdminContent,
@@ -15,10 +14,12 @@ import {
     ContentType,
 } from '../../../../../types/content-props/_content-common';
 
+import style from './AutoRefreshDisableHack.module.scss';
+
 /*
  * Prevent unnecessary reloads of the frontend iframe and component editor. This may happen when the content is changed
- * by the current user, or by other users, or programmatically via a task or service. This behaviour makes for a
- * confusing user experience, and may sometimes cause the user to lose their unsaved work.
+ * by the current user, or by other users, or via a task or service. This behaviour makes for a confusing user
+ * experience, and may sometimes cause the user to lose their unsaved work.
  *
  * When external changes are detected, we show an alert-box which notifies of changes having occured, and offer a
  * manual reload option instead.
@@ -86,7 +87,7 @@ type Props = {
     content: ContentProps;
 };
 
-export const AutoRefreshDisableHack = ({ content }: Props) => {
+export const AutoReloadDisableHack = ({ content }: Props) => {
     const { _id: contentId, __typename: contentType } = content;
 
     const [externalUpdateEvent, setExternalUpdateEvent] =
@@ -155,6 +156,9 @@ export const AutoRefreshDisableHack = ({ content }: Props) => {
                             'Could not fetch admin content - dispatching event'
                         );
                         dispatchEvent(event);
+                    } else if (detail.type === NodeServerChangeType.PUBLISH) {
+                        console.log('Content published - dispatching event');
+                        dispatchEvent(event);
                     } else if (res.modifier === userId) {
                         // If the content was modified by the current user, we want to dispatch the event if the
                         // workflow state or publish state was changed. The content itself updates dynamically via our
@@ -163,12 +167,7 @@ export const AutoRefreshDisableHack = ({ content }: Props) => {
 
                         const newWorkflowState = res.workflow.state;
 
-                        if (detail.type === NodeServerChangeType.PUBLISH) {
-                            console.log(
-                                'User published content - dispatching event'
-                            );
-                            dispatchEvent(event);
-                        } else if (newWorkflowState !== workflowState) {
+                        if (newWorkflowState !== workflowState) {
                             console.log(
                                 `User updated workflow state to ${newWorkflowState} - dispatching event`
                             );
@@ -208,7 +207,7 @@ export const AutoRefreshDisableHack = ({ content }: Props) => {
                 size={'small'}
             >
                 <BodyLong>
-                    {`Innhold på siden ble ${
+                    {`Siden ble ${
                         externalContentChange === NodeServerChangeType.PUBLISH
                             ? 'publisert'
                             : 'endret'
@@ -231,7 +230,7 @@ export const AutoRefreshDisableHack = ({ content }: Props) => {
                             {'Last inn på nytt'}
                         </LenkeInline>
                     </EditorLinkWrapper>
-                    {' for å se endringene.'}
+                    {' for å se endringer.'}
                 </BodyLong>
             </AlertBox>
         </div>

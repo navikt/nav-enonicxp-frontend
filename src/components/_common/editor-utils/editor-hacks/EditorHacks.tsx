@@ -1,8 +1,9 @@
 import { ContentProps } from '../../../../types/content-props/_content-common';
-import { AutoRefreshDisableHack } from './auto-refresh-disable/AutoRefreshDisableHack';
+import { AutoReloadDisableHack } from './auto-refresh-disable/AutoReloadDisableHack';
+import { SetSidepanelToggleHack } from './set-sidepanels-defaults/SetSidepanelToggleHack';
 
 /*
- * This contains various "quality of life" fixes to improve the experiences for
+ * This contains quality of life fixes to improve the experiences for
  * Content Studio editor users
  *
  * */
@@ -12,16 +13,14 @@ type Props = {
 };
 
 export const EditorHacks = ({ content }: Props) => {
-    const { editorView } = content;
-
-    if (editorView !== 'edit') {
+    if (content.editorView !== 'edit') {
         return null;
     }
 
     return (
         <>
-            <AutoRefreshDisableHack content={content} />
-            {/*<SetSidepanelToggleHack contentId={_id} />*/}
+            <AutoReloadDisableHack content={content} />
+            <SetSidepanelToggleHack contentId={content._id} />
         </>
     );
 };
