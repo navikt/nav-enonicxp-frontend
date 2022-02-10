@@ -42,9 +42,11 @@
     &__tagline-wrapper {
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
 
         @media #{common.$mq-screen-mobile} {
             flex-direction: column;
+            align-items: stretch;
         }
     }
 
