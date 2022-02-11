@@ -9,7 +9,7 @@ import { getCookie } from '../../../../../utils/cookies';
  *
  * */
 
-// TODO: create some UI to toggle this
+// TODO: create a UI to toggle this
 const toggleCookieName = 'hide-left-panel';
 
 const minimizeLeftPanel = () => {
