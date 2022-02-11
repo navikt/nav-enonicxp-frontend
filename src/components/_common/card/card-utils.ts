@@ -24,6 +24,7 @@ const cardTypeMap = {
     [ContentType.ProductPage]: CardType.Product,
     [ContentType.SituationPage]: CardType.Situation,
     [ContentType.ToolsPage]: CardType.Tool,
+    [ContentType.ThemedArticlePage]: CardType.ThemedArticle,
 };
 
 export const getCardProps = (
@@ -36,7 +37,14 @@ export const getCardProps = (
     }
 
     const { data, __typename, _path, displayName } = content;
-    const { title, ingress, illustration, taxonomy, externalProductUrl } = data;
+    const {
+        title,
+        ingress,
+        illustration,
+        taxonomy,
+        externalProductUrl,
+        customCategory,
+    } = data;
 
     const cardType = cardTypeMap[__typename];
     const cardUrl = externalProductUrl || _path;
@@ -47,8 +55,12 @@ export const getCardProps = (
         text: cardTitle,
     };
 
-    const categories = getTranslatedTaxonomies(taxonomy, language);
-    const categoryString = joinWithConjunction(taxonomy, language);
+    const categories = [
+        ...getTranslatedTaxonomies(taxonomy, language),
+        customCategory,
+    ].filter((category) => !!category);
+
+    const categoryString = joinWithConjunction(categories, language);
     const description = ingressOverride || ingress;
 
     return {

@@ -8,7 +8,7 @@
 
     &__micro {
         border-radius: 16px;
-        border: 1px solid #B0B0B0;
+        border: 1px solid #b0b0b0;
         box-shadow: 0 0 0 3px @navds-semantic-color-link;
         color: @navds-global-color-gray-900;
         display: flex;
@@ -18,20 +18,25 @@
         margin: 0 0.5rem 0 0;
         padding: 0 0.5rem;
         position: relative;
-        
+
         &:not(:hover):not(:active) {
-            box-shadow: 0px 1px 3px rgba(38, 38, 38, 0.2), 0px 1px 6px rgba(0, 0, 0, 0.14), 0px 2px 8px rgba(38, 38, 38, 0.12);
-        }
-        
-        &:hover {
-            border: 1px solid transparent;
-            box-shadow: 0px 1px 3px rgba(38, 38, 38, 0.2), 0px 1px 6px rgba(0, 0, 0, 0.14), 0px 2px 8px rgba(38, 38, 38, 0.12);
+            box-shadow: 0px 1px 3px rgba(38, 38, 38, 0.2),
+                0px 1px 6px rgba(0, 0, 0, 0.14),
+                0px 2px 8px rgba(38, 38, 38, 0.12);
         }
 
-        &:hover, &:focus-visible {
+        &:hover {
+            border: 1px solid transparent;
+            box-shadow: 0px 1px 3px rgba(38, 38, 38, 0.2),
+                0px 1px 6px rgba(0, 0, 0, 0.14),
+                0px 2px 8px rgba(38, 38, 38, 0.12);
+        }
+
+        &:hover,
+        &:focus-visible {
             border: 1px solid transparent;
         }
-        
+
         &:before {
             content: '';
             align-self: center;
@@ -48,16 +53,21 @@
                 background-color: @navds-global-color-orange-500;
             }
         }
-        
+
         &.card__product {
             &:before {
                 background-color: @navds-global-color-green-500;
             }
         }
-        
+
         &.card__tool {
             &:before {
                 background-color: @navds-global-color-deepblue-500;
+            }
+        }
+        &.card__themed-article {
+            &:before {
+                background-color: @navds-global-color-gray-600;
             }
         }
     }

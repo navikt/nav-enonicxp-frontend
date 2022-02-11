@@ -26,20 +26,23 @@
             height: 100%;
         }
 
-        
         @media (hover: hover) {
-            &:hover, &:focus-visible {
-
+            &:hover,
+            &:focus-visible {
                 .card__situation {
                     background-color: @navds-global-color-orange-200;
                 }
-        
+
                 .card__product {
                     background-color: @navds-global-color-green-200;
                 }
-        
+
                 .card__tool {
                     background-color: @navds-global-color-deepblue-200;
+                }
+
+                .card__themed-article {
+                    background-color: #707070;
                 }
 
                 .card__title,
@@ -51,7 +54,8 @@
             }
         }
 
-        &:focus-visible, &:active {
+        &:focus-visible,
+        &:active {
             .card__bed {
                 position: relative;
                 box-shadow: 0 0 0 3px #00347d;
@@ -66,7 +70,7 @@
                     top: 0;
                 }
             }
-            
+
             .card__bed.card__large {
                 &:after {
                     box-shadow: 0 0 0 4px #ffffff;
@@ -76,8 +80,9 @@
                     margin: 4px;
                 }
             }
-            
-            .card__bed.card__mini, .card__bed.card__micro {
+
+            .card__bed.card__mini,
+            .card__bed.card__micro {
                 &:after {
                     box-shadow: 0 0 0 2px #ffffff;
                     height: calc(100% - 2px);
@@ -85,13 +90,13 @@
                     width: calc(100% - 2px);
                 }
             }
-            
+
             .card__bed.card__mini {
                 &:after {
                     border-radius: 6px;
                 }
             }
-            
+
             .card__bed.card__micro {
                 &:after {
                     border-radius: 16px;
