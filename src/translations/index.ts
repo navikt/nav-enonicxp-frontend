@@ -1,6 +1,7 @@
 import { bundle as se } from './se';
 import { bundle as en } from './en';
 import { bundle as pl } from './pl';
+import { bundle as nn } from './nn';
 import { bundle as defaultPack, Translations } from './default';
 
 export type Language = 'no' | 'nn' | 'en' | 'se' | 'pl';
@@ -9,8 +10,8 @@ const supportedLanguages: { [key in Language]: Translations } = {
     en: en,
     se: se,
     pl: pl,
+    nn: nn,
     no: defaultPack,
-    nn: defaultPack,
 };
 
 export const translator = <Module extends keyof Translations>(
