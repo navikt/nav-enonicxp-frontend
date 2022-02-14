@@ -79,23 +79,23 @@ export const Header = ({
                 {children}
             </Heading>
             {anchor && !hideCopyButton && (
-                <span className={style.header__copyLinkContainer}>
+                <span className={style.copyLinkContainer}>
                     <a
                         href={anchor}
                         onClick={copyLinkToClipboard}
-                        className={style.header__copyLink}
+                        className={style.copyLink}
                     >
                         <PublicImage
                             imagePath={'/gfx/link.svg'}
                             alt={''}
-                            className={style.header__anchorIcon}
+                            className={style.anchorIcon}
                         />
                         {getLabel('copyLink')}
                     </a>
                     <span
                         className={classNames(
-                            style.header__copyTooltip,
-                            showCopyTooltip && style.header__copyTooltipVisible
+                            style.copyTooltip,
+                            showCopyTooltip && style.copyTooltipVisible
                         )}
                         aria-live="assertive"
                     >
