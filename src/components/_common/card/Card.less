@@ -26,35 +26,33 @@
             height: 100%;
         }
 
-        @media (hover: hover) {
-            &:hover,
-            &:focus-visible {
-                .card__situation {
-                    background-color: @navds-global-color-orange-200;
-                }
+        &:hover,
+        &:focus {
+            .card__situation {
+                background-color: @navds-global-color-orange-200;
+            }
 
-                .card__product {
-                    background-color: @navds-global-color-green-200;
-                }
+            .card__product {
+                background-color: @navds-global-color-green-200;
+            }
 
-                .card__tool {
-                    background-color: @navds-global-color-deepblue-200;
-                }
+            .card__tool {
+                background-color: @navds-global-color-deepblue-200;
+            }
 
-                .card__themed-article {
-                    background-color: @navds-global-color-gray-200;
-                }
+            .card__themed-article {
+                background-color: @navds-global-color-gray-200;
+            }
 
-                .card__title,
-                .card__description,
-                .card__category {
-                    text-decoration: none;
-                    color: @navds-global-color-gray-900;
-                }
+            .card__title,
+            .card__description,
+            .card__category {
+                text-decoration: none;
+                color: @navds-global-color-gray-900;
             }
         }
 
-        &:focus-visible,
+        &:focus,
         &:active {
             .card__bed {
                 position: relative;
