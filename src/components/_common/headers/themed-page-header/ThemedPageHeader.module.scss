@@ -26,19 +26,19 @@
         box-shadow: 0 -4px 0 common.$navds-global-color-blue-200 inset;
     }
 
-    &__illustration {
+    .illustration {
         width: 5rem;
         height: 5rem;
         margin-right: 2rem;
         pointer-events: none;
     }
 
-    &__text {
+    .text {
         width: 100%;
         max-width: 63.5rem;
     }
 
-    &__tagline-wrapper {
+    .tagline-wrapper {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -49,13 +49,13 @@
         }
     }
 
-    &__tagline-label {
+    .tagline-label {
         @media #{common.$mq-screen-mobile} {
             margin-bottom: 0.5rem;
         }
     }
 
-    &__divider {
+    .divider {
         padding: 0 1rem;
 
         @media #{common.$mq-screen-mobile} {
@@ -63,12 +63,12 @@
         }
     }
 
-    &__divider,
-    &__modified-label {
+    .divider,
+    .modified-label {
         color: common.$navds-global-color-gray-600;
     }
 
-    &__modified-label {
+    .modified-label {
         font-size: 0.875rem;
     }
 
@@ -79,7 +79,7 @@
         padding-left: 1rem;
         padding-right: 1rem;
 
-        &__illustration {
+        .illustration {
             display: none;
         }
     }

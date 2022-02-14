@@ -78,16 +78,16 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             <Illustration
                 illustration={illustration}
                 placement={IllustrationPlacements.PRODUCT_PAGE_HEADER}
-                className={style.themedPageHeader__illustration}
+                className={style.illustration}
             />
-            <div className={style.themedPageHeader__text}>
+            <div className={style.text}>
                 <PageHeader justify={'left'}>{pageTitle}</PageHeader>
                 {(subTitle || modified) && (
-                    <div className={style.themedPageHeader__taglineWrapper}>
+                    <div className={style.taglineWrapper}>
                         {subTitle && (
                             <BodyShort
                                 size="small"
-                                className={style.themedPageHeader__taglineLabel}
+                                className={style.taglineLabel}
                             >
                                 {subTitle.toUpperCase()}
                             </BodyShort>
@@ -97,7 +97,7 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
                                 aria-hidden="true"
                                 className={classNames(
                                     'page-modified-info',
-                                    style.themedPageHeader__divider
+                                    style.divider
                                 )}
                             >
                                 {'|'}
@@ -106,9 +106,7 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
                         {modified && (
                             <BodyShort
                                 size="small"
-                                className={
-                                    style.themedPageHeader__modifiedLabel
-                                }
+                                className={style.modifiedLabel}
                             >
                                 <span className={'page-modified-info'}>
                                     {modified}
