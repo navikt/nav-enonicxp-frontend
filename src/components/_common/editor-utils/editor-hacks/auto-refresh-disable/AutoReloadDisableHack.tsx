@@ -173,7 +173,7 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
                 contentIsNew(detail, contentId) ||
                 contentType === ContentType.GlobalValues
             ) {
-                console.log('Dispatching event');
+                console.log(`Dispatching ${type} event`);
 
                 return dispatchEvent(event);
             }
@@ -243,13 +243,11 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
                 console.log('Content NOT updated');
             }
 
-            console.log('Returning false');
+            console.log(`Returning false for ${type} event`);
 
             return false;
         };
     }, [contentId, contentType, userId, workflowState]);
-
-    console.log(externalContentChange);
 
     return externalContentChange ? (
         <div className={style.warningWrapper}>
