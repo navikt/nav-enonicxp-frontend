@@ -29,9 +29,9 @@
             max-width: @situationPageSectionMaxWidth;
         }
 
-        // Prevent margins between adjacent situation-flex-cols layouts
+        // Correct margin if flex-cols are adjacent to avoid too much space.
         .layout__situation-flex-cols + .layout__situation-flex-cols {
-            margin-top: -@margin * 2;
+            margin-top: -@margin * 1;
         }
     }
 
