@@ -1,7 +1,5 @@
 @use '../../../common' as common;
 
-$productPageColor: common.$navds-global-color-green-200;
-
 .themed-article-page {
     display: flex;
     flex-direction: column;
