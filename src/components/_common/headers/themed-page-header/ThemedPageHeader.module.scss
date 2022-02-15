@@ -11,22 +11,22 @@
 
     @include common.full-width-mixin;
 
-    &--situation {
+    &.situation {
         //TODO: endre til SituationPage.$situationPageColor når den er skrevet om til Scss
         box-shadow: 0 -4px 0 common.$navds-global-color-orange-200 inset;
     }
 
-    &--product {
+    &.product {
         //TODO: endre til ProductPage.$productPageColor når den er skrevet om til Scss
         box-shadow: 0 -4px 0 common.$navds-global-color-green-200 inset;
     }
 
-    &--guide {
+    &.guide {
         //TODO: endre til GuidePage.$guidePageColor når den er skrevet om til Scss
         box-shadow: 0 -4px 0 common.$navds-global-color-blue-200 inset;
     }
 
-    &--themedpage {
+    &.themedpage {
         box-shadow: 0 -4px 0 common.$navds-global-color-gray-600 inset;
     }
 
