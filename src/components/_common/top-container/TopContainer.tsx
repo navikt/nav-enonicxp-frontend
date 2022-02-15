@@ -16,6 +16,7 @@ export const contentTypesWithWhiteHeader = {
     [ContentType.SituationPage]: true,
     [ContentType.GuidePage]: true,
     [ContentType.EmployerSituationPage]: true,
+    [ContentType.ThemedArticlePage]: true,
 };
 
 const hideNotificationsForContentTypes: { [key in ContentType]?: boolean } = {

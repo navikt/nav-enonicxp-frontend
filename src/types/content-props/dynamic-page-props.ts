@@ -16,6 +16,7 @@ export type DynamicPageData = Partial<{
     ContentDecoratorToggles;
 
 export type ProductPageData = ProductDataMixin & DynamicPageData;
+export type ThemedArticlePageData = ProductDataMixin & DynamicPageData;
 export type GuidePageData = ProductDataMixin & DynamicPageData;
 export type SituationPageData = ProductDataMixin & DynamicPageData;
 export type ToolsPageData = ProductDataMixin & DynamicPageData;
@@ -23,6 +24,11 @@ export type ToolsPageData = ProductDataMixin & DynamicPageData;
 export interface ProductPageProps extends ContentProps {
     __typename: ContentType.ProductPage;
     data: ProductPageData;
+}
+
+export interface ThemedArticlePageProps extends ContentProps {
+    __typename: ContentType.ThemedArticlePage;
+    data: ThemedArticlePageData;
 }
 
 export interface GuidePageProps extends ContentProps {

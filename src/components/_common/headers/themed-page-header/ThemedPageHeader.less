@@ -1,0 +1,85 @@
+@import (reference) '../../../../common';
+@import (reference) '../../../pages/product-page/ProductPage';
+@import (reference) '../../../pages/situation-page/SituationPage';
+@import (reference) '../../../pages/guide-page/GuidePage';
+
+.themed-page-header {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    padding-bottom: 1.5rem;
+
+    .full-width-mixin();
+
+    &--situation {
+        box-shadow: 0 -4px 0 @situationPageColor inset;
+    }
+
+    &--product {
+        box-shadow: 0 -4px 0 @productPageColor inset;
+    }
+
+    &--guide {
+        box-shadow: 0 -4px 0 @guidePageColor inset;
+    }
+
+    &--themedpage {
+        box-shadow: 0 -4px 0 @navds-global-color-gray-600 inset;
+    }
+
+    &__illustration {
+        width: #px-to-rem(80) [];
+        height: #px-to-rem(80) [];
+        margin-right: 2rem;
+        pointer-events: none;
+    }
+
+    &__text {
+        width: 100%;
+        max-width: 63.5rem;
+    }
+
+    &__tagline-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+
+        @media @mq-screen-mobile {
+            flex-direction: column;
+        }
+    }
+
+    &__tagline-label.navds-body-short,
+    &__modified-label.navds-body-short {
+        font-size: #px-to-rem(14) [];
+    }
+
+    &__tagline-label.navds-body-short {
+        @media @mq-screen-mobile {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__divider {
+        padding: 0 1rem;
+
+        @media @mq-screen-mobile {
+            display: none;
+        }
+    }
+
+    // Following section is a temp fix until we determine responsive breakpoints
+    // and where the responsibility for this lies (us vs design system)
+    // (2rem is the correct mobile page header size (2xl) according to Figma (12. july))
+    @media @mq-screen-mobile {
+        .page-header {
+            padding-top: 0;
+            .navds-title--2xl {
+                font-size: 2rem;
+            }
+        }
+
+        &__illustration.illustration__image {
+            display: none;
+        }
+    }
+}

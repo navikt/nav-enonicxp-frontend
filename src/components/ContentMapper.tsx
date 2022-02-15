@@ -13,12 +13,13 @@ import { TemplatePage } from './pages/template-page/TemplatePage';
 import { make404Props } from '../utils/make-error-props';
 import { SituationPage } from './pages/situation-page/SituationPage';
 import { GuidePage } from './pages/guide-page/GuidePage';
+import { ThemedArticlePage } from './pages/themed-article-page/ThemedArticlePage';
 import { ProductPage } from './pages/product-page/ProductPage';
 import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
 
-const contentToReactComponent: Partial<
-    { [key in ContentType]: React.FunctionComponent<ContentProps> }
-> = {
+const contentToReactComponent: Partial<{
+    [key in ContentType]: React.FunctionComponent<ContentProps>;
+}> = {
     [ContentType.Error]: ErrorPage,
     [ContentType.LargeTable]: LargeTablePage,
     [ContentType.Fragment]: FragmentPage,
@@ -31,6 +32,7 @@ const contentToReactComponent: Partial<
     [ContentType.EmployerSituationPage]: SituationPage,
     [ContentType.ProductPage]: ProductPage,
     [ContentType.GuidePage]: GuidePage,
+    [ContentType.ThemedArticlePage]: ThemedArticlePage,
 
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.MainArticle]: DynamicPage,

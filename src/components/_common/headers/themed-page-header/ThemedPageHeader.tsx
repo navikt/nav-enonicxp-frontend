@@ -12,13 +12,18 @@ import {
     ProductPageProps,
     SituationPageProps,
     GuidePageProps,
+    ThemedArticlePageProps,
 } from '../../../../types/content-props/dynamic-page-props';
-import { buildTaxonomyString } from 'utils/string';
+import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 import style from './ThemedPageHeader.module.scss';
 
 type Props = {
-    contentProps: SituationPageProps | ProductPageProps | GuidePageProps;
+    contentProps:
+        | SituationPageProps
+        | ProductPageProps
+        | GuidePageProps
+        | ThemedArticlePageProps;
 };
 
 export const ThemedPageHeader = ({ contentProps }: Props) => {
@@ -28,7 +33,7 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
         modifiedTime,
         data,
     } = contentProps;
-    const { title, illustration, taxonomy } = data;
+    const { title, illustration, taxonomy, customCategory } = data;
     const { language } = usePageConfig();
     const getSubtitle = () => {
         if (pageType === ContentType.SituationPage) {
@@ -43,7 +48,18 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             const getTaxonomyLabel = translator('guides', language);
             return getTaxonomyLabel('howTo');
         }
-        return buildTaxonomyString(taxonomy, language);
+
+        if (pageType === ContentType.ThemedArticlePage) {
+            const taxonomyArray = getTranslatedTaxonomies(taxonomy, language);
+            const allCategories = customCategory
+                ? [...taxonomyArray, customCategory]
+                : taxonomyArray;
+
+            return joinWithConjunction(allCategories, language);
+        }
+
+        const taxonomyArray = getTranslatedTaxonomies(taxonomy, language);
+        return joinWithConjunction(taxonomyArray, language);
     };
     const getDatesLabel = translator('dates', language);
     const getPageTypeClass = (_pageType: ContentType) => {
@@ -51,14 +67,19 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             _pageType === ContentType.EmployerSituationPage ||
             _pageType === ContentType.SituationPage
         ) {
-            return 'Situation';
+            return 'situation';
         }
         if (_pageType === ContentType.ProductPage) {
-            return 'Product';
+            return 'product';
         }
         if (_pageType === ContentType.GuidePage) {
-            return 'Guide';
+            return 'guide';
         }
+
+        if (_pageType === ContentType.ThemedArticlePage) {
+            return 'themedpage';
+        }
+
         return '';
     };
     const pageTitle = title || displayName;
@@ -67,6 +88,12 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
         getDatesLabel('lastChanged') +
         ' ' +
         formatDate(modifiedTime, language, true);
+
+    // This is a temporaty fix, especially for "Arbeidsavklaringspenger".
+    // Will work with design to find solution for how long titles and illustration can stack better on mobile.
+    const hasRoomForIllustrationOnMobile = pageTitle
+        .split(' ')
+        .every((word) => word.length < 18);
 
     return (
         <header

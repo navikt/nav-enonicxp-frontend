@@ -3,6 +3,7 @@ export enum CardType {
     Situation = 'situation',
     Tool = 'tool',
     Provider = 'provider',
+    ThemedArticle = 'themed-article',
 }
 
 export enum CardSize {

@@ -22,6 +22,7 @@ import { store } from '../store/store';
 import { setPathMapAction } from '../store/slices/pathMap';
 import { setPageConfigAction } from '../store/slices/pageConfig';
 import { fetchAndSetAuthStatus } from '../utils/auth';
+import { setAuthStateAction } from '../store/slices/authState';
 
 type Props = {
     content: ContentProps;
@@ -35,7 +36,16 @@ export const PageWrapper = (props: Props) => {
     const router = useRouter();
 
     useEffect(() => {
-        fetchAndSetAuthStatus();
+        // Checking auth status is not supported when viewed via Content Studio
+        if (editorView) {
+            store.dispatch(
+                setAuthStateAction({
+                    authState: 'loggedOut',
+                })
+            );
+        } else {
+            fetchAndSetAuthStatus();
+        }
 
         onBreadcrumbClick((breadcrumb) =>
             router.push(getInternalRelativePath(breadcrumb.url, !!editorView))

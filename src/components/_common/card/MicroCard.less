@@ -8,26 +8,60 @@
 
     &__micro {
         border-radius: 16px;
+        border: 1px solid #b0b0b0;
+        box-shadow: 0 0 0 3px @navds-semantic-color-link;
         color: @navds-global-color-gray-900;
+        display: flex;
         display: inline-flex;
+        font-size: #px-to-rem(14) [];
+        line-height: 1.5625rem;
         margin: 0 0.5rem 0 0;
         padding: 0 0.5rem;
-        line-height: 1.5625rem;
+        position: relative;
+
+        &:not(:hover):not(:active) {
+            box-shadow: 0px 1px 3px rgba(38, 38, 38, 0.2),
+                0px 1px 6px rgba(0, 0, 0, 0.14),
+                0px 2px 8px rgba(38, 38, 38, 0.12);
+        }
+
+        &:hover,
+        &:focus {
+            border: 1px solid transparent;
+        }
+
+        &:before {
+            content: '';
+            align-self: center;
+            position: relative;
+            display: flex;
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 0.5rem;
+            margin: 0 0.5rem 0 0;
+        }
 
         &.card__situation {
-            background-color: @navds-global-color-orange-200;
+            &:before {
+                background-color: @navds-global-color-orange-500;
+            }
         }
 
         &.card__product {
-            background-color: @navds-global-color-green-200;
+            &:before {
+                background-color: @navds-global-color-green-500;
+            }
         }
 
-        &.card__tools {
-            background-color: @navds-global-color-deepblue-200;
+        &.card__tool {
+            &:before {
+                background-color: @navds-global-color-deepblue-500;
+            }
         }
-
-        .card__title {
-            font-size: 1rem;
+        &.card__themed-article {
+            &:before {
+                background-color: @navds-global-color-gray-600;
+            }
         }
     }
 }
