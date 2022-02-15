@@ -187,6 +187,7 @@ export const Calculator = ({
                     className={classNames(bem('calculateButton'))}
                 >
                     <CalculatorIcon
+                        title={'Kalkulator-ikon'}
                         className={classNames(bem('calculateIcon'))}
                     />
                     <span>{getLabel('calculate')}</span>
