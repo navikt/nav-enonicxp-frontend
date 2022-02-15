@@ -34,10 +34,48 @@ $border-radius-large: 6px;
 }
 
 @function withUnit($value, $unit) {
-    $result: "#{$value}#{unit}"
+    $result: '#{$value}#{unit}';
 }
 
 @function px-to-rem($px) {
     $rem: withUnit($px * $pixel-size-rem, 'rem');
 }
 
+// This is an override mixin specific for product and livesituation pages.
+// To be removed when DS has updated design packages.
+@mixin product-mixins() {
+    // h3 signifies a new "sub chapter" within a section.
+    // should have extra spacing above content, but only if
+    // not the topmost element within region. Except first-child.
+    .part {
+        .html-area,
+        &__dynamic-header {
+            h3 {
+                margin-top: 2.75rem;
+            }
+        }
+    }
+
+    .region__content {
+        > :first-child {
+            h3:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+
+    // The very last child of the very last part or fragment
+    // within a region__content should not have margin-bottom.
+    // Reason for select all (">"): fragments are inserted without a class,
+    // so just select any child that may contain any of the elements.
+    .region__content {
+        > :last-child {
+            .card:last-child,
+            .calculator,
+            ul:last-child,
+            p:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

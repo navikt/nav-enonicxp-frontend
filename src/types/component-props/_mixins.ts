@@ -16,6 +16,7 @@ export type ProductDataMixin = {
     title: string;
     ingress?: string;
     taxonomy?: Taxonomy[];
+    customCategory?: string;
     illustration: AnimatedIconsProps;
     externalProductUrl?: string;
 };
