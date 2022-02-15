@@ -26,6 +26,10 @@
         box-shadow: 0 -4px 0 common.$navds-global-color-blue-200 inset;
     }
 
+    &--themedpage {
+        box-shadow: 0 -4px 0 common.$navds-global-color-gray-600 inset;
+    }
+
     @media #{common.$mq-screen-mobile} {
         //Når vi oppgraderer til nyeste versjon av designsystemet og bruker
         //xlarge vil headingen settes til font-size 2rem (32px) på mobil
