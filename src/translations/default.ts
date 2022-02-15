@@ -15,12 +15,6 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.Saksbehandling]: 'Saksbehandling',
     [MenuListItemKey.Selfservice]: 'Selvbetjening',
     [MenuListItemKey.Shortcuts]: 'Snarveier',
-    [MenuListItemKey.AppealRightsLegacy]: 'Klagerettigheter',
-    [MenuListItemKey.FormAndApplicationLegacy]: 'Skjema og søknad',
-    [MenuListItemKey.ProcessTimesLegacy]: 'Saksbehandlingstider',
-    [MenuListItemKey.RelatedInformationLegacy]: 'Relatert innhold',
-    [MenuListItemKey.ReportChangesLegacy]: 'Meld fra om endringer',
-    [MenuListItemKey.RulesAndRegulationsLegacy]: 'Regelverk',
 };
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
@@ -47,7 +41,7 @@ export const bundle = {
     filteredContent: {
         noFiltersSelected: 'Ingen filtre er valgt, så alt innhold vises.',
         filtersSelected:
-            'Vi har fjernet innhold som ikke er relevant i din situasjon.',
+            'Vi har fjernet innhold som ikke er relevant i situasjonen din.',
         customizeContent: 'Tilpass innhold',
         showingInformationFor: 'Viser informasjon for:',
     },
@@ -64,7 +58,7 @@ export const bundle = {
         linkedListDescription: 'Kapitler',
         published: 'Publisert',
         tableOfContents: 'Innholdsfortegnelse',
-        contents: 'Innhold',
+        contents: 'Innholdsoversikt',
     },
     mainPanels: {
         label: 'Hovedvalg',
@@ -104,10 +98,38 @@ export const bundle = {
                 'Skal du sende oss nye opplysninger i saken din? "Skriv til oss" er et sikkert alternativ til e-post.',
         },
         call: {
-            title: 'Ring oss på',
+            title: 'Ring oss på 55 55 33 33',
             ingress:
-                'Åpningstider: hverdager 09:00–15:00. Dersom åpningstidene er midlertidig endret, får du beskjed via automatisk svarer.',
+                'Åpningstider: hverdager 09:00–15:00. Hvis åpningstidene er midlertidig endret, får du beskjed via automatisk svarer.',
         },
+        shared: {
+            generalOpeningHours: 'Ordinære åpningstider',
+            openingHours: 'Åpningstider',
+            specialHours: 'Spesielle åpningstider',
+            closed: 'Stengt',
+            openNow: 'Åpent nå',
+            opensAt: 'Åpner {$1} kl {$2}',
+            closedNow: 'Stengt nå',
+            seeMoreOptions: 'Mer om tastevalg',
+            todaysPhoneOpeningHours: 'Åpningstider på telefon i dag',
+            callUsAt: 'Ring oss på',
+        },
+    },
+    dateTime: {
+        weekDayNames: [
+            'Mandag',
+            'Tirsdag',
+            'Onsdag',
+            'Torsdag',
+            'Fredag',
+            'Lørdag',
+            'Søndag',
+        ],
+        relatives: {
+            today: 'i dag',
+            tomorrow: 'i morgen',
+        },
+        day: 'dag',
     },
     versionHistory: {
         label: 'Versjonshistorikk',

@@ -6,10 +6,10 @@
     }
 
     .card {
-        outline: 0;
-        text-decoration: none;
         display: block;
         margin-bottom: 1.75rem;
+        outline: 0;
+        text-decoration: none;
         width: 100%;
 
         &__inline {
@@ -26,70 +26,85 @@
             height: 100%;
         }
 
-        @media (hover: hover) {
-            &:hover:not(:active) {
-                .card__bed {
-                    height: 100%;
-                    box-shadow: 0 0 0 2px @navds-semantic-color-link;
-                    background-color: #ffffff;
-                }
-
-                .card__title,
-                .card__description,
-                .card__category {
-                    text-decoration: none;
-                    color: @navds-global-color-gray-900;
-                }
-
-                .card__product,
-                .card__tool,
-                .card__situation {
-                    background-color: #ffffff;
-
-                    .card__title {
-                        color: @navds-semantic-color-link;
-                    }
-                }
-            }
-        }
-
-        &:focus-visible {
-            .card__bed {
-                box-shadow: 0 0 0 4px @navds-semantic-color-focus;
-            }
-            .card__product,
+        &:hover,
+        &:focus {
             .card__situation {
-                background-color: #ffffff;
+                background-color: @navds-global-color-orange-200;
             }
+
+            .card__product {
+                background-color: @navds-global-color-green-200;
+            }
+
+            .card__tool {
+                background-color: @navds-global-color-deepblue-200;
+            }
+
+            .card__themed-article {
+                background-color: @navds-global-color-gray-300;
+            }
+
             .card__title,
             .card__description,
             .card__category {
-                color: @navds-semantic-color-link;
                 text-decoration: none;
+                color: @navds-global-color-gray-900;
             }
         }
 
+        &:focus,
         &:active {
-            .card__mini,
-            .card__micro,
-            .card__large {
-                background-color: @navds-global-color-blue-700;
+            .card__bed {
+                position: relative;
+                box-shadow: 0 0 0 3px #00347d;
+
+                &:after {
+                    background-color: transparent;
+                    content: '';
+                    display: block;
+                    left: 0;
+                    pointer-events: none;
+                    position: absolute;
+                    top: 0;
+                }
+            }
+
+            .card__bed.card__large {
+                &:after {
+                    box-shadow: 0 0 0 4px #ffffff;
+                    border-radius: 6px;
+                    height: calc(100% - 8px);
+                    width: calc(100% - 8px);
+                    margin: 4px;
+                }
+            }
+
+            .card__bed.card__mini,
+            .card__bed.card__micro {
+                &:after {
+                    box-shadow: 0 0 0 2px #ffffff;
+                    height: calc(100% - 2px);
+                    margin: 1px;
+                    width: calc(100% - 2px);
+                }
+            }
+
+            .card__bed.card__mini {
+                &:after {
+                    border-radius: 6px;
+                }
+            }
+
+            .card__bed.card__micro {
+                &:after {
+                    border-radius: 16px;
+                }
             }
 
             .card__title,
             .card__description,
             .card__category {
-                color: #ffffff;
                 text-decoration: none;
-            }
-
-            .illustration__icon--icon2 {
-                filter: brightness(0) invert(1);
-            }
-
-            .illustration__icon--icon1 {
-                filter: invert(49%) sepia(37%) saturate(3786%)
-                    hue-rotate(192deg) brightness(92%) contrast(90%);
             }
         }
     }

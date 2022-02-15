@@ -4,6 +4,7 @@ import { TypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
 import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from '../../store/slices/authState';
+import { EmptyObject, OptionSetSingle } from '../util-types';
 
 export type HeaderWithAnchorMixin = {
     title: string;
@@ -15,15 +16,15 @@ export type ProductDataMixin = {
     title: string;
     ingress?: string;
     taxonomy?: Taxonomy[];
+    customCategory?: string;
     illustration: AnimatedIconsProps;
     externalProductUrl?: string;
 };
 
-export type LinkSelectable = {
-    _selected: 'internal' | 'external';
+export type LinkSelectable = OptionSetSingle<{
     internal: InternalLinkMixin;
     external: ExternalLinkMixin;
-};
+}>;
 
 export type ContentListMixin = {
     target: ContentListProps;
@@ -69,21 +70,22 @@ export type LayoutCommonConfigMixin = Partial<
         marginTop: number;
         marginBottom: number;
         bgColor: ColorMixin;
-        paddingSides: {
-            _selected: 'standard' | 'fullWidth' | 'custom';
-            custom?: {
+        paddingSides: OptionSetSingle<{
+            fullWidth: EmptyObject;
+            standard: EmptyObject;
+            custom: {
                 remValue: number;
             };
-        };
+        }>;
     } & RenderOnAuthStateMixin
 >;
 
 export type HeaderCommonConfig = {
     justify: 'left' | 'center' | 'right';
-    typo: {
-        _selected: 'default' | 'custom';
+    typo: OptionSetSingle<{
+        default: EmptyObject;
         custom: {
             typo: TypoStyle;
         };
-    };
+    }>;
 };

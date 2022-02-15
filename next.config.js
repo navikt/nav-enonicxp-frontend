@@ -35,7 +35,7 @@ module.exports = withPlugins([withLess, withImages, withTranspileModules], {
         APP_ORIGIN: process.env.APP_ORIGIN,
         XP_ORIGIN: process.env.XP_ORIGIN,
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
-        INNLOGGINGSTATUS_URL: process.env.INNLOGGINGSTATUS_URL,
+        INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
     },
     webpack: (config) => {
         cssModulesNoDashesInClassnames(config);
@@ -62,6 +62,15 @@ module.exports = withPlugins([withLess, withImages, withTranspileModules], {
         {
             source: '/sitemap.xml',
             destination: '/api/sitemap',
+        },
+        {
+            source: '/rss',
+            destination: '/api/rss',
+        },
+        // The historic url for RSS
+        {
+            source: '/no/rss',
+            destination: '/api/rss',
         },
         // Send some very common 404-resulting requests directly to 404
         // to prevent unnecessary backend-calls
@@ -98,15 +107,6 @@ module.exports = withPlugins([withLess, withImages, withTranspileModules], {
                 {
                     key: 'Access-Control-Allow-Origin',
                     value: process.env.ADMIN_ORIGIN,
-                },
-            ],
-        },
-        {
-            source: '/(.*)',
-            headers: [
-                {
-                    key: 'Permissions-Policy',
-                    value: 'interest-cohort=()',
                 },
             ],
         },

@@ -11,19 +11,29 @@ import { IllustrationPlacements } from 'types/illustrationPlacements';
 import {
     ProductPageProps,
     SituationPageProps,
-    GuidePageProps
+    GuidePageProps,
+    ThemedArticlePageProps,
 } from '../../../../types/content-props/dynamic-page-props';
-import { buildTaxonomyString } from 'utils/string';
+import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 const bem = BEM('themed-page-header');
 
 type Props = {
-    contentProps: SituationPageProps | ProductPageProps | GuidePageProps;
+    contentProps:
+        | SituationPageProps
+        | ProductPageProps
+        | GuidePageProps
+        | ThemedArticlePageProps;
 };
 
 export const ThemedPageHeader = ({ contentProps }: Props) => {
-    const { __typename: pageType, displayName, modifiedTime, data } = contentProps;
-    const { title, illustration, taxonomy } = data;
+    const {
+        __typename: pageType,
+        displayName,
+        modifiedTime,
+        data,
+    } = contentProps;
+    const { title, illustration, taxonomy, customCategory } = data;
     const { language } = usePageConfig();
     const getSubtitle = () => {
         if (pageType === ContentType.SituationPage) {
@@ -40,27 +50,47 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             return getTaxonomyLabel('howTo');
         }
 
-        return buildTaxonomyString(taxonomy, language);
+        if (pageType === ContentType.ThemedArticlePage) {
+            const taxonomyArray = getTranslatedTaxonomies(taxonomy, language);
+            const allCategories = customCategory
+                ? [...taxonomyArray, customCategory]
+                : taxonomyArray;
+
+            return joinWithConjunction(allCategories, language);
+        }
+
+        const taxonomyArray = getTranslatedTaxonomies(taxonomy, language);
+        return joinWithConjunction(taxonomyArray, language);
     };
     const getDatesLabel = translator('dates', language);
     const getPageTypeClass = (_pageType: ContentType) => {
-        if (_pageType === ContentType.EmployerSituationPage || _pageType === ContentType.SituationPage) {
-            return 'situation'
+        if (
+            _pageType === ContentType.EmployerSituationPage ||
+            _pageType === ContentType.SituationPage
+        ) {
+            return 'situation';
         }
 
         if (_pageType === ContentType.ProductPage) {
-            return 'product'
+            return 'product';
         }
 
         if (_pageType === ContentType.GuidePage) {
-            return 'guide'
+            return 'guide';
         }
 
-        return ''
+        if (_pageType === ContentType.ThemedArticlePage) {
+            return 'themedpage';
+        }
+
+        return '';
     };
     const pageTitle = title || displayName;
     const subTitle = getSubtitle();
-    const modified = getDatesLabel('lastChanged') + ' ' + formatDate(modifiedTime, language, true);
+    const modified =
+        getDatesLabel('lastChanged') +
+        ' ' +
+        formatDate(modifiedTime, language, true);
 
     // This is a temporaty fix, especially for "Arbeidsavklaringspenger".
     // Will work with design to find solution for how long titles and illustration can stack better on mobile.
@@ -72,7 +102,7 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
         <header
             className={classNames(
                 bem(),
-                bem(undefined,getPageTypeClass(pageType))
+                bem(undefined, getPageTypeClass(pageType))
             )}
         >
             <Illustration
@@ -88,19 +118,35 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
                 <PageHeader justify={'left'}>{pageTitle}</PageHeader>
                 {(subTitle || modified) && (
                     <div className={bem('tagline-wrapper')}>
-                        {subTitle &&<BodyShort size="small" className={bem('tagline-label')}>
-                            {subTitle.toUpperCase()}
-                        </BodyShort>}
-                        {(subTitle && modified) &&
-                            <span aria-hidden='true'
-                                className={classNames('page-modified-info', bem('divider'))}
+                        {subTitle && (
+                            <BodyShort
+                                size="small"
+                                className={bem('tagline-label')}
+                            >
+                                {subTitle.toUpperCase()}
+                            </BodyShort>
+                        )}
+                        {subTitle && modified && (
+                            <span
+                                aria-hidden="true"
+                                className={classNames(
+                                    'page-modified-info',
+                                    bem('divider')
+                                )}
                             >
                                 {'|'}
                             </span>
-                        }
-                        {modified && <BodyShort size="small"className={bem('modified-label')}>
-                                <span className={'page-modified-info'}>{modified}</span>
-                        </BodyShort>}
+                        )}
+                        {modified && (
+                            <BodyShort
+                                size="small"
+                                className={bem('modified-label')}
+                            >
+                                <span className={'page-modified-info'}>
+                                    {modified}
+                                </span>
+                            </BodyShort>
+                        )}
                     </div>
                 )}
             </div>
