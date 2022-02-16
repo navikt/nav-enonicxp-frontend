@@ -16,7 +16,10 @@
     $horizontalPadding: 0.5rem;
     $verticalPadding: 0.6875rem;
     padding: $verticalPadding $horizontalPadding;
-    margin: 0 -$horizontalPadding;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: -$horizontalPadding;
+    margin-right: -$horizontalPadding;
 
     &:focus,
     &:focus-visible,
