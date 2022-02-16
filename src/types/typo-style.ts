@@ -38,9 +38,9 @@ export const headingToSize: {
 } = {
     h1: 'xlarge',
     h2: 'large',
-    h3: 'large',
-    h4: 'medium',
-    h5: 'small',
+    h3: 'medium',
+    h4: 'small',
+    h5: 'xsmall',
     h6: 'xsmall',
 };
 
@@ -51,9 +51,9 @@ export const levelToSize: {
 } = {
     1: 'xlarge',
     2: 'large',
-    3: 'large',
-    4: 'medium',
-    5: 'small',
+    3: 'medium',
+    4: 'small',
+    5: 'xsmall',
     6: 'xsmall',
 };
 
@@ -62,7 +62,7 @@ export const typoToSize: {
 } = {
     [HeaderTypoStyle.Sidetittel]: 'xlarge',
     [HeaderTypoStyle.Innholdstittel]: 'large',
-    [HeaderTypoStyle.Systemtittel]: 'large',
-    [HeaderTypoStyle.Undertittel]: 'medium',
-    [HeaderTypoStyle.Element]: 'small',
+    [HeaderTypoStyle.Systemtittel]: 'medium',
+    [HeaderTypoStyle.Undertittel]: 'small',
+    [HeaderTypoStyle.Element]: 'xsmall',
 };
