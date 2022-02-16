@@ -2,7 +2,8 @@ import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from '../lenke/LenkeStandalone';
-import { BEM, classNames } from 'utils/classnames';
+import { classNames } from 'utils/classnames';
+import style from './Lenkeliste.module.scss';
 
 type Props = {
     lenker: LinkProps[];
@@ -21,24 +22,25 @@ export const Lenkeliste = ({
         return null;
     }
 
-    const bem = BEM('lenkeliste');
-
     return (
-        <section className={classNames(bem(), className)} aria-label={tittel}>
+        <section
+            className={classNames(style.lenkeliste, className)}
+            aria-label={tittel}
+        >
             {tittel && (
-                <div className={bem('tittel')}>
+                <div className={style.tittel}>
                     <Heading size="small" level="2">
                         {tittel}
                     </Heading>
                 </div>
             )}
-            <nav className={bem('lenker')}>
+            <nav className={style.lenker}>
                 {lenker.map((lenke, index) => (
                     <LenkeStandalone
                         href={lenke.url}
                         label={lenke.label}
                         key={index}
-                        className={bem('lenke')}
+                        className={style.lenke}
                         component={'link-list'}
                         linkGroup={tittel}
                         showExternalLinkLabel={true}

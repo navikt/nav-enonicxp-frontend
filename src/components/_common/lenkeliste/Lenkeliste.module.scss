@@ -1,11 +1,11 @@
-@import (reference) '../../../common';
+@use '../../../common' as common;
 
 .lenkeliste {
-    &__tittel {
+    .tittel {
         margin-bottom: 0.5rem;
     }
 
-    &__lenker {
+    .lenker {
         display: flex;
         flex-direction: column;
         list-style: none;
@@ -13,18 +13,18 @@
         padding: 0;
     }
 
-    &__lenke {
-        @horizontalPadding: 0.5rem;
-        @verticalPadding: #px-to-rem(11) [];
-        padding: @verticalPadding @horizontalPadding;
-        margin: 0 -@horizontalPadding;
+    .lenke {
+        $horizontalPadding: 0.5rem;
+        $verticalPadding: 0.6875rem;
+        padding: $verticalPadding $horizontalPadding;
+        margin: 0 -$horizontalPadding;
 
         &:focus,
         &:focus-visible,
         &:active {
-            .panel-focus-mixin();
+            @include common.panel-focus-mixin();
             background-color: transparent;
-            color: @navds-semantic-color-link;
+            color: common.$navds-semantic-color-link;
         }
     }
 }
