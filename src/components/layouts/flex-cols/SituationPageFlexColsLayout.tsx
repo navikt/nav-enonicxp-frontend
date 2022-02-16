@@ -37,6 +37,7 @@ export const SituationPageFlexColsLayout = ({
                     justify={'left'}
                     hideCopyButton={!toggleCopyButton}
                     anchorId={anchorId}
+                    className="custom-header-style"
                 >
                     {title}
                 </Header>

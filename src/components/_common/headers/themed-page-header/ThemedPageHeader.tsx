@@ -95,7 +95,6 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
         .split(' ')
         .every((word) => word.length < 18);
 
-    console.log(style[getPageTypeClass(pageType)]);
     return (
         <header
             className={classNames(
