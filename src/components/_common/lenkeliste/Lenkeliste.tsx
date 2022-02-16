@@ -2,7 +2,6 @@ import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from '../lenke/LenkeStandalone';
-import { classNames } from 'utils/classnames';
 import style from './Lenkeliste.module.scss';
 
 type Props = {
@@ -23,10 +22,7 @@ export const Lenkeliste = ({
     }
 
     return (
-        <section
-            className={classNames(style.lenkeliste, className)}
-            aria-label={tittel}
-        >
+        <section className={className} aria-label={tittel}>
             {tittel && (
                 <div className={style.tittel}>
                     <Heading size="small" level="2">
