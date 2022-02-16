@@ -60,7 +60,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
     return (
         <section className={bem('wrapper')} aria-describedby="description">
             {title && (
-                <Header level="2" size="xlarge" justify="left">
+                <Header level="2" size="large" justify="left">
                     {title}
                 </Header>
             )}

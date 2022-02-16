@@ -51,7 +51,7 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
     return (
         <div className={bem()}>
             <header>
-                <Heading level="1" size="xlarge">
+                <Heading level="1" size="large">
                     {props.displayName}
                 </Heading>
                 {props.data.ingress && (

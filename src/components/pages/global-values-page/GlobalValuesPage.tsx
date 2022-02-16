@@ -58,7 +58,7 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
     return (
         <div className={bem()}>
             <div className={bem('header-row')}>
-                <Heading level="1" size="xlarge" className={bem('header')}>
+                <Heading level="1" size="large" className={bem('header')}>
                     {'Globale verdier'}
                 </Heading>
                 <Select

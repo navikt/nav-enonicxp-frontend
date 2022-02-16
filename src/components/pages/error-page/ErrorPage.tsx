@@ -36,7 +36,7 @@ export const ErrorPage = (props: ErrorProps) => {
                 </style>
             </Head>
             <div className={bem('header')}>
-                <Heading level="1" size="xlarge" className={bem('header-msg')}>
+                <Heading level="1" size="large" className={bem('header-msg')}>
                     {errorMessage}
                 </Heading>
                 <Ingress
