@@ -116,7 +116,7 @@ export const fetchPageProps = async (
 
     if (!isDraft) {
         const redirectTarget = getTargetIfRedirect(content);
-        if (redirectTarget) {
+        if (redirectTarget !== null) {
             return redirectProps(
                 getRelativePathIfInternal(redirectTarget, isDraft),
                 content.data?.permanentRedirect

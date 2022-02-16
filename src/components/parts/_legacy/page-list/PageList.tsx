@@ -1,7 +1,7 @@
 import React from 'react';
 import { BEM } from 'utils/classnames';
 import { Heading, BodyLong, Ingress } from '@navikt/ds-react';
-import ArtikkelDato from '../main-article/ArtikkelDato'
+import ArtikkelDato from '../main-article/ArtikkelDato';
 import { translator } from 'translations';
 import { PageListProps } from 'types/content-props/page-list-props';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
@@ -27,7 +27,7 @@ const PageList = (props: PageListProps) => {
     return (
         <div className={bem()}>
             <header>
-                <Heading level="1" size="2xlarge">
+                <Heading level="1" size="xlarge">
                     {props.displayName}
                 </Heading>
                 <div className={bem('ingress')}>
@@ -47,7 +47,14 @@ const PageList = (props: PageListProps) => {
             </header>
             <div className={bem('list')}>
                 {sectionContents.map((section) => {
-                    const { displayName, _path, publish, modifiedTime, createdTime, data } = section;
+                    const {
+                        displayName,
+                        _path,
+                        publish,
+                        modifiedTime,
+                        createdTime,
+                        data,
+                    } = section;
                     const ingress = data?.ingress || data?.description;
                     return (
                         <article key={_path} className={bem('row')}>

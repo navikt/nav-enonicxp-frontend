@@ -1,12 +1,6 @@
 export type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 export type Level = '1' | '2' | '3' | '4' | '5' | '6';
-export type Size =
-    | '2xlarge'
-    | 'xlarge'
-    | 'large'
-    | 'medium'
-    | 'small'
-    | 'xsmall';
+export type Size = 'xlarge' | 'large' | 'medium' | 'small' | 'xsmall';
 
 export enum HeaderTypoStyle {
     Sidetittel = 'sidetittel',
@@ -42,8 +36,8 @@ export const headingToLevel: {
 export const headingToSize: {
     [key in HeadingTag]: Size;
 } = {
-    h1: '2xlarge',
-    h2: 'xlarge',
+    h1: 'xlarge',
+    h2: 'large',
     h3: 'large',
     h4: 'medium',
     h5: 'small',
@@ -55,8 +49,8 @@ export const headingToSize: {
 export const levelToSize: {
     [key in Level]: Size;
 } = {
-    1: '2xlarge',
-    2: 'xlarge',
+    1: 'xlarge',
+    2: 'large',
     3: 'large',
     4: 'medium',
     5: 'small',
@@ -66,8 +60,8 @@ export const levelToSize: {
 export const typoToSize: {
     [key in HeaderTypoStyle]: Size;
 } = {
-    [HeaderTypoStyle.Sidetittel]: '2xlarge',
-    [HeaderTypoStyle.Innholdstittel]: 'xlarge',
+    [HeaderTypoStyle.Sidetittel]: 'xlarge',
+    [HeaderTypoStyle.Innholdstittel]: 'large',
     [HeaderTypoStyle.Systemtittel]: 'large',
     [HeaderTypoStyle.Undertittel]: 'medium',
     [HeaderTypoStyle.Element]: 'small',

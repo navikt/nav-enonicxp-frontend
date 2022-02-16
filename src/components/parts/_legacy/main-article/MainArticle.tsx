@@ -48,7 +48,7 @@ export const MainArticle = (
                 />
                 <Heading
                     level="1"
-                    size="2xlarge"
+                    size="xlarge"
                     className={bem('title')}
                     spacing
                 >

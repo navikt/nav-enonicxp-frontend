@@ -13,7 +13,7 @@ export const MacroHeaderWithAnchor = ({
     const { id, tag, text, body } = config.header_with_anchor;
 
     const level = headingToLevel[tag] || '3';
-    const size = headingToSize[tag] || 'xlarge';
+    const size = headingToSize[tag] || 'large';
 
     return (
         <Header
