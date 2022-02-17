@@ -1,9 +1,9 @@
 import React from 'react';
-import { BEM, classNames } from '../../../../utils/classnames';
+import { classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
 import { formatDate } from '../../../../utils/datetime';
 import { ContentType } from '../../../../types/content-props/_content-common';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Detail } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Illustration } from 'components/_common/illustration/Illustration';
@@ -16,7 +16,7 @@ import {
 } from '../../../../types/content-props/dynamic-page-props';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
-const bem = BEM('themed-page-header');
+import style from './ThemedPageHeader.module.scss';
 
 type Props = {
     contentProps:
@@ -44,7 +44,6 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             const getTaxonomyLabel = translator('situations', language);
             return getTaxonomyLabel('employerNeedToKnow');
         }
-
         if (pageType === ContentType.GuidePage) {
             const getTaxonomyLabel = translator('guides', language);
             return getTaxonomyLabel('howTo');
@@ -70,11 +69,9 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
         ) {
             return 'situation';
         }
-
         if (_pageType === ContentType.ProductPage) {
             return 'product';
         }
-
         if (_pageType === ContentType.GuidePage) {
             return 'guide';
         }
@@ -101,27 +98,23 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
     return (
         <header
             className={classNames(
-                bem(),
-                bem(undefined, getPageTypeClass(pageType))
+                style.themedPageHeader,
+                style[getPageTypeClass(pageType)]
             )}
         >
             <Illustration
                 illustration={illustration}
                 placement={IllustrationPlacements.PRODUCT_PAGE_HEADER}
-                className={classNames(
-                    bem('illustration'),
-                    !hasRoomForIllustrationOnMobile &&
-                        bem('illustration', 'mobile-hidden')
-                )}
+                className={style.illustration}
             />
-            <div className={bem('text')}>
+            <div className={style.text}>
                 <PageHeader justify={'left'}>{pageTitle}</PageHeader>
                 {(subTitle || modified) && (
-                    <div className={bem('tagline-wrapper')}>
+                    <div className={style.taglineWrapper}>
                         {subTitle && (
                             <BodyShort
                                 size="small"
-                                className={bem('tagline-label')}
+                                className={style.taglineLabel}
                             >
                                 {subTitle.toUpperCase()}
                             </BodyShort>
@@ -131,21 +124,18 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
                                 aria-hidden="true"
                                 className={classNames(
                                     'page-modified-info',
-                                    bem('divider')
+                                    style.divider
                                 )}
                             >
                                 {'|'}
                             </span>
                         )}
                         {modified && (
-                            <BodyShort
-                                size="small"
-                                className={bem('modified-label')}
-                            >
+                            <Detail size="small">
                                 <span className={'page-modified-info'}>
                                     {modified}
                                 </span>
-                            </BodyShort>
+                            </Detail>
                         )}
                     </div>
                 )}

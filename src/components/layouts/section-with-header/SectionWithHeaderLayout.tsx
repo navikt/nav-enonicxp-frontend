@@ -85,6 +85,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     hideCopyButton={toggleCopyButton}
                     anchorId={anchorId}
                     setId={false}
+                    className="custom-header-style"
                 >
                     {title}
                 </Header>
