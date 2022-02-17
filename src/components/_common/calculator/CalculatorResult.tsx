@@ -5,7 +5,7 @@ import {
     numberToFormattedValue,
 } from '../../../utils/string';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import style from './Result.module.scss';
+import style from './CalculatorResult.module.scss';
 interface ResultProps {
     summaryText: string;
     sum: number;
