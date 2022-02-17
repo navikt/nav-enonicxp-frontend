@@ -1,13 +1,11 @@
-@import (reference) '../../../common';
+@use '../../../common' as common;
 
-.calculator-result {
-    &.calculator-result__summaryText {
-        margin-top: 2rem;
-        background-color: @navds-global-color-lightblue-100;
-    }
+.summaryError {
+    margin-top: 2rem;
+    background-color: common.$navds-global-color-orange-200;
+}
 
-    &.calculator-result__summaryError {
-        margin-top: 2rem;
-        background-color: @navds-global-color-orange-200;
-    }
+.summaryText {
+    margin-top: 2rem;
+    background-color: common.$navds-global-color-lightblue-100;
 }
