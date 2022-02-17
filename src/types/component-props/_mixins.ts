@@ -47,7 +47,6 @@ export type LinkWithIngressMixin = {
 
 export type ExpandableMixin = {
     expandable: boolean;
-    expandableOpenByDefault: boolean;
     expandableTitle: string;
     expandableAnchorId?: string;
     analyticsOriginTag?: string;
