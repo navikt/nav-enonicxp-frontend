@@ -3,7 +3,7 @@ import { Heading } from '@navikt/ds-react';
 import { Button } from '../button/Button';
 import { Calculator as CalculatorIcon } from '@navikt/ds-icons';
 import { translator } from 'translations';
-import { classNames, BEM } from 'utils/classnames';
+import style from './Calculator.module.scss';
 
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
@@ -15,8 +15,6 @@ import {
     CalculatorField,
     FieldType,
 } from 'types/component-props/parts/calculator';
-
-const bem = BEM('calculator');
 
 export const Calculator = ({
     header,
@@ -146,18 +144,14 @@ export const Calculator = ({
     };
 
     return (
-        <div className={bem()}>
+        <div className={style.calculator}>
             {header && (
-                <Heading
-                    level="4"
-                    size="medium"
-                    className={classNames(bem('title'))}
-                >
+                <Heading level="4" size="medium" className={style.title}>
                     {header}
                 </Heading>
             )}
             <form onSubmit={handleDefaultFormSubmit}>
-                <div className={classNames(bem('fields'))}>
+                <div className="calculatorFields">
                     {fields
                         .filter(
                             (field) =>
@@ -184,11 +178,9 @@ export const Calculator = ({
                 <Button
                     size={'small'}
                     onClick={handleCalculateButtonClick}
-                    className={classNames(bem('calculateButton'))}
+                    className={style.calculateButton}
                 >
-                    <CalculatorIcon
-                        className={classNames(bem('calculateIcon'))}
-                    />
+                    <CalculatorIcon className={style.calculateIcon} />
                     <span>{getLabel('calculate')}</span>
                 </Button>
                 <CalculatorResult

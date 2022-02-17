@@ -1,14 +1,14 @@
 .calculator {
     margin-bottom: 1.75rem;
 
-    &__title.navds-title {
+    .title {
         margin-bottom: 0.75rem;
     }
 
-    &__calculateButton {
+    .calculateButton {
         margin-top: 1rem;
 
-        .calculator__calculateIcon {
+        .calculateIcon {
             width: 1.5rem;
             height: 1.5rem;
         }
