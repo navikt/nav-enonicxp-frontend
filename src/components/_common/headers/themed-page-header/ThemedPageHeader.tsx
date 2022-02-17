@@ -3,7 +3,7 @@ import { classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
 import { formatDate } from '../../../../utils/datetime';
 import { ContentType } from '../../../../types/content-props/_content-common';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Detail } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Illustration } from 'components/_common/illustration/Illustration';
@@ -131,14 +131,11 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
                             </span>
                         )}
                         {modified && (
-                            <BodyShort
-                                size="small"
-                                className={style.modifiedLabel}
-                            >
+                            <Detail size="small">
                                 <span className={'page-modified-info'}>
                                     {modified}
                                 </span>
-                            </BodyShort>
+                            </Detail>
                         )}
                     </div>
                 )}

@@ -11,12 +11,11 @@ type Props = {
 export const Expandable = ({
     expandable,
     expandableTitle,
-    expandableOpenByDefault,
     expandableAnchorId,
     analyticsOriginTag = '',
     children,
 }: Props) => {
-    const [isOpen, setIsOpen] = useState(expandableOpenByDefault);
+    const [isOpen, setIsOpen] = useState(false);
 
     if (!expandable) {
         return <>{children}</>;
@@ -33,7 +32,6 @@ export const Expandable = ({
     return (
         <Accordion id={expandableAnchorId}>
             <Accordion.Item
-                open={isOpen}
                 renderContentWhenClosed={true}
                 className={style.expandable}
             >

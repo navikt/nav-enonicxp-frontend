@@ -15,7 +15,7 @@ export const PageHeader = ({ justify, children, level, size }: Props) => {
     return children ? (
         <Header
             level={level || '1'}
-            size={size || '2xlarge'}
+            size={size || 'xlarge'}
             justify={justify}
             className={style.pageHeader}
             hideCopyButton
