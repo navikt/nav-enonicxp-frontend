@@ -1,7 +1,5 @@
 @use '../../../common' as common;
 
-$mq-screen-tablet-and-desktop: 'min-width: 500px';
-
 .themedArticlePage {
     display: flex;
     flex-direction: column;
