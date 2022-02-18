@@ -1,26 +1,10 @@
-import {
-    ContentProps,
-    ContentType,
-} from '../types/content-props/_content-common';
+import { ContentProps } from '../types/content-props/_content-common';
 import { LanguageProps } from '../types/language';
 
 export const getContentLanguages = (
     content: ContentProps
 ): LanguageProps[] | null => {
-    if (!content?.__typename) {
-        return null;
-    }
-
-    if (
-        content.__typename === ContentType.MainArticle ||
-        content.__typename === ContentType.PageList ||
-        content.__typename === ContentType.MainArticleChapter ||
-        content.__typename === ContentType.DynamicPage ||
-        content.__typename === ContentType.SectionPage ||
-        content.__typename === ContentType.ProductPage
-    ) {
-        return content.data?.languages;
-    }
-
-    return null;
+    return Array.isArray(content.data?.languages)
+        ? content.data.languages
+        : null;
 };
