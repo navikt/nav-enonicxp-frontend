@@ -59,16 +59,19 @@ const getLinkData = (content: ContentProps | null): TableData | null => {
             };
         case ContentType.DynamicPage:
         case ContentType.ProductPage:
+        case ContentType.SituationPage:
+        case ContentType.GuidePage:
+        case ContentType.ThemedArticlePage:
             return {
                 url: content._path,
                 tittel: content.displayName,
-                ingress: content.data?.description,
+                ingress: content.data?.ingress || content.data?.description,
             };
         default:
             return {
                 url: content._path,
                 tittel: content.displayName,
-                ingress: '',
+                ingress: content.data?.description,
             };
     }
 };
