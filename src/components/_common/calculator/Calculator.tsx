@@ -180,7 +180,10 @@ export const Calculator = ({
                     onClick={handleCalculateButtonClick}
                     className={style.calculateButton}
                 >
-                    <CalculatorIcon className={style.calculateIcon} />
+                    <CalculatorIcon
+                        title={'Kalkulator-ikon'}
+                        className={style.calculateIcon}
+                    />
                     <span>{getLabel('calculate')}</span>
                 </Button>
                 <CalculatorResult
