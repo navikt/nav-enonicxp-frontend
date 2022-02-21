@@ -1,8 +1,7 @@
 import React from 'react';
 import { Next } from '@navikt/ds-icons';
-import { BEM, classNames } from '../../../utils/classnames';
-
-const bem = BEM('chevron');
+import { classNames } from '../../../utils/classnames';
+import style from './Chevron.module.scss';
 
 type Props = {
     direction?: 'up' | 'right' | 'down' | 'left';
@@ -12,7 +11,11 @@ type Props = {
 export const Chevron = ({ direction = 'right', className }: Props) => {
     return (
         <Next
-            className={classNames(bem(), bem(undefined, direction), className)}
+            className={classNames(
+                'chevron',
+                direction && style[direction],
+                className
+            )}
         />
     );
 };
