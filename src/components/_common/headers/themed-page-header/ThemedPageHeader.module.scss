@@ -3,7 +3,7 @@
 // @use '../../../pages/product-page/ProductPage' as ProductPage;
 // @use '../../../pages/guide-page/GuidePage' as GuidePage;
 
-.themed-page-header {
+.themedPageHeader {
     display: flex;
     justify-content: center;
     background-color: white;
@@ -52,7 +52,7 @@
     max-width: 63.5rem;
 }
 
-.tagline-wrapper {
+.taglineWrapper {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -63,7 +63,7 @@
     }
 }
 
-.tagline-label {
+.taglineLabel {
     @media #{common.$mq-screen-mobile} {
         margin-bottom: 0.5rem;
     }
@@ -78,6 +78,6 @@
 }
 
 .divider,
-.modified-label {
+.modifiedLabel {
     color: common.$navds-global-color-gray-600;
 }
