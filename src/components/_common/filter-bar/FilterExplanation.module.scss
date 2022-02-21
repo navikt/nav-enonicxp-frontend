@@ -1,4 +1,4 @@
-@import (reference) '../../../common';
+@use '../../../common' as common;
 
 .filterExplanation {
     margin-left: -0.5rem;
@@ -8,16 +8,16 @@
     transition: all 0.8s linear;
     border-radius: 3px;
     width: calc(100% + 0.5rem);
-    font-size: #px-to-rem(14) [];
+    font-size: 0.875rem;
     border: 1px solid transparent;
 
-    &--highlight {
-        background-color: @navds-global-color-green-100;
-        border: 1px solid @navds-global-color-green-500;
+    &.highlight {
+        background-color: common.$navds-global-color-green-100;
+        border: 1px solid common.$navds-global-color-green-500;
         transition: all 0.4s linear;
     }
 
-    &__iconWrapper {
+    .iconWrapper {
         display: block;
         height: 14px;
         margin-right: 0.5em;
@@ -25,18 +25,18 @@
         width: 14px;
     }
 
-    &__icon {
+    .icon {
         display: block;
         left: 0;
         position: absolute;
         top: 0;
         transition: all 0.4s;
 
-        &--visible {
+        &.visible {
             opacity: 1;
         }
 
-        &--hidden {
+        &.hidden {
             opacity: 0;
         }
     }
