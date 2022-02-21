@@ -53,7 +53,7 @@ export const FilterExplanation = ({
         <div
             className={classNames(
                 style.filterExplanation,
-                showHighlight && style.highlight
+                showHighlight && style.filterExplanationHighlight
             )}
             aria-live="assertive"
         >
@@ -62,7 +62,7 @@ export const FilterExplanation = ({
                     color="#006A23"
                     className={classNames(
                         style.icon,
-                        showHighlight ? style.visible : style.hidden
+                        showHighlight ? style.iconVisible : style.iconHidden
                     )}
                     role="img"
                     focusable="false"
@@ -71,7 +71,7 @@ export const FilterExplanation = ({
                 <Information
                     className={classNames(
                         style.icon,
-                        showHighlight ? style.hidden : style.visible
+                        showHighlight ? style.iconHidden : style.iconVisible
                     )}
                     role="img"
                     focusable="false"

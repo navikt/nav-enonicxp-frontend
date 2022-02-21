@@ -10,34 +10,34 @@
     width: calc(100% + 0.5rem);
     font-size: 0.875rem;
     border: 1px solid transparent;
+}
 
-    &.highlight {
-        background-color: common.$navds-global-color-green-100;
-        border: 1px solid common.$navds-global-color-green-500;
-        transition: all 0.4s linear;
-    }
+.filterExplanationHighlight {
+    background-color: common.$navds-global-color-green-100;
+    border: 1px solid common.$navds-global-color-green-500;
+    transition: all 0.4s linear;
+}
 
-    .iconWrapper {
-        display: block;
-        height: 14px;
-        margin-right: 0.5em;
-        position: relative;
-        width: 14px;
-    }
+.iconWrapper {
+    display: block;
+    height: 14px;
+    margin-right: 0.5em;
+    position: relative;
+    width: 14px;
+}
 
-    .icon {
-        display: block;
-        left: 0;
-        position: absolute;
-        top: 0;
-        transition: all 0.4s;
+.icon {
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: all 0.4s;
+}
 
-        &.visible {
-            opacity: 1;
-        }
+.iconVisible {
+    opacity: 1;
+}
 
-        &.hidden {
-            opacity: 0;
-        }
-    }
+.iconHidden {
+    opacity: 0;
 }
