@@ -82,11 +82,14 @@ export const bundle: Translations = {
         [MenuListItemKey.Shortcuts]: 'Shortcuts',
     },
     situations: {
-        youMayHaveRightTo: 'You may have right to this',
-        employerNeedToKnow: 'As an employer, you need to know this',
+        person: 'You may have right to this',
+        employer: 'As an employer, you need to know this',
+        provider: '',
     },
     guides: {
-        howTo: 'How to',
+        person: 'How to',
+        employer: 'How to',
+        provider: 'How to',
     },
     productTaxonomies,
     header: {

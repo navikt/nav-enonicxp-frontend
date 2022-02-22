@@ -72,11 +72,14 @@ export const bundle = {
     relatedContent: relatedContent,
     productTaxonomies,
     situations: {
-        youMayHaveRightTo: 'Dette kan du ha rett til',
-        employerNeedToKnow: 'Som arbeidsgiver må du vite dette',
+        person: 'Dette kan du ha rett til',
+        employer: 'Som arbeidsgiver må du vite dette',
+        provider: '',
     },
     guides: {
-        howTo: 'Slik gjør du det',
+        person: 'Slik gjør du det',
+        employer: 'Slik gjør du det',
+        provider: 'Slik gjør du det',
     },
     publishingCalendar: {
         event: 'Kalenderhendelse',

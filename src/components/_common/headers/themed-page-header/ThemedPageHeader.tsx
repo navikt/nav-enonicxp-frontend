@@ -14,6 +14,7 @@ import {
     GuidePageProps,
     ThemedArticlePageProps,
 } from '../../../../types/content-props/dynamic-page-props';
+import { Audience } from '../../../../types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 import style from './ThemedPageHeader.module.scss';
@@ -33,20 +34,25 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
         modifiedTime,
         data,
     } = contentProps;
-    const { title, illustration, taxonomy, customCategory } = data;
+    const {
+        title,
+        illustration,
+        taxonomy,
+        audience = Audience.PERSON,
+        customCategory,
+    } = data;
+
     const { language } = usePageConfig();
+
     const getSubtitle = () => {
         if (pageType === ContentType.SituationPage) {
             const getTaxonomyLabel = translator('situations', language);
-            return getTaxonomyLabel('youMayHaveRightTo');
+            return getTaxonomyLabel(audience);
         }
-        if (pageType === ContentType.EmployerSituationPage) {
-            const getTaxonomyLabel = translator('situations', language);
-            return getTaxonomyLabel('employerNeedToKnow');
-        }
+
         if (pageType === ContentType.GuidePage) {
             const getTaxonomyLabel = translator('guides', language);
-            return getTaxonomyLabel('howTo');
+            return getTaxonomyLabel(audience);
         }
 
         if (pageType === ContentType.ThemedArticlePage) {
@@ -61,17 +67,18 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
         const taxonomyArray = getTranslatedTaxonomies(taxonomy, language);
         return joinWithConjunction(taxonomyArray, language);
     };
+
     const getDatesLabel = translator('dates', language);
+
     const getPageTypeClass = (_pageType: ContentType) => {
-        if (
-            _pageType === ContentType.EmployerSituationPage ||
-            _pageType === ContentType.SituationPage
-        ) {
+        if (_pageType === ContentType.SituationPage) {
             return 'situation';
         }
+
         if (_pageType === ContentType.ProductPage) {
             return 'product';
         }
+
         if (_pageType === ContentType.GuidePage) {
             return 'guide';
         }
@@ -80,8 +87,13 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             return 'themedpage';
         }
 
+        if (_pageType === ContentType.ToolsPage) {
+            return 'tool';
+        }
+
         return '';
     };
+
     const pageTitle = title || displayName;
     const subTitle = getSubtitle();
     const modified =
