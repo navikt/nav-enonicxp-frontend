@@ -71,15 +71,20 @@ export const bundle = {
     },
     relatedContent: relatedContent,
     productTaxonomies,
+    products: {
+        person: 'For privatpersoner',
+        employer: 'For arbeidsgivere',
+        provider: 'For samhandlere',
+    },
     situations: {
         person: 'Dette kan du ha rett til',
-        employer: 'Som arbeidsgiver må du vite dette',
-        provider: '',
+        employer: 'For arbeidsgivere',
+        provider: 'For samhandlere',
     },
     guides: {
         person: 'Slik gjør du det',
-        employer: 'Slik gjør du det',
-        provider: 'Slik gjør du det',
+        employer: 'For arbeidsgivere',
+        provider: 'For samhandlere',
     },
     publishingCalendar: {
         event: 'Kalenderhendelse',
