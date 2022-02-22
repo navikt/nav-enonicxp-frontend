@@ -21,6 +21,7 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.BENEFITS]: 'Pengestøtte',
     [Taxonomy.RIGHTS]: 'Veiledning',
     [Taxonomy.FOLLOWUP]: 'Oppfølging',
+    [Taxonomy.MEASURES]: 'Tiltak',
 };
 
 export const bundle = {
