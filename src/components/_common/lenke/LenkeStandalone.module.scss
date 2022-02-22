@@ -1,49 +1,48 @@
-@import (reference) '../../../common';
+@use '../../../common' as common;
 
 .navno-lenke {
     text-decoration: none;
-    background-color: red;
+}
 
-    .chevron {
-        position: relative;
-        transition: left 250ms;
-        top: 0.0625rem;
-        left: 0;
-    }
+.withChevron {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-    &--chevron {
+    .lenketekst {
         display: inline-flex;
-        flex-direction: column;
-        align-items: flex-start;
+        border-bottom: none;
+    }
 
-        &:hover {
-            .chevron {
-                left: 0.325rem;
-            }
-
-            .navno-lenke__lenketekst {
-                text-decoration: underline;
-            }
+    &:hover {
+        .customChevronStyle {
+            left: 0.325rem;
         }
 
-        .navno-lenke__lenketekst {
-            display: inline-flex;
-            border-bottom: none;
+        .lenketekst {
+            text-decoration: underline;
         }
     }
+}
 
-    &__lenketekst {
-        display: inline;
-        .link-border-bottom-mixin();
-    }
+.lenketekst {
+    display: inline;
+    @include common.link-border-bottom-mixin;
+}
 
-    &__label {
-        padding-top: 0.3rem;
-        padding-left: 1.8rem;
-        color: black;
-    }
+.label {
+    padding-top: 0.3rem;
+    padding-left: 1.8rem;
+    color: black;
+}
 
-    &__icon-container {
-        min-width: 1.8rem;
-    }
+.iconContainer {
+    min-width: 1.8rem;
+}
+
+.customChevronStyle {
+    position: relative;
+    transition: left 250ms;
+    top: 0.0625rem;
+    left: 0;
 }

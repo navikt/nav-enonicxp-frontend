@@ -90,3 +90,14 @@ $border-radius-large: 6px;
         }
     }
 }
+
+@mixin link-border-bottom-mixin() {
+    border-bottom: 1px $navds-semantic-color-link solid;
+    text-decoration: none;
+    transition: border-bottom-color 0.12s ease-out;
+
+    &:hover,
+    &:focus {
+        border-bottom-color: transparent;
+    }
+}
