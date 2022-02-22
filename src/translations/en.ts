@@ -6,6 +6,7 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.BENEFITS]: 'Benefits',
     [Taxonomy.RIGHTS]: 'Counselling',
     [Taxonomy.FOLLOWUP]: 'Follow-up',
+    [Taxonomy.MEASURES]: 'Measures',
 };
 
 export const bundle: Translations = {
