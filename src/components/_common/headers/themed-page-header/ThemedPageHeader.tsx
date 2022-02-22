@@ -64,8 +64,6 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             return joinWithConjunction(allCategories, language);
         }
 
-        console.log(pageType, audience);
-
         if (
             pageType === ContentType.ProductPage &&
             (audience === Audience.EMPLOYER || audience === Audience.PROVIDER)
