@@ -14,19 +14,19 @@ export const joinWithConjunction = (
     return joinableArray.join(', ').replace(/, ([^,]*)$/, ` ${conjunction} $1`);
 };
 
-export const buildTaxonomyString = (
+export const getTranslatedTaxonomies = (
     taxonomies: Taxonomy[],
     language: Language
-): string => {
+): string[] => {
     if (!Array.isArray(taxonomies)) {
-        return '';
+        return [];
     }
     const getTaxonomyLabel = translator('productTaxonomies', language);
     const taxonomyLabels = taxonomies.map((taxonomy) => {
         return getTaxonomyLabel(taxonomy) || '';
     });
 
-    return joinWithConjunction(taxonomyLabels, language);
+    return taxonomyLabels;
 };
 
 export const numberToFormattedValue = (

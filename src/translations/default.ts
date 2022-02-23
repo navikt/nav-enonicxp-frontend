@@ -21,6 +21,7 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.BENEFITS]: 'Pengestøtte',
     [Taxonomy.RIGHTS]: 'Veiledning',
     [Taxonomy.FOLLOWUP]: 'Oppfølging',
+    [Taxonomy.MEASURES]: 'Tiltak',
 };
 
 export const bundle = {
@@ -71,12 +72,20 @@ export const bundle = {
     },
     relatedContent: relatedContent,
     productTaxonomies,
+    products: {
+        person: 'For privatpersoner',
+        employer: 'For arbeidsgivere',
+        provider: 'For samhandlere',
+    },
     situations: {
-        youMayHaveRightTo: 'Dette kan du ha rett til',
-        employerNeedToKnow: 'Som arbeidsgiver må du vite dette',
+        person: 'Dette kan du ha rett til',
+        employer: 'For arbeidsgivere',
+        provider: 'For samhandlere',
     },
     guides: {
-        howTo: 'Slik gjør du det',
+        person: 'Slik gjør du det',
+        employer: 'For arbeidsgivere',
+        provider: 'For samhandlere',
     },
     publishingCalendar: {
         event: 'Kalenderhendelse',

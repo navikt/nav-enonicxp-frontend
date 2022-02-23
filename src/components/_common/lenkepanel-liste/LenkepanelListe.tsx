@@ -19,7 +19,7 @@ export const LenkepanelListe = ({ title, ingress, items }: Props) => {
         <section className={bem()} aria-label={title}>
             {title && (
                 <div className={bem('tittel')}>
-                    <Heading level="2" size="xlarge">
+                    <Heading level="2" size="large">
                         {title}
                     </Heading>
                 </div>

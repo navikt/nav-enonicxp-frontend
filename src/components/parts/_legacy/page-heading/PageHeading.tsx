@@ -12,7 +12,7 @@ const PageHeading = (props: ContentProps) => {
 
     return (
         <header className={bem('container')}>
-            <Heading level="1" size="2xlarge">
+            <Heading level="1" size="xlarge">
                 {displayName || 'Tittel'}
             </Heading>
             {ingress && (

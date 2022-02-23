@@ -79,12 +79,13 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             )}
             {title && (
                 <Header
-                    size="xlarge"
+                    size="large"
                     level="2"
                     justify={'left'}
                     hideCopyButton={toggleCopyButton}
                     anchorId={anchorId}
                     setId={false}
+                    className="custom-header-style"
                 >
                     {title}
                 </Header>

@@ -8,7 +8,7 @@ import {
     ToolsPageProps,
 } from '../../../types/content-props/dynamic-page-props';
 import { Language } from '../../../translations';
-import { buildTaxonomyString } from 'utils/string';
+import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
 
@@ -24,6 +24,7 @@ const cardTypeMap = {
     [ContentType.ProductPage]: CardType.Product,
     [ContentType.SituationPage]: CardType.Situation,
     [ContentType.ToolsPage]: CardType.Tool,
+    [ContentType.ThemedArticlePage]: CardType.ThemedArticle,
 };
 
 export const getCardProps = (
@@ -36,7 +37,14 @@ export const getCardProps = (
     }
 
     const { data, __typename, _path, displayName } = content;
-    const { title, ingress, illustration, taxonomy, externalProductUrl } = data;
+    const {
+        title,
+        ingress,
+        illustration,
+        taxonomy,
+        externalProductUrl,
+        customCategory,
+    } = data;
 
     const cardType = cardTypeMap[__typename];
     const cardUrl = externalProductUrl || _path;
@@ -47,14 +55,19 @@ export const getCardProps = (
         text: cardTitle,
     };
 
-    const category = buildTaxonomyString(taxonomy, language);
+    const categories = [
+        ...getTranslatedTaxonomies(taxonomy, language),
+        customCategory,
+    ].filter((category) => !!category);
+
+    const categoryString = joinWithConjunction(categories, language);
     const description = ingressOverride || ingress;
 
     return {
         type: cardType,
         link,
         description,
-        category,
+        category: categoryString,
         illustration,
     };
 };

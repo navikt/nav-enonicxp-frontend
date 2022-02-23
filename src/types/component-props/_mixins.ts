@@ -12,10 +12,18 @@ export type HeaderWithAnchorMixin = {
     toggleCopyButton: boolean;
 };
 
+export enum Audience {
+    PERSON = 'person',
+    EMPLOYER = 'employer',
+    PROVIDER = 'provider',
+}
+
 export type ProductDataMixin = {
     title: string;
     ingress?: string;
     taxonomy?: Taxonomy[];
+    audience?: Audience;
+    customCategory?: string;
     illustration: AnimatedIconsProps;
     externalProductUrl?: string;
 };
@@ -46,7 +54,6 @@ export type LinkWithIngressMixin = {
 
 export type ExpandableMixin = {
     expandable: boolean;
-    expandableOpenByDefault: boolean;
     expandableTitle: string;
     expandableAnchorId?: string;
     analyticsOriginTag?: string;
