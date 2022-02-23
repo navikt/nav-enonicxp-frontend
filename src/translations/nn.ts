@@ -72,12 +72,20 @@ export const bundle = {
     },
     relatedContent: relatedContent,
     productTaxonomies,
+    products: {
+        person: 'For privatpersonar',
+        employer: 'For arbeidsgjevarar',
+        provider: 'For samhandlarar',
+    },
     situations: {
-        youMayHaveRightTo: 'Dette kan du ha rett til',
-        employerNeedToKnow: 'Som arbeidsgivar må du vete dette',
+        person: 'Dette kan du ha rett til',
+        employer: 'For arbeidsgjevarar',
+        provider: 'For samhandlarar',
     },
     guides: {
-        howTo: 'Slik gjer du det',
+        person: 'Slik gjer du det',
+        employer: 'For arbeidsgjevarar',
+        provider: 'For samhandlarar',
     },
     publishingCalendar: {
         event: 'Kalenderhending',

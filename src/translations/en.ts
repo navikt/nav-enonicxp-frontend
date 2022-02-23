@@ -82,12 +82,20 @@ export const bundle: Translations = {
         [MenuListItemKey.Selfservice]: 'Selfservice',
         [MenuListItemKey.Shortcuts]: 'Shortcuts',
     },
+    products: {
+        person: 'For individuals',
+        employer: 'For employers',
+        provider: '',
+    },
     situations: {
-        youMayHaveRightTo: 'You may have right to this',
-        employerNeedToKnow: 'As an employer, you need to know this',
+        person: 'You may have right to this',
+        employer: 'For employers',
+        provider: '',
     },
     guides: {
-        howTo: 'How to',
+        person: 'How to',
+        employer: 'For employers',
+        provider: '',
     },
     productTaxonomies,
     header: {
