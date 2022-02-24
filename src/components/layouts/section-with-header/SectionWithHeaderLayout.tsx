@@ -40,7 +40,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     const shouldShowFilterBar = regions.content?.components?.some(
         (component) =>
-            component.config.filters && component.config.filters.length > 0
+            component.config?.filters && component.config.filters.length > 0
     );
 
     // Also make sure not to hide region if there are already components in it.
