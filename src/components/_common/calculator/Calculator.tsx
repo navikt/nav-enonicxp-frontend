@@ -25,9 +25,8 @@ export const Calculator = ({
     header: string;
     calculatorData: CalculatorData;
 }) => {
-    const { fields } = calculatorData;
+    const { fields, useThousandSeparator } = calculatorData;
 
-    const useThousandSeparator = calculatorData.useThousandSeparator === 'true';
     const { language } = usePageConfig();
 
     const getLabel = translator('calculator', language);
