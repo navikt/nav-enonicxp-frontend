@@ -2,8 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 import { DocumentParameter } from '../../_common/metatags/DocumentParameterMetatags';
 import { SiteInfoHeader } from './header/SiteInfoHeader';
-import { ClusterState, SiteInfoProps, SiteInfoContentProps } from './types';
-import { SiteInfoPublishInfoList } from './publish-info/content-list/SiteInfoPublishInfoList';
+import { SiteInfoProps } from './types';
 
 import style from './SiteInfo.module.scss';
 import { SiteInfoPublishInfo } from './publish-info/SiteInfoPublishInfo';
@@ -20,7 +19,7 @@ export const SiteInfo = ({
     return (
         <>
             <Head>
-                <title>{'nav.no status'}</title>
+                <title>{'nav.no cms status'}</title>
                 <meta
                     name={DocumentParameter.DecoratorDisabled}
                     content={'true'}
