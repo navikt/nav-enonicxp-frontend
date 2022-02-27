@@ -4,6 +4,7 @@ import { ContentProps } from '../../../types/content-props/_content-common';
 import { Header } from '../../_common/headers/Header';
 import style from './SiteInfo.module.scss';
 import { DocumentParameter } from '../../_common/metatags/DocumentParameterMetatags';
+import { SiteInfoHeader } from './header/SiteInfoHeader';
 
 type PublishInfo = ContentProps['publish'] & {
     scheduledFrom?: string;
@@ -18,7 +19,7 @@ type ContentSummary = {
     publish: PublishInfo;
 };
 
-type ClusterState = 'RED' | 'YELLOW' | 'GREEN';
+export type ClusterState = 'RED' | 'YELLOW' | 'GREEN';
 
 export type EditorSiteInfo = {
     publishScheduled: ContentSummary[];
@@ -39,19 +40,18 @@ export const EditorSiteInfo = ({
     return (
         <>
             <Head>
-                <title>{'nav.no siteinfo'}</title>
+                <title>{'nav.no status'}</title>
                 <meta
                     name={DocumentParameter.DecoratorDisabled}
                     content={'true'}
                 />
             </Head>
             <div className={style.siteInfo}>
-                <Header level={'1'} justify={'center'}>
-                    {'nav.no CMS status'}
-                </Header>
-                <div>
-                    {`Server-cluster status: ${serverInfo.clusterState} // Din nåværende server-node: ${serverInfo.serverName}`}
-                </div>
+                <SiteInfoHeader
+                    headerText={'nav.no status'}
+                    clusterState={serverInfo.clusterState}
+                    serverName={serverInfo.serverName}
+                />
                 <div>
                     <Header level={'2'}>
                         {'Nylige publiseringer (siste 24 timer)'}

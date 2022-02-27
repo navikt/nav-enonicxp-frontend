@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     req,
     res,
 }: GetServerSidePropsContext & { req: NextApiRequest }) => {
-    const secret = req.headers.secret as string;
+    const secret = req.headers.secret;
     if (secret !== process.env.SERVICE_SECRET) {
         return {
             notFound: true,

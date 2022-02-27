@@ -1,0 +1,16 @@
+@use 'src/common' as common;
+
+.siteInfoHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: common.$navds-global-color-green-100;
+    padding: 1rem 2rem;
+}
+
+.serverInfo {
+    :global(.navds-alert__wrapper) > :not(:last-child) {
+        margin-bottom: 0.25rem;
+    }
+}
