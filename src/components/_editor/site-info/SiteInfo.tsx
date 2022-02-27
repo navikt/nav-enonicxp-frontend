@@ -1,30 +1,18 @@
 import Head from 'next/head';
 import React from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
-import { Header } from '../../_common/headers/Header';
-import style from './SiteInfo.module.scss';
 import { DocumentParameter } from '../../_common/metatags/DocumentParameterMetatags';
 import { SiteInfoHeader } from './header/SiteInfoHeader';
+import { ClusterState, SiteInfoContentSummaryProps } from './types';
+import { SiteInfoContentList } from './content-list/SiteInfoContentList';
 
-type PublishInfo = ContentProps['publish'] & {
-    scheduledFrom?: string;
-    scheduledTo?: string;
-};
+import style from './SiteInfo.module.scss';
 
-type ContentSummary = {
-    id: string;
-    path: string;
-    displayName: string;
-    type: string;
-    publish: PublishInfo;
-};
-
-export type ClusterState = 'RED' | 'YELLOW' | 'GREEN';
-
-export type EditorSiteInfo = {
-    publishScheduled: ContentSummary[];
-    unpublishScheduled: ContentSummary[];
-    recentlyPublished: ContentSummary[];
+type EditorSiteInfo = {
+    recentlyPublished: SiteInfoContentSummaryProps[];
+    publishScheduled: SiteInfoContentSummaryProps[];
+    unpublishScheduledNextWeek: SiteInfoContentSummaryProps[];
+    unpublishScheduledLater: SiteInfoContentSummaryProps[];
+    contentWithCustomPath: SiteInfoContentSummaryProps[];
     serverInfo: {
         serverName: string;
         clusterState?: ClusterState;
@@ -34,9 +22,13 @@ export type EditorSiteInfo = {
 export const EditorSiteInfo = ({
     serverInfo,
     publishScheduled,
-    unpublishScheduled,
+    unpublishScheduledNextWeek,
+    unpublishScheduledLater,
     recentlyPublished,
+    contentWithCustomPath,
 }: EditorSiteInfo) => {
+    const hasLaterUnpublishSchedule = unpublishScheduledLater.length > 0;
+
     return (
         <>
             <Head>
@@ -48,49 +40,38 @@ export const EditorSiteInfo = ({
             </Head>
             <div className={style.siteInfo}>
                 <SiteInfoHeader
-                    headerText={'nav.no status'}
                     clusterState={serverInfo.clusterState}
                     serverName={serverInfo.serverName}
                 />
-                <div>
-                    <Header level={'2'}>
-                        {'Nylige publiseringer (siste 24 timer)'}
-                    </Header>
-                    <ul>
-                        {recentlyPublished.map((content) => (
-                            <li key={content.id}>
-                                <Header level={'3'}>
-                                    {content.displayName}
-                                </Header>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <div>
-                    <Header level={'2'}>
-                        {'Kommende forhåndspubliseringer'}
-                    </Header>
-                    <ul>
-                        {publishScheduled.map((content) => (
-                            <li key={content.id}>
-                                <Header level={'3'}>
-                                    {content.displayName}
-                                </Header>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <div>
-                    <Header level={'2'}>{'Kommende avpubliseringer'}</Header>
-                    <ul>
-                        {unpublishScheduled.map((content) => (
-                            <li key={content.id}>
-                                <Header level={'3'}>
-                                    {content.displayName}
-                                </Header>
-                            </li>
-                        ))}
-                    </ul>
+                <div className={style.content}>
+                    <SiteInfoContentList
+                        title={'Publisert siste 24 timer'}
+                        titleEmpty={'Ingen publiseringer siste 24 timer'}
+                        contentList={recentlyPublished}
+                    />
+                    <SiteInfoContentList
+                        title={'Planlagte forhåndspubliseringer'}
+                        titleEmpty={'Ingen planlagte forhåndspubliseringer'}
+                        contentList={publishScheduled}
+                    />
+                    <SiteInfoContentList
+                        title={`Planlagte avpubliseringer${
+                            hasLaterUnpublishSchedule ? ' neste 7 dager' : ''
+                        }`}
+                        titleEmpty={`Ingen planlagte avpubliseringer${
+                            hasLaterUnpublishSchedule ? ' neste 7 dager' : ''
+                        }`}
+                        contentList={unpublishScheduledNextWeek}
+                    />
+                    {hasLaterUnpublishSchedule && (
+                        <SiteInfoContentList
+                            title={
+                                'Planlagte avpubliseringer (mer enn 7 dager frem i tid)'
+                            }
+                            titleEmpty={'Ingen planlagte avpubliseringer'}
+                            contentList={unpublishScheduledLater}
+                        />
+                    )}
                 </div>
             </div>
         </>

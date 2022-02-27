@@ -1,0 +1,23 @@
+@use 'src/common' as common;
+
+.wrapper {
+    width: 100%;
+
+    &:not(:last-child) {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.nameWrapper {
+    display: inline-flex;
+    align-items: center;
+}
+
+.name {
+    margin-bottom: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+.publish {
+    margin-top: 0.25rem;
+}
