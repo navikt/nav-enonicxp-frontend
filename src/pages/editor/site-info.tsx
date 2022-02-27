@@ -3,7 +3,7 @@ import {
     GetServerSidePropsContext,
     NextApiRequest,
 } from 'next';
-import { EditorSiteInfo } from '../../components/_editor/site-info/SiteInfo';
+import { SiteInfo } from '../../components/_editor/site-info/SiteInfo';
 import bodyParser from 'body-parser';
 import util from 'util';
 
@@ -25,4 +25,4 @@ export const getServerSideProps: GetServerSideProps = async ({
     return { props: req.body };
 };
 
-export default EditorSiteInfo;
+export default SiteInfo;

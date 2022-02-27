@@ -1,30 +1,27 @@
 import React from 'react';
-import { SiteInfoContentSummaryProps } from '../types';
+import { SiteInfoContentProps } from '../../types';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { LenkeInline } from '../../../_common/lenke/LenkeInline';
+import { LenkeInline } from '../../../../_common/lenke/LenkeInline';
 import {
     adminOrigin,
     editorPathPrefix,
     stripXpPathPrefix,
-} from '../../../../utils/urls';
+} from '../../../../../utils/urls';
 import dayjs from 'dayjs';
-import { formatDateTime } from '../../../../utils/datetime';
+import { formatDateTime } from '../../../../../utils/datetime';
 import { WarningFilled } from '@navikt/ds-icons';
 
-import style from './SiteInfoContentSummary.module.scss';
+import style from './SiteInfoPublishInfoItem.module.scss';
+import { SiteInfoEditorLink } from '../../_common/editor-link/SiteInfoEditorLink';
 
-const editorUrl = `${adminOrigin}${editorPathPrefix}`;
-
-type Props = SiteInfoContentSummaryProps;
-
-export const SiteInfoContentSummary = ({
+export const SiteInfoPublishInfoItem = ({
     type,
     id,
     path,
     customPath,
     publish,
     displayName,
-}: Props) => {
+}: SiteInfoContentProps) => {
     const isPrepublish = dayjs().diff(dayjs(publish.from)) < 0;
 
     return (
@@ -34,15 +31,7 @@ export const SiteInfoContentSummary = ({
                     {displayName}
                 </Heading>
                 <BodyShort>
-                    <LenkeInline
-                        href={`${editorUrl}/${id}`}
-                        target={'_blank'}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                        }}
-                    >
-                        {'[Åpne i editor]'}
-                    </LenkeInline>
+                    <SiteInfoEditorLink id={id} />
                 </BodyShort>
             </div>
             <BodyShort size={'small'}>

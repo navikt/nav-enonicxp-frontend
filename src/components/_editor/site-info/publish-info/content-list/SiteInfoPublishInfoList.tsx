@@ -1,18 +1,18 @@
 import React, { Fragment } from 'react';
-import { SiteInfoContentSummary } from '../content-info/SiteInfoContentSummary';
+import { SiteInfoPublishInfoItem } from '../content-item/SiteInfoPublishInfoItem';
 import { Heading } from '@navikt/ds-react';
-import { SiteInfoContentSummaryProps } from '../types';
-import { Expandable } from '../../../_common/expandable/Expandable';
+import { SiteInfoContentProps } from '../../types';
+import { Expandable } from '../../../../_common/expandable/Expandable';
 
-import style from './SiteInfoContentList.module.scss';
+import style from './SiteInfoPublishInfoList.module.scss';
 
 type Props = {
     title: string;
     titleEmpty?: string;
-    contentList: SiteInfoContentSummaryProps[];
+    contentList: SiteInfoContentProps[];
 };
 
-export const SiteInfoContentList = ({
+export const SiteInfoPublishInfoList = ({
     title,
     titleEmpty,
     contentList,
@@ -25,7 +25,7 @@ export const SiteInfoContentList = ({
                 return (
                     <Fragment key={content.id}>
                         {index > 0 && <hr className={style.separator} />}
-                        <SiteInfoContentSummary {...content} />
+                        <SiteInfoPublishInfoItem {...content} />
                     </Fragment>
                 );
             })}

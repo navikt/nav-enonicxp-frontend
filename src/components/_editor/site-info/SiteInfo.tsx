@@ -2,33 +2,21 @@ import Head from 'next/head';
 import React from 'react';
 import { DocumentParameter } from '../../_common/metatags/DocumentParameterMetatags';
 import { SiteInfoHeader } from './header/SiteInfoHeader';
-import { ClusterState, SiteInfoContentSummaryProps } from './types';
-import { SiteInfoContentList } from './content-list/SiteInfoContentList';
+import { ClusterState, SiteInfoProps, SiteInfoContentProps } from './types';
+import { SiteInfoPublishInfoList } from './publish-info/content-list/SiteInfoPublishInfoList';
 
 import style from './SiteInfo.module.scss';
+import { SiteInfoPublishInfo } from './publish-info/SiteInfoPublishInfo';
+import { SiteInfoCustomPaths } from './custom-paths/SiteInfoCustomPaths';
 
-type EditorSiteInfo = {
-    recentlyPublished: SiteInfoContentSummaryProps[];
-    publishScheduled: SiteInfoContentSummaryProps[];
-    unpublishScheduledNextWeek: SiteInfoContentSummaryProps[];
-    unpublishScheduledLater: SiteInfoContentSummaryProps[];
-    contentWithCustomPath: SiteInfoContentSummaryProps[];
-    serverInfo: {
-        serverName: string;
-        clusterState?: ClusterState;
-    };
-};
-
-export const EditorSiteInfo = ({
+export const SiteInfo = ({
     serverInfo,
     publishScheduled,
     unpublishScheduledNextWeek,
     unpublishScheduledLater,
     recentlyPublished,
     contentWithCustomPath,
-}: EditorSiteInfo) => {
-    const hasLaterUnpublishSchedule = unpublishScheduledLater.length > 0;
-
+}: SiteInfoProps) => {
     return (
         <>
             <Head>
@@ -38,37 +26,19 @@ export const EditorSiteInfo = ({
                     content={'true'}
                 />
             </Head>
-            <div className={style.siteInfo}>
+            <div className={style.container}>
                 <SiteInfoHeader
                     clusterState={serverInfo.clusterState}
                     serverName={serverInfo.serverName}
                 />
                 <div className={style.content}>
-                    <SiteInfoContentList
-                        title={'Publisert siste 24 timer'}
-                        titleEmpty={'Ingen publiseringer siste 24 timer'}
-                        contentList={recentlyPublished}
+                    <SiteInfoPublishInfo
+                        publishScheduled={publishScheduled}
+                        recentlyPublished={recentlyPublished}
+                        unpublishScheduledLater={unpublishScheduledLater}
+                        unpublishScheduledNextWeek={unpublishScheduledNextWeek}
                     />
-                    <SiteInfoContentList
-                        title={'Planlagte forhåndspubliseringer'}
-                        titleEmpty={'Ingen planlagte forhåndspubliseringer'}
-                        contentList={publishScheduled}
-                    />
-                    <SiteInfoContentList
-                        title={`Planlagte avpubliseringer${
-                            hasLaterUnpublishSchedule ? ' neste 7 dager' : ''
-                        }`}
-                        titleEmpty={`Ingen planlagte avpubliseringer${
-                            hasLaterUnpublishSchedule ? ' neste 7 dager' : ''
-                        }`}
-                        contentList={unpublishScheduledNextWeek}
-                    />
-                    <SiteInfoContentList
-                        title={
-                            'Planlagte avpubliseringer mer enn 7 dager frem i tid'
-                        }
-                        contentList={unpublishScheduledLater}
-                    />
+                    <SiteInfoCustomPaths contentList={contentWithCustomPath} />
                 </div>
             </div>
         </>

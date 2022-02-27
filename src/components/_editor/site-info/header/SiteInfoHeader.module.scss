@@ -1,13 +1,13 @@
 @use 'src/common' as common;
 
-.siteInfoHeader {
+.container {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: common.$navds-global-color-green-100;
-    padding: 1rem 2rem;
-    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
 }
 
 .serverInfo {

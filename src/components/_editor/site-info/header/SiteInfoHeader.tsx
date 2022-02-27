@@ -23,7 +23,7 @@ type Props = {
 
 export const SiteInfoHeader = ({ serverName, clusterState }: Props) => {
     return (
-        <div className={style.siteInfoHeader}>
+        <div className={style.container}>
             <div>
                 <Header level={'1'} justify={'left'}>
                     {'nav.no cms status'}
