@@ -42,9 +42,16 @@ class MyDocument extends Document<DocumentProps> {
             DocumentParameter.HtmlLang
         );
 
-        const Decorator = await getDecoratorComponents(
-            decoratorParams ? JSON.parse(decoratorParams) : undefined
+        const decoratorDisabled = getDocumentParameter(
+            initialProps,
+            DocumentParameter.DecoratorDisabled
         );
+
+        const Decorator =
+            !decoratorDisabled &&
+            (await getDecoratorComponents(
+                decoratorParams ? JSON.parse(decoratorParams) : undefined
+            ));
 
         return {
             ...initialProps,
@@ -58,14 +65,12 @@ class MyDocument extends Document<DocumentProps> {
 
         return (
             <Html lang={language || 'no'}>
-                <Head>
-                    <Decorator.Styles />
-                </Head>
+                <Head>{Decorator && <Decorator.Styles />}</Head>
                 <body>
-                    <Decorator.Header />
+                    {Decorator && <Decorator.Header />}
                     <Main />
-                    <Decorator.Footer />
-                    <Decorator.Scripts />
+                    {Decorator && <Decorator.Footer />}
+                    {Decorator && <Decorator.Scripts />}
                     <NextScript />
                 </body>
             </Html>
