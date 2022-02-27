@@ -1,7 +1,6 @@
 import React from 'react';
 import { SiteInfoPublishInfoList } from './content-list/SiteInfoPublishInfoList';
 import { SiteInfoProps } from '../types';
-import { Heading } from '@navikt/ds-react';
 
 import style from './SiteInfoPublishInfo.module.scss';
 import { SiteInfoSubHeader } from '../_common/sub-header/SiteInfoSubHeader';
@@ -37,7 +36,7 @@ export const SiteInfoPublishInfo = ({
             />
             <SiteInfoPublishInfoList
                 title={`Planlagte avpubliseringer${
-                    hasLaterUnpublishSchedule ? ' neste 7 dager' : ''
+                    hasLaterUnpublishSchedule ? ' (neste 7 dager)' : ''
                 }`}
                 titleEmpty={`Ingen planlagte avpubliseringer${
                     hasLaterUnpublishSchedule ? ' neste 7 dager' : ''
@@ -45,7 +44,7 @@ export const SiteInfoPublishInfo = ({
                 contentList={unpublishScheduledNextWeek}
             />
             <SiteInfoPublishInfoList
-                title={'Planlagte avpubliseringer mer enn 7 dager frem i tid'}
+                title={'Planlagte avpubliseringer (mer enn 7 dager frem i tid)'}
                 contentList={unpublishScheduledLater}
             />
         </div>
