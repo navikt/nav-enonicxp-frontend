@@ -21,3 +21,12 @@
 .publish {
     margin-top: 0.25rem;
 }
+
+.warning {
+    display: flex;
+    align-items: center;
+    svg {
+        margin-right: 0.25rem;
+        color: common.$navds-global-color-orange-500;
+    }
+}

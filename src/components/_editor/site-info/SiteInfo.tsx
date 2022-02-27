@@ -63,15 +63,12 @@ export const EditorSiteInfo = ({
                         }`}
                         contentList={unpublishScheduledNextWeek}
                     />
-                    {hasLaterUnpublishSchedule && (
-                        <SiteInfoContentList
-                            title={
-                                'Planlagte avpubliseringer (mer enn 7 dager frem i tid)'
-                            }
-                            titleEmpty={'Ingen planlagte avpubliseringer'}
-                            contentList={unpublishScheduledLater}
-                        />
-                    )}
+                    <SiteInfoContentList
+                        title={
+                            'Planlagte avpubliseringer mer enn 7 dager frem i tid'
+                        }
+                        contentList={unpublishScheduledLater}
+                    />
                 </div>
             </div>
         </>

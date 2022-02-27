@@ -2,8 +2,6 @@ import React from 'react';
 import { SiteInfoContentSummaryProps } from '../types';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
-
-import style from './SiteInfoContentSummary.module.scss';
 import {
     adminOrigin,
     editorPathPrefix,
@@ -11,6 +9,9 @@ import {
 } from '../../../../utils/urls';
 import dayjs from 'dayjs';
 import { formatDateTime } from '../../../../utils/datetime';
+import { WarningFilled } from '@navikt/ds-icons';
+
+import style from './SiteInfoContentSummary.module.scss';
 
 const editorUrl = `${adminOrigin}${editorPathPrefix}`;
 
@@ -33,7 +34,13 @@ export const SiteInfoContentSummary = ({
                     {displayName}
                 </Heading>
                 <BodyShort>
-                    <LenkeInline href={`${editorUrl}/${id}`} target={'_blank'}>
+                    <LenkeInline
+                        href={`${editorUrl}/${id}`}
+                        target={'_blank'}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                        }}
+                    >
                         {'[Åpne i editor]'}
                     </LenkeInline>
                 </BodyShort>
@@ -49,12 +56,18 @@ export const SiteInfoContentSummary = ({
             <BodyShort className={style.publish}>
                 {`${
                     isPrepublish ? 'Publiseres' : 'Publisert'
-                }: ${formatDateTime(publish.from)}${
-                    publish.to
-                        ? ` - Avpubliseres: ${formatDateTime(publish.to)}`
-                        : ''
-                }`}
+                }: ${formatDateTime(publish.from)}`}
+                {publish.to
+                    ? ` - Avpubliseres: ${formatDateTime(publish.to)}`
+                    : ''}
             </BodyShort>
+            {((isPrepublish && !publish.scheduledFrom) ||
+                (publish.to && !publish.scheduledTo)) && (
+                <BodyShort className={style.warning} size={'small'}>
+                    <WarningFilled />
+                    {'Schedule for publisering mangler!'}
+                </BodyShort>
+            )}
         </div>
     );
 };

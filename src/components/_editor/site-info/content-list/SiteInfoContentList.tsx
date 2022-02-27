@@ -8,7 +8,7 @@ import style from './SiteInfoContentList.module.scss';
 
 type Props = {
     title: string;
-    titleEmpty: string;
+    titleEmpty?: string;
     contentList: SiteInfoContentSummaryProps[];
 };
 
@@ -31,8 +31,10 @@ export const SiteInfoContentList = ({
             })}
         </Expandable>
     ) : (
-        <Heading size={'medium'} level={'3'} className={style.wrapper}>
-            {titleEmpty}
-        </Heading>
+        titleEmpty && (
+            <Heading size={'small'} level={'3'} className={style.wrapper}>
+                {titleEmpty}
+            </Heading>
+        )
     );
 };
