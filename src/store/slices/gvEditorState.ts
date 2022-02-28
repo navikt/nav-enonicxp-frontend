@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { GlobalValueItem } from '../../types/content-props/global-values-props';
-import { GVMessageProps } from '../../components/_editor/global-values-page/components/messages/GVMessages';
+import { GVMessageProps } from '../../components/pages/global-values-page/components/messages/GVMessages';
 
 export type GvEditorState = {
     contentId: string;

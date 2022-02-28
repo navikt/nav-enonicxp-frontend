@@ -6,7 +6,7 @@ type Props = {
     children: React.ReactNode;
 } & ExpandableMixin;
 
-export const ExpandableComponent = ({
+export const ExpandableComponentWrapper = ({
     expandable,
     expandableTitle,
     expandableAnchorId,
