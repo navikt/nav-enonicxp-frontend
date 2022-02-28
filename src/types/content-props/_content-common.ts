@@ -67,6 +67,7 @@ export type MediaContentCommonProps = {
     publish?: {
         first?: string;
         from?: string;
+        to?: string;
     };
     isDraft?: boolean;
     timeRequested?: string;

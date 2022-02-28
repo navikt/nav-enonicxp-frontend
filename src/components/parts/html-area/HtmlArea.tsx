@@ -1,7 +1,7 @@
 import React from 'react';
 import { HtmlAreaProps } from '../../../types/component-props/parts/html-area';
 import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
-import { Expandable } from '../../_common/expandable/Expandable';
+import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
 import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
 
@@ -14,11 +14,11 @@ export const HtmlArea = ({ config }: HtmlAreaProps) => {
 
     return (
         <FilteredContent {...config}>
-            <Expandable {...config}>
+            <ExpandableComponentWrapper {...config}>
                 <div className={'html-area'}>
                     <ParsedHtml htmlProps={config.html} />
                 </div>
-            </Expandable>
+            </ExpandableComponentWrapper>
         </FilteredContent>
     );
 };

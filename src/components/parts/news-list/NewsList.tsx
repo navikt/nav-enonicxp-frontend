@@ -3,7 +3,7 @@ import { DynamicNewsList } from '../../../types/component-props/parts/news-list'
 import { ContentList } from '../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { BEM } from '../../../utils/classnames';
-import { Expandable } from '../../_common/expandable/Expandable';
+import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 
 const bem = BEM('news-list');
 
@@ -15,7 +15,7 @@ export const NewsList = ({ config }: DynamicNewsList) => {
     const { title, contentList, moreNews } = config;
 
     return (
-        <Expandable {...config}>
+        <ExpandableComponentWrapper {...config}>
             <div className={bem()}>
                 <ContentList
                     showDateLabel={true}
@@ -32,6 +32,6 @@ export const NewsList = ({ config }: DynamicNewsList) => {
                     </LenkeStandalone>
                 )}
             </div>
-        </Expandable>
+        </ExpandableComponentWrapper>
     );
 };

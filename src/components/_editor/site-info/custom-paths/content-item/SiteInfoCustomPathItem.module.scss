@@ -1,0 +1,14 @@
+.container {
+    &:not(:last-child) {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.nameWrapper {
+    display: inline-flex;
+    align-items: center;
+}
+
+.name {
+    margin-right: 0.25rem;
+}
