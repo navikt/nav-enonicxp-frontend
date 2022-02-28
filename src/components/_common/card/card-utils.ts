@@ -25,6 +25,7 @@ const cardTypeMap = {
     [ContentType.SituationPage]: CardType.Situation,
     [ContentType.ToolsPage]: CardType.Tool,
     [ContentType.ThemedArticlePage]: CardType.ThemedArticle,
+    [ContentType.GuidePage]: CardType.Guide,
 };
 
 export const getCardProps = (
