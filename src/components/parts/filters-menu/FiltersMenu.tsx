@@ -7,7 +7,7 @@ import { useFilterState } from '../../../store/hooks/useFilteredContent';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { FilterMenuProps } from '../../../types/component-props/parts/filter-menu';
-import { Expandable } from '../../_common/expandable/Expandable';
+import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilterExplanation } from '../../_common/filter-bar/FilterExplanation';
 import { FilterCheckbox } from './FilterCheckbox';
 import { BEM } from '../../../utils/classnames';
@@ -67,7 +67,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
             <BodyLong className={bem('introduction')} id="description">
                 {description || ''}
             </BodyLong>
-            <Expandable
+            <ExpandableComponentWrapper
                 {...config}
                 expandableTitle={expandableTitle || defaultExpandableTitle}
                 analyticsOriginTag="filter"
@@ -100,7 +100,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                         </CheckboxGroup>
                     );
                 })}
-            </Expandable>
+            </ExpandableComponentWrapper>
         </section>
     );
 };

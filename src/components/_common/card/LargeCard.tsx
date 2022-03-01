@@ -29,7 +29,8 @@ export const LargeCard = (props: StortKortProps) => {
         illustration &&
         (type === CardType.Product ||
             type === CardType.Situation ||
-            type === CardType.ThemedArticle);
+            type === CardType.ThemedArticle ||
+            type === CardType.Guide);
 
     const { isHovering, cardInteractionHandler } = useCardState();
     const { pageConfig } = usePageConfig();

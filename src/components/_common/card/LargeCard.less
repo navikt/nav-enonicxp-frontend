@@ -18,6 +18,7 @@
 
         .product,
         .provider,
+        .guide,
         .situation {
             display: flex;
             flex-direction: column;
@@ -59,6 +60,9 @@
         }
 
         &.card__product,
+        &.card__guide,
+        &.card__tool,
+        &.card__themed-article,
         &.card__situation {
             min-height: #px-to-rem(400) [];
         }
@@ -73,11 +77,15 @@
     /* Card type specific styling */
     &__large {
         &:not(:hover):not(:active) {
-            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(38, 38, 38, 0.12), 0px 1px 3px rgba(38, 38, 38, 0.2);
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14),
+                0px 2px 1px rgba(38, 38, 38, 0.12),
+                0px 1px 3px rgba(38, 38, 38, 0.2);
         }
 
         &:hover {
-            box-shadow: 0px 1px 3px rgba(38, 38, 38, 0.2), 0px 1px 6px rgba(0, 0, 0, 0.14), 0px 2px 8px rgba(38, 38, 38, 0.12);
+            box-shadow: 0px 1px 3px rgba(38, 38, 38, 0.2),
+                0px 1px 6px rgba(0, 0, 0, 0.14),
+                0px 2px 8px rgba(38, 38, 38, 0.12);
         }
     }
 }

@@ -4,7 +4,7 @@ import { DynamicLinkListProps } from '../../../types/component-props/parts/link-
 import { Lenkeliste } from '../../_common/lenkeliste/Lenkeliste';
 import { ContentList } from '../../_common/content-list/ContentList';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
-import { Expandable } from '../../_common/expandable/Expandable';
+import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 
 const bem = BEM('link-list');
 
@@ -43,7 +43,9 @@ export const LinkList = ({ config }: DynamicLinkListProps) => {
 
     return ListComponent ? (
         <div className={classNames(bem())}>
-            <Expandable {...config}>{ListComponent}</Expandable>
+            <ExpandableComponentWrapper {...config}>
+                {ListComponent}
+            </ExpandableComponentWrapper>
         </div>
     ) : null;
 };

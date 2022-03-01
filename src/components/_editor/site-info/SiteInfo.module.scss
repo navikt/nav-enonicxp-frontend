@@ -1,0 +1,17 @@
+@use 'src/common' as common;
+
+.container {
+    background-color: common.$navds-semantic-color-canvas-background;
+    width: 100%;
+    min-height: 100vh;
+    padding: 1.25rem;
+}
+
+.content {
+    & > * {
+        padding: 1.25rem;
+        &:not(:last-child) {
+            margin-bottom: 0.75rem;
+        }
+    }
+}

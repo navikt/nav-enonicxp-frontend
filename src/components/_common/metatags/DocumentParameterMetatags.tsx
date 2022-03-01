@@ -10,6 +10,7 @@ type Props = {
 export enum DocumentParameter {
     DecoratorParams = '_decoratorParams',
     HtmlLang = '_htmlLang',
+    DecoratorDisabled = 'decoratorDisabled',
 }
 
 const isServerSide = typeof window === 'undefined';
