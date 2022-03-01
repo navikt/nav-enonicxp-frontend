@@ -1,6 +1,6 @@
 @use '../../../common' as common;
 
-.themed-article-page {
+.themedArticlePage {
     display: flex;
     flex-direction: column;
 
@@ -10,16 +10,16 @@
 
         // Break out of the global app padding for better screen-width usage
         // on narrower screens
-        @media (common.$mq-screen-tablet-and-desktop) {
+        @media #{common.$mq-screen-tablet-and-desktop} {
             margin-left: -(common.$padding-sides-tablet);
             margin-right: -(common.$padding-sides-tablet);
         }
 
-        @media (common.$mq-screen-desktop) {
+        @media #{common.$mq-screen-desktop} {
             margin-left: -(common.$padding-sides-desktop);
             margin-right: -(common.$padding-sides-desktop);
         }
     }
 
-    @include common.product-mixins;
+    @include common.product-mixins();
 }
