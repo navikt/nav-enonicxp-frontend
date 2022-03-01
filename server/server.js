@@ -2,44 +2,64 @@ require('dotenv').config();
 
 const express = require('express');
 const next = require('next');
+const bodyParser = require('body-parser');
 const { setJsonCacheHeaders } = require('./set-json-cache-headers');
-const { invalidateCachedPage, wipePageCache } = require('./incremental-cache');
+const {
+    invalidateCachedPage,
+    wipePageCache,
+    handleInvalidateReq,
+} = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat.js');
 
-const app = next({
+const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
     quiet: process.env.ENV === 'prod',
 });
-const handle = app.getRequestHandler();
+const nextRequestHandler = nextApp.getRequestHandler();
 const port = 3000;
 
-app.prepare().then(() => {
+const jsonBodyParser = bodyParser.json();
+
+nextApp.prepare().then(() => {
     const server = express();
 
     const { SERVICE_SECRET, PAGE_CACHE_DIR } = process.env;
 
     if (PAGE_CACHE_DIR) {
-        app.server.incrementalCache.incrementalOptions.pagesDir =
+        nextApp.server.incrementalCache.incrementalOptions.pagesDir =
             PAGE_CACHE_DIR;
     }
+
+    server.post('/invalidate', jsonBodyParser, (req, res) => {
+        const { secret, eventid } = req.headers;
+
+        if (secret !== SERVICE_SECRET) {
+            res.status(404);
+            console.warn(`Invalid secret for invalidation event ${eventid}`);
+            return nextApp.renderError(null, req, res, '/invalidate');
+        }
+
+        return handleInvalidateReq(req, res, nextApp, eventid);
+    });
 
     server.all('*', (req, res) => {
         const { secret } = req.headers;
         const { invalidate, wipeAll } = req.query;
 
+        // TODO: remove this when other apps are updated
         if (invalidate && secret === SERVICE_SECRET) {
-            invalidateCachedPage(req.path, app);
+            invalidateCachedPage(req.path, nextApp);
             return res.status(200).send(`Invalidating cache for ${req.path}`);
         }
 
         if (wipeAll && secret === SERVICE_SECRET) {
-            wipePageCache(app);
+            wipePageCache(nextApp);
             return res.status(200).send('Wiping page cache');
         }
 
         setJsonCacheHeaders(req, res);
 
-        return handle(req, res);
+        return nextRequestHandler(req, res);
     });
 
     // Handle errors
@@ -51,7 +71,7 @@ app.prepare().then(() => {
         console.log(`Express error on path ${path}: ${status} ${msg}`);
 
         res.status(status);
-        return app.renderError(msg, req, res, path);
+        return nextApp.renderError(msg, req, res, path);
     });
 
     const serverInstance = server.listen(port, (error) => {
