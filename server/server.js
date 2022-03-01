@@ -8,6 +8,7 @@ const {
     invalidateCachedPage,
     wipePageCache,
     handleInvalidateReq,
+    handleInvalidateAllReq,
 } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat.js');
 
@@ -35,11 +36,27 @@ nextApp.prepare().then(() => {
 
         if (secret !== SERVICE_SECRET) {
             res.status(404);
-            console.warn(`Invalid secret for invalidation event ${eventid}`);
+            console.warn(
+                `Invalid secret for invalidate paths event ${eventid}`
+            );
             return nextApp.renderError(null, req, res, '/invalidate');
         }
 
-        return handleInvalidateReq(req, res, nextApp, eventid);
+        return handleInvalidateReq(req, res, nextApp);
+    });
+
+    server.get('/invalidate/wipe-all', (req, res) => {
+        const { secret, eventid } = req.headers;
+
+        if (secret !== SERVICE_SECRET) {
+            res.status(404);
+            console.warn(
+                `Invalid secret for invalidate wipe-all event ${eventid}`
+            );
+            return nextApp.renderError(null, req, res, '/invalidate/wipe-all');
+        }
+
+        return handleInvalidateAllReq(req, res, nextApp);
     });
 
     server.all('*', (req, res) => {

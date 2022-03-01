@@ -45,24 +45,22 @@ const wipePageCache = (app) => {
     }
 };
 
+const handleInvalidateAllReq = (req, res, app) => {
+    const { eventid } = req.headers;
+
+    const success = wipePageCache(app);
+
+    return success
+        ? res
+              .status(200)
+              .send(`Successfully wiped page cache - event ${eventid}`)
+        : res.status(500).send(`Failed to wipe page cache! - event ${eventid}`);
+};
+
 const handleInvalidateReq = (req, res, app) => {
-    const { eventid, wipeall } = req.headers;
+    const { eventid } = req.headers;
 
     try {
-        if (wipeall === 'true') {
-            const success = wipePageCache(app);
-
-            return success
-                ? res
-                      .status(200)
-                      .send(
-                          `Successfully wiped page cache - event id ${eventid}`
-                      )
-                : res
-                      .status(500)
-                      .send(`Failed to wipe page cache! - event id ${eventid}`);
-        }
-
         const { paths } = req.body;
 
         if (!Array.isArray(paths)) {
@@ -73,7 +71,7 @@ const handleInvalidateReq = (req, res, app) => {
 
         paths.forEach((path) => invalidateCachedPage(path, app));
 
-        const msg = `Invalidated cached pages for ${paths.length} paths - event id ${eventid}`;
+        const msg = `Invalidated cached pages for ${paths.length} paths - event ${eventid}`;
         console.log(msg);
 
         return res.status(200).send(msg);
@@ -81,7 +79,7 @@ const handleInvalidateReq = (req, res, app) => {
         return res
             .status(500)
             .send(
-                `Error while invalidating cache - eventId: ${eventid} - error: ${e}`
+                `Error while invalidating cache - event: ${eventid} - error: ${e}`
             );
     }
 };
@@ -89,5 +87,5 @@ const handleInvalidateReq = (req, res, app) => {
 module.exports = {
     invalidateCachedPage,
     handleInvalidateReq,
-    wipePageCache,
+    handleInvalidateAllReq,
 };
