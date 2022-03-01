@@ -86,6 +86,7 @@ const handleInvalidateReq = (req, res, app) => {
 
 module.exports = {
     invalidateCachedPage,
+    wipePageCache,
     handleInvalidateReq,
     handleInvalidateAllReq,
 };
