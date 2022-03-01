@@ -46,7 +46,7 @@ nextApp.prepare().then(() => {
         const { secret } = req.headers;
         const { invalidate, wipeAll } = req.query;
 
-        // TODO: remove this when other apps are updated
+        // TODO: remove this when revalidator-proxy is updated to use the /invalidate post endpoint
         if (invalidate && secret === SERVICE_SECRET) {
             invalidateCachedPage(req.path, nextApp);
             return res.status(200).send(`Invalidating cache for ${req.path}`);
