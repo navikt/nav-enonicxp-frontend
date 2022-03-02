@@ -4,10 +4,10 @@ import {
     NextApiRequest,
 } from 'next';
 import { SiteInfo } from '../../components/_editor/site-info/SiteInfo';
-import bodyParser from 'body-parser';
+import express from 'express';
 import util from 'util';
 
-const parseReqBody = util.promisify(bodyParser.json({ limit: '10MB' }));
+const parseReqBody = util.promisify(express.json({ limit: '10MB' }));
 
 export const getServerSideProps: GetServerSideProps = async ({
     req,
