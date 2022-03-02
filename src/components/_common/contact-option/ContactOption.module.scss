@@ -30,6 +30,14 @@
                 &.call {
                     background-image: url('/gfx/phone-filled.svg');
                 }
+
+                &.facebook {
+                    background-image: url('/gfx/facebook-filled.svg');
+                }
+
+                &.linkedin {
+                    background-image: url('/gfx/linkedin-filled.svg');
+                }
             }
         }
     }
@@ -63,16 +71,32 @@
             background-image: url('/gfx/phone.svg');
         }
 
+        &.facebook {
+            background-image: url('/gfx/facebook.svg');
+        }
+
+        &.linkedin {
+            background-image: url('/gfx/linkedin.svg');
+        }
+
         &:after {
             // preload mouseover icons
             position: absolute;
             z-index: -1;
             content: url('/gfx/chat-filled.svg') url('/gfx/message-filled.svg')
-                url('/gfx/message-phone.svg');
+                url('/gfx/phone-filled.svg') url('/gfx/facebook-filled.svg')
+                url('/gfx/linkedin-filled.svg') url('/gfx/chat.svg')
+                url('/gfx/message.svg') url('/gfx/phone.svg')
+                url('/gfx/facebook.svg') url('/gfx/linkedin.svg');
         }
     }
 
     .text {
         color: black;
+    }
+
+    .moreLink {
+        margin: 0.5rem 0 1rem 0;
+        display: block;
     }
 }

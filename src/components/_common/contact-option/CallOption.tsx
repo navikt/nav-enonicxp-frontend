@@ -169,7 +169,7 @@ export const CallOption = (props: CallOptionProps) => {
                     {alertText}
                 </Alert>
             )}
-            <BodyLong spacing>{ingress || text}</BodyLong>
+            <BodyLong>{ingress || text}</BodyLong>
             <BodyShort spacing>
                 {process.browser &&
                     buildOpenInformationText(
@@ -177,7 +177,10 @@ export const CallOption = (props: CallOptionProps) => {
                         findTodaysOpeningHour(allOpeningHours)
                     )}
             </BodyShort>
-            <LenkeBase href={language === 'no' ? contactUrlNO : contactUrlEN}>
+            <LenkeBase
+                className={style.moreLink}
+                href={language === 'no' ? contactUrlNO : contactUrlEN}
+            >
                 {sharedTranslations['seeMoreOptions']}
             </LenkeBase>
         </div>
