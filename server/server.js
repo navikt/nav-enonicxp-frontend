@@ -20,7 +20,7 @@ const port = 3000;
 
 const jsonBodyParser = express.json();
 
-const authHandler = (req, res, next) => {
+const verifySecret = (req, res, next) => {
     if (req.headers.secret !== process.env.SERVICE_SECRET) {
         res.status(404);
         console.warn(`Invalid secret for ${req.path}`);
@@ -42,14 +42,14 @@ nextApp.prepare().then(() => {
 
     server.post(
         '/invalidate',
-        authHandler,
+        verifySecret,
         jsonBodyParser,
         handleInvalidateReq(nextApp)
     );
 
     server.get(
         '/invalidate/wipe-all',
-        authHandler,
+        verifySecret,
         handleInvalidateAllReq(nextApp)
     );
 
