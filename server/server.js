@@ -87,7 +87,7 @@ nextApp.prepare().then(() => {
 
         console.log(`Express error on path ${path}: ${status} ${msg}`);
 
-        res.status(status);
+        res.status(status || 500);
         return nextApp.renderError(msg, req, res, path);
     });
 
