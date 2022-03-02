@@ -169,7 +169,7 @@ export const CallOption = (props: CallOptionProps) => {
                     {alertText}
                 </Alert>
             )}
-            <BodyLong>{ingress || text}</BodyLong>
+            <BodyLong className={style.text}>{ingress || text}</BodyLong>
             <BodyShort spacing>
                 {process.browser &&
                     buildOpenInformationText(
