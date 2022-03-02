@@ -65,7 +65,7 @@ nextApp.prepare().then(() => {
 
         // TODO: remove this when revalidator-proxy is updated to use the /invalidate post endpoint
         if (invalidate && secret === SERVICE_SECRET) {
-            invalidateCachedPage(req.path, nextApp);
+            invalidateCachedPage(decodeURI(req.path), nextApp);
             return res.status(200).send(`Invalidating cache for ${req.path}`);
         }
 
