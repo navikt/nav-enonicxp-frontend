@@ -45,7 +45,7 @@ const wipePageCache = (app) => {
     }
 };
 
-const handleInvalidateAllReq = (req, res, app) => {
+const handleInvalidateAllReq = (app) => (req, res) => {
     const { eventid } = req.headers;
 
     const success = wipePageCache(app);
@@ -57,7 +57,7 @@ const handleInvalidateAllReq = (req, res, app) => {
         : res.status(500).send(`Failed to wipe page cache! - event ${eventid}`);
 };
 
-const handleInvalidateReq = (req, res, app) => {
+const handleInvalidateReq = (app) => (req, res) => {
     const { eventid } = req.headers;
 
     try {

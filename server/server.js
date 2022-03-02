@@ -2,7 +2,6 @@ require('dotenv').config();
 
 const express = require('express');
 const next = require('next');
-const bodyParser = require('body-parser');
 const { setJsonCacheHeaders } = require('./set-json-cache-headers');
 const {
     invalidateCachedPage,
@@ -19,7 +18,17 @@ const nextApp = next({
 const nextRequestHandler = nextApp.getRequestHandler();
 const port = 3000;
 
-const jsonBodyParser = bodyParser.json();
+const jsonBodyParser = express.json();
+
+const authHandler = (req, res, next) => {
+    if (req.headers.secret !== process.env.SERVICE_SECRET) {
+        res.status(404);
+        console.warn(`Invalid secret for ${req.path}`);
+        return nextApp.renderError(null, req, res, req.path);
+    }
+
+    next();
+};
 
 nextApp.prepare().then(() => {
     const server = express();
@@ -31,44 +40,28 @@ nextApp.prepare().then(() => {
             PAGE_CACHE_DIR;
     }
 
-    server.post('/invalidate', jsonBodyParser, (req, res) => {
-        const { secret, eventid } = req.headers;
+    server.post(
+        '/invalidate',
+        authHandler,
+        jsonBodyParser,
+        handleInvalidateReq(nextApp)
+    );
 
-        if (secret !== SERVICE_SECRET) {
-            res.status(404);
-            console.warn(
-                `Invalid secret for invalidate paths event ${eventid}`
-            );
-            return nextApp.renderError(null, req, res, '/invalidate');
-        }
-
-        return handleInvalidateReq(req, res, nextApp);
-    });
-
-    server.get('/invalidate/wipe-all', (req, res) => {
-        const { secret, eventid } = req.headers;
-
-        if (secret !== SERVICE_SECRET) {
-            res.status(404);
-            console.warn(
-                `Invalid secret for invalidate wipe-all event ${eventid}`
-            );
-            return nextApp.renderError(null, req, res, '/invalidate/wipe-all');
-        }
-
-        return handleInvalidateAllReq(req, res, nextApp);
-    });
+    server.get(
+        '/invalidate/wipe-all',
+        authHandler,
+        handleInvalidateAllReq(nextApp)
+    );
 
     server.all('*', (req, res) => {
         const { secret } = req.headers;
         const { invalidate, wipeAll } = req.query;
 
-        // TODO: remove this when revalidator-proxy is updated to use the /invalidate post endpoint
+        // TODO: remove these when no longer in use
         if (invalidate && secret === SERVICE_SECRET) {
             invalidateCachedPage(decodeURI(req.path), nextApp);
             return res.status(200).send(`Invalidating cache for ${req.path}`);
         }
-
         if (wipeAll && secret === SERVICE_SECRET) {
             wipePageCache(nextApp);
             return res.status(200).send('Wiping page cache');
