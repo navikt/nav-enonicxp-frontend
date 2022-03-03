@@ -44,6 +44,17 @@ $border-radius-large: 6px;
     box-shadow: 0 0 0 3px if($inset, inset, null) $navds-semantic-color-focus;
 }
 
+@mixin link-border-bottom-mixin() {
+    border-bottom: 1px $navds-semantic-color-link solid;
+    text-decoration: none;
+    transition: border-bottom-color 0.12s ease-out;
+
+    &:hover,
+    &:focus {
+        border-bottom-color: transparent;
+    }
+}
+
 @function withUnit($value, $unit) {
     $result: '#{$value}#{unit}';
 }

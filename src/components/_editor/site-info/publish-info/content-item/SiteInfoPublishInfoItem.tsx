@@ -5,7 +5,6 @@ import { stripXpPathPrefix } from '../../../../../utils/urls';
 import dayjs from 'dayjs';
 import { formatDateTime } from '../../../../../utils/datetime';
 import { WarningFilled } from '@navikt/ds-icons';
-import { SiteInfoEditorLink } from '../../_common/links/SiteInfoEditorLink';
 import { SiteInfoLink } from '../../_common/links/SiteInfoLink';
 
 import style from './SiteInfoPublishInfoItem.module.scss';
@@ -24,12 +23,16 @@ export const SiteInfoPublishInfoItem = ({
         <div className={style.wrapper}>
             <div className={style.nameWrapper}>
                 <Heading level={'3'} size={'small'} className={style.name}>
-                    <SiteInfoLink href={customPath || path}>
-                        {displayName}
-                    </SiteInfoLink>
+                    {isPrepublish ? (
+                        displayName
+                    ) : (
+                        <SiteInfoLink target={'live'} path={customPath || path}>
+                            {displayName}
+                        </SiteInfoLink>
+                    )}
                 </Heading>
-                <BodyShort>
-                    <SiteInfoEditorLink id={id} />
+                <BodyShort size={'small'}>
+                    <SiteInfoLink target={'editor'} id={id} />
                 </BodyShort>
             </div>
             <BodyShort size={'small'}>
@@ -37,11 +40,8 @@ export const SiteInfoPublishInfoItem = ({
                     customPath ? ` (kort-url: ${customPath})` : ''
                 } `}
             </BodyShort>
-            <BodyShort size={'small'}>
-                {`${type.replace('no.nav.navno:', '')} `}
-            </BodyShort>
             <BodyShort className={style.publish}>
-                {`${
+                {`Type: ${type.replace('no.nav.navno:', '')} - ${
                     isPrepublish ? 'Publiseres' : 'Publisert'
                 }: ${formatDateTime(publish.from)}`}
                 {publish.to

@@ -1,21 +1,38 @@
 import React from 'react';
-import { LenkeInline } from '../../../../_common/lenke/LenkeInline';
+import {
+    adminOrigin,
+    appOrigin,
+    editorPathPrefix,
+    stripXpPathPrefix,
+} from '../../../../../utils/urls';
 
-type Props = {
-    children: React.ReactNode;
-    href: string;
-};
+import style from './SiteInfoLink.module.scss';
 
-export const SiteInfoLink = ({ href, children }: Props) => {
+const editorUrlPrefix = `${adminOrigin}${editorPathPrefix}`;
+const liveUrlPrefix = appOrigin;
+
+type Props =
+    | { target: 'editor'; id: String }
+    | { target: 'live'; path: string; children: React.ReactNode };
+
+export const SiteInfoLink = (props: Props) => {
+    const { target } = props;
+
     return (
-        <LenkeInline
-            href={href}
+        <a
+            href={
+                target === 'editor'
+                    ? `${editorUrlPrefix}/${props.id}`
+                    : `${liveUrlPrefix}${stripXpPathPrefix(props.path)}`
+            }
             target={'_blank'}
+            rel={'noreferrer'}
             onClick={(e) => {
                 e.stopPropagation();
             }}
+            className={style.link}
         >
-            {children}
-        </LenkeInline>
+            {target === 'editor' ? '[Åpne i editor]' : props.children}
+        </a>
     );
 };
