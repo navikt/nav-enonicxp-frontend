@@ -33,11 +33,9 @@ import { ProductCardPart } from './product-card/ProductCard';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
-
-type Props = {
-    partProps: PartComponentProps;
-    pageProps: ContentProps;
-};
+import { RegionProps } from 'types/component-props/layouts';
+import { PartsMapperProps } from 'types/parts-mapper';
+import { checkForDuplicateFilterMenus } from './mappingHelpers';
 
 const partsWithPageData: {
     [key in PartWithPageData]: React.FunctionComponent<ContentProps>;
@@ -81,7 +79,16 @@ const partsDeprecated: { [key in PartDeprecated] } = {
     [PartType.PageCrumbs]: true,
 };
 
-const PartComponent = ({ partProps, pageProps }: Props) => {
+const buildAugmentedPropsForComponent = ({
+    partProps,
+    pageProps,
+}: PartsMapperProps) => {
+    if (partProps.descriptor === PartType.FiltersMenu) {
+        return checkForDuplicateFilterMenus({ partProps, pageProps });
+    }
+};
+
+const PartComponent = ({ partProps, pageProps }: PartsMapperProps) => {
     const { descriptor } = partProps;
 
     const PartWithGlobalData = partsWithPageData[descriptor];
@@ -91,13 +98,17 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
 
     const PartWithOwnData = partsWithOwnData[descriptor];
     if (PartWithOwnData) {
-        return <PartWithOwnData {...partProps} />;
+        const augmentedProps = buildAugmentedPropsForComponent({
+            pageProps,
+            partProps,
+        });
+        return <PartWithOwnData {...partProps} {...augmentedProps} />;
     }
 
     return <div>{`Unimplemented part: ${descriptor}`}</div>;
 };
 
-export const PartsMapper = ({ pageProps, partProps }: Props) => {
+export const PartsMapper = ({ pageProps, partProps }: PartsMapperProps) => {
     const { path, descriptor, config } = partProps;
     const isEditView = pageProps.editorView === 'edit';
     const renderOnAuthState = config?.renderOnAuthState;

@@ -13,10 +13,11 @@ import { FilterCheckbox } from './FilterCheckbox';
 import { BEM } from '../../../utils/classnames';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
+import { EditorHelp } from 'components/_common/editor-utils/editor-help/EditorHelp';
 
 const bem = BEM('filters-menu');
 
-export const FiltersMenu = ({ config }: FilterMenuProps) => {
+export const FiltersMenu = ({ isFilterDuplicate, config }: FilterMenuProps) => {
     const { categories, description, expandableTitle, title } = config;
 
     const {
@@ -26,13 +27,21 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         toggleFilter,
     } = useFilterState();
 
-    const { language } = usePageConfig();
+    const { language, pageConfig } = usePageConfig();
+    const { editorView } = pageConfig;
 
     useEffect(() => {
-        setAvailableFilters(categories);
-    }, [categories, setAvailableFilters]);
+        // Don't add available filters (to redux store) if this
+        // FiltersMenu is marked as duplicate
+        if (!isFilterDuplicate) {
+            setAvailableFilters(categories);
+        }
+    }, [categories, setAvailableFilters, isFilterDuplicate]);
 
     useEffect(() => {
+        if (isFilterDuplicate) {
+            return;
+        }
         return () => {
             clearFiltersForPage();
         };
@@ -49,6 +58,19 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         });
         toggleFilter(filter.id);
     };
+
+    if (editorView && isFilterDuplicate) {
+        return (
+            <EditorHelp
+                type="error"
+                text="Det ser ut til at du har lagt inn flere Filtreringsmeny-parts! Malene støtter kun én Filtreringsmeny pr side. Legg istedet inn filter-valgene du trenger i Filtreringsmenyen ovenfor. For å fjerne dette området - markerer og sletter du."
+            />
+        );
+    }
+
+    if (!editorView && isFilterDuplicate) {
+        return null;
+    }
 
     // Will only show if editor didn't add any actual filters in the FiltersMenu part.
     if (!config?.categories) {

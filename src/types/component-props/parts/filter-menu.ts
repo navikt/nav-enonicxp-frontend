@@ -14,6 +14,7 @@ export type Category = {
 
 export interface FilterMenuProps extends PartComponentProps {
     descriptor: PartType.FiltersMenu;
+    isFilterDuplicate?: boolean;
     config: {
         title?: string;
         description: string;
