@@ -19,7 +19,9 @@ export const SiteInfoCustomPathItem = ({
                         {customPath}
                     </SiteInfoLink>
                 </Heading>
-                <SiteInfoLink target={'editor'} id={id} />
+                <BodyShort size={'small'}>
+                    <SiteInfoLink target={'editor'} id={id} />
+                </BodyShort>
             </div>
             <BodyShort size={'small'}>{displayName}</BodyShort>
             <BodyShort size={'small'}>{`Intern url: ${path}`}</BodyShort>
