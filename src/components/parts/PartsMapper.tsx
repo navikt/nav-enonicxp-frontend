@@ -14,6 +14,7 @@ import { MainArticle } from './_legacy/main-article/MainArticle';
 import {
     ComponentType,
     PartComponentProps,
+    PartsMapperProps,
 } from '../../types/component-props/_component-common';
 import { ContentProps } from '../../types/content-props/_content-common';
 import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
@@ -33,8 +34,6 @@ import { ProductCardPart } from './product-card/ProductCard';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
-import { RegionProps } from 'types/component-props/layouts';
-import { PartsMapperProps } from 'types/parts-mapper';
 import { checkForDuplicateFilterMenus } from './mappingHelpers';
 
 const partsWithPageData: {
@@ -86,6 +85,7 @@ const buildAugmentedPropsForComponent = ({
     if (partProps.descriptor === PartType.FiltersMenu) {
         return checkForDuplicateFilterMenus({ partProps, pageProps });
     }
+    return {};
 };
 
 const PartComponent = ({ partProps, pageProps }: PartsMapperProps) => {

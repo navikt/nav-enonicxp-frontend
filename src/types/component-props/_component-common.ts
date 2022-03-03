@@ -1,5 +1,6 @@
 import { PartType } from './parts';
 import { LayoutProps } from './layouts';
+import { ContentProps } from 'types/content-props/_content-common';
 
 export enum ComponentType {
     Page = 'page',
@@ -9,6 +10,11 @@ export enum ComponentType {
     Image = 'image',
     Fragment = 'fragment',
 }
+
+export type PartsMapperProps = {
+    partProps: PartComponentProps;
+    pageProps: ContentProps;
+};
 
 export type ComponentCommonProps = {
     type: ComponentType;
