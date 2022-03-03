@@ -1,23 +1,21 @@
 import React from 'react';
 import { LenkeInline } from '../../../../_common/lenke/LenkeInline';
-import { adminOrigin, editorPathPrefix } from '../../../../../utils/urls';
-
-const editorUrl = `${adminOrigin}${editorPathPrefix}`;
 
 type Props = {
-    id: string;
+    children: React.ReactNode;
+    href: string;
 };
 
-export const SiteInfoEditorLink = ({ id }: Props) => {
+export const SiteInfoLink = ({ href, children }: Props) => {
     return (
         <LenkeInline
-            href={`${editorUrl}/${id}`}
+            href={href}
             target={'_blank'}
             onClick={(e) => {
                 e.stopPropagation();
             }}
         >
-            {'[Åpne i editor]'}
+            {children}
         </LenkeInline>
     );
 };

@@ -1,7 +1,8 @@
 import React from 'react';
 import { SiteInfoContentProps } from '../../types';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { SiteInfoEditorLink } from '../../_common/editor-link/SiteInfoEditorLink';
+import { SiteInfoEditorLink } from '../../_common/links/SiteInfoEditorLink';
+import { SiteInfoLink } from '../../_common/links/SiteInfoLink';
 
 import style from './SiteInfoCustomPathItem.module.scss';
 
@@ -15,7 +16,7 @@ export const SiteInfoCustomPathItem = ({
         <div className={style.container}>
             <div className={style.nameWrapper}>
                 <Heading size={'small'} className={style.name}>
-                    {customPath}
+                    <SiteInfoLink href={customPath}>{customPath}</SiteInfoLink>
                 </Heading>
                 <SiteInfoEditorLink id={id} />
             </div>

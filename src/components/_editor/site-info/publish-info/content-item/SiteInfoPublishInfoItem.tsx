@@ -1,18 +1,14 @@
 import React from 'react';
 import { SiteInfoContentProps } from '../../types';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { LenkeInline } from '../../../../_common/lenke/LenkeInline';
-import {
-    adminOrigin,
-    editorPathPrefix,
-    stripXpPathPrefix,
-} from '../../../../../utils/urls';
+import { stripXpPathPrefix } from '../../../../../utils/urls';
 import dayjs from 'dayjs';
 import { formatDateTime } from '../../../../../utils/datetime';
 import { WarningFilled } from '@navikt/ds-icons';
+import { SiteInfoEditorLink } from '../../_common/links/SiteInfoEditorLink';
+import { SiteInfoLink } from '../../_common/links/SiteInfoLink';
 
 import style from './SiteInfoPublishInfoItem.module.scss';
-import { SiteInfoEditorLink } from '../../_common/editor-link/SiteInfoEditorLink';
 
 export const SiteInfoPublishInfoItem = ({
     type,
@@ -28,7 +24,9 @@ export const SiteInfoPublishInfoItem = ({
         <div className={style.wrapper}>
             <div className={style.nameWrapper}>
                 <Heading level={'3'} size={'small'} className={style.name}>
-                    {displayName}
+                    <SiteInfoLink href={customPath || path}>
+                        {displayName}
+                    </SiteInfoLink>
                 </Heading>
                 <BodyShort>
                     <SiteInfoEditorLink id={id} />
