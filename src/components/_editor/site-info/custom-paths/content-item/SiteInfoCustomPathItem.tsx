@@ -1,7 +1,7 @@
 import React from 'react';
 import { SiteInfoContentProps } from '../../types';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { SiteInfoEditorLink } from '../../_common/editor-link/SiteInfoEditorLink';
+import { SiteInfoLink } from '../../_common/links/SiteInfoLink';
 
 import style from './SiteInfoCustomPathItem.module.scss';
 
@@ -15,11 +15,15 @@ export const SiteInfoCustomPathItem = ({
         <div className={style.container}>
             <div className={style.nameWrapper}>
                 <Heading size={'small'} className={style.name}>
-                    {customPath}
+                    <SiteInfoLink target={'live'} path={customPath}>
+                        {customPath}
+                    </SiteInfoLink>
                 </Heading>
-                <SiteInfoEditorLink id={id} />
+                <BodyShort size={'small'}>
+                    <SiteInfoLink target={'editor'} id={id} />
+                </BodyShort>
             </div>
-            <BodyShort>{displayName}</BodyShort>
+            <BodyShort size={'small'}>{displayName}</BodyShort>
             <BodyShort size={'small'}>{`Intern url: ${path}`}</BodyShort>
         </div>
     );
