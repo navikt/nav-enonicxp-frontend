@@ -1,18 +1,13 @@
 import React from 'react';
 import { SiteInfoContentProps } from '../../types';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { LenkeInline } from '../../../../_common/lenke/LenkeInline';
-import {
-    adminOrigin,
-    editorPathPrefix,
-    stripXpPathPrefix,
-} from '../../../../../utils/urls';
+import { stripXpPathPrefix } from '../../../../../utils/urls';
 import dayjs from 'dayjs';
 import { formatDateTime } from '../../../../../utils/datetime';
 import { WarningFilled } from '@navikt/ds-icons';
+import { SiteInfoLink } from '../../_common/links/SiteInfoLink';
 
 import style from './SiteInfoPublishInfoItem.module.scss';
-import { SiteInfoEditorLink } from '../../_common/editor-link/SiteInfoEditorLink';
 
 export const SiteInfoPublishInfoItem = ({
     type,
@@ -28,10 +23,16 @@ export const SiteInfoPublishInfoItem = ({
         <div className={style.wrapper}>
             <div className={style.nameWrapper}>
                 <Heading level={'3'} size={'small'} className={style.name}>
-                    {displayName}
+                    {isPrepublish ? (
+                        displayName
+                    ) : (
+                        <SiteInfoLink target={'live'} path={customPath || path}>
+                            {displayName}
+                        </SiteInfoLink>
+                    )}
                 </Heading>
-                <BodyShort>
-                    <SiteInfoEditorLink id={id} />
+                <BodyShort size={'small'}>
+                    <SiteInfoLink target={'editor'} id={id} />
                 </BodyShort>
             </div>
             <BodyShort size={'small'}>
@@ -39,11 +40,8 @@ export const SiteInfoPublishInfoItem = ({
                     customPath ? ` (kort-url: ${customPath})` : ''
                 } `}
             </BodyShort>
-            <BodyShort size={'small'}>
-                {`${type.replace('no.nav.navno:', '')} `}
-            </BodyShort>
             <BodyShort className={style.publish}>
-                {`${
+                {`Type: ${type.replace('no.nav.navno:', '')} - ${
                     isPrepublish ? 'Publiseres' : 'Publisert'
                 }: ${formatDateTime(publish.from)}`}
                 {publish.to
