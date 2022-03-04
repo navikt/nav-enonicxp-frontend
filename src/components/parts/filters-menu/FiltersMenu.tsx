@@ -63,7 +63,7 @@ export const FiltersMenu = ({ isFilterDuplicate, config }: FilterMenuProps) => {
         return (
             <EditorHelp
                 type="error"
-                text="Det ser ut til at du har lagt inn flere Filtreringsmeny-parts! Malene støtter kun én Filtreringsmeny pr side. Legg istedet inn filter-valgene du trenger i Filtreringsmenyen ovenfor. For å fjerne dette området - markerer og sletter du."
+                text="Du har lagt til flere filtreringsbokser (Hva er situasjonen din?). Du kan bare ha én filtreringsboks per side. Legg heller inn flere filtreringsvalg i den ene boksen. Fjern denne feilmeldingen ved å høyreklikke og velge fjern."
             />
         );
     }
