@@ -29,7 +29,6 @@ const contentToReactComponent: Partial<{
     [ContentType.ContactInformationPage]: ContactInformationPage,
 
     [ContentType.SituationPage]: SituationPage,
-    [ContentType.EmployerSituationPage]: SituationPage,
     [ContentType.ProductPage]: ProductPage,
     [ContentType.GuidePage]: GuidePage,
     [ContentType.ThemedArticlePage]: ThemedArticlePage,
