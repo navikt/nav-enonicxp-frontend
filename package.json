@@ -30,6 +30,7 @@
         "express": "^4.17.3",
         "html-react-parser": "^1.4.8",
         "immer": "^9.0.12",
+        "js-cookie": "^3.0.1",
         "jsdom": "^16.7.0",
         "lodash": "^4.17.21",
         "lodash.debounce": "^4.0.8",

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { fetchAdminContent } from '../editor-fetch-utils';
-import { getCookie } from '../../../../../utils/cookies';
 
 /*
  * Closes the left-side data editor panel for content which has been customized
@@ -8,9 +7,6 @@ import { getCookie } from '../../../../../utils/cookies';
  * for such content, so we close it by default as a convenience
  *
  * */
-
-// TODO: create a UI to toggle this
-const toggleCookieName = 'hide-left-panel';
 
 const minimizeLeftPanel = () => {
     const minimizeLeftButton = parent.window.document.getElementsByClassName(
@@ -27,14 +23,12 @@ type Props = {
 
 export const SetSidepanelToggleHack = ({ contentId }: Props) => {
     useEffect(() => {
-        if (getCookie(toggleCookieName)) {
-            fetchAdminContent(contentId).then((res) => {
-                console.log(res?.page?.type);
-                if (res?.page?.type === 'page') {
-                    minimizeLeftPanel();
-                }
-            });
-        }
+        fetchAdminContent(contentId).then((res) => {
+            console.log(res?.page?.type);
+            if (res?.page?.type === 'page') {
+                minimizeLeftPanel();
+            }
+        });
     }, [contentId]);
 
     return null;

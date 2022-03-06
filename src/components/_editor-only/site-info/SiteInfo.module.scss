@@ -9,6 +9,7 @@
 
 .content {
     & > * {
+        background-color: white;
         padding: 1.25rem;
         &:not(:last-child) {
             margin-bottom: 0.75rem;

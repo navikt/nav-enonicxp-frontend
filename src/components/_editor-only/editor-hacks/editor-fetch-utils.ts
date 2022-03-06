@@ -1,6 +1,6 @@
-import { adminOrigin } from '../../../../utils/urls';
-import { fetchJson } from '../../../../utils/fetch-utils';
-import { ContentProps } from '../../../../types/content-props/_content-common';
+import { adminOrigin } from '../../../utils/urls';
+import { fetchJson } from '../../../utils/fetch-utils';
+import { ContentProps } from '../../../types/content-props/_content-common';
 
 const adminAuthUrl = `${adminOrigin}/admin/rest/auth/authenticated`;
 const userInfoUrl = `${adminOrigin}/admin/rest-v2/cs/security/principals/user:`;

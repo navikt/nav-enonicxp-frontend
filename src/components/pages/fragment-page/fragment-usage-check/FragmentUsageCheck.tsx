@@ -4,7 +4,7 @@ import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
 import { Heading } from '@navikt/ds-react';
 import { Button } from '../../../_common/button/Button';
 import { BEM } from '../../../../utils/classnames';
-import { EditorLinkWrapper } from '../../../_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
+import { EditorLinkWrapper } from '../../../_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { FragmentUsageLink } from './FragmentUsageLink';
 
 const bem = BEM('fragment-usage');

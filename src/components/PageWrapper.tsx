@@ -16,7 +16,7 @@ import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from '../utils/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getInternalRelativePath } from '../utils/urls';
-import { EditorHacks } from './_common/editor-utils/editor-hacks/EditorHacks';
+import { EditorHacks } from './_editor-only/editor-hacks/EditorHacks';
 
 import { store } from '../store/store';
 import { setPathMapAction } from '../store/slices/pathMap';

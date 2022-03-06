@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { AlertBox } from '../../../alert-box/AlertBox';
+import { AlertBox } from '../../../_common/alert-box/AlertBox';
 import { EditorLinkWrapper } from '../../editor-link-wrapper/EditorLinkWrapper';
-import { LenkeInline } from '../../../lenke/LenkeInline';
-import { Branch } from '../../../../../types/branch';
+import { LenkeInline } from '../../../_common/lenke/LenkeInline';
+import { Branch } from '../../../../types/branch';
 import { BodyLong } from '@navikt/ds-react';
 import {
     ContentWorkflowState,
@@ -13,7 +13,7 @@ import {
 import {
     ContentProps,
     ContentType,
-} from '../../../../../types/content-props/_content-common';
+} from '../../../../types/content-props/_content-common';
 
 import style from './AutoRefreshDisableHack.module.scss';
 

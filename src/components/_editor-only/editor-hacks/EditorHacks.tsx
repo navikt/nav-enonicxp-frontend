@@ -1,4 +1,4 @@
-import { ContentProps } from '../../../../types/content-props/_content-common';
+import { ContentProps } from '../../../types/content-props/_content-common';
 import { AutoReloadDisableHack } from './auto-refresh-disable/AutoReloadDisableHack';
 import { SetSidepanelToggleHack } from './set-sidepanels-defaults/SetSidepanelToggleHack';
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { usePageConfig } from '../../../../store/hooks/usePageConfig';
-import { getRelativePathIfInternal } from '../../../../utils/urls';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { getRelativePathIfInternal } from '../../../utils/urls';
 
 //
 // This wrapper component can be used for making links clickable in the Content Studio
