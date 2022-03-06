@@ -75,17 +75,17 @@ export const bundle = {
     products: {
         person: 'For privatpersoner',
         employer: 'For arbeidsgivere',
-        provider: 'For samhandlere',
+        provider: 'For samarbeidspartnere',
     },
     situations: {
         person: 'Dette kan du ha rett til',
         employer: 'For arbeidsgivere',
-        provider: 'For samhandlere',
+        provider: 'For samarbeidspartnere',
     },
     guides: {
         person: 'Slik gjør du det',
         employer: 'For arbeidsgivere',
-        provider: 'For samhandlere',
+        provider: 'For samarbeidspartnere',
     },
     publishingCalendar: {
         event: 'Kalenderhendelse',

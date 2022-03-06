@@ -15,7 +15,6 @@ export const contentTypesWithWhiteHeader = {
     [ContentType.ProductPage]: true,
     [ContentType.SituationPage]: true,
     [ContentType.GuidePage]: true,
-    [ContentType.EmployerSituationPage]: true,
     [ContentType.ThemedArticlePage]: true,
 };
 

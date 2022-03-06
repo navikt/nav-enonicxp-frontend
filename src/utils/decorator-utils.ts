@@ -71,7 +71,9 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     const decoratorLanguage = xpLangToDecoratorLang[language];
     const feedbackEnabled = content.data?.feedbackToggle;
     const chatbotDisabled =
-        content.data?.chatbotToggle === false || content.editorView === 'edit';
+        content.data?.chatbotToggle === false ||
+        content.editorView === 'edit' ||
+        content.editorView === 'inline';
 
     return {
         ...defaultParams,
