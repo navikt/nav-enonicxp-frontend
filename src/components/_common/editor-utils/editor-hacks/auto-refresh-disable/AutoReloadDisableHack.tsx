@@ -66,7 +66,8 @@ const contentDidUpdate = (
         (item) =>
             item.id === contentId &&
             (item.branch === 'draft' ||
-                eventDetail.type === NodeServerChangeType.PUBLISH)
+                eventDetail.type === NodeServerChangeType.PUBLISH ||
+                eventDetail.type === NodeServerChangeType.DELETE)
     );
 
 // New content objects are named '__unnamed__<uuid>' before they are given an actual
@@ -192,6 +193,9 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
                     } else if (detail.type === NodeServerChangeType.PUBLISH) {
                         console.log('Content published - dispatching event');
                         dispatchEvent(event);
+                    } else if (detail.type === NodeServerChangeType.DELETE) {
+                        console.log('Content unpublished - dispatching event');
+                        dispatchEvent(event);
                     } else if (content.modifier === userId) {
                         // If the content was modified by the current user, we want to dispatch the event if the
                         // workflow state or publish state was changed. The content itself updates dynamically via our
@@ -216,16 +220,15 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
                     } else {
                         // If another user (or service call/scheduled task/etc) updated the content, we never want to
                         // automatically reload, as this may cause the current user to lose their changes. Show a
-                        // a warning overlay instead, and let the user dispatch the update event manually
+                        // warning overlay instead, and let the user dispatch the update event manually
                         console.log('External update detected');
 
                         fetchUserInfo(content.modifier).then((userInfo) => {
                             if (userInfo) {
-                                setExternalUserName(
-                                    userInfo.displayName
-                                        ?.split('@')[0]
-                                        .replace('.', ' ')
-                                );
+                                const userNameFormatted = userInfo.displayName
+                                    ?.split('@')[0]
+                                    .replace('.', ' ');
+                                setExternalUserName(userNameFormatted);
                             }
                             console.log(
                                 'External change detected - showing warning'
