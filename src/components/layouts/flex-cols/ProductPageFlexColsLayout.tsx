@@ -45,7 +45,6 @@ export const ProductPageFlexColsLayout = ({
             <Region
                 pageProps={pageProps}
                 regionProps={regionProps}
-                regionStyle={{ maxWidth: '57rem' }}
                 bemModifier={`${calculateColCount()}-cols`}
             />
             <EditorHelp
