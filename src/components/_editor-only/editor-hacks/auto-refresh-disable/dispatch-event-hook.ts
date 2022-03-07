@@ -120,11 +120,22 @@ export const hookDispatchEvent = ({
             return dispatchEvent(event);
         }
 
+        // If the current user could not be determined for whatever reason, the following functionality
+        // is not very useful.
+        // (this probably indicates that the undocumented api used here has changed)
+        if (!userId) {
+            console.error(
+                'Could not determine the current user - dispatching event'
+            );
+            return dispatchEvent(event);
+        }
+
         // We use the internal Content Studio content api to check who last modified the content
         fetchAdminContent(contentId).then((content) => {
             if (!content) {
                 // In the unexpected event that this call fails, just dispatch the event as normal to ensure we
                 // don't break anything :)
+                // (this probably indicates that the undocumented api used here has changed)
                 console.error(
                     'Could not fetch admin content - dispatching event'
                 );
