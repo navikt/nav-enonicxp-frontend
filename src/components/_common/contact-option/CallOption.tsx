@@ -153,11 +153,10 @@ export const CallOption = (props: CallOptionProps) => {
         return `${openClosedText} (${sharedTranslations['businessDays']} ${from} - ${to})`;
     };
 
-    const todaysOpeningHour = typeof window
-        ? findTodaysOpeningHour(allOpeningHours)
-        : null;
-
-    console.log(getIsClosedForToday(todaysOpeningHour));
+    const todaysOpeningHour =
+        typeof window !== 'undefined'
+            ? findTodaysOpeningHour(allOpeningHours)
+            : null;
 
     return (
         <div className={style.contactOption}>
@@ -187,7 +186,8 @@ export const CallOption = (props: CallOptionProps) => {
                         : style.open
                 )}
             >
-                {typeof window && buildOpenInformationText(todaysOpeningHour)}
+                {typeof window !== 'undefined' &&
+                    buildOpenInformationText(todaysOpeningHour)}
             </BodyShort>
             <LenkeBase
                 className={style.moreLink}
