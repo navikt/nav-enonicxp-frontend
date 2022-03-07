@@ -33,9 +33,5 @@ export const fetchAdminContent = async (contentId: string) =>
         5000
     );
 
-export const fetchUserInfo = async (userId: string) => {
-    return fetchJson<UserInfo>(
-        `${userInfoUrl}${userId}?memberships=false`,
-        5000
-    );
-};
+export const fetchUserInfo = async (userId: string) =>
+    fetchJson<UserInfo>(`${userInfoUrl}${userId}?memberships=false`, 5000);

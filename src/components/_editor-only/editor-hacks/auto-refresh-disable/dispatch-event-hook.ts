@@ -48,6 +48,8 @@ const currentContentDidUpdate = (
 const getUserNameFromEmail = (userEmail) =>
     userEmail?.split('@')[0].replace('.', ' ');
 
+// Hook the dispatchEvent function on the content studio parent window
+// in order to prevent certain events from propagating
 export const hookDispatchEvent = ({
     content,
     setExternalContentChange,
@@ -74,7 +76,6 @@ export const hookDispatchEvent = ({
 
     const dispatchEvent = parent.window.dispatchEventActual;
 
-    // let unsavedWorkflowState;
     let prevWorkflowState;
     let userId;
 
@@ -86,27 +87,11 @@ export const hookDispatchEvent = ({
         prevWorkflowState = res?.workflow.state;
     });
 
-    // Hook the dispatchEvent function, so we can prevent certain events from propagating
     parent.window.dispatchEvent = (event: CustomEvent) => {
         const { type: eventType, detail } = event;
-        const { type: detailType } = detail;
+        const detailType = detail?.type;
 
         console.log(eventType);
-
-        // if (type === 'BeforeContentSavedEvent') {
-        //     fetchAdminContent(contentId).then((content) => {
-        //         unsavedWorkflowState = content?.workflow.state;
-        //     });
-        // } else if (type === 'AfterContentSavedEvent') {
-        //     fetchAdminContent(contentId).then((content) => {
-        //         if (
-        //             unsavedWorkflowState === 'READY' &&
-        //             content?.workflow.state === 'READY'
-        //         ) {
-        //             prevWorkflowState = 'READY';
-        //         }
-        //     });
-        // }
 
         // We only want to intercept events of the BatchContentServerEvent type, which is what triggers UI updates
         // for content changes on the client. All other events should be dispatched as normal.
