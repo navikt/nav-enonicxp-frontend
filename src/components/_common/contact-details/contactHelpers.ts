@@ -104,6 +104,21 @@ export const getIsClosedForToday = (openingHour: OpeningHour) => {
     return isClosed;
 };
 
+export const getIsCurrentyClosed = (openingHour: OpeningHour) => {
+    if (!getDates(openingHour)) {
+        return true;
+    }
+    const { closesEpoch, opensEpoch, currentEpoch, endOfToday } =
+        getDates(openingHour);
+
+    const isCurrentlyClosed =
+        currentEpoch < opensEpoch ||
+        currentEpoch > closesEpoch ||
+        openingHour.status === 'CLOSED';
+
+    return isCurrentlyClosed;
+};
+
 export const getDates = (openingHours: OpeningHour) => {
     if (!openingHours) {
         return null;

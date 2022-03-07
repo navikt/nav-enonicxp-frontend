@@ -17,9 +17,11 @@ import {
     findTodaysOpeningHour,
     getDates,
     getIsClosedForToday,
+    getIsCurrentyClosed,
 } from '../contact-details/contactHelpers';
 
 import style from './ContactOption.module.scss';
+import { OpeningHours } from 'components/parts/_legacy/office-information/reception/OpeningHours';
 
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
@@ -148,8 +150,14 @@ export const CallOption = (props: CallOptionProps) => {
             return buildOpeningLaterTodayString(from);
         }
 
-        return `${openClosedText} • ${from} - ${to}`;
+        return `${openClosedText} (${sharedTranslations['businessDays']} ${from} - ${to})`;
     };
+
+    const todaysOpeningHour = typeof window
+        ? findTodaysOpeningHour(allOpeningHours)
+        : null;
+
+    console.log(getIsClosedForToday(todaysOpeningHour));
 
     return (
         <div className={style.contactOption}>
@@ -172,13 +180,14 @@ export const CallOption = (props: CallOptionProps) => {
             <BodyLong className={style.text}>{ingress || text}</BodyLong>
             <BodyShort
                 spacing
-                className={classNames(style.openingHour, style.open)}
+                className={classNames(
+                    style.openingHour,
+                    getIsCurrentyClosed(todaysOpeningHour)
+                        ? style.closed
+                        : style.open
+                )}
             >
-                {typeof window &&
-                    buildOpenInformationText(
-                        // Force client side render only
-                        findTodaysOpeningHour(allOpeningHours)
-                    )}
+                {typeof window && buildOpenInformationText(todaysOpeningHour)}
             </BodyShort>
             <LenkeBase
                 className={style.moreLink}

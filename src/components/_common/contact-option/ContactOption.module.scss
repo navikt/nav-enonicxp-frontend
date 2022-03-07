@@ -112,8 +112,19 @@
             content: '';
             width: 20px;
             height: 20px;
-            background-color: #0fb601;
+            margin-top: -2px;
             margin-right: 0.5rem;
+        }
+    }
+
+    .open {
+        &:before {
+            background-color: #0fb601;
+        }
+    }
+    .closed {
+        &:before {
+            background-color: #000000;
         }
     }
 }
