@@ -100,4 +100,20 @@
         margin: 0.5rem 0 1rem 0;
         display: block;
     }
+
+    .openingHour {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+
+        &:before {
+            display: inline-flex;
+            border-radius: 20px;
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-color: #0fb601;
+            margin-right: 0.5rem;
+        }
+    }
 }
