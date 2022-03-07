@@ -35,7 +35,7 @@ export const hookDispatchEvent = ({
     const dispatchEvent = parent.window.dispatchEventActual;
 
     let unsavedWorkflowState;
-    let savedWorkflowState;
+    let prevWorkflowState;
     let userId;
 
     fetchAdminUserId().then((id) => {
@@ -44,11 +44,12 @@ export const hookDispatchEvent = ({
     });
 
     fetchAdminContent(contentId).then((res) => {
-        savedWorkflowState = res?.workflow.state;
-        console.log(`Initial workflow state: ${savedWorkflowState}`);
+        prevWorkflowState = res?.workflow.state;
+        console.log(`Initial workflow state: ${prevWorkflowState}`);
     });
 
     // Hook the dispatchEvent function so we can prevent certain events from propagating
+    // @ts-ignore
     parent.window.dispatchEvent = (event: CustomEvent) => {
         const { type, detail } = event;
 
@@ -70,7 +71,7 @@ export const hookDispatchEvent = ({
                     unsavedWorkflowState === 'READY' &&
                     content?.workflow.state === 'READY'
                 ) {
-                    savedWorkflowState = 'READY';
+                    prevWorkflowState = 'READY';
                 }
                 console.log(`Workflow state after: ${content?.workflow.state}`);
             });
@@ -104,33 +105,31 @@ export const hookDispatchEvent = ({
                     console.log(
                         'Could not fetch admin content - dispatching event'
                     );
-                    dispatchEvent(event);
+                    return dispatchEvent(event);
                 } else if (detail.type === NodeServerChangeType.PUBLISH) {
                     console.log('Content published - dispatching event');
-                    dispatchEvent(event);
+                    return dispatchEvent(event);
                 } else if (detail.type === NodeServerChangeType.DELETE) {
                     console.log('Content unpublished - dispatching event');
-                    dispatchEvent(event);
+                    return dispatchEvent(event);
                 } else if (content.modifier === userId) {
-                    // If the content was modified by the current user, we want to dispatch the event if the
-                    // workflow state or publish state was changed. The content itself updates dynamically via our
-                    // component-preview api, so UI updates are only needed to keep the state of the
-                    // "publish"/"mark as ready" button consistent
-
                     const newWorkflowState = content.workflow.state;
 
                     console.log(
                         'Own update detected',
                         newWorkflowState,
-                        savedWorkflowState
+                        prevWorkflowState
                     );
 
-                    if (newWorkflowState !== savedWorkflowState) {
+                    if (content.workflow.state === 'READY') {
+                        console.log('Content is ready - dispatching event');
+                        return dispatchEvent(event);
+                    } else if (newWorkflowState !== prevWorkflowState) {
                         console.log(
                             `User updated workflow state to ${newWorkflowState} - dispatching event`
                         );
-                        savedWorkflowState = newWorkflowState;
-                        dispatchEvent(event);
+                        prevWorkflowState = newWorkflowState;
+                        return dispatchEvent(event);
                     }
                 } else {
                     // If another user (or service call/scheduled task/etc) updated the content, we never want to

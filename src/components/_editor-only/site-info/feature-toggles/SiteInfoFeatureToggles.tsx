@@ -2,7 +2,7 @@ import React from 'react';
 import {
     EditorFeatureCookie,
     isEditorFeatureEnabled,
-    toggleEditorFeature,
+    setEditorFeatureToggle,
 } from './utils';
 import { Checkbox } from '@navikt/ds-react';
 import { SiteInfoSubHeader } from '../_common/sub-header/SiteInfoSubHeader';
@@ -30,7 +30,9 @@ export const SiteInfoFeatureToggles = () => {
                         size={'small'}
                         key={cookie}
                         defaultChecked={isEditorFeatureEnabled(cookie)}
-                        onChange={() => toggleEditorFeature(cookie)}
+                        onChange={(e) =>
+                            setEditorFeatureToggle(cookie, e.target.checked)
+                        }
                     >
                         {description}
                     </Checkbox>

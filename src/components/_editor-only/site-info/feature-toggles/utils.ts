@@ -8,10 +8,11 @@ export enum EditorFeatureCookie {
 export const isEditorFeatureEnabled = (feature: EditorFeatureCookie) =>
     Cookie.get(feature) === 'true';
 
-export const toggleEditorFeature = (
+export const setEditorFeatureToggle = (
     feature: EditorFeatureCookie,
-    enable?: boolean
-) =>
-    Cookie.set(feature, enable ?? !isEditorFeatureEnabled(feature), {
+    enable: boolean
+) => {
+    Cookie.set(feature, enable, {
         expires: 365,
     });
+};
