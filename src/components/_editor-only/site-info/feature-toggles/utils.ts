@@ -3,7 +3,6 @@ import Cookie from 'js-cookie';
 export enum EditorFeatureCookie {
     HideLeftPanel = 'hide-left-panel',
     ReduceReloads = 'reduce-reloads',
-    ConcurrentEditorWarning = 'concurrent-editor-warning',
 }
 
 export const isEditorFeatureEnabled = (feature: EditorFeatureCookie) =>

@@ -9,18 +9,14 @@ import { SiteInfoSubHeader } from '../_common/sub-header/SiteInfoSubHeader';
 
 const featureProps = [
     {
+        cookie: EditorFeatureCookie.ReduceReloads,
+        description:
+            'Hindrer de fleste automatiske reloads i komponent-editoren, og viser et varsel dersom andre redaktører gjør endringer på innholdet du jobber med',
+    },
+    {
         cookie: EditorFeatureCookie.HideLeftPanel,
         description:
-            'Skjul venstre-panel i editoren på komponent-baserte sider',
-    },
-    {
-        cookie: EditorFeatureCookie.ReduceReloads,
-        description: 'Hindre automatiske reloads i komponent-editoren',
-    },
-    {
-        cookie: EditorFeatureCookie.ConcurrentEditorWarning,
-        description:
-            'Varsling dersom flere redaktører gjør endringer på samme innhold',
+            'Skjuler venstre-panelet i editoren som standard på komponent-baserte sider',
     },
 ];
 
