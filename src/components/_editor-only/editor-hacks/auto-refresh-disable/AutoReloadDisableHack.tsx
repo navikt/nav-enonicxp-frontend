@@ -4,10 +4,7 @@ import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { BodyLong } from '@navikt/ds-react';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { useEffect, useState } from 'react';
-import {
-    hookDispatchEvent,
-    unhookDispatchEvent,
-} from './editor-event-intercepts/dispatch-event-hook';
+import { hookDispatchEvent, unhookDispatchEvent } from './dispatch-event-hook';
 
 import style from './AutoRefreshDisableHack.module.scss';
 
