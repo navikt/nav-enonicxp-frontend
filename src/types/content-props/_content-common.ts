@@ -51,7 +51,6 @@ export enum ContentType {
     GuidePage = 'no_nav_navno_GuidePage',
     ThemedArticlePage = 'no_nav_navno_ThemedArticlePage',
     SituationPage = 'no_nav_navno_SituationPage',
-    EmployerSituationPage = 'no_nav_navno_EmployerSituationPage',
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',
     ToolsPage = 'no_nav_navno_ToolsPage',
     Calculator = 'no_nav_navno_Calculator',

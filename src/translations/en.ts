@@ -129,6 +129,7 @@ export const bundle: Translations = {
             seeMoreOptions: 'See more options',
             todaysPhoneOpeningHours: 'Phone hours today',
             callUsAt: 'Call us at',
+            businessDays: 'business days',
         },
     },
     versionHistory: {

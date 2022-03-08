@@ -122,6 +122,7 @@ export const bundle = {
             seeMoreOptions: 'Meir om tasteval',
             todaysPhoneOpeningHours: 'Opningstider på telefon i dag',
             callUsAt: 'Ring oss på',
+            businessDays: 'kvardagar',
         },
     },
     dateTime: {
