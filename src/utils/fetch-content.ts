@@ -14,7 +14,7 @@ export type XpResponseProps = ContentProps | MediaProps;
 // itself not being found (ie if something is wrong with the nav.no app)
 const contentNotFoundMessage = 'Site path not found';
 
-const fetchTimeoutMs = 15000;
+const fetchTimeoutMs = 60000;
 
 const fetchSiteContent = async (
     idOrPath: string,

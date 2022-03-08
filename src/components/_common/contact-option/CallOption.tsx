@@ -1,20 +1,27 @@
 import { translator } from 'translations';
 import { Heading, BodyLong, Alert, BodyShort } from '@navikt/ds-react';
 
+import { classNames } from 'utils/classnames';
+import { dateDiff, formatDate, getCurrentISODate } from 'utils/datetime';
+
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import { TelephoneData } from '../../../types/component-props/parts/contact-option';
-
-import { classNames } from 'utils/classnames';
-import { dateDiff, formatDate, getCurrentISODate } from 'utils/datetime';
+import {
+    OpeningHour,
+    TelephoneData,
+} from '../../../types/component-props/parts/contact-option';
 
 import {
     mergeOpeningHours,
     findTodaysOpeningHour,
+    getDates,
+    getIsClosedForToday,
+    getIsCurrentyClosed,
 } from '../contact-details/contactHelpers';
 
 import style from './ContactOption.module.scss';
+import { OpeningHours } from 'components/parts/_legacy/office-information/reception/OpeningHours';
 
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
@@ -50,13 +57,9 @@ export const CallOption = (props: CallOptionProps) => {
 
     const findNextOpeningDayAfterToday = () => {
         const todayISO = getCurrentISODate();
-        const allDays = mergeOpeningHours(
-            regularOpeningHours?.hours,
-            specialOpeningHours?.hours
-        );
 
-        for (let day = 0; day < allDays.length; day++) {
-            const openingHour = allDays[day];
+        for (let day = 0; day < allOpeningHours.length; day++) {
+            const openingHour = allOpeningHours[day];
             if (openingHour.status === 'OPEN' && openingHour.date > todayISO) {
                 return openingHour;
             }
@@ -98,32 +101,31 @@ export const CallOption = (props: CallOptionProps) => {
             .replace('{$2}', futureTime);
     };
 
-    const buildOpenInformationText = (openingHours) => {
-        if (!openingHours) {
-            return '';
+    const buildOpenInformationText = (openingHour: OpeningHour) => {
+        if (!getDates(openingHour)) {
+            return true;
         }
-        const { from, to } = openingHours;
 
-        const currentISODate = getCurrentISODate();
-        const currentEpoch = Date.now();
+        const {
+            closesEpoch,
+            currentEpoch,
+            endOfToday,
+            opensEpoch,
+            startOfToday,
+        } = getDates(openingHour);
 
-        const startOfToday = new Date(`${currentISODate}T00:00:00`).getTime();
-        const endOfToday = new Date(`${currentISODate}T23:59:59`).getTime();
-
-        const opensEpoch = new Date(`${currentISODate}T${from}`).getTime();
-        const closesEpoch = new Date(`${currentISODate}T${to}`).getTime();
+        const { from, to } = openingHour;
 
         // Misc opening / closed states
         const isOpenNow =
             currentEpoch > opensEpoch && currentEpoch < closesEpoch;
+
         const isOpeningLaterToday =
             startOfToday < currentEpoch &&
             endOfToday > currentEpoch &&
             currentEpoch < opensEpoch;
 
-        const isClosedForToday =
-            (closesEpoch < currentEpoch && closesEpoch < endOfToday) ||
-            openingHours.status === 'CLOSED';
+        const isClosedForToday = getIsClosedForToday(openingHour);
 
         const openClosedText = isOpenNow
             ? sharedTranslations['openNow']
@@ -148,8 +150,13 @@ export const CallOption = (props: CallOptionProps) => {
             return buildOpeningLaterTodayString(from);
         }
 
-        return `${openClosedText} • ${from} - ${to}`;
+        return `${openClosedText} (${sharedTranslations['businessDays']} ${from} - ${to})`;
     };
+
+    const todaysOpeningHour =
+        typeof window !== 'undefined'
+            ? findTodaysOpeningHour(allOpeningHours)
+            : null;
 
     return (
         <div className={style.contactOption}>
@@ -169,15 +176,23 @@ export const CallOption = (props: CallOptionProps) => {
                     {alertText}
                 </Alert>
             )}
-            <BodyLong spacing>{ingress || text}</BodyLong>
-            <BodyShort spacing>
-                {process.browser &&
-                    buildOpenInformationText(
-                        // Force client side render only
-                        findTodaysOpeningHour(allOpeningHours)
-                    )}
+            <BodyLong className={style.text}>{ingress || text}</BodyLong>
+            <BodyShort
+                spacing
+                className={classNames(
+                    style.openingHour,
+                    getIsCurrentyClosed(todaysOpeningHour)
+                        ? style.closed
+                        : style.open
+                )}
+            >
+                {typeof window !== 'undefined' &&
+                    buildOpenInformationText(todaysOpeningHour)}
             </BodyShort>
-            <LenkeBase href={language === 'no' ? contactUrlNO : contactUrlEN}>
+            <LenkeBase
+                className={style.moreLink}
+                href={language === 'no' ? contactUrlNO : contactUrlEN}
+            >
                 {sharedTranslations['seeMoreOptions']}
             </LenkeBase>
         </div>

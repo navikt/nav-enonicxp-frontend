@@ -1,5 +1,6 @@
 import { OpeningHour } from 'types/component-props/parts/contact-option';
 import { getDayNameFromNumber } from 'utils/datetime';
+import { getCurrentISODate } from 'utils/datetime';
 
 /** Special opening hours take precidence over regular opening hours,
  * so merge the two in order to create a correct list of opening
@@ -8,7 +9,7 @@ import { getDayNameFromNumber } from 'utils/datetime';
 export const mergeOpeningHours = (
     regularOpeningHours: OpeningHour[] = [],
     specialOpeningHours: OpeningHour[] = []
-) => {
+): OpeningHour[] => {
     const totalDaysToCheck = 7 + specialOpeningHours.length;
     const today = Date.now();
     const openingHours = [];
@@ -88,4 +89,56 @@ export const shouldShowSpecialHours = (specialOpeningHours) => {
     const timeNow = new Date();
 
     return validFrom < timeNow && validTo > timeNow;
+};
+
+export const getIsClosedForToday = (openingHour: OpeningHour) => {
+    if (!getDates(openingHour)) {
+        return true;
+    }
+    const { closesEpoch, currentEpoch, endOfToday } = getDates(openingHour);
+
+    const isClosed =
+        (closesEpoch < currentEpoch && closesEpoch < endOfToday) ||
+        openingHour.status === 'CLOSED';
+
+    return isClosed;
+};
+
+export const getIsCurrentyClosed = (openingHour: OpeningHour) => {
+    if (!getDates(openingHour)) {
+        return true;
+    }
+    const { closesEpoch, opensEpoch, currentEpoch, endOfToday } =
+        getDates(openingHour);
+
+    const isCurrentlyClosed =
+        currentEpoch < opensEpoch ||
+        currentEpoch > closesEpoch ||
+        openingHour.status === 'CLOSED';
+
+    return isCurrentlyClosed;
+};
+
+export const getDates = (openingHours: OpeningHour) => {
+    if (!openingHours) {
+        return null;
+    }
+
+    const currentISODate = getCurrentISODate();
+    const currentEpoch = Date.now();
+
+    const { from, to } = openingHours;
+    const startOfToday = new Date(`${currentISODate}T00:00:00`).getTime();
+    const endOfToday = new Date(`${currentISODate}T23:59:59`).getTime();
+
+    const opensEpoch = new Date(`${currentISODate}T${from}`).getTime();
+    const closesEpoch = new Date(`${currentISODate}T${to}`).getTime();
+
+    return {
+        startOfToday,
+        endOfToday,
+        opensEpoch,
+        closesEpoch,
+        currentEpoch,
+    };
 };
