@@ -34,7 +34,7 @@ import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
 
-export type Parts = {
+type Props = {
     partProps: PartComponentProps;
     pageProps: ContentProps;
 };
@@ -81,7 +81,7 @@ const partsDeprecated: { [key in PartDeprecated] } = {
     [PartType.PageCrumbs]: true,
 };
 
-const PartComponent = ({ partProps, pageProps }: Parts) => {
+const PartComponent = ({ partProps, pageProps }: Props) => {
     const { descriptor } = partProps;
 
     const PartWithGlobalData = partsWithPageData[descriptor];
@@ -98,7 +98,7 @@ const PartComponent = ({ partProps, pageProps }: Parts) => {
     return <div>{`Unimplemented part: ${descriptor}`}</div>;
 };
 
-export const PartsMapper = ({ pageProps, partProps }: Parts) => {
+export const PartsMapper = ({ pageProps, partProps }: Props) => {
     const { path, descriptor, config } = partProps;
     const isEditView = pageProps.editorView === 'edit';
     const renderOnAuthState = config?.renderOnAuthState;
