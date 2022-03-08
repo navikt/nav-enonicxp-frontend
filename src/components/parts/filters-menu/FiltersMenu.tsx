@@ -14,10 +14,16 @@ import { BEM } from '../../../utils/classnames';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_common/editor-utils/editor-help/EditorHelp';
+import { isFirstFilterMenuInPage as checkIfFilterFirstInPage } from './helpers';
 
 const bem = BEM('filters-menu');
 
-export const FiltersMenu = ({ isFilterDuplicate, config }: FilterMenuProps) => {
+export const FiltersMenu = ({
+    isFilterDuplicate,
+    config,
+    path,
+    page,
+}: FilterMenuProps) => {
     const { categories, description, expandableTitle, title } = config;
 
     const {
@@ -26,6 +32,8 @@ export const FiltersMenu = ({ isFilterDuplicate, config }: FilterMenuProps) => {
         setAvailableFilters,
         toggleFilter,
     } = useFilterState();
+
+    const isFilterFirstInPage = checkIfFilterFirstInPage({ path, page });
 
     const { language, pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
@@ -59,7 +67,7 @@ export const FiltersMenu = ({ isFilterDuplicate, config }: FilterMenuProps) => {
         toggleFilter(filter.id);
     };
 
-    if (editorView && isFilterDuplicate) {
+    if (editorView && !isFilterFirstInPage) {
         return (
             <EditorHelp
                 type="error"
@@ -68,7 +76,7 @@ export const FiltersMenu = ({ isFilterDuplicate, config }: FilterMenuProps) => {
         );
     }
 
-    if (!editorView && isFilterDuplicate) {
+    if (!editorView && !isFilterFirstInPage) {
         return null;
     }
 

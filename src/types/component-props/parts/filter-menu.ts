@@ -1,6 +1,7 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 import { ExpandableMixin } from '../_mixins';
+import { LayoutProps } from '../layouts';
 
 export type Filter = {
     filterName: string;
@@ -15,6 +16,7 @@ export type Category = {
 export interface FilterMenuProps extends PartComponentProps {
     descriptor: PartType.FiltersMenu;
     isFilterDuplicate?: boolean;
+    page: LayoutProps;
     config: {
         title?: string;
         description: string;

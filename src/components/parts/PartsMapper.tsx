@@ -34,7 +34,6 @@ import { ProductCardPart } from './product-card/ProductCard';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
-import { checkForDuplicateFilterMenus } from './mappingHelpers';
 
 const partsWithPageData: {
     [key in PartWithPageData]: React.FunctionComponent<ContentProps>;
@@ -78,16 +77,6 @@ const partsDeprecated: { [key in PartDeprecated] } = {
     [PartType.PageCrumbs]: true,
 };
 
-const buildAugmentedPropsForComponent = ({
-    partProps,
-    pageProps,
-}: PartsMapperProps) => {
-    if (partProps.descriptor === PartType.FiltersMenu) {
-        return checkForDuplicateFilterMenus({ partProps, pageProps });
-    }
-    return {};
-};
-
 const PartComponent = ({ partProps, pageProps }: PartsMapperProps) => {
     const { descriptor } = partProps;
 
@@ -96,13 +85,10 @@ const PartComponent = ({ partProps, pageProps }: PartsMapperProps) => {
         return <PartWithGlobalData {...pageProps} />;
     }
 
-    const PartWithOwnData = partsWithOwnData[descriptor];
-    if (PartWithOwnData) {
-        const augmentedProps = buildAugmentedPropsForComponent({
-            pageProps,
-            partProps,
-        });
-        return <PartWithOwnData {...partProps} {...augmentedProps} />;
+    const PartWithPageData = partsWithOwnData[descriptor];
+
+    if (PartWithPageData) {
+        return <PartWithPageData {...partProps} page={pageProps.page} />;
     }
 
     return <div>{`Unimplemented part: ${descriptor}`}</div>;
