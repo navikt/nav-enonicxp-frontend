@@ -19,16 +19,17 @@ interface DefaultContactProps extends DefaultContactData {
 }
 
 export const DefaultOption = (props: DefaultContactProps) => {
-    const { ingress, channel, title, url } = props;
+    const { ingress, channel, title, url, icon } = props;
     const { language } = usePageConfig();
 
     const getTranslations = translator('contactPoint', language);
-    const translations = getTranslations(channel);
 
     const getTitle = () => {
-        if (title) {
+        if (channel === 'custom' || title) {
             return title;
         }
+
+        const translations = getTranslations(channel);
 
         if (translations && translations.title) {
             return translations.title;
@@ -38,6 +39,11 @@ export const DefaultOption = (props: DefaultContactProps) => {
     };
 
     const getIngress = () => {
+        if (channel === 'custom' || ingress) {
+            return ingress;
+        }
+
+        const translations = getTranslations(channel);
         return ingress || (translations && translations.ingress);
     };
 
@@ -62,8 +68,22 @@ export const DefaultOption = (props: DefaultContactProps) => {
                 onClick: openChatbot,
             };
         }
+        if (channel === 'custom') {
+            return {
+                href: url,
+                target: '_blank',
+            };
+        }
 
         return { href: '#' };
+    };
+
+    const getIconName = () => {
+        if (channel === 'custom') {
+            return icon;
+        }
+
+        return channel;
     };
 
     return (
@@ -73,7 +93,9 @@ export const DefaultOption = (props: DefaultContactProps) => {
                 className={style.link}
             >
                 <div className={style.linkContent}>
-                    <div className={classNames(style.icon, style[channel])} />
+                    <div
+                        className={classNames(style.icon, style[getIconName()])}
+                    />
                     <Heading level="2" size="medium">
                         {getTitle()}
                     </Heading>
