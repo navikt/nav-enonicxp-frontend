@@ -11,11 +11,6 @@ export enum ComponentType {
     Fragment = 'fragment',
 }
 
-export type PartsMapperProps = {
-    partProps: PartComponentProps;
-    pageProps: ContentProps;
-};
-
 export type ComponentCommonProps = {
     type: ComponentType;
     path: string;

@@ -14,7 +14,6 @@ import { MainArticle } from './_legacy/main-article/MainArticle';
 import {
     ComponentType,
     PartComponentProps,
-    PartsMapperProps,
 } from '../../types/component-props/_component-common';
 import { ContentProps } from '../../types/content-props/_content-common';
 import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
@@ -34,6 +33,11 @@ import { ProductCardPart } from './product-card/ProductCard';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
+
+export type Parts = {
+    partProps: PartComponentProps;
+    pageProps: ContentProps;
+};
 
 const partsWithPageData: {
     [key in PartWithPageData]: React.FunctionComponent<ContentProps>;
@@ -77,7 +81,7 @@ const partsDeprecated: { [key in PartDeprecated] } = {
     [PartType.PageCrumbs]: true,
 };
 
-const PartComponent = ({ partProps, pageProps }: PartsMapperProps) => {
+const PartComponent = ({ partProps, pageProps }: Parts) => {
     const { descriptor } = partProps;
 
     const PartWithGlobalData = partsWithPageData[descriptor];
@@ -94,7 +98,7 @@ const PartComponent = ({ partProps, pageProps }: PartsMapperProps) => {
     return <div>{`Unimplemented part: ${descriptor}`}</div>;
 };
 
-export const PartsMapper = ({ pageProps, partProps }: PartsMapperProps) => {
+export const PartsMapper = ({ pageProps, partProps }: Parts) => {
     const { path, descriptor, config } = partProps;
     const isEditView = pageProps.editorView === 'edit';
     const renderOnAuthState = config?.renderOnAuthState;

@@ -18,12 +18,7 @@ import { isFirstFilterMenuInPage as checkIfFilterFirstInPage } from './helpers';
 
 const bem = BEM('filters-menu');
 
-export const FiltersMenu = ({
-    isFilterDuplicate,
-    config,
-    path,
-    page,
-}: FilterMenuProps) => {
+export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
     const { categories, description, expandableTitle, title } = config;
 
     const {
@@ -41,13 +36,13 @@ export const FiltersMenu = ({
     useEffect(() => {
         // Don't add available filters (to redux store) if this
         // FiltersMenu is marked as duplicate
-        if (!isFilterDuplicate) {
+        if (isFilterFirstInPage) {
             setAvailableFilters(categories);
         }
-    }, [categories, setAvailableFilters, isFilterDuplicate]);
+    }, [categories, setAvailableFilters, isFilterFirstInPage]);
 
     useEffect(() => {
-        if (isFilterDuplicate) {
+        if (isFilterFirstInPage) {
             return;
         }
         return () => {
