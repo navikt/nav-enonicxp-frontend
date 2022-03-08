@@ -30,9 +30,12 @@ export const SiteInfoFeatureToggles = () => {
                         size={'small'}
                         key={cookie}
                         defaultChecked={isEditorFeatureEnabled(cookie)}
-                        onChange={(e) =>
-                            setEditorFeatureToggle(cookie, e.target.checked)
-                        }
+                        onClick={(e) => {
+                            setEditorFeatureToggle(
+                                cookie,
+                                e.currentTarget.checked
+                            );
+                        }}
                     >
                         {description}
                     </Checkbox>
