@@ -3,7 +3,7 @@ import { GlobalValueItem } from '../../../types/content-props/global-values-prop
 import { GVMessageProps } from './components/messages/GVMessages';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { editorPathPrefix } from '../../../utils/urls';
-import { EditorLinkWrapper } from '../../_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
+import { EditorLinkWrapper } from '../../_editor-only/editor-link-wrapper/EditorLinkWrapper';
 
 export const gvNameExists = (
     itemName: string,

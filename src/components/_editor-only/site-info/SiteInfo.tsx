@@ -3,10 +3,11 @@ import React from 'react';
 import { DocumentParameter } from '../../_common/metatags/DocumentParameterMetatags';
 import { SiteInfoHeader } from './header/SiteInfoHeader';
 import { SiteInfoProps } from './types';
-
-import style from './SiteInfo.module.scss';
 import { SiteInfoPublishInfo } from './publish-info/SiteInfoPublishInfo';
 import { SiteInfoCustomPaths } from './custom-paths/SiteInfoCustomPaths';
+
+import style from './SiteInfo.module.scss';
+import { SiteInfoFeatureToggles } from './feature-toggles/SiteInfoFeatureToggles';
 
 export const SiteInfo = ({
     serverInfo,
@@ -38,6 +39,7 @@ export const SiteInfo = ({
                         unpublishScheduledNextWeek={unpublishScheduledNextWeek}
                     />
                     <SiteInfoCustomPaths contentList={contentWithCustomPath} />
+                    <SiteInfoFeatureToggles />
                 </div>
             </div>
         </>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from '../../../_common/headers/Header';
 import { AlertBox } from '../../../_common/alert-box/AlertBox';
-import { BodyLong, BodyShort } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 import { ClusterState } from '../types';
 
 import style from './SiteInfoHeader.module.scss';
@@ -28,7 +28,6 @@ export const SiteInfoHeader = ({ serverName, clusterState }: Props) => {
                 <Header level={'1'} justify={'left'}>
                     {'nav.no cms status'}
                 </Header>
-                <BodyLong>{'Oversiktsside for publiseringer mm.'}</BodyLong>
             </div>
             <AlertBox
                 variant={clusterStateToVariant[clusterState]}

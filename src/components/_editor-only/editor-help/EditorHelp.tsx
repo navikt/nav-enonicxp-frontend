@@ -1,7 +1,7 @@
 import React from 'react';
-import { usePageConfig } from '../../../../store/hooks/usePageConfig';
-import { PublicImage } from '../../image/PublicImage';
-import { BEM, classNames } from '../../../../utils/classnames';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { PublicImage } from '../../_common/image/PublicImage';
+import { BEM, classNames } from '../../../utils/classnames';
 import { BodyShort } from '@navikt/ds-react';
 
 const bem = BEM('editor-help');

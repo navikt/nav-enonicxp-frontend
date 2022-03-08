@@ -3,7 +3,7 @@ import React from 'react';
 import { DefaultOption } from 'components/_common/contact-option/DefaultOption';
 import { CallOption } from 'components/_common/contact-option/CallOption';
 import { ContactOptionProps } from '../../../types/component-props/parts/contact-option';
-import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 export const ContactOptionPart = ({ config }: ContactOptionProps) => {
     const channel = config?.contactOptions?._selected;

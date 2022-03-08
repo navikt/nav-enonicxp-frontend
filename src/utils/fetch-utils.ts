@@ -1,9 +1,11 @@
 import fetch from 'node-fetch';
 
+const defaultTimeout = 15000;
+
 export const fetchWithTimeout = (
     url: string,
-    timeout: number,
-    config?: any
+    timeoutMs = defaultTimeout,
+    config?: Record<string, any>
 ): Promise<any> =>
     Promise.race([
         fetch(url, config),
@@ -15,7 +17,7 @@ export const fetchWithTimeout = (
                         status: 408,
                         statusText: 'Request Timeout',
                     }),
-                timeout
+                timeoutMs
             )
         ),
     ]);
@@ -32,3 +34,21 @@ export const objectToQueryString = (params: object) =>
               ''
           )
         : '';
+
+export const fetchJson = <ResponseType = any>(
+    url: string,
+    timeout = defaultTimeout,
+    config?: Record<string, any>
+): Promise<ResponseType | null> =>
+    fetchWithTimeout(url, timeout, config)
+        .then((res) => {
+            if (res.ok) {
+                return res.json();
+            }
+
+            throw new Error(`${res.status} - ${res.statusText}`);
+        })
+        .catch((e) => {
+            console.error(`Failed to fetch json from ${url} - ${e}`);
+            return null;
+        });

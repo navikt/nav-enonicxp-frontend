@@ -1,9 +1,9 @@
 import React from 'react';
 import { SiteInfoPublishInfoList } from './content-list/SiteInfoPublishInfoList';
 import { SiteInfoProps } from '../types';
+import { SiteInfoSubHeader } from '../_common/sub-header/SiteInfoSubHeader';
 
 import style from './SiteInfoPublishInfo.module.scss';
-import { SiteInfoSubHeader } from '../_common/sub-header/SiteInfoSubHeader';
 
 type Props = Pick<
     SiteInfoProps,

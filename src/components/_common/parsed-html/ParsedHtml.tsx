@@ -16,7 +16,7 @@ import { MacroMapper } from '../../macros/MacroMapper';
 import { headingToLevel, headingToSize } from '../../../types/typo-style';
 import { MacroType } from '../../../types/macro-props/_macros-common';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import { EditorHelp } from '../editor-utils/editor-help/EditorHelp';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import ReactDOMServer from 'react-dom/server';
 import { store } from '../../../store/store';
 import { Provider } from 'react-redux';

@@ -2,7 +2,7 @@ import React from 'react';
 import { FragmentUsageData } from './FragmentUsageCheck';
 import { editorPathPrefix } from '../../../../utils/urls';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
-import { EditorLinkWrapper } from '../../../_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
+import { EditorLinkWrapper } from '../../../_editor-only/editor-link-wrapper/EditorLinkWrapper';
 
 export const FragmentUsageLink = ({ id, name, path }: FragmentUsageData) => {
     const editorUrl = `${editorPathPrefix}/${id}`;
