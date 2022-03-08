@@ -4,7 +4,10 @@ import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { BodyLong } from '@navikt/ds-react';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { useEffect, useState } from 'react';
-import { hookDispatchEvent, unhookDispatchEvent } from './dispatch-event-hook';
+import {
+    hookDispatchEventForBatchContentServerEvent,
+    unhookDispatchEventForBatchContentServerEvent,
+} from './dispatch-event-hook';
 
 import style from './AutoRefreshDisableHack.module.scss';
 
@@ -32,14 +35,14 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
     );
 
     useEffect(() => {
-        hookDispatchEvent({
+        hookDispatchEventForBatchContentServerEvent({
             content,
             setExternalUpdateEvent,
             setExternalUserName,
             setExternalContentChange,
         });
 
-        return unhookDispatchEvent;
+        return unhookDispatchEventForBatchContentServerEvent;
     }, [content]);
 
     return externalContentChange ? (

@@ -50,7 +50,7 @@ const getUserNameFromEmail = (userEmail) =>
 
 // Hook the dispatchEvent function on the content studio parent window
 // in order to prevent certain events from propagating
-export const hookDispatchEvent = ({
+export const hookDispatchEventForBatchContentServerEvent = ({
     content,
     setExternalContentChange,
     setExternalUpdateEvent,
@@ -90,8 +90,6 @@ export const hookDispatchEvent = ({
     parent.window.dispatchEvent = (event: CustomEvent) => {
         const { type: eventType, detail } = event;
         const detailType = detail?.type;
-
-        console.log(eventType);
 
         // We only want to intercept events of the BatchContentServerEvent type, which is what triggers UI updates
         // for content changes on the client. All other events should be dispatched as normal.
@@ -145,8 +143,10 @@ export const hookDispatchEvent = ({
                 // if and only if the workflow state was "IN_PROGRESS" (ie "mark as ready") both before and after
                 // the edit. In this case there is no UI-update needed, and we can ignore the event and prevent
                 // an unnecessary UI-refresh
-                console.log(`Current user ${userId} updated the content`);
                 const newWorkflowState = content.workflow.state;
+                console.log(
+                    `Edit by current user ${userId} - workflow state before: ${prevWorkflowState} - after: ${newWorkflowState}`
+                );
 
                 if (
                     newWorkflowState !== 'IN_PROGRESS' ||
@@ -181,13 +181,13 @@ export const hookDispatchEvent = ({
             }
         });
 
-        // This event may be dispatched in the previous async statement, however we return immediately to prevent
-        // some potentially funky behaviour
+        // This event may be dispatched in the previous async statement, however we return immediately to
+        // preserve the expected dispatchEvent() behaviour
         return false;
     };
 };
 
-export const unhookDispatchEvent = () => {
+export const unhookDispatchEventForBatchContentServerEvent = () => {
     if (parent.window.dispatchEventActual) {
         parent.window.dispatchEvent = parent.window.dispatchEventActual;
     }
