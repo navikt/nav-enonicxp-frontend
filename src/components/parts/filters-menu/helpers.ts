@@ -7,11 +7,11 @@ interface Props {
     page: LayoutProps;
 }
 
-export const isFirstFilterMenuInPage = ({ path, page }: Props) => {
+export const checkIfFilterFirstInPage = ({ path, page }: Props) => {
     const regions = page?.regions;
 
     if (!regions) {
-        return {};
+        return false;
     }
 
     const components: PartComponentProps[] =
@@ -22,11 +22,11 @@ export const isFirstFilterMenuInPage = ({ path, page }: Props) => {
     );
 
     if (allFilterMenus.length === 0) {
-        return;
+        return false;
     }
 
-    // We want to keep the very first FiltersMenu-part, so make a not of this
-    // in order to reference the path next.
+    // Make a not of the very first FiltersMenu in order to
+    // check for path later.
     const firstFilterMenu = allFilterMenus[0];
 
     return path === firstFilterMenu.path;

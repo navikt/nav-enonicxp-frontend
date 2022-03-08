@@ -14,7 +14,7 @@ import { BEM } from '../../../utils/classnames';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_common/editor-utils/editor-help/EditorHelp';
-import { isFirstFilterMenuInPage as checkIfFilterFirstInPage } from './helpers';
+import { checkIfFilterFirstInPage } from './helpers';
 
 const bem = BEM('filters-menu');
 
@@ -28,21 +28,22 @@ export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
         toggleFilter,
     } = useFilterState();
 
-    const isFilterFirstInPage = checkIfFilterFirstInPage({ path, page });
+    const isFirstFilterInPage = checkIfFilterFirstInPage({ path, page });
 
     const { language, pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
 
     useEffect(() => {
-        // Don't add available filters (to redux store) if this
-        // FiltersMenu is marked as duplicate
-        if (isFilterFirstInPage) {
+        // Multiple FilterMenus in same page will break.
+        // So only setAvailableFilters (adding filters to Redux store)
+        // if this filter is the first one.
+        if (isFirstFilterInPage) {
             setAvailableFilters(categories);
         }
-    }, [categories, setAvailableFilters, isFilterFirstInPage]);
+    }, [categories, setAvailableFilters, isFirstFilterInPage]);
 
     useEffect(() => {
-        if (isFilterFirstInPage) {
+        if (isFirstFilterInPage) {
             return;
         }
         return () => {
@@ -62,7 +63,7 @@ export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
         toggleFilter(filter.id);
     };
 
-    if (editorView && !isFilterFirstInPage) {
+    if (editorView && !isFirstFilterInPage) {
         return (
             <EditorHelp
                 type="error"
@@ -71,7 +72,7 @@ export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
         );
     }
 
-    if (!editorView && !isFilterFirstInPage) {
+    if (!editorView && !isFirstFilterInPage) {
         return null;
     }
 
