@@ -59,7 +59,7 @@ const handleInvalidateAllReq = (app) => (req, res) => {
 
 let currentCacheTimestamp = 0;
 
-const setCacheKeyMiddleware = (req, res, next) => {
+const setCacheKey = (req, res, next) => {
     const { cache_key, cache_ts } = req.headers;
 
     if (cache_key) {
@@ -112,5 +112,5 @@ const handleInvalidateReq = (app) => (req, res) => {
 module.exports = {
     handleInvalidateReq,
     handleInvalidateAllReq,
-    setCacheKeyMiddleware,
+    setCacheKey,
 };

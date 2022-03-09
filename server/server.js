@@ -6,7 +6,7 @@ const { setJsonCacheHeaders } = require('./set-json-cache-headers');
 const {
     handleInvalidateReq,
     handleInvalidateAllReq,
-    setCacheKeyMiddleware,
+    setCacheKey,
 } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
 
@@ -43,14 +43,14 @@ nextApp.prepare().then(() => {
         '/invalidate',
         verifySecret,
         jsonBodyParser,
-        setCacheKeyMiddleware,
+        setCacheKey,
         handleInvalidateReq(nextApp)
     );
 
     server.get(
         '/invalidate/wipe-all',
         verifySecret,
-        setCacheKeyMiddleware,
+        setCacheKey,
         handleInvalidateAllReq(nextApp)
     );
 
