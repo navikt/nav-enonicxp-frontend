@@ -13,7 +13,7 @@ import { FilterCheckbox } from './FilterCheckbox';
 import { BEM } from '../../../utils/classnames';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
-import { EditorHelp } from 'components/_common/editor-utils/editor-help/EditorHelp';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { checkIfFilterFirstInPage } from './helpers';
 
 const bem = BEM('filters-menu');
@@ -38,7 +38,7 @@ export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
         // So only setAvailableFilters (adding filters to Redux store)
         // if this filter is the first one.
         if (isFirstFilterInPage) {
-            setAvailableFilters(categories);
+            // setAvailableFilters(categories);
         }
     }, [categories, setAvailableFilters, isFirstFilterInPage]);
 
@@ -63,7 +63,7 @@ export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
         toggleFilter(filter.id);
     };
 
-    if (editorView && !isFirstFilterInPage) {
+    if (!isFirstFilterInPage) {
         return (
             <EditorHelp
                 type="error"

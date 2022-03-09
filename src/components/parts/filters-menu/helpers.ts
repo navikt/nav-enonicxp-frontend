@@ -14,11 +14,13 @@ export const checkIfFilterFirstInPage = ({ path, page }: Props) => {
         return false;
     }
 
-    const components: PartComponentProps[] =
-        regions['pageContent']?.components || [];
+    const allComponents = Object.values(regions).reduce((collection, regionObject) => {
+        const { components } = regionObject;
+        return [...collection, ...components]
+    }, [])
 
-    const allFilterMenus = components.filter(
-        (component) => component.descriptor === PartType.FiltersMenu
+    const allFilterMenus = allComponents.filter(
+        (component: PartComponentProps) => component.descriptor === PartType.FiltersMenu
     );
 
     if (allFilterMenus.length === 0) {
