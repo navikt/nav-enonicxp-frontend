@@ -21,7 +21,6 @@ import {
 } from '../contact-details/contactHelpers';
 
 import style from './ContactOption.module.scss';
-import { OpeningHours } from 'components/parts/_legacy/office-information/reception/OpeningHours';
 
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
@@ -158,6 +157,11 @@ export const CallOption = (props: CallOptionProps) => {
             ? findTodaysOpeningHour(allOpeningHours)
             : null;
 
+    const openClosedStyle =
+        typeof window !== 'undefined' && getIsCurrentyClosed(todaysOpeningHour)
+            ? style.closed
+            : style.open;
+
     return (
         <div className={style.contactOption}>
             <LenkeBase
@@ -179,12 +183,7 @@ export const CallOption = (props: CallOptionProps) => {
             <BodyLong className={style.text}>{ingress || text}</BodyLong>
             <BodyShort
                 spacing
-                className={classNames(
-                    style.openingHour,
-                    getIsCurrentyClosed(todaysOpeningHour)
-                        ? style.closed
-                        : style.open
-                )}
+                className={classNames(style.openingHour, openClosedStyle)}
             >
                 {typeof window !== 'undefined' &&
                     buildOpenInformationText(todaysOpeningHour)}
