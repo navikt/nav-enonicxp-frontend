@@ -26,6 +26,7 @@ const fetchSiteContent = async (
         ...(isDraft && { branch: 'draft' }),
         id: idOrPath,
         ...(time && { time }),
+        ...(!isDraft && { cacheKey: global.cacheKey }),
     });
     const url = `${xpServiceUrl}/sitecontent${params}`;
     const config = {

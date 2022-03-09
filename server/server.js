@@ -7,7 +7,7 @@ const {
     handleInvalidateReq,
     handleInvalidateAllReq,
 } = require('./incremental-cache');
-const { initHeartbeat } = require('./revalidator-proxy-heartbeat.js');
+const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
 
 const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
@@ -50,12 +50,6 @@ nextApp.prepare().then(() => {
         verifySecret,
         handleInvalidateAllReq(nextApp)
     );
-
-    server.get('/cache_timestamp', (req, res) => {
-        console.log('Received request for cache timestamp');
-
-        res.json({ timestamp: global.cache_timestamp });
-    });
 
     server.all('*', (req, res) => {
         setJsonCacheHeaders(req, res);
