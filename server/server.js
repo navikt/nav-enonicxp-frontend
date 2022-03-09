@@ -4,8 +4,6 @@ const express = require('express');
 const next = require('next');
 const { setJsonCacheHeaders } = require('./set-json-cache-headers');
 const {
-    invalidateCachedPage,
-    wipePageCache,
     handleInvalidateReq,
     handleInvalidateAllReq,
 } = require('./incremental-cache');
@@ -54,19 +52,6 @@ nextApp.prepare().then(() => {
     );
 
     server.all('*', (req, res) => {
-        const { secret } = req.headers;
-        const { invalidate, wipeAll } = req.query;
-
-        // TODO: remove these when no longer in use
-        if (invalidate && secret === SERVICE_SECRET) {
-            invalidateCachedPage(decodeURI(req.path), nextApp);
-            return res.status(200).send(`Invalidating cache for ${req.path}`);
-        }
-        if (wipeAll && secret === SERVICE_SECRET) {
-            wipePageCache(nextApp);
-            return res.status(200).send('Wiping page cache');
-        }
-
         setJsonCacheHeaders(req, res);
 
         return nextRequestHandler(req, res);

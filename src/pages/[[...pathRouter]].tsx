@@ -3,6 +3,8 @@ import PageBase, { fetchPageProps } from '../components/PageBase';
 import Config from '../config';
 
 export const getStaticProps: GetStaticProps = async (context) => {
+    console.log(global.cache_timestamp);
+
     const props = await fetchPageProps(
         context?.params?.pathRouter,
         false,
