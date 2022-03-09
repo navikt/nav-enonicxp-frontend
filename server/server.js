@@ -51,6 +51,12 @@ nextApp.prepare().then(() => {
         handleInvalidateAllReq(nextApp)
     );
 
+    server.get('/cache_timestamp', (req, res) => {
+        console.log('Received request for cache timestamp');
+
+        res.json({ timestamp: global.cache_timestamp });
+    });
+
     server.all('*', (req, res) => {
         setJsonCacheHeaders(req, res);
 
