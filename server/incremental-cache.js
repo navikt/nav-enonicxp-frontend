@@ -46,9 +46,8 @@ const wipePageCache = (app) => {
 };
 
 const handleInvalidateAllReq = (app) => (req, res) => {
-    const { eventid, cachekey } = req.headers;
+    const { eventid } = req.headers;
 
-    setCacheKey(cachekey);
     const success = wipePageCache(app);
 
     return success
@@ -84,7 +83,7 @@ const setCacheKeyMiddleware = (req, res, next) => {
 };
 
 const handleInvalidateReq = (app) => (req, res) => {
-    const { eventid, cachekey } = req.headers;
+    const { eventid } = req.headers;
 
     try {
         const { paths } = req.body;
@@ -94,8 +93,6 @@ const handleInvalidateReq = (app) => (req, res) => {
             console.error(msg);
             return res.status(400).send(msg);
         }
-
-        setCacheKey(cachekey);
 
         paths.forEach((path) => invalidateCachedPage(path, app));
 
