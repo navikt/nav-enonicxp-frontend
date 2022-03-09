@@ -1,7 +1,7 @@
 import { fetchJson } from '../../../utils/fetch-utils';
 
 const getLeader = async () =>
-    fetchJson(process.env.ELECTOR_PATH).then((json) => {
+    fetchJson(`http://${process.env.ELECTOR_PATH}`).then((json) => {
         if (json) {
             console.log(`Leader json: ${JSON.stringify(json)}`);
             return json.name;
