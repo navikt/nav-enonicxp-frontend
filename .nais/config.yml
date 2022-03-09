@@ -15,7 +15,7 @@ spec:
     initialDelay: 10
   readiness:
     path: /api/internal/isReady
-    initialDelay: 60
+    initialDelay: 10
   prometheus:
     enabled: true
     path: /api/internal/metrics
