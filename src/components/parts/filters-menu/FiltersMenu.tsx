@@ -38,7 +38,7 @@ export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
         // So only setAvailableFilters (adding filters to Redux store)
         // if this filter is the first one.
         if (isFirstFilterInPage) {
-            // setAvailableFilters(categories);
+            setAvailableFilters(categories);
         }
     }, [categories, setAvailableFilters, isFirstFilterInPage]);
 
