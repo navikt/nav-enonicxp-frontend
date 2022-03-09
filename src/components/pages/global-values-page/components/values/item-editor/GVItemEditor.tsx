@@ -124,8 +124,6 @@ export const GVItemEditor = ({
             hasInputErrors = true;
         }
 
-        console.log(newErrors, hasInputErrors);
-
         setErrors(newErrors);
 
         if (hasInputErrors) {

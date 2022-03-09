@@ -3,7 +3,7 @@ import { HtmlAreaProps } from '../../../types/component-props/parts/html-area';
 import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
-import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 export const HtmlArea = ({ config }: HtmlAreaProps) => {
     if (!config?.html) {

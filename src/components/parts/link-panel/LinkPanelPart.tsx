@@ -5,7 +5,7 @@ import { BEM, classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
 import { getImageUrl, XpImage } from '../../_common/image/XpImage';
-import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 const bem = BEM('link-panel');
 
@@ -51,7 +51,8 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
             <div className={bem('innhold')}>
                 <div className={bem('header')}>
                     {icon && (
-                        <div aria-hidden={'true'}
+                        <div
+                            aria-hidden={'true'}
                             className={classNames(
                                 bem('icon'),
                                 selectedVariant === 'verticalWithBgColor' &&
