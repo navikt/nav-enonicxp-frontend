@@ -31,7 +31,7 @@ export const fetchAndSetCacheKey = async (retries = 5): Promise<boolean> => {
         .then((response) => {
             if (response?.key) {
                 console.log(
-                    `Cache key response: ${response.key}, ${response.timestamp}`
+                    `Setting cache key to ${response.key}, timestamp: ${response.timestamp}`
                 );
                 global.cacheKey = response.key;
                 return true;
