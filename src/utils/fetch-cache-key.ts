@@ -16,15 +16,15 @@ type GetCacheKeyResponse = {
 //
 // Updated cache keys are provided in every invalidation request from revalidator-proxy. This function should only be
 // used on newly spun up containers.
-export const fetchAndSetCacheKey = async (retries = 5): Promise<boolean> => {
+export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
     if (!retries || retries < 0) {
         console.error(
             'Failed to fetch cache key from revalidator-proxy, no more retries remaining'
         );
-        return true;
+        return;
     }
 
-    fetchJson<GetCacheKeyResponse>(
+    return fetchJson<GetCacheKeyResponse>(
         `${process.env.REVALIDATOR_PROXY_ORIGIN}/get-cache-key`,
         5000
     )
@@ -34,7 +34,7 @@ export const fetchAndSetCacheKey = async (retries = 5): Promise<boolean> => {
                     `Setting cache key to ${response.key}, timestamp: ${response.timestamp}`
                 );
                 global.cacheKey = response.key;
-                return true;
+                return;
             } else {
                 throw new Error('Invalid response from revalidator proxy!');
             }
