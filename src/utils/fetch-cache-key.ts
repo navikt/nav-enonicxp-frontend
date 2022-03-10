@@ -14,7 +14,7 @@ type GetCacheKeyResponse = {
 // fresh from the backend with no cache. This is typically not a problem in and of itself, but can result in a large
 // spike in server-load on the backend when a new frontend-instance with a cold cache is spun up.
 //
-// Updated cache keys are provided in every invalidation request from revalidator-proxy. This functino should only be
+// Updated cache keys are provided in every invalidation request from revalidator-proxy. This function should only be
 // used on newly spun up containers.
 export const fetchAndSetCacheKey = async (retries = 5): Promise<boolean> => {
     if (!retries || retries < 0) {

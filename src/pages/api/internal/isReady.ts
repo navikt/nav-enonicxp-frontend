@@ -11,6 +11,7 @@ const isReady = (req, res) => {
             waiting = true;
             fetchAndSetCacheKey().then(() => {
                 ready = true;
+                waiting = false;
             });
         }
         return res.status(503).json({ message: 'Not ready' });
