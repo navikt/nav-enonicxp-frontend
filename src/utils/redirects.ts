@@ -8,6 +8,8 @@ export const getTargetIfRedirect = (contentData: ContentProps) => {
         case ContentType.SituationPage:
         case ContentType.ProductPage:
         case ContentType.ToolsPage:
+        case ContentType.GuidePage:
+        case ContentType.ThemedArticlePage:
             return !contentData.isDraft
                 ? getEnvUrl(
                       stripXpPathPrefix(contentData.data?.externalProductUrl)
