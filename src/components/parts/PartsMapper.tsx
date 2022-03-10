@@ -89,9 +89,10 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
         return <PartWithGlobalData {...pageProps} />;
     }
 
-    const PartWithOwnData = partsWithOwnData[descriptor];
-    if (PartWithOwnData) {
-        return <PartWithOwnData {...partProps} />;
+    const PartWithPageData = partsWithOwnData[descriptor];
+
+    if (PartWithPageData) {
+        return <PartWithPageData {...partProps} page={pageProps.page} />;
     }
 
     return <div>{`Unimplemented part: ${descriptor}`}</div>;
