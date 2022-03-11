@@ -33,11 +33,11 @@ spec:
       {{#each outboundExternalHosts as |host|}}
         - host: {{host}}
       {{/each}}
+    {{#each inboundApps as |app|}}
     inbound:
       rules:
-      {{#each inboundApps as |app|}}
         - application: {{app}}
-      {{/each}}
+    {{/each}}
   resources:
     limits:
       cpu: '3'
