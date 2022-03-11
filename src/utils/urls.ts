@@ -105,7 +105,7 @@ export const getMediaUrl = (
 ) => {
     return url?.replace(
         internalUrlPrefixPattern,
-        isEditorView ? `${adminOrigin}${xpDraftPathPrefix}` : appOrigin
+        isEditorView ? `${adminOrigin}${xpDraftPathPrefix}` : xpOrigin
     );
 };
 

@@ -33,6 +33,10 @@ spec:
       {{#each outboundExternalHosts as |host|}}
         - host: {{host}}
       {{/each}}
+      {{#each inboundApps as |app|}}
+      rules:
+        - application: {{app}}
+      {{/each}}
     {{#each inboundApps as |app|}}
     inbound:
       rules:
