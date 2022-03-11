@@ -35,7 +35,7 @@ spec:
       {{/each}}
     inbound:
       rules:
-      {{ #each inboundApps as |app|}}
+      {{#each inboundApps as |app|}}
         - application: {{app}}
       {{/each}}
   resources:
