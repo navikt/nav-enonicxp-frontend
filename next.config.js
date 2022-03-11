@@ -86,12 +86,12 @@ module.exports = withPlugins([withLess, withImages, withTranspileModules], {
             source: '/_public/beta.nav.no/:path*',
             destination: '/404',
         },
+        {
+            source: '/_/:path*',
+            destination: `${process.env.XP_ORIGIN}/_/:path*`,
+        },
         ...(process.env.ENV === 'localhost'
             ? [
-                  {
-                      source: '/_/:path*',
-                      destination: 'http://localhost:8080/_/:path*',
-                  },
                   {
                       source: '/admin/site/preview/default/draft/:path*',
                       destination:
