@@ -1,0 +1,7 @@
+namespace: personbruker
+appName: nav-enonicxp-frontend-dev2
+ingresses:
+  - https://www-2.dev.nav.no
+  - https://www-2.dev.nav.no/soknad-dagpenger-utdanning
+inboundApps:
+  - nav-enonicxp-frontend-revalidator-proxy-dev2

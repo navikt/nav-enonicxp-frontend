@@ -17,6 +17,9 @@ on:
       APP_ORIGIN:
         required: true
         type: string
+      REVALIDATOR_PROXY_ORIGIN:
+        required: true
+        type: string
       DECORATOR_FALLBACK_URL:
         required: true
         type: string
@@ -63,7 +66,7 @@ jobs:
           APP_ORIGIN=${{ inputs.APP_ORIGIN }}
           DECORATOR_FALLBACK_URL=${{ inputs.DECORATOR_FALLBACK_URL }}
           XP_ORIGIN=${{ inputs.XP_ORIGIN }}
-          REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
+          REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
           SERVICE_SECRET=${{ secrets.SERVICE_SECRET }}
           INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
           PAGE_CACHE_DIR=/tmp/pages

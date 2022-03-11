@@ -1,4 +1,5 @@
 namespace: personbruker
+appName: nav-enonicxp-frontend
 ingresses:
   - https://www-gcp.dev.nav.no
   - https://www-gcp.dev.nav.no/soknad-dagpenger-utdanning

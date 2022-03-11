@@ -2,7 +2,7 @@
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: nav-enonicxp-frontend
+  name: {{appName}}
   namespace: {{namespace}}
   labels:
     team: personbruker
@@ -32,6 +32,11 @@ spec:
       external:
       {{#each outboundExternalHosts as |host|}}
         - host: {{host}}
+      {{/each}}
+    inbound:
+      rules:
+      {{ #each inboundApps as |app|}}
+        - application: {{app}}
       {{/each}}
   resources:
     limits:

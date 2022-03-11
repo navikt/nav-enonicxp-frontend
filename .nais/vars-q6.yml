@@ -1,4 +1,5 @@
 namespace: q6
+appName: nav-enonicxp-frontend
 ingresses:
   - https://www-q6.nav.no
 outboundExternalHosts:
