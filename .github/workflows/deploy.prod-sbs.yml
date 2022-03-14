@@ -1,4 +1,4 @@
-name: Deploy-to-prod
+name: Deploy to prod-sbs
 on:
   release:
     types: [released]
@@ -25,6 +25,6 @@ jobs:
     with:
       image: ${{ needs.build.outputs.image }}
       cluster: prod-sbs
-      vars_file: vars-prod.yml
+      vars_file: vars-prod-sbs.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
