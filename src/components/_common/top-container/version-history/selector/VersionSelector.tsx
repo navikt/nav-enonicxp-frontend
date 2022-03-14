@@ -59,7 +59,7 @@ export const VersionSelector = ({
             >
                 <div className={bem('type-selector')}>
                     <RadioGroup
-                        legend={'Velg input-type'}
+                        legend={'Velg tidspunkt'}
                         defaultValue={'datetime'}
                         onChange={(value) => {
                             setSelectorType(value as SelectorType);

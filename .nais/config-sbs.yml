@@ -2,7 +2,7 @@
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: {{appName}}
+  name: nav-enonicxp-frontend
   namespace: personbruker
   labels:
     team: personbruker
@@ -28,13 +28,13 @@ spec:
   replicas:
     min: 2
     max: 4
+  webproxy: true
   accessPolicy:
     outbound:
-      rules:
-        - application: {{revalidatorApp}}
-    inbound:
-      rules:
-        - application: {{revalidatorApp}}
+      external:
+      {{#each outboundExternalHosts as |host|}}
+        - host: {{host}}
+      {{/each}}
   resources:
     limits:
       cpu: '3'
