@@ -1,4 +1,4 @@
-name: Deploy to nais
+name: Deploy to nais (sbs)
 on:
   workflow_call:
     inputs:
