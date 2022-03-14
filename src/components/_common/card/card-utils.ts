@@ -37,8 +37,6 @@ const getCardCategory = (
     const { data } = content;
     const { taxonomy = [], customCategory, audience } = data;
 
-    console.log(taxonomy, customCategory);
-
     if (taxonomy.length > 0 || customCategory) {
         return [
             ...getTranslatedTaxonomies(taxonomy, language),
@@ -46,9 +44,13 @@ const getCardCategory = (
         ].filter((category) => !!category);
     }
 
-    return audience === Audience.EMPLOYER
-        ? getTranslatedTaxonomies([Taxonomy.FOR_EMPLOYERS], language)
-        : getTranslatedTaxonomies([Taxonomy.FOR_PROVIDERS], language);
+    if (audience === Audience.EMPLOYER || audience === Audience.PROVIDER) {
+        return audience === Audience.EMPLOYER
+            ? getTranslatedTaxonomies([Taxonomy.FOR_EMPLOYERS], language)
+            : getTranslatedTaxonomies([Taxonomy.FOR_PROVIDERS], language);
+    }
+
+    return [];
 };
 
 export const getCardProps = (
@@ -73,7 +75,6 @@ export const getCardProps = (
     };
 
     const categories = getCardCategory(content, language);
-
     const categoryString = joinWithConjunction(categories, language);
     const description = ingressOverride || ingress;
 
