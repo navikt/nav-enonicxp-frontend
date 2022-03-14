@@ -23,6 +23,6 @@ jobs:
     with:
       image: ${{ needs.build.outputs.image }}
       cluster: dev-sbs
-      vars_file: vars-dev1.yml
+      vars_file: vars-dev-sbs.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
