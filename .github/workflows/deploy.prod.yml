@@ -19,7 +19,6 @@ jobs:
       INNLOGGINGSSTATUS_URL: https://www.nav.no/person/innloggingsstatus/auth
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
-      SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
     needs: build

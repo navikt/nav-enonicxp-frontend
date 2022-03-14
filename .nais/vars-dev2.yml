@@ -1,5 +1,6 @@
 namespace: personbruker
 appName: nav-enonicxp-frontend-dev2
+secret: nav-enonicxp-dev2
 ingresses:
   - https://www-2.dev.nav.no
   - https://www-2.dev.nav.no/soknad-dagpenger-utdanning
