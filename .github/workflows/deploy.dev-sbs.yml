@@ -1,4 +1,4 @@
-name: Deploy-to-dev
+name: Deploy to dev-sbs
 on:
   workflow_dispatch
 
