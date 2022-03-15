@@ -1,4 +1,4 @@
-name: Deploy to nais
+name: Deploy to nais (sbs)
 on:
   workflow_call:
     inputs:
@@ -17,7 +17,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to nais k8s (GCP)
+    name: Deploy to nais k8s (sbs)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -27,6 +27,6 @@ jobs:
         env:
           CLUSTER: ${{ inputs.cluster }}
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          RESOURCE: .nais/config.yml
+          RESOURCE: .nais/config-sbs.yml
           VAR: image=${{ inputs.image }}
           VARS: .nais/${{ inputs.vars_file }}

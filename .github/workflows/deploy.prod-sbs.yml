@@ -1,12 +1,14 @@
-name: Deploy to prod-gcp
+name: Deploy to prod-sbs
 on:
-  workflow_dispatch
+  release:
+    types: [released]
 
 jobs:
   build:
+    if: github.event.release.target_commitish == 'master'
     uses: ./.github/workflows/build-image.yml
     with:
-      environment: prod-gcp
+      environment: prod-sbs:personbruker
       imagename: release-${{ github.ref_name }}
       ENV: prod
       ADMIN_ORIGIN: https://portal-admin.oera.no
@@ -18,11 +20,11 @@ jobs:
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
   deploy:
-    uses: ./.github/workflows/deploy-to-nais.yml
+    uses: ./.github/workflows/deploy-to-nais-sbs.yml
     needs: build
     with:
       image: ${{ needs.build.outputs.image }}
-      cluster: prod-gcp
-      vars_file: vars-prod.yml
+      cluster: prod-sbs
+      vars_file: vars-prod-sbs.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
