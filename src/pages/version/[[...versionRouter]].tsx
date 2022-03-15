@@ -17,12 +17,12 @@ export const fetchVersionPageProps = async (
         id || context?.params?.versionRouter
     );
 
-    return fetchPageProps({
-        routerQuery: xpPath,
+    return fetchPageProps(
+        xpPath,
         isDraft,
-        secret: process.env.SERVICE_SECRET,
-        versionTimestamp: getValidDateTime(time),
-    });
+        process.env.SERVICE_SECRET,
+        getValidDateTime(time)
+    );
 };
 
 const prodRouter = async (context) => {

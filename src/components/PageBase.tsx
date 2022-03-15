@@ -83,19 +83,12 @@ const redirectProps = (destination: string, isPermanent: boolean) => ({
     },
 });
 
-interface FetchPageProps {
-    routerQuery: string | string[];
-    isDraft: boolean;
-    secret: string;
-    versionTimestamp?: string;
-}
-
-export const fetchPageProps = async ({
-    routerQuery,
+export const fetchPageProps = async (
+    routerQuery: string | string[],
     isDraft = false,
-    secret,
-    versionTimestamp,
-}: FetchPageProps): Promise<StaticProps> => {
+    secret: string,
+    versionTimestamp?: string
+): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret, versionTimestamp);
 

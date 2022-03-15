@@ -33,11 +33,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     const routerQuery = removePreviewSuffix(context?.params?.pathRouter);
 
-    const props = await fetchPageProps({
+    const props = await fetchPageProps(
         routerQuery,
-        isDraft: isPreview,
-        secret: process.env.SERVICE_SECRET,
-    });
+        isPreview,
+        process.env.SERVICE_SECRET
+    );
 
     return {
         ...props,
