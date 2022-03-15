@@ -11,7 +11,6 @@ const getPageProps = async (context) => {
     }
 
     const pathSegments = context?.params?.draftRouter;
-
     return await fetchPageProps(pathSegments, true, process.env.SERVICE_SECRET);
 };
 
