@@ -1,13 +1,11 @@
 import React from 'react';
-import {
-    ContentProps,
-    ContentType,
-} from '../../../types/content-props/_content-common';
+import { ContentType } from '../../../types/content-props/_content-common';
 import { RedirectPage } from '../redirect-page/RedirectPage';
 import { DynamicPage } from '../dynamic-page/DynamicPage';
+import { MainArticleChapterProps } from '../../../types/content-props/main-article-chapter-props';
 
-export const MainArticleChapterPage = (props: ContentProps) => {
-    if (props.__typename !== ContentType.MainArticle) {
+export const MainArticleChapterPage = (props: MainArticleChapterProps) => {
+    if (props.data?.article?.__typename !== ContentType.MainArticle) {
         return <RedirectPage {...props} />;
     }
 
