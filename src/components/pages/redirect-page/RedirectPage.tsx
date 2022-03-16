@@ -1,19 +1,15 @@
 import { useEffect } from 'react';
-import { ExternalLinkProps } from '../../../types/content-props/external-link-props';
-import { InternalLinkProps } from '../../../types/content-props/internal-link-props';
 import { useRouter } from 'next/router';
-import { SiteProps } from '../../../types/content-props/site-props';
 import { getTargetIfRedirect } from '../../../utils/redirects';
-import { UrlProps } from '../../../types/content-props/url-props';
 import { BodyLong } from '@navikt/ds-react';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
+import { ContentProps } from '../../../types/content-props/_content-common';
+import { stripXpPathPrefix } from '../../../utils/urls';
 
-export const RedirectPage = (
-    props: ExternalLinkProps | InternalLinkProps | SiteProps | UrlProps
-) => {
+export const RedirectPage = (props: ContentProps) => {
     const { editorView, _path } = props;
     const router = useRouter();
-    const target = getTargetIfRedirect(props);
+    const target = getTargetIfRedirect(props) || stripXpPathPrefix(_path);
 
     useEffect(() => {
         // When viewed from the editor, we don't want to redirect. Instead we

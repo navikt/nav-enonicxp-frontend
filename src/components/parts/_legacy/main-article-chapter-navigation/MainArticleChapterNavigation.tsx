@@ -10,6 +10,8 @@ import { MainArticleChapterNavigationData } from '../../../../types/content-prop
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
+const bem = BEM('main-article-chapter-navigation');
+
 // If the chapter points to any content other than a main-article, we want
 // to link directly to the content instead, rather than try to render it
 // as a chapter
@@ -20,7 +22,6 @@ const getChapterPath = (chapter: MainArticleChapterNavigationData) =>
         : chapter.data.article._path;
 
 export const MainArticleChapterNavigation = (props: ContentProps) => {
-    const bem = BEM('main-article-chapter-navigation');
     const { language } = usePageConfig();
     const getLabel = translator('mainArticle', language);
     const chapters = props.data?.chapters || props.parent?.data?.chapters || [];
