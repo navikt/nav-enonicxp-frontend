@@ -23,7 +23,7 @@ export const MainArticle = (
             : propsInitial;
 
     // Any other type than main-article should have resulted in a redirect
-    // This should never render (famous last words :)
+    // This condition should never be true (famous last words :)
     if (props.__typename !== ContentType.MainArticle) {
         console.error(
             `Misplaced MainArticle part on content type ${props.__typename} - ${props._path} - ${props._id}`
