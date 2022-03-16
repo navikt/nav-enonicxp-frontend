@@ -85,7 +85,7 @@ const redirectProps = (destination: string, isPermanent: boolean) => ({
 
 interface FetchPageProps {
     routerQuery: string | string[];
-    isDraft: boolean;
+    isDraft?: boolean;
     isPreview?: boolean;
     secret: string;
     versionTimestamp?: string;
