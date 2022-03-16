@@ -3,9 +3,9 @@ import PageBase, { fetchPageProps } from '../../components/PageBase';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const pageProps = await fetchPageProps({
-        routerQuery: context?.params?.previewRouter,
+        routerQuery: context?.params?.shadowRouter,
         isDraft: false,
-        isPreview: true,
+        showShadowPage: true,
         secret: process.env.SERVICE_SECRET,
     });
 

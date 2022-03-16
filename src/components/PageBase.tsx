@@ -86,7 +86,7 @@ const redirectProps = (destination: string, isPermanent: boolean) => ({
 interface FetchPageProps {
     routerQuery: string | string[];
     isDraft?: boolean;
-    isPreview?: boolean;
+    showShadowPage?: boolean;
     secret: string;
     versionTimestamp?: string;
 }
@@ -94,7 +94,7 @@ interface FetchPageProps {
 export const fetchPageProps = async ({
     routerQuery,
     isDraft = false,
-    isPreview = false,
+    showShadowPage = false,
     secret,
     versionTimestamp,
 }: FetchPageProps): Promise<StaticProps> => {
@@ -123,7 +123,7 @@ export const fetchPageProps = async ({
         return errorHandler(content);
     }
 
-    if (!isDraft && !isPreview) {
+    if (!isDraft && !showShadowPage) {
         const redirectTarget = getTargetIfRedirect(content);
         if (redirectTarget) {
             return redirectProps(
