@@ -9,7 +9,7 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.MEASURES]: 'Measures',
     [Taxonomy.FOR_EMPLOYERS]: 'For employers',
     [Taxonomy.FOR_PROVIDERS]: 'For providers',
-    [Taxonomy.AID]: 'Hjelpemiddel',
+    [Taxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
 };
 
 export const bundle: Translations = {

@@ -5,5 +5,5 @@ export enum Taxonomy {
     MEASURES = 'measures',
     FOR_EMPLOYERS = 'for_employers',
     FOR_PROVIDERS = 'for_providers',
-    AID = 'aid',
+    ASSISTIVE_TOOLS = 'assistive_tools',
 }
