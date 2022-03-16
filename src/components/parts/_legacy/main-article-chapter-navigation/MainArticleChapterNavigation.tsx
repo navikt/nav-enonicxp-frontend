@@ -6,11 +6,14 @@ import classNames from 'classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { BEM } from 'utils/classnames';
-import { MainArticleChapterProps } from '../../../../types/content-props/main-article-chapter-props';
+import { MainArticleChapterNavigationData } from '../../../../types/content-props/main-article-chapter-props';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-const getChapterPath = (chapter: MainArticleChapterProps) =>
+// If the chapter points to any content other than a main-article, we want
+// to link directly to the content instead, rather than try to render it
+// as a chapter
+const getChapterPath = (chapter: MainArticleChapterNavigationData) =>
     !chapter.data?.article ||
     chapter.data.article.__typename === ContentType.MainArticle
         ? chapter._path
