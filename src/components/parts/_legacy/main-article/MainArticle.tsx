@@ -14,19 +14,30 @@ import { MainArticleProps } from '../../../../types/content-props/main-article-p
 import { MainArticleChapterProps } from '../../../../types/content-props/main-article-chapter-props';
 import ErrorPage404 from '../../../../pages/404';
 
-export const MainArticle = (
-    propsInitial: MainArticleProps | MainArticleChapterProps
-) => {
-    const props =
-        propsInitial.__typename === ContentType.MainArticleChapter
-            ? propsInitial.data.article
-            : propsInitial;
+type Props = MainArticleProps | MainArticleChapterProps;
 
-    // Any other type than main-article should have resulted in a redirect
-    // This condition should never be true (famous last words :)
-    if (props.__typename !== ContentType.MainArticle) {
+// Get props from the chapter article if the content is a chapter
+const getPropsToRender = (propsInitial: Props) => {
+    if (propsInitial.__typename !== ContentType.MainArticleChapter) {
+        return propsInitial;
+    }
+
+    const articleProps = propsInitial.data?.article;
+
+    if (articleProps?.__typename === ContentType.MainArticle) {
+        return articleProps;
+    }
+
+    // Any other article type than main-article should have resulted in a redirect
+    // This branch should never happen (famous last words :)
+    return null;
+};
+
+export const MainArticle = (propsInitial: Props) => {
+    const props = getPropsToRender(propsInitial);
+    if (!props) {
         console.error(
-            `Misplaced MainArticle part on content type ${props.__typename} - ${props._path} - ${props._id}`
+            `Misplaced MainArticle part on content type ${propsInitial.__typename} - ${propsInitial._path} - ${propsInitial._id}`
         );
         return <ErrorPage404 />;
     }
