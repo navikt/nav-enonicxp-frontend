@@ -3,6 +3,8 @@ import { MacroInfoBoksProps } from '../../../types/macro-props/infoBoks';
 import { AlertBox } from '../../_common/alert-box/AlertBox';
 import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
 
+import style from './MacroInfoBoks.module.scss';
+
 // This macro is deprecated
 export const MacroInfoBoks = ({ config }: MacroInfoBoksProps) => {
     if (!config?.infoBoks) {
@@ -14,7 +16,7 @@ export const MacroInfoBoks = ({ config }: MacroInfoBoksProps) => {
     const { infoBoks } = config.infoBoks;
 
     return (
-        <AlertBox variant={'info'} className={'macro-infoboks'}>
+        <AlertBox variant={'info'} className={style.macroInfoboks}>
             <ParsedHtml htmlProps={infoBoks} />
         </AlertBox>
     );
