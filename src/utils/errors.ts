@@ -25,8 +25,6 @@ export const isNotFound = (content: ContentProps) => {
 // These status codes may indicate that the requested page has been intentionally
 // made unavailable.  We want to perform cache revalidation in these cases.
 const revalidateOnErrorCode = {
-    // 401: true, // unauthorized @TODO: temporarily disabled while migrating secrets
-    403: true, // forbidden
     404: true, // not found
 };
 

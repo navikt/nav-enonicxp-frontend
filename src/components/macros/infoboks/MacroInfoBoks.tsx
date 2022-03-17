@@ -9,7 +9,7 @@ export const MacroInfoBoks = ({ config }: MacroInfoBoksProps) => {
         return null;
     }
 
-    // TODO: this should only be plain text, but it seems to be used
+    // This should only be plain text, but it seems to be used
     // with HTML by some editors
     const { infoBoks } = config.infoBoks;
 

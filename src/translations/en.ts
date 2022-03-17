@@ -7,6 +7,9 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.RIGHTS]: 'Counselling',
     [Taxonomy.FOLLOWUP]: 'Follow-up',
     [Taxonomy.MEASURES]: 'Measures',
+    [Taxonomy.FOR_EMPLOYERS]: 'For employers',
+    [Taxonomy.FOR_PROVIDERS]: 'For providers',
+    [Taxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
 };
 
 export const bundle: Translations = {
@@ -85,17 +88,17 @@ export const bundle: Translations = {
     products: {
         person: 'For individuals',
         employer: 'For employers',
-        provider: '',
+        provider: 'For providers',
     },
     situations: {
         person: 'You may have right to this',
         employer: 'For employers',
-        provider: '',
+        provider: 'For providers',
     },
     guides: {
         person: 'How to',
         employer: 'For employers',
-        provider: '',
+        provider: 'For providers',
     },
     productTaxonomies,
     header: {

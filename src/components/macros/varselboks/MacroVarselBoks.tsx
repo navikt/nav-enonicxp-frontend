@@ -9,7 +9,7 @@ export const MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
         return null;
     }
 
-    // TODO: this should only be plain text, but it seems to be used
+    // This should only be plain text, but it seems to be used
     // with HTML by some editors
     const { varselBoks } = config.varselBoks;
 
