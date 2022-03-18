@@ -20,7 +20,7 @@ export const RedirectPage = (props: ContentProps) => {
     const { editorView, _path } = props;
     const router = useRouter();
     const isShadow = !!router.query?.shadowRouter;
-    const shouldNotRedirect = editorView || isShadow;
+    const shouldNotRedirect = !!editorView || isShadow;
     const target = getTarget(props, isShadow);
 
     useEffect(() => {
