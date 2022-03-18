@@ -26,7 +26,7 @@ export const RedirectPage = (props: ContentProps) => {
     useEffect(() => {
         // When viewed from the editor or a shadow page, we don't want to redirect. Instead we
         // render a page showing the redirect target, while also giving access to the version
-        // history selector
+        // history selector in the editor
         if (shouldNotRedirect) {
             return;
         }
