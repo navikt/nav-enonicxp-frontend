@@ -2,6 +2,7 @@ import React from 'react';
 import { AlertBox } from '../../_common/alert-box/AlertBox';
 import { MacroVarselBoksProps } from '../../../types/macro-props/varselBoks';
 import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
+import style from './MacroVarselBoks.module.scss';
 
 // This macro is deprecated
 export const MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
@@ -14,7 +15,7 @@ export const MacroVarselBoks = ({ config }: MacroVarselBoksProps) => {
     const { varselBoks } = config.varselBoks;
 
     return (
-        <AlertBox variant={'warning'} className={'macro-varselboks'}>
+        <AlertBox variant={'warning'} className={style.macroVarselboks}>
             <ParsedHtml htmlProps={varselBoks} />
         </AlertBox>
     );
