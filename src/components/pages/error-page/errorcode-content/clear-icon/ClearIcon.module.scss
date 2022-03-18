@@ -1,0 +1,22 @@
+@use '../../../../common' as common;
+
+.crossIcon {
+    $height: 0.125rem;
+    $width: 1.5rem;
+    transform: translateY(-$height / 2);
+
+    & > * {
+        height: $height;
+        width: $width;
+        background-color: common.$navds-semantic-color-link;
+        transform-origin: center;
+    }
+
+    &__1 {
+        transform: translateY($height) rotateZ(45deg);
+    }
+
+    &__2 {
+        transform: rotateZ(-45deg);
+    }
+}
