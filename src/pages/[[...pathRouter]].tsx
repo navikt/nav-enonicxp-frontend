@@ -3,11 +3,11 @@ import PageBase, { fetchPageProps } from '../components/PageBase';
 import Config from '../config';
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const props = await fetchPageProps(
-        context?.params?.pathRouter,
-        false,
-        process.env.SERVICE_SECRET
-    );
+    const props = await fetchPageProps({
+        routerQuery: context?.params?.pathRouter,
+        isDraft: false,
+        secret: process.env.SERVICE_SECRET,
+    });
 
     return {
         ...props,
