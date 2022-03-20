@@ -1,0 +1,7 @@
+@use '../../../common' as common;
+
+.previewWarning {
+    @include common.full-width-mixin;
+    background-color: white;
+    padding-bottom: 1rem;
+}

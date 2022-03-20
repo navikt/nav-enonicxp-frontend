@@ -96,6 +96,7 @@ export const PageWrapper = (props: Props) => {
             setPageConfigAction({
                 pageId: content._id,
                 language: content.language,
+                isPagePreview: !!router.query.utkastRouter,
                 editorView: content.editorView,
             })
         );

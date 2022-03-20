@@ -149,6 +149,9 @@ export const bundle = {
         title: 'Vis historisk innhold',
         loading: 'Laster historisk innhold...',
     },
+    draft: {
+        warningText: 'Utkast - siden er under arbeid.',
+    },
 };
 
 export type Translations = DeepPartial<typeof bundle>;
