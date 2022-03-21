@@ -8,6 +8,8 @@
         "dev": "cp .env.development .env && npm start",
         "start-local": "cp .env.local .env && npm start",
         "start-clean": "rm -fr .next && npm run build && npm run start-local",
+        "build-failover-local": "cp .env.local.static .env.local && next build",
+        "start-failover-local": "cp .env.local.static .env.local && PORT=3003 next start",
         "typeCheck": "tsc",
         "lint": "eslint src/",
         "deploy": "npx run-func trigger-workflow.js triggerWorkflow",

@@ -29,6 +29,9 @@ on:
       INNLOGGINGSSTATUS_URL:
         required: true
         type: string
+      FAILOVER_ORIGIN:
+        required: true
+        type: string
     secrets:
       READER_TOKEN:
         required: true

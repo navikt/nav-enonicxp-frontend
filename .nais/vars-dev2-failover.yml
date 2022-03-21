@@ -1,0 +1,5 @@
+appName: nav-enonicxp-frontend-dev2-failover
+frontendApp: nav-enonicxp-frontend-dev2
+secret: nav-enonicxp-dev2
+ingresses:
+  - https://www-static-2.dev.intern.nav.no

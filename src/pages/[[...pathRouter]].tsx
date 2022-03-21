@@ -16,6 +16,25 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+    console.log(`Build static: ${process.env.IS_FAILOVER}`);
+
+    if (process.env.IS_FAILOVER) {
+        return {
+            paths: [
+                {
+                    params: { pathRouter: ['no', 'person'] },
+                },
+                {
+                    params: { pathRouter: ['no', 'bedrift'] },
+                },
+                {
+                    params: { pathRouter: ['no', 'samarbeidspartner'] },
+                },
+            ],
+            fallback: false,
+        };
+    }
+
     return {
         paths: [],
         fallback: 'blocking',

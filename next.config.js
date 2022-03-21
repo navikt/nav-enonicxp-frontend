@@ -28,8 +28,13 @@ const withTranspileModules = require('next-transpile-modules')([
     '@navikt/ds-icons',
 ]);
 
+console.log(`Origin: ${process.env.APP_ORIGIN}`);
+
 module.exports = withPlugins([withLess, withImages, withTranspileModules], {
-    assetPrefix: process.env.APP_ORIGIN,
+    distDir: process.env.DIST_DIR,
+    assetPrefix: process.env.IS_FAILOVER
+        ? process.env.FAILOVER_ORIGIN
+        : process.env.APP_ORIGIN,
     env: {
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
