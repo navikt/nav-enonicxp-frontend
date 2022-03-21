@@ -3,11 +3,10 @@ import { fetchWithTimeout } from '../../../../utils/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
 import { Heading } from '@navikt/ds-react';
 import { Button } from '../../../_common/button/Button';
-import { BEM } from '../../../../utils/classnames';
 import { EditorLinkWrapper } from '../../../_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { FragmentUsageLink } from './FragmentUsageLink';
 
-const bem = BEM('fragment-usage');
+import style from './FragmentUsageCheck.module.scss';
 
 const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/htmlFragmentSelector/fragmentUsage`;
 
@@ -16,7 +15,6 @@ export type FragmentUsageData = {
     path: string;
     id: string;
 };
-
 type FragmentUsage = {
     macroUsage: FragmentUsageData[];
     componentUsage: FragmentUsageData[];
@@ -54,7 +52,6 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                 ) {
                     throw new Error('Invalid fragment usage fetch response');
                 }
-
                 setUsages(usageResponse);
             })
             .catch((e) => {
@@ -69,12 +66,11 @@ export const FragmentUsageCheck = ({ id }: Props) => {
     }
 
     const { componentUsage, macroUsage } = usages;
-
     const numUniqueUsages = getNumUniqueUsages(usages);
 
     return (
-        <div className={bem()}>
-            <div className={bem('header')}>
+        <div className={style.fragmentUsage}>
+            <div className={style.header}>
                 {numUniqueUsages > 0 ? (
                     <>
                         <Heading level="3" size="medium">
@@ -86,7 +82,7 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                             <Button
                                 variant={'tertiary'}
                                 size={'small'}
-                                className={bem('button')}
+                                className={style.button}
                                 onClick={() => setShowUsage(!showUsage)}
                             >
                                 {showUsage ? 'Skjul' : 'Vis'}
@@ -106,7 +102,7 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                             <Heading
                                 level="3"
                                 size="small"
-                                className={bem('usage-header')}
+                                className={style.usageHeader}
                             >
                                 {'I bruk som komponent:'}
                             </Heading>
@@ -120,7 +116,7 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                             <Heading
                                 level="3"
                                 size="small"
-                                className={bem('usage-header')}
+                                className={style.usageHeader}
                             >
                                 {'I bruk som macro:'}
                             </Heading>

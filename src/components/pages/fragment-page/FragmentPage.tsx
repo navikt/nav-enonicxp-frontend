@@ -4,9 +4,8 @@ import { ComponentMapper } from '../../ComponentMapper';
 import { ErrorPage } from '../error-page/ErrorPage';
 import { make404Props } from '../../../utils/make-error-props';
 import { FragmentUsageCheck } from './fragment-usage-check/FragmentUsageCheck';
-import { BEM } from '../../../utils/classnames';
 
-const bem = BEM('fragment-page');
+import style from './FragmentPage.module.scss';
 
 export const FragmentPage = (props: FragmentPageProps) => {
     if (!props.editorView) {
@@ -14,9 +13,9 @@ export const FragmentPage = (props: FragmentPageProps) => {
     }
 
     return (
-        <div className={bem()}>
+        <div className={style.fragmentPage}>
             <FragmentUsageCheck id={props._id} />
-            <div className={bem('components')}>
+            <div className={style.components}>
                 <ComponentMapper
                     componentProps={props.fragment}
                     pageProps={props}
