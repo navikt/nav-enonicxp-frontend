@@ -1,4 +1,4 @@
-.error-page {
+.errorPage {
     display: flex;
     flex-direction: column;
     max-width: 50rem;
@@ -8,19 +8,19 @@
     background: white;
     border-radius: 0.25rem;
 
-    &__header {
+    .header {
         display: flex;
         align-items: center;
     }
 
-    &__header-msg.navds-heading {
+    .headerMsg {
         border-right: 1px solid rgba(0, 0, 0, 0.3);
         margin-right: 1.5rem;
         padding-right: 1.5rem;
         vertical-align: top;
     }
 
-    &__content {
+    .content {
         margin-top: 1.5rem;
     }
 }
