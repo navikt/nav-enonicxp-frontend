@@ -141,6 +141,6 @@ export const bundle: Translations = {
         loading: 'Loading historic version...',
     },
     draft: {
-        warningText: 'Draft - this page is still in progress.',
+        warningText: 'Draft - this page is still in progress',
     },
 };

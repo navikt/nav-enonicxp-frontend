@@ -150,7 +150,7 @@ export const bundle = {
         loading: 'Laster historisk innhald...',
     },
     draft: {
-        warningText: 'Utkast - sida er under arbeid.',
+        warningText: 'Utkast - sida er under arbeid',
     },
 };
 
