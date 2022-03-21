@@ -3,5 +3,10 @@
 .previewWarning {
     @include common.full-width-mixin;
     background-color: white;
-    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.6rem;
+    margin-top: -1rem;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
