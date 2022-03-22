@@ -28,11 +28,13 @@ const withTranspileModules = require('next-transpile-modules')([
     '@navikt/ds-icons',
 ]);
 
-console.log(`Origin: ${process.env.APP_ORIGIN}`);
+const isFailover = process.env.IS_FAILOVER === 'true';
+
+console.log(`Is failover: ${isFailover}`);
 
 module.exports = withPlugins([withLess, withImages, withTranspileModules], {
-    distDir: process.env.DIST_DIR,
-    assetPrefix: process.env.IS_FAILOVER
+    distDir: isFailover ? '.next-static' : '.next',
+    assetPrefix: isFailover
         ? process.env.FAILOVER_ORIGIN
         : process.env.APP_ORIGIN,
     env: {

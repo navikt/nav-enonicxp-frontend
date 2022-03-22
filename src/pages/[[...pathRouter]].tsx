@@ -2,6 +2,9 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import PageBase, { fetchPageProps } from '../components/PageBase';
 import Config from '../config';
 
+const isFailover = process.env.IS_FAILOVER === 'true';
+const revalidatePeriod = isFailover ? undefined : Config.vars.revalidatePeriod;
+
 export const getStaticProps: GetStaticProps = async (context) => {
     const props = await fetchPageProps({
         routerQuery: context?.params?.pathRouter,
@@ -11,14 +14,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
     return {
         ...props,
-        revalidate: Config.vars.revalidatePeriod,
+        revalidate: revalidatePeriod,
     };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    console.log(`Build static: ${process.env.IS_FAILOVER}`);
-
-    if (process.env.IS_FAILOVER) {
+    if (isFailover) {
         return {
             paths: [
                 {
