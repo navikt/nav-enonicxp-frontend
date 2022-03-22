@@ -43,7 +43,7 @@ export const CallOption = (props: CallOptionProps) => {
     } = props;
 
     const { language } = usePageConfig();
-    const [isOpen, setIsOpen] = useState(false);
+    const [isClosed, setIsClosed] = useState(false);
 
     const getDateTimeTranslations = translator('dateTime', language);
     const relatives = getDateTimeTranslations('relatives');
@@ -162,7 +162,7 @@ export const CallOption = (props: CallOptionProps) => {
     const isCurrentlyClosed = getIsCurrentyClosed(todaysOpeningHour);
 
     useEffect(() => {
-        setIsOpen(!isCurrentlyClosed);
+        setIsClosed(isCurrentlyClosed);
     }, [isCurrentlyClosed]);
 
     return (
@@ -188,7 +188,7 @@ export const CallOption = (props: CallOptionProps) => {
                 spacing
                 className={classNames(
                     style.openingHour,
-                    isOpen ? style.open : style.closed
+                    isClosed ? style.closed : style.open
                 )}
             >
                 {typeof window !== 'undefined' &&
