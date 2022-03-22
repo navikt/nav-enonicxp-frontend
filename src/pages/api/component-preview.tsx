@@ -52,6 +52,7 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
                 pageId: dummyPageProps._id,
                 language: req.body?.props?.language || dummyPageProps.language,
                 editorView: 'edit',
+                isPagePreview: false,
             })
         );
 

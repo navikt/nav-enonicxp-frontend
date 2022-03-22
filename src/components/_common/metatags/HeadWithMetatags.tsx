@@ -37,7 +37,7 @@ const getDescription = (content: ContentProps) => {
 };
 
 const shouldNotIndex = (content: ContentProps, router: NextRouter) => {
-    if (router.query.shadowRouter) {
+    if (router.query.utkastRouter) {
         return true;
     }
     return content.data?.noindex;
