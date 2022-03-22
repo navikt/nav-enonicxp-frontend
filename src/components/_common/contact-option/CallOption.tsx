@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { translator } from 'translations';
 import { Heading, BodyLong, Alert, BodyShort } from '@navikt/ds-react';
 
@@ -52,12 +52,16 @@ export const CallOption = (props: CallOptionProps) => {
     const sharedTranslations = getContactTranslations('shared');
 
     const allOpeningHours = mergeOpeningHours(
-        regularOpeningHours?.hours,
-        specialOpeningHours?.hours
+        regularOpeningHours?.hours || [],
+        specialOpeningHours?.hours || []
     );
 
     const findNextOpeningDayAfterToday = () => {
         const todayISO = getCurrentISODate();
+
+        if (!allOpeningHours) {
+            return null;
+        }
 
         for (let day = 0; day < allOpeningHours.length; day++) {
             const openingHour = allOpeningHours[day];
@@ -161,7 +165,7 @@ export const CallOption = (props: CallOptionProps) => {
 
     const isCurrentlyClosed = getIsCurrentyClosed(todaysOpeningHour);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         setIsClosed(isCurrentlyClosed);
     }, [isCurrentlyClosed]);
 
