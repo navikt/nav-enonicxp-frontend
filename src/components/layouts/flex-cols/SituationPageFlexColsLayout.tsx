@@ -4,6 +4,7 @@ import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
 import { SituationPageFlexColsLayoutProps } from '../../../types/component-props/layouts/situation-flex-cols';
 import { Header } from '../../_common/headers/Header';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 type Props = {
     pageProps: ContentProps;
@@ -28,6 +29,13 @@ export const SituationPageFlexColsLayout = ({
         ...(justifyContent && { justifyContent }),
     };
 
+    const calculateColCount = () => {
+        return regionProps.components.length % 3 === 0 ? 3 : 2;
+    };
+
+    const colCount =
+        typeof numCols === 'number' ? numCols : calculateColCount();
+
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             {title && (
@@ -46,7 +54,7 @@ export const SituationPageFlexColsLayout = ({
                 pageProps={pageProps}
                 regionProps={regionProps}
                 regionStyle={regionStyle}
-                bemModifier={`${numCols}-cols`}
+                bemModifier={`${colCount}-cols`}
             />
         </LayoutContainer>
     );
