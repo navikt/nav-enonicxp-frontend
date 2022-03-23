@@ -50,6 +50,16 @@ module.exports = withPlugins([withLess, withImages, withTranspileModules], {
     },
     redirects: async () => [
         {
+            source: '/',
+            destination: '/no/person',
+            permanent: true,
+        },
+        {
+            source: '/forsiden',
+            destination: '/no/person',
+            permanent: true,
+        },
+        {
             source: '/www.nav.no',
             destination: '/',
             permanent: false,

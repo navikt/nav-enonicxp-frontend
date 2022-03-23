@@ -10,7 +10,7 @@ import {
     hookAndInterceptInternalLink,
     prefetchOnMouseover,
 } from '../utils/links';
-import TopContainer from './_common/top-container/TopContainer';
+import TopContainer from './_top-container/TopContainer';
 import { initAmplitude } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from '../utils/decorator-utils';

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { BEM, classNames } from '../../../../../utils/classnames';
+import { BEM, classNames } from '../../../../utils/classnames';
 import { BodyLong, Radio, RadioGroup } from '@navikt/ds-react';
-import { ContentProps } from '../../../../../types/content-props/_content-common';
+import { ContentProps } from '../../../../types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
 

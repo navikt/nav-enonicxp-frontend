@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Checkbox, Label } from '@navikt/ds-react';
-import { BEM } from '../../../../../../utils/classnames';
-import { ContentProps } from '../../../../../../types/content-props/_content-common';
+import { BEM } from '../../../../../utils/classnames';
+import { ContentProps } from '../../../../../types/content-props/_content-common';
 import {
     getCurrentDateAndTime,
     getUtcTimeFromLocal,
-} from '../../../../../../utils/datetime';
-import { Branch } from '../../../../../../types/branch';
+} from '../../../../../utils/datetime';
+import { Branch } from '../../../../../types/branch';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
 

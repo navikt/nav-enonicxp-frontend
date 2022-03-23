@@ -1,8 +1,8 @@
 import React from 'react';
 import { BodyLong } from '@navikt/ds-react';
-import { LenkeStandalone } from '../../../lenke/LenkeStandalone';
-import { formatDateTime } from '../../../../../utils/datetime';
-import { ContentProps } from '../../../../../types/content-props/_content-common';
+import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
+import { formatDateTime } from '../../../../utils/datetime';
+import { ContentProps } from '../../../../types/content-props/_content-common';
 
 type Props = {
     content: ContentProps;

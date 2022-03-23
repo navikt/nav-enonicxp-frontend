@@ -32,32 +32,10 @@ const appError = (content: ContentProps) => ({
     content,
 });
 
-const errorHandlerProd = (content: ContentProps) => {
+export const errorHandler = (content: ContentProps) => {
     if (!revalidateOnErrorCode[content.data.errorCode]) {
         throw appError(content);
     }
 
     return { props: { content } };
 };
-
-const errorHandlerDev = (content: ContentProps) => {
-    if (!revalidateOnErrorCode[content.data.errorCode]) {
-        // Do not throw errors at build-time in dev-environments
-        if (process.env.NEXT_PHASE === 'phase-production-build') {
-            return {
-                props: {
-                    content: error1337ReloadProps(content._path),
-                },
-            };
-        }
-
-        throw appError(content);
-    }
-
-    return { props: { content } };
-};
-
-export const errorHandler =
-    process.env.APP_ORIGIN === 'https://www.nav.no'
-        ? errorHandlerProd
-        : errorHandlerDev;

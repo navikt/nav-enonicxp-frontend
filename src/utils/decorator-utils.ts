@@ -7,7 +7,7 @@ import {
 import { LanguageProps } from '../types/language';
 import { stripXpPathPrefix } from './urls';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
-import { contentTypesWithWhiteHeader } from '../components/_common/top-container/TopContainer';
+import { contentTypesWithWhiteHeader } from '../components/_top-container/TopContainer';
 
 const xpLangToDecoratorLang: {
     [key in Language]: DecoratorParams['language'];

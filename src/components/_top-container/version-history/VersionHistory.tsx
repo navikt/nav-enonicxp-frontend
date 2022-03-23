@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { BEM } from '../../../../utils/classnames';
-import { ContentProps } from '../../../../types/content-props/_content-common';
-import { LenkeStandalone } from '../../lenke/LenkeStandalone';
+import { BEM } from '../../../utils/classnames';
+import { ContentProps } from '../../../types/content-props/_content-common';
+import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { Heading, Loader } from '@navikt/ds-react';
 import { VersionStatus } from './status/VersionStatus';
 import { VersionSelector } from './selector/VersionSelector';
 import { translator } from 'translations';
 import { useRouter } from 'next/router';
-import { Chevron } from '../../chevron/Chevron';
+import { Chevron } from '../../_common/chevron/Chevron';
 
 const bem = BEM('version-history');
 
@@ -36,7 +36,7 @@ export const VersionHistory = ({ content }: Props) => {
         if (versionUrlRequested) {
             router.push(versionUrlRequested);
         }
-    }, [versionUrlRequested]);
+    }, [versionUrlRequested, router]);
 
     return (
         <div

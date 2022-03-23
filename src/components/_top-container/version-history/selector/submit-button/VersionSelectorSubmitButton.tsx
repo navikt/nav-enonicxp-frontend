@@ -1,4 +1,4 @@
-import { Button } from '../../../../button/Button';
+import { Button } from '../../../../_common/button/Button';
 import React from 'react';
 
 type Props = {
