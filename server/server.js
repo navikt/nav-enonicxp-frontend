@@ -54,7 +54,35 @@ nextApp.prepare().then(() => {
         handleInvalidateAllReq(nextApp)
     );
 
-    server.all('*', (req, res) => {
+    server.all('*', async (req, res) => {
+        const { failover } = req.headers;
+
+        if (failover === 'true') {
+            const url = `${process.env.FAILOVER_ORIGIN}${req.path}`;
+            console.log(`Failover to ${url}`);
+
+            const failoverContent = await fetch(url)
+                .then((res) => {
+                    if (res.ok) {
+                        return res.text();
+                    }
+
+                    console.error(`Bad response from failover`);
+                    return null;
+                })
+                .catch((e) => {
+                    console.error(`Failback error: ${e}`);
+                    return null;
+                });
+
+            if (failoverContent) {
+                return res.send(failoverContent);
+            } else {
+                res.status(500);
+                return nextApp.renderError(null, req, res, req.path);
+            }
+        }
+
         setJsonCacheHeaders(req, res);
 
         return nextRequestHandler(req, res);

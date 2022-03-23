@@ -37,7 +37,19 @@ const fetchSiteContent = async (
     };
     console.log(`Fetching content from ${url}`);
 
-    const res = await fetchWithTimeout(url, fetchTimeoutMs, config);
+    const res = await fetchWithTimeout(url, fetchTimeoutMs, config).catch(
+        (e) => {
+            console.log(`Sitecontent fetch error: ${e}`);
+            return null;
+        }
+    );
+
+    const errorId = uuid();
+
+    if (!res) {
+        return makeErrorProps(idOrPath, undefined, 500, errorId);
+    }
+
     const isJson = res.headers
         ?.get('content-type')
         ?.includes?.('application/json');
@@ -45,8 +57,6 @@ const fetchSiteContent = async (
     if (res.ok && isJson) {
         return res.json();
     }
-
-    const errorId = uuid();
 
     if (res.ok) {
         logPageLoadError(

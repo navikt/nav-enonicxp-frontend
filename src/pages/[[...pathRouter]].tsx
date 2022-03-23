@@ -45,17 +45,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
             paths: contentPaths.map((pathArray) => ({
                 params: { pathRouter: pathArray },
             })),
-            // paths: [
-            //     {
-            //         params: { pathRouter: ['no', 'person'] },
-            //     },
-            //     {
-            //         params: { pathRouter: ['no', 'bedrift'] },
-            //     },
-            //     {
-            //         params: { pathRouter: ['no', 'samarbeidspartner'] },
-            //     },
-            // ],
             fallback: false,
         };
     }
