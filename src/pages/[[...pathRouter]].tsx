@@ -4,11 +4,41 @@ import Config from '../config';
 import { fetchJson } from '../utils/fetch-utils';
 import { xpServiceUrl } from '../utils/urls';
 import { fetchPageProps } from '../utils/fetch-page-props';
+import { isPropsWithContent } from '../types/_type-guards';
 
 const isFailover = process.env.IS_FAILOVER === 'true';
-const revalidatePeriod = isFailover ? undefined : Config.vars.revalidatePeriod;
 
-const getStaticPathsPrerendered = async () => {
+const getStaticPropsFailover: GetStaticProps = async (context) => {
+    const pageProps = await fetchPageProps({
+        routerQuery: context?.params?.pathRouter,
+        noRedirect: true,
+    });
+
+    if (isPropsWithContent(pageProps.props)) {
+        pageProps.props.content.isFailover = true;
+    }
+
+    return {
+        ...pageProps,
+    };
+};
+
+const getStaticPropsRegular: GetStaticProps = async (context) => {
+    const pageProps = await fetchPageProps({
+        routerQuery: context?.params?.pathRouter,
+    });
+
+    return {
+        ...pageProps,
+        revalidate: Config.vars.revalidatePeriod,
+    };
+};
+
+export const getStaticProps = isFailover
+    ? getStaticPropsFailover
+    : getStaticPropsRegular;
+
+const getStaticPathsFailover = async () => {
     const time = Date.now();
     const contentPaths = await fetchJson(
         `${xpServiceUrl}/sitecontentIds`,
@@ -36,28 +66,15 @@ const getStaticPathsPrerendered = async () => {
     };
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-    const props = await fetchPageProps({
-        routerQuery: context?.params?.pathRouter,
-        isDraft: false,
-        isFailover,
-    });
-
-    return {
-        ...props,
-        revalidate: revalidatePeriod,
-    };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-    if (isFailover) {
-        return await getStaticPathsPrerendered();
-    }
-
+const getStaticPathsRegular: GetStaticPaths = async () => {
     return {
         paths: [],
         fallback: 'blocking',
     };
 };
+
+export const getStaticPaths = isFailover
+    ? getStaticPathsFailover
+    : getStaticPathsRegular;
 
 export default PageBase;

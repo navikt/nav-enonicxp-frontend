@@ -23,7 +23,6 @@ import { setPathMapAction } from '../store/slices/pathMap';
 import { setPageConfigAction } from '../store/slices/pageConfig';
 import { fetchAndSetAuthStatus } from '../utils/auth';
 import { setAuthStateAction } from '../store/slices/authState';
-import { PreviewWarning } from './_common/previewWarning/PreviewWarning';
 
 type Props = {
     content: ContentProps;
@@ -118,7 +117,6 @@ export const PageWrapper = (props: Props) => {
             <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
             <TopContainer content={content} />
-            <PreviewWarning />
             <div
                 role={'main'}
                 className={'content-wrapper'}

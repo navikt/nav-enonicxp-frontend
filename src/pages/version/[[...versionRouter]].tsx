@@ -10,7 +10,7 @@ const getValidDateTime = (dateTime: string | string[]) => {
 
 export const fetchVersionPageProps = async (
     context: GetServerSidePropsContext,
-    isDraft: boolean
+    isDraft = false
 ) => {
     const { time, id } = context.query;
 
@@ -21,6 +21,7 @@ export const fetchVersionPageProps = async (
     return fetchPageProps({
         routerQuery: xpPath,
         isDraft,
+        noRedirect: true,
         versionTimestamp: getValidDateTime(time),
     });
 };
@@ -34,11 +35,11 @@ const prodRouter = async (context) => {
         };
     }
 
-    return fetchVersionPageProps(context, false);
+    return fetchVersionPageProps(context);
 };
 
 const devRouter = async (context) => {
-    return fetchVersionPageProps(context, false);
+    return fetchVersionPageProps(context);
 };
 
 export const getServerSideProps: GetServerSideProps =

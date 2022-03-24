@@ -15,12 +15,12 @@ const getPageProps = async (context) => {
     return await fetchPageProps({
         routerQuery: pathSegments,
         isDraft: true,
+        noRedirect: true,
     });
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { secret } = context.req.headers;
-    if (secret !== process.env.SERVICE_SECRET) {
+    if (context.req.headers.secret !== process.env.SERVICE_SECRET) {
         return {
             notFound: true,
         };

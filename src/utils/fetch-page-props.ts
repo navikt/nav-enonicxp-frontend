@@ -14,16 +14,14 @@ import { getTargetIfRedirect, redirectPageProps } from './redirects';
 type FetchPageProps = {
     routerQuery: string | string[];
     isDraft?: boolean;
-    isPagePreview?: boolean;
-    isFailover?: boolean;
+    noRedirect?: boolean;
     versionTimestamp?: string;
 };
 
 export const fetchPageProps = async ({
     routerQuery,
     isDraft = false,
-    isPagePreview = false,
-    isFailover = false,
+    noRedirect = false,
     versionTimestamp,
 }: FetchPageProps) => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
@@ -51,7 +49,7 @@ export const fetchPageProps = async ({
         return errorHandler(content);
     }
 
-    if (!isDraft && !isPagePreview && !isFailover) {
+    if (!noRedirect) {
         const redirectTarget = getTargetIfRedirect(content);
         if (redirectTarget) {
             return redirectPageProps(

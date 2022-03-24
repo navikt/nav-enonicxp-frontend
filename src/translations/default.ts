@@ -149,8 +149,9 @@ export const bundle = {
         title: 'Vis historisk innhold',
         loading: 'Laster historisk innhold...',
     },
-    draft: {
-        warningText: 'Utkast - siden er under arbeid',
+    pageWarnings: {
+        draftWarning: 'Utkast - siden er under arbeid',
+        failoverWarning: 'Dette er en failover-versjon som kan være utdatert!',
     },
 };
 
