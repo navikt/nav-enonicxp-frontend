@@ -109,7 +109,7 @@ export const PageWrapper = (props: Props) => {
         setParams(getDecoratorParams(content));
 
         document.documentElement.lang = content.language || 'no';
-    }, [content]);
+    }, [content, router]);
 
     return (
         <div className={'app-container'}>

@@ -30,11 +30,11 @@ const revalidateOnErrorCode = {
 };
 
 const skipFailoverOnErrorCode = {
+    ...revalidateOnErrorCode,
     400: true, // bad request
-    404: true, // not found
 };
 
-const appError = (content: ContentProps) => ({
+const appError = (content: ContentProps | any) => ({
     content,
 });
 
@@ -54,9 +54,5 @@ export const errorHandler = async (content: ContentProps) => {
         throw appError(content);
     }
 
-    const path = content.data.customPath || stripXpPathPrefix(content._path);
-
-    console.log(path);
-
-    return redirectPageProps(`${path}?failover=true`, false);
+    throw appError(content);
 };

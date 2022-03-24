@@ -3,14 +3,49 @@ import { PageBase } from '../components/PageBase';
 import { ContentProps } from '../types/content-props/_content-common';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from '../utils/errors';
+import { stripXpPathPrefix } from '../utils/urls';
+import { fetchWithTimeout } from '../utils/fetch-utils';
+
+const isFailover = process.env.IS_FAILOVER === 'true';
+
+const fetchFailoverHtml = async (path: string) => {
+    const url = `${process.env.FAILOVER_ORIGIN}${path}`;
+    console.log(`Fetching from ${url}`);
+
+    return fetchWithTimeout(url, 15000)
+        .then((res) => {
+            if (res.ok) {
+                return res.text();
+            }
+
+            console.error(`Error response from failover: ${res.status}`);
+            return null;
+        })
+        .catch((e) => {
+            console.error(`Exception from failover fetch: ${e}`);
+            return null;
+        });
+};
 
 const Error = (props: ContentProps) => <PageBase content={props} />;
 
-Error.getInitialProps = ({ res, err, asPath }): ContentProps => {
-    if (err?.content) {
-        res.statusCode = err.content.data?.errorCode || res.statusCode;
-        return err.content;
+Error.getInitialProps = async (context): Promise<ContentProps> => {
+    console.log('Muh error', context);
+    const { res, req, err, asPath } = context;
+
+    if (!res) {
+        return err?.content || makeErrorProps();
     }
+
+    if (!isFailover) {
+        const failoverHtml = await fetchFailoverHtml(asPath);
+
+        if (failoverHtml) {
+            return res.status(200).send(failoverHtml);
+        }
+    }
+
+    res.statusCode = err.content?.data?.errorCode || res.statusCode;
 
     const errorId = uuid();
     const errorMsg = err?.toString() || 'Empty error message';

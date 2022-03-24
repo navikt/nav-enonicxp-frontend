@@ -18,9 +18,7 @@ const getStaticPropsFailover: GetStaticProps = async (context) => {
         pageProps.props.content.isFailover = true;
     }
 
-    return {
-        ...pageProps,
-    };
+    return pageProps;
 };
 
 const getStaticPropsRegular: GetStaticProps = async (context) => {
