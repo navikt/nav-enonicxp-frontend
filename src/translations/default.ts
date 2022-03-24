@@ -122,7 +122,7 @@ export const bundle = {
             openNow: 'Åpent nå',
             opensAt: 'Åpner {$1} kl {$2}',
             closedNow: 'Stengt nå',
-            seeMoreOptions: 'Mer om tastevalg',
+            seeMoreOptions: 'Mer om åpningstider og tastevalg',
             todaysPhoneOpeningHours: 'Åpningstider på telefon i dag',
             callUsAt: 'Ring oss på',
             businessDays: 'hverdager',
@@ -148,6 +148,9 @@ export const bundle = {
         label: 'Versjonshistorikk',
         title: 'Vis historisk innhold',
         loading: 'Laster historisk innhold...',
+    },
+    draft: {
+        warningText: 'Utkast - siden er under arbeid',
     },
 };
 

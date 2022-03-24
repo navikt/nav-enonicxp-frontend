@@ -12,7 +12,7 @@ export interface FlexColsLayoutProps extends LayoutCommonProps {
         };
     };
     config: {
-        numCols: number;
+        numCols?: number;
         justifyContent: 'flex-start' | 'center' | 'flex-end';
     } & LayoutCommonConfigMixin;
 }
