@@ -1,5 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import PageBase, { fetchPageProps } from '../../components/PageBase';
+import { fetchPageProps } from '../../utils/fetch-page-props';
+import { PageBase } from '../../components/PageBase';
 import { routerQueryToXpPathOrId } from '../../utils/urls';
 
 // TODO: validate datetime string
@@ -20,7 +21,6 @@ export const fetchVersionPageProps = async (
     return fetchPageProps({
         routerQuery: xpPath,
         isDraft,
-        secret: process.env.SERVICE_SECRET,
         versionTimestamp: getValidDateTime(time),
     });
 };

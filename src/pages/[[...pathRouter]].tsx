@@ -1,18 +1,24 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import PageBase, { fetchPageProps } from '../components/PageBase';
+import { PageBase } from '../components/PageBase';
 import Config from '../config';
 import { fetchJson } from '../utils/fetch-utils';
 import { xpServiceUrl } from '../utils/urls';
+import { fetchPageProps } from '../utils/fetch-page-props';
 
 const isFailover = process.env.IS_FAILOVER === 'true';
 const revalidatePeriod = isFailover ? undefined : Config.vars.revalidatePeriod;
 
-const fetchIdsToPrerender = () =>
-    fetchJson(`${xpServiceUrl}/sitecontentIds`, 50000, {
-        headers: {
-            secret: process.env.SERVICE_SECRET,
-        },
-    }).then((response) => {
+const getStaticPathsPrerendered = async () => {
+    const time = Date.now();
+    const contentPaths = await fetchJson(
+        `${xpServiceUrl}/sitecontentIds`,
+        60000,
+        {
+            headers: {
+                secret: process.env.SERVICE_SECRET,
+            },
+        }
+    ).then((response) => {
         if (!response) {
             console.error('Invalid response for content ids');
             return [];
@@ -20,12 +26,21 @@ const fetchIdsToPrerender = () =>
         return response.map((item) => item.split('/').filter(Boolean));
     });
 
+    console.log(`Time spent: ${(Date.now() - time) / 1000} sec`);
+
+    return {
+        paths: contentPaths.map((pathArray) => ({
+            params: { pathRouter: pathArray },
+        })),
+        fallback: false,
+    };
+};
+
 export const getStaticProps: GetStaticProps = async (context) => {
     const props = await fetchPageProps({
         routerQuery: context?.params?.pathRouter,
         isDraft: false,
-        secret: process.env.SERVICE_SECRET,
-        showShadowPage: isFailover,
+        isFailover,
     });
 
     return {
@@ -36,17 +51,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     if (isFailover) {
-        const time = Date.now();
-        const contentPaths = await fetchIdsToPrerender();
-
-        console.log(`Time spent: ${(Date.now() - time) / 1000} sec`);
-
-        return {
-            paths: contentPaths.map((pathArray) => ({
-                params: { pathRouter: pathArray },
-            })),
-            fallback: false,
-        };
+        return await getStaticPathsPrerendered();
     }
 
     return {

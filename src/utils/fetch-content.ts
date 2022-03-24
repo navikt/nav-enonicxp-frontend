@@ -19,7 +19,6 @@ const fetchTimeoutMs = 60000;
 const fetchSiteContent = async (
     idOrPath: string,
     isDraft = false,
-    secret: string,
     time?: string
 ): Promise<XpResponseProps> => {
     const params = objectToQueryString({
@@ -31,7 +30,7 @@ const fetchSiteContent = async (
     const url = `${xpServiceUrl}/sitecontent${params}`;
     const config = {
         headers: {
-            secret,
+            secret: process.env.SERVICE_SECRET,
             'Cache-Control': 'no-store, no-cache',
         },
     };
@@ -96,15 +95,9 @@ const fetchSiteContent = async (
 export const fetchPage = async (
     idOrPath: string,
     isDraft = false,
-    secret: string,
     timeRequested?: string
 ): Promise<XpResponseProps> => {
-    const content = await fetchSiteContent(
-        idOrPath,
-        isDraft,
-        secret,
-        timeRequested
-    );
+    const content = await fetchSiteContent(idOrPath, isDraft, timeRequested);
 
     if (!content?.__typename) {
         const errorId = uuid();
