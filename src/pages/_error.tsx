@@ -1,5 +1,5 @@
 import { makeErrorProps } from '../utils/make-error-props';
-import PageBase from '../components/PageBase';
+import { PageBase } from '../components/PageBase';
 import { ContentProps } from '../types/content-props/_content-common';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from '../utils/errors';

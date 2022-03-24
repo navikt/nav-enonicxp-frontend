@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next';
-import PageBase from '../components/PageBase';
+import { PageBase } from '../components/PageBase';
 
 export const getServerSideProps: GetServerSideProps = async () => {
     return {
