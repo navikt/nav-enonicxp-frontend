@@ -3,7 +3,6 @@ import { PageBase } from '../components/PageBase';
 import { ContentProps } from '../types/content-props/_content-common';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from '../utils/errors';
-import { stripXpPathPrefix } from '../utils/urls';
 import { fetchWithTimeout } from '../utils/fetch-utils';
 
 const isFailover = process.env.IS_FAILOVER === 'true';
@@ -31,7 +30,7 @@ const Error = (props: ContentProps) => <PageBase content={props} />;
 
 Error.getInitialProps = async (context): Promise<ContentProps> => {
     console.log('Muh error', context);
-    const { res, req, err, asPath } = context;
+    const { res, err, asPath } = context;
 
     if (!res) {
         return err?.content || makeErrorProps();
