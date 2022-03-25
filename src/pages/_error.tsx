@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from '../utils/errors';
 import { fetchWithTimeout } from '../utils/fetch-utils';
 
-const isFailover = process.env.IS_FAILOVER === 'true';
+const isFailover = process.env.IS_FAILOVER_APP === 'true';
 
 const fetchFailoverHtml = async (path: string) => {
     const url = `${process.env.FAILOVER_ORIGIN}${path}`;
@@ -29,7 +29,6 @@ const fetchFailoverHtml = async (path: string) => {
 const Error = (props: ContentProps) => <PageBase content={props} />;
 
 Error.getInitialProps = async (context): Promise<ContentProps> => {
-    console.log('Muh error', context);
     const { res, err, asPath } = context;
 
     if (!res) {

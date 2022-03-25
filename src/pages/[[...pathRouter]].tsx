@@ -6,7 +6,7 @@ import { xpServiceUrl } from '../utils/urls';
 import { fetchPageProps } from '../utils/fetch-page-props';
 import { isPropsWithContent } from '../types/_type-guards';
 
-const isFailover = process.env.IS_FAILOVER === 'true';
+const isFailover = process.env.IS_FAILOVER_APP === 'true';
 
 const getStaticPropsFailover: GetStaticProps = async (context) => {
     const pageProps = await fetchPageProps({

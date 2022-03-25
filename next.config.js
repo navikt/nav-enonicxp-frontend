@@ -28,7 +28,7 @@ const withTranspileModules = require('next-transpile-modules')([
     '@navikt/ds-icons',
 ]);
 
-const isFailover = process.env.IS_FAILOVER === 'true';
+const isFailover = process.env.IS_FAILOVER_APP === 'true';
 
 console.log(`Env: ${process.env.NODE_ENV} ${isFailover}`);
 

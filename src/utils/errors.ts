@@ -29,11 +29,6 @@ const revalidateOnErrorCode = {
     404: true, // not found
 };
 
-const skipFailoverOnErrorCode = {
-    ...revalidateOnErrorCode,
-    400: true, // bad request
-};
-
 const appError = (content: ContentProps | any) => ({
     content,
 });
@@ -41,17 +36,8 @@ const appError = (content: ContentProps | any) => ({
 export const errorHandler = async (content: ContentProps) => {
     const { errorCode } = content.data;
 
-    console.log(`Error code: ${errorCode}`);
-
     if (revalidateOnErrorCode[errorCode]) {
         return { props: { content } };
-    }
-
-    if (
-        process.env.IS_FAILOVER === 'true' ||
-        skipFailoverOnErrorCode[errorCode]
-    ) {
-        throw appError(content);
     }
 
     throw appError(content);
