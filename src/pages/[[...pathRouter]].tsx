@@ -5,9 +5,9 @@ import { fetchPageProps } from '../utils/fetch/fetch-page-props';
 import { isPropsWithContent } from '../types/_type-guards';
 import { fetchPrerenderPaths } from '../utils/fetch/fetch-prerender-paths';
 
-// For failover deployments we want to fully prerender a static version of the
-// site during build-time. For regular app deployments we generate pages on
-// demand with incremental regeneration
+// For failover deployments we fully prerender a static version of the site
+// during build-time. For regular app deployments we generate pages on demand
+// with incremental regeneration
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
 const getStaticPropsFailover: GetStaticProps = async (context) => {

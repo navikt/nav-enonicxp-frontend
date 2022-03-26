@@ -30,7 +30,7 @@ const withTranspileModules = require('next-transpile-modules')([
 
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
-console.log(`Env: ${process.env.NODE_ENV} ${isFailover}`);
+console.log(`Env: ${process.env.NODE_ENV} - Failover: ${isFailover}`);
 
 module.exports = withPlugins([withLess, withImages, withTranspileModules], {
     distDir: isFailover ? '.next-static' : '.next',
