@@ -14,7 +14,7 @@ declare global {
             INNLOGGINGSSTATUS_URL: string;
             PAGE_CACHE_DIR: string;
             FAILOVER_ORIGIN: string;
-            IS_FAILOVER_APP: string;
+            IS_FAILOVER_INSTANCE: string;
         }
     }
 }

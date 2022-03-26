@@ -1,4 +1,4 @@
-import { fetchAndSetCacheKey } from '../../../utils/fetch-cache-key';
+import { fetchAndSetCacheKey } from '../../../utils/fetch/fetch-cache-key';
 
 let ready = false;
 let waiting = false;

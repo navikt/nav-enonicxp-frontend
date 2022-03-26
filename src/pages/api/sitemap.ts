@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { fetchWithTimeout } from 'utils/fetch-utils';
+import { fetchWithTimeout } from 'utils/fetch/fetch-utils';
 import Cache from 'node-cache';
 import { apiErrorHandler } from '../../utils/api-error-handler';
 

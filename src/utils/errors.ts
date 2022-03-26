@@ -4,8 +4,6 @@ import {
 } from '../types/content-props/_content-common';
 import { isContentTypeImplemented } from '../components/ContentMapper';
 import { stripLineBreaks } from './string';
-import { stripXpPathPrefix } from './urls';
-import { redirectPageProps } from './redirects';
 
 export const logPageLoadError = (errorId: string, message: string) =>
     console.error(`[Page load error] ${errorId} - ${stripLineBreaks(message)}`);

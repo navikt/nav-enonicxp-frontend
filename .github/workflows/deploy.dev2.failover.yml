@@ -7,7 +7,7 @@ jobs:
     uses: ./.github/workflows/build-image.yml
     with:
       environment: dev-gcp:dev2
-      imagename: dev2-failover-deploy
+      imagename: dev2-failover
       ENV: dev
       ADMIN_ORIGIN: https://portal-admin-q6.oera.no
       APP_ORIGIN: https://www-2.dev.nav.no

@@ -3,13 +3,13 @@ import { PageBase } from '../components/PageBase';
 import { ContentProps } from '../types/content-props/_content-common';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from '../utils/errors';
-import { fetchWithTimeout } from '../utils/fetch-utils';
+import { fetchWithTimeout } from '../utils/fetch/fetch-utils';
 
-const isFailover = process.env.IS_FAILOVER_APP === 'true';
+const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
 const fetchFailoverHtml = async (path: string) => {
     const url = `${process.env.FAILOVER_ORIGIN}${path}`;
-    console.log(`Fetching from ${url}`);
+    console.log(`Fetching failover html from ${url}`);
 
     return fetchWithTimeout(url, 15000)
         .then((res) => {

@@ -4,12 +4,12 @@ import {
     routerQueryToXpPathOrId,
     sanitizeLegacyUrl,
     stripXpPathPrefix,
-} from './urls';
+} from '../urls';
 import { fetchPage } from './fetch-content';
-import { isMediaContent } from '../types/media';
-import { errorHandler, isNotFound } from './errors';
-import { ContentType } from '../types/content-props/_content-common';
-import { getTargetIfRedirect, redirectPageProps } from './redirects';
+import { isMediaContent } from '../../types/media';
+import { errorHandler, isNotFound } from '../errors';
+import { ContentType } from '../../types/content-props/_content-common';
+import { getTargetIfRedirect, redirectPageProps } from '../redirects';
 
 type FetchPageProps = {
     routerQuery: string | string[];
