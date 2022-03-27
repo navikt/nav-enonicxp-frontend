@@ -1,6 +1,21 @@
 import React from 'react';
 
-const maxWidthDefault = 1920;
+// These types should match what's specified in next.config
+type DeviceSize = 480 | 768 | 1024 | 1440;
+type ImageSize = 16 | 32 | 48 | 64 | 96 | 128 | 256 | 384;
+
+export type NextImageProps = {
+    maxWidth?: DeviceSize | ImageSize;
+    quality?: number;
+};
+
+type Props = {
+    src: string;
+    alt: string;
+} & React.ImgHTMLAttributes<HTMLImageElement> &
+    NextImageProps;
+
+const maxWidthDefault: DeviceSize = 1440;
 const qualityDefault = 90;
 
 // Get the image from the next.js incremental image cache endpoint
@@ -14,13 +29,6 @@ const getCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
     `/_next/image?url=${encodeURIComponent(src)}&w=${
         maxWidth || maxWidthDefault
     }&q=${quality || qualityDefault}`;
-
-type Props = {
-    src: string;
-    alt: string;
-    maxWidth?: number;
-    quality?: number;
-} & React.ImgHTMLAttributes<HTMLImageElement>;
 
 export const NextImage = (props: Props) => {
     const { src, alt, maxWidth, quality, ...imgAttribs } = props;

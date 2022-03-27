@@ -62,6 +62,8 @@ module.exports = withPlugins([withLess, withTranspileModules], {
     images: {
         dangerouslyAllowSVG: true,
         domains: [process.env.XP_ORIGIN],
+        deviceSizes: [480, 768, 1024, 1440],
+        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     },
     webpack: (config, options) => {
         fixNextImageOptsAllowSvg(config, options);
