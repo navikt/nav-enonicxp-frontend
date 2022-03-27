@@ -5,7 +5,6 @@ import { NextImage } from './NextImage';
 type Props = {
     imageData: StaticImageData;
     alt: string;
-    className?: string;
 } & React.ImgHTMLAttributes<HTMLImageElement>;
 
 export const StaticImage = (props: Props) => {

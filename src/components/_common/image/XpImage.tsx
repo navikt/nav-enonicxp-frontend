@@ -1,4 +1,4 @@
-import React, { ImgHTMLAttributes } from 'react';
+import React from 'react';
 import { MediaType, XpImageProps } from '../../../types/media';
 import { getMediaUrl } from '../../../utils/urls';
 import { NextImage } from './NextImage';
@@ -7,7 +7,6 @@ type Props = {
     imageProps: XpImageProps;
     alt: string;
     scale?: string;
-    className?: string;
 } & React.ImgHTMLAttributes<HTMLImageElement>;
 
 export const getImageUrl = (image: XpImageProps, scale?: string) => {

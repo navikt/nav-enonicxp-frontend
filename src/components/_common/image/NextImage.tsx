@@ -3,10 +3,13 @@ import React from 'react';
 const widthDefault = 1920;
 const qualityDefault = 90;
 
-// Get the image from the next.js incremental image cache. We can also
-// use the <Image/> component for this, however this comes with built-in
-// responsive layout functionality, and requires refactoring most of our
-// existing image components/CSS to render correctly
+// Get the image from the next.js incremental image cache endpoint
+//
+// This is intended to be used with the next.js <Image/> component, which comes
+// with some extra benefits for responsive design and optimizations. However this
+// requires refactoring most of our existing image code/CSS to render correctly
+//
+// TODO: refactor our existing image code/CSS :)
 const getCacheUrl = ({
     src,
     maxWidth,
