@@ -1,20 +1,15 @@
 import React from 'react';
-import Image, { ImageProps } from 'next/image';
 import { StaticImageData } from 'next/dist/client/image';
+import { NextImage } from './NextImage';
 
 type Props = {
     imageData: StaticImageData;
+    alt: string;
     className?: string;
-} & Omit<ImageProps, 'src'>;
+} & React.ImgHTMLAttributes<HTMLImageElement>;
 
 export const StaticImage = (props: Props) => {
-    const { imageData, alt, className, ...rest } = props;
+    const { imageData, alt, ...imgAttribs } = props;
 
-    // Optimizing via next/image serves little purpose for vector-graphics that are
-    // already static assets in the app
-    if (imageData.src.endsWith('.svg')) {
-        return <img src={imageData.src} alt={alt} className={className} />;
-    }
-
-    return <Image src={imageData} alt={alt} className={className} {...rest} />;
+    return <NextImage {...imgAttribs} src={imageData.src} alt={alt} />;
 };

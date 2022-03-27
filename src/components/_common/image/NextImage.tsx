@@ -1,38 +1,40 @@
 import React from 'react';
-import Image, { ImageProps } from 'next/image';
 
-export const NextImage = (props: ImageProps) => {
-    const { src } = props;
+const widthDefault = 1920;
+const qualityDefault = 90;
+
+// Get the image from the next.js incremental image cache. We can also
+// use the <Image/> component for this, however this comes with built-in
+// responsive layout functionality, and requires refactoring most of our
+// existing image components/CSS to render correctly
+const getCacheUrl = ({
+    src,
+    maxWidth,
+    quality,
+}: Pick<Props, 'src' | 'maxWidth' | 'quality'>) =>
+    `/_next/image?url=${encodeURIComponent(src)}&w=${
+        maxWidth || widthDefault
+    }&q=${quality || qualityDefault}`;
+
+type Props = {
+    src: string;
+    alt: string;
+    maxWidth?: number;
+    quality?: number;
+} & React.ImgHTMLAttributes<HTMLImageElement>;
+
+export const NextImage = (props: Props) => {
+    const { src, alt, maxWidth, quality, ...imgAttribs } = props;
 
     if (!src) {
         return null;
     }
 
-    const isSvg = typeof src === 'string' && src.endsWith('.svg');
-
-    if (isSvg) {
-        console.log(src);
-        return (
-            <Image
-                {...props}
-                alt={props.alt || ''}
-                layout={'raw'}
-                width={100}
-                height={100}
-            />
-        );
-    }
-
-    const { alt = '', layout = 'fill', width = '100', height = '100' } = props;
-
     return (
-        <Image
-            {...props}
-            src={src}
+        <img
+            {...imgAttribs}
+            src={getCacheUrl({ src, maxWidth, quality })}
             alt={alt}
-            layout={layout}
-            width={width}
-            height={height}
         />
     );
 };

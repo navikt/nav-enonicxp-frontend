@@ -43,7 +43,6 @@ const getDescription = ({ data }: Target) => {
 };
 
 export const Notification = (props: NotificationProps) => {
-    console.log(virusIcon);
     const { data, language, modifiedTime } = props;
     if (!data) {
         return null;
