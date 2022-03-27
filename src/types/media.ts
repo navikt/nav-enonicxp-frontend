@@ -31,6 +31,11 @@ export type BitmapImage = {
     __typename: MediaType.Image;
     imageUrl?: string;
     mediaUrl?: string;
+    imageInfo?: {
+        imageWidth: number;
+        imageHeight: number;
+        contentType: string;
+    };
 };
 
 export type XpImageProps = VectorImage | BitmapImage;

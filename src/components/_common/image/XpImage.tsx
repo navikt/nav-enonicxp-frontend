@@ -1,14 +1,14 @@
 import React from 'react';
-import Image, { ImageProps } from 'next/image';
 import { MediaType, XpImageProps } from '../../../types/media';
 import { getMediaUrl } from '../../../utils/urls';
+import { NextImage } from './NextImage';
 
 type Props = {
     imageProps: XpImageProps;
     alt: string;
     scale?: string;
     className?: string;
-} & Partial<ImageProps>;
+};
 
 export const getImageUrl = (image: XpImageProps, scale?: string) => {
     if (!image) {
@@ -35,14 +35,18 @@ export const XpImage = ({
         return null;
     }
 
+    if (imageProps.__typename === 'media_Vector' || !imageProps.imageInfo) {
+        return <NextImage src={imageUrl} />;
+    }
+
+    const { imageWidth, imageHeight } = imageProps.imageInfo;
+
     return (
-        <Image
+        <NextImage
             src={imageUrl}
-            alt={alt}
-            className={className}
-            layout={'raw'}
-            width={'100'}
-            height={'100'}
+            width={imageWidth}
+            height={imageHeight}
+            layout={'responsive'}
         />
     );
 };
