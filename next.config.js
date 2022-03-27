@@ -63,7 +63,6 @@ module.exports = withPlugins([withLess, withTranspileModules], {
         dangerouslyAllowSVG: true,
         domains: [process.env.XP_ORIGIN],
     },
-    experimental: { images: { layoutRaw: true } },
     webpack: (config, options) => {
         fixNextImageOptsAllowSvg(config, options);
         cssModulesNoDashesInClassnames(config);
