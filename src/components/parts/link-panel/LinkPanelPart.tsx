@@ -68,7 +68,11 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                                 }),
                             }}
                         >
-                            <XpImage imageProps={icon} alt={''} />
+                            <XpImage
+                                imageProps={icon}
+                                alt={''}
+                                maxWidth={isVerticalLayout ? 384 : 64}
+                            />
                         </div>
                     )}
                     <Heading level="2" size="medium" className={bem('title')}>

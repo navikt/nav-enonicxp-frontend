@@ -4,6 +4,7 @@ import React from 'react';
 type DeviceSize = 480 | 768 | 1024 | 1440;
 type ImageSize = 16 | 32 | 48 | 64 | 96 | 128 | 256 | 384;
 
+// Optimalization parameters for next/image cache
 export type NextImageProps = {
     maxWidth?: DeviceSize | ImageSize;
     quality?: number;
@@ -20,18 +21,22 @@ const qualityDefault = 90;
 
 // Get the image from the next.js incremental image cache endpoint
 //
-// This is intended to be used with the next.js <Image/> component, which comes
-// with some extra benefits for responsive design and optimizations. However this
+// This is intended to be called from the next.js <Image/> component, which comes
+// with some extra benefits for responsive design and optimalization. However this
 // requires refactoring most of our existing image code/CSS to render correctly
 //
 // TODO: refactor our existing image code/CSS :)
 const getCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
-    `/_next/image?url=${encodeURIComponent(src)}&w=${
-        maxWidth || maxWidthDefault
-    }&q=${quality || qualityDefault}`;
+    `/_next/image?url=${encodeURIComponent(src)}&w=${maxWidth}&q=${quality}`;
 
 export const NextImage = (props: Props) => {
-    const { src, alt, maxWidth, quality, ...imgAttribs } = props;
+    const {
+        src,
+        alt,
+        maxWidth = maxWidthDefault,
+        quality = qualityDefault,
+        ...imgAttribs
+    } = props;
 
     if (!src) {
         return null;

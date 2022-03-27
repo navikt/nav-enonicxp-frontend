@@ -74,6 +74,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                                 width: `${icon.size}%`,
                             }),
                         }}
+                        maxWidth={64}
                     />
                 </div>
             )}

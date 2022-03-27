@@ -58,7 +58,7 @@ export const Notification = (props: NotificationProps) => {
     const getDateLabel = translator('dates', language);
 
     const IconElement = icon ? (
-        <XpImage imageProps={icon} alt={''} />
+        <XpImage imageProps={icon} alt={''} maxWidth={64} />
     ) : (
         iconsForType[type]
     );
