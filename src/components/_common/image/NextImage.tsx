@@ -11,10 +11,28 @@ export const NextImage = (props: ImageProps) => {
     const isSvg = typeof src === 'string' && src.endsWith('.svg');
 
     if (isSvg) {
-        return <Image {...props} alt={props.alt || ''} layout={'raw'} />;
+        console.log(src);
+        return (
+            <Image
+                {...props}
+                alt={props.alt || ''}
+                layout={'raw'}
+                width={100}
+                height={100}
+            />
+        );
     }
 
-    const { alt = '', layout = 'fill' } = props;
+    const { alt = '', layout = 'fill', width = '100', height = '100' } = props;
 
-    return <Image {...props} src={src} alt={alt} layout={layout} />;
+    return (
+        <Image
+            {...props}
+            src={src}
+            alt={alt}
+            layout={layout}
+            width={width}
+            height={height}
+        />
+    );
 };

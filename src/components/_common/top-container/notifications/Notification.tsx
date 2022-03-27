@@ -7,14 +7,17 @@ import { hasDescription, hasIngress } from 'types/_type-guards';
 import { BEM } from 'utils/classnames';
 import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
-import { PublicImage } from '../../image/PublicImage';
 import { XpImage } from '../../image/XpImage';
+import { StaticImage } from '../../image/StaticImage';
+
+import virusIcon from '/public/gfx/coronavirus.svg';
+import infoIcon from '/public/gfx/globe.svg';
 
 type Target = NotificationProps['data']['target'];
 
 const iconsForType = {
-    warning: <PublicImage imagePath={'/gfx/coronavirus.svg'} alt={''} />,
-    info: <PublicImage imagePath={'/gfx/globe.svg'} alt={''} />,
+    warning: <StaticImage imageData={virusIcon} alt={''} />,
+    info: <StaticImage imageData={infoIcon} alt={''} />,
 };
 
 const getUrl = (target: Target) => {
@@ -40,6 +43,7 @@ const getDescription = ({ data }: Target) => {
 };
 
 export const Notification = (props: NotificationProps) => {
+    console.log(virusIcon);
     const { data, language, modifiedTime } = props;
     if (!data) {
         return null;
