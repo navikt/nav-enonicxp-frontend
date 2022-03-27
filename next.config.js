@@ -1,6 +1,11 @@
 const withPlugins = require('next-compose-plugins');
 const withLess = require('next-with-less');
 
+const withTranspileModules = require('next-transpile-modules')([
+    '@navikt/ds-react',
+    '@navikt/ds-icons',
+]);
+
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
 const cssModulesNoDashesInClassnames = (config) => {
@@ -23,7 +28,7 @@ const cssModulesNoDashesInClassnames = (config) => {
 };
 
 // Inject the dangerouslyAllowSVG flag from the images config into the env config
-// Fixes a bug which prevents svg-files from being cached by next/image
+// Fixes a bug which prevents .svg files from being cached by next/image
 const fixNextImageOptsAllowSvg = (config, options) => {
     const dangerouslyAllowSVG = options?.config?.images?.dangerouslyAllowSVG;
 
@@ -44,11 +49,6 @@ const fixNextImageOptsAllowSvg = (config, options) => {
         }
     });
 };
-
-const withTranspileModules = require('next-transpile-modules')([
-    '@navikt/ds-react',
-    '@navikt/ds-icons',
-]);
 
 module.exports = withPlugins([withLess, withTranspileModules], {
     assetPrefix: process.env.APP_ORIGIN,
