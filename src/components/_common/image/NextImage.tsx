@@ -1,6 +1,6 @@
 import React from 'react';
 
-const widthDefault = 1920;
+const maxWidthDefault = 1920;
 const qualityDefault = 90;
 
 // Get the image from the next.js incremental image cache endpoint
@@ -10,13 +10,9 @@ const qualityDefault = 90;
 // requires refactoring most of our existing image code/CSS to render correctly
 //
 // TODO: refactor our existing image code/CSS :)
-const getCacheUrl = ({
-    src,
-    maxWidth,
-    quality,
-}: Pick<Props, 'src' | 'maxWidth' | 'quality'>) =>
+const getCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
     `/_next/image?url=${encodeURIComponent(src)}&w=${
-        maxWidth || widthDefault
+        maxWidth || maxWidthDefault
     }&q=${quality || qualityDefault}`;
 
 type Props = {
