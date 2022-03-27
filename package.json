@@ -36,9 +36,8 @@
         "lodash.debounce": "^4.0.8",
         "lottie-web": "^5.8.1",
         "mathjs": "^10.1.1",
-        "next": "^12.1.0",
+        "next": "^12.1.1",
         "next-compose-plugins": "^2.2.1",
-        "next-images": "^1.8.4",
         "next-transpile-modules": "^9.0.0",
         "next-with-less": "^2.0.5",
         "node-cache": "^5.1.2",
@@ -53,6 +52,7 @@
         "react-movable": "2.5.4",
         "react-redux": "^7.2.6",
         "rss": "^1.2.2",
+        "sharp": "^0.30.3",
         "ssri": "6.0.2"
     },
     "devDependencies": {

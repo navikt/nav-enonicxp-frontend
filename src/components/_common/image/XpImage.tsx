@@ -1,4 +1,5 @@
 import React from 'react';
+import Image, { ImageProps } from 'next/image';
 import { MediaType, XpImageProps } from '../../../types/media';
 import { getMediaUrl } from '../../../utils/urls';
 
@@ -7,7 +8,7 @@ type Props = {
     alt: string;
     scale?: string;
     className?: string;
-} & React.ImgHTMLAttributes<HTMLImageElement>;
+} & Partial<ImageProps>;
 
 export const getImageUrl = (image: XpImageProps, scale?: string) => {
     if (!image) {
@@ -35,6 +36,13 @@ export const XpImage = ({
     }
 
     return (
-        <img src={imageUrl} alt={alt} className={className} {...imgAttribs} />
+        <Image
+            src={imageUrl}
+            alt={alt}
+            className={className}
+            layout={'raw'}
+            width={'100'}
+            height={'100'}
+        />
     );
 };
