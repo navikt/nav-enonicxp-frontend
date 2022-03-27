@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import Image, { ImageProps } from 'next/image';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import htmlReactParser, {
     Element,
@@ -108,10 +109,13 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <Fragment />;
                 }
                 return (
-                    <img
+                    <Image
                         {...props}
                         alt={attribs.alt || ''}
                         src={getMediaUrl(attribs.src)}
+                        layout={'raw'}
+                        width={'100'}
+                        height={'100'}
                     />
                 );
             }

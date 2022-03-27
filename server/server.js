@@ -35,6 +35,7 @@ nextApp.prepare().then(() => {
     const { SERVICE_SECRET, PAGE_CACHE_DIR } = process.env;
 
     if (PAGE_CACHE_DIR) {
+        // nextApp.server.imageResponseCache.cacheDir = './.next/image-cache';
         nextApp.server.incrementalCache.incrementalOptions.pagesDir =
             PAGE_CACHE_DIR;
     }

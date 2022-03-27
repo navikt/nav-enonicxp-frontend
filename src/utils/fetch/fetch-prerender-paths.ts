@@ -5,13 +5,14 @@ export const fetchPrerenderPaths = async (retries = 3) =>
     fetchJson(`${xpServiceUrl}/sitecontentPaths`, 60000, {
         headers: {
             secret: process.env.SERVICE_SECRET,
+            test: true,
         },
     }).then((pathsFromXp) => {
         if (Array.isArray(pathsFromXp)) {
-            // Remove paths with illegal characters on Windows file systems.
-            // Next.js page cache throws errors when attempting to cache these
-            // paths, which crashes the build process.
-            // Should only be applicable for local testing.
+            // Remove paths with illegal filename characters on Windows systems.
+            // Next.js page cache throws errors when attempting to cache these paths, which
+            // crashes the build process.
+            // Should only be applicable for local testing, we don't deploy to Windows machines
             if (process.platform === 'win32') {
                 return pathsFromXp.filter((path) => !path.match(/[<>:"\\|?*]/));
             }
@@ -28,3 +29,4 @@ export const fetchPrerenderPaths = async (retries = 3) =>
         console.error('Failed to fetch paths to prerender');
         return null;
     });
+// 12:31:30

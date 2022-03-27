@@ -1,5 +1,4 @@
 const withPlugins = require('next-compose-plugins');
-const withImages = require('next-images');
 const withLess = require('next-with-less');
 
 // Remove dashes from js variable names for classnames generated from CSS-modules
@@ -23,6 +22,29 @@ const cssModulesNoDashesInClassnames = (config) => {
     });
 };
 
+// Inject the dangerouslyAllowSVG flag from the images config into the env config
+// Fixes a bug which prevents svg-files from being cached by next/images
+const fixNextImageOptsAllowSvg = (config, options) => {
+    const dangerouslyAllowSVG = options.config?.images?.dangerouslyAllowSVG;
+
+    if (dangerouslyAllowSVG === undefined || !config.plugins) {
+        return;
+    }
+
+    config.plugins.forEach((plugin) => {
+        const __NEXT_IMAGE_OPTS =
+            plugin?.definitions?.['process.env.__NEXT_IMAGE_OPTS'];
+        if (__NEXT_IMAGE_OPTS) {
+            const parsed = JSON.parse(__NEXT_IMAGE_OPTS);
+            plugin.definitions['process.env.__NEXT_IMAGE_OPTS'] =
+                JSON.stringify({
+                    ...parsed,
+                    dangerouslyAllowSVG,
+                });
+        }
+    });
+};
+
 const withTranspileModules = require('next-transpile-modules')([
     '@navikt/ds-react',
     '@navikt/ds-icons',
@@ -32,7 +54,9 @@ const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
 console.log(`Env: ${process.env.NODE_ENV} - Failover: ${isFailover}`);
 
-module.exports = withPlugins([withLess, withImages, withTranspileModules], {
+console.log(process.env.__NEXT_IMAGE_OPTS);
+
+module.exports = withPlugins([withLess, withTranspileModules], {
     distDir: isFailover ? '.next-static' : '.next',
     assetPrefix: isFailover
         ? process.env.FAILOVER_ORIGIN
@@ -44,7 +68,16 @@ module.exports = withPlugins([withLess, withImages, withTranspileModules], {
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
     },
-    webpack: (config) => {
+    images: {
+        minimumCacheTTL: 60,
+        dangerouslyAllowSVG: true,
+        // contentSecurityPolicy:
+        //     "default-src 'self'; script-src 'none'; sandbox;",
+        domains: [process.env.XP_ORIGIN],
+    },
+    experimental: { images: { layoutRaw: true } },
+    webpack: (config, options) => {
+        fixNextImageOptsAllowSvg(config, options);
         cssModulesNoDashesInClassnames(config);
         return config;
     },
