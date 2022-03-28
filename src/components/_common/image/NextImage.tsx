@@ -1,5 +1,5 @@
 import React from 'react';
-import { updateImageManifest } from '../../../utils/fetch/fetch-images';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 // These types should match what's specified in next.config
 type DeviceSize = 480 | 768 | 1024 | 1440;
@@ -33,6 +33,8 @@ const buildImageCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
     )}&w=${maxWidth}&q=${quality}`;
 
 export const NextImage = (props: Props) => {
+    const { pageConfig } = usePageConfig();
+
     const {
         src,
         alt,
@@ -43,6 +45,10 @@ export const NextImage = (props: Props) => {
 
     if (!src) {
         return null;
+    }
+
+    if (pageConfig.editorView) {
+        return <img {...imgAttribs} src={src} alt={alt} />;
     }
 
     const cachedSrc = buildImageCacheUrl({ src, maxWidth, quality });
