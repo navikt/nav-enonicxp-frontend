@@ -1,14 +1,17 @@
 import React from 'react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import { PublicImage } from '../../_common/image/PublicImage';
+import { StaticImage } from '../../_common/image/StaticImage';
 import { BEM, classNames } from '../../../utils/classnames';
 import { BodyShort } from '@navikt/ds-react';
+
+import infoIcon from '/public/gfx/help.svg';
+import errorIcon from '/public/gfx/error.svg';
 
 const bem = BEM('editor-help');
 
 const imagePath = {
-    info: '/gfx/help.svg',
-    error: '/gfx/error.svg',
+    info: infoIcon,
+    error: errorIcon,
 };
 
 type Props = {
@@ -26,8 +29,8 @@ export const EditorHelp = ({ text, type = 'info' }: Props) => {
 
     return (
         <div className={bem()}>
-            <PublicImage
-                imagePath={imagePath[type]}
+            <StaticImage
+                imageData={imagePath[type]}
                 alt={''}
                 className={classNames(bem('icon'), bem('icon', type))}
             />

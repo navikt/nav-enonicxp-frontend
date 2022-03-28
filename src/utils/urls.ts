@@ -98,7 +98,7 @@ export const getInternalAbsoluteUrl = (
     return `${isEditorView ? adminOrigin : appOrigin}${internalPath}`;
 };
 
-// Media url must always be absolute, to prevent internal nextjs routing loopbacks on redirects|
+// Media url must always be absolute, to prevent internal nextjs routing loopbacks on redirects
 export const getMediaUrl = (
     url: string,
     isEditorView = globalState.isEditorView

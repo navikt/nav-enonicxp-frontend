@@ -4,6 +4,7 @@ import {
     ImageComponentProps,
 } from '../../../types/component-props/_component-common';
 import { BodyShort } from '@navikt/ds-react';
+import { NextImage } from '../../_common/image/NextImage';
 
 type Props = {
     imageProps: ImageComponentProps;
@@ -28,7 +29,7 @@ export const ImageComponentXp = ({ imageProps, editMode }: Props) => {
     return (
         <div {...editorProps}>
             {src ? (
-                <img className={'image'} src={src} alt={''} />
+                <NextImage className={'image'} src={src} alt={''} />
             ) : (
                 <BodyShort>{'Bilde mangler'}</BodyShort>
             )}

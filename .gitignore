@@ -32,6 +32,6 @@ yarn-error.log*
 /nav-enonicxp-frontend.iml
 .env
 
-url-lookup-table.json
 /.github-token
 /tsconfig.tsbuildinfo
+/image-manifest

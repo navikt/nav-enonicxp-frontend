@@ -1,4 +1,8 @@
-import { fetchAndSetCacheKey } from '../../../utils/fetch-cache-key';
+import { fetchAndSetCacheKey } from '../../../utils/fetch/fetch-cache-key';
+import {
+    clearImageManifest,
+    processImageManifest,
+} from '../../../utils/fetch/fetch-images';
 
 let ready = false;
 let waiting = false;
@@ -9,10 +13,13 @@ const isReady = (req, res) => {
     } else {
         if (!waiting) {
             waiting = true;
-            fetchAndSetCacheKey().then(() => {
-                ready = true;
-                waiting = false;
-            });
+            fetchAndSetCacheKey()
+                .then(processImageManifest)
+                .finally(() => {
+                    ready = true;
+                    waiting = false;
+                    clearImageManifest();
+                });
         }
         return res.status(503).json({ message: 'Not ready' });
     }
