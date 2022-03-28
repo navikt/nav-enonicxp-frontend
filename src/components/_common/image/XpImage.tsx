@@ -1,48 +1,19 @@
 import React from 'react';
-import Image, { ImageProps } from 'next/image';
-import { MediaType, XpImageProps } from '../../../types/media';
+import { XpImageProps } from '../../../types/media';
 import { getMediaUrl } from '../../../utils/urls';
+import { NextImage, NextImageProps } from './NextImage';
 
 type Props = {
     imageProps: XpImageProps;
     alt: string;
-    scale?: string;
-    className?: string;
-} & Partial<ImageProps>;
+} & React.ImgHTMLAttributes<HTMLImageElement> &
+    NextImageProps;
 
-export const getImageUrl = (image: XpImageProps, scale?: string) => {
-    if (!image) {
-        return null;
-    }
-
-    const url =
-        image.__typename === MediaType.Image && scale
-            ? image.imageUrl?.replace('$scale', scale)
-            : image.mediaUrl;
-
-    return getMediaUrl(url);
-};
-
-export const XpImage = ({
-    imageProps,
-    alt,
-    scale,
-    className,
-    ...imgAttribs
-}: Props) => {
-    const imageUrl = getImageUrl(imageProps, scale);
+export const XpImage = ({ imageProps, alt, ...rest }: Props) => {
+    const imageUrl = getMediaUrl(imageProps.mediaUrl);
     if (!imageUrl) {
         return null;
     }
 
-    return (
-        <Image
-            src={imageUrl}
-            alt={alt}
-            className={className}
-            layout={'raw'}
-            width={'100'}
-            height={'100'}
-        />
-    );
+    return <NextImage {...rest} src={imageUrl} alt={''} />;
 };

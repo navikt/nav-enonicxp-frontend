@@ -57,6 +57,7 @@ export const Button = ({
                         imageProps={icon}
                         className={style.button__icon}
                         alt={''}
+                        maxWidth={64}
                     />
                     <span>{children}</span>
                 </>

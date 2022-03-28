@@ -4,8 +4,9 @@ import { Heading, Panel } from '@navikt/ds-react';
 import { BEM, classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
-import { getImageUrl, XpImage } from '../../_common/image/XpImage';
+import { XpImage } from '../../_common/image/XpImage';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { getMediaUrl } from '../../../utils/urls';
 
 const bem = BEM('link-panel');
 
@@ -17,7 +18,7 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
     const { link, ingress, background, icon, variant } = config;
 
     const linkProps = getSelectableLinkProps(link);
-    const bgUrl = getImageUrl(background);
+    const bgUrl = getMediaUrl(background?.mediaUrl);
 
     const selectedVariant = variant?._selected;
     const variantConfig = selectedVariant && variant[selectedVariant];
@@ -67,7 +68,11 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                                 }),
                             }}
                         >
-                            <XpImage imageProps={icon} alt={''} />
+                            <XpImage
+                                imageProps={icon}
+                                alt={''}
+                                maxWidth={isVerticalLayout ? 384 : 64}
+                            />
                         </div>
                     )}
                     <Heading level="2" size="medium" className={bem('title')}>

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { ParsedHtml } from '../../../_common/parsed-html/ParsedHtml';
-import { PublicImage } from '../../../_common/image/PublicImage';
+import { StaticImage } from '../../../_common/image/StaticImage';
 import { ProcessedHtmlProps } from '../../../../types/processed-html-props';
+
+import icon from '/public/gfx/info-sirkel-fyll.svg';
 
 interface Props {
     label: string;
@@ -16,11 +18,7 @@ export const Faktaboks = (props: Props) => {
 
     return (
         <div className={props.className}>
-            <PublicImage
-                imagePath={'/gfx/info-sirkel-fyll.svg'}
-                alt={''}
-                className={'fact-icon'}
-            />
+            <StaticImage imageData={icon} alt={''} className={'fact-icon'} />
             <h3 className="decorated">{props.label}</h3>
             <ParsedHtml htmlProps={props.fakta} />
         </div>

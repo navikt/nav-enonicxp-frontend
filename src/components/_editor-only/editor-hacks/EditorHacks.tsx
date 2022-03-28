@@ -19,9 +19,7 @@ export const EditorHacks = ({ content }: Props) => {
 
     return (
         <>
-            {isEditorFeatureEnabled(EditorFeatureCookie.ReduceReloads) && (
-                <AutoReloadDisableHack content={content} />
-            )}
+            <AutoReloadDisableHack content={content} />
             {isEditorFeatureEnabled(EditorFeatureCookie.HideLeftPanel) && (
                 <SetSidepanelToggleHack contentId={content._id} />
             )}

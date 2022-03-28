@@ -7,14 +7,17 @@ import { hasDescription, hasIngress } from 'types/_type-guards';
 import { BEM } from 'utils/classnames';
 import { formatDate } from 'utils/datetime';
 import { translator } from 'translations';
-import { PublicImage } from '../../_common/image/PublicImage';
 import { XpImage } from '../../_common/image/XpImage';
+import { StaticImage } from '../../_common/image/StaticImage';
+
+import virusIcon from '/public/gfx/coronavirus.svg';
+import infoIcon from '/public/gfx/globe.svg';
 
 type Target = NotificationProps['data']['target'];
 
 const iconsForType = {
-    warning: <PublicImage imagePath={'/gfx/coronavirus.svg'} alt={''} />,
-    info: <PublicImage imagePath={'/gfx/globe.svg'} alt={''} />,
+    warning: <StaticImage imageData={virusIcon} alt={''} />,
+    info: <StaticImage imageData={infoIcon} alt={''} />,
 };
 
 const getUrl = (target: Target) => {
@@ -55,7 +58,7 @@ export const Notification = (props: NotificationProps) => {
     const getDateLabel = translator('dates', language);
 
     const IconElement = icon ? (
-        <XpImage imageProps={icon} alt={''} />
+        <XpImage imageProps={icon} alt={''} maxWidth={64} />
     ) : (
         iconsForType[type]
     );

@@ -1,6 +1,11 @@
 const withPlugins = require('next-compose-plugins');
 const withLess = require('next-with-less');
 
+const withTranspileModules = require('next-transpile-modules')([
+    '@navikt/ds-react',
+    '@navikt/ds-icons',
+]);
+
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
 const cssModulesNoDashesInClassnames = (config) => {
@@ -22,6 +27,14 @@ const cssModulesNoDashesInClassnames = (config) => {
     });
 };
 
+// Inject the dangerouslyAllowSVG flag from the images config into the env config
+// Fixes a bug which prevents .svg files from being cached by next/image
+const fixNextImageOptsAllowSvg = (config, options) => {
+    const dangerouslyAllowSVG = options?.config?.images?.dangerouslyAllowSVG;
+
+    if (dangerouslyAllowSVG === undefined || !config?.plugins) {
+        return;
+    }
 // Inject the dangerouslyAllowSVG flag from the images config into the env config
 // Fixes a bug which prevents svg-files from being cached by next/images
 const fixNextImageOptsAllowSvg = (config, options) => {
@@ -45,10 +58,16 @@ const fixNextImageOptsAllowSvg = (config, options) => {
     });
 };
 
-const withTranspileModules = require('next-transpile-modules')([
-    '@navikt/ds-react',
-    '@navikt/ds-icons',
-]);
+// Prevents errors due to client-side imports of server-side only libraries
+const resolveNodeLibsClientSide = (config, options) => {
+    if (!options.isServer) {
+        config.resolve.fallback = {
+            fs: false,
+            process: false,
+        };
+    }
+};
+
 
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
@@ -71,14 +90,15 @@ module.exports = withPlugins([withLess, withTranspileModules], {
     images: {
         minimumCacheTTL: 60,
         dangerouslyAllowSVG: true,
-        // contentSecurityPolicy:
-        //     "default-src 'self'; script-src 'none'; sandbox;",
-        domains: [process.env.XP_ORIGIN],
+        domains: [process.env.XP_ORIGIN, process.env.ADMIN_ORIGIN],
+        deviceSizes: [480, 768, 1024, 1440],
+        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     },
-    experimental: { images: { layoutRaw: true } },
     webpack: (config, options) => {
         fixNextImageOptsAllowSvg(config, options);
         cssModulesNoDashesInClassnames(config);
+        resolveNodeLibsClientSide(config, options);
+
         return config;
     },
     redirects: async () => [
