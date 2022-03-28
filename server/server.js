@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const next = require('next');
+const fetch = require('node-fetch');
 const { setJsonCacheHeaders } = require('./set-json-cache-headers');
 const {
     handleInvalidateReq,
@@ -83,6 +84,10 @@ nextApp.prepare().then(() => {
         }
         if (!SERVICE_SECRET) {
             throw new Error('Authentication key is not defined!');
+        }
+
+        if (process.env.ENV === 'localhost') {
+            fetch(`${process.env.APP_ORIGIN}/api/internal/isReady`);
         }
 
         console.log(`Server started on port ${port}`);

@@ -11,7 +11,7 @@ export const fetchPrerenderPaths = async (retries = 3) =>
         if (Array.isArray(pathsFromXp)) {
             // Remove paths with illegal filename characters on Windows systems.
             // Next.js page cache throws errors when attempting to cache these paths, which
-            // crashes the build process.
+            // aborts the build process.
             // Should only be applicable for local testing, we don't deploy to Windows machines
             if (process.platform === 'win32') {
                 return pathsFromXp.filter((path) => !path.match(/[<>:"\\|?*]/));

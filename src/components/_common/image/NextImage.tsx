@@ -35,7 +35,7 @@ const origin = Config.isFailover
 // TODO: refactor our existing image code/CSS :)
 const buildImageCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
     `${origin}/_next/image?url=${encodeURIComponent(
-        src
+        decodeURIComponent(src)
     )}&w=${maxWidth}&q=${quality}`;
 
 export const NextImage = (props: Props) => {

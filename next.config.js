@@ -77,10 +77,9 @@ module.exports = withPlugins([withLess, withTranspileModules], {
         FAILOVER_ORIGIN: process.env.FAILOVER_ORIGIN,
         IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
-        NEXT_PHASE: process.env.NEXT_PHASE,
     },
     images: {
-        minimumCacheTTL: 120,
+        minimumCacheTTL: 3600 * 24 * 365,
         dangerouslyAllowSVG: true,
         domains: [process.env.XP_ORIGIN, process.env.ADMIN_ORIGIN],
         deviceSizes: [480, 768, 1024, 1440],
