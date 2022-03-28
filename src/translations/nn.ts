@@ -23,7 +23,7 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.FOLLOWUP]: 'Oppfylging',
     [Taxonomy.FOR_EMPLOYERS]: 'For arbeidsgjevarar',
     [Taxonomy.FOR_EVENT_ORGANIZERS]: 'For tiltaksarrangørar',
-    [Taxonomy.FOR_HEALTH_SERVICE]: 'For leger og behandlare',
+    [Taxonomy.FOR_HEALTH_SERVICE]: 'For leger og andre behandlarar',
     [Taxonomy.FOR_MUNICIPALITY]: 'For kommunen',
     [Taxonomy.FOR_PROVIDERS]: 'For samhandlarar',
     [Taxonomy.MEASURES]: 'Tiltak',
