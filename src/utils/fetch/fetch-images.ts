@@ -11,26 +11,13 @@ const manifestFile = './image-manifest';
 // This should only run for pages that are generated at build-time
 // Pages generated from dynamic routes will have their images cached
 // automatically at request-time
-export const updateImageManifest =
-    typeof process.env !== 'undefined' &&
-    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
-        ? (src: string) => {
-              fs.appendFile(
-                  manifestFile,
-                  `${src}\n`,
-                  { encoding: 'utf-8' },
-                  (e) => {
-                      if (e) {
-                          console.error(
-                              `Error while appending to image manifest - ${e}`
-                          );
-                      }
-                  }
-              );
-          }
-        : (src: string) => {
-              console.log(`This shouldn't happen! ${src}`);
-          };
+export const updateImageManifest = (src: string) => {
+    fs.appendFile(manifestFile, `${src}\n`, { encoding: 'utf-8' }, (e) => {
+        if (e) {
+            console.error(`Error while appending to image manifest - ${e}`);
+        }
+    });
+};
 
 export const processImageManifest = async () => {
     if (!fs.existsSync(manifestFile)) {
