@@ -10,6 +10,7 @@ COPY public /app/public/
 
 COPY next.config.js /app/
 COPY .env  /app/
+COPY image-manifest /app/
 COPY server /app/server/
 
 EXPOSE 3000
