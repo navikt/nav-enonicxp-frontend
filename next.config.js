@@ -35,14 +35,6 @@ const fixNextImageOptsAllowSvg = (config, options) => {
     if (dangerouslyAllowSVG === undefined || !config?.plugins) {
         return;
     }
-// Inject the dangerouslyAllowSVG flag from the images config into the env config
-// Fixes a bug which prevents svg-files from being cached by next/images
-const fixNextImageOptsAllowSvg = (config, options) => {
-    const dangerouslyAllowSVG = options.config?.images?.dangerouslyAllowSVG;
-
-    if (dangerouslyAllowSVG === undefined || !config.plugins) {
-        return;
-    }
 
     config.plugins.forEach((plugin) => {
         const __NEXT_IMAGE_OPTS =
@@ -68,12 +60,9 @@ const resolveNodeLibsClientSide = (config, options) => {
     }
 };
 
-
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
 console.log(`Env: ${process.env.NODE_ENV} - Failover: ${isFailover}`);
-
-console.log(process.env.__NEXT_IMAGE_OPTS);
 
 module.exports = withPlugins([withLess, withTranspileModules], {
     distDir: isFailover ? '.next-static' : '.next',
