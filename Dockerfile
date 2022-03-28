@@ -4,7 +4,6 @@ WORKDIR /app
 
 COPY package*.json /app/
 COPY node_modules /app/node_modules/
-RUN npm install sharp
 
 COPY .next /app/.next/
 COPY public /app/public/
