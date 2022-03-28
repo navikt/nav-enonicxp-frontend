@@ -1,4 +1,4 @@
-import { XpResponseProps } from '../utils/fetch-content';
+import { XpResponseProps } from '../utils/fetch/fetch-content';
 import { ContentCommonProps } from './content-props/_content-common';
 
 export enum MediaType {

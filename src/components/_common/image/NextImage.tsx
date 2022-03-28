@@ -1,4 +1,5 @@
 import React from 'react';
+import { updateImageManifest } from '../../../utils/fetch/fetch-images';
 
 // These types should match what's specified in next.config
 type DeviceSize = 480 | 768 | 1024 | 1440;
@@ -26,8 +27,10 @@ const qualityDefault = 90;
 // requires refactoring most of our existing image code/CSS to render correctly
 //
 // TODO: refactor our existing image code/CSS :)
-const getCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
-    `/_next/image?url=${encodeURIComponent(src)}&w=${maxWidth}&q=${quality}`;
+const buildImageCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
+    `${process.env.APP_ORIGIN}/_next/image?url=${encodeURIComponent(
+        src
+    )}&w=${maxWidth}&q=${quality}`;
 
 export const NextImage = (props: Props) => {
     const {
@@ -42,11 +45,9 @@ export const NextImage = (props: Props) => {
         return null;
     }
 
-    return (
-        <img
-            {...imgAttribs}
-            src={getCacheUrl({ src, maxWidth, quality })}
-            alt={alt}
-        />
-    );
+    const cachedSrc = buildImageCacheUrl({ src, maxWidth, quality });
+
+    updateImageManifest(cachedSrc);
+
+    return <img {...imgAttribs} src={cachedSrc} alt={alt} />;
 };

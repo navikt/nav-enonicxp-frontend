@@ -50,6 +50,16 @@ const fixNextImageOptsAllowSvg = (config, options) => {
     });
 };
 
+// Prevents errors due to client-side imports of server-side only libraries
+const resolveNodeLibsClientSide = (config, options) => {
+    if (!options.isServer) {
+        config.resolve.fallback = {
+            fs: false,
+            process: false,
+        };
+    }
+};
+
 module.exports = withPlugins([withLess, withTranspileModules], {
     assetPrefix: process.env.APP_ORIGIN,
     env: {
@@ -68,6 +78,8 @@ module.exports = withPlugins([withLess, withTranspileModules], {
     webpack: (config, options) => {
         fixNextImageOptsAllowSvg(config, options);
         cssModulesNoDashesInClassnames(config);
+        resolveNodeLibsClientSide(config, options);
+
         return config;
     },
     redirects: async () => [

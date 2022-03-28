@@ -43,6 +43,7 @@
         "node-cache": "^5.1.2",
         "node-fetch": "^2.6.7",
         "on-headers": "^1.0.2",
+        "p-limit": "^4.0.0",
         "parse-domain": "^4.1.0",
         "prom-client": "^14.0.1",
         "prop-types": "^15.8.1",
