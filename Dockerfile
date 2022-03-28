@@ -11,7 +11,6 @@ COPY public /app/public/
 COPY next.config.js .env image-manifest* /app/
 COPY server /app/server/
 
-RUN npm install yarn -g
 RUN yarn add sharp
 
 EXPOSE 3000
