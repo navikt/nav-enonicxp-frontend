@@ -34,6 +34,7 @@ const origin = Config.isFailover
 //
 // TODO: refactor our existing image code/CSS :)
 const buildImageCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
+    // Decode then encode to ensure nothing gets double-encoded
     `${origin}/_next/image?url=${encodeURIComponent(
         decodeURIComponent(src)
     )}&w=${maxWidth}&q=${quality}`;
@@ -53,7 +54,7 @@ export const NextImage = (props: Props) => {
         return null;
     }
 
-    // We don't want caching for the editor-views. Always use the raw source.
+    // We don't want caching for the editor-views. Always get the image directly from XP
     if (pageConfig.editorView) {
         return <img {...imgAttribs} src={src} alt={alt} />;
     }
