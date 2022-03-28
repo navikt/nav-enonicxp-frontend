@@ -61,8 +61,6 @@ const resolveNodeLibsClientSide = (config, options) => {
     }
 };
 
-console.log(`Sharp path: ${process.env.NEXT_SHARP_PATH}`);
-
 module.exports = withPlugins([withLess, withTranspileModules], {
     assetPrefix: process.env.APP_ORIGIN,
     env: {
