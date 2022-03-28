@@ -1,4 +1,5 @@
 import fs, { readFileSync } from 'fs';
+import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import pLimit from 'p-limit';
 
 // Limit concurrent fetches
@@ -8,14 +9,15 @@ const manifestFile = './image-manifest';
 
 // This should only run for pages that are generated at build-time
 // Pages generated from dynamic routes will have their images cached
-// at request-time
-export const updateImageManifest = (src: string) => {
-    if (process.env.NEXT_PHASE === 'phase-production-build') {
-        fs.appendFileSync(manifestFile, `${src}\n`, {
-            encoding: 'utf-8',
-        });
-    }
-};
+// automatically at request-time
+export const updateImageManifest =
+    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
+        ? (src: string) => {
+              fs.appendFileSync(manifestFile, `${src}\n`, {
+                  encoding: 'utf-8',
+              });
+          }
+        : () => {};
 
 export const processImageManifest = async () => {
     if (!fs.existsSync(manifestFile)) {
