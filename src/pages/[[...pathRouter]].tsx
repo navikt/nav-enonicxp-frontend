@@ -32,9 +32,7 @@ const getStaticPathsFailover = async () => {
     }
 
     return {
-        paths: contentPaths.map((pathArray) => ({
-            params: { pathRouter: pathArray.split('/').filter(Boolean) },
-        })),
+        paths: contentPaths,
         fallback: false,
     };
 };

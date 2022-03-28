@@ -29,6 +29,8 @@ export const processImageManifest = async () => {
         .split('\n')
         .filter(Boolean);
 
+    console.log(`Prefetching ${urls.length} urls from image manifest`);
+
     return Promise.all(
         urls.map((url) =>
             limit(() =>

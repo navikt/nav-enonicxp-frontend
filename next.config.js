@@ -74,10 +74,13 @@ module.exports = withPlugins([withLess, withTranspileModules], {
         APP_ORIGIN: process.env.APP_ORIGIN,
         XP_ORIGIN: process.env.XP_ORIGIN,
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
+        FAILOVER_ORIGIN: process.env.FAILOVER_ORIGIN,
+        IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
+        NEXT_PHASE: process.env.NEXT_PHASE,
     },
     images: {
-        minimumCacheTTL: 60,
+        minimumCacheTTL: 120,
         dangerouslyAllowSVG: true,
         domains: [process.env.XP_ORIGIN, process.env.ADMIN_ORIGIN],
         deviceSizes: [480, 768, 1024, 1440],
@@ -165,7 +168,9 @@ module.exports = withPlugins([withLess, withTranspileModules], {
             headers: [
                 {
                     key: 'Access-Control-Allow-Origin',
-                    value: process.env.ADMIN_ORIGIN,
+                    value: isFailover
+                        ? process.env.APP_ORIGIN
+                        : process.env.ADMIN_ORIGIN,
                 },
             ],
         },

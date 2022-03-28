@@ -1,5 +1,7 @@
 import React from 'react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import Config from '../../../config';
+import { updateImageManifest } from '../../../utils/fetch/fetch-images';
 
 // These types should match what's specified in next.config
 type DeviceSize = 480 | 768 | 1024 | 1440;
@@ -20,6 +22,10 @@ type Props = {
 const maxWidthDefault: DeviceSize = 1440;
 const qualityDefault = 90;
 
+const origin = Config.isFailover
+    ? process.env.FAILOVER_ORIGIN
+    : process.env.APP_ORIGIN;
+
 // Get the image from the next.js incremental image cache endpoint
 //
 // This is intended to be called from the next.js <Image/> component, which comes
@@ -28,7 +34,7 @@ const qualityDefault = 90;
 //
 // TODO: refactor our existing image code/CSS :)
 const buildImageCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
-    `${process.env.APP_ORIGIN}/_next/image?url=${encodeURIComponent(
+    `${origin}/_next/image?url=${encodeURIComponent(
         src
     )}&w=${maxWidth}&q=${quality}`;
 
@@ -53,6 +59,8 @@ export const NextImage = (props: Props) => {
     }
 
     const cachedSrc = buildImageCacheUrl({ src, maxWidth, quality });
+
+    updateImageManifest(cachedSrc);
 
     return <img {...imgAttribs} src={cachedSrc} alt={alt} />;
 };
