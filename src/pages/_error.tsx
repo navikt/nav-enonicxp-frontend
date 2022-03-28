@@ -4,8 +4,7 @@ import { ContentProps } from '../types/content-props/_content-common';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from '../utils/errors';
 import { fetchWithTimeout } from '../utils/fetch/fetch-utils';
-
-const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+import Config from '../config';
 
 const fetchFailoverHtml = async (path: string) => {
     const url = `${process.env.FAILOVER_ORIGIN}${path}`;
@@ -35,7 +34,7 @@ Error.getInitialProps = async (context): Promise<ContentProps> => {
         return err?.content || makeErrorProps();
     }
 
-    if (!isFailover) {
+    if (!Config.isFailover) {
         const failoverHtml = await fetchFailoverHtml(asPath);
 
         if (failoverHtml) {
