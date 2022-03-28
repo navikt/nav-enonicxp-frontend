@@ -47,6 +47,7 @@ export const NextImage = (props: Props) => {
         return null;
     }
 
+    // We don't want caching for the editor-views. Always use the raw source.
     if (pageConfig.editorView) {
         return <img {...imgAttribs} src={src} alt={alt} />;
     }
