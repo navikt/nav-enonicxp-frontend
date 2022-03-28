@@ -47,7 +47,5 @@ export const NextImage = (props: Props) => {
 
     const cachedSrc = buildImageCacheUrl({ src, maxWidth, quality });
 
-    updateImageManifest(cachedSrc);
-
     return <img {...imgAttribs} src={cachedSrc} alt={alt} />;
 };
