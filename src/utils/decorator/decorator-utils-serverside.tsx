@@ -5,7 +5,7 @@ import {
     fetchDecoratorReact,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
-import { objectToQueryString } from './fetch/fetch-utils';
+import { objectToQueryString } from '../fetch/fetch-utils';
 
 const decoratorUrl = process.env.DECORATOR_FALLBACK_URL;
 const decoratorEnv = process.env.ENV as Props['env'];

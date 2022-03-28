@@ -1,5 +1,7 @@
 import React from 'react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { updateImageManifest } from '../../../utils/fetch/fetch-images';
+import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 
 // These types should match what's specified in next.config
 type DeviceSize = 480 | 768 | 1024 | 1440;
@@ -28,11 +30,33 @@ const qualityDefault = 90;
 //
 // TODO: refactor our existing image code/CSS :)
 const buildImageCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
+    // Decode then encode to ensure nothing gets double-encoded
     `${process.env.APP_ORIGIN}/_next/image?url=${encodeURIComponent(
-        src
+        decodeURIComponent(src)
     )}&w=${maxWidth}&q=${quality}`;
 
-export const NextImage = (props: Props) => {
+const NextImageBuildTime = (props: Props) => {
+    const {
+        src,
+        alt,
+        maxWidth = maxWidthDefault,
+        quality = qualityDefault,
+        ...imgAttribs
+    } = props;
+
+    if (!src) {
+        return null;
+    }
+
+    const cachedSrc = buildImageCacheUrl({ src, maxWidth, quality });
+
+    // This should only run at build-time
+    updateImageManifest(cachedSrc);
+
+    return <img {...imgAttribs} src={cachedSrc} alt={alt} />;
+};
+
+const NextImageRunTime = (props: Props) => {
     const { pageConfig } = usePageConfig();
 
     const {
@@ -47,12 +71,22 @@ export const NextImage = (props: Props) => {
         return null;
     }
 
-    // We don't want caching for the editor-views. Always use the raw source.
+    // We don't want caching for the editor-views. Always get the image directly from XP
     if (pageConfig.editorView) {
         return <img {...imgAttribs} src={src} alt={alt} />;
     }
 
-    const cachedSrc = buildImageCacheUrl({ src, maxWidth, quality });
-
-    return <img {...imgAttribs} src={cachedSrc} alt={alt} />;
+    return (
+        <img
+            {...imgAttribs}
+            src={buildImageCacheUrl({ src, maxWidth, quality })}
+            alt={alt}
+        />
+    );
 };
+
+export const NextImage =
+    typeof process.env !== 'undefined' &&
+    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
+        ? NextImageBuildTime
+        : NextImageRunTime;
