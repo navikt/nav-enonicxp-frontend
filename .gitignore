@@ -35,3 +35,4 @@ yarn-error.log*
 url-lookup-table.json
 /.github-token
 /tsconfig.tsbuildinfo
+/.next-static/
