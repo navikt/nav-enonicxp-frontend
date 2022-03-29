@@ -36,3 +36,4 @@ yarn-error.log*
 /image-manifest
 /.next-static/
 /.env.development.local
+Dockerfile-local
