@@ -1,6 +1,0 @@
-secret: nav-enonicxp-dev1
-ingresses:
-  - https://www.dev.nav.no
-  - https://www.dev.nav.no/soknad-dagpenger-utdanning
-outboundExternalHosts:
-  - nav.no

@@ -71,8 +71,12 @@ module.exports = withPlugins([withLess, withTranspileModules], {
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
     },
     images: {
+        minimumCacheTTL: 60,
         dangerouslyAllowSVG: true,
-        domains: [process.env.XP_ORIGIN, process.env.ADMIN_ORIGIN],
+        // Domains must not include protocol prefixes
+        domains: [process.env.XP_ORIGIN, process.env.ADMIN_ORIGIN].map(
+            (origin) => origin?.replace(/^https?:\/\//, '')
+        ),
         deviceSizes: [480, 768, 1024, 1440],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     },
@@ -84,6 +88,11 @@ module.exports = withPlugins([withLess, withTranspileModules], {
         return config;
     },
     redirects: async () => [
+        {
+            source: '/',
+            destination: '/no/person',
+            permanent: true,
+        },
         {
             source: '/www.nav.no',
             destination: '/',
@@ -128,10 +137,15 @@ module.exports = withPlugins([withLess, withTranspileModules], {
             source: '/_public/beta.nav.no/:path*',
             destination: '/404',
         },
-        {
-            source: '/_/:path*',
-            destination: `${process.env.XP_ORIGIN}/_/:path*`,
-        },
+        // /_/* should point to XP services. Rewrite only if XP is on a different origin
+        ...(process.env.XP_ORIGIN !== process.env.APP_ORIGIN
+            ? [
+                  {
+                      source: '/_/:path*',
+                      destination: `${process.env.XP_ORIGIN}/_/:path*`,
+                  },
+              ]
+            : []),
         ...(process.env.ENV === 'localhost'
             ? [
                   {
