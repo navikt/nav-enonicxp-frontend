@@ -21,9 +21,9 @@ jobs:
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
     with:
-      image: ${{ inputs.image }}
+      image: ${{ input.image }}
       cluster: dev-gcp
-      vars_file: vars-${{ inputs.application }}.yml
+      vars_file: vars-${{ input.application }}.yml
       config_file: config.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
