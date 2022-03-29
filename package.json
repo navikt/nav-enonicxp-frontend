@@ -11,9 +11,8 @@
         "typeCheck": "tsc",
         "lint": "eslint src/",
         "deploy": "npx run-func trigger-workflow.js triggerWorkflow",
-        "deploy-dev-1": "npm run deploy -- deploy.dev1.yml",
-        "deploy-dev-2": "npm run deploy -- deploy.dev2.yml",
-        "deploy-dev-sbs": "npm run deploy -- deploy.dev-sbs.yml"
+        "deploy-dev1": "npm run deploy -- deploy.dev1.yml",
+        "deploy-dev2": "npm run deploy -- deploy.dev2.yml"
     },
     "dependencies": {
         "@navikt/ds-css": "^0.15.3",
