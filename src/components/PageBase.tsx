@@ -7,7 +7,7 @@ import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
 import ContentMapper from './ContentMapper';
 import React from 'react';
-import { fetchPage } from '../utils/fetch-content';
+import { fetchPage } from '../utils/fetch/fetch-content';
 import { makeErrorProps } from '../utils/make-error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';

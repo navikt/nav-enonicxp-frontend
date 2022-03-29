@@ -9,11 +9,6 @@ import { SiteInfoSubHeader } from '../_common/sub-header/SiteInfoSubHeader';
 
 const featureProps = [
     {
-        cookie: EditorFeatureCookie.ReduceReloads,
-        description:
-            'Hindrer de fleste automatiske reloads i komponent-editoren, og viser et varsel dersom andre redaktører gjør endringer på innholdet du jobber med',
-    },
-    {
         cookie: EditorFeatureCookie.HideLeftPanel,
         description:
             'Skjuler venstre-panelet i editoren som standard på komponent-baserte sider',

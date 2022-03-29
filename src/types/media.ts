@@ -1,4 +1,4 @@
-import { XpResponseProps } from '../utils/fetch-content';
+import { XpResponseProps } from '../utils/fetch/fetch-content';
 import { ContentCommonProps } from './content-props/_content-common';
 
 export enum MediaType {
@@ -31,6 +31,11 @@ export type BitmapImage = {
     __typename: MediaType.Image;
     imageUrl?: string;
     mediaUrl?: string;
+    imageInfo?: {
+        imageWidth: number;
+        imageHeight: number;
+        contentType: string;
+    };
 };
 
 export type XpImageProps = VectorImage | BitmapImage;

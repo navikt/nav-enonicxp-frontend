@@ -5,6 +5,7 @@ import {
 import { isContentTypeImplemented } from '../components/ContentMapper';
 import { error1337ReloadProps } from '../components/pages/error-page/errorcode-content/ErrorContent1337';
 import { stripLineBreaks } from './string';
+import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 
 export const logPageLoadError = (errorId: string, message: string) =>
     console.error(`[Page load error] ${errorId} - ${stripLineBreaks(message)}`);
@@ -43,7 +44,7 @@ const errorHandlerProd = (content: ContentProps) => {
 const errorHandlerDev = (content: ContentProps) => {
     if (!revalidateOnErrorCode[content.data.errorCode]) {
         // Do not throw errors at build-time in dev-environments
-        if (process.env.NEXT_PHASE === 'phase-production-build') {
+        if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) {
             return {
                 props: {
                     content: error1337ReloadProps(content._path),

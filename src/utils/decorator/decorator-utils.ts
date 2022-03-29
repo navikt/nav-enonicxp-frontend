@@ -1,13 +1,13 @@
-import { Language } from '../translations';
-import { getContentLanguages } from './languages';
+import { Language } from '../../translations';
+import { getContentLanguages } from '../languages';
 import {
     ContentProps,
     ContentType,
-} from '../types/content-props/_content-common';
-import { LanguageProps } from '../types/language';
-import { stripXpPathPrefix } from './urls';
+} from '../../types/content-props/_content-common';
+import { LanguageProps } from '../../types/language';
+import { stripXpPathPrefix } from '../urls';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
-import { contentTypesWithWhiteHeader } from '../components/_common/top-container/TopContainer';
+import { contentTypesWithWhiteHeader } from '../../components/_common/top-container/TopContainer';
 
 const xpLangToDecoratorLang: {
     [key in Language]: DecoratorParams['language'];

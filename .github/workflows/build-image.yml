@@ -67,6 +67,7 @@ jobs:
           REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
           INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
           PAGE_CACHE_DIR=/tmp/pages
+          IMAGE_CACHE_DIR=/tmp/images
           EOF
       - name: Nextjs cache
         uses: actions/cache@v2
