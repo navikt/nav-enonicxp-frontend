@@ -18,13 +18,16 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 };
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
-    [Taxonomy.BENEFITS]: 'Pengestøtte',
-    [Taxonomy.RIGHTS]: 'Veiledning',
-    [Taxonomy.FOLLOWUP]: 'Oppfølging',
-    [Taxonomy.MEASURES]: 'Tiltak',
-    [Taxonomy.FOR_EMPLOYERS]: 'For arbeidsgivere',
-    [Taxonomy.FOR_PROVIDERS]: 'For samarbeidspartnere',
     [Taxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
+    [Taxonomy.BENEFITS]: 'Pengestøtte',
+    [Taxonomy.FOLLOWUP]: 'Oppfølging',
+    [Taxonomy.FOR_EMPLOYERS]: 'For arbeidsgivere',
+    [Taxonomy.FOR_EVENT_ORGANIZERS]: 'For tiltaksarrangører',
+    [Taxonomy.FOR_HEALTH_SERVICE]: 'For leger og andre behandlere',
+    [Taxonomy.FOR_MUNICIPALITY]: 'For kommunen',
+    [Taxonomy.FOR_PROVIDERS]: 'For samarbeidspartnere',
+    [Taxonomy.MEASURES]: 'Tiltak',
+    [Taxonomy.RIGHTS]: 'Veiledning',
 };
 
 export const bundle = {
