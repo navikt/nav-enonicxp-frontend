@@ -12,7 +12,9 @@ const urls = {
 const Config = {
     vars,
     urls,
-    isFailover: process.env.IS_FAILOVER_INSTANCE === 'true',
+    isFailover:
+        typeof process.env !== 'undefined' &&
+        process.env.IS_FAILOVER_INSTANCE === 'true',
 };
 
 export default Config;
