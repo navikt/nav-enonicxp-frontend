@@ -14,11 +14,8 @@ on:
         options:
           - dev1
           - dev2
-      failover:
-        description: 'Deploy as failover'
-        required: false
-        type: boolean
-        default: false
+          - dev1-failover
+          - dev2-failover
 
 jobs:
   deploy:
@@ -27,6 +24,6 @@ jobs:
       image: ${{ inputs.image }}
       cluster: dev-gcp
       vars_file: vars-${{ inputs.application }}.yml
-      config_file: config${{  }}.yml
+      config_file: config.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
