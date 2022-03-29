@@ -82,7 +82,11 @@ module.exports = withPlugins([withLess, withTranspileModules], {
     images: {
         minimumCacheTTL: 3600 * 24 * 365,
         dangerouslyAllowSVG: true,
-        domains: [process.env.XP_ORIGIN, process.env.ADMIN_ORIGIN],
+        // Domains must not include protocol prefixes
+        domains: [process.env.XP_ORIGIN, process.env.ADMIN_ORIGIN].map(
+            (origin) => origin?.replace(/^https?:\/\//),
+            ''
+        ),
         deviceSizes: [480, 768, 1024, 1440],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     },
