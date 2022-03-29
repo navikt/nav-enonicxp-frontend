@@ -54,6 +54,7 @@ const fixNextImageOptsAllowSvg = (config, options) => {
 const resolveNodeLibsClientSide = (config, options) => {
     if (!options.isServer) {
         config.resolve.fallback = {
+            buffer: false,
             fs: false,
             process: false,
         };

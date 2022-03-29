@@ -57,7 +57,6 @@
         "react-movable": "2.5.4",
         "react-redux": "^7.2.6",
         "rss": "^1.2.2",
-        "sharp": "^0.30.3",
         "ssri": "6.0.2"
     },
     "devDependencies": {

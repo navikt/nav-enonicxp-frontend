@@ -1,8 +1,8 @@
 import React from 'react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import Config from '../../../config';
 import { updateImageManifest } from '../../../utils/fetch/fetch-images';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
+import Config from '../../../config';
 
 // These types should match what's specified in next.config
 type DeviceSize = 480 | 768 | 1024 | 1440;

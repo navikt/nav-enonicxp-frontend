@@ -1,5 +1,4 @@
 import fs, { readFileSync } from 'fs';
-import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import pLimit from 'p-limit';
 import { removeDuplicates } from '../arrays';
 
