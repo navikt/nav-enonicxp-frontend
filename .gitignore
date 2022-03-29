@@ -36,3 +36,5 @@ yarn-error.log*
 /tsconfig.tsbuildinfo
 /image-manifest
 /.next-static/
+/.env.development.local
+Dockerfile-local

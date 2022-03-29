@@ -85,6 +85,11 @@ nextApp.prepare().then(() => {
             throw new Error('Authentication key is not defined!');
         }
 
+        // Ensure the isReady-api is called when running locally
+        if (process.env.ENV === 'localhost') {
+            fetch(`${process.env.APP_ORIGIN}/api/internal/isReady`);
+        }
+
         console.log(`Server started on port ${port}`);
         initHeartbeat();
     });
