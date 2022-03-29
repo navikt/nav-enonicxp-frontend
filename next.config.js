@@ -148,10 +148,15 @@ module.exports = withPlugins([withLess, withTranspileModules], {
             source: '/_public/beta.nav.no/:path*',
             destination: '/404',
         },
-        {
-            source: '/_/:path*',
-            destination: `${process.env.XP_ORIGIN}/_/:path*`,
-        },
+        // /_/* should point to XP services. Rewrite only if XP is on a different origin
+        ...(process.env.XP_ORIGIN !== process.env.APP_ORIGIN
+            ? [
+                  {
+                      source: '/_/:path*',
+                      destination: `${process.env.XP_ORIGIN}/_/:path*`,
+                  },
+              ]
+            : []),
         ...(process.env.ENV === 'localhost'
             ? [
                   {
