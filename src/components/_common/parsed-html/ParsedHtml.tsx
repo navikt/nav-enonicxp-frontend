@@ -155,7 +155,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 }
 
                 return (
-                    <LenkeInline {...props} href={attribs.href}>
+                    <LenkeInline {...props} href={props.href}>
                         {domToReact(validChildren, parserOptions)}
                     </LenkeInline>
                 );
