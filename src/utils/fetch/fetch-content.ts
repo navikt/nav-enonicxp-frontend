@@ -16,6 +16,13 @@ const contentNotFoundMessage = 'Site path not found';
 
 const fetchTimeoutMs = 60000;
 
+const getCacheKey =
+    process.env.NODE_ENV !== 'development'
+        ? () => ({
+              cacheKey: global.cacheKey,
+          })
+        : () => ({});
+
 const fetchSiteContent = async (
     idOrPath: string,
     isDraft = false,
@@ -25,7 +32,7 @@ const fetchSiteContent = async (
         ...(isDraft && { branch: 'draft' }),
         id: idOrPath,
         ...(time && { time }),
-        ...(!isDraft && { cacheKey: global.cacheKey }),
+        ...(!isDraft && getCacheKey()),
     });
     const url = `${xpServiceUrl}/sitecontent${params}`;
     const config = {

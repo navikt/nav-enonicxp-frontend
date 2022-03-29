@@ -1,5 +1,6 @@
 import globalState from '../globalState';
 
+export const appOriginProd = 'https://www.nav.no';
 export const xpContentPathPrefix = '/www.nav.no';
 export const xpServicePath = '/_/service/no.nav.navno';
 export const xpDraftPathPrefix = '/admin/site/preview/default/draft/www.nav.no';
@@ -14,7 +15,7 @@ export const xpServiceUrl = `${xpOrigin}${xpServicePath}`;
 
 export type XpContentRef = string;
 
-const internalUrlPrefix = `^(${appOrigin}|${adminOrigin})?(${xpContentPathPrefix})?`;
+const internalUrlPrefix = `^(${appOrigin}|${appOriginProd}|${adminOrigin})?(${xpContentPathPrefix})?`;
 
 const internalUrlPrefixPattern = new RegExp(internalUrlPrefix, 'i');
 

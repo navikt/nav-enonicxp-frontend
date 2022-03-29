@@ -80,7 +80,7 @@ module.exports = withPlugins([withLess, withTranspileModules], {
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
     },
     images: {
-        minimumCacheTTL: 3600 * 24 * 365,
+        minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 60,
         dangerouslyAllowSVG: true,
         // Domains must not include protocol prefixes
         domains: [process.env.XP_ORIGIN, process.env.ADMIN_ORIGIN].map(

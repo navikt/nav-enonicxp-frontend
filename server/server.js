@@ -60,7 +60,7 @@ nextApp.prepare().then(() => {
         handleInvalidateAllReq(nextApp)
     );
 
-    server.all('*', async (req, res) => {
+    server.all('*', (req, res) => {
         setJsonCacheHeaders(req, res);
 
         return nextRequestHandler(req, res);
@@ -86,6 +86,7 @@ nextApp.prepare().then(() => {
             throw new Error('Authentication key is not defined!');
         }
 
+        // Ensure the isReady-api is called when running locally
         if (process.env.ENV === 'localhost') {
             fetch(`${process.env.APP_ORIGIN}/api/internal/isReady`);
         }

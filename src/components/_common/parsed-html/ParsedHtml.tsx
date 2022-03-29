@@ -150,13 +150,12 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Handle links
             if (tag === 'a') {
-                const href = attribs?.href?.replace('https://www.nav.no', '');
-
                 if (!validChildren) {
                     return <Fragment />;
                 }
+
                 return (
-                    <LenkeInline {...props} href={href}>
+                    <LenkeInline {...props} href={props.href}>
                         {domToReact(validChildren, parserOptions)}
                     </LenkeInline>
                 );
