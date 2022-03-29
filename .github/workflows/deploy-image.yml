@@ -27,6 +27,6 @@ jobs:
       image: ${{ inputs.image }}
       cluster: dev-gcp
       vars_file: vars-${{ inputs.application }}.yml
-      config_file:
+      config_file: config${{  }}.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

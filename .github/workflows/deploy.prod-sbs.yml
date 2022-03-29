@@ -26,5 +26,6 @@ jobs:
       image: ${{ needs.build.outputs.image }}
       cluster: prod-sbs
       vars_file: vars-prod-sbs.yml
+      config_file: config-sbs.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
