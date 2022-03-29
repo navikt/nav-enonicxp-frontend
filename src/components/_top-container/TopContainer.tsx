@@ -56,6 +56,18 @@ export const TopContainer = ({ content }: Props) => {
 
     return (
         <>
+            {isPagePreview && (
+                <PageWarning
+                    labelKey={'draftWarning'}
+                    whiteBg={hasWhiteHeader}
+                />
+            )}
+            {isFailover && (
+                <PageWarning
+                    labelKey={'failoverWarning'}
+                    whiteBg={hasWhiteHeader}
+                />
+            )}
             <div
                 className={classNames(
                     bem(),
@@ -75,8 +87,6 @@ export const TopContainer = ({ content }: Props) => {
                     </section>
                 )}
             </div>
-            {isPagePreview && <PageWarning labelKey={'draftWarning'} />}
-            {isFailover && <PageWarning labelKey={'failoverWarning'} />}
         </>
     );
 };
