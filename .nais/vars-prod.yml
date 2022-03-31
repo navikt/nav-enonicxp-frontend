@@ -2,5 +2,6 @@ appName: nav-enonicxp-frontend
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy
 secret: nav-enonicxp
 ingresses:
+  - https://gcp-test.nav.no
   - https://www.nav.no
   - https://www.nav.no/soknad-dagpenger-utdanning
