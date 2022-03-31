@@ -9,7 +9,7 @@ const nextApp = next({
     quiet: process.env.ENV === 'prod',
 });
 const nextRequestHandler = nextApp.getRequestHandler();
-const port = 3003;
+const port = process.env.PORT || 3003;
 
 nextApp.prepare().then(() => {
     const server = express();
