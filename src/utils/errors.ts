@@ -27,11 +27,11 @@ const revalidateOnErrorCode = {
     404: true, // not found
 };
 
-const appError = (content: ContentProps | any) => ({
+const appError = (content: ContentProps) => ({
     content,
 });
 
-export const errorHandler = async (content: ContentProps) => {
+export const errorHandler = (content: ContentProps) => {
     const { errorCode } = content.data;
 
     if (revalidateOnErrorCode[errorCode]) {
