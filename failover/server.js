@@ -11,6 +11,16 @@ const nextApp = next({
 const nextRequestHandler = nextApp.getRequestHandler();
 const port = process.env.PORT || 3003;
 
+const verifySecret = (req, res, next) => {
+    if (req.headers.secret !== process.env.SERVICE_SECRET) {
+        res.status(404);
+        console.warn(`Invalid secret for ${req.path}`);
+        return nextApp.renderError(null, req, res, req.path);
+    }
+
+    next();
+};
+
 nextApp.prepare().then(() => {
     const server = express();
 
@@ -22,13 +32,10 @@ nextApp.prepare().then(() => {
     }
 
     server.get('/_next', (req, res) => {
-        console.log(`next request for ${req.path}`);
-
         return nextRequestHandler(req, res);
     });
 
-    // TODO: return 404 on external requests (should only be called via the "normal" frontend)
-    server.all('*', (req, res) => {
+    server.all('*', verifySecret, (req, res) => {
         return nextRequestHandler(req, res);
     });
 

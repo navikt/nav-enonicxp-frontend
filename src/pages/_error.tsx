@@ -11,7 +11,11 @@ const fetchFailoverHtml = async (path: string) => {
     const url = `${process.env.FAILOVER_ORIGIN}${path}`;
     console.log(`Fetching failover html from ${url}`);
 
-    return fetchWithTimeout(url, 15000)
+    return fetchWithTimeout(url, 15000, {
+        headers: {
+            secret: process.env.SERVICE_SECRET,
+        },
+    })
         .then((res) => {
             if (res.ok) {
                 return res.text();
