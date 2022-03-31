@@ -8,7 +8,6 @@ const Error = (props: ContentProps) => <PageBase content={props} />;
 
 Error.getInitialProps = ({ res, err, asPath }): ContentProps => {
     if (err?.content) {
-        res.statusCode = err.content.data?.errorCode || res.statusCode;
         return err.content;
     }
 
@@ -20,7 +19,7 @@ Error.getInitialProps = ({ res, err, asPath }): ContentProps => {
         `Unhandled error on path ${asPath} - ${errorMsg}`
     );
 
-    return makeErrorProps(asPath, errorMsg, res.statusCode, errorId);
+    return makeErrorProps(asPath, errorMsg, res?.statusCode, errorId);
 };
 
 export default Error;
