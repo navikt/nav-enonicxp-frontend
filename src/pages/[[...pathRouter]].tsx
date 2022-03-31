@@ -9,6 +9,8 @@ import { fetchPrerenderPaths } from '../utils/fetch/fetch-prerender-paths';
 // during build-time. For regular app deployments we generate pages on demand
 // with incremental regeneration
 
+const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+
 const getStaticPropsFailover: GetStaticProps = async (context) => {
     const pageProps = await fetchPageProps({
         routerQuery: context?.params?.pathRouter,
@@ -55,11 +57,11 @@ const getStaticPathsRegular: GetStaticPaths = async () => {
     };
 };
 
-export const getStaticProps = Config.isFailover
+export const getStaticProps = isFailover
     ? getStaticPropsFailover
     : getStaticPropsRegular;
 
-export const getStaticPaths = Config.isFailover
+export const getStaticPaths = isFailover
     ? getStaticPathsFailover
     : getStaticPathsRegular;
 

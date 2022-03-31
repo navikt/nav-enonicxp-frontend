@@ -1,8 +1,7 @@
 import React from 'react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
-import Config from '../../../config';
-import { NextImageBuildTime } from './NextImageServerOnly';
+import { updateImageManifest } from '../../../utils/fetch/fetch-images';
 
 // These types should match what's specified in next.config
 type DeviceSize = 480 | 768 | 1024 | 1440;
@@ -23,9 +22,10 @@ type Props = {
 const maxWidthDefault: DeviceSize = 1440;
 const qualityDefault = 90;
 
-const origin = Config.isFailover
-    ? process.env.FAILOVER_ORIGIN
-    : process.env.APP_ORIGIN;
+const origin =
+    process.env.IS_FAILOVER_INSTANCE === 'true'
+        ? process.env.FAILOVER_ORIGIN
+        : process.env.APP_ORIGIN;
 
 // Get the image from the next.js incremental image cache endpoint
 //
@@ -34,17 +34,28 @@ const origin = Config.isFailover
 // requires refactoring most of our existing image code/CSS to render correctly
 //
 // TODO: refactor our existing image code/CSS :)
-export const buildImageCacheUrl = ({
-    src,
-    maxWidth,
-    quality,
-}: Partial<Props>) =>
+const buildImageCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
     // Decode then encode to ensure nothing gets double-encoded
     `${origin}/_next/image?url=${encodeURIComponent(
         decodeURIComponent(src)
     )}&w=${maxWidth}&q=${quality}`;
 
-export const NextImage = (props: Props) => {
+const NextImageBuildTime = (props: Props) => {
+    const { src, alt, maxWidth = 1440, quality = 90, ...imgAttribs } = props;
+
+    if (!src) {
+        return null;
+    }
+
+    const cachedSrc = buildImageCacheUrl({ src, maxWidth, quality });
+
+    // This should only run at build-time
+    updateImageManifest(cachedSrc);
+
+    return <img {...imgAttribs} src={cachedSrc} alt={alt} />;
+};
+
+const NextImageRuntime = (props: Props) => {
     const { pageConfig } = usePageConfig();
 
     const {
@@ -72,3 +83,9 @@ export const NextImage = (props: Props) => {
         />
     );
 };
+
+export const NextImage =
+    typeof process.env !== 'undefined' &&
+    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
+        ? NextImageBuildTime
+        : NextImageRuntime;

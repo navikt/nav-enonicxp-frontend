@@ -14,12 +14,7 @@ const port = 3003;
 nextApp.prepare().then(() => {
     const server = express();
 
-    const { SERVICE_SECRET, PAGE_CACHE_DIR, IMAGE_CACHE_DIR } = process.env;
-
-    if (PAGE_CACHE_DIR) {
-        nextApp.server.incrementalCache.incrementalOptions.pagesDir =
-            PAGE_CACHE_DIR;
-    }
+    const { SERVICE_SECRET, IMAGE_CACHE_DIR } = process.env;
 
     if (IMAGE_CACHE_DIR) {
         nextApp.server.imageResponseCache.incrementalCache.cacheDir =
@@ -59,7 +54,7 @@ nextApp.prepare().then(() => {
 
         // Ensure the isReady-api is called when running locally
         if (process.env.ENV === 'localhost') {
-            fetch(`${process.env.APP_ORIGIN}/api/internal/isReady`);
+            fetch(`${process.env.FAILOVER_ORIGIN}/api/internal/isReady`);
         }
 
         console.log(`Server started on port ${port}`);

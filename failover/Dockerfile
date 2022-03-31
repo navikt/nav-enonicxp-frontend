@@ -5,7 +5,7 @@ WORKDIR /app
 ARG READER_TOKEN
 
 COPY package*.json /app/
-COPY .npmrc-docker /app/.npmrc
+COPY /failover/.npmrc /app/.npmrc
 RUN npm ci
 
 RUN rm -f .npmrc
@@ -14,8 +14,8 @@ COPY .next-static /app/.next-static/
 COPY public /app/public/
 
 COPY next.config.js /app/
-COPY .env.local /app/.env
-COPY /tmp/images/image-manifest /tmp/images/
+COPY .env /app/.env
+COPY /tmp/image-cache/ /tmp/image-cache/
 
 EXPOSE 3000
 CMD ["npm", "run", "start-next"]
