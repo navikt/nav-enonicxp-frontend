@@ -2,7 +2,7 @@ name: Deploy to prod-gcp
 on:
   release:
        types: [released]
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   build:
