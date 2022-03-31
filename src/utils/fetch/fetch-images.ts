@@ -5,7 +5,10 @@ import { removeDuplicates } from '../arrays';
 // Limit concurrent fetches
 const limit = pLimit(5);
 
-const manifestFile = './image-manifest';
+const manifestFile =
+    typeof process.env !== 'undefined' && process.env.IMAGE_CACHE_DIR
+        ? `${process.env.IMAGE_CACHE_DIR}/image-manifest`
+        : 'image-manifest';
 
 // This should only run for pages that are generated at build-time
 // Pages generated from dynamic routes will have their images cached

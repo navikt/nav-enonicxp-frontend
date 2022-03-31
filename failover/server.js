@@ -3,34 +3,13 @@ require('dotenv').config();
 const express = require('express');
 const next = require('next');
 const fetch = require('node-fetch');
-const { setJsonCacheHeaders } = require('./set-json-cache-headers');
-const {
-    handleInvalidateReq,
-    handleInvalidateAllReq,
-    setCacheKey,
-} = require('./incremental-cache');
-const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
 
 const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
     quiet: process.env.ENV === 'prod',
 });
 const nextRequestHandler = nextApp.getRequestHandler();
-const port = 3000;
-
-const jsonBodyParser = express.json();
-
-const verifySecret = (req, res, next) => {
-    if (req.headers.secret !== process.env.SERVICE_SECRET) {
-        res.status(404);
-        console.warn(`Invalid secret for ${req.path}`);
-        return nextApp.renderError(null, req, res, req.path);
-    }
-
-    next();
-};
-
-console.log(`Server env: ${process.env.NODE_ENV}`);
+const port = 3003;
 
 nextApp.prepare().then(() => {
     const server = express();
@@ -47,24 +26,14 @@ nextApp.prepare().then(() => {
             IMAGE_CACHE_DIR;
     }
 
-    server.post(
-        '/invalidate',
-        verifySecret,
-        jsonBodyParser,
-        setCacheKey,
-        handleInvalidateReq(nextApp)
-    );
+    server.get('/_next', (req, res) => {
+        console.log(`next request for ${req.path}`);
 
-    server.get(
-        '/invalidate/wipe-all',
-        verifySecret,
-        setCacheKey,
-        handleInvalidateAllReq(nextApp)
-    );
+        return nextRequestHandler(req, res);
+    });
 
+    // TODO: return 404 on external requests (should only be called via the "normal" frontend)
     server.all('*', (req, res) => {
-        setJsonCacheHeaders(req, res);
-
         return nextRequestHandler(req, res);
     });
 
@@ -94,7 +63,6 @@ nextApp.prepare().then(() => {
         }
 
         console.log(`Server started on port ${port}`);
-        initHeartbeat();
     });
 
     const shutdown = () => {
