@@ -2,7 +2,6 @@ name: Deploy to prod
 on:
   release:
        types: [released]
-  workflow_dispatch:
 
 jobs:
   build:
