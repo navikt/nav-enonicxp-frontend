@@ -9,3 +9,10 @@ ingresses:
   - https://www-2.dev.nav.no/arbeidsevne
   - https://www-2.dev.nav.no/arbeidsgiver
   - https://www-2.dev.nav.no/arbeidsrettet
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1000Mi
+  requests:
+    cpu: 500m
+    memory: 1000Mi
