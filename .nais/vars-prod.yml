@@ -4,3 +4,4 @@ secret: nav-enonicxp
 ingresses:
   - https://www.nav.no
   - https://www.nav.no/soknad-dagpenger-utdanning
+  - https://www.nav.no/soker-jobb
