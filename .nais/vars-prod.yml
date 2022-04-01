@@ -3,6 +3,9 @@ revalidatorApp: nav-enonicxp-frontend-revalidator-proxy
 secret: nav-enonicxp
 ingresses:
   - https://www.nav.no
-  - https://www.nav.no/soknad-dagpenger-utdanning
-  - https://www.nav.no/soker-jobb
-  - https://www.nav.no/soknaden-og-cv
+  - https://www.nav.no/soknad
+  - https://www.nav.no/soker
+  - https://www.nav.no/sok-
+  - https://www.nav.no/arbeidsevne
+  - https://www.nav.no/arbeidsgiver
+  - https://www.nav.no/arbeidsrettet
