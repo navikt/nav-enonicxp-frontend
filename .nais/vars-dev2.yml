@@ -6,9 +6,7 @@ ingresses:
   - https://www-2.dev.nav.no/soknad
   - https://www-2.dev.nav.no/soker
   - https://www-2.dev.nav.no/sok-
-  - https://www-2.dev.nav.no/arbeidsevne
-  - https://www-2.dev.nav.no/arbeidsgiver
-  - https://www-2.dev.nav.no/arbeidsrettet
+  - https://www-2.dev.nav.no/arbeids
 resources:
   limits:
     cpu: 1000m
