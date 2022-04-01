@@ -73,9 +73,9 @@ module.exports = withPlugins([withLess, withTranspileModules], {
     images: {
         minimumCacheTTL: 60,
         dangerouslyAllowSVG: true,
-        // Domains must not include protocol prefixes
-        domains: [process.env.XP_ORIGIN, process.env.ADMIN_ORIGIN].map(
-            (origin) => origin?.replace(/^https?:\/\//, '')
+        domains: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map((origin) =>
+            // Domain whitelist must not include protocol prefixes
+            origin?.replace(/^https?:\/\//, '')
         ),
         deviceSizes: [480, 768, 1024, 1440],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -135,6 +135,10 @@ module.exports = withPlugins([withLess, withTranspileModules], {
         },
         {
             source: '/_public/beta.nav.no/:path*',
+            destination: '/404',
+        },
+        {
+            source: '/frontendlogger/:path*',
             destination: '/404',
         },
         // /_/* should point to XP services. Rewrite only if XP is on a different origin
