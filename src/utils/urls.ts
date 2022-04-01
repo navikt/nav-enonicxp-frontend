@@ -48,7 +48,7 @@ export const isAppUrl = (url: string) => url && appUrlPattern.test(url);
 // Matches both relative and absolute urls which points to publically available
 // content internal to the app
 const publicAppUrlPattern = new RegExp(
-    `^(${appOrigin}|${appOriginProd})?($|\\/(${internalPaths.join('|')}))`,
+    `^(${appOrigin}|${appOriginProd})?($|\\/(${internalPaths.join('|')})|_\\/)`,
     'i'
 );
 export const isPublicAppUrl = (url: string) =>
