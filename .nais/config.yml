@@ -35,4 +35,12 @@ spec:
     inbound:
       rules:
         - application: {{revalidatorApp}}
-  {{resources}}
+  resources:
+  {{#with resources}}
+    limits:
+      cpu: {{limits.cpu}}
+      memory: {{limits.memory}}
+    requests:
+      cpu: {{requests.cpu}}
+      memory: {{requests.memory}}
+  {{/with}}
