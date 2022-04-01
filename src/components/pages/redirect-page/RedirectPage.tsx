@@ -6,13 +6,14 @@ import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { stripXpPathPrefix } from '../../../utils/urls';
 
+import style from './RedirectPage.module.scss';
+
 const getTarget = (props: ContentProps, isShadow: boolean) => {
     const target = getTargetIfRedirect(props) || stripXpPathPrefix(props._path);
 
     if (isShadow) {
         return `/shadow${target}`;
     }
-
     return target;
 };
 
@@ -38,7 +39,7 @@ export const RedirectPage = (props: ContentProps) => {
     }, [target, shouldNotRedirect, _path, router]);
 
     return shouldNotRedirect ? (
-        <div className={'redirect-page'}>
+        <div className={style.redirectPage}>
             <BodyLong size="medium">
                 {`Dette er en redirect til `}
                 <LenkeInline href={target}>{target}</LenkeInline>

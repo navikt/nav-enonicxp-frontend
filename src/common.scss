@@ -28,6 +28,10 @@ $border-radius-small: 2px;
 $border-radius-base: 4px;
 $border-radius-large: 6px;
 
+// Varaibles for CMS-editor
+$editorPaddingVertical: 2rem;
+$editorPaddingHorizontal: $editorPaddingVertical * 1.62;
+
 // Makes the element cover the entire screen-width
 @mixin full-width-mixin() {
     $side-width: calc((100vw - 100%) / 2);
