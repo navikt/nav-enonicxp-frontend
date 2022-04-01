@@ -2,6 +2,7 @@ import React from 'react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { updateImageManifest } from '../../../utils/fetch/fetch-images';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
+import { isPublicAppUrl } from '../../../utils/urls';
 
 // These types should match what's specified in next.config
 type DeviceSize = 480 | 768 | 1024 | 1440;
@@ -71,8 +72,8 @@ const NextImageRunTime = (props: Props) => {
         return null;
     }
 
-    // We don't want caching for the editor-views. Always get the image directly from XP
-    if (pageConfig.editorView) {
+    // Skip caching when viewed from the editor, or for external image urls
+    if (pageConfig.editorView || !isPublicAppUrl(src)) {
         return <img {...imgAttribs} src={src} alt={alt} />;
     }
 
