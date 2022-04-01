@@ -4,11 +4,13 @@ import { makeErrorProps } from '../../../utils/make-error-props';
 import { ErrorPage } from '../error-page/ErrorPage';
 import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
 
+import style from './LargeTablePage.module.scss';
+
 export const LargeTablePage = (contentData: LargeTableProps) => {
     const html = contentData.data?.text;
 
     return html || !!contentData.editorView ? (
-        <div className={'large-table-page'}>
+        <div className={style.largeTablePage}>
             <ParsedHtml htmlProps={html} />
         </div>
     ) : (

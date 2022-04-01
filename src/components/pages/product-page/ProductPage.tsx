@@ -2,15 +2,14 @@ import React from 'react';
 import { ComponentMapper } from '../../ComponentMapper';
 import { ProductPageProps } from '../../../types/content-props/dynamic-page-props';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
-import { BEM } from '../../../utils/classnames';
 
-const bem = BEM('product-page');
+import style from './ProductPage.module.scss';
 
 export const ProductPage = (props: ProductPageProps) => {
     return (
-        <div className={bem()}>
+        <div className={style.productPage}>
             <ThemedPageHeader contentProps={props} />
-            <div className={bem('content')}>
+            <div className={style.content}>
                 <ComponentMapper
                     componentProps={props.page}
                     pageProps={props}

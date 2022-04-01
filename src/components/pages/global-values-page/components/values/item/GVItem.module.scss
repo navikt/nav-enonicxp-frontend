@@ -1,6 +1,6 @@
-@import (reference) '../../../../../../common';
+@use 'src/common' as common;
 
-.gv-item {
+.GVItem {
     display: flex;
     justify-content: space-between;
 
@@ -8,19 +8,11 @@
         margin-bottom: 0.5rem;
     }
 
-    &__value {
+    .value {
         margin-left: 0.25rem;
     }
 
-    &__key-editor {
-        display: flex;
-
-        .knapp {
-            margin-left: 0.25rem;
-        }
-    }
-
-    &__right-buttons {
+    .rightButtons {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -30,7 +22,7 @@
         }
 
         & > :not(:last-child) {
-            margin-bottom: #round-rem(0.25rem) [];
+            margin-bottom: 0.25rem;
         }
     }
 }
