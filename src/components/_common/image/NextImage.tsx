@@ -1,6 +1,7 @@
 import React from 'react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
+import { isPublicAppUrl } from '../../../utils/urls';
 import { updateImageManifest } from '../../../utils/fetch/fetch-images';
 
 // These types should match what's specified in next.config
@@ -55,7 +56,7 @@ const NextImageBuildTime = (props: Props) => {
     return <img {...imgAttribs} src={cachedSrc} alt={alt} />;
 };
 
-const NextImageRuntime = (props: Props) => {
+const NextImageRunTime = (props: Props) => {
     const { pageConfig } = usePageConfig();
 
     const {
@@ -70,8 +71,8 @@ const NextImageRuntime = (props: Props) => {
         return null;
     }
 
-    // We don't want caching for the editor-views. Always get the image directly from XP
-    if (pageConfig.editorView) {
+    // Skip caching when viewed from the editor, or for external image urls
+    if (pageConfig.editorView || !isPublicAppUrl(src)) {
         return <img {...imgAttribs} src={src} alt={alt} />;
     }
 
@@ -88,4 +89,4 @@ export const NextImage =
     typeof process.env !== 'undefined' &&
     process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
         ? NextImageBuildTime
-        : NextImageRuntime;
+        : NextImageRunTime;
