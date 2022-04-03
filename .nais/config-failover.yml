@@ -18,11 +18,14 @@ spec:
     initialDelay: 10
   prometheus:
     enabled: true
-    path: /api/internal/metrics
+    path: /internal/metrics
   ingresses:
   {{#each ingresses as |url|}}
     - {{url}}
   {{/each}}
+  env:
+    - name: READER_TOKEN
+      value: {{READER_TOKEN}}
   envFrom:
     - secret: {{secret}}
   replicas:
@@ -37,5 +40,5 @@ spec:
       cpu: '3'
       memory: 2000Mi
     requests:
-      cpu: '1'
+      cpu: 500m
       memory: 1500Mi

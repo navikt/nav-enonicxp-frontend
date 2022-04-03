@@ -1,0 +1,14 @@
+FROM node:16-bullseye
+
+WORKDIR /app
+
+COPY .nais /app/
+COPY /failover/failover-build-local.sh /failover/.npmrc /app/
+COPY public /app/public/
+COPY server /app/server/
+COPY src /app/src/
+COPY Dockerfile package*.json next.config.js tsconfig.json .eslintrc.json /app/
+
+COPY deploy-linux /app/deploy
+
+CMD /app/failover-build.sh

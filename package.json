@@ -10,7 +10,7 @@
         "start-local": "cp .env.prod-local .env && NODE_ENV=production npm run start",
         "start-clean": "rm -fr .next && npm run build-local && npm run start",
         "build-local-failover": "cp failover/.env .env && npm run build",
-        "start-local-failover": "cp failover/.env .env && node failover/server.js",
+        "start-local-failover": "cp failover/.env .env && npm run start",
         "start-clean-failover": "rm -fr .next-static && npm run build-local-failover && npm run start-local-failover",
         "typeCheck": "tsc",
         "lint": "eslint src/",

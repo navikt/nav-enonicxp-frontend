@@ -12,34 +12,33 @@ const {
     setCacheKey,
 } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
+const { validateSecret } = require('./validate-secret');
 
 const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
     quiet: process.env.ENV === 'prod',
 });
-const nextRequestHandler = nextApp.getRequestHandler();
-const port = 3000;
-
-const jsonBodyParser = express.json();
-const prometheusMiddleware = expressPromBundle({
-    includePath: true,
-    metricsPath: '/internal/metrics',
-});
-
-const verifySecret = (req, res, next) => {
-    if (req.headers.secret !== process.env.SERVICE_SECRET) {
-        res.status(404);
-        console.warn(`Invalid secret for ${req.path}`);
-        return nextApp.renderError(null, req, res, req.path);
-    }
-
-    next();
-};
 
 nextApp.prepare().then(() => {
     const server = express();
+    const port = process.env.PORT || 3000;
 
-    const { SERVICE_SECRET, PAGE_CACHE_DIR, IMAGE_CACHE_DIR } = process.env;
+    const jsonBodyParser = express.json();
+    const prometheusMiddleware = expressPromBundle({
+        includePath: true,
+        metricsPath: '/internal/metrics',
+    });
+
+    const nextRequestHandler = nextApp.getRequestHandler();
+
+    const {
+        SERVICE_SECRET,
+        PAGE_CACHE_DIR,
+        IMAGE_CACHE_DIR,
+        APP_ORIGIN,
+        FAILOVER_ORIGIN,
+        IS_FAILOVER_INSTANCE,
+    } = process.env;
 
     if (PAGE_CACHE_DIR) {
         nextApp.server.incrementalCache.incrementalOptions.pagesDir =
@@ -53,7 +52,7 @@ nextApp.prepare().then(() => {
 
     server.post(
         '/invalidate',
-        verifySecret,
+        validateSecret,
         jsonBodyParser,
         setCacheKey,
         handleInvalidateReq(nextApp)
@@ -61,7 +60,7 @@ nextApp.prepare().then(() => {
 
     server.get(
         '/invalidate/wipe-all',
-        verifySecret,
+        validateSecret,
         setCacheKey,
         handleInvalidateAllReq(nextApp)
     );
@@ -94,7 +93,7 @@ nextApp.prepare().then(() => {
 
         // Ensure the isReady-api is called when running locally
         if (process.env.ENV === 'localhost') {
-            fetch(`${process.env.APP_ORIGIN}/api/internal/isReady`);
+            fetch(`http://localhost:${port}/api/internal/isReady`);
         }
 
         console.log(`Server started on port ${port}`);

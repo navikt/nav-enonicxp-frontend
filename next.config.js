@@ -62,11 +62,12 @@ const resolveNodeLibsClientSide = (config, options) => {
 };
 
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+const isLocal = process.env.ENV === 'localhost';
 
 console.log(`Env: ${process.env.NODE_ENV} - Failover: ${isFailover}`);
 
 module.exports = withPlugins([withLess, withTranspileModules], {
-    distDir: isFailover ? '.next-static' : '.next',
+    distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: isFailover
         ? process.env.FAILOVER_ORIGIN
         : process.env.APP_ORIGIN,
@@ -164,7 +165,7 @@ module.exports = withPlugins([withLess, withTranspileModules], {
                   },
               ]
             : []),
-        ...(process.env.ENV === 'localhost'
+        ...(isLocal
             ? [
                   {
                       source: '/admin/site/preview/default/draft/:path*',

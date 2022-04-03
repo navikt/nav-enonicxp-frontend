@@ -39,3 +39,5 @@ yarn-error.log*
 /tsconfig.tsbuildinfo
 /image-manifest
 /.next-static/
+/failover/Dockerfile-local
+/failover/failover-build-and-deploy-local.sh

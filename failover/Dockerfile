@@ -10,7 +10,7 @@ RUN npm ci
 
 RUN rm -f .npmrc
 
-COPY /failover/server.js /app/server/server.js
+COPY server /app/server/
 COPY .next-static /app/.next-static/
 COPY public /app/public/
 
