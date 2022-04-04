@@ -2,15 +2,14 @@ import React from 'react';
 import { ComponentMapper } from '../../ComponentMapper';
 import { SituationPageProps } from '../../../types/content-props/dynamic-page-props';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
-import { BEM } from '../../../utils/classnames';
 
-const bem = BEM('situation-page');
+import style from './SituationPage.module.scss';
 
 export const SituationPage = (props: SituationPageProps) => {
     return (
-        <div className={bem()}>
+        <div className={style.situationPage}>
             <ThemedPageHeader contentProps={props} />
-            <div className={bem('content')}>
+            <div className={style.content}>
                 <ComponentMapper
                     componentProps={props.page}
                     pageProps={props}
