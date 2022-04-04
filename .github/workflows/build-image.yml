@@ -38,6 +38,8 @@ on:
     secrets:
       READER_TOKEN:
         required: true
+      SERVICE_SECRET:
+        required: false
     outputs:
       image:
         description: "Url to docker image"
@@ -88,6 +90,8 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Build application
         run: npm run build
+        env:
+          SERVICE_SECRET: ${{ secret.SERVICE_SECRET }}
       - name: Login to Docker registry
         uses: docker/login-action@v1
         with:
