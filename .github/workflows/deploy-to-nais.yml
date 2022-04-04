@@ -12,7 +12,7 @@ on:
         required: true
         type: string
       vars_file:
-        required: false
+        required: true
         type: string
     secrets:
       NAIS_DEPLOY_APIKEY:
@@ -32,4 +32,4 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/${{ inputs.config_file }}
           VAR: image=${{ inputs.image }}
-          VARS: ${{ inputs.vars_file && '.nais/${{ inputs.vars_file }}' || null }}
+          VARS: .nais/${{ inputs.vars_file }}
