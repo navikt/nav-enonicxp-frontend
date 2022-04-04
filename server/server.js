@@ -62,6 +62,8 @@ nextApp.prepare().then(() => {
             }
         );
 
+        // We don't want the failover instance to be publically available. This is served by proxy
+        // via the public-facing regular frontend
         server.all('*', (req, res) => {
             if (req.headers.secret !== SERVICE_SECRET) {
                 res.status(404);
