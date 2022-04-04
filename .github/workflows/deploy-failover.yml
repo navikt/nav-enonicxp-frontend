@@ -16,7 +16,7 @@ jobs:
     name: Build docker image for naisjob
     runs-on: ubuntu-latest
     env:
-      image: ghcr.io/${{ github.repository }}:${{ github.event.inputs.application }}-failover-${{ github.sha }}
+      image: ghcr.io/${{ github.repository }}:build-and-deploy-${{ github.event.inputs.application }}-failover-${{ github.sha }}
     outputs:
       image: ${{ env.image }}
     steps:
@@ -37,7 +37,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push docker image
         run: |
-          docker build -t ${{ env.image }} .
+          docker build -f failover/Dockerfile-deploy-job -t ${{ env.image }} .
           docker push ${{ env.image }}
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
@@ -45,8 +45,6 @@ jobs:
     with:
       image: ${{ needs.build.outputs.image }}
       cluster: ${{ github.event.inputs.application == prod && prod || dev }}-gcp
-      vars_file: vars-${{ github.event.inputs.application }}-failover.yml
-      config_file: config-failover.yml
+      config_file: config-failover-deploy-job.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-      READER_TOKEN: ${{ secrets.READER_TOKEN }}

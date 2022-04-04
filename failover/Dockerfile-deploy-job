@@ -1,0 +1,13 @@
+FROM node:16-bullseye-slim
+
+WORKDIR /app
+
+COPY failover /app/
+COPY public /app/public/
+COPY server /app/server/
+COPY src /app/src/
+COPY package*.json next.config.js tsconfig.json .eslintrc.json /app/
+
+COPY deploy-linux /app/deploy
+
+CMD /app/failover-build-and-deploy.sh

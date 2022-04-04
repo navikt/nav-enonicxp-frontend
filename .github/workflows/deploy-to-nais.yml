@@ -8,17 +8,15 @@ on:
       cluster:
         required: true
         type: string
-      vars_file:
-        required: true
-        type: string
       config_file:
         required: true
+        type: string
+      vars_file:
+        required: false
         type: string
     secrets:
       NAIS_DEPLOY_APIKEY:
         required: true
-      READER_TOKEN:
-        required: false
 
 jobs:
   deploy:
@@ -33,5 +31,5 @@ jobs:
           CLUSTER: ${{ inputs.cluster }}
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/${{ inputs.config_file }}
-          VAR: image=${{ inputs.image }},READER_TOKEN=${{ secrets.READER_TOKEN }}
+          VAR: image=${{ inputs.image }}
           VARS: .nais/${{ inputs.vars_file }}

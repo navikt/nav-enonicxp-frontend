@@ -1,4 +1,3 @@
----
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
@@ -23,9 +22,6 @@ spec:
   {{#each ingresses as |url|}}
     - {{url}}
   {{/each}}
-  env:
-    - name: READER_TOKEN
-      value: {{READER_TOKEN}}
   envFrom:
     - secret: {{secret}}
   replicas:

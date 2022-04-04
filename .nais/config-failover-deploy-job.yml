@@ -1,0 +1,20 @@
+apiVersion: nais.io/v1alpha1
+kind: Naisjob
+metadata:
+  name: nav-enonicxp-failover-deploy-test1
+  namespace: personbruker
+  labels:
+    team: personbruker
+spec:
+  image: {{image}}
+  team: personbruker
+  envFrom:
+    - secret: nav-enonicxp-dev2
+    - secret: nav-enonicxp-frontend-failover
+  resources:
+    limits:
+      cpu: '3'
+      memory: 2000Mi
+    requests:
+      cpu: 500m
+      memory: 1500Mi
