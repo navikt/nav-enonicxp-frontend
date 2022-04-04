@@ -11,5 +11,6 @@ COPY package*.json next.config.js tsconfig.json .eslintrc.json /app/
 COPY deploy-linux /app/deploy
 
 RUN chmod +x /app/failover-build-and-deploy.sh
+RUN chown -R 1069 /app
 
-CMD /app/failover-build-and-deploy.sh
+CMD bash -e /app/failover-build-and-deploy.sh
