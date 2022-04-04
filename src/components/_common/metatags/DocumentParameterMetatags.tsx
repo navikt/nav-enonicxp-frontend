@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import Head from 'next/head';
-import { getDecoratorParams } from '../../../utils/decorator-utils';
+import { getDecoratorParams } from '../../../utils/decorator/decorator-utils';
 
 type Props = {
     content: ContentProps;
@@ -10,6 +10,7 @@ type Props = {
 export enum DocumentParameter {
     DecoratorParams = '_decoratorParams',
     HtmlLang = '_htmlLang',
+    DecoratorDisabled = 'decoratorDisabled',
 }
 
 const isServerSide = typeof window === 'undefined';

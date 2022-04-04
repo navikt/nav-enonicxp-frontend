@@ -17,6 +17,9 @@ on:
       APP_ORIGIN:
         required: true
         type: string
+      REVALIDATOR_PROXY_ORIGIN:
+        required: true
+        type: string
       DECORATOR_FALLBACK_URL:
         required: true
         type: string
@@ -28,8 +31,6 @@ on:
         type: string
     secrets:
       READER_TOKEN:
-        required: true
-      SERVICE_SECRET:
         required: true
     outputs:
       image:
@@ -63,10 +64,10 @@ jobs:
           APP_ORIGIN=${{ inputs.APP_ORIGIN }}
           DECORATOR_FALLBACK_URL=${{ inputs.DECORATOR_FALLBACK_URL }}
           XP_ORIGIN=${{ inputs.XP_ORIGIN }}
-          REVALIDATOR_PROXY_ORIGIN=http://nav-enonicxp-frontend-revalidator-proxy
-          SERVICE_SECRET=${{ secrets.SERVICE_SECRET }}
+          REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
           INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
           PAGE_CACHE_DIR=/tmp/pages
+          IMAGE_CACHE_DIR=/tmp/images
           EOF
       - name: Nextjs cache
         uses: actions/cache@v2
@@ -86,7 +87,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push docker image
-        id: build_image
         run: |
           docker build -t ${{ env.image }} .
           docker push ${{ env.image }}

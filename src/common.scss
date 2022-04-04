@@ -44,6 +44,26 @@ $border-radius-large: 6px;
     box-shadow: 0 0 0 3px if($inset, inset, null) $navds-semantic-color-focus;
 }
 
+@mixin link-border-bottom-mixin($underlineDefault: true) {
+    @if $underlineDefault {
+        border-bottom: 1px $navds-semantic-color-link solid;
+    } @else {
+        border-bottom-color: transparent;
+    }
+
+    text-decoration: none;
+    transition: border-bottom-color 0.12s ease-out;
+
+    &:hover,
+    &:focus {
+        @if $underlineDefault {
+            border-bottom-color: transparent;
+        } @else {
+            border-bottom: 1px $navds-semantic-color-link solid;
+        }
+    }
+}
+
 @function withUnit($value, $unit) {
     $result: '#{$value}#{unit}';
 }
@@ -58,19 +78,23 @@ $border-radius-large: 6px;
     // h3 signifies a new "sub chapter" within a section.
     // should have extra spacing above content, but only if
     // not the topmost element within region. Except first-child.
-    .part {
-        .html-area,
-        &__dynamic-header {
-            h3 {
-                margin-top: 2.75rem;
+    :global {
+        .part {
+            .html-area,
+            &__dynamic-header {
+                h3 {
+                    margin-top: 2.75rem;
+                }
             }
         }
     }
 
-    .region__content {
-        > :first-child {
-            h3:first-child {
-                margin-top: 0;
+    :global {
+        .region__content {
+            > :first-child {
+                h3:first-child {
+                    margin-top: 0;
+                }
             }
         }
     }
@@ -79,13 +103,15 @@ $border-radius-large: 6px;
     // within a region__content should not have margin-bottom.
     // Reason for select all (">"): fragments are inserted without a class,
     // so just select any child that may contain any of the elements.
-    .region__content {
-        > :last-child {
-            .card:last-child,
-            .calculator,
-            ul:last-child,
-            p:last-child {
-                margin-bottom: 0;
+    :global {
+        .region__content {
+            > :last-child {
+                .card:last-child,
+                .calculator,
+                ul:last-child,
+                p:last-child {
+                    margin-bottom: 0;
+                }
             }
         }
     }

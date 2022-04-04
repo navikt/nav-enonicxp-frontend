@@ -7,16 +7,18 @@ import { useFilterState } from '../../../store/hooks/useFilteredContent';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { FilterMenuProps } from '../../../types/component-props/parts/filter-menu';
-import { Expandable } from '../../_common/expandable/Expandable';
+import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilterExplanation } from '../../_common/filter-bar/FilterExplanation';
 import { FilterCheckbox } from './FilterCheckbox';
 import { BEM } from '../../../utils/classnames';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { checkIfFilterFirstInPage } from './helpers';
 
 const bem = BEM('filters-menu');
 
-export const FiltersMenu = ({ config }: FilterMenuProps) => {
+export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
     const { categories, description, expandableTitle, title } = config;
 
     const {
@@ -26,13 +28,24 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         toggleFilter,
     } = useFilterState();
 
-    const { language } = usePageConfig();
+    const isFirstFilterInPage = checkIfFilterFirstInPage({ path, page });
+
+    const { language, pageConfig } = usePageConfig();
+    const { editorView } = pageConfig;
 
     useEffect(() => {
-        setAvailableFilters(categories);
-    }, [categories, setAvailableFilters]);
+        // Multiple FilterMenus in same page will break.
+        // So only setAvailableFilters (adding filters to Redux store)
+        // if this filter is the first one.
+        if (isFirstFilterInPage) {
+            setAvailableFilters(categories);
+        }
+    }, [categories, setAvailableFilters, isFirstFilterInPage]);
 
     useEffect(() => {
+        if (isFirstFilterInPage) {
+            return;
+        }
         return () => {
             clearFiltersForPage();
         };
@@ -49,6 +62,19 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
         });
         toggleFilter(filter.id);
     };
+
+    if (!isFirstFilterInPage) {
+        return (
+            <EditorHelp
+                type="error"
+                text="Du har lagt til flere filtreringsbokser (Hva er situasjonen din?). Du kan bare ha én filtreringsboks per side. Legg heller inn flere filtreringsvalg i den ene boksen. Fjern denne feilmeldingen ved å høyreklikke og velge fjern."
+            />
+        );
+    }
+
+    if (!editorView && !isFirstFilterInPage) {
+        return null;
+    }
 
     // Will only show if editor didn't add any actual filters in the FiltersMenu part.
     if (!config?.categories) {
@@ -67,7 +93,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
             <BodyLong className={bem('introduction')} id="description">
                 {description || ''}
             </BodyLong>
-            <Expandable
+            <ExpandableComponentWrapper
                 {...config}
                 expandableTitle={expandableTitle || defaultExpandableTitle}
                 analyticsOriginTag="filter"
@@ -100,7 +126,7 @@ export const FiltersMenu = ({ config }: FilterMenuProps) => {
                         </CheckboxGroup>
                     );
                 })}
-            </Expandable>
+            </ExpandableComponentWrapper>
         </section>
     );
 };

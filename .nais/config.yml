@@ -2,8 +2,8 @@
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: nav-enonicxp-frontend
-  namespace: {{namespace}}
+  name: {{appName}}
+  namespace: personbruker
   labels:
     team: personbruker
 spec:
@@ -18,25 +18,29 @@ spec:
     initialDelay: 10
   prometheus:
     enabled: true
-    path: /api/internal/metrics
+    path: /internal/metrics
   ingresses:
   {{#each ingresses as |url|}}
     - {{url}}
   {{/each}}
+  envFrom:
+    - secret: {{secret}}
   replicas:
     min: 2
     max: 4
-  webproxy: true
   accessPolicy:
     outbound:
-      external:
-      {{#each outboundExternalHosts as |host|}}
-        - host: {{host}}
-      {{/each}}
+      rules:
+        - application: {{revalidatorApp}}
+    inbound:
+      rules:
+        - application: {{revalidatorApp}}
   resources:
+  {{#with resources}}
     limits:
-      cpu: '3'
-      memory: 2000Mi
+      cpu: {{limits.cpu}}
+      memory: {{limits.memory}}
     requests:
-      cpu: '1'
-      memory: 1500Mi
+      cpu: {{requests.cpu}}
+      memory: {{requests.memory}}
+  {{/with}}

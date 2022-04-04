@@ -13,21 +13,25 @@
 
     &.situation {
         //TODO: endre til SituationPage.$situationPageColor når den er skrevet om til Scss
-        box-shadow: 0 -4px 0 common.$navds-global-color-orange-200 inset;
+        box-shadow: 0 -4px 0 common.$navds-global-color-orange-500 inset;
     }
 
     &.product {
         //TODO: endre til ProductPage.$productPageColor når den er skrevet om til Scss
-        box-shadow: 0 -4px 0 common.$navds-global-color-green-200 inset;
+        box-shadow: 0 -4px 0 common.$navds-global-color-green-500 inset;
     }
 
     &.guide {
         //TODO: endre til GuidePage.$guidePageColor når den er skrevet om til Scss
-        box-shadow: 0 -4px 0 common.$navds-global-color-blue-200 inset;
+        box-shadow: 0 -4px 0 common.$navds-global-color-lightblue-500 inset;
     }
 
     &.themedpage {
-        box-shadow: 0 -4px 0 common.$navds-global-color-gray-600 inset;
+        box-shadow: 0 -4px 0 common.$navds-global-color-limegreen-500 inset;
+    }
+
+    &.tool {
+        box-shadow: 0 -4px 0 common.$navds-global-color-deepblue-500 inset;
     }
 
     @media #{common.$mq-screen-mobile} {

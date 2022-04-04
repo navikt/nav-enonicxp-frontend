@@ -16,6 +16,7 @@ import { GuidePage } from './pages/guide-page/GuidePage';
 import { ThemedArticlePage } from './pages/themed-article-page/ThemedArticlePage';
 import { ProductPage } from './pages/product-page/ProductPage';
 import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
+import { MainArticleChapterPage } from './pages/main-article-chapter-page/MainArticleChapterPage';
 
 const contentToReactComponent: Partial<{
     [key in ContentType]: React.FunctionComponent<ContentProps>;
@@ -29,14 +30,13 @@ const contentToReactComponent: Partial<{
     [ContentType.ContactInformationPage]: ContactInformationPage,
 
     [ContentType.SituationPage]: SituationPage,
-    [ContentType.EmployerSituationPage]: SituationPage,
     [ContentType.ProductPage]: ProductPage,
     [ContentType.GuidePage]: GuidePage,
     [ContentType.ThemedArticlePage]: ThemedArticlePage,
 
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.MainArticle]: DynamicPage,
-    [ContentType.MainArticleChapter]: DynamicPage,
+    [ContentType.MainArticleChapter]: MainArticleChapterPage,
     [ContentType.OfficeInformation]: DynamicPage,
     [ContentType.PageList]: DynamicPage,
     [ContentType.SectionPage]: DynamicPage,

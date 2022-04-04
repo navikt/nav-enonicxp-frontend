@@ -18,9 +18,16 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 };
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
     [Taxonomy.BENEFITS]: 'Pengestøtte',
-    [Taxonomy.RIGHTS]: 'Veiledning',
     [Taxonomy.FOLLOWUP]: 'Oppfølging',
+    [Taxonomy.FOR_EMPLOYERS]: 'For arbeidsgivere',
+    [Taxonomy.FOR_EVENT_ORGANIZERS]: 'For tiltaksarrangører',
+    [Taxonomy.FOR_HEALTH_SERVICE]: 'For leger og andre behandlere',
+    [Taxonomy.FOR_MUNICIPALITY]: 'For kommunen',
+    [Taxonomy.FOR_PROVIDERS]: 'For samarbeidspartnere',
+    [Taxonomy.MEASURES]: 'Tiltak',
+    [Taxonomy.RIGHTS]: 'Veiledning',
 };
 
 export const bundle = {
@@ -71,12 +78,20 @@ export const bundle = {
     },
     relatedContent: relatedContent,
     productTaxonomies,
+    products: {
+        person: 'For privatpersoner',
+        employer: 'For arbeidsgivere',
+        provider: 'For samarbeidspartnere',
+    },
     situations: {
-        youMayHaveRightTo: 'Dette kan du ha rett til',
-        employerNeedToKnow: 'Som arbeidsgiver må du vite dette',
+        person: 'Dette kan du ha rett til',
+        employer: 'For arbeidsgivere',
+        provider: 'For samarbeidspartnere',
     },
     guides: {
-        howTo: 'Slik gjør du det',
+        person: 'Slik gjør du det',
+        employer: 'For arbeidsgivere',
+        provider: 'For samarbeidspartnere',
     },
     publishingCalendar: {
         event: 'Kalenderhendelse',
@@ -110,9 +125,10 @@ export const bundle = {
             openNow: 'Åpent nå',
             opensAt: 'Åpner {$1} kl {$2}',
             closedNow: 'Stengt nå',
-            seeMoreOptions: 'Mer om tastevalg',
+            seeMoreOptions: 'Mer om åpningstider og tastevalg',
             todaysPhoneOpeningHours: 'Åpningstider på telefon i dag',
             callUsAt: 'Ring oss på',
+            businessDays: 'hverdager',
         },
     },
     dateTime: {
@@ -135,6 +151,9 @@ export const bundle = {
         label: 'Versjonshistorikk',
         title: 'Vis historisk innhold',
         loading: 'Laster historisk innhold...',
+    },
+    draft: {
+        warningText: 'Utkast - siden er under arbeid',
     },
 };
 

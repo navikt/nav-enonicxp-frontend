@@ -7,7 +7,7 @@ import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
 import ContentMapper from './ContentMapper';
 import React from 'react';
-import { fetchPage } from '../utils/fetch-content';
+import { fetchPage } from '../utils/fetch/fetch-content';
 import { makeErrorProps } from '../utils/make-error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { getTargetIfRedirect } from '../utils/redirects';
@@ -83,12 +83,21 @@ const redirectProps = (destination: string, isPermanent: boolean) => ({
     },
 });
 
-export const fetchPageProps = async (
-    routerQuery: string | string[],
+interface FetchPageProps {
+    routerQuery: string | string[];
+    isDraft?: boolean;
+    isPagePreview?: boolean;
+    secret: string;
+    versionTimestamp?: string;
+}
+
+export const fetchPageProps = async ({
+    routerQuery,
     isDraft = false,
-    secret: string,
-    versionTimestamp?: string
-): Promise<StaticProps> => {
+    isPagePreview = false,
+    secret,
+    versionTimestamp,
+}: FetchPageProps): Promise<StaticProps> => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage(xpPath, isDraft, secret, versionTimestamp);
 
@@ -114,7 +123,7 @@ export const fetchPageProps = async (
         return errorHandler(content);
     }
 
-    if (!isDraft) {
+    if (!isDraft && !isPagePreview) {
         const redirectTarget = getTargetIfRedirect(content);
         if (redirectTarget) {
             return redirectProps(

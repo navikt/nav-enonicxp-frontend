@@ -36,7 +36,7 @@ export interface GuidePageProps extends ContentProps {
     data: GuidePageData;
 }
 export interface SituationPageProps extends ContentProps {
-    __typename: ContentType.SituationPage | ContentType.EmployerSituationPage;
+    __typename: ContentType.SituationPage;
     data: SituationPageData;
 }
 

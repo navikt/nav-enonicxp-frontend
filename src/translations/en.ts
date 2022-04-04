@@ -3,9 +3,16 @@ import { MenuListItemKey } from '../types/menu-list-items';
 import { Taxonomy } from 'types/taxonomies';
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
     [Taxonomy.BENEFITS]: 'Benefits',
-    [Taxonomy.RIGHTS]: 'Counselling',
     [Taxonomy.FOLLOWUP]: 'Follow-up',
+    [Taxonomy.FOR_EMPLOYERS]: 'For employers',
+    [Taxonomy.FOR_EVENT_ORGANIZERS]: 'For schemes organizers',
+    [Taxonomy.FOR_HEALTH_SERVICE]: 'For physicians and other therapists',
+    [Taxonomy.FOR_MUNICIPALITY]: 'For the municipality',
+    [Taxonomy.FOR_PROVIDERS]: 'For providers',
+    [Taxonomy.MEASURES]: 'Measures',
+    [Taxonomy.RIGHTS]: 'Counselling',
 };
 
 export const bundle: Translations = {
@@ -81,12 +88,20 @@ export const bundle: Translations = {
         [MenuListItemKey.Selfservice]: 'Selfservice',
         [MenuListItemKey.Shortcuts]: 'Shortcuts',
     },
+    products: {
+        person: 'For individuals',
+        employer: 'For employers',
+        provider: 'For providers',
+    },
     situations: {
-        youMayHaveRightTo: 'You may have right to this',
-        employerNeedToKnow: 'As an employer, you need to know this',
+        person: 'You may have right to this',
+        employer: 'For employers',
+        provider: 'For providers',
     },
     guides: {
-        howTo: 'How to',
+        person: 'How to',
+        employer: 'For employers',
+        provider: 'For providers',
     },
     productTaxonomies,
     header: {
@@ -120,11 +135,15 @@ export const bundle: Translations = {
             seeMoreOptions: 'See more options',
             todaysPhoneOpeningHours: 'Phone hours today',
             callUsAt: 'Call us at',
+            businessDays: 'business days',
         },
     },
     versionHistory: {
         label: 'Version history',
         title: 'Historic versions',
         loading: 'Loading historic version...',
+    },
+    draft: {
+        warningText: 'Draft - this page is still in progress',
     },
 };

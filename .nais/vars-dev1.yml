@@ -1,0 +1,16 @@
+appName: nav-enonicxp-frontend-dev1
+revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev1
+secret: nav-enonicxp-dev1
+ingresses:
+  - https://www.dev.nav.no
+  - https://www.dev.nav.no/soknad
+  - https://www.dev.nav.no/soker
+  - https://www.dev.nav.no/sok-
+  - https://www.dev.nav.no/arbeids
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1000Mi
+  requests:
+    cpu: 500m
+    memory: 1000Mi
