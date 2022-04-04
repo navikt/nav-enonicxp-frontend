@@ -24,10 +24,13 @@ nextApp.prepare().then(() => {
     const port = process.env.PORT || 3000;
 
     const jsonBodyParser = express.json();
+
     const prometheusMiddleware = expressPromBundle({
         includePath: true,
         metricsPath: '/internal/metrics',
     });
+
+    server.use(prometheusMiddleware);
 
     const nextRequestHandler = nextApp.getRequestHandler();
 
@@ -35,12 +38,13 @@ nextApp.prepare().then(() => {
         SERVICE_SECRET,
         PAGE_CACHE_DIR,
         IMAGE_CACHE_DIR,
-        APP_ORIGIN,
-        FAILOVER_ORIGIN,
         IS_FAILOVER_INSTANCE,
+        ENV,
     } = process.env;
 
-    if (PAGE_CACHE_DIR) {
+    const isFailover = IS_FAILOVER_INSTANCE === 'true';
+
+    if (!isFailover && PAGE_CACHE_DIR) {
         nextApp.server.incrementalCache.incrementalOptions.pagesDir =
             PAGE_CACHE_DIR;
     }
@@ -50,26 +54,43 @@ nextApp.prepare().then(() => {
             IMAGE_CACHE_DIR;
     }
 
-    server.post(
-        '/invalidate',
-        validateSecret,
-        jsonBodyParser,
-        setCacheKey,
-        handleInvalidateReq(nextApp)
-    );
+    if (isFailover) {
+        server.get(
+            ['/_next/*', '/api/internal/*', '/internal/*'],
+            (req, res) => {
+                return nextRequestHandler(req, res);
+            }
+        );
 
-    server.get(
-        '/invalidate/wipe-all',
-        validateSecret,
-        setCacheKey,
-        handleInvalidateAllReq(nextApp)
-    );
+        server.all('*', (req, res) => {
+            if (req.headers.secret !== SERVICE_SECRET) {
+                res.status(404);
+                return nextApp.renderError(undefined, req, res, req.path);
+            }
+            console.log(`normal request to ${req.path}`);
+            return nextRequestHandler(req, res);
+        });
+    } else {
+        server.post(
+            '/invalidate',
+            validateSecret,
+            jsonBodyParser,
+            setCacheKey,
+            handleInvalidateReq(nextApp)
+        );
 
-    server.all('*', prometheusMiddleware, (req, res) => {
-        setJsonCacheHeaders(req, res);
+        server.get(
+            '/invalidate/wipe-all',
+            validateSecret,
+            setCacheKey,
+            handleInvalidateAllReq(nextApp)
+        );
 
-        return nextRequestHandler(req, res);
-    });
+        server.all('*', (req, res) => {
+            setJsonCacheHeaders(req, res);
+            return nextRequestHandler(req, res);
+        });
+    }
 
     // Handle errors
     server.use((err, req, res, next) => {
@@ -91,13 +112,16 @@ nextApp.prepare().then(() => {
             throw new Error('Authentication key is not defined!');
         }
 
+        console.log(`Server started on port ${port}`);
+
         // Ensure the isReady-api is called when running locally
-        if (process.env.ENV === 'localhost') {
+        if (ENV === 'localhost') {
             fetch(`http://localhost:${port}/api/internal/isReady`);
         }
 
-        console.log(`Server started on port ${port}`);
-        initHeartbeat();
+        if (!isFailover) {
+            initHeartbeat();
+        }
     });
 
     const shutdown = () => {
