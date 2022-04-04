@@ -1,6 +1,3 @@
-echo "Installing curl"
-apt-get install curl
-
 echo "Installing docker"
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
