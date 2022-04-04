@@ -3,6 +3,7 @@ import { Heading } from '@navikt/ds-react';
 import { Button } from '../button/Button';
 import { Calculator as CalculatorIcon } from '@navikt/ds-icons';
 import { translator } from 'translations';
+import classNames from 'classnames';
 import style from './Calculator.module.scss';
 
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -143,7 +144,7 @@ export const Calculator = ({
     };
 
     return (
-        <div className={style.calculator}>
+        <div className={classNames(style.calculator, 'calculatorProductMixin')}>
             {header && (
                 <Heading level="4" size="medium" className={style.title}>
                     {header}

@@ -107,7 +107,7 @@ $border-radius-large: 6px;
         .region__content {
             > :last-child {
                 .card:last-child,
-                .calculator,
+                .calculatorProductMixin, //will work once product-page, situation-page and guide-page is on scss (tested)
                 ul:last-child,
                 p:last-child {
                     margin-bottom: 0;
