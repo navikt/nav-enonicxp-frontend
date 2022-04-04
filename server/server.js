@@ -55,6 +55,7 @@ nextApp.prepare().then(() => {
     }
 
     if (isFailover) {
+        // Assets from /_next and internal apis should be served as normal
         server.get(
             ['/_next/*', '/api/internal/*', '/internal/*'],
             (req, res) => {
@@ -64,12 +65,7 @@ nextApp.prepare().then(() => {
 
         // We don't want the failover instance to be publically available. This is served by proxy
         // via the public-facing regular frontend
-        server.all('*', (req, res) => {
-            if (req.headers.secret !== SERVICE_SECRET) {
-                res.status(404);
-                return nextApp.renderError(undefined, req, res, req.path);
-            }
-            console.log(`normal request to ${req.path}`);
+        server.all('*', validateSecret, (req, res) => {
             return nextRequestHandler(req, res);
         });
     } else {
