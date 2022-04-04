@@ -32,6 +32,9 @@ on:
       FAILOVER_ORIGIN:
         required: false
         type: string
+      IS_FAILOVER_INSTANCE:
+        required: false
+        type: boolean
     secrets:
       READER_TOKEN:
         required: true
@@ -69,6 +72,7 @@ jobs:
           XP_ORIGIN=${{ inputs.XP_ORIGIN }}
           REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
           FAILOVER_ORIGIN=${{ inputs.FAILOVER_ORIGIN }}
+          IS_FAILOVER_INSTANCE=${{ inputs.IS_FAILOVER_INSTANCE }}
           INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
           PAGE_CACHE_DIR=/tmp/pages
           IMAGE_CACHE_DIR=/tmp/images
