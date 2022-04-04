@@ -32,4 +32,4 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/${{ inputs.config_file }}
           VAR: image=${{ inputs.image }}
-          VARS: .nais/${{ inputs.vars_file }}
+          VARS: ${{ inputs.vars_file != null && .nais/${{ inputs.vars_file }} || null }}
