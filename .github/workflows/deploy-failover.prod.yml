@@ -7,8 +7,8 @@ jobs:
     if: github.event.release.target_commitish == 'master'
     uses: ./.github/workflows/build-image.yml
     with:
-      environment: prod-gcp
-      imagename: release-${{ github.ref_name }}
+      environment: prod-gcp:failover
+      imagename: failover-prod
       ENV: prod
       ADMIN_ORIGIN: https://portal-admin.oera.no
       APP_ORIGIN: https://www.nav.no
@@ -16,7 +16,7 @@ jobs:
       DECORATOR_FALLBACK_URL: https://www.nav.no/dekoratoren
       XP_ORIGIN: https://www.nav.no
       INNLOGGINGSSTATUS_URL: https://www.nav.no/person/innloggingsstatus/auth
-      FAILOVER_ORIGIN: https://www-failover.nav.no
+      FAILOVER_ORIGIN: https://www-failover.intern.nav.no
       IS_FAILOVER_INSTANCE: true
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
