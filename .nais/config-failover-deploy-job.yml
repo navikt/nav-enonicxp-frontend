@@ -7,6 +7,8 @@ metadata:
     team: personbruker
   annotations:
     nais.io/read-only-file-system: "false"
+    nais.io/run-as-non-root: "false"
+    nais.io/run-as-user: "0"
 spec:
   image: {{image}}
   team: personbruker
