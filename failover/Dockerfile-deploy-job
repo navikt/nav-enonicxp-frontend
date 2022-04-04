@@ -1,4 +1,4 @@
-FROM node:16-bullseye-slim
+FROM node:16-bullseye
 WORKDIR /app
 
 COPY failover /app/
@@ -8,9 +8,6 @@ COPY src /app/src/
 COPY package*.json next.config.js tsconfig.json .eslintrc.json /app/
 
 COPY deploy-linux /app/deploy
-
-RUN apt-get update
-RUN apt-get install curl
 
 RUN chmod +x /app/failover-build-and-deploy.sh
 RUN chown -R 1069 /app
