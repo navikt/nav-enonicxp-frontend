@@ -4,7 +4,7 @@ secret: nav-enonicxp-dev1
 ingresses:
   - https://www.dev.nav.no
   - https://www.dev.nav.no/soknad
-  - https://www.dev.nav.no/soker
+  - https://www.dev.nav.no/soke
   - https://www.dev.nav.no/sok-
   - https://www.dev.nav.no/arbeids
 resources:

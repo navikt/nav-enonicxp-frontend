@@ -20,13 +20,13 @@ spec:
     path: /internal/metrics
   ingresses:
   {{#each ingresses as |url|}}
-    - {{url}}
+     - {{url}}
   {{/each}}
   envFrom:
     - secret: {{secret}}
   replicas:
-    min: 2
-    max: 4
+    min: 1
+    max: 2
   accessPolicy:
     inbound:
       rules:

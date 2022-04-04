@@ -1,7 +1,6 @@
-name: Deploy to prod
+name: Deploy to prod-failover
 on:
-  release:
-       types: [released]
+  workflow_dispatch
 
 jobs:
   build:
@@ -18,6 +17,7 @@ jobs:
       XP_ORIGIN: https://www.nav.no
       INNLOGGINGSSTATUS_URL: https://www.nav.no/person/innloggingsstatus/auth
       FAILOVER_ORIGIN: https://www-failover.nav.no
+      IS_FAILOVER_INSTANCE: true
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
   deploy:
@@ -27,6 +27,6 @@ jobs:
       image: ${{ needs.build.outputs.image }}
       cluster: prod-gcp
       vars_file: vars-prod-failover.yml
-      config_file: config.yml
+      config_file: config-failover.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

@@ -2,4 +2,4 @@ appName: nav-enonicxp-frontend-failover
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy
 secret: nav-enonicxp
 ingresses:
-  - https://www-failover.nav.no
+  - https://www.nav.no/failover
