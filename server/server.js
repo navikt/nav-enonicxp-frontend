@@ -63,9 +63,13 @@ nextApp.prepare().then(() => {
             }
         );
 
-        // We don't want the failover instance to be publically available. This is served by proxy
-        // via the public-facing regular frontend
-        server.all('*', validateSecret, (req, res) => {
+        // We don't want the full site to be publicly available via failover instance.
+        // This is served via the public-facing regular frontend when needed
+        server.all('*', (req, res) => {
+            if (req.headers.secret !== SERVICE_SECRET) {
+                return res.status(404).send();
+            }
+
             return nextRequestHandler(req, res);
         });
     } else {
