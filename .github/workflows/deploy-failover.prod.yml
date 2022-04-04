@@ -4,7 +4,7 @@ on:
 
 jobs:
   build:
-    if: github.event.release.target_commitish == 'master'
+#    if: github.event.release.target_commitish == 'master'
     uses: ./.github/workflows/build-image.yml
     with:
       environment: prod-gcp:failover
