@@ -34,7 +34,8 @@ const getStaticPathsFailover = async () => {
     }
 
     return {
-        paths: contentPaths,
+        // paths: contentPaths,
+        paths: ['/no/person'],
         fallback: false,
     };
 };

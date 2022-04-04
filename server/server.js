@@ -54,7 +54,7 @@ nextApp.prepare().then(() => {
             IMAGE_CACHE_DIR;
     }
 
-    if (isFailover) {
+    if (isFailover && ENV === 'prod') {
         // Assets from /_next and internal apis should be served as normal
         server.get(
             ['/_next/*', '/api/internal/*', '/internal/*'],
