@@ -36,6 +36,10 @@ yarn-error.log*
 /.idea/
 /nav-enonicxp-frontend.iml
 
+# secrets, careful!
 /.github-token
+/failover/.secret-dev1
+/failover/.secret-dev2
+
 /tsconfig.tsbuildinfo
 /image-manifest

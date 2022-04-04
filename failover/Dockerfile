@@ -1,0 +1,31 @@
+FROM node:16-alpine
+
+WORKDIR /app
+
+ARG GITHUB_PAT
+ARG SERVICE_SECRET
+ARG ENV_FILE
+
+COPY package*.json /failover/.npmrc /app/
+RUN npm ci
+RUN npm install sharp@0.30.3
+RUN rm -f .npmrc
+
+COPY public /app/public/
+COPY server /app/server/
+COPY src /app/src/
+COPY next.config.js tsconfig.json .eslintrc.json /app/
+
+COPY "/failover/$ENV_FILE" /app/.env
+
+RUN npm run build
+
+# Multistage build to avoid leaking secrets to the final image
+FROM node:16-alpine
+
+WORKDIR /app
+
+COPY --from=0 app /app/
+
+EXPOSE 3000
+CMD ["npm", "run", "start"]
