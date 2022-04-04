@@ -9,6 +9,7 @@ COPY package*.json next.config.js tsconfig.json .eslintrc.json /app/
 
 COPY deploy-linux /app/deploy
 
+RUN apt-get update
 RUN apt-get install curl
 
 RUN chmod +x /app/failover-build-and-deploy.sh
