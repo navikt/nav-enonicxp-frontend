@@ -154,7 +154,8 @@ export const bundle = {
     },
     pageWarnings: {
         draftWarning: 'Utkast - siden er under arbeid',
-        failoverWarning: 'Dette er en failover-versjon som kan være utdatert!',
+        failoverWarning:
+            'Det er for øyeblikket tekniske problemer med baksystemene våre. Noe treghet eller manglende innhold kan forekomme.',
     },
 };
 
