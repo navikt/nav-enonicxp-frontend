@@ -1,4 +1,4 @@
-name: Deploy pre-built image to dev
+name: Deploy failover image to dev
 on:
   workflow_dispatch:
     inputs:
@@ -6,16 +6,14 @@ on:
         description: 'Url to docker image'
         required: true
         type: string
-      application:
-        description: 'Application instance'
+      app_env:
+        description: 'Dev environment'
         required: true
         default: 'dev1'
         type: choice
         options:
           - dev1
           - dev2
-          - dev1-failover
-          - dev2-failover
 
 jobs:
   deploy:
@@ -23,7 +21,7 @@ jobs:
     with:
       image: ${{ github.event.inputs.image }}
       cluster: dev-gcp
-      vars_file: vars-${{ github.event.inputs.application }}.yml
-      config_file: config.yml
+      vars_file: vars-${{ github.event.inputs.app_env }}-failover.yml
+      config_file: config-failover.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

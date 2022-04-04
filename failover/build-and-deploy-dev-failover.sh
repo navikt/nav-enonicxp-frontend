@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# script for building failover-images for dev-environments locally
+
 APP_ENV=$1
 IMAGE_NAME=$2
 
@@ -32,4 +34,4 @@ IMAGE_NAME_FULL="ghcr.io/navikt/nav-enonicxp-frontend:$IMAGE_NAME"
 docker build -f Dockerfile -t "$IMAGE_NAME_FULL" --no-cache --build-arg ENV_FILE="$ENV_FILE" --build-arg SERVICE_SECRET="$SERVICE_SECRET" --build-arg GITHUB_PAT="$GITHUB_PAT" ../.
 docker push "$IMAGE_NAME_FULL"
 
-npx run-func ../trigger-workflow.js triggerWorkflow deploy-image.yml "" "{\"image\":\"$IMAGE_NAME_FULL\", \"application\":\"$APP_ENV-failover\"}"
+npx run-func ../trigger-workflow.js triggerWorkflow deploy-image.yml "" "{\"image\":\"$IMAGE_NAME_FULL\", \"app_env\":\"$APP_ENV\"}"
