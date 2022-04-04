@@ -3,4 +3,3 @@ frontendApp: nav-enonicxp-frontend
 secret: nav-enonicxp
 ingresses:
   - https://www-failover.nav.no
-  - https://www-failover.intern.nav.no
