@@ -44,7 +44,7 @@ jobs:
     needs: build
     with:
       image: ${{ needs.build.outputs.image }}
-      cluster: ${{ github.event.inputs.application == prod && prod || dev }}-gcp
+      cluster: ${{ github.event.inputs.application == "prod" && prod || dev }}-gcp
       config_file: config-failover-deploy-job.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
