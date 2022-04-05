@@ -25,7 +25,8 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-COPY --from=0 app /tmp/image-manifest /app/
+COPY --from=0 app /app/
+COPY --from=0 /tmp/images/image-manifest /tmp/images/image-manifest
 
 EXPOSE 3000
 CMD ["npm", "run", "start"]

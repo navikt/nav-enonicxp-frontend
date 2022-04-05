@@ -15,12 +15,15 @@ const manifestFile = `${manifestDir}/image-manifest`;
 // automatically at request-time
 export const updateImageManifest = (src: string) => {
     if (!fs.existsSync(manifestDir)) {
+        console.log(`Creating image manifest dir ${manifestDir}`);
         fs.mkdirSync(manifestDir, { recursive: true });
     }
 
     fs.appendFile(manifestFile, `${src}\n`, { encoding: 'utf-8' }, (e) => {
         if (e) {
             console.error(`Error while appending to image manifest - ${e}`);
+        } else {
+            console.log(`Appended ${src} to image manifest`);
         }
     });
 };
