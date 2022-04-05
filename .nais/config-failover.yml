@@ -31,6 +31,9 @@ spec:
     inbound:
       rules:
         - application: {{frontendApp}}
+    outbound:
+      rules:
+        - application: {{revalidatorApp}}
   resources:
     limits:
       cpu: '3'
