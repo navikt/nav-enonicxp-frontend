@@ -1,5 +1,6 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
+import { FilterLogic } from '../_mixins';
 
 export enum FieldType {
     INPUT,
@@ -48,5 +49,6 @@ export interface CalculatorProps extends PartComponentProps {
             data: CalculatorData;
         };
         filters: string[];
+        filterLogic: FilterLogic;
     }>;
 }
