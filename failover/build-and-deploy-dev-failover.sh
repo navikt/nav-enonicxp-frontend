@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# script for building failover-images for dev-environments locally
+# Script for building failover-images for dev-environments
+# Usage: "build-and-deploy-dev-failover.sh <dev1|dev2> <image name>"
+# XP service secret should be put in the appropriate file (.secret-dev1|.secret-dev2)
+# You also need a Github PAT with repo and packages write access in the .github-token
+# file at the root of the project
+# Take care not to expose secrets!
 
 APP_ENV=$1
 IMAGE_NAME=$2
