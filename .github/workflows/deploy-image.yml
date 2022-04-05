@@ -2,8 +2,8 @@ name: Deploy failover image to dev
 on:
   workflow_dispatch:
     inputs:
-      image:
-        description: 'Url to docker image'
+      image_name:
+        description: 'Image name'
         required: true
         type: string
       app_env:
@@ -19,7 +19,7 @@ jobs:
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
     with:
-      image: ${{ github.event.inputs.image }}
+      image: ghcr.io/${{ github.repository }}:${{ github.event.inputs.image_name }}-${{ github.sha }}
       cluster: dev-gcp
       vars_file: vars-${{ github.event.inputs.app_env }}-failover.yml
       config_file: config-failover.yml

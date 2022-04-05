@@ -30,7 +30,7 @@ on:
         required: true
         type: string
       FAILOVER_ORIGIN:
-        required: false
+        required: true
         type: string
       IS_FAILOVER_INSTANCE:
         required: false
