@@ -24,8 +24,6 @@ nextApp.prepare().then(() => {
 
     const jsonBodyParser = express.json();
 
-
-
     const nextRequestHandler = nextApp.getRequestHandler();
 
     const {
@@ -50,12 +48,9 @@ nextApp.prepare().then(() => {
 
     if (isFailover && ENV === 'prod') {
         // Assets from /_next and internal apis should be served as normal
-        server.get(
-            ['/_next/*', '/api/internal/*', '/internal/*'],
-            (req, res) => {
-                return nextRequestHandler(req, res);
-            }
-        );
+        server.get(['/_next/*', '/api/internal/*'], (req, res) => {
+            return nextRequestHandler(req, res);
+        });
 
         // We don't want the full site to be publicly available via failover instance.
         // This is served via the public-facing regular frontend when needed
@@ -82,22 +77,23 @@ nextApp.prepare().then(() => {
             handleInvalidateAllReq(nextApp)
         );
 
-    server.all('*', (req, res) => {
-        setJsonCacheHeaders(req, res);
-        return nextRequestHandler(req, res);
-    });
+        server.all('*', (req, res) => {
+            setJsonCacheHeaders(req, res);
+            return nextRequestHandler(req, res);
+        });
 
-    // Handle errors
-    server.use((err, req, res, next) => {
-        const { path } = req;
-        const { status, stack } = err;
-        const msg = stack?.split('\n')[0];
+        // Handle errors
+        server.use((err, req, res, next) => {
+            const { path } = req;
+            const { status, stack } = err;
+            const msg = stack?.split('\n')[0];
 
-        console.log(`Express error on path ${path}: ${status} ${msg}`);
+            console.log(`Express error on path ${path}: ${status} ${msg}`);
 
-        res.status(status || 500);
-        return nextApp.renderError(msg, req, res, path);
-    });
+            res.status(status || 500);
+            return nextApp.renderError(msg, req, res, path);
+        });
+    }
 
     const serverInstance = server.listen(port, (error) => {
         if (error) {
