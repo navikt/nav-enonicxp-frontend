@@ -64,7 +64,9 @@ const resolveNodeLibsClientSide = (config, options) => {
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 const isLocal = process.env.ENV === 'localhost';
 
-console.log(`Env: ${process.env.NODE_ENV} - Failover: ${isFailover}`);
+console.log(
+    `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Failover: ${isFailover}`
+);
 
 module.exports = withPlugins([withLess, withTranspileModules], {
     distDir: isFailover && isLocal ? '.next-static' : '.next',
