@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 const express = require('express');
-const expressPromBundle = require('express-prom-bundle');
 const next = require('next');
 
 const { setJsonCacheHeaders } = require('./set-json-cache-headers');
@@ -20,10 +19,6 @@ const nextRequestHandler = nextApp.getRequestHandler();
 const port = 3000;
 
 const jsonBodyParser = express.json();
-const prometheusMiddleware = expressPromBundle({
-    includePath: true,
-    metricsPath: '/internal/metrics',
-});
 
 const verifySecret = (req, res, next) => {
     if (req.headers.secret !== process.env.SERVICE_SECRET) {
@@ -65,7 +60,7 @@ nextApp.prepare().then(() => {
         handleInvalidateAllReq(nextApp)
     );
 
-    server.all('*', prometheusMiddleware, (req, res) => {
+    server.all('*', (req, res) => {
         setJsonCacheHeaders(req, res);
 
         return nextRequestHandler(req, res);
