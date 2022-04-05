@@ -13,9 +13,10 @@ spec:
   liveness:
     path: /api/internal/isAlive
     initialDelay: 10
+    timeout: 5
   readiness:
     path: /api/internal/isReady
-    initialDelay: 10
+    initialDelay: 30
   prometheus:
     enabled: true
     path: /internal/metrics
