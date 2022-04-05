@@ -5,7 +5,7 @@ export const fetchPrerenderPaths = async (retries = 3) =>
     fetchJson(`${xpServiceUrl}/sitecontentPaths`, 60000, {
         headers: {
             secret: process.env.SERVICE_SECRET,
-            // test: true,
+            test: true,
         },
     }).then((pathsFromXp) => {
         if (Array.isArray(pathsFromXp)) {
