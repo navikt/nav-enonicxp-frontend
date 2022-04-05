@@ -1,13 +1,17 @@
 import { GetServerSideProps } from 'next';
-import PageBase, { fetchPageProps } from '../../components/PageBase';
+import { fetchPageProps } from '../../utils/fetch/fetch-page-props';
+import { PageBase } from '../../components/PageBase';
+import { isPropsWithContent } from '../../types/_type-guards';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const pageProps = await fetchPageProps({
         routerQuery: context?.params?.utkastRouter,
-        isDraft: false,
-        isPagePreview: true,
-        secret: process.env.SERVICE_SECRET,
+        noRedirect: true,
     });
+
+    if (isPropsWithContent(pageProps.props)) {
+        pageProps.props.content.isPagePreview = true;
+    }
 
     return pageProps;
 };

@@ -152,8 +152,10 @@ export const bundle = {
         title: 'Vis historisk innhold',
         loading: 'Laster historisk innhold...',
     },
-    draft: {
-        warningText: 'Utkast - siden er under arbeid',
+    pageWarnings: {
+        draftWarning: 'Utkast - siden er under arbeid',
+        failoverWarning:
+            'Vi har for tiden tekniske problemer på nav.no. Du kan oppleve noe treghet eller at innhold mangler. Du kan prøve å laste inn siden på nytt.',
     },
 };
 

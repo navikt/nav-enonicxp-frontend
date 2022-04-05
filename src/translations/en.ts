@@ -143,7 +143,9 @@ export const bundle: Translations = {
         title: 'Historic versions',
         loading: 'Loading historic version...',
     },
-    draft: {
-        warningText: 'Draft - this page is still in progress',
+    pageWarnings: {
+        draftWarning: 'Draft - this page is still in progress',
+        failoverWarning:
+            'We are currently having technical issues on nav.no. You may experience slow response times or missing content. Try reloading the page.',
     },
 };

@@ -32,9 +32,11 @@ const appError = (content: ContentProps) => ({
 });
 
 export const errorHandler = (content: ContentProps) => {
-    if (!revalidateOnErrorCode[content.data.errorCode]) {
-        throw appError(content);
+    const { errorCode } = content.data;
+
+    if (revalidateOnErrorCode[errorCode]) {
+        return { props: { content } };
     }
 
-    return { props: { content } };
+    throw appError(content);
 };

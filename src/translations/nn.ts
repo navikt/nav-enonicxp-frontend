@@ -152,8 +152,8 @@ export const bundle = {
         title: 'Vis historisk innhald',
         loading: 'Laster historisk innhald...',
     },
-    draft: {
-        warningText: 'Utkast - sida er under arbeid',
+    pageWarnings: {
+        draftWarning: 'Utkast - sida er under arbeid',
     },
 };
 

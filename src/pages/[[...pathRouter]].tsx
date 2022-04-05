@@ -1,25 +1,68 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import PageBase, { fetchPageProps } from '../components/PageBase';
+import { PageBase } from '../components/PageBase';
 import Config from '../config';
+import { fetchPageProps } from '../utils/fetch/fetch-page-props';
+import { isPropsWithContent } from '../types/_type-guards';
+import { fetchPrerenderPaths } from '../utils/fetch/fetch-prerender-paths';
 
-export const getStaticProps: GetStaticProps = async (context) => {
-    const props = await fetchPageProps({
+// For failover deployments we fully prerender a static version of the site
+// during build-time. For regular app deployments we generate pages on demand
+// with incremental regeneration
+
+const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+
+const getStaticPropsFailover: GetStaticProps = async (context) => {
+    const pageProps = await fetchPageProps({
         routerQuery: context?.params?.pathRouter,
-        isDraft: false,
-        secret: process.env.SERVICE_SECRET,
+        noRedirect: true,
+    });
+
+    if (isPropsWithContent(pageProps.props)) {
+        pageProps.props.content.isFailover = true;
+    }
+
+    return pageProps;
+};
+
+const getStaticPathsFailover = async () => {
+    const contentPaths = await fetchPrerenderPaths();
+
+    if (!contentPaths) {
+        const msg = 'Could not retrieve paths to prerender, aborting...';
+        console.error(msg);
+        throw new Error(msg);
+    }
+
+    return {
+        paths: contentPaths,
+        fallback: false,
+    };
+};
+
+const getStaticPropsRegular: GetStaticProps = async (context) => {
+    const pageProps = await fetchPageProps({
+        routerQuery: context?.params?.pathRouter,
     });
 
     return {
-        ...props,
+        ...pageProps,
         revalidate: Config.vars.revalidatePeriod,
     };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+const getStaticPathsRegular: GetStaticPaths = async () => {
     return {
         paths: [],
         fallback: 'blocking',
     };
 };
+
+export const getStaticProps = isFailover
+    ? getStaticPropsFailover
+    : getStaticPropsRegular;
+
+export const getStaticPaths = isFailover
+    ? getStaticPathsFailover
+    : getStaticPathsRegular;
 
 export default PageBase;

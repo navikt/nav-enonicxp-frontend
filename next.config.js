@@ -61,17 +61,29 @@ const resolveNodeLibsClientSide = (config, options) => {
     }
 };
 
+const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+const isLocal = process.env.ENV === 'localhost';
+
+console.log(
+    `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Failover: ${isFailover}`
+);
+
 module.exports = withPlugins([withLess, withTranspileModules], {
-    assetPrefix: process.env.APP_ORIGIN,
+    distDir: isFailover && isLocal ? '.next-static' : '.next',
+    assetPrefix: isFailover
+        ? process.env.FAILOVER_ORIGIN
+        : process.env.APP_ORIGIN,
     env: {
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
         XP_ORIGIN: process.env.XP_ORIGIN,
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
+        FAILOVER_ORIGIN: process.env.FAILOVER_ORIGIN,
+        IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
     },
     images: {
-        minimumCacheTTL: 60,
+        minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 60,
         dangerouslyAllowSVG: true,
         domains: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map((origin) =>
             // Domain whitelist must not include protocol prefixes
@@ -90,6 +102,11 @@ module.exports = withPlugins([withLess, withTranspileModules], {
     redirects: async () => [
         {
             source: '/',
+            destination: '/no/person',
+            permanent: true,
+        },
+        {
+            source: '/forsiden',
             destination: '/no/person',
             permanent: true,
         },
@@ -150,7 +167,7 @@ module.exports = withPlugins([withLess, withTranspileModules], {
                   },
               ]
             : []),
-        ...(process.env.ENV === 'localhost'
+        ...(isLocal
             ? [
                   {
                       source: '/admin/site/preview/default/draft/:path*',
@@ -166,7 +183,9 @@ module.exports = withPlugins([withLess, withTranspileModules], {
             headers: [
                 {
                     key: 'Access-Control-Allow-Origin',
-                    value: process.env.ADMIN_ORIGIN,
+                    value: isFailover
+                        ? process.env.APP_ORIGIN
+                        : process.env.ADMIN_ORIGIN,
                 },
             ],
         },

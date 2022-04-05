@@ -8,6 +8,9 @@ on:
       cluster:
         required: true
         type: string
+      config_file:
+        required: true
+        type: string
       vars_file:
         required: true
         type: string
@@ -17,7 +20,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to nais k8s (GCP)
+    name: Deploy to nais k8s
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -27,6 +30,6 @@ jobs:
         env:
           CLUSTER: ${{ inputs.cluster }}
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          RESOURCE: .nais/config.yml
+          RESOURCE: .nais/${{ inputs.config_file }}
           VAR: image=${{ inputs.image }}
           VARS: .nais/${{ inputs.vars_file }}

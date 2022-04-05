@@ -1,8 +1,8 @@
 import React from 'react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import { updateImageManifest } from '../../../utils/fetch/fetch-images';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { isPublicAppUrl } from '../../../utils/urls';
+import { updateImageManifest } from '../../../utils/fetch/fetch-images';
 
 // These types should match what's specified in next.config
 type DeviceSize = 480 | 768 | 1024 | 1440;
@@ -23,6 +23,11 @@ type Props = {
 const maxWidthDefault: DeviceSize = 1440;
 const qualityDefault = 90;
 
+const origin =
+    process.env.IS_FAILOVER_INSTANCE === 'true'
+        ? process.env.FAILOVER_ORIGIN
+        : process.env.APP_ORIGIN;
+
 // Get the image from the next.js incremental image cache endpoint
 //
 // This is intended to be called from the next.js <Image/> component, which comes
@@ -32,18 +37,12 @@ const qualityDefault = 90;
 // TODO: refactor our existing image code/CSS :)
 const buildImageCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
     // Decode then encode to ensure nothing gets double-encoded
-    `${process.env.APP_ORIGIN}/_next/image?url=${encodeURIComponent(
+    `${origin}/_next/image?url=${encodeURIComponent(
         decodeURIComponent(src)
     )}&w=${maxWidth}&q=${quality}`;
 
 const NextImageBuildTime = (props: Props) => {
-    const {
-        src,
-        alt,
-        maxWidth = maxWidthDefault,
-        quality = qualityDefault,
-        ...imgAttribs
-    } = props;
+    const { src, alt, maxWidth = 1440, quality = 90, ...imgAttribs } = props;
 
     if (!src) {
         return null;
