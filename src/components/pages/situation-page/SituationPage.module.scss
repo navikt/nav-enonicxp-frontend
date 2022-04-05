@@ -1,7 +1,5 @@
 @use 'src/common';
 
-$contentMaxWidth: 57.25rem;
-$sectionMaxWidth: $contentMaxWidth * 2/3;
 $margin: 2rem;
 
 .situationPage {
@@ -18,7 +16,7 @@ $margin: 2rem;
         }
 
         & > :not(.layout__situation-flex-cols) {
-            max-width: $sectionMaxWidth;
+            max-width: common.$sectionMaxWidth;
         }
 
         // Prevent margins between adjacent situation-flex-cols layouts
@@ -33,7 +31,7 @@ $margin: 2rem;
         justify-content: flex-start;
         align-self: center;
         width: 100%;
-        max-width: $contentMaxWidth;
+        max-width: common.$contentMaxWidth;
 
         & > * {
             width: 100%;

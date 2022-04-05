@@ -4,6 +4,14 @@
 
 $pixel-size-rem: math.div(1, 16);
 
+@function withUnit($value, $unit) {
+    @return '#{$value}#{$unit}';
+}
+
+@function px-to-rem($px) {
+    @return withUnit($px * $pixel-size-rem, 'rem');
+}
+
 // Screen size breakpoints
 $mobileMaxWidth: 48rem; // 768px
 $tabletMinWidth: $mobileMaxWidth;
@@ -16,6 +24,10 @@ $mq-screen-tablet: 'only screen and (min-width: #{$tabletMinWidth}) and (max-wid
 $mq-screen-tablet-and-desktop: 'only screen and (min-width: #{$tabletMinWidth}) ';
 $mq-screen-desktop: 'only screen and (min-width: #{$desktopMinWidth}) ';
 $mq-screen-desktop-large: 'only screen and (min-width: #{$desktopMaxWidth}) ';
+
+// Max-width for SituationPage & Layouts
+$contentMaxWidth: px-to-rem(900);
+$sectionMaxWidth: calc(#{$contentMaxWidth} * 2/3);
 
 $padding-sides-desktop: 3rem;
 $padding-sides-tablet: 1rem;
@@ -43,6 +55,33 @@ $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
     margin-right: $side-width-negative;
 }
 
+@mixin flex-cols-mixin($numCols, $marginX: 1.5rem, $marginY: 1.5rem) {
+    & > * {
+        $numColsPlus1: $numCols + 1;
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: calc(percentage(1 / ($numCols + 1)) + 1px);
+
+        max-width: calc(
+                percentage(1 / $numCols) - #{($marginX * ($numCols - 1)) / $numCols} +
+                1px
+        );
+
+        &:not(:last-child) {
+            margin-right: $marginX;
+        }
+
+        &:nth-child(#{($numCols)n + $numCols}) {
+        margin-right: 0;
+    }
+
+        &:nth-child(#{n + $numColsPlus1}) {
+        margin-top: $marginY;
+    }
+    }
+}
+
 @mixin panel-focus-mixin($inset: true) {
     outline: unset;
     box-shadow: 0 0 0 3px if($inset, inset, null) $navds-semantic-color-focus;
@@ -66,14 +105,6 @@ $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
             border-bottom: 1px $navds-semantic-color-link solid;
         }
     }
-}
-
-@function withUnit($value, $unit) {
-    $result: '#{$value}#{unit}';
-}
-
-@function px-to-rem($px) {
-    $rem: withUnit($px * $pixel-size-rem, 'rem');
 }
 
 // This is an override mixin specific for product and livesituation pages.
