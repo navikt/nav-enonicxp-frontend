@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 const express = require('express');
-const expressPromBundle = require('express-prom-bundle');
 const next = require('next');
 const fetch = require('node-fetch');
 
@@ -25,12 +24,7 @@ nextApp.prepare().then(() => {
 
     const jsonBodyParser = express.json();
 
-    const prometheusMiddleware = expressPromBundle({
-        includePath: true,
-        metricsPath: '/internal/metrics',
-    });
 
-    server.use(prometheusMiddleware);
 
     const nextRequestHandler = nextApp.getRequestHandler();
 
@@ -88,11 +82,10 @@ nextApp.prepare().then(() => {
             handleInvalidateAllReq(nextApp)
         );
 
-        server.all('*', (req, res) => {
-            setJsonCacheHeaders(req, res);
-            return nextRequestHandler(req, res);
-        });
-    }
+    server.all('*', (req, res) => {
+        setJsonCacheHeaders(req, res);
+        return nextRequestHandler(req, res);
+    });
 
     // Handle errors
     server.use((err, req, res, next) => {
