@@ -11,12 +11,21 @@ const {
     setCacheKey,
 } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
-const { validateSecret } = require('./validate-secret');
 
 const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
     quiet: process.env.ENV === 'prod',
 });
+
+const validateSecret = (req, res, next) => {
+    if (req.headers.secret !== process.env.SERVICE_SECRET) {
+        console.warn(`Invalid secret for ${req.path}`);
+        res.status(404);
+        return nextApp.renderError(undefined, req, res, req.path);
+    }
+
+    next();
+};
 
 nextApp.prepare().then(() => {
     const server = express();
@@ -81,19 +90,19 @@ nextApp.prepare().then(() => {
             setJsonCacheHeaders(req, res);
             return nextRequestHandler(req, res);
         });
-
-        // Handle errors
-        server.use((err, req, res, next) => {
-            const { path } = req;
-            const { status, stack } = err;
-            const msg = stack?.split('\n')[0];
-
-            console.log(`Express error on path ${path}: ${status} ${msg}`);
-
-            res.status(status || 500);
-            return nextApp.renderError(msg, req, res, path);
-        });
     }
+
+    // Handle errors
+    server.use((err, req, res, next) => {
+        const { path } = req;
+        const { status, stack } = err;
+        const msg = stack?.split('\n')[0];
+
+        console.log(`Express error on path ${path}: ${status} ${msg}`);
+
+        res.status(status || 500);
+        return nextApp.renderError(msg, req, res, path);
+    });
 
     const serverInstance = server.listen(port, (error) => {
         if (error) {
