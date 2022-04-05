@@ -146,6 +146,6 @@ export const bundle: Translations = {
     pageWarnings: {
         draftWarning: 'Draft - this page is still in progress',
         failoverWarning:
-            'We are currently having problems with our backend systems. You may experience slow response times or missing content. Try reloading the page.',
+            'We are currently having technical issues on nav.no. You may experience slow response times or missing content. Try reloading the page.',
     },
 };
