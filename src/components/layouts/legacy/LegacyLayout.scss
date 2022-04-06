@@ -1,4 +1,4 @@
-@import (reference) '../../../common';
+@use 'src/common' as common;
 
 .layout {
     &__main {
@@ -11,7 +11,7 @@
         margin: 1rem auto;
         padding: 0;
 
-        @media @mq-screen-mobile {
+        @media #{common.$mq-screen-mobile} {
             flex-direction: column;
         }
     }
@@ -21,7 +21,7 @@
     &__first {
         flex: 2;
 
-        @media @mq-screen-tablet-and-desktop {
+        @media #{common.$mq-screen-tablet-and-desktop} {
             &:not(:only-child) {
                 margin-right: 1.5rem;
             }
@@ -31,7 +31,7 @@
     &__second {
         flex: 1;
 
-        @media @mq-screen-mobile {
+        @media #{common.$mq-screen-mobile} {
             margin-top: 2rem;
         }
     }
