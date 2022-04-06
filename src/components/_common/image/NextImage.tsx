@@ -24,6 +24,7 @@ const maxWidthDefault: DeviceSize = 1440;
 const qualityDefault = 90;
 
 const origin =
+    typeof process.env !== 'undefined' &&
     process.env.IS_FAILOVER_INSTANCE === 'true'
         ? process.env.FAILOVER_ORIGIN
         : process.env.APP_ORIGIN;
