@@ -1,0 +1,97 @@
+@use 'src/common' as common;
+
+.pageNavSidebar {
+    background-color: white;
+    padding: 1rem 0;
+}
+
+.title {
+    padding: 1rem;
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pageNavLink {
+    $verticalPadding: 0.75rem;
+    $horizontalPadding: 1rem;
+    $decorWidth: 0.5rem;
+    padding: $verticalPadding $horizontalPadding;
+
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        margin: 0 $decorWidth;
+    }
+
+    &:hover {
+        background-color: common.$navds-global-color-blue-100;
+        color: common.$navds-global-color-gray-900;
+        text-decoration: none;
+
+        .decor {
+            background-color: common.$navds-semantic-color-link;
+        }
+    }
+
+    &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 3px common.$navds-semantic-color-focus inset;
+    }
+
+    &.up {
+        .decor {
+            transform-origin: top;
+        }
+
+        &.current {
+            .decor {
+                transform-origin: bottom;
+            }
+        }
+    }
+
+    &.down {
+        .decor {
+            transform-origin: bottom;
+        }
+
+        &.current {
+            .decor {
+                transform-origin: top;
+            }
+        }
+    }
+
+    .decor {
+        visibility: hidden;
+    }
+
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        &.current {
+            color: black;
+            text-decoration: none;
+
+            .decor {
+                transform: scaleY(1);
+            }
+        }
+
+        .decor {
+            visibility: visible;
+            min-width: $decorWidth;
+            margin-top: -$verticalPadding;
+            margin-right: $decorWidth;
+            margin-bottom: -$verticalPadding;
+            margin-left: (-$decorWidth - $horizontalPadding);
+            background-color: common.$navds-semantic-color-link;
+
+            transform: scaleY(0);
+
+            transition-property: transform;
+            transition-duration: 0.12s;
+            transition-timing-function: linear;
+        }
+    }
+}

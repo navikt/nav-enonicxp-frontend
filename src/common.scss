@@ -44,6 +44,18 @@ $border-radius-large: 6px;
     box-shadow: 0 0 0 3px if($inset, inset, null) $navds-semantic-color-focus;
 }
 
+@mixin section-padding-mixin() {
+    padding: $sectionPaddingDesktop;
+
+    @media #{$mq-screen-tablet} {
+        padding: $sectionPaddingTablet;
+    }
+
+    @media #{$mq-screen-mobile} {
+        padding: $sectionPaddingMobile;
+    }
+}
+
 @mixin link-border-bottom-mixin($underlineDefault: true) {
     @if $underlineDefault {
         border-bottom: 1px $navds-semantic-color-link solid;
