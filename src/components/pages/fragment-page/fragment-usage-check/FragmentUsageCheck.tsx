@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchWithTimeout } from '../../../../utils/fetch-utils';
+import { fetchWithTimeout } from '../../../../utils/fetch/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
 import { Heading } from '@navikt/ds-react';
 import { Button } from '../../../_common/button/Button';

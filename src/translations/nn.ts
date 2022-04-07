@@ -18,10 +18,16 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 };
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
     [Taxonomy.BENEFITS]: 'Pengestønad',
-    [Taxonomy.RIGHTS]: 'Rettleiing',
     [Taxonomy.FOLLOWUP]: 'Oppfylging',
+    [Taxonomy.FOR_EMPLOYERS]: 'For arbeidsgjevarar',
+    [Taxonomy.FOR_EVENT_ORGANIZERS]: 'For tiltaksarrangørar',
+    [Taxonomy.FOR_HEALTH_SERVICE]: 'For leger og andre behandlarar',
+    [Taxonomy.FOR_MUNICIPALITY]: 'For kommunen',
+    [Taxonomy.FOR_PROVIDERS]: 'For samhandlarar',
     [Taxonomy.MEASURES]: 'Tiltak',
+    [Taxonomy.RIGHTS]: 'Rettleiing',
 };
 
 export const bundle = {
@@ -119,7 +125,7 @@ export const bundle = {
             openNow: 'Ope no',
             opensAt: 'Opnar {$1} kl {$2}',
             closedNow: 'Stengt no',
-            seeMoreOptions: 'Meir om tasteval',
+            seeMoreOptions: 'Meir om åpningstider og tasteval',
             todaysPhoneOpeningHours: 'Opningstider på telefon i dag',
             callUsAt: 'Ring oss på',
             businessDays: 'kvardagar',
@@ -145,6 +151,9 @@ export const bundle = {
         label: 'Versjonshistorikk',
         title: 'Vis historisk innhald',
         loading: 'Laster historisk innhald...',
+    },
+    pageWarnings: {
+        draftWarning: 'Utkast - sida er under arbeid',
     },
 };
 

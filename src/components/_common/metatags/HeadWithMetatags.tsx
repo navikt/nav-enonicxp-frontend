@@ -1,4 +1,5 @@
 import React from 'react';
+import { NextRouter, useRouter } from 'next/router';
 import {
     ContentProps,
     ContentType,
@@ -35,6 +36,13 @@ const getDescription = (content: ContentProps) => {
     return content.displayName;
 };
 
+const shouldNotIndex = (content: ContentProps, router: NextRouter) => {
+    if (router.query.utkastRouter) {
+        return true;
+    }
+    return content.data?.noindex;
+};
+
 const getCanonicalUrl = (content: ContentProps) => {
     if (hasCanonicalUrl(content)) {
         return content.data.canonicalUrl;
@@ -46,11 +54,13 @@ const getCanonicalUrl = (content: ContentProps) => {
 };
 
 export const HeadWithMetatags = ({ content, children }: Props) => {
+    const router = useRouter();
+
     const title = `${content.displayName} - nav.no`;
     const description = getDescription(content).slice(0, descriptionMaxLength);
     const url = getCanonicalUrl(content);
+    const noIndex = shouldNotIndex(content, router);
     const imageUrl = `${appOrigin}/gfx/social-share-fallback.png`;
-    const noIndex = content.data?.noindex;
 
     return (
         <Head>

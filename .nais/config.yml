@@ -3,7 +3,7 @@ apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
   name: {{appName}}
-  namespace: {{namespace}}
+  namespace: personbruker
   labels:
     team: personbruker
 spec:
@@ -13,9 +13,10 @@ spec:
   liveness:
     path: /api/internal/isAlive
     initialDelay: 10
+    timeout: 5
   readiness:
     path: /api/internal/isReady
-    initialDelay: 10
+    initialDelay: 30
   prometheus:
     enabled: true
     path: /api/internal/metrics
@@ -23,25 +24,24 @@ spec:
   {{#each ingresses as |url|}}
     - {{url}}
   {{/each}}
+  envFrom:
+    - secret: {{secret}}
   replicas:
     min: 2
     max: 4
-  webproxy: true
   accessPolicy:
     outbound:
-      external:
-      {{#each outboundExternalHosts as |host|}}
-        - host: {{host}}
-      {{/each}}
-    {{#each inboundApps as |app|}}
+      rules:
+        - application: {{revalidatorApp}}
     inbound:
       rules:
-        - application: {{app}}
-    {{/each}}
+        - application: {{revalidatorApp}}
   resources:
+  {{#with resources}}
     limits:
-      cpu: '3'
-      memory: 2000Mi
+      cpu: {{limits.cpu}}
+      memory: {{limits.memory}}
     requests:
-      cpu: '1'
-      memory: 1500Mi
+      cpu: {{requests.cpu}}
+      memory: {{requests.memory}}
+  {{/with}}

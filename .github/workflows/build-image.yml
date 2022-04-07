@@ -29,11 +29,17 @@ on:
       INNLOGGINGSSTATUS_URL:
         required: true
         type: string
+      FAILOVER_ORIGIN:
+        required: true
+        type: string
+      IS_FAILOVER_INSTANCE:
+        required: false
+        type: boolean
     secrets:
       READER_TOKEN:
         required: true
       SERVICE_SECRET:
-        required: true
+        required: false
     outputs:
       image:
         description: "Url to docker image"
@@ -67,9 +73,11 @@ jobs:
           DECORATOR_FALLBACK_URL=${{ inputs.DECORATOR_FALLBACK_URL }}
           XP_ORIGIN=${{ inputs.XP_ORIGIN }}
           REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
-          SERVICE_SECRET=${{ secrets.SERVICE_SECRET }}
+          FAILOVER_ORIGIN=${{ inputs.FAILOVER_ORIGIN }}
+          IS_FAILOVER_INSTANCE=${{ inputs.IS_FAILOVER_INSTANCE }}
           INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
           PAGE_CACHE_DIR=/tmp/pages
+          IMAGE_CACHE_DIR=/tmp/images
           EOF
       - name: Nextjs cache
         uses: actions/cache@v2
@@ -82,6 +90,8 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Build application
         run: npm run build
+        env:
+          SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
       - name: Login to Docker registry
         uses: docker/login-action@v1
         with:
@@ -89,7 +99,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push docker image
-        id: build_image
         run: |
           docker build -t ${{ env.image }} .
           docker push ${{ env.image }}

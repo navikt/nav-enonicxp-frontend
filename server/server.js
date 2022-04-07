@@ -2,6 +2,8 @@ require('dotenv').config();
 
 const express = require('express');
 const next = require('next');
+const fetch = require('node-fetch');
+
 const { setJsonCacheHeaders } = require('./set-json-cache-headers');
 const {
     handleInvalidateReq,
@@ -14,16 +16,12 @@ const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
     quiet: process.env.ENV === 'prod',
 });
-const nextRequestHandler = nextApp.getRequestHandler();
-const port = 3000;
 
-const jsonBodyParser = express.json();
-
-const verifySecret = (req, res, next) => {
+const validateSecret = (req, res, next) => {
     if (req.headers.secret !== process.env.SERVICE_SECRET) {
-        res.status(404);
         console.warn(`Invalid secret for ${req.path}`);
-        return nextApp.renderError(null, req, res, req.path);
+        res.status(404);
+        return nextApp.renderError(undefined, req, res, req.path);
     }
 
     next();
@@ -31,34 +29,68 @@ const verifySecret = (req, res, next) => {
 
 nextApp.prepare().then(() => {
     const server = express();
+    const port = process.env.PORT || 3000;
 
-    const { SERVICE_SECRET, PAGE_CACHE_DIR } = process.env;
+    const jsonBodyParser = express.json();
 
-    if (PAGE_CACHE_DIR) {
+    const nextRequestHandler = nextApp.getRequestHandler();
+
+    const {
+        SERVICE_SECRET,
+        PAGE_CACHE_DIR,
+        IMAGE_CACHE_DIR,
+        IS_FAILOVER_INSTANCE,
+        ENV,
+    } = process.env;
+
+    const isFailover = IS_FAILOVER_INSTANCE === 'true';
+
+    if (!isFailover && PAGE_CACHE_DIR) {
         nextApp.server.incrementalCache.incrementalOptions.pagesDir =
             PAGE_CACHE_DIR;
     }
 
-    server.post(
-        '/invalidate',
-        verifySecret,
-        jsonBodyParser,
-        setCacheKey,
-        handleInvalidateReq(nextApp)
-    );
+    if (IMAGE_CACHE_DIR) {
+        nextApp.server.imageResponseCache.incrementalCache.cacheDir =
+            IMAGE_CACHE_DIR;
+    }
 
-    server.get(
-        '/invalidate/wipe-all',
-        verifySecret,
-        setCacheKey,
-        handleInvalidateAllReq(nextApp)
-    );
+    if (isFailover && ENV === 'prod') {
+        // Assets from /_next and internal apis should be served as normal
+        server.get(['/_next/*', '/api/internal/*'], (req, res) => {
+            return nextRequestHandler(req, res);
+        });
 
-    server.all('*', (req, res) => {
-        setJsonCacheHeaders(req, res);
+        // We don't want the full site to be publicly available via failover instance.
+        // This is served via the public-facing regular frontend when needed
+        server.all('*', (req, res) => {
+            if (req.headers.secret !== SERVICE_SECRET) {
+                return res.status(404).send();
+            }
 
-        return nextRequestHandler(req, res);
-    });
+            return nextRequestHandler(req, res);
+        });
+    } else {
+        server.post(
+            '/invalidate',
+            validateSecret,
+            jsonBodyParser,
+            setCacheKey,
+            handleInvalidateReq(nextApp)
+        );
+
+        server.get(
+            '/invalidate/wipe-all',
+            validateSecret,
+            setCacheKey,
+            handleInvalidateAllReq(nextApp)
+        );
+
+        server.all('*', (req, res) => {
+            setJsonCacheHeaders(req, res);
+            return nextRequestHandler(req, res);
+        });
+    }
 
     // Handle errors
     server.use((err, req, res, next) => {
@@ -81,7 +113,15 @@ nextApp.prepare().then(() => {
         }
 
         console.log(`Server started on port ${port}`);
-        initHeartbeat();
+
+        // Ensure the isReady-api is called when running locally
+        if (ENV === 'localhost') {
+            fetch(`http://localhost:${port}/api/internal/isReady`);
+        }
+
+        if (!isFailover) {
+            initHeartbeat();
+        }
     });
 
     const shutdown = () => {

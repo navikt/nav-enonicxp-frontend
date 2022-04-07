@@ -9,7 +9,7 @@ import Document, {
 import { Language } from '../translations';
 import { DocumentInitialProps } from 'next/dist/pages/_document';
 import { DocumentParameter } from '../components/_common/metatags/DocumentParameterMetatags';
-import { getDecoratorComponents } from '../utils/decorator-utils-serverside';
+import { getDecoratorComponents } from '../utils/decorator/decorator-utils-serverside';
 import { Components } from '@navikt/nav-dekoratoren-moduler/ssr';
 
 type DocumentProps = {
