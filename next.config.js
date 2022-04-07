@@ -189,5 +189,14 @@ module.exports = withPlugins([withLess, withTranspileModules], {
                 },
             ],
         },
+        {
+            source: '/:path*',
+            headers: [
+                {
+                    key: 'App-Name',
+                    value: 'nav-enonicxp-frontend',
+                },
+            ],
+        },
     ],
 });
