@@ -30,7 +30,7 @@ yarn-error.log*
 
 # local env
 .env
-.env.development.local
+.env.local
 .env.development.local
 
 /.idea/
