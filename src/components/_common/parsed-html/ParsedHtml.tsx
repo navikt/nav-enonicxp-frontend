@@ -142,7 +142,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <>{domToReact(children, parserOptions)}</>;
                 }
                 return (
-                    <BodyLong spacing {...props}>
+                    <BodyLong spacing {...props} className={undefined}>
                         {domToReact(children, parserOptions)}
                     </BodyLong>
                 );
@@ -155,7 +155,12 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 }
 
                 return (
-                    <LenkeInline {...props} href={props.href}>
+                    <LenkeInline
+                        {...props}
+                        href={props.href}
+                        style={undefined}
+                        className={undefined}
+                    >
                         {domToReact(validChildren, parserOptions)}
                     </LenkeInline>
                 );
