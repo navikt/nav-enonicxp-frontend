@@ -129,13 +129,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
                 return (
                     // H1 tags should only be used for the page heading
-                    <Heading
-                        {...props}
-                        size={size}
-                        level={level}
-                        spacing
-                        className={undefined}
-                    >
+                    <Heading {...props} size={size} level={level} spacing>
                         {domToReact(validChildren, parserOptions)}
                     </Heading>
                 );
