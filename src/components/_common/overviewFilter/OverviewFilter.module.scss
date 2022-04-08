@@ -1,0 +1,21 @@
+.overviewFilter {
+    display: flex;
+    flex-direction: column;
+}
+
+.tagWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.tag {
+    background-color: green;
+    margin-right: 1rem;
+}
+
+.filterButton {
+}
+
+.activeButton {
+    background-color: green;
+}

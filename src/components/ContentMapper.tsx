@@ -13,6 +13,7 @@ import { TemplatePage } from './pages/template-page/TemplatePage';
 import { make404Props } from '../utils/make-error-props';
 import { SituationPage } from './pages/situation-page/SituationPage';
 import { GuidePage } from './pages/guide-page/GuidePage';
+import { OverviewPage } from './pages/overview-page/OverviewPage';
 import { ThemedArticlePage } from './pages/themed-article-page/ThemedArticlePage';
 import { ProductPage } from './pages/product-page/ProductPage';
 import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
@@ -33,6 +34,7 @@ const contentToReactComponent: Partial<{
     [ContentType.ProductPage]: ProductPage,
     [ContentType.GuidePage]: GuidePage,
     [ContentType.ThemedArticlePage]: ThemedArticlePage,
+    [ContentType.Overview]: OverviewPage,
 
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.MainArticle]: DynamicPage,

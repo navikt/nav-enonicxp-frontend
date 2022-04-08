@@ -55,6 +55,7 @@ export enum ContentType {
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',
     ToolsPage = 'no_nav_navno_ToolsPage',
     Calculator = 'no_nav_navno_Calculator',
+    Overview = 'no_nav_navno_Overview',
 }
 
 export type ContentCommonProps = {

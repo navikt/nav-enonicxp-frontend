@@ -13,6 +13,7 @@ import {
     SituationPageProps,
     GuidePageProps,
     ThemedArticlePageProps,
+    OverviewPageProps,
 } from '../../../../types/content-props/dynamic-page-props';
 import { Audience } from '../../../../types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
@@ -24,7 +25,8 @@ type Props = {
         | SituationPageProps
         | ProductPageProps
         | GuidePageProps
-        | ThemedArticlePageProps;
+        | ThemedArticlePageProps
+        | OverviewPageProps;
 };
 
 export const ThemedPageHeader = ({ contentProps }: Props) => {
@@ -97,6 +99,10 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
 
         if (_pageType === ContentType.ToolsPage) {
             return 'tool';
+        }
+
+        if (_pageType === ContentType.Overview) {
+            return 'overview';
         }
 
         return '';

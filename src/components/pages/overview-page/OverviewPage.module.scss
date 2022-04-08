@@ -1,0 +1,26 @@
+@use '../../../common' as common;
+
+$situationPageSectionMaxWidth: 37.5rem;
+
+.overviewPage {
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-left: 6rem;
+        margin-top: 2rem;
+        max-width: $situationPageSectionMaxWidth;
+        width: 100%;
+    }
+
+    .productListWrapper {
+        background-color: white;
+        padding: 2rem;
+    }
+
+    @include common.product-mixins();
+}
