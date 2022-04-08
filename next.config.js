@@ -158,6 +158,10 @@ module.exports = withPlugins([withLess, withTranspileModules], {
             source: '/frontendlogger/:path*',
             destination: '/404',
         },
+        {
+            source: '/feilside',
+            destination: '/404',
+        },
         // /_/* should point to XP services. Rewrite only if XP is on a different origin
         ...(process.env.XP_ORIGIN !== process.env.APP_ORIGIN
             ? [
