@@ -148,6 +148,14 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 );
             }
 
+            if (tag === 'u') {
+                if (!children) {
+                    return <Fragment />;
+                }
+
+                return <>{domToReact(children, parserOptions)}</>;
+            }
+
             // Handle links
             if (tag === 'a') {
                 if (!validChildren) {
