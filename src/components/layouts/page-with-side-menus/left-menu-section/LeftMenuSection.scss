@@ -1,14 +1,14 @@
-@import (reference) '../../../../common';
+@use 'src/common' as common;
+
+$topOffset: calc(var(--decorator-sticky-offset, 0px) + 1rem);
+$bottomOffset: 2rem;
 
 .left-menu {
-    @topOffset: calc(var(--decorator-sticky-offset, 0px) + 1rem);
-    @bottomOffset: 2rem;
+    top: $topOffset;
 
-    top: @topOffset;
-
-    @media @mq-screen-tablet-and-desktop {
+    @media #{common.$mq-screen-tablet-and-desktop} {
         overflow: auto;
-        max-height: calc(100vh - @topOffset - @bottomOffset);
+        max-height: calc(100vh - #{$topOffset - $bottomOffset});
     }
 
     &--sticky {
