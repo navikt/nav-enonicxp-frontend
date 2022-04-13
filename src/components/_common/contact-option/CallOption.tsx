@@ -155,7 +155,7 @@ export const CallOption = (props: CallOptionProps) => {
             return buildOpeningLaterTodayString(from);
         }
 
-        return `${openClosedText} (${sharedTranslations['businessDays']} 09:00 - 15:00)`;
+        return `${openClosedText} (${sharedTranslations['businessDays']} ${from} - ${to})`;
     };
 
     const todaysOpeningHour =
