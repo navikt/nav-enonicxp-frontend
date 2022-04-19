@@ -26,7 +26,7 @@
         "@navikt/fnrvalidator": "^1.1.4",
         "@navikt/nav-dekoratoren-moduler": "^1.6.13",
         "@reduxjs/toolkit": "^1.8.0",
-        "amplitude-js": "^8.16.0",
+        "amplitude-js": "^8.17.0",
         "classnames": "^2.3.1",
         "dayjs": "^1.10.7",
         "dotenv": "^11.0.0",
