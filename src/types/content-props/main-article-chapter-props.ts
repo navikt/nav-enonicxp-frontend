@@ -1,16 +1,24 @@
-import { ContentType, ContentProps } from './_content-common';
-import { MainArticleProps } from './main-article-props';
+import {
+    ContentType,
+    ContentProps,
+    ContentCommonProps,
+} from './_content-common';
 import { LanguageProps } from '../language';
 
 export type MainArticleChapterData = Partial<{
-    article: MainArticleProps;
+    article: ContentProps;
     languages: LanguageProps[];
 }>;
 
+export type MainArticleChapterNavigationData = {
+    data: {
+        article: ContentCommonProps;
+    };
+} & ContentCommonProps;
+
 type ParentProps = {
-    children?: ContentProps[];
     data?: {
-        chapters?: ContentProps[];
+        chapters?: MainArticleChapterNavigationData[];
     };
 } & ContentProps;
 

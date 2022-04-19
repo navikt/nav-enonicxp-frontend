@@ -1,4 +1,4 @@
-import { MainArticleChapterProps } from './main-article-chapter-props';
+import { MainArticleChapterNavigationData } from './main-article-chapter-props';
 import {
     ContentType,
     ContentProps,
@@ -26,7 +26,7 @@ export type MainArticleData = Partial<{
     social: string[];
     picture: Picture;
     menuListItems: MenuListItem;
-    chapters: MainArticleChapterProps[];
+    chapters: MainArticleChapterNavigationData[];
 }> &
     SeoDataProps &
     ContentDecoratorToggles;

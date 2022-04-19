@@ -10,6 +10,7 @@
 
 # next.js
 /.next/
+/.next-static/
 /out/
 
 # production
@@ -26,12 +27,20 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# local env
+.env
 .env.local
+.env.development.local
 
 /.idea/
 /nav-enonicxp-frontend.iml
-.env
 
-url-lookup-table.json
+# secrets, careful!
 /.github-token
+/failover/.secret-dev1
+/failover/.secret-dev2
+
 /tsconfig.tsbuildinfo
+/image-manifest
+/benchmark.mjs

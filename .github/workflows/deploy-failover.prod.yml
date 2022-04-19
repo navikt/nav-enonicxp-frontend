@@ -1,0 +1,34 @@
+name: Deploy to prod-failover
+on:
+  schedule:
+    - cron: '0 20 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: ./.github/workflows/build-image.yml
+    with:
+      environment: prod-gcp:failover
+      imagename: failover-prod
+      ENV: prod
+      ADMIN_ORIGIN: https://portal-admin.oera.no
+      APP_ORIGIN: https://www.nav.no
+      REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy/revalidator-proxy
+      DECORATOR_FALLBACK_URL: https://www.nav.no/dekoratoren
+      XP_ORIGIN: https://www.nav.no
+      INNLOGGINGSSTATUS_URL: https://www.nav.no/person/innloggingsstatus/auth
+      FAILOVER_ORIGIN: https://www-failover.nav.no
+      IS_FAILOVER_INSTANCE: true
+    secrets:
+      READER_TOKEN: ${{ secrets.READER_TOKEN }}
+      SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
+  deploy:
+    uses: ./.github/workflows/deploy-to-nais.yml
+    needs: build
+    with:
+      image: ${{ needs.build.outputs.image }}
+      cluster: prod-gcp
+      vars_file: vars-prod-failover.yml
+      config_file: config-failover.yml
+    secrets:
+      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

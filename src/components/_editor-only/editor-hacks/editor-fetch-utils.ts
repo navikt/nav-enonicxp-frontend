@@ -1,5 +1,5 @@
 import { adminOrigin } from '../../../utils/urls';
-import { fetchJson } from '../../../utils/fetch-utils';
+import { fetchJson } from '../../../utils/fetch/fetch-utils';
 import { ContentProps } from '../../../types/content-props/_content-common';
 
 const adminAuthUrl = `${adminOrigin}/admin/rest/auth/authenticated`;

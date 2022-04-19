@@ -57,6 +57,31 @@ const handleInvalidateAllReq = (app) => (req, res) => {
         : res.status(500).send(`Failed to wipe page cache! - event ${eventid}`);
 };
 
+let currentCacheTimestamp = 0;
+
+const setCacheKey = (req, res, next) => {
+    const { cache_key, cache_ts } = req.headers;
+
+    if (cache_key) {
+        const newCacheTimestamp = Number(cache_ts);
+        if (newCacheTimestamp > currentCacheTimestamp) {
+            console.log(
+                `Setting new cache key ${cache_key} with timestamp ${cache_ts}`
+            );
+            global.cacheKey = cache_key;
+            currentCacheTimestamp = newCacheTimestamp;
+        } else {
+            console.log(
+                `Rejecting cache key ${cache_key} with timestamp ${newCacheTimestamp} - current cache key ${global.cacheKey} is same or newer (${currentCacheTimestamp})`
+            );
+        }
+    } else {
+        console.error('No cache key provided!');
+    }
+
+    next();
+};
+
 const handleInvalidateReq = (app) => (req, res) => {
     const { eventid } = req.headers;
 
@@ -85,8 +110,7 @@ const handleInvalidateReq = (app) => (req, res) => {
 };
 
 module.exports = {
-    invalidateCachedPage,
-    wipePageCache,
     handleInvalidateReq,
     handleInvalidateAllReq,
+    setCacheKey,
 };
