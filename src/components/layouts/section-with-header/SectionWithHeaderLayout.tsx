@@ -6,7 +6,7 @@ import Region from '../Region';
 import { Header } from '../../_common/headers/Header';
 import { XpImage } from '../../_common/image/XpImage';
 import { FilterBar } from '../../_common/filter-bar/FilterBar';
-import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 const getBorderStyle = ({
     color = '#ffffff',
@@ -74,6 +74,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                                 width: `${icon.size}%`,
                             }),
                         }}
+                        maxWidth={64}
                     />
                 </div>
             )}

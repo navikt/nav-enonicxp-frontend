@@ -41,7 +41,8 @@
     }
 }
 
-.layout__situation-flex-cols {
+.layout__situation-flex-cols,
+.layout__product-flex-cols {
     @singleColMaxWidth: (
         @situationPageSectionMaxWidth + 2 * @padding-sides-mobile
     );
@@ -53,7 +54,6 @@
     @mqDoubleCol: ~'only screen and (max-width: @{doubleColMaxWidth})';
 
     .full-width-mixin();
-    background-color: @navds-global-color-green-100;
     padding-top: 4rem;
     padding-bottom: 4rem;
     margin-bottom: 4rem;
@@ -101,6 +101,10 @@
             margin-bottom: 0;
         }
     }
+}
+
+.layout__situation-flex-cols {
+    background-color: @navds-global-color-green-100;
 }
 
 .region__flexcols {

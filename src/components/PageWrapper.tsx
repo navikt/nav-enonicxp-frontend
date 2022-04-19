@@ -10,13 +10,13 @@ import {
     hookAndInterceptInternalLink,
     prefetchOnMouseover,
 } from '../utils/links';
-import TopContainer from './_common/top-container/TopContainer';
+import TopContainer from './_top-container/TopContainer';
 import { initAmplitude } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
-import { getDecoratorParams } from '../utils/decorator-utils';
+import { getDecoratorParams } from '../utils/decorator/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getInternalRelativePath } from '../utils/urls';
-import { ComponentReorderHack } from '../utils/ComponentReorderHack';
+import { EditorHacks } from './_editor-only/editor-hacks/EditorHacks';
 
 import { store } from '../store/store';
 import { setPathMapAction } from '../store/slices/pathMap';
@@ -96,6 +96,7 @@ export const PageWrapper = (props: Props) => {
             setPageConfigAction({
                 pageId: content._id,
                 language: content.language,
+                isPagePreview: !!router.query.utkastRouter,
                 editorView: content.editorView,
             })
         );
@@ -108,13 +109,13 @@ export const PageWrapper = (props: Props) => {
         setParams(getDecoratorParams(content));
 
         document.documentElement.lang = content.language || 'no';
-    }, [content]);
+    }, [content, router]);
 
     return (
         <div className={'app-container'}>
+            <EditorHacks content={content} />
             <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
-            {content.editorView === 'edit' && <ComponentReorderHack />}
             <TopContainer content={content} />
             <div
                 role={'main'}

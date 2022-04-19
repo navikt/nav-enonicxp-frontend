@@ -27,7 +27,7 @@ const Bilde = (props: Props) => {
                 <XpImage
                     imageProps={target}
                     alt={picture.altText || ''}
-                    scale={'max-768'}
+                    maxWidth={768}
                 />
                 {picture.caption && (
                     <figcaption className="decorated">

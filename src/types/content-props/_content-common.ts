@@ -24,6 +24,7 @@ import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsData } from './animated-icons';
 import { GlobalValuesData } from './global-values-props';
 import { ContactInformationData } from './contact-information-props';
+import { MediaType } from '../media';
 
 export enum ContentType {
     Error = 'error',
@@ -51,13 +52,13 @@ export enum ContentType {
     GuidePage = 'no_nav_navno_GuidePage',
     ThemedArticlePage = 'no_nav_navno_ThemedArticlePage',
     SituationPage = 'no_nav_navno_SituationPage',
-    EmployerSituationPage = 'no_nav_navno_EmployerSituationPage',
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',
     ToolsPage = 'no_nav_navno_ToolsPage',
     Calculator = 'no_nav_navno_Calculator',
 }
 
-export type MediaContentCommonProps = {
+export type ContentCommonProps = {
+    __typename: ContentType | MediaType;
     _id: XpContentRef;
     _path: XpContentRef;
     createdTime: string;
@@ -86,7 +87,9 @@ export type ContentProps = {
     pathMap?: PathMap;
     livePath?: string;
     versionTimestamps?: string[];
-} & MediaContentCommonProps;
+    isFailover?: boolean;
+    isPagePreview?: boolean;
+} & ContentCommonProps;
 
 export type PathMap = { [key: string]: string };
 

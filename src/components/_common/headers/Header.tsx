@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Heading } from '@navikt/ds-react';
-
+import { StaticImage } from '../image/StaticImage';
 import { classNames } from '../../../utils/classnames';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-
 import { Level, levelToSize, Size } from '../../../types/typo-style';
-import { PublicImage } from '../image/PublicImage';
 import { HeaderCommonConfig } from '../../../types/component-props/_mixins';
+
+import linkIcon from '/public/gfx/link.svg';
 
 import style from './Header.module.scss';
 
@@ -85,8 +85,8 @@ export const Header = ({
                         onClick={copyLinkToClipboard}
                         className={style.copyLink}
                     >
-                        <PublicImage
-                            imagePath={'/gfx/link.svg'}
+                        <StaticImage
+                            imageData={linkIcon}
                             alt={''}
                             className={style.anchorIcon}
                         />

@@ -18,6 +18,10 @@ export enum Audience {
     PROVIDER = 'provider',
 }
 
+export type FilterLogic = 'or' | 'and';
+
+export type FilterSelection = string[];
+
 export type ProductDataMixin = {
     title: string;
     ingress?: string;
@@ -61,6 +65,7 @@ export type ExpandableMixin = {
 
 export type FiltersMixin = {
     filters: string[];
+    filterLogic: FilterLogic;
 };
 
 export type ColorMixin = {

@@ -1,5 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import PageBase, { fetchPageProps } from '../../components/PageBase';
+import { fetchPageProps } from '../../utils/fetch/fetch-page-props';
+import { PageBase } from '../../components/PageBase';
 import { routerQueryToXpPathOrId } from '../../utils/urls';
 
 // TODO: validate datetime string
@@ -9,7 +10,7 @@ const getValidDateTime = (dateTime: string | string[]) => {
 
 export const fetchVersionPageProps = async (
     context: GetServerSidePropsContext,
-    isDraft: boolean
+    isDraft = false
 ) => {
     const { time, id } = context.query;
 
@@ -17,12 +18,12 @@ export const fetchVersionPageProps = async (
         id || context?.params?.versionRouter
     );
 
-    return fetchPageProps(
-        xpPath,
+    return fetchPageProps({
+        routerQuery: xpPath,
         isDraft,
-        process.env.SERVICE_SECRET,
-        getValidDateTime(time)
-    );
+        noRedirect: true,
+        versionTimestamp: getValidDateTime(time),
+    });
 };
 
 const prodRouter = async (context) => {
@@ -34,11 +35,11 @@ const prodRouter = async (context) => {
         };
     }
 
-    return fetchVersionPageProps(context, false);
+    return fetchVersionPageProps(context);
 };
 
 const devRouter = async (context) => {
-    return fetchVersionPageProps(context, false);
+    return fetchVersionPageProps(context);
 };
 
 export const getServerSideProps: GetServerSideProps =
