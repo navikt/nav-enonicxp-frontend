@@ -1,6 +1,10 @@
 import React from 'react';
-import { PartWithOwnData, PartWithPageData } from 'types/component-props/parts';
-import { PartDeprecated, PartType } from 'types/component-props/parts';
+import {
+    PartDeprecated,
+    PartType,
+    PartWithOwnData,
+    PartWithPageData,
+} from 'types/component-props/parts';
 import LinkLists from './_legacy/link-lists/LinkLists';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
@@ -99,13 +103,15 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
 };
 
 export const PartsMapper = ({ pageProps, partProps }: Props) => {
-    const { path, descriptor, config } = partProps;
+    const { path, descriptor, config, fragment } = partProps;
     const isEditView = pageProps.editorView === 'edit';
     const renderOnAuthState = config?.renderOnAuthState;
 
     const editorProps = isEditView
         ? {
-              'data-portal-component-type': ComponentType.Part,
+              'data-portal-component-type': fragment
+                  ? ComponentType.Fragment
+                  : ComponentType.Part,
               'data-portal-component': path,
           }
         : undefined;

@@ -38,6 +38,7 @@ export interface LayoutCommonProps extends ComponentCommonProps {
     descriptor: LayoutType;
     regions?: { [key: string]: RegionProps };
     config?: any;
+    fragment?: string;
 }
 
 export type LayoutProps =
