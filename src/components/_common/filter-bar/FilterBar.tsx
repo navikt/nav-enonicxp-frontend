@@ -20,7 +20,10 @@ type FilterBarProps = {
 
 export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const { content, intro } = layoutProps.regions;
-    const components = [...content.components, ...intro.components];
+    const components = [
+        ...(content ? content.components : []),
+        ...(intro ? intro.components : []),
+    ];
     const { language } = usePageConfig();
     const getLabel = translator('filteredContent', language);
 
