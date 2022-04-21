@@ -5,7 +5,10 @@ import { XpImageProps } from '../../media';
 
 export interface SectionWithHeaderProps extends LayoutCommonProps {
     type: ComponentType.Layout;
-    descriptor: LayoutType.SectionWithHeader;
+    descriptor:
+        | LayoutType.SectionWithHeader
+        | LayoutType.ProductDetails
+        | LayoutType.ProductDetails;
     regions: {
         intro: {
             components: ComponentProps[];

@@ -6,16 +6,26 @@
 .tagWrapper {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    margin: 1rem 0;
 }
 
 .tag {
-    background-color: green;
-    margin-right: 1rem;
+    white-space: nowrap;
+    margin: 0 0.5rem 0.5rem 0;
+    background-color: white;
+    border: 1px solid var(--navds-global-color-gray-600);
+    cursor: pointer;
 }
 
 .filterButton {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
 }
 
 .activeButton {
-    background-color: green;
+    .tag {
+        background-color: rgb(219, 219, 219);
+    }
 }

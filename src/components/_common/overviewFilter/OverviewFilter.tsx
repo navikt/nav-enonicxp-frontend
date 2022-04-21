@@ -3,7 +3,7 @@ import { Area } from 'types/areas';
 import styles from './OverviewFilter.module.scss';
 import { translator } from '../../../translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { Heading } from '@navikt/ds-react';
+import { Heading, Tag } from '@navikt/ds-react';
 import classNames from 'classnames';
 
 interface OverviewFilterProps {
@@ -20,6 +20,11 @@ export const OverviewFilter = ({
     const areaTranslations = translator('areas', language);
 
     const handleFilterUpdate = (area: Area) => {
+        if (area === Area.ALL) {
+            setFilters([]);
+            filterUpdateCallback([]);
+            return;
+        }
         const foundAtPos = filters.findIndex((filter) => filter === area);
         const updatedFilters =
             foundAtPos > -1
@@ -35,19 +40,32 @@ export const OverviewFilter = ({
                 Velg område
             </Heading>
             <div className={styles.tagWrapper}>
-                {area.map((area) => (
-                    <button
-                        key={area}
-                        type="button"
-                        onClick={() => handleFilterUpdate(area)}
-                        className={classNames(
-                            styles.filterButton,
-                            filters.includes(area) && styles.activeButton
-                        )}
-                    >
-                        {areaTranslations(area)}
-                    </button>
-                ))}
+                {area.map((area) => {
+                    const isActive =
+                        filters.includes(area) ||
+                        (area === Area.ALL && filters.length === 0);
+
+                    return (
+                        <button
+                            key={area}
+                            type="button"
+                            onClick={() => handleFilterUpdate(area)}
+                            className={classNames(
+                                styles.filterButton,
+                                isActive && styles.activeButton
+                            )}
+                        >
+                            <Tag
+                                variant="info"
+                                className={styles.tag}
+                                size="small"
+                            >
+                                {' '}
+                                {areaTranslations(area)}
+                            </Tag>
+                        </button>
+                    );
+                })}
             </div>
         </div>
     );

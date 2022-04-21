@@ -1,6 +1,7 @@
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { IllustrationStatic } from './IllustrationStatic';
 import { IllustrationAnimated } from './IllustrationAnimated';
+import { XpImageProps } from 'types/media';
 
 interface IllustrationProps {
     illustration: AnimatedIconsProps;

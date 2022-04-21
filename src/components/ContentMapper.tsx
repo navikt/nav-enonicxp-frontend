@@ -16,6 +16,7 @@ import { GuidePage } from './pages/guide-page/GuidePage';
 import { OverviewPage } from './pages/overview-page/OverviewPage';
 import { ThemedArticlePage } from './pages/themed-article-page/ThemedArticlePage';
 import { ProductPage } from './pages/product-page/ProductPage';
+import { ProductDetailsPage } from './pages/product-details-page/ProductDetailsPage';
 import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
 import { MainArticleChapterPage } from './pages/main-article-chapter-page/MainArticleChapterPage';
 
@@ -28,6 +29,7 @@ const contentToReactComponent: Partial<{
     [ContentType.TemplatePage]: TemplatePage,
     [ContentType.AnimatedIcons]: () => null, // TODO: add a preview-page for editors
     [ContentType.GlobalValues]: GlobalValuesPage,
+    [ContentType.ProductDetails]: ProductDetailsPage,
     [ContentType.ContactInformationPage]: ContactInformationPage,
 
     [ContentType.SituationPage]: SituationPage,
@@ -63,6 +65,8 @@ type Props = {
 
 export const ContentMapper = ({ content }: Props) => {
     const Component = contentToReactComponent[content.__typename];
+
+    console.log(content.__typename);
 
     return Component ? (
         <Component {...content} />
