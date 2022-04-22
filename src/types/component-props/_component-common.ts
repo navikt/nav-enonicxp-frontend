@@ -19,7 +19,6 @@ export type ComponentCommonProps = {
 export interface PartComponentProps extends ComponentCommonProps {
     type: ComponentType.Part;
     descriptor: PartType;
-    fragment?: string;
 }
 
 export interface TextComponentProps extends ComponentCommonProps {
