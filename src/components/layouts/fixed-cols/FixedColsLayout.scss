@@ -36,7 +36,7 @@
         &:not(:first-child) {
             margin-left: 2.2rem;
 
-            @media #{$mq-screen-tablet} {
+            @media #{common.$mq-screen-tablet} {
                 margin-left: 1rem;
             }
 

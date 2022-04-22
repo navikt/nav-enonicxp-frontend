@@ -42,12 +42,8 @@
 
 .layout__situation-flex-cols,
 .layout__product-flex-cols {
-    $singleColMaxWidth: (
-        common.$sectionMaxWidth + 2 * common.$padding-sides-mobile
-    );
-    $doubleColMaxWidth: (
-        common.$contentMaxWidth + 2 * common.$padding-sides-tablet
-    );
+    $singleColMaxWidth: calc(#{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile});
+    $doubleColMaxWidth: calc(#{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet});
 
     @include common.full-width-mixin();
 
@@ -68,15 +64,15 @@
 
     .region__flexcols {
         &--1-cols {
-            .flex-cols-mixin(1);
+            @include common.flex-cols-mixin(1);
         }
 
         &--2-cols {
-            .flex-cols-mixin(2);
+            @include common.flex-cols-mixin(2);
         }
 
         &--3-cols {
-            .flex-cols-mixin(3);
+            @include common.flex-cols-mixin(3);
 
             @media #{'only screen and (max-width: #{$singleColMaxWidth})'} {
                 @include common.flex-cols-mixin(2);

@@ -3,13 +3,27 @@
 @use 'sass:math';
 
 $pixel-size-rem: math.div(1, 16);
+$pixel-size-rem: math.div(1, 16);
+
+// Inn sass numbers can include units (px/rem/em/vw/cm) witch can fuck up doing math
+@function stripUnit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+    @return $number;
+}
 
 @function withUnit($value, $unit) {
     @return '#{$value}#{$unit}';
 }
 
 @function px-to-rem($px) {
-    @return withUnit($px * $pixel-size-rem, 'rem');
+    @return withUnit(stripUnit($px) * stripUnit($pixel-size-rem), 'rem');
+}
+
+@function round-rem($value: 0) {
+    $valueUpper: $value + $pixel-size-rem / 2;
+    @return $valueUpper - ($valueUpper % $pixel-size-rem);
 }
 
 // Screen size breakpoints
@@ -72,13 +86,25 @@ $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
             margin-right: $marginX;
         }
 
-        &:nth-child(#{($numCols)n + $numCols}) {
-        margin-right: 0;
+        &:nth-child(#{($numCols)}n + #{$numCols}) {
+            margin-right: 0;
+        }
+
+        &:nth-child(n + #{$numColsPlus1}) {
+            margin-top: $marginY;
+        }
+    }
+}
+
+@mixin section-padding-mixin() {
+    padding: $sectionPaddingDesktop;
+
+    @media #{$mq-screen-tablet} {
+        padding: $sectionPaddingTablet;
     }
 
-        &:nth-child(#{n + $numColsPlus1}) {
-        margin-top: $marginY;
-    }
+    @media #{$mq-screen-mobile} {
+        padding: $sectionPaddingMobile;
     }
 }
 
