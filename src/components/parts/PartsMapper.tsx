@@ -103,15 +103,13 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
 };
 
 export const PartsMapper = ({ pageProps, partProps }: Props) => {
-    const { path, descriptor, config, fragment } = partProps;
+    const { path, descriptor, config } = partProps;
     const isEditView = pageProps.editorView === 'edit';
     const renderOnAuthState = config?.renderOnAuthState;
 
     const editorProps = isEditView
         ? {
-              'data-portal-component-type': fragment
-                  ? ComponentType.Fragment
-                  : ComponentType.Part,
+              'data-portal-component-type': ComponentType.Part,
               'data-portal-component': path,
           }
         : undefined;

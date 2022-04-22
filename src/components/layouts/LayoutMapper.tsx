@@ -35,13 +35,11 @@ const layoutComponents: {
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
-    const { descriptor, path, regions, fragment } = layoutProps;
+    const { descriptor, path, regions } = layoutProps;
     const isEditView = pageProps.editorView === 'edit';
 
     const editorProps = {
-        'data-portal-component-type': fragment
-            ? ComponentType.Fragment
-            : ComponentType.Layout,
+        'data-portal-component-type': ComponentType.Layout,
         'data-portal-component': path,
     };
 
