@@ -34,7 +34,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     // underlying part that has filter ids attached.
     // We don't care about duplicate ids in the final array at the moment.
     const filterIds = components.reduce((acc, component) => {
-        if (component.config.filters) {
+        if (component.config?.filters) {
             return [...acc, ...component.config.filters];
         }
 
