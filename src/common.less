@@ -69,7 +69,7 @@
 
 .link-border-bottom-mixin() {
     border-bottom: 1px @navds-semantic-color-link solid;
-    text-decoration: none;
+    text-decoration: none !important; // Konflikt med Chatbot pga gammelt designsystem (pr 25.04.22)
     transition: border-bottom-color 0.12s ease-out;
 
     &:hover,
