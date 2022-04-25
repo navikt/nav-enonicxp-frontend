@@ -10,7 +10,6 @@ type Props = {
     regionProps: RegionProps;
     regionStyle?: React.CSSProperties;
     bemModifier?: string;
-    helpText?: string;
 };
 
 const bem = BEM('region');
@@ -20,7 +19,6 @@ export const Region = ({
     regionProps,
     regionStyle,
     bemModifier,
-    helpText,
 }: Props) => {
     if (!regionProps) {
         return (
@@ -41,26 +39,15 @@ export const Region = ({
                 bem(name),
                 bemModifier && bem(name, bemModifier)
             )}
+            data-portal-region={!!pageProps.editorView ? name : undefined}
         >
-            {helpText && (
-                <div>
-                    {helpText && (
-                        <EditorHelp text={helpText} type={'arrowDown'} />
-                    )}
-                </div>
-            )}
-            <div
-                data-portal-region={!!pageProps.editorView ? name : undefined}
-                className="regionContainer"
-            >
-                {components.map((component) => (
-                    <ComponentMapper
-                        key={component.path}
-                        componentProps={component}
-                        pageProps={pageProps}
-                    />
-                ))}
-            </div>
+            {components.map((component) => (
+                <ComponentMapper
+                    key={component.path}
+                    componentProps={component}
+                    pageProps={pageProps}
+                />
+            ))}
         </div>
     );
 };
