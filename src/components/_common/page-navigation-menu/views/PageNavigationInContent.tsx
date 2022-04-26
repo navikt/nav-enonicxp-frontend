@@ -4,15 +4,17 @@ import { Header } from '../../headers/Header';
 import { PageNavigationLink } from '../PageNavigationLink';
 import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
 import { getPageNavigationLinkId } from '../PageNavigationMenu';
+import { PageNavigationDupeLinkWarning } from '../PageNavigationDupeLinkWarning';
 
 const bem = BEM('page-nav-in-content');
 
 type Props = {
     title?: string;
     links: AnchorLink[];
+    dupes: AnchorLink[];
 };
 
-export const PageNavigationInContent = ({ title, links }: Props) => {
+export const PageNavigationInContent = ({ title, links, dupes }: Props) => {
     return (
         <div className={classNames(bem())}>
             {title && (
@@ -25,6 +27,7 @@ export const PageNavigationInContent = ({ title, links }: Props) => {
                     {title}
                 </Header>
             )}
+            <PageNavigationDupeLinkWarning dupes={dupes} />
             <nav aria-label={'Innhold'}>
                 <ul className={bem('list')}>
                     {links.map((anchorLink) => (
