@@ -34,6 +34,10 @@ export interface ProductPageProps extends ContentProps {
     data: ProductPageData;
 }
 
+export interface ProductDetailsProps extends ContentProps {
+    __typename: ContentType.ProductDetails;
+}
+
 export interface ThemedArticlePageProps extends ContentProps {
     __typename: ContentType.ThemedArticlePage;
     data: ThemedArticlePageData;
