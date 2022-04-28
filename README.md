@@ -47,42 +47,6 @@ Kjør så `npm run start-clean`
 -   Lag en release på master med versjon-bump, beskrivende tittel og oppsummering av endringene dine
 -   Publiser release'en for å starte deploy til prod
 
-## Secrets
-
-Secrets hentes fra Environment secrets på Github. For å legge til secrets gå til: Settings -> Environments
-
-## vhost mappings i Enonic XP config
-
-Mappings legges inn i com.enonic.xp.web.vhost.cfg.
-
-#### lokalt
-
-```
-mapping.next.host = localhost
-mapping.next.source = /_next
-mapping.next.target = /_/service/no.nav.navno/nextProxy
-mapping.next.idProvider.system = default
-
-mapping.legacy.host = localhost
-mapping.legacy.source = /_/legacy
-mapping.legacy.target = /site/default/master/www.nav.no/
-mapping.legacy.idProvider.system = default
-```
-
-##### dev/q/prod:
-
-```
-mapping.next.host = portal-admin<-dev|-q-n>.oera.no
-mapping.next.source = /_next
-mapping.next.target = /_/service/no.nav.navno/nextProxy
-mapping.next.idProvider.adfs = default
-
-mapping.legacy.host = www<-dev|-q-n>.nav.no
-mapping.legacy.source = /_/legacy
-mapping.legacy.target = /site/default/master/www.nav.no/
-mapping.legacy.idProvider.adfs = default
-```
-
 # Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot https://github.com/orgs/navikt/teams/personbruker
