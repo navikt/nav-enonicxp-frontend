@@ -3,9 +3,8 @@
 @use 'sass:math';
 
 $pixel-size-rem: math.div(1, 16);
-$pixel-size-rem: math.div(1, 16);
 
-// Inn sass numbers can include units (px/rem/em/vw/cm) witch can fuck up doing math
+// In Sass numbers can include units (px/rem/em/vw/cm) witch can fuck up doing math
 @function stripUnit($number) {
     @if type-of($number) == 'number' and not unitless($number) {
         @return $number / ($number * 0 + 1);
@@ -13,12 +12,8 @@ $pixel-size-rem: math.div(1, 16);
     @return $number;
 }
 
-@function withUnit($value, $unit) {
-    @return '#{$value}#{$unit}';
-}
-
 @function px-to-rem($px) {
-    @return withUnit(stripUnit($px) * stripUnit($pixel-size-rem), 'rem');
+    @return stripUnit($px) * $pixel-size-rem * 1rem;
 }
 
 @function round-rem($value: 0) {
@@ -75,12 +70,8 @@ $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
         display: flex;
         flex-grow: 1;
         flex-shrink: 0;
-        flex-basis: calc(percentage(1 / ($numCols + 1)) + 1px);
-
-        max-width: calc(
-                percentage(1 / $numCols) - #{($marginX * ($numCols - 1)) / $numCols} +
-                1px
-        );
+        flex-basis: calc(percentage(1 / $numColsPlus1) + 1px);
+        max-width: calc(#{percentage(1 / $numCols)} - #{($marginX * ($numCols - 1)) / $numCols} + 1px);
 
         &:not(:last-child) {
             margin-right: $marginX;

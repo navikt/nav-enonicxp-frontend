@@ -74,12 +74,12 @@
         &--3-cols {
             @include common.flex-cols-mixin(3);
 
-            @media #{'only screen and (max-width: #{$singleColMaxWidth})'} {
+            @media #{'only screen and (max-width: #{$doubleColMaxWidth})'} {
                 @include common.flex-cols-mixin(2);
             }
         }
 
-        @media #{'only screen and (max-width: #{$doubleColMaxWidth})'} {
+        @media #{'only screen and (max-width: #{$singleColMaxWidth})'} {
             @include common.flex-cols-mixin(1);
         }
     }

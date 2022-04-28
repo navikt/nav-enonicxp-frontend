@@ -7,7 +7,6 @@ $margin: 2rem;
     flex-direction: column;
 
     .region__pageContent {
-        margin: $margin;
         display: flex;
         flex-direction: column;
 
@@ -35,6 +34,14 @@ $margin: 2rem;
 
         & > * {
             width: 100%;
+        }
+    }
+
+    .icon-container {
+        background-color: #ffd799;
+        img {
+            height: 50%;
+            width: 50%;
         }
     }
 

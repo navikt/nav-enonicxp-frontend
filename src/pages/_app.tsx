@@ -13,6 +13,7 @@ import 'components/layouts/legacy/LegacyLayout.scss';
 import 'components/layouts/page-with-side-menus/left-menu-section/LeftMenuSection.scss';
 import 'components/layouts/page-with-side-menus/PageWithSideMenus.scss';
 import 'components/layouts/section-with-header/SectionWithHeaderLayout.scss';
+import 'components/pages/situation-page/SituationPage.scss';
 
 const App = ({ Component, pageProps }: AppProps) => {
     return (
