@@ -3,4 +3,14 @@ revalidatorApp: nav-enonicxp-frontend-revalidator-proxy
 secret: nav-enonicxp
 ingresses:
   - https://www.nav.no
-  - https://www.nav.no/soknad-dagpenger-utdanning
+  - https://www.nav.no/soknad
+  - https://www.nav.no/soke
+  - https://www.nav.no/sok-
+  - https://www.nav.no/arbeids
+resources:
+  limits:
+    cpu: 3000m
+    memory: 3000Mi
+  requests:
+    cpu: 1500m
+    memory: 1500Mi

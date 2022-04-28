@@ -13,9 +13,10 @@ spec:
   liveness:
     path: /api/internal/isAlive
     initialDelay: 10
+    timeout: 5
   readiness:
     path: /api/internal/isReady
-    initialDelay: 10
+    initialDelay: 30
   prometheus:
     enabled: true
     path: /api/internal/metrics
@@ -36,9 +37,11 @@ spec:
       rules:
         - application: {{revalidatorApp}}
   resources:
+  {{#with resources}}
     limits:
-      cpu: '3'
-      memory: 2000Mi
+      cpu: {{limits.cpu}}
+      memory: {{limits.memory}}
     requests:
-      cpu: '1'
-      memory: 1500Mi
+      cpu: {{requests.cpu}}
+      memory: {{requests.memory}}
+  {{/with}}

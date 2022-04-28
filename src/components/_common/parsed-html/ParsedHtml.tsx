@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { NextImage } from '../image/NextImage';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import htmlReactParser, {
     Element,
@@ -108,7 +109,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <Fragment />;
                 }
                 return (
-                    <img
+                    <NextImage
                         {...props}
                         alt={attribs.alt || ''}
                         src={getMediaUrl(attribs.src)}
@@ -141,21 +142,33 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <>{domToReact(children, parserOptions)}</>;
                 }
                 return (
-                    <BodyLong spacing {...props}>
+                    <BodyLong spacing {...props} className={undefined}>
                         {domToReact(children, parserOptions)}
                     </BodyLong>
                 );
             }
 
+            if (tag === 'u') {
+                if (!children) {
+                    return <Fragment />;
+                }
+
+                return <>{domToReact(children, parserOptions)}</>;
+            }
+
             // Handle links
             if (tag === 'a') {
-                const href = attribs?.href?.replace('https://www.nav.no', '');
-
                 if (!validChildren) {
                     return <Fragment />;
                 }
+
                 return (
-                    <LenkeInline {...props} href={href}>
+                    <LenkeInline
+                        {...props}
+                        href={props.href}
+                        style={undefined}
+                        className={undefined}
+                    >
                         {domToReact(validChildren, parserOptions)}
                     </LenkeInline>
                 );

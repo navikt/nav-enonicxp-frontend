@@ -9,17 +9,20 @@ interface PageConfigState {
     pageId: string | null;
     language: Language;
     editorView?: EditorView;
+    isPagePreview: boolean;
 }
 
 interface CurrentPageIdPayload {
     pageId: string;
     language: Language;
     editorView?: EditorView;
+    isPagePreview: boolean;
 }
 
 const initialState: PageConfigState = {
     pageId: null,
     language: 'no',
+    isPagePreview: false,
 };
 
 export const pageConfigSlice = createSlice({
@@ -30,6 +33,7 @@ export const pageConfigSlice = createSlice({
             state.pageId = action.payload.pageId;
             state.language = action.payload.language;
             state.editorView = action.payload.editorView;
+            state.isPagePreview = action.payload.isPagePreview;
         },
     },
 });
@@ -46,6 +50,10 @@ export const currentLanguage = (state: RootState): Language => {
 
 export const currentEditorView = (state: RootState): EditorView => {
     return state.pageConfig.editorView;
+};
+
+export const isPagePreview = (state: RootState): boolean => {
+    return state.pageConfig.isPagePreview;
 };
 
 export default pageConfigSlice.reducer;

@@ -40,8 +40,9 @@ export const LenkeBase = ({
     const { pageConfig } = usePageConfig();
 
     // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
-    const shouldPrefetch =
-        prefetch === false || !!pageConfig.editorView ? false : undefined;
+    // (setting to always false for the time being to prevent backend load spikes with cold cache)
+    const shouldPrefetch = false;
+    // prefetch === false || !!pageConfig.editorView ? false : undefined;
 
     const getFinalHref = () => {
         if (isInternalUrl(href)) {

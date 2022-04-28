@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
-import PageBase, { fetchPageProps } from '../../components/PageBase';
+import { fetchPageProps } from '../../utils/fetch/fetch-page-props';
+import { PageBase } from '../../components/PageBase';
 import { ContentProps } from '../../types/content-props/_content-common';
 import { isPropsWithContent } from '../../types/_type-guards';
 import { fetchVersionPageProps } from '../version/[[...versionRouter]]';
@@ -14,13 +15,12 @@ const getPageProps = async (context) => {
     return await fetchPageProps({
         routerQuery: pathSegments,
         isDraft: true,
-        secret: process.env.SERVICE_SECRET,
+        noRedirect: true,
     });
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const secret = context.req.headers.secret as string;
-    if (secret !== process.env.SERVICE_SECRET) {
+    if (context.req.headers.secret !== process.env.SERVICE_SECRET) {
         return {
             notFound: true,
         };

@@ -87,6 +87,8 @@ export type ContentProps = {
     pathMap?: PathMap;
     livePath?: string;
     versionTimestamps?: string[];
+    isFailover?: boolean;
+    isPagePreview?: boolean;
 } & ContentCommonProps;
 
 export type PathMap = { [key: string]: string };

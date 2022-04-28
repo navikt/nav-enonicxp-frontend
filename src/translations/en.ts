@@ -3,13 +3,16 @@ import { MenuListItemKey } from '../types/menu-list-items';
 import { Taxonomy } from 'types/taxonomies';
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
-    [Taxonomy.BENEFITS]: 'Benefits',
-    [Taxonomy.RIGHTS]: 'Counselling',
-    [Taxonomy.FOLLOWUP]: 'Follow-up',
-    [Taxonomy.MEASURES]: 'Measures',
-    [Taxonomy.FOR_EMPLOYERS]: 'For employers',
-    [Taxonomy.FOR_PROVIDERS]: 'For providers',
     [Taxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
+    [Taxonomy.BENEFITS]: 'Benefits',
+    [Taxonomy.FOLLOWUP]: 'Follow-up',
+    [Taxonomy.FOR_EMPLOYERS]: 'For employers',
+    [Taxonomy.FOR_EVENT_ORGANIZERS]: 'For schemes organizers',
+    [Taxonomy.FOR_HEALTH_SERVICE]: 'For physicians and other therapists',
+    [Taxonomy.FOR_MUNICIPALITY]: 'For the municipality',
+    [Taxonomy.FOR_PROVIDERS]: 'For providers',
+    [Taxonomy.MEASURES]: 'Measures',
+    [Taxonomy.RIGHTS]: 'Counselling',
 };
 
 export const bundle: Translations = {
@@ -139,5 +142,10 @@ export const bundle: Translations = {
         label: 'Version history',
         title: 'Historic versions',
         loading: 'Loading historic version...',
+    },
+    pageWarnings: {
+        draftWarning: 'Draft - this page is still in progress',
+        failoverWarning:
+            'We are currently having technical issues on nav.no. You may experience slow response times or missing content. Try reloading the page.',
     },
 };

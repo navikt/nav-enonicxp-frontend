@@ -2,7 +2,7 @@ const { readFileSync } = require('fs');
 const { execSync } = require('child_process');
 const { Octokit } = require('@octokit/core');
 
-const token = readFileSync('.github-token', 'utf8').trim();
+const token = readFileSync(`${__dirname}/.github-token`, 'utf8').trim();
 const owner = 'navikt';
 const repo = 'nav-enonicxp-frontend';
 
@@ -10,7 +10,7 @@ const octokit = new Octokit({
     auth: token,
 });
 
-module.exports.triggerWorkflow = (workflow_id, branchOrTag) => {
+module.exports.triggerWorkflow = (workflow_id, branchOrTag, inputs) => {
     if (!workflow_id) {
         console.log('Aborting: no workflow was specified');
         return;
@@ -38,6 +38,7 @@ module.exports.triggerWorkflow = (workflow_id, branchOrTag) => {
                 repo,
                 workflow_id,
                 ref,
+                ...(inputs && { inputs: JSON.parse(inputs) }),
             }
         )
         .then(() => console.log('Workflow started'))

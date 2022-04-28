@@ -9,8 +9,7 @@ import {
     clearFiltersAction,
 } from '../slices/filteredContent';
 import { Category } from 'types/store/filter-menu';
-
-type FilterSelection = string[];
+import { FilterSelection } from 'types/component-props/_mixins';
 
 type UseFilterState = {
     availableFilters: Category[];
