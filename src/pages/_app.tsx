@@ -14,6 +14,7 @@ import 'components/layouts/page-with-side-menus/left-menu-section/LeftMenuSectio
 import 'components/layouts/page-with-side-menus/PageWithSideMenus.scss';
 import 'components/layouts/section-with-header/SectionWithHeaderLayout.scss';
 import 'components/pages/situation-page/SituationPage.scss';
+import 'components/pages/product-page/ProductPage.scss';
 
 const App = ({ Component, pageProps }: AppProps) => {
     return (
