@@ -9,6 +9,8 @@ import { stripXpPathPrefix } from '../urls';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { contentTypesWithWhiteHeader } from '../../components/_top-container/TopContainer';
 
+const defaultLanguage: DecoratorParams['language'] = 'nb';
+
 const xpLangToDecoratorLang: {
     [key in Language]: DecoratorParams['language'];
 } = {
@@ -19,6 +21,9 @@ const xpLangToDecoratorLang: {
     se: 'se',
 };
 
+const getDecoratorLangFromXpLang = (xpLang: Language) =>
+    xpLangToDecoratorLang[xpLang] || defaultLanguage;
+
 const getDecoratorLanguagesParam = (
     languages: LanguageProps[],
     currentLang: Language,
@@ -28,13 +33,13 @@ const getDecoratorLanguagesParam = (
         ? languages
               .map((lang) => ({
                   handleInApp: true,
-                  locale: xpLangToDecoratorLang[lang.language],
+                  locale: getDecoratorLangFromXpLang(lang.language),
                   url: stripXpPathPrefix(lang._path),
               }))
               .concat([
                   {
                       handleInApp: true,
-                      locale: xpLangToDecoratorLang[currentLang],
+                      locale: getDecoratorLangFromXpLang(currentLang),
                       url: stripXpPathPrefix(currentPath),
                   },
               ])
@@ -68,7 +73,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     const { _path, breadcrumbs, language } = content;
     const rolePath = _path.split('/')[3];
     const context = pathToRoleContext[rolePath];
-    const decoratorLanguage = xpLangToDecoratorLang[language];
+    const decoratorLanguage = getDecoratorLangFromXpLang(language);
     const feedbackEnabled = content.data?.feedbackToggle;
     const chatbotDisabled =
         content.data?.chatbotToggle === false ||
