@@ -23,6 +23,10 @@
 
     .image-container {
         background-color: var(--navds-global-color-green-200);
+        img {
+            height: 50%;
+            width: 50%;
+        }
     }
 
     @include common.product-mixins();
