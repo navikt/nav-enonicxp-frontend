@@ -1,4 +1,4 @@
-@use 'src/common';
+@use 'src/common' as common;
 
 $margin: 2rem;
 
@@ -38,7 +38,7 @@ $margin: 2rem;
     }
 
     .icon-container {
-        background-color: #ffd799;
+        background-color: var(--navds-global-color-orange-200);
         img {
             height: 50%;
             width: 50%;

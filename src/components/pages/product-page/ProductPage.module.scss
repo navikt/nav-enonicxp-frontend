@@ -21,5 +21,9 @@
         }
     }
 
+    .image-container {
+        background-color: var(--navds-global-color-green-200);
+    }
+
     @include common.product-mixins();
 }
