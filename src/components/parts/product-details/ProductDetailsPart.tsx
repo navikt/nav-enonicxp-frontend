@@ -9,15 +9,15 @@ import { ComponentMapper } from 'components/ComponentMapper';
 export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
     const { pageConfig } = usePageConfig();
 
-    const mainRegion = config.productDetailsTarget.page.regions['main'];
-
     if (!config?.productDetailsTarget && pageConfig.editorView) {
-        return <div>Velg produktdetaljer fra listen</div>;
+        return <div>[Velg produktdetaljer fra listen]</div>;
     }
 
     if (!config?.productDetailsTarget && !pageConfig.editorView) {
         return null;
     }
+
+    const mainRegion = config.productDetailsTarget.page.regions['main'];
 
     return (
         <>

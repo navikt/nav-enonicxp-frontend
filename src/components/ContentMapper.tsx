@@ -66,8 +66,6 @@ type Props = {
 export const ContentMapper = ({ content }: Props) => {
     const Component = contentToReactComponent[content.__typename];
 
-    console.log(content.__typename);
-
     return Component ? (
         <Component {...content} />
     ) : (
