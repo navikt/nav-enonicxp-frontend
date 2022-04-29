@@ -18,7 +18,7 @@ export const translator = <Module extends keyof Translations>(
     module: Module,
     language: Language
 ) => {
-    const selectedLanguage = supportedLanguages[language] || defaultPack;
+    const selectedLanguage = supportedLanguages[language];
     const pack = {
         ...defaultPack[module],
         ...(selectedLanguage && selectedLanguage[module]),
