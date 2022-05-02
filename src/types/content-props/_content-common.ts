@@ -13,7 +13,6 @@ import { LayoutProps } from '../component-props/layouts';
 import { MainArticleChapterData } from './main-article-chapter-props';
 import { OfficeInformationData } from './office-information-props';
 import { UrlData } from './url-props';
-import { NotificationProps } from '../notification-props';
 import {
     DynamicPageData,
     ProductPageData,
@@ -43,7 +42,6 @@ export enum ContentType {
     MainArticle = 'no_nav_navno_MainArticle',
     MainArticleChapter = 'no_nav_navno_MainArticleChapter',
     Melding = 'no_nav_navno_Melding',
-    Notification = 'no_nav_navno_Notification',
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
@@ -83,7 +81,6 @@ export type ContentProps = {
     page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
-    notifications?: NotificationProps[];
     pathMap?: PathMap;
     livePath?: string;
     versionTimestamps?: string[];

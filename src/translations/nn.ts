@@ -70,9 +70,6 @@ export const bundle = {
     mainPanels: {
         label: 'Hovudval',
     },
-    notifications: {
-        label: 'Viktige varsel',
-    },
     officeInformation: {
         closed: 'Stengt',
     },
