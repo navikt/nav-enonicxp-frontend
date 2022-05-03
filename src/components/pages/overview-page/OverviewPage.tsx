@@ -5,18 +5,35 @@ import { ThemedPageHeader } from '../../_common/headers/themed-page-header/Theme
 import { Accordion, Heading } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
 
-import style from './OverviewPage.module.scss';
 import { OverviewFilter } from 'components/_common/overviewFilter/OverviewFilter';
 import { Area } from 'types/areas';
 import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
 import { MicroCard } from 'components/_common/card/MicroCard';
 import { CardType } from 'types/card';
+import { fetchProductContent } from 'utils/fetch/fetch-product-content';
+
+import style from './OverviewPage.module.scss';
 
 export const OverviewPage = (props: OverviewPageProps) => {
-    const { language } = props;
     const { productList } = props.data;
 
     const [filters, setFilters] = useState<Area[]>([]);
+    const [openPanels, setOpenPanels] = useState<string[]>([]);
+
+    const checkForPanelContent = async (contentId: string) => {
+        const content = await fetchProductContent(contentId);
+    };
+
+    const handlePanelToggle = (panelId: string) => {
+        const foundAtPos = openPanels.findIndex((id) => id === panelId);
+        const updatedOpenPanels =
+            foundAtPos > -1
+                ? openPanels.filter((id) => id !== panelId)
+                : [...openPanels, panelId];
+        setOpenPanels(updatedOpenPanels);
+
+        checkForPanelContent(panelId);
+    };
 
     const handleFilterUpdate = (filters: Area[]) => {
         setFilters(filters);
@@ -49,8 +66,15 @@ export const OverviewPage = (props: OverviewPageProps) => {
 
                         return (
                             <Accordion key={product._id}>
-                                <Accordion.Item renderContentWhenClosed>
-                                    <Accordion.Header>
+                                <Accordion.Item
+                                    renderContentWhenClosed
+                                    open={openPanels.includes(product._id)}
+                                >
+                                    <Accordion.Header
+                                        onClick={() =>
+                                            handlePanelToggle(product._id)
+                                        }
+                                    >
                                         <IllustrationStatic
                                             className={style.illustration}
                                             illustration={product.illustration}
