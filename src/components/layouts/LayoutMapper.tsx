@@ -45,8 +45,6 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
         'data-portal-component': path,
     };
 
-    console.log('descriptor', descriptor);
-
     if (!descriptor || !regions) {
         return isEditView ? <div {...editorProps} /> : null;
     }

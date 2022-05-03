@@ -7,7 +7,6 @@ import { Header } from '../../_common/headers/Header';
 import { XpImage } from '../../_common/image/XpImage';
 import { FilterBar } from '../../_common/filter-bar/FilterBar';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { LayoutType } from 'types/component-props/layouts';
 
 const getBorderStyle = ({
     color = '#ffffff',
@@ -24,7 +23,7 @@ type Props = {
 };
 
 export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
-    const { regions, config, descriptor } = layoutProps;
+    const { regions, config } = layoutProps;
 
     if (!config) {
         return (

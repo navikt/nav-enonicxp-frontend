@@ -10,7 +10,7 @@ export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
     const { pageConfig } = usePageConfig();
 
     if (!config?.productDetailsTarget && pageConfig.editorView) {
-        return <div>[Velg produktdetaljer fra listen]</div>;
+        return <div>[Velg hvilken produktdetalj-side du vil vise]</div>;
     }
 
     if (!config?.productDetailsTarget && !pageConfig.editorView) {
