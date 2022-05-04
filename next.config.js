@@ -105,12 +105,17 @@ const buildCspHeader = () => {
         'www.googletagmanager.com',
     ].join(' ');
 
+    // NOTES:
+    // unsafe-eval is required by the psplugin script
+    // unsafe-inline script is required by GTM
+    // unsafe-inline style is required by several third party modules
+    // next.js dev mode requires some extra directives
     const headerValue = [
         `default-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics}${
             process.env.NODE_ENV === 'development' ? ' ws:' : ''
         }`,
-        `script-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics} 'unsafe-inline'${
-            process.env.NODE_ENV === 'development' ? " blob: 'unsafe-eval'" : ''
+        `script-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics} 'unsafe-inline' 'unsafe-eval'${
+            process.env.NODE_ENV === 'development' ? ' blob:' : ''
         }`,
         `style-src ${internalOrigins} ${externalOriginsServices} 'unsafe-inline'`,
         `font-src ${internalOrigins} ${externalOriginsServices} data:`,
