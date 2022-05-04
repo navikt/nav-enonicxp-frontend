@@ -65,9 +65,6 @@ export const bundle: Translations = {
         publishdate: 'Publiseringsdato',
         event: 'Kalenderhendelse',
     },
-    notifications: {
-        label: 'Urgent notifications',
-    },
     dateTime: {
         weekDayNames: [
             'Monday',
