@@ -35,11 +35,11 @@ export enum PartType {
 export type PartDeprecated =
     | PartType.Notifications
     | PartType.BreakingNews
-    | PartType.PageCrumbs;
+    | PartType.PageCrumbs
+    | PartType.LinkLists;
 
 export type PartWithPageData =
     | PartType.LinkPanels
-    | PartType.LinkLists
     | PartType.PageHeading
     | PartType.MainArticle
     | PartType.MainArticleLinkedList

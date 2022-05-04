@@ -81,6 +81,7 @@ const partsDeprecated: { [key in PartDeprecated] } = {
     [PartType.Notifications]: true,
     [PartType.BreakingNews]: true,
     [PartType.PageCrumbs]: true,
+    [PartType.LinkLists]: true,
 };
 
 const PartComponent = ({ partProps, pageProps }: Props) => {
