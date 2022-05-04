@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Picture } from '../../../../types/content-props/main-article-props';
 import { XpImage } from '../../../_common/image/XpImage';
 
+import style from './MainArticle.module.scss';
+
 interface Props {
     picture?: Picture;
 }
@@ -16,13 +18,13 @@ const Bilde = (props: Props) => {
 
     const imgClass =
         size === '40'
-            ? 'figure-small'
+            ? style.figureSmall
             : size === '70'
-            ? 'figure-medium'
-            : 'figure-full';
+                ? style.figureMedium
+                : style.figureFull;
 
     return (
-        <div className="figure-container">
+        <div className={style.figureContainer}>
             <figure className={imgClass}>
                 <XpImage
                     imageProps={target}
