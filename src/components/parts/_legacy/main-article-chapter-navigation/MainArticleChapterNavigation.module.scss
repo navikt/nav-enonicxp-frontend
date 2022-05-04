@@ -41,18 +41,18 @@ $decorWidth: 0.5rem;
                 top: 0;
                 width: $decorWidth;
             }
+        }
 
-            .active {
-                &:before {
-                    background-color: common.$navds-semantic-color-link;
-                    content: '';
-                    display: inline-block;
-                    height: 100%;
-                    left: -($decorWidth);
-                    position: absolute;
-                    top: 0;
-                    width: $decorWidth;
-                }
+        .active {
+            &:before {
+                background-color: common.$navds-semantic-color-link;
+                content: '';
+                display: inline-block;
+                height: 100%;
+                left: -($decorWidth);
+                position: absolute;
+                top: 0;
+                width: $decorWidth;
             }
         }
 
