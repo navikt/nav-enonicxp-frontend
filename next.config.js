@@ -61,9 +61,6 @@ const resolveNodeLibsClientSide = (config, options) => {
     }
 };
 
-const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
-const isLocal = process.env.ENV === 'localhost';
-
 const buildCspHeader = () => {
     const getOrigin = (str) => str.replace(/^https?:\/\//, '').split('/')[0];
 
@@ -109,7 +106,7 @@ const buildCspHeader = () => {
     // unsafe-inline script is required by GTM
     // unsafe-inline style is required by several third party modules
     // next.js dev mode requires some extra directives
-    const headerValue = [
+    return [
         `default-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics}${
             process.env.NODE_ENV === 'development' ? ' ws:' : ''
         }`,
@@ -120,11 +117,10 @@ const buildCspHeader = () => {
         `font-src ${internalOrigins} ${externalOriginsServices} data:`,
         `img-src ${internalOrigins} ${externalOriginsServices} data:`,
     ].join('; ');
-
-    console.log(`CSP: ${headerValue}`);
-
-    return headerValue;
 };
+
+const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+const isLocal = process.env.ENV === 'localhost';
 
 console.log(
     `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Failover: ${isFailover}`
