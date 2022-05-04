@@ -61,17 +61,95 @@ const resolveNodeLibsClientSide = (config, options) => {
     }
 };
 
+const buildCspHeader = () => {
+    const getOrigin = (url) => url.replace(/^https?:\/\//, '').split('/')[0];
+
+    const prodOrigin = 'nav.no';
+    const prodWithSubdomains = `*.${prodOrigin}`;
+
+    const appOrigin = getOrigin(process.env.APP_ORIGIN);
+    const adminOrigin = getOrigin(process.env.ADMIN_ORIGIN);
+    const xpOrigin = getOrigin(process.env.XP_ORIGIN);
+    const decoratorOrigin = getOrigin(process.env.DECORATOR_FALLBACK_URL);
+    const innloggingsStatusOrigin = getOrigin(
+        process.env.INNLOGGINGSSTATUS_URL
+    );
+
+    const vergicOrigin = '*.psplugin.com'; // screen sharing
+    const boostOrigin = `nav.boost.ai${
+        process.env.ENV !== 'prod' ? ' staging-nav.boost.ai' : ''
+    }`; // chatbot
+
+    const gaOrigin = 'www.google-analytics.com';
+    const gtmOrigin = 'www.googletagmanager.com';
+    const hotjarOrigin = '*.hotjar.com';
+    const taOrigin = '*.taskanalytics.com ta-survey-v2.herokuapp.com';
+
+    // Filter duplicates, as some origins may be identical, depending on
+    // deployment environment
+    const internalOrigins = [
+        prodWithSubdomains,
+        ...[
+            appOrigin,
+            adminOrigin,
+            xpOrigin,
+            decoratorOrigin,
+            innloggingsStatusOrigin,
+        ].filter(
+            (origin, index, array) =>
+                !origin.endsWith(prodOrigin) && array.indexOf(origin) === index
+        ),
+    ].join(' ');
+
+    const externalOriginsServices = [vergicOrigin, boostOrigin].join(' ');
+
+    const externalOriginsAnalytics = [
+        taOrigin,
+        hotjarOrigin,
+        gtmOrigin,
+        gaOrigin,
+    ].join(' ');
+
+    // NOTES:
+    // script unsafe-eval and worker blob: is required by the psplugin script
+    // unsafe-inline script is required by GTM
+    // unsafe-inline style is required by several third party modules
+    // next.js dev mode requires ws: and unsafe-eval
+    return [
+        `default-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics}${
+            process.env.NODE_ENV === 'development' ? ' ws:' : ''
+        }`,
+        `script-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics} 'unsafe-inline' 'unsafe-eval'`,
+        `worker-src ${internalOrigins} blob:`,
+        `style-src ${internalOrigins} ${vergicOrigin} 'unsafe-inline'`,
+        `font-src ${internalOrigins} ${vergicOrigin} data:`,
+        `img-src ${internalOrigins} ${vergicOrigin} ${gaOrigin} data:`,
+    ].join('; ');
+};
+
+const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+const isLocal = process.env.ENV === 'localhost';
+
+console.log(
+    `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Failover: ${isFailover}`
+);
+
 module.exports = withPlugins([withLess, withTranspileModules], {
-    assetPrefix: process.env.APP_ORIGIN,
+    distDir: isFailover && isLocal ? '.next-static' : '.next',
+    assetPrefix: isFailover
+        ? process.env.FAILOVER_ORIGIN
+        : process.env.APP_ORIGIN,
     env: {
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
         XP_ORIGIN: process.env.XP_ORIGIN,
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
+        FAILOVER_ORIGIN: process.env.FAILOVER_ORIGIN,
+        IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
     },
     images: {
-        minimumCacheTTL: 60,
+        minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 60,
         dangerouslyAllowSVG: true,
         domains: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map((origin) =>
             // Domain whitelist must not include protocol prefixes
@@ -90,6 +168,11 @@ module.exports = withPlugins([withLess, withTranspileModules], {
     redirects: async () => [
         {
             source: '/',
+            destination: '/no/person',
+            permanent: true,
+        },
+        {
+            source: '/forsiden',
             destination: '/no/person',
             permanent: true,
         },
@@ -141,6 +224,10 @@ module.exports = withPlugins([withLess, withTranspileModules], {
             source: '/frontendlogger/:path*',
             destination: '/404',
         },
+        {
+            source: '/feilside',
+            destination: '/404',
+        },
         // /_/* should point to XP services. Rewrite only if XP is on a different origin
         ...(process.env.XP_ORIGIN !== process.env.APP_ORIGIN
             ? [
@@ -150,7 +237,7 @@ module.exports = withPlugins([withLess, withTranspileModules], {
                   },
               ]
             : []),
-        ...(process.env.ENV === 'localhost'
+        ...(isLocal
             ? [
                   {
                       source: '/admin/site/preview/default/draft/:path*',
@@ -166,7 +253,22 @@ module.exports = withPlugins([withLess, withTranspileModules], {
             headers: [
                 {
                     key: 'Access-Control-Allow-Origin',
-                    value: process.env.ADMIN_ORIGIN,
+                    value: isFailover
+                        ? process.env.APP_ORIGIN
+                        : process.env.ADMIN_ORIGIN,
+                },
+            ],
+        },
+        {
+            source: '/:path*',
+            headers: [
+                {
+                    key: 'app-name',
+                    value: 'nav-enonicxp-frontend',
+                },
+                {
+                    key: 'Content-Security-Policy',
+                    value: buildCspHeader(),
                 },
             ],
         },

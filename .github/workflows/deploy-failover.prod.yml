@@ -1,14 +1,15 @@
 name: Deploy to prod-failover
 on:
-  workflow_dispatch
+  schedule:
+    - cron: '0 20 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
-    if: github.event.release.target_commitish == 'master'
     uses: ./.github/workflows/build-image.yml
     with:
-      environment: prod-gcp
-      imagename: release-${{ github.ref_name }}
+      environment: prod-gcp:failover
+      imagename: failover-prod
       ENV: prod
       ADMIN_ORIGIN: https://portal-admin.oera.no
       APP_ORIGIN: https://www.nav.no
@@ -20,6 +21,7 @@ jobs:
       IS_FAILOVER_INSTANCE: true
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
+      SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
     needs: build

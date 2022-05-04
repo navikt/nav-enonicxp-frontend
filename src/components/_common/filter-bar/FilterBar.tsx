@@ -17,7 +17,10 @@ type FilterBarProps = {
 
 export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const { content, intro } = layoutProps.regions;
-    const components = [...content.components, ...intro.components];
+    const components = [
+        ...(content ? content.components : []),
+        ...(intro ? intro.components : []),
+    ];
     const { language } = usePageConfig();
     const getLabel = translator('filteredContent', language);
 
@@ -28,7 +31,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     // underlying part that has filter ids attached.
     // We don't care about duplicate ids in the final array at the moment.
     const filterIds = components.reduce((acc, component) => {
-        if (component.config.filters) {
+        if (component.config?.filters) {
             return [...acc, ...component.config.filters];
         }
 

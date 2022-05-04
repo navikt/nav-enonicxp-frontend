@@ -10,7 +10,7 @@ import {
     hookAndInterceptInternalLink,
     prefetchOnMouseover,
 } from '../utils/links';
-import TopContainer from './_common/top-container/TopContainer';
+import { TopContainer } from './_top-container/TopContainer';
 import { initAmplitude } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from '../utils/decorator/decorator-utils';
@@ -23,7 +23,6 @@ import { setPathMapAction } from '../store/slices/pathMap';
 import { setPageConfigAction } from '../store/slices/pageConfig';
 import { fetchAndSetAuthStatus } from '../utils/auth';
 import { setAuthStateAction } from '../store/slices/authState';
-import { PreviewWarning } from './_common/previewWarning/PreviewWarning';
 
 type Props = {
     content: ContentProps;
@@ -110,7 +109,7 @@ export const PageWrapper = (props: Props) => {
         setParams(getDecoratorParams(content));
 
         document.documentElement.lang = content.language || 'no';
-    }, [content]);
+    }, [content, router]);
 
     return (
         <div className={'app-container'}>
@@ -118,7 +117,6 @@ export const PageWrapper = (props: Props) => {
             <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
             <TopContainer content={content} />
-            <PreviewWarning />
             <div
                 role={'main'}
                 className={'content-wrapper'}

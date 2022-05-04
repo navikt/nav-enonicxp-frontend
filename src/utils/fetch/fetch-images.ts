@@ -5,15 +5,25 @@ import { removeDuplicates } from '../arrays';
 // Limit concurrent fetches
 const limit = pLimit(5);
 
-const manifestFile = './image-manifest';
+const manifestDir =
+    (typeof process.env !== 'undefined' && process.env.IMAGE_CACHE_DIR) || '.';
+
+const manifestFile = `${manifestDir}/image-manifest`;
 
 // This should only run for pages that are generated at build-time
 // Pages generated from dynamic routes will have their images cached
 // automatically at request-time
 export const updateImageManifest = (src: string) => {
+    if (!fs.existsSync(manifestDir)) {
+        console.log(`Creating image manifest dir ${manifestDir}`);
+        fs.mkdirSync(manifestDir, { recursive: true });
+    }
+
     fs.appendFile(manifestFile, `${src}\n`, { encoding: 'utf-8' }, (e) => {
         if (e) {
             console.error(`Error while appending to image manifest - ${e}`);
+        } else {
+            console.log(`Appended ${src} to image manifest`);
         }
     });
 };

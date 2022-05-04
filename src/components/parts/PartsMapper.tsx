@@ -1,6 +1,10 @@
 import React from 'react';
-import { PartWithOwnData, PartWithPageData } from 'types/component-props/parts';
-import { PartDeprecated, PartType } from 'types/component-props/parts';
+import {
+    PartDeprecated,
+    PartType,
+    PartWithOwnData,
+    PartWithPageData,
+} from 'types/component-props/parts';
 import LinkLists from './_legacy/link-lists/LinkLists';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
 import MainPanels from './_legacy/main-panels/MainPanels';

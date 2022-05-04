@@ -38,3 +38,17 @@ export const getTargetIfRedirect = (contentData: ContentProps) => {
     const targetPath = getTargetPath(contentData);
     return targetPath ? stripXpPathPrefix(targetPath) : null;
 };
+
+// Used for redirect from a next.js data fetch function
+export const redirectPageProps = (
+    destination: string,
+    isPermanent: boolean
+) => ({
+    props: {},
+    redirect: {
+        // Decode then (re)encode to ensure the destination is not double-encoded
+        destination: encodeURI(decodeURI(destination).trim()),
+        // False if not defined
+        permanent: isPermanent || false,
+    },
+});

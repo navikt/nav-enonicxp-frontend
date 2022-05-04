@@ -57,6 +57,7 @@
 
 .copyTooltip {
     display: flex;
+    align-items: center;
     margin-left: 1rem;
     visibility: hidden;
     background-color: common.$navds-global-color-green-100;

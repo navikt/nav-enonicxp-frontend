@@ -6,6 +6,7 @@ import { MediaProps } from '../../types/media';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from '../errors';
 import { stripLineBreaks } from '../string';
+import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 
 export type XpResponseProps = ContentProps | MediaProps;
 
@@ -23,12 +24,17 @@ const getCacheKey =
           })
         : () => ({});
 
-const fetchSiteContent = async (
-    idOrPath: string,
+type FetchSiteContentProps = {
+    idOrPath: string;
+    isDraft?: boolean;
+    time?: string;
+};
+
+const fetchSiteContent = async ({
+    idOrPath,
     isDraft = false,
-    secret: string,
-    time?: string
-): Promise<XpResponseProps> => {
+    time,
+}: FetchSiteContentProps) => {
     const params = objectToQueryString({
         ...(isDraft && { branch: 'draft' }),
         id: idOrPath,
@@ -38,13 +44,56 @@ const fetchSiteContent = async (
     const url = `${xpServiceUrl}/sitecontent${params}`;
     const config = {
         headers: {
-            secret,
+            secret: process.env.SERVICE_SECRET,
             'Cache-Control': 'no-store, no-cache',
         },
     };
     console.log(`Fetching content from ${url}`);
 
-    const res = await fetchWithTimeout(url, fetchTimeoutMs, config);
+    return fetchWithTimeout(url, fetchTimeoutMs, config).catch((e) => {
+        console.log(`Sitecontent fetch error: ${e}`);
+        return null;
+    });
+};
+
+// For pages generated at build-time, any errors thrown will abort the build process.
+// Retry a few times, and just throw a generic server error if anything fails.
+const fetchAndHandleErrorsBuildtime = async (
+    props: FetchSiteContentProps & { retries?: number }
+) => {
+    const { idOrPath, retries = 5 } = props;
+
+    return fetchSiteContent({ idOrPath }).then((res) => {
+        if (res?.ok) {
+            return res.json();
+        }
+
+        if (retries > 0) {
+            return fetchAndHandleErrorsBuildtime({
+                idOrPath,
+                retries: retries - 1,
+            });
+        }
+
+        return makeErrorProps(
+            idOrPath,
+            `Build-time fetch error: ${res.status} - ${res.statusText}`
+        );
+    });
+};
+
+const fetchAndHandleErrorsRuntime = async (
+    props: FetchSiteContentProps
+): Promise<XpResponseProps> => {
+    const res = await fetchSiteContent(props);
+
+    const { idOrPath } = props;
+    const errorId = uuid();
+
+    if (!res) {
+        return makeErrorProps(idOrPath, undefined, 500, errorId);
+    }
+
     const isJson = res.headers
         ?.get('content-type')
         ?.includes?.('application/json');
@@ -52,8 +101,6 @@ const fetchSiteContent = async (
     if (res.ok && isJson) {
         return res.json();
     }
-
-    const errorId = uuid();
 
     if (res.ok) {
         logPageLoadError(
@@ -90,18 +137,21 @@ const fetchSiteContent = async (
     return makeErrorProps(idOrPath, undefined, res.status, errorId);
 };
 
+const fetchAndHandleErrors =
+    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
+        ? fetchAndHandleErrorsBuildtime
+        : fetchAndHandleErrorsRuntime;
+
 export const fetchPage = async (
     idOrPath: string,
     isDraft = false,
-    secret: string,
     timeRequested?: string
 ): Promise<XpResponseProps> => {
-    const content = await fetchSiteContent(
+    const content = await fetchAndHandleErrors({
         idOrPath,
         isDraft,
-        secret,
-        timeRequested
-    );
+        time: timeRequested,
+    });
 
     if (!content?.__typename) {
         const errorId = uuid();
