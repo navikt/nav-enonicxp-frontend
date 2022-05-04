@@ -64,6 +64,64 @@ const resolveNodeLibsClientSide = (config, options) => {
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 const isLocal = process.env.ENV === 'localhost';
 
+const buildCspHeader = () => {
+    const getOrigin = (str) => str.replace(/^https?:\/\//, '').split('/')[0];
+
+    const prodOrigin = 'nav.no';
+    const prodWithSubdomains = `*.${prodOrigin}`;
+
+    const appOrigin = getOrigin(process.env.APP_ORIGIN);
+    const adminOrigin = getOrigin(process.env.ADMIN_ORIGIN);
+    const xpOrigin = getOrigin(process.env.XP_ORIGIN);
+    const decoratorOrigin = getOrigin(process.env.DECORATOR_FALLBACK_URL);
+    const innloggingsStatusOrigin = getOrigin(
+        process.env.INNLOGGINGSSTATUS_URL
+    );
+
+    const internalOrigins = [
+        prodWithSubdomains,
+        ...[
+            appOrigin,
+            adminOrigin,
+            xpOrigin,
+            decoratorOrigin,
+            innloggingsStatusOrigin,
+        ].filter(
+            (origin, index, array) =>
+                !origin.endsWith(prodOrigin) && array.indexOf(origin) === index
+        ),
+    ].join(' ');
+
+    const externalOriginsServices = [
+        '*.psplugin.com', // screen sharing
+        'nav.boost.ai', // chatbot
+    ].join(' ');
+
+    const externalOriginsAnalytics = [
+        '*.taskanalytics.com',
+        'ta-survey-v2.herokuapp.com',
+        '*.hotjar.com',
+        'www.google-analytics.com',
+        'www.googletagmanager.com',
+    ].join(' ');
+
+    const headerValue = [
+        `default-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics}${
+            process.env.NODE_ENV === 'development' ? ' ws:' : ''
+        }`,
+        `script-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics} 'unsafe-inline'${
+            process.env.NODE_ENV === 'development' ? " blob: 'unsafe-eval'" : ''
+        }`,
+        `style-src ${internalOrigins} ${externalOriginsServices} 'unsafe-inline'`,
+        `font-src ${internalOrigins} ${externalOriginsServices} data:`,
+        `img-src ${internalOrigins} ${externalOriginsServices} data:`,
+    ].join('; ');
+
+    console.log(`CSP: ${headerValue}`);
+
+    return headerValue;
+};
+
 console.log(
     `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Failover: ${isFailover}`
 );
@@ -199,6 +257,10 @@ module.exports = withPlugins([withLess, withTranspileModules], {
                 {
                     key: 'app-name',
                     value: 'nav-enonicxp-frontend',
+                },
+                {
+                    key: 'Content-Security-Policy',
+                    value: buildCspHeader(),
                 },
             ],
         },
