@@ -74,6 +74,7 @@ const buildCspHeader = () => {
         process.env.INNLOGGINGSSTATUS_URL
     );
 
+    // Filter duplicates, as some origins may be identical
     const internalOrigins = [
         prodWithSubdomains,
         ...[
