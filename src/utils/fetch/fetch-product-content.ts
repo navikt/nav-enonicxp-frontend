@@ -1,4 +1,3 @@
-import { appOrigin } from 'utils/urls';
 import { fetchWithTimeout } from './fetch-utils';
 
 export const fetchProductContent = async (id: string) => {
