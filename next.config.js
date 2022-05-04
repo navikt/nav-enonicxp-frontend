@@ -74,6 +74,16 @@ const buildCspHeader = () => {
         process.env.INNLOGGINGSSTATUS_URL
     );
 
+    const vergicOrigin = '*.psplugin.com'; // screen sharing
+    const boostOrigin = `nav.boost.ai${
+        process.env.ENV !== 'prod' ? ' staging-nav.boost.ai' : ''
+    }`; // chatbot
+
+    const gaOrigin = 'www.google-analytics.com';
+    const gtmOrigin = 'www.googletagmanager.com';
+    const hotjarOrigin = '*.hotjar.com';
+    const taOrigin = '*.taskanalytics.com ta-survey-v2.herokuapp.com';
+
     // Filter duplicates, as some origins may be identical
     const internalOrigins = [
         prodWithSubdomains,
@@ -88,35 +98,29 @@ const buildCspHeader = () => {
         ),
     ].join(' ');
 
-    const externalOriginsServices = [
-        '*.psplugin.com', // screen sharing
-        'nav.boost.ai', // chatbot
-        ...(process.env.ENV !== 'prod' ? ['staging-nav.boost.ai'] : []),
-    ].join(' ');
+    const externalOriginsServices = [vergicOrigin, boostOrigin].join(' ');
 
     const externalOriginsAnalytics = [
-        '*.taskanalytics.com',
-        'ta-survey-v2.herokuapp.com',
-        '*.hotjar.com',
-        'www.google-analytics.com',
-        'www.googletagmanager.com',
+        taOrigin,
+        hotjarOrigin,
+        gtmOrigin,
+        gaOrigin,
     ].join(' ');
 
     // NOTES:
-    // unsafe-eval is required by the psplugin script
+    // script unsafe-eval and worker blob: is required by the psplugin script
     // unsafe-inline script is required by GTM
     // unsafe-inline style is required by several third party modules
-    // next.js dev mode requires some extra directives
+    // next.js dev mode requires a websocket directive
     return [
         `default-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics}${
             process.env.NODE_ENV === 'development' ? ' ws:' : ''
         }`,
-        `script-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics} 'unsafe-inline' 'unsafe-eval'${
-            process.env.NODE_ENV === 'development' ? ' blob:' : ''
-        }`,
-        `style-src ${internalOrigins} ${externalOriginsServices} 'unsafe-inline'`,
-        `font-src ${internalOrigins} ${externalOriginsServices} data:`,
-        `img-src ${internalOrigins} ${externalOriginsServices} data:`,
+        `script-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics} 'unsafe-inline' 'unsafe-eval'`,
+        `worker-src ${internalOrigins} blob:`,
+        `style-src ${internalOrigins} ${vergicOrigin} 'unsafe-inline'`,
+        `font-src ${internalOrigins} ${vergicOrigin} data:`,
+        `img-src ${internalOrigins} ${vergicOrigin} ${gaOrigin} data:`,
     ].join('; ');
 };
 
