@@ -5,7 +5,6 @@ import {
     PartWithOwnData,
     PartWithPageData,
 } from 'types/component-props/parts';
-import LinkLists from './_legacy/link-lists/LinkLists';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
 import MainPanels from './_legacy/main-panels/MainPanels';
@@ -46,7 +45,6 @@ type Props = {
 const partsWithPageData: {
     [key in PartWithPageData]: React.FunctionComponent<ContentProps>;
 } = {
-    [PartType.LinkLists]: LinkLists,
     [PartType.LinkPanels]: LinkPanelsLegacyPart,
     [PartType.MainArticle]: MainArticle,
     [PartType.MainArticleLinkedList]: MainArticleChapterNavigation,
