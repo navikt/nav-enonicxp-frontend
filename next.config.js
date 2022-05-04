@@ -68,6 +68,7 @@ const buildCspHeader = () => {
     const prodWithSubdomains = `*.${prodOrigin}`;
 
     const appOrigin = getOrigin(process.env.APP_ORIGIN);
+    const adminOrigin = getOrigin(process.env.ADMIN_ORIGIN);
     const xpOrigin = getOrigin(process.env.XP_ORIGIN);
     const decoratorOrigin = getOrigin(process.env.DECORATOR_FALLBACK_URL);
     const innloggingsStatusOrigin = getOrigin(
@@ -89,6 +90,7 @@ const buildCspHeader = () => {
         prodWithSubdomains,
         ...[
             appOrigin,
+            adminOrigin,
             xpOrigin,
             decoratorOrigin,
             innloggingsStatusOrigin,
