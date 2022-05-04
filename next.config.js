@@ -62,7 +62,7 @@ const resolveNodeLibsClientSide = (config, options) => {
 };
 
 const buildCspHeader = () => {
-    const getOrigin = (str) => str.replace(/^https?:\/\//, '').split('/')[0];
+    const getOrigin = (url) => url.replace(/^https?:\/\//, '').split('/')[0];
 
     const prodOrigin = 'nav.no';
     const prodWithSubdomains = `*.${prodOrigin}`;
@@ -85,7 +85,8 @@ const buildCspHeader = () => {
     const hotjarOrigin = '*.hotjar.com';
     const taOrigin = '*.taskanalytics.com ta-survey-v2.herokuapp.com';
 
-    // Filter duplicates, as some origins may be identical
+    // Filter duplicates, as some origins may be identical, depending on
+    // deployment environment
     const internalOrigins = [
         prodWithSubdomains,
         ...[
@@ -113,7 +114,7 @@ const buildCspHeader = () => {
     // script unsafe-eval and worker blob: is required by the psplugin script
     // unsafe-inline script is required by GTM
     // unsafe-inline style is required by several third party modules
-    // next.js dev mode requires a websocket directive
+    // next.js dev mode requires ws: and unsafe-eval
     return [
         `default-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics}${
             process.env.NODE_ENV === 'development' ? ' ws:' : ''
