@@ -1,7 +1,5 @@
 import * as React from 'react';
-
 import { Heading, BodyLong, Ingress } from '@navikt/ds-react';
-import { BEM } from '../../../../utils/classnames';
 import { translator } from '../../../../translations';
 import {
     PublishingCalendarChildren,
@@ -10,7 +8,7 @@ import {
 } from '../../../../types/content-props/publishing-calendar-props';
 import { Table } from '../../../_common/table/Table';
 
-const bem = BEM('publishing-calendar');
+import style from './PublishingCalendar.module.scss';
 
 const monthShortName = [
     'JAN',
@@ -49,13 +47,13 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
     const items = processEntries(props.children);
 
     return (
-        <div className={bem()}>
+        <div className={style.publishingCalendar}>
             <header>
                 <Heading level="1" size="large">
                     {props.displayName}
                 </Heading>
                 {props.data.ingress && (
-                    <Ingress className={bem('preface')}>
+                    <Ingress className={style.ingress}>
                         {props.data.ingress}
                     </Ingress>
                 )}
@@ -85,8 +83,8 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
                                         <div>{item.month}</div>
                                     </time>
                                 </td>
-                                <td className="eventInfo">
-                                    <BodyLong className="dateInfo">
+                                <td className={style.eventInfo}>
+                                    <BodyLong className={style.dateInfo}>
                                         {item.period}
                                     </BodyLong>
                                     <BodyLong>{item.displayName}</BodyLong>

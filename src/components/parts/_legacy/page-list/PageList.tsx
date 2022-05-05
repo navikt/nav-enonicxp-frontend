@@ -1,13 +1,13 @@
 import React from 'react';
-import { BEM } from 'utils/classnames';
 import { Heading, BodyLong, Ingress } from '@navikt/ds-react';
 import ArtikkelDato from '../main-article/ArtikkelDato';
 import { translator } from 'translations';
 import { PageListProps } from 'types/content-props/page-list-props';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 
+import style from './PageList.module.scss';
+
 const PageList = (props: PageListProps) => {
-    const bem = BEM('page-list');
     const { publish, modifiedTime, createdTime, language, data } = props;
     const getDateLabel = translator('mainArticle', language);
     const publishLabel = getDateLabel('published');
@@ -25,16 +25,16 @@ const PageList = (props: PageListProps) => {
         );
 
     return (
-        <div className={bem()}>
+        <div className={style.pageList}>
             <header>
                 <Heading level="1" size="xlarge">
                     {props.displayName}
                 </Heading>
-                <div className={bem('ingress')}>
+                <div className={style.ingress}>
                     <Ingress>{data.ingress}</Ingress>
                 </div>
                 {!hideDatesOnPage && (
-                    <div className={'page-list__date'}>
+                    <div className={style.date}>
                         <ArtikkelDato
                             publish={publish}
                             createdTime={createdTime}
@@ -45,7 +45,7 @@ const PageList = (props: PageListProps) => {
                     </div>
                 )}
             </header>
-            <div className={bem('list')}>
+            <div className={style.list}>
                 {sectionContents.map((section) => {
                     const {
                         displayName,
@@ -57,19 +57,19 @@ const PageList = (props: PageListProps) => {
                     } = section;
                     const ingress = data?.ingress || data?.description;
                     return (
-                        <article key={_path} className={bem('row')}>
+                        <article key={_path} className={style.row}>
                             <BodyLong>
                                 <LenkeInline href={_path}>
                                     {displayName}
                                 </LenkeInline>
                             </BodyLong>
                             {ingress && (
-                                <div className={bem('ingress')}>
+                                <div className={style.ingress}>
                                     <BodyLong>{ingress}</BodyLong>
                                 </div>
                             )}
                             {!hideDatesInList && (
-                                <div className={'page-list__date'}>
+                                <div className={style.date}>
                                     <ArtikkelDato
                                         publish={publish}
                                         createdTime={createdTime}

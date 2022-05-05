@@ -1,6 +1,6 @@
-@import (reference) '../../../../common';
+@use 'src/common' as common;
 
-.publishing-calendar {
+.publishingCalendar {
     padding: 2rem;
     background: #fff;
 
@@ -8,7 +8,7 @@
         margin-bottom: 1rem;
     }
 
-    &__preface {
+    .ingress {
         margin-bottom: 1rem;
     }
 
