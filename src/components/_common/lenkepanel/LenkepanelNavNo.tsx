@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heading, LinkPanel } from '@navikt/ds-react';
-import { BEM, classNames } from 'utils/classnames';
+import { classNames } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import style from './LenkepanelNavNo.module.scss';
 
@@ -58,11 +58,7 @@ const LenkepanelNavNo = ({
                     {tittel}
                 </Heading>
                 {separator && <hr className={style.separator} />}
-                {children && (
-                    <div>
-                        {children}
-                    </div>
-                )}
+                {children && <div>{children}</div>}
             </div>
         </LinkPanel>
     );
