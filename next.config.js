@@ -125,7 +125,7 @@ const buildCspHeader = () => {
         `style-src ${internalOrigins} ${vergicOrigin} 'unsafe-inline'`,
         `font-src ${internalOrigins} ${vergicOrigin} data:`,
         `img-src ${internalOrigins} ${vergicOrigin} ${gaOrigin} data:`,
-        `frame-src ${qbrickOrigin} ${hotjarOrigin}`,
+        `frame-src ${qbrickOrigin} ${hotjarOrigin} ${gtmOrigin}`,
     ].join('; ');
 };
 
