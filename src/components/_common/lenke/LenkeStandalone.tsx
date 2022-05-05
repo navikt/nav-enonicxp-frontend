@@ -49,7 +49,6 @@ export const LenkeStandalone = ({
         <LenkeBase
             href={href}
             className={classNames(
-                // bem(),
                 style.navnoLenke,
                 withChevron && style.withChevron,
                 className
