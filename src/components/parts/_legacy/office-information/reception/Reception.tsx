@@ -1,6 +1,5 @@
 import React from 'react';
 import { formatAddress, normalizeReceptionAsArray } from '../utils';
-
 import { formatDate } from 'utils/datetime';
 import { translator, Language } from 'translations';
 import {
@@ -9,7 +8,8 @@ import {
 } from '../../../../../types/content-props/office-information-props';
 import { Heading, BodyShort } from '@navikt/ds-react';
 import { MetaOpeningHours, OpeningHours } from './OpeningHours';
-import { BEM } from '../../../../../utils/classnames';
+
+import style from './Reception.module.scss';
 
 interface FormattedOpeningHours extends OpeningHoursProps {
     meta: string;
@@ -93,18 +93,16 @@ interface Props {
 }
 
 const Reception = (props: Props) => {
-    const getLabel = translator('officeInformation', props.language);
-    const bem = BEM('publikumsmottak');
-
     if (!props.receptions) {
         return null;
     }
 
+    const getLabel = translator('officeInformation', props.language);
     const receptionArray = normalizeReceptionAsArray(props.receptions);
 
     return (
-        <div className={bem()}>
-            <Heading level="2" size="medium" className={bem('header')}>
+        <div className={style.publikumsmottak}>
+            <Heading level="2" size="medium" className={style.header}>
                 Publikumsmottak
             </Heading>
             {receptionArray.map((rec: AudienceReception) => {
