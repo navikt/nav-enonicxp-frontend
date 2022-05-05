@@ -59,7 +59,7 @@ const LenkepanelNavNo = ({
                 </Heading>
                 {separator && <hr className={style.separator} />}
                 {children && (
-                    <div className={'lenkepanel-navno__ingress'}>
+                    <div>
                         {children}
                     </div>
                 )}
