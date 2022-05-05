@@ -33,7 +33,7 @@ export const IllustrationStatic = ({
             role="presentation"
         >
             <div
-                className={classNames(style.icon, 'icon1')}
+                className={style.icon}
                 style={{
                     backgroundImage: `url(${getMediaUrl(
                         icon1.icon?.mediaUrl
@@ -42,7 +42,7 @@ export const IllustrationStatic = ({
                 }}
             />
             <div
-                className={classNames(style.icon, 'icon2')}
+                className={style.icon}
                 style={{
                     backgroundImage: `url(${getMediaUrl(
                         icon2.icon?.mediaUrl
