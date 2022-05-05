@@ -23,7 +23,7 @@ export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
             <EditorHelp
                 type={'error'}
                 text={
-                    'Komponenten mangler konfigurasjon - Forsøk å fjerne og legge til på nytt'
+                    'Kunne ikke laste komponent-data - Forsøk å reloade siden (F5), eller fjerne komponenten og legge til på nytt'
                 }
             />
         );
