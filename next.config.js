@@ -79,6 +79,7 @@ const buildCspHeader = () => {
     const boostOrigin = `nav.boost.ai${
         process.env.ENV !== 'prod' ? ' staging-nav.boost.ai' : ''
     }`; // chatbot
+    const qbrickOrigin = 'video.qbrick.com';
 
     const gaOrigin = 'www.google-analytics.com';
     const gtmOrigin = 'www.googletagmanager.com';
@@ -124,6 +125,7 @@ const buildCspHeader = () => {
         `style-src ${internalOrigins} ${vergicOrigin} 'unsafe-inline'`,
         `font-src ${internalOrigins} ${vergicOrigin} data:`,
         `img-src ${internalOrigins} ${vergicOrigin} ${gaOrigin} data:`,
+        `frame-src ${qbrickOrigin}`,
     ].join('; ');
 };
 
