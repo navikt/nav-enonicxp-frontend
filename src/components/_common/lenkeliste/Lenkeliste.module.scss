@@ -18,7 +18,7 @@
     padding: $verticalPadding $horizontalPadding;
     margin-top: 0;
     margin-bottom: 0;
-    margin-left: -$horizontalPadding;
+    margin-left: -($horizontalPadding);
     margin-right: -$horizontalPadding;
 
     &:focus,
