@@ -152,6 +152,18 @@ export const bundle = {
     pageWarnings: {
         draftWarning: 'Utkast - sida er under arbeid',
     },
+    caseProcessingTimeUnit: {
+        single: {
+            days: 'dag',
+            weeks: 'veke',
+            months: 'månad',
+        },
+        multi: {
+            days: 'dagar',
+            weeks: 'veker',
+            months: 'månader',
+        },
+    },
 };
 
 export type Translations = DeepPartial<typeof bundle>;

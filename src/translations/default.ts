@@ -154,6 +154,18 @@ export const bundle = {
         failoverWarning:
             'Vi har for tiden tekniske problemer på nav.no. Du kan oppleve noe treghet eller at innhold mangler. Du kan prøve å laste inn siden på nytt.',
     },
+    caseProcessingTimeUnit: {
+        single: {
+            days: 'dag',
+            weeks: 'uke',
+            months: 'måned',
+        },
+        multi: {
+            days: 'dager',
+            weeks: 'uker',
+            months: 'måneder',
+        },
+    },
 };
 
 export type Translations = DeepPartial<typeof bundle>;
