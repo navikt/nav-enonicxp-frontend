@@ -22,7 +22,7 @@ const internalUrlPrefixPattern = new RegExp(internalUrlPrefix, 'i');
 // Links to these paths and any sub-paths will use SPA navigation.
 // If any subpaths point to a separate app, insert an appropriate regex to ensure
 // we don't show 404-errors on links from our app
-const internalPaths = [
+const internalPaths = `(${[
     '$',
     'no(?!\\/rss)', // rss-feed must be a full page load
     'en',
@@ -36,11 +36,11 @@ const internalPaths = [
     'beskjed',
     'person\\/kontakt-oss(?!(\\/(nb|en))?\\/tilbakemeldinger)', // "tilbakemeldinger" is a separate app
     'version',
-];
+].join('|')})`;
 
 // Matches both relative and absolute urls which points to any content internal to the app
 const appUrlPattern = new RegExp(
-    `${internalUrlPrefix}($|\\/(${internalPaths.join('|')}))`,
+    `${internalUrlPrefix}($|\\/${internalPaths})`,
     'i'
 );
 export const isAppUrl = (url: string) => url && appUrlPattern.test(url);
@@ -48,7 +48,7 @@ export const isAppUrl = (url: string) => url && appUrlPattern.test(url);
 // Matches both relative and absolute urls which points to publically available
 // content internal to the app
 const publicAppUrlPattern = new RegExp(
-    `^(${appOrigin}|${appOriginProd})?($|\\/(${internalPaths.join('|')})|_\\/)`,
+    `^(${appOrigin}|${appOriginProd})?($|\\/${internalPaths}|((${xpOrigin})?_\\/))`,
     'i'
 );
 export const isPublicAppUrl = (url: string) =>
