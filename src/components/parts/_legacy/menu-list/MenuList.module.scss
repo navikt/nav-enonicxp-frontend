@@ -10,12 +10,12 @@
         background-color: common.$navds-global-color-white;
         border-radius: common.$border-radius-base;
 
-        .navds-accordion__header {
+        :global(.navds-accordion__header) {
             border-radius: common.$border-radius-base;
         }
 
-        &.navds-accordion__item--open {
-            .navds-accordion__header {
+        &:global(.navds-accordion__item--open) {
+            :global(.navds-accordion__header) {
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
             }

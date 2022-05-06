@@ -72,6 +72,29 @@ $border-radius-large: 6px;
     $rem: withUnit($px * $pixel-size-rem, 'rem');
 }
 
+@mixin flex-cols-mixin($numCols, $marginX: 1.5rem, $marginY: 1.5rem) {
+    & > * {
+        $numColsPlus1: $numCols + 1;
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: calc(percentage(1 / $numColsPlus1) + 1px);
+        max-width: calc(#{percentage(1 / $numCols)} - #{($marginX * ($numCols - 1)) / $numCols} + 1px);
+
+        &:not(:last-child) {
+            margin-right: $marginX;
+        }
+
+        &:nth-child(#{($numCols)}n + #{$numCols}) {
+            margin-right: 0;
+        }
+
+        &:nth-child(n + #{$numColsPlus1}) {
+            margin-top: $marginY;
+        }
+    }
+}
+
 // This is an override mixin specific for product and livesituation pages.
 // To be removed when DS has updated design packages.
 @mixin product-mixins() {
