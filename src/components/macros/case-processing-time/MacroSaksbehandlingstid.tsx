@@ -21,7 +21,7 @@ export const MacroSaksbehandlingstid = ({
     const unitText = translator(
         'caseProcessingTimeUnit',
         language
-    )(translatorKey)[unit._selected];
+    )(translatorKey)[unit];
 
     return <span>{`${number} ${unitText}`}</span>;
 };
