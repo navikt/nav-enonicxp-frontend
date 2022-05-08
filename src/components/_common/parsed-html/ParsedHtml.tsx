@@ -47,7 +47,11 @@ const hasBlockLevelMacroChildren = (element: Element) => {
 const getNonEmptyChildren = ({ children }: Element) => {
     const validChildren = children?.filter((child) => {
         if (isTag(child)) {
-            if (child.name === processedHtmlMacroTag) {
+            // Macros and image tags are allowed to be empty
+            if (
+                child.name === processedHtmlMacroTag ||
+                (child.name === 'img' && child.attribs?.src)
+            ) {
                 return true;
             }
 

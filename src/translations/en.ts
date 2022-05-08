@@ -156,4 +156,16 @@ export const bundle: Translations = {
         failoverWarning:
             'We are currently having technical issues on nav.no. You may experience slow response times or missing content. Try reloading the page.',
     },
+    caseProcessingTimeUnit: {
+        single: {
+            days: 'day',
+            weeks: 'week',
+            months: 'month',
+        },
+        multi: {
+            days: 'days',
+            weeks: 'weeks',
+            months: 'months',
+        },
+    },
 };
