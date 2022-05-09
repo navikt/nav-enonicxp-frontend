@@ -4,6 +4,23 @@
 
 $pixel-size-rem: math.div(1, 16);
 
+// In Sass numbers can include units (px/rem/em/vw/cm) witch can fuck up doing math
+@function stripUnit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+    @return $number;
+}
+
+@function px-to-rem($px) {
+    @return stripUnit($px) * $pixel-size-rem * 1rem;
+}
+
+@function round-rem($value: 0) {
+    $valueUpper: $value + $pixel-size-rem / 2;
+    @return $valueUpper - ($valueUpper % $pixel-size-rem);
+}
+
 // Screen size breakpoints
 $mobileMaxWidth: 48rem; // 768px
 $tabletMinWidth: $mobileMaxWidth;
@@ -17,6 +34,10 @@ $mq-screen-tablet-and-desktop: 'only screen and (min-width: #{$tabletMinWidth}) 
 $mq-screen-desktop: 'only screen and (min-width: #{$desktopMinWidth}) ';
 $mq-screen-desktop-large: 'only screen and (min-width: #{$desktopMaxWidth}) ';
 
+// Max-width for SituationPage & Layouts
+$contentMaxWidth: px-to-rem(900);
+$sectionMaxWidth: calc(#{$contentMaxWidth} * 2/3);
+
 $padding-sides-desktop: 3rem;
 $padding-sides-tablet: 1rem;
 $padding-sides-mobile: 0.5rem;
@@ -28,6 +49,10 @@ $border-radius-small: 2px;
 $border-radius-base: 4px;
 $border-radius-large: 6px;
 
+// Varaibles for CMS-editor
+$editorPaddingVertical: 2rem;
+$editorPaddingHorizontal: $editorPaddingVertical * 1.62;
+
 // Makes the element cover the entire screen-width
 @mixin full-width-mixin() {
     $side-width: calc((100vw - 100%) / 2);
@@ -37,6 +62,41 @@ $border-radius-large: 6px;
     padding-right: $side-width;
     margin-left: $side-width-negative;
     margin-right: $side-width-negative;
+}
+
+@mixin flex-cols-mixin($numCols, $marginX: 1.5rem, $marginY: 1.5rem) {
+    & > * {
+        $numColsPlus1: $numCols + 1;
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: calc(percentage(1 / $numColsPlus1) + 1px);
+        max-width: calc(#{percentage(1 / $numCols)} - #{($marginX * ($numCols - 1)) / $numCols} + 1px);
+
+        &:not(:last-child) {
+            margin-right: $marginX;
+        }
+
+        &:nth-child(#{($numCols)}n + #{$numCols}) {
+            margin-right: 0;
+        }
+
+        &:nth-child(n + #{$numColsPlus1}) {
+            margin-top: $marginY;
+        }
+    }
+}
+
+@mixin section-padding-mixin() {
+    padding: $sectionPaddingDesktop;
+
+    @media #{$mq-screen-tablet} {
+        padding: $sectionPaddingTablet;
+    }
+
+    @media #{$mq-screen-mobile} {
+        padding: $sectionPaddingMobile;
+    }
 }
 
 @mixin panel-focus-mixin($inset: true) {
@@ -60,37 +120,6 @@ $border-radius-large: 6px;
             border-bottom-color: transparent;
         } @else {
             border-bottom: 1px $navds-semantic-color-link solid;
-        }
-    }
-}
-
-@function withUnit($value, $unit) {
-    $result: '#{$value}#{unit}';
-}
-
-@function px-to-rem($px) {
-    $rem: withUnit($px * $pixel-size-rem, 'rem');
-}
-
-@mixin flex-cols-mixin($numCols, $marginX: 1.5rem, $marginY: 1.5rem) {
-    & > * {
-        $numColsPlus1: $numCols + 1;
-        display: flex;
-        flex-grow: 1;
-        flex-shrink: 0;
-        flex-basis: calc(percentage(1 / $numColsPlus1) + 1px);
-        max-width: calc(#{percentage(1 / $numCols)} - #{($marginX * ($numCols - 1)) / $numCols} + 1px);
-
-        &:not(:last-child) {
-            margin-right: $marginX;
-        }
-
-        &:nth-child(#{($numCols)}n + #{$numCols}) {
-            margin-right: 0;
-        }
-
-        &:nth-child(n + #{$numColsPlus1}) {
-            margin-top: $marginY;
         }
     }
 }
