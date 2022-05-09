@@ -13,7 +13,7 @@ interface OverviewFilterProps {
 export const OverviewFilter = ({
     filterUpdateCallback,
 }: OverviewFilterProps) => {
-    const area = Object.values(Area).map((area) => area);
+    const filterableAreas = Object.values(Area).map((area) => area);
     const { language } = usePageConfig();
     const [filters, setFilters] = useState<Area[]>([]);
 
@@ -40,7 +40,7 @@ export const OverviewFilter = ({
                 Velg område
             </Heading>
             <div className={styles.tagWrapper}>
-                {area.map((area) => {
+                {filterableAreas.map((area) => {
                     const isActive =
                         filters.includes(area) ||
                         (area === Area.ALL && filters.length === 0);

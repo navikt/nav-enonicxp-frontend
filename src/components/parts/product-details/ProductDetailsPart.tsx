@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-
 import React from 'react';
 
 import { ProductDetailsProps } from 'types/component-props/parts/product-details';
@@ -7,12 +5,15 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
     const { pageConfig } = usePageConfig();
 
-    if (!config?.productDetailsTarget && pageConfig.editorView) {
-        return <div>[Velg hvilken produktdetalj-side du vil vise]</div>;
+    if (!config?.productDetailsTarget) {
+        return (
+            <EditorHelp text="[Velg hvilken produktdetalj-side du vil vise]" />
+        );
     }
 
     if (!config?.productDetailsTarget && !pageConfig.editorView) {
@@ -22,7 +23,7 @@ export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
     const mainRegion = config?.productDetailsTarget?.page?.regions['main'];
 
     if (!mainRegion) {
-        return <div>Mangler hovedregion</div>;
+        return <EditorHelp text="Mangler hovedregion" />;
     }
 
     return (
