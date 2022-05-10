@@ -62,7 +62,7 @@ const partsWithPageData: {
 const partsWithOwnData: {
     [key in PartWithOwnData]: React.FunctionComponent<PartComponentProps>;
 } = {
-    [PartType.AlertPanel]: AlertPanelPart, // TODO: add component
+    [PartType.AlertPanel]: AlertPanelPart,
     [PartType.AlertBox]: AlertBoxPart,
     [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanelPart,

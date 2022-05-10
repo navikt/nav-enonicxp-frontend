@@ -10,7 +10,7 @@ export const AlertPanelPart = ({ config }: AlertPanelPartProps) => {
         return null;
     }
 
-    const { header, ingress } = config;
+    const { link, header, ingress } = config;
 
     return (
         <LinkPanel
