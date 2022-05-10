@@ -39,7 +39,6 @@ export type PartDeprecated =
     | PartType.PageCrumbs;
 
 export type PartWithPageData =
-    | PartType.LinkPanels
     | PartType.LinkLists
     | PartType.PageHeading
     | PartType.MainArticle

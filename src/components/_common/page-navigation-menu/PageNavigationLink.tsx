@@ -8,8 +8,9 @@ import {
     PageNavScrollDirection,
 } from './PageNavigationMenu';
 import { smoothScrollToTarget } from '../../../utils/scroll-to';
-
-const bem = BEM('page-nav-link');
+import style from './PageNavigationLink.module.scss';
+import sidebarStyle from './views/PageNavigationSidebar.module.scss';
+import inContentStyle from './views/PageNavigationInContent.module.scss';
 
 type Props = {
     targetId: string;
@@ -41,20 +42,26 @@ export const PageNavigationLink = React.memo(
             smoothScrollToTarget(targetId, pageNavigationAnchorOffsetPx);
         };
 
+        const currentViewStyle =
+            viewStyle === 'sidebar' ? sidebarStyle : inContentStyle;
+
         return (
             <LenkeBase
                 href={`#${targetId}`}
                 onClick={setLocationHashAndScrollToTarget}
                 className={classNames(
-                    bem(),
-                    bem(undefined, viewStyle),
-                    scrollDirection && bem(undefined, scrollDirection),
-                    isCurrent && bem('current')
+                    style.pageNavLink,
+                    currentViewStyle.pageNavLink,
+                    scrollDirection && sidebarStyle[scrollDirection],
+                    isCurrent && sidebarStyle.current
                 )}
                 id={linkId}
             >
                 {viewStyle === 'sidebar' && (
-                    <span className={bem('decor')} aria-hidden={true} />
+                    <span
+                        className={currentViewStyle.decor}
+                        aria-hidden={true}
+                    />
                 )}
                 <Label>{children}</Label>
             </LenkeBase>

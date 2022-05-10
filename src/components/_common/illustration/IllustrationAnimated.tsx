@@ -1,15 +1,14 @@
 import { useEffect, useState, useRef } from 'react';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import lottie from 'lottie-web';
-import { BEM, classNames } from '../../../utils/classnames';
+import { classNames } from '../../../utils/classnames';
+import style from './Illustration.module.scss';
 
 interface IllustrationAnimatedProps {
     illustration: AnimatedIconsProps;
     className: string;
     isHovering: boolean;
 }
-
-const bem = BEM('illustration');
 
 export const IllustrationAnimated = ({
     illustration,
@@ -64,14 +63,11 @@ export const IllustrationAnimated = ({
 
     return (
         <div
-            className={classNames(bem('image'), className)}
+            className={classNames(style.image, className)}
             aria-hidden="true"
             role="presentation"
         >
-            <div
-                ref={lottieContainer}
-                className={classNames(bem('lottie-container'))}
-            />
+            <div ref={lottieContainer} className={style.lottieContainer} />
         </div>
     );
 };

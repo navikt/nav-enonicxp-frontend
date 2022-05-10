@@ -1,0 +1,31 @@
+@use 'src/common' as common;
+
+.tittel {
+    margin-bottom: 0.5rem;
+}
+
+.lenker {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.lenke {
+    $horizontalPadding: 0.5rem;
+    $verticalPadding: 0.6875rem;
+    padding: $verticalPadding $horizontalPadding;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: -($horizontalPadding);
+    margin-right: -($horizontalPadding);
+
+    &:focus,
+    &:focus-visible,
+    &:active {
+        @include common.panel-focus-mixin();
+        background-color: transparent;
+        color: common.$navds-semantic-color-link;
+    }
+}

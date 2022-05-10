@@ -1,0 +1,11 @@
+@use 'src/common' as common;
+
+.pageNavLink {
+    display: flex;
+    color: common.$navds-semantic-color-link;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

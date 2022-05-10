@@ -1,0 +1,48 @@
+@use 'src/common' as common;
+
+.navnoLenke {
+    text-decoration: none;
+}
+
+.withChevron {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .lenketekst {
+        display: inline-flex;
+        border-bottom: none;
+    }
+
+    &:hover {
+        .customChevronStyle {
+            left: 0.325rem;
+        }
+
+        .lenketekst {
+            text-decoration: underline;
+        }
+    }
+}
+
+.lenketekst {
+    display: inline;
+    @include common.link-border-bottom-mixin;
+}
+
+.label {
+    padding-top: 0.3rem;
+    padding-left: 1.8rem;
+    color: black;
+}
+
+.iconContainer {
+    min-width: 1.8rem;
+}
+
+.customChevronStyle {
+    position: relative;
+    transition: left 250ms;
+    top: 0.0625rem;
+    left: 0;
+}

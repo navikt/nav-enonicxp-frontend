@@ -1,6 +1,5 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
-import { BEM, classNames } from '../../../../utils/classnames';
 import { PageNavigationLink } from '../PageNavigationLink';
 import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
 import {
@@ -8,8 +7,7 @@ import {
     PageNavScrollDirection,
 } from '../PageNavigationMenu';
 import { PageNavigationDupeLinkWarning } from '../PageNavigationDupeLinkWarning';
-
-const bem = BEM('page-nav-sidebar');
+import style from './PageNavigationSidebar.module.scss';
 
 type Props = {
     title?: string;
@@ -27,15 +25,15 @@ export const PageNavigationSidebar = ({
     scrollDirection,
 }: Props) => {
     return (
-        <div className={classNames(bem())}>
+        <div className={style.pageNavSidebar}>
             {title && (
-                <Heading level="2" size="medium" className={bem('title')}>
+                <Heading level="2" size="medium" className={style.title}>
                     {title}
                 </Heading>
             )}
             <PageNavigationDupeLinkWarning dupes={dupes} />
             <nav aria-label={'Innhold'}>
-                <ul className={bem('list')}>
+                <ul className={style.list}>
                     {links.map((anchorLink, index) => (
                         <li key={anchorLink.anchorId}>
                             <PageNavigationLink

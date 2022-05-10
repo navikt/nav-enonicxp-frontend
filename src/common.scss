@@ -44,6 +44,18 @@ $border-radius-large: 6px;
     box-shadow: 0 0 0 3px if($inset, inset, null) $navds-semantic-color-focus;
 }
 
+@mixin section-padding-mixin() {
+    padding: $sectionPaddingDesktop;
+
+    @media #{$mq-screen-tablet} {
+        padding: $sectionPaddingTablet;
+    }
+
+    @media #{$mq-screen-mobile} {
+        padding: $sectionPaddingMobile;
+    }
+}
+
 @mixin link-border-bottom-mixin($underlineDefault: true) {
     @if $underlineDefault {
         border-bottom: 1px $navds-semantic-color-link solid;
@@ -107,12 +119,23 @@ $border-radius-large: 6px;
         .region__content {
             > :last-child {
                 .card:last-child,
-                .calculator,
+                .calculatorProductMixin, //will work once product-page, situation-page and guide-page is on scss (tested)
                 ul:last-child,
                 p:last-child {
                     margin-bottom: 0;
                 }
             }
         }
+    }
+}
+
+@mixin link-border-bottom-mixin() {
+    border-bottom: 1px $navds-semantic-color-link solid;
+    text-decoration: none;
+    transition: border-bottom-color 0.12s ease-out;
+
+    &:hover,
+    &:focus {
+        border-bottom-color: transparent;
     }
 }

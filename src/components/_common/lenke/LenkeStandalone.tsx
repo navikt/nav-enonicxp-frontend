@@ -1,9 +1,10 @@
 import React from 'react';
 import { BodyLong, BodyShort } from '@navikt/ds-react';
-import { BEM, classNames } from 'utils/classnames';
+import { classNames } from 'utils/classnames';
 import { LenkeBase } from './LenkeBase';
 import { getExternalDomain } from '../../../utils/links';
 import { Chevron } from '../chevron/Chevron';
+import style from './LenkeStandalone.module.scss';
 
 const getExternalUrlString = (url: string, linkText: string) => {
     const externalDomain = getExternalDomain(url);
@@ -19,8 +20,6 @@ const getExternalUrlString = (url: string, linkText: string) => {
 
     return null;
 };
-
-const bem = BEM('navno-lenke');
 
 type Props = {
     href: string;
@@ -50,8 +49,8 @@ export const LenkeStandalone = ({
         <LenkeBase
             href={href}
             className={classNames(
-                bem(),
-                withChevron && bem(undefined, 'chevron'),
+                style.navnoLenke,
+                withChevron && style.withChevron,
                 className
             )}
             component={component}
@@ -62,10 +61,10 @@ export const LenkeStandalone = ({
             }
             {...rest}
         >
-            <BodyShort className={bem('lenketekst')} as={'span'}>
+            <BodyShort className={style.lenketekst} as={'span'}>
                 {withChevron && (
-                    <span className={bem('icon-container')}>
-                        <Chevron />
+                    <span className={style.iconContainer}>
+                        <Chevron className={style.customChevronStyle} />
                     </span>
                 )}
                 <>
@@ -75,7 +74,7 @@ export const LenkeStandalone = ({
                 </>
             </BodyShort>
             {label && (
-                <BodyLong size="small" className={bem('label')} as={'span'}>
+                <BodyLong size="small" className={style.label} as={'span'}>
                     {label}
                 </BodyLong>
             )}
