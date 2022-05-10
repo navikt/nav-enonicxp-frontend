@@ -5,6 +5,8 @@ import { AnimatedIconsProps } from '../content-props/animated-icons';
 import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from '../../store/slices/authState';
 import { EmptyObject, OptionSetSingle } from '../util-types';
+import { XpContentRef } from 'utils/urls';
+import { Area } from 'types/areas';
 
 export type HeaderWithAnchorMixin = {
     title: string;
@@ -20,6 +22,12 @@ export enum Audience {
 
 export type FilterSelection = string[];
 
+export type SimplifiedProductData = Partial<{
+    _id: XpContentRef;
+    _path: XpContentRef;
+}> &
+    ProductDataMixin;
+
 export type ProductDataMixin = {
     title: string;
     ingress?: string;
@@ -27,6 +35,7 @@ export type ProductDataMixin = {
     audience?: Audience;
     customCategory?: string;
     illustration: AnimatedIconsProps;
+    area: Area;
     externalProductUrl?: string;
 };
 

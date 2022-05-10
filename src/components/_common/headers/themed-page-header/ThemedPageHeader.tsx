@@ -13,6 +13,7 @@ import {
     SituationPageProps,
     GuidePageProps,
     ThemedArticlePageProps,
+    OverviewPageProps,
 } from '../../../../types/content-props/dynamic-page-props';
 import { Audience } from '../../../../types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
@@ -20,14 +21,19 @@ import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 import style from './ThemedPageHeader.module.scss';
 
 type Props = {
+    showTimeStamp?: boolean;
     contentProps:
         | SituationPageProps
         | ProductPageProps
         | GuidePageProps
-        | ThemedArticlePageProps;
+        | ThemedArticlePageProps
+        | OverviewPageProps;
 };
 
-export const ThemedPageHeader = ({ contentProps }: Props) => {
+export const ThemedPageHeader = ({
+    contentProps,
+    showTimeStamp = true,
+}: Props) => {
     const {
         __typename: pageType,
         displayName,
@@ -99,15 +105,20 @@ export const ThemedPageHeader = ({ contentProps }: Props) => {
             return 'tool';
         }
 
+        if (_pageType === ContentType.Overview) {
+            return 'overview';
+        }
+
         return '';
     };
 
     const pageTitle = title || displayName;
     const subTitle = getSubtitle();
     const modified =
+        showTimeStamp &&
         getDatesLabel('lastChanged') +
-        ' ' +
-        formatDate(modifiedTime, language, true);
+            ' ' +
+            formatDate(modifiedTime, language, true);
 
     // This is a temporaty fix, especially for "Arbeidsavklaringspenger".
     // Will work with design to find solution for how long titles and illustration can stack better on mobile.

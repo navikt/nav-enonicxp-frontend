@@ -28,6 +28,7 @@ import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar
 import { BEM, classNames } from '../../utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
 import { CalculatorPart } from './calculator/Calculator';
+import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
@@ -76,6 +77,7 @@ const partsWithOwnData: {
     [PartType.ProductCard]: ProductCardPart,
     [PartType.ProductCardMicro]: ProductCardMicroPart,
     [PartType.ProductCardMini]: ProductCardPart,
+    [PartType.ProductDetails]: ProductDetailsPart,
     [PartType.ContactOption]: ContactOptionPart,
 };
 

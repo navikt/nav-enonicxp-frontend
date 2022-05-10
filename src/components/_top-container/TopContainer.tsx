@@ -15,6 +15,7 @@ export const contentTypesWithWhiteHeader = {
     [ContentType.SituationPage]: true,
     [ContentType.GuidePage]: true,
     [ContentType.ThemedArticlePage]: true,
+    [ContentType.Overview]: true,
 };
 
 type Props = {
