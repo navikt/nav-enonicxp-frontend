@@ -1,14 +1,14 @@
 import React from 'react';
 import { LinkPanelPartProps } from 'types/component-props/parts/link-panel';
 import { Heading, Panel } from '@navikt/ds-react';
-import { BEM, classNames } from 'utils/classnames';
+import { classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
 import { XpImage } from '../../_common/image/XpImage';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { getMediaUrl } from '../../../utils/urls';
 
-const bem = BEM('link-panel');
+import style from './LinkPanelPart.module.scss';
 
 export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
     if (!config) {
@@ -33,7 +33,7 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
         <Panel
             href={linkProps.url}
             className={classNames(
-                bem(),
+                style.linkPanel,
                 isVerticalLayout ? `vertical` : 'horizontal'
             )}
             border={true}
@@ -49,15 +49,14 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                 </LenkeBase>
             )}
         >
-            <div className={bem('innhold')}>
-                <div className={bem('header')}>
+            <div className={style.innhold}>
+                <div className={style.header}>
                     {icon && (
                         <div
                             aria-hidden={'true'}
                             className={classNames(
-                                bem('icon'),
-                                selectedVariant === 'verticalWithBgColor' &&
-                                    bem('icon', 'bg')
+                                style.icon,
+                                selectedVariant === 'verticalWithBgColor' && style.bg
                             )}
                             style={{
                                 ...(selectedVariant ===
@@ -75,11 +74,11 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                             />
                         </div>
                     )}
-                    <Heading level="2" size="medium" className={bem('title')}>
+                    <Heading level="2" size="medium" className={style.title}>
                         {linkProps.text}
                     </Heading>
                 </div>
-                <div className={bem('ingress')}>{ingress}</div>
+                <div className={style.ingress}>{ingress}</div>
             </div>
         </Panel>
     );

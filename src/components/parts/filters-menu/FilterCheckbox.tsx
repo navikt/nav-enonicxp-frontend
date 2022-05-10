@@ -1,8 +1,8 @@
 import { Filter } from 'types/store/filter-menu';
-import { BEM, classNames } from '../../../utils/classnames';
+import { classNames } from '../../../utils/classnames';
 import { v4 as uuid } from 'uuid';
 
-const bem = BEM('filter-checkbox');
+import style from './FilterCheckbox.module.scss';
 
 type FilterCheckboxProps = {
     isSelected: boolean;
@@ -20,8 +20,8 @@ export const FilterCheckbox = ({
     return (
         <div
             className={classNames(
-                bem('wrapper'),
-                isSelected && bem('wrapper', 'selected')
+                style.filterCheckbox,
+                isSelected && style.selected
             )}
         >
             <input
@@ -30,13 +30,13 @@ export const FilterCheckbox = ({
                 checked={isSelected}
                 value={filter.id}
                 id={id}
-                className={bem('checkbox')}
+                className={style.checkbox}
             />
             <label
                 htmlFor={id}
                 className={classNames(
-                    bem('label'),
-                    isSelected && bem('label', 'selected')
+                    style.label,
+                    isSelected && style.selected
                 )}
             >
                 {filter.filterName}

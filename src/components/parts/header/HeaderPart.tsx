@@ -7,6 +7,8 @@ import {
     typoToSize,
 } from '../../../types/typo-style';
 
+import style from './HeaderPart.module.scss';
+
 export const HeaderPart = ({ config }: HeaderProps) => {
     if (!config) {
         return null;
@@ -32,7 +34,7 @@ export const HeaderPart = ({ config }: HeaderProps) => {
             anchorId={anchorId}
             justify={justify}
             hideCopyButton={true}
-            className={'header-part'}
+            className={style.headerPart}
         >
             {title}
         </Header>

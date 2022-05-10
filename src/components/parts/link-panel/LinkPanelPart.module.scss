@@ -1,41 +1,36 @@
-@import (reference) '../../../common';
+@use 'src/common' as common;
 
-@padding: 1.5rem;
-@icon-size: 2.1875rem;
+$padding: 1.5rem;
+$iconSize: 2.1875rem;
 
-.link-panel {
-    &.navds-panel {
+.linkPanel {
+    &:global(.navds-panel) {
         width: 100%;
         display: flex;
-        padding: @padding;
+        padding: $padding;
         margin: 0;
-
         background-repeat: no-repeat;
         background-position: bottom right;
         background-size: contain;
         background-color: white;
-
-        border: 1px solid @navds-semantic-color-link;
+        border: 1px solid var(--navds-semantic-color-link);
         box-sizing: border-box;
         text-decoration: none;
         color: black;
     }
-
     &:hover {
         box-shadow: 0 2px 1px 0 #a0a0a0;
 
-        .link-panel__title {
+        .title {
             text-decoration: underline;
         }
     }
-
     &:focus,
     &:focus-visible,
     &:active {
-        .panel-focus-mixin(false);
+        @include common.panel-focus-mixin(false);
     }
-
-    &__innhold {
+    .innhold {
         height: 100%;
         width: 100%;
         display: flex;
@@ -44,42 +39,38 @@
         flex-direction: column;
         text-align: start;
     }
-
-    &__header {
+    .header {
         width: 100%;
     }
-
-    &__title {
+    .title {
         width: 100%;
-        color: @navds-semantic-color-link;
+        color: var(--navds-semantic-color-link);
     }
-
-    &__ingress {
+    .ingress {
         width: 100%;
         margin: 1rem 0 0.5rem 0;
     }
 }
 
-.vertical .link-panel {
+:global(.vertical).linkPanel {
     text-align: center;
 
-    &__icon {
-        @marginBottom: 1rem;
+    .icon {
+        $marginBottom: 1rem;
 
         display: flex;
         width: 100%;
         justify-content: center;
         align-items: center;
-        margin-bottom: @marginBottom;
+        margin-bottom: $marginBottom;
 
         img {
-            height: @icon-size;
+            height: $iconSize;
         }
-
-        &--bg {
-            margin: -@padding -@padding @marginBottom -@padding;
+        &.bg {
+            margin: -$padding -$padding $marginBottom -$padding;
             padding: 0 1rem;
-            width: calc(100% + @padding * 2);
+            width: calc(100% + #{$padding} * 2);
             height: 6rem;
 
             img {
@@ -88,35 +79,31 @@
             }
         }
     }
-
-    &__title {
+    .title {
         text-align: center;
     }
-
-    &__ingress {
+    .ingress {
         text-align: center;
     }
 }
 
-.horizontal .link-panel {
-    &__icon {
+:global(.horizontal).linkPanel {
+    .icon {
         margin-right: 0.5rem;
 
         img {
-            width: @icon-size;
-            height: @icon-size;
+            width: $iconSize;
+            height: $iconSize;
         }
     }
-
-    &__header {
+    .header {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: row;
     }
-
-    &__innhold {
+    .innhold {
         padding-right: 0.5rem;
     }
 }

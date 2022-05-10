@@ -3,6 +3,7 @@ import { getInternalAbsoluteUrl } from '../../../../utils/urls';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import { classNames } from '../../../../utils/classnames';
 
+import style from './SosialeMedier.module.scss'
 const getSocialmediaShareUrl = (
     el: string,
     displayName: string,
@@ -44,15 +45,15 @@ const SosialeMedier = (props: Props) => {
     }));
 
     return socialMedia && socialMedia.length > 0 ? (
-        <div className="social-media">
+        <div className={style.socialMedia}>
             <ul>
                 {socialMedia.map((item) => (
                     <li key={item.type}>
                         <LenkeBase href={item.href} analyticsLabel={item.text}>
                             <span
                                 className={classNames(
-                                    'share-social',
-                                    `share-${item.type}`
+                                    style.shareSocial,
+                                    `${item.type}`
                                 )}
                             >
                                 {item.text}

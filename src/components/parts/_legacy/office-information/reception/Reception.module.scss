@@ -1,5 +1,5 @@
 .publikumsmottak {
-    &__header {
+    .header {
         margin-bottom: 1rem;
     }
 
@@ -14,11 +14,11 @@
             font-size: 1.125rem;
         }
 
-        .dayInformation {
+        :global(.dayInformation) {
             min-width: 5.6rem;
         }
 
-        .openingInformation {
+        :global(.openingInformation) {
             min-width: 7.3rem;
 
             &:first-letter {

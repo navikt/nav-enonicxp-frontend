@@ -1,11 +1,10 @@
 import React from 'react';
-import { BEM } from 'utils/classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { BodyLong } from '@navikt/ds-react';
 import LenkepanelNavNo from '../../../_common/lenkepanel/LenkepanelNavNo';
 import { translator } from '../../../../translations';
 
-const bem = BEM('main-panels');
+import style from './MainPanels.module.scss';
 
 const ingressMaxLength = 140;
 
@@ -82,7 +81,7 @@ export const MainPanels = (props: ContentProps) => {
 
     return (
         tableContents?.length > 0 && (
-            <section className={bem()} aria-label={getLabel('label')}>
+            <section className={style.mainPanels} aria-label={getLabel('label')}>
                 {tableContents.map((content) => {
                     const { url, tittel, ingress } = getLinkData(content);
 
@@ -95,7 +94,7 @@ export const MainPanels = (props: ContentProps) => {
                                 vertikal={true}
                                 tittel={tittel}
                                 key={content._id}
-                                className={bem('item')}
+                                className={style.item}
                                 component={'main-panels'}
                             >
                                 {ingress && (

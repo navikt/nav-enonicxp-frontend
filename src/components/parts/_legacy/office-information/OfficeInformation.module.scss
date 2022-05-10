@@ -1,7 +1,7 @@
-@import (reference) '../../../../common';
+@use 'src/common' as common;
 
-.office-information {
-    background-color: @navds-semantic-color-component-background-light;
+.officeInformation {
+    background-color: common.$navds-semantic-color-component-background-light;
     padding: 1.68rem;
 
     header {

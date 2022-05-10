@@ -1,31 +1,31 @@
-@import (reference) '../../../../common';
+@use 'src/common' as common;
 
-.page-list {
+.pageList {
     width: 100%;
     background: white;
     border-radius: 0.28rem;
 
-    @media @mq-screen-mobile {
+    @media #{common.$mq-screen-mobile} {
         padding: 1.5rem;
     }
-    @media @mq-screen-tablet {
+    @media #{common.$mq-screen-tablet} {
         padding: 1.5rem;
     }
-    @media @mq-screen-desktop {
+    @media #{common.$mq-screen-desktop} {
         padding: 2.8rem;
     }
 
-    &__ingress {
+    .ingress {
         margin-top: 0.5rem;
     }
-    &__list {
+    .list {
         margin-top: 2.25rem;
     }
-    &__row {
+    .row {
         border-top: 1px solid #d1d1d1;
         padding: 2rem 0;
     }
-    &__date {
+    .date {
         margin-top: 0.5rem;
     }
 }

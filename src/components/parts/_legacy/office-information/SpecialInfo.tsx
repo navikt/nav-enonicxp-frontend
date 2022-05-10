@@ -1,8 +1,8 @@
 import React from 'react';
 import { ParsedHtml } from '../../../_common/parsed-html/ParsedHtml';
 import { Heading } from '@navikt/ds-react';
-import classNames from 'classnames';
-import { BEM } from 'utils/classnames';
+
+import style from './SpecialInfo.module.scss';
 
 function specialInfoParseLink(infoContent: string) {
     const isTextClean = (str: string) => {
@@ -61,10 +61,9 @@ interface Props {
 }
 
 export const SpecialInformation = (props: Props) => {
-    const bem = BEM('specialInformation');
     const specialInfo = parseSpecialInfo(props.info);
     return specialInfo ? (
-        <div className={classNames(bem())}>
+        <div className={style.specialInformation}>
             <Heading level="2" size="small">
                 Opplysninger
             </Heading>

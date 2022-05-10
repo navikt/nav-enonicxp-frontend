@@ -1,21 +1,21 @@
-@import (reference) '../../../../common';
+@use 'src/common' as common;
 
-.menu-list {
+.menuList {
     display: flex;
     flex-direction: column;
     width: 100%;
 
-    &__panel {
+    .panel {
         margin-bottom: 0.5rem;
-        background-color: @navds-global-color-white;
-        border-radius: @border-radius-base;
+        background-color: common.$navds-global-color-white;
+        border-radius: common.$border-radius-base;
 
-        .navds-accordion__header {
-            border-radius: @border-radius-base;
+        :global(.navds-accordion__header) {
+            border-radius: common.$border-radius-base;
         }
 
-        &.navds-accordion__item--open {
-            .navds-accordion__header {
+        &:global(.navds-accordion__item--open) {
+            :global(.navds-accordion__header) {
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
             }
