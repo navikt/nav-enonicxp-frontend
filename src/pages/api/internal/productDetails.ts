@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { fetchWithTimeout } from '../../../utils/fetch/fetch-utils';
 import Cache from 'node-cache';
+import { getNestedValueFromKeyString } from 'utils/objects';
 
 // Misc config settings
 // ----------------------------------------
@@ -50,8 +51,6 @@ const getSingleProductDetails = async (id): Promise<any> => {
     const allProducts = await getProductListFromCache();
 
     const foundProduct = allProducts.find((product) => product._id === id);
-
-    console.log(foundProduct);
 
     if (!foundProduct) {
         return null;
