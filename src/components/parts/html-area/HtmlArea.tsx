@@ -5,17 +5,18 @@ import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableC
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
+import style from './HtmlArea.module.scss';
+
 export const HtmlArea = ({ config }: HtmlAreaProps) => {
     if (!config?.html) {
         return (
             <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />
         );
     }
-
     return (
         <FilteredContent {...config}>
             <ExpandableComponentWrapper {...config}>
-                <div className={'html-area'}>
+                <div className={style.htmlArea}>
                     <ParsedHtml htmlProps={config.html} />
                 </div>
             </ExpandableComponentWrapper>
