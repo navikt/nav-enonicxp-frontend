@@ -14,7 +14,6 @@ export const OverviewFilter = ({
     filterUpdateCallback,
 }: OverviewFilterProps) => {
     const filterableAreas = Object.values(Area);
-    console.log(filterableAreas);
     const { language } = usePageConfig();
     const [filters, setFilters] = useState<Area[]>([]);
 
