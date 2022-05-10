@@ -18,7 +18,7 @@ export const AlertPanelPart = ({ config }: AlertPanelPartProps) => {
             className={style.alertPanelPart}
             as={(props) => (
                 <LenkeBase
-                    href="https://familie.nav.no/" // TODO: endre link
+                    href={link}
                     // analyticsLabel={linkProps.text}
                     // component={legacyAnalyticsComponentLabel}
                     {...props}
