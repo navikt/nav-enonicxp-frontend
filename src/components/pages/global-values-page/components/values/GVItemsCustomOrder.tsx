@@ -1,12 +1,12 @@
 import React from 'react';
 import { List, arrayMove } from 'react-movable';
 import { GVItem } from './item/GVItem';
-import { BEM, classNames } from '../../../../../utils/classnames';
+import { classNames } from '../../../../../utils/classnames';
 import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
 import { Up, Down } from '@navikt/ds-icons';
 import { gvServiceReorderItems } from '../../api/services/reorder';
 
-const bem = BEM('gv-items');
+import style from './GVItems.module.scss';
 
 export const GVItemsCustomOrder = () => {
     const { valueItems, setValueItems, contentId, setMessages } =
@@ -45,21 +45,21 @@ export const GVItemsCustomOrder = () => {
             onChange={reorderItems}
             lockVertically={true}
             renderList={({ children, props }) => (
-                <div {...props} className={bem()}>
+                <div {...props} className={style.GVItems}>
                     {children}
                 </div>
             )}
             renderItem={({ value, props, isDragged }) => (
-                <div {...props} className={bem('item-outer')}>
+                <div {...props} className={style.itemOuter}>
                     <div
                         className={classNames(
-                            bem('item'),
-                            isDragged && bem('item', 'dragged')
+                            style.item,
+                            isDragged && style.itemDragged
                         )}
                     >
                         <span
                             data-movable-handle={true}
-                            className={bem('drag-handle')}
+                            className={style.itemDragHandle}
                         >
                             <Up />
                             <Down />

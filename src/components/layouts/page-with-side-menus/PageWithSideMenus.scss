@@ -1,21 +1,21 @@
-@import (reference) '../../../common';
+@use 'src/common' as common;
 
 .page__page-with-side-menus {
-    @sectionMaxWidth: #px-to-rem(600) [];
-    @sideMenusMaxWidth: #px-to-rem(288) [];
+    $sectionMaxWidth: common.px-to-rem(600);
+    $sideMenusMaxWidth: common.px-to-rem(288);
 
-    @sectionGutterLarge: 1.5rem;
-    @sectionGutterSmall: 0.75rem;
-    @verticalMargin: 1.75rem;
+    $sectionGutterLarge: 1.5rem;
+    $sectionGutterSmall: 0.75rem;
+    $verticalMargin: 1.75rem;
 
-    max-width: #px-to-rem(1080) [];
+    max-width: common.px-to-rem(1080);
     margin: 0 auto;
 
     .top-row {
         display: flex;
         flex-direction: column;
 
-        @media @mq-screen-tablet-and-desktop {
+        @media #{common.$mq-screen-tablet-and-desktop} {
             flex-direction: row;
             margin-top: 3rem;
         }
@@ -24,25 +24,25 @@
     .left-col,
     .right-col {
         width: 100%;
-        max-width: @sectionMaxWidth;
+        max-width: $sectionMaxWidth;
 
-        @media @mq-screen-tablet-and-desktop {
-            width: @sideMenusMaxWidth;
-            max-width: @sideMenusMaxWidth;
+        @media #{common.$mq-screen-tablet-and-desktop} {
+            width: $sideMenusMaxWidth;
+            max-width: $sideMenusMaxWidth;
         }
     }
 
     .left-col {
-        @media @mq-screen-tablet-and-desktop {
-            margin-right: @sectionGutterSmall;
+        @media #{common.$mq-screen-tablet-and-desktop} {
+            margin-right: $sectionGutterSmall;
 
             .region__topPageContent {
                 display: none;
             }
         }
 
-        @media @mq-screen-desktop {
-            margin-right: @sectionGutterLarge;
+        @media #{common.$mq-screen-desktop} {
+            margin-right: $sectionGutterLarge;
         }
     }
 
@@ -52,19 +52,19 @@
         .region__topPageContent {
             display: none;
 
-            @media @mq-screen-tablet-and-desktop {
+            @media #{common.$mq-screen-tablet-and-desktop} {
                 display: flex;
             }
         }
     }
 
     .right-col {
-        @media @mq-screen-tablet-and-desktop {
-            margin-left: @sectionGutterSmall;
+        @media #{common.$mq-screen-tablet-and-desktop} {
+            margin-left: $sectionGutterSmall;
         }
 
-        @media @mq-screen-desktop-large {
-            margin-left: @sectionGutterLarge;
+        @media #{common.$mq-screen-desktop-large} {
+            margin-left: $sectionGutterLarge;
         }
     }
 
@@ -72,15 +72,15 @@
     .region__topPageContent {
         display: flex;
         flex-direction: column;
-        margin-top: @verticalMargin;
+        margin-top: $verticalMargin;
 
         & > * {
             width: 100%;
-            max-width: @sectionMaxWidth;
-            margin-bottom: @verticalMargin;
+            max-width: $sectionMaxWidth;
+            margin-bottom: $verticalMargin;
         }
 
-        @media @mq-screen-tablet-and-desktop {
+        @media #{common.$mq-screen-tablet-and-desktop} {
             margin-top: 0;
 
             // Ensure the first section is aligned with the menu if it has an icon
@@ -100,10 +100,10 @@
 
     .region__bottomRow {
         max-width: 57rem;
-        margin-left: @sectionGutterSmall;
-        margin-right: @sectionGutterSmall;
+        margin-left: $sectionGutterSmall;
+        margin-right: $sectionGutterSmall;
 
-        @media @mq-screen-desktop {
+        @media #{common.$mq-screen-desktop} {
             margin-left: 0;
             margin-right: 0;
         }

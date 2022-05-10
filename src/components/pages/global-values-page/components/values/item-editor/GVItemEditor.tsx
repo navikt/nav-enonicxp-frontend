@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { GVButton } from '../../button/GVButton';
-import { BEM } from '../../../../../../utils/classnames';
 import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
 import { generateGvUsageMessages, gvNameExists } from '../../../utils';
 import { gvServiceAddItem } from '../../../api/services/add';
@@ -12,7 +11,7 @@ import { gvServiceGetUsage } from '../../../api/services/usage';
 import { BodyShort, TextField } from '@navikt/ds-react';
 import { GVMessageProps } from '../../messages/GVMessages';
 
-const bem = BEM('gv-item-editor');
+import style from './GVItemEditor.module.scss';
 
 type Props = {
     item?: GlobalValueItem;
@@ -29,29 +28,23 @@ export const GVItemEditor = ({
         numberValue: '',
     });
     const [awaitDeleteConfirm, setAwaitDeleteConfirm] = useState(false);
-
     const { valueItems, contentId, setValueItems, setMessages } =
         useGvEditorState();
-
     const isNewItem = item.key === '';
-
     const onFetchError = (e) => {
         setMessages([{ message: `Server-feil: ${e}`, level: 'error' }]);
     };
-
     const onFetchSuccess = (msg?: GVMessageProps | void) => {
         if (msg && msg.level !== 'info') {
             setMessages([msg]);
         }
     };
-
     const updateAndClose = () => {
         onClose?.();
         gvServiceGetValueSet(contentId).then(
             (res) => res?.items && setValueItems(res.items)
         );
     };
-
     const deleteItem = async () => {
         await gvServiceGetUsage(item.key, contentId)
             .then((res) => {
@@ -72,7 +65,6 @@ export const GVItemEditor = ({
                 ])
             );
     };
-
     const deleteConfirm = () => {
         setAwaitDeleteConfirm(false);
         gvServiceRemoveItem(item, contentId)
@@ -82,11 +74,9 @@ export const GVItemEditor = ({
             })
             .catch(onFetchError);
     };
-
     const deleteCancel = () => {
         setAwaitDeleteConfirm(false);
     };
-
     const validateAndSubmitItem = (e) => {
         e.preventDefault();
         const inputTrimmed = {
@@ -97,25 +87,20 @@ export const GVItemEditor = ({
                     ? inputState.numberValue.trim()
                     : inputState.numberValue,
         };
-
         const { itemName, numberValue } = inputTrimmed;
-
         let hasInputErrors = false;
         const newErrors = {
             itemName: '',
             numberValue: '',
         };
-
         if (numberValue !== undefined && isNaN(Number(numberValue))) {
             newErrors.numberValue = 'Tall-verdien må være et tall';
             hasInputErrors = true;
         }
-
         if (numberValue === undefined) {
             newErrors.numberValue = 'Feltet må fylles inn';
             hasInputErrors = true;
         }
-
         if (!itemName) {
             newErrors.itemName = 'Navn på verdi er påkrevd';
             hasInputErrors = true;
@@ -129,7 +114,6 @@ export const GVItemEditor = ({
         if (hasInputErrors) {
             return;
         }
-
         if (isNewItem) {
             gvServiceAddItem(inputTrimmed, contentId)
                 .then((msg) => {
@@ -146,7 +130,6 @@ export const GVItemEditor = ({
                 .catch(onFetchError);
         }
     };
-
     const handleInput = (e) => {
         const { name, value } = e.target;
         const formattedValue =
@@ -157,8 +140,8 @@ export const GVItemEditor = ({
     };
 
     return (
-        <div className={bem()}>
-            <form className={bem('form')}>
+        <div className={style.gvItemEditor}>
+            <form className={style.form}>
                 <TextField
                     size={'small'}
                     label={'Navn'}
@@ -182,10 +165,10 @@ export const GVItemEditor = ({
                     onChange={handleInput}
                     error={errors.numberValue}
                 />
-                <div className={bem('form-buttons')}>
+                <div className={style.formButtons}>
                     {awaitDeleteConfirm ? (
                         <>
-                            <BodyShort className={bem('delete-confirm-msg')}>
+                            <BodyShort className={style.deleteConfirmMsg}>
                                 {
                                     'Obs: Denne verdien kan være i bruk - er du sikker?'
                                 }

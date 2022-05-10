@@ -25,6 +25,8 @@ export const LayoutContainer = ({
     const { pageConfig } = usePageConfig();
     const { descriptor, path, type, config = {} } = layoutProps;
 
+    console.log(`Desc=${descriptor} Type=${type}`);
+
     const bem = BEM(type);
     const layoutName = descriptor.split(':')[1];
 

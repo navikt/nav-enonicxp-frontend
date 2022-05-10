@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { GlobalValuesProps } from '../../../types/content-props/global-values-props';
-import { BEM } from '../../../utils/classnames';
 import { Select, Heading } from '@navikt/ds-react';
 import { GVMessages } from './components/messages/GVMessages';
 import ErrorPage404 from '../../../pages/404';
@@ -14,7 +13,7 @@ import { GVItemsCustomOrder } from './components/values/GVItemsCustomOrder';
 import { GVItemsSorted } from './components/values/GVItemsSorted';
 import { useGvEditorState } from '../../../store/hooks/useGvEditorState';
 
-const bem = BEM('global-values-page');
+import style from './GlobalValuesPage.module.scss';
 
 type ListOrder = 'custom' | 'sorted';
 
@@ -56,9 +55,9 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
     }, []);
 
     return (
-        <div className={bem()}>
-            <div className={bem('header-row')}>
-                <Heading level="1" size="large" className={bem('header')}>
+        <div className={style.globalValuesPage}>
+            <div className={style.headerRow}>
+                <Heading level="1" size="large">
                     {'Globale verdier'}
                 </Heading>
                 <Select
@@ -72,7 +71,7 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
                             setListOrder(selection as ListOrder);
                         }
                     }}
-                    className={bem('sort-selector')}
+                    className={style.sortSelector}
                 >
                     <option value={''} disabled={true}>
                         {'Velg sortering'}
@@ -81,18 +80,12 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
                     <option value={'sorted'}>{'Alfabetisk'}</option>
                 </Select>
             </div>
-            <div className={bem('content')}>
-                <div className={bem('left-col')}>
-                    <div className={bem('sub-header-row')}>
-                        <div className={bem('sub-header')}>
-                            <Heading
-                                level="2"
-                                size="medium"
-                                className={bem('header-category')}
-                            >
-                                {displayName}
-                            </Heading>
-                        </div>
+            <div className={style.content}>
+                <div className={style.leftCol}>
+                    <div className={style.subHeaderRow}>
+                        <Heading level="2" size="medium">
+                            {displayName}
+                        </Heading>
                         <GVAddItem />
                     </div>
                     {listOrder === 'sorted' || valueItems.length < 2 ? (

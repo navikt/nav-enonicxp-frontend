@@ -1,41 +1,40 @@
-@import (reference) '../../../common';
-@import (reference) '../../pages/situation-page/SituationPage';
+@use 'src/common' as common;
 
 .layout__dynamic-flex-cols {
     .region__flexcols {
         &--1-cols {
-            .flex-cols-mixin(1);
+            @include common.flex-cols-mixin(1);
         }
 
         &--2-cols {
-            .flex-cols-mixin(2, 2rem);
+            @include common.flex-cols-mixin(2, 2rem);
         }
 
         &--3-cols {
-            @media @mq-screen-desktop {
-                .flex-cols-mixin(3, 2rem);
+            @media #{common.$mq-screen-desktop} {
+                @include common.flex-cols-mixin(3, 2rem);
             }
 
-            @media @mq-screen-tablet {
-                .flex-cols-mixin(2);
+            @media #{common.$mq-screen-tablet} {
+                @include common.flex-cols-mixin(2);
             }
         }
 
-        @media @mq-screen-mobile {
-            .flex-cols-mixin(1);
+        @media #{common.$mq-screen-mobile} {
+            @include common.flex-cols-mixin(1);
         }
 
         &--4-cols {
-            @media @mq-screen-desktop {
-                .flex-cols-mixin(4);
+            @media #{common.$mq-screen-desktop} {
+                @include common.flex-cols-mixin(4);
             }
 
-            @media @mq-screen-tablet {
-                .flex-cols-mixin(3);
+            @media #{common.$mq-screen-tablet} {
+                @include common.flex-cols-mixin(3);
             }
 
-            @media @mq-screen-mobile {
-                .flex-cols-mixin(2);
+            @media #{common.$mq-screen-mobile} {
+                @include common.flex-cols-mixin(2);
             }
         }
     }
@@ -43,17 +42,11 @@
 
 .layout__situation-flex-cols,
 .layout__product-flex-cols {
-    @singleColMaxWidth: (
-        @situationPageSectionMaxWidth + 2 * @padding-sides-mobile
-    );
-    @doubleColMaxWidth: (
-        @situationPageContentMaxWidth + 2 * @padding-sides-tablet
-    );
+    $singleColMaxWidth: calc(#{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile});
+    $doubleColMaxWidth: calc(#{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet});
 
-    @mqSingleCol: ~'only screen and (max-width: @{singleColMaxWidth})';
-    @mqDoubleCol: ~'only screen and (max-width: @{doubleColMaxWidth})';
+    @include common.full-width-mixin();
 
-    .full-width-mixin();
     padding-top: 4rem;
     padding-bottom: 4rem;
     margin-bottom: 4rem;
@@ -71,23 +64,23 @@
 
     .region__flexcols {
         &--1-cols {
-            .flex-cols-mixin(1);
+            @include common.flex-cols-mixin(1);
         }
 
         &--2-cols {
-            .flex-cols-mixin(2);
+            @include common.flex-cols-mixin(2);
         }
 
         &--3-cols {
-            .flex-cols-mixin(3);
+            @include common.flex-cols-mixin(3);
 
-            @media @mqDoubleCol {
-                .flex-cols-mixin(2);
+            @media #{'only screen and (max-width: #{$doubleColMaxWidth})'} {
+                @include common.flex-cols-mixin(2);
             }
         }
 
-        @media @mqSingleCol {
-            .flex-cols-mixin(1);
+        @media #{'only screen and (max-width: #{$singleColMaxWidth})'} {
+            @include common.flex-cols-mixin(1);
         }
     }
 
@@ -104,7 +97,7 @@
 }
 
 .layout__situation-flex-cols {
-    background-color: @navds-global-color-green-100;
+    background-color: common.$navds-global-color-green-100;
 }
 
 .region__flexcols {

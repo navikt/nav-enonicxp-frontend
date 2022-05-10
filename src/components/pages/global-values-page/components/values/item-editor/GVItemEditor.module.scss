@@ -1,20 +1,20 @@
-.gv-item-editor {
+.GVItemEditor {
     display: flex;
     justify-content: space-between;
 
-    &__form {
+    .form {
         & > :not(:last-child) {
             margin-bottom: 0.5rem;
         }
     }
 
-    &__form-buttons {
+    .formButtons {
         & > *:not(:last-child) {
             margin-right: 0.5rem;
         }
     }
 
-    &__delete-confirm-msg {
+    .deleteConfirmMsg {
         margin-bottom: 0.5rem;
     }
 }
