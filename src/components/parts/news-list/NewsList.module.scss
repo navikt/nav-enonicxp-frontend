@@ -1,9 +1,9 @@
-.news-list {
+.newsList {
     display: flex;
     flex-direction: column;
     width: 100%;
 
-    &__more-news {
+    .moreNews {
         margin-top: 1.7rem;
     }
 }
