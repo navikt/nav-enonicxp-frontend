@@ -12,12 +12,8 @@ export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
 
     if (!config?.productDetailsTarget) {
         return (
-            <EditorHelp text="[Velg hvilken produktdetalj-side du vil vise]" />
+            <EditorHelp text="Velg hvilken produktdetalj-side du vil vise" />
         );
-    }
-
-    if (!config?.productDetailsTarget && !pageConfig.editorView) {
-        return null;
     }
 
     const mainRegion = config?.productDetailsTarget?.page?.regions['main'];

@@ -40,16 +40,24 @@ const fetchProductListAndUpdateCache = async (url: string) => {
         millisecondsToFetchTimeout,
         fetchOptions
     );
+
     const productList = await processResponse(response);
-    console.log('fetchProductListAndUpdateCache');
     saveToCache(JSON.stringify(productList));
     return productList;
 };
 
-const getSingleProduct = async (id): Promise<any> => {
+const getSingleProductDetails = async (id): Promise<any> => {
     const allProducts = await getProductListFromCache();
 
-    return allProducts.find((product) => product._id === id);
+    const foundProduct = allProducts.find((product) => product._id === id);
+
+    console.log(foundProduct);
+
+    if (!foundProduct) {
+        return null;
+    }
+
+    return foundProduct;
 };
 
 const getProductListFromCache = async (): Promise<any> => {
@@ -85,7 +93,12 @@ const handler = async (
     res: NextApiResponse
 ): Promise<void> => {
     const { id } = req.query;
-    const product = await getSingleProduct(id);
+    const product = await getSingleProductDetails(id);
+
+    if (!product) {
+        res.status(404);
+        res.end();
+    }
 
     res.setHeader('X-Robots-Tag', 'noindex');
     res.setHeader('Content-Type', 'application/json');
