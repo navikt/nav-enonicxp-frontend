@@ -45,14 +45,13 @@ const appUrlPattern = new RegExp(
 );
 export const isAppUrl = (url: string) => url && appUrlPattern.test(url);
 
-// Matches both relative and absolute urls which points to publically available
-// content internal to the app
-const publicAppUrlPattern = new RegExp(
-    `^(${appOrigin}|${appOriginProd})?($|\\/${internalPaths}|((${xpOrigin})?_\\/))`,
+// Matches urls which can be cached by next-image
+const validImageUrlPattern = new RegExp(
+    `^((${appOrigin}|${appOriginProd})?\\/)|((${xpOrigin})?(\\/_\\/))`,
     'i'
 );
-export const isPublicAppUrl = (url: string) =>
-    url && publicAppUrlPattern.test(url);
+export const isValidImageUrl = (url: string) =>
+    url && validImageUrlPattern.test(url);
 
 // Matches urls pointing directly to XP (/_/*)
 const xpUrlPattern = new RegExp(`${internalUrlPrefix}/_`, 'i');

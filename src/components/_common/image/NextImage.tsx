@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
-import { isPublicAppUrl } from '../../../utils/urls';
+import { isValidImageUrl } from '../../../utils/urls';
 import { updateImageManifest } from '../../../utils/fetch/fetch-images';
 
 // These types should match what's specified in next.config
@@ -73,7 +73,7 @@ const NextImageRunTime = (props: Props) => {
     }
 
     // Skip caching when viewed from the editor, or for external image urls
-    if (pageConfig.editorView || !isPublicAppUrl(src)) {
+    if (pageConfig.editorView || !isValidImageUrl(src)) {
         console.log('invalid url', src, pageConfig.editorView);
         return <img {...imgAttribs} src={src} alt={alt} />;
     }
