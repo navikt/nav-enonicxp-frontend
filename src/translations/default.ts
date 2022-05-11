@@ -1,6 +1,7 @@
 import { DeepPartial } from '../types/util-types';
 import { MenuListItemKey } from '../types/menu-list-items';
 import { Taxonomy } from 'types/taxonomies';
+import { Area } from 'types/areas';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.AppealRights]: 'Klagerettigheter',
@@ -28,6 +29,15 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.FOR_PROVIDERS]: 'For samarbeidspartnere',
     [Taxonomy.MEASURES]: 'Tiltak',
     [Taxonomy.RIGHTS]: 'Veiledning',
+};
+
+const areas: { [key in Area]: string } = {
+    [Area.ALL]: 'Alle',
+    [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
+    [Area.FAMILY]: 'Familie og barn',
+    [Area.HEALTH]: 'Helse og sykdom',
+    [Area.PENSION]: 'Pensjon',
+    [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
 };
 
 export const bundle = {
@@ -75,6 +85,7 @@ export const bundle = {
     },
     relatedContent: relatedContent,
     productTaxonomies,
+    areas,
     products: {
         person: 'For privatpersoner',
         employer: 'For arbeidsgivere',
@@ -153,6 +164,18 @@ export const bundle = {
         draftWarning: 'Utkast - siden er under arbeid',
         failoverWarning:
             'Vi har for tiden tekniske problemer på nav.no. Du kan oppleve noe treghet eller at innhold mangler. Du kan prøve å laste inn siden på nytt.',
+    },
+    caseProcessingTimeUnit: {
+        single: {
+            days: 'dag',
+            weeks: 'uke',
+            months: 'måned',
+        },
+        multi: {
+            days: 'dager',
+            weeks: 'uker',
+            months: 'måneder',
+        },
     },
 };
 

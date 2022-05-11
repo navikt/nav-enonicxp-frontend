@@ -1,6 +1,7 @@
 import { DeepPartial } from '../types/util-types';
 import { MenuListItemKey } from '../types/menu-list-items';
 import { Taxonomy } from 'types/taxonomies';
+import { Area } from 'types/areas';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.AppealRights]: 'Klagerettar',
@@ -28,6 +29,15 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.FOR_PROVIDERS]: 'For samhandlarar',
     [Taxonomy.MEASURES]: 'Tiltak',
     [Taxonomy.RIGHTS]: 'Rettleiing',
+};
+
+const areas: { [key in Area]: string } = {
+    [Area.ALL]: 'Alle',
+    [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
+    [Area.FAMILY]: 'Familie og barn',
+    [Area.HEALTH]: 'Helse og sykdom',
+    [Area.PENSION]: 'Pensjon',
+    [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
 };
 
 export const bundle = {
@@ -75,6 +85,7 @@ export const bundle = {
     },
     relatedContent: relatedContent,
     productTaxonomies,
+    areas,
     products: {
         person: 'For privatpersonar',
         employer: 'For arbeidsgjevarar',
@@ -151,6 +162,18 @@ export const bundle = {
     },
     pageWarnings: {
         draftWarning: 'Utkast - sida er under arbeid',
+    },
+    caseProcessingTimeUnit: {
+        single: {
+            days: 'dag',
+            weeks: 'veke',
+            months: 'månad',
+        },
+        multi: {
+            days: 'dagar',
+            weeks: 'veker',
+            months: 'månader',
+        },
     },
 };
 

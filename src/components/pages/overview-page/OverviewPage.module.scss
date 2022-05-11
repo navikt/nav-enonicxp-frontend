@@ -1,0 +1,38 @@
+@use '../../../common' as common;
+
+$situationPageSectionMaxWidth: 37.5rem;
+
+.overviewPage {
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-top: 2rem;
+        max-width: $situationPageSectionMaxWidth;
+        width: 100%;
+    }
+
+    .productListWrapper {
+        background-color: white;
+        padding: 2rem;
+    }
+
+    .illustration {
+        width: 40px;
+        height: 40px;
+    }
+
+    .detailsContainer {
+        margin: 0 0 2rem;
+    }
+
+    :global(.navds-accordion__expand-icon) {
+        margin-left: auto;
+    }
+
+    @include common.product-mixins();
+}
