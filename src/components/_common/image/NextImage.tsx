@@ -77,8 +77,6 @@ const NextImageRunTime = (props: Props) => {
         return <img {...imgAttribs} src={src} alt={alt} />;
     }
 
-    const url = buildImageCacheUrl({ src, maxWidth, quality });
-
     return (
         <img
             {...imgAttribs}
