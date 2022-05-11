@@ -12,6 +12,7 @@ import PageHeading from './_legacy/page-heading/PageHeading';
 import PageList from './_legacy/page-list/PageList';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './link-panel/LinkPanelPart';
+import {LinkPanelsLegacyPart} from "./_legacy/link-panels/LinkPanelsLegacyPart";
 import { MainArticle } from './_legacy/main-article/MainArticle';
 import {
     ComponentType,
@@ -45,6 +46,7 @@ type Props = {
 const partsWithPageData: {
     [key in PartWithPageData]: React.FunctionComponent<ContentProps>;
 } = {
+    [PartType.LinkPanels]: LinkPanelsLegacyPart,
     [PartType.MainArticle]: MainArticle,
     [PartType.MainArticleLinkedList]: MainArticleChapterNavigation,
     [PartType.MainPanels]: MainPanels,
@@ -81,7 +83,6 @@ const partsDeprecated: { [key in PartDeprecated] } = {
     [PartType.Notifications]: true,
     [PartType.BreakingNews]: true,
     [PartType.PageCrumbs]: true,
-    [PartType.LinkLists]: true,
 };
 
 const PartComponent = ({ partProps, pageProps }: Props) => {
