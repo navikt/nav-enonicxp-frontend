@@ -1,20 +1,20 @@
-@import (reference) '../../../common';
+@use 'src/common' as common;
 
-.lenkepanel-liste {
+.lenkepanelListe {
     width: 100%;
     margin-bottom: 2rem;
 
-    &__tittel {
+    .tittel {
         text-align: center;
         margin-bottom: 2rem;
     }
 
-    &__ingress {
+    .ingress {
         text-align: center;
         margin-top: 1rem;
     }
 
-    &__items {
+    .items {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -22,13 +22,13 @@
         width: 100%;
     }
 
-    &__item {
+    .item {
         text-align: start;
         margin-bottom: 1rem;
-        @media @mq-screen-mobile {
+        @media #{common.$mq-screen-mobile} {
             width: 100%;
         }
-        @media @mq-screen-tablet-and-desktop {
+        @media #{common.$mq-screen-tablet-and-desktop} {
             width: calc(50% - 0.5rem);
         }
     }
