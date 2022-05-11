@@ -1,7 +1,5 @@
-@use 'common' as common;
-
 .alertPanelPart {
-    background-color: common.$navds-global-color-lightblue-50;
+    background-color: var(--navds-global-color-lightblue-50);
     border-radius: 0.5rem;
     border-style: none;
     margin-top: 2rem;
