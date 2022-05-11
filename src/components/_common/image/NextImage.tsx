@@ -74,12 +74,10 @@ const NextImageRunTime = (props: Props) => {
 
     // Skip caching when viewed from the editor, or for external image urls
     if (pageConfig.editorView || !isValidImageUrl(src)) {
-        console.log('invalid url', src, pageConfig.editorView);
         return <img {...imgAttribs} src={src} alt={alt} />;
     }
 
     const url = buildImageCacheUrl({ src, maxWidth, quality });
-    console.log(`Image url: ${url}`);
 
     return (
         <img
