@@ -15,7 +15,7 @@ export const AlertPanelPart = ({ config }: AlertPanelPartProps) => {
     return (
         <LinkPanel
             border={false}
-            className={style.alertPanelPart}
+            className={style.linkPanel}
             as={(props) => (
                 <LenkeBase
                     href={link}
