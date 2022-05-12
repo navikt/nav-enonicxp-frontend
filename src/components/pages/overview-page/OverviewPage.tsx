@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
+import { Accordion } from '@navikt/ds-react';
+
 import { ComponentMapper } from '../../ComponentMapper';
 import { OverviewPageProps } from '../../../types/content-props/dynamic-page-props';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
-import { Accordion, Heading } from '@navikt/ds-react';
-import { LinkProps } from 'types/link-props';
 
 import { OverviewFilter } from 'components/_common/overviewFilter/OverviewFilter';
 import { Area } from 'types/areas';
 import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
-import { MicroCard } from 'components/_common/card/MicroCard';
-import { CardType } from 'types/card';
 import { fetchProductContent } from 'utils/fetch/fetch-product-content';
+import { ExpandableProductDetails } from 'components/_common/expandableProductDetails/expandableProductDetails';
 
 import style from './OverviewPage.module.scss';
 
@@ -19,9 +18,12 @@ export const OverviewPage = (props: OverviewPageProps) => {
 
     const [filters, setFilters] = useState<Area[]>([]);
     const [openPanels, setOpenPanels] = useState<string[]>([]);
+    const [details, setDetails] = useState<any>({});
 
     const checkForPanelContent = async (contentId: string) => {
         const content = await fetchProductContent(contentId);
+        setDetails({ ...details, [contentId]: content });
+        return content;
     };
 
     const handlePanelToggle = (panelId: string) => {
@@ -33,6 +35,10 @@ export const OverviewPage = (props: OverviewPageProps) => {
         setOpenPanels(updatedOpenPanels);
 
         checkForPanelContent(panelId);
+    };
+
+    const getRegions = (id: string) => {
+        return details[id];
     };
 
     const handleFilterUpdate = (filters: Area[]) => {
@@ -57,13 +63,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                 <OverviewFilter filterUpdateCallback={handleFilterUpdate} />
                 <div className={style.productListWrapper}>
                     {filteredItems.map((product) => {
-                        const { illustration } = product;
-
-                        const cardLink: LinkProps = {
-                            url: product._path,
-                            text: product.title,
-                        };
-
+                        const regions = getRegions(product._id);
                         return (
                             <Accordion key={product._id}>
                                 <Accordion.Item
@@ -83,15 +83,12 @@ export const OverviewPage = (props: OverviewPageProps) => {
                                     </Accordion.Header>
                                     <Accordion.Content>
                                         <div className={style.detailsContainer}>
-                                            [placeholder for detaljer]
+                                            <ExpandableProductDetails
+                                                productDetails={product}
+                                                productRegions={regions}
+                                                pageProps={props}
+                                            />
                                         </div>
-                                        <Heading size="small" level="3" spacing>
-                                            Mer om {product.title}
-                                        </Heading>
-                                        <MicroCard
-                                            link={cardLink}
-                                            type={CardType.Product}
-                                        />
                                     </Accordion.Content>
                                 </Accordion.Item>
                             </Accordion>

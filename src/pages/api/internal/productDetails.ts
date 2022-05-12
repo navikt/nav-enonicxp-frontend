@@ -2,13 +2,14 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { fetchWithTimeout } from '../../../utils/fetch/fetch-utils';
 import Cache from 'node-cache';
-import { getNestedValueFromKeyString } from 'utils/objects';
+import { getDeepObjectKey } from 'utils/objects';
 
 // Misc config settings
 // ----------------------------------------
 const millisecondsToFetchTimeout = 60 * 1000; // 60 seconds timeout in ms.
 const secondsToCacheExpiration = 60 * 10; // 10 minutes expiration.
 const productListUrl = `${process.env.XP_ORIGIN}/_/service/no.nav.navno/productList`;
+const siteContentUrl = `${process.env.XP_ORIGIN}/_/service/no.nav.navno/sitecontent`;
 const productListServiceSecret = process.env.SERVICE_SECRET;
 const cacheKey = 'productlist-cache';
 const maxEntriesPerPage = 15;
@@ -43,12 +44,29 @@ const fetchProductListAndUpdateCache = async (url: string) => {
     );
 
     const productList = await processResponse(response);
+
     saveToCache(JSON.stringify(productList));
     return productList;
 };
 
+const fetchProductDetail = async (id: string) => {
+    const fetchOptions: RequestInit = {
+        headers: { secret: productListServiceSecret },
+    };
+
+    const response = await fetchWithTimeout(
+        `${siteContentUrl}?id=${id}`,
+        millisecondsToFetchTimeout,
+        fetchOptions
+    );
+
+    const productDetail = await processResponse(response);
+    return productDetail;
+};
+
 const getSingleProductDetails = async (id): Promise<any> => {
     const allProducts = await getProductListFromCache();
+    const productDetailsPromises = [];
 
     const foundProduct = allProducts.find((product) => product._id === id);
 
@@ -56,7 +74,20 @@ const getSingleProductDetails = async (id): Promise<any> => {
         return null;
     }
 
-    return foundProduct;
+    const productDetailsReferenes = getDeepObjectKey(
+        foundProduct,
+        'productDetailsTarget'
+    );
+
+    productDetailsReferenes.forEach(async (id) => {
+        productDetailsPromises.push(fetchProductDetail(id));
+    });
+
+    const productDetails = await Promise.all(productDetailsPromises);
+
+    return productDetails.map((detail) => {
+        return detail?.page?.regions;
+    });
 };
 
 const getProductListFromCache = async (): Promise<any> => {
@@ -92,9 +123,9 @@ const handler = async (
     res: NextApiResponse
 ): Promise<void> => {
     const { id } = req.query;
-    const product = await getSingleProductDetails(id);
+    const productDetails = await getSingleProductDetails(id);
 
-    if (!product) {
+    if (!productDetails) {
         res.status(404);
         res.end();
     }
@@ -102,7 +133,7 @@ const handler = async (
     res.setHeader('X-Robots-Tag', 'noindex');
     res.setHeader('Content-Type', 'application/json');
     res.status(200);
-    res.json(product);
+    res.json(productDetails);
 };
 
 export default handler;
