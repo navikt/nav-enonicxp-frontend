@@ -28,7 +28,7 @@ export const AlertPanelPart = ({ config }: AlertPanelPartProps) => {
             )}
         >
             <Information className={style.informationIcon} />
-            <div className={!ingress && style.ifOnlyHeader}>
+            <div className={!ingress ? style.ifOnlyHeader : ''}>
                 <LinkPanel.Title>{header}</LinkPanel.Title>
                 {ingress && (
                     <LinkPanel.Description>{ingress}</LinkPanel.Description>
