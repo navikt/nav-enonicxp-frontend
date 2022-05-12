@@ -2,8 +2,8 @@ import React from 'react';
 import { LinkPanel } from '@navikt/ds-react';
 import { Information } from '@navikt/ds-icons';
 import { AlertPanelPartProps } from '../../../types/component-props/parts/alert-panel';
-import style from './AlertPanelPart.module.scss';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import style from './AlertPanelPart.module.scss';
 
 export const AlertPanelPart = ({ config }: AlertPanelPartProps) => {
     if (!config) {
