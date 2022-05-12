@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Heading, BodyShort, LinkPanel } from '@navikt/ds-react';
+import { LinkPanel } from '@navikt/ds-react';
 import { Information } from '@navikt/ds-icons';
 import { AlertPanelPartProps } from '../../../types/component-props/parts/alert-panel';
 import style from './AlertPanelPart.module.scss';
