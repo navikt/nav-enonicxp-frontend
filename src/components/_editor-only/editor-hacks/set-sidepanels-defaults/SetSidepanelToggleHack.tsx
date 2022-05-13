@@ -24,7 +24,6 @@ type Props = {
 export const SetSidepanelToggleHack = ({ contentId }: Props) => {
     useEffect(() => {
         fetchAdminContent(contentId).then((res) => {
-            console.log(res?.page?.type);
             if (res?.page?.type === 'page') {
                 minimizeLeftPanel();
             }

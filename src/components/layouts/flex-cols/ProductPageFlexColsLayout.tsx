@@ -51,7 +51,6 @@ export const ProductPageFlexColsLayout = ({
                 text={
                     'Redaktørtips: Klikk "marker som klar" hvis kolonnene ikke vises riktig.'
                 }
-                type={'info'}
             />
         </LayoutContainer>
     );

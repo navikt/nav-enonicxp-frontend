@@ -4,7 +4,7 @@ import { BEM, classNames } from '../../../utils/classnames';
 
 interface IllustrationStaticProps {
     illustration: AnimatedIconsProps;
-    className: string;
+    className?: string;
 }
 
 const bem = BEM('illustration');
@@ -26,7 +26,15 @@ export const IllustrationStatic = ({
 
     const { icons } = illustration?.data;
 
+    if (!Array.isArray(icons)) {
+        return null;
+    }
+
     const [icon1, icon2] = icons;
+
+    if (!icon1 || !icon2) {
+        return null;
+    }
 
     return (
         <div

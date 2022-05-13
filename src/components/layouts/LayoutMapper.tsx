@@ -10,6 +10,7 @@ import { ComponentType } from '../../types/component-props/_component-common';
 import { SingleColPage } from './single-col-page/SingleColPage';
 import { SituationPageFlexColsLayout } from './flex-cols/SituationPageFlexColsLayout';
 import { ProductPageFlexColsLayout } from './flex-cols/ProductPageFlexColsLayout';
+import { ProductDetailsLayout } from './product-details-layout/ProductDetailsLayout';
 
 type Props = {
     pageProps: ContentProps;
@@ -32,6 +33,7 @@ const layoutComponents: {
     [LayoutType.SingleColPage]: SingleColPage,
     [LayoutType.SituationPageFlexCols]: SituationPageFlexColsLayout,
     [LayoutType.ProductPageFlexCols]: ProductPageFlexColsLayout,
+    [LayoutType.ProductDetailsPage]: ProductDetailsLayout,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {

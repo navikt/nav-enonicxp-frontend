@@ -5,7 +5,10 @@ import {
     SeoDataProps,
 } from './_content-common';
 import { LanguageProps } from '../language';
-import { ProductDataMixin } from '../component-props/_mixins';
+import {
+    ProductDataMixin,
+    SimplifiedProductData,
+} from '../component-props/_mixins';
 
 export type DynamicPageData = Partial<{
     customPath: string;
@@ -20,10 +23,19 @@ export type ThemedArticlePageData = ProductDataMixin & DynamicPageData;
 export type GuidePageData = ProductDataMixin & DynamicPageData;
 export type SituationPageData = ProductDataMixin & DynamicPageData;
 export type ToolsPageData = ProductDataMixin & DynamicPageData;
+export type OverviewPageData = Partial<{
+    productList: SimplifiedProductData[];
+}> &
+    ProductDataMixin &
+    DynamicPageData;
 
 export interface ProductPageProps extends ContentProps {
     __typename: ContentType.ProductPage;
     data: ProductPageData;
+}
+
+export interface ProductDetailsProps extends ContentProps {
+    __typename: ContentType.ProductDetails;
 }
 
 export interface ThemedArticlePageProps extends ContentProps {
@@ -43,4 +55,9 @@ export interface SituationPageProps extends ContentProps {
 export interface ToolsPageProps extends ContentProps {
     __typename: ContentType.ToolsPage;
     data: ToolsPageData;
+}
+
+export interface OverviewPageProps extends ContentProps {
+    __typename: ContentType.ToolsPage;
+    data: OverviewPageData;
 }

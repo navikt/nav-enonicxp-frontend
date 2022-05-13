@@ -34,6 +34,10 @@
         box-shadow: 0 -4px 0 common.$navds-global-color-deepblue-500 inset;
     }
 
+    &.overview {
+        box-shadow: 0 -4px 0 common.$navds-global-color-green-500 inset;
+    }
+
     @media #{common.$mq-screen-mobile} {
         //Når vi oppgraderer til nyeste versjon av designsystemet og bruker
         //xlarge vil headingen settes til font-size 2rem (32px) på mobil

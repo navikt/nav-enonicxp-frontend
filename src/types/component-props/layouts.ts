@@ -26,6 +26,7 @@ export enum LayoutType {
     SingleColPage = 'no.nav.navno:single-col-page',
     SituationPageFlexCols = 'no.nav.navno:situation-flex-cols',
     ProductPageFlexCols = 'no.nav.navno:product-flex-cols',
+    ProductDetailsPage = 'no.nav.navno:product-details-page',
 }
 
 export type RegionProps = {

@@ -1,6 +1,7 @@
 import { Translations } from './default';
 import { MenuListItemKey } from '../types/menu-list-items';
 import { Taxonomy } from 'types/taxonomies';
+import { Area } from 'types/areas';
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
@@ -13,6 +14,15 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.FOR_PROVIDERS]: 'For providers',
     [Taxonomy.MEASURES]: 'Measures',
     [Taxonomy.RIGHTS]: 'Counselling',
+};
+
+const areas: { [key in Area]: string } = {
+    [Area.ALL]: 'All',
+    [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
+    [Area.FAMILY]: 'Familie og barn',
+    [Area.HEALTH]: 'Helse og sykdom',
+    [Area.PENSION]: 'Pensjon',
+    [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
 };
 
 export const bundle: Translations = {
@@ -101,6 +111,7 @@ export const bundle: Translations = {
         provider: 'For providers',
     },
     productTaxonomies,
+    areas,
     header: {
         copyLink: 'Copy link',
         copiedLink: 'Link successfully copied',
