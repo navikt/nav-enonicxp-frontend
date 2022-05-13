@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GlobalValuesProps } from '../../../types/content-props/global-values-props';
 import { BEM } from '../../../utils/classnames';
-import { Select, Heading } from '@navikt/ds-react';
+import { Heading, Select } from '@navikt/ds-react';
 import { GVMessages } from './components/messages/GVMessages';
 import ErrorPage404 from '../../../pages/404';
 import { GVAddItem } from './components/values/add-item/GVAddItem';
@@ -13,12 +13,16 @@ import { store } from '../../../store/store';
 import { GVItemsCustomOrder } from './components/values/GVItemsCustomOrder';
 import { GVItemsSorted } from './components/values/GVItemsSorted';
 import { useGvEditorState } from '../../../store/hooks/useGvEditorState';
+import { ContentType } from '../../../types/content-props/_content-common';
 
 const bem = BEM('global-values-page');
 
 type ListOrder = 'custom' | 'sorted';
 
-const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
+const GlobalValuesDisplay = ({
+    displayName,
+    __typename,
+}: GlobalValuesProps) => {
     const { valueItems } = useGvEditorState();
     const [listOrder, setListOrder] = useState<ListOrder>('custom');
 
@@ -59,7 +63,9 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
         <div className={bem()}>
             <div className={bem('header-row')}>
                 <Heading level="1" size="large" className={bem('header')}>
-                    {'Globale verdier'}
+                    {__typename === 'no_nav_navno_GlobalValueSet'
+                        ? 'Globale verdier'
+                        : 'Saksbehandlingstider'}
                 </Heading>
                 <Select
                     size={'small'}
@@ -93,7 +99,13 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
                                 {displayName}
                             </Heading>
                         </div>
-                        <GVAddItem />
+                        <GVAddItem
+                            type={
+                                __typename === ContentType.CaseProcessingTimeSet
+                                    ? 'caseTime'
+                                    : 'numberValue'
+                            }
+                        />
                     </div>
                     {listOrder === 'sorted' || valueItems.length < 2 ? (
                         <GVItemsSorted />

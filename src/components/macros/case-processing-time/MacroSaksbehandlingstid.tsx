@@ -6,7 +6,7 @@ import { translator } from '../../../translations';
 export const MacroSaksbehandlingstid = ({
     config,
 }: MacroCaseProcessingTimeProps) => {
-    const macroData = config?.saksbehandlingstid?.caseTime?.data;
+    const macroData = config?.saksbehandlingstid?.caseTime;
 
     const { language } = usePageConfig();
 
@@ -14,14 +14,14 @@ export const MacroSaksbehandlingstid = ({
         return null;
     }
 
-    const { unit, number } = macroData;
+    const { unit, value } = macroData;
 
-    const translatorKey = number === 1 ? 'single' : 'multi';
+    const translatorKey = value === 1 ? 'single' : 'multi';
 
     const unitText = translator(
         'caseProcessingTimeUnit',
         language
     )(translatorKey)[unit];
 
-    return <span>{`${number} ${unitText}`}</span>;
+    return <span>{`${value} ${unitText}`}</span>;
 };

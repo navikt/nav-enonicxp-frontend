@@ -1,16 +1,13 @@
 import { MacroPropsCommon, MacroType } from './_macros-common';
-
-export type CaseProcessingTimeUnit = 'days' | 'weeks' | 'months';
+import { CaseProcessingTimeUnit } from '../content-props/global-values-props';
 
 export interface MacroCaseProcessingTimeProps extends MacroPropsCommon {
     name: MacroType.Saksbehandlingstid;
     config: {
         saksbehandlingstid: {
             caseTime: {
-                data: {
-                    number: number;
-                    unit: CaseProcessingTimeUnit;
-                };
+                value: number;
+                unit: CaseProcessingTimeUnit;
             };
         };
     };

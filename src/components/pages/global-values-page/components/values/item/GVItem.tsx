@@ -1,5 +1,9 @@
 import React from 'react';
-import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
+import {
+    CaseProcessingTimeItem,
+    GlobalNumberValueItem,
+    GlobalValueItem,
+} from '../../../../../../types/content-props/global-values-props';
 import { BEM } from '../../../../../../utils/classnames';
 import { GVButton } from '../../button/GVButton';
 import { GVItemEditor } from '../item-editor/GVItemEditor';
@@ -15,26 +19,31 @@ type Props = {
 };
 
 const ItemView = ({ item }: Props) => {
-    const { itemName, numberValue } = item;
+    const valueString =
+        item.type === 'numberValue'
+            ? item.numberValue
+            : `${item.value} ${item.unit}`;
 
     return (
         <div className={bem('display')}>
             <Heading level={'3'} size={'xsmall'}>
-                {itemName}
+                {item.itemName}
             </Heading>
             <BodyShort size={'small'} as={'span'}>
                 {'Verdi: '}
             </BodyShort>
             <BodyShort className={bem('value')} as={'span'}>
-                {numberValue}
+                {valueString}
             </BodyShort>
         </div>
     );
 };
 
-export const GVItem = ({ item }: Props) => {
+export const GVItem = (props: Props) => {
     const { setMessages, contentId, itemsEditState, setItemEditState } =
         useGvEditorState();
+
+    const { item } = props;
 
     const { key } = item;
 
@@ -48,7 +57,7 @@ export const GVItem = ({ item }: Props) => {
                     onClose={() => setItemEditState(key, false)}
                 />
             ) : (
-                <ItemView item={item} />
+                <ItemView {...props} />
             )}
             <div className={bem('right-buttons')}>
                 {!editMode && (
