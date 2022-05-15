@@ -120,6 +120,7 @@ export const bundle: Translations = {
         noProducts: 'No products to show',
         ariaExplanation: 'Filtrer listen etter område',
         ariaItemExplanation: 'Show area',
+        chooseArea: 'Choose area',
     },
     pagination: {
         goTo: 'Go to',

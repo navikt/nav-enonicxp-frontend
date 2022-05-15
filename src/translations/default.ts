@@ -113,6 +113,7 @@ export const bundle = {
         noProducts: 'Ingen produkter å vise',
         ariaExplanation: 'Filtrer listen etter område',
         ariaItemExplanation: 'Vis område',
+        chooseArea: 'Velg område',
     },
     pagination: {
         goTo: 'Gå til',

@@ -38,7 +38,7 @@ export const OverviewFilter = ({
     return (
         <div className={styles.overviewFilter}>
             <Heading size="large" level="3">
-                Velg område
+                {overviewTranslations('chooseArea')}
             </Heading>
             <nav
                 role="navigation"
