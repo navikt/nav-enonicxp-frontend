@@ -119,6 +119,10 @@ export const bundle: Translations = {
     overview: {
         noProducts: 'No products to show',
     },
+    pagination: {
+        goTo: 'Go to',
+        ariaExplanation: 'Navigate the content by pagination',
+    },
     contactPoint: {
         chat: {
             title: 'Chat with Frida',

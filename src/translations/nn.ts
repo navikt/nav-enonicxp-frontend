@@ -110,7 +110,11 @@ export const bundle = {
         copiedLink: 'Lenka er kopiert',
     },
     overview: {
-        noProducts: 'Ingen produkter å vise',
+        noProducts: 'Ingen produkt å vise',
+    },
+    pagination: {
+        goTo: 'Gå til',
+        ariaExplanation: 'Navigering av innhaldet med paginering',
     },
     contactPoint: {
         chat: {

@@ -112,6 +112,10 @@ export const bundle = {
     overview: {
         noProducts: 'Ingen produkter å vise',
     },
+    pagination: {
+        goTo: 'Gå til',
+        ariaExplanation: 'Navigering av innholdet via paginering',
+    },
     contactPoint: {
         chat: {
             title: 'Chat med Frida',
