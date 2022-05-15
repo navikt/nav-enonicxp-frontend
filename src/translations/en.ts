@@ -116,6 +116,9 @@ export const bundle: Translations = {
         copyLink: 'Copy link',
         copiedLink: 'Link successfully copied',
     },
+    overview: {
+        noProducts: 'No products to show',
+    },
     contactPoint: {
         chat: {
             title: 'Chat with Frida',

@@ -10,7 +10,7 @@ import { LinkProps } from 'types/link-props';
 
 import style from './expandableProductDetails.module.scss';
 
-interface ExpandableProductDetailsTypes {
+interface ExpandableProductDetailTypes {
     productDetails: any;
     productRegions: {
         [key: string]: {
@@ -25,13 +25,11 @@ export const ExpandableProductDetails = ({
     productDetails,
     productRegions,
     pageProps,
-}: ExpandableProductDetailsTypes) => {
+}: ExpandableProductDetailTypes) => {
     const cardLink: LinkProps = {
         url: productDetails._path,
         text: productDetails.title,
     };
-
-    console.log(productRegions);
 
     if (!productRegions) {
         return (

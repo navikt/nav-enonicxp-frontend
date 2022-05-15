@@ -3,6 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { fetchWithTimeout } from '../../../utils/fetch/fetch-utils';
 import Cache from 'node-cache';
 import { getDeepObjectKey } from 'utils/objects';
+import { ProductDetailType } from 'types/content-props/product-details';
+import { SimplifiedProductData } from 'types/component-props/_mixins';
 
 // Misc config settings
 // ----------------------------------------
@@ -12,7 +14,6 @@ const productListUrl = `${process.env.XP_ORIGIN}/_/service/no.nav.navno/productL
 const siteContentUrl = `${process.env.XP_ORIGIN}/_/service/no.nav.navno/sitecontent`;
 const productListServiceSecret = process.env.SERVICE_SECRET;
 const cacheKey = 'productlist-cache';
-const maxEntriesPerPage = 15;
 
 const cache = new Cache({
     stdTTL: secondsToCacheExpiration,
@@ -64,33 +65,7 @@ const fetchProductDetail = async (id: string) => {
     return productDetail;
 };
 
-const getSingleProductDetails = async (id): Promise<any> => {
-    const allProducts = await getProductListFromCache();
-    const productDetailsPromises = [];
-
-    const foundProduct = allProducts.find((product) => product._id === id);
-
-    if (!foundProduct) {
-        return null;
-    }
-
-    const productDetailsReferenes = getDeepObjectKey(
-        foundProduct,
-        'productDetailsTarget'
-    );
-
-    productDetailsReferenes.forEach(async (id) => {
-        productDetailsPromises.push(fetchProductDetail(id));
-    });
-
-    const productDetails = await Promise.all(productDetailsPromises);
-
-    return productDetails.map((detail) => {
-        return detail?.page?.regions;
-    });
-};
-
-const getProductListFromCache = async (): Promise<any> => {
+const getProductListFromCache = async (): Promise<SimplifiedProductData[]> => {
     const currentTime = Date.now();
     const cacheExpires = cache.getTtl(cacheKey) || currentTime;
     const isCacheExpired = cacheExpires - currentTime <= 0;
@@ -107,7 +82,7 @@ const getProductListFromCache = async (): Promise<any> => {
     }
 
     const cachedProductList: string = await cache.get(cacheKey);
-    let cachedJSON = {};
+    let cachedJSON = null;
 
     try {
         cachedJSON = JSON.parse(cachedProductList);
@@ -118,12 +93,60 @@ const getProductListFromCache = async (): Promise<any> => {
     return cachedJSON;
 };
 
+const getProductDetails = async (
+    productId: string,
+    detailType: ProductDetailType
+): Promise<any> => {
+    const allProducts = await getProductListFromCache();
+    if (!allProducts) {
+        return [];
+    }
+
+    const productDetailsPromises = [];
+
+    const foundProduct = allProducts.find(
+        (product) => product._id === productId
+    );
+
+    if (!foundProduct) {
+        return null;
+    }
+
+    const productDetailsReferenes = getDeepObjectKey(
+        foundProduct,
+        'productDetailsTarget'
+    );
+
+    productDetailsReferenes.forEach(async (id: string) => {
+        productDetailsPromises.push(fetchProductDetail(id));
+    });
+
+    const productDetails = await Promise.all(productDetailsPromises);
+
+    return productDetails
+        .filter((detail) => detail.data.detailType === detailType)
+        .map((detail) => {
+            return detail?.page?.regions;
+        });
+};
+
 const handler = async (
     req: NextApiRequest,
     res: NextApiResponse
 ): Promise<void> => {
-    const { id } = req.query;
-    const productDetails = await getSingleProductDetails(id);
+    const { id, type } = req.query;
+    if (!id || !type) {
+        res.status(404);
+        res.end();
+    }
+
+    const normalizedId = id.toString();
+    const normalizedType = type.toString() as ProductDetailType;
+
+    const productDetails = await getProductDetails(
+        normalizedId,
+        normalizedType
+    );
 
     if (!productDetails) {
         res.status(404);

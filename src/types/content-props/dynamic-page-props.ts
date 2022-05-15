@@ -9,6 +9,7 @@ import {
     ProductDataMixin,
     SimplifiedProductData,
 } from '../component-props/_mixins';
+import { ProductDetailType } from './product-details';
 
 export type DynamicPageData = Partial<{
     customPath: string;
@@ -25,6 +26,7 @@ export type SituationPageData = ProductDataMixin & DynamicPageData;
 export type ToolsPageData = ProductDataMixin & DynamicPageData;
 export type OverviewPageData = Partial<{
     productList: SimplifiedProductData[];
+    overviewType: ProductDetailType;
 }> &
     ProductDataMixin &
     DynamicPageData;

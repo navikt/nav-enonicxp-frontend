@@ -8,22 +8,35 @@ import { ThemedPageHeader } from '../../_common/headers/themed-page-header/Theme
 import { OverviewFilter } from 'components/_common/overviewFilter/OverviewFilter';
 import { Area } from 'types/areas';
 import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
-import { fetchProductContent } from 'utils/fetch/fetch-product-content';
+import { translator } from 'translations';
+import { fetchRelevantProductDetails } from 'utils/fetch/fetch-product-content';
 import { ExpandableProductDetails } from 'components/_common/expandableProductDetails/expandableProductDetails';
 
 import style from './OverviewPage.module.scss';
+import { Pagination } from 'components/_common/pagination/Pagination';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 export const OverviewPage = (props: OverviewPageProps) => {
-    const { productList } = props.data;
+    const { productList, overviewType } = props.data;
+    const { language } = usePageConfig();
 
-    const [filters, setFilters] = useState<Area[]>([]);
+    // Misc translations
+    const getTranslationString = translator('overview', language);
+    const alphabet = new Array(26)
+        .fill(null)
+        .map((item, index) => String.fromCharCode(65 + index));
+
+    const [areaFilters, setAreaFilters] = useState<Area[]>([]);
+    const [pagination, setPagination] = useState<string>('A');
     const [openPanels, setOpenPanels] = useState<string[]>([]);
     const [details, setDetails] = useState<any>({});
 
     const checkForPanelContent = async (contentId: string) => {
-        const content = await fetchProductContent(contentId);
-        setDetails({ ...details, [contentId]: content });
-        return content;
+        const productDetails = await fetchRelevantProductDetails(
+            contentId,
+            overviewType
+        );
+        setDetails({ ...details, [contentId]: productDetails });
     };
 
     const handlePanelToggle = (panelId: string) => {
@@ -42,13 +55,28 @@ export const OverviewPage = (props: OverviewPageProps) => {
     };
 
     const handleFilterUpdate = (filters: Area[]) => {
-        setFilters(filters);
+        setAreaFilters(filters);
     };
 
-    const filteredItems =
-        filters.length === 0
-            ? productList
-            : productList.filter((product) => filters.includes(product.area));
+    const handlePaginationUpdate = (pageIndex: number) => {
+        setPagination(String.fromCharCode(pageIndex + 65));
+    };
+
+    const buildPaginationPages = () => {
+        return new Array(26).fill(null).map((item, index) => ({
+            index,
+            label: String.fromCharCode(65 + index),
+        }));
+    };
+
+    const filteredItems = productList.filter((product) => {
+        const includesArea =
+            areaFilters.includes(product.area) || areaFilters.length === 0;
+
+        console.log(product.title[0].toUpperCase());
+
+        return includesArea && product.title[0].toUpperCase() === pagination;
+    });
 
     return (
         <div className={style.overviewPage}>
@@ -62,6 +90,9 @@ export const OverviewPage = (props: OverviewPageProps) => {
             <div className={style.content}>
                 <OverviewFilter filterUpdateCallback={handleFilterUpdate} />
                 <div className={style.productListWrapper}>
+                    {filteredItems.length === 0 && (
+                        <div>{getTranslationString('noProducts')}</div>
+                    )}
                     {filteredItems.map((product) => {
                         const regions = getRegions(product._id);
                         return (
@@ -95,6 +126,11 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         );
                     })}
                 </div>
+                <Pagination
+                    pages={buildPaginationPages()}
+                    currentPageIndex={pagination.charCodeAt(0) - 65}
+                    paginationUpdateCallback={handlePaginationUpdate}
+                />
             </div>
         </div>
     );

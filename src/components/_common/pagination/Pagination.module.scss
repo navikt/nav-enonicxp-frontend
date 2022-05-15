@@ -1,0 +1,20 @@
+@use '../../../common' as common;
+
+.pagination {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+}
+
+.paginationButton {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    color: common.$navds-global-color-blue-500;
+    padding: 0.5rem;
+}
+
+.activeButton {
+    background-color: common.$navds-global-color-blue-500;
+    color: white;
+}

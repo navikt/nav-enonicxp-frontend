@@ -109,6 +109,9 @@ export const bundle = {
         copyLink: 'Kopier lenke',
         copiedLink: 'Lenken er kopiert',
     },
+    overview: {
+        noProducts: 'Ingen produkter å vise',
+    },
     contactPoint: {
         chat: {
             title: 'Chat med Frida',

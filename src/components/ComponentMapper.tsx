@@ -73,7 +73,6 @@ export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
 };
 
 export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
-    console.log(componentProps);
     return (
         <AuthDependantRender
             renderOn={componentProps?.config?.renderOnAuthState}
