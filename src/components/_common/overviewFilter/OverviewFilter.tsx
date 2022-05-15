@@ -18,6 +18,7 @@ export const OverviewFilter = ({
     const [filters, setFilters] = useState<Area[]>([]);
 
     const areaTranslations = translator('areas', language);
+    const overviewTranslations = translator('overview', language);
 
     const handleFilterUpdate = (area: Area) => {
         if (area === Area.ALL) {
@@ -39,34 +40,45 @@ export const OverviewFilter = ({
             <Heading size="large" level="3">
                 Velg område
             </Heading>
-            <div className={styles.tagWrapper}>
-                {filterableAreas.map((area) => {
-                    const isActive =
-                        filters.includes(area) ||
-                        (area === Area.ALL && filters.length === 0);
+            <nav
+                role="navigation"
+                aria-label={overviewTranslations('ariaExplanation')}
+                className={styles.tagWrapper}
+            >
+                <ul className={styles.filterWrapper}>
+                    {filterableAreas.map((area) => {
+                        const isActive =
+                            filters.includes(area) ||
+                            (area === Area.ALL && filters.length === 0);
 
-                    return (
-                        <button
-                            key={area}
-                            type="button"
-                            onClick={() => handleFilterUpdate(area)}
-                            className={classNames(
-                                styles.filterButton,
-                                isActive && styles.activeButton
-                            )}
-                        >
-                            <Tag
-                                variant="info"
-                                className={styles.tag}
-                                size="small"
-                            >
-                                {' '}
-                                {areaTranslations(area)}
-                            </Tag>
-                        </button>
-                    );
-                })}
-            </div>
+                        return (
+                            <li key={area}>
+                                <button
+                                    type="button"
+                                    onClick={() => handleFilterUpdate(area)}
+                                    aria-current={isActive}
+                                    aria-label={`${overviewTranslations(
+                                        'ariaItemExplanation'
+                                    )} ${areaTranslations(area)}}`}
+                                    className={classNames(
+                                        styles.filterButton,
+                                        isActive && styles.activeButton
+                                    )}
+                                >
+                                    <Tag
+                                        variant="info"
+                                        className={styles.tag}
+                                        size="small"
+                                    >
+                                        {' '}
+                                        {areaTranslations(area)}
+                                    </Tag>
+                                </button>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </nav>
         </div>
     );
 };

@@ -118,6 +118,8 @@ export const bundle: Translations = {
     },
     overview: {
         noProducts: 'No products to show',
+        ariaExplanation: 'Filtrer listen etter område',
+        ariaItemExplanation: 'Show area',
     },
     pagination: {
         goTo: 'Go to',

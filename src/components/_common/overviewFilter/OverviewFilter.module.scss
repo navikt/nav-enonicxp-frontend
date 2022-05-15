@@ -3,10 +3,11 @@
     flex-direction: column;
 }
 
-.tagWrapper {
+.filterWrapper {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    list-style-type: none;
     margin: 1rem 0;
 }
 

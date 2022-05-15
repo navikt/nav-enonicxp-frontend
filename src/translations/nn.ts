@@ -111,6 +111,8 @@ export const bundle = {
     },
     overview: {
         noProducts: 'Ingen produkt å vise',
+        ariaExplanation: 'Filtrer lista etter område',
+        ariaItemExplanation: 'Vis område',
     },
     pagination: {
         goTo: 'Gå til',

@@ -22,9 +22,6 @@ export const OverviewPage = (props: OverviewPageProps) => {
 
     // Misc translations
     const getTranslationString = translator('overview', language);
-    const alphabet = new Array(26)
-        .fill(null)
-        .map((item, index) => String.fromCharCode(65 + index));
 
     const [areaFilters, setAreaFilters] = useState<Area[]>([]);
     const [pagination, setPagination] = useState<string>('A');
@@ -63,9 +60,14 @@ export const OverviewPage = (props: OverviewPageProps) => {
     };
 
     const buildPaginationPages = () => {
-        return new Array(26).fill(null).map((item, index) => ({
+        const paginableChars = new Array(26)
+            .fill(null)
+            .map((item, index) => index + 65)
+            .concat([198, 216, 197]); // Adds Æ,Ø and Å
+
+        return paginableChars.map((index) => ({
             index,
-            label: String.fromCharCode(65 + index),
+            label: String.fromCharCode(index),
         }));
     };
 
