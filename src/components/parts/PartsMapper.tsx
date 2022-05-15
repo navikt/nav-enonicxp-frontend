@@ -38,6 +38,7 @@ import { ProductCardPart } from './product-card/ProductCard';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
+import { AlertPanelPart } from './alert-panel/AlertPanelPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -62,6 +63,7 @@ const partsWithPageData: {
 const partsWithOwnData: {
     [key in PartWithOwnData]: React.FunctionComponent<PartComponentProps>;
 } = {
+    [PartType.AlertPanel]: AlertPanelPart,
     [PartType.AlertBox]: AlertBoxPart,
     [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanelPart,

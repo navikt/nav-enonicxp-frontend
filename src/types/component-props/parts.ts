@@ -14,6 +14,7 @@ export enum PartType {
     PageList = 'no.nav.navno:page-list',
     PublishingCalendar = 'no.nav.navno:publishing-calendar',
 
+    AlertPanel = 'no.nav.navno:alert-panel',
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
     AlertBox = 'no.nav.navno:dynamic-alert',
     Header = 'no.nav.navno:dynamic-header',
@@ -66,5 +67,6 @@ export type PartWithOwnData =
     | PartType.ProductCard
     | PartType.ProductCardMini
     | PartType.ProductCardMicro
+    | PartType.ContactOption
     | PartType.ProductDetails
-    | PartType.ContactOption;
+    | PartType.AlertPanel;

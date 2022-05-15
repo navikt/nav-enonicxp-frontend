@@ -151,7 +151,7 @@ module.exports = withPlugins([withLess, withTranspileModules], {
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
     },
     images: {
-        minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 60,
+        minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
         dangerouslyAllowSVG: true,
         domains: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map((origin) =>
             // Domain whitelist must not include protocol prefixes
