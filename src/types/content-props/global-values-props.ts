@@ -35,7 +35,7 @@ export type GlobalCaseTimeSetProps = ContentProps & {
 };
 
 export type GlobalNumberValuesSetProps = ContentProps & {
-    __typename: ContentType.GlobalValues;
+    __typename: ContentType.GlobalNumberValuesSet;
     data: GlobalValuesData;
 };
 

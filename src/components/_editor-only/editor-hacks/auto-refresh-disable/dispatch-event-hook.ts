@@ -64,7 +64,7 @@ export const hookDispatchEventForBatchContentServerEvent = ({
     const { _id: contentId, __typename: contentType } = content;
 
     // The global-values content type is updated via a custom editor and is not relevant for this functionality
-    if (contentType === ContentType.GlobalValues) {
+    if (contentType === ContentType.GlobalNumberValuesSet) {
         return;
     }
 

@@ -45,7 +45,7 @@ export enum ContentType {
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
-    GlobalValues = 'no_nav_navno_GlobalValueSet',
+    GlobalNumberValuesSet = 'no_nav_navno_GlobalValueSet',
     ProductPage = 'no_nav_navno_ContentPageWithSidemenus',
     ProductDetails = 'no_nav_navno_ProductDetails',
     GuidePage = 'no_nav_navno_GuidePage',
