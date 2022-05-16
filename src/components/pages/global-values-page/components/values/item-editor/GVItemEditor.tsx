@@ -12,8 +12,10 @@ import { gvServiceRemoveItem } from '../../../api/services/remove';
 import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState';
 import { gvServiceGetValueSet } from '../../../api/services/getValueSet';
 import { gvServiceGetUsage } from '../../../api/services/usage';
-import { BodyShort, TextField } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 import { GVMessageProps } from '../../messages/GVMessages';
+import { GVItemEditorInputCaseTime } from './GVItemEditorInputCaseTime';
+import { GVItemEditorInputNumberValue } from './GVItemEditorInputNumberValue';
 
 const bem = BEM('gv-item-editor');
 
@@ -242,54 +244,19 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
     return (
         <div className={bem()}>
             <form className={bem('form')}>
-                <TextField
-                    size={'small'}
-                    label={'Navn'}
-                    name={'itemName'}
-                    value={inputState.itemName}
-                    onChange={handleInput}
-                    error={errors.itemName}
-                />
                 {inputState.type === 'numberValue' && (
-                    <TextField
-                        size={'small'}
-                        label={'Tallverdi'}
-                        description={
-                            'Blir automatisk formattert avhengig av språket i artikkelen. Benytt kun tall, samt evt punktum som desimalskilletegn.'
-                        }
-                        name={'numberValue'}
-                        value={
-                            inputState.numberValue !== undefined
-                                ? inputState.numberValue
-                                : ''
-                        }
-                        onChange={handleInput}
-                        error={errors.numberValue}
+                    <GVItemEditorInputNumberValue
+                        inputState={inputState}
+                        errors={errors}
+                        setInputState={setInputState}
                     />
                 )}
                 {inputState.type === 'caseTime' && (
-                    <>
-                        <TextField
-                            size={'small'}
-                            label={'Antall'}
-                            name={'value'}
-                            value={
-                                inputState.value !== undefined
-                                    ? inputState.value
-                                    : ''
-                            }
-                            onChange={handleInput}
-                            error={errors.value}
-                        />
-                        <TextField
-                            size={'small'}
-                            label={'Tidsenhet'}
-                            name={'unit'}
-                            value={inputState.unit ?? 'weeks'}
-                            onChange={handleInput}
-                            error={errors.unit}
-                        />
-                    </>
+                    <GVItemEditorInputCaseTime
+                        inputState={inputState}
+                        errors={errors}
+                        setInputState={setInputState}
+                    />
                 )}
                 <div className={bem('form-buttons')}>
                     {awaitDeleteConfirm ? (
