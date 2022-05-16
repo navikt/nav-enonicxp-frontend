@@ -5,7 +5,8 @@ export const fetchRelevantProductDetails = async (
     id: string,
     type: ProductDetailType
 ) => {
-    const absoluteURL = `/api/internal/productDetails?id=${id}&type=${type}`;
+    const origin = process.env.APP_ORIGIN;
+    const absoluteURL = `${origin}/api/internal/productDetails?id=${id}&type=${type}`;
 
     const response = await fetchWithTimeout(absoluteURL, 1500);
     if (!response) {

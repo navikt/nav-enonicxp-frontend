@@ -7,7 +7,7 @@ import { Heading, Tag } from '@navikt/ds-react';
 import classNames from 'classnames';
 
 interface OverviewFilterProps {
-    filterUpdateCallback: (filters: Area[]) => void;
+    filterUpdateCallback: (filters: Area) => void;
 }
 
 export const OverviewFilter = ({
@@ -15,24 +15,14 @@ export const OverviewFilter = ({
 }: OverviewFilterProps) => {
     const filterableAreas = Object.values(Area);
     const { language } = usePageConfig();
-    const [filters, setFilters] = useState<Area[]>([]);
+    const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
 
     const areaTranslations = translator('areas', language);
     const overviewTranslations = translator('overview', language);
 
     const handleFilterUpdate = (area: Area) => {
-        if (area === Area.ALL) {
-            setFilters([]);
-            filterUpdateCallback([]);
-            return;
-        }
-        const foundAtPos = filters.findIndex((filter) => filter === area);
-        const updatedFilters =
-            foundAtPos > -1
-                ? filters.filter((filter) => filter !== area)
-                : [...filters, area];
-        setFilters(updatedFilters);
-        filterUpdateCallback(updatedFilters);
+        setAreaFilter(area);
+        filterUpdateCallback(area);
     };
 
     return (
@@ -47,9 +37,7 @@ export const OverviewFilter = ({
             >
                 <ul className={styles.filterWrapper}>
                     {filterableAreas.map((area) => {
-                        const isActive =
-                            filters.includes(area) ||
-                            (area === Area.ALL && filters.length === 0);
+                        const isActive = areaFilter === area;
 
                         return (
                             <li key={area}>

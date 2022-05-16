@@ -23,8 +23,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
     // Misc translations
     const getTranslationString = translator('overview', language);
 
-    const [areaFilters, setAreaFilters] = useState<Area[]>([]);
-    const [pagination, setPagination] = useState<string>('A');
+    const [areaFilter, setAreaFilter] = useState<Area>(null);
     const [openPanels, setOpenPanels] = useState<string[]>([]);
     const [details, setDetails] = useState<any>({});
 
@@ -51,31 +50,12 @@ export const OverviewPage = (props: OverviewPageProps) => {
         return details[id];
     };
 
-    const handleFilterUpdate = (filters: Area[]) => {
-        setAreaFilters(filters);
-    };
-
-    const handlePaginationUpdate = (pageIndex: number) => {
-        setPagination(String.fromCharCode(pageIndex + 65));
-    };
-
-    const buildPaginationPages = () => {
-        const paginableChars = new Array(26)
-            .fill(null)
-            .map((item, index) => index + 65)
-            .concat([198, 216, 197]); // Adds Æ,Ø and Å
-
-        return paginableChars.map((index) => ({
-            index,
-            label: String.fromCharCode(index),
-        }));
+    const handleFilterUpdate = (area: Area) => {
+        setAreaFilter(area);
     };
 
     const filteredItems = productList.filter((product) => {
-        const includesArea =
-            areaFilters.includes(product.area) || areaFilters.length === 0;
-
-        return includesArea && product.title[0].toUpperCase() === pagination;
+        return product.area == areaFilter;
     });
 
     return (
@@ -126,11 +106,6 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         );
                     })}
                 </div>
-                <Pagination
-                    pages={buildPaginationPages()}
-                    currentPageIndex={pagination.charCodeAt(0) - 65}
-                    paginationUpdateCallback={handlePaginationUpdate}
-                />
             </div>
         </div>
     );
