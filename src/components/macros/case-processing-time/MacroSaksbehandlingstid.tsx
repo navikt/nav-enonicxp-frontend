@@ -1,7 +1,23 @@
 import React from 'react';
 import { MacroCaseProcessingTimeProps } from '../../../types/macro-props/case-processing-time';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import { translator } from '../../../translations';
+import { Language, translator } from '../../../translations';
+import { CaseProcessingTimeUnit } from '../../../types/content-props/global-values-props';
+
+export const getCaseTimeString = (
+    value: number | string,
+    unit: CaseProcessingTimeUnit,
+    language: Language
+) => {
+    const translatorKey = value === 1 ? 'single' : 'multi';
+
+    const unitText = translator(
+        'caseProcessingTimeUnit',
+        language
+    )(translatorKey)[unit];
+
+    return `${value} ${unitText}`;
+};
 
 export const MacroSaksbehandlingstid = ({
     config,
@@ -14,14 +30,9 @@ export const MacroSaksbehandlingstid = ({
         return null;
     }
 
-    const { unit, value } = macroData;
+    const { value, unit } = macroData;
 
-    const translatorKey = value === 1 ? 'single' : 'multi';
+    const caseTimeString = getCaseTimeString(value, unit, language);
 
-    const unitText = translator(
-        'caseProcessingTimeUnit',
-        language
-    )(translatorKey)[unit];
-
-    return <span>{`${value} ${unitText}`}</span>;
+    return <span>{caseTimeString}</span>;
 };
