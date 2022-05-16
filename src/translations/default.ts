@@ -40,7 +40,7 @@ const areas: { [key in Area]: string } = {
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
 };
 
-export const bundle = {
+export const translationsBundleNb = {
     stringParts: {
         conjunction: 'og',
     },
@@ -179,4 +179,4 @@ export const bundle = {
     },
 };
 
-export type Translations = DeepPartial<typeof bundle>;
+export type Translations = DeepPartial<typeof translationsBundleNb>;

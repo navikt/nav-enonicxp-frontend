@@ -18,12 +18,18 @@ type Props = {
     item: GlobalValueItem;
 };
 
-const ItemView = ({ item }: Props) => {
-    const valueString =
-        item.type === 'numberValue'
-            ? item.numberValue
-            : `${item.value} ${item.unit}`;
+const buildValueDisplayString = (item: GlobalValueItem) => {
+    switch (item.type) {
+        case 'numberValue':
+            return item.numberValue;
+        case 'caseTime':
+            return `${item.value} ${item.unit}`;
+        default:
+            return `Ukjent verditype: ${(item as unknown as any).type}`;
+    }
+};
 
+const ItemView = ({ item }: Props) => {
     return (
         <div className={bem('display')}>
             <Heading level={'3'} size={'xsmall'}>
@@ -33,7 +39,7 @@ const ItemView = ({ item }: Props) => {
                 {'Verdi: '}
             </BodyShort>
             <BodyShort className={bem('value')} as={'span'}>
-                {valueString}
+                {buildValueDisplayString(item)}
             </BodyShort>
         </div>
     );
@@ -57,7 +63,7 @@ export const GVItem = (props: Props) => {
                     onClose={() => setItemEditState(key, false)}
                 />
             ) : (
-                <ItemView {...props} />
+                <ItemView item={item} />
             )}
             <div className={bem('right-buttons')}>
                 {!editMode && (

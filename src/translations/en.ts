@@ -25,7 +25,7 @@ const areas: { [key in Area]: string } = {
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
 };
 
-export const bundle: Translations = {
+export const translationsBundleEn: Translations = {
     stringParts: {
         conjunction: 'and',
     },

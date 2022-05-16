@@ -5,6 +5,7 @@ export type CaseProcessingTimeUnit = 'days' | 'weeks' | 'months';
 type ValueItemCommon = {
     key: string;
     itemName: string;
+    type: string;
 };
 
 export type CaseProcessingTimeItem = ValueItemCommon & {

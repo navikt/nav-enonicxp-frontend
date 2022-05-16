@@ -1,8 +1,8 @@
-import { bundle as se } from './se';
-import { bundle as en } from './en';
-import { bundle as pl } from './pl';
-import { bundle as nn } from './nn';
-import { bundle as defaultPack, Translations } from './default';
+import { translationsBundleSe as se } from './se';
+import { translationsBundleEn as en } from './en';
+import { translationsBundlePl as pl } from './pl';
+import { translationsBundleNn as nn } from './nn';
+import { translationsBundleNb as defaultPack, Translations } from './default';
 
 export type Language = 'no' | 'nn' | 'en' | 'se' | 'pl';
 
