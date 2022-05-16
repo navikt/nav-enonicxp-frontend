@@ -47,7 +47,6 @@ export const GVItem = (props: Props) => {
         useGvEditorState();
 
     const { item } = props;
-
     const { key } = item;
 
     const editMode = itemsEditState[key];

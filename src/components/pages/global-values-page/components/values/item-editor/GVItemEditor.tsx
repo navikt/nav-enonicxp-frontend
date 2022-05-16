@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GVButton } from '../../button/GVButton';
 import { BEM } from '../../../../../../utils/classnames';
-import {
-    CaseProcessingTimeItem,
-    GlobalValueItem,
-} from '../../../../../../types/content-props/global-values-props';
+import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
 import { generateGvUsageMessages, gvNameExists } from '../../../utils';
 import { gvServiceAddItem } from '../../../api/services/add';
 import { gvServiceModifyItem } from '../../../api/services/modify';
@@ -14,10 +11,20 @@ import { gvServiceGetValueSet } from '../../../api/services/getValueSet';
 import { gvServiceGetUsage } from '../../../api/services/usage';
 import { BodyShort } from '@navikt/ds-react';
 import { GVMessageProps } from '../../messages/GVMessages';
-import { GVItemEditorInputCaseTime } from './GVItemEditorInputCaseTime';
-import { GVItemEditorInputNumberValue } from './GVItemEditorInputNumberValue';
+import {
+    GVItemEditorInputCaseTime,
+    gvProcessCaseTimeInput,
+} from './case-time/GVItemEditorInputCaseTime';
+import {
+    GVItemEditorInputNumberValue,
+    gvProcessNumberValueInput,
+} from './number-value/GVItemEditorInputNumberValue';
 
 const bem = BEM('gv-item-editor');
+
+type Errors = {
+    [key in keyof GlobalValueItem]?: string;
+};
 
 type Props = {
     onClose: () => void;
@@ -26,24 +33,28 @@ type Props = {
     | { item?: undefined; newType: GlobalValueItem['type'] }
 );
 
+const defaultInputState: { [key in GlobalValueItem['type']]: GlobalValueItem } =
+    {
+        numberValue: {
+            type: 'numberValue',
+            key: '',
+            itemName: '',
+            numberValue: '',
+        },
+        caseTime: {
+            type: 'caseTime',
+            key: '',
+            itemName: '',
+            unit: 'months',
+            value: '',
+        },
+    };
+
 export const GVItemEditor = ({ item, newType, onClose }: Props) => {
     const [inputState, setInputState] = useState<GlobalValueItem>(
-        item || newType === 'numberValue'
-            ? {
-                  type: 'numberValue',
-                  key: '',
-                  itemName: '',
-                  numberValue: '',
-              }
-            : {
-                  type: 'caseTime',
-                  key: '',
-                  itemName: '',
-                  unit: 'months',
-                  value: '',
-              }
+        item || defaultInputState[newType]
     );
-    const [errors, setErrors] = useState<Record<string, string>>({});
+    const [errors, setErrors] = useState<Errors>({});
     const [awaitDeleteConfirm, setAwaitDeleteConfirm] = useState(false);
 
     useEffect(() => {
@@ -107,138 +118,52 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
         setAwaitDeleteConfirm(false);
     };
 
-    const validateAndSubmitItem = (e) => {
-        e.preventDefault();
+    const validateAndSubmitItem = () => {
+        const commonProcessedInput = {
+            ...inputState,
+            itemName: inputState.itemName?.trim(),
+        };
 
-        if (inputState.type === 'numberValue') {
-            const inputTrimmed = {
-                ...inputState,
-                itemName: inputState.itemName?.trim(),
-                numberValue:
-                    typeof inputState.numberValue === 'string'
-                        ? inputState.numberValue.trim()
-                        : inputState.numberValue,
-            };
+        const commonErrors: Errors = {};
 
-            const { itemName, numberValue } = inputTrimmed;
+        const { itemName } = commonProcessedInput;
 
-            let hasInputErrors = false;
-            const newErrors = {
-                itemName: '',
-                numberValue: '',
-            };
-
-            if (numberValue !== undefined && isNaN(Number(numberValue))) {
-                newErrors.numberValue = 'Tall-verdien må være et tall';
-                hasInputErrors = true;
-            }
-
-            if (numberValue === undefined) {
-                newErrors.numberValue = 'Feltet må fylles inn';
-                hasInputErrors = true;
-            }
-
-            if (!itemName) {
-                newErrors.itemName = 'Navn på verdi er påkrevd';
-                hasInputErrors = true;
-            } else if (gvNameExists(itemName, valueItems, item?.key)) {
-                newErrors.itemName = 'Navnet er allerede i bruk i dette settet';
-                hasInputErrors = true;
-            }
-
-            setErrors(newErrors);
-
-            if (hasInputErrors) {
-                return;
-            }
-
-            if (newType) {
-                gvServiceAddItem(inputTrimmed, contentId)
-                    .then((msg) => {
-                        onFetchSuccess(msg);
-                        updateAndClose();
-                    })
-                    .catch(onFetchError);
-            } else {
-                gvServiceModifyItem(inputTrimmed, contentId)
-                    .then((msg) => {
-                        onFetchSuccess(msg);
-                        updateAndClose();
-                    })
-                    .catch(onFetchError);
-            }
-        } else {
-            const inputTrimmed: CaseProcessingTimeItem = {
-                ...inputState,
-                itemName: inputState.itemName?.trim(),
-                value: inputState.value,
-                unit: inputState.unit,
-            };
-
-            const { itemName, value, unit } = inputTrimmed;
-
-            let hasInputErrors = false;
-            const newErrors = {
-                itemName: '',
-                value: '',
-                unit: '',
-            };
-
-            if (value !== undefined && isNaN(Number(value))) {
-                newErrors.value = 'Tall-verdien må være et tall';
-                hasInputErrors = true;
-            }
-
-            if (value === undefined) {
-                newErrors.value = 'Feltet må fylles inn';
-                hasInputErrors = true;
-            }
-
-            if (unit === undefined) {
-                newErrors.unit = 'Feltet må fylles inn';
-                hasInputErrors = true;
-            }
-
-            if (!itemName) {
-                newErrors.itemName = 'Navn på verdi er påkrevd';
-                hasInputErrors = true;
-            } else if (gvNameExists(itemName, valueItems, item?.key)) {
-                newErrors.itemName = 'Navnet er allerede i bruk i dette settet';
-                hasInputErrors = true;
-            }
-
-            setErrors(newErrors);
-
-            if (hasInputErrors) {
-                return;
-            }
-
-            console.log(newType);
-            if (newType) {
-                gvServiceAddItem(inputTrimmed, contentId)
-                    .then((msg) => {
-                        onFetchSuccess(msg);
-                        updateAndClose();
-                    })
-                    .catch(onFetchError);
-            } else {
-                gvServiceModifyItem(inputTrimmed, contentId)
-                    .then((msg) => {
-                        onFetchSuccess(msg);
-                        updateAndClose();
-                    })
-                    .catch(onFetchError);
-            }
+        if (!itemName) {
+            commonErrors.itemName = 'Navn på verdi er påkrevd';
+        } else if (gvNameExists(itemName, valueItems, item?.key)) {
+            commonErrors.itemName = 'Navnet er allerede i bruk i dette settet';
         }
-    };
 
-    const handleInput = (e) => {
-        const { name, value } = e.target;
-        const formattedValue =
-            name === 'numberValue'
-                ? value.replace(' ', '').replace(',', '.')
-                : value;
-        setInputState({ ...inputState, [name]: formattedValue });
+        const { processedInput, errors } =
+            inputState.type === 'caseTime'
+                ? gvProcessCaseTimeInput(inputState)
+                : gvProcessNumberValueInput(inputState);
+
+        const finalErrors = { ...commonErrors, ...errors };
+
+        setErrors(finalErrors);
+
+        if (Object.keys(finalErrors).length > 0) {
+            return;
+        }
+
+        const finalInput = { ...commonProcessedInput, ...processedInput };
+
+        if (newType) {
+            gvServiceAddItem(finalInput, contentId)
+                .then((msg) => {
+                    onFetchSuccess(msg);
+                    updateAndClose();
+                })
+                .catch(onFetchError);
+        } else {
+            gvServiceModifyItem(finalInput, contentId)
+                .then((msg) => {
+                    onFetchSuccess(msg);
+                    updateAndClose();
+                })
+                .catch(onFetchError);
+        }
     };
 
     return (
@@ -283,7 +208,10 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
                         <>
                             <GVButton
                                 variant={'primary'}
-                                onClick={validateAndSubmitItem}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    validateAndSubmitItem();
+                                }}
                             >
                                 {'Lagre verdi'}
                             </GVButton>

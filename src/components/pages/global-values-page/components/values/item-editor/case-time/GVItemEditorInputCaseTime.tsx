@@ -3,11 +3,38 @@ import { Select, TextField } from '@navikt/ds-react';
 import {
     CaseProcessingTimeItem,
     CaseProcessingTimeUnit,
-} from '../../../../../../types/content-props/global-values-props';
+} from '../../../../../../../types/content-props/global-values-props';
+
+type Errors = { [key in keyof CaseProcessingTimeItem]?: string };
+
+export const gvProcessCaseTimeInput = (input: CaseProcessingTimeItem) => {
+    const processedInput = {
+        value: input.value,
+        unit: input.unit,
+    };
+
+    const errors: Errors = {};
+
+    const { value, unit } = processedInput;
+
+    if (value === undefined) {
+        errors.value = 'Feltet må fylles inn';
+    } else if (isNaN(Number(value))) {
+        errors.value = 'Verdien må være et tall';
+    } else if (value < 0) {
+        errors.value = 'Verdien kan ikke være negativ';
+    }
+
+    if (unit === undefined) {
+        errors.unit = 'Feltet må fylles inn';
+    }
+
+    return { processedInput, errors };
+};
 
 type Props = {
     inputState: CaseProcessingTimeItem;
-    errors: Record<keyof CaseProcessingTimeItem, string>;
+    errors: Errors;
     setInputState: (inputState: CaseProcessingTimeItem) => void;
 };
 
@@ -55,7 +82,7 @@ export const GVItemEditorInputCaseTime = ({
                 hideLabel={true}
             >
                 <option value={''} disabled={true}>
-                    {'Velg tidsenhent'}
+                    {'Velg tidsenhet'}
                 </option>
                 <option value={'days'}>{'Dager'}</option>
                 <option value={'weeks'}>{'Uker'}</option>
