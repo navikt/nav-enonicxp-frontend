@@ -140,7 +140,6 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
                 : gvProcessNumberValueInput(inputState);
 
         const finalErrors = { ...commonErrors, ...errors };
-
         setErrors(finalErrors);
 
         if (Object.keys(finalErrors).length > 0) {
