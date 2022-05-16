@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
-import { Accordion } from '@navikt/ds-react';
+import { Accordion, Alert } from '@navikt/ds-react';
+import { translator } from 'translations';
+
+import { Area } from 'types/areas';
 
 import { ComponentMapper } from '../../ComponentMapper';
 import { OverviewPageProps } from '../../../types/content-props/dynamic-page-props';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { OverviewFilter } from 'components/_common/overviewFilter/OverviewFilter';
-import { Area } from 'types/areas';
 import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
-import { translator } from 'translations';
 import { fetchRelevantProductDetails } from 'utils/fetch/fetch-product-content';
 import { ExpandableProductDetails } from 'components/_common/expandableProductDetails/expandableProductDetails';
 
 import style from './OverviewPage.module.scss';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
-    const { language } = usePageConfig();
+    const { language, pageConfig } = usePageConfig();
+    const { editorView } = pageConfig;
 
     // Misc translations
     const getTranslationString = translator('overview', language);
@@ -35,14 +37,15 @@ export const OverviewPage = (props: OverviewPageProps) => {
     };
 
     const handlePanelToggle = (panelId: string) => {
-        const foundAtPos = openPanels.findIndex((id) => id === panelId);
-        const updatedOpenPanels =
-            foundAtPos > -1
-                ? openPanels.filter((id) => id !== panelId)
-                : [...openPanels, panelId];
+        const isOpening = openPanels.findIndex((id) => id === panelId) === -1;
+        const updatedOpenPanels = isOpening
+            ? openPanels.filter((id) => id !== panelId)
+            : [...openPanels, panelId];
         setOpenPanels(updatedOpenPanels);
 
-        checkForPanelContent(panelId);
+        if (isOpening) {
+            checkForPanelContent(panelId);
+        }
     };
 
     const getRegions = (id: string) => {
