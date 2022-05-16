@@ -13,7 +13,6 @@ import { fetchRelevantProductDetails } from 'utils/fetch/fetch-product-content';
 import { ExpandableProductDetails } from 'components/_common/expandableProductDetails/expandableProductDetails';
 
 import style from './OverviewPage.module.scss';
-import { Pagination } from 'components/_common/pagination/Pagination';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 export const OverviewPage = (props: OverviewPageProps) => {
