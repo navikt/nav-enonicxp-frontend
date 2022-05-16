@@ -75,8 +75,6 @@ export const OverviewPage = (props: OverviewPageProps) => {
         const includesArea =
             areaFilters.includes(product.area) || areaFilters.length === 0;
 
-        console.log(product.title[0].toUpperCase());
-
         return includesArea && product.title[0].toUpperCase() === pagination;
     });
 
