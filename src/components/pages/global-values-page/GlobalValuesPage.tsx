@@ -61,7 +61,7 @@ const GlobalValuesDisplay = ({
             </Head>
             <div className={bem('header-row')}>
                 <Heading level="1" size="large" className={bem('header')}>
-                    {__typename === ContentType.CaseProcessingTimeSet
+                    {__typename === ContentType.GlobalCaseTimeSet
                         ? 'Saksbehandlingstider'
                         : 'Globale verdier'}
                 </Heading>
@@ -99,7 +99,7 @@ const GlobalValuesDisplay = ({
                         </div>
                         <GVAddItem
                             type={
-                                __typename === ContentType.CaseProcessingTimeSet
+                                __typename === ContentType.GlobalCaseTimeSet
                                     ? 'caseTime'
                                     : 'numberValue'
                             }

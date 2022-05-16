@@ -7,7 +7,7 @@ import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState
 import { gvServiceGetUsage } from '../../../api/services/usage';
 import { generateGvUsageMessages } from '../../../utils';
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { getCaseTimeString } from '../../../../../macros/case-processing-time/MacroSaksbehandlingstid';
+import { getCaseTimeString } from '../../../../../macros/saksbehandlingstid/MacroSaksbehandlingstid';
 
 const bem = BEM('gv-item');
 

@@ -163,7 +163,7 @@ export const translationsBundleNn = {
     pageWarnings: {
         draftWarning: 'Utkast - sida er under arbeid',
     },
-    caseProcessingTimeUnit: {
+    caseTimeUnit: {
         single: {
             days: 'dag',
             weeks: 'veke',

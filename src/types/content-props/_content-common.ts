@@ -21,10 +21,7 @@ import {
 import { PublishingCalendarData } from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsData } from './animated-icons';
-import {
-    CaseProcessingTimeSetData,
-    GlobalValuesData,
-} from './global-values-props';
+import { GlobalCaseTimeSetData, GlobalValuesData } from './global-values-props';
 import { ContactInformationData } from './contact-information-props';
 import { MediaType } from '../media';
 
@@ -58,7 +55,7 @@ export enum ContentType {
     ToolsPage = 'no_nav_navno_ToolsPage',
     Calculator = 'no_nav_navno_Calculator',
     Overview = 'no_nav_navno_Overview',
-    CaseProcessingTimeSet = 'no_nav_navno_CaseProcessingTimeSet',
+    GlobalCaseTimeSet = 'no_nav_navno_GlobalCaseTimeSet',
 }
 
 export type ContentCommonProps = {
@@ -127,5 +124,5 @@ export type ContentData = Partial<
         SituationPageData &
         AnimatedIconsData &
         GlobalValuesData &
-        CaseProcessingTimeSetData
+        GlobalCaseTimeSetData
 >;

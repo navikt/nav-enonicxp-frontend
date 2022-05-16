@@ -1,13 +1,13 @@
 import React from 'react';
 import { Select, TextField } from '@navikt/ds-react';
 import {
-    CaseProcessingTimeItem,
-    CaseProcessingTimeUnit,
+    GlobalCaseTimeSetItem,
+    GlobalCaseTimeUnit,
 } from '../../../../../../../types/content-props/global-values-props';
 
-type Errors = { [key in keyof CaseProcessingTimeItem]?: string };
+type Errors = { [key in keyof GlobalCaseTimeSetItem]?: string };
 
-export const gvProcessCaseTimeInput = (input: CaseProcessingTimeItem) => {
+export const gvProcessCaseTimeInput = (input: GlobalCaseTimeSetItem) => {
     const processedInput = {
         value: input.value,
         unit: input.unit,
@@ -33,9 +33,9 @@ export const gvProcessCaseTimeInput = (input: CaseProcessingTimeItem) => {
 };
 
 type Props = {
-    inputState: CaseProcessingTimeItem;
+    inputState: GlobalCaseTimeSetItem;
     errors: Errors;
-    setInputState: (inputState: CaseProcessingTimeItem) => void;
+    setInputState: (inputState: GlobalCaseTimeSetItem) => void;
 };
 
 export const GVItemEditorInputCaseTime = ({
@@ -74,7 +74,7 @@ export const GVItemEditorInputCaseTime = ({
                 onChange={(e) => {
                     setInputState({
                         ...inputState,
-                        unit: e.target.value as CaseProcessingTimeUnit,
+                        unit: e.target.value as GlobalCaseTimeUnit,
                     });
                 }}
                 error={errors.unit}

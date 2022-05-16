@@ -165,7 +165,7 @@ export const translationsBundleNb = {
         failoverWarning:
             'Vi har for tiden tekniske problemer på nav.no. Du kan oppleve noe treghet eller at innhold mangler. Du kan prøve å laste inn siden på nytt.',
     },
-    caseProcessingTimeUnit: {
+    caseTimeUnit: {
         single: {
             days: 'dag',
             weeks: 'uke',

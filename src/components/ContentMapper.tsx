@@ -29,7 +29,7 @@ const contentToReactComponent: Partial<{
     [ContentType.TemplatePage]: TemplatePage,
     [ContentType.AnimatedIcons]: () => null, // TODO: add a preview-page for editors
     [ContentType.GlobalValues]: GlobalValuesPage,
-    [ContentType.CaseProcessingTimeSet]: GlobalValuesPage,
+    [ContentType.GlobalCaseTimeSet]: GlobalValuesPage,
     [ContentType.ProductDetails]: ProductDetailsPage,
     [ContentType.ContactInformationPage]: ContactInformationPage,
 
