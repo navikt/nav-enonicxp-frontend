@@ -1,8 +1,8 @@
 import { globalValuesServiceFetch } from '../globalValuesServiceFetch';
-import { GlobalNumberValueItem } from '../../../../../types/content-props/global-values-props';
+import { GlobalValueItem } from '../../../../../types/content-props/global-values-props';
 
 type ServiceResponse = {
-    items: GlobalNumberValueItem[];
+    items: GlobalValueItem[];
 };
 
 export const gvServiceGetValueSet = (
