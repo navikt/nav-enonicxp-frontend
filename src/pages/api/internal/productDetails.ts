@@ -5,15 +5,15 @@ import Cache from 'node-cache';
 import { getDeepObjectKey } from 'utils/objects';
 import { ProductDetailType } from 'types/content-props/product-details';
 import { SimplifiedProductData } from 'types/component-props/_mixins';
+import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
 
 // Misc config settings
 // ----------------------------------------
 const millisecondsToFetchTimeout = 60 * 1000; // 60 seconds timeout in ms.
 const secondsToCacheExpiration = 60 * 10; // 10 minutes expiration.
-const productListUrl = `${process.env.XP_ORIGIN}/_/service/no.nav.navno/productList`;
-const siteContentUrl = `${process.env.XP_ORIGIN}/_/service/no.nav.navno/sitecontent`;
-const productListServiceSecret = process.env.SERVICE_SECRET;
-const cacheKey = 'productlist-cache';
+const productDetailsUrl = `${process.env.XP_ORIGIN}/_/service/no.nav.navno/productDetails`;
+const productDetailsServiceSecret = process.env.SERVICE_SECRET;
+const cachePrefix = 'product-details-';
 
 const cache = new Cache({
     stdTTL: secondsToCacheExpiration,
@@ -30,98 +30,77 @@ const processResponse = async (response: Response) => {
     }
 };
 
-const saveToCache = (json: any): void => {
-    cache.set(cacheKey, json);
+const saveToCache = (key: string, json: any): void => {
+    const stringifiedJSON = JSON.stringify(json);
+
+    cache.set(key, stringifiedJSON);
 };
 
-const fetchProductListAndUpdateCache = async (url: string) => {
+const getFromCache = async (cacheKey: string) => {
+    const stringifiedResult: string = await cache.get(cacheKey);
+
+    let result = null;
+
+    try {
+        result = JSON.parse(stringifiedResult);
+    } catch (e) {
+        console.log('Could not parse cached productList to json');
+    }
+
+    return result;
+};
+
+const fetchProductDetailsAndUpdateCache = async (productId: string) => {
     const fetchOptions: RequestInit = {
-        headers: { secret: productListServiceSecret },
+        headers: { secret: productDetailsServiceSecret },
     };
     const response = await fetchWithTimeout(
-        url,
+        `${productDetailsUrl}?productId=${productId}`,
         millisecondsToFetchTimeout,
         fetchOptions
     );
 
-    const productList = await processResponse(response);
+    const details = await processResponse(response);
+    const cacheKey = `${cachePrefix}${productId}`;
 
-    saveToCache(JSON.stringify(productList));
-    return productList;
+    saveToCache(cacheKey, details);
+
+    return details;
 };
 
-const fetchProductDetail = async (id: string) => {
-    const fetchOptions: RequestInit = {
-        headers: { secret: productListServiceSecret },
-    };
-
-    const response = await fetchWithTimeout(
-        `${siteContentUrl}?id=${id}`,
-        millisecondsToFetchTimeout,
-        fetchOptions
-    );
-
-    const productDetail = await processResponse(response);
-    return productDetail;
-};
-
-const getProductListFromCache = async (): Promise<SimplifiedProductData[]> => {
+const getProductDetailsFromCache = async (
+    productId: string
+): Promise<ProductDetailsProps[]> => {
     const currentTime = Date.now();
+    const cacheKey = `${cachePrefix}${productId}`;
     const cacheExpires = cache.getTtl(cacheKey) || currentTime;
     const isCacheExpired = cacheExpires - currentTime <= 0;
 
     // There's nothing in the cache, so we're forced to await for the fetch to return.
     if (!cache.has(cacheKey)) {
-        return await fetchProductListAndUpdateCache(productListUrl);
+        console.log(`${cacheKey} not in cache`);
+        return await fetchProductDetailsAndUpdateCache(productId);
     }
 
     // Although the cache IS expired, we don't want to wait for the new 10-ish second fetch to return.
     // Therefore, initate a new fetch, but keep returning expired cache to avoid long response time.
     if (isCacheExpired) {
-        fetchProductListAndUpdateCache(productListUrl);
+        console.log('cache expired');
+        fetchProductDetailsAndUpdateCache(productId);
     }
 
-    const cachedProductList: string = await cache.get(cacheKey);
-    let cachedJSON = null;
-
-    try {
-        cachedJSON = JSON.parse(cachedProductList);
-    } catch (e) {
-        console.log('Could not parse cached productList to json');
-    }
-
-    return cachedJSON;
+    return await getFromCache(cacheKey);
 };
 
 const getProductDetails = async (
     productId: string,
     detailType: ProductDetailType
 ): Promise<any> => {
-    const allProducts = await getProductListFromCache();
-    if (!allProducts) {
+    const productDetails = await getProductDetailsFromCache(productId);
+
+    if (!productDetails) {
         return [];
     }
-
-    const productDetailsPromises = [];
-
-    const foundProduct = allProducts.find(
-        (product) => product._id === productId
-    );
-
-    if (!foundProduct) {
-        return null;
-    }
-
-    const productDetailsReferenes = getDeepObjectKey(
-        foundProduct,
-        'productDetailsTarget'
-    );
-
-    productDetailsReferenes.forEach(async (id: string) => {
-        productDetailsPromises.push(fetchProductDetail(id));
-    });
-
-    const productDetails = await Promise.all(productDetailsPromises);
 
     return productDetails
         .filter((detail) => detail.data.detailType === detailType)

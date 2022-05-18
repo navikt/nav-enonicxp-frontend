@@ -39,8 +39,9 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const handlePanelToggle = (panelId: string) => {
         const isOpening = openPanels.findIndex((id) => id === panelId) === -1;
         const updatedOpenPanels = isOpening
-            ? openPanels.filter((id) => id !== panelId)
-            : [...openPanels, panelId];
+            ? [...openPanels, panelId]
+            : openPanels.filter((id) => id !== panelId);
+
         setOpenPanels(updatedOpenPanels);
 
         if (isOpening) {
@@ -57,7 +58,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
     };
 
     const filteredItems = productList.filter((product) => {
-        return product.area == areaFilter;
+        return product.area == areaFilter || areaFilter === Area.ALL;
     });
 
     return (

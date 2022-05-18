@@ -7,6 +7,7 @@ import { AuthStateType } from '../../store/slices/authState';
 import { EmptyObject, OptionSetSingle } from '../util-types';
 import { XpContentRef } from 'utils/urls';
 import { Area } from 'types/areas';
+import { ProductDetailType } from 'types/content-props/product-details';
 
 export type HeaderWithAnchorMixin = {
     title: string;
@@ -37,6 +38,11 @@ export type ProductDataMixin = {
     illustration: AnimatedIconsProps;
     area: Area;
     externalProductUrl?: string;
+};
+
+export type ProductDetailsDataMixin = {
+    detailType: ProductDetailType;
+    pageUsageReference?: string;
 };
 
 export type LinkSelectable = OptionSetSingle<{
