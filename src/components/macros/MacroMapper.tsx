@@ -23,7 +23,7 @@ import { MacroGlobalValueWithMath } from './global-value-with-math/MacroGlobalVa
 import { MacroProductCardMini } from './product-card-mini/MacroProductCardMini';
 import { MacroIngress } from './ingress/MacroIngress';
 import { MacroAlertBox } from './alert-box/MacroAlertBox';
-import { MacroSaksbehandlingstid } from './case-processing-time/MacroSaksbehandlingstid';
+import { MacroSaksbehandlingstid } from './saksbehandlingstid/MacroSaksbehandlingstid';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
