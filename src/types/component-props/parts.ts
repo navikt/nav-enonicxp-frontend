@@ -4,6 +4,7 @@ export enum PartType {
     PageCrumbs = 'no.nav.navno:page-crumbs',
 
     LinkPanels = 'no.nav.navno:link-panels',
+    LinkLists = 'no.nav.navno:link-lists',
     PageHeading = 'no.nav.navno:page-heading',
     MainPanels = 'no.nav.navno:main-panels',
     MainArticle = 'no.nav.navno:main-article',
@@ -35,10 +36,11 @@ export enum PartType {
 export type PartDeprecated =
     | PartType.Notifications
     | PartType.BreakingNews
-    | PartType.PageCrumbs
+    | PartType.PageCrumbs;
 
 export type PartWithPageData =
     | PartType.LinkPanels
+    | PartType.LinkLists
     | PartType.PageHeading
     | PartType.MainArticle
     | PartType.MainArticleLinkedList
