@@ -40,7 +40,7 @@ const areas: { [key in Area]: string } = {
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
 };
 
-export const bundle = {
+export const translationsBundleNb = {
     stringParts: {
         conjunction: 'og',
     },
@@ -165,7 +165,7 @@ export const bundle = {
         failoverWarning:
             'Vi har for tiden tekniske problemer på nav.no. Du kan oppleve noe treghet eller at innhold mangler. Du kan prøve å laste inn siden på nytt.',
     },
-    caseProcessingTimeUnit: {
+    caseTimeUnit: {
         single: {
             days: 'dag',
             weeks: 'uke',
@@ -179,4 +179,4 @@ export const bundle = {
     },
 };
 
-export type Translations = DeepPartial<typeof bundle>;
+export type Translations = DeepPartial<typeof translationsBundleNb>;

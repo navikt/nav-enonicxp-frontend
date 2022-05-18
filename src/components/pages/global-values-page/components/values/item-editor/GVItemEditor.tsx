@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GVButton } from '../../button/GVButton';
 import { BEM } from '../../../../../../utils/classnames';
 import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
@@ -9,31 +9,62 @@ import { gvServiceRemoveItem } from '../../../api/services/remove';
 import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState';
 import { gvServiceGetValueSet } from '../../../api/services/getValueSet';
 import { gvServiceGetUsage } from '../../../api/services/usage';
-import { BodyShort, TextField } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 import { GVMessageProps } from '../../messages/GVMessages';
+import {
+    GVItemEditorInputCaseTime,
+    gvProcessCaseTimeInput,
+} from './case-time/GVItemEditorInputCaseTime';
+import {
+    GVItemEditorInputNumberValue,
+    gvProcessNumberValueInput,
+} from './number-value/GVItemEditorInputNumberValue';
 
 const bem = BEM('gv-item-editor');
 
-type Props = {
-    item?: GlobalValueItem;
-    onClose?: () => void;
+type Errors = {
+    [key in keyof GlobalValueItem]?: string;
 };
 
-export const GVItemEditor = ({
-    item = { itemName: '', numberValue: '', key: '' },
-    onClose,
-}: Props) => {
-    const [inputState, setInputState] = useState(item);
-    const [errors, setErrors] = useState({
-        itemName: '',
-        numberValue: '',
-    });
+type Props = {
+    onClose: () => void;
+} & (
+    | { item: GlobalValueItem; newType?: undefined }
+    | { item?: undefined; newType: GlobalValueItem['type'] }
+);
+
+const defaultInputState: { [key in GlobalValueItem['type']]: GlobalValueItem } =
+    {
+        numberValue: {
+            type: 'numberValue',
+            key: '',
+            itemName: '',
+            numberValue: '',
+        },
+        caseTime: {
+            type: 'caseTime',
+            key: '',
+            itemName: '',
+            unit: 'months',
+            value: '',
+        },
+    };
+
+export const GVItemEditor = ({ item, newType, onClose }: Props) => {
+    const [inputState, setInputState] = useState<GlobalValueItem>(
+        item || defaultInputState[newType]
+    );
+    const [errors, setErrors] = useState<Errors>({});
     const [awaitDeleteConfirm, setAwaitDeleteConfirm] = useState(false);
+
+    useEffect(() => {
+        if (item) {
+            setInputState(item);
+        }
+    }, [item]);
 
     const { valueItems, contentId, setValueItems, setMessages } =
         useGvEditorState();
-
-    const isNewItem = item.key === '';
 
     const onFetchError = (e) => {
         setMessages([{ message: `Server-feil: ${e}`, level: 'error' }]);
@@ -87,58 +118,45 @@ export const GVItemEditor = ({
         setAwaitDeleteConfirm(false);
     };
 
-    const validateAndSubmitItem = (e) => {
-        e.preventDefault();
-        const inputTrimmed = {
+    const validateAndSubmitItem = () => {
+        const commonProcessedInput = {
             ...inputState,
             itemName: inputState.itemName?.trim(),
-            numberValue:
-                typeof inputState.numberValue === 'string'
-                    ? inputState.numberValue.trim()
-                    : inputState.numberValue,
         };
 
-        const { itemName, numberValue } = inputTrimmed;
+        const commonErrors: Errors = {};
 
-        let hasInputErrors = false;
-        const newErrors = {
-            itemName: '',
-            numberValue: '',
-        };
-
-        if (numberValue !== undefined && isNaN(Number(numberValue))) {
-            newErrors.numberValue = 'Tall-verdien må være et tall';
-            hasInputErrors = true;
-        }
-
-        if (numberValue === undefined) {
-            newErrors.numberValue = 'Feltet må fylles inn';
-            hasInputErrors = true;
-        }
+        const { itemName } = commonProcessedInput;
 
         if (!itemName) {
-            newErrors.itemName = 'Navn på verdi er påkrevd';
-            hasInputErrors = true;
-        } else if (gvNameExists(itemName, valueItems, item.key)) {
-            newErrors.itemName = 'Navnet er allerede i bruk i dette settet';
-            hasInputErrors = true;
+            commonErrors.itemName = 'Navn på verdi er påkrevd';
+        } else if (gvNameExists(itemName, valueItems, item?.key)) {
+            commonErrors.itemName = 'Navnet er allerede i bruk i dette settet';
         }
 
-        setErrors(newErrors);
+        const { processedInput, errors } =
+            inputState.type === 'caseTime'
+                ? gvProcessCaseTimeInput(inputState)
+                : gvProcessNumberValueInput(inputState);
 
-        if (hasInputErrors) {
+        const finalErrors = { ...commonErrors, ...errors };
+        setErrors(finalErrors);
+
+        if (Object.keys(finalErrors).length > 0) {
             return;
         }
 
-        if (isNewItem) {
-            gvServiceAddItem(inputTrimmed, contentId)
+        const finalInput = { ...commonProcessedInput, ...processedInput };
+
+        if (newType) {
+            gvServiceAddItem(finalInput, contentId)
                 .then((msg) => {
                     onFetchSuccess(msg);
                     updateAndClose();
                 })
                 .catch(onFetchError);
         } else {
-            gvServiceModifyItem(inputTrimmed, contentId)
+            gvServiceModifyItem(finalInput, contentId)
                 .then((msg) => {
                     onFetchSuccess(msg);
                     updateAndClose();
@@ -147,41 +165,23 @@ export const GVItemEditor = ({
         }
     };
 
-    const handleInput = (e) => {
-        const { name, value } = e.target;
-        const formattedValue =
-            name === 'numberValue'
-                ? value.replace(' ', '').replace(',', '.')
-                : value;
-        setInputState({ ...inputState, [name]: formattedValue });
-    };
-
     return (
         <div className={bem()}>
             <form className={bem('form')}>
-                <TextField
-                    size={'small'}
-                    label={'Navn'}
-                    name={'itemName'}
-                    value={inputState.itemName}
-                    onChange={handleInput}
-                    error={errors.itemName}
-                />
-                <TextField
-                    size={'small'}
-                    label={'Tallverdi'}
-                    description={
-                        'Blir automatisk formattert avhengig av språket i artikkelen. Benytt kun tall, samt evt punktum som desimalskilletegn.'
-                    }
-                    name={'numberValue'}
-                    value={
-                        inputState.numberValue !== undefined
-                            ? inputState.numberValue
-                            : ''
-                    }
-                    onChange={handleInput}
-                    error={errors.numberValue}
-                />
+                {inputState.type === 'numberValue' && (
+                    <GVItemEditorInputNumberValue
+                        inputState={inputState}
+                        errors={errors}
+                        setInputState={setInputState}
+                    />
+                )}
+                {inputState.type === 'caseTime' && (
+                    <GVItemEditorInputCaseTime
+                        inputState={inputState}
+                        errors={errors}
+                        setInputState={setInputState}
+                    />
+                )}
                 <div className={bem('form-buttons')}>
                     {awaitDeleteConfirm ? (
                         <>
@@ -207,7 +207,10 @@ export const GVItemEditor = ({
                         <>
                             <GVButton
                                 variant={'primary'}
-                                onClick={validateAndSubmitItem}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    validateAndSubmitItem();
+                                }}
                             >
                                 {'Lagre verdi'}
                             </GVButton>
@@ -217,7 +220,7 @@ export const GVItemEditor = ({
                             >
                                 {'Avbryt'}
                             </GVButton>
-                            {!isNewItem && (
+                            {!newType && (
                                 <GVButton
                                     variant={'danger'}
                                     onClick={deleteItem}
