@@ -12,26 +12,22 @@ import { store } from '../../../store/store';
 import { GVItemsCustomOrder } from './components/values/GVItemsCustomOrder';
 import { GVItemsSorted } from './components/values/GVItemsSorted';
 import { useGvEditorState } from '../../../store/hooks/useGvEditorState';
+import { ContentType } from '../../../types/content-props/_content-common';
+import Head from 'next/head';
+import { DocumentParameter } from '../../_common/metatags/DocumentParameterMetatags';
 
 import style from './GlobalValuesPage.module.scss';
 
 type ListOrder = 'custom' | 'sorted';
 
-const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
+const GlobalValuesDisplay = ({
+    displayName,
+    __typename,
+}: GlobalValuesProps) => {
     const { valueItems } = useGvEditorState();
     const [listOrder, setListOrder] = useState<ListOrder>('custom');
 
     useEffect(() => {
-        const header = document.getElementById('decorator-header');
-        if (header) {
-            header.style.display = 'none';
-        }
-
-        const footer = document.getElementById('decorator-footer');
-        if (footer) {
-            footer.style.display = 'none';
-        }
-
         // Hide overlay elements in the editor-view, which prevents interaction
         const callback = (mutations) => {
             mutations.forEach((mutation) => {
@@ -56,9 +52,17 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
 
     return (
         <div className={style.globalValuesPage}>
+            <Head>
+                <meta
+                    name={DocumentParameter.DecoratorDisabled}
+                    content={'true'}
+                />
+            </Head>
             <div className={style.headerRow}>
                 <Heading level="1" size="large">
-                    {'Globale verdier'}
+                    {__typename === ContentType.GlobalCaseTimeSet
+                        ? 'Saksbehandlingstider'
+                        : 'Globale verdier'}
                 </Heading>
                 <Select
                     size={'small'}
@@ -86,7 +90,13 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
                         <Heading level="2" size="medium">
                             {displayName}
                         </Heading>
-                        <GVAddItem />
+                        <GVAddItem
+                            type={
+                                __typename === ContentType.GlobalCaseTimeSet
+                                    ? 'caseTime'
+                                    : 'numberValue'
+                            }
+                        />
                     </div>
                     {listOrder === 'sorted' || valueItems.length < 2 ? (
                         <GVItemsSorted />

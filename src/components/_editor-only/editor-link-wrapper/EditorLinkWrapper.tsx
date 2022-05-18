@@ -16,7 +16,7 @@ export const EditorLinkWrapper = ({ children }: Props) => {
     const { pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
 
-    if (!editorView || editorView === 'preview') {
+    if (editorView !== 'edit') {
         return <>{children}</>;
     }
 
