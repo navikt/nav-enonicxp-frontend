@@ -6,6 +6,8 @@ import { getCommonLayoutStyle } from './LayoutStyle';
 import { usePageConfig } from '../../store/hooks/usePageConfig';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
 
+import style from './LayoutContainer.module.scss';
+
 type Props = {
     pageProps: ContentProps;
     layoutProps: LayoutProps;
@@ -24,35 +26,30 @@ export const LayoutContainer = ({
 }: Props) => {
     const { pageConfig } = usePageConfig();
     const { descriptor, path, type, config = {} } = layoutProps;
-
-    console.log(`Desc=${descriptor} Type=${type}`);
-
-    const bem = BEM(type);
     const layoutName = descriptor.split(':')[1];
-
     const commonLayoutStyle = getCommonLayoutStyle(config);
     const paddingConfig = config.paddingSides?._selected;
-
     const editorProps = !!pageProps.editorView
         ? {
               'data-portal-component-type': type,
               'data-portal-component': path,
           }
         : undefined;
+    const bem = BEM(type);
 
     return (
         <div
             {...divElementProps}
             {...editorProps}
             className={classNames(
-                bem(),
+                style.layout,
                 bem(layoutName),
                 ...(modifiers
                     ? modifiers.map((mod) => bem(layoutName, mod))
                     : []),
-                paddingConfig === 'fullWidth' && bem('fullwidth'),
-                paddingConfig === 'standard' && bem('standard'),
-                config.bgColor?.color && bem('bg'),
+                paddingConfig === 'fullWidth' && style.fullwidth,
+                paddingConfig === 'standard' && style.standard,
+                config.bgColor?.color && style.bg,
                 pageConfig.editorView === 'edit' &&
                     editorAuthstateClassname(config.renderOnAuthState)
             )}
