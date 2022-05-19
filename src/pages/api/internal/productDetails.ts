@@ -2,9 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { fetchWithTimeout } from '../../../utils/fetch/fetch-utils';
 import Cache from 'node-cache';
-import { getDeepObjectKey } from 'utils/objects';
 import { ProductDetailType } from 'types/content-props/product-details';
-import { SimplifiedProductData } from 'types/component-props/_mixins';
 import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
 
 // Misc config settings
