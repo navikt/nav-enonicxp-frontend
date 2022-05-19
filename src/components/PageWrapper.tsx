@@ -35,6 +35,16 @@ export const PageWrapper = (props: Props) => {
 
     const router = useRouter();
 
+    store.dispatch(setPathMapAction(content?.pathMap));
+    store.dispatch(
+        setPageConfigAction({
+            pageId: content._id,
+            language: content.language,
+            isPagePreview: !!router.query.utkastRouter,
+            editorView: content.editorView,
+        })
+    );
+
     useEffect(() => {
         // Checking auth status is not supported when viewed via Content Studio
         if (editorView) {
@@ -90,16 +100,6 @@ export const PageWrapper = (props: Props) => {
         if (!content) {
             return;
         }
-
-        store.dispatch(setPathMapAction(content?.pathMap));
-        store.dispatch(
-            setPageConfigAction({
-                pageId: content._id,
-                language: content.language,
-                isPagePreview: !!router.query.utkastRouter,
-                editorView: content.editorView,
-            })
-        );
 
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;

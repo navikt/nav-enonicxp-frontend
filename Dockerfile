@@ -1,13 +1,9 @@
-FROM node:16-alpine
+FROM node:16-bullseye-slim
 
 WORKDIR /app
 
 COPY package*.json /app/
 COPY node_modules /app/node_modules/
-
-# Install this package here to ensure the correct binaries are installed
-# for the container OS + CPU architecture
-RUN npm install sharp@0.30.3
 
 COPY .next /app/.next/
 COPY public /app/public/
