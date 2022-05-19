@@ -81,10 +81,7 @@
         .decor {
             visibility: visible;
             min-width: $decorWidth;
-            margin-top: -$verticalPadding;
-            margin-right: $decorWidth;
-            margin-bottom: -$verticalPadding;
-            margin-left: (-$decorWidth - $horizontalPadding);
+            margin: (-$verticalPadding) $decorWidth (-$verticalPadding) (-$decorWidth - $horizontalPadding);
             background-color: common.$navds-semantic-color-link;
 
             transform: scaleY(0);

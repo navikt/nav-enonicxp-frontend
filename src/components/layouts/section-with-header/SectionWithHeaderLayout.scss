@@ -9,7 +9,7 @@
     @mixin adjust-for-padding($sectionPadding) {
         $marginActual: 1rem;
         top: calc(-#{$sectionPadding} - #{$iconContainerRadius});
-        margin-bottom: -$iconContainerRadius - ($sectionPadding - $marginActual);
+        margin-bottom: (-$iconContainerRadius) - ($sectionPadding - $marginActual);
     }
 
     display: inline-flex;
