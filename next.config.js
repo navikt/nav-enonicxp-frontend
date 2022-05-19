@@ -80,6 +80,8 @@ const buildCspHeader = () => {
         process.env.ENV !== 'prod' ? ' staging-nav.boost.ai' : ''
     }`; // chatbot
     const qbrickOrigin = 'video.qbrick.com';
+    const vimeoPlayerOrigin = 'player.vimeo.com';
+    const vimeoCdnOrigin = '*.vimeocdn.com'; // used for video preview images
 
     const gaOrigin = 'www.google-analytics.com';
     const gtmOrigin = 'www.googletagmanager.com';
@@ -124,8 +126,8 @@ const buildCspHeader = () => {
         `worker-src ${internalOrigins} blob:`,
         `style-src ${internalOrigins} ${vergicOrigin} 'unsafe-inline'`,
         `font-src ${internalOrigins} ${vergicOrigin} data:`,
-        `img-src ${internalOrigins} ${vergicOrigin} ${gaOrigin} data:`,
-        `frame-src ${qbrickOrigin} ${hotjarOrigin} ${gtmOrigin}`,
+        `img-src ${internalOrigins} ${vimeoCdnOrigin} ${vergicOrigin} ${gaOrigin} data:`,
+        `frame-src ${qbrickOrigin} ${vimeoPlayerOrigin} ${hotjarOrigin} ${gtmOrigin}`,
     ].join('; ');
 };
 

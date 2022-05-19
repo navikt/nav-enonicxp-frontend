@@ -25,7 +25,7 @@ const areas: { [key in Area]: string } = {
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
 };
 
-export const bundle: Translations = {
+export const translationsBundleEn: Translations = {
     stringParts: {
         conjunction: 'and',
     },
@@ -166,7 +166,7 @@ export const bundle: Translations = {
         failoverWarning:
             'We are currently having technical issues on nav.no. You may experience slow response times or missing content. Try reloading the page.',
     },
-    caseProcessingTimeUnit: {
+    caseTimeUnit: {
         single: {
             days: 'day',
             weeks: 'week',
