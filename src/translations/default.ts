@@ -114,6 +114,8 @@ export const translationsBundleNb = {
         ariaExplanation: 'Filtrer listen etter område',
         ariaItemExplanation: 'Vis område',
         chooseArea: 'Velg område',
+        loading: 'Henter produktdetaljer',
+        moreAbout: 'Mer om',
     },
     pagination: {
         goTo: 'Gå til',

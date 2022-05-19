@@ -12,9 +12,6 @@ type Props = {
 };
 
 export const FragmentComponent = ({ componentProps, pageProps }: Props) => {
-    if (!componentProps.fragment) {
-        return null;
-    }
     if (!!pageProps.editorView) {
         const editorProps = {
             'data-portal-component-type': ComponentType.Fragment,

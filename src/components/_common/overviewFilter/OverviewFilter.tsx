@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { Area } from 'types/areas';
-import styles from './OverviewFilter.module.scss';
-import { translator } from '../../../translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { Heading, Tag } from '@navikt/ds-react';
 import classNames from 'classnames';
+
+import { Area } from 'types/areas';
+
+import { translator } from '../../../translations';
+import { Heading, Tag } from '@navikt/ds-react';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+
+import styles from './OverviewFilter.module.scss';
 
 interface OverviewFilterProps {
     filterUpdateCallback: (filters: Area) => void;
@@ -14,9 +17,9 @@ export const OverviewFilter = ({
     filterUpdateCallback,
 }: OverviewFilterProps) => {
     const filterableAreas = Object.values(Area);
-    const { language } = usePageConfig();
     const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
 
+    const { language } = usePageConfig();
     const areaTranslations = translator('areas', language);
     const overviewTranslations = translator('overview', language);
 

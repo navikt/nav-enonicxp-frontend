@@ -21,21 +21,3 @@ export const getNestedValueFromKeyString = (
 ) => {
     return getNestedValueFromKeyArray(obj, keysString?.split?.('.'));
 };
-
-export const getDeepObjectKey = (object, key) => {
-    const results = [];
-
-    if (!object || typeof object === 'string') {
-        return results;
-    }
-
-    Object.keys(object).forEach((objectKey) => {
-        if (objectKey === key) {
-            results.push(object[key]);
-        } else {
-            results.push(getDeepObjectKey(object[objectKey], key));
-        }
-    });
-
-    return results.flat();
-};

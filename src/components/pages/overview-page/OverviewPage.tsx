@@ -1,34 +1,38 @@
 import React, { useState } from 'react';
-import { Accordion, Alert } from '@navikt/ds-react';
+import { Accordion } from '@navikt/ds-react';
 import { translator } from 'translations';
 
 import { Area } from 'types/areas';
+import { OverviewPageProps } from 'types/content-props/dynamic-page-props';
 
-import { ComponentMapper } from '../../ComponentMapper';
-import { OverviewPageProps } from '../../../types/content-props/dynamic-page-props';
-import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { fetchRelevantProductDetails } from 'utils/fetch/fetch-product-details';
 
-import { OverviewFilter } from 'components/_common/overviewFilter/OverviewFilter';
-import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
-import { fetchRelevantProductDetails } from 'utils/fetch/fetch-product-content';
+import { ComponentMapper } from 'components/ComponentMapper';
 import { ExpandableProductDetails } from 'components/_common/expandableProductDetails/expandableProductDetails';
+import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
+import { OverviewFilter } from 'components/_common/overviewFilter/OverviewFilter';
+import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 
 import style from './OverviewPage.module.scss';
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
-    const { language, pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+    const { language } = usePageConfig();
 
     // Misc translations
     const getTranslationString = translator('overview', language);
 
-    const [areaFilter, setAreaFilter] = useState<Area>(null);
+    const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
     const [openPanels, setOpenPanels] = useState<string[]>([]);
     const [details, setDetails] = useState<any>({});
 
-    const checkForPanelContent = async (contentId: string) => {
+    const fetchPanelContent = async (contentId: string) => {
+        // Don't check if we already have the content.
+        if (details[contentId]) {
+            return;
+        }
+
         const productDetails = await fetchRelevantProductDetails(
             contentId,
             overviewType
@@ -45,7 +49,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
         setOpenPanels(updatedOpenPanels);
 
         if (isOpening) {
-            checkForPanelContent(panelId);
+            fetchPanelContent(panelId);
         }
     };
 
@@ -57,7 +61,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
         setAreaFilter(area);
     };
 
-    const filteredItems = productList.filter((product) => {
+    const filteredProducts = productList.filter((product) => {
         return product.area == areaFilter || areaFilter === Area.ALL;
     });
 
@@ -73,10 +77,10 @@ export const OverviewPage = (props: OverviewPageProps) => {
             <div className={style.content}>
                 <OverviewFilter filterUpdateCallback={handleFilterUpdate} />
                 <div className={style.productListWrapper}>
-                    {filteredItems.length === 0 && (
+                    {filteredProducts.length === 0 && (
                         <div>{getTranslationString('noProducts')}</div>
                     )}
-                    {filteredItems.map((product) => {
+                    {filteredProducts.map((product) => {
                         const regions = getRegions(product._id);
                         return (
                             <Accordion key={product._id}>

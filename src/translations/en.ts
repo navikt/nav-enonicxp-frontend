@@ -121,6 +121,8 @@ export const translationsBundleEn: Translations = {
         ariaExplanation: 'Filtrer listen etter område',
         ariaItemExplanation: 'Show area',
         chooseArea: 'Choose area',
+        loading: 'Loading product details',
+        moreAbout: 'More about',
     },
     pagination: {
         goTo: 'Go to',
