@@ -142,15 +142,15 @@ $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
     // h3 signifies a new "sub chapter" within a section.
     // should have extra spacing above content, but only if
     // not the topmost element within region. Except first-child.
-    :global(.part) {
-        :global(.htmlArea),
-        :global(&__dynamic-header) {
+    .part {
+        &__html-area,
+        &__dynamic-header {
             h3 {
                 margin-top: 2.75rem;
             }
         }
     }
-    :global(.region__content) {
+    .region__content {
         > :first-child {
             h3:first-child {
                 margin-top: 0;
