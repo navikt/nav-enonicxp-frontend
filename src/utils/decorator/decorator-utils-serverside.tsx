@@ -12,6 +12,8 @@ const decoratorEnv = process.env.ENV as Props['env'];
 const decoratorLocalPort = process.env.DECORATOR_LOCAL_PORT || 8100;
 const fetchTimeoutMs = 15000;
 
+// Client-side rendered decorator is used as a fallback if the server-side
+// fetch fails
 const decoratorComponentsCSR = (params?: DecoratorParams): Components => {
     const query = objectToQueryString(params);
 
@@ -34,7 +36,8 @@ const decoratorComponentsCSR = (params?: DecoratorParams): Components => {
 };
 
 export const getDecoratorComponents = async (
-    params?: DecoratorParams
+    params?: DecoratorParams,
+    retries = 2
 ): Promise<Components> => {
     try {
         const decoratorComponents = await Promise.race([
@@ -50,7 +53,17 @@ export const getDecoratorComponents = async (
 
         return decoratorComponents as Components;
     } catch (e) {
-        console.error(`Failed to fetch decorator - ${e}`);
+        if (retries > 0) {
+            console.log(
+                `Failed to fetch decorator, retrying ${retries} more times`
+            );
+            return getDecoratorComponents(params, retries - 1);
+        }
+        console.error(
+            `Failed to fetch decorator with params ${JSON.stringify(
+                params
+            )} - ${e}`
+        );
         return decoratorComponentsCSR(params);
     }
 };
