@@ -15,10 +15,12 @@ import { OverviewFilter } from 'components/_common/overviewFilter/OverviewFilter
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 
 import style from './OverviewPage.module.scss';
+import ErrorPage404 from 'pages/404';
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
-    const { language } = usePageConfig();
+    const { language, pageConfig } = usePageConfig();
+    const { isPagePreview, editorView } = pageConfig;
 
     // Misc translations
     const getTranslationString = translator('overview', language);
@@ -26,6 +28,11 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
     const [openPanels, setOpenPanels] = useState<string[]>([]);
     const [details, setDetails] = useState<any>({});
+
+    // Note: Next 3 lines to be removed when page is ready to go live.
+    if (!(isPagePreview || editorView)) {
+        return <ErrorPage404 />;
+    }
 
     const fetchPanelContent = async (contentId: string) => {
         // Don't check if we already have the content.
