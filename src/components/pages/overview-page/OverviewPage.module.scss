@@ -1,7 +1,5 @@
 @use '../../../common' as common;
 
-$situationPageSectionMaxWidth: 37.5rem;
-
 .overviewPage {
     display: flex;
     flex-direction: column;
@@ -12,13 +10,18 @@ $situationPageSectionMaxWidth: 37.5rem;
         flex-direction: column;
         justify-content: flex-start;
         margin-top: 2rem;
-        max-width: $situationPageSectionMaxWidth;
+        max-width: 56.25rem;
         width: 100%;
+
+        :global(.layout) {
+            max-width: 37.5rem;
+        }
     }
 
     .productListWrapper {
         background-color: white;
         padding: 2rem;
+        max-width: 37.5rem;
     }
 
     .illustration {
