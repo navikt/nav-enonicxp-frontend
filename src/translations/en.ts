@@ -118,7 +118,7 @@ export const translationsBundleEn: Translations = {
     },
     overview: {
         noProducts: 'No products to show',
-        ariaExplanation: 'Filtrer listen etter område',
+        ariaExplanation: 'Filter list by area',
         ariaItemExplanation: 'Show area',
         chooseArea: 'Choose area',
         loading: 'Loading product details',

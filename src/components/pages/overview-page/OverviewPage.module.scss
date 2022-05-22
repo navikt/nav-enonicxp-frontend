@@ -1,4 +1,4 @@
-@use '../../../common' as common;
+@use 'src/common' as common;
 
 .overviewPage {
     display: flex;
@@ -10,7 +10,7 @@
         flex-direction: column;
         justify-content: flex-start;
         margin-top: 2rem;
-        max-width: 56.25rem;
+        max-width: common.$contentMaxWidth;
         width: 100%;
 
         :global(.layout) {
@@ -21,7 +21,7 @@
     .productListWrapper {
         background-color: white;
         padding: 2rem;
-        max-width: 37.5rem;
+        max-width: common.$sectionMaxWidth;
     }
 
     .illustration {

@@ -17,6 +17,9 @@ $mq-screen-tablet-and-desktop: 'only screen and (min-width: #{$tabletMinWidth}) 
 $mq-screen-desktop: 'only screen and (min-width: #{$desktopMinWidth}) ';
 $mq-screen-desktop-large: 'only screen and (min-width: #{$desktopMaxWidth}) ';
 
+$contentMaxWidth: px-to-rem(900);
+$sectionMaxWidth: px-to-rem(600);
+
 $padding-sides-desktop: 3rem;
 $padding-sides-tablet: 1rem;
 $padding-sides-mobile: 0.5rem;
