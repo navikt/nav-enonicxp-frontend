@@ -14,7 +14,7 @@
         width: 100%;
 
         :global(.layout) {
-            max-width: 37.5rem;
+            max-width: common.$sectionMaxWidth;
         }
     }
 
