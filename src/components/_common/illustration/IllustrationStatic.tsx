@@ -1,5 +1,5 @@
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
-import { getInternalAbsoluteUrl } from 'utils/urls';
+import { getMediaUrl } from 'utils/urls';
 import { BEM, classNames } from '../../../utils/classnames';
 
 interface IllustrationStaticProps {
@@ -45,9 +45,8 @@ export const IllustrationStatic = ({
             <div
                 className={classNames(bem('icon'), bem('icon', 'icon1'))}
                 style={{
-                    backgroundImage: `url(${getInternalAbsoluteUrl(
-                        icon1.icon?.mediaUrl,
-                        false
+                    backgroundImage: `url(${getMediaUrl(
+                        icon1.icon?.mediaUrl
                     )})`,
                     transform: buildTransformStyling(icon1, 'none'),
                 }}
@@ -55,9 +54,8 @@ export const IllustrationStatic = ({
             <div
                 className={classNames(bem('icon'), bem('icon', 'icon2'))}
                 style={{
-                    backgroundImage: `url(${getInternalAbsoluteUrl(
-                        icon2.icon?.mediaUrl,
-                        false
+                    backgroundImage: `url(${getMediaUrl(
+                        icon2.icon?.mediaUrl
                     )})`,
                     transform: buildTransformStyling(icon2, 'none'),
                 }}
