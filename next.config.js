@@ -146,7 +146,6 @@ module.exports = withPlugins([withLess, withTranspileModules], {
     env: {
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
-        BUILD_ID: 'development',
         XP_ORIGIN: process.env.XP_ORIGIN,
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
         FAILOVER_ORIGIN: process.env.FAILOVER_ORIGIN,
