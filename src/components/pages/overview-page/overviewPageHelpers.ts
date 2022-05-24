@@ -1,21 +1,25 @@
 import { PartType } from 'types/component-props/parts';
+import { LayoutCommonProps} from 'types/component-props/layouts';
+import { ProductDetailType } from 'types/content-props/product-details';
+import { ContentProps } from 'types/content-props/_content-common';
+import { PartComponentProps } from 'types/component-props/_component-common';
 
 export const scrapeProductPageForProductDetails = (
-    productPage: any,
-    overviewType
+    productPage: {pageProps: {content:ContentProps}},
+    overviewType: ProductDetailType
 ) => {
     const sectionComponents =
-        productPage?.pageProps?.content?.page?.regions?.pageContent?.components;
+        productPage?.pageProps?.content?.page?.regions['pageContent']?.components;
 
     if (!sectionComponents) {
         return [];
     }
 
-    const productDetails = sectionComponents.reduce((collection, section) => {
-        const components = section.regions?.content?.components || [];
+    const productDetails = sectionComponents.reduce((collection, section: LayoutCommonProps) => {
+        const components = section.regions?.content?.components || [] as PartComponentProps[];
         const newComponents = [];
 
-        components.forEach((component) => {
+        components.forEach((component: PartComponentProps) => {
             if (component.descriptor !== PartType.ProductDetails) {
                 return;
             }

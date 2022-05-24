@@ -4,6 +4,7 @@ import { translator } from 'translations';
 
 import { Area } from 'types/areas';
 import { OverviewPageProps } from 'types/content-props/dynamic-page-props';
+import ErrorPage404 from 'pages/404';
 
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { fetchRelevantProductDetails } from 'utils/fetch/fetch-product-details';
@@ -13,10 +14,9 @@ import { ExpandableProductDetails } from 'components/_common/expandableProductDe
 import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
 import { OverviewFilter } from 'components/_common/overviewFilter/OverviewFilter';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
+import { scrapeProductPageForProductDetails } from './overviewPageHelpers';
 
 import style from './OverviewPage.module.scss';
-import ErrorPage404 from 'pages/404';
-import { scrapeProductPageForProductDetails } from './overviewPageHelpers';
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
