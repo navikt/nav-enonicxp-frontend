@@ -103,8 +103,8 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         return (
                             <Accordion key={product._id}>
                                 <Accordion.Item
-                                    renderContentWhenClosed
                                     open={openPanels.includes(product.idOrPath)}
+                                    className={style.accordionItem}
                                 >
                                     <Accordion.Header
                                         onClick={() =>

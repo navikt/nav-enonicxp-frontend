@@ -30,6 +30,16 @@
         height: 40px;
     }
 
+    .accordionItem {
+        :global(.navds-accordion__header), :global(.navds-accordion__content) {
+            border-bottom-color: var(--navds-semantic-color-divider);
+        }
+
+        :global(.navds-accordion__content) {
+            padding-bottom: 0px;
+        }
+    }
+
     :global(.navds-accordion__expand-icon) {
         margin-left: auto;
     }
