@@ -23,10 +23,10 @@ export interface EMail {
 
 export interface Address {
     gatenavn: string;
-    husbokstav: string;
+    husbokstav?: string;
     husnummer: string;
-    postboksanlegg: string;
-    postboksnummer: string;
+    postboksanlegg?: string;
+    postboksnummer?: string;
     postnummer: string;
     poststed: string;
     type: string;
@@ -39,7 +39,6 @@ export interface OpeningHoursProps {
     fra?: string;
     til?: string;
     kommentar?: string;
-    // this should have been a bool put I get a string..
     stengt?: string;
     isoDate?: string;
 }
@@ -48,16 +47,16 @@ export interface AudienceReception {
     id: number;
     besoeksadresse: Address;
     aapningstider: OpeningHoursProps[];
-    stedsbeskrivelse: string;
+    stedsbeskrivelse?: string;
 }
 
 interface ContactInfo {
     id: number;
     enhetNr: string;
     telefonnummer: string;
-    telefonnummerKommentar: string;
-    faksnummer: string;
-    epost: EMail;
+    telefonnummerKommentar?: string;
+    faksnummer?: string;
+    epost?: EMail;
     postadresse: Address;
     besoeksadresse: Address;
     spesielleOpplysninger: string;

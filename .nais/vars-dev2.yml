@@ -3,9 +3,6 @@ revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev2
 secret: nav-enonicxp-dev2
 ingresses:
   - https://www-2.dev.nav.no
-  - https://www-2.dev.nav.no/soknad
-  - https://www-2.dev.nav.no/soke
-  - https://www-2.dev.nav.no/sok-
   - https://www-2.dev.nav.no/arbeids
 resources:
   limits:
