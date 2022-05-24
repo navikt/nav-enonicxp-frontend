@@ -1,4 +1,4 @@
-@use '../../../common' as common;
+@use 'src/common' as common;
 
 .expandable {
     &:global(.navds-accordion__item) {
@@ -36,7 +36,7 @@
 
 // TODO: move this to the respective SCSS-files when these page types have
 // been migrated to SCSS?
-$page-classes: '.product-page', '.situation-page', '.guide-page';
+$page-classes: '.productPage', '.situationPage', '.guidePage';
 @each $page-class in $page-classes {
     :global(#{$page-class} .part__html-area) {
         .expandable {

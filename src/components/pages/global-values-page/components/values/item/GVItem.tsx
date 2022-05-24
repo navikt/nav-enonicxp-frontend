@@ -1,6 +1,5 @@
 import React from 'react';
 import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
-import { BEM } from '../../../../../../utils/classnames';
 import { GVButton } from '../../button/GVButton';
 import { GVItemEditor } from '../item-editor/GVItemEditor';
 import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState';
@@ -9,7 +8,7 @@ import { generateGvUsageMessages } from '../../../utils';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { getCaseTimeString } from '../../../../../macros/saksbehandlingstid/MacroSaksbehandlingstid';
 
-const bem = BEM('gv-item');
+import style from './GVItem.module.scss';
 
 type Props = {
     item: GlobalValueItem;
@@ -28,31 +27,29 @@ const buildValueDisplayString = (item: GlobalValueItem) => {
 
 const ItemView = ({ item }: Props) => {
     return (
-        <div className={bem('display')}>
+        <>
             <Heading level={'3'} size={'xsmall'}>
                 {item.itemName}
             </Heading>
             <BodyShort size={'small'} as={'span'}>
                 {'Verdi: '}
             </BodyShort>
-            <BodyShort className={bem('value')} as={'span'}>
+            <BodyShort className={style.value} as={'span'}>
                 {buildValueDisplayString(item)}
             </BodyShort>
-        </div>
+        </>
     );
 };
 
 export const GVItem = (props: Props) => {
     const { setMessages, contentId, itemsEditState, setItemEditState } =
         useGvEditorState();
-
     const { item } = props;
     const { key } = item;
-
     const editMode = itemsEditState[key];
 
     return (
-        <div className={bem()}>
+        <div className={style.GVItem}>
             {editMode ? (
                 <GVItemEditor
                     item={item}
@@ -61,7 +58,7 @@ export const GVItem = (props: Props) => {
             ) : (
                 <ItemView item={item} />
             )}
-            <div className={bem('right-buttons')}>
+            <div className={style.rightButtons}>
                 {!editMode && (
                     <GVButton
                         onClick={(e) => {

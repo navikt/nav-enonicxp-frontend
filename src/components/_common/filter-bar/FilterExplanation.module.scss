@@ -1,0 +1,43 @@
+@use 'src/common' as common;
+
+.filterExplanation {
+    margin-left: -0.5rem;
+    padding: 0.5rem 0.3rem 0.5rem 0.5rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.8s linear;
+    border-radius: 3px;
+    width: calc(100% + 0.5rem);
+    font-size: 0.875rem;
+    border: 1px solid transparent;
+}
+
+.filterExplanationHighlight {
+    background-color: common.$navds-global-color-green-100;
+    border: 1px solid common.$navds-global-color-green-500;
+    transition: all 0.4s linear;
+}
+
+.iconWrapper {
+    display: block;
+    height: 14px;
+    margin-right: 0.5em;
+    position: relative;
+    width: 14px;
+}
+
+.icon {
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: all 0.4s;
+}
+
+.iconVisible {
+    opacity: 1;
+}
+
+.iconHidden {
+    opacity: 0;
+}

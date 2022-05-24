@@ -1,0 +1,87 @@
+@use 'src/common' as common;
+
+.filterCheckbox {
+    background-color: transparent;
+    border-radius: 0.25rem;
+    box-shadow: common.$navds-semantic-color-link inset 0 0 0 1px;
+    cursor: pointer;
+    display: flex;
+    justify-items: center;
+    margin: 0.3rem 0.6rem 0.3rem 0;
+    padding: 0.3rem 0.6rem 0.3rem 0.3rem;
+
+    &:focus-within {
+        box-shadow: common.$navds-semantic-color-focus inset 0 0 0 3px;
+    }
+
+    &:hover {
+        .label {
+            color: common.$navds-semantic-color-link;
+
+            &:before {
+                background-color: #c0e1ff;
+                box-shadow: 0 0 0;
+            }
+        }
+    }
+
+    &.selected {
+        background-color: #c0e1ff;
+        box-shadow: common.$navds-semantic-color-link inset 0 0 0 1px;
+
+        &:hover {
+            background-color: common.$navds-semantic-color-link;
+            .label {
+                color: white;
+
+                &:before {
+                    box-shadow: 0 0 0;
+                    background-color: transparent;
+                    filter: invert(98%) sepia(3%) saturate(538%)
+                        hue-rotate(223deg) brightness(119%) contrast(100%);
+                }
+            }
+        }
+    }
+
+    .checkbox {
+        appearance: none;
+        opacity: 0;
+        padding: 0;
+        position: absolute;
+    }
+
+    .label {
+        cursor: pointer;
+        display: flex;
+        font-size: common.px-to-rem(14px);
+        line-height: 1rem;
+        position: relative;
+        user-select: none;
+
+        &:before {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 1rem;
+            border-radius: 2px;
+            border: 0;
+            box-shadow: common.$navds-global-color-gray-600 inset 0 0 0 1px;
+            content: '';
+            display: inline-flex;
+            height: 1rem;
+            margin-right: 0.3em;
+            width: 1rem;
+        }
+
+        &.selected {
+            &:before {
+                background-image: url('/gfx/success-stroke.svg');
+                box-shadow: 0 0 0;
+            }
+
+            &:hover {
+                color: inherit;
+            }
+        }
+    }
+}

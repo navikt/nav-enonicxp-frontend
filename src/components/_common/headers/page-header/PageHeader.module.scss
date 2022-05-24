@@ -1,12 +1,12 @@
-@use '../../../../common' as common;
+@use 'src/common' as common;
 
-.page-header {
+.pageHeader {
     padding: 0 0 1.25rem 0;
     margin: 0 auto;
 }
 
 @media #{common.$mq-screen-mobile} {
-    .page-header {
+    .pageHeader {
         padding: 0 0 1rem 0;
     }
 }

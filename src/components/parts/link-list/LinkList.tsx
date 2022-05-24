@@ -1,12 +1,11 @@
 import React from 'react';
-import { BEM, classNames } from 'utils/classnames';
 import { DynamicLinkListProps } from '../../../types/component-props/parts/link-list';
 import { Lenkeliste } from '../../_common/lenkeliste/Lenkeliste';
 import { ContentList } from '../../_common/content-list/ContentList';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 
-const bem = BEM('link-list');
+import style from './LinkList.module.scss';
 
 const getListComponent = (config: DynamicLinkListProps['config']) => {
     const { title, list, chevron } = config;
@@ -42,7 +41,7 @@ export const LinkList = ({ config }: DynamicLinkListProps) => {
     const ListComponent = getListComponent(config);
 
     return ListComponent ? (
-        <div className={classNames(bem())}>
+        <div className={style.linkList}>
             <ExpandableComponentWrapper {...config}>
                 {ListComponent}
             </ExpandableComponentWrapper>

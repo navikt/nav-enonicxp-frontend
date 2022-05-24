@@ -1,22 +1,19 @@
 import React, { useEffect } from 'react';
 import { BodyLong, CheckboxGroup } from '@navikt/ds-react';
-
 import { logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from '../../../store/hooks/useFilteredContent';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-
 import { FilterMenuProps } from '../../../types/component-props/parts/filter-menu';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilterExplanation } from '../../_common/filter-bar/FilterExplanation';
 import { FilterCheckbox } from './FilterCheckbox';
-import { BEM } from '../../../utils/classnames';
 import { Filter } from 'types/store/filter-menu';
 import { Header } from 'components/_common/headers/Header';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { checkIfFilterFirstInPage } from './helpers';
 
-const bem = BEM('filters-menu');
+import style from './FiltersMenu.module.scss';
 
 export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
     const { categories, description, expandableTitle, title } = config;
@@ -84,13 +81,13 @@ export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
     const defaultExpandableTitle = getLabel('customizeContent');
 
     return (
-        <section className={bem('wrapper')} aria-describedby="description">
+        <section className={style.filtersMenu} aria-describedby="description">
             {title && (
                 <Header level="2" size="large" justify="left">
                     {title}
                 </Header>
             )}
-            <BodyLong className={bem('introduction')} id="description">
+            <BodyLong className={style.introduction} id="description">
                 {description || ''}
             </BodyLong>
             <ExpandableComponentWrapper
@@ -103,7 +100,7 @@ export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
                         <CheckboxGroup
                             legend={category.categoryName}
                             key={categoryIndex}
-                            className={bem('category')}
+                            className={style.category}
                         >
                             {category.filters.map((filter, filterIndex) => (
                                 <FilterCheckbox

@@ -1,12 +1,11 @@
 import React from 'react';
 import { translator } from 'translations';
-import { BEM } from 'utils/classnames';
 import { MenuListItemKey } from 'types/menu-list-items';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { Accordion } from '@navikt/ds-react';
 
-const bem = BEM('menu-list');
+import style from './MenuList.module.scss';
 
 export const MenuList = (props: ContentProps) => {
     const { __typename: type, language } = props;
@@ -27,7 +26,7 @@ export const MenuList = (props: ContentProps) => {
 
     return (
         validItemKeys.length > 0 && (
-            <div className={bem()}>
+            <div className={style.menuList}>
                 {validItemKeys.map((key) => {
                     const { links } = menuListItems[key];
                     const isOpen =
@@ -38,7 +37,7 @@ export const MenuList = (props: ContentProps) => {
                         <Accordion key={key}>
                             <Accordion.Item
                                 defaultOpen={isOpen}
-                                className={bem('panel')}
+                                className={style.panel}
                             >
                                 <Accordion.Header>
                                     {getLabel(key) || key}

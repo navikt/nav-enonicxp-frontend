@@ -1,16 +1,14 @@
 import React from 'react';
 import { Heading, Label } from '@navikt/ds-react';
 import { translator } from 'translations';
-
 import classNames from 'classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
-import { BEM } from 'utils/classnames';
 import { MainArticleChapterNavigationData } from '../../../../types/content-props/main-article-chapter-props';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-const bem = BEM('main-article-chapter-navigation');
+import style from './MainArticleChapterNavigation.module.scss';
 
 // If the chapter points to any content other than a main-article, we want
 // to link directly to the content instead, rather than try to render it
@@ -36,25 +34,20 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
     const parentSelected = parentPath === currentPath;
 
     return (
-        <nav className={bem()}>
-            <Heading level="2" size="medium" className={bem('title')}>
+        <nav className={style.mainArticleChapterNavigation}>
+            <Heading level="2" size="medium" className={style.title}>
                 {getLabel('contents')}
             </Heading>
             <ul>
                 <li>
                     {parentSelected ? (
-                        <Label
-                            className={classNames(
-                                bem('item'),
-                                bem('item', 'active')
-                            )}
-                        >
+                        <Label className={classNames(style.item, style.active)}>
                             {parentTitle}
                         </Label>
                     ) : (
                         <LenkeBase
                             href={parentPath}
-                            className={classNames(bem('item'))}
+                            className={classNames(style.item)}
                         >
                             <Label>{parentTitle}</Label>
                         </LenkeBase>
@@ -69,18 +62,13 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
                     return (
                         <li key={chapter._path}>
                             {chapterSelected ? (
-                                <Label
-                                    className={classNames(
-                                        bem('item'),
-                                        bem('item', 'active')
-                                    )}
-                                >
+                                <Label className={classNames(style.item, style.active)}>
                                     {chapter.displayName}
                                 </Label>
                             ) : (
                                 <LenkeBase
                                     href={chapterPath}
-                                    className={classNames(bem('item'))}
+                                    className={classNames(style.item)}
                                 >
                                     <Label>{chapter.displayName}</Label>
                                 </LenkeBase>

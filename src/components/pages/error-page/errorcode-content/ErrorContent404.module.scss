@@ -1,0 +1,16 @@
+.error404 {
+    display: flex;
+    flex-direction: column;
+
+    p:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+
+    .enContent {
+        margin-top: 3rem;
+    }
+
+    .enHeader {
+        margin-bottom: 0.5rem;
+    }
+}

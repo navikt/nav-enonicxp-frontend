@@ -1,4 +1,4 @@
-@use '../../../common' as common;
+@use 'src/common' as common;
 
 .contactOption {
     background-color: transparent;
@@ -9,7 +9,7 @@
         color: common.$navds-semantic-color-link;
 
         &:focus {
-            .link-content {
+            .linkContent {
                 @include common.panel-focus-mixin();
             }
         }
@@ -42,7 +42,7 @@
         }
     }
 
-    .link-content {
+    .linkContent {
         // Set a padding with equivalent negative margins to allow focus-highlight
         // to break out of the container
         $outerPadding: 0.5rem;

@@ -5,8 +5,6 @@ import {
     PartWithOwnData,
     PartWithPageData,
 } from 'types/component-props/parts';
-import LinkLists from './_legacy/link-lists/LinkLists';
-import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
 import MainPanels from './_legacy/main-panels/MainPanels';
 import { MenuList } from './_legacy/menu-list/MenuList';
@@ -14,6 +12,8 @@ import PageHeading from './_legacy/page-heading/PageHeading';
 import PageList from './_legacy/page-list/PageList';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './link-panel/LinkPanelPart';
+import {LinkPanelsLegacyPart} from "./_legacy/link-panels/LinkPanelsLegacyPart";
+import LinkLists from './_legacy/link-lists/LinkLists';
 import { MainArticle } from './_legacy/main-article/MainArticle';
 import {
     ComponentType,

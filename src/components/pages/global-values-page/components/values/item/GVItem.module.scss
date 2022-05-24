@@ -1,0 +1,28 @@
+@use 'src/common' as common;
+
+.GVItem {
+    display: flex;
+    justify-content: space-between;
+
+    &:not(:last-child) {
+        margin-bottom: 0.5rem;
+    }
+
+    .value {
+        margin-left: 0.25rem;
+    }
+
+    .rightButtons {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        a {
+            width: 100%;
+        }
+
+        & > :not(:last-child) {
+            margin-bottom: 0.25rem;
+        }
+    }
+}
