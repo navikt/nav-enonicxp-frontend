@@ -30,18 +30,20 @@ const monthShortName = [
 const processEntries = (
     children: PublishingCalendarChildren[]
 ): PublishingCalendarEntries[] => {
-    return children
-        .map((item) => {
-            const publDate = new Date(item.data.date);
-            return {
-                displayName: item.displayName,
-                period: item.data.period,
-                publDate,
-                day: publDate.getDate().toString() + '.',
-                month: monthShortName[publDate.getMonth()],
-            };
-        })
-        .sort((a, b) => a.publDate.getTime() - b.publDate.getTime()); // Dato for publisering: stigende
+    return (
+        children
+            ?.map((item) => {
+                const publDate = new Date(item.data.date);
+                return {
+                    displayName: item.displayName,
+                    period: item.data.period,
+                    publDate,
+                    day: publDate.getDate().toString() + '.',
+                    month: monthShortName[publDate.getMonth()],
+                };
+            })
+            .sort((a, b) => a.publDate.getTime() - b.publDate.getTime()) || []
+    ); // Dato for publisering: stigende
 };
 
 const PublishingCalendar = (props: PublishingCalendarProps) => {

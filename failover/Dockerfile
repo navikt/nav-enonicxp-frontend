@@ -8,7 +8,6 @@ ARG ENV_FILE
 
 COPY package*.json /failover/.npmrc /app/
 RUN npm ci
-RUN npm install sharp@0.30.3
 RUN rm -f .npmrc
 
 COPY public /app/public/
