@@ -14,7 +14,7 @@
         max-width: common.$contentMaxWidth;
         width: 100%;
 
-        :global(.layout) {
+        :global(.region__pageContent) {
             max-width: common.$sectionMaxWidth;
         }
     }
