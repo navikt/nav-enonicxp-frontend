@@ -1,0 +1,29 @@
+.publikumsmottak {
+    .header {
+        margin-bottom: 1rem;
+    }
+
+    table {
+        margin-bottom: 1.6rem;
+        width: auto;
+
+        th,
+        td {
+            vertical-align: top;
+            padding: 0.3rem 1rem 0.3rem 0;
+            font-size: 1.125rem;
+        }
+
+        :global(.dayInformation) {
+            min-width: 5.6rem;
+        }
+
+        :global(.openingInformation) {
+            min-width: 7.3rem;
+
+            &:first-letter {
+                text-transform: capitalize;
+            }
+        }
+    }
+}

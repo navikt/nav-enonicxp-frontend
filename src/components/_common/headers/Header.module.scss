@@ -1,4 +1,4 @@
-@use '../../../common' as common;
+@use 'src/common' as common;
 
 .header {
     display: flex;
@@ -25,12 +25,12 @@
     }
 }
 
-.copy-link-container {
+.copyLinkContainer {
     display: flex;
     align-self: flex-start;
 }
 
-.copy-link {
+.copyLink {
     display: flex;
     text-decoration: none;
     font-size: 0.875rem;
@@ -40,13 +40,13 @@
 
     &:hover {
         font-weight: 600;
-        .anchor-icon {
+        .anchorIcon {
             transform: scale(1.2);
         }
     }
 }
 
-.anchor-icon {
+.anchorIcon {
     height: 1rem;
     width: 1rem;
     margin-right: 0.5rem;
@@ -55,7 +55,7 @@
     transition-duration: 0.1s;
 }
 
-.copy-tooltip {
+.copyTooltip {
     display: flex;
     align-items: center;
     margin-left: 1rem;
@@ -74,7 +74,7 @@
     transform: translateY(2px);
 }
 
-.copy-tooltip-visible {
+.copyTooltipVisible {
     visibility: visible;
     opacity: 0.75;
 }

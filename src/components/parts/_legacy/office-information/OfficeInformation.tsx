@@ -7,7 +7,6 @@ import {
     normalizeReceptionAsArray,
     parsePhoneNumber,
 } from './utils';
-import { BEM } from 'utils/classnames';
 import { Email } from './Email';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/ArtikkelDato';
@@ -23,10 +22,11 @@ import {
 } from '../../../../types/structuredData';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 
+import style from './OfficeInformation.module.scss';
+
 export const OfficeInformation = (props: OfficeInformationProps) => {
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;
-    const bem = BEM('office-information');
     const getLabelMain = translator('mainArticle', props.language);
     const location = formatAddress(contact.besoeksadresse, true);
     const address = formatAddress(contact.postadresse, false);
@@ -140,7 +140,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     __html: JSON.stringify(jsonSchema),
                 }}
             />
-            <article className={bem()}>
+            <article className={style.officeInformation}>
                 <header>
                     <ArtikkelDato
                         publish={props.publish}
@@ -152,7 +152,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     <Heading
                         level="1"
                         size="large"
-                        className={bem('header')}
+                        className={style.header}
                     >{`${unit.navn} - kontorinformasjon`}</Heading>
                 </header>
                 {['HMS', 'ALS', 'TILTAK'].includes(unit.type) && location && (
@@ -185,10 +185,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     </Heading>
                     <BodyLong>
                         Skal du sende søknader og skjemaer, må du bruke{' '}
-                        <LenkeInline
-                            href="https://www.nav.no/soknader/nb/person"
-                            className={bem('lenke')}
-                        >
+                        <LenkeInline href="https://www.nav.no/soknader/nb/person">
                             NAVs skjemaveileder.
                         </LenkeInline>{' '}
                         Skjemaveilederen gir deg hjelp til å velge rett skjema

@@ -1,9 +1,8 @@
-@use '../../../common' as common;
+@use 'src/common' as common;
 
 .contactInformationPage {
     display: flex;
     flex-direction: column;
-
 }
 
 .content {

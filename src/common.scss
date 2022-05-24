@@ -4,6 +4,23 @@
 
 $pixel-size-rem: math.div(1, 16);
 
+// In Sass numbers can include units (px/rem/em/vw/cm) witch can fuck up doing math
+@function stripUnit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+        @return $number / ($number * 0 + 1);
+    }
+    @return $number;
+}
+
+@function px-to-rem($px) {
+    @return stripUnit($px) * $pixel-size-rem * 1rem;
+}
+
+@function round-rem($value: 0) {
+    $valueUpper: $value + $pixel-size-rem / 2;
+    @return $valueUpper - ($valueUpper % $pixel-size-rem);
+}
+
 // Screen size breakpoints
 $mobileMaxWidth: 48rem; // 768px
 $tabletMinWidth: $mobileMaxWidth;
@@ -17,8 +34,9 @@ $mq-screen-tablet-and-desktop: 'only screen and (min-width: #{$tabletMinWidth}) 
 $mq-screen-desktop: 'only screen and (min-width: #{$desktopMinWidth}) ';
 $mq-screen-desktop-large: 'only screen and (min-width: #{$desktopMaxWidth}) ';
 
-$contentMaxWidth: 56.25rem;
-$sectionMaxWidth: 37.5rem;
+// Max-width for SituationPage & Layouts
+$contentMaxWidth: px-to-rem(900);
+$sectionMaxWidth: calc(#{$contentMaxWidth} * 2/3);
 
 $padding-sides-desktop: 3rem;
 $padding-sides-tablet: 1rem;
@@ -31,6 +49,10 @@ $border-radius-small: 2px;
 $border-radius-base: 4px;
 $border-radius-large: 6px;
 
+// Varaibles for CMS-editor
+$editorPaddingVertical: 2rem;
+$editorPaddingHorizontal: $editorPaddingVertical * 1.62;
+
 // Makes the element cover the entire screen-width
 @mixin full-width-mixin() {
     $side-width: calc((100vw - 100%) / 2);
@@ -42,9 +64,56 @@ $border-radius-large: 6px;
     margin-right: $side-width-negative;
 }
 
+@mixin flex-cols-mixin($numCols, $marginX: 1.5rem, $marginY: 1.5rem) {
+    & > * {
+        $numColsPlus1: $numCols + 1;
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: calc(percentage(1 / $numColsPlus1) + 1px);
+        max-width: calc(#{percentage(1 / $numCols)} - #{($marginX * ($numCols - 1)) / $numCols} + 1px);
+
+        &:not(:last-child) {
+            margin-right: $marginX;
+        }
+
+        &:nth-child(#{($numCols)}n + #{$numCols}) {
+            margin-right: 0;
+        }
+
+        &:nth-child(n + #{$numColsPlus1}) {
+            margin-top: $marginY;
+        }
+    }
+}
+
+@mixin section-padding-mixin() {
+    padding: $sectionPaddingDesktop;
+
+    @media #{$mq-screen-tablet} {
+        padding: $sectionPaddingTablet;
+    }
+
+    @media #{$mq-screen-mobile} {
+        padding: $sectionPaddingMobile;
+    }
+}
+
 @mixin panel-focus-mixin($inset: true) {
     outline: unset;
     box-shadow: 0 0 0 3px if($inset, inset, null) $navds-semantic-color-focus;
+}
+
+@mixin section-padding-mixin() {
+    padding: $sectionPaddingDesktop;
+
+    @media #{$mq-screen-tablet} {
+        padding: $sectionPaddingTablet;
+    }
+
+    @media #{$mq-screen-mobile} {
+        padding: $sectionPaddingMobile;
+    }
 }
 
 @mixin link-border-bottom-mixin($underlineDefault: true) {
@@ -67,54 +136,46 @@ $border-radius-large: 6px;
     }
 }
 
-@function withUnit($value, $unit) {
-    $result: '#{$value}#{unit}';
-}
-
-@function px-to-rem($px) {
-    $rem: withUnit($px * $pixel-size-rem, 'rem');
-}
-
 // This is an override mixin specific for product and livesituation pages.
 // To be removed when DS has updated design packages.
 @mixin product-mixins() {
     // h3 signifies a new "sub chapter" within a section.
     // should have extra spacing above content, but only if
-    // not the topmost element within region. Except first-child.
-    :global {
-        .part {
-            .html-area,
-            &__dynamic-header {
-                h3 {
-                    margin-top: 2.75rem;
-                }
+    // not the topmost element within region or within an accordion. Except first-child.
+    .part {
+        &__html-area,
+        &__dynamic-header {
+            h3 {
+                margin-top: 2.75rem;
             }
         }
     }
-
-    :global {
-        .region__content {
-            > :first-child {
+    .part {
+        &__html-area {
+            .navds-accordion__content {
                 h3:first-child {
                     margin-top: 0;
                 }
             }
         }
     }
+    .region__content {
+        > :first-child {
+            h3:first-child {
+                margin-top: 0;
+            }
+        }
 
-    // The very last child of the very last part or fragment
-    // within a region__content should not have margin-bottom.
-    // Reason for select all (">"): fragments are inserted without a class,
-    // so just select any child that may contain any of the elements.
-    :global {
-        .region__content {
-            > :last-child {
-                .card:last-child,
-                .calculator,
-                ul:last-child,
-                p:last-child {
-                    margin-bottom: 0;
-                }
+        // The very last child of the very last part or fragment
+        // within a region__content should not have margin-bottom.
+        // Reason for select all (">"): fragments are inserted without a class,
+        // so just select any child that may contain any of the elements.
+        > :last-child {
+            .card:last-child,
+            .calculator,
+            ul:last-child,
+            p:last-child {
+                margin-bottom: 0;
             }
         }
     }

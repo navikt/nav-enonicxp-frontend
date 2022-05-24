@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import { BEM, classNames } from '../../../utils/classnames';
+import { classNames } from '../../../utils/classnames';
 import { Information, InformationFilled } from '@navikt/ds-icons';
 import { translator } from 'translations';
 import { v4 as uuid } from 'uuid';
 
 import { usePageConfig } from 'store/hooks/usePageConfig';
-
-const bem = BEM('filterExplanation');
+import style from './FilterExplanation.module.scss';
 
 interface FilterExplanationProps {
     selectedFilters: string[];
@@ -53,17 +52,17 @@ export const FilterExplanation = ({
     return (
         <div
             className={classNames(
-                bem(),
-                showHighlight && bem(undefined, 'highlight')
+                style.filterExplanation,
+                showHighlight && style.filterExplanationHighlight
             )}
             aria-live="assertive"
         >
-            <div className={bem('iconWrapper')}>
+            <div className={style.iconWrapper}>
                 <InformationFilled
                     color="#006A23"
                     className={classNames(
-                        bem('icon'),
-                        bem('icon', showHighlight ? 'visible' : 'hidden')
+                        style.icon,
+                        showHighlight ? style.iconVisible : style.iconHidden
                     )}
                     role="img"
                     focusable="false"
@@ -71,15 +70,15 @@ export const FilterExplanation = ({
                 />
                 <Information
                     className={classNames(
-                        bem('icon'),
-                        bem('icon', showHighlight ? 'hidden' : 'visible')
+                        style.icon,
+                        showHighlight ? style.iconHidden : style.iconVisible
                     )}
                     role="img"
                     focusable="false"
                     aria-labelledby={explanationId}
                 />
             </div>
-            <div className={bem('text')} id={explanationId}>
+            <div className="text" id={explanationId}>
                 {filterExplanation}
             </div>
         </div>

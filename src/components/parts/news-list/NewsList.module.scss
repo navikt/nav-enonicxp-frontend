@@ -1,0 +1,9 @@
+.newsList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .moreNews {
+        margin-top: 1.7rem;
+    }
+}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { GVButton } from '../../button/GVButton';
-import { BEM } from '../../../../../../utils/classnames';
 import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
 import { generateGvUsageMessages, gvNameExists } from '../../../utils';
 import { gvServiceAddItem } from '../../../api/services/add';
@@ -20,7 +19,7 @@ import {
     gvProcessNumberValueInput,
 } from './number-value/GVItemEditorInputNumberValue';
 
-const bem = BEM('gv-item-editor');
+import style from './GVItemEditor.module.scss';
 
 type Errors = {
     [key in keyof GlobalValueItem]?: string;
@@ -69,20 +68,17 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
     const onFetchError = (e) => {
         setMessages([{ message: `Server-feil: ${e}`, level: 'error' }]);
     };
-
     const onFetchSuccess = (msg?: GVMessageProps | void) => {
         if (msg && msg.level !== 'info') {
             setMessages([msg]);
         }
     };
-
     const updateAndClose = () => {
         onClose?.();
         gvServiceGetValueSet(contentId).then(
             (res) => res?.items && setValueItems(res.items)
         );
     };
-
     const deleteItem = async () => {
         await gvServiceGetUsage(item.key, contentId)
             .then((res) => {
@@ -103,7 +99,6 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
                 ])
             );
     };
-
     const deleteConfirm = () => {
         setAwaitDeleteConfirm(false);
         gvServiceRemoveItem(item, contentId)
@@ -113,19 +108,15 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
             })
             .catch(onFetchError);
     };
-
     const deleteCancel = () => {
         setAwaitDeleteConfirm(false);
     };
-
     const validateAndSubmitItem = () => {
         const commonProcessedInput = {
             ...inputState,
             itemName: inputState.itemName?.trim(),
         };
-
         const commonErrors: Errors = {};
-
         const { itemName } = commonProcessedInput;
 
         if (!itemName) {
@@ -166,8 +157,8 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
     };
 
     return (
-        <div className={bem()}>
-            <form className={bem('form')}>
+        <div className={style.gvItemEditor}>
+            <form className={style.form}>
                 {inputState.type === 'numberValue' && (
                     <GVItemEditorInputNumberValue
                         inputState={inputState}
@@ -182,10 +173,10 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
                         setInputState={setInputState}
                     />
                 )}
-                <div className={bem('form-buttons')}>
+                <div className={style.formButtons}>
                     {awaitDeleteConfirm ? (
                         <>
-                            <BodyShort className={bem('delete-confirm-msg')}>
+                            <BodyShort className={style.deleteConfirmMsg}>
                                 {
                                     'Obs: Denne verdien kan være i bruk - er du sikker?'
                                 }

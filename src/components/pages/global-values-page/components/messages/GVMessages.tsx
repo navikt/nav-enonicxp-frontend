@@ -1,9 +1,9 @@
 import React from 'react';
-import { BEM, classNames } from '../../../../../utils/classnames';
+import { classNames } from '../../../../../utils/classnames';
 import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
 import { GVButton } from '../button/GVButton';
 
-const bem = BEM('gv-messages');
+import style from './GVMessages.module.scss';
 
 export type GVMessageProps = {
     level?: 'info' | 'warning' | 'error';
@@ -16,14 +16,12 @@ export const GVMessages = () => {
     if (messages.length === 0) {
         return null;
     }
-
     return (
-        <div className={bem()}>
+        <div className={style.GVMessages}>
             {messages.map((msg, index) => (
                 <div
                     className={classNames(
-                        bem('message'),
-                        bem('message', msg.level || 'info'),
+                        msg.level || 'info',
                         'navds-body-long'
                     )}
                     key={index}
@@ -32,7 +30,7 @@ export const GVMessages = () => {
                 </div>
             ))}
             <GVButton
-                className={bem('close')}
+                className={style.close}
                 onClick={(e) => {
                     e.preventDefault();
                     setMessages([]);
