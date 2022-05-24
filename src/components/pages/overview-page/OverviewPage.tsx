@@ -16,6 +16,7 @@ import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/
 
 import style from './OverviewPage.module.scss';
 import ErrorPage404 from 'pages/404';
+import { scrapeProductPageForProductDetails } from './overviewPageHelpers';
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
@@ -34,34 +35,42 @@ export const OverviewPage = (props: OverviewPageProps) => {
         return <ErrorPage404 />;
     }
 
-    const fetchPanelContent = async (contentId: string) => {
+    const fetchPanelContent = async (idOrPath: string) => {
         // Don't check if we already have the content.
-        if (details[contentId]) {
+        if (details[idOrPath]) {
             return;
         }
 
-        const productDetails = await fetchRelevantProductDetails(
-            contentId,
+        const cleanedIdOrPath =
+            idOrPath[0] === '/' ? idOrPath.substring(1) : idOrPath;
+
+        const fullProductPage = await fetchRelevantProductDetails(
+            cleanedIdOrPath
+        );
+
+        const productDetails = scrapeProductPageForProductDetails(
+            fullProductPage,
             overviewType
         );
-        setDetails({ ...details, [contentId]: productDetails });
+
+        setDetails({ ...details, [idOrPath]: productDetails });
     };
 
-    const handlePanelToggle = (panelId: string) => {
-        const isOpening = openPanels.findIndex((id) => id === panelId) === -1;
+    const handlePanelToggle = (idOrPath: string) => {
+        const isOpening = openPanels.findIndex((id) => id === idOrPath) === -1;
         const updatedOpenPanels = isOpening
-            ? [...openPanels, panelId]
-            : openPanels.filter((id) => id !== panelId);
+            ? [...openPanels, idOrPath]
+            : openPanels.filter((id) => id !== idOrPath);
 
         setOpenPanels(updatedOpenPanels);
 
         if (isOpening) {
-            fetchPanelContent(panelId);
+            fetchPanelContent(idOrPath);
         }
     };
 
-    const getRegions = (id: string) => {
-        return details[id];
+    const getDetailComponents = (idOrPath: string) => {
+        return details[idOrPath];
     };
 
     const handleFilterUpdate = (area: Area) => {
@@ -88,16 +97,18 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         <div>{getTranslationString('noProducts')}</div>
                     )}
                     {filteredProducts.map((product) => {
-                        const regions = getRegions(product._id);
+                        const detailComponents = getDetailComponents(
+                            product.idOrPath
+                        );
                         return (
                             <Accordion key={product._id}>
                                 <Accordion.Item
                                     renderContentWhenClosed
-                                    open={openPanels.includes(product._id)}
+                                    open={openPanels.includes(product.idOrPath)}
                                 >
                                     <Accordion.Header
                                         onClick={() =>
-                                            handlePanelToggle(product._id)
+                                            handlePanelToggle(product.idOrPath)
                                         }
                                     >
                                         <IllustrationStatic
@@ -110,7 +121,9 @@ export const OverviewPage = (props: OverviewPageProps) => {
                                         <div className={style.detailsContainer}>
                                             <ExpandableProductDetails
                                                 productDetails={product}
-                                                productRegions={regions}
+                                                detailComponents={
+                                                    detailComponents
+                                                }
                                                 pageProps={props}
                                             />
                                         </div>

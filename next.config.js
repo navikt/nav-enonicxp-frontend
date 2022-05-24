@@ -146,6 +146,7 @@ module.exports = withPlugins([withLess, withTranspileModules], {
     env: {
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
+        BUILD_ID: 'development',
         XP_ORIGIN: process.env.XP_ORIGIN,
         ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
         FAILOVER_ORIGIN: process.env.FAILOVER_ORIGIN,
@@ -166,6 +167,14 @@ module.exports = withPlugins([withLess, withTranspileModules], {
         fixNextImageOptsAllowSvg(config, options);
         cssModulesNoDashesInClassnames(config);
         resolveNodeLibsClientSide(config, options);
+
+        const { webpack, buildId } = options;
+
+        config.plugins.push(
+            new webpack.DefinePlugin({
+                'process.env.BUILD_ID': JSON.stringify(buildId),
+            })
+        );
 
         return config;
     },

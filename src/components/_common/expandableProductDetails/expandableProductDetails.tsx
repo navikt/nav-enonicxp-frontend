@@ -16,24 +16,19 @@ import style from './expandableProductDetails.module.scss';
 
 interface ExpandableProductDetailTypes {
     productDetails: SimplifiedProductData;
-    productRegions: {
-        [key: string]: {
-            name: string;
-            components: PartComponentProps;
-        };
-    }[];
+    detailComponents: PartComponentProps[];
     pageProps: OverviewPageProps;
 }
 
 export const ExpandableProductDetails = ({
     productDetails,
-    productRegions,
+    detailComponents,
     pageProps,
 }: ExpandableProductDetailTypes) => {
     const { language } = usePageConfig();
     const getTranslationString = translator('overview', language);
 
-    if (!productRegions) {
+    if (!detailComponents) {
         return (
             <div className={style.detailsLoader}>
                 <Loader
@@ -45,25 +40,19 @@ export const ExpandableProductDetails = ({
     }
 
     const cardLink: LinkProps = {
-        url: productDetails._path,
+        url: productDetails.idOrPath,
         text: productDetails.title,
     };
 
     return (
         <div className={style.detailsContainer}>
-            {productRegions.map((regions) =>
-                Object.values(regions).map((region: any) =>
-                    region.components.map(
-                        (component: PartComponentProps, index: number) => (
-                            <PartsMapper
-                                key={index}
-                                pageProps={pageProps}
-                                partProps={component}
-                            />
-                        )
-                    )
-                )
-            )}
+            {detailComponents.map((component, index) => (
+                <PartsMapper
+                    key={index}
+                    pageProps={pageProps}
+                    partProps={component}
+                />
+            ))}
             <Heading size="small" level="3" spacing>
                 {getTranslationString('moreAbout')} {productDetails.title}
             </Heading>

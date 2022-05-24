@@ -1,14 +1,13 @@
 import { ProductDetailType } from 'types/content-props/product-details';
 import { fetchWithTimeout } from './fetch-utils';
 
-export const fetchRelevantProductDetails = async (
-    id: string,
-    type: ProductDetailType
-) => {
-    const origin = process.env.APP_ORIGIN;
-    const absoluteURL = `${origin}/api/internal/productDetails?id=${id}&type=${type}`;
+const origin = process.env.APP_ORIGIN;
+const buildId = process.env.BUILD_ID;
 
-    const response = await fetchWithTimeout(absoluteURL, 1500);
+export const fetchRelevantProductDetails = async (idOrPath: string) => {
+    const cachecURL = `${origin}/_next/data/${buildId}/utkast/${idOrPath}.json`;
+
+    const response = await fetchWithTimeout(cachecURL);
 
     if (!response) {
         return null;
