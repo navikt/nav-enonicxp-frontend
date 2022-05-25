@@ -9,6 +9,8 @@ import { HeaderCommonConfig } from '../../../types/component-props/_mixins';
 
 import linkIcon from '/public/gfx/link.svg';
 
+// eslint does not understand bracket notation
+// eslint-disable-next-line css-modules/no-unused-class
 import style from './Header.module.scss';
 
 const linkCopiedDisplayTimeMs = 2500;

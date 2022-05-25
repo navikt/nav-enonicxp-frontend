@@ -1,12 +1,9 @@
 {
-  "plugins": ["postcss-modules"],
-  "extends": ["next/core-web-vitals", "plugin:postcss-modules/recommended"],
+  "plugins": ["css-modules"],
+  "extends": ["next/core-web-vitals", "plugin:css-modules/recommended"],
   "rules": {
-    "@next/next/no-img-element": 0
-  },
-  "settings": {
-    "postcss-modules": {
-      "camelCase": true
-    }
+    "@next/next/no-img-element": 0,
+    "css-modules/no-unused-class": [2, { "camelCase": true }],
+    "css-modules/no-undef-class": [2, { "camelCase": true }]
   }
 }

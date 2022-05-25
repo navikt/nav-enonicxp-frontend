@@ -2,6 +2,8 @@ import React from 'react';
 import { Next } from '@navikt/ds-icons';
 import { classNames } from '../../../utils/classnames';
 
+// eslint does not understand bracket notation
+// eslint-disable-next-line css-modules/no-unused-class
 import style from './Chevron.module.scss';
 
 type Props = {
