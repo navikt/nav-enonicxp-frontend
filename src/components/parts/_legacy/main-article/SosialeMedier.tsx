@@ -2,12 +2,10 @@ import React from 'react';
 import { getInternalAbsoluteUrl } from '../../../../utils/urls';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import { classNames } from '../../../../utils/classnames';
+import { SocialMedia } from '../../../../types/content-props/main-article-props';
 
-// eslint does not understand bracket notation
-// eslint-disable-next-line css-modules/no-unused-class
 import style from './SosialeMedier.module.scss';
 
-import { SocialMedia } from '../../../../types/content-props/main-article-props';
 const getSocialmediaShareUrl = (
     socialMediaType: SocialMedia,
     displayName: string,
