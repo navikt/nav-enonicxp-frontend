@@ -53,10 +53,6 @@ export const ExpandableProductDetails = ({
                     partProps={component}
                 />
             ))}
-            <Heading size="small" level="3" spacing>
-                {getTranslationString('moreAbout')} {productDetails.title}
-            </Heading>
-            <MicroCard link={cardLink} type={CardType.Product} />
         </div>
     );
 };
