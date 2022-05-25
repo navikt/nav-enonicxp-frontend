@@ -31,8 +31,7 @@
         margin: 0.5rem 0 1rem;
     }
 
-    .text,
-    .facts {
+    .text {
         p {
             margin-bottom: 1rem;
         }
@@ -96,33 +95,6 @@
             padding-left: 1.4rem;
             margin-bottom: 1rem;
         }
-    }
-
-    .facts {
-        .factIcon {
-            width: 1.25rem;
-            height: 1.25rem;
-            display: flex;
-            margin: 0 auto;
-        }
-        h3 {
-            text-align: center;
-        }
-        .decorated {
-            margin-bottom: 1.4rem;
-
-            &:after {
-                border-top: 1px solid #808080;
-                content: ' ';
-                display: block;
-                margin: 1.25rem auto 0;
-                width: 2rem;
-            }
-        }
-        background: #f1f1f1;
-        border: 1px solid #d1d1d1;
-        padding: 1.5rem;
-        margin-top: 4.2rem;
     }
 }
 

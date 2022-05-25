@@ -84,11 +84,7 @@ export const MainArticle = (propsInitial: Props) => {
                 className={style.text}
                 hasTableOfContents={hasTableOfContest}
             />
-            <Faktaboks
-                fakta={data.fact}
-                label={getLabel('facts')}
-                className={style.facts}
-            />
+            <Faktaboks fakta={data.fact} label={getLabel('facts')} />
             <SosialeMedier
                 social={data.social}
                 displayName={props.displayName}
