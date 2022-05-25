@@ -5,7 +5,7 @@ import Innholdsfortegnelse from './innholdsfortegnelse/Innholdsfortegnelse';
 import { SosialeMedier } from './SosialeMedier';
 import ArtikkelDato from './ArtikkelDato';
 import { Faktaboks } from './Faktaboks';
-import Bilde from './Bilde';
+import { Bilde } from './Bilde';
 import MainArticleText from './MainArticleText';
 import { parseInnholdsfortegnelse } from './innholdsfortegnelse/parseInnholdsfortegnelse';
 import { ContentType } from '../../../../types/content-props/_content-common';
