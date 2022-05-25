@@ -2,8 +2,6 @@ import React from 'react';
 import { GVItem } from './item/GVItem';
 import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
 
-// Some classes are only used in the unsorted view
-// eslint-disable-next-line css-modules/no-unused-class
 import style from './GVItems.module.scss';
 
 const norwegianCompare = new Intl.Collator(['no', 'nb', 'nn'], {

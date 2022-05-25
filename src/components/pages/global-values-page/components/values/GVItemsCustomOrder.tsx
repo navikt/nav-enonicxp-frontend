@@ -6,9 +6,8 @@ import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
 import { Up, Down } from '@navikt/ds-icons';
 import { gvServiceReorderItems } from '../../api/services/reorder';
 
-// Some classes are only used in the sorted view
-// eslint-disable-next-line css-modules/no-unused-class
-import style from './GVItems.module.scss';
+import styleCommon from './GVItems.module.scss';
+import styleCustomOrder from './GVItemsCustomOrder.module.scss';
 
 export const GVItemsCustomOrder = () => {
     const { valueItems, setValueItems, contentId, setMessages } =
@@ -47,21 +46,21 @@ export const GVItemsCustomOrder = () => {
             onChange={reorderItems}
             lockVertically={true}
             renderList={({ children, props }) => (
-                <div {...props} className={style.gvItems}>
+                <div {...props} className={styleCommon.gvItems}>
                     {children}
                 </div>
             )}
             renderItem={({ value, props, isDragged }) => (
-                <div {...props} className={style.itemOuter}>
+                <div {...props} className={styleCommon.itemOuter}>
                     <div
                         className={classNames(
-                            style.item,
-                            isDragged && style.itemDragged
+                            styleCommon.item,
+                            isDragged && styleCustomOrder.itemDragged
                         )}
                     >
                         <span
                             data-movable-handle={true}
-                            className={style.itemDragHandle}
+                            className={styleCustomOrder.itemDragHandle}
                         >
                             <Up />
                             <Down />
