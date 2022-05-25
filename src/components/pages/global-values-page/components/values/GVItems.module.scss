@@ -3,17 +3,17 @@
 .gvItems {
     display: flex;
     flex-direction: column;
+}
 
-    .itemOuter {
-        padding: 0.5rem;
-    }
+.itemOuter {
+    padding: 0.5rem;
+}
 
-    .item {
-        display: flex;
-        padding: 0.5rem;
-        margin: 0 -0.5rem;
-        background-color: white;
-        border-radius: common.$border-radius-base;
-        box-shadow: 1px 2px 3px 2px common.$navds-global-color-gray-400;
-    }
+.item {
+    display: flex;
+    padding: 0.5rem;
+    margin: 0 -0.5rem;
+    background-color: white;
+    border-radius: common.$border-radius-base;
+    box-shadow: 1px 2px 3px 2px common.$navds-global-color-gray-400;
 }
