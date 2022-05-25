@@ -17,6 +17,7 @@ import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/
 import { scrapeProductPageForProductDetails } from './overviewPageHelpers';
 
 import style from './OverviewPage.module.scss';
+import { SimplifiedProductData } from '../../../types/component-props/_mixins';
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
@@ -31,32 +32,27 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const [details, setDetails] = useState<any>({});
 
     // Note: Next 3 lines to be removed when page is ready to go live.
-    if (!(isPagePreview || editorView)) {
+    if (!(isPagePreview || editorView || props.serverEnv !== 'prod')) {
         return <ErrorPage404 />;
     }
 
-    const fetchPanelContent = async (idOrPath: string) => {
+    const fetchPanelContent = async (product: SimplifiedProductData) => {
+        const { idOrPath, productDetailsPaths } = product;
+
         // Don't check if we already have the content.
         if (details[idOrPath]) {
             return;
         }
 
-        const cleanedIdOrPath =
-            idOrPath[0] === '/' ? idOrPath.substring(1) : idOrPath;
-
-        const fullProductPage = await fetchRelevantProductDetails(
-            cleanedIdOrPath
-        );
-
-        const productDetails = scrapeProductPageForProductDetails(
-            fullProductPage,
-            overviewType
+        const productDetails = await fetchRelevantProductDetails(
+            productDetailsPaths
         );
 
         setDetails({ ...details, [idOrPath]: productDetails });
     };
 
-    const handlePanelToggle = (idOrPath: string) => {
+    const handlePanelToggle = (product: SimplifiedProductData) => {
+        const { idOrPath } = product;
         const isOpening = openPanels.findIndex((id) => id === idOrPath) === -1;
         const updatedOpenPanels = isOpening
             ? [...openPanels, idOrPath]
@@ -65,7 +61,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
         setOpenPanels(updatedOpenPanels);
 
         if (isOpening) {
-            fetchPanelContent(idOrPath);
+            fetchPanelContent(product);
         }
     };
 
@@ -100,15 +96,16 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         const detailComponents = getDetailComponents(
                             product.idOrPath
                         );
+
                         return (
-                            <Accordion key={product._id}>
+                            <Accordion key={product.idOrPath}>
                                 <Accordion.Item
                                     open={openPanels.includes(product.idOrPath)}
                                     className={style.accordionItem}
                                 >
                                     <Accordion.Header
                                         onClick={() =>
-                                            handlePanelToggle(product.idOrPath)
+                                            handlePanelToggle(product)
                                         }
                                     >
                                         <IllustrationStatic
@@ -118,14 +115,18 @@ export const OverviewPage = (props: OverviewPageProps) => {
                                         {product.title}
                                     </Accordion.Header>
                                     <Accordion.Content>
-                                        <div className={style.detailsContainer}>
-                                            <ExpandableProductDetails
-                                                productDetails={product}
-                                                detailComponents={
-                                                    detailComponents
-                                                }
-                                                pageProps={props}
-                                            />
+                                        <div>
+                                            {detailComponents?.map(
+                                                (components, index) => (
+                                                    <ComponentMapper
+                                                        componentProps={
+                                                            components
+                                                        }
+                                                        pageProps={props}
+                                                        key={index}
+                                                    />
+                                                )
+                                            ) || null}
                                         </div>
                                     </Accordion.Content>
                                 </Accordion.Item>
