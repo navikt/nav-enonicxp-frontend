@@ -6,6 +6,8 @@ import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
 import { Up, Down } from '@navikt/ds-icons';
 import { gvServiceReorderItems } from '../../api/services/reorder';
 
+// Some classes are only used in the sorted view
+// eslint-disable-next-line css-modules/no-unused-class
 import style from './GVItems.module.scss';
 
 export const GVItemsCustomOrder = () => {
@@ -45,7 +47,7 @@ export const GVItemsCustomOrder = () => {
             onChange={reorderItems}
             lockVertically={true}
             renderList={({ children, props }) => (
-                <div {...props} className={style.GVItems}>
+                <div {...props} className={style.gvItems}>
                     {children}
                 </div>
             )}
