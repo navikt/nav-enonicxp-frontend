@@ -19,7 +19,7 @@ $illustrationSize: common.px-to-rem(96);
     color: var(--navds-global-color-gray-900);
     margin-bottom: 1rem;
 
-    .provider & {
+    :global(.provider) & {
         color: var(--navds-semantic-color-link);
     }
 }

@@ -7,13 +7,13 @@
     text-decoration: none;
     width: 100%;
 
-    .inline {
+    &.inline {
         display: inline-block;
         width: auto;
         padding: 0.7rem 0;
         text-decoration: none;
     }
-    .inline:not(:last-child) {
+    &.inline:not(:last-child) {
         margin-bottom: 0;
     }
     .bed {
@@ -22,26 +22,26 @@
     }
     &:hover,
     &:focus {
-        .situation {
+        :global(.situation) {
             background-color: var(--navds-global-color-orange-200);
         }
-        .product {
-            background-color: var(navds-global-color-green-200);
+        :global(.product) {
+            background-color: var(--navds-global-color-green-200);
         }
-        .tool {
-            background-color: var(navds-global-color-deepblue-200);
+        :global(.tool) {
+            background-color: var(--navds-global-color-deepblue-200);
         }
-        .themed-article {
-            background-color: var(navds-global-color-limegreen-300);
+        :global(.themed-article) {
+            background-color: var(--navds-global-color-limegreen-300);
         }
-        .guide {
-            background-color: var(navds-global-color-lightblue-200);
+        :global(.guide) {
+            background-color: var(--navds-global-color-lightblue-200);
         }
-        .title,
-        .description,
-        .category {
+        :global(.title),
+        :global(.description),
+        :global(.category) {
             text-decoration: none;
-            color: var(navds-global-color-gray-900);
+            color: var(--navds-global-color-gray-900);
         }
     }
     &:focus,
@@ -60,7 +60,7 @@
                 top: 0;
             }
         }
-        .bed.large {
+        .bed:global(.large) {
             &:after {
                 box-shadow: 0 0 0 4px white;
                 border-radius: 6px;
@@ -69,8 +69,8 @@
                 margin: 4px;
             }
         }
-        .bed.mini,
-        .bed.micro {
+        .bed:global(.mini),
+        .bed:global(.micro) {
             &:after {
                 box-shadow: 0 0 0 2px white;
                 height: calc(100% - 2px);
@@ -78,19 +78,19 @@
                 width: calc(100% - 2px);
             }
         }
-        .bed.mini {
+        .bed:global(.mini) {
             &:after {
                 border-radius: 6px;
             }
         }
-        .bed.micro {
+        .bed:global(.micro) {
             &:after {
                 border-radius: 16px;
             }
         }
     }
 
-    .micro {
+    :global(.micro) {
         border-radius: 16px;
         border: 1px solid #b0b0b0;
         box-shadow: 0 0 0 3px var(--navds-semantic-color-link);
@@ -121,34 +121,34 @@
             border-radius: 0.5rem;
             margin: 0 0.5rem 0 0;
         }
-        &.situation {
+        &:global(.situation) {
             &:before {
                 background-color: var(--navds-global-color-orange-500);
             }
         }
-        &.product {
+        &:global(.product) {
             &:before {
                 background-color: var(--navds-global-color-green-500);
             }
         }
-        &.tool {
+        &:global(.tool) {
             &:before {
                 background-color: var(--navds-global-color-deepblue-500);
             }
         }
-        &.themed-article {
+        &:global(.themed-article) {
             &:before {
                 background-color: var(--navds-global-color-limegreen-500);
             }
         }
-        &.guide {
+        &:global(.guide) {
             &:before {
                 background-color: var(--navds-global-color-lightblue-500);
             }
         }
     }
 
-    .mini {
+    :global(.mini) {
         align-items: center;
         border-radius: 8px;
         border: 1px solid #B0B0B0;  // Don't exist in @navikt/ds
@@ -169,7 +169,7 @@
         }
     }
 
-    .large {
+    :global(.large) {
         background-color: white;
         border-radius: 8px;
         display: block;
@@ -177,19 +177,19 @@
         text-decoration: none;
         width: 100%;
 
-        .product,
-        .provider,
-        .guide,
-        .situation {
+        :global(.product),
+        :global(.provider),
+        :global(.guide),
+        :global(.situation) {
             display: flex;
             flex-direction: column;
             height: 100%;
         }
-        &.product,
-        &.guide,
-        &.tool,
-        &.themed-article,
-        &.situation {
+        &:global(.product),
+        &:global(.guide),
+        &:global(.tool),
+        &:global(.themed-article),
+        &:global(.situation) {
             min-height: common.px-to-rem(400);
         }
         &:not(:hover):not(:active) {

@@ -46,7 +46,6 @@ export const Card = (props: CardProps) => {
             onTouchMove={handleUserEvent}
         >
             <div className={classNames(style.bed, type, size)}>
-
                 {children}
             </div>
         </LenkeBase>
