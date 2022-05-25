@@ -3,13 +3,14 @@ import { ParsedHtml } from '../../../_common/parsed-html/ParsedHtml';
 import { StaticImage } from '../../../_common/image/StaticImage';
 import { ProcessedHtmlProps } from '../../../../types/processed-html-props';
 
+import style from './Faktaboks.module.scss';
+
 import icon from '/public/gfx/info-sirkel-fyll.svg';
 
-interface Props {
+type Props = {
     label: string;
     fakta: ProcessedHtmlProps;
-    className: string;
-}
+};
 
 export const Faktaboks = (props: Props) => {
     if (!props?.fakta?.processedHtml) {
@@ -17,9 +18,9 @@ export const Faktaboks = (props: Props) => {
     }
 
     return (
-        <div className={props.className}>
-            <StaticImage imageData={icon} alt={''} className={'fact-icon'} />
-            <h3 className="decorated">{props.label}</h3>
+        <div className={style.facts}>
+            <StaticImage imageData={icon} alt={''} className={style.factIcon} />
+            <h3 className={style.decorated}>{props.label}</h3>
             <ParsedHtml htmlProps={props.fakta} />
         </div>
     );

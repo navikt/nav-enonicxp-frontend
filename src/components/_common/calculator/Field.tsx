@@ -4,6 +4,7 @@ import {
     CalculatorField,
     FieldType,
 } from 'types/component-props/parts/calculator';
+
 import style from './Field.module.scss';
 
 interface FieldProps {

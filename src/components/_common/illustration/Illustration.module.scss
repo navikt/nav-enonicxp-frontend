@@ -4,24 +4,3 @@
     justify-content: center;
     align-items: center;
 }
-
-.lottieContainer {
-    display: inline-flex;
-
-    > * {
-        // Needed because we're swapping out DOM elements (lottie animation) on mousedown
-        // which would cancel the oncoming clickEvent to target URL
-        pointer-events: none;
-    }
-}
-
-.icon {
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    background-size: contain;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}

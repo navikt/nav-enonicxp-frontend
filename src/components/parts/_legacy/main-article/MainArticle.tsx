@@ -2,10 +2,10 @@ import React from 'react';
 import { translator } from 'translations';
 import { Heading, Ingress } from '@navikt/ds-react';
 import Innholdsfortegnelse from './innholdsfortegnelse/Innholdsfortegnelse';
-import SosialeMedier from './SosialeMedier';
+import { SosialeMedier } from './SosialeMedier';
 import ArtikkelDato from './ArtikkelDato';
 import { Faktaboks } from './Faktaboks';
-import Bilde from './Bilde';
+import { Bilde } from './Bilde';
 import MainArticleText from './MainArticleText';
 import { parseInnholdsfortegnelse } from './innholdsfortegnelse/parseInnholdsfortegnelse';
 import { ContentType } from '../../../../types/content-props/_content-common';
@@ -53,9 +53,7 @@ export const MainArticle = (propsInitial: Props) => {
         hasTableOfContest
     );
     const headerClassName =
-        innholdsfortegnelse.length === 0
-            ? style.header
-            : style.headerWithToc;
+        innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
 
     return (
         <article className={style.mainArticle}>
@@ -86,11 +84,7 @@ export const MainArticle = (propsInitial: Props) => {
                 className={style.text}
                 hasTableOfContents={hasTableOfContest}
             />
-            <Faktaboks
-                fakta={data.fact}
-                label={getLabel('facts')}
-                className={style.facts}
-            />
+            <Faktaboks fakta={data.fact} label={getLabel('facts')} />
             <SosialeMedier
                 social={data.social}
                 displayName={props.displayName}
