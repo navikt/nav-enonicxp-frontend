@@ -15,15 +15,15 @@ import { PartsMapper } from 'components/parts/PartsMapper';
 import style from './expandableProductDetails.module.scss';
 
 interface ExpandableProductDetailTypes {
-    productDetails: SimplifiedProductData;
     detailComponents: PartComponentProps[];
     pageProps: OverviewPageProps;
+    productDetails: SimplifiedProductData;
 }
 
 export const ExpandableProductDetails = ({
-    productDetails,
     detailComponents,
     pageProps,
+    productDetails,
 }: ExpandableProductDetailTypes) => {
     const { language } = usePageConfig();
     const getTranslationString = translator('overview', language);

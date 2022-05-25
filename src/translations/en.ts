@@ -122,7 +122,6 @@ export const translationsBundleEn: Translations = {
         ariaItemExplanation: 'Show area',
         chooseArea: 'Choose area',
         loading: 'Loading product details',
-        moreAbout: 'More about',
     },
     pagination: {
         goTo: 'Go to',
