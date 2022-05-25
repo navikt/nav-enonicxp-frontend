@@ -1,0 +1,37 @@
+@use 'src/common' as common;
+
+$illustrationSize: common.px-to-rem(96);
+
+.illustration {
+    height: $illustrationSize;
+    width: $illustrationSize;
+    align-self: center;
+    margin-top: 0;
+    margin-bottom: 2.3rem;
+}
+.illustration__lottie-container {
+    display: block;
+    width: $illustrationSize;
+    height: $illustrationSize;
+}
+.title {
+    text-decoration: underline;
+    color: var(--navds-global-color-gray-900);
+    margin-bottom: 1rem;
+
+    .provider & {
+        color: var(--navds-semantic-color-link);
+    }
+}
+.description {
+    color: var(--navds-global-color-gray-900);
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+.category {
+    color: var(--navds-global-color-gray-600);
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-top: auto; // Aligns category to bottom inside flexbox
+    text-transform: uppercase;
+}
