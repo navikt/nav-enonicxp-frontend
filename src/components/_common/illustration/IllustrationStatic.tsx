@@ -1,7 +1,10 @@
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from '../../../utils/classnames';
-import style from './Illustration.module.scss';
+
+import styleCommon from './Illustration.module.scss';
+import styleStatic from './IllustrationStatic.module.scss';
+
 interface IllustrationStaticProps {
     illustration: AnimatedIconsProps;
     className?: string;
@@ -36,12 +39,12 @@ export const IllustrationStatic = ({
 
     return (
         <div
-            className={classNames(style.image, className)}
+            className={classNames(styleCommon.image, className)}
             aria-hidden="true"
             role="presentation"
         >
             <div
-                className={style.icon}
+                className={styleStatic.icon}
                 style={{
                     backgroundImage: `url(${getMediaUrl(
                         icon1.icon?.mediaUrl
@@ -50,7 +53,7 @@ export const IllustrationStatic = ({
                 }}
             />
             <div
-                className={style.icon}
+                className={styleStatic.icon}
                 style={{
                     backgroundImage: `url(${getMediaUrl(
                         icon2.icon?.mediaUrl
