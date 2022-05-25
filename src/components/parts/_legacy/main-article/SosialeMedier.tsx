@@ -1,11 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 import { getInternalAbsoluteUrl } from '../../../../utils/urls';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import { classNames } from '../../../../utils/classnames';
 
-import style from './SosialeMedier.module.scss'
+// eslint-disable-next-line css-modules/no-unused-class
+import style from './SosialeMedier.module.scss';
+
+import { SocialMedia } from '../../../../types/content-props/main-article-props';
 const getSocialmediaShareUrl = (
-    el: string,
+    socialMediaType: SocialMedia,
     displayName: string,
     requestUrl: string
 ) => {
@@ -19,32 +22,37 @@ const getSocialmediaShareUrl = (
         linkedin: `https://www.linkedin.com/shareArticle?mini=true&url=${requestUrl}&title=${displayName}&source=nav.no`,
     };
 
-    return encodeURI(shareUrl[el]) || null;
+    return encodeURI(shareUrl[socialMediaType]) || null;
 };
 
-interface Props {
-    social: string[];
+type Props = {
+    social: SocialMedia[];
     displayName: string;
     contentPath: string;
-}
-const SosialeMedier = (props: Props) => {
-    const sosialMediaName: { [key: string]: string } = {
+};
+
+export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
+    if (!social || social.length === 0) {
+        return null;
+    }
+
+    const sosialMediaName = {
         linkedin: 'LinkedIn',
         facebook: 'Facebook',
         twitter: 'Twitter',
     };
 
-    const socialMedia = props.social?.map((el) => ({
-        type: el,
-        text: `Del på ${sosialMediaName[el]}`,
+    const socialMedia = social?.map((socialMediaType) => ({
+        type: socialMediaType,
+        text: `Del på ${sosialMediaName[socialMediaType]}`,
         href: getSocialmediaShareUrl(
-            el,
-            props.displayName,
-            getInternalAbsoluteUrl(props.contentPath)
+            socialMediaType,
+            displayName,
+            getInternalAbsoluteUrl(contentPath)
         ),
     }));
 
-    return socialMedia && socialMedia.length > 0 ? (
+    return (
         <div className={style.socialMedia}>
             <ul>
                 {socialMedia.map((item) => (
@@ -53,7 +61,7 @@ const SosialeMedier = (props: Props) => {
                             <span
                                 className={classNames(
                                     style.shareSocial,
-                                    `${item.type}`
+                                    style[item.type]
                                 )}
                             >
                                 {item.text}
@@ -63,6 +71,5 @@ const SosialeMedier = (props: Props) => {
                 ))}
             </ul>
         </div>
-    ) : null;
+    );
 };
-export default SosialeMedier;
