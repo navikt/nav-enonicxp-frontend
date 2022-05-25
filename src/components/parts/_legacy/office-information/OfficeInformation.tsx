@@ -152,7 +152,6 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     <Heading
                         level="1"
                         size="large"
-                        className={style.header}
                     >{`${unit.navn} - kontorinformasjon`}</Heading>
                 </header>
                 {['HMS', 'ALS', 'TILTAK'].includes(unit.type) && location && (

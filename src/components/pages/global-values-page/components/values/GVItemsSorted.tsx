@@ -15,7 +15,7 @@ export const GVItemsSorted = () => {
     );
 
     return (
-        <div className={style.GVItems}>
+        <div className={style.gvItems}>
             {sortedItems.map((item) => (
                 <div className={style.itemOuter} key={item.key}>
                     <div className={style.item}>

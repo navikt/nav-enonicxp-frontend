@@ -51,39 +51,33 @@
         }
     }
 
-    .statPage {
+    :global(.statPage) {
         display: flex;
         flex-direction: column;
         background-color: white;
         padding: 1rem;
     }
 
-    .statTab {
-    }
-
-    .statHead,
-    .statGroupHead,
-    .statGroupRest {
+    :global(.statHead),
+    :global(.statGroupHead),
+    :global(.statGroupRest) {
         padding: 0.125rem 0.5rem;
         &:not(th) {
             font-weight: common.$navds-font-weight-bold;
         }
     }
 
-    .statRest,
-    .statGroupRest {
+    :global(.statRest),
+    :global(.statGroupRest) {
         text-align: right;
         padding: 0.125rem 0.125rem 0.125rem 1rem;
     }
 
-    .statFoot {
+    :global(.statFoot) {
         margin-top: 0.5rem;
     }
 
-    .statSideskift {
-    }
-
-    .spacer-row {
+    :global(.spacer-row) {
         height: 1rem;
         background-color: transparent;
     }

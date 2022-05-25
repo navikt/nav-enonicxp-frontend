@@ -17,7 +17,7 @@ export const GVMessages = () => {
         return null;
     }
     return (
-        <div className={style.GVMessages}>
+        <div className={style.gvMessages}>
             {messages.map((msg, index) => (
                 <div
                     className={classNames(

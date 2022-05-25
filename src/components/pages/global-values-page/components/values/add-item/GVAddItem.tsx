@@ -14,9 +14,7 @@ export const GVAddItem = ({ type }: Props) => {
     const [isActive, setIsActive] = useState(false);
 
     return (
-        <div
-            className={classNames(style.GVAddItem, isActive && style.active)}
-        >
+        <div className={classNames(style.gvAddItem, isActive && style.active)}>
             {isActive ? (
                 <>
                     <hr />

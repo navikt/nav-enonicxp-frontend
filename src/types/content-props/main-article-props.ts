@@ -17,13 +17,15 @@ export type Picture = Partial<{
     altText: string;
 }>;
 
+export type SocialMedia = 'facebook' | 'twitter' | 'linkedin';
+
 export type MainArticleData = Partial<{
     languages: LanguageProps[];
     ingress: string;
     text: ProcessedHtmlProps;
     hasTableOfContents: string;
     fact: ProcessedHtmlProps;
-    social: string[];
+    social: SocialMedia[];
     picture: Picture;
     menuListItems: MenuListItem;
     chapters: MainArticleChapterNavigationData[];
