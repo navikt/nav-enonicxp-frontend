@@ -1,5 +1,6 @@
 {
-  "extends": "next/core-web-vitals",
+  "plugins": ["css-modules"],
+  "extends": ["next/core-web-vitals", "plugin:css-modules/recommended"],
   "rules": {
     "@next/next/no-img-element": 0
   }
