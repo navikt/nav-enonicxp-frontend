@@ -22,9 +22,7 @@ export const OverviewPageProductPanel = ({ product, pageProps }: Props) => {
     const [error, setError] = useState('');
     const [productDetailsPage, setProductDetailsPage] = useState(null);
 
-    const handlePanelToggle = () => {
-        setIsOpen(!isOpen);
-
+    const handleProductDetailsFetch = () => {
         if (isLoading || productDetailsPage) {
             return;
         }
@@ -55,7 +53,12 @@ export const OverviewPageProductPanel = ({ product, pageProps }: Props) => {
     return (
         <Accordion key={product.idOrPath}>
             <Accordion.Item open={isOpen} className={style.accordionItem}>
-                <Accordion.Header onClick={() => handlePanelToggle()}>
+                <Accordion.Header
+                    onClick={() => {
+                        setIsOpen(!isOpen);
+                        handleProductDetailsFetch();
+                    }}
+                >
                     <IllustrationStatic
                         className={style.illustration}
                         illustration={product.illustration}
