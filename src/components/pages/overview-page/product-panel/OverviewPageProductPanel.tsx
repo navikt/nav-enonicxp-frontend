@@ -4,9 +4,12 @@ import style from '../OverviewPage.module.scss';
 import { IllustrationStatic } from '../../../_common/illustration/IllustrationStatic';
 import { ComponentMapper } from '../../../ComponentMapper';
 import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
-import { fetchJsonCache } from '../../../../utils/fetch/fetch-cache';
+import { fetchPageCacheContent } from '../../../../utils/fetch/fetch-cache';
 import { AlertBox } from '../../../_common/alert-box/AlertBox';
-import { ContentProps } from '../../../../types/content-props/_content-common';
+import {
+    ContentProps,
+    ContentType,
+} from '../../../../types/content-props/_content-common';
 
 type Props = {
     product: SimplifiedProductData;
@@ -17,30 +20,32 @@ export const OverviewPageProductPanel = ({ product, pageProps }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-    const [productDetailsComponents, setProductDetailsComponents] =
-        useState(null);
+    const [productDetailsPage, setProductDetailsPage] = useState(null);
 
     const handlePanelToggle = () => {
         setIsOpen(!isOpen);
 
-        if (isLoading || productDetailsComponents) {
+        if (isLoading || productDetailsPage) {
             return;
         }
 
         setIsLoading(true);
 
-        fetchJsonCache(product.productDetailsPath)
-            .then((json) => {
-                if (!json) {
-                    setError('Failed to fetch, oh noes!');
+        fetchPageCacheContent(product.productDetailsPath)
+            .then((contentFromCache) => {
+                if (!contentFromCache) {
+                    setError('Failed to fetch from cache, oh noes!');
                     return null;
                 }
 
-                const components = productDetailsComponents.map((item) => {
-                    return item.pageProps.content.page;
-                });
+                if (
+                    contentFromCache.__typename !== ContentType.ProductDetails
+                ) {
+                    setError(`Incorrect type for product details!`);
+                    return null;
+                }
 
-                setProductDetailsComponents(components);
+                setProductDetailsPage(contentFromCache.page);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -61,9 +66,9 @@ export const OverviewPageProductPanel = ({ product, pageProps }: Props) => {
                     {error && <AlertBox variant={'error'}>{error}</AlertBox>}
                     {isLoading ? (
                         <Loader size={'2xlarge'} />
-                    ) : productDetailsComponents ? (
+                    ) : productDetailsPage ? (
                         <ComponentMapper
-                            componentProps={productDetailsComponents}
+                            componentProps={productDetailsPage}
                             pageProps={pageProps}
                         />
                     ) : null}

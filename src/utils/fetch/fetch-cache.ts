@@ -1,15 +1,24 @@
 import { fetchJson } from './fetch-utils';
 import { stripXpPathPrefix } from '../urls';
+import { ContentProps } from '../../types/content-props/_content-common';
 
 const origin = process.env.APP_ORIGIN;
 const buildId = process.env.BUILD_ID;
 
-export const fetchJsonCache = async <ResponseType = any>(
-    path: string
-): Promise<ResponseType | null> => {
-    const jsonCacheUrl = `${origin}/_next/data/${buildId}${stripXpPathPrefix(
-        path
-    )}.json`;
+const urlPrefix = `${origin}/_next/data/${buildId}`;
 
-    return fetchJson<ResponseType>(jsonCacheUrl);
+type JsonCacheItem = {
+    pageProps: {
+        content: ContentProps;
+    };
+};
+
+export const fetchPageCacheContent = async (
+    path: string
+): Promise<ContentProps | null> => {
+    const jsonCacheUrl = `${urlPrefix}${stripXpPathPrefix(path)}.json`;
+
+    return fetchJson<JsonCacheItem>(jsonCacheUrl).then((cacheItem) => {
+        return cacheItem?.pageProps?.content || null;
+    });
 };
