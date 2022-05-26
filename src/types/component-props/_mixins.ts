@@ -26,7 +26,7 @@ export type FilterSelection = string[];
 export type SimplifiedProductData = Partial<{
     _id: XpContentRef;
     idOrPath: string;
-    productDetailsPaths: string[];
+    productDetailsPath: string;
 }> &
     ProductDataMixin;
 
