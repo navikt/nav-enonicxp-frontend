@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Accordion, Loader } from '@navikt/ds-react';
-import style from '../OverviewPage.module.scss';
 import { IllustrationStatic } from '../../../_common/illustration/IllustrationStatic';
 import { ComponentMapper } from '../../../ComponentMapper';
 import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
@@ -11,12 +10,20 @@ import {
     ContentType,
 } from '../../../../types/content-props/_content-common';
 
+import style from './OverviewPageDetailsPanel.module.scss';
+import { classNames } from '../../../../utils/classnames';
+
 type Props = {
     product: SimplifiedProductData;
     pageProps: ContentProps;
+    hidden: boolean;
 };
 
-export const OverviewPageProductPanel = ({ product, pageProps }: Props) => {
+export const OverviewPageDetailsPanel = ({
+    product,
+    pageProps,
+    hidden,
+}: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
@@ -51,13 +58,22 @@ export const OverviewPageProductPanel = ({ product, pageProps }: Props) => {
     };
 
     return (
-        <Accordion key={product.idOrPath}>
+        <Accordion
+            className={classNames(
+                style.detailsContainer,
+                hidden && style.hidden
+            )}
+            key={product.idOrPath}
+        >
             <Accordion.Item open={isOpen} className={style.accordionItem}>
                 <Accordion.Header
                     onClick={() => {
                         setIsOpen(!isOpen);
                         handleProductDetailsFetch();
                     }}
+                    onMouseOver={
+                        productDetailsPage ? null : handleProductDetailsFetch
+                    }
                 >
                     <IllustrationStatic
                         className={style.illustration}
@@ -68,7 +84,9 @@ export const OverviewPageProductPanel = ({ product, pageProps }: Props) => {
                 <Accordion.Content>
                     {error && <AlertBox variant={'error'}>{error}</AlertBox>}
                     {isLoading ? (
-                        <Loader size={'2xlarge'} />
+                        <div className={style.detailsLoader}>
+                            <Loader size={'2xlarge'} />
+                        </div>
                     ) : productDetailsPage ? (
                         <ComponentMapper
                             componentProps={productDetailsPage}

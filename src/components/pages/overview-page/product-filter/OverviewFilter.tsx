@@ -4,7 +4,7 @@ import { Heading, Tag } from '@navikt/ds-react';
 
 import { Area } from 'types/areas';
 
-import { translator } from '../../../translations';
+import { translator } from '../../../../translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './OverviewFilter.module.scss';

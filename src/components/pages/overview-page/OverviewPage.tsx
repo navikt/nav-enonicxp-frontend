@@ -5,9 +5,9 @@ import { OverviewPageProps } from 'types/content-props/dynamic-page-props';
 import ErrorPage404 from 'pages/404';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ComponentMapper } from 'components/ComponentMapper';
-import { OverviewFilter } from 'components/_common/overviewFilter/OverviewFilter';
+import { OverviewFilter } from 'components/pages/overview-page/product-filter/OverviewFilter';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
-import { OverviewPageProductPanel } from './product-panel/OverviewPageProductPanel';
+import { OverviewPageDetailsPanel } from './product-panel/OverviewPageDetailsPanel';
 
 import style from './OverviewPage.module.scss';
 
@@ -46,17 +46,22 @@ export const OverviewPage = (props: OverviewPageProps) => {
             <div className={style.content}>
                 <OverviewFilter filterUpdateCallback={handleFilterUpdate} />
                 <div className={style.productListWrapper}>
-                    {filteredProducts.length === 0 ? (
+                    {filteredProducts.length === 0 && (
                         <div>{getTranslationString('noProducts')}</div>
-                    ) : (
-                        filteredProducts.map((product) => (
-                            <OverviewPageProductPanel
-                                product={product}
-                                pageProps={props}
-                                key={product._id}
-                            />
-                        ))
                     )}
+                    {productList.map((product) => (
+                        <OverviewPageDetailsPanel
+                            product={product}
+                            pageProps={props}
+                            hidden={
+                                !filteredProducts.some(
+                                    (filteredProduct) =>
+                                        filteredProduct._id === product._id
+                                )
+                            }
+                            key={product._id}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
