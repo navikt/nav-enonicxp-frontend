@@ -26,7 +26,7 @@ export const OverviewPageDetailsPanel = ({
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
     const [productDetailsPage, setProductDetailsPage] = useState(null);
 
     const handleProductDetailsFetch = () => {
@@ -50,6 +50,7 @@ export const OverviewPageDetailsPanel = ({
                     return null;
                 }
 
+                setError(null);
                 setProductDetailsPage(contentFromCache.page);
             })
             .finally(() => {
