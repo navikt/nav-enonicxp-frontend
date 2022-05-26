@@ -16,13 +16,13 @@ import { classNames } from '../../../../utils/classnames';
 type Props = {
     product: SimplifiedProductData;
     pageProps: ContentProps;
-    hidden: boolean;
+    visible: boolean;
 };
 
 export const OverviewPageDetailsPanel = ({
     product,
     pageProps,
-    hidden,
+    visible,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -62,9 +62,8 @@ export const OverviewPageDetailsPanel = ({
         <Accordion
             className={classNames(
                 style.detailsContainer,
-                hidden && style.hidden
+                !visible && style.hidden
             )}
-            key={product.idOrPath}
         >
             <Accordion.Item open={isOpen} className={style.accordionItem}>
                 <Accordion.Header

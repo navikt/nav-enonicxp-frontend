@@ -30,9 +30,9 @@ export const OverviewPage = (props: OverviewPageProps) => {
         setAreaFilter(area);
     };
 
-    const filteredProducts = productList.filter((product) => {
-        return product.area == areaFilter || areaFilter === Area.ALL;
-    });
+    const hasVisibleProducts = productList.some(
+        (product) => product.area === areaFilter || areaFilter === Area.ALL
+    );
 
     return (
         <div className={style.overviewPage}>
@@ -46,18 +46,16 @@ export const OverviewPage = (props: OverviewPageProps) => {
             <div className={style.content}>
                 <OverviewFilter filterUpdateCallback={handleFilterUpdate} />
                 <div className={style.productListWrapper}>
-                    {filteredProducts.length === 0 && (
+                    {!hasVisibleProducts && (
                         <div>{getTranslationString('noProducts')}</div>
                     )}
                     {productList.map((product) => (
                         <OverviewPageDetailsPanel
                             product={product}
                             pageProps={props}
-                            hidden={
-                                !filteredProducts.some(
-                                    (filteredProduct) =>
-                                        filteredProduct._id === product._id
-                                )
+                            visible={
+                                product.area == areaFilter ||
+                                areaFilter === Area.ALL
                             }
                             key={product._id}
                         />
