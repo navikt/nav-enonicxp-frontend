@@ -1,13 +1,11 @@
-import { Heading, Loader } from '@navikt/ds-react';
+import { Loader } from '@navikt/ds-react';
 
-import { CardType } from 'types/card';
 import { LinkProps } from 'types/link-props';
 import { SimplifiedProductData } from 'types/component-props/_mixins';
 
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import { MicroCard } from 'components/_common/card/MicroCard';
 import { OverviewPageProps } from 'types/content-props/dynamic-page-props';
 import { PartComponentProps } from '../../../types/component-props/_component-common';
 import { PartsMapper } from 'components/parts/PartsMapper';

@@ -13,8 +13,8 @@ import { ComponentMapper } from 'components/ComponentMapper';
 import { ExpandableProductDetails } from 'components/_common/expandableProductDetails/expandableProductDetails';
 import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
 import { OverviewFilter } from 'components/_common/overviewFilter/OverviewFilter';
-import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 import { scrapeProductPageForProductDetails } from './overviewPageHelpers';
+import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 
 import style from './OverviewPage.module.scss';
 
@@ -118,15 +118,11 @@ export const OverviewPage = (props: OverviewPageProps) => {
                                         {product.title}
                                     </Accordion.Header>
                                     <Accordion.Content>
-                                        <div className={style.detailsContainer}>
-                                            <ExpandableProductDetails
-                                                productDetails={product}
-                                                detailComponents={
-                                                    detailComponents
-                                                }
-                                                pageProps={props}
-                                            />
-                                        </div>
+                                        <ExpandableProductDetails
+                                            productDetails={product}
+                                            detailComponents={detailComponents}
+                                            pageProps={props}
+                                        />
                                     </Accordion.Content>
                                 </Accordion.Item>
                             </Accordion>

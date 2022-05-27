@@ -36,7 +36,6 @@ export const OverviewFilter = ({
             <nav
                 role="navigation"
                 aria-label={overviewTranslations('ariaExplanation')}
-                className={styles.tagWrapper}
             >
                 <ul className={styles.filterWrapper}>
                     {filterableAreas.map((area) => {
