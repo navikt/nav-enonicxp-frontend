@@ -14,7 +14,9 @@ export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
         );
     }
 
-    if (!config.components || config.components.length === 0) {
+    const { components } = config;
+
+    if (!components || components.length === 0) {
         return (
             <EditorHelp
                 text={'Feil: Fant ingen komponenter i produktdetaljene'}
@@ -26,11 +28,11 @@ export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
     return (
         <FilteredContent {...config}>
             <ExpandableComponentWrapper {...config}>
-                {config.components.map((component, index) => (
+                {components.map((component, index) => (
                     <ComponentMapper
                         key={index}
                         componentProps={component}
-                        // @ts-ignore
+                        // @ts-ignore (TODO: fix this :)
                         pageProps={{}}
                     />
                 ))}
