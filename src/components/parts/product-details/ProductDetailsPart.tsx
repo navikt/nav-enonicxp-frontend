@@ -19,7 +19,7 @@ export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
     if (!components || components.length === 0) {
         return (
             <EditorHelp
-                text={'Feil: Fant ingen komponenter i produktdetaljene'}
+                text={`Feil: Fant ingen produktdetaljer for ${config.detailType}`}
                 type={'error'}
             />
         );
