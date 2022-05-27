@@ -8,7 +8,6 @@ import { FilteredContent } from '../../_common/filtered-content/FilteredContent'
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
-
     if (!config?.productDetailsTarget) {
         return (
             <EditorHelp text="Velg hvilken produktdetalj-side du vil vise" />
