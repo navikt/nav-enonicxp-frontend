@@ -16,7 +16,7 @@ export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
         );
     }
 
-    const mainRegion = config?.productDetailsTarget?.page?.regions['main'];
+    const mainRegion = config?.productDetailsTarget?.page?.regions?.['main'];
 
     if (!mainRegion) {
         return <EditorHelp text="Mangler hovedregion" />;
