@@ -1,35 +1,35 @@
 import React from 'react';
-
 import { ProductDetailsProps } from 'types/component-props/parts/product-details';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
-    const { pageConfig } = usePageConfig();
-
-    if (!config?.productDetailsTarget) {
+    if (!config?.detailType) {
         return (
-            <EditorHelp text="Velg hvilken produktdetalj-side du vil vise" />
+            <EditorHelp text="Velg hvilken produktdetalj-type du vil vise" />
         );
     }
 
-    const mainRegion = config?.productDetailsTarget?.page?.regions?.['main'];
-
-    if (!mainRegion) {
-        return <EditorHelp text="Mangler hovedregion" />;
+    if (!config.components) {
+        return (
+            <EditorHelp
+                text="Feil: Fant ingen komponenter i produktdetaljene"
+                type={'error'}
+            />
+        );
     }
 
     return (
         <FilteredContent {...config}>
             <ExpandableComponentWrapper {...config}>
-                {mainRegion.components.map((component, index) => (
+                {config.components.map((component, index) => (
                     <ComponentMapper
                         key={index}
                         componentProps={component}
-                        pageProps={config.productDetailsTarget}
+                        // @ts-ignore
+                        pageProps={{}}
                     />
                 ))}
             </ExpandableComponentWrapper>
