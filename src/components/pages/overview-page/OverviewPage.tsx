@@ -101,7 +101,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                             product.idOrPath
                         );
                         return (
-                            <Accordion key={product._id}>
+                            <Accordion key={product.idOrPath}>
                                 <Accordion.Item
                                     open={openPanels.includes(product.idOrPath)}
                                     className={style.accordionItem}
