@@ -8,14 +8,16 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
     if (!config?.detailType) {
         return (
-            <EditorHelp text="Velg hvilken produktdetalj-type du vil vise" />
+            <EditorHelp
+                text={'Velg hvilken produktdetalj-type som skal vises'}
+            />
         );
     }
 
-    if (!config.components) {
+    if (!config.components || config.components.length === 0) {
         return (
             <EditorHelp
-                text="Feil: Fant ingen komponenter i produktdetaljene"
+                text={'Feil: Fant ingen komponenter i produktdetaljene'}
                 type={'error'}
             />
         );
