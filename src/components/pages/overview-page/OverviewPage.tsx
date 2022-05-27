@@ -30,9 +30,9 @@ export const OverviewPage = (props: OverviewPageProps) => {
         setAreaFilter(area);
     };
 
-    const hasVisibleProducts =
-        areaFilter === Area.ALL ||
-        productList.some((product) => product.area === areaFilter);
+    const hasVisibleProducts = productList.some(
+        (product) => product.area === areaFilter || areaFilter === Area.ALL
+    );
 
     return (
         <div className={style.overviewPage}>
