@@ -4,8 +4,8 @@ import { fetchWithTimeout } from './fetch-utils';
 const origin = process.env.APP_ORIGIN;
 const buildId = process.env.BUILD_ID;
 
-export const fetchRelevantProductDetails = async (idOrPath: string) => {
-    const cachecURL = `${origin}/_next/data/${buildId}/utkast/${idOrPath}.json`;
+export const fetchRelevantProductDetails = async (path: string) => {
+    const cachecURL = `${origin}/_next/data/${buildId}/utkast/${path}.json`;
 
     const response = await fetchWithTimeout(cachecURL);
 

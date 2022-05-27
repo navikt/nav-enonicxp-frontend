@@ -38,7 +38,7 @@ export const ExpandableProductDetails = ({
     }
 
     const cardLink: LinkProps = {
-        url: productDetails.idOrPath,
+        url: productDetails.path,
         text: productDetails.title,
     };
 

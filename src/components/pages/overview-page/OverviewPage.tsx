@@ -35,42 +35,39 @@ export const OverviewPage = (props: OverviewPageProps) => {
         return <ErrorPage404 />;
     }
 
-    const fetchPanelContent = async (idOrPath: string) => {
+    const fetchPanelContent = async (path: string) => {
         // Don't check if we already have the content.
-        if (details[idOrPath]) {
+        if (details[path]) {
             return;
         }
 
-        const cleanedIdOrPath =
-            idOrPath[0] === '/' ? idOrPath.substring(1) : idOrPath;
+        const cleanedPath = path[0] === '/' ? path.substring(1) : path;
 
-        const fullProductPage = await fetchRelevantProductDetails(
-            cleanedIdOrPath
-        );
+        const fullProductPage = await fetchRelevantProductDetails(cleanedPath);
 
         const productDetails = scrapeProductPageForProductDetails(
             fullProductPage,
             overviewType
         );
 
-        setDetails({ ...details, [idOrPath]: productDetails });
+        setDetails({ ...details, [path]: productDetails });
     };
 
-    const handlePanelToggle = (idOrPath: string) => {
-        const isOpening = openPanels.findIndex((id) => id === idOrPath) === -1;
+    const handlePanelToggle = (path: string) => {
+        const isOpening = openPanels.findIndex((id) => id === path) === -1;
         const updatedOpenPanels = isOpening
-            ? [...openPanels, idOrPath]
-            : openPanels.filter((id) => id !== idOrPath);
+            ? [...openPanels, path]
+            : openPanels.filter((id) => id !== path);
 
         setOpenPanels(updatedOpenPanels);
 
         if (isOpening) {
-            fetchPanelContent(idOrPath);
+            fetchPanelContent(path);
         }
     };
 
-    const getDetailComponents = (idOrPath: string) => {
-        return details[idOrPath];
+    const getDetailComponents = (path: string) => {
+        return details[path];
     };
 
     const handleFilterUpdate = (area: Area) => {
@@ -98,17 +95,17 @@ export const OverviewPage = (props: OverviewPageProps) => {
                     )}
                     {filteredProducts.map((product) => {
                         const detailComponents = getDetailComponents(
-                            product.idOrPath
+                            product.path
                         );
                         return (
-                            <Accordion key={product.idOrPath}>
+                            <Accordion key={product.path}>
                                 <Accordion.Item
-                                    open={openPanels.includes(product.idOrPath)}
+                                    open={openPanels.includes(product.path)}
                                     className={style.accordionItem}
                                 >
                                     <Accordion.Header
                                         onClick={() =>
-                                            handlePanelToggle(product.idOrPath)
+                                            handlePanelToggle(product.path)
                                         }
                                     >
                                         <IllustrationStatic

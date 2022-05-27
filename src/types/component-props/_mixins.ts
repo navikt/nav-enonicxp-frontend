@@ -24,8 +24,7 @@ export enum Audience {
 export type FilterSelection = string[];
 
 export type SimplifiedProductData = Partial<{
-    _id: XpContentRef;
-    idOrPath: string;
+    path: string;
 }> &
     ProductDataMixin;
 
