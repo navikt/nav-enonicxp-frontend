@@ -8,7 +8,6 @@ import { FilteredContent } from '../../_common/filtered-content/FilteredContent'
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
-    const { pageConfig } = usePageConfig();
 
     if (!config?.productDetailsTarget) {
         return (
@@ -16,7 +15,7 @@ export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
         );
     }
 
-    const mainRegion = config?.productDetailsTarget?.page?.regions['main'];
+    const mainRegion = config?.productDetailsTarget?.page?.regions?.['main'];
 
     if (!mainRegion) {
         return <EditorHelp text="Mangler hovedregion" />;
