@@ -1,6 +1,5 @@
 @use 'src/common' as common;
 
-
 .overviewPage {
     display: flex;
     flex-direction: column;
@@ -23,25 +22,6 @@
         background-color: white;
         padding: 2rem;
         max-width: common.$sectionMaxWidth;
-    }
-
-    .illustration {
-        width: 40px;
-        height: 40px;
-    }
-
-    .accordionItem {
-        :global(.navds-accordion__header), :global(.navds-accordion__content) {
-            border-bottom-color: var(--navds-semantic-color-divider);
-        }
-
-        :global(.navds-accordion__content) {
-            padding-bottom: 0px;
-        }
-    }
-
-    :global(.navds-accordion__expand-icon) {
-        margin-left: auto;
     }
 
     @include common.product-mixins();

@@ -1,0 +1,33 @@
+.detailsContainer {
+    margin: 0 0 2rem;
+}
+
+.detailsLoader {
+    justify-content: center;
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.accordionItem {
+    :global(.navds-accordion__header),
+    :global(.navds-accordion__content) {
+        border-bottom-color: var(--navds-semantic-color-divider);
+    }
+
+    :global(.navds-accordion__content) {
+        padding-bottom: 0;
+    }
+
+    :global(.navds-accordion__expand-icon) {
+        margin-left: auto;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.illustration {
+    width: 40px;
+    height: 40px;
+}
