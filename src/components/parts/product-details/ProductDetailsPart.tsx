@@ -14,7 +14,10 @@ const readableTypeStrings: { [key in ProductDetailType]: string } = {
     rates: 'satser',
 };
 
-export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
+export const ProductDetailsPart = ({
+    config,
+    pageProps,
+}: ProductDetailsProps) => {
     if (!config?.detailType) {
         return (
             <EditorHelp
@@ -43,8 +46,7 @@ export const ProductDetailsPart = ({ config }: ProductDetailsProps) => {
                     <ComponentMapper
                         key={index}
                         componentProps={component}
-                        // @ts-ignore (TODO: fix this :)
-                        pageProps={{}}
+                        pageProps={pageProps}
                     />
                 ))}
             </ExpandableComponentWrapper>

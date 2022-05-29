@@ -12,8 +12,8 @@ export interface ProductDetailsProps extends PartComponentProps {
     descriptor: PartType.ProductDetails;
     config: {
         detailType: ProductDetailType;
-        // Note: the components field is set as a special-case after the main graphql query
-        // in the backend, and is not part of the gql schema.
+        // Note: the components field is defined as a special case on the backend
+        // and is not included in the Graphql schema.
         components: ComponentProps[];
     } & ExpandableMixin &
         FiltersMixin &

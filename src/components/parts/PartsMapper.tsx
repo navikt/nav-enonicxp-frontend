@@ -12,7 +12,7 @@ import PageHeading from './_legacy/page-heading/PageHeading';
 import PageList from './_legacy/page-list/PageList';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './link-panel/LinkPanelPart';
-import {LinkPanelsLegacyPart} from "./_legacy/link-panels/LinkPanelsLegacyPart";
+import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
 import LinkLists from './_legacy/link-lists/LinkLists';
 import { MainArticle } from './_legacy/main-article/MainArticle';
 import {
@@ -100,7 +100,7 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
     const PartWithPageData = partsWithOwnData[descriptor];
 
     if (PartWithPageData) {
-        return <PartWithPageData {...partProps} page={pageProps.page} />;
+        return <PartWithPageData {...partProps} pageProps={pageProps} />;
     }
 
     return <div>{`Unimplemented part: ${descriptor}`}</div>;
