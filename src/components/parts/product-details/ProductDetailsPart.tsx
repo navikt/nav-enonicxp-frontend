@@ -31,9 +31,9 @@ export const ProductDetailsPart = ({
     if (!components || components.length === 0) {
         return (
             <EditorHelp
-                text={`Feil: Fant ingen produktdetaljer for ${
+                text={`Fant ingen produktdetaljer for ${
                     readableTypeStrings[config.detailType]
-                }`}
+                } på denne siden. Velg produktdetaljer fra venstre-panelet i editoren (produktdetaljene må være publisert for å kunne velges).`}
                 type={'error'}
             />
         );
