@@ -31,8 +31,7 @@
         margin: 0.5rem 0 1rem;
     }
 
-    .text,
-    .facts {
+    .text {
         p {
             margin-bottom: 1rem;
         }
@@ -84,76 +83,16 @@
         .h4 {
             font-size: common.$navds-font-size-heading-small;
             margin: 1.75rem 0 0.6875rem;
-        }
 
-        h1:first-child,
-        h2:first-child {
-            margin-top: 0;
+            &:first-child {
+                margin-top: 0;
+            }
         }
 
         ul,
         ol {
             padding-left: 1.4rem;
             margin-bottom: 1rem;
-        }
-    }
-
-    .facts {
-        .factIcon {
-            width: 1.25rem;
-            height: 1.25rem;
-            display: flex;
-            margin: 0 auto;
-        }
-        h3 {
-            text-align: center;
-        }
-        .decorated {
-            margin-bottom: 1.4rem;
-
-            &:after {
-                border-top: 1px solid #808080;
-                content: ' ';
-                display: block;
-                margin: 1.25rem auto 0;
-                width: 2rem;
-            }
-        }
-        background: #f1f1f1;
-        border: 1px solid #d1d1d1;
-        padding: 1.5rem;
-        margin-top: 4.2rem;
-    }
-}
-
-.figureContainer {
-    text-align: center;
-
-    figure {
-        width: 100%;
-        margin-top: 4rem;
-        display: inline-block;
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        &.figureSmall img {
-            max-width: 40%;
-        }
-        &.figureMedium img {
-            max-width: 70%;
-        }
-        &.figureFull img {
-            max-width: 100%;
-        }
-
-        figcaption {
-            padding-top: 0.42rem;
-            margin-bottom: 0;
-            color: #555;
-            font-size: 0.84rem;
         }
     }
 }

@@ -2,6 +2,9 @@ import React, { useLayoutEffect, useState } from 'react';
 import { useAuthState } from '../../../store/hooks/useAuthState';
 import { AuthStateType } from '../../../store/slices/authState';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
+
+// eslint does not understand bracket notation
+// eslint-disable-next-line css-modules/no-unused-class
 import style from './AuthDependantRender.module.scss';
 
 // Hack to prevent irrelevant React warning for useLayoutEffect server-side

@@ -1,8 +1,9 @@
 @use 'src/common' as common;
 
-.GVItem {
+.gvItem {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 
     &:not(:last-child) {
         margin-bottom: 0.5rem;
