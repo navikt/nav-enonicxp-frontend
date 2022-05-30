@@ -20,8 +20,12 @@
 
     .productListWrapper {
         background-color: white;
-        padding: 2rem;
+        padding: common.$sectionPaddingDesktop;
         max-width: common.$sectionMaxWidth;
+
+        @media #{common.$mq-screen-mobile} {
+            padding: common.$sectionPaddingMobile;
+        }
     }
 
     @include common.product-mixins();
