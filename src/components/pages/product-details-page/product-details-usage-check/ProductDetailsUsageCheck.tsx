@@ -70,7 +70,7 @@ export const ProductDetailsUsageCheck = ({ id }: Props) => {
                     </>
                 ) : (
                     <Heading level="3" size="small">
-                        {`Fragmentet er ikke i bruk på publiserte sider`}
+                        {`Produktdetaljene er ikke i bruk på publiserte sider`}
                     </Heading>
                 )}
             </div>
