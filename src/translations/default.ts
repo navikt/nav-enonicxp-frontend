@@ -2,6 +2,7 @@ import { DeepPartial } from '../types/util-types';
 import { MenuListItemKey } from '../types/menu-list-items';
 import { Taxonomy } from 'types/taxonomies';
 import { Area } from 'types/areas';
+import { ProductDetailType } from '../types/content-props/product-details';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.AppealRights]: 'Klagerettigheter',
@@ -38,6 +39,12 @@ const areas: { [key in Area]: string } = {
     [Area.HEALTH]: 'Helse og sykdom',
     [Area.PENSION]: 'Pensjon',
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
+};
+
+const productDetailTypes: { [key in ProductDetailType]: string } = {
+    [ProductDetailType.PAYOUT_DATES]: 'utbetalingsdatoer',
+    [ProductDetailType.PROCESSING_TIMES]: 'saksbehandlingstider',
+    [ProductDetailType.RATES]: 'satser',
 };
 
 export const translationsBundleNb = {
@@ -188,6 +195,7 @@ export const translationsBundleNb = {
             months: 'måneder',
         },
     },
+    productDetailTypes: productDetailTypes,
 };
 
 export type Translations = DeepPartial<typeof translationsBundleNb>;

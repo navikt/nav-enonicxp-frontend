@@ -12,7 +12,7 @@ import { OverviewPageDetailsPanel } from './product-panel/OverviewPageDetailsPan
 import style from './OverviewPage.module.scss';
 
 export const OverviewPage = (props: OverviewPageProps) => {
-    const { productList } = props.data;
+    const { productList, overviewType } = props.data;
     const { language, pageConfig } = usePageConfig();
     const { isPagePreview, editorView } = pageConfig;
 
@@ -51,12 +51,13 @@ export const OverviewPage = (props: OverviewPageProps) => {
                     )}
                     {productList.map((product) => (
                         <OverviewPageDetailsPanel
-                            product={product}
+                            productDetails={product}
                             pageProps={props}
                             visible={
                                 product.area == areaFilter ||
                                 areaFilter === Area.ALL
                             }
+                            detailType={overviewType}
                             key={product._id}
                         />
                     ))}

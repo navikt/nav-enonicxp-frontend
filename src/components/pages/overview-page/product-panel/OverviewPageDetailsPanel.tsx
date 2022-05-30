@@ -12,15 +12,19 @@ import {
 
 import style from './OverviewPageDetailsPanel.module.scss';
 import { classNames } from '../../../../utils/classnames';
+import { translator } from '../../../../translations';
+import { ProductDetailType } from '../../../../types/content-props/product-details';
 
 type Props = {
-    product: SimplifiedProductData;
+    productDetails: SimplifiedProductData;
+    detailType: ProductDetailType;
     pageProps: ContentProps;
     visible: boolean;
 };
 
 export const OverviewPageDetailsPanel = ({
-    product,
+    productDetails,
+    detailType,
     pageProps,
     visible,
 }: Props) => {
@@ -29,6 +33,8 @@ export const OverviewPageDetailsPanel = ({
     const [error, setError] = useState(null);
     const [productDetailsPage, setProductDetailsPage] = useState(null);
 
+    const detailTypeStrings = translator('productDetailTypes', 'no');
+
     const handleProductDetailsFetch = () => {
         if (isLoading || productDetailsPage) {
             return;
@@ -36,17 +42,17 @@ export const OverviewPageDetailsPanel = ({
 
         setIsLoading(true);
 
-        fetchPageCacheContent(product.productDetailsPath)
+        fetchPageCacheContent(productDetails.productDetailsPath)
             .then((contentFromCache) => {
-                if (!contentFromCache) {
-                    setError('Failed to fetch from cache, oh noes!');
-                    return null;
-                }
-
                 if (
+                    !contentFromCache ||
                     contentFromCache.__typename !== ContentType.ProductDetails
                 ) {
-                    setError(`Incorrect type for product details!`);
+                    setError(
+                        `Teknisk feil: Kunne ikke laste ${detailTypeStrings(
+                            detailType
+                        )}.`
+                    );
                     return null;
                 }
 
@@ -72,9 +78,9 @@ export const OverviewPageDetailsPanel = ({
                 >
                     <IllustrationStatic
                         className={style.illustration}
-                        illustration={product.illustration}
+                        illustration={productDetails.illustration}
                     />
-                    {product.title}
+                    {productDetails.title}
                 </Accordion.Header>
                 <Accordion.Content>
                     {error && <AlertBox variant={'error'}>{error}</AlertBox>}
