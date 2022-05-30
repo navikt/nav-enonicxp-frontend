@@ -5,8 +5,7 @@ import {
     FiltersMixin,
     RenderOnAuthStateMixin,
 } from '../_mixins';
-
-export type ProductDetailType = 'rates' | 'payout_dates' | 'processing_times';
+import { ProductDetailType } from '../../content-props/product-details';
 
 export interface ProductDetailsProps extends PartComponentProps {
     descriptor: PartType.ProductDetails;

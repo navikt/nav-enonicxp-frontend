@@ -1,18 +1,10 @@
 import React from 'react';
-import {
-    ProductDetailsProps,
-    ProductDetailType,
-} from 'types/component-props/parts/product-details';
+import { ProductDetailsProps } from 'types/component-props/parts/product-details';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-
-const readableTypeStrings: { [key in ProductDetailType]: string } = {
-    payout_dates: 'utbetalingsdatoer',
-    processing_times: 'saksbehandlingstider',
-    rates: 'satser',
-};
+import { translator } from '../../../translations';
 
 export const ProductDetailsPart = ({
     config,
@@ -26,13 +18,15 @@ export const ProductDetailsPart = ({
         );
     }
 
+    const detailTypeStrings = translator('productDetailTypes', 'no');
+
     const { components } = config;
     if (!components || components.length === 0) {
         return (
             <EditorHelp
-                text={`Fant ingen produktdetaljer for ${
-                    readableTypeStrings[config.detailType]
-                } på denne siden. Velg produktdetaljer fra venstre-panelet i editoren (produktdetaljene må være publisert for å kunne velges).`}
+                text={`Fant ingen produktdetaljer for ${detailTypeStrings(
+                    config.detailType
+                )} på denne siden. Velg produktdetaljer fra venstre-panelet i editoren (produktdetaljene må være publisert for å kunne velges).`}
                 type={'error'}
             />
         );
