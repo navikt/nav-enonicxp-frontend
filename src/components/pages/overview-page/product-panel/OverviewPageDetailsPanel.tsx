@@ -79,7 +79,7 @@ export const OverviewPageDetailsPanel = ({
                         className={style.illustration}
                         illustration={product.illustration}
                     />
-                    <div>{product.title}</div>
+                    {product.title}
                 </Accordion.Header>
                 <Accordion.Content>
                     {error && <AlertBox variant={'error'}>{error}</AlertBox>}
