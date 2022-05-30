@@ -172,6 +172,14 @@ module.exports = withPlugins([withLess, withTranspileModules], {
         cssModulesNoDashesInClassnames(config);
         resolveNodeLibsClientSide(config, options);
 
+        const { webpack, buildId } = options;
+
+        config.plugins.push(
+            new webpack.DefinePlugin({
+                'process.env.BUILD_ID': JSON.stringify(buildId),
+            })
+        );
+
         return config;
     },
     redirects: async () => [

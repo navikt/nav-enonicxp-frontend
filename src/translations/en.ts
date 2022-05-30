@@ -116,6 +116,17 @@ export const translationsBundleEn: Translations = {
         copyLink: 'Copy link',
         copiedLink: 'Link successfully copied',
     },
+    overview: {
+        noProducts: 'No products to show',
+        ariaExplanation: 'Filter list by area',
+        ariaItemExplanation: 'Show area',
+        chooseArea: 'Choose area',
+        loading: 'Loading product details',
+    },
+    pagination: {
+        goTo: 'Go to',
+        ariaExplanation: 'Navigate the content by pagination',
+    },
     contactPoint: {
         chat: {
             title: 'Chat with Frida',
