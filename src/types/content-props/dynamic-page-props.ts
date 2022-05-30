@@ -8,7 +8,9 @@ import { LanguageProps } from '../language';
 import {
     ProductDataMixin,
     SimplifiedProductData,
+    ProductDetailsDataMixin,
 } from '../component-props/_mixins';
+import { ProductDetailType as OverviewType } from './product-details';
 
 export type DynamicPageData = Partial<{
     customPath: string;
@@ -21,10 +23,12 @@ export type DynamicPageData = Partial<{
 export type ProductPageData = ProductDataMixin & DynamicPageData;
 export type ThemedArticlePageData = ProductDataMixin & DynamicPageData;
 export type GuidePageData = ProductDataMixin & DynamicPageData;
+export type ProductDetailsData = ProductDetailsDataMixin & DynamicPageData;
 export type SituationPageData = ProductDataMixin & DynamicPageData;
 export type ToolsPageData = ProductDataMixin & DynamicPageData;
 export type OverviewPageData = Partial<{
     productList: SimplifiedProductData[];
+    overviewType: OverviewType;
 }> &
     ProductDataMixin &
     DynamicPageData;
@@ -36,6 +40,7 @@ export interface ProductPageProps extends ContentProps {
 
 export interface ProductDetailsProps extends ContentProps {
     __typename: ContentType.ProductDetails;
+    data: ProductDetailsData;
 }
 
 export interface ThemedArticlePageProps extends ContentProps {

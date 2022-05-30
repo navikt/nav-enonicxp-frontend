@@ -109,6 +109,17 @@ export const translationsBundleNb = {
         copyLink: 'Kopier lenke',
         copiedLink: 'Lenken er kopiert',
     },
+    overview: {
+        noProducts: 'Ingen produkter å vise',
+        ariaExplanation: 'Filtrer listen etter område',
+        ariaItemExplanation: 'Vis område',
+        chooseArea: 'Velg område',
+        loading: 'Henter produktdetaljer',
+    },
+    pagination: {
+        goTo: 'Gå til',
+        ariaExplanation: 'Navigering av innholdet via paginering',
+    },
     contactPoint: {
         chat: {
             title: 'Chat med Frida',
