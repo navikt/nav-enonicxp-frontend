@@ -20,7 +20,7 @@
 
     .productListWrapper {
         background-color: white;
-        padding: common.$sectionPaddingDesktop;
+        padding: common.$sectionPaddingDesktop / 2;
         max-width: common.$sectionMaxWidth;
 
         @media #{common.$mq-screen-mobile} {
