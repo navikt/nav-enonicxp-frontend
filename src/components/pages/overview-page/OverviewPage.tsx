@@ -8,8 +8,12 @@ import { ComponentMapper } from 'components/ComponentMapper';
 import { OverviewFilter } from 'components/pages/overview-page/product-filter/OverviewFilter';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 import { OverviewPageDetailsPanel } from './product-panel/OverviewPageDetailsPanel';
+import { SimplifiedProductData } from '../../../types/component-props/_mixins';
 
 import style from './OverviewPage.module.scss';
+
+const isVisiblePredicate = (product: SimplifiedProductData, areaFilter: Area) =>
+    areaFilter === Area.ALL || product.area.some((area) => area === areaFilter);
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
@@ -30,8 +34,8 @@ export const OverviewPage = (props: OverviewPageProps) => {
         setAreaFilter(area);
     };
 
-    const hasVisibleProducts = productList.some(
-        (product) => product.area === areaFilter || areaFilter === Area.ALL
+    const hasVisibleProducts = productList.some((product) =>
+        isVisiblePredicate(product, areaFilter)
     );
 
     return (
@@ -53,10 +57,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         <OverviewPageDetailsPanel
                             productDetails={product}
                             pageProps={props}
-                            visible={
-                                product.area == areaFilter ||
-                                areaFilter === Area.ALL
-                            }
+                            visible={isVisiblePredicate(product, areaFilter)}
                             detailType={overviewType}
                             key={product._id}
                         />
