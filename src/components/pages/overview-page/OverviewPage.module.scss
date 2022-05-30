@@ -22,6 +22,10 @@
         background-color: white;
         padding: 2rem;
         max-width: common.$sectionMaxWidth;
+
+        @media #{common.$mq-screen-mobile} {
+            padding: 0.5rem;
+        }
     }
 
     @include common.product-mixins();
