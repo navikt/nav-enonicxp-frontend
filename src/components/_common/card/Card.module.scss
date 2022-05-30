@@ -37,13 +37,13 @@
         :global(.guide) {
             background-color: var(--navds-global-color-lightblue-200);
         }
-        :global(.title),
-        :global(.description),
-        :global(.category) {
+        //TODO: Find a better way? (can't specify classes in Card Size modules here or vice versa)
+        *  {
             text-decoration: none;
-            color: var(--navds-global-color-gray-900);
+            color: var(--navds-global-color-gray-900) !important;
         }
     }
+
     &:focus,
     &:active {
         .bed {
