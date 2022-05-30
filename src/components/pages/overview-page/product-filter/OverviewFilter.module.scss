@@ -1,6 +1,9 @@
+@use 'src/common' as common;
+
 .overviewFilter {
     display: flex;
     flex-direction: column;
+    max-width: common.$sectionMaxWidth;
 }
 
 .filterWrapper {
@@ -28,6 +31,8 @@
 
 .activeButton {
     .tag {
-        background-color: rgb(219, 219, 219);
+        background-color: common.$navds-global-color-blue-100;
+        outline: 2px solid common.$navds-global-color-blue-500;
+        border-color: transparent;
     }
 }

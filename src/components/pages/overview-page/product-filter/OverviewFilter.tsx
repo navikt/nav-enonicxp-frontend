@@ -16,7 +16,15 @@ interface OverviewFilterProps {
 export const OverviewFilter = ({
     filterUpdateCallback,
 }: OverviewFilterProps) => {
-    const filterableAreas = Object.values(Area);
+    const filterableAreas = [
+        Area.ALL,
+        Area.FAMILY,
+        Area.WORK,
+        Area.HEALTH,
+        Area.ACCESSIBILITY,
+        Area.PENSION,
+        Area.SOCIAL_COUNSELLING,
+    ];
     const [currentArea, setCurrentArea] = useState<Area>(Area.ALL);
     const { language } = usePageConfig();
 
