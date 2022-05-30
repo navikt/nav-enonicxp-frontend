@@ -27,7 +27,6 @@ export const ProductDetailsPart = ({
     }
 
     const { components } = config;
-
     if (!components || components.length === 0) {
         return (
             <EditorHelp
