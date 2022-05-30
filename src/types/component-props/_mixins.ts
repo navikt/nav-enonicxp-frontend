@@ -36,7 +36,7 @@ export type ProductDataMixin = {
     audience?: Audience;
     customCategory?: string;
     illustration: AnimatedIconsProps;
-    area: Area;
+    area: Area[];
     externalProductUrl?: string;
 };
 
