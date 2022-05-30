@@ -65,12 +65,7 @@ export const OverviewPageDetailsPanel = ({
     };
 
     return (
-        <Accordion
-            className={classNames(
-                style.detailsContainer,
-                !visible && style.hidden
-            )}
-        >
+        <Accordion className={classNames(!visible && style.hidden)}>
             <Accordion.Item open={isOpen} className={style.accordionItem}>
                 <Accordion.Header
                     onClick={() => {

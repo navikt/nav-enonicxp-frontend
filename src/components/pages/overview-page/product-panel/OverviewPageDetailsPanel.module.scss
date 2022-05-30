@@ -1,7 +1,3 @@
-.detailsContainer {
-    margin: 0 0 2rem;
-}
-
 .detailsLoader {
     justify-content: center;
     display: flex;
@@ -11,7 +7,13 @@
 .accordionItem {
     :global(.navds-accordion__header),
     :global(.navds-accordion__content) {
-        border-bottom-color: var(--navds-semantic-color-divider);
+        border-bottom: 1px solid var(--navds-semantic-color-divider);
+    }
+
+    :global(.navds-accordion__header) {
+        padding-left: 0;
+        padding-right: 0;
+        background-color: white;
     }
 
     :global(.navds-accordion__content) {
@@ -28,6 +30,7 @@
 }
 
 .illustration {
-    width: 40px;
-    height: 40px;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
 }
