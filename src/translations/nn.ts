@@ -33,7 +33,6 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
 
 const areas: { [key in Area]: string } = {
     [Area.ALL]: 'Alle',
-    [Area.WORK]: 'Arbeid',
     [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
     [Area.FAMILY]: 'Familie og barn',
     [Area.HEALTH]: 'Helse og sykdom',
