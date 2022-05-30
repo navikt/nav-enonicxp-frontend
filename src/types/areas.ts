@@ -1,6 +1,5 @@
 export enum Area {
     ALL = 'all',
-    WORK = 'work',
     FAMILY = 'family',
     WORK = 'work',
     HEALTH = 'health',

@@ -17,16 +17,16 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
 };
 
 const areas: { [key in Area]: string } = {
-    [Area.ALL]: 'Alle',
-    [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
-    [Area.FAMILY]: 'Familie og barn',
-    [Area.HEALTH]: 'Helse og sykdom',
-    [Area.MUNICIPALITY]: 'For kommunen',
-    [Area.OTHER]: 'Annet',
-    [Area.PENSION]: 'Pensjon',
-    [Area.SELF_EMPLOYED]: 'For selvstendig næringsdrivende',
-    [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
-    [Area.WORK]: 'Arbeid',
+    [Area.ALL]: 'All',
+    [Area.ACCESSIBILITY]: 'Aid and accessibility',
+    [Area.FAMILY]: 'Family and children',
+    [Area.HEALTH]: 'Health',
+    [Area.MUNICIPALITY]: 'For government',
+    [Area.OTHER]: 'Other',
+    [Area.PENSION]: 'Pension',
+    [Area.SELF_EMPLOYED]: 'For the self-employed',
+    [Area.SOCIAL_COUNSELLING]: 'Financial social advice and guidance',
+    [Area.WORK]: 'Work',
 };
 
 export const translationsBundleEn: Translations = {
