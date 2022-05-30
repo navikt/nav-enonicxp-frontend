@@ -31,7 +31,8 @@ export const OverviewPage = (props: OverviewPageProps) => {
     };
 
     const hasVisibleProducts = productList.some(
-        (product) => product.area === areaFilter || areaFilter === Area.ALL
+        (product) =>
+            product.area.includes(areaFilter) || areaFilter === Area.ALL
     );
 
     return (
@@ -54,7 +55,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                             productDetails={product}
                             pageProps={props}
                             visible={
-                                product.area == areaFilter ||
+                                product.area.includes(areaFilter) ||
                                 areaFilter === Area.ALL
                             }
                             detailType={overviewType}
