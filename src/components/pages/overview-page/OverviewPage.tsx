@@ -25,11 +25,6 @@ export const OverviewPage = (props: OverviewPageProps) => {
 
     const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
 
-    // Note: Next 3 lines to be removed when page is ready to go live.
-    if (!(isPagePreview || editorView || props.serverEnv !== 'prod')) {
-        return <ErrorPage404 />;
-    }
-
     const handleFilterUpdate = (area: Area) => {
         setAreaFilter(area);
     };
