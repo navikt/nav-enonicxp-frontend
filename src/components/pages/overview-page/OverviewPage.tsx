@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { translator } from 'translations';
 import { Area } from 'types/areas';
 import { OverviewPageProps } from 'types/content-props/dynamic-page-props';
-import ErrorPage404 from 'pages/404';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { OverviewFilter } from 'components/pages/overview-page/product-filter/OverviewFilter';
@@ -17,8 +16,7 @@ const isVisiblePredicate = (product: SimplifiedProductData, areaFilter: Area) =>
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
-    const { language, pageConfig } = usePageConfig();
-    const { isPagePreview, editorView } = pageConfig;
+    const { language } = usePageConfig();
 
     // Misc translations
     const getTranslationString = translator('overview', language);
