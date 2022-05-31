@@ -14,14 +14,22 @@
         padding-left: 0;
         padding-right: 0;
         background-color: white;
+        margin-bottom: 3px; // To avoid clipping focus outline in bottom.
     }
 
     :global(.navds-accordion__content) {
         padding-bottom: 0;
+        padding-top: 0;
     }
 
     :global(.navds-accordion__expand-icon) {
         margin-left: auto;
+    }
+
+    &:global(.navds-accordion__item--open) {
+        :global(.navds-accordion__header) {
+            border-bottom: 0;
+        }
     }
 }
 
