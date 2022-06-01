@@ -7,14 +7,16 @@
 }
 
 .accordionItem {
+    border-bottom: 1px common.$navds-global-color-gray-400 solid;
+
     :global(.navds-accordion__header),
     :global(.navds-accordion__content) {
-        border-bottom: 1px solid var(--navds-semantic-color-divider);
+        border-bottom: 0;
     }
 
     :global(.navds-accordion__header) {
         background-color: white;
-        margin-bottom: 0.25rem;
+        margin-bottom: 3px;
 
         @include common.expandable-panel-mixin();
         &:focus {
