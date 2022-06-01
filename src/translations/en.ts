@@ -118,7 +118,7 @@ export const translationsBundleEn: Translations = {
     areas,
     header: {
         copyLink: 'Copy link',
-        copiedLink: 'Link successfully copied',
+        copiedLinkConfirmed: 'Link successfully copied',
     },
     overview: {
         noProducts: 'No products to show',
