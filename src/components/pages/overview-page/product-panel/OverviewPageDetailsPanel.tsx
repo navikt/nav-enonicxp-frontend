@@ -111,6 +111,7 @@ export const OverviewPageDetailsPanel = ({
                             anchor={getAnchorFromPath(
                                 `#${productDetails.productDetailsPath}`
                             )}
+                            className={style.copyLink}
                         />
                         {isLoading ? (
                             <div className={style.detailsLoader}>

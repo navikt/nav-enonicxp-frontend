@@ -12,11 +12,12 @@ import style from './copyLink.module.scss';
 type CopyLinkProps = {
     anchor: string;
     label?: string;
+    className: string;
 };
 
 const linkCopiedDisplayTimeMs = 2500;
 
-export const CopyLink = ({ anchor, label }: CopyLinkProps) => {
+export const CopyLink = ({ anchor, label, className }: CopyLinkProps) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
     const { language } = usePageConfig();
 
@@ -45,7 +46,7 @@ export const CopyLink = ({ anchor, label }: CopyLinkProps) => {
     };
 
     return (
-        <span className={style.copyLinkContainer}>
+        <span className={classNames(style.copyLinkContainer, className)}>
             <a
                 href={anchor}
                 onClick={copyLinkToClipboard}
