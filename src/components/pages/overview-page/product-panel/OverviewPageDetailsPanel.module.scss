@@ -14,6 +14,7 @@
 
     :global(.navds-accordion__header) {
         background-color: white;
+        margin-bottom: 0.25rem;
 
         @include common.expandable-panel-mixin();
         &:focus {
@@ -23,6 +24,7 @@
 
     :global(.navds-accordion__content) {
         padding-bottom: 0;
+        padding-top: 0;
     }
 
     :global(.navds-accordion__expand-icon) {
@@ -38,4 +40,8 @@
     width: 56px;
     height: 56px;
     flex-shrink: 0;
+}
+
+.copyLink {
+    margin-bottom: 1rem;
 }
