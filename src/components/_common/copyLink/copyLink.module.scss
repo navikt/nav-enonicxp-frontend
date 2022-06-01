@@ -38,7 +38,7 @@
     background-color:var(--navds-global-color-green-100);
     color: black;
     padding: 0.5rem 0.75rem;
-    border: 1px common.$navds-global-color-green-500 solid;
+    border: 1px var(--navds-global-color-green-500) solid;
     border-radius: common.$border-radius-small;
     pointer-events: none;
     opacity: 0;
