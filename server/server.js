@@ -88,11 +88,11 @@ nextApp.prepare().then(() => {
             handleInvalidateAllReq(nextApp)
         );
 
-        server.get(`/_next/data/:buildId/*`, (req, res) => {
+        server.get('/_next/data/:buildId/*.json', (req, res) => {
             const { buildId } = req.params;
             if (buildId !== currentBuildId) {
                 console.log(
-                    `Expected build-id ${currentBuildId}, got ${buildId} - Rewriting request path to match expected build-id`
+                    `Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`
                 );
                 req.url = req.url.replace(buildId, currentBuildId);
                 req.path = req.path.replace(buildId, currentBuildId);
