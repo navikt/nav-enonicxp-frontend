@@ -12,16 +12,9 @@
     }
 
     :global(.navds-accordion__header) {
-        $focusPadding: 0.5rem;
-
         color: common.$navds-semantic-color-link;
-        border-radius: common.$border-radius-base;
-        border-bottom: 0;
-        padding-left: $focusPadding;
-        padding-right: $focusPadding;
-        margin: 0 (-$focusPadding);
-        width: calc(100% + #{$focusPadding} * 2);
 
+        @include common.expandable-panel-mixin();
         &:focus {
             @include common.panel-focus-mixin(false);
         }

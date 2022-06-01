@@ -36,7 +36,7 @@ $mq-screen-desktop-large: 'only screen and (min-width: #{$desktopMaxWidth}) ';
 
 // Max-width for SituationPage & Layouts
 $contentMaxWidth: px-to-rem(900);
-$sectionMaxWidth: calc(#{$contentMaxWidth} * 2/3);
+$sectionMaxWidth: calc(#{$contentMaxWidth} * 2 / 3);
 
 $padding-sides-desktop: 3rem;
 $padding-sides-tablet: 1rem;
@@ -71,7 +71,10 @@ $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
         flex-grow: 1;
         flex-shrink: 0;
         flex-basis: calc(percentage(1 / $numColsPlus1) + 1px);
-        max-width: calc(#{percentage(1 / $numCols)} - #{($marginX * ($numCols - 1)) / $numCols} + 1px);
+        max-width: calc(
+            #{percentage(1 / $numCols)} - #{($marginX * ($numCols - 1)) /
+                $numCols} + 1px
+        );
 
         &:not(:last-child) {
             margin-right: $marginX;
@@ -97,6 +100,17 @@ $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
     @media #{$mq-screen-mobile} {
         padding: $sectionPaddingMobile;
     }
+}
+
+@mixin expandable-panel-mixin() {
+    $focusPadding: 0.5rem;
+
+    border-radius: $border-radius-base;
+    border-bottom: 0;
+    padding-left: $focusPadding;
+    padding-right: $focusPadding;
+    margin: 0 (-$focusPadding);
+    width: calc(100% + #{$focusPadding} * 2);
 }
 
 @mixin panel-focus-mixin($inset: true) {
