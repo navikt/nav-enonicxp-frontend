@@ -13,8 +13,8 @@
 
     :global(.navds-accordion__header) {
         color: common.$navds-semantic-color-link;
-        @include common.expandable-panel-mixin();
 
+        @include common.expandable-panel-mixin();
         &:focus {
             @include common.panel-focus-mixin(false);
         }

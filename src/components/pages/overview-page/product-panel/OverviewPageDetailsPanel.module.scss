@@ -13,12 +13,9 @@
     }
 
     :global(.navds-accordion__header) {
-        padding-left: 0;
-        padding-right: 0;
         background-color: white;
 
         @include common.expandable-panel-mixin();
-
         &:focus {
             @include common.panel-focus-mixin(true);
         }
