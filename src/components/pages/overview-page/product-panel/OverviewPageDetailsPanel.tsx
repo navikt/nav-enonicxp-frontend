@@ -108,9 +108,9 @@ export const OverviewPageDetailsPanel = ({
                             <AlertBox variant={'error'}>{error}</AlertBox>
                         )}
                         <CopyLink
-                            anchor={getAnchorFromPath(
-                                `#${productDetails.productDetailsPath}`
-                            )}
+                            anchor={`#${getAnchorFromPath(
+                                productDetails.productDetailsPath
+                            )}`}
                             className={style.copyLink}
                         />
                         {isLoading ? (
