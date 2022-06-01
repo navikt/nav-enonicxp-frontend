@@ -92,7 +92,7 @@ nextApp.prepare().then(() => {
             const { buildId } = req.params;
             if (buildId !== currentBuildId) {
                 console.log(
-                    `Expected build-id ${currentBuildId}, got ${buildId} - Rewriting request path to match expected`
+                    `Expected build-id ${currentBuildId}, got ${buildId} - Rewriting request path to match expected build-id`
                 );
                 req.url = req.url.replace(buildId, currentBuildId);
                 req.path = req.path.replace(buildId, currentBuildId);
