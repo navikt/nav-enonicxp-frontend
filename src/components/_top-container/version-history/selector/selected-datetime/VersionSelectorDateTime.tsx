@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Checkbox, Label } from '@navikt/ds-react';
-import { BEM } from '../../../../../utils/classnames';
 import { ContentProps } from '../../../../../types/content-props/_content-common';
 import {
     getCurrentDateAndTime,
@@ -10,10 +9,9 @@ import { Branch } from '../../../../../types/branch';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
 
+import style from './VersionSelectorDateTime.module.scss';
+
 const startDate = '2019-12-01';
-
-const bem = BEM('version-selector-datetime');
-
 type Props = {
     content: ContentProps;
     submitVersionUrl: (url: string) => void;
@@ -47,11 +45,11 @@ export const VersionSelectorDateTime = ({
 
     return (
         <>
-            <div className={bem('left')}>
+            <div className={style.left}>
                 <Label>{'Velg tid og dato:'}</Label>
                 <input
                     type={'time'}
-                    className={bem('time')}
+                    className={style.time}
                     onChange={(e) => {
                         setTimeSelected(e.target.value);
                     }}
@@ -59,7 +57,7 @@ export const VersionSelectorDateTime = ({
                 />
                 <input
                     type={'date'}
-                    className={bem('date')}
+                    className={style.date}
                     onChange={(e) => {
                         setDateSelected(e.target.value);
                     }}
@@ -68,7 +66,7 @@ export const VersionSelectorDateTime = ({
                     value={dateSelected}
                 />
             </div>
-            <div className={bem('right')}>
+            <div className={style.right}>
                 {editorView && (
                     <Checkbox
                         checked={branchSelected === 'master'}

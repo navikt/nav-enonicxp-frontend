@@ -52,6 +52,7 @@ $border-radius-large: 6px;
 // Varaibles for CMS-editor
 $editorPaddingVertical: 2rem;
 $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
+$versionSelectorMinHeight: 3rem;
 
 // Makes the element cover the entire screen-width
 @mixin full-width-mixin() {
