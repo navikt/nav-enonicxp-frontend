@@ -12,7 +12,7 @@ import style from './copyLink.module.scss';
 type CopyLinkProps = {
     anchor: string;
     label?: string;
-    className: string;
+    className?: string;
 };
 
 const linkCopiedDisplayTimeMs = 2500;
