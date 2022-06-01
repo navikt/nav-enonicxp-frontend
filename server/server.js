@@ -43,6 +43,8 @@ nextApp.prepare().then(() => {
         ENV,
     } = process.env;
 
+    const currentBuildId = nextApp.server.getBuildId();
+
     const isFailover = IS_FAILOVER_INSTANCE === 'true';
 
     if (!isFailover && PAGE_CACHE_DIR) {
@@ -86,8 +88,21 @@ nextApp.prepare().then(() => {
             handleInvalidateAllReq(nextApp)
         );
 
-        server.all('*', (req, res) => {
+        server.get(`/_next/data/:buildId/*`, (req, res) => {
+            const { buildId } = req.params;
+            if (buildId !== currentBuildId) {
+                console.log(
+                    `Expected build-id ${currentBuildId}, got ${buildId} - Rewriting request path to match current`
+                );
+                req.url = req.url.replace(buildId, currentBuildId);
+                req.path = req.path.replace(buildId, currentBuildId);
+            }
+
             setJsonCacheHeaders(req, res);
+            return nextRequestHandler(req, res);
+        });
+
+        server.all('*', (req, res) => {
             return nextRequestHandler(req, res);
         });
     }
