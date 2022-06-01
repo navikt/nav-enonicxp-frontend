@@ -7,7 +7,7 @@
 }
 
 .accordionItem {
-    border-bottom: 1px common.$navds-global-color-gray-400 solid;
+    border-bottom: 1px common.$navds-semantic-color-divider solid;
 
     :global(.navds-accordion__header),
     :global(.navds-accordion__content) {
