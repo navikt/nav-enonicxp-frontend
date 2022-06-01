@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-
-import { StaticImage } from '../image/StaticImage';
-import { classNames } from '../../../utils/classnames';
 import { translator } from 'translations';
+
+import { classNames } from '../../../utils/classnames';
+import { StaticImage } from '../image/StaticImage';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import linkIcon from '/public/gfx/link.svg';
@@ -11,8 +11,8 @@ import style from './copyLink.module.scss';
 
 type CopyLinkProps = {
     anchor: string;
-    label?: string;
     className?: string;
+    label?: string;
 };
 
 const linkCopiedDisplayTimeMs = 2500;
@@ -66,7 +66,7 @@ export const CopyLink = ({ anchor, label, className }: CopyLinkProps) => {
                 )}
                 aria-live="assertive"
             >
-                {getLabel('copiedLink')}
+                {getLabel('copiedLinkConfirmed')}
             </span>
         </span>
     );
