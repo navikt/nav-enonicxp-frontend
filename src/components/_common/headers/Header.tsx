@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Heading } from '@navikt/ds-react';
-import { StaticImage } from '../image/StaticImage';
+
 import { classNames } from '../../../utils/classnames';
-import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+
 import { Level, levelToSize, Size } from '../../../types/typo-style';
 import { HeaderCommonConfig } from '../../../types/component-props/_mixins';
-
-import linkIcon from '/public/gfx/link.svg';
+import { CopyLink } from '../copyLink/copyLink';
 
 // eslint does not understand bracket notation
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './Header.module.scss';
-
-const linkCopiedDisplayTimeMs = 2500;
 
 type Props = {
     children: string;
@@ -36,29 +32,6 @@ export const Header = ({
     setId = true,
     className,
 }: Props) => {
-    const [showCopyTooltip, setShowCopyTooltip] = useState(false);
-    const { language } = usePageConfig();
-
-    const getLabel = translator('header', language);
-
-    const copyLinkToClipboard = (e: React.MouseEvent) => {
-        e.preventDefault();
-
-        if (navigator?.clipboard?.writeText) {
-            const baseUrl = (e.target as HTMLAnchorElement)?.baseURI?.split(
-                '#'
-            )[0];
-            if (baseUrl) {
-                navigator?.clipboard?.writeText(`${baseUrl}${anchor}`);
-                setShowCopyTooltip(true);
-                setTimeout(
-                    () => setShowCopyTooltip(false),
-                    linkCopiedDisplayTimeMs
-                );
-            }
-        }
-    };
-
     const anchor = anchorId
         ? anchorId.startsWith('#')
             ? anchorId
@@ -80,31 +53,8 @@ export const Header = ({
             <Heading size={size || fallbackSizeByLevel} level={level}>
                 {children}
             </Heading>
-            {anchor && !hideCopyButton && (
-                <span className={style.copyLinkContainer}>
-                    <a
-                        href={anchor}
-                        onClick={copyLinkToClipboard}
-                        className={style.copyLink}
-                    >
-                        <StaticImage
-                            imageData={linkIcon}
-                            alt={''}
-                            className={style.anchorIcon}
-                        />
-                        {getLabel('copyLink')}
-                    </a>
-                    <span
-                        className={classNames(
-                            style.copyTooltip,
-                            showCopyTooltip && style.copyTooltipVisible
-                        )}
-                        aria-live="assertive"
-                    >
-                        {getLabel('copiedLink')}
-                    </span>
-                </span>
-            )}
+
+            {anchor && !hideCopyButton && <CopyLink anchor={anchor} />}
         </div>
     );
 };

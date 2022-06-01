@@ -111,7 +111,7 @@ export const translationsBundleNn = {
     },
     header: {
         copyLink: 'Kopier lenke',
-        copiedLink: 'Lenka er kopiert',
+        copiedLinkConfirmed: 'Lenka er kopiert',
     },
     overview: {
         noProducts: 'Ingen produkt å vise',
