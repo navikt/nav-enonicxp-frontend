@@ -81,9 +81,7 @@ export const OverviewPageDetailsPanel = ({
 
     return (
         <>
-            <div
-                id={getAnchorFromPath(productDetails.productDetailsPath)}
-            ></div>
+            <div id={getAnchorFromPath(productDetails.productDetailsPath)} />
             <Accordion className={classNames(!visible && style.hidden)}>
                 <Accordion.Item open={isOpen} className={style.accordionItem}>
                     <Accordion.Header

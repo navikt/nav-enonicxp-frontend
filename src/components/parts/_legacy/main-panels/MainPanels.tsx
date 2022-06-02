@@ -61,6 +61,7 @@ const getLinkData = (content: ContentProps | null): TableData | null => {
         case ContentType.SituationPage:
         case ContentType.GuidePage:
         case ContentType.ThemedArticlePage:
+        case ContentType.Overview:
             return {
                 url: content._path,
                 tittel: content.displayName,
@@ -81,7 +82,10 @@ export const MainPanels = (props: ContentProps) => {
 
     return (
         tableContents?.length > 0 && (
-            <section className={style.mainPanels} aria-label={getLabel('label')}>
+            <section
+                className={style.mainPanels}
+                aria-label={getLabel('label')}
+            >
                 {tableContents.map((content) => {
                     const { url, tittel, ingress } = getLinkData(content);
 
