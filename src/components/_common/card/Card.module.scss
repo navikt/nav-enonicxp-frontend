@@ -48,7 +48,7 @@
     &:active {
         .bed {
             position: relative;
-            box-shadow: 0 0 0 3px var(--navds-global-color-blue-800);
+            box-shadow: 0 0 0 3px var(--navds-global-color-blue-800) !important;
 
             &:after {
                 background-color: transparent;
