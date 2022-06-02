@@ -6,13 +6,14 @@ import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 type Props = {
     dates: PayoutDatesData;
+    className?: string;
 };
 
-export const PayoutDates = ({ dates }: Props) => {
+export const PayoutDates = ({ dates, className }: Props) => {
     const { language } = usePageConfig();
 
     return (
-        <Table zebraStripes={true}>
+        <Table className={className}>
             <thead>
                 <tr>
                     <th>{'Dato'}</th>

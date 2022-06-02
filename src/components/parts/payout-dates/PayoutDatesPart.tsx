@@ -1,5 +1,24 @@
 import React from 'react';
+import { PayoutDatesPartProps } from '../../../types/component-props/parts/payout-dates';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { PayoutDates } from '../../_common/payout-dates/PayoutDates';
+import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 
-export const PayoutDatesPart = () => {
-    return null;
+export const PayoutDatesPart = ({ config }: PayoutDatesPartProps) => {
+    if (!config?.dates?.data) {
+        return (
+            <EditorHelp
+                type={'error'}
+                text={
+                    'Klikk her og velg et sett med utbetalingsdatoer i høyre-panelet'
+                }
+            />
+        );
+    }
+
+    return (
+        <ExpandableComponentWrapper {...config}>
+            <PayoutDates dates={config.dates.data} />
+        </ExpandableComponentWrapper>
+    );
 };

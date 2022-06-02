@@ -39,6 +39,8 @@ import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
 import { AlertPanelPart } from './alert-panel/AlertPanelPart';
+import { PayoutDatesPartProps } from '../../types/component-props/parts/payout-dates';
+import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -81,6 +83,7 @@ const partsWithOwnData: {
     [PartType.ProductCardMini]: ProductCardPart,
     [PartType.ProductDetails]: ProductDetailsPart,
     [PartType.ContactOption]: ContactOptionPart,
+    [PartType.PayoutDates]: PayoutDatesPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {
