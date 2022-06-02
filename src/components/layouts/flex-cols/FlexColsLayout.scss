@@ -87,13 +87,6 @@
     &:last-of-type {
         padding-bottom: 0;
     }
-
-    .part {
-        .card {
-            // Margins between parts are handled in general above.
-            margin-bottom: 0;
-        }
-    }
 }
 
 .layout__situation-flex-cols {

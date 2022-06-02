@@ -204,3 +204,11 @@
         }
     }
 }
+
+// Handle card-margin in layouts
+:global(.layout__situation-flex-cols),
+:global(.layout__product-flex-cols) {
+    .card {
+        margin-bottom: 0;
+    }
+}
