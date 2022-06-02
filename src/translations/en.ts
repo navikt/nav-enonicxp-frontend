@@ -84,6 +84,7 @@ export const translationsBundleEn: Translations = {
             tomorrow: 'i morgen',
         },
         day: 'day',
+        date: 'date',
     },
     relatedContent: {
         [MenuListItemKey.AppealRights]: 'Appeal rights',
