@@ -27,7 +27,7 @@ const buildValueDisplayString = (item: GlobalValueItem) => {
 
 const ItemView = ({ item }: Props) => {
     return (
-        <>
+        <div>
             <Heading level={'3'} size={'xsmall'}>
                 {item.itemName}
             </Heading>
@@ -37,7 +37,7 @@ const ItemView = ({ item }: Props) => {
             <BodyShort className={style.value} as={'span'}>
                 {buildValueDisplayString(item)}
             </BodyShort>
-        </>
+        </div>
     );
 };
 
@@ -49,7 +49,7 @@ export const GVItem = (props: Props) => {
     const editMode = itemsEditState[key];
 
     return (
-        <div className={style.GVItem}>
+        <div className={style.gvItem}>
             {editMode ? (
                 <GVItemEditor
                     item={item}

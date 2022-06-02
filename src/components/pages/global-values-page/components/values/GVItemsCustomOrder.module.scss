@@ -1,0 +1,20 @@
+@use 'src/common' as common;
+
+.itemDragHandle {
+    position: relative;
+    cursor: grab;
+    width: 2rem;
+    min-width: 2rem;
+    height: 2rem;
+
+    & > :last-child {
+        position: absolute;
+        left: 25%;
+        top: 45%;
+    }
+}
+
+.itemDragged {
+    box-shadow: 0 0 3px 3px common.$navds-global-color-green-300;
+    cursor: grabbing;
+}

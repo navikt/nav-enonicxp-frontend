@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
@@ -27,7 +27,7 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             {Object.values(regions).map((regionProps, index) => {
                 return (
-                    <>
+                    <Fragment key={index}>
                         <EditorHelp
                             text={regionHelpText[index]}
                             type="arrowDown"
@@ -35,9 +35,8 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
                         <Region
                             pageProps={pageProps}
                             regionProps={regionProps}
-                            key={index}
                         />
-                    </>
+                    </Fragment>
                 );
             })}
         </LayoutContainer>

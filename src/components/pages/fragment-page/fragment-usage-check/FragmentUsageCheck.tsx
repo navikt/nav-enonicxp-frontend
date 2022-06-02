@@ -4,23 +4,21 @@ import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
 import { Heading } from '@navikt/ds-react';
 import { Button } from '../../../_common/button/Button';
 import { EditorLinkWrapper } from '../../../_editor-only/editor-link-wrapper/EditorLinkWrapper';
-import { FragmentUsageLink } from './FragmentUsageLink';
 
 import style from './FragmentUsageCheck.module.scss';
+import {
+    CustomSelectorUsageData,
+    CustomSelectorUsageLink,
+} from '../../../_editor-only/custom-selector-usage-link/CustomSelectorUsageLink';
 
 const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/htmlFragmentSelector/fragmentUsage`;
 
-export type FragmentUsageData = {
-    name: string;
-    path: string;
-    id: string;
-};
 type FragmentUsage = {
-    macroUsage: FragmentUsageData[];
-    componentUsage: FragmentUsageData[];
+    macroUsage: CustomSelectorUsageData[];
+    componentUsage: CustomSelectorUsageData[];
 };
 
-const fetchMacroUsage = (id: string): Promise<FragmentUsage> =>
+const fetchFragmentUsage = (id: string): Promise<FragmentUsage> =>
     fetchWithTimeout(`${serviceUrl}?fragmentId=${id}`, 5000).then((res) => {
         if (res.ok) {
             return res.json();
@@ -44,7 +42,7 @@ export const FragmentUsageCheck = ({ id }: Props) => {
     const [showUsage, setShowUsage] = useState(false);
 
     useEffect(() => {
-        fetchMacroUsage(id)
+        fetchFragmentUsage(id)
             .then((usageResponse) => {
                 if (
                     !usageResponse.macroUsage ||
@@ -107,7 +105,10 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                                 {'I bruk som komponent:'}
                             </Heading>
                             {componentUsage.map((content, index) => (
-                                <FragmentUsageLink {...content} key={index} />
+                                <CustomSelectorUsageLink
+                                    {...content}
+                                    key={index}
+                                />
                             ))}
                         </>
                     )}
@@ -121,7 +122,10 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                                 {'I bruk som macro:'}
                             </Heading>
                             {macroUsage.map((content, index) => (
-                                <FragmentUsageLink {...content} key={index} />
+                                <CustomSelectorUsageLink
+                                    {...content}
+                                    key={index}
+                                />
                             ))}
                         </>
                     )}

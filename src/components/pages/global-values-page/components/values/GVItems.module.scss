@@ -1,40 +1,19 @@
 @use 'src/common' as common;
 
-.GVItems {
+.gvItems {
     display: flex;
     flex-direction: column;
+}
 
-    .dragHandle {
-        position: relative;
-        cursor: grab;
-        width: 2rem;
-        min-width: 2rem;
-        height: 2rem;
+.itemOuter {
+    padding: 0.5rem;
+}
 
-        & > :last-child {
-            position: absolute;
-            left: 25%;
-            top: 45%;
-        }
-    }
-
-    .itemOuter {
-        padding: 0.5rem;
-    }
-    .item {
-        display: flex;
-        padding: 0.5rem;
-        margin: 0 -0.5rem;
-        background-color: white;
-        border-radius: common.$border-radius-base;
-        box-shadow: 1px 2px 3px 2px common.$navds-global-color-gray-400;
-    }
-
-    .itemDragged {
-        box-shadow: 0 0 3px 3px common.$navds-global-color-green-300;
-        cursor: grabbing;
-    }
-    .itemDragHandle {
-        cursor: grabbing;
-    }
+.item {
+    display: flex;
+    padding: 0.5rem;
+    margin: 0 -0.5rem;
+    background-color: white;
+    border-radius: common.$border-radius-base;
+    box-shadow: 1px 2px 3px 2px common.$navds-global-color-gray-400;
 }

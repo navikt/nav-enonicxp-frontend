@@ -15,7 +15,7 @@ import { checkIfFilterFirstInPage } from './helpers';
 
 import style from './FiltersMenu.module.scss';
 
-export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
+export const FiltersMenu = ({ config, path, pageProps }: FilterMenuProps) => {
     const { categories, description, expandableTitle, title } = config;
 
     const {
@@ -25,7 +25,10 @@ export const FiltersMenu = ({ config, path, page }: FilterMenuProps) => {
         toggleFilter,
     } = useFilterState();
 
-    const isFirstFilterInPage = checkIfFilterFirstInPage({ path, page });
+    const isFirstFilterInPage = checkIfFilterFirstInPage({
+        path,
+        page: pageProps.page,
+    });
 
     const { language, pageConfig } = usePageConfig();
     const { editorView } = pageConfig;

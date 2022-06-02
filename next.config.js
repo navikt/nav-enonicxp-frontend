@@ -86,6 +86,11 @@ const buildCspHeader = () => {
     const hotjarOrigin = '*.hotjar.com';
     const taOrigin = '*.taskanalytics.com ta-survey-v2.herokuapp.com';
 
+    // These are used by a NAV-funded research project for accessibility-related feedback
+    const tingtunOrigin = '*.tingtun.no';
+    const termerOrigin = 'termer.no';
+    const tiTiOrigins = [tingtunOrigin, termerOrigin].join(' ');
+
     // Filter duplicates, as some origins may be identical, depending on
     // deployment environment
     const internalOrigins = [
@@ -120,7 +125,7 @@ const buildCspHeader = () => {
         `default-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics}${
             process.env.NODE_ENV === 'development' ? ' ws:' : ''
         }`,
-        `script-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics} 'unsafe-inline' 'unsafe-eval'`,
+        `script-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics} ${tiTiOrigins} 'unsafe-inline' 'unsafe-eval'`,
         `worker-src ${internalOrigins} blob:`,
         `style-src ${internalOrigins} ${vergicOrigin} 'unsafe-inline'`,
         `font-src ${internalOrigins} ${vergicOrigin} data:`,
@@ -164,6 +169,14 @@ module.exports = withPlugins([withTranspileModules], {
         fixNextImageOptsAllowSvg(config, options);
         cssModulesNoDashesInClassnames(config);
         resolveNodeLibsClientSide(config, options);
+
+        const { webpack, buildId } = options;
+
+        config.plugins.push(
+            new webpack.DefinePlugin({
+                'process.env.BUILD_ID': JSON.stringify(buildId),
+            })
+        );
 
         return config;
     },

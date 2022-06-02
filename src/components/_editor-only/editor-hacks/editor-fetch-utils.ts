@@ -4,6 +4,7 @@ import { ContentProps } from '../../../types/content-props/_content-common';
 
 const adminAuthUrl = `${adminOrigin}/admin/rest/auth/authenticated`;
 const userInfoUrl = `${adminOrigin}/admin/rest-v2/cs/security/principals/user:`;
+const contentServiceUrl = `${adminOrigin}/admin/tool/com.enonic.app.contentstudio/main/_/service/com.enonic.app.contentstudio/content`;
 
 type UserInfo = {
     key: string;
@@ -29,7 +30,7 @@ export const fetchAdminUserId = () =>
 
 export const fetchAdminContent = async (contentId: string) =>
     fetchJson<AdminContentResponse>(
-        `${adminOrigin}${parent.window.CONFIG?.services?.contentUrl}?contentId=${contentId}`,
+        `${contentServiceUrl}?contentId=${contentId}`,
         5000
     );
 

@@ -1,0 +1,36 @@
+.detailsLoader {
+    justify-content: center;
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.accordionItem {
+    :global(.navds-accordion__header),
+    :global(.navds-accordion__content) {
+        border-bottom: 1px solid var(--navds-semantic-color-divider);
+    }
+
+    :global(.navds-accordion__header) {
+        padding-left: 0;
+        padding-right: 0;
+        background-color: white;
+    }
+
+    :global(.navds-accordion__content) {
+        padding-bottom: 0;
+    }
+
+    :global(.navds-accordion__expand-icon) {
+        margin-left: auto;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.illustration {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+}

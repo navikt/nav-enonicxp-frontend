@@ -6,6 +6,7 @@ declare global {
             ENV: string;
             ADMIN_ORIGIN: string;
             APP_ORIGIN: string;
+            BUILD_ID: string;
             DECORATOR_FALLBACK_URL: string;
             DECORATOR_LOCAL_PORT: string;
             XP_ORIGIN: string;

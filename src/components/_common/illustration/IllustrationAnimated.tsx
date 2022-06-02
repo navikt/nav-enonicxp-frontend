@@ -2,7 +2,9 @@ import { useEffect, useState, useRef } from 'react';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import lottie from 'lottie-web';
 import { classNames } from '../../../utils/classnames';
-import style from './Illustration.module.scss';
+
+import styleCommon from './Illustration.module.scss';
+import styleAnimated from './IllustrationAnimated.module.scss';
 
 interface IllustrationAnimatedProps {
     illustration: AnimatedIconsProps;
@@ -31,14 +33,12 @@ export const IllustrationAnimated = ({
         }
 
         try {
-            const player = lottie.loadAnimation({
+            lottiePlayer.current = lottie.loadAnimation({
                 container: container,
                 animationData: JSON.parse(lottieData),
                 autoplay: false,
                 loop: false,
             });
-
-            lottiePlayer.current = player;
         } catch (error) {
             return;
         }
@@ -63,11 +63,14 @@ export const IllustrationAnimated = ({
 
     return (
         <div
-            className={classNames(style.image, className)}
+            className={classNames(styleCommon.image, className)}
             aria-hidden="true"
             role="presentation"
         >
-            <div ref={lottieContainer} className={style.lottieContainer} />
+            <div
+                ref={lottieContainer}
+                className={styleAnimated.lottieContainer}
+            />
         </div>
     );
 };
