@@ -99,7 +99,7 @@ export const OverviewPageDetailsPanel = ({
                             className={style.illustration}
                             illustration={productDetails.illustration}
                         />
-                        {productDetails.title}
+                        {productDetails.sortTitle}
                     </Accordion.Header>
                     <Accordion.Content>
                         {error && (
