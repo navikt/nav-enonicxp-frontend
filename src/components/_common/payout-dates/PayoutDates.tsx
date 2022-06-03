@@ -15,21 +15,32 @@ type Props = {
 
 export const PayoutDates = ({ payoutDatesData, className }: Props) => {
     const { language } = usePageConfig();
-    const dateHeader = translator('dateTime', language)('date');
 
-    const { dates } = payoutDatesData;
+    const translations = translator('payoutDates', language);
+
+    const { dates, year } = payoutDatesData;
 
     return (
         <Table className={classNames(style.table, className)}>
             <thead>
                 <tr>
-                    <th className={style.tableHeader}>{dateHeader}</th>
+                    <th>
+                        {year
+                            ? `${translations('tableHeaderPrefix')} ${year}`
+                            : translations('tableHeaderPrefixNoYear')}
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 {Object.entries(dates).map(([month, day]) => (
                     <tr key={month}>
-                        <td>{formatDate(`${month} ${day}`, language, true)}</td>
+                        <td>
+                            {formatDate(
+                                `${month} ${day} ${year || ''}`,
+                                language,
+                                true
+                            )}
+                        </td>
                     </tr>
                 ))}
             </tbody>
