@@ -36,7 +36,11 @@ const origin =
 // requires refactoring most of our existing image code/CSS to render correctly
 //
 // TODO: refactor our existing image code/CSS :)
-const buildImageCacheUrl = ({ src, maxWidth, quality }: Partial<Props>) =>
+export const buildImageCacheUrl = ({
+    src,
+    maxWidth,
+    quality,
+}: Partial<Props>) =>
     // Decode then encode to ensure nothing gets double-encoded
     `${origin}/_next/image?url=${encodeURIComponent(
         decodeURIComponent(src)

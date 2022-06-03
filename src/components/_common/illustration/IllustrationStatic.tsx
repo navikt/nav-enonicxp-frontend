@@ -1,6 +1,7 @@
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from '../../../utils/classnames';
+import { buildImageCacheUrl } from '../image/NextImage';
 
 import styleCommon from './Illustration.module.scss';
 import styleStatic from './IllustrationStatic.module.scss';
@@ -37,6 +38,18 @@ export const IllustrationStatic = ({
         return null;
     }
 
+    const bgImage1 = buildImageCacheUrl({
+        src: getMediaUrl(icon1.icon?.mediaUrl),
+        maxWidth: 96,
+        quality: 90,
+    });
+
+    const bgImage2 = buildImageCacheUrl({
+        src: getMediaUrl(icon2.icon?.mediaUrl),
+        maxWidth: 96,
+        quality: 90,
+    });
+
     return (
         <div
             className={classNames(styleCommon.image, className)}
@@ -46,18 +59,14 @@ export const IllustrationStatic = ({
             <div
                 className={styleStatic.icon}
                 style={{
-                    backgroundImage: `url(${getMediaUrl(
-                        icon1.icon?.mediaUrl
-                    )})`,
+                    backgroundImage: `url(${bgImage1})`,
                     transform: buildTransformStyling(icon1, 'none'),
                 }}
             />
             <div
                 className={styleStatic.icon}
                 style={{
-                    backgroundImage: `url(${getMediaUrl(
-                        icon2.icon?.mediaUrl
-                    )})`,
+                    backgroundImage: `url(${bgImage2})`,
                     transform: buildTransformStyling(icon2, 'none'),
                 }}
             />
