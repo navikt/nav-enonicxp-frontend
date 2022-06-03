@@ -5,6 +5,13 @@ import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableC
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { translator } from '../../../translations';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import contentFilters from '../../../store/slices/filteredContent';
+import pageConfig from '../../../store/slices/pageConfig';
+import pathMap from '../../../store/slices/pathMap';
+import gvEditorState from '../../../store/slices/gvEditorState';
+import authState from '../../../store/slices/authState';
 
 export const ProductDetailsPart = ({
     config,
@@ -32,17 +39,29 @@ export const ProductDetailsPart = ({
         );
     }
 
+    const store = configureStore({
+        reducer: {
+            contentFilters,
+            pageConfig,
+            pathMap,
+            gvEditorState,
+            authState,
+        },
+    });
+
     return (
-        <FilteredContent {...config}>
-            <ExpandableComponentWrapper {...config}>
-                {components.map((component, index) => (
-                    <ComponentMapper
-                        key={index}
-                        componentProps={component}
-                        pageProps={pageProps}
-                    />
-                ))}
-            </ExpandableComponentWrapper>
-        </FilteredContent>
+        <Provider store={store}>
+            <FilteredContent {...config}>
+                <ExpandableComponentWrapper {...config}>
+                    {components.map((component, index) => (
+                        <ComponentMapper
+                            key={index}
+                            componentProps={component}
+                            pageProps={pageProps}
+                        />
+                    ))}
+                </ExpandableComponentWrapper>
+            </FilteredContent>
+        </Provider>
     );
 };
