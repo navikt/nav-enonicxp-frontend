@@ -38,9 +38,7 @@ export const PayoutDates = ({ payoutDatesData, className }: Props) => {
                 </tbody>
             </Table>
             <div className={style.notes}>
-                {notes.map((note, index) => (
-                    <ParsedHtml htmlProps={note} key={index} />
-                ))}
+                <ParsedHtml htmlProps={notes} />
             </div>
         </div>
     );

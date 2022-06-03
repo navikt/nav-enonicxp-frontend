@@ -17,7 +17,7 @@ type Month =
 
 export type PayoutDatesData = {
     dates: Record<Month, number>;
-    notes: ProcessedHtmlProps[];
+    notes: ProcessedHtmlProps;
 };
 
 export interface PayoutDatesProps extends ContentProps {
