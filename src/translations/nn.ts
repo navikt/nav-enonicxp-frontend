@@ -191,6 +191,7 @@ export const translationsBundleNn = {
             months: 'månader',
         },
     },
+    payoutDates: {
+        tableHeaderPrefix: 'Utbetalingsdatoar i',
+    },
 };
-
-export type Translations = DeepPartial<typeof translationsBundleNn>;

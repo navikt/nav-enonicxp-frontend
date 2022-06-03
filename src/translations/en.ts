@@ -184,4 +184,7 @@ export const translationsBundleEn: Translations = {
             months: 'months',
         },
     },
+    payoutDates: {
+        tableHeaderPrefix: 'Payment dates in',
+    },
 };
