@@ -4,7 +4,7 @@ import { Table } from '../table/Table';
 import { formatDate } from '../../../utils/datetime';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { translator } from '../../../translations';
-import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import { classNames } from '../../../utils/classnames';
 
 import style from './PayoutDates.module.scss';
 
@@ -17,29 +17,22 @@ export const PayoutDates = ({ payoutDatesData, className }: Props) => {
     const { language } = usePageConfig();
     const dateHeader = translator('dateTime', language)('date');
 
-    const { dates, notes } = payoutDatesData;
+    const { dates } = payoutDatesData;
 
     return (
-        <div className={className}>
-            <Table className={style.table}>
-                <thead>
-                    <tr>
-                        <th className={style.tableHeader}>{dateHeader}</th>
+        <Table className={classNames(style.table, className)}>
+            <thead>
+                <tr>
+                    <th className={style.tableHeader}>{dateHeader}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {Object.entries(dates).map(([month, day]) => (
+                    <tr key={month}>
+                        <td>{formatDate(`${month} ${day}`, language, true)}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    {Object.entries(dates).map(([month, day]) => (
-                        <tr key={month}>
-                            <td>
-                                {formatDate(`${month} ${day}`, language, true)}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-            <div className={style.notes}>
-                <ParsedHtml htmlProps={notes} />
-            </div>
-        </div>
+                ))}
+            </tbody>
+        </Table>
     );
 };
