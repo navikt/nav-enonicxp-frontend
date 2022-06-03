@@ -3,9 +3,11 @@ import { MacroPayoutDatesProps } from '../../../types/macro-props/payout-dates';
 import { PayoutDates } from '../../_common/payout-dates/PayoutDates';
 
 export const MacroPayoutDates = ({ config }: MacroPayoutDatesProps) => {
-    if (!config?.payout_dates?.dates?.data) {
+    const payoutDatesData = config?.payout_dates?.payoutDates?.data;
+
+    if (!payoutDatesData) {
         return null;
     }
 
-    return <PayoutDates dates={config.payout_dates.dates.data} />;
+    return <PayoutDates payoutDatesData={payoutDatesData} />;
 };

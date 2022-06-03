@@ -19,7 +19,7 @@ import { ProductPage } from './pages/product-page/ProductPage';
 import { ProductDetailsPage } from './pages/product-details-page/ProductDetailsPage';
 import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
 import { MainArticleChapterPage } from './pages/main-article-chapter-page/MainArticleChapterPage';
-import { PayoutDatesPage } from './pages/payout-dates/PayoutDatesPage';
+import { PayoutDatesPage } from './pages/payout-dates-page/PayoutDatesPage';
 
 const contentToReactComponent: Partial<{
     [key in ContentType]: React.FunctionComponent<ContentProps>;

@@ -11,5 +11,10 @@ export const PayoutDatesPage = (props: PayoutDatesProps) => {
         return <ErrorPage {...make404Props(props._path)} />;
     }
 
-    return <PayoutDates dates={props.data} className={style.payoutDatesPage} />;
+    return (
+        <PayoutDates
+            payoutDatesData={props.data}
+            className={style.payoutDatesPage}
+        />
+    );
 };

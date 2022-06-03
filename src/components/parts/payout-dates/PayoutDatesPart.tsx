@@ -18,7 +18,7 @@ export const PayoutDatesPart = ({ config }: PayoutDatesPartProps) => {
 
     return (
         <ExpandableComponentWrapper {...config}>
-            <PayoutDates dates={config.dates.data} />
+            <PayoutDates payoutDatesData={config.dates.data} />
         </ExpandableComponentWrapper>
     );
 };

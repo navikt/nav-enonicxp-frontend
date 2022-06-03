@@ -5,7 +5,7 @@ export interface MacroPayoutDatesProps extends MacroPropsCommon {
     name: MacroType.PayoutDates;
     config: {
         payout_dates: {
-            dates: {
+            payoutDates: {
                 data: PayoutDatesData;
             };
         };

@@ -1,18 +1,23 @@
 import { ContentProps, ContentType } from './_content-common';
+import { ProcessedHtmlProps } from '../processed-html-props';
+
+type Month =
+    | 'jan'
+    | 'feb'
+    | 'mar'
+    | 'apr'
+    | 'may'
+    | 'jun'
+    | 'jul'
+    | 'aug'
+    | 'sep'
+    | 'oct'
+    | 'nov'
+    | 'dec';
 
 export type PayoutDatesData = {
-    jan: number;
-    feb: number;
-    mar: number;
-    apr: number;
-    may: number;
-    jun: number;
-    jul: number;
-    aug: number;
-    sep: number;
-    oct: number;
-    nov: number;
-    dec: number;
+    dates: Record<Month, number>;
+    notes: ProcessedHtmlProps[];
 };
 
 export interface PayoutDatesProps extends ContentProps {
