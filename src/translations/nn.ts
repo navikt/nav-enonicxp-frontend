@@ -193,5 +193,6 @@ export const translationsBundleNn = {
     },
     payoutDates: {
         tableHeaderPrefix: 'Utbetalingsdatoar i',
+        tableHeaderPrefixNoYear: 'Utbetalingsdatoar',
     },
 };

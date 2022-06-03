@@ -186,5 +186,6 @@ export const translationsBundleEn: Translations = {
     },
     payoutDates: {
         tableHeaderPrefix: 'Payment dates in',
+        tableHeaderPrefixNoYear: 'Payment dates',
     },
 };
