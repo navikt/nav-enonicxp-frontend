@@ -35,6 +35,7 @@ export const ProductDetailsPart = ({
         );
     }
 
+    // Wrap the product detail components in its own store provider, to ensure the correct language state is used
     const store = createNewStore();
     store.dispatch(
         setPageConfigAction({
