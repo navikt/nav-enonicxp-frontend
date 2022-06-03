@@ -6,12 +6,8 @@ import { FilteredContent } from '../../_common/filtered-content/FilteredContent'
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { translator } from '../../../translations';
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import contentFilters from '../../../store/slices/filteredContent';
-import pageConfig from '../../../store/slices/pageConfig';
-import pathMap from '../../../store/slices/pathMap';
-import gvEditorState from '../../../store/slices/gvEditorState';
-import authState from '../../../store/slices/authState';
+import { setPageConfigAction } from '../../../store/slices/pageConfig';
+import { createNewStore } from '../../../store/store';
 
 export const ProductDetailsPart = ({
     config,
@@ -39,15 +35,15 @@ export const ProductDetailsPart = ({
         );
     }
 
-    const store = configureStore({
-        reducer: {
-            contentFilters,
-            pageConfig,
-            pathMap,
-            gvEditorState,
-            authState,
-        },
-    });
+    const store = createNewStore();
+    store.dispatch(
+        setPageConfigAction({
+            pageId: pageProps._id,
+            language: config.language,
+            isPagePreview: false,
+            editorView: pageProps.editorView,
+        })
+    );
 
     return (
         <Provider store={store}>
