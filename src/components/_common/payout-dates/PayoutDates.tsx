@@ -15,15 +15,20 @@ type Props = {
 
 export const PayoutDates = ({ payoutDatesData, className }: Props) => {
     const { language } = usePageConfig();
-    const dateHeader = translator('dateTime', language)('date');
 
-    const { dates } = payoutDatesData;
+    const translations = translator('payoutDates', language);
+
+    const { dates, year } = payoutDatesData;
 
     return (
         <Table className={classNames(style.table, className)}>
             <thead>
                 <tr>
-                    <th className={style.tableHeader}>{dateHeader}</th>
+                    <th>
+                        {year
+                            ? `${translations('tableHeaderPrefix')} ${year}`
+                            : translations('tableHeaderPrefixNoYear')}
+                    </th>
                 </tr>
             </thead>
             <tbody>

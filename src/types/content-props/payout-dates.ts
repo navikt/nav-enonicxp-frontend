@@ -15,6 +15,7 @@ type Month =
     | 'dec';
 
 export type PayoutDatesData = {
+    year: number;
     dates: Record<Month, number>;
 };
 

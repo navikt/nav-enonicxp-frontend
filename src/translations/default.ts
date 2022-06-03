@@ -201,6 +201,10 @@ export const translationsBundleNb = {
         },
     },
     productDetailTypes: productDetailTypes,
+    payoutDates: {
+        tableHeaderPrefix: 'Utbetalingsdatoer i',
+        tableHeaderPrefixNoYear: 'Utbetalingsdatoer',
+    },
 };
 
 export type Translations = DeepPartial<typeof translationsBundleNb>;
