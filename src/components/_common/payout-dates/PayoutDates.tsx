@@ -34,7 +34,13 @@ export const PayoutDates = ({ payoutDatesData, className }: Props) => {
             <tbody>
                 {Object.entries(dates).map(([month, day]) => (
                     <tr key={month}>
-                        <td>{formatDate(`${month} ${day}`, language, true)}</td>
+                        <td>
+                            {formatDate(
+                                `${month} ${day} ${year || ''}`,
+                                language,
+                                true
+                            )}
+                        </td>
                     </tr>
                 ))}
             </tbody>
