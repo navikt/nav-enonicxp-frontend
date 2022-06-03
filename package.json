@@ -72,6 +72,7 @@
         "babel-eslint": "^10.1.0",
         "eslint": "^8.6.0",
         "eslint-config-next": "^12.1.6",
+        "eslint-plugin-css-modules": "^2.11.0",
         "husky": "^7.0.4",
         "lint-staged": "^12.1.7",
         "prettier": "^2.5.1",
