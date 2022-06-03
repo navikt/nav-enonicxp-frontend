@@ -38,22 +38,34 @@ const origin =
 // TODO: refactor our existing image code/CSS :)
 export const buildImageCacheUrl = ({
     src,
+    isEditorView,
     maxWidth,
     quality,
-}: Partial<Props>) =>
+}: { src: string; isEditorView: boolean } & NextImageProps) => {
+    if (isEditorView || !isValidImageUrl(src)) {
+        return src;
+    }
+
     // Decode then encode to ensure nothing gets double-encoded
-    `${origin}/_next/image?url=${encodeURIComponent(
+    return `${origin}/_next/image?url=${encodeURIComponent(
         decodeURIComponent(src)
     )}&w=${maxWidth}&q=${quality}`;
+};
 
 const NextImageBuildTime = (props: Props) => {
     const { src, alt, maxWidth = 1440, quality = 90, ...imgAttribs } = props;
+    const { pageConfig } = usePageConfig();
 
     if (!src) {
         return null;
     }
 
-    const cachedSrc = buildImageCacheUrl({ src, maxWidth, quality });
+    const cachedSrc = buildImageCacheUrl({
+        src,
+        maxWidth,
+        quality,
+        isEditorView: !!pageConfig.editorView,
+    });
 
     // This should only run at build-time
     updateImageManifest(cachedSrc);
@@ -62,8 +74,6 @@ const NextImageBuildTime = (props: Props) => {
 };
 
 const NextImageRunTime = (props: Props) => {
-    const { pageConfig } = usePageConfig();
-
     const {
         src,
         alt,
@@ -72,19 +82,21 @@ const NextImageRunTime = (props: Props) => {
         ...imgAttribs
     } = props;
 
+    const { pageConfig } = usePageConfig();
+
     if (!src) {
         return null;
-    }
-
-    // Skip caching when viewed from the editor, or for external image urls
-    if (pageConfig.editorView || !isValidImageUrl(src)) {
-        return <img {...imgAttribs} src={src} alt={alt} />;
     }
 
     return (
         <img
             {...imgAttribs}
-            src={buildImageCacheUrl({ src, maxWidth, quality })}
+            src={buildImageCacheUrl({
+                src,
+                maxWidth,
+                quality,
+                isEditorView: !!pageConfig.editorView,
+            })}
             alt={alt}
         />
     );

@@ -10,8 +10,11 @@ import { getMediaUrl } from '../../../utils/urls';
 import { buildImageCacheUrl } from '../../_common/image/NextImage';
 
 import style from './LinkPanelPart.module.scss';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
+    const { pageConfig } = usePageConfig();
+
     if (!config) {
         return <EditorHelp text={'Tomt lenkepanel'} />;
     }
@@ -42,6 +45,7 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                 bgUrl && {
                     backgroundImage: `url(${buildImageCacheUrl({
                         src: bgUrl,
+                        isEditorView: !!pageConfig.editorView,
                         maxWidth: 480,
                         quality: 90,
                     })})`,
