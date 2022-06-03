@@ -169,6 +169,7 @@ export const translationsBundleNn = {
             tomorrow: 'i morgon',
         },
         day: 'dag',
+        date: 'dato',
     },
     versionHistory: {
         label: 'Versjonshistorikk',
