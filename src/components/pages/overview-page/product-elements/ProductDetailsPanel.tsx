@@ -10,23 +10,24 @@ import {
     ContentType,
 } from '../../../../types/content-props/_content-common';
 
-import style from './OverviewPageDetailsPanel.module.scss';
 import { classNames } from '../../../../utils/classnames';
 import { translator } from '../../../../translations';
 import { ProductDetailType } from '../../../../types/content-props/product-details';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 
+import style from './ProductDetailsPanel.module.scss';
+
 type Props = {
-    productDetails: SimplifiedProductData;
     detailType: ProductDetailType;
     pageProps: ContentProps;
+    productDetails: SimplifiedProductData;
     visible: boolean;
 };
 
 export const OverviewPageDetailsPanel = ({
-    productDetails,
     detailType,
     pageProps,
+    productDetails,
     visible,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);

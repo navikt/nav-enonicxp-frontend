@@ -7,15 +7,13 @@ import { Area } from 'types/areas';
 import { translator } from '../../../../translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import styles from './OverviewFilter.module.scss';
+import styles from './AreaFilter.module.scss';
 
 interface OverviewFilterProps {
     filterUpdateCallback: (filters: Area) => void;
 }
 
-export const OverviewFilter = ({
-    filterUpdateCallback,
-}: OverviewFilterProps) => {
+export const AreaFilter = ({ filterUpdateCallback }: OverviewFilterProps) => {
     const filterableAreas = [
         Area.ALL,
         Area.FAMILY,

@@ -4,15 +4,15 @@ import { Area } from 'types/areas';
 import { OverviewPageProps } from 'types/content-props/dynamic-page-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ComponentMapper } from 'components/ComponentMapper';
-import { OverviewFilter } from 'components/pages/overview-page/product-filter/OverviewFilter';
+import { AreaFilter } from 'components/pages/overview-page/area-filter/AreaFilter';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
-import { OverviewPageDetailsPanel } from './product-panel/OverviewPageDetailsPanel';
 import { SimplifiedProductData } from '../../../types/component-props/_mixins';
 
-import style from './OverviewPage.module.scss';
+import { ProductItem } from './product-elements/ProductItem';
 
-const isVisiblePredicate = (product: SimplifiedProductData, areaFilter: Area) =>
-    areaFilter === Area.ALL || product.area.some((area) => area === areaFilter);
+import { OverviewSearch } from './overview-search/OverviewSearch';
+import style from './OverviewPage.module.scss';
+import { TaxonomyFilter } from './taxonomy-filter/TaxonomyFilter';
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
@@ -22,13 +22,34 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const getTranslationString = translator('overview', language);
 
     const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
+    const [searchValue, setSearchValue] = useState<string>('');
 
     const handleFilterUpdate = (area: Area) => {
         setAreaFilter(area);
     };
 
+    const onSearchUpdate = (value: string) => {
+        setSearchValue(value);
+    };
+
+    const isVisiblePredicate = (
+        product: SimplifiedProductData,
+        areaFilter: Area,
+        searchValue: string
+    ) => {
+        const isAreaMatch =
+            areaFilter === Area.ALL ||
+            product.area.some((area) => area === areaFilter);
+
+        const isSearchMatch = product.sortTitle
+            .toLowerCase()
+            .includes(searchValue.toLowerCase());
+
+        return isAreaMatch && isSearchMatch;
+    };
+
     const hasVisibleProducts = productList.some((product) =>
-        isVisiblePredicate(product, areaFilter)
+        isVisiblePredicate(product, areaFilter, searchValue)
     );
 
     return (
@@ -41,17 +62,26 @@ export const OverviewPage = (props: OverviewPageProps) => {
                 />
             </div>
             <div className={style.content}>
-                <OverviewFilter filterUpdateCallback={handleFilterUpdate} />
+                <AreaFilter filterUpdateCallback={handleFilterUpdate} />
+                <TaxonomyFilter filterUpdateCallback={handleFilterUpdate} />
+                <OverviewSearch
+                    searchUpdateCallback={onSearchUpdate}
+                    label="Søk"
+                />
                 <div className={style.productListWrapper}>
                     {!hasVisibleProducts && (
                         <div>{getTranslationString('noProducts')}</div>
                     )}
                     {productList.map((product) => (
-                        <OverviewPageDetailsPanel
-                            productDetails={product}
+                        <ProductItem
+                            product={product}
                             pageProps={props}
-                            visible={isVisiblePredicate(product, areaFilter)}
-                            detailType={overviewType}
+                            isVisible={isVisiblePredicate(
+                                product,
+                                areaFilter,
+                                searchValue
+                            )}
+                            overviewType={overviewType}
                             key={product._id}
                         />
                     ))}
