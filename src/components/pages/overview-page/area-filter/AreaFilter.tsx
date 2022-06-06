@@ -36,7 +36,7 @@ export const AreaFilter = ({ filterUpdateCallback }: OverviewFilterProps) => {
 
     return (
         <div className={styles.overviewFilter}>
-            <Heading size="medium" level="3">
+            <Heading size="small" level="2">
                 {overviewTranslations('chooseArea')}
             </Heading>
             <nav

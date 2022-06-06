@@ -1,3 +1,7 @@
 .productLink {
     margin: 1rem 0;
+
+    :global(.card__bed) {
+        background-color: white;
+    }
 }

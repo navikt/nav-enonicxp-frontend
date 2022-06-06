@@ -15,7 +15,7 @@ export const ProductLink = ({ product, isVisible }: ProductLinkProps) => {
     }
 
     const link: LinkProps = {
-        url: product.productDetailsPath,
+        url: product.path,
         text: product.sortTitle,
     };
     return (

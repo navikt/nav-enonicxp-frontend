@@ -13,6 +13,10 @@ import { ProductItem } from './product-elements/ProductItem';
 import { OverviewSearch } from './overview-search/OverviewSearch';
 import style from './OverviewPage.module.scss';
 import { TaxonomyFilter } from './taxonomy-filter/TaxonomyFilter';
+import { Taxonomy } from 'types/taxonomies';
+import { typeOf } from 'mathjs';
+import { classNames } from 'utils/classnames';
+import { ProductDetailType } from 'types/content-props/product-details';
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
@@ -22,10 +26,17 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const getTranslationString = translator('overview', language);
 
     const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
+    const [taxonomyFilter, setTaxonomyFilter] = useState<Taxonomy>(
+        Taxonomy.ALL
+    );
     const [searchValue, setSearchValue] = useState<string>('');
 
-    const handleFilterUpdate = (area: Area) => {
-        setAreaFilter(area);
+    const handleFilterUpdate = (value: Area | Taxonomy, filterName: string) => {
+        if (filterName === 'taxonomy') {
+            setTaxonomyFilter(value as Taxonomy);
+            return;
+        }
+        setAreaFilter(value as Area);
     };
 
     const onSearchUpdate = (value: string) => {
@@ -41,11 +52,15 @@ export const OverviewPage = (props: OverviewPageProps) => {
             areaFilter === Area.ALL ||
             product.area.some((area) => area === areaFilter);
 
+        const isTaxonomyMatch =
+            taxonomyFilter === Taxonomy.ALL ||
+            product.taxonomy.includes(taxonomyFilter);
+
         const isSearchMatch = product.sortTitle
             .toLowerCase()
             .includes(searchValue.toLowerCase());
 
-        return isAreaMatch && isSearchMatch;
+        return isAreaMatch && isSearchMatch && isTaxonomyMatch;
     };
 
     const hasVisibleProducts = productList.some((product) =>
@@ -62,13 +77,27 @@ export const OverviewPage = (props: OverviewPageProps) => {
                 />
             </div>
             <div className={style.content}>
-                <AreaFilter filterUpdateCallback={handleFilterUpdate} />
-                <TaxonomyFilter filterUpdateCallback={handleFilterUpdate} />
+                <AreaFilter
+                    filterUpdateCallback={(value: Area) =>
+                        handleFilterUpdate(value, 'area')
+                    }
+                />
+                <TaxonomyFilter
+                    filterUpdateCallback={(value: Taxonomy) =>
+                        handleFilterUpdate(value, 'taxonomy')
+                    }
+                />
                 <OverviewSearch
                     searchUpdateCallback={onSearchUpdate}
                     label="Søk"
                 />
-                <div className={style.productListWrapper}>
+                <div
+                    className={classNames(
+                        style.productListWrapper,
+                        overviewType === ProductDetailType.ALL_PRODUCTS &&
+                            style.transparent
+                    )}
+                >
                     {!hasVisibleProducts && (
                         <div>{getTranslationString('noProducts')}</div>
                     )}

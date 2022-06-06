@@ -20,6 +20,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 };
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.ALL]: 'Alle',
     [Taxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
     [Taxonomy.BENEFITS]: 'Pengestøtte',
     [Taxonomy.FOLLOWUP]: 'Oppfølging',
@@ -49,6 +50,7 @@ const productDetailTypes: { [key in ProductDetailType]: string } = {
     [ProductDetailType.PAYOUT_DATES]: 'utbetalingsdatoer',
     [ProductDetailType.PROCESSING_TIMES]: 'saksbehandlingstider',
     [ProductDetailType.RATES]: 'satser',
+    [ProductDetailType.ALL_PRODUCTS]: 'alle',
 };
 
 export const translationsBundleNb = {
@@ -125,6 +127,7 @@ export const translationsBundleNb = {
         ariaExplanation: 'Filtrer listen etter område',
         ariaItemExplanation: 'Vis område',
         chooseArea: 'Velg område',
+        chooseType: 'Velg type',
         loading: 'Henter produktdetaljer',
     },
     pagination: {

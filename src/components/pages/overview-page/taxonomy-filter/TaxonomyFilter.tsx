@@ -8,56 +8,56 @@ import { translator } from '../../../../translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './TaxonomyFilter.module.scss';
+import { Taxonomy } from 'types/taxonomies';
 
 interface TaxonomyFilerProps {
-    filterUpdateCallback: (filters: Area) => void;
+    filterUpdateCallback: (filters: Taxonomy) => void;
 }
 
 export const TaxonomyFilter = ({
     filterUpdateCallback,
 }: TaxonomyFilerProps) => {
-    const filterableAreas = [
-        Area.ALL,
-        Area.FAMILY,
-        Area.WORK,
-        Area.HEALTH,
-        Area.ACCESSIBILITY,
-        Area.PENSION,
-        Area.SOCIAL_COUNSELLING,
+    const filterableTaxonomies = [
+        Taxonomy.ALL,
+        Taxonomy.ASSISTIVE_TOOLS,
+        Taxonomy.BENEFITS,
+        Taxonomy.FOLLOWUP,
+        Taxonomy.MEASURES,
+        Taxonomy.RIGHTS,
     ];
-    const [currentArea, setCurrentArea] = useState<Area>(Area.ALL);
+    const [currentFilter, setCurrentFilter] = useState<Taxonomy>(Taxonomy.ALL);
     const { language } = usePageConfig();
 
-    const areaTranslations = translator('areas', language);
+    const productTaxonomies = translator('productTaxonomies', language);
     const overviewTranslations = translator('overview', language);
 
-    const handleFilterUpdate = (area: Area) => {
-        setCurrentArea(area);
-        filterUpdateCallback(area);
+    const handleFilterUpdate = (taxonomy: Taxonomy) => {
+        setCurrentFilter(taxonomy);
+        filterUpdateCallback(taxonomy);
     };
 
     return (
         <div className={styles.overviewFilter}>
-            <Heading size="medium" level="3">
-                {overviewTranslations('chooseArea')}
+            <Heading size="small" level="2">
+                {overviewTranslations('chooseType')}
             </Heading>
             <nav
                 role="navigation"
                 aria-label={overviewTranslations('ariaExplanation')}
             >
                 <ul className={styles.filterWrapper}>
-                    {filterableAreas.map((area) => {
-                        const isActive = currentArea === area;
+                    {filterableTaxonomies.map((taxonomy) => {
+                        const isActive = currentFilter === taxonomy;
 
                         return (
-                            <li key={area}>
+                            <li key={taxonomy}>
                                 <button
                                     type="button"
-                                    onClick={() => handleFilterUpdate(area)}
+                                    onClick={() => handleFilterUpdate(taxonomy)}
                                     aria-current={isActive}
                                     aria-label={`${overviewTranslations(
                                         'ariaItemExplanation'
-                                    )} ${areaTranslations(area)}}`}
+                                    )} ${productTaxonomies(taxonomy)}}`}
                                     className={classNames(
                                         styles.filterButton,
                                         isActive && styles.activeButton
@@ -69,7 +69,7 @@ export const TaxonomyFilter = ({
                                         size="small"
                                     >
                                         {' '}
-                                        {areaTranslations(area)}
+                                        {productTaxonomies(taxonomy)}
                                     </Tag>
                                 </button>
                             </li>

@@ -31,6 +31,7 @@ export type SimplifiedProductData = Partial<{
 
 export type ProductDataMixin = {
     title: string;
+    path: string;
     sortTitle: string;
     ingress?: string;
     taxonomy?: Taxonomy[];
