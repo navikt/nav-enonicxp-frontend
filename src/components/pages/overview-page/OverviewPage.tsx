@@ -67,6 +67,9 @@ export const OverviewPage = (props: OverviewPageProps) => {
         isVisiblePredicate(product, areaFilter, searchValue)
     );
 
+    const showTaxonomyFilter = overviewType === ProductDetailType.ALL_PRODUCTS;
+    const showSearch = overviewType === ProductDetailType.ALL_PRODUCTS;
+
     return (
         <div className={style.overviewPage}>
             <ThemedPageHeader contentProps={props} showTimeStamp={false} />
@@ -82,15 +85,19 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         handleFilterUpdate(value, 'area')
                     }
                 />
-                <TaxonomyFilter
-                    filterUpdateCallback={(value: Taxonomy) =>
-                        handleFilterUpdate(value, 'taxonomy')
-                    }
-                />
-                <OverviewSearch
-                    searchUpdateCallback={onSearchUpdate}
-                    label="Søk"
-                />
+                {showTaxonomyFilter && (
+                    <TaxonomyFilter
+                        filterUpdateCallback={(value: Taxonomy) =>
+                            handleFilterUpdate(value, 'taxonomy')
+                        }
+                    />
+                )}
+                {showSearch && (
+                    <OverviewSearch
+                        searchUpdateCallback={onSearchUpdate}
+                        label="Søk"
+                    />
+                )}
                 <div
                     className={classNames(
                         style.productListWrapper,
