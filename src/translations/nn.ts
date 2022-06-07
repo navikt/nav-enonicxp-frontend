@@ -171,6 +171,7 @@ export const translationsBundleNn = {
             tomorrow: 'i morgon',
         },
         day: 'dag',
+        date: 'dato',
     },
     versionHistory: {
         label: 'Versjonshistorikk',
@@ -192,6 +193,8 @@ export const translationsBundleNn = {
             months: 'månader',
         },
     },
+    payoutDates: {
+        tableHeaderPrefix: 'Utbetalingsdatoar i',
+        tableHeaderPrefixNoYear: 'Utbetalingsdatoar',
+    },
 };
-
-export type Translations = DeepPartial<typeof translationsBundleNn>;

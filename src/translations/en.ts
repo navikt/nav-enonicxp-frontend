@@ -85,6 +85,7 @@ export const translationsBundleEn: Translations = {
             tomorrow: 'i morgen',
         },
         day: 'day',
+        date: 'date',
     },
     relatedContent: {
         [MenuListItemKey.AppealRights]: 'Appeal rights',
@@ -184,5 +185,9 @@ export const translationsBundleEn: Translations = {
             weeks: 'weeks',
             months: 'months',
         },
+    },
+    payoutDates: {
+        tableHeaderPrefix: 'Payment dates in',
+        tableHeaderPrefixNoYear: 'Payment dates',
     },
 };
