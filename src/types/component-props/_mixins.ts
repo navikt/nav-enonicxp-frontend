@@ -31,12 +31,13 @@ export type SimplifiedProductData = Partial<{
 
 export type ProductDataMixin = {
     title: string;
+    sortTitle: string;
     ingress?: string;
     taxonomy?: Taxonomy[];
     audience?: Audience;
     customCategory?: string;
     illustration: AnimatedIconsProps;
-    area: Area;
+    area: Area[];
     externalProductUrl?: string;
 };
 

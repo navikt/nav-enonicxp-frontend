@@ -32,6 +32,7 @@ export enum PartType {
     ProductCardMicro = 'no.nav.navno:product-card-micro',
     ProductDetails = 'no.nav.navno:product-details',
     ContactOption = 'no.nav.navno:contact-option',
+    PayoutDates = 'no.nav.navno:payout-dates',
 }
 
 export type PartDeprecated =
@@ -69,4 +70,5 @@ export type PartWithOwnData =
     | PartType.ProductCardMicro
     | PartType.ContactOption
     | PartType.ProductDetails
-    | PartType.AlertPanel;
+    | PartType.AlertPanel
+    | PartType.PayoutDates;

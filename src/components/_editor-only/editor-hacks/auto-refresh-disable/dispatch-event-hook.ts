@@ -48,6 +48,11 @@ const currentContentDidUpdate = (
 const getUserNameFromEmail = (userEmail) =>
     userEmail?.split('@')[0].replace('.', ' ');
 
+const ignoredContentTypes = {
+    [ContentType.GlobalNumberValuesSet]: true,
+    [ContentType.GlobalCaseTimeSet]: true,
+};
+
 // Hook the dispatchEvent function on the content studio parent window
 // in order to prevent certain events from propagating
 export const hookDispatchEventForBatchContentServerEvent = ({
@@ -63,8 +68,8 @@ export const hookDispatchEventForBatchContentServerEvent = ({
 }) => {
     const { _id: contentId, __typename: contentType } = content;
 
-    // The global-values content type is updated via a custom editor and is not relevant for this functionality
-    if (contentType === ContentType.GlobalNumberValuesSet) {
+    // Some content types use a custom editor. This hack only applies to built-in CS functionality
+    if (ignoredContentTypes[contentType]) {
         return;
     }
 

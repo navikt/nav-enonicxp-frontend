@@ -18,11 +18,15 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
 
 const areas: { [key in Area]: string } = {
     [Area.ALL]: 'All',
-    [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
-    [Area.FAMILY]: 'Familie og barn',
-    [Area.HEALTH]: 'Helse og sykdom',
-    [Area.PENSION]: 'Pensjon',
-    [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
+    [Area.ACCESSIBILITY]: 'Aid and accessibility',
+    [Area.FAMILY]: 'Family and children',
+    [Area.HEALTH]: 'Health',
+    [Area.MUNICIPALITY]: 'For government',
+    [Area.OTHER]: 'Other',
+    [Area.PENSION]: 'Pension',
+    [Area.SELF_EMPLOYED]: 'For the self-employed',
+    [Area.SOCIAL_COUNSELLING]: 'Financial social advice and guidance',
+    [Area.WORK]: 'Work',
 };
 
 export const translationsBundleEn: Translations = {
@@ -80,6 +84,7 @@ export const translationsBundleEn: Translations = {
             tomorrow: 'i morgen',
         },
         day: 'day',
+        date: 'date',
     },
     relatedContent: {
         [MenuListItemKey.AppealRights]: 'Appeal rights',
@@ -114,7 +119,7 @@ export const translationsBundleEn: Translations = {
     areas,
     header: {
         copyLink: 'Copy link',
-        copiedLink: 'Link successfully copied',
+        copiedLinkConfirmed: 'Link successfully copied',
     },
     overview: {
         noProducts: 'No products to show',
@@ -178,5 +183,9 @@ export const translationsBundleEn: Translations = {
             weeks: 'weeks',
             months: 'months',
         },
+    },
+    payoutDates: {
+        tableHeaderPrefix: 'Payment dates in',
+        tableHeaderPrefixNoYear: 'Payment dates',
     },
 };

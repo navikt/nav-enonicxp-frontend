@@ -5,6 +5,7 @@ import {
     isEditorFeatureEnabled,
 } from '../site-info/feature-toggles/utils';
 import { SetSidepanelToggleHack } from './set-sidepanels-defaults/SetSidepanelToggleHack';
+import { CustomSelectorLinkTargetHack } from './custom-selector-link-target/CustomSelectorLinkTargetHack';
 
 // This implements quality-of-life fixes to improve the experiences for Content Studio users
 
@@ -20,6 +21,7 @@ export const EditorHacks = ({ content }: Props) => {
     return (
         <>
             <AutoReloadDisableHack content={content} />
+            <CustomSelectorLinkTargetHack />
             {isEditorFeatureEnabled(EditorFeatureCookie.HideLeftPanel) && (
                 <SetSidepanelToggleHack contentId={content._id} />
             )}
