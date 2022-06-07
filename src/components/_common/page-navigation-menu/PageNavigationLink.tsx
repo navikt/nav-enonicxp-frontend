@@ -1,13 +1,15 @@
 import React from 'react';
 import { Label } from '@navikt/ds-react';
-import { BEM, classNames } from '../../../utils/classnames';
+import { classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
+import { analyticsTaxonomy } from '../../../types/analyticsTaxonomy';
 import { PageNavViewStyle } from '../../../types/component-props/parts/page-navigation-menu';
 import {
     pageNavigationAnchorOffsetPx,
     PageNavScrollDirection,
 } from './PageNavigationMenu';
 import { smoothScrollToTarget } from '../../../utils/scroll-to';
+
 import style from './PageNavigationLink.module.scss';
 import sidebarStyle from './views/PageNavigationSidebar.module.scss';
 import inContentStyle from './views/PageNavigationInContent.module.scss';
@@ -49,6 +51,7 @@ export const PageNavigationLink = React.memo(
             <LenkeBase
                 href={`#${targetId}`}
                 onClick={setLocationHashAndScrollToTarget}
+                linkGroup={analyticsTaxonomy.TABLE_OF_CONTENTS}
                 className={classNames(
                     style.pageNavLink,
                     currentViewStyle.pageNavLink,
