@@ -34,6 +34,7 @@ export const Card = (props: CardProps) => {
             href={url}
             title={text}
             analyticsLabel={link.text}
+            component={`Card: ${type}`}
             className={classNames(
                 bem(),
                 size === CardSize.Micro ? bem('inline') : ''
