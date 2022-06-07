@@ -23,12 +23,11 @@ export const LargeCard = (props: StortKortProps) => {
     const { link, description, type, category, illustration } = props;
     const { text } = link;
     const hasIllustration =
-        illustration && (
-            type === CardType.Product ||
+        illustration &&
+        (type === CardType.Product ||
             type === CardType.Situation ||
             type === CardType.ThemedArticle ||
-            type === CardType.Guide
-        );
+            type === CardType.Guide);
     const { isHovering, cardInteractionHandler } = useCardState();
     const { pageConfig } = usePageConfig();
 
@@ -56,9 +55,7 @@ export const LargeCard = (props: StortKortProps) => {
                 <Heading level="3" size="medium" className={style.title}>
                     {text}
                 </Heading>
-                <BodyLong className={style.description}>
-                    {description}
-                </BodyLong>
+                <BodyLong className={style.description}>{description}</BodyLong>
                 <BodyShort className={style.category}>{category}</BodyShort>
             </div>
         </Card>

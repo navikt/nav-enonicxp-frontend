@@ -22,23 +22,23 @@
     }
     &:hover,
     &:focus {
-        :global(.situation) {
+        > :global(.situation) {
             background-color: var(--navds-global-color-orange-200);
         }
-        :global(.product) {
+        > :global(.product) {
             background-color: var(--navds-global-color-green-200);
         }
-        :global(.tool) {
+        > :global(.tool) {
             background-color: var(--navds-global-color-deepblue-200);
         }
-        :global(.themed-article) {
+        > :global(.themed-article) {
             background-color: var(--navds-global-color-limegreen-300);
         }
-        :global(.guide) {
+        > :global(.guide) {
             background-color: var(--navds-global-color-lightblue-200);
         }
         //TODO: Find a better way? (can't specify classes in Card Size modules here or vice versa)
-        *  {
+        * {
             text-decoration: none;
             color: var(--navds-global-color-gray-900) !important;
         }
@@ -104,8 +104,7 @@
 
         &:not(:hover):not(:active) {
             box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
-            0 1px 6px rgba(0, 0, 0, 0.14),
-            0 2px 8px rgba(38, 38, 38, 0.12);
+                0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
         }
         &:hover,
         &:focus {
@@ -151,20 +150,23 @@
     :global(.mini) {
         align-items: center;
         border-radius: 8px;
-        border: 1px solid #B0B0B0;  // Don't exist in @navikt/ds
+        border: 1px solid #b0b0b0; // Don't exist in @navikt/ds
         display: inline-flex; // Ensures margins don't collapse
         padding: common.px-to-rem(12);
         text-decoration: none;
         width: 100%;
 
         &:not(:hover):not(:active) {
-            box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2), 0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
+            box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
+                0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
         }
 
         &:hover {
-            box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2), 0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
+            box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
+                0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
         }
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
             border: 1px solid transparent;
         }
     }
@@ -194,13 +196,12 @@
         }
         &:not(:hover):not(:active) {
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.14),
-            0 2px 1px rgba(38, 38, 38, 0.12),
-            0 1px 3px rgba(38, 38, 38, 0.2);
+                0 2px 1px rgba(38, 38, 38, 0.12),
+                0 1px 3px rgba(38, 38, 38, 0.2);
         }
         &:hover {
             box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
-            0 1px 6px rgba(0, 0, 0, 0.14),
-            0 2px 8px rgba(38, 38, 38, 0.12);
+                0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
         }
     }
 }
