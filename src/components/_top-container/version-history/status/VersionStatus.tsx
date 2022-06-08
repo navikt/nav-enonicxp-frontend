@@ -4,6 +4,8 @@ import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
 import { formatDateTime } from '../../../../utils/datetime';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 
+import style from './VersionStatus.module.scss';
+
 type Props = {
     content: ContentProps;
     requestedDateTime: string;
@@ -23,7 +25,7 @@ export const VersionStatus = ({ content, requestedDateTime }: Props) => {
     const contentTimeFormatted = formatDateTime(contentDateTime, 'nb', true);
 
     return (
-        <div className={'version-status'}>
+        <div className={style.versionStatus}>
             <BodyLong>
                 {requestedUnixTime >= contentUnixTime
                     ? `Viser innhold fra ${requestedTimeFormatted}`

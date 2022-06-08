@@ -1,6 +1,4 @@
 const withPlugins = require('next-compose-plugins');
-const withLess = require('next-with-less');
-
 const withTranspileModules = require('next-transpile-modules')([
     '@navikt/ds-react',
     '@navikt/ds-icons',
@@ -143,7 +141,7 @@ console.log(
     `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Failover: ${isFailover}`
 );
 
-module.exports = withPlugins([withLess, withTranspileModules], {
+module.exports = withPlugins([withTranspileModules], {
     distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: isFailover
         ? process.env.FAILOVER_ORIGIN

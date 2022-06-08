@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Select } from '@navikt/ds-react';
-import { BEM } from '../../../../../utils/classnames';
 import { ContentProps } from '../../../../../types/content-props/_content-common';
 import { formatDateTime } from '../../../../../utils/datetime';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
 
-const bem = BEM('version-selector-published');
+import style from './VersionSelectorPublished.module.scss';
 
 type Props = {
     content: ContentProps;
@@ -39,13 +38,13 @@ export const VersionSelectorPublished = ({
     const url = getVersionSelectorUrl(content, selectedDateTime, 'master');
 
     return (
-        <div className={bem()}>
+        <div className={style.versionSelectorPublished}>
             <Select
                 label={'Velg en publisering:'}
                 onChange={(e) => {
                     setSelectedDateTime(e.target.value);
                 }}
-                className={bem('select')}
+                className={style.select}
             >
                 {versionTimestamps.map((timestamp, index) => (
                     <option value={timestamp} key={index}>

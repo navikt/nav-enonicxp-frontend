@@ -1,16 +1,15 @@
 import React from 'react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { StaticImage } from '../../_common/image/StaticImage';
-import { BEM, classNames } from '../../../utils/classnames';
+import { classNames } from '../../../utils/classnames';
 import { BodyShort } from '@navikt/ds-react';
-
 import helpIcon from '/public/gfx/help.svg';
 import errorIcon from '/public/gfx/error.svg';
 import lightBulb from '/public/gfx/lightbulb.svg';
 import arrowUp from '/public/gfx/arrowUp.svg';
 import arrowDown from '/public/gfx/arrowDown.svg';
 
-const bem = BEM('editor-help');
+import style from './EditorHelp.module.scss';
 
 const imagePath = {
     info: lightBulb,
@@ -34,13 +33,13 @@ export const EditorHelp = ({ text, type = 'help' }: Props) => {
     }
 
     return (
-        <div className={bem()}>
+        <div className={style.editorHelp}>
             <StaticImage
                 imageData={imagePath[type]}
                 alt={''}
-                className={classNames(bem('icon'), bem('icon', type))}
+                className={classNames(style.icon, type)}
             />
-            <BodyShort spacing={false} size="small" className={bem('content')}>
+            <BodyShort spacing={false} size="small" className={style.content}>
                 {text}
             </BodyShort>
         </div>

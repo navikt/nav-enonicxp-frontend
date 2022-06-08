@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { BEM } from '../../../utils/classnames';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { Heading, Loader } from '@navikt/ds-react';
@@ -9,7 +8,7 @@ import { translator } from 'translations';
 import { useRouter } from 'next/router';
 import { Chevron } from '../../_common/chevron/Chevron';
 
-const bem = BEM('version-history');
+import style from './VersionHistory.module.scss';
 
 type Props = {
     content: ContentProps;
@@ -41,7 +40,7 @@ export const VersionHistory = ({ content }: Props) => {
     return (
         <div
             role={'navigation'}
-            className={bem()}
+            className={style.versionHistory}
             aria-label={getLabel('label')}
         >
             {!versionUrlRequested && timeRequested && (
@@ -71,7 +70,7 @@ export const VersionHistory = ({ content }: Props) => {
                 submitVersionUrl={setVersionUrlRequested}
             />
             {versionUrlRequested && (
-                <div className={bem('spinner-container')}>
+                <div className={style.spinnerContainer}>
                     <Heading size="medium" level="2">
                         {getLabel('loading')}
                     </Heading>

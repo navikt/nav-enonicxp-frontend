@@ -1,12 +1,11 @@
 import React from 'react';
 import { CardSize, CardType } from 'types/card';
-import { BEM, classNames } from '../../../utils/classnames';
-
+import { classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { Interaction } from 'types/interaction';
 
-const bem = BEM('card');
+import style from './Card.module.scss';
 
 type CardProps = {
     children: React.ReactChild;
@@ -19,7 +18,6 @@ type CardProps = {
 export const Card = (props: CardProps) => {
     const { children, link, type, size, interactionHandler } = props;
     const { text, url } = link;
-
     const handleUserEvent = (e: React.MouseEvent | React.TouchEvent): void => {
         const eventType = e.type.toString() as keyof typeof Interaction;
         const type: Interaction = Interaction[eventType];
@@ -35,8 +33,8 @@ export const Card = (props: CardProps) => {
             title={text}
             analyticsLabel={link.text}
             className={classNames(
-                bem(),
-                size === CardSize.Micro ? bem('inline') : ''
+                style.card,
+                size === CardSize.Micro ? style.inline : ''
             )}
             onMouseEnter={handleUserEvent}
             onMouseLeave={handleUserEvent}
@@ -47,7 +45,7 @@ export const Card = (props: CardProps) => {
             onTouchCancel={handleUserEvent}
             onTouchMove={handleUserEvent}
         >
-            <div className={classNames(bem('bed'), bem(type), bem(size))}>
+            <div className={classNames(style.bed, type, size)}>
                 {children}
             </div>
         </LenkeBase>
