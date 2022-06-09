@@ -83,6 +83,7 @@ export const hookDispatchEventForBatchContentServerEvent = ({
 
     let prevWorkflowState;
     let userId;
+    let skipNextEventIfBatchContentServerEvent = false;
 
     fetchAdminUserId().then((id) => {
         userId = id;
@@ -99,6 +100,7 @@ export const hookDispatchEventForBatchContentServerEvent = ({
         // We only want to intercept events of the BatchContentServerEvent type, which is what triggers UI updates
         // for content changes on the client. All other events should be dispatched as normal.
         if (eventType !== 'BatchContentServerEvent') {
+            skipNextEventIfBatchContentServerEvent = false;
             return dispatchEvent(event);
         }
 
@@ -111,15 +113,28 @@ export const hookDispatchEventForBatchContentServerEvent = ({
         // Changes to other content may trigger an unnecessary UI-reload if it references the current content
         // Ignore events for other content to prevent this
         if (!currentContentDidUpdate(detail, contentId)) {
+            console.log(
+                'Skipping this event as current content was not updated'
+            );
+            return false;
+        }
+
+        if (skipNextEventIfBatchContentServerEvent) {
+            console.log('Skipping this event as skipNext flag was set');
+            skipNextEventIfBatchContentServerEvent = false;
             return false;
         }
 
         // Publish and unpublish events must always be dispatched in order to keep the editor UI consistent
+        // These events are sometimes followed by a BatchContentServerEvent, despite no actual content changes
+        // having occurred (the skipNext flag is used to handle this)
         if (detailType === NodeServerChangeType.PUBLISH) {
             console.log('Content published - dispatching event');
+            skipNextEventIfBatchContentServerEvent = true;
             return dispatchEvent(event);
         } else if (detailType === NodeServerChangeType.DELETE) {
             console.log('Content unpublished - dispatching event');
+            skipNextEventIfBatchContentServerEvent = true;
             return dispatchEvent(event);
         }
 
