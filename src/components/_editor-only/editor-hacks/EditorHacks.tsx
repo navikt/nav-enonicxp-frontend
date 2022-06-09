@@ -6,6 +6,7 @@ import {
 } from '../site-info/feature-toggles/utils';
 import { SetSidepanelToggleHack } from './set-sidepanels-defaults/SetSidepanelToggleHack';
 import { CustomSelectorLinkTargetHack } from './custom-selector-link-target/CustomSelectorLinkTargetHack';
+import { PublishedNameFixHack } from './published-name-fix/PublishedNameFixHack';
 
 // This implements quality-of-life fixes to improve the experiences for Content Studio users
 
@@ -14,16 +15,23 @@ type Props = {
 };
 
 export const EditorHacks = ({ content }: Props) => {
-    if (content.editorView !== 'edit') {
+    const { _id, editorView } = content;
+
+    if (!editorView || editorView === 'preview') {
         return null;
     }
 
     return (
         <>
-            <AutoReloadDisableHack content={content} />
-            <CustomSelectorLinkTargetHack />
-            {isEditorFeatureEnabled(EditorFeatureCookie.HideLeftPanel) && (
-                <SetSidepanelToggleHack contentId={content._id} />
+            <PublishedNameFixHack contentId={_id} />
+            {editorView === 'edit' && (
+                <>
+                    <AutoReloadDisableHack content={content} />
+                    <CustomSelectorLinkTargetHack />
+                    {isEditorFeatureEnabled(
+                        EditorFeatureCookie.HideLeftPanel
+                    ) && <SetSidepanelToggleHack contentId={_id} />}
+                </>
             )}
         </>
     );
