@@ -2,7 +2,7 @@ import React from 'react';
 import { Label } from '@navikt/ds-react';
 import { classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
-import { analyticsContent } from '../../../types/analyticsTaxonomy';
+import { analyticsContent } from '../../../utils/amplitude';
 import { PageNavViewStyle } from '../../../types/component-props/parts/page-navigation-menu';
 import {
     pageNavigationAnchorOffsetPx,

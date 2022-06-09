@@ -8,7 +8,6 @@ import {
 import { logLinkClick } from 'utils/amplitude';
 import Link from 'next/link';
 import { usePathMap } from '../../../store/hooks/usePathMap';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 /**
  * This component handles client-side async navigation for URLs internal to this app (as well as analytics for links)
@@ -19,6 +18,7 @@ import { usePageConfig } from '../../../store/hooks/usePageConfig';
 type Props = {
     href: string;
     onClick?: (e: React.MouseEvent) => void;
+    event?: string;
     component?: string;
     linkGroup?: string;
     analyticsLabel?: string;
@@ -29,6 +29,7 @@ type Props = {
 export const LenkeBase = ({
     href,
     onClick,
+    event,
     component,
     linkGroup,
     analyticsLabel,
@@ -37,8 +38,6 @@ export const LenkeBase = ({
     ...rest
 }: Props) => {
     const { internalPathToCustomPath } = usePathMap();
-    const { pageConfig } = usePageConfig();
-
     // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
     // (setting to always false for the time being to prevent backend load spikes with cold cache)
     const shouldPrefetch = false;
@@ -52,12 +51,9 @@ export const LenkeBase = ({
 
         return href || '/';
     };
-
     const finalHref = getFinalHref();
-
     const analyticsLinkText =
         analyticsLabel || (typeof children === 'string' ? children : undefined);
-
     const linkElement = (
         <a
             href={finalHref}

@@ -1,5 +1,24 @@
 import amplitude from 'amplitude-js';
-import { analyticsEvents } from '../types/analyticsTaxonomy';
+
+export enum analyticsEvents {
+    NAVIGATION = 'navigere',
+    COPY_LINK = 'kopier-lenke',
+    CHAT_OPEN = 'chat-åpnet',
+    CALL = 'ring-oss',
+}
+export enum analyticsContent {
+    TABLE_OF_CONTENTS = 'innholdsmeny',
+    CONTENT_SECTION = 'innholdsseksjon',
+    PRODUCT_LIST = 'varehylle',
+    OTHER_SUPPLIERS = 'andre som kan hjelpe',
+    OTHER_CHANNELS = 'kontaktmodul'
+}
+export interface analyticsData {
+    komponent?: string,
+    lenkegruppe?: string,
+    destinasjon?: string,
+    lenketekst?: string,
+}
 
 export const initAmplitude = () => {
     amplitude.getInstance().init('default', '', {
@@ -25,12 +44,19 @@ export const logLinkClick = (
     });
 };
 
-export function logAmplitudeEvent(eventName: analyticsEvents, data?: any): Promise<any> {
+export function logAmplitudeEvent(eventName: analyticsEvents, data?: analyticsData): Promise<any> {
+    interface amplitudeData extends analyticsData {
+        app: string,
+        origin: string,
+        originVersion: string,
+    }
     return new Promise(function (resolve: any) {
-        const eventData = data || {};
-        eventData.app = 'nav-enonicxp-frontend';
-        eventData.origin = 'navno-frontend';
-        eventData.originVersion = 'unknown';
+        const eventData: amplitudeData = {
+            ...data,
+            app: 'nav-enonicxp-frontend',
+            origin: 'navno-frontend',
+            originVersion: 'unknown',
+        };
         amplitude.getInstance().logEvent(eventName, eventData, resolve);
     });
 }
