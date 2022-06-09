@@ -31,8 +31,8 @@ export const PublishedNameFixHack = ({ contentId }: Props) => {
                 return;
             }
 
-            authorContainer.innerText =
-                lastCommitedVersion.publishInfo.publisherDisplayName;
+            const preposition = authorContainer.innerText.split(' ')[0];
+            authorContainer.innerText = `${preposition} ${lastCommitedVersion.publishInfo.publisherDisplayName}`;
         });
     }, [contentId]);
 
