@@ -1,4 +1,5 @@
 import amplitude from 'amplitude-js';
+import { analyticsEvents } from '../types/analyticsTaxonomy';
 
 export const initAmplitude = () => {
     amplitude.getInstance().init('default', '', {
@@ -16,7 +17,7 @@ export const logLinkClick = (
     component?: string,
     linkGroup?: string
 ) => {
-    logAmplitudeEvent('navigere', {
+    logAmplitudeEvent(analyticsEvents.NAVIGATION, {
         komponent: component,
         lenkegruppe: linkGroup,
         destinasjon: href,
@@ -24,7 +25,7 @@ export const logLinkClick = (
     });
 };
 
-export function logAmplitudeEvent(eventName: string, data?: any): Promise<any> {
+export function logAmplitudeEvent(eventName: analyticsEvents, data?: any): Promise<any> {
     return new Promise(function (resolve: any) {
         const eventData = data || {};
         eventData.app = 'nav-enonicxp-frontend';

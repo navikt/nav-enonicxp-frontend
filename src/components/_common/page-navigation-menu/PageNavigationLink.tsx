@@ -2,7 +2,7 @@ import React from 'react';
 import { Label } from '@navikt/ds-react';
 import { classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
-import { analyticsTaxonomy } from '../../../types/analyticsTaxonomy';
+import { analyticsContent } from '../../../types/analyticsTaxonomy';
 import { PageNavViewStyle } from '../../../types/component-props/parts/page-navigation-menu';
 import {
     pageNavigationAnchorOffsetPx,
@@ -51,7 +51,7 @@ export const PageNavigationLink = React.memo(
             <LenkeBase
                 href={`#${targetId}`}
                 onClick={setLocationHashAndScrollToTarget}
-                linkGroup={analyticsTaxonomy.TABLE_OF_CONTENTS}
+                linkGroup={analyticsContent.TABLE_OF_CONTENTS}
                 className={classNames(
                     style.pageNavLink,
                     currentViewStyle.pageNavLink,

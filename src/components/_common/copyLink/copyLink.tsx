@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { translator } from 'translations';
-
-import { classNames } from '../../../utils/classnames';
-import { StaticImage } from '../image/StaticImage';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import React, {useState} from 'react';
+import {translator} from 'translations';
+import {classNames} from '../../../utils/classnames';
+import {StaticImage} from '../image/StaticImage';
+import {usePageConfig} from 'store/hooks/usePageConfig';
+import {logAmplitudeEvent} from '../../../utils/amplitude';
 
 import linkIcon from '/public/gfx/link.svg';
 
 import style from './copyLink.module.scss';
+import {analyticsEvents} from "../../../types/analyticsTaxonomy";
 
 type CopyLinkProps = {
     anchor: string;
@@ -42,6 +43,7 @@ export const CopyLink = ({ anchor, label, className }: CopyLinkProps) => {
                     linkCopiedDisplayTimeMs
                 );
             }
+            logAmplitudeEvent(analyticsEvents.COPY_LINK);
         }
     };
 
