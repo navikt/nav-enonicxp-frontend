@@ -19,7 +19,6 @@ const xpLangToDecoratorLang: {
     nn: 'nn',
     pl: 'pl',
     se: 'se',
-    // @ts-ignore
     uk: 'uk',
 };
 
