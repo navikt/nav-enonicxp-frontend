@@ -24,6 +24,9 @@ spec:
   {{/each}}
   envFrom:
     - secret: {{secret}}
+  env:
+    - name: NPM_CONFIG_CACHE
+      value: /tmp/npm-cache
   replicas:
     min: 1
     max: 2

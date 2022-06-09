@@ -7,10 +7,14 @@ import { LenkeBase } from '../../_common/lenke/LenkeBase';
 import { XpImage } from '../../_common/image/XpImage';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { getMediaUrl } from '../../../utils/urls';
+import { buildImageCacheUrl } from '../../_common/image/NextImage';
 
 import style from './LinkPanelPart.module.scss';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
+    const { pageConfig } = usePageConfig();
+
     if (!config) {
         return <EditorHelp text={'Tomt lenkepanel'} />;
     }
@@ -37,7 +41,16 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                 isVerticalLayout ? `vertical` : 'horizontal'
             )}
             border={true}
-            style={bgUrl && { backgroundImage: `url(${bgUrl})` }}
+            style={
+                bgUrl && {
+                    backgroundImage: `url(${buildImageCacheUrl({
+                        src: bgUrl,
+                        isEditorView: !!pageConfig.editorView,
+                        maxWidth: 480,
+                        quality: 90,
+                    })})`,
+                }
+            }
             as={(props) => (
                 <LenkeBase
                     href={props.href}
@@ -56,7 +69,8 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                             aria-hidden={'true'}
                             className={classNames(
                                 style.icon,
-                                selectedVariant === 'verticalWithBgColor' && style.bg
+                                selectedVariant === 'verticalWithBgColor' &&
+                                    style.bg
                             )}
                             style={{
                                 ...(selectedVariant ===

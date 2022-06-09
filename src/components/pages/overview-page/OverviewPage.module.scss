@@ -16,6 +16,14 @@
         :global(.region__pageContent) {
             max-width: common.$sectionMaxWidth;
         }
+
+        :global(.icon-container) {
+            background-color: var(--navds-global-color-green-200);
+            img {
+                height: 50%;
+                width: 50%;
+            }
+        }
     }
 
     .productListWrapper {

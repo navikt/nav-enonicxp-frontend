@@ -24,6 +24,7 @@ import { AnimatedIconsData } from './animated-icons';
 import { GlobalCaseTimeSetData, GlobalValuesData } from './global-values-props';
 import { ContactInformationData } from './contact-information-props';
 import { MediaType } from '../media';
+import { PayoutDatesData } from './payout-dates';
 
 export enum ContentType {
     Error = 'error',
@@ -56,6 +57,7 @@ export enum ContentType {
     Calculator = 'no_nav_navno_Calculator',
     Overview = 'no_nav_navno_Overview',
     GlobalCaseTimeSet = 'no_nav_navno_GlobalCaseTimeSet',
+    PayoutDates = 'no_nav_navno_PayoutDates',
 }
 
 export type ContentCommonProps = {
@@ -124,5 +126,6 @@ export type ContentData = Partial<
         SituationPageData &
         AnimatedIconsData &
         GlobalValuesData &
-        GlobalCaseTimeSetData
+        GlobalCaseTimeSetData &
+        PayoutDatesData
 >;

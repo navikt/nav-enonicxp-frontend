@@ -36,8 +36,12 @@ const areas: { [key in Area]: string } = {
     [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
     [Area.FAMILY]: 'Familie og barn',
     [Area.HEALTH]: 'Helse og sykdom',
+    [Area.MUNICIPALITY]: 'For kommunen',
+    [Area.OTHER]: 'Annet',
     [Area.PENSION]: 'Pensjon',
+    [Area.SELF_EMPLOYED]: 'For selvstendig næringsdrivende',
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
+    [Area.WORK]: 'Arbeid',
 };
 
 export const translationsBundleNn = {
@@ -107,7 +111,7 @@ export const translationsBundleNn = {
     },
     header: {
         copyLink: 'Kopier lenke',
-        copiedLink: 'Lenka er kopiert',
+        copiedLinkConfirmed: 'Lenka er kopiert',
     },
     overview: {
         noProducts: 'Ingen produkt å vise',
@@ -165,6 +169,7 @@ export const translationsBundleNn = {
             tomorrow: 'i morgon',
         },
         day: 'dag',
+        date: 'dato',
     },
     versionHistory: {
         label: 'Versjonshistorikk',
@@ -186,6 +191,8 @@ export const translationsBundleNn = {
             months: 'månader',
         },
     },
+    payoutDates: {
+        tableHeaderPrefix: 'Utbetalingsdatoar i',
+        tableHeaderPrefixNoYear: 'Utbetalingsdatoar',
+    },
 };
-
-export type Translations = DeepPartial<typeof translationsBundleNn>;

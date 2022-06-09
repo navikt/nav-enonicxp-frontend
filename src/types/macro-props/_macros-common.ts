@@ -13,6 +13,7 @@ export enum MacroType {
     InfoBoks = 'infoBoks',
     Ingress = 'ingress',
     LenkeFiler = 'lenkeFiler',
+    PayoutDates = 'payout-dates',
     PhoneLink = 'phone-link',
     ProductCardMini = 'product-card-mini',
     Quote = 'quote',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Accordion, Loader } from '@navikt/ds-react';
 import { IllustrationStatic } from '../../../_common/illustration/IllustrationStatic';
 import { ComponentMapper } from '../../../ComponentMapper';
@@ -14,6 +14,7 @@ import style from './OverviewPageDetailsPanel.module.scss';
 import { classNames } from '../../../../utils/classnames';
 import { translator } from '../../../../translations';
 import { ProductDetailType } from '../../../../types/content-props/product-details';
+import { CopyLink } from 'components/_common/copyLink/copyLink';
 
 type Props = {
     productDetails: SimplifiedProductData;
@@ -34,6 +35,16 @@ export const OverviewPageDetailsPanel = ({
     const [productDetailsPage, setProductDetailsPage] = useState(null);
 
     const detailTypeStrings = translator('productDetailTypes', 'no');
+
+    useEffect(() => {
+        const anchorTarget = getAnchorFromPath(
+            productDetails.productDetailsPath
+        );
+        if (window.location.hash.includes(anchorTarget)) {
+            handleProductDetailsFetch();
+            setIsOpen(true);
+        }
+    }, []);
 
     const handleProductDetailsFetch = () => {
         if (isLoading || productDetailsPage) {
@@ -64,38 +75,55 @@ export const OverviewPageDetailsPanel = ({
             });
     };
 
+    const getAnchorFromPath = (path: string) => {
+        return `${path.substring(path.lastIndexOf('/') + 1)}`;
+    };
+
     return (
-        <Accordion className={classNames(!visible && style.hidden)}>
-            <Accordion.Item open={isOpen} className={style.accordionItem}>
-                <Accordion.Header
-                    onClick={() => {
-                        setIsOpen(!isOpen);
-                        handleProductDetailsFetch();
-                    }}
-                    onMouseOver={
-                        productDetailsPage ? null : handleProductDetailsFetch
-                    }
-                >
-                    <IllustrationStatic
-                        className={style.illustration}
-                        illustration={productDetails.illustration}
-                    />
-                    {productDetails.title}
-                </Accordion.Header>
-                <Accordion.Content>
-                    {error && <AlertBox variant={'error'}>{error}</AlertBox>}
-                    {isLoading ? (
-                        <div className={style.detailsLoader}>
-                            <Loader size={'2xlarge'} />
-                        </div>
-                    ) : productDetailsPage ? (
-                        <ComponentMapper
-                            componentProps={productDetailsPage}
-                            pageProps={pageProps}
+        <>
+            <div id={getAnchorFromPath(productDetails.productDetailsPath)} />
+            <Accordion className={classNames(!visible && style.hidden)}>
+                <Accordion.Item open={isOpen} className={style.accordionItem}>
+                    <Accordion.Header
+                        onClick={() => {
+                            setIsOpen(!isOpen);
+                            handleProductDetailsFetch();
+                        }}
+                        onMouseOver={
+                            productDetailsPage
+                                ? null
+                                : handleProductDetailsFetch
+                        }
+                    >
+                        <IllustrationStatic
+                            className={style.illustration}
+                            illustration={productDetails.illustration}
                         />
-                    ) : null}
-                </Accordion.Content>
-            </Accordion.Item>
-        </Accordion>
+                        {productDetails.sortTitle}
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        {error && (
+                            <AlertBox variant={'error'}>{error}</AlertBox>
+                        )}
+                        <CopyLink
+                            anchor={`#${getAnchorFromPath(
+                                productDetails.productDetailsPath
+                            )}`}
+                            className={style.copyLink}
+                        />
+                        {isLoading ? (
+                            <div className={style.detailsLoader}>
+                                <Loader size={'2xlarge'} />
+                            </div>
+                        ) : productDetailsPage ? (
+                            <ComponentMapper
+                                componentProps={productDetailsPage}
+                                pageProps={pageProps}
+                            />
+                        ) : null}
+                    </Accordion.Content>
+                </Accordion.Item>
+            </Accordion>
+        </>
     );
 };
