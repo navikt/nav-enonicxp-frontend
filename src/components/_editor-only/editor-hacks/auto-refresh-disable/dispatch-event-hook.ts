@@ -112,13 +112,14 @@ export const hookDispatchEventForBatchContentServerEvent = ({
         // Changes to other content may trigger an unnecessary UI-reload if it references the current content
         // Ignore events for other content to prevent this
         if (!currentContentDidUpdate(detail, contentId)) {
+            console.log(
+                'Skipping this event as current content was not updated'
+            );
             return false;
         }
 
         if (skipNext) {
-            console.log(
-                'Previous event was publish/unpublish. Skipping this event as it is expected to be a dummy event with no actual change (possible CS bug?)'
-            );
+            console.log('Skipping this event as skipNext flag was set');
             skipNext = false;
             return false;
         }
@@ -135,8 +136,6 @@ export const hookDispatchEventForBatchContentServerEvent = ({
             skipNext = true;
             return dispatchEvent(event);
         }
-
-        console.log(JSON.stringify(detail));
 
         // If the current user could not be determined for whatever reason, the following functionality
         // is not very useful.
