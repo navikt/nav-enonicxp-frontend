@@ -83,6 +83,7 @@ export const hookDispatchEventForBatchContentServerEvent = ({
 
     let prevWorkflowState;
     let userId;
+    let skipNext = false;
 
     fetchAdminUserId().then((id) => {
         userId = id;
@@ -114,14 +115,28 @@ export const hookDispatchEventForBatchContentServerEvent = ({
             return false;
         }
 
+        if (skipNext) {
+            console.log(
+                'Previous event was publish/unpublish. Skipping this event as it is expected to be a dummy event with no actual change (possible CS bug?)'
+            );
+            skipNext = false;
+            return false;
+        }
+
         // Publish and unpublish events must always be dispatched in order to keep the editor UI consistent
+        // These events are always followed by a BatchContentServerEvent, despite no actual content changes having occurred
+        // (the skipNext flag is used to handle this)
         if (detailType === NodeServerChangeType.PUBLISH) {
             console.log('Content published - dispatching event');
+            skipNext = true;
             return dispatchEvent(event);
         } else if (detailType === NodeServerChangeType.DELETE) {
             console.log('Content unpublished - dispatching event');
+            skipNext = true;
             return dispatchEvent(event);
         }
+
+        console.log(JSON.stringify(detail));
 
         // If the current user could not be determined for whatever reason, the following functionality
         // is not very useful.
