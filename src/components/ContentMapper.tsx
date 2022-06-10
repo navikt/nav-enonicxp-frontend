@@ -20,6 +20,7 @@ import { ProductDetailsPage } from './pages/product-details-page/ProductDetailsP
 import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
 import { MainArticleChapterPage } from './pages/main-article-chapter-page/MainArticleChapterPage';
 import { PayoutDatesPage } from './pages/payout-dates-page/PayoutDatesPage';
+import { GenericPage } from './pages/generic-page/GenericPage';
 
 const contentToReactComponent: Partial<{
     [key in ContentType]: React.FunctionComponent<ContentProps>;
@@ -40,6 +41,7 @@ const contentToReactComponent: Partial<{
     [ContentType.GuidePage]: GuidePage,
     [ContentType.ThemedArticlePage]: ThemedArticlePage,
     [ContentType.Overview]: OverviewPage,
+    [ContentType.GenericPage]: GenericPage,
 
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.MainArticle]: DynamicPage,

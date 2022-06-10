@@ -39,6 +39,7 @@ export enum ContentType {
     DynamicPage = 'no_nav_navno_DynamicPage',
     ContentList = 'no_nav_navno_ContentList',
     ContactInformationPage = 'no_nav_navno_ContactInformation',
+    GenericPage = 'no_nav_navno_GenericPage',
     PageList = 'no_nav_navno_PageList',
     MainArticle = 'no_nav_navno_MainArticle',
     MainArticleChapter = 'no_nav_navno_MainArticleChapter',
