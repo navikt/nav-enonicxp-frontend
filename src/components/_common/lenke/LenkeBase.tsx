@@ -5,7 +5,7 @@ import {
     isAppUrl,
     isInternalUrl,
 } from 'utils/urls';
-import { logLinkClick } from 'utils/amplitude';
+import { analyticsData, analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import Link from 'next/link';
 import { usePathMap } from '../../../store/hooks/usePathMap';
 
@@ -18,7 +18,7 @@ import { usePathMap } from '../../../store/hooks/usePathMap';
 type Props = {
     href: string;
     onClick?: (e: React.MouseEvent) => void;
-    event?: string;
+    event?: analyticsEvents;
     component?: string;
     linkGroup?: string;
     analyticsLabel?: string;
@@ -52,18 +52,17 @@ export const LenkeBase = ({
         return href || '/';
     };
     const finalHref = getFinalHref();
-    const analyticsLinkText =
-        analyticsLabel || (typeof children === 'string' ? children : undefined);
+    const analyticsData:analyticsData = {
+        komponent: component,
+        lenkegruppe: linkGroup,
+        destinasjon: finalHref,
+        lenketekst: analyticsLabel || (typeof children === 'string' ? children : undefined),
+    }
     const linkElement = (
         <a
             href={finalHref}
             onClick={(e) => {
-                logLinkClick(
-                    finalHref,
-                    analyticsLinkText,
-                    component,
-                    linkGroup
-                );
+                logAmplitudeEvent(event || analyticsEvents.NAVIGATION, analyticsData);
                 onClick?.(e);
             }}
             rel={isNofollowUrl(finalHref) ? 'nofollow' : undefined}

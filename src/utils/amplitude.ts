@@ -30,20 +30,6 @@ export const initAmplitude = () => {
     });
 };
 
-export const logLinkClick = (
-    href: string,
-    linkText: string | undefined,
-    component?: string,
-    linkGroup?: string
-) => {
-    logAmplitudeEvent(analyticsEvents.NAVIGATION, {
-        komponent: component,
-        lenkegruppe: linkGroup,
-        destinasjon: href,
-        lenketekst: linkText,
-    });
-};
-
 export function logAmplitudeEvent(eventName: analyticsEvents, data?: analyticsData): Promise<any> {
     interface amplitudeData extends analyticsData {
         app: string,

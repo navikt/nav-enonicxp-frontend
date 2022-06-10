@@ -1,18 +1,16 @@
-import {
-    ChannelType,
-    DefaultContactData,
-} from '../../../types/component-props/parts/contact-option';
+import {ChannelType, DefaultContactData,} from '../../../types/component-props/parts/contact-option';
 
-import { translator } from 'translations';
-import { Heading, BodyLong } from '@navikt/ds-react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import {translator} from 'translations';
+import {BodyLong, Heading} from '@navikt/ds-react';
+import {usePageConfig} from 'store/hooks/usePageConfig';
 
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { openChatbot } from '../../../utils/chatbot';
+import {LenkeBase} from 'components/_common/lenke/LenkeBase';
+import {openChatbot} from '../../../utils/chatbot';
 
-import { classNames } from 'utils/classnames';
+import {classNames} from 'utils/classnames';
 
 import style from './ContactOption.module.scss';
+import {analyticsEvents} from "../../../utils/amplitude";
 
 interface DefaultContactProps extends DefaultContactData {
     channel: ChannelType;
@@ -59,6 +57,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
         if (channel === 'call') {
             return {
                 href: 'tel:+4755553333',
+                event: analyticsEvents.CALL,
             };
         }
 
@@ -66,12 +65,14 @@ export const DefaultOption = (props: DefaultContactProps) => {
             return {
                 href: '#',
                 onClick: openChatbot,
+                event: analyticsEvents.CHAT_OPEN,
             };
         }
         if (channel === 'custom') {
             return {
                 href: url,
                 target: '_blank',
+                event: analyticsEvents.NAVIGATION,
             };
         }
 
