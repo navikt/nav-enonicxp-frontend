@@ -4,6 +4,7 @@ import { classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { Interaction } from 'types/interaction';
+import { useLayoutConfig } from '../../../store/hooks/useLayoutConfig';
 
 import style from './Card.module.scss';
 
@@ -26,13 +27,15 @@ export const Card = (props: CardProps) => {
             interactionHandler(type);
         }
     };
+    const { layoutConfig } = useLayoutConfig();
 
     return (
         <LenkeBase
             href={url}
             title={text}
+            linkGroup={layoutConfig.title}
             analyticsLabel={link.text}
-            component={`Card: ${type}`}
+            component={`card-${type}`}
             className={classNames(
                 style.card,
                 size === CardSize.Micro ? style.inline : ''
