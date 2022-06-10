@@ -1,6 +1,6 @@
-@import (reference) '../../../../common';
+@use 'src/common' as common;
 
-.version-selector {
+.versionSelector {
     position: relative;
     top: 0.5rem;
     z-index: 1;
@@ -9,49 +9,36 @@
     width: 100%;
     perspective: 500px;
     perspective-origin: top;
-    max-width: #px-to-rem(480) [];
+    max-width: common.px-to-rem(480);
 
-    &__inner {
+    .inner {
         position: absolute;
         visibility: hidden;
         overflow: hidden;
-
         display: flex;
         flex-direction: column;
         justify-content: center;
-
         transform: rotateX(-90deg);
         transform-origin: top;
-
         transition-property: visibility, transform;
         transition-duration: 0.25s;
         transition-timing-function: ease-out;
-
         background-color: white;
-        border-radius: @border-radius-base;
-        box-shadow: 0 0 0 2px @navds-global-color-green-200 inset;
+        border-radius: common.$border-radius-base;
+        box-shadow: 0 0 0 2px var(--navds-global-color-green-200) inset;
         padding: 1rem 2rem;
 
-        &--open {
+        &.open {
             visibility: visible;
             transform: rotateX(0);
         }
     }
-
-    &__type-selector {
+    .typeSelector {
         margin-bottom: 0.25rem;
-
-        .skjemagruppe__legend {
-            display: none;
-        }
     }
-
-    &__input {
+    .input {
         display: flex;
         width: 24rem;
         max-width: 100%;
-    }
-
-    &__help-text {
     }
 }
