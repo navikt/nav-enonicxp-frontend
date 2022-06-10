@@ -29,7 +29,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const [taxonomyFilter, setTaxonomyFilter] = useState<Taxonomy>(
         Taxonomy.ALL
     );
-    const [searchValue, setSearchValue] = useState<string>('');
+    const [searchString, setSearchString] = useState<string>('');
 
     const handleFilterUpdate = (value: Area | Taxonomy, filterName: string) => {
         if (filterName === 'taxonomy') {
@@ -39,8 +39,8 @@ export const OverviewPage = (props: OverviewPageProps) => {
         setAreaFilter(value as Area);
     };
 
-    const onSearchUpdate = (value: string) => {
-        setSearchValue(value);
+    const handleSearchUpdate = (value: string) => {
+        setSearchString(value);
     };
 
     const isVisiblePredicate = (
@@ -48,23 +48,23 @@ export const OverviewPage = (props: OverviewPageProps) => {
         areaFilter: Area,
         searchValue: string
     ) => {
-        const isAreaMatch =
+        const isAreaMatching =
             areaFilter === Area.ALL ||
             product.area.some((area) => area === areaFilter);
 
-        const isTaxonomyMatch =
+        const isTaxonomyMatching =
             taxonomyFilter === Taxonomy.ALL ||
             product.taxonomy.includes(taxonomyFilter);
 
-        const isSearchMatch = product.sortTitle
+        const isSearchMatching = product.sortTitle
             .toLowerCase()
             .includes(searchValue.toLowerCase());
 
-        return isAreaMatch && isSearchMatch && isTaxonomyMatch;
+        return isAreaMatching && isSearchMatching && isTaxonomyMatching;
     };
 
     const hasVisibleProducts = productList.some((product) =>
-        isVisiblePredicate(product, areaFilter, searchValue)
+        isVisiblePredicate(product, areaFilter, searchString)
     );
 
     const showTaxonomyFilter = overviewType === ProductDetailType.ALL_PRODUCTS;
@@ -94,7 +94,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                 )}
                 {showSearch && (
                     <OverviewSearch
-                        searchUpdateCallback={onSearchUpdate}
+                        searchUpdateCallback={handleSearchUpdate}
                         label="Søk"
                     />
                 )}
@@ -112,10 +112,10 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         <ProductItem
                             product={product}
                             pageProps={props}
-                            isVisible={isVisiblePredicate(
+                            visible={isVisiblePredicate(
                                 product,
                                 areaFilter,
-                                searchValue
+                                searchString
                             )}
                             overviewType={overviewType}
                             key={product._id}

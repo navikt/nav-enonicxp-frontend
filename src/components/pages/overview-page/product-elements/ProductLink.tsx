@@ -7,10 +7,10 @@ import style from './ProductLink.module.scss';
 
 type ProductLinkProps = {
     product: SimplifiedProductData;
-    isVisible: boolean;
+    visible: boolean;
 };
-export const ProductLink = ({ product, isVisible }: ProductLinkProps) => {
-    if (!isVisible) {
+export const ProductLink = ({ product, visible }: ProductLinkProps) => {
+    if (!visible) {
         return null;
     }
 

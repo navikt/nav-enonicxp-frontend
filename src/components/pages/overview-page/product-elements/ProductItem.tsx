@@ -5,24 +5,24 @@ import { ProductLink } from './ProductLink';
 
 type ProductLinkProps = {
     product: any;
-    isVisible: boolean;
+    visible: boolean;
     overviewType: ProductDetailType;
     pageProps: OverviewPageProps;
 };
 
 export const ProductItem = ({
     product,
-    isVisible,
+    visible,
     overviewType,
     pageProps,
 }: ProductLinkProps) => {
     return overviewType === ProductDetailType.ALL_PRODUCTS ? (
-        <ProductLink product={product} isVisible={isVisible} />
+        <ProductLink product={product} visible={visible} />
     ) : (
         <OverviewPageDetailsPanel
             productDetails={product}
             pageProps={pageProps}
-            visible={isVisible}
+            visible={visible}
             detailType={overviewType}
             key={product._id}
         />
