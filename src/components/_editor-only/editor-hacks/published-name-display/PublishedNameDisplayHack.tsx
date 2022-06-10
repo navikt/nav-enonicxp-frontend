@@ -6,19 +6,19 @@ type Props = {
 };
 
 // Ensure the correct name is displayed on the top of the editor-view
-// There is a bug in CS which shows the last editor to modify the content
-// only, which ignores publishing/unpublishing actions
-export const PublishedNameFixHack = ({ contentId }: Props) => {
+// There is a bug in CS which causes it to always shows the last editor to
+// modify the content, ignoring publishing/unpublishing actions
+export const PublishedNameDisplayHack = ({ contentId }: Props) => {
     useEffect(() => {
         editorFetchVersions(contentId).then((res) => {
-            if (!res) {
+            const activeVersion = res?.activeVersion?.contentVersion;
+            if (!activeVersion) {
                 return;
             }
 
             const editorDisplayName =
-                res.activeVersion?.contentVersion?.publishInfo
-                    ?.publisherDisplayName ||
-                res.activeVersion.contentVersion.modifierDisplayName;
+                activeVersion.publishInfo?.publisherDisplayName ||
+                activeVersion.modifierDisplayName;
             if (!editorDisplayName) {
                 return;
             }
