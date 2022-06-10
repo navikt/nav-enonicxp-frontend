@@ -182,13 +182,8 @@ module.exports = withPlugins([withTranspileModules], {
     },
     redirects: async () => [
         {
-            source: '/',
-            destination: '/no/person',
-            permanent: true,
-        },
-        {
             source: '/forsiden',
-            destination: '/no/person',
+            destination: '/',
             permanent: true,
         },
         {
