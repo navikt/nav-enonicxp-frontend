@@ -26,12 +26,12 @@ export type FilterSelection = string[];
 export type SimplifiedProductData = Partial<{
     _id: XpContentRef;
     productDetailsPath: string;
+    path: string;
 }> &
     ProductDataMixin;
 
 export type ProductDataMixin = {
     title: string;
-    path: string;
     sortTitle: string;
     ingress?: string;
     taxonomy?: Taxonomy[];

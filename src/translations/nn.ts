@@ -120,6 +120,7 @@ export const translationsBundleNn = {
         ariaItemExplanation: 'Vis område',
         chooseArea: 'Velg område',
         chooseType: 'Velg type',
+        search: 'Søk',
         loading: 'Henter produktdetaljar',
     },
     pagination: {

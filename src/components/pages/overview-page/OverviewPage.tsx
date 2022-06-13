@@ -31,18 +31,6 @@ export const OverviewPage = (props: OverviewPageProps) => {
     );
     const [searchString, setSearchString] = useState<string>('');
 
-    const handleFilterUpdate = (value: Area | Taxonomy, filterName: string) => {
-        if (filterName === 'taxonomy') {
-            setTaxonomyFilter(value as Taxonomy);
-            return;
-        }
-        setAreaFilter(value as Area);
-    };
-
-    const handleSearchUpdate = (value: string) => {
-        setSearchString(value);
-    };
-
     const isVisiblePredicate = (
         product: SimplifiedProductData,
         areaFilter: Area,
@@ -81,21 +69,21 @@ export const OverviewPage = (props: OverviewPageProps) => {
             </div>
             <div className={style.content}>
                 <AreaFilter
-                    filterUpdateCallback={(value: Area) =>
-                        handleFilterUpdate(value, 'area')
-                    }
+                    filterUpdateCallback={(value: Area) => setAreaFilter(value)}
                 />
                 {showTaxonomyFilter && (
                     <TaxonomyFilter
                         filterUpdateCallback={(value: Taxonomy) =>
-                            handleFilterUpdate(value, 'taxonomy')
+                            setTaxonomyFilter(value)
                         }
                     />
                 )}
                 {showSearch && (
                     <OverviewSearch
-                        searchUpdateCallback={handleSearchUpdate}
-                        label="Søk"
+                        searchUpdateCallback={(value: string) =>
+                            setSearchString(value)
+                        }
+                        label={getTranslationString('search')}
                     />
                 )}
                 <div

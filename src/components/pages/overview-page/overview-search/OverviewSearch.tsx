@@ -3,7 +3,7 @@ import { TextField } from '@navikt/ds-react';
 import style from './OverviewSearch.module.scss';
 
 type OverviewSearchProps = {
-    searchUpdateCallback: any;
+    searchUpdateCallback: (string) => void;
     label: string;
 };
 

@@ -24,7 +24,7 @@ type Props = {
     visible: boolean;
 };
 
-export const OverviewPageDetailsPanel = ({
+export const ProductDetailsPanel = ({
     detailType,
     pageProps,
     productDetails,

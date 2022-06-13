@@ -68,7 +68,6 @@ export const TaxonomyFilter = ({
                                         className={styles.tag}
                                         size="small"
                                     >
-                                        {' '}
                                         {productTaxonomies(taxonomy)}
                                     </Tag>
                                 </button>
