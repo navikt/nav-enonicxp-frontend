@@ -12,8 +12,8 @@ import { SituationPageFlexColsLayout } from './flex-cols/SituationPageFlexColsLa
 import { ProductPageFlexColsLayout } from './flex-cols/ProductPageFlexColsLayout';
 import { ProductDetailsLayout } from './product-details-layout/ProductDetailsLayout';
 import { Provider } from 'react-redux';
-import { createNewStore } from "../../store/store";
-import { setLayoutConfigAction } from '../../store/slices/layoutConfig';
+import { createNewStore } from 'store/store';
+import { setLayoutConfigAction } from 'store/slices/layoutConfig';
 
 type Props = {
     pageProps: ContentProps;

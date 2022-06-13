@@ -5,7 +5,7 @@ import {
     currentLayoutTitle,
     setLayoutConfigAction
 } from '../slices/layoutConfig';
-import { LayoutType } from '../../types/component-props/layouts';
+import { LayoutType } from 'types/component-props/layouts';
 
 type UseLayoutConfig = {
     layoutConfig: LayoutConfigState;
@@ -16,11 +16,9 @@ export const useLayoutConfig = (): UseLayoutConfig => {
     const dispatch = useAppDispatch();
     const type = useAppSelector<LayoutType>((state) => currentLayout(state));
     const title = useAppSelector<string>((state) => currentLayoutTitle(state));
-
     const setLayoutConfig = (payload) => {
         dispatch(setLayoutConfigAction(payload));
     };
-
     const layoutConfig = {
         type,
         title,

@@ -1,12 +1,12 @@
-import {ChannelType, DefaultContactData,} from '../../../types/component-props/parts/contact-option';
-import {translator} from 'translations';
-import {BodyLong, Heading} from '@navikt/ds-react';
-import {usePageConfig} from 'store/hooks/usePageConfig';
-import {LenkeBase} from 'components/_common/lenke/LenkeBase';
-import {openChatbot} from '../../../utils/chatbot';
-import {classNames} from 'utils/classnames';
-import {analyticsEvents} from "../../../utils/amplitude";
-import {useLayoutConfig} from "../../../store/hooks/useLayoutConfig";
+import { BodyLong, Heading } from '@navikt/ds-react';
+import { ChannelType, DefaultContactData } from 'types/component-props/parts/contact-option';
+import { translator } from 'translations';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { useLayoutConfig } from 'store/hooks/useLayoutConfig';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { openChatbot } from 'utils/chatbot';
+import { classNames } from 'utils/classnames';
+import { analyticsEvents } from 'utils/amplitude';
 
 import style from './ContactOption.module.scss';
 
