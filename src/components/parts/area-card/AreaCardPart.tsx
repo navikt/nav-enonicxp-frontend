@@ -5,6 +5,7 @@ import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import style from './AreaCardPart.module.scss';
 
+import { WorkAnimation } from './work/WorkAnimation';
 import { SocialServicesAnimation } from './social-services/SocialServicesAnimation';
 
 export const AreaCardPart = ({ config }: AreaCardPartProps) => {
@@ -14,6 +15,8 @@ export const AreaCardPart = ({ config }: AreaCardPartProps) => {
 
     const { link } = config;
     const linkProps = getSelectableLinkProps(link);
+
+    console.log(linkProps); //TODO fjern
 
     return (
         <LinkPanel
@@ -32,7 +35,16 @@ export const AreaCardPart = ({ config }: AreaCardPartProps) => {
         >
             <LinkPanel.Title>{linkProps.text}</LinkPanel.Title>
             <div className={style.animationArea}>
-                <SocialServicesAnimation />
+                {linkProps.text === 'Arbeid' ? (
+                    <WorkAnimation />
+                ) : (
+                    ''
+                )}
+                                {linkProps.text === 'Sosiale tjenester  og veiledning' ? (
+                    <SocialServicesAnimation />
+                ) : (
+                    ''
+                )}
             </div>
         </LinkPanel>
     );
