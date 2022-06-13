@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import { CustomContentProps } from '../../../types/content-props/_content-common';
 import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
 import { ProductPageFlexColsLayoutProps } from '../../../types/component-props/layouts/product-flex-cols';
@@ -7,7 +7,7 @@ import { Header } from '../../_common/headers/Header';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 type Props = {
-    pageProps: ContentProps;
+    pageProps: CustomContentProps;
     layoutProps?: ProductPageFlexColsLayoutProps;
 };
 

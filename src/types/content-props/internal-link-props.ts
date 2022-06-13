@@ -1,15 +1,14 @@
-import { ContentType, ContentProps } from './_content-common';
-import { XpContentRef } from '../../utils/urls';
+import { ContentType, CustomContentCommonProps } from './_content-common';
 
 export type InternalLinkData = {
     description?: string;
     target: {
-        _path: XpContentRef;
+        _path: string;
     };
     permanentRedirect?: boolean;
 };
 
-export interface InternalLinkProps extends ContentProps {
+export interface InternalLinkProps extends CustomContentCommonProps {
     __typename: ContentType.InternalLink;
     data: InternalLinkData;
 }

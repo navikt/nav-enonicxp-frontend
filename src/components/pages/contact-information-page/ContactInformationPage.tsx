@@ -1,15 +1,12 @@
 import React from 'react';
-
-import { Alert } from '@navikt/ds-react'
-
+import { Alert } from '@navikt/ds-react';
+import { ContactInformationProps } from '../../../types/content-props/contact-information-props';
 import ErrorPage404 from 'pages/404';
 import { TelephoneDetails } from 'components/_common/contact-details/TelephoneDetails';
 
-import { ContentProps } from 'types/content-props/_content-common';
+import style from './ContactInformationPage.module.scss';
 
-import style from './ContactInformationPage.module.scss'
-
-export const ContactInformationPage = (props: ContentProps) => {
+export const ContactInformationPage = (props: ContactInformationProps) => {
     if (!props.editorView) {
         return <ErrorPage404 />;
     }
@@ -21,23 +18,32 @@ export const ContactInformationPage = (props: ContentProps) => {
     const hasRegularHours = !!contactType?.telephone?.regularOpeningHours;
 
     if (!hasSpecialHours && !hasRegularHours) {
-        return <div className={style.content}>
-            (Ingen kontakttype eller åpningstider er lagt inn ennå, så forhåndsvisning er ikke mulig!)
-        </div>;
+        return (
+            <div className={style.content}>
+                (Ingen kontakttype eller åpningstider er lagt inn ennå, så
+                forhåndsvisning er ikke mulig!)
+            </div>
+        );
     }
 
     if (hasSpecialHours && !hasRegularHours) {
-        return <div className={style.contactInformationPage}>
-            <div className={style.content}>
-                (Spesielle åpningstider kan ikke forhåndsvises som komponent på egenhånd.)
+        return (
+            <div className={style.contactInformationPage}>
+                <div className={style.content}>
+                    (Spesielle åpningstider kan ikke forhåndsvises som komponent
+                    på egenhånd.)
+                </div>
             </div>
-        </div>
+        );
     }
 
     return (
         <div className={style.contactInformationPage}>
             <div className={style.content}>
-                <Alert variant="warning" className={style.editorAlert}>Redaktørvarsel: Denne informasjonen kan være i bruk på tvers av livssituasjonssider. Endres med varsomhet.</Alert>
+                <Alert variant="warning" className={style.editorAlert}>
+                    Redaktørvarsel: Denne informasjonen kan være i bruk på tvers
+                    av livssituasjonssider. Endres med varsomhet.
+                </Alert>
                 <TelephoneDetails {...contactType.telephone} />
             </div>
         </div>

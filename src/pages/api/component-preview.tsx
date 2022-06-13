@@ -5,7 +5,7 @@ import { ComponentMapper } from '../../components/ComponentMapper';
 import { Provider } from 'react-redux';
 import { mockStore } from '../../store/store';
 import {
-    ContentProps,
+    CustomContentProps,
     ContentType,
 } from '../../types/content-props/_content-common';
 import globalState from '../../globalState';
@@ -14,8 +14,8 @@ import { setPageConfigAction } from '../../store/slices/pageConfig';
 import { apiErrorHandler } from '../../utils/api-error-handler';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const dummyPageProps: ContentProps = {
-    __typename: ContentType.Site,
+const dummyPageProps: CustomContentProps = {
+    __typename: ContentType.DynamicPage,
     _id: '',
     _path: '',
     createdTime: '',
@@ -24,6 +24,7 @@ const dummyPageProps: ContentProps = {
     language: 'no',
     isDraft: true,
     editorView: 'edit',
+    data: {},
 };
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>

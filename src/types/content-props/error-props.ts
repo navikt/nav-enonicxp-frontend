@@ -1,4 +1,4 @@
-import { ContentType, ContentProps } from './_content-common';
+import { ContentType, CustomContentCommonProps } from './_content-common';
 
 export type ErrorData = {
     errorMessage?: string;
@@ -7,7 +7,7 @@ export type ErrorData = {
     feedback?: boolean;
 };
 
-export interface ErrorProps extends ContentProps {
+export interface ErrorProps extends CustomContentCommonProps {
     __typename: ContentType.Error;
     data: ErrorData;
 }

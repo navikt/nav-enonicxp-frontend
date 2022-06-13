@@ -1,7 +1,7 @@
-import { XpContentRef } from '../utils/urls';
 import { Language } from '../translations';
 
 export type LanguageProps = {
+    _id: string;
+    _path: string;
     language: Language;
-    _path: XpContentRef;
 };

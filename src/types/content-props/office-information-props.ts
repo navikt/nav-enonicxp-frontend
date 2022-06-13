@@ -1,8 +1,4 @@
-import {
-    ContentDecoratorToggles,
-    ContentProps,
-    ContentType,
-} from './_content-common';
+import { ContentType, CustomContentCommonProps } from './_content-common';
 
 export interface Office {
     enhetId: number;
@@ -67,9 +63,9 @@ export type OfficeInformationData = {
     enhet: Office;
     overordnetEnhet: string;
     kontaktinformasjon: ContactInfo;
-} & ContentDecoratorToggles;
+};
 
-export interface OfficeInformationProps extends ContentProps {
+export interface OfficeInformationProps extends CustomContentCommonProps {
     __typename: ContentType.OfficeInformation;
     data: OfficeInformationData;
 }

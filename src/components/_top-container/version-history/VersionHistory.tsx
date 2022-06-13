@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import { CustomContentProps } from '../../../types/content-props/_content-common';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { Heading, Loader } from '@navikt/ds-react';
 import { VersionStatus } from './status/VersionStatus';
@@ -11,7 +11,7 @@ import { Chevron } from '../../_common/chevron/Chevron';
 import style from './VersionHistory.module.scss';
 
 type Props = {
-    content: ContentProps;
+    content: CustomContentProps;
 };
 
 export const VersionHistory = ({ content }: Props) => {

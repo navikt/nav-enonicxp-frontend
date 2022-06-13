@@ -1,12 +1,16 @@
-import { ContentType, ContentProps } from './_content-common';
+import {
+    ContentType,
+    CustomContentCommonProps,
+    CustomContentProps,
+} from './_content-common';
 import { DateTimeKey } from '../datetime';
 
 export type ContentListData = Partial<{
-    sectionContents: ContentProps[];
+    sectionContents: CustomContentProps[];
     sortedBy?: DateTimeKey;
 }>;
 
-export interface ContentListProps extends ContentProps {
+export interface ContentListProps extends CustomContentCommonProps {
     __typename: ContentType.ContentList;
     data: ContentListData;
 }

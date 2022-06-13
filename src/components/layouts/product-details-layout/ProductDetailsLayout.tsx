@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import { CustomContentProps } from '../../../types/content-props/_content-common';
 import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
 import { LegacyLayoutProps } from '../../../types/component-props/layouts/legacy-layout';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 type Props = {
-    pageProps: ContentProps;
+    pageProps: CustomContentProps;
     layoutProps?: LegacyLayoutProps;
 };
 

@@ -1,6 +1,6 @@
-import { ContentProps, ContentType, SeoDataProps } from './_content-common';
+import { ContentType, CustomContentCommonProps } from './_content-common';
 
-export type PublishingCalendarChildren = ContentProps & {
+export type PublishingCalendarChildren = CustomContentCommonProps & {
     displayName: string;
     data: {
         date: string;
@@ -10,8 +10,7 @@ export type PublishingCalendarChildren = ContentProps & {
 
 export type PublishingCalendarData = Partial<{
     ingress: string;
-}> &
-    SeoDataProps;
+}>;
 
 export interface PublishingCalendarEntries {
     displayName: string;
@@ -21,7 +20,7 @@ export interface PublishingCalendarEntries {
     month: string;
 }
 
-export interface PublishingCalendarProps extends ContentProps {
+export interface PublishingCalendarProps extends CustomContentCommonProps {
     __typename: ContentType.PublishingCalendar;
     children: PublishingCalendarChildren[];
     data: PublishingCalendarData;

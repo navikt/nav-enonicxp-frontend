@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import { CustomContentProps } from '../../../types/content-props/_content-common';
 import { PageWithSideMenusProps } from '../../../types/component-props/pages/page-with-side-menus';
 import { LayoutContainer } from '../LayoutContainer';
 import { MainContentSection } from './main-content-section/MainContentSection';
@@ -17,7 +17,7 @@ const mqlWidthBreakpoint = windowMatchMedia(
 );
 
 type Props = {
-    pageProps: ContentProps;
+    pageProps: CustomContentProps;
     layoutProps?: PageWithSideMenusProps;
 };
 

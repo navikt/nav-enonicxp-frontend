@@ -2,7 +2,10 @@ import React from 'react';
 import { Heading, Label } from '@navikt/ds-react';
 import { translator } from 'translations';
 import classNames from 'classnames';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import {
+    ContentType,
+    CustomContentProps,
+} from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { MainArticleChapterNavigationData } from '../../../../types/content-props/main-article-chapter-props';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
@@ -19,14 +22,27 @@ const getChapterPath = (chapter: MainArticleChapterNavigationData) =>
         ? chapter._path
         : chapter.data.article._path;
 
-export const MainArticleChapterNavigation = (props: ContentProps) => {
-    const { language } = usePageConfig();
-    const getLabel = translator('mainArticle', language);
-    const chapters = props.data?.chapters || props.parent?.data?.chapters || [];
+const getChapters = (contentProps: CustomContentProps) => {
+    if (contentProps.__typename === ContentType.MainArticle) {
+        return contentProps.data?.chapters;
+    }
 
-    if (chapters.length === 0) {
+    if (contentProps.__typename === ContentType.MainArticleChapter) {
+        return contentProps.parent?.data?.chapters;
+    }
+
+    return null;
+};
+
+export const MainArticleChapterNavigation = (props: CustomContentProps) => {
+    const { language } = usePageConfig();
+
+    const chapters = getChapters(props);
+    if (!chapters || chapters.length === 0) {
         return null;
     }
+
+    const getLabel = translator('mainArticle', language);
 
     const currentPath = stripXpPathPrefix(props._path);
     const parentPath = stripXpPathPrefix(props.parent?._path || props._path);
@@ -62,7 +78,12 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
                     return (
                         <li key={chapter._path}>
                             {chapterSelected ? (
-                                <Label className={classNames(style.item, style.active)}>
+                                <Label
+                                    className={classNames(
+                                        style.item,
+                                        style.active
+                                    )}
+                                >
                                     {chapter.displayName}
                                 </Label>
                             ) : (

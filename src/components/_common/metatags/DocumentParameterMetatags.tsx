@@ -1,10 +1,10 @@
 import React from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import { CustomContentProps } from '../../../types/content-props/_content-common';
 import Head from 'next/head';
 import { getDecoratorParams } from '../../../utils/decorator/decorator-utils';
 
 type Props = {
-    content: ContentProps;
+    content: CustomContentProps;
 };
 
 export enum DocumentParameter {

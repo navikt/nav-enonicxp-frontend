@@ -6,7 +6,7 @@ import {
 import { TextComponentXp } from './parts/_text/TextComponentXp';
 import { ImageComponentXp } from './parts/_image/ImageComponent';
 import { PartsMapper } from './parts/PartsMapper';
-import { ContentProps } from '../types/content-props/_content-common';
+import { CustomContentProps } from '../types/content-props/_content-common';
 import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
 import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependantRender';
@@ -14,7 +14,7 @@ import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
 
 type Props = {
     componentProps: ComponentProps;
-    pageProps: ContentProps;
+    pageProps: CustomContentProps;
 };
 
 export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
