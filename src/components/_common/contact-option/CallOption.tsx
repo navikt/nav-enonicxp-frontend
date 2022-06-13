@@ -19,6 +19,7 @@ import {
 
 import style from './ContactOption.module.scss';
 import {analyticsEvents} from "../../../utils/amplitude";
+import {useLayoutConfig} from "../../../store/hooks/useLayoutConfig";
 
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
@@ -39,6 +40,7 @@ export const CallOption = (props: CallOptionProps) => {
         text,
     } = props;
     const { language } = usePageConfig();
+    const { layoutConfig } = useLayoutConfig();
     const [isClosed, setIsClosed] = useState(false);
     const getDateTimeTranslations = translator('dateTime', language);
     const relatives = getDateTimeTranslations('relatives');
@@ -157,6 +159,7 @@ export const CallOption = (props: CallOptionProps) => {
                 href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
                 className={style.link}
                 event={analyticsEvents.CALL}
+                linkGroup={layoutConfig.title}
             >
                 <div className={style.linkContent}>
                     <div className={classNames(style.icon, style.call)} />
@@ -182,6 +185,7 @@ export const CallOption = (props: CallOptionProps) => {
                     buildOpenInformationText(todaysOpeningHour)}
             </BodyShort>
             <LenkeBase
+                linkGroup={layoutConfig.title}
                 className={style.moreLink}
                 href={language === 'no' ? contactUrlNO : contactUrlEN}
             >

@@ -1,16 +1,14 @@
 import {ChannelType, DefaultContactData,} from '../../../types/component-props/parts/contact-option';
-
 import {translator} from 'translations';
 import {BodyLong, Heading} from '@navikt/ds-react';
 import {usePageConfig} from 'store/hooks/usePageConfig';
-
 import {LenkeBase} from 'components/_common/lenke/LenkeBase';
 import {openChatbot} from '../../../utils/chatbot';
-
 import {classNames} from 'utils/classnames';
+import {analyticsEvents} from "../../../utils/amplitude";
+import {useLayoutConfig} from "../../../store/hooks/useLayoutConfig";
 
 import style from './ContactOption.module.scss';
-import {analyticsEvents} from "../../../utils/amplitude";
 
 interface DefaultContactProps extends DefaultContactData {
     channel: ChannelType;
@@ -19,7 +17,7 @@ interface DefaultContactProps extends DefaultContactData {
 export const DefaultOption = (props: DefaultContactProps) => {
     const { ingress, channel, title, url, icon } = props;
     const { language } = usePageConfig();
-
+    const { layoutConfig } = useLayoutConfig();
     const getTranslations = translator('contactPoint', language);
 
     const getTitle = () => {
@@ -91,6 +89,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
         <div className={style.contactOption}>
             <LenkeBase
                 {...getUrlOrClickHandler(channel)}
+                linkGroup={layoutConfig.title}
                 className={style.link}
             >
                 <div className={style.linkContent}>
