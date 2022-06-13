@@ -66,7 +66,7 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
     store.dispatch(
         setLayoutConfigAction({
             type: descriptor,
-            title: config.title,
+            title: (config && config.title) && config.title,
         })
     );
 

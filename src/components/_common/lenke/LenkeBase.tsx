@@ -5,7 +5,7 @@ import {
     isAppUrl,
     isInternalUrl,
 } from 'utils/urls';
-import { analyticsData, analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import Link from 'next/link';
 import { usePathMap } from '../../../store/hooks/usePathMap';
 
@@ -52,9 +52,10 @@ export const LenkeBase = ({
         return href || '/';
     };
     const finalHref = getFinalHref();
-    const analyticsData:analyticsData = {
+    const analyticsData = {
         komponent: component,
         lenkegruppe: linkGroup,
+        seksjon: linkGroup,
         destinasjon: finalHref,
         lenketekst: analyticsLabel || (typeof children === 'string' ? children : undefined),
     }

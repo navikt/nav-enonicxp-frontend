@@ -7,6 +7,7 @@ import {analyticsEvents,logAmplitudeEvent} from '../../../utils/amplitude';
 
 import linkIcon from '/public/gfx/link.svg';
 import style from './copyLink.module.scss';
+import {useLayoutConfig} from "../../../store/hooks/useLayoutConfig";
 
 type CopyLinkProps = {
     anchor: string;
@@ -19,7 +20,7 @@ const linkCopiedDisplayTimeMs = 2500;
 export const CopyLink = ({ anchor, label, className }: CopyLinkProps) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
     const { language } = usePageConfig();
-
+    const { layoutConfig } = useLayoutConfig();
     const getLabel = translator('header', language);
 
     if (!anchor) {
@@ -41,7 +42,9 @@ export const CopyLink = ({ anchor, label, className }: CopyLinkProps) => {
                     linkCopiedDisplayTimeMs
                 );
             }
-            logAmplitudeEvent(analyticsEvents.COPY_LINK);
+            logAmplitudeEvent(analyticsEvents.COPY_LINK, {
+                seksjon: layoutConfig.title,
+            });
         }
     };
 

@@ -2,22 +2,14 @@ import amplitude from 'amplitude-js';
 
 export enum analyticsEvents {
     NAVIGATION = 'navigere',
+    FILTER = 'filtervalg',
+    ACC_EXPAND = 'accordion åpnet',
+    ACC_COLLAPSE = 'accordion lukket',
+    MODAL_OPEN = 'modal åpnet',
+    MODAL_CLOSE = 'modal lukket',
     COPY_LINK = 'kopier-lenke',
     CHAT_OPEN = 'chat-åpnet',
     CALL = 'ring-oss',
-}
-export enum analyticsContent {
-    TABLE_OF_CONTENTS = 'innholdsmeny',
-    CONTENT_SECTION = 'innholdsseksjon',
-    PRODUCT_LIST = 'varehylle',
-    OTHER_SUPPLIERS = 'andre som kan hjelpe',
-    OTHER_CHANNELS = 'kontaktmodul'
-}
-export interface analyticsData {
-    komponent?: string,
-    lenkegruppe?: string,
-    destinasjon?: string,
-    lenketekst?: string,
 }
 
 export const initAmplitude = () => {
@@ -30,14 +22,9 @@ export const initAmplitude = () => {
     });
 };
 
-export function logAmplitudeEvent(eventName: analyticsEvents, data?: analyticsData): Promise<any> {
-    interface amplitudeData extends analyticsData {
-        app: string,
-        origin: string,
-        originVersion: string,
-    }
+export function logAmplitudeEvent(eventName: analyticsEvents, data?: any): Promise<any> {
     return new Promise(function (resolve: any) {
-        const eventData: amplitudeData = {
+        const eventData = {
             ...data,
             app: 'nav-enonicxp-frontend',
             origin: 'navno-frontend',
