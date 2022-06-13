@@ -185,7 +185,8 @@ $versionSelectorMinHeight: 3rem;
         // within a region__content should not have margin-bottom.
         // Reason for select all (">"): fragments are inserted without a class,
         // so just select any child that may contain any of the elements.
-        > :last-child {
+        > :last-child:not(.part__product-details),
+        .part__product-details .navds-accordion__content > :last-child {
             .card:last-child,
             .calculator,
             ul:last-child,
