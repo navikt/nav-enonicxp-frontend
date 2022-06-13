@@ -1,5 +1,9 @@
 .productLink {
-    margin: 1rem 0;
+    margin: 0;
+
+    a {
+        margin-bottom: 1rem;
+    }
 
     :global(.product) {
         background-color: white;
