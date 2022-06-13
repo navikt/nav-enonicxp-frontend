@@ -6,20 +6,20 @@ import { SimplifiedProductData } from '../../../../types/component-props/_mixins
 import { fetchPageCacheContent } from '../../../../utils/fetch/fetch-cache';
 import { AlertBox } from '../../../_common/alert-box/AlertBox';
 import {
-    ContentProps,
+    CustomContentProps,
     ContentType,
 } from '../../../../types/content-props/_content-common';
-
-import style from './OverviewPageDetailsPanel.module.scss';
 import { classNames } from '../../../../utils/classnames';
 import { translator } from '../../../../translations';
 import { ProductDetailType } from '../../../../types/content-props/product-details';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 
+import style from './OverviewPageDetailsPanel.module.scss';
+
 type Props = {
     productDetails: SimplifiedProductData;
     detailType: ProductDetailType;
-    pageProps: ContentProps;
+    pageProps: CustomContentProps;
     visible: boolean;
 };
 

@@ -13,8 +13,6 @@ export const adminOrigin = process.env.ADMIN_ORIGIN;
 
 export const xpServiceUrl = `${xpOrigin}${xpServicePath}`;
 
-export type XpContentRef = string;
-
 const internalUrlPrefix = `^(${appOrigin}|${appOriginProd}|${adminOrigin})?(${xpContentPathPrefix})?`;
 
 const internalUrlPrefixPattern = new RegExp(internalUrlPrefix, 'i');

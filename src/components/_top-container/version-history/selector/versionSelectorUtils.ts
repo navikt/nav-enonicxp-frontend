@@ -1,4 +1,4 @@
-import { ContentProps } from '../../../../types/content-props/_content-common';
+import { CustomContentProps } from '../../../../types/content-props/_content-common';
 import { Branch } from '../../../../types/branch';
 import {
     stripXpPathPrefix,
@@ -7,7 +7,7 @@ import {
 } from '../../../../utils/urls';
 
 export const getVersionSelectorUrl = (
-    content: ContentProps,
+    content: CustomContentProps,
     utcDateTime: string,
     branch: Branch
 ) => {

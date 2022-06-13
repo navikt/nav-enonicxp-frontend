@@ -3,12 +3,12 @@ import { useRouter } from 'next/router';
 import { getTargetIfRedirect } from '../../../utils/redirects';
 import { BodyLong } from '@navikt/ds-react';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import { CustomContentProps } from '../../../types/content-props/_content-common';
 import { stripXpPathPrefix } from '../../../utils/urls';
 
 import style from './RedirectPage.module.scss';
 
-const getTarget = (props: ContentProps, isShadow: boolean) => {
+const getTarget = (props: CustomContentProps, isShadow: boolean) => {
     const target = getTargetIfRedirect(props) || stripXpPathPrefix(props._path);
 
     if (isShadow) {
@@ -17,7 +17,7 @@ const getTarget = (props: ContentProps, isShadow: boolean) => {
     return target;
 };
 
-export const RedirectPage = (props: ContentProps) => {
+export const RedirectPage = (props: CustomContentProps) => {
     const { editorView, _path } = props;
     const router = useRouter();
     const isShadow = !!router.query?.shadowRouter;

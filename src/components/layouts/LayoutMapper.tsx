@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentProps } from 'types/content-props/_content-common';
+import { CustomContentProps } from 'types/content-props/_content-common';
 import { LayoutProps, LayoutType } from '../../types/component-props/layouts';
 import { FixedColsLayout } from './fixed-cols/FixedColsLayout';
 import { FlexColsLayout } from './flex-cols/FlexColsLayout';
@@ -11,9 +11,10 @@ import { SingleColPage } from './single-col-page/SingleColPage';
 import { SituationPageFlexColsLayout } from './flex-cols/SituationPageFlexColsLayout';
 import { ProductPageFlexColsLayout } from './flex-cols/ProductPageFlexColsLayout';
 import { ProductDetailsLayout } from './product-details-layout/ProductDetailsLayout';
+import { BisectedPage } from './bisected-page/BisectedPage';
 
 type Props = {
-    pageProps: ContentProps;
+    pageProps: CustomContentProps;
     layoutProps?: LayoutProps;
 };
 
@@ -34,6 +35,7 @@ const layoutComponents: {
     [LayoutType.SituationPageFlexCols]: SituationPageFlexColsLayout,
     [LayoutType.ProductPageFlexCols]: ProductPageFlexColsLayout,
     [LayoutType.ProductDetailsPage]: ProductDetailsLayout,
+    [LayoutType.BisectedPage]: BisectedPage,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {

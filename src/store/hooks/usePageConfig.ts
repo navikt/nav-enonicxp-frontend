@@ -8,14 +8,14 @@ import {
     isPagePreview,
 } from '../slices/pageConfig';
 import { Language } from 'translations';
-import { ContentProps } from '../../types/content-props/_content-common';
+import { CustomContentProps } from '../../types/content-props/_content-common';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 type PageConfig = {
     pageId: string;
-    editorView: ContentProps['editorView'];
+    editorView: CustomContentProps['editorView'];
     isPagePreview: boolean;
 };
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import Region from '../../Region';
-import { ContentProps } from '../../../../types/content-props/_content-common';
+import { CustomContentProps } from '../../../../types/content-props/_content-common';
 import { RegionProps } from '../../../../types/component-props/layouts';
 
 type Props = {
-    pageProps: ContentProps;
+    pageProps: CustomContentProps;
     regionProps: RegionProps;
 };
 

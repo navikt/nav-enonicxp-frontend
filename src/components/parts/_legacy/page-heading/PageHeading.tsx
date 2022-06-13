@@ -1,10 +1,13 @@
 import React from 'react';
 import { Heading, Ingress } from '@navikt/ds-react';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import {
+    CustomContentProps,
+    ContentType,
+} from 'types/content-props/_content-common';
 
 import style from './PageHeading.module.scss';
 
-const PageHeading = (props: ContentProps) => {
+const PageHeading = (props: CustomContentProps) => {
     const displayName = props.displayName;
     const ingress =
         props.__typename !== ContentType.SectionPage && props.data?.ingress;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { classNames } from '../../../../utils/classnames';
 import { BodyLong, Radio, RadioGroup } from '@navikt/ds-react';
-import { ContentProps } from '../../../../types/content-props/_content-common';
+import { CustomContentProps } from '../../../../types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
 
@@ -10,7 +10,7 @@ import style from './VersionSelector.module.scss';
 const containerId = 'version-selector';
 type SelectorType = 'datetime' | 'published';
 type Props = {
-    content: ContentProps;
+    content: CustomContentProps;
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
     submitVersionUrl: (url: string) => void;
@@ -47,12 +47,7 @@ export const VersionSelector = ({
 
     return (
         <div className={style.versionSelector} id={containerId}>
-            <div
-                className={classNames(
-                    style.inner,
-                    isOpen && style.open
-                )}
-            >
+            <div className={classNames(style.inner, isOpen && style.open)}>
                 <div className={style.typeSelector}>
                     <RadioGroup
                         legend={'Velg tidspunkt'}

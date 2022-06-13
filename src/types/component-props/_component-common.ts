@@ -1,6 +1,6 @@
 import { PartType } from './parts';
 import { LayoutProps } from './layouts';
-import { ContentProps } from '../content-props/_content-common';
+import { CustomContentProps } from '../content-props/_content-common';
 
 export enum ComponentType {
     Page = 'page',
@@ -20,7 +20,7 @@ export type ComponentCommonProps = {
 export interface PartComponentProps extends ComponentCommonProps {
     type: ComponentType.Part;
     descriptor: PartType;
-    pageProps?: ContentProps;
+    pageProps?: CustomContentProps;
 }
 
 export interface TextComponentProps extends ComponentCommonProps {

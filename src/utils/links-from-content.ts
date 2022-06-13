@@ -1,5 +1,5 @@
 import {
-    ContentProps,
+    CustomContentProps,
     ContentType,
 } from '../types/content-props/_content-common';
 import { LinkSelectable } from '../types/component-props/_mixins';
@@ -10,7 +10,7 @@ const invalidLinkProps = {
     text: 'Invalid link',
 };
 
-export const getUrlFromContent = (content: ContentProps) => {
+export const getUrlFromContent = (content: CustomContentProps) => {
     if (!content) {
         return '';
     }

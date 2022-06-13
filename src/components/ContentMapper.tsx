@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    ContentProps,
+    CustomContentProps,
     ContentType,
 } from '../types/content-props/_content-common';
 import { ErrorPage } from './pages/error-page/ErrorPage';
@@ -23,7 +23,7 @@ import { PayoutDatesPage } from './pages/payout-dates-page/PayoutDatesPage';
 import { GenericPage } from './pages/generic-page/GenericPage';
 
 const contentToReactComponent: Partial<{
-    [key in ContentType]: React.FunctionComponent<ContentProps>;
+    [key in ContentType]: React.FunctionComponent<CustomContentProps>;
 }> = {
     [ContentType.Error]: ErrorPage,
     [ContentType.LargeTable]: LargeTablePage,
@@ -43,7 +43,11 @@ const contentToReactComponent: Partial<{
     [ContentType.Overview]: OverviewPage,
     [ContentType.GenericPage]: GenericPage,
 
+    [ContentType.AreaPage]: DynamicPage,
+    [ContentType.FrontPage]: DynamicPage,
+
     [ContentType.DynamicPage]: DynamicPage,
+
     [ContentType.MainArticle]: DynamicPage,
     [ContentType.MainArticleChapter]: MainArticleChapterPage,
     [ContentType.OfficeInformation]: DynamicPage,
@@ -61,11 +65,11 @@ const contentToReactComponent: Partial<{
     [ContentType.ToolsPage]: ProductPage,
 };
 
-export const isContentTypeImplemented = (content: ContentProps) =>
+export const isContentTypeImplemented = (content: CustomContentProps) =>
     contentToReactComponent.hasOwnProperty(content.__typename);
 
 type Props = {
-    content: ContentProps;
+    content: CustomContentProps;
 };
 
 export const ContentMapper = ({ content }: Props) => {

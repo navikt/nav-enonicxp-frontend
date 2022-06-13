@@ -11,6 +11,7 @@ import { SectionWithHeaderProps } from './layouts/section-with-header';
 import { SingleColPageProps } from './pages/single-col-page';
 import { SituationPageFlexColsLayoutProps } from './layouts/situation-flex-cols';
 import { ProductPageFlexColsLayoutProps } from './layouts/product-flex-cols';
+import { BisectedPageProps } from './pages/bisected-page';
 
 export enum LayoutType {
     Fixed1Col = 'no.nav.navno:dynamic-1-col',
@@ -27,6 +28,7 @@ export enum LayoutType {
     SituationPageFlexCols = 'no.nav.navno:situation-flex-cols',
     ProductPageFlexCols = 'no.nav.navno:product-flex-cols',
     ProductDetailsPage = 'no.nav.navno:product-details-page',
+    BisectedPage = 'no.nav.navno:bisected-page',
 }
 
 export type RegionProps = {
@@ -49,4 +51,5 @@ export type LayoutProps =
     | SectionWithHeaderProps
     | SingleColPageProps
     | SituationPageFlexColsLayoutProps
-    | ProductPageFlexColsLayoutProps;
+    | ProductPageFlexColsLayoutProps
+    | BisectedPageProps;

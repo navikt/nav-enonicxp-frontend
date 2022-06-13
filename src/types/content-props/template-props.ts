@@ -1,5 +1,5 @@
-import { ContentType, ContentProps } from './_content-common';
+import { ContentType, CustomContentCommonProps } from './_content-common';
 
-export interface TemplateProps extends ContentProps {
+export interface TemplateProps extends CustomContentCommonProps {
     __typename: ContentType.TemplatePage;
 }

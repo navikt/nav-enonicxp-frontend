@@ -1,18 +1,19 @@
 import {
-    ContentProps,
+    CustomContentProps,
     ContentType,
 } from '../types/content-props/_content-common';
 import { isContentTypeImplemented } from '../components/ContentMapper';
 import { stripLineBreaks } from './string';
+import { ErrorProps } from '../types/content-props/error-props';
 
 export const logPageLoadError = (errorId: string, message: string) =>
     console.error(`[Page load error] ${errorId} - ${stripLineBreaks(message)}`);
 
-const isEmptyMainArticleChapter = (content: ContentProps) =>
+const isEmptyMainArticleChapter = (content: CustomContentProps) =>
     content.__typename === ContentType.MainArticleChapter &&
     !content.data?.article;
 
-export const isNotFound = (content: ContentProps) => {
+export const isNotFound = (content: CustomContentProps) => {
     return (
         (content.__typename === ContentType.Error &&
             content.data.errorCode === 404) ||
@@ -27,11 +28,11 @@ const revalidateOnErrorCode = {
     404: true, // not found
 };
 
-const appError = (content: ContentProps) => ({
+const appError = (content: CustomContentProps) => ({
     content,
 });
 
-export const errorHandler = (content: ContentProps) => {
+export const errorHandler = (content: ErrorProps) => {
     const { errorCode } = content.data;
 
     if (revalidateOnErrorCode[errorCode]) {

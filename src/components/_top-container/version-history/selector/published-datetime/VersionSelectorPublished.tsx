@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Select } from '@navikt/ds-react';
-import { ContentProps } from '../../../../../types/content-props/_content-common';
+import { CustomContentProps } from '../../../../../types/content-props/_content-common';
 import { formatDateTime } from '../../../../../utils/datetime';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
@@ -8,7 +8,7 @@ import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSub
 import style from './VersionSelectorPublished.module.scss';
 
 type Props = {
-    content: ContentProps;
+    content: CustomContentProps;
     submitVersionUrl: (url: string) => void;
 };
 

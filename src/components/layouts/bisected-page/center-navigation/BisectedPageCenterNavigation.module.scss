@@ -1,0 +1,8 @@
+@use 'src/common' as common;
+
+.centerNavigation {
+    padding: 2rem 0;
+    background-color: #fff;
+
+    @include common.full-width-mixin();
+}

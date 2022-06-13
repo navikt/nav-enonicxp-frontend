@@ -19,7 +19,7 @@ import {
     ComponentType,
     PartComponentProps,
 } from '../../types/component-props/_component-common';
-import { ContentProps } from '../../types/content-props/_content-common';
+import { CustomContentProps } from '../../types/content-props/_content-common';
 import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
 import { HeaderPart } from './header/HeaderPart';
 import { LinkList } from './link-list/LinkList';
@@ -43,11 +43,11 @@ import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 
 type Props = {
     partProps: PartComponentProps;
-    pageProps: ContentProps;
+    pageProps: CustomContentProps;
 };
 
 const partsWithPageData: {
-    [key in PartWithPageData]: React.FunctionComponent<ContentProps>;
+    [key in PartWithPageData]: React.FunctionComponent<CustomContentProps>;
 } = {
     [PartType.LinkLists]: LinkLists,
     [PartType.LinkPanels]: LinkPanelsLegacyPart,

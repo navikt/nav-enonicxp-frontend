@@ -2,7 +2,7 @@ import { AlertBox } from '../../../_common/alert-box/AlertBox';
 import { EditorLinkWrapper } from '../../editor-link-wrapper/EditorLinkWrapper';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { BodyLong } from '@navikt/ds-react';
-import { ContentProps } from '../../../../types/content-props/_content-common';
+import { CustomContentProps } from '../../../../types/content-props/_content-common';
 import { useEffect, useState } from 'react';
 import {
     hookDispatchEventForBatchContentServerEvent,
@@ -22,7 +22,7 @@ import style from './AutoRefreshDisableHack.module.scss';
  * */
 
 type Props = {
-    content: ContentProps;
+    content: CustomContentProps;
 };
 
 export const AutoReloadDisableHack = ({ content }: Props) => {

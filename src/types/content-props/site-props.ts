@@ -1,5 +1,5 @@
-import { ContentType, ContentProps } from './_content-common';
+import { ContentType, CustomContentCommonProps } from './_content-common';
 
-export interface SiteProps extends ContentProps {
+export interface SiteProps extends CustomContentCommonProps {
     __typename: ContentType.Site;
 }

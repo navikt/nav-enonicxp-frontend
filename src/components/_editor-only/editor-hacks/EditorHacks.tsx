@@ -1,4 +1,4 @@
-import { ContentProps } from '../../../types/content-props/_content-common';
+import { CustomContentProps } from '../../../types/content-props/_content-common';
 import { AutoReloadDisableHack } from './auto-refresh-disable/AutoReloadDisableHack';
 import {
     EditorFeatureCookie,
@@ -11,7 +11,7 @@ import { PublishedNameDisplayHack } from './published-name-display/PublishedName
 // This implements quality-of-life fixes to improve the experiences for Content Studio users
 
 type Props = {
-    content: ContentProps;
+    content: CustomContentProps;
 };
 
 export const EditorHacks = ({ content }: Props) => {
