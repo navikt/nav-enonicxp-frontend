@@ -1,6 +1,9 @@
 import React from 'react';
 import { classNames } from '../../utils/classnames';
-import { ContentProps, ContentType } from '../../types/content-props/_content-common';
+import {
+    ContentProps,
+    ContentType,
+} from '../../types/content-props/_content-common';
 import { getContentLanguages } from '../../utils/languages';
 import { VersionHistory } from './version-history/VersionHistory';
 import { PageWarning } from './page-warning/PageWarning';
@@ -11,6 +14,7 @@ export const contentTypesWithWhiteHeader = {
     [ContentType.ProductPage]: true,
     [ContentType.SituationPage]: true,
     [ContentType.GuidePage]: true,
+    [ContentType.GenericPage]: true,
     [ContentType.ThemedArticlePage]: true,
     [ContentType.Overview]: true,
 };

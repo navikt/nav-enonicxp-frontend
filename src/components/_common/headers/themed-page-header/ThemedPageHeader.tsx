@@ -109,6 +109,10 @@ export const ThemedPageHeader = ({
             return 'overview';
         }
 
+        if (_pageType === ContentType.GenericPage) {
+            return 'generic';
+        }
+
         return '';
     };
 
