@@ -16,18 +16,6 @@ $border-radius: 0.5rem;
     padding: 0;
     overflow: hidden;
 
-    &:hover {
-        background-color: var(
-            --navds-semantic-color-component-background-alternate
-        );
-        box-shadow: none;
-
-        :global(.navds-link-panel__title) {
-            transform: translateY(-1rem);
-            text-decoration: none;
-        }
-    }
-
     :global(.navds-link-panel__content) {
         display: flex;
         align-items: center;
@@ -47,6 +35,26 @@ $border-radius: 0.5rem;
 
     :global(.navds-link-panel__chevron) {
         display: none;
+    }
+
+    &:hover {
+        background-color: var(
+            --navds-semantic-color-component-background-alternate
+        );
+        box-shadow: none;
+
+        :global(.navds-link-panel__title) {
+            transform: translateY(-1rem);
+            text-decoration: none;
+        }
+    }
+
+    &:active {
+        background-color: var(--navds-global-color-deepblue-50);
+        :global(.navds-link-panel__title) {
+            transform: translateY(-0.5rem);
+            color: var(--navds-global-color-gray-900);
+        }
     }
 }
 
