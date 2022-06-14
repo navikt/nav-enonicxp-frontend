@@ -151,9 +151,9 @@ export const translationsBundleEn: Translations = {
             ingress: 'Search for a NAV office using postal code or city.',
         },
         aidcentral: {
-            title: 'Finn din hjelpemiddelsentral',
+            title: 'Find your assistive technology center',
             ingress:
-                'Find contact information and information on handing in and handing out aids at your nearest aids center.',
+                'Find contact information and information on pickup and delivery at your nearest assistive technology center.',
         },
         call: {
             title: 'Call us at +47 55 55 33 33',
