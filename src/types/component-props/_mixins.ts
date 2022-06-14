@@ -25,6 +25,7 @@ export type FilterSelection = string[];
 export type SimplifiedProductData = Partial<{
     _id: string;
     productDetailsPath: string;
+    path: string;
 }> &
     ProductDataMixin;
 
