@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustomContentProps } from '../../types/content-props/_content-common';
+import { ContentProps } from '../../types/content-props/_content-common';
 import { LayoutProps } from '../../types/component-props/layouts';
 import { BEM, classNames } from '../../utils/classnames';
 import { getCommonLayoutStyle } from './LayoutStyle';
@@ -9,7 +9,7 @@ import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthD
 import style from './LayoutContainer.module.scss';
 
 type Props = {
-    pageProps: CustomContentProps;
+    pageProps: ContentProps;
     layoutProps: LayoutProps;
     layoutStyle?: React.CSSProperties;
     modifiers?: string[];

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import {
-    CustomContentProps,
+    ContentProps,
     ContentType,
 } from '../../../types/content-props/_content-common';
 import Head from 'next/head';
@@ -14,13 +14,13 @@ import {
 import { appOrigin, stripXpPathPrefix } from '../../../utils/urls';
 
 type Props = {
-    content: CustomContentProps;
+    content: ContentProps;
     children?: React.ReactNode;
 };
 
 const descriptionMaxLength = 140;
 
-const getDescription = (content: CustomContentProps) => {
+const getDescription = (content: ContentProps) => {
     if (hasMetaDescription(content)) {
         return content.data.metaDescription;
     }
@@ -36,14 +36,14 @@ const getDescription = (content: CustomContentProps) => {
     return content.displayName;
 };
 
-const shouldNotIndex = (content: CustomContentProps, router: NextRouter) => {
+const shouldNotIndex = (content: ContentProps, router: NextRouter) => {
     if (router.query.utkastRouter) {
         return true;
     }
     return content.data?.noindex;
 };
 
-const getCanonicalUrl = (content: CustomContentProps) => {
+const getCanonicalUrl = (content: ContentProps) => {
     if (hasCanonicalUrl(content)) {
         return content.data.canonicalUrl;
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    CustomContentProps,
+    ContentProps,
     ContentType,
 } from '../types/content-props/_content-common';
 import { ErrorPage } from './pages/error-page/ErrorPage';
@@ -23,7 +23,7 @@ import { PayoutDatesPage } from './pages/payout-dates-page/PayoutDatesPage';
 import { GenericPage } from './pages/generic-page/GenericPage';
 
 const contentToReactComponent: Partial<{
-    [key in ContentType]: React.FunctionComponent<CustomContentProps>;
+    [key in ContentType]: React.FunctionComponent<ContentProps>;
 }> = {
     [ContentType.Error]: ErrorPage,
     [ContentType.LargeTable]: LargeTablePage,
@@ -62,11 +62,11 @@ const contentToReactComponent: Partial<{
     [ContentType.ToolsPage]: ProductPage,
 };
 
-export const isContentTypeImplemented = (content: CustomContentProps) =>
+export const isContentTypeImplemented = (content: ContentProps) =>
     contentToReactComponent.hasOwnProperty(content.__typename);
 
 type Props = {
-    content: CustomContentProps;
+    content: ContentProps;
 };
 
 export const ContentMapper = ({ content }: Props) => {

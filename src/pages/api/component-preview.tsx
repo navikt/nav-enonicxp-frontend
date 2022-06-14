@@ -5,7 +5,7 @@ import { ComponentMapper } from '../../components/ComponentMapper';
 import { Provider } from 'react-redux';
 import { mockStore } from '../../store/store';
 import {
-    CustomContentProps,
+    ContentProps,
     ContentType,
 } from '../../types/content-props/_content-common';
 import globalState from '../../globalState';
@@ -14,7 +14,7 @@ import { setPageConfigAction } from '../../store/slices/pageConfig';
 import { apiErrorHandler } from '../../utils/api-error-handler';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const dummyPageProps: CustomContentProps = {
+const dummyPageProps: ContentProps = {
     __typename: ContentType.DynamicPage,
     _id: '',
     _path: '',

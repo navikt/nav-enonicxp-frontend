@@ -1,4 +1,4 @@
-import { CustomContentProps } from '../types/content-props/_content-common';
+import { ContentProps } from '../types/content-props/_content-common';
 import { useRouter } from 'next/router';
 import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import PageWrapper from './PageWrapper';
@@ -9,7 +9,7 @@ import { ErrorPage } from './pages/error-page/ErrorPage';
 import globalState from '../globalState';
 
 type PageProps = {
-    content: CustomContentProps;
+    content: ContentProps;
     __N_REDIRECT?: string;
 };
 

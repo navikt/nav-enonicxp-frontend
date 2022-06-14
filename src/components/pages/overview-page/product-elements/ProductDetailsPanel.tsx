@@ -6,7 +6,7 @@ import { SimplifiedProductData } from '../../../../types/component-props/_mixins
 import { fetchPageCacheContent } from '../../../../utils/fetch/fetch-cache';
 import { AlertBox } from '../../../_common/alert-box/AlertBox';
 import {
-    CustomContentProps,
+    ContentProps,
     ContentType,
 } from '../../../../types/content-props/_content-common';
 
@@ -19,7 +19,7 @@ import style from './ProductDetailsPanel.module.scss';
 
 type Props = {
     detailType: ProductDetailType;
-    pageProps: CustomContentProps;
+    pageProps: ContentProps;
     productDetails: SimplifiedProductData;
     visible: boolean;
 };

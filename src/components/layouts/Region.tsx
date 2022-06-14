@@ -1,12 +1,12 @@
 import React from 'react';
-import { CustomContentProps } from '../../types/content-props/_content-common';
+import { ContentProps } from '../../types/content-props/_content-common';
 import { BEM, classNames } from '../../utils/classnames';
 import { ComponentMapper } from '../ComponentMapper';
 import { RegionProps } from '../../types/component-props/layouts';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 type Props = {
-    pageProps: CustomContentProps;
+    pageProps: ContentProps;
     regionProps: RegionProps;
     regionStyle?: React.CSSProperties;
     bemModifier?: string;

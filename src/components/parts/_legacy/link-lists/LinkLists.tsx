@@ -2,7 +2,7 @@ import React from 'react';
 import { ContentList } from '../../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
 import { translator } from 'translations';
-import { CustomContentProps } from '../../../../types/content-props/_content-common';
+import { ContentProps } from '../../../../types/content-props/_content-common';
 
 import style from './LinkLists.module.scss';
 import { SectionPageProps } from '../../../../types/content-props/section-page-props';

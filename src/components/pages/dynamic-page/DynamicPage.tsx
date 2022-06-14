@@ -1,7 +1,7 @@
 import React from 'react';
-import { CustomContentProps } from 'types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import { ComponentMapper } from '../../ComponentMapper';
 
-export const DynamicPage = (props: CustomContentProps) => {
+export const DynamicPage = (props: ContentProps) => {
     return <ComponentMapper componentProps={props.page} pageProps={props} />;
 };

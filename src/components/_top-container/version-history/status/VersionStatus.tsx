@@ -2,12 +2,12 @@ import React from 'react';
 import { BodyLong } from '@navikt/ds-react';
 import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
 import { formatDateTime } from '../../../../utils/datetime';
-import { CustomContentProps } from '../../../../types/content-props/_content-common';
+import { ContentProps } from '../../../../types/content-props/_content-common';
 
 import style from './VersionStatus.module.scss';
 
 type Props = {
-    content: CustomContentProps;
+    content: ContentProps;
     requestedDateTime: string;
 };
 

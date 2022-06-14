@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { classNames } from '../../../../utils/classnames';
 import { BodyLong, Radio, RadioGroup } from '@navikt/ds-react';
-import { CustomContentProps } from '../../../../types/content-props/_content-common';
+import { ContentProps } from '../../../../types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
 
@@ -10,7 +10,7 @@ import style from './VersionSelector.module.scss';
 const containerId = 'version-selector';
 type SelectorType = 'datetime' | 'published';
 type Props = {
-    content: CustomContentProps;
+    content: ContentProps;
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
     submitVersionUrl: (url: string) => void;

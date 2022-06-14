@@ -7,7 +7,7 @@ import { mainPanelDataMock } from './mocks/mainPanelsDataMock';
 import { officeInformationMock } from './mocks/officeInformationMock';
 import {
     ContentType,
-    CustomContentProps,
+    ContentProps,
 } from '../../../types/content-props/_content-common';
 import ErrorPage404 from '../../../pages/404';
 
@@ -30,7 +30,7 @@ const legacyTemplateTypes = {
     [ContentType.PublishingCalendar]: true,
 };
 
-export const TemplatePage = (props: CustomContentProps) => {
+export const TemplatePage = (props: ContentProps) => {
     if (!props.editorView) {
         return <ErrorPage404 />;
     }

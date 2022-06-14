@@ -1,6 +1,6 @@
 import { adminOrigin } from '../../../utils/urls';
 import { fetchJson } from '../../../utils/fetch/fetch-utils';
-import { CustomContentProps } from '../../../types/content-props/_content-common';
+import { ContentProps } from '../../../types/content-props/_content-common';
 
 const adminAuthUrl = `${adminOrigin}/admin/rest/auth/authenticated`;
 const userInfoUrl = `${adminOrigin}/admin/rest-v2/cs/security/principals/user:`;
@@ -19,7 +19,7 @@ type AdminAuthResponse = {
     user: UserInfo;
 };
 
-export type AdminContentResponse = CustomContentProps & {
+export type AdminContentResponse = ContentProps & {
     workflow: { state: ContentWorkflowState };
     modifier: string;
 };

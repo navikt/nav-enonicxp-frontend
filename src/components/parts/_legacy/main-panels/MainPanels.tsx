@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-    CustomContentProps,
-    ContentType,
-} from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { BodyLong } from '@navikt/ds-react';
 import LenkepanelNavNo from '../../../_common/lenkepanel/LenkepanelNavNo';
 import { translator } from '../../../../translations';
@@ -18,7 +15,7 @@ type TableData = {
     ingress?: string;
 };
 
-const getLinkData = (content: CustomContentProps | null): TableData | null => {
+const getLinkData = (content: ContentProps | null): TableData | null => {
     if (!content) {
         return null;
     }

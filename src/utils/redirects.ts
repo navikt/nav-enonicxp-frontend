@@ -1,10 +1,10 @@
 import {
     ContentType,
-    CustomContentProps,
+    ContentProps,
 } from '../types/content-props/_content-common';
 import { stripXpPathPrefix } from './urls';
 
-const getTargetPath = (contentData: CustomContentProps) => {
+const getTargetPath = (contentData: ContentProps) => {
     switch (contentData?.__typename) {
         case ContentType.SituationPage:
         case ContentType.ProductPage:
@@ -32,7 +32,7 @@ const getTargetPath = (contentData: CustomContentProps) => {
     }
 };
 
-export const getTargetIfRedirect = (contentData: CustomContentProps) => {
+export const getTargetIfRedirect = (contentData: ContentProps) => {
     const targetPath = getTargetPath(contentData);
     return targetPath ? stripXpPathPrefix(targetPath) : null;
 };
@@ -51,7 +51,7 @@ export const redirectPageProps = (
     },
 });
 
-export const isPermanentRedirect = (content: CustomContentProps) => {
+export const isPermanentRedirect = (content: ContentProps) => {
     if (
         content.__typename === ContentType.InternalLink ||
         content.__typename === ContentType.ExternalLink

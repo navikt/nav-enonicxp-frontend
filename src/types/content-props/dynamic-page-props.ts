@@ -1,4 +1,4 @@
-import { ContentType, CustomContentCommonProps } from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 import { LanguageProps } from '../language';
 import {
     ProductDataMixin,
@@ -26,41 +26,41 @@ export type OverviewPageData = Partial<{
     ProductDataMixin &
     DynamicPageData;
 
-export interface DynamicPageProps extends CustomContentCommonProps {
+export interface DynamicPageProps extends ContentCommonProps {
     __typename: ContentType.DynamicPage;
     data: DynamicPageData;
 }
 
-export interface ProductPageProps extends CustomContentCommonProps {
+export interface ProductPageProps extends ContentCommonProps {
     __typename: ContentType.ProductPage;
     data: ProductPageData;
 }
 
-export interface ProductDetailsProps extends CustomContentCommonProps {
+export interface ProductDetailsProps extends ContentCommonProps {
     __typename: ContentType.ProductDetails;
     data: ProductDetailsData;
 }
 
-export interface ThemedArticlePageProps extends CustomContentCommonProps {
+export interface ThemedArticlePageProps extends ContentCommonProps {
     __typename: ContentType.ThemedArticlePage;
     data: ThemedArticlePageData;
 }
 
-export interface GuidePageProps extends CustomContentCommonProps {
+export interface GuidePageProps extends ContentCommonProps {
     __typename: ContentType.GuidePage;
     data: GuidePageData;
 }
-export interface SituationPageProps extends CustomContentCommonProps {
+export interface SituationPageProps extends ContentCommonProps {
     __typename: ContentType.SituationPage;
     data: SituationPageData;
 }
 
-export interface ToolsPageProps extends CustomContentCommonProps {
+export interface ToolsPageProps extends ContentCommonProps {
     __typename: ContentType.ToolsPage;
     data: ToolsPageData;
 }
 
-export interface OverviewPageProps extends CustomContentCommonProps {
+export interface OverviewPageProps extends ContentCommonProps {
     __typename: ContentType.Overview;
     data: OverviewPageData;
 }

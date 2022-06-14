@@ -1,6 +1,6 @@
 import { makeErrorProps } from '../utils/make-error-props';
 import { PageBase } from '../components/PageBase';
-import { CustomContentProps } from '../types/content-props/_content-common';
+import { ContentProps } from '../types/content-props/_content-common';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from '../utils/errors';
 import { fetchWithTimeout } from '../utils/fetch/fetch-utils';
@@ -28,9 +28,9 @@ const fetchFailoverHtml = async (path: string) => {
         });
 };
 
-const Error = (props: CustomContentProps) => <PageBase content={props} />;
+const Error = (props: ContentProps) => <PageBase content={props} />;
 
-Error.getInitialProps = async (context): Promise<CustomContentProps> => {
+Error.getInitialProps = async (context): Promise<ContentProps> => {
     const { res, err, asPath } = context;
 
     if (!res) {

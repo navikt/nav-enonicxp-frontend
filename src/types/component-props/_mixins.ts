@@ -1,5 +1,5 @@
 import { ContentListProps } from '../content-props/content-list-props';
-import { CustomContentProps } from '../content-props/_content-common';
+import { ContentProps } from '../content-props/_content-common';
 import { TypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
 import { Taxonomy } from 'types/taxonomies';
@@ -56,7 +56,7 @@ export type ContentListMixin = {
 };
 
 export type InternalLinkMixin = {
-    target: CustomContentProps;
+    target: ContentProps;
     text?: string;
 };
 

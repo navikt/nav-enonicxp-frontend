@@ -1,4 +1,4 @@
-import { ContentType, CustomContentCommonProps } from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 
 export type InternalLinkData = {
     description?: string;
@@ -8,7 +8,7 @@ export type InternalLinkData = {
     permanentRedirect?: boolean;
 };
 
-export interface InternalLinkProps extends CustomContentCommonProps {
+export interface InternalLinkProps extends ContentCommonProps {
     __typename: ContentType.InternalLink;
     data: InternalLinkData;
 }

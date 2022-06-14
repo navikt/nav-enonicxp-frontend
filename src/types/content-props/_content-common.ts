@@ -70,7 +70,7 @@ export enum ContentType {
     PayoutDates = 'no_nav_navno_PayoutDates',
 }
 
-export type BaseContentCommonProps = {
+export type ContentAndMediaCommonProps = {
     __typename: ContentType | MediaType;
     _id: string;
     _path: string;
@@ -88,7 +88,7 @@ export type BaseContentCommonProps = {
     serverEnv?: string;
 };
 
-type ContentDataCommon = Partial<{
+type ContentCommonData = Partial<{
     feedbackToggle: boolean;
     chatbotToggle: boolean;
     metaDescription: string;
@@ -102,11 +102,11 @@ type ContentDataCommon = Partial<{
 
 export type PathMap = { [key: string]: string };
 
-export type CustomContentCommonProps = {
+export type ContentCommonProps = {
     __typename: ContentType;
-    children?: CustomContentCommonProps[];
-    parent?: CustomContentCommonProps;
-    data?: ContentDataCommon;
+    children?: ContentCommonProps[];
+    parent?: ContentCommonProps;
+    data?: ContentCommonData;
     page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
@@ -115,9 +115,9 @@ export type CustomContentCommonProps = {
     versionTimestamps?: string[];
     isFailover?: boolean;
     isPagePreview?: boolean;
-} & BaseContentCommonProps;
+} & ContentAndMediaCommonProps;
 
-export type CustomContentProps = CustomContentCommonProps &
+export type ContentProps = ContentCommonProps &
     (
         | ContentListProps
         | ErrorProps

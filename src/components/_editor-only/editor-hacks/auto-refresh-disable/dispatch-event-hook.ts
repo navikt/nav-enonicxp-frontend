@@ -4,7 +4,7 @@ import {
     editorFetchUserInfo,
 } from '../editor-fetch-utils';
 import {
-    CustomContentProps,
+    ContentProps,
     ContentType,
 } from '../../../../types/content-props/_content-common';
 import { Branch } from '../../../../types/branch';
@@ -61,7 +61,7 @@ export const hookDispatchEventForBatchContentServerEvent = ({
     setExternalUpdateEvent,
     setExternalUserName,
 }: {
-    content: CustomContentProps;
+    content: ContentProps;
     setExternalUserName;
     setExternalContentChange;
     setExternalUpdateEvent;

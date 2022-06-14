@@ -5,7 +5,7 @@ import {
     onLanguageSelect,
     setParams,
 } from '@navikt/nav-dekoratoren-moduler';
-import { CustomContentProps } from '../types/content-props/_content-common';
+import { ContentProps } from '../types/content-props/_content-common';
 import {
     hookAndInterceptInternalLink,
     prefetchOnMouseover,
@@ -25,7 +25,7 @@ import { fetchAndSetAuthStatus } from '../utils/auth';
 import { setAuthStateAction } from '../store/slices/authState';
 
 type Props = {
-    content: CustomContentProps;
+    content: ContentProps;
     children: React.ReactNode;
 };
 

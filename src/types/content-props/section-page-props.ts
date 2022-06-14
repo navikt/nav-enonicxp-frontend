@@ -1,7 +1,7 @@
 import {
     ContentType,
-    CustomContentCommonProps,
-    CustomContentProps,
+    ContentCommonProps,
+    ContentProps,
 } from './_content-common';
 import { LinkPanel } from '../link-panel';
 import { ContentListProps } from './content-list-props';
@@ -10,7 +10,7 @@ import { LanguageProps } from '../language';
 export type SectionPageData = Partial<{
     panelsHeading: string;
     panelItems: LinkPanel[];
-    tableContents: CustomContentProps[];
+    tableContents: ContentProps[];
     newsContents: ContentListProps;
     moreNewsUrl: string;
     ntkContents: ContentListProps;
@@ -18,7 +18,7 @@ export type SectionPageData = Partial<{
     languages: LanguageProps[];
 }>;
 
-export interface SectionPageProps extends CustomContentCommonProps {
+export interface SectionPageProps extends ContentCommonProps {
     __typename: ContentType.SectionPage;
     data: SectionPageData;
 }
