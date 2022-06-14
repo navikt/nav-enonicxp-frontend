@@ -68,10 +68,10 @@
     @include transitionMixin;
     position: absolute;
     right: 42px;
-    top: 26px;
+    top: 33px;
 
     :hover > & {
-        right: 86px;
-        top: 52px;
+        right: 82px;
+        top: 59px;
     }
 }
