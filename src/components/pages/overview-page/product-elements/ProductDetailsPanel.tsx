@@ -4,6 +4,8 @@ import { IllustrationStatic } from '../../../_common/illustration/IllustrationSt
 import { ComponentMapper } from '../../../ComponentMapper';
 import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
 import { fetchPageCacheContent } from '../../../../utils/fetch/fetch-cache';
+import { sanitizeLegacyUrl } from 'utils/urls';
+
 import { AlertBox } from '../../../_common/alert-box/AlertBox';
 import {
     ContentProps,
@@ -16,7 +18,6 @@ import { ProductDetailType } from '../../../../types/content-props/product-detai
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 
 import style from './ProductDetailsPanel.module.scss';
-import { sanitizeLegacyUrl } from 'utils/urls';
 
 type Props = {
     detailType: ProductDetailType;
