@@ -1,5 +1,17 @@
 @import '../../AreaCardPart.module.scss';
 
+.shapes {
+    @include transitionMixin;
+    position: absolute;
+
+    right: -12px;
+    top: 115px;
+
+    :hover > & {
+        right: 197px;
+    }
+}
+
 .letterPartOrange {
     background-color: var(--navds-global-color-orange-200);
 
