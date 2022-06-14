@@ -1,0 +1,17 @@
+@use 'src/common' as common;
+
+.macroQuote {
+    margin: 1.5rem 0;
+    padding: 0 2.5rem;
+    position: relative;
+
+    &:before {
+        content: '\201C';
+        font-size: 4rem;
+        color: common.$navds-global-color-nav-red;
+        font-family: 'Times new roman', serif;
+        position: absolute;
+        left: 0;
+        top: 0.75rem;
+    }
+}

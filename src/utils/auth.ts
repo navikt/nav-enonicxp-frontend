@@ -1,4 +1,4 @@
-import { fetchWithTimeout } from './fetch-utils';
+import { fetchWithTimeout } from './fetch/fetch-utils';
 import { setAuthStateAction } from '../store/slices/authState';
 import { store } from '../store/store';
 

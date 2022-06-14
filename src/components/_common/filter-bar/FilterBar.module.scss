@@ -1,0 +1,16 @@
+.wrapper {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.75rem;
+}
+
+.header {
+    margin-bottom: 0.5rem !important; // Would otherwise be override
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

@@ -13,7 +13,6 @@ import { LayoutProps } from '../component-props/layouts';
 import { MainArticleChapterData } from './main-article-chapter-props';
 import { OfficeInformationData } from './office-information-props';
 import { UrlData } from './url-props';
-import { NotificationProps } from '../notification-props';
 import {
     DynamicPageData,
     ProductPageData,
@@ -22,8 +21,10 @@ import {
 import { PublishingCalendarData } from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsData } from './animated-icons';
-import { GlobalValuesData } from './global-values-props';
+import { GlobalCaseTimeSetData, GlobalValuesData } from './global-values-props';
 import { ContactInformationData } from './contact-information-props';
+import { MediaType } from '../media';
+import { PayoutDatesData } from './payout-dates';
 
 export enum ContentType {
     Error = 'error',
@@ -38,25 +39,30 @@ export enum ContentType {
     DynamicPage = 'no_nav_navno_DynamicPage',
     ContentList = 'no_nav_navno_ContentList',
     ContactInformationPage = 'no_nav_navno_ContactInformation',
+    GenericPage = 'no_nav_navno_GenericPage',
     PageList = 'no_nav_navno_PageList',
     MainArticle = 'no_nav_navno_MainArticle',
     MainArticleChapter = 'no_nav_navno_MainArticleChapter',
     Melding = 'no_nav_navno_Melding',
-    Notification = 'no_nav_navno_Notification',
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
-    GlobalValues = 'no_nav_navno_GlobalValueSet',
+    GlobalNumberValuesSet = 'no_nav_navno_GlobalValueSet',
     ProductPage = 'no_nav_navno_ContentPageWithSidemenus',
+    ProductDetails = 'no_nav_navno_ProductDetails',
     GuidePage = 'no_nav_navno_GuidePage',
+    ThemedArticlePage = 'no_nav_navno_ThemedArticlePage',
     SituationPage = 'no_nav_navno_SituationPage',
-    EmployerSituationPage = 'no_nav_navno_EmployerSituationPage',
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',
     ToolsPage = 'no_nav_navno_ToolsPage',
     Calculator = 'no_nav_navno_Calculator',
+    Overview = 'no_nav_navno_Overview',
+    GlobalCaseTimeSet = 'no_nav_navno_GlobalCaseTimeSet',
+    PayoutDates = 'no_nav_navno_PayoutDates',
 }
 
-export type MediaContentCommonProps = {
+export type ContentCommonProps = {
+    __typename: ContentType | MediaType;
     _id: XpContentRef;
     _path: XpContentRef;
     createdTime: string;
@@ -66,6 +72,7 @@ export type MediaContentCommonProps = {
     publish?: {
         first?: string;
         from?: string;
+        to?: string;
     };
     isDraft?: boolean;
     timeRequested?: string;
@@ -80,11 +87,12 @@ export type ContentProps = {
     page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
-    notifications?: NotificationProps[];
     pathMap?: PathMap;
     livePath?: string;
     versionTimestamps?: string[];
-} & MediaContentCommonProps;
+    isFailover?: boolean;
+    isPagePreview?: boolean;
+} & ContentCommonProps;
 
 export type PathMap = { [key: string]: string };
 
@@ -118,5 +126,7 @@ export type ContentData = Partial<
         ProductPageData &
         SituationPageData &
         AnimatedIconsData &
-        GlobalValuesData
+        GlobalValuesData &
+        GlobalCaseTimeSetData &
+        PayoutDatesData
 >;

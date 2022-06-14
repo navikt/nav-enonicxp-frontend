@@ -3,7 +3,8 @@ import { Heading } from '@navikt/ds-react';
 import { Button } from '../button/Button';
 import { Calculator as CalculatorIcon } from '@navikt/ds-icons';
 import { translator } from 'translations';
-import { classNames, BEM } from 'utils/classnames';
+import classNames from 'classnames';
+import style from './Calculator.module.scss';
 
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
@@ -16,8 +17,6 @@ import {
     FieldType,
 } from 'types/component-props/parts/calculator';
 
-const bem = BEM('calculator');
-
 export const Calculator = ({
     header,
     calculatorData,
@@ -25,9 +24,8 @@ export const Calculator = ({
     header: string;
     calculatorData: CalculatorData;
 }) => {
-    const { fields } = calculatorData;
+    const { fields, useThousandSeparator } = calculatorData;
 
-    const useThousandSeparator = calculatorData.useThousandSeparator === 'true';
     const { language } = usePageConfig();
 
     const getLabel = translator('calculator', language);
@@ -146,18 +144,14 @@ export const Calculator = ({
     };
 
     return (
-        <div className={bem()}>
+        <div className={classNames(style.calculator, 'calculatorProductMixin')}>
             {header && (
-                <Heading
-                    level="4"
-                    size="medium"
-                    className={classNames(bem('title'))}
-                >
+                <Heading level="4" size="medium" className={style.title}>
                     {header}
                 </Heading>
             )}
             <form onSubmit={handleDefaultFormSubmit}>
-                <div className={classNames(bem('fields'))}>
+                <div className="calculatorFields">
                     {fields
                         .filter(
                             (field) =>
@@ -184,10 +178,11 @@ export const Calculator = ({
                 <Button
                     size={'small'}
                     onClick={handleCalculateButtonClick}
-                    className={classNames(bem('calculateButton'))}
+                    className={style.calculateButton}
                 >
                     <CalculatorIcon
-                        className={classNames(bem('calculateIcon'))}
+                        title={'Kalkulator-ikon'}
+                        className={style.calculateIcon}
                     />
                     <span>{getLabel('calculate')}</span>
                 </Button>

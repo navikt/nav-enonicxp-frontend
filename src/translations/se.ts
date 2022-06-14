@@ -1,7 +1,7 @@
 import { Translations } from './default';
 import { MenuListItemKey } from '../types/menu-list-items';
 
-export const bundle: Translations = {
+export const translationsBundleSe: Translations = {
     relatedContent: {
         [MenuListItemKey.AppealRights]: 'Váidinvuoigatvuođat',
         [MenuListItemKey.FormAndApplication]: 'Skovit',

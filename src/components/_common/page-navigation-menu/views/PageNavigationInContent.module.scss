@@ -1,0 +1,37 @@
+@use 'src/common' as common;
+
+.pageNavInContent {
+    background-color: white;
+
+    @include common.section-padding-mixin;
+}
+
+.title {
+    margin-bottom: 1rem;
+}
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pageNavLink {
+    padding: 0.5rem;
+    padding: 0.6875rem 0.5rem;
+    margin: 0 -0.5rem;
+
+    &:hover {
+        background-color: common.$navds-global-color-blue-100;
+        color: common.$navds-global-color-gray-900;
+        text-decoration: none;
+
+        .decor {
+            background-color: common.$navds-semantic-color-link;
+        }
+    }
+
+    &:focus {
+        @include common.panel-focus-mixin;
+    }
+}

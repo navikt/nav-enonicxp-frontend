@@ -2,10 +2,9 @@ import React from 'react';
 import { DynamicNewsList } from '../../../types/component-props/parts/news-list';
 import { ContentList } from '../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
-import { BEM } from '../../../utils/classnames';
-import { Expandable } from '../../_common/expandable/Expandable';
+import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 
-const bem = BEM('news-list');
+import style from './NewsList.module.scss';
 
 export const NewsList = ({ config }: DynamicNewsList) => {
     if (!config?.contentList) {
@@ -15,8 +14,8 @@ export const NewsList = ({ config }: DynamicNewsList) => {
     const { title, contentList, moreNews } = config;
 
     return (
-        <Expandable {...config}>
-            <div className={bem()}>
+        <ExpandableComponentWrapper {...config}>
+            <div className={style.newsList}>
                 <ContentList
                     showDateLabel={true}
                     content={contentList.target}
@@ -26,12 +25,12 @@ export const NewsList = ({ config }: DynamicNewsList) => {
                 {moreNews && (
                     <LenkeStandalone
                         href={moreNews.url}
-                        className={bem('more-news')}
+                        className={style.moreNews}
                     >
                         {moreNews.text}
                     </LenkeStandalone>
                 )}
             </div>
-        </Expandable>
+        </ExpandableComponentWrapper>
     );
 };

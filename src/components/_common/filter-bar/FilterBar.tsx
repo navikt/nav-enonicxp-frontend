@@ -1,7 +1,5 @@
 import { Heading } from '@navikt/ds-react';
 
-import classNames from 'classnames';
-import { BEM } from '../../../utils/classnames';
 import { logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 
@@ -11,8 +9,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { FilterExplanation } from './FilterExplanation';
-
-const bem = BEM('filter-bar');
+import style from './FilterBar.module.scss';
 
 type FilterBarProps = {
     layoutProps: SectionWithHeaderProps;
@@ -20,7 +17,10 @@ type FilterBarProps = {
 
 export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const { content, intro } = layoutProps.regions;
-    const components = [...content.components, ...intro.components];
+    const components = [
+        ...(content ? content.components : []),
+        ...(intro ? intro.components : []),
+    ];
     const { language } = usePageConfig();
     const getLabel = translator('filteredContent', language);
 
@@ -31,7 +31,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     // underlying part that has filter ids attached.
     // We don't care about duplicate ids in the final array at the moment.
     const filterIds = components.reduce((acc, component) => {
-        if (component.config.filters) {
+        if (component.config?.filters) {
             return [...acc, ...component.config.filters];
         }
 
@@ -57,15 +57,11 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         .flat();
 
     return (
-        <div className={bem('wrapper')}>
-            <Heading
-                level="3"
-                size="small"
-                className={classNames(bem(), bem('header'))}
-            >
+        <div className={style.wrapper}>
+            <Heading level="3" size="small" className={style.header}>
                 {getLabel('showingInformationFor')}
             </Heading>
-            <div className={bem('container')}>
+            <div className={style.container}>
                 {filtersToDisplay.map((filter) => {
                     const isSelected = selectedFilters.includes(filter.id);
                     return (

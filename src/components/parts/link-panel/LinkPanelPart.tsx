@@ -1,15 +1,20 @@
 import React from 'react';
 import { LinkPanelPartProps } from 'types/component-props/parts/link-panel';
 import { Heading, Panel } from '@navikt/ds-react';
-import { BEM, classNames } from 'utils/classnames';
+import { classNames } from 'utils/classnames';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
-import { getImageUrl, XpImage } from '../../_common/image/XpImage';
-import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
+import { XpImage } from '../../_common/image/XpImage';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { getMediaUrl } from '../../../utils/urls';
+import { buildImageCacheUrl } from '../../_common/image/NextImage';
 
-const bem = BEM('link-panel');
+import style from './LinkPanelPart.module.scss';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
+    const { pageConfig } = usePageConfig();
+
     if (!config) {
         return <EditorHelp text={'Tomt lenkepanel'} />;
     }
@@ -17,7 +22,7 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
     const { link, ingress, background, icon, variant } = config;
 
     const linkProps = getSelectableLinkProps(link);
-    const bgUrl = getImageUrl(background);
+    const bgUrl = getMediaUrl(background?.mediaUrl);
 
     const selectedVariant = variant?._selected;
     const variantConfig = selectedVariant && variant[selectedVariant];
@@ -32,11 +37,20 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
         <Panel
             href={linkProps.url}
             className={classNames(
-                bem(),
+                style.linkPanel,
                 isVerticalLayout ? `vertical` : 'horizontal'
             )}
             border={true}
-            style={bgUrl && { backgroundImage: `url(${bgUrl})` }}
+            style={
+                bgUrl && {
+                    backgroundImage: `url(${buildImageCacheUrl({
+                        src: bgUrl,
+                        isEditorView: !!pageConfig.editorView,
+                        maxWidth: 480,
+                        quality: 90,
+                    })})`,
+                }
+            }
             as={(props) => (
                 <LenkeBase
                     href={props.href}
@@ -48,14 +62,15 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                 </LenkeBase>
             )}
         >
-            <div className={bem('innhold')}>
-                <div className={bem('header')}>
+            <div className={style.innhold}>
+                <div className={style.header}>
                     {icon && (
-                        <div aria-hidden={'true'}
+                        <div
+                            aria-hidden={'true'}
                             className={classNames(
-                                bem('icon'),
+                                style.icon,
                                 selectedVariant === 'verticalWithBgColor' &&
-                                    bem('icon', 'bg')
+                                    style.bg
                             )}
                             style={{
                                 ...(selectedVariant ===
@@ -66,14 +81,18 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                                 }),
                             }}
                         >
-                            <XpImage imageProps={icon} alt={''} />
+                            <XpImage
+                                imageProps={icon}
+                                alt={''}
+                                maxWidth={isVerticalLayout ? 384 : 64}
+                            />
                         </div>
                     )}
-                    <Heading level="2" size="medium" className={bem('title')}>
+                    <Heading level="2" size="medium" className={style.title}>
                         {linkProps.text}
                     </Heading>
                 </div>
-                <div className={bem('ingress')}>{ingress}</div>
+                <div className={style.ingress}>{ingress}</div>
             </div>
         </Panel>
     );

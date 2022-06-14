@@ -2,8 +2,8 @@ import React from 'react';
 import { GlobalValueItem } from '../../../types/content-props/global-values-props';
 import { GVMessageProps } from './components/messages/GVMessages';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
-import { editorPathPrefix } from '../../../utils/urls';
-import { EditorLinkWrapper } from '../../_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
+import { editorPathPrefix, xpDraftPathPrefix } from '../../../utils/urls';
+import { EditorLinkWrapper } from '../../_editor-only/editor-link-wrapper/EditorLinkWrapper';
 
 export const gvNameExists = (
     itemName: string,
@@ -25,7 +25,10 @@ const getUsageMessages = (usage) => {
                 <>
                     <EditorLinkWrapper>
                         <LenkeStandalone
-                            href={content.path.replace('/www.nav.no', '')}
+                            href={content.path.replace(
+                                '/www.nav.no',
+                                xpDraftPathPrefix
+                            )}
                             target={'_blank'}
                             withChevron={false}
                             onClick={(e) => {

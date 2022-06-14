@@ -10,13 +10,13 @@ import {
     hookAndInterceptInternalLink,
     prefetchOnMouseover,
 } from '../utils/links';
-import TopContainer from './_common/top-container/TopContainer';
+import { TopContainer } from './_top-container/TopContainer';
 import { initAmplitude } from '../utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
-import { getDecoratorParams } from '../utils/decorator-utils';
+import { getDecoratorParams } from '../utils/decorator/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getInternalRelativePath } from '../utils/urls';
-import { ComponentReorderHack } from '../utils/ComponentReorderHack';
+import { EditorHacks } from './_editor-only/editor-hacks/EditorHacks';
 
 import { store } from '../store/store';
 import { setPathMapAction } from '../store/slices/pathMap';
@@ -34,6 +34,16 @@ export const PageWrapper = (props: Props) => {
     const { editorView } = content;
 
     const router = useRouter();
+
+    store.dispatch(setPathMapAction(content?.pathMap));
+    store.dispatch(
+        setPageConfigAction({
+            pageId: content._id,
+            language: content.language,
+            isPagePreview: !!router.query.utkastRouter,
+            editorView: content.editorView,
+        })
+    );
 
     useEffect(() => {
         // Checking auth status is not supported when viewed via Content Studio
@@ -91,15 +101,6 @@ export const PageWrapper = (props: Props) => {
             return;
         }
 
-        store.dispatch(setPathMapAction(content?.pathMap));
-        store.dispatch(
-            setPageConfigAction({
-                pageId: content._id,
-                language: content.language,
-                editorView: content.editorView,
-            })
-        );
-
         // Prevents focus from "sticking" after async-navigation to a new page
         const focusedElement = document.activeElement as HTMLElement;
         focusedElement?.blur && focusedElement.blur();
@@ -108,13 +109,13 @@ export const PageWrapper = (props: Props) => {
         setParams(getDecoratorParams(content));
 
         document.documentElement.lang = content.language || 'no';
-    }, [content]);
+    }, [content, router]);
 
     return (
         <div className={'app-container'}>
+            <EditorHacks content={content} />
             <DocumentParameterMetatags content={content} />
             <HeadWithMetatags content={content} />
-            {content.editorView === 'edit' && <ComponentReorderHack />}
             <TopContainer content={content} />
             <div
                 role={'main'}

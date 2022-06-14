@@ -1,9 +1,8 @@
 import React from 'react';
 import { GVItem } from './item/GVItem';
-import { BEM } from '../../../../../utils/classnames';
 import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
 
-const bem = BEM('gv-items');
+import style from './GVItems.module.scss';
 
 const norwegianCompare = new Intl.Collator(['no', 'nb', 'nn'], {
     usage: 'sort',
@@ -16,10 +15,10 @@ export const GVItemsSorted = () => {
     );
 
     return (
-        <div className={bem()}>
+        <div className={style.gvItems}>
             {sortedItems.map((item) => (
-                <div className={bem('item-outer')} key={item.key}>
-                    <div className={bem('item')}>
+                <div className={style.itemOuter} key={item.key}>
+                    <div className={style.item}>
                         <GVItem item={item} />
                     </div>
                 </div>

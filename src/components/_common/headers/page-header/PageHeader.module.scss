@@ -1,0 +1,12 @@
+@use 'src/common' as common;
+
+.pageHeader {
+    padding: 0 0 1.25rem 0;
+    margin: 0 auto;
+}
+
+@media #{common.$mq-screen-mobile} {
+    .pageHeader {
+        padding: 0 0 1rem 0;
+    }
+}

@@ -23,6 +23,8 @@ import { MacroGlobalValueWithMath } from './global-value-with-math/MacroGlobalVa
 import { MacroProductCardMini } from './product-card-mini/MacroProductCardMini';
 import { MacroIngress } from './ingress/MacroIngress';
 import { MacroAlertBox } from './alert-box/MacroAlertBox';
+import { MacroSaksbehandlingstid } from './saksbehandlingstid/MacroSaksbehandlingstid';
+import { MacroPayoutDates } from './payout-dates/MacroPayoutDates';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
@@ -30,6 +32,7 @@ const macroComponents: {
     [MacroType.AlertBox]: MacroAlertBox,
     [MacroType.Button]: MacroButton,
     [MacroType.ButtonBlue]: MacroButtonBlue,
+    [MacroType.Saksbehandlingstid]: MacroSaksbehandlingstid,
     [MacroType.ChatbotLink]: MacroChatbotLink,
     [MacroType.ChevronLinkExternal]: MacroChevronLinkExternal,
     [MacroType.ChevronLinkInternal]: MacroChevronLinkInternal,
@@ -41,6 +44,7 @@ const macroComponents: {
     [MacroType.InfoBoks]: MacroInfoBoks,
     [MacroType.Ingress]: MacroIngress,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
+    [MacroType.PayoutDates]: MacroPayoutDates,
     [MacroType.PhoneLink]: MacroPhoneLink,
     [MacroType.ProductCardMini]: MacroProductCardMini,
     [MacroType.Quote]: MacroQuote,

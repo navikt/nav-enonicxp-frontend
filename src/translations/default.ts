@@ -1,6 +1,8 @@
 import { DeepPartial } from '../types/util-types';
 import { MenuListItemKey } from '../types/menu-list-items';
 import { Taxonomy } from 'types/taxonomies';
+import { Area } from 'types/areas';
+import { ProductDetailType } from '../types/content-props/product-details';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.AppealRights]: 'Klagerettigheter',
@@ -18,12 +20,40 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 };
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.ALL]: 'Alle',
+    [Taxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
     [Taxonomy.BENEFITS]: 'Pengestøtte',
-    [Taxonomy.RIGHTS]: 'Veiledning',
     [Taxonomy.FOLLOWUP]: 'Oppfølging',
+    [Taxonomy.FOR_EMPLOYERS]: 'For arbeidsgivere',
+    [Taxonomy.FOR_EVENT_ORGANIZERS]: 'For tiltaksarrangører',
+    [Taxonomy.FOR_HEALTH_SERVICE]: 'For leger og andre behandlere',
+    [Taxonomy.FOR_MUNICIPALITY]: 'For kommunen',
+    [Taxonomy.FOR_PROVIDERS]: 'For samarbeidspartnere',
+    [Taxonomy.MEASURES]: 'Tiltak',
+    [Taxonomy.RIGHTS]: 'Veiledning',
 };
 
-export const bundle = {
+const areas: { [key in Area]: string } = {
+    [Area.ALL]: 'Alle',
+    [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
+    [Area.FAMILY]: 'Familie og barn',
+    [Area.HEALTH]: 'Helse og sykdom',
+    [Area.MUNICIPALITY]: 'For kommunen',
+    [Area.OTHER]: 'Annet',
+    [Area.PENSION]: 'Pensjon',
+    [Area.SELF_EMPLOYED]: 'For selvstendig næringsdrivende',
+    [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
+    [Area.WORK]: 'Arbeid',
+};
+
+const productDetailTypes: { [key in ProductDetailType]: string } = {
+    [ProductDetailType.PAYOUT_DATES]: 'utbetalingsdatoer',
+    [ProductDetailType.PROCESSING_TIMES]: 'saksbehandlingstider',
+    [ProductDetailType.RATES]: 'satser',
+    [ProductDetailType.ALL_PRODUCTS]: 'alle',
+};
+
+export const translationsBundleNb = {
     stringParts: {
         conjunction: 'og',
     },
@@ -63,20 +93,26 @@ export const bundle = {
     mainPanels: {
         label: 'Hovedvalg',
     },
-    notifications: {
-        label: 'Viktige varsler',
-    },
     officeInformation: {
         closed: 'Stengt',
     },
     relatedContent: relatedContent,
     productTaxonomies,
+    areas,
+    products: {
+        person: 'For privatpersoner',
+        employer: 'For arbeidsgivere',
+        provider: 'For samarbeidspartnere',
+    },
     situations: {
-        youMayHaveRightTo: 'Dette kan du ha rett til',
-        employerNeedToKnow: 'Som arbeidsgiver må du vite dette',
+        person: 'Dette kan du ha rett til',
+        employer: 'For arbeidsgivere',
+        provider: 'For samarbeidspartnere',
     },
     guides: {
-        howTo: 'Slik gjør du det',
+        person: 'Slik gjør du det',
+        employer: 'For arbeidsgivere',
+        provider: 'For samarbeidspartnere',
     },
     publishingCalendar: {
         event: 'Kalenderhendelse',
@@ -84,7 +120,20 @@ export const bundle = {
     },
     header: {
         copyLink: 'Kopier lenke',
-        copiedLink: 'Lenken er kopiert',
+        copiedLinkConfirmed: 'Lenken er kopiert',
+    },
+    overview: {
+        noProducts: 'Ingen produkter å vise',
+        ariaExplanation: 'Filtrer listen etter område',
+        ariaItemExplanation: 'Vis område',
+        chooseArea: 'Velg område',
+        chooseType: 'Velg type',
+        search: 'Søk',
+        loading: 'Henter produktdetaljer',
+    },
+    pagination: {
+        goTo: 'Gå til',
+        ariaExplanation: 'Navigering av innholdet via paginering',
     },
     contactPoint: {
         chat: {
@@ -110,9 +159,10 @@ export const bundle = {
             openNow: 'Åpent nå',
             opensAt: 'Åpner {$1} kl {$2}',
             closedNow: 'Stengt nå',
-            seeMoreOptions: 'Mer om tastevalg',
+            seeMoreOptions: 'Mer om åpningstider og tastevalg',
             todaysPhoneOpeningHours: 'Åpningstider på telefon i dag',
             callUsAt: 'Ring oss på',
+            businessDays: 'hverdager',
         },
     },
     dateTime: {
@@ -130,12 +180,35 @@ export const bundle = {
             tomorrow: 'i morgen',
         },
         day: 'dag',
+        date: 'dato',
     },
     versionHistory: {
         label: 'Versjonshistorikk',
         title: 'Vis historisk innhold',
         loading: 'Laster historisk innhold...',
     },
+    pageWarnings: {
+        draftWarning: 'Utkast - siden er under arbeid',
+        failoverWarning:
+            'Vi har for tiden tekniske problemer på nav.no. Du kan oppleve noe treghet eller at innhold mangler. Du kan prøve å laste inn siden på nytt.',
+    },
+    caseTimeUnit: {
+        single: {
+            days: 'dag',
+            weeks: 'uke',
+            months: 'måned',
+        },
+        multi: {
+            days: 'dager',
+            weeks: 'uker',
+            months: 'måneder',
+        },
+    },
+    productDetailTypes: productDetailTypes,
+    payoutDates: {
+        tableHeaderPrefix: 'Utbetalingsdatoer i',
+        tableHeaderPrefixNoYear: 'Utbetalingsdatoer',
+    },
 };
 
-export type Translations = DeepPartial<typeof bundle>;
+export type Translations = DeepPartial<typeof translationsBundleNb>;

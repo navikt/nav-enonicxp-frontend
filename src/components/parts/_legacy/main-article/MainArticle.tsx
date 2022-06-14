@@ -1,28 +1,49 @@
 import React from 'react';
-import { BEM } from '../../../../utils/classnames';
 import { translator } from 'translations';
 import { Heading, Ingress } from '@navikt/ds-react';
 import Innholdsfortegnelse from './innholdsfortegnelse/Innholdsfortegnelse';
-import SosialeMedier from './SosialeMedier';
+import { SosialeMedier } from './SosialeMedier';
 import ArtikkelDato from './ArtikkelDato';
 import { Faktaboks } from './Faktaboks';
-import Bilde from './Bilde';
+import { Bilde } from './Bilde';
 import MainArticleText from './MainArticleText';
 import { parseInnholdsfortegnelse } from './innholdsfortegnelse/parseInnholdsfortegnelse';
 import { ContentType } from '../../../../types/content-props/_content-common';
 import { MainArticleProps } from '../../../../types/content-props/main-article-props';
 import { MainArticleChapterProps } from '../../../../types/content-props/main-article-chapter-props';
+import ErrorPage404 from '../../../../pages/404';
 
-export const MainArticle = (
-    propsInitial: MainArticleProps | MainArticleChapterProps
-) => {
-    const props =
-        propsInitial.__typename === ContentType.MainArticleChapter
-            ? propsInitial.data.article
-            : propsInitial;
+import style from './MainArticle.module.scss';
+
+type Props = MainArticleProps | MainArticleChapterProps;
+
+// Get props from the chapter article if the content is a chapter
+const getPropsToRender = (propsInitial: Props) => {
+    if (propsInitial.__typename !== ContentType.MainArticleChapter) {
+        return propsInitial;
+    }
+
+    const articleProps = propsInitial.data?.article;
+
+    if (articleProps?.__typename === ContentType.MainArticle) {
+        return articleProps;
+    }
+
+    // Any other article type than main-article should have resulted in a redirect
+    // This branch should never happen (famous last words :)
+    return null;
+};
+
+export const MainArticle = (propsInitial: Props) => {
+    const props = getPropsToRender(propsInitial);
+    if (!props) {
+        console.error(
+            `Misplaced MainArticle part on content type ${propsInitial.__typename} - ${propsInitial._path} - ${propsInitial._id}`
+        );
+        return <ErrorPage404 />;
+    }
 
     const { data } = props;
-    const bem = BEM('main-article');
     const getLabel = translator('mainArticle', props.language);
     const hasTableOfContest =
         data?.hasTableOfContents && data?.hasTableOfContents !== 'none';
@@ -32,12 +53,10 @@ export const MainArticle = (
         hasTableOfContest
     );
     const headerClassName =
-        innholdsfortegnelse.length === 0
-            ? bem('header')
-            : bem('header-med-toc');
+        innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
 
     return (
-        <article className={bem()}>
+        <article className={style.mainArticle}>
             <header className={headerClassName}>
                 <ArtikkelDato
                     publish={props.publish}
@@ -48,8 +67,8 @@ export const MainArticle = (
                 />
                 <Heading
                     level="1"
-                    size="2xlarge"
-                    className={bem('title')}
+                    size="xlarge"
+                    className={style.title}
                     spacing
                 >
                     {props.displayName}
@@ -62,14 +81,10 @@ export const MainArticle = (
             </header>
             <MainArticleText
                 htmlProps={data.text}
-                className={bem('text')}
+                className={style.text}
                 hasTableOfContents={hasTableOfContest}
             />
-            <Faktaboks
-                fakta={data.fact}
-                label={getLabel('facts')}
-                className={bem('facts')}
-            />
+            <Faktaboks fakta={data.fact} label={getLabel('facts')} />
             <SosialeMedier
                 social={data.social}
                 displayName={props.displayName}

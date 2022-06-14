@@ -1,20 +1,17 @@
 import { Panel } from '@navikt/ds-react';
-import { classNames, BEM } from '../../../utils/classnames';
 import { translator } from 'translations';
 import {
     insertHTMLBreaks,
     numberToFormattedValue,
 } from '../../../utils/string';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-
+import style from './CalculatorResult.module.scss';
 interface ResultProps {
     summaryText: string;
     sum: number;
     useThousandSeparator: boolean;
     errorMessage: string;
 }
-
-const bem = BEM('calculator-result');
 
 export const CalculatorResult = (props: ResultProps) => {
     const { summaryText, sum, useThousandSeparator, errorMessage } = props;
@@ -35,7 +32,7 @@ export const CalculatorResult = (props: ResultProps) => {
 
     if (errorMessage) {
         return (
-            <Panel border className={classNames(bem(), bem('summaryError'))}>
+            <Panel border className={style.summaryError}>
                 <div>{getLabel('error')}</div>
                 <em>{`"${errorMessage}"`}</em>
             </Panel>
@@ -43,7 +40,7 @@ export const CalculatorResult = (props: ResultProps) => {
     }
 
     return (
-        <Panel border className={classNames(bem(), bem('summaryText'))}>
+        <Panel border className={style.summaryText}>
             <div
                 aria-live="assertive"
                 dangerouslySetInnerHTML={{

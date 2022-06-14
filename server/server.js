@@ -2,45 +2,110 @@ require('dotenv').config();
 
 const express = require('express');
 const next = require('next');
-const { setJsonCacheHeaders } = require('./set-json-cache-headers');
-const { invalidateCachedPage, wipePageCache } = require('./incremental-cache');
-const { initHeartbeat } = require('./revalidator-proxy-heartbeat.js');
+const fetch = require('node-fetch');
 
-const app = next({
+const { setJsonCacheHeaders } = require('./set-json-cache-headers');
+const {
+    handleInvalidateReq,
+    handleInvalidateAllReq,
+    setCacheKey,
+} = require('./incremental-cache');
+const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
+
+const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
     quiet: process.env.ENV === 'prod',
 });
-const handle = app.getRequestHandler();
-const port = 3000;
 
-app.prepare().then(() => {
+const validateSecret = (req, res, next) => {
+    if (req.headers.secret !== process.env.SERVICE_SECRET) {
+        console.warn(`Invalid secret for ${req.path}`);
+        res.status(404);
+        return nextApp.renderError(undefined, req, res, req.path);
+    }
+
+    next();
+};
+
+nextApp.prepare().then(() => {
     const server = express();
+    const port = process.env.PORT || 3000;
 
-    const { SERVICE_SECRET, PAGE_CACHE_DIR } = process.env;
+    const jsonBodyParser = express.json();
 
-    if (PAGE_CACHE_DIR) {
-        app.server.incrementalCache.incrementalOptions.pagesDir =
+    const nextRequestHandler = nextApp.getRequestHandler();
+
+    const {
+        SERVICE_SECRET,
+        PAGE_CACHE_DIR,
+        IMAGE_CACHE_DIR,
+        IS_FAILOVER_INSTANCE,
+        ENV,
+    } = process.env;
+
+    const currentBuildId = nextApp.server.getBuildId();
+
+    const isFailover = IS_FAILOVER_INSTANCE === 'true';
+
+    if (!isFailover && PAGE_CACHE_DIR) {
+        nextApp.server.incrementalCache.incrementalOptions.pagesDir =
             PAGE_CACHE_DIR;
     }
 
-    server.all('*', (req, res) => {
-        const { secret } = req.headers;
-        const { invalidate, wipeAll } = req.query;
+    if (IMAGE_CACHE_DIR) {
+        nextApp.server.imageResponseCache.incrementalCache.cacheDir =
+            IMAGE_CACHE_DIR;
+    }
 
-        if (invalidate && secret === SERVICE_SECRET) {
-            invalidateCachedPage(req.path, app);
-            return res.status(200).send(`Invalidating cache for ${req.path}`);
-        }
+    if (isFailover && ENV === 'prod') {
+        // Assets from /_next and internal apis should be served as normal
+        server.get(['/_next/*', '/api/internal/*'], (req, res) => {
+            return nextRequestHandler(req, res);
+        });
 
-        if (wipeAll && secret === SERVICE_SECRET) {
-            wipePageCache(app);
-            return res.status(200).send('Wiping page cache');
-        }
+        // We don't want the full site to be publicly available via failover instance.
+        // This is served via the public-facing regular frontend when needed
+        server.all('*', (req, res) => {
+            if (req.headers.secret !== SERVICE_SECRET) {
+                return res.status(404).send();
+            }
 
-        setJsonCacheHeaders(req, res);
+            return nextRequestHandler(req, res);
+        });
+    } else {
+        server.post(
+            '/invalidate',
+            validateSecret,
+            jsonBodyParser,
+            setCacheKey,
+            handleInvalidateReq(nextApp)
+        );
 
-        return handle(req, res);
-    });
+        server.get(
+            '/invalidate/wipe-all',
+            validateSecret,
+            setCacheKey,
+            handleInvalidateAllReq(nextApp)
+        );
+
+        server.get('/_next/data/:buildId/*.json', (req, res) => {
+            const { buildId } = req.params;
+            if (buildId !== currentBuildId) {
+                console.log(
+                    `Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`
+                );
+                req.url = req.url.replace(buildId, currentBuildId);
+                req.path = req.path.replace(buildId, currentBuildId);
+            }
+
+            setJsonCacheHeaders(req, res);
+            return nextRequestHandler(req, res);
+        });
+
+        server.all('*', (req, res) => {
+            return nextRequestHandler(req, res);
+        });
+    }
 
     // Handle errors
     server.use((err, req, res, next) => {
@@ -50,8 +115,8 @@ app.prepare().then(() => {
 
         console.log(`Express error on path ${path}: ${status} ${msg}`);
 
-        res.status(status);
-        return app.renderError(msg, req, res, path);
+        res.status(status || 500);
+        return nextApp.renderError(msg, req, res, path);
     });
 
     const serverInstance = server.listen(port, (error) => {
@@ -63,7 +128,15 @@ app.prepare().then(() => {
         }
 
         console.log(`Server started on port ${port}`);
-        initHeartbeat();
+
+        // Ensure the isReady-api is called when running locally
+        if (ENV === 'localhost') {
+            fetch(`http://localhost:${port}/api/internal/isReady`);
+        }
+
+        if (!isFailover) {
+            initHeartbeat();
+        }
     });
 
     const shutdown = () => {

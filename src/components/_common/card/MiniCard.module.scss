@@ -1,0 +1,21 @@
+@use 'src/common' as common;
+
+$illustrationSize: common.px-to-rem(64);
+
+.illustration {
+    width: $illustrationSize;
+    height: $illustrationSize;
+    margin-right: 1rem;
+}
+
+.title {
+    text-decoration: underline;
+    color: var(--navds-global-color-gray-900);
+    font-weight: 600;
+    margin: 0;
+
+    :global(.provider) & {
+        color: var(--navds-semantic-color-link);
+    }
+}
+

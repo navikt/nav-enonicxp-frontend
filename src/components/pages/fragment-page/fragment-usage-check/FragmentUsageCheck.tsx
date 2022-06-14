@@ -1,28 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { fetchWithTimeout } from '../../../../utils/fetch-utils';
+import { fetchWithTimeout } from '../../../../utils/fetch/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
 import { Heading } from '@navikt/ds-react';
 import { Button } from '../../../_common/button/Button';
-import { BEM } from '../../../../utils/classnames';
-import { EditorLinkWrapper } from '../../../_common/editor-utils/editor-link-wrapper/EditorLinkWrapper';
-import { FragmentUsageLink } from './FragmentUsageLink';
+import { EditorLinkWrapper } from '../../../_editor-only/editor-link-wrapper/EditorLinkWrapper';
 
-const bem = BEM('fragment-usage');
+import style from './FragmentUsageCheck.module.scss';
+import {
+    CustomSelectorUsageData,
+    CustomSelectorUsageLink,
+} from '../../../_editor-only/custom-selector-usage-link/CustomSelectorUsageLink';
 
 const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/htmlFragmentSelector/fragmentUsage`;
 
-export type FragmentUsageData = {
-    name: string;
-    path: string;
-    id: string;
-};
-
 type FragmentUsage = {
-    macroUsage: FragmentUsageData[];
-    componentUsage: FragmentUsageData[];
+    macroUsage: CustomSelectorUsageData[];
+    componentUsage: CustomSelectorUsageData[];
 };
 
-const fetchMacroUsage = (id: string): Promise<FragmentUsage> =>
+const fetchFragmentUsage = (id: string): Promise<FragmentUsage> =>
     fetchWithTimeout(`${serviceUrl}?fragmentId=${id}`, 5000).then((res) => {
         if (res.ok) {
             return res.json();
@@ -46,7 +42,7 @@ export const FragmentUsageCheck = ({ id }: Props) => {
     const [showUsage, setShowUsage] = useState(false);
 
     useEffect(() => {
-        fetchMacroUsage(id)
+        fetchFragmentUsage(id)
             .then((usageResponse) => {
                 if (
                     !usageResponse.macroUsage ||
@@ -54,7 +50,6 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                 ) {
                     throw new Error('Invalid fragment usage fetch response');
                 }
-
                 setUsages(usageResponse);
             })
             .catch((e) => {
@@ -69,12 +64,11 @@ export const FragmentUsageCheck = ({ id }: Props) => {
     }
 
     const { componentUsage, macroUsage } = usages;
-
     const numUniqueUsages = getNumUniqueUsages(usages);
 
     return (
-        <div className={bem()}>
-            <div className={bem('header')}>
+        <div className={style.fragmentUsage}>
+            <div className={style.header}>
                 {numUniqueUsages > 0 ? (
                     <>
                         <Heading level="3" size="medium">
@@ -86,7 +80,7 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                             <Button
                                 variant={'tertiary'}
                                 size={'small'}
-                                className={bem('button')}
+                                className={style.button}
                                 onClick={() => setShowUsage(!showUsage)}
                             >
                                 {showUsage ? 'Skjul' : 'Vis'}
@@ -106,12 +100,15 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                             <Heading
                                 level="3"
                                 size="small"
-                                className={bem('usage-header')}
+                                className={style.usageHeader}
                             >
                                 {'I bruk som komponent:'}
                             </Heading>
                             {componentUsage.map((content, index) => (
-                                <FragmentUsageLink {...content} key={index} />
+                                <CustomSelectorUsageLink
+                                    {...content}
+                                    key={index}
+                                />
                             ))}
                         </>
                     )}
@@ -120,12 +117,15 @@ export const FragmentUsageCheck = ({ id }: Props) => {
                             <Heading
                                 level="3"
                                 size="small"
-                                className={bem('usage-header')}
+                                className={style.usageHeader}
                             >
                                 {'I bruk som macro:'}
                             </Heading>
                             {macroUsage.map((content, index) => (
-                                <FragmentUsageLink {...content} key={index} />
+                                <CustomSelectorUsageLink
+                                    {...content}
+                                    key={index}
+                                />
                             ))}
                         </>
                     )}

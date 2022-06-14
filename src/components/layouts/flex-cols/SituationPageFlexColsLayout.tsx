@@ -28,15 +28,23 @@ export const SituationPageFlexColsLayout = ({
         ...(justifyContent && { justifyContent }),
     };
 
+    const calculateColCount = () => {
+        return regionProps.components.length % 3 === 0 ? 3 : 2;
+    };
+
+    const colCount =
+        typeof numCols === 'number' ? numCols : calculateColCount();
+
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             {title && (
                 <Header
                     level="2"
-                    size="xlarge"
+                    size="large"
                     justify={'left'}
                     hideCopyButton={!toggleCopyButton}
                     anchorId={anchorId}
+                    className="custom-header-style"
                 >
                     {title}
                 </Header>
@@ -45,7 +53,7 @@ export const SituationPageFlexColsLayout = ({
                 pageProps={pageProps}
                 regionProps={regionProps}
                 regionStyle={regionStyle}
-                bemModifier={`${numCols}-cols`}
+                bemModifier={`${colCount}-cols`}
             />
         </LayoutContainer>
     );

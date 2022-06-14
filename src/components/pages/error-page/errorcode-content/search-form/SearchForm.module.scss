@@ -1,0 +1,55 @@
+@use 'src/common' as common;
+
+.search {
+    margin-top: 2rem;
+
+    .header {
+        margin-bottom: 0.5rem;
+    }
+
+    .form {
+        display: flex;
+        position: relative;
+    }
+
+    .input {
+        flex-grow: 1;
+
+        input {
+            font-size: 150%;
+            border-width: 2px;
+            border-color: common.$navds-semantic-color-link;
+            border-radius: common.$border-radius-base;
+            padding-right: 13rem;
+            @media #{common.$mq-screen-mobile} {
+                padding-right: 10rem;
+            }
+        }
+    }
+
+    .buttonsContainer {
+        position: absolute;
+        right: 0;
+        height: 100%;
+    }
+
+    .button {
+        align-self: center;
+        text-transform: none;
+        transform: none;
+        box-shadow: none;
+        border-radius: 0 common.$border-radius-base common.$border-radius-base 0;
+        height: 100%;
+        font-size: 125%;
+
+        &::after,
+        &::before {
+            all: unset;
+        }
+
+        &:hover {
+            transform: none;
+            box-shadow: none;
+        }
+    }
+}

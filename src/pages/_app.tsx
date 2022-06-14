@@ -3,8 +3,7 @@ import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
 
-import '../global.less';
-import '../components.less';
+import 'global.scss';
 
 const App = ({ Component, pageProps }: AppProps) => {
     return (

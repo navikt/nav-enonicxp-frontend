@@ -1,15 +1,14 @@
 import React from 'react';
+import Head from 'next/head';
 import { ErrorProps } from 'types/content-props/error-props';
-import { Ingress, Heading } from '@navikt/ds-react';
 import { ErrorContent404 } from './errorcode-content/ErrorContent404';
 import { ErrorContent1337 } from './errorcode-content/ErrorContent1337';
 import { ErrorContentDefault } from './errorcode-content/ErrorContentDefault';
 import { ErrorContent408 } from './errorcode-content/ErrorContent408';
-import { BEM } from '../../../utils/classnames';
-import Head from 'next/head';
 import { ErrorContent400 } from './errorcode-content/ErrorContent400';
+import { Ingress, Heading } from '@navikt/ds-react';
 
-const bem = BEM('error-page');
+import style from './ErrorPage.module.scss';
 
 const errorContentByCode: {
     [key: number]: React.FunctionComponent<ErrorProps>;
@@ -26,7 +25,7 @@ export const ErrorPage = (props: ErrorProps) => {
     const ErrorContent = errorContentByCode[errorCode] || ErrorContentDefault;
 
     return (
-        <div className={bem()}>
+        <div className={style.errorPage}>
             <Head>
                 <style type={'text/css'}>
                     {
@@ -35,15 +34,15 @@ export const ErrorPage = (props: ErrorProps) => {
                     }
                 </style>
             </Head>
-            <div className={bem('header')}>
-                <Heading level="1" size="xlarge" className={bem('header-msg')}>
+            <div className={style.header}>
+                <Heading level="1" size="large" className={style.headerMsg}>
                     {errorMessage}
                 </Heading>
-                <Ingress
-                    className={bem('header-code')}
-                >{`Statuskode ${errorCode}`}</Ingress>
+                <Ingress>
+                    {`Statuskode ${errorCode}`}
+                </Ingress>
             </div>
-            <div className={bem('content')}>
+            <div className={style.content}>
                 <ErrorContent {...props} />
             </div>
         </div>

@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Heading } from '@navikt/ds-react';
 
-import { BEM, classNames } from '../../../utils/classnames';
-import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { classNames } from '../../../utils/classnames';
 
 import { Level, levelToSize, Size } from '../../../types/typo-style';
-import { PublicImage } from '../image/PublicImage';
 import { HeaderCommonConfig } from '../../../types/component-props/_mixins';
+import { CopyLink } from '../copyLink/copyLink';
 
-const bem = BEM('header');
-
-const linkCopiedDisplayTimeMs = 2500;
+// eslint does not understand bracket notation
+// eslint-disable-next-line css-modules/no-unused-class
+import style from './Header.module.scss';
 
 type Props = {
     children: string;
@@ -34,29 +32,6 @@ export const Header = ({
     setId = true,
     className,
 }: Props) => {
-    const [showCopyTooltip, setShowCopyTooltip] = useState(false);
-    const { language } = usePageConfig();
-
-    const getLabel = translator('header', language);
-
-    const copyLinkToClipboard = (e: React.MouseEvent) => {
-        e.preventDefault();
-
-        if (navigator?.clipboard?.writeText) {
-            const baseUrl = (e.target as HTMLAnchorElement)?.baseURI?.split(
-                '#'
-            )[0];
-            if (baseUrl) {
-                navigator?.clipboard?.writeText(`${baseUrl}${anchor}`);
-                setShowCopyTooltip(true);
-                setTimeout(
-                    () => setShowCopyTooltip(false),
-                    linkCopiedDisplayTimeMs
-                );
-            }
-        }
-    };
-
     const anchor = anchorId
         ? anchorId.startsWith('#')
             ? anchorId
@@ -68,8 +43,8 @@ export const Header = ({
     return (
         <div
             className={classNames(
-                bem(),
-                justify && bem(undefined, justify),
+                style.header,
+                style[`header__${justify}`],
                 className
             )}
             id={setId ? anchorId : undefined}
@@ -78,31 +53,8 @@ export const Header = ({
             <Heading size={size || fallbackSizeByLevel} level={level}>
                 {children}
             </Heading>
-            {anchor && !hideCopyButton && (
-                <span className={bem('copy-link-container')}>
-                    <a
-                        href={anchor}
-                        onClick={copyLinkToClipboard}
-                        className={bem('copy-link')}
-                    >
-                        <PublicImage
-                            imagePath={'/gfx/link.svg'}
-                            alt={''}
-                            className={bem('anchor-icon')}
-                        />
-                        {getLabel('copyLink')}
-                    </a>
-                    <span
-                        className={classNames(
-                            bem('copy-tooltip'),
-                            showCopyTooltip && bem('copy-tooltip', 'visible')
-                        )}
-                        aria-live="assertive"
-                    >
-                        {getLabel('copiedLink')}
-                    </span>
-                </span>
-            )}
+
+            {anchor && !hideCopyButton && <CopyLink anchor={anchor} />}
         </div>
     );
 };

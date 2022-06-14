@@ -10,6 +10,7 @@ import { ContentProps } from '../types/content-props/_content-common';
 import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
 import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependantRender';
+import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
 
 type Props = {
     componentProps: ComponentProps;
@@ -18,7 +19,14 @@ type Props = {
 
 export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
     if (!componentProps?.type) {
-        return <div>{'Error: missing component props'}</div>;
+        return (
+            <EditorHelp
+                type={'error'}
+                text={
+                    'Kunne ikke laste komponent-data - Forsøk å reloade siden (F5), eller fjerne komponenten og legge til på nytt'
+                }
+            />
+        );
     }
 
     switch (componentProps.type) {

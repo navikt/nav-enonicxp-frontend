@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Heading, TextField } from '@navikt/ds-react';
 import { ClearIcon } from '../clear-icon/ClearIcon';
-import { BEM } from '../../../../../utils/classnames';
 import { Button } from '../../../../_common/button/Button';
+
+import style from './SearchForm.module.scss';
 
 const origin = process.env.APP_ORIGIN;
 const maxSearchLength = 200;
@@ -13,29 +14,26 @@ const searchHref = `${origin.replace('3000', '3001')}/sok`;
 const label = 'Hva leter du etter?';
 
 export const SearchForm = () => {
-    const bem = BEM('search');
     const [searchTerm, setSearchTerm] = useState('');
-
     const onSearchSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         window.location.assign(`${searchHref}?ord=${searchTerm}`);
     };
 
     return (
-        <div className={bem()}>
+        <div className={style.search}>
             <Heading
                 level="2"
                 size="large"
-                className={bem('header')}
+                className={style.header}
                 id={'search-header'}
             >
                 {label}
             </Heading>
-
-            <form onSubmit={onSearchSubmit} className={bem('form')}>
+            <form onSubmit={onSearchSubmit} className={style.form}>
                 <TextField
                     aria-labelledby={'search-header'}
-                    className={bem('input')}
+                    className={style.input}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     maxLength={maxSearchLength}
                     placeholder={'Søk på nav.no'}
@@ -44,11 +42,11 @@ export const SearchForm = () => {
                     label={label}
                     hideLabel={true}
                 />
-                <div className={bem('buttons-container')}>
+                <div className={style.buttonsContainer}>
                     {searchTerm && (
                         <Button
                             variant={'tertiary'}
-                            className={bem('button')}
+                            className={style.button}
                             size={'small'}
                             aria-label={'Nullstill søk'}
                             onClick={(e) => {
@@ -60,7 +58,7 @@ export const SearchForm = () => {
                         </Button>
                     )}
                     <Button
-                        className={bem('button')}
+                        className={style.button}
                         variant={'primary'}
                         onClick={onSearchSubmit}
                     >

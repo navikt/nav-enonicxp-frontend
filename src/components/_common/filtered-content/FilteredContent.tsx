@@ -1,10 +1,16 @@
 import React from 'react';
+import { FilterSelection } from 'types/component-props/_mixins';
 import { useFilterState } from '../../../store/hooks/useFilteredContent';
 
 type Props = {
     filters: string[];
     children: React.ReactNode;
 };
+
+const checkForFilterMatch = (
+    filters: string[],
+    selectedFilters: FilterSelection
+) => filters.some((filter) => selectedFilters.includes(filter));
 
 export const FilteredContent = ({ filters, children }: Props) => {
     const { selectedFilters, availableFilters } = useFilterState();
@@ -21,17 +27,15 @@ export const FilteredContent = ({ filters, children }: Props) => {
         return category.filters.some((filter) => filters.includes(filter.id));
     });
 
-    const isFiltering = relevantCategories.some((category) => {
+    const isAffectedByFiltering = relevantCategories.some((category) => {
         return category.filters.some((filter) =>
             selectedFilters.includes(filter.id)
         );
     });
 
-    const isContentMatchingFilters = filters.some((filter) =>
-        selectedFilters.includes(filter)
-    );
+    const isFilterMatch = checkForFilterMatch(filters, selectedFilters);
 
-    if (isFiltering && !isContentMatchingFilters) {
+    if (isAffectedByFiltering && !isFilterMatch) {
         return null;
     }
 

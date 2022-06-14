@@ -61,6 +61,7 @@ const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
         (link) =>
             link.anchorId &&
             link.linkText &&
+            !link.isDupe &&
             // On the client-side we also check if the element is in the DOM
             (typeof document === 'undefined' ||
                 !!document.getElementById(link.anchorId))
@@ -147,6 +148,7 @@ export const PageNavigationMenu = ({
         title: title,
         links: links,
         scrollDirection: scrollDir.current,
+        dupes: anchorLinks.filter((link) => link.isDupe),
     };
 
     return viewStyle === 'sidebar' ? (

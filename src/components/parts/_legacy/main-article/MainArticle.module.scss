@@ -1,0 +1,98 @@
+@use 'src/common' as common;
+
+.mainArticle {
+    width: 100%;
+    background: white;
+    border-radius: 0.25rem;
+
+    @media #{common.$mq-screen-desktop} {
+        padding: 2.8rem;
+    }
+
+    @media #{common.$mq-screen-mobile} {
+        padding: 1.5rem;
+    }
+
+    @media #{common.$mq-screen-tablet} {
+        padding: 1.5rem;
+    }
+
+    .header {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #d1d1d1;
+    }
+
+    .headerWithToc {
+        margin-bottom: 1.5rem;
+    }
+
+    .title {
+        margin: 0.5rem 0 1rem;
+    }
+
+    .text {
+        p {
+            margin-bottom: 1rem;
+        }
+    }
+
+    .text {
+        li {
+            margin-bottom: 0.3rem;
+            font-size: 1.125rem;
+        }
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+
+        .chapterHeader {
+            display: inline-block;
+        }
+
+        .chapterHeader:focus {
+            outline-offset: 0.2109rem;
+            outline: 0.2109rem solid common.$navds-semantic-color-focus;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        table {
+            float: none;
+            margin-bottom: 1rem;
+
+            th,
+            td {
+                vertical-align: top;
+                padding: 0.7rem;
+                line-height: 150%;
+                font-size: 1.125rem;
+            }
+        }
+
+        h2,
+        .h2,
+        h3,
+        .h3,
+        h4,
+        .h4 {
+            font-size: common.$navds-font-size-heading-small;
+            margin: 1.75rem 0 0.6875rem;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        ul,
+        ol {
+            padding-left: 1.4rem;
+            margin-bottom: 1rem;
+        }
+    }
+}

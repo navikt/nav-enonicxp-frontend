@@ -10,6 +10,7 @@ interface LegacyCall {
 interface Options {
     chat: DefaultContactData;
     write: DefaultContactData;
+    custom: DefaultContactData;
     call: SharedContactInformationData & LegacyCall;
 }
 
@@ -27,6 +28,7 @@ export interface DefaultContactData {
     ingress?: string;
     title?: string;
     url?: string;
+    icon?: string;
 }
 
 export interface SharedContactInformationData extends DefaultContactData {

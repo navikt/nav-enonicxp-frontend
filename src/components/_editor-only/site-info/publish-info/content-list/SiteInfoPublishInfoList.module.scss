@@ -1,0 +1,10 @@
+@use 'src/common' as common;
+
+.wrapper {
+    margin-bottom: 1rem;
+}
+
+.separator {
+    height: 0;
+    border-color: common.$navds-global-color-gray-300;
+}

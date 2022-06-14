@@ -1,5 +1,5 @@
-import { XpResponseProps } from '../utils/fetch-content';
-import { MediaContentCommonProps } from './content-props/_content-common';
+import { XpResponseProps } from '../utils/fetch/fetch-content';
+import { ContentCommonProps } from './content-props/_content-common';
 
 export enum MediaType {
     Archive = 'media_Archive',
@@ -20,7 +20,7 @@ export enum MediaType {
 export type MediaProps = {
     __typename: MediaType;
     mediaUrl: string;
-} & MediaContentCommonProps;
+} & ContentCommonProps;
 
 export type VectorImage = {
     __typename: MediaType.Vector;
@@ -31,6 +31,11 @@ export type BitmapImage = {
     __typename: MediaType.Image;
     imageUrl?: string;
     mediaUrl?: string;
+    imageInfo?: {
+        imageWidth: number;
+        imageHeight: number;
+        contentType: string;
+    };
 };
 
 export type XpImageProps = VectorImage | BitmapImage;

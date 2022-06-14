@@ -1,7 +1,7 @@
 import {
     fetchWithTimeout,
     objectToQueryString,
-} from '../../../../utils/fetch-utils';
+} from '../../../../utils/fetch/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
 
 const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/globalValues`;

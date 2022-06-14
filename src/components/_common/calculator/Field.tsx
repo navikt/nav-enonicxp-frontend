@@ -5,6 +5,8 @@ import {
     FieldType,
 } from 'types/component-props/parts/calculator';
 
+import style from './Field.module.scss';
+
 interface FieldProps {
     field: CalculatorField;
     onChange: (variableName: string, value: string) => void;
@@ -18,7 +20,7 @@ export const Field = (props: FieldProps) => {
     const { inputField, dropdownField } = field;
 
     return (
-        <div className="calculatorField">
+        <div className={style.calculatorField}>
             {fieldType === FieldType.INPUT && (
                 <TextField
                     name={inputField.variableName}

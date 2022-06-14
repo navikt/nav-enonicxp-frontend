@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { NextImage } from '../image/NextImage';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import htmlReactParser, {
     Element,
@@ -16,7 +17,7 @@ import { MacroMapper } from '../../macros/MacroMapper';
 import { headingToLevel, headingToSize } from '../../../types/typo-style';
 import { MacroType } from '../../../types/macro-props/_macros-common';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import { EditorHelp } from '../editor-utils/editor-help/EditorHelp';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import ReactDOMServer from 'react-dom/server';
 import { store } from '../../../store/store';
 import { Provider } from 'react-redux';
@@ -46,7 +47,11 @@ const hasBlockLevelMacroChildren = (element: Element) => {
 const getNonEmptyChildren = ({ children }: Element) => {
     const validChildren = children?.filter((child) => {
         if (isTag(child)) {
-            if (child.name === processedHtmlMacroTag) {
+            // Macros and image tags are allowed to be empty
+            if (
+                child.name === processedHtmlMacroTag ||
+                (child.name === 'img' && child.attribs?.src)
+            ) {
                 return true;
             }
 
@@ -108,7 +113,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <Fragment />;
                 }
                 return (
-                    <img
+                    <NextImage
                         {...props}
                         alt={attribs.alt || ''}
                         src={getMediaUrl(attribs.src)}
@@ -141,21 +146,33 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <>{domToReact(children, parserOptions)}</>;
                 }
                 return (
-                    <BodyLong spacing {...props}>
+                    <BodyLong spacing {...props} className={undefined}>
                         {domToReact(children, parserOptions)}
                     </BodyLong>
                 );
             }
 
+            if (tag === 'u') {
+                if (!children) {
+                    return <Fragment />;
+                }
+
+                return <>{domToReact(children, parserOptions)}</>;
+            }
+
             // Handle links
             if (tag === 'a') {
-                const href = attribs?.href?.replace('https://www.nav.no', '');
-
                 if (!validChildren) {
                     return <Fragment />;
                 }
+
                 return (
-                    <LenkeInline {...props} href={href}>
+                    <LenkeInline
+                        {...props}
+                        href={props.href}
+                        style={undefined}
+                        className={undefined}
+                    >
                         {domToReact(validChildren, parserOptions)}
                     </LenkeInline>
                 );

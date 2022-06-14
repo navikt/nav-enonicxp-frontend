@@ -1,0 +1,6 @@
+@use 'src/common' as common;
+
+.header {
+    margin-bottom: 0.75rem;
+    border-bottom: 2px solid common.$navds-global-color-gray-500;
+}

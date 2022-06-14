@@ -1,0 +1,215 @@
+@use 'src/common' as common;
+
+.card {
+    display: block;
+    margin-bottom: 1.75rem;
+    outline: 0;
+    text-decoration: none;
+    width: 100%;
+
+    &.inline {
+        display: inline-block;
+        width: auto;
+        padding: 0.7rem 0;
+        text-decoration: none;
+    }
+    &.inline:not(:last-child) {
+        margin-bottom: 0;
+    }
+    .bed {
+        transition: all 0.3s;
+        height: 100%;
+    }
+    &:hover,
+    &:focus {
+        > :global(.situation) {
+            background-color: var(--navds-global-color-orange-200);
+        }
+        > :global(.product) {
+            background-color: var(--navds-global-color-green-200);
+        }
+        > :global(.tool) {
+            background-color: var(--navds-global-color-deepblue-200);
+        }
+        > :global(.themed-article) {
+            background-color: var(--navds-global-color-limegreen-300);
+        }
+        > :global(.guide) {
+            background-color: var(--navds-global-color-lightblue-200);
+        }
+        //TODO: Find a better way? (can't specify classes in Card Size modules here or vice versa)
+        * {
+            text-decoration: none;
+            color: var(--navds-global-color-gray-900) !important;
+        }
+    }
+
+    &:focus,
+    &:active {
+        .bed {
+            position: relative;
+            box-shadow: 0 0 0 3px var(--navds-global-color-blue-800) !important;
+
+            &:after {
+                background-color: transparent;
+                content: '';
+                display: block;
+                left: 0;
+                pointer-events: none;
+                position: absolute;
+                top: 0;
+            }
+        }
+        .bed:global(.large) {
+            &:after {
+                box-shadow: 0 0 0 4px white;
+                border-radius: 6px;
+                height: calc(100% - 8px);
+                width: calc(100% - 8px);
+                margin: 4px;
+            }
+        }
+        .bed:global(.mini),
+        .bed:global(.micro) {
+            &:after {
+                box-shadow: 0 0 0 2px white;
+                height: calc(100% - 2px);
+                margin: 1px;
+                width: calc(100% - 2px);
+            }
+        }
+        .bed:global(.mini) {
+            &:after {
+                border-radius: 6px;
+            }
+        }
+        .bed:global(.micro) {
+            &:after {
+                border-radius: 16px;
+            }
+        }
+    }
+
+    :global(.micro) {
+        border-radius: 16px;
+        border: 1px solid #b0b0b0;
+        box-shadow: 0 0 0 3px var(--navds-semantic-color-link);
+        color: var(--navds-global-color-gray-900);
+        display: inline-flex;
+        font-size: common.px-to-rem(14);
+        line-height: 1.5625rem;
+        margin: 0 0.5rem 0 0;
+        padding: 0 0.5rem;
+        position: relative;
+
+        &:not(:hover):not(:active) {
+            box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
+                0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
+        }
+        &:hover,
+        &:focus {
+            border: 1px solid transparent;
+        }
+        &:before {
+            content: '';
+            align-self: center;
+            position: relative;
+            display: flex;
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 0.5rem;
+            margin: 0 0.5rem 0 0;
+        }
+        &:global(.situation) {
+            &:before {
+                background-color: var(--navds-global-color-orange-500);
+            }
+        }
+        &:global(.product) {
+            &:before {
+                background-color: var(--navds-global-color-green-500);
+            }
+        }
+        &:global(.tool) {
+            &:before {
+                background-color: var(--navds-global-color-deepblue-500);
+            }
+        }
+        &:global(.themed-article) {
+            &:before {
+                background-color: var(--navds-global-color-limegreen-500);
+            }
+        }
+        &:global(.guide) {
+            &:before {
+                background-color: var(--navds-global-color-lightblue-500);
+            }
+        }
+    }
+
+    :global(.mini) {
+        align-items: center;
+        border-radius: 8px;
+        border: 1px solid #b0b0b0; // Don't exist in @navikt/ds
+        display: inline-flex; // Ensures margins don't collapse
+        padding: common.px-to-rem(12);
+        text-decoration: none;
+        width: 100%;
+
+        &:not(:hover):not(:active) {
+            box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
+                0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
+        }
+
+        &:hover {
+            box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
+                0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
+        }
+        &:hover,
+        &:focus {
+            border: 1px solid transparent;
+        }
+    }
+
+    :global(.large) {
+        background-color: white;
+        border-radius: 8px;
+        display: block;
+        padding: 1.5rem;
+        text-decoration: none;
+        width: 100%;
+
+        :global(.product),
+        :global(.provider),
+        :global(.guide),
+        :global(.situation) {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        &:global(.product),
+        &:global(.guide),
+        &:global(.tool),
+        &:global(.themed-article),
+        &:global(.situation) {
+            min-height: common.px-to-rem(400);
+        }
+        &:not(:hover):not(:active) {
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.14),
+                0 2px 1px rgba(38, 38, 38, 0.12),
+                0 1px 3px rgba(38, 38, 38, 0.2);
+        }
+        &:hover {
+            box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
+                0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
+        }
+    }
+}
+
+// Handle card-margin in layouts
+:global(.layout__situation-flex-cols),
+:global(.layout__product-flex-cols) {
+    .card {
+        margin-bottom: 0;
+    }
+}

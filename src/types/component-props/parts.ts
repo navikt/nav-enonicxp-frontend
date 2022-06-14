@@ -14,6 +14,7 @@ export enum PartType {
     PageList = 'no.nav.navno:page-list',
     PublishingCalendar = 'no.nav.navno:publishing-calendar',
 
+    AlertPanel = 'no.nav.navno:alert-panel',
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
     AlertBox = 'no.nav.navno:dynamic-alert',
     Header = 'no.nav.navno:dynamic-header',
@@ -29,7 +30,9 @@ export enum PartType {
     ProductCard = 'no.nav.navno:product-card',
     ProductCardMini = 'no.nav.navno:product-card-mini',
     ProductCardMicro = 'no.nav.navno:product-card-micro',
+    ProductDetails = 'no.nav.navno:product-details',
     ContactOption = 'no.nav.navno:contact-option',
+    PayoutDates = 'no.nav.navno:payout-dates',
 }
 
 export type PartDeprecated =
@@ -65,4 +68,7 @@ export type PartWithOwnData =
     | PartType.ProductCard
     | PartType.ProductCardMini
     | PartType.ProductCardMicro
-    | PartType.ContactOption;
+    | PartType.ContactOption
+    | PartType.ProductDetails
+    | PartType.AlertPanel
+    | PartType.PayoutDates;

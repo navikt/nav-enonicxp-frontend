@@ -1,14 +1,36 @@
 import { Translations } from './default';
 import { MenuListItemKey } from '../types/menu-list-items';
 import { Taxonomy } from 'types/taxonomies';
+import { Area } from 'types/areas';
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.ALL]: 'All',
+    [Taxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
     [Taxonomy.BENEFITS]: 'Benefits',
-    [Taxonomy.RIGHTS]: 'Counselling',
     [Taxonomy.FOLLOWUP]: 'Follow-up',
+    [Taxonomy.FOR_EMPLOYERS]: 'For employers',
+    [Taxonomy.FOR_EVENT_ORGANIZERS]: 'For schemes organizers',
+    [Taxonomy.FOR_HEALTH_SERVICE]: 'For physicians and other therapists',
+    [Taxonomy.FOR_MUNICIPALITY]: 'For the municipality',
+    [Taxonomy.FOR_PROVIDERS]: 'For providers',
+    [Taxonomy.MEASURES]: 'Measures',
+    [Taxonomy.RIGHTS]: 'Counselling',
 };
 
-export const bundle: Translations = {
+const areas: { [key in Area]: string } = {
+    [Area.ALL]: 'All',
+    [Area.ACCESSIBILITY]: 'Aid and accessibility',
+    [Area.FAMILY]: 'Family and children',
+    [Area.HEALTH]: 'Health',
+    [Area.MUNICIPALITY]: 'For government',
+    [Area.OTHER]: 'Other',
+    [Area.PENSION]: 'Pension',
+    [Area.SELF_EMPLOYED]: 'For the self-employed',
+    [Area.SOCIAL_COUNSELLING]: 'Financial social advice and guidance',
+    [Area.WORK]: 'Work',
+};
+
+export const translationsBundleEn: Translations = {
     stringParts: {
         conjunction: 'and',
     },
@@ -48,9 +70,6 @@ export const bundle: Translations = {
         publishdate: 'Publiseringsdato',
         event: 'Kalenderhendelse',
     },
-    notifications: {
-        label: 'Urgent notifications',
-    },
     dateTime: {
         weekDayNames: [
             'Monday',
@@ -66,6 +85,7 @@ export const bundle: Translations = {
             tomorrow: 'i morgen',
         },
         day: 'day',
+        date: 'date',
     },
     relatedContent: {
         [MenuListItemKey.AppealRights]: 'Appeal rights',
@@ -81,17 +101,39 @@ export const bundle: Translations = {
         [MenuListItemKey.Selfservice]: 'Selfservice',
         [MenuListItemKey.Shortcuts]: 'Shortcuts',
     },
+    products: {
+        person: 'For individuals',
+        employer: 'For employers',
+        provider: 'For providers',
+    },
     situations: {
-        youMayHaveRightTo: 'You may have right to this',
-        employerNeedToKnow: 'As an employer, you need to know this',
+        person: 'You may have right to this',
+        employer: 'For employers',
+        provider: 'For providers',
     },
     guides: {
-        howTo: 'How to',
+        person: 'How to',
+        employer: 'For employers',
+        provider: 'For providers',
     },
     productTaxonomies,
+    areas,
     header: {
         copyLink: 'Copy link',
-        copiedLink: 'Link successfully copied',
+        copiedLinkConfirmed: 'Link successfully copied',
+    },
+    overview: {
+        noProducts: 'No products to show',
+        ariaExplanation: 'Filter list by area',
+        ariaItemExplanation: 'Show area',
+        chooseArea: 'Choose area',
+        chooseType: 'Choose type',
+        search: 'Search',
+        loading: 'Loading product details',
+    },
+    pagination: {
+        goTo: 'Go to',
+        ariaExplanation: 'Navigate the content by pagination',
     },
     contactPoint: {
         chat: {
@@ -120,11 +162,33 @@ export const bundle: Translations = {
             seeMoreOptions: 'See more options',
             todaysPhoneOpeningHours: 'Phone hours today',
             callUsAt: 'Call us at',
+            businessDays: 'business days',
         },
     },
     versionHistory: {
         label: 'Version history',
         title: 'Historic versions',
         loading: 'Loading historic version...',
+    },
+    pageWarnings: {
+        draftWarning: 'Draft - this page is still in progress',
+        failoverWarning:
+            'We are currently having technical issues on nav.no. You may experience slow response times or missing content. Try reloading the page.',
+    },
+    caseTimeUnit: {
+        single: {
+            days: 'day',
+            weeks: 'week',
+            months: 'month',
+        },
+        multi: {
+            days: 'days',
+            weeks: 'weeks',
+            months: 'months',
+        },
+    },
+    payoutDates: {
+        tableHeaderPrefix: 'Payment dates in',
+        tableHeaderPrefixNoYear: 'Payment dates',
     },
 };

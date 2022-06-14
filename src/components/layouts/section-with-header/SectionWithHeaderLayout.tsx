@@ -6,7 +6,7 @@ import Region from '../Region';
 import { Header } from '../../_common/headers/Header';
 import { XpImage } from '../../_common/image/XpImage';
 import { FilterBar } from '../../_common/filter-bar/FilterBar';
-import { EditorHelp } from '../../_common/editor-utils/editor-help/EditorHelp';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 const getBorderStyle = ({
     color = '#ffffff',
@@ -40,7 +40,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     const shouldShowFilterBar = regions.content?.components?.some(
         (component) =>
-            component.config.filters && component.config.filters.length > 0
+            component.config?.filters && component.config.filters.length > 0
     );
 
     // Also make sure not to hide region if there are already components in it.
@@ -74,17 +74,19 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                                 width: `${icon.size}%`,
                             }),
                         }}
+                        maxWidth={64}
                     />
                 </div>
             )}
             {title && (
                 <Header
-                    size="xlarge"
+                    size="large"
                     level="2"
                     justify={'left'}
                     hideCopyButton={toggleCopyButton}
                     anchorId={anchorId}
                     setId={false}
+                    className="custom-header-style"
                 >
                     {title}
                 </Header>

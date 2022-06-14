@@ -13,28 +13,39 @@ import { TemplatePage } from './pages/template-page/TemplatePage';
 import { make404Props } from '../utils/make-error-props';
 import { SituationPage } from './pages/situation-page/SituationPage';
 import { GuidePage } from './pages/guide-page/GuidePage';
+import { OverviewPage } from './pages/overview-page/OverviewPage';
+import { ThemedArticlePage } from './pages/themed-article-page/ThemedArticlePage';
 import { ProductPage } from './pages/product-page/ProductPage';
+import { ProductDetailsPage } from './pages/product-details-page/ProductDetailsPage';
 import { GlobalValuesPage } from './pages/global-values-page/GlobalValuesPage';
+import { MainArticleChapterPage } from './pages/main-article-chapter-page/MainArticleChapterPage';
+import { PayoutDatesPage } from './pages/payout-dates-page/PayoutDatesPage';
+import { GenericPage } from './pages/generic-page/GenericPage';
 
-const contentToReactComponent: Partial<
-    { [key in ContentType]: React.FunctionComponent<ContentProps> }
-> = {
+const contentToReactComponent: Partial<{
+    [key in ContentType]: React.FunctionComponent<ContentProps>;
+}> = {
     [ContentType.Error]: ErrorPage,
     [ContentType.LargeTable]: LargeTablePage,
     [ContentType.Fragment]: FragmentPage,
     [ContentType.TemplatePage]: TemplatePage,
     [ContentType.AnimatedIcons]: () => null, // TODO: add a preview-page for editors
-    [ContentType.GlobalValues]: GlobalValuesPage,
+    [ContentType.GlobalNumberValuesSet]: GlobalValuesPage,
+    [ContentType.GlobalCaseTimeSet]: GlobalValuesPage,
+    [ContentType.ProductDetails]: ProductDetailsPage,
     [ContentType.ContactInformationPage]: ContactInformationPage,
+    [ContentType.PayoutDates]: PayoutDatesPage,
 
     [ContentType.SituationPage]: SituationPage,
-    [ContentType.EmployerSituationPage]: SituationPage,
     [ContentType.ProductPage]: ProductPage,
     [ContentType.GuidePage]: GuidePage,
+    [ContentType.ThemedArticlePage]: ThemedArticlePage,
+    [ContentType.Overview]: OverviewPage,
+    [ContentType.GenericPage]: GenericPage,
 
     [ContentType.DynamicPage]: DynamicPage,
     [ContentType.MainArticle]: DynamicPage,
-    [ContentType.MainArticleChapter]: DynamicPage,
+    [ContentType.MainArticleChapter]: MainArticleChapterPage,
     [ContentType.OfficeInformation]: DynamicPage,
     [ContentType.PageList]: DynamicPage,
     [ContentType.SectionPage]: DynamicPage,

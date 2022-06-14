@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:16-bullseye-slim
 
 WORKDIR /app
 
@@ -8,8 +8,7 @@ COPY node_modules /app/node_modules/
 COPY .next /app/.next/
 COPY public /app/public/
 
-COPY next.config.js /app/
-COPY .env  /app/
+COPY next.config.js .env image-manifest* /app/
 COPY server /app/server/
 
 EXPOSE 3000

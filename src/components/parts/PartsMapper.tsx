@@ -1,8 +1,10 @@
 import React from 'react';
-import { PartWithOwnData, PartWithPageData } from 'types/component-props/parts';
-import { PartDeprecated, PartType } from 'types/component-props/parts';
-import LinkLists from './_legacy/link-lists/LinkLists';
-import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
+import {
+    PartDeprecated,
+    PartType,
+    PartWithOwnData,
+    PartWithPageData,
+} from 'types/component-props/parts';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
 import MainPanels from './_legacy/main-panels/MainPanels';
 import { MenuList } from './_legacy/menu-list/MenuList';
@@ -10,6 +12,8 @@ import PageHeading from './_legacy/page-heading/PageHeading';
 import PageList from './_legacy/page-list/PageList';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './link-panel/LinkPanelPart';
+import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
+import LinkLists from './_legacy/link-lists/LinkLists';
 import { MainArticle } from './_legacy/main-article/MainArticle';
 import {
     ComponentType,
@@ -24,6 +28,7 @@ import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar
 import { BEM, classNames } from '../../utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
 import { CalculatorPart } from './calculator/Calculator';
+import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
@@ -33,6 +38,8 @@ import { ProductCardPart } from './product-card/ProductCard';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
+import { AlertPanelPart } from './alert-panel/AlertPanelPart';
+import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -57,6 +64,7 @@ const partsWithPageData: {
 const partsWithOwnData: {
     [key in PartWithOwnData]: React.FunctionComponent<PartComponentProps>;
 } = {
+    [PartType.AlertPanel]: AlertPanelPart,
     [PartType.AlertBox]: AlertBoxPart,
     [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanelPart,
@@ -72,7 +80,9 @@ const partsWithOwnData: {
     [PartType.ProductCard]: ProductCardPart,
     [PartType.ProductCardMicro]: ProductCardMicroPart,
     [PartType.ProductCardMini]: ProductCardPart,
+    [PartType.ProductDetails]: ProductDetailsPart,
     [PartType.ContactOption]: ContactOptionPart,
+    [PartType.PayoutDates]: PayoutDatesPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {
@@ -89,9 +99,10 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
         return <PartWithGlobalData {...pageProps} />;
     }
 
-    const PartWithOwnData = partsWithOwnData[descriptor];
-    if (PartWithOwnData) {
-        return <PartWithOwnData {...partProps} />;
+    const PartWithPageData = partsWithOwnData[descriptor];
+
+    if (PartWithPageData) {
+        return <PartWithPageData {...partProps} pageProps={pageProps} />;
     }
 
     return <div>{`Unimplemented part: ${descriptor}`}</div>;

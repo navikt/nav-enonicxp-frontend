@@ -6,6 +6,7 @@ const vars = {
 };
 
 const urls = {
+    prodOrigin: 'https://www.nav.no',
     errorFeedback: '/person/kontakt-oss/nb/tilbakemeldinger/feil-og-mangler',
 };
 

@@ -1,15 +1,16 @@
 import { useEffect, useState, useRef } from 'react';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import lottie from 'lottie-web';
-import { BEM, classNames } from '../../../utils/classnames';
+import { classNames } from '../../../utils/classnames';
+
+import styleCommon from './Illustration.module.scss';
+import styleAnimated from './IllustrationAnimated.module.scss';
 
 interface IllustrationAnimatedProps {
     illustration: AnimatedIconsProps;
     className: string;
     isHovering: boolean;
 }
-
-const bem = BEM('illustration');
 
 export const IllustrationAnimated = ({
     illustration,
@@ -32,14 +33,12 @@ export const IllustrationAnimated = ({
         }
 
         try {
-            const player = lottie.loadAnimation({
+            lottiePlayer.current = lottie.loadAnimation({
                 container: container,
                 animationData: JSON.parse(lottieData),
                 autoplay: false,
                 loop: false,
             });
-
-            lottiePlayer.current = player;
         } catch (error) {
             return;
         }
@@ -64,13 +63,13 @@ export const IllustrationAnimated = ({
 
     return (
         <div
-            className={classNames(bem('image'), className)}
+            className={classNames(styleCommon.image, className)}
             aria-hidden="true"
             role="presentation"
         >
             <div
                 ref={lottieContainer}
-                className={classNames(bem('lottie-container'))}
+                className={styleAnimated.lottieContainer}
             />
         </div>
     );

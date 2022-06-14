@@ -10,6 +10,7 @@ import { PageWithSideMenusProps } from './pages/page-with-side-menus';
 import { SectionWithHeaderProps } from './layouts/section-with-header';
 import { SingleColPageProps } from './pages/single-col-page';
 import { SituationPageFlexColsLayoutProps } from './layouts/situation-flex-cols';
+import { ProductPageFlexColsLayoutProps } from './layouts/product-flex-cols';
 
 export enum LayoutType {
     Fixed1Col = 'no.nav.navno:dynamic-1-col',
@@ -24,6 +25,8 @@ export enum LayoutType {
     SectionWithHeader = 'no.nav.navno:section-with-header',
     SingleColPage = 'no.nav.navno:single-col-page',
     SituationPageFlexCols = 'no.nav.navno:situation-flex-cols',
+    ProductPageFlexCols = 'no.nav.navno:product-flex-cols',
+    ProductDetailsPage = 'no.nav.navno:product-details-page',
 }
 
 export type RegionProps = {
@@ -45,4 +48,5 @@ export type LayoutProps =
     | PageWithSideMenusProps
     | SectionWithHeaderProps
     | SingleColPageProps
-    | SituationPageFlexColsLayoutProps;
+    | SituationPageFlexColsLayoutProps
+    | ProductPageFlexColsLayoutProps;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { GlobalValuesProps } from '../../../types/content-props/global-values-props';
-import { BEM } from '../../../utils/classnames';
 import { Select, Heading } from '@navikt/ds-react';
 import { GVMessages } from './components/messages/GVMessages';
 import ErrorPage404 from '../../../pages/404';
@@ -13,26 +12,22 @@ import { store } from '../../../store/store';
 import { GVItemsCustomOrder } from './components/values/GVItemsCustomOrder';
 import { GVItemsSorted } from './components/values/GVItemsSorted';
 import { useGvEditorState } from '../../../store/hooks/useGvEditorState';
+import { ContentType } from '../../../types/content-props/_content-common';
+import Head from 'next/head';
+import { DocumentParameter } from '../../_common/metatags/DocumentParameterMetatags';
 
-const bem = BEM('global-values-page');
+import style from './GlobalValuesPage.module.scss';
 
 type ListOrder = 'custom' | 'sorted';
 
-const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
+const GlobalValuesDisplay = ({
+    displayName,
+    __typename,
+}: GlobalValuesProps) => {
     const { valueItems } = useGvEditorState();
     const [listOrder, setListOrder] = useState<ListOrder>('custom');
 
     useEffect(() => {
-        const header = document.getElementById('decorator-header');
-        if (header) {
-            header.style.display = 'none';
-        }
-
-        const footer = document.getElementById('decorator-footer');
-        if (footer) {
-            footer.style.display = 'none';
-        }
-
         // Hide overlay elements in the editor-view, which prevents interaction
         const callback = (mutations) => {
             mutations.forEach((mutation) => {
@@ -56,10 +51,18 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
     }, []);
 
     return (
-        <div className={bem()}>
-            <div className={bem('header-row')}>
-                <Heading level="1" size="xlarge" className={bem('header')}>
-                    {'Globale verdier'}
+        <div className={style.globalValuesPage}>
+            <Head>
+                <meta
+                    name={DocumentParameter.DecoratorDisabled}
+                    content={'true'}
+                />
+            </Head>
+            <div className={style.headerRow}>
+                <Heading level="1" size="large">
+                    {__typename === ContentType.GlobalCaseTimeSet
+                        ? 'Saksbehandlingstider'
+                        : 'Globale verdier'}
                 </Heading>
                 <Select
                     size={'small'}
@@ -72,7 +75,7 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
                             setListOrder(selection as ListOrder);
                         }
                     }}
-                    className={bem('sort-selector')}
+                    className={style.sortSelector}
                 >
                     <option value={''} disabled={true}>
                         {'Velg sortering'}
@@ -81,19 +84,19 @@ const GlobalValuesDisplay = ({ displayName }: GlobalValuesProps) => {
                     <option value={'sorted'}>{'Alfabetisk'}</option>
                 </Select>
             </div>
-            <div className={bem('content')}>
-                <div className={bem('left-col')}>
-                    <div className={bem('sub-header-row')}>
-                        <div className={bem('sub-header')}>
-                            <Heading
-                                level="2"
-                                size="medium"
-                                className={bem('header-category')}
-                            >
-                                {displayName}
-                            </Heading>
-                        </div>
-                        <GVAddItem />
+            <div className={style.content}>
+                <div className={style.leftCol}>
+                    <div className={style.subHeaderRow}>
+                        <Heading level="2" size="medium">
+                            {displayName}
+                        </Heading>
+                        <GVAddItem
+                            type={
+                                __typename === ContentType.GlobalCaseTimeSet
+                                    ? 'caseTime'
+                                    : 'numberValue'
+                            }
+                        />
                     </div>
                     {listOrder === 'sorted' || valueItems.length < 2 ? (
                         <GVItemsSorted />

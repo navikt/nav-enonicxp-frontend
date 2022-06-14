@@ -1,4 +1,4 @@
-import { MainArticleChapterProps } from './main-article-chapter-props';
+import { MainArticleChapterNavigationData } from './main-article-chapter-props';
 import {
     ContentType,
     ContentProps,
@@ -17,16 +17,18 @@ export type Picture = Partial<{
     altText: string;
 }>;
 
+export type SocialMedia = 'facebook' | 'twitter' | 'linkedin';
+
 export type MainArticleData = Partial<{
     languages: LanguageProps[];
     ingress: string;
     text: ProcessedHtmlProps;
     hasTableOfContents: string;
     fact: ProcessedHtmlProps;
-    social: string[];
+    social: SocialMedia[];
     picture: Picture;
     menuListItems: MenuListItem;
-    chapters: MainArticleChapterProps[];
+    chapters: MainArticleChapterNavigationData[];
 }> &
     SeoDataProps &
     ContentDecoratorToggles;

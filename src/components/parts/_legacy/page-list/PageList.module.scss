@@ -1,0 +1,31 @@
+@use 'src/common' as common;
+
+.pageList {
+    width: 100%;
+    background: white;
+    border-radius: 0.28rem;
+
+    @media #{common.$mq-screen-mobile} {
+        padding: 1.5rem;
+    }
+    @media #{common.$mq-screen-tablet} {
+        padding: 1.5rem;
+    }
+    @media #{common.$mq-screen-desktop} {
+        padding: 2.8rem;
+    }
+
+    .ingress {
+        margin-top: 0.5rem;
+    }
+    .list {
+        margin-top: 2.25rem;
+    }
+    .row {
+        border-top: 1px solid #d1d1d1;
+        padding: 2rem 0;
+    }
+    .date {
+        margin-top: 0.5rem;
+    }
+}
