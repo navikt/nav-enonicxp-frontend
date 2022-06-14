@@ -34,8 +34,7 @@ import { MediaType } from '../media';
 import { PayoutDatesProps } from './payout-dates';
 import { LanguageProps } from '../language';
 import { FragmentPageProps } from './fragment-page-props';
-import { FrontPageProps } from './front-page';
-import { AreaPageProps } from './area-page';
+import { AreaPageProps, FrontPageProps } from './index-pages-props';
 
 export enum ContentType {
     Error = 'error',
