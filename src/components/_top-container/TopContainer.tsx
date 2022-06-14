@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from '../../utils/classnames';
 import {
-    CustomContentProps,
+    ContentProps,
     ContentType,
 } from '../../types/content-props/_content-common';
 import { getContentLanguages } from '../../utils/languages';
@@ -19,7 +19,7 @@ export const contentTypesWithWhiteHeader = {
     [ContentType.Overview]: true,
 };
 type Props = {
-    content: CustomContentProps;
+    content: ContentProps;
 };
 
 export const TopContainer = ({ content }: Props) => {

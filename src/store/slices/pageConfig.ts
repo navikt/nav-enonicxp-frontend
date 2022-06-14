@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Language } from 'translations';
 import type { RootState } from '../store';
-import { CustomContentProps } from '../../types/content-props/_content-common';
+import { ContentProps } from '../../types/content-props/_content-common';
 
-type EditorView = CustomContentProps['editorView'];
+type EditorView = ContentProps['editorView'];
 
 interface PageConfigState {
     pageId: string | null;

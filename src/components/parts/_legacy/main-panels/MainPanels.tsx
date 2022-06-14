@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    CustomContentProps,
+    ContentProps,
     ContentType,
 } from 'types/content-props/_content-common';
 import { BodyLong } from '@navikt/ds-react';
@@ -18,7 +18,7 @@ type TableData = {
     ingress?: string;
 };
 
-const getLinkData = (content: CustomContentProps | null): TableData | null => {
+const getLinkData = (content: ContentProps | null): TableData | null => {
     if (!content) {
         return null;
     }

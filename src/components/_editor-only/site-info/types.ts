@@ -1,6 +1,6 @@
-import { CustomContentProps } from '../../../types/content-props/_content-common';
+import { ContentProps } from '../../../types/content-props/_content-common';
 
-export type SiteInfoPublish = CustomContentProps['publish'] & {
+export type SiteInfoPublish = ContentProps['publish'] & {
     scheduledFrom?: string;
     scheduledTo?: string;
 };

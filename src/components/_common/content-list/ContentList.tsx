@@ -5,10 +5,10 @@ import { Lenkeliste } from '../lenkeliste/Lenkeliste';
 import { formatDate } from 'utils/datetime';
 import { getUrlFromContent } from 'utils/links-from-content';
 import { DateTimeKey } from 'types/datetime';
-import { CustomContentProps } from 'types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import { getNestedValueFromKeyString } from 'utils/objects';
 
-const getDate = (content: CustomContentProps, dateLabelKey: DateTimeKey) =>
+const getDate = (content: ContentProps, dateLabelKey: DateTimeKey) =>
     getNestedValueFromKeyString(content, dateLabelKey) ||
     content.publish?.from ||
     content.publish?.first ||

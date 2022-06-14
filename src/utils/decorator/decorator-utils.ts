@@ -1,7 +1,7 @@
 import { Language } from '../../translations';
 import { getContentLanguages } from '../languages';
 import {
-    CustomContentProps,
+    ContentProps,
     ContentType,
 } from '../../types/content-props/_content-common';
 import { LanguageProps } from '../../types/language';
@@ -52,7 +52,7 @@ const pathToRoleContext: { [key: string]: DecoratorParams['context'] } = {
     samarbeidspartner: 'samarbeidspartner',
 };
 
-const errorParams = (content: CustomContentProps): DecoratorParams => ({
+const errorParams = (content: ContentProps): DecoratorParams => ({
     feedback: false,
     breadcrumbs: content?.breadcrumbs || [],
 });
@@ -67,7 +67,7 @@ const taSurveys = {
 };
 
 export const getDecoratorParams = (
-    content: CustomContentProps
+    content: ContentProps
 ): DecoratorParams => {
     if (!content || content.__typename === ContentType.Error) {
         return errorParams(content);

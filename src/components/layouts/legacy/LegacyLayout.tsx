@@ -1,11 +1,11 @@
 import React from 'react';
-import { CustomContentProps } from '../../../types/content-props/_content-common';
+import { ContentProps } from '../../../types/content-props/_content-common';
 import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
 import { LegacyLayoutProps } from '../../../types/component-props/layouts/legacy-layout';
 
 type Props = {
-    pageProps: CustomContentProps;
+    pageProps: ContentProps;
     layoutProps?: LegacyLayoutProps;
 };
 

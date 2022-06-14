@@ -1,4 +1,4 @@
-import { CustomContentProps } from './content-props/_content-common';
+import { ContentProps } from './content-props/_content-common';
 
 export type LinkPanel = {
     title: string;
@@ -6,6 +6,6 @@ export type LinkPanel = {
     spanning?: boolean;
     url: {
         text?: string;
-        ref?: CustomContentProps;
+        ref?: ContentProps;
     };
 };

@@ -1,14 +1,14 @@
 import React from 'react';
 import {
+    ContentProps,
     ContentType,
-    CustomContentProps,
 } from '../../../../types/content-props/_content-common';
 import { Header } from '../../../_common/headers/Header';
 
 import style from './BisectedPageCenterNavigation.module.scss';
 
 type Props = {
-    pageProps: CustomContentProps;
+    pageProps: ContentProps;
 };
 
 export const BisectedPageCenterNavigation = ({ pageProps }: Props) => {

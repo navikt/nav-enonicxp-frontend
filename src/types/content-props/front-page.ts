@@ -1,5 +1,5 @@
 import { DynamicPageData } from './dynamic-page-props';
-import { ContentType, CustomContentCommonProps } from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 import { AreaPageProps } from './area-page';
 
 export type FrontPageData = {
@@ -7,7 +7,7 @@ export type FrontPageData = {
     areas: AreaPageProps[];
 } & DynamicPageData;
 
-export interface FrontPageProps extends CustomContentCommonProps {
+export interface FrontPageProps extends ContentCommonProps {
     __typename: ContentType.FrontPage;
     data: FrontPageData;
 }

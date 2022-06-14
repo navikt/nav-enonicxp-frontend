@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustomContentProps } from 'types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutProps, LayoutType } from '../../types/component-props/layouts';
 import { FixedColsLayout } from './fixed-cols/FixedColsLayout';
 import { FlexColsLayout } from './flex-cols/FlexColsLayout';
@@ -14,7 +14,7 @@ import { ProductDetailsLayout } from './product-details-layout/ProductDetailsLay
 import { BisectedPage } from './bisected-page/BisectedPage';
 
 type Props = {
-    pageProps: CustomContentProps;
+    pageProps: ContentProps;
     layoutProps?: LayoutProps;
 };
 

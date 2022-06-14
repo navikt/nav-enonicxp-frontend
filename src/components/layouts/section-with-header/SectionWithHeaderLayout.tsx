@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionWithHeaderProps } from '../../../types/component-props/layouts/section-with-header';
-import { CustomContentProps } from '../../../types/content-props/_content-common';
+import { ContentProps } from '../../../types/content-props/_content-common';
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
 import { Header } from '../../_common/headers/Header';
@@ -18,7 +18,7 @@ const getBorderStyle = ({
 });
 
 type Props = {
-    pageProps: CustomContentProps;
+    pageProps: ContentProps;
     layoutProps: SectionWithHeaderProps;
 };
 

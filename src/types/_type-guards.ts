@@ -1,4 +1,4 @@
-import { CustomContentProps } from './content-props/_content-common';
+import { ContentProps } from './content-props/_content-common';
 
 export const hasDescription = (
     content: any
@@ -42,6 +42,6 @@ export const hasCanonicalUrl = (
 
 export const isPropsWithContent = (
     props: any
-): props is { content: CustomContentProps } => {
+): props is { content: ContentProps } => {
     return !!props?.content;
 };

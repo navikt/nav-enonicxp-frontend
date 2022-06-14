@@ -1,12 +1,12 @@
 import React from 'react';
-import { CustomContentProps } from '../../../types/content-props/_content-common';
+import { ContentProps } from '../../../types/content-props/_content-common';
 import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
 import { SituationPageFlexColsLayoutProps } from '../../../types/component-props/layouts/situation-flex-cols';
 import { Header } from '../../_common/headers/Header';
 
 type Props = {
-    pageProps: CustomContentProps;
+    pageProps: ContentProps;
     layoutProps?: SituationPageFlexColsLayoutProps;
 };
 

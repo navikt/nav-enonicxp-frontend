@@ -2,7 +2,7 @@ import React from 'react';
 import { BEM, classNames } from '../../../../utils/classnames';
 import Region from '../../Region';
 import { RegionProps } from '../../../../types/component-props/layouts';
-import { CustomContentProps } from '../../../../types/content-props/_content-common';
+import { ContentProps } from '../../../../types/content-props/_content-common';
 import { PageNavigationMenu } from '../../../_common/page-navigation-menu/PageNavigationMenu';
 import { AnchorLink } from '../../../../types/component-props/parts/page-navigation-menu';
 import { EditorHelp } from '../../../_editor-only/editor-help/EditorHelp';
@@ -15,7 +15,7 @@ type Props = {
     sticky?: boolean;
     topRegionProps: RegionProps;
     mainRegionProps: RegionProps;
-    pageProps: CustomContentProps;
+    pageProps: ContentProps;
 };
 
 export const LeftMenuSection = ({

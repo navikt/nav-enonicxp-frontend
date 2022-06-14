@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Checkbox, Label } from '@navikt/ds-react';
-import { CustomContentProps } from '../../../../../types/content-props/_content-common';
+import { ContentProps } from '../../../../../types/content-props/_content-common';
 import {
     getCurrentDateAndTime,
     getUtcTimeFromLocal,
@@ -13,7 +13,7 @@ import style from './VersionSelectorDateTime.module.scss';
 
 const startDate = '2019-12-01';
 type Props = {
-    content: CustomContentProps;
+    content: ContentProps;
     submitVersionUrl: (url: string) => void;
 };
 

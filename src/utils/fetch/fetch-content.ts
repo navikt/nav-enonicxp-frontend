@@ -1,4 +1,4 @@
-import { CustomContentProps } from '../../types/content-props/_content-common';
+import { ContentProps } from '../../types/content-props/_content-common';
 import { makeErrorProps } from '../make-error-props';
 import { xpServiceUrl } from '../urls';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
@@ -8,7 +8,7 @@ import { logPageLoadError } from '../errors';
 import { stripLineBreaks } from '../string';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 
-export type XpResponseProps = CustomContentProps | MediaProps;
+export type XpResponseProps = ContentProps | MediaProps;
 
 // This message is returned from the sitecontent-service if the requested content
 // was not found. Used to distinquish between content not found and the service

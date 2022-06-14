@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 import { fetchPageProps } from '../../utils/fetch/fetch-page-props';
 import { PageBase } from '../../components/PageBase';
-import { CustomContentProps } from '../../types/content-props/_content-common';
+import { ContentProps } from '../../types/content-props/_content-common';
 import { isPropsWithContent } from '../../types/_type-guards';
 import { fetchVersionPageProps } from '../version/[[...versionRouter]]';
 
@@ -30,7 +30,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     if (isPropsWithContent(pageProps.props)) {
         pageProps.props.content.editorView =
-            (context.query.mode as CustomContentProps['editorView']) ||
+            (context.query.mode as ContentProps['editorView']) ||
             'preview';
     }
 
