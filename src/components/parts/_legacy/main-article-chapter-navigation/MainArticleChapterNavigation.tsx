@@ -2,10 +2,7 @@ import React from 'react';
 import { Heading, Label } from '@navikt/ds-react';
 import { translator } from 'translations';
 import classNames from 'classnames';
-import {
-    ContentType,
-    CustomContentProps,
-} from 'types/content-props/_content-common';
+import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { MainArticleChapterNavigationData } from '../../../../types/content-props/main-article-chapter-props';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
@@ -22,7 +19,7 @@ const getChapterPath = (chapter: MainArticleChapterNavigationData) =>
         ? chapter._path
         : chapter.data.article._path;
 
-const getChapters = (contentProps: CustomContentProps) => {
+const getChapters = (contentProps: ContentProps) => {
     if (contentProps.__typename === ContentType.MainArticle) {
         return contentProps.data?.chapters;
     }
@@ -34,7 +31,7 @@ const getChapters = (contentProps: CustomContentProps) => {
     return null;
 };
 
-export const MainArticleChapterNavigation = (props: CustomContentProps) => {
+export const MainArticleChapterNavigation = (props: ContentProps) => {
     const { language } = usePageConfig();
 
     const chapters = getChapters(props);

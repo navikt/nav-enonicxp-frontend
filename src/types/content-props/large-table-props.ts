@@ -1,11 +1,11 @@
-import { ContentType, CustomContentCommonProps } from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 import { ProcessedHtmlProps } from '../processed-html-props';
 
 export type LargeTableData = {
     text?: ProcessedHtmlProps;
 };
 
-export interface LargeTableProps extends CustomContentCommonProps {
+export interface LargeTableProps extends ContentCommonProps {
     __typename: ContentType.LargeTable;
     data: LargeTableData;
 }

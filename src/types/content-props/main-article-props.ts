@@ -1,5 +1,5 @@
 import { MainArticleChapterNavigationData } from './main-article-chapter-props';
-import { ContentType, CustomContentCommonProps } from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 import { MenuListItems } from '../menu-list-items';
 import { LanguageProps } from '../language';
 import { XpImageProps } from '../media';
@@ -26,7 +26,7 @@ export type MainArticleData = Partial<{
     chapters: MainArticleChapterNavigationData[];
 }>;
 
-export interface MainArticleProps extends CustomContentCommonProps {
+export interface MainArticleProps extends ContentCommonProps {
     __typename: ContentType.MainArticle;
     data: MainArticleData;
 }

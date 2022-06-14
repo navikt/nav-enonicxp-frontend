@@ -6,27 +6,28 @@ import { SimplifiedProductData } from '../../../../types/component-props/_mixins
 import { fetchPageCacheContent } from '../../../../utils/fetch/fetch-cache';
 import { AlertBox } from '../../../_common/alert-box/AlertBox';
 import {
-    CustomContentProps,
+    ContentProps,
     ContentType,
 } from '../../../../types/content-props/_content-common';
+
 import { classNames } from '../../../../utils/classnames';
 import { translator } from '../../../../translations';
 import { ProductDetailType } from '../../../../types/content-props/product-details';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 
-import style from './OverviewPageDetailsPanel.module.scss';
+import style from './ProductDetailsPanel.module.scss';
 
 type Props = {
-    productDetails: SimplifiedProductData;
     detailType: ProductDetailType;
-    pageProps: CustomContentProps;
+    pageProps: ContentProps;
+    productDetails: SimplifiedProductData;
     visible: boolean;
 };
 
-export const OverviewPageDetailsPanel = ({
-    productDetails,
+export const ProductDetailsPanel = ({
     detailType,
     pageProps,
+    productDetails,
     visible,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);

@@ -1,4 +1,4 @@
-import { ContentType, CustomContentCommonProps } from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 
 export interface Office {
     enhetId: number;
@@ -65,7 +65,7 @@ export type OfficeInformationData = {
     kontaktinformasjon: ContactInfo;
 };
 
-export interface OfficeInformationProps extends CustomContentCommonProps {
+export interface OfficeInformationProps extends ContentCommonProps {
     __typename: ContentType.OfficeInformation;
     data: OfficeInformationData;
 }

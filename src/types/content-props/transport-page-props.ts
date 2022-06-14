@@ -1,4 +1,4 @@
-import { ContentType, CustomContentCommonProps } from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 import { LinkPanel } from '../link-panel';
 
 export type TransportPageData = Partial<{
@@ -6,7 +6,7 @@ export type TransportPageData = Partial<{
     items: LinkPanel[];
 }>;
 
-export interface TransportPageProps extends CustomContentCommonProps {
+export interface TransportPageProps extends ContentCommonProps {
     __typename: ContentType.TransportPage;
     data: TransportPageData;
 }

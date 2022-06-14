@@ -1,5 +1,5 @@
 import { TelephoneData } from 'types/component-props/parts/contact-option';
-import { ContentType, CustomContentCommonProps } from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 
 export interface ContactInformationData {
     contactType: {
@@ -7,7 +7,7 @@ export interface ContactInformationData {
     };
 }
 
-export interface ContactInformationProps extends CustomContentCommonProps {
+export interface ContactInformationProps extends ContentCommonProps {
     __typename: ContentType.ContactInformationPage;
     data: ContactInformationData;
 }

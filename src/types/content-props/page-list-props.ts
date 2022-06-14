@@ -1,7 +1,7 @@
 import {
     ContentType,
-    CustomContentCommonProps,
-    CustomContentProps,
+    ContentCommonProps,
+    ContentProps,
 } from './_content-common';
 import { LanguageProps } from '../language';
 import { MenuListItems } from '../menu-list-items';
@@ -9,14 +9,14 @@ import { MenuListItems } from '../menu-list-items';
 export type PageListData = Partial<{
     languages: LanguageProps[];
     ingress: string;
-    sectionContents: CustomContentProps[];
+    sectionContents: ContentProps[];
     hide_date: boolean;
     hideSectionContentsDate: boolean;
     orderSectionContentsByPublished: boolean;
     menuListItems: MenuListItems;
 }>;
 
-export interface PageListProps extends CustomContentCommonProps {
+export interface PageListProps extends ContentCommonProps {
     __typename: ContentType.PageList;
     data: PageListData;
 }

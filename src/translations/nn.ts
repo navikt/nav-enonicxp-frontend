@@ -19,6 +19,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 };
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.ALL]: 'Alle',
     [Taxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
     [Taxonomy.BENEFITS]: 'Pengestønad',
     [Taxonomy.FOLLOWUP]: 'Oppfylging',
@@ -118,6 +119,8 @@ export const translationsBundleNn = {
         ariaExplanation: 'Filtrer lista etter område',
         ariaItemExplanation: 'Vis område',
         chooseArea: 'Velg område',
+        chooseType: 'Velg type',
+        search: 'Søk',
         loading: 'Henter produktdetaljar',
     },
     pagination: {
