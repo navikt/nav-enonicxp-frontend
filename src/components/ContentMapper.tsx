@@ -44,7 +44,6 @@ const contentToReactComponent: Partial<{
     [ContentType.GenericPage]: GenericPage,
 
     [ContentType.DynamicPage]: DynamicPage,
-
     [ContentType.MainArticle]: DynamicPage,
     [ContentType.MainArticleChapter]: MainArticleChapterPage,
     [ContentType.OfficeInformation]: DynamicPage,

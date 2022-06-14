@@ -41,7 +41,7 @@ export const TemplatePage = (props: ContentProps) => {
             data: { ...legacyMockData, ...props?.data },
         };
 
-        // @ts-ignore (templates for these old types will never ever be changed, cba to type properly :D)
+        // @ts-ignore (templates for these old types will never ever be changed)
         return <DynamicPage {...propsWithMocks} />;
     }
 
