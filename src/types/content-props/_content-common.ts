@@ -117,33 +117,33 @@ export type ContentCommonProps = {
     isPagePreview?: boolean;
 } & ContentAndMediaCommonProps;
 
-export type ContentProps = ContentCommonProps &
-    (
-        | ContentListProps
-        | ErrorProps
-        | ExternalLinkProps
-        | InternalLinkProps
-        | UrlProps
-        | LargeTableProps
-        | MainArticleProps
-        | MainArticleChapterProps
-        | OfficeInformationProps
-        | PageListProps
-        | SectionPageProps
-        | TransportPageProps
-        | PublishingCalendarProps
-        | ProductPageProps
-        | SituationPageProps
-        | AnimatedIconsProps
-        | GlobalValuesProps
-        | GlobalCaseTimeSetProps
-        | PayoutDatesProps
-        | ThemedArticlePageProps
-        | GuidePageProps
-        | ToolsPageProps
-        | DynamicPageProps
-        | OverviewPageProps
-        | ProductDetailsProps
-        | FragmentPageProps
-        | ContactInformationProps
-    );
+type CustomContentProps =
+    | ContentListProps
+    | ErrorProps
+    | ExternalLinkProps
+    | InternalLinkProps
+    | UrlProps
+    | LargeTableProps
+    | MainArticleProps
+    | MainArticleChapterProps
+    | OfficeInformationProps
+    | PageListProps
+    | SectionPageProps
+    | TransportPageProps
+    | PublishingCalendarProps
+    | ProductPageProps
+    | SituationPageProps
+    | AnimatedIconsProps
+    | GlobalValuesProps
+    | GlobalCaseTimeSetProps
+    | PayoutDatesProps
+    | ThemedArticlePageProps
+    | GuidePageProps
+    | ToolsPageProps
+    | DynamicPageProps
+    | OverviewPageProps
+    | ProductDetailsProps
+    | FragmentPageProps
+    | ContactInformationProps;
+
+export type ContentProps = ContentCommonProps & CustomContentProps;
