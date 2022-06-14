@@ -1,0 +1,15 @@
+.productLink {
+    margin: 0;
+
+    a {
+        margin-bottom: 1rem;
+    }
+
+    :global(.product) {
+        background-color: white;
+    }
+}
+
+.hidden {
+    display: none;
+}

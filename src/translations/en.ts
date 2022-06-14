@@ -4,6 +4,7 @@ import { Taxonomy } from 'types/taxonomies';
 import { Area } from 'types/areas';
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.ALL]: 'All',
     [Taxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
     [Taxonomy.BENEFITS]: 'Benefits',
     [Taxonomy.FOLLOWUP]: 'Follow-up',
@@ -126,6 +127,8 @@ export const translationsBundleEn: Translations = {
         ariaExplanation: 'Filter list by area',
         ariaItemExplanation: 'Show area',
         chooseArea: 'Choose area',
+        chooseType: 'Choose type',
+        search: 'Search',
         loading: 'Loading product details',
     },
     pagination: {
