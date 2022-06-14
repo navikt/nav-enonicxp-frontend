@@ -5,8 +5,9 @@ import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import style from './AreaCardPart.module.scss';
 
-import { WorkAnimation } from './open-pages/work/WorkAnimation';
+import { HealthAnimation } from './open-pages/health/HealthAnimation';
 import { SocialServicesAnimation } from './open-pages/social-services/SocialServicesAnimation';
+import { WorkAnimation } from './open-pages/work/WorkAnimation';
 
 export const AreaCardPart = ({ config }: AreaCardPartProps) => {
     if (!config) {
@@ -35,6 +36,11 @@ export const AreaCardPart = ({ config }: AreaCardPartProps) => {
         >
             <LinkPanel.Title>{linkProps.text}</LinkPanel.Title>
             <div className={style.animationArea}>
+                {linkProps.text === 'Helse og sykdom' ? (
+                    <HealthAnimation />
+                ) : (
+                    ''
+                )}
                 {linkProps.text === 'Arbeid' ? (
                     <WorkAnimation />
                 ) : (
