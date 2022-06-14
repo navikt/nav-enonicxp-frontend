@@ -2,11 +2,11 @@ import React from 'react';
 import { ContentList } from '../../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
 import { translator } from 'translations';
-import { ContentProps } from '../../../../types/content-props/_content-common';
+import { SectionPageProps } from '../../../../types/content-props/section-page-props';
 
 import style from './LinkLists.module.scss';
 
-const LinkLists = (props: ContentProps) => {
+const LinkLists = (props: SectionPageProps) => {
     const getLabel = translator('linkLists', props.language);
     const { data } = props;
     const { newsContents, moreNewsUrl, ntkContents, scContents } = data;

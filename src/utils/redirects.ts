@@ -1,6 +1,6 @@
 import {
-    ContentProps,
     ContentType,
+    ContentProps,
 } from '../types/content-props/_content-common';
 import { stripXpPathPrefix } from './urls';
 
@@ -52,3 +52,14 @@ export const redirectPageProps = (
         permanent: isPermanent || false,
     },
 });
+
+export const isPermanentRedirect = (content: ContentProps) => {
+    if (
+        content.__typename === ContentType.InternalLink ||
+        content.__typename === ContentType.ExternalLink
+    ) {
+        return content.data.permanentRedirect;
+    }
+
+    return false;
+};

@@ -47,12 +47,7 @@ export const VersionSelector = ({
 
     return (
         <div className={style.versionSelector} id={containerId}>
-            <div
-                className={classNames(
-                    style.inner,
-                    isOpen && style.open
-                )}
-            >
+            <div className={classNames(style.inner, isOpen && style.open)}>
                 <div className={style.typeSelector}>
                     <RadioGroup
                         legend={'Velg tidspunkt'}

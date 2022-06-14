@@ -1,20 +1,22 @@
 import {
     ContentType,
     ContentProps,
+    ContentAndMediaCommonProps,
     ContentCommonProps,
 } from './_content-common';
 import { LanguageProps } from '../language';
+import { MainArticleProps } from './main-article-props';
 
 export type MainArticleChapterData = Partial<{
-    article: ContentProps;
+    article: MainArticleProps;
     languages: LanguageProps[];
 }>;
 
 export type MainArticleChapterNavigationData = {
     data: {
-        article: ContentCommonProps;
+        article: MainArticleProps;
     };
-} & ContentCommonProps;
+} & ContentAndMediaCommonProps;
 
 type ParentProps = {
     data?: {
@@ -22,7 +24,7 @@ type ParentProps = {
     };
 } & ContentProps;
 
-export interface MainArticleChapterProps extends ContentProps {
+export interface MainArticleChapterProps extends ContentCommonProps {
     __typename: ContentType.MainArticleChapter;
     parent: ParentProps;
     data: MainArticleChapterData;

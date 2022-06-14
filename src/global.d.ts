@@ -1,7 +1,6 @@
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
-            NODE_ENV: string;
             DOCKER_HOST_ADDRESS: string;
             ENV: string;
             ADMIN_ORIGIN: string;

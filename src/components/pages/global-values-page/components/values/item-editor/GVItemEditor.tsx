@@ -51,7 +51,7 @@ const defaultInputState: { [key in GlobalValueItem['type']]: GlobalValueItem } =
 
 export const GVItemEditor = ({ item, newType, onClose }: Props) => {
     const [inputState, setInputState] = useState<GlobalValueItem>(
-        item || defaultInputState[newType]
+        item || (newType ? defaultInputState[newType] : undefined)
     );
     const [errors, setErrors] = useState<Errors>({});
     const [awaitDeleteConfirm, setAwaitDeleteConfirm] = useState(false);

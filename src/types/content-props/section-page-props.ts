@@ -1,8 +1,7 @@
 import {
     ContentType,
+    ContentCommonProps,
     ContentProps,
-    SeoDataProps,
-    ContentDecoratorToggles,
 } from './_content-common';
 import { LinkPanel } from '../link-panel';
 import { ContentListProps } from './content-list-props';
@@ -17,11 +16,9 @@ export type SectionPageData = Partial<{
     ntkContents: ContentListProps;
     scContents: ContentListProps;
     languages: LanguageProps[];
-}> &
-    SeoDataProps &
-    ContentDecoratorToggles;
+}>;
 
-export interface SectionPageProps extends ContentProps {
+export interface SectionPageProps extends ContentCommonProps {
     __typename: ContentType.SectionPage;
     data: SectionPageData;
 }

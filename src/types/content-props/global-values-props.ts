@@ -1,4 +1,4 @@
-import { ContentProps, ContentType } from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 
 export type GlobalCaseTimeUnit = 'days' | 'weeks' | 'months';
 
@@ -29,15 +29,15 @@ export type GlobalValuesData = {
     valueItems?: GlobalNumberValueItem[];
 };
 
-export type GlobalCaseTimeSetProps = ContentProps & {
+export type GlobalCaseTimeSetProps = ContentCommonProps & {
     __typename: ContentType.GlobalCaseTimeSet;
     data: GlobalCaseTimeSetData;
 };
 
-export type GlobalNumberValuesSetProps = ContentProps & {
+export type GlobalNumberValuesSetProps = ContentCommonProps & {
     __typename: ContentType.GlobalNumberValuesSet;
     data: GlobalValuesData;
 };
 
-export type GlobalValuesProps = ContentProps &
+export type GlobalValuesProps = ContentCommonProps &
     (GlobalNumberValuesSetProps | GlobalCaseTimeSetProps);

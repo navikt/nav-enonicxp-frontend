@@ -1,7 +1,7 @@
-import { ContentType, ContentProps } from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 import { ComponentProps } from '../component-props/_component-common';
 
-export interface FragmentPageProps extends ContentProps {
+export interface FragmentPageProps extends ContentCommonProps {
     __typename: ContentType.Fragment;
     fragment: ComponentProps;
 }

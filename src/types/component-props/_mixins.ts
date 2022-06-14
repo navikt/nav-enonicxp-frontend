@@ -5,7 +5,6 @@ import { AnimatedIconsProps } from '../content-props/animated-icons';
 import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from '../../store/slices/authState';
 import { EmptyObject, OptionSetSingle } from '../util-types';
-import { XpContentRef } from 'utils/urls';
 import { Area } from 'types/areas';
 import { ProductDetailType } from 'types/content-props/product-details';
 
@@ -24,7 +23,7 @@ export enum Audience {
 export type FilterSelection = string[];
 
 export type SimplifiedProductData = Partial<{
-    _id: XpContentRef;
+    _id: string;
     productDetailsPath: string;
     path: string;
 }> &
