@@ -16,6 +16,7 @@ import { ProductDetailType } from '../../../../types/content-props/product-detai
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 
 import style from './ProductDetailsPanel.module.scss';
+import { sanitizeLegacyUrl } from 'utils/urls';
 
 type Props = {
     detailType: ProductDetailType;
@@ -77,7 +78,8 @@ export const ProductDetailsPanel = ({
     };
 
     const getAnchorFromPath = (path: string) => {
-        return `${path.substring(path.lastIndexOf('/') + 1)}`;
+        const lastPathSegment = `${path.substring(path.lastIndexOf('/') + 1)}`;
+        return sanitizeLegacyUrl(lastPathSegment);
     };
 
     return (
