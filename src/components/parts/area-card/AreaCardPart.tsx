@@ -20,7 +20,7 @@ export const AreaCardPart = ({ config }: AreaCardPartProps) => {
     const { link } = config;
     const linkProps = getSelectableLinkProps(link);
 
-    console.log(linkProps); //TODO fjern
+    console.log(linkProps.text, linkProps.text.length); //TODO fjern
 
     return (
         <LinkPanel
@@ -37,7 +37,9 @@ export const AreaCardPart = ({ config }: AreaCardPartProps) => {
                 </LenkeBase>
             )}
         >
-            <LinkPanel.Title>{linkProps.text}</LinkPanel.Title>
+            <div className={linkProps.text.length > 17 ? style.titleLong : style.titleShort}>
+                <LinkPanel.Title>{linkProps.text}</LinkPanel.Title>
+            </div>
             <div className={style.animationArea}>
             {linkProps.text === 'Hjelpemidler og tilrettelegging' ? (
                     <AssistiveAidsAnimation />

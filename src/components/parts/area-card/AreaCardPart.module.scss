@@ -26,10 +26,6 @@ $border-radius: 0.5rem;
     }
 
     :global(.navds-link-panel__title) {
-        @include transitionMixin;
-
-        width: 180px;
-        margin-left: 2rem;
         text-decoration: underline;
     }
 
@@ -43,19 +39,39 @@ $border-radius: 0.5rem;
         );
         box-shadow: none;
 
+        .titleShort {
+            transform: translateY(-2.5rem);
+        }
+
+        .titleLong {
+            transform: translateY(-1.5rem);
+        }
+
         :global(.navds-link-panel__title) {
-            transform: translateY(-1rem);
             text-decoration: none;
         }
     }
 
     &:active {
         background-color: var(--navds-global-color-deepblue-50);
-        :global(.navds-link-panel__title) {
+
+        .titleShort,
+        .titleLong {
             transform: translateY(-0.5rem);
+        }
+
+        :global(.navds-link-panel__title) {
             color: var(--navds-global-color-gray-900);
         }
     }
+}
+
+.titleShort,
+.titleLong {
+    @include transitionMixin;
+
+    width: 180px;
+    margin-left: 1.5rem;
 }
 
 .animationArea {
