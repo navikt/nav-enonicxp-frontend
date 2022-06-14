@@ -117,7 +117,12 @@ export type ContentCommonProps = {
     isPagePreview?: boolean;
 } & ContentAndMediaCommonProps;
 
-type CustomContentProps =
+type SiteProps = {
+    __typename: ContentType.Site;
+} & ContentCommonProps;
+
+type SpecificContentProps =
+    | SiteProps
     | ContentListProps
     | ErrorProps
     | ExternalLinkProps
@@ -146,4 +151,4 @@ type CustomContentProps =
     | FragmentPageProps
     | ContactInformationProps;
 
-export type ContentProps = ContentCommonProps & CustomContentProps;
+export type ContentProps = ContentCommonProps & SpecificContentProps;
