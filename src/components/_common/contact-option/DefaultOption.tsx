@@ -68,6 +68,18 @@ export const DefaultOption = (props: DefaultContactProps) => {
                 onClick: openChatbot,
             };
         }
+        if (channel === 'navoffice') {
+            return {
+                href: 'https://www.nav.no/sok-nav-kontor',
+                target: '_blank',
+            };
+        }
+        if (channel === 'aidcentral') {
+            return {
+                href: 'https://www.nav.no/no/person/hjelpemidler/hjelpemidler-og-tilrettelegging/kontakt-nav-hjelpemiddelsentral',
+                target: '_blank',
+            };
+        }
         if (channel === 'custom') {
             return {
                 href: url,

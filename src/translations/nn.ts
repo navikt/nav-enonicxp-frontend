@@ -138,6 +138,15 @@ export const translationsBundleNn = {
             ingress:
                 'Skal du sende oss nye opplysningar i saka di? "Skriv til oss" er eit sikkert alternativ til e-post.',
         },
+        navoffice: {
+            title: 'Finn ditt NAV-kontor',
+            ingress: 'Søk opp NAV-kontor med postnummer, sted eller by.',
+        },
+        aidcentral: {
+            title: 'Finn din hjelpemiddelsentral',
+            ingress:
+                'Finn kontaktinformasjon og les om inn- og utlevering av hjelpemidler.',
+        },
         call: {
             title: 'Ring oss på 55 55 33 33',
             ingress:
