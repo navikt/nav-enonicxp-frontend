@@ -7,6 +7,7 @@ import style from './AreaCardPart.module.scss';
 
 import { FamilyAnimation } from './open-pages/family/FamilyAnimation';
 import { HealthAnimation } from './open-pages/health/HealthAnimation';
+import { PensionAnimation } from './open-pages/pension/PensionAnimation';
 import { SocialServicesAnimation } from './open-pages/social-services/SocialServicesAnimation';
 import { WorkAnimation } from './open-pages/work/WorkAnimation';
 
@@ -44,6 +45,11 @@ export const AreaCardPart = ({ config }: AreaCardPartProps) => {
                 )}
                 {linkProps.text === 'Helse og sykdom' ? (
                     <HealthAnimation />
+                ) : (
+                    ''
+                )}
+                 {linkProps.text === 'Pensjon' ? (
+                    <PensionAnimation />
                 ) : (
                     ''
                 )}

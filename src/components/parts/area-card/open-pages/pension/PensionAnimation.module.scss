@@ -1,40 +1,20 @@
 @import '../../AreaCardPart.module.scss';
 
-.pill {
+.shapes {
     @include transitionMixin;
     position: absolute;
-    right: 30px;
-    top: 104px;
+    right: 25px;
+    top: 96px;
 
     :hover > & {
-        right: 214px;
-    }
-}
-
-.letterPartOrange {
-    background-color: var(--navds-global-color-orange-200);
-
-    @include transitionMixin;
-    position: absolute;
-    width: 56px;
-    height: 44px;
-    right: -2px;
-    top: 58px;
-
-    :hover > & {
-        right: 48px;
-        top: 58px;
+        right: 204px;
     }
 }
 
 .letterPartBlue {
-    background-color: var(--navds-global-color-deepblue-200);
-
     @include transitionMixin;
     position: absolute;
-    width: 48px;
-    height: 160px;
-    right: -26px;
+    right: -79px;
     top: 0px;
 
     :hover > & {
@@ -64,14 +44,30 @@
     }
 }
 
-.stethoscope {
+.piggyBank {
     @include transitionMixin;
     position: absolute;
-    right: 42px;
-    top: 26px;
+    right: 53px;
+    top: 41px;
 
     :hover > & {
-        right: 86px;
-        top: 52px;
+        right: 105px;
+        top: 82px;
+    }
+}
+
+.coin {
+    background-color: var(--navds-global-color-orange-200);
+    border-radius: 50%;
+
+    @include transitionMixin;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    right: 127px;
+    top: -32px;
+
+    :hover > & {
+        top: 80px;
     }
 }

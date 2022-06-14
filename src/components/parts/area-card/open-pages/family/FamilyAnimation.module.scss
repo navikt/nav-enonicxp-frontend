@@ -3,7 +3,6 @@
 .house {
     @include transitionMixin;
     position: absolute;
-
     right: 6px;
     top: 112px;
 
@@ -67,7 +66,6 @@
 .stroller {
     @include transitionMixin;
     position: absolute;
-
     right: 52.23px;
     top: 40px;
 

@@ -3,7 +3,6 @@
 .shapes {
     @include transitionMixin;
     position: absolute;
-
     right: -12px;
     top: 115px;
 
@@ -69,7 +68,6 @@
 .briefcase {
     @include transitionMixin;
     position: absolute;
-
     right: 50px;
     top: 39px;
 
