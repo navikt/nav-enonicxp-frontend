@@ -4,6 +4,8 @@ import { IllustrationStatic } from '../../../_common/illustration/IllustrationSt
 import { ComponentMapper } from '../../../ComponentMapper';
 import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
 import { fetchPageCacheContent } from '../../../../utils/fetch/fetch-cache';
+import { sanitizeLegacyUrl } from 'utils/urls';
+
 import { AlertBox } from '../../../_common/alert-box/AlertBox';
 import {
     ContentProps,
@@ -77,7 +79,8 @@ export const ProductDetailsPanel = ({
     };
 
     const getAnchorFromPath = (path: string) => {
-        return `${path.substring(path.lastIndexOf('/') + 1)}`;
+        const lastPathSegment = `${path.substring(path.lastIndexOf('/') + 1)}`;
+        return sanitizeLegacyUrl(lastPathSegment);
     };
 
     return (
