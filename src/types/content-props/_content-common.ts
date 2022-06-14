@@ -1,56 +1,37 @@
-import { ExternalLinkData, ExternalLinkProps } from './external-link-props';
-import { InternalLinkData, InternalLinkProps } from './internal-link-props';
-import { ContentListData, ContentListProps } from './content-list-props';
-import { PageListData, PageListProps } from './page-list-props';
-import { MainArticleData, MainArticleProps } from './main-article-props';
-import { ErrorData, ErrorProps } from './error-props';
-import { LargeTableData, LargeTableProps } from './large-table-props';
-import { SectionPageData, SectionPageProps } from './section-page-props';
-import { TransportPageData, TransportPageProps } from './transport-page-props';
+import { ExternalLinkProps } from './external-link-props';
+import { InternalLinkProps } from './internal-link-props';
+import { ContentListProps } from './content-list-props';
+import { PageListProps } from './page-list-props';
+import { MainArticleProps } from './main-article-props';
+import { ErrorProps } from './error-props';
+import { LargeTableProps } from './large-table-props';
+import { SectionPageProps } from './section-page-props';
+import { TransportPageProps } from './transport-page-props';
 import { Language } from '../../translations';
 import { LayoutProps } from '../component-props/layouts';
+import { MainArticleChapterProps } from './main-article-chapter-props';
+import { OfficeInformationProps } from './office-information-props';
+import { UrlProps } from './url-props';
 import {
-    MainArticleChapterData,
-    MainArticleChapterProps,
-} from './main-article-chapter-props';
-import {
-    OfficeInformationData,
-    OfficeInformationProps,
-} from './office-information-props';
-import { UrlData, UrlProps } from './url-props';
-import {
-    DynamicPageData,
     DynamicPageProps,
     GuidePageProps,
-    OverviewPageData,
     OverviewPageProps,
-    ProductDetailsData,
     ProductDetailsProps,
-    ProductPageData,
     ProductPageProps,
-    SituationPageData,
     SituationPageProps,
     ThemedArticlePageProps,
     ToolsPageProps,
 } from './dynamic-page-props';
-import {
-    PublishingCalendarData,
-    PublishingCalendarProps,
-} from './publishing-calendar-props';
+import { PublishingCalendarProps } from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
-import { AnimatedIconsData, AnimatedIconsProps } from './animated-icons';
+import { AnimatedIconsProps } from './animated-icons';
 import {
-    GlobalCaseTimeSetData,
     GlobalCaseTimeSetProps,
-    GlobalValuesData,
     GlobalValuesProps,
 } from './global-values-props';
-import {
-    ContactInformationData,
-    ContactInformationProps,
-} from './contact-information-props';
+import { ContactInformationProps } from './contact-information-props';
 import { MediaType } from '../media';
-import { PayoutDatesData, PayoutDatesProps } from './payout-dates';
+import { PayoutDatesProps } from './payout-dates';
 import { LanguageProps } from '../language';
 import { FragmentPageProps } from './fragment-page-props';
 
@@ -89,7 +70,7 @@ export enum ContentType {
     PayoutDates = 'no_nav_navno_PayoutDates',
 }
 
-export type ContentCommonProps = {
+export type BaseContentCommonProps = {
     __typename: ContentType | MediaType;
     _id: string;
     _path: string;
@@ -107,7 +88,7 @@ export type ContentCommonProps = {
     serverEnv?: string;
 };
 
-export type ContentDataCommon = Partial<{
+type ContentDataCommon = Partial<{
     feedbackToggle: boolean;
     chatbotToggle: boolean;
     metaDescription: string;
@@ -119,38 +100,13 @@ export type ContentDataCommon = Partial<{
     languages: LanguageProps[];
 }>;
 
-type ContentData =
-    | ContentListData
-    | ErrorData
-    | ContactInformationData
-    | ExternalLinkData
-    | InternalLinkData
-    | UrlData
-    | LargeTableData
-    | MainArticleData
-    | MainArticleChapterData
-    | OfficeInformationData
-    | PageListData
-    | SectionPageData
-    | TransportPageData
-    | DynamicPageData
-    | PublishingCalendarData
-    | ProductPageData
-    | SituationPageData
-    | AnimatedIconsData
-    | GlobalValuesData
-    | GlobalCaseTimeSetData
-    | PayoutDatesData
-    | OverviewPageData
-    | ProductDetailsData;
-
 export type PathMap = { [key: string]: string };
 
 export type CustomContentCommonProps = {
     __typename: ContentType;
     children?: CustomContentCommonProps[];
     parent?: CustomContentCommonProps;
-    data?: ContentDataCommon & ContentData;
+    data?: ContentDataCommon;
     page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
@@ -159,7 +115,7 @@ export type CustomContentCommonProps = {
     versionTimestamps?: string[];
     isFailover?: boolean;
     isPagePreview?: boolean;
-} & ContentCommonProps;
+} & BaseContentCommonProps;
 
 export type CustomContentProps = CustomContentCommonProps &
     (

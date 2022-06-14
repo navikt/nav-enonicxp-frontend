@@ -1,7 +1,7 @@
 import {
     ContentType,
     CustomContentProps,
-    ContentCommonProps,
+    BaseContentCommonProps,
     CustomContentCommonProps,
 } from './_content-common';
 import { LanguageProps } from '../language';
@@ -14,9 +14,9 @@ export type MainArticleChapterData = Partial<{
 
 export type MainArticleChapterNavigationData = {
     data: {
-        article: ContentCommonProps;
+        article: MainArticleProps;
     };
-} & ContentCommonProps;
+} & BaseContentCommonProps;
 
 type ParentProps = {
     data?: {
