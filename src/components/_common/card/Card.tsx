@@ -35,7 +35,7 @@ export const Card = (props: CardProps) => {
             title={text}
             linkGroup={layoutConfig.title}
             analyticsLabel={link.text}
-            component={`card-${type}`}
+            component={`${type}-card`}
             className={classNames(
                 style.card,
                 size === CardSize.Micro ? style.inline : ''
