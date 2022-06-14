@@ -2,15 +2,15 @@ import React from 'react';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
-import { BisectedPageProps } from '../../../types/component-props/pages/bisected-page';
-import { BisectedPageCenterNavigation } from './center-navigation/BisectedPageCenterNavigation';
+import { IndexPageProps } from '../../../types/component-props/pages/index-page';
+import { IndexPageNavigation } from './navigation/IndexPageNavigation';
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: BisectedPageProps;
+    layoutProps?: IndexPageProps;
 };
 
-export const BisectedPage = ({ pageProps, layoutProps }: Props) => {
+export const IndexPage = ({ pageProps, layoutProps }: Props) => {
     const { regions } = layoutProps;
 
     if (!regions) {
@@ -20,7 +20,7 @@ export const BisectedPage = ({ pageProps, layoutProps }: Props) => {
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             <Region pageProps={pageProps} regionProps={regions.contentTop} />
-            <BisectedPageCenterNavigation pageProps={pageProps} />
+            <IndexPageNavigation pageProps={pageProps} />
             <Region pageProps={pageProps} regionProps={regions.contentBottom} />
         </LayoutContainer>
     );
