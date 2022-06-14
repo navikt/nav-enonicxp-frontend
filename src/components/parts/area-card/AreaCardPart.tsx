@@ -5,8 +5,8 @@ import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import style from './AreaCardPart.module.scss';
 
-import { WorkAnimation } from './work/WorkAnimation';
-import { SocialServicesAnimation } from './social-services/SocialServicesAnimation';
+import { WorkAnimation } from './open-pages/work/WorkAnimation';
+import { SocialServicesAnimation } from './open-pages/social-services/SocialServicesAnimation';
 
 export const AreaCardPart = ({ config }: AreaCardPartProps) => {
     if (!config) {
