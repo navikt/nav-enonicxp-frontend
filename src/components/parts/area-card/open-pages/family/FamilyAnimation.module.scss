@@ -1,14 +1,14 @@
 @import '../../AreaCardPart.module.scss';
 
-.pill {
+.house {
     @include transitionMixin;
     position: absolute;
 
-    right: 30px;
-    top: 104px;
+    right: 6px;
+    top: 112px;
 
     :hover > & {
-        right: 214px;
+        right: 206px;
     }
 }
 
@@ -17,14 +17,13 @@
 
     @include transitionMixin;
     position: absolute;
-    width: 56px;
-    height: 44px;
-    right: -2px;
-    top: 58px;
+    width: 72px;
+    height: 40px;
+    right: -20px;
+    top: 72px;
 
     :hover > & {
-        right: 48px;
-        top: 58px;
+        right: 32px;
     }
 }
 
@@ -33,9 +32,9 @@
 
     @include transitionMixin;
     position: absolute;
-    width: 48px;
-    height: 160px;
-    right: -26px;
+    width: 104px;
+    height: 40px;
+    right: -52px;
     top: 0px;
 
     :hover > & {
@@ -65,15 +64,15 @@
     }
 }
 
-.stethoscope {
+.stroller {
     @include transitionMixin;
     position: absolute;
 
-    right: 42px;
-    top: 26px;
+    right: 52.23px;
+    top: 40px;
 
     :hover > & {
-        right: 86px;
-        top: 52px;
+        right: 105.23px;
+        top: 76px;
     }
 }
