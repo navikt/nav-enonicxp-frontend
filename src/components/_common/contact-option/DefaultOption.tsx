@@ -1,16 +1,12 @@
-import {
-    ChannelType,
-    DefaultContactData,
-} from '../../../types/component-props/parts/contact-option';
-
+import { BodyLong, Heading } from '@navikt/ds-react';
+import { ChannelType, DefaultContactData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
-import { Heading, BodyLong } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-
+import { useLayoutConfig } from 'store/hooks/useLayoutConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { openChatbot } from '../../../utils/chatbot';
-
+import { openChatbot } from 'utils/chatbot';
 import { classNames } from 'utils/classnames';
+import { analyticsEvents } from 'utils/amplitude';
 
 import style from './ContactOption.module.scss';
 
@@ -21,7 +17,7 @@ interface DefaultContactProps extends DefaultContactData {
 export const DefaultOption = (props: DefaultContactProps) => {
     const { ingress, channel, title, url, icon } = props;
     const { language } = usePageConfig();
-
+    const { layoutConfig } = useLayoutConfig();
     const getTranslations = translator('contactPoint', language);
 
     const getTitle = () => {
@@ -59,6 +55,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
         if (channel === 'call') {
             return {
                 href: 'tel:+4755553333',
+                event: analyticsEvents.CALL,
             };
         }
 
@@ -66,12 +63,14 @@ export const DefaultOption = (props: DefaultContactProps) => {
             return {
                 href: '#',
                 onClick: openChatbot,
+                event: analyticsEvents.CHAT_OPEN,
             };
         }
         if (channel === 'custom') {
             return {
                 href: url,
                 target: '_blank',
+                event: analyticsEvents.NAVIGATION,
             };
         }
 
@@ -90,6 +89,8 @@ export const DefaultOption = (props: DefaultContactProps) => {
         <div className={style.contactOption}>
             <LenkeBase
                 {...getUrlOrClickHandler(channel)}
+                linkGroup={layoutConfig.title}
+                component={'Kontakt-oss kanal'}
                 className={style.link}
             >
                 <div className={style.linkContent}>

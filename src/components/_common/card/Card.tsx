@@ -4,6 +4,7 @@ import { classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { Interaction } from 'types/interaction';
+import { useLayoutConfig } from '../../../store/hooks/useLayoutConfig';
 
 import style from './Card.module.scss';
 
@@ -26,12 +27,32 @@ export const Card = (props: CardProps) => {
             interactionHandler(type);
         }
     };
+    const { layoutConfig } = useLayoutConfig();
+
+    // Navn på komponent settes til visningsnavn i Enonic
+    const componentDisplayName = (type:CardType, size:CardSize) => {
+        switch ( type ) {
+            case CardType.Provider:
+                return 'Tilbyderkort';
+            default:
+                switch ( size ) {
+                    case CardSize.Mini:
+                        return 'Kort mini';
+                    case CardSize.Micro:
+                        return 'Kort mikro';
+                    default:
+                        return 'Kort';
+                }
+        }
+    }
 
     return (
         <LenkeBase
             href={url}
             title={text}
+            linkGroup={layoutConfig.title}
             analyticsLabel={link.text}
+            component={componentDisplayName(type, size)}
             className={classNames(
                 style.card,
                 size === CardSize.Micro ? style.inline : ''
