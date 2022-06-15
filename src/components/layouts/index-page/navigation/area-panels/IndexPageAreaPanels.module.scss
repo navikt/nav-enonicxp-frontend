@@ -1,0 +1,8 @@
+@use 'src/common' as common;
+
+.panels {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include common.flex-cols-mixin(3, 1rem);
+}

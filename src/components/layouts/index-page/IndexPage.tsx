@@ -6,15 +6,17 @@ import { IndexPageNavigation } from './navigation/IndexPageNavigation';
 import { useRouter } from 'next/router';
 import { fetchPageCacheContent } from '../../../utils/fetch/fetch-cache';
 import { stripXpPathPrefix } from '../../../utils/urls';
+import Head from 'next/head';
+import { LayoutType } from '../../../types/component-props/layouts';
 import {
     AreaPageProps,
     FrontPageProps,
 } from '../../../types/content-props/index-pages-props';
-import Head from 'next/head';
-import { LayoutType } from '../../../types/component-props/layouts';
+
+export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
 type Props = {
-    pageProps: FrontPageProps | AreaPageProps;
+    pageProps: IndexPageContentProps;
 };
 
 export const IndexPage = ({ pageProps }: Props) => {
@@ -22,6 +24,7 @@ export const IndexPage = ({ pageProps }: Props) => {
     const [currentPageProps, setCurrentPageProps] = useState(pageProps);
 
     if (currentPageProps.page.descriptor !== LayoutType.IndexPage) {
+        console.error('Invalid page type!');
         return null;
     }
 
