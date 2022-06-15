@@ -55,11 +55,6 @@ $border-radius: 0.5rem;
     &:active {
         background-color: var(--navds-global-color-deepblue-50);
 
-        .titleShort,
-        .titleLong {
-            transform: translateY(-0.5rem);
-        }
-
         :global(.navds-link-panel__title) {
             color: var(--navds-global-color-gray-900);
         }
