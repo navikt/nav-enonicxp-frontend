@@ -1,18 +1,14 @@
 import { useState, useLayoutEffect } from 'react';
 import { translator } from 'translations';
 import { Heading, BodyLong, Alert, BodyShort } from '@navikt/ds-react';
-
 import { classNames } from 'utils/classnames';
 import { dateDiff, formatDate, getCurrentISODate } from 'utils/datetime';
-
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-
 import {
     OpeningHour,
     TelephoneData,
 } from '../../../types/component-props/parts/contact-option';
-
 import {
     mergeOpeningHours,
     findTodaysOpeningHour,
@@ -22,6 +18,8 @@ import {
 } from '../contact-details/contactHelpers';
 
 import style from './ContactOption.module.scss';
+import {analyticsEvents} from "../../../utils/amplitude";
+import {useLayoutConfig} from "../../../store/hooks/useLayoutConfig";
 
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
@@ -41,16 +39,13 @@ export const CallOption = (props: CallOptionProps) => {
         specialOpeningHours,
         text,
     } = props;
-
     const { language } = usePageConfig();
+    const { layoutConfig } = useLayoutConfig();
     const [isClosed, setIsClosed] = useState(false);
-
     const getDateTimeTranslations = translator('dateTime', language);
     const relatives = getDateTimeTranslations('relatives');
-
     const getContactTranslations = translator('contactPoint', language);
     const sharedTranslations = getContactTranslations('shared');
-
     const allOpeningHours = mergeOpeningHours(
         regularOpeningHours?.hours || [],
         specialOpeningHours?.hours || []
@@ -62,14 +57,12 @@ export const CallOption = (props: CallOptionProps) => {
         if (!allOpeningHours) {
             return null;
         }
-
         for (let day = 0; day < allOpeningHours.length; day++) {
             const openingHour = allOpeningHours[day];
             if (openingHour.status === 'OPEN' && openingHour.date > todayISO) {
                 return openingHour;
             }
         }
-
         return null;
     };
 
@@ -97,7 +90,6 @@ export const CallOption = (props: CallOptionProps) => {
                 .replace('{$1}', formatDate(futureDate, language))
                 .replace('{$2}', futureTime)}`;
         }
-
         const openingTemplate =
             daysToNextOpeningHour === 0 ? todayTemplate : tomorrowTemplate;
 
@@ -118,36 +110,29 @@ export const CallOption = (props: CallOptionProps) => {
             opensEpoch,
             startOfToday,
         } = getDates(openingHour);
-
         const { from, to } = openingHour;
 
         // Misc opening / closed states
         const isOpenNow =
             currentEpoch > opensEpoch && currentEpoch < closesEpoch;
-
         const isOpeningLaterToday =
             startOfToday < currentEpoch &&
             endOfToday > currentEpoch &&
             currentEpoch < opensEpoch;
-
         const isClosedForToday = getIsClosedForToday(openingHour);
-
         const openClosedText = isOpenNow
             ? sharedTranslations['openNow']
             : sharedTranslations['closedNow'];
 
         if (isClosedForToday) {
             const nextOpeningHour = findNextOpeningDayAfterToday();
-
             if (!nextOpeningHour) {
                 return 'no opening hour found';
             }
-
             const futureOpeningString = buildFutureOpenString(
                 nextOpeningHour.date,
                 nextOpeningHour.from
             );
-
             return `${openClosedText} • ${futureOpeningString.toLowerCase()}`;
         }
 
@@ -162,7 +147,6 @@ export const CallOption = (props: CallOptionProps) => {
         typeof window !== 'undefined'
             ? findTodaysOpeningHour(allOpeningHours)
             : null;
-
     const isCurrentlyClosed = getIsCurrentyClosed(todaysOpeningHour);
 
     useLayoutEffect(() => {
@@ -174,6 +158,9 @@ export const CallOption = (props: CallOptionProps) => {
             <LenkeBase
                 href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
                 className={style.link}
+                event={analyticsEvents.CALL}
+                linkGroup={layoutConfig.title}
+                component={'Kontakt-oss kanal'}
             >
                 <div className={style.linkContent}>
                     <div className={classNames(style.icon, style.call)} />
@@ -199,6 +186,7 @@ export const CallOption = (props: CallOptionProps) => {
                     buildOpenInformationText(todaysOpeningHour)}
             </BodyShort>
             <LenkeBase
+                linkGroup={layoutConfig.title}
                 className={style.moreLink}
                 href={language === 'no' ? contactUrlNO : contactUrlEN}
             >

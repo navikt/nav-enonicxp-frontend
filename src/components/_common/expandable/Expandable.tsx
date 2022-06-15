@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Accordion } from '@navikt/ds-react';
-import { logAmplitudeEvent } from '../../../utils/amplitude';
+import { analyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
+
 import style from './Expandable.module.scss';
 
 type Props = {
@@ -21,7 +22,7 @@ export const Expandable = ({
     const [isOpen, setIsOpen] = useState(false);
 
     const onExpandCollapse = () => {
-        logAmplitudeEvent(`panel-${isOpen ? 'kollaps' : 'ekspander'}`, {
+        logAmplitudeEvent(isOpen ? analyticsEvents.ACC_COLLAPSE : analyticsEvents.ACC_EXPAND, {
             tittel: title,
             opprinnelse: analyticsOriginTag,
         });
