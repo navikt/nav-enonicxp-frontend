@@ -29,13 +29,30 @@ export const Card = (props: CardProps) => {
     };
     const { layoutConfig } = useLayoutConfig();
 
+    // Navn på komponent settes til visningsnavn i Enonic
+    const componentDisplayName = (type:CardType, size:CardSize) => {
+        switch ( type ) {
+            case CardType.Provider:
+                return 'Tilbyderkort';
+            default:
+                switch ( size ) {
+                    case CardSize.Mini:
+                        return 'Kort mini';
+                    case CardSize.Micro:
+                        return 'Kort mikro';
+                    default:
+                        return 'Kort';
+                }
+        }
+    }
+
     return (
         <LenkeBase
             href={url}
             title={text}
             linkGroup={layoutConfig.title}
             analyticsLabel={link.text}
-            component={`${type}-card`}
+            component={componentDisplayName(type, size)}
             className={classNames(
                 style.card,
                 size === CardSize.Micro ? style.inline : ''

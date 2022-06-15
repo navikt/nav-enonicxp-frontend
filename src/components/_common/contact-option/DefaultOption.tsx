@@ -90,6 +90,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
             <LenkeBase
                 {...getUrlOrClickHandler(channel)}
                 linkGroup={layoutConfig.title}
+                component={'Kontakt-oss kanal'}
                 className={style.link}
             >
                 <div className={style.linkContent}>

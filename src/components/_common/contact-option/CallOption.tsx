@@ -160,6 +160,7 @@ export const CallOption = (props: CallOptionProps) => {
                 className={style.link}
                 event={analyticsEvents.CALL}
                 linkGroup={layoutConfig.title}
+                component={'Kontakt-oss kanal'}
             >
                 <div className={style.linkContent}>
                     <div className={classNames(style.icon, style.call)} />
