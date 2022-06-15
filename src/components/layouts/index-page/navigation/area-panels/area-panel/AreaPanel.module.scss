@@ -1,0 +1,26 @@
+.areaPanel {
+    visibility: visible;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.areaPanelActive {
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    max-width: 100% !important;
+}
+
+.areaPanelHidden {
+    visibility: hidden;
+    transition-duration: 1000ms;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+}
+
+.icon {
+    min-width: 30px;
+    min-height: 30px;
+}
