@@ -1,6 +1,7 @@
 import { DynamicPageData } from './dynamic-page-props';
 import { ContentType, ContentCommonProps } from './_content-common';
 import { Area } from '../areas';
+import { ProcessedHtmlProps } from '../processed-html-props';
 
 type CommonData = {
     areasRefs: AreaPageProps[];
@@ -18,6 +19,7 @@ export interface FrontPageProps extends ContentCommonProps {
 export type AreaPageData = {
     area: Area;
     header: string;
+    banner: ProcessedHtmlProps;
 } & CommonData;
 
 export interface AreaPageProps extends ContentCommonProps {

@@ -3,6 +3,10 @@
 .panels {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
 
-    @include common.flex-cols-mixin(3, 1rem);
+    & > * {
+        width: 30%;
+    }
 }

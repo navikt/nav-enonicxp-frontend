@@ -1,6 +1,6 @@
 import React from 'react';
 import { IndexPageContentProps } from '../../IndexPage';
-import { AreaPanel } from './area-panel/AreaPanel';
+import { AreaHeaderPanel } from './header-panel/AreaHeaderPanel';
 
 import style from './IndexPageAreaPanels.module.scss';
 
@@ -17,7 +17,7 @@ export const IndexPageAreaPanels = ({ content, navigationCallback }: Props) => {
         <div className={style.panels}>
             {areasRefs.map((areaContent) => {
                 return (
-                    <AreaPanel
+                    <AreaHeaderPanel
                         areaContent={areaContent}
                         currentContent={content}
                         navigationCallback={navigationCallback}

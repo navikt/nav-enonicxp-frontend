@@ -4,6 +4,7 @@ import { IndexPageContentProps } from '../../../IndexPage';
 import { ContentType } from '../../../../../../types/content-props/_content-common';
 import { WarningFilled } from '@navikt/ds-icons';
 import { classNames } from '../../../../../../utils/classnames';
+import { AreaHeaderPanelExpanded } from './expanded/AreaHeaderPanelExpanded';
 
 import style from './AreaPanel.module.scss';
 
@@ -14,7 +15,7 @@ const AreaCardPlaceholder = ({
 }: {
     areaContent: AreaPageProps;
     navigationCallback: (path: string) => void;
-    className: string;
+    className?: string;
 }) => {
     const { _id, _path, data } = areaContent;
     const { header, customPath } = data;
@@ -28,7 +29,6 @@ const AreaCardPlaceholder = ({
                 e.preventDefault();
                 navigationCallback(path);
             }}
-            className={classNames(style.areaPanel, className)}
         >
             <span>{header}</span>
             <WarningFilled className={style.icon} />
@@ -42,7 +42,7 @@ type Props = {
     navigationCallback: (path: string) => void;
 };
 
-export const AreaPanel = ({
+export const AreaHeaderPanel = ({
     areaContent,
     currentContent,
     navigationCallback,
@@ -51,17 +51,20 @@ export const AreaPanel = ({
 
     return currentType === ContentType.AreaPage &&
         areaContent._id === currentId ? (
-        <div className={style.areaPanelActive}>
-            <span>{'Placeholder!'}</span>
-            <WarningFilled className={style.icon} />
+        <div className={classNames(style.areaPanel, style.areaPanelActive)}>
+            <AreaHeaderPanelExpanded areaContent={currentContent} />
         </div>
     ) : (
-        <AreaCardPlaceholder
-            areaContent={areaContent}
-            navigationCallback={navigationCallback}
+        <div
             className={classNames(
+                style.areaPanel,
                 currentType === ContentType.AreaPage && style.areaPanelHidden
             )}
-        />
+        >
+            <AreaCardPlaceholder
+                areaContent={areaContent}
+                navigationCallback={navigationCallback}
+            />
+        </div>
     );
 };

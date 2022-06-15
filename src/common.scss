@@ -54,15 +54,22 @@ $editorPaddingVertical: 2rem;
 $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
 $versionSelectorMinHeight: 3rem;
 
+$navPink: #fde6e6;
+
 // Makes the element cover the entire screen-width
-@mixin full-width-mixin() {
+@mixin full-width-mixin($left: true, $right: true) {
     $side-width: calc((100vw - 100%) / 2);
     $side-width-negative: calc((100vw - 100%) / -2);
 
-    padding-left: $side-width;
-    padding-right: $side-width;
-    margin-left: $side-width-negative;
-    margin-right: $side-width-negative;
+    @if $left {
+        padding-left: $side-width;
+        margin-left: $side-width-negative;
+    }
+
+    @if $right {
+        padding-right: $side-width;
+        margin-right: $side-width-negative;
+    }
 }
 
 @mixin flex-cols-mixin($numCols, $marginX: 1.5rem, $marginY: 1.5rem) {
