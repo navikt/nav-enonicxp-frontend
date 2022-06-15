@@ -46,38 +46,38 @@ export const IllustrationStatic = ({
         return null;
     }
 
-    const bgImage1 = buildImageCacheUrl({
-        src: getMediaUrl(icon1.icon?.mediaUrl),
-        isEditorView: !!pageConfig.editorView,
-        ...nextImageProps,
-    });
-
-    const bgImage2 = buildImageCacheUrl({
-        src: getMediaUrl(icon2.icon?.mediaUrl),
-        isEditorView: !!pageConfig.editorView,
-        ...nextImageProps,
-    });
-
     return (
         <div
             className={classNames(styleCommon.image, className)}
             aria-hidden="true"
             role="presentation"
         >
-            <div
-                className={styleStatic.icon}
-                style={{
-                    backgroundImage: `url(${bgImage1})`,
-                    transform: buildTransformStyling(icon1, 'none'),
-                }}
-            />
-            <div
-                className={styleStatic.icon}
-                style={{
-                    backgroundImage: `url(${bgImage2})`,
-                    transform: buildTransformStyling(icon2, 'none'),
-                }}
-            />
+            {icon1 && (
+                <div
+                    className={styleStatic.icon}
+                    style={{
+                        backgroundImage: `url(${buildImageCacheUrl({
+                            src: getMediaUrl(icon1.icon?.mediaUrl),
+                            isEditorView: !!pageConfig.editorView,
+                            ...nextImageProps,
+                        })})`,
+                        transform: buildTransformStyling(icon1, 'none'),
+                    }}
+                />
+            )}
+            {icon2 && (
+                <div
+                    className={styleStatic.icon}
+                    style={{
+                        backgroundImage: `url(${buildImageCacheUrl({
+                            src: getMediaUrl(icon2.icon?.mediaUrl),
+                            isEditorView: !!pageConfig.editorView,
+                            ...nextImageProps,
+                        })})`,
+                        transform: buildTransformStyling(icon2, 'none'),
+                    }}
+                />
+            )}
         </div>
     );
 };
