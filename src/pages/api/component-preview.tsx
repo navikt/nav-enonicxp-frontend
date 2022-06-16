@@ -15,7 +15,7 @@ import { apiErrorHandler } from '../../utils/api-error-handler';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const dummyPageProps: ContentProps = {
-    __typename: ContentType.Site,
+    __typename: ContentType.DynamicPage,
     _id: '',
     _path: '',
     createdTime: '',
@@ -24,6 +24,7 @@ const dummyPageProps: ContentProps = {
     language: 'no',
     isDraft: true,
     editorView: 'edit',
+    data: {},
 };
 
 const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>

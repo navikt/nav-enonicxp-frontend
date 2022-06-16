@@ -20,6 +20,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 };
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.ALL]: 'Alle',
     [Taxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
     [Taxonomy.BENEFITS]: 'Pengestøtte',
     [Taxonomy.FOLLOWUP]: 'Oppfølging',
@@ -49,6 +50,7 @@ const productDetailTypes: { [key in ProductDetailType]: string } = {
     [ProductDetailType.PAYOUT_DATES]: 'utbetalingsdatoer',
     [ProductDetailType.PROCESSING_TIMES]: 'saksbehandlingstider',
     [ProductDetailType.RATES]: 'satser',
+    [ProductDetailType.ALL_PRODUCTS]: 'alle',
 };
 
 export const translationsBundleNb = {
@@ -125,6 +127,8 @@ export const translationsBundleNb = {
         ariaExplanation: 'Filtrer listen etter område',
         ariaItemExplanation: 'Vis område',
         chooseArea: 'Velg område',
+        chooseType: 'Velg type',
+        search: 'Søk',
         loading: 'Henter produktdetaljer',
     },
     pagination: {
@@ -141,6 +145,15 @@ export const translationsBundleNb = {
             title: 'Skriv til oss',
             ingress:
                 'Skal du sende oss nye opplysninger i saken din? "Skriv til oss" er et sikkert alternativ til e-post.',
+        },
+        navoffice: {
+            title: 'Finn ditt NAV-kontor',
+            ingress: 'Søk opp NAV-kontor med postnummer, sted eller by.',
+        },
+        aidcentral: {
+            title: 'Finn din hjelpemiddelsentral',
+            ingress:
+                'Finn kontaktinformasjon og les om inn- og utlevering av hjelpemidler.',
         },
         call: {
             title: 'Ring oss på 55 55 33 33',

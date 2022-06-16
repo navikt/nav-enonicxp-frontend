@@ -1,5 +1,17 @@
 import amplitude from 'amplitude-js';
 
+export enum analyticsEvents {
+    NAVIGATION = 'navigere',
+    FILTER = 'filtervalg',
+    ACC_EXPAND = 'accordion åpnet',
+    ACC_COLLAPSE = 'accordion lukket',
+    MODAL_OPEN = 'modal åpnet',
+    MODAL_CLOSE = 'modal lukket',
+    COPY_LINK = 'kopier-lenke',
+    CHAT_OPEN = 'chat-åpnet',
+    CALL = 'ring-oss',
+}
+
 export const initAmplitude = () => {
     amplitude.getInstance().init('default', '', {
         apiEndpoint: 'amplitude.nav.no/collect-auto',
@@ -10,26 +22,14 @@ export const initAmplitude = () => {
     });
 };
 
-export const logLinkClick = (
-    href: string,
-    linkText: string | undefined,
-    component?: string,
-    linkGroup?: string
-) => {
-    logAmplitudeEvent('navigere', {
-        komponent: component,
-        lenkegruppe: linkGroup,
-        destinasjon: href,
-        lenketekst: linkText,
-    });
-};
-
-export function logAmplitudeEvent(eventName: string, data?: any): Promise<any> {
+export function logAmplitudeEvent(eventName: analyticsEvents, data?: any): Promise<any> {
     return new Promise(function (resolve: any) {
-        const eventData = data || {};
-        eventData.app = 'nav-enonicxp-frontend';
-        eventData.origin = 'navno-frontend';
-        eventData.originVersion = 'unknown';
+        const eventData = {
+            ...data,
+            app: 'nav-enonicxp-frontend',
+            origin: 'navno-frontend',
+            originVersion: 'unknown',
+        };
         amplitude.getInstance().logEvent(eventName, eventData, resolve);
     });
 }

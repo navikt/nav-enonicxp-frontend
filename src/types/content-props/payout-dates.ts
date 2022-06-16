@@ -1,4 +1,4 @@
-import { ContentProps, ContentType } from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 
 type Month =
     | 'jan'
@@ -19,7 +19,7 @@ export type PayoutDatesData = {
     dates: Record<Month, number>;
 };
 
-export interface PayoutDatesProps extends ContentProps {
+export interface PayoutDatesProps extends ContentCommonProps {
     __typename: ContentType.PayoutDates;
     data: PayoutDatesData;
 }

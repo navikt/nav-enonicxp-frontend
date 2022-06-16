@@ -1,13 +1,18 @@
 import React from 'react';
 import { translator } from 'translations';
 import { MenuListItemKey } from 'types/menu-list-items';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { Accordion } from '@navikt/ds-react';
+import { MainArticleProps } from '../../../../types/content-props/main-article-props';
+import { MainArticleChapterProps } from '../../../../types/content-props/main-article-chapter-props';
+import { PageListProps } from '../../../../types/content-props/page-list-props';
 
 import style from './MenuList.module.scss';
 
-export const MenuList = (props: ContentProps) => {
+export const MenuList = (
+    props: MainArticleProps | MainArticleChapterProps | PageListProps
+) => {
     const { __typename: type, language } = props;
 
     const propsActual =

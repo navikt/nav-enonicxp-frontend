@@ -4,29 +4,32 @@ import { IllustrationStatic } from '../../../_common/illustration/IllustrationSt
 import { ComponentMapper } from '../../../ComponentMapper';
 import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
 import { fetchPageCacheContent } from '../../../../utils/fetch/fetch-cache';
+import { sanitizeLegacyUrl } from 'utils/urls';
+
 import { AlertBox } from '../../../_common/alert-box/AlertBox';
 import {
     ContentProps,
     ContentType,
 } from '../../../../types/content-props/_content-common';
 
-import style from './OverviewPageDetailsPanel.module.scss';
 import { classNames } from '../../../../utils/classnames';
 import { translator } from '../../../../translations';
 import { ProductDetailType } from '../../../../types/content-props/product-details';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 
+import style from './ProductDetailsPanel.module.scss';
+
 type Props = {
-    productDetails: SimplifiedProductData;
     detailType: ProductDetailType;
     pageProps: ContentProps;
+    productDetails: SimplifiedProductData;
     visible: boolean;
 };
 
-export const OverviewPageDetailsPanel = ({
-    productDetails,
+export const ProductDetailsPanel = ({
     detailType,
     pageProps,
+    productDetails,
     visible,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -76,7 +79,8 @@ export const OverviewPageDetailsPanel = ({
     };
 
     const getAnchorFromPath = (path: string) => {
-        return `${path.substring(path.lastIndexOf('/') + 1)}`;
+        const lastPathSegment = `${path.substring(path.lastIndexOf('/') + 1)}`;
+        return sanitizeLegacyUrl(lastPathSegment);
     };
 
     return (

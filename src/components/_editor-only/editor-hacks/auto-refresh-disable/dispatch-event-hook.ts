@@ -1,7 +1,7 @@
 import {
-    fetchAdminContent,
-    fetchAdminUserId,
-    fetchUserInfo,
+    editorFetchAdminContent,
+    editorFetchAdminUserId,
+    editorFetchUserInfo,
 } from '../editor-fetch-utils';
 import {
     ContentProps,
@@ -85,11 +85,11 @@ export const hookDispatchEventForBatchContentServerEvent = ({
     let userId;
     let skipNextEventIfBatchContentServerEvent = false;
 
-    fetchAdminUserId().then((id) => {
+    editorFetchAdminUserId().then((id) => {
         userId = id;
     });
 
-    fetchAdminContent(contentId).then((res) => {
+    editorFetchAdminContent(contentId).then((res) => {
         prevWorkflowState = res?.workflow.state;
     });
 
@@ -149,7 +149,7 @@ export const hookDispatchEventForBatchContentServerEvent = ({
         }
 
         // We use the internal Content Studio content api to check who last modified the content
-        fetchAdminContent(contentId).then((content) => {
+        editorFetchAdminContent(contentId).then((content) => {
             if (!content) {
                 // In the unexpected event that this call fails, just dispatch the event as normal to ensure we
                 // don't break anything :)
@@ -184,7 +184,7 @@ export const hookDispatchEventForBatchContentServerEvent = ({
                     `Content was updated by another user (${userId}) - showing warning`
                 );
 
-                fetchUserInfo(content.modifier).then((userInfo) => {
+                editorFetchUserInfo(content.modifier).then((userInfo) => {
                     if (userInfo) {
                         setExternalUserName(
                             getUserNameFromEmail(userInfo.displayName)

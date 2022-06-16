@@ -1,4 +1,4 @@
-import { ContentType, ContentProps } from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 
 export type ExternalLinkData = {
     description?: string;
@@ -6,7 +6,7 @@ export type ExternalLinkData = {
     permanentRedirect?: boolean;
 };
 
-export interface ExternalLinkProps extends ContentProps {
+export interface ExternalLinkProps extends ContentCommonProps {
     __typename: ContentType.ExternalLink;
     data: ExternalLinkData;
 }

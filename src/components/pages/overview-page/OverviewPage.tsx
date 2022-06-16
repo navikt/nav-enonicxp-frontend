@@ -4,15 +4,19 @@ import { Area } from 'types/areas';
 import { OverviewPageProps } from 'types/content-props/dynamic-page-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ComponentMapper } from 'components/ComponentMapper';
-import { OverviewFilter } from 'components/pages/overview-page/product-filter/OverviewFilter';
+import { AreaFilter } from 'components/pages/overview-page/area-filter/AreaFilter';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
-import { OverviewPageDetailsPanel } from './product-panel/OverviewPageDetailsPanel';
 import { SimplifiedProductData } from '../../../types/component-props/_mixins';
 
-import style from './OverviewPage.module.scss';
+import { ProductItem } from './product-elements/ProductItem';
 
-const isVisiblePredicate = (product: SimplifiedProductData, areaFilter: Area) =>
-    areaFilter === Area.ALL || product.area.some((area) => area === areaFilter);
+import { OverviewSearch } from './overview-search/OverviewSearch';
+import style from './OverviewPage.module.scss';
+import { TaxonomyFilter } from './taxonomy-filter/TaxonomyFilter';
+import { Taxonomy } from 'types/taxonomies';
+import { typeOf } from 'mathjs';
+import { classNames } from 'utils/classnames';
+import { ProductDetailType } from 'types/content-props/product-details';
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
@@ -22,14 +26,37 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const getTranslationString = translator('overview', language);
 
     const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
+    const [taxonomyFilter, setTaxonomyFilter] = useState<Taxonomy>(
+        Taxonomy.ALL
+    );
+    const [searchString, setSearchString] = useState<string>('');
 
-    const handleFilterUpdate = (area: Area) => {
-        setAreaFilter(area);
+    const isVisiblePredicate = (
+        product: SimplifiedProductData,
+        areaFilter: Area,
+        searchValue: string
+    ) => {
+        const isAreaMatching =
+            areaFilter === Area.ALL ||
+            product.area.some((area) => area === areaFilter);
+
+        const isTaxonomyMatching =
+            taxonomyFilter === Taxonomy.ALL ||
+            product.taxonomy.includes(taxonomyFilter);
+
+        const isSearchMatching = product.sortTitle
+            .toLowerCase()
+            .includes(searchValue.toLowerCase());
+
+        return isAreaMatching && isSearchMatching && isTaxonomyMatching;
     };
 
     const hasVisibleProducts = productList.some((product) =>
-        isVisiblePredicate(product, areaFilter)
+        isVisiblePredicate(product, areaFilter, searchString)
     );
+
+    const showTaxonomyFilter = overviewType === ProductDetailType.ALL_PRODUCTS;
+    const showSearch = overviewType === ProductDetailType.ALL_PRODUCTS;
 
     return (
         <div className={style.overviewPage}>
@@ -41,17 +68,44 @@ export const OverviewPage = (props: OverviewPageProps) => {
                 />
             </div>
             <div className={style.content}>
-                <OverviewFilter filterUpdateCallback={handleFilterUpdate} />
-                <div className={style.productListWrapper}>
+                <AreaFilter
+                    filterUpdateCallback={(value: Area) => setAreaFilter(value)}
+                />
+                {showTaxonomyFilter && (
+                    <TaxonomyFilter
+                        filterUpdateCallback={(value: Taxonomy) =>
+                            setTaxonomyFilter(value)
+                        }
+                    />
+                )}
+                {showSearch && (
+                    <OverviewSearch
+                        searchUpdateCallback={(value: string) =>
+                            setSearchString(value)
+                        }
+                        label={getTranslationString('search')}
+                    />
+                )}
+                <div
+                    className={classNames(
+                        style.productListWrapper,
+                        overviewType === ProductDetailType.ALL_PRODUCTS &&
+                            style.transparent
+                    )}
+                >
                     {!hasVisibleProducts && (
                         <div>{getTranslationString('noProducts')}</div>
                     )}
                     {productList.map((product) => (
-                        <OverviewPageDetailsPanel
-                            productDetails={product}
+                        <ProductItem
+                            product={product}
                             pageProps={props}
-                            visible={isVisiblePredicate(product, areaFilter)}
-                            detailType={overviewType}
+                            visible={isVisiblePredicate(
+                                product,
+                                areaFilter,
+                                searchString
+                            )}
+                            overviewType={overviewType}
                             key={product._id}
                         />
                     ))}

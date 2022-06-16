@@ -1,9 +1,4 @@
-import {
-    ContentDecoratorToggles,
-    ContentProps,
-    ContentType,
-    SeoDataProps,
-} from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 import { LanguageProps } from '../language';
 import {
     ProductDataMixin,
@@ -16,9 +11,7 @@ export type DynamicPageData = Partial<{
     customPath: string;
     languages: LanguageProps[];
     description: string;
-}> &
-    SeoDataProps &
-    ContentDecoratorToggles;
+}>;
 
 export type ProductPageData = ProductDataMixin & DynamicPageData;
 export type ThemedArticlePageData = ProductDataMixin & DynamicPageData;
@@ -33,36 +26,41 @@ export type OverviewPageData = Partial<{
     ProductDataMixin &
     DynamicPageData;
 
-export interface ProductPageProps extends ContentProps {
+export interface DynamicPageProps extends ContentCommonProps {
+    __typename: ContentType.DynamicPage;
+    data: DynamicPageData;
+}
+
+export interface ProductPageProps extends ContentCommonProps {
     __typename: ContentType.ProductPage;
     data: ProductPageData;
 }
 
-export interface ProductDetailsProps extends ContentProps {
+export interface ProductDetailsProps extends ContentCommonProps {
     __typename: ContentType.ProductDetails;
     data: ProductDetailsData;
 }
 
-export interface ThemedArticlePageProps extends ContentProps {
+export interface ThemedArticlePageProps extends ContentCommonProps {
     __typename: ContentType.ThemedArticlePage;
     data: ThemedArticlePageData;
 }
 
-export interface GuidePageProps extends ContentProps {
+export interface GuidePageProps extends ContentCommonProps {
     __typename: ContentType.GuidePage;
     data: GuidePageData;
 }
-export interface SituationPageProps extends ContentProps {
+export interface SituationPageProps extends ContentCommonProps {
     __typename: ContentType.SituationPage;
     data: SituationPageData;
 }
 
-export interface ToolsPageProps extends ContentProps {
+export interface ToolsPageProps extends ContentCommonProps {
     __typename: ContentType.ToolsPage;
     data: ToolsPageData;
 }
 
-export interface OverviewPageProps extends ContentProps {
-    __typename: ContentType.ToolsPage;
+export interface OverviewPageProps extends ContentCommonProps {
+    __typename: ContentType.Overview;
     data: OverviewPageData;
 }

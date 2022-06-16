@@ -1,11 +1,6 @@
 import { MainArticleChapterNavigationData } from './main-article-chapter-props';
-import {
-    ContentType,
-    ContentProps,
-    SeoDataProps,
-    ContentDecoratorToggles,
-} from './_content-common';
-import { MenuListItem } from '../menu-list-items';
+import { ContentType, ContentCommonProps } from './_content-common';
+import { MenuListItems } from '../menu-list-items';
 import { LanguageProps } from '../language';
 import { XpImageProps } from '../media';
 import { ProcessedHtmlProps } from '../processed-html-props';
@@ -27,13 +22,11 @@ export type MainArticleData = Partial<{
     fact: ProcessedHtmlProps;
     social: SocialMedia[];
     picture: Picture;
-    menuListItems: MenuListItem;
+    menuListItems: MenuListItems;
     chapters: MainArticleChapterNavigationData[];
-}> &
-    SeoDataProps &
-    ContentDecoratorToggles;
+}>;
 
-export interface MainArticleProps extends ContentProps {
+export interface MainArticleProps extends ContentCommonProps {
     __typename: ContentType.MainArticle;
     data: MainArticleData;
 }

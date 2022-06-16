@@ -1,10 +1,14 @@
 import React from 'react';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import {
+    ContentProps,
+    ContentType,
+} from 'types/content-props/_content-common';
 import { BodyLong } from '@navikt/ds-react';
 import LenkepanelNavNo from '../../../_common/lenkepanel/LenkepanelNavNo';
 import { translator } from '../../../../translations';
 
 import style from './MainPanels.module.scss';
+import { SectionPageProps } from '../../../../types/content-props/section-page-props';
 
 const ingressMaxLength = 140;
 
@@ -76,7 +80,7 @@ const getLinkData = (content: ContentProps | null): TableData | null => {
     }
 };
 
-export const MainPanels = (props: ContentProps) => {
+export const MainPanels = (props: SectionPageProps) => {
     const tableContents = props.data?.tableContents;
     const getLabel = translator('mainPanels', props.language);
 

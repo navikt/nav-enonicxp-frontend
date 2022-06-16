@@ -11,6 +11,10 @@ import { SingleColPage } from './single-col-page/SingleColPage';
 import { SituationPageFlexColsLayout } from './flex-cols/SituationPageFlexColsLayout';
 import { ProductPageFlexColsLayout } from './flex-cols/ProductPageFlexColsLayout';
 import { ProductDetailsLayout } from './product-details-layout/ProductDetailsLayout';
+import { Provider } from 'react-redux';
+import { createNewStore } from 'store/store';
+import { setLayoutConfigAction } from 'store/slices/layoutConfig';
+import { IndexPage } from './index-page/IndexPage';
 
 type Props = {
     pageProps: ContentProps;
@@ -34,10 +38,11 @@ const layoutComponents: {
     [LayoutType.SituationPageFlexCols]: SituationPageFlexColsLayout,
     [LayoutType.ProductPageFlexCols]: ProductPageFlexColsLayout,
     [LayoutType.ProductDetailsPage]: ProductDetailsLayout,
+    [LayoutType.IndexPage]: IndexPage,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
-    const { descriptor, path, regions } = layoutProps;
+    const { config, descriptor, path, regions } = layoutProps;
     const isEditView = pageProps.editorView === 'edit';
 
     const editorProps = {
@@ -59,5 +64,17 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
         );
     }
 
-    return <LayoutComponent pageProps={pageProps} layoutProps={layoutProps} />;
+    const store = createNewStore();
+    store.dispatch(
+        setLayoutConfigAction({
+            type: descriptor,
+            title: (config && config.title) && config.title,
+        })
+    );
+
+    return (
+        <Provider store={store}>
+            <LayoutComponent pageProps={pageProps} layoutProps={layoutProps} />
+        </Provider>
+    );
 };

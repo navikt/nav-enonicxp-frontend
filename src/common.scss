@@ -59,15 +59,22 @@ $editorPaddingVertical: 2rem;
 $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
 $versionSelectorMinHeight: 3rem;
 
+$navPink: #fde6e6;
+
 // Makes the element cover the entire screen-width
-@mixin full-width-mixin() {
+@mixin full-width-mixin($left: true, $right: true) {
     $side-width: calc((100vw - 100%) / 2);
     $side-width-negative: calc((100vw - 100%) / -2);
 
-    padding-left: $side-width;
-    padding-right: $side-width;
-    margin-left: $side-width-negative;
-    margin-right: $side-width-negative;
+    @if $left {
+        padding-left: $side-width;
+        margin-left: $side-width-negative;
+    }
+
+    @if $right {
+        padding-right: $side-width;
+        margin-right: $side-width-negative;
+    }
 }
 
 @mixin flex-cols-mixin($numCols, $marginX: 1.5rem, $marginY: 1.5rem) {
@@ -181,7 +188,8 @@ $versionSelectorMinHeight: 3rem;
         // within a region__content should not have margin-bottom.
         // Reason for select all (">"): fragments are inserted without a class,
         // so just select any child that may contain any of the elements.
-        > :last-child {
+        > :last-child:not(.part__product-details),
+        .part__product-details .navds-accordion__content > :last-child {
             .card:last-child,
             .calculator,
             ul:last-child,

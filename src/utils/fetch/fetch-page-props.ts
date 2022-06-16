@@ -9,7 +9,11 @@ import { fetchPage } from './fetch-content';
 import { isMediaContent } from '../../types/media';
 import { errorHandler, isNotFound } from '../errors';
 import { ContentType } from '../../types/content-props/_content-common';
-import { getTargetIfRedirect, redirectPageProps } from '../redirects';
+import {
+    getTargetIfRedirect,
+    isPermanentRedirect,
+    redirectPageProps,
+} from '../redirects';
 
 type FetchPageProps = {
     routerQuery: string | string[];
@@ -54,7 +58,7 @@ export const fetchPageProps = async ({
         if (redirectTarget) {
             return redirectPageProps(
                 getRelativePathIfInternal(redirectTarget, isDraft),
-                content.data?.permanentRedirect
+                isPermanentRedirect(content)
             );
         }
     }
