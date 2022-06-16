@@ -33,7 +33,7 @@ const IndexPageContent = (pageProps: IndexPageContentProps) => {
                 {/*TODO: Remove this before public release*/}
                 <meta name={'robots'} content={'noindex, nofollow'} />
             </Head>
-            {pageProps.serverEnv !== 'prod' && (
+            {pageProps.serverEnv === 'prod' && (
                 <AlertBox variant={'warning'}>
                     {
                         'Hei! Disse sidene er under utvikling og er ikke helt klare til bruk ennå. '
