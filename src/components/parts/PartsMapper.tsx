@@ -35,6 +35,7 @@ import { ProviderCardPart } from './provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { FiltersMenu } from './filters-menu/FiltersMenu';
 import { ProductCardPart } from './product-card/ProductCard';
+import { SituationCardPart } from './situation-card/SituationCard';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
@@ -78,6 +79,7 @@ const partsWithOwnData: {
     [PartType.PageNavigationMenu]: PageNavigationMenuPart,
     [PartType.FiltersMenu]: FiltersMenu,
     [PartType.ProductCard]: ProductCardPart,
+    [PartType.SituationCard]: SituationCardPart,
     [PartType.ProductCardMicro]: ProductCardMicroPart,
     [PartType.ProductCardMini]: ProductCardPart,
     [PartType.ProductDetails]: ProductDetailsPart,
