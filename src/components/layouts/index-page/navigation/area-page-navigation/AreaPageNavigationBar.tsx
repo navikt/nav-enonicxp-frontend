@@ -4,6 +4,7 @@ import { LenkeInline } from '../../../../_common/lenke/LenkeInline';
 import { AreaPageProps } from '../../../../../types/content-props/index-pages-props';
 
 import style from './AreaPageNavigationBar.module.scss';
+import { getPublicPathname } from '../../../../../utils/urls';
 
 type Props = {
     isVisible: boolean;
@@ -34,21 +35,23 @@ export const AreaPageNavigationBar = ({
                 {'Til forside'}
             </LenkeInline>
             {isVisible &&
-                areasRefs.map((ref) => (
-                    <LenkeInline
-                        href={ref.data.customPath || ref._path}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            navigationCallback(
-                                ref.data.customPath || ref._path
-                            );
-                        }}
-                        className={style.areasPageNavigationLink}
-                        key={ref._id}
-                    >
-                        {ref.data.header}
-                    </LenkeInline>
-                ))}
+                areasRefs.map((areaContent) => {
+                    const path = getPublicPathname(areaContent);
+
+                    return (
+                        <LenkeInline
+                            href={path}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                navigationCallback(path);
+                            }}
+                            className={style.areasPageNavigationLink}
+                            key={areaContent._id}
+                        >
+                            {areaContent.data.header}
+                        </LenkeInline>
+                    );
+                })}
         </div>
     );
 };

@@ -11,7 +11,11 @@ import {
     hasIngress,
     hasMetaDescription,
 } from '../../../types/_type-guards';
-import { appOrigin, stripXpPathPrefix } from '../../../utils/urls';
+import {
+    appOrigin,
+    getPublicPathname,
+    stripXpPathPrefix,
+} from '../../../utils/urls';
 
 type Props = {
     content: ContentProps;
@@ -48,7 +52,7 @@ const getCanonicalUrl = (content: ContentProps) => {
         return content.data.canonicalUrl;
     }
 
-    const path = content.data?.customPath || stripXpPathPrefix(content._path);
+    const path = getPublicPathname(content);
 
     return `${appOrigin}${path}`;
 };
