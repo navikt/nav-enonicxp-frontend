@@ -2,9 +2,9 @@ import React from 'react';
 import { classNames } from '../../../../../utils/classnames';
 import { LenkeInline } from '../../../../_common/lenke/LenkeInline';
 import { AreaPageProps } from '../../../../../types/content-props/index-pages-props';
+import { getPublicPathname } from '../../../../../utils/urls';
 
 import style from './AreaPageNavigationBar.module.scss';
-import { getPublicPathname } from '../../../../../utils/urls';
 
 type Props = {
     isVisible: boolean;

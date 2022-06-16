@@ -19,14 +19,14 @@ export const IndexPageNavigation = ({
     pageProps,
     navigationCallback,
 }: Props) => {
-    const { __typename, data } = pageProps;
+    const { __typename, _id, data } = pageProps;
     const { areasRefs } = data;
 
     return (
         <div className={style.centerNavigation}>
             <AreaPageNavigationBar
                 isVisible={__typename === ContentType.AreaPage}
-                areasRefs={areasRefs}
+                areasRefs={areasRefs.filter((ref) => ref._id !== _id)}
                 navigationCallback={navigationCallback}
             />
             <FrontPageAreasHeader content={pageProps} />
