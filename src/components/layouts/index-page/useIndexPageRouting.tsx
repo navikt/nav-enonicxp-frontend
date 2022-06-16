@@ -3,7 +3,10 @@ import { useEffect, useState } from 'react';
 import { IndexPageContentProps } from './IndexPage';
 import { getPublicPathname } from '../../../utils/urls';
 import { fetchPageCacheContent } from '../../../utils/fetch/fetch-cache';
-import { ContentType } from '../../../types/content-props/_content-common';
+import {
+    ContentProps,
+    ContentType,
+} from '../../../types/content-props/_content-common';
 
 const fetchIndexPageContentProps = (path: string) =>
     fetchPageCacheContent(path).then((res) => {
@@ -23,9 +26,13 @@ const fetchIndexPageContentProps = (path: string) =>
     });
 
 export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
+    const basePath = getPublicPathname(pageProps);
+
     const router = useRouter();
     const [currentPageProps, setCurrentPageProps] = useState(pageProps);
-    const [localPageCache, setLocalPageCache] = useState({});
+    const [localPageCache, setLocalPageCache] = useState({
+        [basePath]: pageProps,
+    });
 
     const navigate = (path: string) => {
         const cachedPage = localPageCache[path];
@@ -42,17 +49,47 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         router.push(path, undefined, { shallow: true });
     };
 
+    // Prefetch all referenced pages
     useEffect(() => {
-        currentPageProps.data.areasRefs.forEach((ref) => {
-            const path = getPublicPathname(ref);
-            if (!localPageCache[path]) {
-                fetchIndexPageContentProps(path).then((res) => {
-                    console.log(`Fetched and cached ${path}`);
-                    setLocalPageCache({ ...localPageCache, [path]: res });
-                });
-            }
+        Promise.all<ContentProps | null>(
+            currentPageProps.data.areasRefs.map((areaContent) => {
+                const path = getPublicPathname(areaContent);
+                if (localPageCache[path]) {
+                    return null;
+                }
+
+                return fetchIndexPageContentProps(path);
+            })
+        ).then((res) => {
+            const pages = res.reduce((acc, page) => {
+                if (!page) {
+                    return acc;
+                }
+
+                const path = getPublicPathname(page);
+
+                return { ...acc, [path]: page };
+            }, {});
+
+            setLocalPageCache({ ...localPageCache, ...pages });
         });
     }, [currentPageProps]);
+
+    // Handle back/forwards navigation in the browser
+    useEffect(() => {
+        router.beforePopState(({ url, as, options }) => {
+            const cachedPage = localPageCache[as];
+
+            if (cachedPage) {
+                console.log(`Found cached page for ${as}`);
+                setCurrentPageProps(cachedPage);
+                return false;
+            }
+
+            console.log(`${as} is not cached`);
+            return true;
+        });
+    }, [router, localPageCache]);
 
     return { currentPageProps, navigate };
 };
