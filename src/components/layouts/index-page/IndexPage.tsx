@@ -12,6 +12,7 @@ import {
     AreaPageProps,
     FrontPageProps,
 } from '../../../types/content-props/index-pages-props';
+import { getPageTitle } from '../../_common/metatags/HeadWithMetatags';
 
 export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
@@ -61,7 +62,7 @@ export const IndexPage = ({ pageProps }: Props) => {
             layoutProps={currentPageProps.page}
         >
             <Head>
-                <title>{currentPageProps.displayName}</title>
+                <title>{getPageTitle(currentPageProps)}</title>
             </Head>
             <Region
                 pageProps={currentPageProps}

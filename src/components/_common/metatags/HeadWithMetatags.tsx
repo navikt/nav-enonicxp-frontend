@@ -53,10 +53,13 @@ const getCanonicalUrl = (content: ContentProps) => {
     return `${appOrigin}${path}`;
 };
 
+export const getPageTitle = (content: ContentProps) =>
+    `${content.displayName} - nav.no`;
+
 export const HeadWithMetatags = ({ content, children }: Props) => {
     const router = useRouter();
 
-    const title = `${content.displayName} - nav.no`;
+    const title = getPageTitle(content);
     const description = getDescription(content).slice(0, descriptionMaxLength);
     const url = getCanonicalUrl(content);
     const noIndex = shouldNotIndex(content, router);
