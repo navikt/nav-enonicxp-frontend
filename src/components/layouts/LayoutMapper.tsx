@@ -64,17 +64,17 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
         );
     }
 
-    const store = createNewStore();
-    store.dispatch(
-        setLayoutConfigAction({
-            type: descriptor,
-            title: (config && config.title) && config.title,
-        })
-    );
+    // const store = createNewStore();
+    // store.dispatch(
+    //     setLayoutConfigAction({
+    //         type: descriptor,
+    //         title: (config && config.title) && config.title,
+    //     })
+    // );
 
     return (
-        <Provider store={store}>
-            <LayoutComponent pageProps={pageProps} layoutProps={layoutProps} />
-        </Provider>
+        // <Provider store={store}>
+        <LayoutComponent pageProps={pageProps} layoutProps={layoutProps} />
+        // </Provider>
     );
 };
