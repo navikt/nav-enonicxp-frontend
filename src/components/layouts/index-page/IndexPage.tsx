@@ -18,8 +18,6 @@ import { LenkeInline } from '../../_common/lenke/LenkeInline';
 
 export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
-// This page component should always be used in the templates for the FrontPage and AreaPage types
-// (and nothing else!)
 const IndexPageContent = (pageProps: IndexPageContentProps) => {
     const { currentPageProps, navigate } = useIndexPageRouting(pageProps);
 
@@ -38,10 +36,10 @@ const IndexPageContent = (pageProps: IndexPageContentProps) => {
             {pageProps.serverEnv !== 'prod' && (
                 <AlertBox variant={'warning'}>
                     {
-                        'Hei! Disse sidene er forsatt under utvikling og er ikke helt klare til bruk ennå. Noe funksjonalitet og innhold kan mangle. '
+                        'Hei! Disse sidene er under utvikling og er ikke helt klare til bruk ennå. '
                     }
                     <LenkeInline href={'/no/person'}>
-                        {'Gå til dagens forside'}
+                        {'Gå til dagens forside.'}
                     </LenkeInline>
                 </AlertBox>
             )}
@@ -65,6 +63,8 @@ type Props = {
     pageProps: ContentProps;
 };
 
+// This page component should always be used in the templates for the FrontPage and AreaPage types
+// (and nothing else!)
 export const IndexPage = ({ pageProps }: Props) => {
     if (
         pageProps.__typename !== ContentType.AreaPage &&
