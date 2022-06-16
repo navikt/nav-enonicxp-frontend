@@ -10,7 +10,6 @@ $border-radius: 0.5rem;
     background-color: var(--navds-global-color-deepblue-50);
     height: 160px;
     width: 100%;
-    // width: 392px;
     border-radius: $border-radius;
     border-style: none;
     padding: 0;
@@ -34,21 +33,24 @@ $border-radius: 0.5rem;
     }
 
     &:hover {
-        background-color: var(
-            --navds-semantic-color-component-background-alternate
-        );
         box-shadow: none;
 
-        .titleShort {
-            transform: translateY(-2.5rem);
-        }
+        @media only screen and (min-width: 480px) {
+            background-color: var(
+                --navds-semantic-color-component-background-alternate
+            );
 
-        .titleLong {
-            transform: translateY(-1.5rem);
-        }
+            .titleShort {
+                transform: translateY(-2.5rem);
+            }
 
-        :global(.navds-link-panel__title) {
-            text-decoration: none;
+            .titleLong {
+                transform: translateY(-1.5rem);
+            }
+
+            :global(.navds-link-panel__title) {
+                text-decoration: none;
+            }
         }
     }
 
@@ -58,6 +60,10 @@ $border-radius: 0.5rem;
         :global(.navds-link-panel__title) {
             color: var(--navds-global-color-gray-900);
         }
+    }
+
+    @media only screen and (max-width: 480px) {
+        height: 80px;
     }
 }
 
@@ -75,5 +81,8 @@ $border-radius: 0.5rem;
     height: 100%;
     border-radius: $border-radius;
 
-    // transform: scale(0.5);
+    @media only screen and (max-width: 480px) {
+        transform: scale(0.5) translateX(50%) translateY(-50%);
+        pointer-events: none; //disabler hover-animasjon
+    }
 }
