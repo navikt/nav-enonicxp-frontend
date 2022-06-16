@@ -29,6 +29,8 @@ const fetchIndexPageContentProps = (
         return res;
     });
 
+// Custom routing functionality for navigating between frontpages and area pages. We want to control routing
+// between these pages in order to implement various shiny transition effects :D
 export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     const basePath = getPublicPathname(pageProps);
 

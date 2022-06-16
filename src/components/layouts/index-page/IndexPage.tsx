@@ -9,14 +9,18 @@ import {
 } from '../../../types/content-props/index-pages-props';
 import { getPageTitle } from '../../_common/metatags/HeadWithMetatags';
 import { useIndexPageRouting } from './useIndexPageRouting';
+import {
+    ContentProps,
+    ContentType,
+} from '../../../types/content-props/_content-common';
+import { AlertBox } from '../../_common/alert-box/AlertBox';
+import { LenkeInline } from '../../_common/lenke/LenkeInline';
 
 export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
-type Props = {
-    pageProps: IndexPageContentProps;
-};
-
-export const IndexPage = ({ pageProps }: Props) => {
+// This page component should always be used in the templates for the FrontPage and AreaPage types
+// (and nothing else!)
+const IndexPageContent = (pageProps: IndexPageContentProps) => {
     const { currentPageProps, navigate } = useIndexPageRouting(pageProps);
 
     const { regions } = currentPageProps.page;
@@ -28,7 +32,19 @@ export const IndexPage = ({ pageProps }: Props) => {
         >
             <Head>
                 <title>{getPageTitle(currentPageProps)}</title>
+                {/*TODO: Remove this before public release*/}
+                <meta name={'robots'} content={'noindex, nofollow'} />
             </Head>
+            {pageProps.serverEnv !== 'prod' && (
+                <AlertBox variant={'warning'}>
+                    {
+                        'Hei! Disse sidene er forsatt under utvikling og er ikke helt klare til bruk ennå. Noe funksjonalitet og innhold kan mangle. '
+                    }
+                    <LenkeInline href={'/no/person'}>
+                        {'Gå til dagens forside'}
+                    </LenkeInline>
+                </AlertBox>
+            )}
             <Region
                 pageProps={currentPageProps}
                 regionProps={regions.contentTop}
@@ -43,4 +59,22 @@ export const IndexPage = ({ pageProps }: Props) => {
             />
         </LayoutContainer>
     );
+};
+
+type Props = {
+    pageProps: ContentProps;
+};
+
+export const IndexPage = ({ pageProps }: Props) => {
+    if (
+        pageProps.__typename !== ContentType.AreaPage &&
+        pageProps.__typename !== ContentType.FrontPage
+    ) {
+        console.error(
+            `Invalid content type specified for IndexPage - id ${pageProps._id}`
+        );
+        return null;
+    }
+
+    return <IndexPageContent {...pageProps} />;
 };
