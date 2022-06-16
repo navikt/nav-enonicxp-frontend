@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import style from './AnimateOnChange.module.scss';
+import { classNames } from '../../../utils/classnames';
 
 type Props = {
     renderTrigger: string;
@@ -17,6 +18,7 @@ export const AnimateOnChange = ({
 
     const [prevHeight, setPrevHeight] = useState<number | null>();
     const [heightToRender, setHeightToRender] = useState<number | null>(null);
+    const [fade, setFade] = useState(false);
     const [duration, setDuration] = useState<number | null>(null);
 
     const [childrenToRender, setChildrenToRender] =
@@ -25,10 +27,16 @@ export const AnimateOnChange = ({
     useEffect(() => {
         const height = containerRef.current.scrollHeight;
         setPrevHeight(height);
-        setChildrenToRender(children);
+
+        setFade(true);
+        setTimeout(() => setChildrenToRender(children), 200);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [renderTrigger]);
 
     useEffect(() => {
+        setFade(false);
+
         const height = containerRef.current.scrollHeight;
         setHeightToRender(prevHeight);
         requestAnimationFrame(() => setHeightToRender(height));
@@ -37,11 +45,13 @@ export const AnimateOnChange = ({
         setDuration(durationMs);
 
         setTimeout(() => setHeightToRender(null), durationMs);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [childrenToRender]);
 
     return (
         <div
-            className={style.animated}
+            className={classNames(style.animated, fade && style.fade)}
             ref={containerRef}
             style={{
                 ...(duration !== null && {

@@ -1,4 +1,24 @@
 .animated {
     overflow: hidden;
-    transition: height 100ms linear;
+    transition: height, opacity 100ms linear;
+}
+
+.fade {
+    opacity: 100%;
+    animation-name: fade;
+    animation-duration: 200ms;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+    animation-iteration-count: 2;
+}
+
+@keyframes fade {
+    from {
+        opacity: 100%;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
