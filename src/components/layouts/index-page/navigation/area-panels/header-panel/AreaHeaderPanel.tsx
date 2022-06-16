@@ -7,20 +7,17 @@ import { classNames } from '../../../../../../utils/classnames';
 import { AreaHeaderPanelExpanded } from './expanded/AreaHeaderPanelExpanded';
 
 import style from './AreaPanel.module.scss';
+import { getPublicPathname } from '../../../../../../utils/urls';
 
 const AreaCardPlaceholder = ({
     areaContent,
     navigationCallback,
-    className,
 }: {
     areaContent: AreaPageProps;
     navigationCallback: (path: string) => void;
     className?: string;
 }) => {
-    const { _id, _path, data } = areaContent;
-    const { header, customPath } = data;
-
-    const path = customPath || _path;
+    const path = getPublicPathname(areaContent);
 
     return (
         <a
@@ -29,8 +26,13 @@ const AreaCardPlaceholder = ({
                 e.preventDefault();
                 navigationCallback(path);
             }}
+            style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+            }}
         >
-            <span>{header}</span>
+            <span>{areaContent.data.header}</span>
             <WarningFilled className={style.icon} />
         </a>
     );
