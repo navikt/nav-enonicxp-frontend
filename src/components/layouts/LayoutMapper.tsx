@@ -14,6 +14,7 @@ import { ProductDetailsLayout } from './product-details-layout/ProductDetailsLay
 import { Provider } from 'react-redux';
 import { createNewStore } from 'store/store';
 import { setLayoutConfigAction } from 'store/slices/layoutConfig';
+import { IndexPage } from './index-page/IndexPage';
 
 type Props = {
     pageProps: ContentProps;
@@ -37,6 +38,7 @@ const layoutComponents: {
     [LayoutType.SituationPageFlexCols]: SituationPageFlexColsLayout,
     [LayoutType.ProductPageFlexCols]: ProductPageFlexColsLayout,
     [LayoutType.ProductDetailsPage]: ProductDetailsLayout,
+    [LayoutType.IndexPage]: IndexPage,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {

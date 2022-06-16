@@ -34,6 +34,7 @@ import { MediaType } from '../media';
 import { PayoutDatesProps } from './payout-dates';
 import { LanguageProps } from '../language';
 import { FragmentPageProps } from './fragment-page-props';
+import { AreaPageProps, FrontPageProps } from './index-pages-props';
 
 export enum ContentType {
     Error = 'error',
@@ -68,6 +69,8 @@ export enum ContentType {
     Overview = 'no_nav_navno_Overview',
     GlobalCaseTimeSet = 'no_nav_navno_GlobalCaseTimeSet',
     PayoutDates = 'no_nav_navno_PayoutDates',
+    FrontPage = 'no_nav_navno_FrontPage',
+    AreaPage = 'no_nav_navno_AreaPage',
 }
 
 export type ContentAndMediaCommonProps = {
@@ -149,6 +152,8 @@ type SpecificContentProps =
     | OverviewPageProps
     | ProductDetailsProps
     | FragmentPageProps
-    | ContactInformationProps;
+    | ContactInformationProps
+    | FrontPageProps
+    | AreaPageProps;
 
 export type ContentProps = ContentCommonProps & SpecificContentProps;

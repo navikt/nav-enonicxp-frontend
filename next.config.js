@@ -189,7 +189,7 @@ module.exports = withPlugins([withTranspileModules], {
         {
             source: '/forsiden',
             destination: '/no/person',
-            permanent: true,
+            permanent: false,
         },
         {
             source: '/www.nav.no',

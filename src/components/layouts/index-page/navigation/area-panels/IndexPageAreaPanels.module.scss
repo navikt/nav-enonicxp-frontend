@@ -1,0 +1,12 @@
+@use 'src/common' as common;
+
+.panels {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+
+    & > * {
+        width: 30%;
+    }
+}

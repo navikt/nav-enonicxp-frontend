@@ -1,4 +1,5 @@
 import globalState from '../globalState';
+import { ContentProps } from '../types/content-props/_content-common';
 
 export const appOriginProd = 'https://www.nav.no';
 export const xpContentPathPrefix = '/www.nav.no';
@@ -118,6 +119,9 @@ export const getMediaUrl = (
         isEditorView ? `${adminOrigin}${xpDraftPathPrefix}` : xpOrigin
     );
 };
+
+export const getPublicPathname = (content: ContentProps) =>
+    content.data?.customPath || stripXpPathPrefix(content._path);
 
 export const isUUID = (id: string) =>
     id &&
