@@ -14,8 +14,6 @@ const getTargetPath = (contentData: ContentProps) => {
             return !contentData.isDraft
                 ? contentData.data?.externalProductUrl
                 : null;
-        case ContentType.Site:
-            return '/no/person';
         case ContentType.InternalLink:
             return contentData.data?.target?._path;
         case ContentType.ExternalLink:

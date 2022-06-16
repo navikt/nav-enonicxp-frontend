@@ -8,7 +8,11 @@ import {
     ContentType,
 } from '../../../types/content-props/_content-common';
 
-const fetchIndexPageContentProps = (path: string) =>
+type CacheEntries = Record<string, IndexPageContentProps>;
+
+const fetchIndexPageContentProps = (
+    path: string
+): Promise<IndexPageContentProps | null> =>
     fetchPageCacheContent(path).then((res) => {
         if (!res) {
             return null;
@@ -30,9 +34,13 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
     const router = useRouter();
     const [currentPageProps, setCurrentPageProps] = useState(pageProps);
-    const [localPageCache, setLocalPageCache] = useState({
+    const [localPageCache, setLocalPageCache] = useState<CacheEntries>({
         [basePath]: pageProps,
     });
+
+    const addLocalPageCacheEntries = (cacheEntries: CacheEntries) => {
+        setLocalPageCache({ ...localPageCache, ...cacheEntries });
+    };
 
     const navigate = (path: string) => {
         const cachedPage = localPageCache[path];
@@ -41,7 +49,10 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
             setCurrentPageProps(cachedPage);
         } else {
             fetchIndexPageContentProps(path).then((contentProps) => {
-                setLocalPageCache({ ...localPageCache, [path]: contentProps });
+                addLocalPageCacheEntries({
+                    ...localPageCache,
+                    [path]: contentProps,
+                });
                 setCurrentPageProps(contentProps);
             });
         }
@@ -71,11 +82,11 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
                 return { ...acc, [path]: page };
             }, {});
 
-            setLocalPageCache({ ...localPageCache, ...pages });
+            addLocalPageCacheEntries({ ...localPageCache, ...pages });
         });
     }, [currentPageProps]);
 
-    // Handle back/forwards navigation in the browser
+    // Handle back/forward navigation in the browser
     useEffect(() => {
         router.beforePopState(({ url, as, options }) => {
             const cachedPage = localPageCache[as];

@@ -25,10 +25,10 @@ export const AreaPageNavigationBar = ({
             )}
         >
             <LenkeInline
-                href={'/forside'}
+                href={'/'}
                 onClick={(e) => {
                     e.preventDefault();
-                    navigationCallback('/forside');
+                    navigationCallback('/');
                 }}
                 className={style.areasPageNavigationLink}
             >
