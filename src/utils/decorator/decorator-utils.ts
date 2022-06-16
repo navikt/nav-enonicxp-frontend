@@ -63,7 +63,7 @@ const defaultParams = {
 };
 
 const taSurveys = {
-    taSurveys: '03229',
+    taSurveys: '',
 };
 
 export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
