@@ -24,34 +24,23 @@ export const AreaPageNavigationBar = ({
                 !isVisible && style.hidden
             )}
         >
-            <LenkeInline
-                href={'/'}
-                onClick={(e) => {
-                    e.preventDefault();
-                    navigationCallback('/');
-                }}
-                className={style.areasPageNavigationLink}
-            >
-                {'Til forside'}
-            </LenkeInline>
-            {isVisible &&
-                areasRefs.map((areaContent) => {
-                    const path = getPublicPathname(areaContent);
+            {areasRefs.map((areaContent) => {
+                const path = getPublicPathname(areaContent);
 
-                    return (
-                        <LenkeInline
-                            href={path}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                navigationCallback(path);
-                            }}
-                            className={style.areasPageNavigationLink}
-                            key={areaContent._id}
-                        >
-                            {areaContent.data.header}
-                        </LenkeInline>
-                    );
-                })}
+                return (
+                    <LenkeInline
+                        href={path}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            navigationCallback(path);
+                        }}
+                        className={style.areasPageNavigationLink}
+                        key={areaContent._id}
+                    >
+                        {areaContent.data.header}
+                    </LenkeInline>
+                );
+            })}
         </div>
     );
 };
