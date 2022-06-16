@@ -8,6 +8,7 @@ import { AreaHeaderPanelExpanded } from './expanded/AreaHeaderPanelExpanded';
 
 import style from './AreaPanel.module.scss';
 import { getPublicPathname } from '../../../../../../utils/urls';
+import { AreaCard } from 'components/_common/area-card/AreaCard';
 
 const AreaCardPlaceholder = ({
     areaContent,
@@ -51,6 +52,8 @@ export const AreaHeaderPanel = ({
 }: Props) => {
     const { __typename: currentType, _id: currentId } = currentContent;
 
+    console.log('HER', areaContent);
+
     return currentType === ContentType.AreaPage &&
         areaContent._id === currentId ? (
         <div className={classNames(style.areaPanel, style.areaPanelActive)}>
@@ -63,10 +66,11 @@ export const AreaHeaderPanel = ({
                 currentType === ContentType.AreaPage && style.areaPanelHidden
             )}
         >
-            <AreaCardPlaceholder
+            {/* <AreaCardPlaceholder
                 areaContent={areaContent}
                 navigationCallback={navigationCallback}
-            />
+            /> */}
+            <AreaCard href="test" title={areaContent.displayName}></AreaCard>
         </div>
     );
 };
