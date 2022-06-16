@@ -4,7 +4,7 @@ import { classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 import { Interaction } from 'types/interaction';
-import { useLayoutConfig } from '../../../store/hooks/useLayoutConfig';
+import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 
 import style from './Card.module.scss';
 
@@ -30,12 +30,12 @@ export const Card = (props: CardProps) => {
     const { layoutConfig } = useLayoutConfig();
 
     // Navn på komponent settes til visningsnavn i Enonic
-    const componentDisplayName = (type:CardType, size:CardSize) => {
-        switch ( type ) {
+    const componentDisplayName = (type: CardType, size: CardSize) => {
+        switch (type) {
             case CardType.Provider:
                 return 'Tilbyderkort';
             default:
-                switch ( size ) {
+                switch (size) {
                     case CardSize.Mini:
                         return 'Kort mini';
                     case CardSize.Micro:
@@ -44,7 +44,7 @@ export const Card = (props: CardProps) => {
                         return 'Kort';
                 }
         }
-    }
+    };
 
     return (
         <LenkeBase
@@ -66,9 +66,7 @@ export const Card = (props: CardProps) => {
             onTouchCancel={handleUserEvent}
             onTouchMove={handleUserEvent}
         >
-            <div className={classNames(style.bed, type, size)}>
-                {children}
-            </div>
+            <div className={classNames(style.bed, type, size)}>{children}</div>
         </LenkeBase>
     );
 };

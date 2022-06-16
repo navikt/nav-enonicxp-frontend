@@ -16,10 +16,10 @@ import {
     getIsClosedForToday,
     getIsCurrentyClosed,
 } from '../contact-details/contactHelpers';
+import { analyticsEvents } from '../../../utils/amplitude';
+import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 
 import style from './ContactOption.module.scss';
-import {analyticsEvents} from "../../../utils/amplitude";
-import {useLayoutConfig} from "../../../store/hooks/useLayoutConfig";
 
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
