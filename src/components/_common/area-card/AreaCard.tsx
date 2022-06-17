@@ -3,6 +3,9 @@ import { LinkPanel } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import style from './AreaCard.module.scss';
 
+import { CasesAnimation } from './logged-in/cases/CasesAnimation';
+import { PaymentsAnimation } from './logged-in/payments/PaymentsAnimation';
+
 import { AccessibilityAnimation } from './open-pages/accessibility/AccessibilityAnimation';
 import { FamilyAnimation } from './open-pages/family/FamilyAnimation';
 import { HealthAnimation } from './open-pages/health/HealthAnimation';
@@ -34,12 +37,15 @@ export const AreaCard = ({ href, title, area }: Props) => {
         >
             <div
                 className={
-                    title.length > 17 ? style.titleLong : style.titleShort
+                    title.length > 17 ? style.titleLong : style.titleShort //TODO endre? bredde settes også i px
                 }
             >
                 <LinkPanel.Title>{title}</LinkPanel.Title>
             </div>
             <div className={style.animationArea}>
+                {title === 'Dine saker' ? <CasesAnimation /> : ''}
+                {title === 'Dine utbetalinger' ? <PaymentsAnimation /> : ''}
+
                 {area === 'accessibility' ? <AccessibilityAnimation /> : ''}
                 {area === 'family' ? <FamilyAnimation /> : ''}
                 {area === 'health' ? <HealthAnimation /> : ''}
