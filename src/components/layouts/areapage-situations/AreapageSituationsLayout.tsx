@@ -41,6 +41,11 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
             >
                 {title}
             </Header>
+            <EditorHelp
+                text={
+                    'Denne listen genereres automatisk. Kort kan ikke slettes eller opprettes manuelt.'
+                }
+            />
             <Region
                 pageProps={pageProps}
                 regionProps={regions.situations}

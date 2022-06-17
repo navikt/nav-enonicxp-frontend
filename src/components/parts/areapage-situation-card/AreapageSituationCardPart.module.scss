@@ -1,5 +1,8 @@
+@use 'src/common' as common;
+
 .card {
     width: 100%;
+    position: relative;
 
     & > * {
         margin-bottom: 0;
@@ -9,4 +12,23 @@
     :global(.situation) {
         min-height: 0 !important;
     }
+}
+
+.disabled {
+    pointer-events: none;
+    :global(.situation) {
+        filter: grayscale(100%) blur(3px);
+    }
+}
+
+.disabledMsg {
+    position: absolute;
+    width: calc(100% - 2rem);
+    height: auto;
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+    z-index: 1;
+    border-radius: 4px;
+    background-color: common.$navds-global-color-orange-100;
 }

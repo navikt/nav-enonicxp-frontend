@@ -3,9 +3,11 @@ import { ContentType, ContentCommonProps } from './_content-common';
 import { Area } from '../areas';
 import { ProcessedHtmlProps } from '../processed-html-props';
 import { IndexPageProps } from '../component-props/pages/index-page';
+import { Audience } from '../component-props/_mixins';
 
 type CommonData = {
     areasRefs: AreaPageProps[];
+    audience: Audience;
 } & DynamicPageData;
 
 export type FrontPageData = {
