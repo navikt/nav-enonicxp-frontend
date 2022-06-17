@@ -9,7 +9,9 @@
 }
 
 .situations {
-    @include common.flex-cols-mixin(2);
+    display: flex;
+    flex-wrap: wrap;
+    @include common.flex-cols-mixin(2, 1.5rem, 0);
 }
 
 .header {
