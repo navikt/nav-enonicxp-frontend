@@ -12,6 +12,7 @@ import { SingleColPageProps } from './pages/single-col-page';
 import { SituationPageFlexColsLayoutProps } from './layouts/situation-flex-cols';
 import { ProductPageFlexColsLayoutProps } from './layouts/product-flex-cols';
 import { IndexPageProps } from './pages/index-page';
+import { AreapageSituationsProps } from './layouts/areapage-situations';
 
 export enum LayoutType {
     Fixed1Col = 'no.nav.navno:dynamic-1-col',
@@ -57,4 +58,5 @@ export type LayoutProps =
     | SingleColPageProps
     | SituationPageFlexColsLayoutProps
     | ProductPageFlexColsLayoutProps
-    | IndexPageProps;
+    | IndexPageProps
+    | AreapageSituationsProps;

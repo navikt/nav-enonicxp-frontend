@@ -1,0 +1,17 @@
+@use 'src/common' as common;
+
+.container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: common.$navds-global-color-deepblue-50;
+
+    @include common.full-width-mixin();
+}
+
+.situations {
+    @include common.flex-cols-mixin(2);
+}
+
+.header {
+    margin-bottom: 1rem;
+}
