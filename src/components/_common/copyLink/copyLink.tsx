@@ -3,8 +3,8 @@ import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
 import { StaticImage } from '../image/StaticImage';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { useLayoutConfig } from 'store/hooks/useLayoutConfig';
-import { analyticsEvents,logAmplitudeEvent } from 'utils/amplitude';
+import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 
 import linkIcon from '/public/gfx/link.svg';
 import style from './copyLink.module.scss';
