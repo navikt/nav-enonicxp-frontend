@@ -64,14 +64,10 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
                 <thead>
                     <tr>
                         <th scope="col">
-                            <span className="visuallyhidden">
-                                {getLabel('publishdate')}
-                            </span>
+                            {getLabel('publishdate')}
                         </th>
                         <th scope="col">
-                            <span className="visuallyhidden">
-                                {getLabel('event')}
-                            </span>
+                            {getLabel('event')}
                         </th>
                     </tr>
                 </thead>
