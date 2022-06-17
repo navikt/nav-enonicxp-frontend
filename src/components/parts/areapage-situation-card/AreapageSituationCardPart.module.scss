@@ -1,0 +1,7 @@
+.card {
+    width: 100%;
+
+    :global(.situation) {
+        min-height: 0 !important;
+    }
+}
