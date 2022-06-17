@@ -17,6 +17,8 @@ import { AlertBox } from '../../_common/alert-box/AlertBox';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import { AnimateHeight } from '../../_common/animate-height/AnimateHeight';
 
+import style from './IndexPage.module.scss';
+
 export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
 const IndexPageContent = (pageProps: IndexPageContentProps) => {
@@ -28,6 +30,7 @@ const IndexPageContent = (pageProps: IndexPageContentProps) => {
         <LayoutContainer
             pageProps={currentPageProps}
             layoutProps={currentPageProps.page}
+            className={style.indexPage}
         >
             <Head>
                 <title>{getPageTitle(currentPageProps)}</title>
