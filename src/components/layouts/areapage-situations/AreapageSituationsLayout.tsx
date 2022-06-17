@@ -43,7 +43,8 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
             </Header>
             <EditorHelp
                 text={
-                    'Denne listen genereres automatisk. Kort kan ikke slettes eller opprettes manuelt.'
+                    'Listen genereres automatisk ut fra målgruppe og område, og kan ikke endres manuelt.' +
+                    ' For å skjule et kort, klikk og velg "Skjul..." i høyre-panelet.'
                 }
             />
             <Region
