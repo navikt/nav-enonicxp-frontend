@@ -29,17 +29,22 @@ export enum LayoutType {
     ProductPageFlexCols = 'no.nav.navno:product-flex-cols',
     ProductDetailsPage = 'no.nav.navno:product-details-page',
     IndexPage = 'no.nav.navno:index-page',
+    AreapageSituations = 'no.nav.navno:areapage-situations',
 }
 
-export type RegionProps = {
+export type RegionProps<Name = string> = {
     components: ComponentProps[];
-    name: string;
+    name: Name;
+};
+
+export type Regions<RegionNames extends string> = {
+    [Name in RegionNames]: RegionProps<Name>;
 };
 
 export interface LayoutCommonProps extends ComponentCommonProps {
     type: ComponentType.Layout | ComponentType.Page;
     descriptor: LayoutType;
-    regions?: { [key: string]: RegionProps };
+    regions?: Regions<string>;
     config?: any;
 }
 

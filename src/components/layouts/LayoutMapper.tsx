@@ -37,6 +37,7 @@ const layoutComponents: {
     [LayoutType.ProductPageFlexCols]: ProductPageFlexColsLayout,
     [LayoutType.ProductDetailsPage]: ProductDetailsLayout,
     [LayoutType.IndexPage]: IndexPage,
+    [LayoutType.AreapageSituations]: () => null,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {

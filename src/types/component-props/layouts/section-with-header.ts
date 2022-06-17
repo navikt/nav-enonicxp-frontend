@@ -1,21 +1,12 @@
-import { LayoutCommonProps, LayoutType } from '../layouts';
-import { ComponentProps, ComponentType } from '../_component-common';
+import { LayoutCommonProps, LayoutType, Regions } from '../layouts';
+import { ComponentType } from '../_component-common';
 import { HeaderWithAnchorMixin, LayoutCommonConfigMixin } from '../_mixins';
 import { XpImageProps } from '../../media';
 
 export interface SectionWithHeaderProps extends LayoutCommonProps {
     type: ComponentType.Layout;
     descriptor: LayoutType.SectionWithHeader;
-    regions: {
-        intro: {
-            components: ComponentProps[];
-            name: 'intro';
-        };
-        content: {
-            components: ComponentProps[];
-            name: 'content';
-        };
-    };
+    regions: Regions<'intro' | 'content'>;
     config: {
         icon?: {
             icon: XpImageProps;
