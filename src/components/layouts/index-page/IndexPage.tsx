@@ -48,10 +48,12 @@ const IndexPageContent = (pageProps: IndexPageContentProps) => {
                 </AlertBox>
             )}
             <AnimateHeight trigger={currentPageProps._id}>
-                <Region
-                    pageProps={currentPageProps}
-                    regionProps={regions.contentTop}
-                />
+                {currentPageProps.__typename === ContentType.FrontPage && (
+                    <Region
+                        pageProps={currentPageProps}
+                        regionProps={regions.contentTop}
+                    />
+                )}
             </AnimateHeight>
             <IndexPageNavigation
                 pageProps={currentPageProps}

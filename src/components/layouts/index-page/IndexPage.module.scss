@@ -1,4 +1,8 @@
 .indexPage {
     max-width: 1272px;
     margin: 0 auto;
+
+    :global(.region__contentTop) {
+        margin-bottom: 2rem;
+    }
 }
