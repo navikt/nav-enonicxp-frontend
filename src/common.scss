@@ -38,6 +38,7 @@ $mq-screen-desktop-large: 'only screen and (min-width: #{$desktopMaxWidth}) ';
 $mobileSmallMaxWidth: 30rem; // 480px
 $desktopSmallMaxWidth: 75rem; // 1200px
 $mq-screen-mobile-small: 'only screen and (max-width: #{$mobileSmallMaxWidth})';
+$mq-screen-desktop-small: 'only screen and (max-width: #{$desktopSmallMaxWidth})';
 
 // Max-width for SituationPage & Layouts
 $contentMaxWidth: px-to-rem(900);

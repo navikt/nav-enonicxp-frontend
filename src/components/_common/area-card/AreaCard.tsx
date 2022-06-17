@@ -3,19 +3,20 @@ import { LinkPanel } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import style from './AreaCard.module.scss';
 
-import { AssistiveAidsAnimation } from './open-pages/assistive-aids/AssistiveAidsAnimation';
+import { AccessibilityAnimation } from './open-pages/accessibility/AccessibilityAnimation';
 import { FamilyAnimation } from './open-pages/family/FamilyAnimation';
 import { HealthAnimation } from './open-pages/health/HealthAnimation';
 import { PensionAnimation } from './open-pages/pension/PensionAnimation';
-import { SocialServicesAnimation } from './open-pages/social-services/SocialServicesAnimation';
+import { SocialCounsellingAnimation } from './open-pages/social-counselling/SocialCounsellingAnimation';
 import { WorkAnimation } from './open-pages/work/WorkAnimation';
 
 type Props = {
     href: string;
     title: string;
+    area: string;
 };
 
-export const AreaCard = ({ href, title }: Props) => {
+export const AreaCard = ({ href, title, area }: Props) => {
     return (
         <LinkPanel
             border={false}
@@ -39,20 +40,16 @@ export const AreaCard = ({ href, title }: Props) => {
                 <LinkPanel.Title>{title}</LinkPanel.Title>
             </div>
             <div className={style.animationArea}>
-                {title === 'Hjelpemidler og tilrettelegging' ? (
-                    <AssistiveAidsAnimation />
+                {area === 'accessibility' ? <AccessibilityAnimation /> : ''}
+                {area === 'family' ? <FamilyAnimation /> : ''}
+                {area === 'health' ? <HealthAnimation /> : ''}
+                {area === 'pension' ? <PensionAnimation /> : ''}
+                {area === 'social_counselling' ? (
+                    <SocialCounsellingAnimation />
                 ) : (
                     ''
                 )}
-                {title === 'Familie og barn' ? <FamilyAnimation /> : ''}
-                {title === 'Helse og sykdom' ? <HealthAnimation /> : ''}
-                {title === 'Pensjon' ? <PensionAnimation /> : ''}
-                {title === 'Arbeid' ? <WorkAnimation /> : ''}
-                {title === 'Sosiale tjenester  og veiledning' ? (
-                    <SocialServicesAnimation />
-                ) : (
-                    ''
-                )}
+                {area === 'work' ? <WorkAnimation /> : ''}
             </div>
         </LinkPanel>
     );

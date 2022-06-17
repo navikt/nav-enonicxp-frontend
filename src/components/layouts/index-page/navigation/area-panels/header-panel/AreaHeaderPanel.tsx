@@ -52,7 +52,7 @@ export const AreaHeaderPanel = ({
 }: Props) => {
     const { __typename: currentType, _id: currentId } = currentContent;
 
-    console.log('HER', areaContent);
+    console.log('HER', areaContent); //TODO fjerne
 
     return currentType === ContentType.AreaPage &&
         areaContent._id === currentId ? (
@@ -70,7 +70,11 @@ export const AreaHeaderPanel = ({
                 areaContent={areaContent}
                 navigationCallback={navigationCallback}
             /> */}
-            <AreaCard href="test" title={areaContent.displayName}></AreaCard>
+            <AreaCard
+                href={areaContent._path}
+                title={areaContent.displayName}
+                area={areaContent.data.area}
+            ></AreaCard>
         </div>
     );
 };
