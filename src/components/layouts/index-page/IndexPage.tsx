@@ -15,7 +15,7 @@ import {
 } from '../../../types/content-props/_content-common';
 import { AlertBox } from '../../_common/alert-box/AlertBox';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
-import { AnimateOnChange } from '../../_common/animate-on-change/AnimateOnChange';
+import { AnimateHeight } from '../../_common/animate-height/AnimateHeight';
 
 export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
@@ -44,22 +44,22 @@ const IndexPageContent = (pageProps: IndexPageContentProps) => {
                     </LenkeInline>
                 </AlertBox>
             )}
-            <AnimateOnChange renderTrigger={currentPageProps._id}>
+            <AnimateHeight trigger={currentPageProps._id}>
                 <Region
                     pageProps={currentPageProps}
                     regionProps={regions.contentTop}
                 />
-            </AnimateOnChange>
+            </AnimateHeight>
             <IndexPageNavigation
                 pageProps={currentPageProps}
                 navigationCallback={navigate}
             />
-            <AnimateOnChange renderTrigger={currentPageProps._id}>
+            <AnimateHeight trigger={currentPageProps._id}>
                 <Region
                     pageProps={currentPageProps}
                     regionProps={regions.contentBottom}
                 />
-            </AnimateOnChange>
+            </AnimateHeight>
         </LayoutContainer>
     );
 };
