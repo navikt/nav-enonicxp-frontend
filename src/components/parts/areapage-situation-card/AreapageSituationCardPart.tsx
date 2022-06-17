@@ -25,7 +25,9 @@ export const AreapageSituationCardPart = ({
         <div className={classNames(style.card, disabled && style.disabled)}>
             {disabled && (
                 <span className={style.disabledMsg}>
-                    <strong>{`"${target.data.title}"`}</strong>
+                    <strong>{`"${
+                        target.data.title || target.displayName
+                    }"`}</strong>
                     {' er skjult på denne siden'}
                 </span>
             )}
