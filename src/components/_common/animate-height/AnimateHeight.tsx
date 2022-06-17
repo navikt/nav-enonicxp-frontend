@@ -20,7 +20,7 @@ export const AnimateHeight = ({
 }: Props) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    const [prevHeight, setPrevHeight] = useState<number | null>();
+    const [prevHeight, setPrevHeight] = useState<number | null>(null);
     const [heightToRender, setHeightToRender] = useState<number | null>(null);
     const [fadeOut, setFadeOut] = useState(false);
     const [duration, setDuration] = useState<number | null>(null);
