@@ -4,6 +4,7 @@ import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import style from './AreaCard.module.scss';
 
 import { CasesAnimation } from './logged-in/cases/CasesAnimation';
+import { EmploymentStatusFormAnimation } from './logged-in/employment-status-form/EmploymentStatusFormAnimation';
 import { PaymentsAnimation } from './logged-in/payments/PaymentsAnimation';
 
 import { AccessibilityAnimation } from './open-pages/accessibility/AccessibilityAnimation';
@@ -44,6 +45,11 @@ export const AreaCard = ({ href, title, area }: Props) => {
             </div>
             <div className={style.animationArea}>
                 {title === 'Dine saker' ? <CasesAnimation /> : ''}
+                {title === 'Dine meldekort' ? (
+                    <EmploymentStatusFormAnimation />
+                ) : (
+                    ''
+                )}
                 {title === 'Dine utbetalinger' ? <PaymentsAnimation /> : ''}
 
                 {area === 'accessibility' ? <AccessibilityAnimation /> : ''}
