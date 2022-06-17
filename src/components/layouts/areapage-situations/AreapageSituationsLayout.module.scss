@@ -11,7 +11,7 @@
 .situations {
     display: flex;
     flex-wrap: wrap;
-    @include common.flex-cols-mixin(2, 1.5rem, 0);
+    @include common.flex-cols-mixin(2, 1.5rem, 1.5rem);
 }
 
 .header {
