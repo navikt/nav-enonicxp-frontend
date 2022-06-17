@@ -4,9 +4,9 @@ import { StaticImage } from 'components/_common/image/StaticImage';
 import arrow from './gfx/arrow.svg';
 import dog from './gfx/dog.svg';
 
-import style from './AssistiveAidsAnimation.module.scss';
+import style from './AccessibilityAnimation.module.scss';
 
-export const AssistiveAidsAnimation = () => {
+export const AccessibilityAnimation = () => {
     return (
         <>
             <StaticImage imageData={arrow} className={style.arrow} alt="" />

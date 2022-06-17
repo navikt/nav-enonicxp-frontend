@@ -6,9 +6,9 @@ import letterS from './gfx/letterS.svg';
 import heart from './gfx/heart.svg';
 import hand from './gfx/hand.svg';
 
-import style from './SocialServicesAnimation.module.scss';
+import style from './SocialCounsellingAnimation.module.scss';
 
-export const SocialServicesAnimation = () => {
+export const SocialCounsellingAnimation = () => {
     return (
         <>
             <StaticImage imageData={compass} className={style.compass} alt="" />
