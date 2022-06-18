@@ -12,8 +12,13 @@ export const AreapageSituationCardPart = ({
     config,
 }: AreapageSituationCardPartProps) => {
     const { language } = usePageConfig();
-    if (!config?.target) {
-        return <EditorHelp text={'Komponenten er ikke konfigurert'} />;
+    if (!config?.target?._id) {
+        return (
+            <EditorHelp
+                type={'error'}
+                text={'Feil: komponenten har ingen gyldig referanse'}
+            />
+        );
     }
 
     const { target, disabled } = config;

@@ -44,7 +44,7 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
             <EditorHelp
                 text={
                     'Listen oppdateres automatisk ut fra målgruppe og område, og kan ikke endres manuelt.' +
-                    ' For å skjule et kort, klikk og velg "Skjul..." i høyre-panelet.'
+                    ' For å fjerne et kort fra siden, velg "Skjul..." i høyre-panelet.'
                 }
             />
             <EditorHelp
