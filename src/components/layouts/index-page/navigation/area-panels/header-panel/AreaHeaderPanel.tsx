@@ -56,6 +56,7 @@ export const AreaHeaderPanel = ({
 
     useEffect(() => {
         if (currentType === prevType) {
+            setUseFrontpageTransition(false);
             return;
         }
 
