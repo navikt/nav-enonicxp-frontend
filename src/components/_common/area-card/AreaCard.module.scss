@@ -43,12 +43,14 @@ $border-radius: 0.5rem;
                 --navds-semantic-color-component-background-alternate
             );
 
-            .titleShort {
-                transform: translateY(-2.5rem);
-            }
+            @media (prefers-reduced-motion: no-preference) {
+                .titleShort {
+                    transform: translateY(-2.5rem);
+                }
 
-            .titleLong {
-                transform: translateY(-1.5rem);
+                .titleLong {
+                    transform: translateY(-1.5rem);
+                }
             }
 
             :global(.navds-link-panel__title) {
