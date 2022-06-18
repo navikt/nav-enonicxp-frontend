@@ -37,6 +37,10 @@ $border-radius: 0.5rem;
     &:hover {
         box-shadow: none;
 
+        :global(.navds-link-panel__title) {
+            text-decoration: none;
+        }
+
         @media only screen and (min-width: 480px) {
             //TODO mq
             background-color: var(
@@ -51,10 +55,6 @@ $border-radius: 0.5rem;
                 .titleLong {
                     transform: translateY(-1.5rem);
                 }
-            }
-
-            :global(.navds-link-panel__title) {
-                text-decoration: none;
             }
         }
     }
@@ -97,7 +97,8 @@ $border-radius: 0.5rem;
     border-radius: $border-radius;
 
     @media #{common.$mq-screen-mobile-small} {
-        transform: scale(0.5) translateX(50%) translateY(-50%);
-        pointer-events: none; //disabler hover-animasjon
+        transform: scale(0.5) translateX(-50%);
+        width: 200%;
+        height: 200%;
     }
 }
