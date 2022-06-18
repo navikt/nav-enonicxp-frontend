@@ -56,7 +56,9 @@ export const AnimateHeight = ({
         setHeightToRender(prevHeight);
 
         // Trigger animation by setting the new height on the next frame
-        requestAnimationFrame(() => setHeightToRender(height));
+        const animationFrameRequestHandle = requestAnimationFrame(() =>
+            setHeightToRender(height)
+        );
 
         // Calculate the duration of the transition from the height delta to ensure
         // a consistent animation speed
@@ -66,7 +68,12 @@ export const AnimateHeight = ({
         // After the transition is finished, remove the height attribute
         // We don't want to leave the height static, in case the content of
         // the container changes
-        setTimeout(() => setHeightToRender(null), durationMs);
+        setTimeout(() => {
+            // Cancel the animationframe request in case it is slower than our
+            // calculated animation duration
+            window.cancelAnimationFrame(animationFrameRequestHandle);
+            setHeightToRender(null);
+        }, durationMs);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [childrenToRender]);
