@@ -59,12 +59,10 @@ export const AreaHeaderPanel = ({
             return;
         }
 
-        if (
+        setUseFrontpageTransition(
             prevType === ContentType.FrontPage &&
-            currentType === ContentType.AreaPage
-        ) {
-            setUseFrontpageTransition(true);
-        }
+                currentType === ContentType.AreaPage
+        );
 
         setPrevType(currentType);
     }, [currentType, prevType]);

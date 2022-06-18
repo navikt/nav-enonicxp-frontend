@@ -33,10 +33,12 @@ export const IndexPageNavigation = ({
                 />
             </AnimateHeight>
             <FrontPageAreasHeader content={pageProps} />
-            <IndexPageAreaPanels
-                content={pageProps}
-                navigationCallback={navigationCallback}
-            />
+            <AnimateHeight trigger={_id}>
+                <IndexPageAreaPanels
+                    content={pageProps}
+                    navigationCallback={navigationCallback}
+                />
+            </AnimateHeight>
         </div>
     );
 };
