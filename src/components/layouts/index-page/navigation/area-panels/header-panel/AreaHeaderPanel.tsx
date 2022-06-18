@@ -49,26 +49,27 @@ export const AreaHeaderPanel = ({
     currentContent,
     navigationCallback,
 }: Props) => {
-    const { __typename: currentType, _id: currentId } = currentContent;
+    const { __typename, _id } = currentContent;
 
-    const [prevType, setPrevType] = useState(currentType);
-    const [useFrontpageTransition, setUseFrontpageTransition] = useState(false);
+    const [currentId, setCurrentId] = useState(_id);
+    const [currentType, setCurrentType] = useState<ContentType>(__typename);
+    const [prevType, setPrevType] = useState<ContentType>();
 
     useEffect(() => {
-        if (currentType === prevType) {
-            setUseFrontpageTransition(false);
+        if (currentId === _id) {
             return;
         }
 
-        setUseFrontpageTransition(
-            prevType === ContentType.FrontPage &&
-                currentType === ContentType.AreaPage
-        );
-
+        setCurrentId(_id);
         setPrevType(currentType);
-    }, [currentType, prevType]);
+        setCurrentType(__typename);
+    }, [__typename, currentType, currentId, _id]);
 
-    return currentType === ContentType.AreaPage &&
+    const useFrontpageTransition =
+        prevType === ContentType.FrontPage &&
+        currentType === ContentType.AreaPage;
+
+    return __typename === ContentType.AreaPage &&
         areaContent._id === currentId ? (
         <div
             className={classNames(
