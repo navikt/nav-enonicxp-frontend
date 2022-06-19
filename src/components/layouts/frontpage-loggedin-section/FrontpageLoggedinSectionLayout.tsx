@@ -38,20 +38,18 @@ const HeaderWithName = ({ headerText }: { headerText: string }) => {
     }, [authState]);
 
     return (
-        name && (
-            <Header
-                level={'2'}
-                size={'xlarge'}
-                justify={'left'}
-                className={style.header}
-            >
-                {`${headerText.replace('$navn', name)} - ${
-                    meldekortInfo
-                        ? JSON.stringify(meldekortInfo)
-                        : 'Ingen meldekortinfo'
-                }`}
-            </Header>
-        )
+        <Header
+            level={'2'}
+            size={'xlarge'}
+            justify={'left'}
+            className={style.header}
+        >
+            {`${headerText.replace('$navn', name || 'Navny McNavnface')} - ${
+                meldekortInfo
+                    ? JSON.stringify(meldekortInfo)
+                    : 'Ingen meldekortinfo'
+            }`}
+        </Header>
     );
 };
 
