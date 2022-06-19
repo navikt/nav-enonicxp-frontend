@@ -1,6 +1,6 @@
-import { fetchWithTimeout } from './fetch/fetch-utils';
-import { setAuthStateAction } from '../store/slices/authState';
-import { store } from '../store/store';
+import { fetchWithTimeout } from './fetch-utils';
+import { setAuthStateAction } from '../../store/slices/authState';
+import { store } from '../../store/store';
 
 type AuthResponse =
     | {

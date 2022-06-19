@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FrontpageLoggedinSectionLayoutProps } from '../../../types/component-props/layouts/frontpage-loggedin-section';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { LayoutContainer } from '../LayoutContainer';
@@ -12,6 +12,10 @@ import { AuthDependantRender } from '../../_common/auth-dependant-render/AuthDep
 import { useAuthState } from '../../../store/hooks/useAuthState';
 
 import style from './FrontpageLoggedinSectionLayout.module.scss';
+import {
+    fetchMeldekortInfo,
+    MeldekortInfoResponse,
+} from '../../../utils/fetch/fetch-meldekort-info';
 
 const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
     if (!link) {
@@ -24,7 +28,14 @@ const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
 };
 
 const HeaderWithName = ({ headerText }: { headerText: string }) => {
-    const { name } = useAuthState();
+    const { name, authState } = useAuthState();
+    const [meldekortInfo, setMeldekortInfo] = useState<MeldekortInfoResponse>();
+
+    useEffect(() => {
+        if (authState === 'loggedIn') {
+            fetchMeldekortInfo().then((res) => setMeldekortInfo(res));
+        }
+    }, [authState]);
 
     return (
         name && (
@@ -34,7 +45,11 @@ const HeaderWithName = ({ headerText }: { headerText: string }) => {
                 justify={'left'}
                 className={style.header}
             >
-                {headerText.replace('$navn', name)}
+                {`${headerText.replace('$navn', name)} - ${
+                    meldekortInfo
+                        ? JSON.stringify(meldekortInfo)
+                        : 'Ingen meldekortinfo'
+                }`}
             </Header>
         )
     );

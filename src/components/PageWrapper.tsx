@@ -21,7 +21,7 @@ import { EditorHacks } from './_editor-only/editor-hacks/EditorHacks';
 import { store } from '../store/store';
 import { setPathMapAction } from '../store/slices/pathMap';
 import { setPageConfigAction } from '../store/slices/pageConfig';
-import { fetchAndSetAuthStatus } from '../utils/auth';
+import { fetchAndSetAuthStatus } from '../utils/fetch/fetch-auth';
 import { setAuthStateAction } from '../store/slices/authState';
 
 type Props = {
