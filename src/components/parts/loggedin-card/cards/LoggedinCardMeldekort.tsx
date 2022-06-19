@@ -7,9 +7,15 @@ import { useAuthState } from '../../../../store/hooks/useAuthState';
 type Props = LoggedInCardTypeProps['meldekort'];
 
 export const LoggedinCardMeldekort = ({ link }: Props) => {
-    const { authState } = useAuthState();
+    const { meldekortInfo } = useAuthState();
 
-    useEffect(() => {}, [authState]);
+    if (!meldekortInfo) {
+        return <div>{'Har ikke hentet meldekort info'}</div>;
+    }
+
+    if (!meldekortInfo.meldekortbruker) {
+        return <div>{'Er ikke meldekortbruker'}</div>;
+    }
 
     const { text, url } = getSelectableLinkProps(link);
 
