@@ -14,6 +14,7 @@ import { ProductDetailsLayout } from './product-details-layout/ProductDetailsLay
 import { IndexPage } from './index-page/IndexPage';
 import { useLayoutConfig } from './useLayoutConfig';
 import { AreapageSituationsLayout } from './areapage-situations/AreapageSituationsLayout';
+import { FrontpageLoggedinSectionLayout } from './frontpage-loggedin-section/FrontpageLoggedinSectionLayout';
 
 type Props = {
     pageProps: ContentProps;
@@ -39,6 +40,7 @@ const layoutComponents: {
     [LayoutType.ProductDetailsPage]: ProductDetailsLayout,
     [LayoutType.IndexPage]: IndexPage,
     [LayoutType.AreapageSituations]: AreapageSituationsLayout,
+    [LayoutType.FrontpageLoggedinSection]: FrontpageLoggedinSectionLayout,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
