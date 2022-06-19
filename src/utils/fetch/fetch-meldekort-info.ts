@@ -14,4 +14,6 @@ export type MeldekortInfoResponse = {
 };
 
 export const fetchMeldekortInfo = () =>
-    fetchJson<MeldekortInfoResponse>(meldekortinfoUrl, 5000);
+    fetchJson<MeldekortInfoResponse>(meldekortinfoUrl, 5000, {
+        credentials: 'include',
+    });
