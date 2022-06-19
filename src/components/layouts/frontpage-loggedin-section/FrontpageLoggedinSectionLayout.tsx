@@ -33,7 +33,7 @@ const HeaderWithName = ({ headerText }: { headerText: string }) => {
             justify={'left'}
             className={style.header}
         >
-            {headerText.replace('$navn', name || 'Navny McNavnface')}
+            {name ? headerText.replace('$navn', name) : 'Hei!'}
         </Header>
     );
 };
@@ -60,20 +60,20 @@ export const FrontpageLoggedinSectionLayout = ({
     const { header, mypage } = config;
 
     return (
-        // <AuthDependantRender renderOn={'loggedIn'}>
-        <LayoutContainer
-            pageProps={pageProps}
-            layoutProps={layoutProps}
-            className={style.layout}
-        >
-            <HeaderWithName headerText={header} />
-            <Region
+        <AuthDependantRender renderOn={'loggedIn'}>
+            <LayoutContainer
                 pageProps={pageProps}
-                regionProps={regions.cards}
-                className={style.cards}
-            />
-            <MyPageLink link={mypage?.link} />
-        </LayoutContainer>
-        // </AuthDependantRender>
+                layoutProps={layoutProps}
+                className={style.layout}
+            >
+                <HeaderWithName headerText={header} />
+                <Region
+                    pageProps={pageProps}
+                    regionProps={regions.cards}
+                    className={style.cards}
+                />
+                <MyPageLink link={mypage?.link} />
+            </LayoutContainer>
+        </AuthDependantRender>
     );
 };
