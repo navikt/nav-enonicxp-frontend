@@ -146,6 +146,15 @@ export const translationsBundleEn: Translations = {
             ingress:
                 'Need to send us updated information about your case? "Write to us" is a secure alternative to e-mail.',
         },
+        navoffice: {
+            title: 'Find your local NAV office',
+            ingress: 'Search for a NAV office using postal code or city.',
+        },
+        aidcentral: {
+            title: 'Find your Assistive Technology Center',
+            ingress:
+                'Find contact information and information on pickup and delivery at your nearest Assistive Technology Center.',
+        },
         call: {
             title: 'Call us at +47 55 55 33 33',
             ingress:

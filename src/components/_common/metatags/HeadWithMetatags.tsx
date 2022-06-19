@@ -11,7 +11,11 @@ import {
     hasIngress,
     hasMetaDescription,
 } from '../../../types/_type-guards';
-import { appOrigin, stripXpPathPrefix } from '../../../utils/urls';
+import {
+    appOrigin,
+    getPublicPathname,
+    stripXpPathPrefix,
+} from '../../../utils/urls';
 
 type Props = {
     content: ContentProps;
@@ -48,15 +52,18 @@ const getCanonicalUrl = (content: ContentProps) => {
         return content.data.canonicalUrl;
     }
 
-    const path = content.data?.customPath || stripXpPathPrefix(content._path);
+    const path = getPublicPathname(content);
 
     return `${appOrigin}${path}`;
 };
 
+export const getPageTitle = (content: ContentProps) =>
+    `${content.displayName} - nav.no`;
+
 export const HeadWithMetatags = ({ content, children }: Props) => {
     const router = useRouter();
 
-    const title = `${content.displayName} - nav.no`;
+    const title = getPageTitle(content);
     const description = getDescription(content).slice(0, descriptionMaxLength);
     const url = getCanonicalUrl(content);
     const noIndex = shouldNotIndex(content, router);

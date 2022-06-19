@@ -1,12 +1,16 @@
+import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
-import { ChannelType, DefaultContactData } from 'types/component-props/parts/contact-option';
+import {
+    ChannelType,
+    DefaultContactData,
+} from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { useLayoutConfig } from 'store/hooks/useLayoutConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { openChatbot } from 'utils/chatbot';
 import { classNames } from 'utils/classnames';
 import { analyticsEvents } from 'utils/amplitude';
+import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 
 import style from './ContactOption.module.scss';
 
@@ -64,6 +68,18 @@ export const DefaultOption = (props: DefaultContactProps) => {
                 href: '#',
                 onClick: openChatbot,
                 event: analyticsEvents.CHAT_OPEN,
+            };
+        }
+        if (channel === 'navoffice') {
+            return {
+                href: 'https://www.nav.no/sok-nav-kontor',
+                target: '_blank',
+            };
+        }
+        if (channel === 'aidcentral') {
+            return {
+                href: 'https://www.nav.no/no/person/hjelpemidler/hjelpemidler-og-tilrettelegging/kontakt-nav-hjelpemiddelsentral',
+                target: '_blank',
             };
         }
         if (channel === 'custom') {

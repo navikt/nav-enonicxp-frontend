@@ -51,7 +51,8 @@ export const LayoutContainer = ({
                 paddingConfig === 'standard' && style.standard,
                 config.bgColor?.color && style.bg,
                 pageConfig.editorView === 'edit' &&
-                    editorAuthstateClassname(config.renderOnAuthState)
+                    editorAuthstateClassname(config.renderOnAuthState),
+                divElementProps.className
             )}
             style={{ ...commonLayoutStyle, ...layoutStyle }}
         >

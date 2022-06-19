@@ -11,9 +11,9 @@ import { SingleColPage } from './single-col-page/SingleColPage';
 import { SituationPageFlexColsLayout } from './flex-cols/SituationPageFlexColsLayout';
 import { ProductPageFlexColsLayout } from './flex-cols/ProductPageFlexColsLayout';
 import { ProductDetailsLayout } from './product-details-layout/ProductDetailsLayout';
-import { Provider } from 'react-redux';
-import { createNewStore } from 'store/store';
-import { setLayoutConfigAction } from 'store/slices/layoutConfig';
+import { IndexPage } from './index-page/IndexPage';
+import { useLayoutConfig } from './useLayoutConfig';
+import { AreapageSituationsLayout } from './areapage-situations/AreapageSituationsLayout';
 
 type Props = {
     pageProps: ContentProps;
@@ -37,11 +37,15 @@ const layoutComponents: {
     [LayoutType.SituationPageFlexCols]: SituationPageFlexColsLayout,
     [LayoutType.ProductPageFlexCols]: ProductPageFlexColsLayout,
     [LayoutType.ProductDetailsPage]: ProductDetailsLayout,
+    [LayoutType.IndexPage]: IndexPage,
+    [LayoutType.AreapageSituations]: AreapageSituationsLayout,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
     const { config, descriptor, path, regions } = layoutProps;
     const isEditView = pageProps.editorView === 'edit';
+
+    const { LayoutConfigProvider } = useLayoutConfig();
 
     const editorProps = {
         'data-portal-component-type': ComponentType.Layout,
@@ -62,17 +66,14 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
         );
     }
 
-    const store = createNewStore();
-    store.dispatch(
-        setLayoutConfigAction({
-            type: descriptor,
-            title: (config && config.title) && config.title,
-        })
-    );
-
     return (
-        <Provider store={store}>
+        <LayoutConfigProvider
+            value={{
+                type: descriptor,
+                title: config?.title,
+            }}
+        >
             <LayoutComponent pageProps={pageProps} layoutProps={layoutProps} />
-        </Provider>
+        </LayoutConfigProvider>
     );
 };

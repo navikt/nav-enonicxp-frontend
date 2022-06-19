@@ -1,0 +1,26 @@
+@use 'src/common' as common;
+
+.areasPageNavigation {
+    padding-bottom: 1rem;
+    visibility: visible;
+    max-height: 50px;
+    opacity: 100%;
+    overflow: hidden;
+
+    transition-property: max-height, visibility, padding, opacity;
+    transition-duration: 500ms;
+    transition-timing-function: linear;
+
+    @include common.full-width-mixin();
+}
+
+.areasPageNavigationLink {
+    margin-right: 1rem;
+}
+
+.hidden {
+    max-height: 0;
+    padding-bottom: 0;
+    visibility: hidden;
+    opacity: 0;
+}

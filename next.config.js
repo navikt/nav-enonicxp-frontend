@@ -181,16 +181,20 @@ module.exports = withPlugins([withTranspileModules], {
         return config;
     },
     redirects: async () => [
-        {
-            source: '/',
-            destination: '/no/person',
-            permanent: false,
-        },
-        {
-            source: '/forsiden',
-            destination: '/no/person',
-            permanent: true,
-        },
+        ...(process.env.ENV === 'prod'
+            ? [
+                  {
+                      source: '/',
+                      destination: '/no/person',
+                      permanent: false,
+                  },
+                  {
+                      source: '/forsiden',
+                      destination: '/no/person',
+                      permanent: false,
+                  },
+              ]
+            : []),
         {
             source: '/www.nav.no',
             destination: '/',

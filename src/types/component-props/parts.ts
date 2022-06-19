@@ -34,6 +34,7 @@ export enum PartType {
     ProductDetails = 'no.nav.navno:product-details',
     ContactOption = 'no.nav.navno:contact-option',
     PayoutDates = 'no.nav.navno:payout-dates',
+    AreapageSituationCard = 'no.nav.navno:areapage-situation-card',
 }
 
 export type PartDeprecated =
@@ -73,4 +74,5 @@ export type PartWithOwnData =
     | PartType.ContactOption
     | PartType.ProductDetails
     | PartType.AlertPanel
-    | PartType.PayoutDates;
+    | PartType.PayoutDates
+    | PartType.AreapageSituationCard;

@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import contentFilters from './slices/filteredContent';
 import pageConfig from './slices/pageConfig';
-import layoutConfig from './slices/layoutConfig';
 import pathMap from './slices/pathMap';
 import gvEditorState from './slices/gvEditorState';
 import authState from './slices/authState';
@@ -11,7 +10,6 @@ const options = {
     reducer: {
         contentFilters,
         pageConfig,
-        layoutConfig,
         pathMap,
         gvEditorState,
         authState,
