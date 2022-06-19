@@ -3,7 +3,7 @@ import { Accordion, Loader } from '@navikt/ds-react';
 import { IllustrationStatic } from '../../../_common/illustration/IllustrationStatic';
 import { ComponentMapper } from '../../../ComponentMapper';
 import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
-import { fetchPageCacheContent } from '../../../../utils/fetch/fetch-cache';
+import { fetchPageCacheContent } from '../../../../utils/fetch/fetch-cache-content';
 import { sanitizeLegacyUrl } from 'utils/urls';
 
 import { AlertBox } from '../../../_common/alert-box/AlertBox';

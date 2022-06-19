@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { IndexPageContentProps } from './IndexPage';
 import { getPublicPathname } from '../../../utils/urls';
-import { fetchPageCacheContent } from '../../../utils/fetch/fetch-cache';
+import { fetchPageCacheContent } from '../../../utils/fetch/fetch-cache-content';
 import {
     ContentProps,
     ContentType,
@@ -35,6 +35,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     const basePath = getPublicPathname(pageProps);
 
     const router = useRouter();
+
     const [currentPageProps, setCurrentPageProps] = useState(pageProps);
     const [localPageCache, setLocalPageCache] = useState<CacheEntries>({
         [basePath]: pageProps,
@@ -44,13 +45,13 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         setLocalPageCache({ ...localPageCache, ...cacheEntries });
     };
 
-    const navigate = (path: string) => {
+    const navigate = async (path: string) => {
         const cachedPage = localPageCache[path];
 
         if (cachedPage) {
             setCurrentPageProps(cachedPage);
         } else {
-            fetchIndexPageContentProps(path).then((contentProps) => {
+            await fetchIndexPageContentProps(path).then((contentProps) => {
                 addLocalPageCacheEntries({
                     ...localPageCache,
                     [path]: contentProps,
@@ -91,18 +92,15 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     // Handle back/forward navigation in the browser
     useEffect(() => {
         router.beforePopState(({ url, as, options }) => {
-            const cachedPage = localPageCache[as];
+            navigate(as);
 
-            if (cachedPage) {
-                console.log(`Found cached page for ${as}`);
-                setCurrentPageProps(cachedPage);
-                return false;
-            }
-
-            console.log(`${as} is not cached`);
-            return true;
+            return false;
         });
-    }, [router, localPageCache]);
+
+        return () => {
+            router.beforePopState(undefined);
+        };
+    }, [router, localPageCache, navigate]);
 
     return { currentPageProps, navigate };
 };
