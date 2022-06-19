@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FrontpageLoggedinSectionLayoutProps } from '../../../types/component-props/layouts/frontpage-loggedin-section';
 import { ContentProps } from '../../../types/content-props/_content-common';
 import { LayoutContainer } from '../LayoutContainer';
@@ -12,10 +12,6 @@ import { AuthDependantRender } from '../../_common/auth-dependant-render/AuthDep
 import { useAuthState } from '../../../store/hooks/useAuthState';
 
 import style from './FrontpageLoggedinSectionLayout.module.scss';
-import {
-    fetchMeldekortInfo,
-    MeldekortInfoResponse,
-} from '../../../utils/fetch/fetch-meldekort-info';
 
 const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
     if (!link) {
@@ -28,14 +24,7 @@ const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
 };
 
 const HeaderWithName = ({ headerText }: { headerText: string }) => {
-    const { name, authState } = useAuthState();
-    const [meldekortInfo, setMeldekortInfo] = useState<MeldekortInfoResponse>();
-
-    useEffect(() => {
-        if (authState === 'loggedIn') {
-            fetchMeldekortInfo().then((res) => setMeldekortInfo(res));
-        }
-    }, [authState]);
+    const { name } = useAuthState();
 
     return (
         <Header
@@ -44,11 +33,7 @@ const HeaderWithName = ({ headerText }: { headerText: string }) => {
             justify={'left'}
             className={style.header}
         >
-            {`${headerText.replace('$navn', name || 'Navny McNavnface')} - ${
-                meldekortInfo
-                    ? JSON.stringify(meldekortInfo)
-                    : 'Ingen meldekortinfo'
-            }`}
+            {headerText.replace('$navn', name || 'Navny McNavnface')}
         </Header>
     );
 };
@@ -75,20 +60,20 @@ export const FrontpageLoggedinSectionLayout = ({
     const { header, mypage } = config;
 
     return (
-        <AuthDependantRender renderOn={'loggedIn'}>
-            <LayoutContainer
+        // <AuthDependantRender renderOn={'loggedIn'}>
+        <LayoutContainer
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+            className={style.layout}
+        >
+            <HeaderWithName headerText={header} />
+            <Region
                 pageProps={pageProps}
-                layoutProps={layoutProps}
-                className={style.layout}
-            >
-                <HeaderWithName headerText={header} />
-                <Region
-                    pageProps={pageProps}
-                    regionProps={regions.cards}
-                    className={style.cards}
-                />
-                <MyPageLink link={mypage?.link} />
-            </LayoutContainer>
-        </AuthDependantRender>
+                regionProps={regions.cards}
+                className={style.cards}
+            />
+            <MyPageLink link={mypage?.link} />
+        </LayoutContainer>
+        // </AuthDependantRender>
     );
 };
