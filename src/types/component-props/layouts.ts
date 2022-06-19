@@ -12,6 +12,7 @@ import { SingleColPageProps } from './pages/single-col-page';
 import { SituationPageFlexColsLayoutProps } from './layouts/situation-flex-cols';
 import { ProductPageFlexColsLayoutProps } from './layouts/product-flex-cols';
 import { IndexPageProps } from './pages/index-page';
+import { AreapageSituationsProps } from './layouts/areapage-situations';
 
 export enum LayoutType {
     Fixed1Col = 'no.nav.navno:dynamic-1-col',
@@ -29,17 +30,22 @@ export enum LayoutType {
     ProductPageFlexCols = 'no.nav.navno:product-flex-cols',
     ProductDetailsPage = 'no.nav.navno:product-details-page',
     IndexPage = 'no.nav.navno:index-page',
+    AreapageSituations = 'no.nav.navno:areapage-situations',
 }
 
-export type RegionProps = {
+export type RegionProps<Name = string> = {
     components: ComponentProps[];
-    name: string;
+    name: Name;
+};
+
+export type Regions<RegionNames extends string> = {
+    [Name in RegionNames]: RegionProps<Name>;
 };
 
 export interface LayoutCommonProps extends ComponentCommonProps {
     type: ComponentType.Layout | ComponentType.Page;
     descriptor: LayoutType;
-    regions?: { [key: string]: RegionProps };
+    regions?: Regions<string>;
     config?: any;
 }
 
@@ -52,4 +58,5 @@ export type LayoutProps =
     | SingleColPageProps
     | SituationPageFlexColsLayoutProps
     | ProductPageFlexColsLayoutProps
-    | IndexPageProps;
+    | IndexPageProps
+    | AreapageSituationsProps;

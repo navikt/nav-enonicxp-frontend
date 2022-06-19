@@ -13,6 +13,7 @@ import { ProductPageFlexColsLayout } from './flex-cols/ProductPageFlexColsLayout
 import { ProductDetailsLayout } from './product-details-layout/ProductDetailsLayout';
 import { IndexPage } from './index-page/IndexPage';
 import { useLayoutConfig } from './useLayoutConfig';
+import { AreapageSituationsLayout } from './areapage-situations/AreapageSituationsLayout';
 
 type Props = {
     pageProps: ContentProps;
@@ -37,6 +38,7 @@ const layoutComponents: {
     [LayoutType.ProductPageFlexCols]: ProductPageFlexColsLayout,
     [LayoutType.ProductDetailsPage]: ProductDetailsLayout,
     [LayoutType.IndexPage]: IndexPage,
+    [LayoutType.AreapageSituations]: AreapageSituationsLayout,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {

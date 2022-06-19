@@ -9,6 +9,7 @@ import { AreaPageNavigationBar } from './area-page-navigation/AreaPageNavigation
 import { FrontPageAreasHeader } from './front-page-areas-header/FrontPageAreasHeader';
 
 import style from './IndexPageNavigation.module.scss';
+import { AnimateHeight } from '../../../_common/animate-height/AnimateHeight';
 
 type Props = {
     pageProps: FrontPageProps | AreaPageProps;
@@ -24,16 +25,20 @@ export const IndexPageNavigation = ({
 
     return (
         <div className={style.centerNavigation}>
-            <AreaPageNavigationBar
-                isVisible={__typename === ContentType.AreaPage}
-                areasRefs={areasRefs.filter((ref) => ref._id !== _id)}
-                navigationCallback={navigationCallback}
-            />
+            <AnimateHeight trigger={_id}>
+                <AreaPageNavigationBar
+                    isVisible={__typename === ContentType.AreaPage}
+                    areasRefs={areasRefs.filter((ref) => ref._id !== _id)}
+                    navigationCallback={navigationCallback}
+                />
+            </AnimateHeight>
             <FrontPageAreasHeader content={pageProps} />
-            <IndexPageAreaPanels
-                content={pageProps}
-                navigationCallback={navigationCallback}
-            />
+            <AnimateHeight trigger={_id}>
+                <IndexPageAreaPanels
+                    content={pageProps}
+                    navigationCallback={navigationCallback}
+                />
+            </AnimateHeight>
         </div>
     );
 };

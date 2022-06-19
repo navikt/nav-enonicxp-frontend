@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AreaPageProps } from '../../../../../../types/content-props/index-pages-props';
 import { IndexPageContentProps } from '../../../IndexPage';
 import { ContentType } from '../../../../../../types/content-props/_content-common';
 import { WarningFilled } from '@navikt/ds-icons';
 import { classNames } from '../../../../../../utils/classnames';
 import { AreaHeaderPanelExpanded } from './expanded/AreaHeaderPanelExpanded';
+import { getPublicPathname } from '../../../../../../utils/urls';
 
 import style from './AreaPanel.module.scss';
-import { getPublicPathname } from '../../../../../../utils/urls';
 
 const AreaCardPlaceholder = ({
     areaContent,
@@ -49,18 +49,43 @@ export const AreaHeaderPanel = ({
     currentContent,
     navigationCallback,
 }: Props) => {
-    const { __typename: currentType, _id: currentId } = currentContent;
+    const { __typename, _id } = currentContent;
 
-    return currentType === ContentType.AreaPage &&
+    const [currentId, setCurrentId] = useState(_id);
+    const [currentType, setCurrentType] = useState<ContentType>(__typename);
+    const [prevType, setPrevType] = useState<ContentType>();
+
+    useEffect(() => {
+        if (currentId === _id) {
+            return;
+        }
+
+        setCurrentId(_id);
+        setPrevType(currentType);
+        setCurrentType(__typename);
+    }, [__typename, currentType, currentId, _id]);
+
+    const useFrontpageTransition =
+        prevType === ContentType.FrontPage &&
+        currentType === ContentType.AreaPage;
+
+    return __typename === ContentType.AreaPage &&
         areaContent._id === currentId ? (
-        <div className={classNames(style.areaPanel, style.areaPanelActive)}>
+        <div
+            className={classNames(
+                style.areaPanel,
+                style.areaPanelActive,
+                useFrontpageTransition && style.animate
+            )}
+        >
             <AreaHeaderPanelExpanded areaContent={currentContent} />
         </div>
     ) : (
         <div
             className={classNames(
                 style.areaPanel,
-                currentType === ContentType.AreaPage && style.areaPanelHidden
+                currentType === ContentType.AreaPage && style.areaPanelHidden,
+                useFrontpageTransition && style.animate
             )}
         >
             <AreaCardPlaceholder

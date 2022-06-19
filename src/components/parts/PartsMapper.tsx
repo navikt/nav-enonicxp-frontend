@@ -40,6 +40,7 @@ import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
 import { AlertPanelPart } from './alert-panel/AlertPanelPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
+import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -83,6 +84,7 @@ const partsWithOwnData: {
     [PartType.ProductDetails]: ProductDetailsPart,
     [PartType.ContactOption]: ContactOptionPart,
     [PartType.PayoutDates]: PayoutDatesPart,
+    [PartType.AreapageSituationCard]: AreapageSituationCardPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {

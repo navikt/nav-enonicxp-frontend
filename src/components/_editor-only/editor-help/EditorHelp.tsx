@@ -37,7 +37,7 @@ export const EditorHelp = ({ text, type = 'help' }: Props) => {
             <StaticImage
                 imageData={imagePath[type]}
                 alt={''}
-                className={classNames(style.icon, type)}
+                className={classNames(style.icon, style[type])}
             />
             <BodyShort spacing={false} size="small" className={style.content}>
                 {text}
