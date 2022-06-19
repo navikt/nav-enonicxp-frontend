@@ -25,9 +25,14 @@ export const fetchAndSetAuthStatus = () => {
         })
         .then((json: AuthResponse) => {
             store.dispatch(
-                setAuthStateAction({
-                    authState: json.authenticated ? 'loggedIn' : 'loggedOut',
-                })
+                setAuthStateAction(
+                    json.authenticated
+                        ? {
+                              authState: 'loggedIn',
+                              name: json.name,
+                          }
+                        : { authState: 'loggedOut' }
+                )
             );
         })
         .catch((e) => {

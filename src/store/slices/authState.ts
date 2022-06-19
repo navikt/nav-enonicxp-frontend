@@ -5,6 +5,7 @@ export type AuthStateType = 'loggedIn' | 'loggedOut' | 'waiting';
 
 export type AuthState = {
     authState: AuthStateType;
+    name?: string;
 };
 
 const initialState: AuthState = {
@@ -18,6 +19,7 @@ export const authStateSlice = createSlice({
         setAuthState: (state, action: PayloadAction<AuthState>) => {
             if (action.payload) {
                 state.authState = action.payload.authState;
+                state.name = action.payload.name;
             }
         },
     },

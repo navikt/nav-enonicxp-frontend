@@ -8,6 +8,8 @@ import Region from '../Region';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LinkSelectable } from '../../../types/component-props/_mixins';
+import { AuthDependantRender } from '../../_common/auth-dependant-render/AuthDependantRender';
+import { useAuthState } from '../../../store/hooks/useAuthState';
 
 import style from './FrontpageLoggedinSectionLayout.module.scss';
 
@@ -19,6 +21,23 @@ const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
     const { text, url } = getSelectableLinkProps(link);
 
     return <LenkeStandalone href={url}>{text}</LenkeStandalone>;
+};
+
+const HeaderWithName = ({ headerText }: { headerText: string }) => {
+    const { name } = useAuthState();
+
+    return (
+        name && (
+            <Header
+                level={'2'}
+                size={'xlarge'}
+                justify={'left'}
+                className={style.header}
+            >
+                {headerText.replace('$navn', name)}
+            </Header>
+        )
+    );
 };
 
 type Props = {
@@ -43,25 +62,20 @@ export const FrontpageLoggedinSectionLayout = ({
     const { header, mypage } = config;
 
     return (
-        <LayoutContainer
-            pageProps={pageProps}
-            layoutProps={layoutProps}
-            className={style.layout}
-        >
-            <Header
-                level={'2'}
-                size={'xlarge'}
-                justify={'left'}
-                className={style.header}
-            >
-                {header}
-            </Header>
-            <Region
+        <AuthDependantRender renderOn={'loggedIn'}>
+            <LayoutContainer
                 pageProps={pageProps}
-                regionProps={regions.cards}
-                className={style.cards}
-            />
-            <MyPageLink link={mypage?.link} />
-        </LayoutContainer>
+                layoutProps={layoutProps}
+                className={style.layout}
+            >
+                <HeaderWithName headerText={header} />
+                <Region
+                    pageProps={pageProps}
+                    regionProps={regions.cards}
+                    className={style.cards}
+                />
+                <MyPageLink link={mypage?.link} />
+            </LayoutContainer>
+        </AuthDependantRender>
     );
 };
