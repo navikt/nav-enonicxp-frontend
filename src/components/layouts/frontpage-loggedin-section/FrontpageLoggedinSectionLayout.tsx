@@ -5,8 +5,21 @@ import { LayoutContainer } from '../LayoutContainer';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { Header } from '../../_common/headers/Header';
 import Region from '../Region';
+import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
+import { getSelectableLinkProps } from '../../../utils/links-from-content';
+import { LinkSelectable } from '../../../types/component-props/_mixins';
 
 import style from './FrontpageLoggedinSectionLayout.module.scss';
+
+const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
+    if (!link) {
+        return null;
+    }
+
+    const { text, url } = getSelectableLinkProps(link);
+
+    return <LenkeStandalone href={url}>{text}</LenkeStandalone>;
+};
 
 type Props = {
     layoutProps: FrontpageLoggedinSectionLayoutProps;
@@ -48,6 +61,7 @@ export const FrontpageLoggedinSectionLayout = ({
                 regionProps={regions.cards}
                 className={style.cards}
             />
+            <MyPageLink link={mypage?.link} />
         </LayoutContainer>
     );
 };
