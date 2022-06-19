@@ -1,8 +1,10 @@
 import { fetchJson } from './fetch-utils';
+import { store } from '../../store/store';
+import { setMeldekortInfoAction } from '../../store/slices/authState';
 
 const meldekortinfoUrl = 'https://person.dev.nav.no/dittnav-api/meldekortinfo';
 
-export type MeldekortInfoResponse = {
+export type MeldekortInfo = {
     nyeMeldekort: {
         antallNyeMeldekort: number;
         nesteMeldekort: unknown;
@@ -13,7 +15,14 @@ export type MeldekortInfoResponse = {
     meldekortbruker: boolean;
 };
 
-export const fetchMeldekortInfo = () =>
-    fetchJson<MeldekortInfoResponse>(meldekortinfoUrl, 5000, {
+export const fetchAndSetMeldekortInfo = () => {
+    fetchJson<MeldekortInfo>(meldekortinfoUrl, 5000, {
         credentials: 'include',
+    }).then((meldekortInfo) => {
+        if (!meldekortInfo) {
+            return;
+        }
+
+        store.dispatch(setMeldekortInfoAction(meldekortInfo));
     });
+};
