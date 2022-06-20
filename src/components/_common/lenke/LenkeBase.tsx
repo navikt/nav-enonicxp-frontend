@@ -8,6 +8,7 @@ import {
 import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import Link from 'next/link';
 import { usePathMap } from '../../../store/hooks/usePathMap';
+import { useLayoutConfig } from "../../layouts/useLayoutConfig";
 
 /**
  * This component handles client-side async navigation for URLs internal to this app (as well as analytics for links)
@@ -37,6 +38,7 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
+    const { layoutConfig } = useLayoutConfig();
     const { internalPathToCustomPath } = usePathMap();
     // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
     // (setting to always false for the time being to prevent backend load spikes with cold cache)
@@ -55,7 +57,7 @@ export const LenkeBase = ({
     const analyticsData = {
         komponent: component,
         lenkegruppe: linkGroup,
-        seksjon: linkGroup,
+        seksjon: linkGroup || layoutConfig.title,
         destinasjon: finalHref,
         lenketekst: analyticsLabel || (typeof children === 'string' ? children : undefined),
     }
