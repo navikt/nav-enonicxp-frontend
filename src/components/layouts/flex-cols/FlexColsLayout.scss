@@ -42,8 +42,12 @@
 
 .layout__situation-flex-cols,
 .layout__product-flex-cols {
-    $singleColMaxWidth: calc(#{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile});
-    $doubleColMaxWidth: calc(#{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet});
+    $singleColMaxWidth: calc(
+        #{common.$sectionMaxWidth} + 2 * #{common.$padding-sides-mobile}
+    );
+    $doubleColMaxWidth: calc(
+        #{common.$contentMaxWidth} + 2 * #{common.$padding-sides-tablet}
+    );
 
     @include common.full-width-mixin();
 
@@ -100,19 +104,5 @@
     align-items: stretch;
     width: 100%;
 
-    // Fixes for content studio drag and drop placeholders
-    .xp-page-editor-region-placeholder:last-child {
-        display: block;
-    }
-
-    .xp-page-editor-part-placeholder {
-        width: 100%;
-    }
-
-    .live-edit-drag-placeholder-container {
-        & > * {
-            width: 100%;
-            height: 100%;
-        }
-    }
+    @include common.content-studio-drop-zone-fix-global();
 }

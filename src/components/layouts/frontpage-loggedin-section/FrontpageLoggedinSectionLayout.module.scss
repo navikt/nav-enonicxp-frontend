@@ -1,0 +1,18 @@
+@use 'src/common' as common;
+
+.layout {
+    background-color: white;
+    @include common.full-width-mixin();
+}
+
+.header {
+    padding-bottom: 1rem;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include common.flex-cols-mixin(3);
+    @include common.content-studio-drop-zone-fix-local();
+}

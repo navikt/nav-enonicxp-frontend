@@ -41,6 +41,7 @@ import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthD
 import { AlertPanelPart } from './alert-panel/AlertPanelPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
+import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -85,6 +86,7 @@ const partsWithOwnData: {
     [PartType.ContactOption]: ContactOptionPart,
     [PartType.PayoutDates]: PayoutDatesPart,
     [PartType.AreapageSituationCard]: AreapageSituationCardPart,
+    [PartType.LoggedinCard]: LoggedinCardPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {
