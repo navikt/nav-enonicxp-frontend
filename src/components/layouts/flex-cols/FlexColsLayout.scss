@@ -23,20 +23,6 @@
         @media #{common.$mq-screen-mobile} {
             @include common.flex-cols-mixin(1);
         }
-
-        &--4-cols {
-            @media #{common.$mq-screen-desktop} {
-                @include common.flex-cols-mixin(4);
-            }
-
-            @media #{common.$mq-screen-tablet} {
-                @include common.flex-cols-mixin(3);
-            }
-
-            @media #{common.$mq-screen-mobile} {
-                @include common.flex-cols-mixin(2);
-            }
-        }
     }
 }
 

@@ -30,7 +30,6 @@ const layoutComponents: {
     [LayoutType.Fixed1Col]: FixedColsLayout,
     [LayoutType.Fixed2Col]: FixedColsLayout,
     [LayoutType.Fixed3Col]: FixedColsLayout,
-    [LayoutType.Fixed4Col]: FixedColsLayout,
     [LayoutType.FlexCols]: FlexColsLayout,
     [LayoutType.SectionWithHeader]: SectionWithHeaderLayout,
     [LayoutType.PageWithSideMenus]: PageWithSideMenus,
