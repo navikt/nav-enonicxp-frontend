@@ -2,7 +2,13 @@ import { fetchJson } from './fetch-utils';
 import { store } from '../../store/store';
 import { setMeldekortInfoAction } from '../../store/slices/authState';
 
-const meldekortinfoUrl = 'https://person.dev.nav.no/dittnav-api/meldekortinfo';
+const envUrls: { [key in typeof process.env.ENV]: string } = {
+    prod: 'https://person.nav.no/dittnav-api/meldekortinfo',
+    dev: 'https://person.dev.nav.no/dittnav-api/meldekortinfo',
+    localhost: 'http://localhost:1337', // TODO: add a local mock
+};
+
+const url = envUrls[process.env.ENV];
 
 export type MeldekortInfo = {
     nyeMeldekort: {
@@ -16,7 +22,7 @@ export type MeldekortInfo = {
 };
 
 export const fetchAndSetMeldekortInfo = () => {
-    fetchJson<MeldekortInfo>(meldekortinfoUrl, 5000, {
+    fetchJson<MeldekortInfo>(url, 5000, {
         credentials: 'include',
     }).then((meldekortInfo) => {
         if (!meldekortInfo) {
