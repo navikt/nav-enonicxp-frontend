@@ -7,10 +7,11 @@ import {
     RenderOnAuthStateMixin,
 } from '../_mixins';
 
-export interface DynamicNewsList extends PartComponentProps {
+export interface DynamicNewsListProps extends PartComponentProps {
     descriptor: PartType.NewsList;
     config: {
         title?: string;
+        hideTitle?: boolean;
         contentList: ContentListMixin;
         moreNews?: LinkProps;
     } & ExpandableMixin &

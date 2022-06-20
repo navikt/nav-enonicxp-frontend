@@ -102,5 +102,17 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         };
     }, [router, localPageCache]);
 
+    useEffect(() => {
+        const handler = (url, { shallow }) => {
+            console.log(`Navigated to ${url} - ${shallow}`);
+            if (url === basePath) {
+                navigate(url);
+            }
+        };
+
+        router.events.on('routeChangeComplete', handler);
+        return router.events.off('routeChangeComplete', handler);
+    }, [pageProps]);
+
     return { currentPageProps, navigate };
 };

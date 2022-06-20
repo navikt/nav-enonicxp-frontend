@@ -22,8 +22,8 @@ import {
 import { ContentProps } from '../../types/content-props/_content-common';
 import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
 import { HeaderPart } from './header/HeaderPart';
-import { LinkList } from './link-list/LinkList';
-import { NewsList } from './news-list/NewsList';
+import { LinkListPart } from './link-list/LinkListPart';
+import { NewsListPart } from './news-list/NewsListPart';
 import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar';
 import { BEM, classNames } from '../../utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
@@ -69,8 +69,8 @@ const partsWithOwnData: {
     [PartType.AlertBox]: AlertBoxPart,
     [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanelPart,
-    [PartType.LinkList]: LinkList,
-    [PartType.NewsList]: NewsList,
+    [PartType.LinkList]: LinkListPart,
+    [PartType.NewsList]: NewsListPart,
     [PartType.HtmlArea]: HtmlArea,
     [PartType.Calculator]: CalculatorPart,
     [PartType.PageHeader]: PageHeaderPart,
