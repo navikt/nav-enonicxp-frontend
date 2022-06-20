@@ -48,8 +48,8 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
         >
             {title && (
                 <Header
-                    level="2"
-                    size="large"
+                    level={'2'}
+                    size={'large'}
                     justify={'left'}
                     hideCopyButton={!toggleCopyButton}
                     anchorId={anchorId}
