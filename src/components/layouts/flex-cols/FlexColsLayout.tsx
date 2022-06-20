@@ -5,6 +5,8 @@ import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
 import { Header } from '../../_common/headers/Header';
 
+import style from './FlexColsLayout.module.scss';
+
 type Props = {
     pageProps: ContentProps;
     layoutProps?: FlexColsLayoutProps;
@@ -39,7 +41,11 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
             : numCols;
 
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+        <LayoutContainer
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+            className={style.flexCols}
+        >
             {title && (
                 <Header
                     level="2"
@@ -47,7 +53,7 @@ export const FlexColsLayout = ({ pageProps, layoutProps }: Props) => {
                     justify={'left'}
                     hideCopyButton={!toggleCopyButton}
                     anchorId={anchorId}
-                    className="custom-header-style"
+                    className={style.header}
                 >
                     {title}
                 </Header>
