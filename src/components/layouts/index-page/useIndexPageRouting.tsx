@@ -102,5 +102,19 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         };
     }, [router, localPageCache]);
 
+    // Handle regular next.js routing to the initial page
+    useEffect(() => {
+        const handler = (url, { shallow }) => {
+            if (url === basePath && !shallow) {
+                navigate(url);
+            }
+        };
+
+        router.events.on('routeChangeComplete', handler);
+        return () => {
+            router.events.off('routeChangeComplete', handler);
+        };
+    }, [pageProps]);
+
     return { currentPageProps, navigate };
 };

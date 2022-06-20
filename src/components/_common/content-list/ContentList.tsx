@@ -7,6 +7,7 @@ import { getUrlFromContent } from 'utils/links-from-content';
 import { DateTimeKey } from 'types/datetime';
 import { ContentProps } from 'types/content-props/_content-common';
 import { getNestedValueFromKeyString } from 'utils/objects';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 const getDate = (content: ContentProps, dateLabelKey: DateTimeKey) =>
     getNestedValueFromKeyString(content, dateLabelKey) ||
@@ -17,6 +18,7 @@ const getDate = (content: ContentProps, dateLabelKey: DateTimeKey) =>
 type Props = {
     content: ContentListProps;
     title?: string;
+    hideTitle?: boolean;
     showDateLabel?: boolean;
     withChevron?: boolean;
     className?: string;
@@ -25,12 +27,13 @@ type Props = {
 export const ContentList = ({
     content,
     title,
+    hideTitle,
     showDateLabel,
     withChevron,
     className,
 }: Props) => {
     if (!content?.data?.sectionContents) {
-        return null;
+        return <EditorHelp text={'Tom lenkeliste'} />;
     }
 
     const { sectionContents, sortedBy } = content.data;
@@ -45,12 +48,12 @@ export const ContentList = ({
         }))
         .filter(({ url, text }) => url && text);
 
-    return lenkeData?.length > 0 ? (
+    return (
         <Lenkeliste
             lenker={lenkeData}
-            tittel={title || content.displayName}
+            tittel={!hideTitle && (title || content.displayName)}
             withChevron={withChevron}
             className={className}
         />
-    ) : null;
+    );
 };

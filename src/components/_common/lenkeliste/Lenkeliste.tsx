@@ -3,6 +3,7 @@ import { Heading } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from '../lenke/LenkeStandalone';
 import style from './Lenkeliste.module.scss';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 type Props = {
     lenker: LinkProps[];
@@ -18,7 +19,7 @@ export const Lenkeliste = ({
     className,
 }: Props) => {
     if (!lenker || lenker.length === 0) {
-        return null;
+        return <EditorHelp text={'Tom lenkeliste'} />;
     }
 
     return (
