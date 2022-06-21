@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IndexPageContentProps } from './IndexPage';
 import { getPublicPathname } from '../../../utils/urls';
 import { fetchPageCacheContent } from '../../../utils/fetch/fetch-cache-content';
@@ -9,6 +9,18 @@ import {
 } from '../../../types/content-props/_content-common';
 
 type CacheEntries = Record<string, IndexPageContentProps>;
+
+type IndexPageRoutingContext = {
+    indexPages: Set<string>;
+    navigate: (path: string) => void;
+};
+
+const IndexPageRoutingContext = React.createContext<IndexPageRoutingContext>({
+    indexPages: new Set(),
+    navigate: (path: string) => {
+        console.log('IndexPage navigation not initialized');
+    },
+});
 
 const fetchIndexPageContentProps = (
     path: string
@@ -33,6 +45,10 @@ const fetchIndexPageContentProps = (
 // between these pages in order to implement various shiny transition effects :D
 export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     const basePath = getPublicPathname(pageProps);
+    const areasRefsPaths = pageProps.data.areasRefs.map((ref) =>
+        getPublicPathname(ref)
+    );
+    const indexPages = new Set([basePath, ...areasRefsPaths]);
 
     const router = useRouter();
 
@@ -66,8 +82,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     // Prefetch all referenced pages
     useEffect(() => {
         Promise.all<ContentProps | null>(
-            currentPageProps.data.areasRefs.map((areaContent) => {
-                const path = getPublicPathname(areaContent);
+            areasRefsPaths.map((path) => {
                 if (localPageCache[path]) {
                     return null;
                 }
@@ -91,7 +106,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
     // Handle back/forward navigation in the browser
     useEffect(() => {
-        router.beforePopState(({ url, as, options }) => {
+        router.beforePopState(({ as }) => {
             navigate(as);
 
             return false;
@@ -116,5 +131,16 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         };
     }, [pageProps]);
 
-    return { currentPageProps, navigate };
+    return {
+        currentPageProps,
+        IndexPageRoutingProvider: IndexPageRoutingContext.Provider,
+        contextValue: {
+            navigate,
+            indexPages,
+        },
+    };
+};
+
+export const useIndexPageNavigation = () => {
+    return useContext(IndexPageRoutingContext);
 };

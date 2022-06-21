@@ -7,19 +7,15 @@ import {
 import { IndexPageAreaPanels } from './area-panels/IndexPageAreaPanels';
 import { AreaPageNavigationBar } from './area-page-navigation/AreaPageNavigationBar';
 import { FrontPageAreasHeader } from './front-page-areas-header/FrontPageAreasHeader';
+import { AnimateHeight } from '../../../_common/animate-height/AnimateHeight';
 
 import style from './IndexPageNavigation.module.scss';
-import { AnimateHeight } from '../../../_common/animate-height/AnimateHeight';
 
 type Props = {
     pageProps: FrontPageProps | AreaPageProps;
-    navigationCallback: (path: string) => void;
 };
 
-export const IndexPageNavigation = ({
-    pageProps,
-    navigationCallback,
-}: Props) => {
+export const IndexPageNavigation = ({ pageProps }: Props) => {
     const { __typename, _id, data } = pageProps;
     const { areasRefs } = data;
 
@@ -29,15 +25,11 @@ export const IndexPageNavigation = ({
                 <AreaPageNavigationBar
                     isVisible={__typename === ContentType.AreaPage}
                     areasRefs={areasRefs}
-                    navigationCallback={navigationCallback}
                 />
             </AnimateHeight>
             <FrontPageAreasHeader content={pageProps} />
             <AnimateHeight trigger={_id}>
-                <IndexPageAreaPanels
-                    content={pageProps}
-                    navigationCallback={navigationCallback}
-                />
+                <IndexPageAreaPanels content={pageProps} />
             </AnimateHeight>
         </div>
     );

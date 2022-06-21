@@ -6,26 +6,21 @@ import { WarningFilled } from '@navikt/ds-icons';
 import { classNames } from '../../../../../../utils/classnames';
 import { AreaHeaderPanelExpanded } from './expanded/AreaHeaderPanelExpanded';
 import { getPublicPathname } from '../../../../../../utils/urls';
+import { IndexPageLink } from '../../link/IndexPageLink';
 
 import style from './AreaPanel.module.scss';
 
 const AreaCardPlaceholder = ({
     areaContent,
-    navigationCallback,
 }: {
     areaContent: AreaPageProps;
-    navigationCallback: (path: string) => void;
     className?: string;
 }) => {
     const path = getPublicPathname(areaContent);
 
     return (
-        <a
+        <IndexPageLink
             href={path}
-            onClick={(e) => {
-                e.preventDefault();
-                navigationCallback(path);
-            }}
             style={{
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -34,21 +29,16 @@ const AreaCardPlaceholder = ({
         >
             <span>{areaContent.data.header}</span>
             <WarningFilled className={style.icon} />
-        </a>
+        </IndexPageLink>
     );
 };
 
 type Props = {
     areaContent: AreaPageProps;
     currentContent: IndexPageContentProps;
-    navigationCallback: (path: string) => void;
 };
 
-export const AreaHeaderPanel = ({
-    areaContent,
-    currentContent,
-    navigationCallback,
-}: Props) => {
+export const AreaHeaderPanel = ({ areaContent, currentContent }: Props) => {
     const { __typename, _id } = currentContent;
 
     const [currentId, setCurrentId] = useState(_id);
@@ -88,10 +78,7 @@ export const AreaHeaderPanel = ({
                 useFrontpageTransition && style.animate
             )}
         >
-            <AreaCardPlaceholder
-                areaContent={areaContent}
-                navigationCallback={navigationCallback}
-            />
+            <AreaCardPlaceholder areaContent={areaContent} />
         </div>
     );
 };

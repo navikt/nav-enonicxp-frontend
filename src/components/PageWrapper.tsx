@@ -23,7 +23,6 @@ import { setPathMapAction } from '../store/slices/pathMap';
 import { setPageConfigAction } from '../store/slices/pageConfig';
 import { fetchAndSetInnloggingsstatus } from '../utils/fetch/fetch-innloggingsstatus';
 import { setAuthStateAction } from '../store/slices/authState';
-import { fetchAndSetMeldekortInfo } from '../utils/fetch/fetch-meldekort-info';
 
 type Props = {
     content: ContentProps;
@@ -55,11 +54,7 @@ export const PageWrapper = (props: Props) => {
                 })
             );
         } else {
-            fetchAndSetInnloggingsstatus().then((res) => {
-                if (res?.authenticated) {
-                    fetchAndSetMeldekortInfo();
-                }
-            });
+            fetchAndSetInnloggingsstatus();
         }
 
         onBreadcrumbClick((breadcrumb) =>

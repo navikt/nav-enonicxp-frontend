@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { classNames } from '../../../../../utils/classnames';
-import { LenkeInline } from '../../../../_common/lenke/LenkeInline';
 import { AreaPageProps } from '../../../../../types/content-props/index-pages-props';
 import { getPublicPathname } from '../../../../../utils/urls';
+import { IndexPageLink } from '../link/IndexPageLink';
 
 import style from './AreaPageNavigationBar.module.scss';
 import { Chip } from 'components/_common/chip/Chip';
@@ -12,13 +12,11 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 type Props = {
     isVisible: boolean;
     areasRefs: AreaPageProps[];
-    navigationCallback: (path: string) => void;
 };
 
 export const AreaPageNavigationBar = ({
     isVisible,
     areasRefs,
-    navigationCallback,
 }: Props) => {
     const navigationBar = useRef(null);
     const { pageConfig } = usePageConfig();
@@ -55,24 +53,18 @@ export const AreaPageNavigationBar = ({
                 {areasRefs.map((areaContent) => {
                     const path = getPublicPathname(areaContent);
 
-                    return (
-                        <LenkeInline
-                            href={path}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                navigationCallback(path);
-                            }}
-                            onFocus={focusEventHandler}
-                            className={style.areasPageNavigationLink}
-                            key={areaContent._id}
-                        >
-                            <Chip selected={areaContent._id === pageId}>
+                return (
+                    <IndexPageLink
+                        href={path}
+                        className={style.areasPageNavigationLink}
+                        key={areaContent._id}
+                    >
+                        <Chip selected={areaContent._id === pageId}>
                                 {areaContent.data.header}
                             </Chip>
-                        </LenkeInline>
-                    );
-                })}
-            </div>
+                    </IndexPageLink>
+                );
+            })}
         </nav>
     );
 };

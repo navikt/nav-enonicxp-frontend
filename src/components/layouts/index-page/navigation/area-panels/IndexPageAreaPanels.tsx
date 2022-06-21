@@ -6,10 +6,9 @@ import style from './IndexPageAreaPanels.module.scss';
 
 type Props = {
     content: IndexPageContentProps;
-    navigationCallback: (path: string) => void;
 };
 
-export const IndexPageAreaPanels = ({ content, navigationCallback }: Props) => {
+export const IndexPageAreaPanels = ({ content }: Props) => {
     const { data } = content;
     const { areasRefs } = data;
 
@@ -20,7 +19,6 @@ export const IndexPageAreaPanels = ({ content, navigationCallback }: Props) => {
                     <AreaHeaderPanel
                         areaContent={areaContent}
                         currentContent={content}
-                        navigationCallback={navigationCallback}
                         key={areaContent._id}
                     />
                 );
