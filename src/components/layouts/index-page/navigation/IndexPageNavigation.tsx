@@ -28,7 +28,7 @@ export const IndexPageNavigation = ({
             <AnimateHeight trigger={_id}>
                 <AreaPageNavigationBar
                     isVisible={__typename === ContentType.AreaPage}
-                    areasRefs={areasRefs.filter((ref) => ref._id !== _id)}
+                    areasRefs={areasRefs}
                     navigationCallback={navigationCallback}
                 />
             </AnimateHeight>
