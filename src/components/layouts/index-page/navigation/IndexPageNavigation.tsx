@@ -24,7 +24,8 @@ export const IndexPageNavigation = ({ pageProps }: Props) => {
             <AnimateHeight trigger={_id}>
                 <AreaPageNavigationBar
                     isVisible={__typename === ContentType.AreaPage}
-                    areasRefs={areasRefs.filter((ref) => ref._id !== _id)}
+                    areasRefs={areasRefs}
+                    pageId={_id}
                 />
             </AnimateHeight>
             <FrontPageAreasHeader content={pageProps} />
