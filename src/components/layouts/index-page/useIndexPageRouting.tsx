@@ -10,11 +10,17 @@ import {
 
 type CacheEntries = Record<string, IndexPageContentProps>;
 
-const IndexPageRoutingContext = React.createContext<(path: string) => void>(
-    (path: string) => {
-        console.log('IndexPage navigation not enabled');
-    }
-);
+type IndexPageRoutingContext = {
+    indexPages: Set<string>;
+    navigate: (path: string) => void;
+};
+
+const IndexPageRoutingContext = React.createContext<IndexPageRoutingContext>({
+    indexPages: new Set(),
+    navigate: (path: string) => {
+        console.log('IndexPage navigation not initialized');
+    },
+});
 
 const fetchIndexPageContentProps = (
     path: string
@@ -39,6 +45,10 @@ const fetchIndexPageContentProps = (
 // between these pages in order to implement various shiny transition effects :D
 export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     const basePath = getPublicPathname(pageProps);
+    const areasRefsPaths = pageProps.data.areasRefs.map((ref) =>
+        getPublicPathname(ref)
+    );
+    const indexPages = new Set([basePath, ...areasRefsPaths]);
 
     const router = useRouter();
 
@@ -72,8 +82,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     // Prefetch all referenced pages
     useEffect(() => {
         Promise.all<ContentProps | null>(
-            currentPageProps.data.areasRefs.map((areaContent) => {
-                const path = getPublicPathname(areaContent);
+            areasRefsPaths.map((path) => {
                 if (localPageCache[path]) {
                     return null;
                 }
@@ -97,7 +106,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
     // Handle back/forward navigation in the browser
     useEffect(() => {
-        router.beforePopState(({ url, as, options }) => {
+        router.beforePopState(({ as }) => {
             navigate(as);
 
             return false;
@@ -125,12 +134,13 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     return {
         currentPageProps,
         IndexPageRoutingProvider: IndexPageRoutingContext.Provider,
-        navigate,
+        contextValue: {
+            navigate,
+            indexPages,
+        },
     };
 };
 
 export const useIndexPageNavigation = () => {
-    const navigate = useContext(IndexPageRoutingContext);
-
-    return navigate;
+    return useContext(IndexPageRoutingContext);
 };
