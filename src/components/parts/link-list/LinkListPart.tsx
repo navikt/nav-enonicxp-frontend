@@ -4,11 +4,12 @@ import { Lenkeliste } from '../../_common/lenkeliste/Lenkeliste';
 import { ContentList } from '../../_common/content-list/ContentList';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 import style from './LinkList.module.scss';
 
 const getListComponent = (config: DynamicLinkListProps['config']) => {
-    const { title, list, chevron } = config;
+    const { title, list, chevron, hideTitle } = config;
     const { _selected } = list;
 
     if (_selected === 'contentList') {
@@ -17,6 +18,7 @@ const getListComponent = (config: DynamicLinkListProps['config']) => {
             <ContentList
                 content={contentList?.target}
                 title={title}
+                hideTitle={hideTitle}
                 withChevron={chevron}
             />
         );
@@ -26,16 +28,20 @@ const getListComponent = (config: DynamicLinkListProps['config']) => {
         const { linkList } = list;
         const links = linkList?.links?.map(getSelectableLinkProps);
         return (
-            <Lenkeliste tittel={title} lenker={links} withChevron={chevron} />
+            <Lenkeliste
+                tittel={!hideTitle && title}
+                lenker={links}
+                withChevron={chevron}
+            />
         );
     }
 
     return null;
 };
 
-export const LinkList = ({ config }: DynamicLinkListProps) => {
-    if (!config?.list) {
-        return <h2>{'Tom lenkeliste'}</h2>;
+export const LinkListPart = ({ config }: DynamicLinkListProps) => {
+    if (!config?.list?._selected) {
+        return <EditorHelp text={'Klikk og velg lenker i panelet til høyre'} />;
     }
 
     const ListComponent = getListComponent(config);

@@ -1,17 +1,18 @@
 import React from 'react';
-import { DynamicNewsList } from '../../../types/component-props/parts/news-list';
+import { DynamicNewsListProps } from '../../../types/component-props/parts/news-list';
 import { ContentList } from '../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 import style from './NewsList.module.scss';
 
-export const NewsList = ({ config }: DynamicNewsList) => {
-    if (!config?.contentList) {
-        return <h2>{'Tom nyhetsliste'}</h2>;
+export const NewsListPart = ({ config }: DynamicNewsListProps) => {
+    if (!config?.contentList?.target) {
+        return <EditorHelp text={'Tom nyhetsliste'} />;
     }
 
-    const { title, contentList, moreNews } = config;
+    const { title, contentList, moreNews, hideTitle } = config;
 
     return (
         <ExpandableComponentWrapper {...config}>
@@ -20,6 +21,7 @@ export const NewsList = ({ config }: DynamicNewsList) => {
                     showDateLabel={true}
                     content={contentList.target}
                     title={title}
+                    hideTitle={hideTitle}
                     withChevron={true}
                 />
                 {moreNews && (
