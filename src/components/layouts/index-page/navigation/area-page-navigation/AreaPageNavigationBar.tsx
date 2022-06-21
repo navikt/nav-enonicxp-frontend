@@ -6,7 +6,7 @@ import { IndexPageLink } from '../link/IndexPageLink';
 
 import style from './AreaPageNavigationBar.module.scss';
 import { Chip } from 'components/_common/chip/Chip';
-import { isElementVisible } from 'utils/position';
+import { isElementVisible } from 'utils/scroll-to';
 
 type Props = {
     isVisible: boolean;

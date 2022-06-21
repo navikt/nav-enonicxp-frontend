@@ -3,10 +3,10 @@
 .areasPageNavigation {
     display: flex;
     flex-wrap: wrap;
-    padding-top: 2px; // In order not to clip focus outline
+    opacity: 1;
     padding-bottom: 1rem;
+    padding-top: 2px; // In order not to clip focus outline
     visibility: visible;
-    opacity: 100%;
 
     transition-property: max-height, visibility, padding, opacity;
     transition-duration: 500ms;
@@ -34,13 +34,13 @@
 }
 
 .areasPageNavigationLink {
-    display: inline-flex;
-    white-space: nowrap;
-    margin: 0 0.5rem 0.5rem 0;
+    -webkit-touch-callout: none; /* Disable Safari link preview on long touch, becaus we want touch&scroll feature */
     border: 0;
-    -webkit-touch-callout: none; /* Disable Safari link preview, becaus we want touch&scroll feature */
-    user-select: none;
+    display: inline-flex;
+    margin: 0 0.5rem 0.5rem 0;
     text-decoration: none;
+    user-select: none;
+    white-space: nowrap;
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         margin: 0 0.5rem 0 0;
@@ -49,7 +49,7 @@
 
 .hidden {
     max-height: 0;
+    opacity: 0;
     padding-bottom: 0;
     visibility: hidden;
-    opacity: 0;
 }
