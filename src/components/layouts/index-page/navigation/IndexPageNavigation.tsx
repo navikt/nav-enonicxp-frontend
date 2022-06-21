@@ -25,6 +25,7 @@ export const IndexPageNavigation = ({ pageProps }: Props) => {
                 <AreaPageNavigationBar
                     isVisible={__typename === ContentType.AreaPage}
                     areasRefs={areasRefs}
+                    pageId={_id}
                 />
             </AnimateHeight>
             <FrontPageAreasHeader content={pageProps} />

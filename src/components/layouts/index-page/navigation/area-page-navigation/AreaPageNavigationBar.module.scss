@@ -40,6 +40,7 @@
     border: 0;
     -webkit-touch-callout: none; /* Disable Safari link preview, becaus we want touch&scroll feature */
     user-select: none;
+    text-decoration: none;
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         margin: 0 0.5rem 0 0;

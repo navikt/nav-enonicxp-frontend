@@ -7,20 +7,19 @@ import { IndexPageLink } from '../link/IndexPageLink';
 import style from './AreaPageNavigationBar.module.scss';
 import { Chip } from 'components/_common/chip/Chip';
 import { isElementVisible } from 'utils/position';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 
 type Props = {
     isVisible: boolean;
     areasRefs: AreaPageProps[];
+    pageId: string;
 };
 
 export const AreaPageNavigationBar = ({
     isVisible,
     areasRefs,
+    pageId,
 }: Props) => {
     const navigationBar = useRef(null);
-    const { pageConfig } = usePageConfig();
-    const { pageId } = pageConfig;
 
     const focusEventHandler = (e: React.FocusEvent) => {
         const { target } = e;
@@ -53,18 +52,19 @@ export const AreaPageNavigationBar = ({
                 {areasRefs.map((areaContent) => {
                     const path = getPublicPathname(areaContent);
 
-                return (
-                    <IndexPageLink
-                        href={path}
-                        className={style.areasPageNavigationLink}
-                        key={areaContent._id}
-                    >
-                        <Chip selected={areaContent._id === pageId}>
+                    return (
+                        <IndexPageLink
+                            href={path}
+                            className={style.areasPageNavigationLink}
+                            key={areaContent._id}
+                        >
+                            <Chip selected={areaContent._id === pageId}>
                                 {areaContent.data.header}
                             </Chip>
-                    </IndexPageLink>
-                );
-            })}
+                        </IndexPageLink>
+                    );
+                })}
+            </div>
         </nav>
     );
 };
