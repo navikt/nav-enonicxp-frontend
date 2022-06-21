@@ -22,7 +22,8 @@ import style from './IndexPage.module.scss';
 export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
 const IndexPageContent = (pageProps: IndexPageContentProps) => {
-    const { currentPageProps, navigate } = useIndexPageRouting(pageProps);
+    const { currentPageProps, IndexPageRoutingProvider, navigate } =
+        useIndexPageRouting(pageProps);
 
     const { regions } = currentPageProps.page;
 
@@ -55,10 +56,9 @@ const IndexPageContent = (pageProps: IndexPageContentProps) => {
                     />
                 )}
             </AnimateHeight>
-            <IndexPageNavigation
-                pageProps={currentPageProps}
-                navigationCallback={navigate}
-            />
+            <IndexPageRoutingProvider value={navigate}>
+                <IndexPageNavigation pageProps={currentPageProps} />
+            </IndexPageRoutingProvider>
             <AnimateHeight trigger={currentPageProps._id}>
                 <Region
                     pageProps={currentPageProps}
