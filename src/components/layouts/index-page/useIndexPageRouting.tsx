@@ -12,7 +12,7 @@ type CacheEntries = Record<string, IndexPageContentProps>;
 
 const IndexPageRoutingContext = React.createContext<(path: string) => void>(
     (path: string) => {
-        console.log('IndexPage navigation not enabled')
+        console.log('IndexPage navigation not enabled');
     }
 );
 
