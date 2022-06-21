@@ -19,7 +19,6 @@ export enum LayoutType {
     Fixed1Col = 'no.nav.navno:dynamic-1-col',
     Fixed2Col = 'no.nav.navno:dynamic-2-col',
     Fixed3Col = 'no.nav.navno:dynamic-3-col',
-    Fixed4Col = 'no.nav.navno:dynamic-4-col',
     FlexCols = 'no.nav.navno:dynamic-flex-cols',
     LegacyMain = 'no.nav.navno:main',
     LegacyMain1Col = 'no.nav.navno:main-1-col',

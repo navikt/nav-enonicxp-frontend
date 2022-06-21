@@ -3,7 +3,7 @@
 
 // Import scss that aren't modules
 @import 'components/layouts/fixed-cols/FixedColsLayout.scss';
-@import 'components/layouts/flex-cols/FlexColsLayout.scss';
+@import 'src/components/layouts/flex-cols/FlexColsLayoutGlobal';
 @import 'components/layouts/legacy/LegacyLayout.scss';
 @import 'components/layouts/page-with-side-menus/left-menu-section/LeftMenuSection.scss';
 @import 'components/layouts/page-with-side-menus/PageWithSideMenus.scss';
@@ -28,15 +28,18 @@
     line-height: var(--navds-font-line-height-m);
 
     @media #{common.$mq-screen-mobile} {
-        padding: 0 common.$padding-sides-mobile 2rem common.$padding-sides-mobile;
+        padding: 0 common.$padding-sides-mobile 2rem
+            common.$padding-sides-mobile;
     }
 
     @media #{common.$mq-screen-tablet} {
-        padding: 0 common.$padding-sides-tablet 2rem common.$padding-sides-tablet;
+        padding: 0 common.$padding-sides-tablet 2rem
+            common.$padding-sides-tablet;
     }
 
     @media #{common.$mq-screen-desktop} {
-        padding: 0 common.$padding-sides-desktop 2rem common.$padding-sides-desktop;
+        padding: 0 common.$padding-sides-desktop 2rem
+            common.$padding-sides-desktop;
     }
 }
 
