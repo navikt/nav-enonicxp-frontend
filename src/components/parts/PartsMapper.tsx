@@ -22,8 +22,8 @@ import {
 import { ContentProps } from '../../types/content-props/_content-common';
 import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
 import { HeaderPart } from './header/HeaderPart';
-import { LinkList } from './link-list/LinkList';
-import { NewsList } from './news-list/NewsList';
+import { LinkListPart } from './link-list/LinkListPart';
+import { NewsListPart } from './news-list/NewsListPart';
 import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar';
 import { BEM, classNames } from '../../utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
@@ -41,6 +41,8 @@ import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthD
 import { AlertPanelPart } from './alert-panel/AlertPanelPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { AreaCardPart } from './area-card/AreaCardPart';
+import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
+import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -69,8 +71,8 @@ const partsWithOwnData: {
     [PartType.AlertBox]: AlertBoxPart,
     [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanelPart,
-    [PartType.LinkList]: LinkList,
-    [PartType.NewsList]: NewsList,
+    [PartType.LinkList]: LinkListPart,
+    [PartType.NewsList]: NewsListPart,
     [PartType.HtmlArea]: HtmlArea,
     [PartType.Calculator]: CalculatorPart,
     [PartType.PageHeader]: PageHeaderPart,
@@ -85,6 +87,8 @@ const partsWithOwnData: {
     [PartType.ContactOption]: ContactOptionPart,
     [PartType.PayoutDates]: PayoutDatesPart,
     [PartType.AreaCard]: AreaCardPart,
+    [PartType.AreapageSituationCard]: AreapageSituationCardPart,
+    [PartType.LoggedinCard]: LoggedinCardPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {

@@ -19,7 +19,8 @@ export const Region = ({
     regionProps,
     regionStyle,
     bemModifier,
-}: Props) => {
+    ...divElementProps
+}: Props & React.HTMLAttributes<HTMLDivElement>) => {
     if (!regionProps) {
         return (
             <EditorHelp
@@ -33,11 +34,13 @@ export const Region = ({
 
     return (
         <div
+            {...divElementProps}
             style={regionStyle}
             className={classNames(
                 bem(),
                 bem(name),
-                bemModifier && bem(name, bemModifier)
+                bemModifier && bem(name, bemModifier),
+                divElementProps.className
             )}
             data-portal-region={!!pageProps.editorView ? name : undefined}
         >

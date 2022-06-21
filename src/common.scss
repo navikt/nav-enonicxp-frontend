@@ -209,3 +209,38 @@ $navPink: #fde6e6;
         }
     }
 }
+
+// Fixes for content studio drag and drop placeholders
+@mixin content-studio-drop-zone-fix-local() {
+    :global(.xp-page-editor-region-placeholder:last-child) {
+        display: block;
+    }
+
+    :global(.xp-page-editor-part-placeholder) {
+        width: 100%;
+    }
+
+    :global(.live-edit-drag-placeholder-container) {
+        & > * {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+@mixin content-studio-drop-zone-fix-global() {
+    .xp-page-editor-region-placeholder:last-child {
+        display: block;
+    }
+
+    .xp-page-editor-part-placeholder {
+        width: 100%;
+    }
+
+    .live-edit-drag-placeholder-container {
+        & > * {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { IndexPageContentProps } from './IndexPage';
 import { getPublicPathname } from '../../../utils/urls';
-import { fetchPageCacheContent } from '../../../utils/fetch/fetch-cache';
+import { fetchPageCacheContent } from '../../../utils/fetch/fetch-cache-content';
 import {
     ContentProps,
     ContentType,
@@ -35,6 +35,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     const basePath = getPublicPathname(pageProps);
 
     const router = useRouter();
+
     const [currentPageProps, setCurrentPageProps] = useState(pageProps);
     const [localPageCache, setLocalPageCache] = useState<CacheEntries>({
         [basePath]: pageProps,
@@ -91,18 +92,29 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     // Handle back/forward navigation in the browser
     useEffect(() => {
         router.beforePopState(({ url, as, options }) => {
-            const cachedPage = localPageCache[as];
+            navigate(as);
 
-            if (cachedPage) {
-                console.log(`Found cached page for ${as}`);
-                setCurrentPageProps(cachedPage);
-                return false;
-            }
-
-            console.log(`${as} is not cached`);
-            return true;
+            return false;
         });
+
+        return () => {
+            router.beforePopState(undefined);
+        };
     }, [router, localPageCache]);
+
+    // Handle regular next.js routing to the initial page
+    useEffect(() => {
+        const handler = (url, { shallow }) => {
+            if (url === basePath && !shallow) {
+                navigate(url);
+            }
+        };
+
+        router.events.on('routeChangeComplete', handler);
+        return () => {
+            router.events.off('routeChangeComplete', handler);
+        };
+    }, [pageProps]);
 
     return { currentPageProps, navigate };
 };
