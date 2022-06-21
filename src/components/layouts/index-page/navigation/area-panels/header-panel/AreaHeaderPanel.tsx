@@ -6,8 +6,34 @@ import { classNames } from '../../../../../../utils/classnames';
 import { AreaHeaderPanelExpanded } from './expanded/AreaHeaderPanelExpanded';
 import { getPublicPathname } from '../../../../../../utils/urls';
 import { AreaCard } from 'components/_common/area-card/AreaCard';
+import { WarningFilled } from '@navikt/ds-icons';
+
+import { IndexPageLink } from '../../link/IndexPageLink';
 
 import style from './AreaPanel.module.scss';
+
+const AreaCardPlaceholder = ({
+    areaContent,
+}: {
+    areaContent: AreaPageProps;
+    className?: string;
+}) => {
+    const path = getPublicPathname(areaContent);
+
+    return (
+        <IndexPageLink
+            href={path}
+            style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+            }}
+        >
+            <span>{areaContent.data.header}</span>
+            <WarningFilled className={style.icon} />
+        </IndexPageLink>
+    );
+};
 
 type Props = {
     areaContent: AreaPageProps;

@@ -10,6 +10,12 @@ import { Interaction } from 'types/interaction';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './LargeCard.module.scss';
+import { classNames } from 'utils/classnames';
+
+enum LayoutVariation {
+    DEFAULT = 'Default',
+    SITUATION = 'Situation',
+}
 
 export type StortKortProps = {
     link: LinkProps;
@@ -31,6 +37,11 @@ export const LargeCard = (props: StortKortProps) => {
     const { isHovering, cardInteractionHandler } = useCardState();
     const { pageConfig } = usePageConfig();
 
+    const layoutVariation =
+        type === CardType.Situation
+            ? LayoutVariation.SITUATION
+            : LayoutVariation.DEFAULT;
+
     return (
         <Card
             link={link}
@@ -40,7 +51,12 @@ export const LargeCard = (props: StortKortProps) => {
                 cardInteractionHandler(type)
             }
         >
-            <div className={type}>
+            <div
+                className={classNames(
+                    style.cardWrapper,
+                    style[`cardWrapper${layoutVariation}`]
+                )}
+            >
                 {hasIllustration && (
                     <Illustration
                         illustration={illustration}
@@ -55,8 +71,12 @@ export const LargeCard = (props: StortKortProps) => {
                 <Heading level="3" size="medium" className={style.title}>
                     {text}
                 </Heading>
-                <BodyLong className={style.description}>{description}</BodyLong>
-                <BodyShort className={style.category}>{category}</BodyShort>
+                <div className={style.textContainer}>
+                    <BodyLong className={style.description}>
+                        {description}
+                    </BodyLong>
+                    <BodyShort className={style.category}>{category}</BodyShort>
+                </div>
             </div>
         </Card>
     );
