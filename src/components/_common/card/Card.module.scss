@@ -175,7 +175,7 @@
         background-color: white;
         border-radius: 8px;
         display: block;
-        padding: 1.5rem;
+        padding: 2rem;
         text-decoration: none;
         width: 100%;
 
@@ -195,9 +195,7 @@
             min-height: common.px-to-rem(400);
         }
         &:not(:hover):not(:active) {
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.14),
-                0 2px 1px rgba(38, 38, 38, 0.12),
-                0 1px 3px rgba(38, 38, 38, 0.2);
+            box-shadow: var(--navds-shadow-card);
         }
         &:hover {
             box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),

@@ -28,7 +28,6 @@ export enum PartType {
     PageNavigationMenu = 'no.nav.navno:page-navigation-menu',
     FiltersMenu = 'no.nav.navno:filters-menu',
     ProductCard = 'no.nav.navno:product-card',
-    SituationCard = 'no.nav.navno:situation-card',
     ProductCardMini = 'no.nav.navno:product-card-mini',
     ProductCardMicro = 'no.nav.navno:product-card-micro',
     ProductDetails = 'no.nav.navno:product-details',
@@ -70,7 +69,6 @@ export type PartWithOwnData =
     | PartType.ProductCard
     | PartType.ProductCardMini
     | PartType.ProductCardMicro
-    | PartType.SituationCard
     | PartType.ContactOption
     | PartType.ProductDetails
     | PartType.AlertPanel

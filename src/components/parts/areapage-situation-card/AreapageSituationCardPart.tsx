@@ -7,6 +7,7 @@ import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import classNames from 'classnames';
 
 import style from './AreapageSituationCardPart.module.scss';
+import { translator } from 'translations';
 
 export const AreapageSituationCardPart = ({
     config,
@@ -24,6 +25,7 @@ export const AreapageSituationCardPart = ({
     const { target, disabled } = config;
 
     const props = getCardProps(target, language);
+    const getSituationLabel = translator('situations', language);
 
     // Using product card as placeholder for now
     return (
@@ -36,7 +38,7 @@ export const AreapageSituationCardPart = ({
                     {' er skjult på denne siden'}
                 </span>
             )}
-            <LargeCard {...props} />
+            <LargeCard {...props} category={getSituationLabel('person')} />
         </div>
     );
 };
