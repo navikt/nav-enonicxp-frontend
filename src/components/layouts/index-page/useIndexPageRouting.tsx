@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IndexPageContentProps } from './IndexPage';
 import { getPublicPathname } from '../../../utils/urls';
 import { fetchPageCacheContent } from '../../../utils/fetch/fetch-cache-content';
@@ -9,6 +9,12 @@ import {
 } from '../../../types/content-props/_content-common';
 
 type CacheEntries = Record<string, IndexPageContentProps>;
+
+const IndexPageRoutingContext = React.createContext<(path: string) => void>(
+    (path: string) => {
+        console.log('IndexPage navigation not enabled');
+    }
+);
 
 const fetchIndexPageContentProps = (
     path: string
@@ -116,5 +122,15 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         };
     }, [pageProps]);
 
-    return { currentPageProps, navigate };
+    return {
+        currentPageProps,
+        IndexPageRoutingProvider: IndexPageRoutingContext.Provider,
+        navigate,
+    };
+};
+
+export const useIndexPageNavigation = () => {
+    const navigate = useContext(IndexPageRoutingContext);
+
+    return navigate;
 };
