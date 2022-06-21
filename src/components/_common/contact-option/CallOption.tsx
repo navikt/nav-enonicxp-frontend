@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from 'react';
+import { useState } from 'react';
 import { translator } from 'translations';
 import { Heading, BodyLong, Alert, BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
@@ -18,6 +18,7 @@ import {
 } from '../contact-details/contactHelpers';
 import { analyticsEvents } from '../../../utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
+import { useLayoutEffectClientSide } from '../../../utils/react';
 
 import style from './ContactOption.module.scss';
 
@@ -149,7 +150,7 @@ export const CallOption = (props: CallOptionProps) => {
             : null;
     const isCurrentlyClosed = getIsCurrentyClosed(todaysOpeningHour);
 
-    useLayoutEffect(() => {
+    useLayoutEffectClientSide(() => {
         setIsClosed(isCurrentlyClosed);
     }, [isCurrentlyClosed]);
 

@@ -1,15 +1,12 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from '../../../store/hooks/useAuthState';
 import { AuthStateType } from '../../../store/slices/authState';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { useLayoutEffectClientSide } from 'utils/react';
 
 // eslint does not understand bracket notation
 // eslint-disable-next-line css-modules/no-unused-class
 import style from './AuthDependantRender.module.scss';
-
-// Hack to prevent irrelevant React warning for useLayoutEffect server-side
-const useLayoutEffectClientSide =
-    typeof window !== 'undefined' ? useLayoutEffect : () => {};
 
 export const editorAuthstateClassname = (authState: AuthStateType) =>
     style[authState];
