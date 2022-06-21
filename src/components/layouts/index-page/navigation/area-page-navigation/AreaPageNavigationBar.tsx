@@ -3,20 +3,16 @@ import { classNames } from '../../../../../utils/classnames';
 import { LenkeInline } from '../../../../_common/lenke/LenkeInline';
 import { AreaPageProps } from '../../../../../types/content-props/index-pages-props';
 import { getPublicPathname } from '../../../../../utils/urls';
+import { IndexPageNavigationLink } from '../link/IndexPageNavigationLink';
 
 import style from './AreaPageNavigationBar.module.scss';
 
 type Props = {
     isVisible: boolean;
     areasRefs: AreaPageProps[];
-    navigationCallback: (path: string) => void;
 };
 
-export const AreaPageNavigationBar = ({
-    isVisible,
-    areasRefs,
-    navigationCallback,
-}: Props) => {
+export const AreaPageNavigationBar = ({ isVisible, areasRefs }: Props) => {
     return (
         <div
             className={classNames(
@@ -28,17 +24,13 @@ export const AreaPageNavigationBar = ({
                 const path = getPublicPathname(areaContent);
 
                 return (
-                    <LenkeInline
+                    <IndexPageNavigationLink
                         href={path}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            navigationCallback(path);
-                        }}
                         className={style.areasPageNavigationLink}
                         key={areaContent._id}
                     >
                         {areaContent.data.header}
-                    </LenkeInline>
+                    </IndexPageNavigationLink>
                 );
             })}
         </div>
