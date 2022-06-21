@@ -133,11 +133,20 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
     return {
         currentPageProps,
-        IndexPageRoutingProvider: IndexPageRoutingContext.Provider,
-        contextValue: {
-            navigate,
-            indexPages,
-        },
+        IndexPageRoutingProvider: ({
+            children,
+        }: {
+            children: React.ReactNode;
+        }) => (
+            <IndexPageRoutingContext.Provider
+                value={{
+                    navigate,
+                    indexPages,
+                }}
+            >
+                {children}
+            </IndexPageRoutingContext.Provider>
+        ),
     };
 };
 
