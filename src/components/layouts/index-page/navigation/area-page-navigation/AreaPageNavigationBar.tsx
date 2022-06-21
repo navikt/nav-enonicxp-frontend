@@ -57,6 +57,7 @@ export const AreaPageNavigationBar = ({
                             href={path}
                             className={style.areasPageNavigationLink}
                             key={areaContent._id}
+                            onFocus={focusEventHandler}
                         >
                             <Chip selected={areaContent._id === pageId}>
                                 {areaContent.data.header}
