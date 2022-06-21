@@ -15,19 +15,19 @@ import { SocialCounsellingAnimation } from './open-pages/social-counselling/Soci
 import { WorkAnimation } from './open-pages/work/WorkAnimation';
 
 type Props = {
-    href: string;
+    path: string;
     title: string;
     area?: string;
 };
 
-export const AreaCard = ({ href, title, area }: Props) => {
+export const AreaCard = ({ path, title, area }: Props) => {
     return (
         <LinkPanel
             border={false}
             className={style.linkPanel}
             as={(props) => (
                 <LenkeBase
-                    href={href}
+                    href={path}
                     analyticsLabel={title}
                     component="area-card"
                     {...props}
