@@ -101,6 +101,13 @@ export type LayoutCommonConfigMixin = Partial<
                 remValue: number;
             };
         }>;
+        paddingTopBottom: OptionSetSingle<{
+            standard: EmptyObject;
+            custom: {
+                top: number;
+                bottom: number;
+            };
+        }>;
     } & RenderOnAuthStateMixin
 >;
 
