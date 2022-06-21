@@ -15,13 +15,18 @@ export const getCommonLayoutStyle = (config: LayoutCommonConfigMixin) => {
             marginBottom: `${marginBottom}rem`,
         }),
         ...(bgColor && { backgroundColor: bgColor.color }),
-        ...(paddingSides?._selected === 'custom' && {
-            paddingLeft: `${paddingSides.custom?.remValue}rem`,
-            paddingRight: `${paddingSides.custom?.remValue}rem`,
-        }),
+        ...(paddingSides?._selected === 'custom' &&
+            paddingSides.custom?.remValue && {
+                paddingLeft: `${paddingSides.custom.remValue}rem`,
+                paddingRight: `${paddingSides.custom.remValue}rem`,
+            }),
         ...(paddingTopBottom?._selected === 'custom' && {
-            paddingTop: `${paddingTopBottom.custom?.top}rem`,
-            paddingBottom: `${paddingTopBottom.custom?.bottom}rem`,
+            ...(paddingTopBottom.custom?.top && {
+                paddingTop: `${paddingTopBottom.custom.top}rem`,
+            }),
+            ...(paddingTopBottom.custom?.bottom && {
+                paddingBottom: `${paddingTopBottom.custom.bottom}rem`,
+            }),
         }),
     };
 };
