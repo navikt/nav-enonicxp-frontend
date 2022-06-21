@@ -6,7 +6,7 @@ import { WarningFilled } from '@navikt/ds-icons';
 import { classNames } from '../../../../../../utils/classnames';
 import { AreaHeaderPanelExpanded } from './expanded/AreaHeaderPanelExpanded';
 import { getPublicPathname } from '../../../../../../utils/urls';
-import { IndexPageNavigationLink } from '../../link/IndexPageNavigationLink';
+import { IndexPageLink } from '../../link/IndexPageLink';
 
 import style from './AreaPanel.module.scss';
 
@@ -19,7 +19,7 @@ const AreaCardPlaceholder = ({
     const path = getPublicPathname(areaContent);
 
     return (
-        <IndexPageNavigationLink
+        <IndexPageLink
             href={path}
             style={{
                 display: 'flex',
@@ -29,7 +29,7 @@ const AreaCardPlaceholder = ({
         >
             <span>{areaContent.data.header}</span>
             <WarningFilled className={style.icon} />
-        </IndexPageNavigationLink>
+        </IndexPageLink>
     );
 };
 
