@@ -11,7 +11,16 @@
 .situations {
     display: flex;
     flex-wrap: wrap;
-    @include common.flex-cols-mixin(2, 1.5rem, 1.5rem);
+
+    @media #{common.$mq-screen-mobile} {
+        @include common.flex-cols-mixin(1);
+    }
+    @media #{common.$mq-screen-tablet} {
+        @include common.flex-cols-mixin(2, 1.5rem, 1.5rem);
+    }
+    @media #{common.$mq-screen-desktop} {
+        @include common.flex-cols-mixin(2, 1.5rem, 1.5rem);
+    }
 }
 
 .header {
