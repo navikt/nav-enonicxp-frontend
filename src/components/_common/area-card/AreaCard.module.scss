@@ -41,8 +41,7 @@ $border-radius: 0.5rem;
             text-decoration: none;
         }
 
-        @media only screen and (min-width: 480px) {
-            //TODO mq
+        @media only screen and (min-width: common.$mobileSmallMaxWidth) {
             background-color: var(
                 --navds-semantic-color-component-background-alternate
             );

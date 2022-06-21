@@ -12,7 +12,5 @@ export const AreaCardPart = ({ config }: AreaCardPartProps) => {
     const { link } = config;
     const linkProps = getSelectableLinkProps(link);
 
-    console.log(linkProps.text, linkProps.text.length); //TODO fjern
-
     return <AreaCard href={linkProps.url} title={linkProps.text}></AreaCard>;
 };

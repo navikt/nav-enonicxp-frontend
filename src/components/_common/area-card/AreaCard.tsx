@@ -17,7 +17,7 @@ import { WorkAnimation } from './open-pages/work/WorkAnimation';
 type Props = {
     href: string;
     title: string;
-    area: string;
+    area?: string;
 };
 
 export const AreaCard = ({ href, title, area }: Props) => {
@@ -38,7 +38,7 @@ export const AreaCard = ({ href, title, area }: Props) => {
         >
             <div
                 className={
-                    title.length > 17 ? style.titleLong : style.titleShort //TODO endre? bredde settes også i px
+                    title.length > 17 ? style.titleLong : style.titleShort //TODO Finne en bedre løsning? Width settes også i px
                 }
             >
                 <LinkPanel.Title>{title}</LinkPanel.Title>

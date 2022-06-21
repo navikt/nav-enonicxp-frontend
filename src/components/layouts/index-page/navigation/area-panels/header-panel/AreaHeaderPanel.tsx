@@ -70,8 +70,6 @@ export const AreaHeaderPanel = ({
         prevType === ContentType.FrontPage &&
         currentType === ContentType.AreaPage;
 
-    console.log('HER', areaContent); //TODO fjerne
-
     return __typename === ContentType.AreaPage &&
         areaContent._id === currentId ? (
         <div
