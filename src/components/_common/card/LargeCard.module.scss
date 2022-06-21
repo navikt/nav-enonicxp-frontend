@@ -60,11 +60,14 @@
     }
 
     .title {
+        @media #{common.$mq-screen-tablet-and-mobile} {
+            align-self: center;
+            margin-bottom: 0;
+        }
+
         @media #{common.$mq-screen-mobile} {
             font-size: 1.25rem;
             line-height: 1.75rem;
-            align-self: center;
-            margin-bottom: 0;
         }
     }
 }
@@ -97,11 +100,13 @@
         color: var(--navds-semantic-color-link);
     }
 }
+
 .description {
     color: var(--navds-global-color-gray-900);
     font-weight: 400;
     margin-bottom: 2rem;
 }
+
 .category {
     color: var(--navds-global-color-gray-600);
     font-size: 0.875rem;
