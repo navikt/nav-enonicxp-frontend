@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import {
     isNofollowUrl,
     getInternalRelativePath,
@@ -6,10 +7,9 @@ import {
     isInternalUrl,
 } from 'utils/urls';
 import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import Link from 'next/link';
-import { usePathMap } from '../../../store/hooks/usePathMap';
-import { useLayoutConfig } from "../../layouts/useLayoutConfig";
 import { onlyText } from 'utils/react-children';
+import { usePathMap } from 'store/hooks/usePathMap';
+import { useLayoutConfig } from "components/layouts/useLayoutConfig";
 
 /**
  * This component handles client-side async navigation for URLs internal to this app (as well as analytics for links)

@@ -18,7 +18,7 @@ export const onlyText = (children: ReactNode | ReactNode[]): string => {
         return childToString(children);
     }
 
-    return Children.toArray(children).reduce((text: string, child: ReactNode): string => {
+    return <string>Children.toArray(children).reduce((text: string, child: ReactNode): string => {
         let newText;
 
         if (isValidElement(child) && hasChildren(child)) {
