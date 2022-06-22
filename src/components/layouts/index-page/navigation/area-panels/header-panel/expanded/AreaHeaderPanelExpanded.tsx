@@ -18,7 +18,7 @@ export const AreaHeaderPanelExpanded = ({ areaContent }: Props) => {
     return (
         <div className={style.panel}>
             <div className={style.headerContainer}>
-                <Heading level={'2'} size={'xlarge'} className={style.header}>
+                <Heading level={'2'} size={'xlarge'}>
                     {header}
                 </Heading>
                 {banner && (

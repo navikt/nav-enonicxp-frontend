@@ -21,17 +21,17 @@ export const IndexPageNavigation = ({ pageProps }: Props) => {
 
     return (
         <div className={style.centerNavigation}>
-            <AnimateHeight trigger={_id}>
-                <AreaPageNavigationBar
-                    isVisible={__typename === ContentType.AreaPage}
-                    areasRefs={areasRefs}
-                    pageId={_id}
-                />
-            </AnimateHeight>
+            {/*<AnimateHeight trigger={_id} fadeTime={0}>*/}
+            <AreaPageNavigationBar
+                isVisible={__typename === ContentType.AreaPage}
+                areasRefs={areasRefs}
+                pageId={_id}
+            />
+            {/*</AnimateHeight>*/}
             <FrontPageAreasHeader content={pageProps} />
-            <AnimateHeight trigger={_id}>
-                <IndexPageAreaPanels content={pageProps} />
-            </AnimateHeight>
+            {/*<AnimateHeight trigger={_id}>*/}
+            <IndexPageAreaPanels content={pageProps} />
+            {/*</AnimateHeight>*/}
         </div>
     );
 };
