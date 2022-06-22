@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
 import { IndexPageNavigation } from './navigation/IndexPageNavigation';

@@ -5,3 +5,8 @@
     background-color: #fff;
     @include common.full-width-mixin();
 }
+
+.headerAndNavBar {
+    height: 60px;
+    overflow: hidden;
+}

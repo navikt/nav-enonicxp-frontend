@@ -7,14 +7,13 @@
     padding-top: 2px; // In order not to clip focus outline
 
     visibility: visible;
-    max-height: 60px;
+    max-height: 70px;
     opacity: 1;
 
-    transition-property: max-height, visibility, padding, opacity;
-    transition-duration: 500ms;
-    transition-timing-function: linear;
-
-    @include common.full-width-mixin();
+    transition-property: max-height, visibility, padding-top, padding-bottom,
+        transform, opacity;
+    transition-duration: 400ms;
+    transition-timing-function: ease-in-out;
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         overflow-y: hidden;
@@ -54,4 +53,5 @@
     opacity: 0;
     padding: 0;
     visibility: hidden;
+    transform: translateY(-70px);
 }
