@@ -1,0 +1,11 @@
+$expandGraphics: expandGraphics;
+$expandOnHover: expandOnHover;
+
+@function onExpand($graphics-element) {
+    @return ':global(.#{$expandOnHover}):hover #{$graphics-element},:global(.#{$expandGraphics}) #{$graphics-element}';
+}
+
+:export {
+    expandGraphics: $expandGraphics;
+    expandOnHover: $expandOnHover;
+}

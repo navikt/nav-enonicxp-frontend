@@ -1,0 +1,49 @@
+import React from 'react';
+import { AreaCardGraphicsType } from '../../../../types/component-props/parts/area-card';
+import { CasesAnimation } from './logged-in/cases/CasesAnimation';
+import { EmploymentStatusFormAnimation } from './logged-in/employment-status-form/EmploymentStatusFormAnimation';
+import { PaymentsAnimation } from './logged-in/payments/PaymentsAnimation';
+import { AccessibilityAnimation } from './open-pages/accessibility/AccessibilityAnimation';
+import { FamilyAnimation } from './open-pages/family/FamilyAnimation';
+import { HealthAnimation } from './open-pages/health/HealthAnimation';
+import { PensionAnimation } from './open-pages/pension/PensionAnimation';
+import { SocialCounsellingAnimation } from './open-pages/social-counselling/SocialCounsellingAnimation';
+import { WorkAnimation } from './open-pages/work/WorkAnimation';
+import { classNames } from '../../../../utils/classnames';
+
+import style from './AreaCardGraphics.module.scss';
+
+const areaTypeComponentMap: {
+    [key in AreaCardGraphicsType]: React.FunctionComponent<{
+        expanded: boolean;
+    }>;
+} = {
+    cases: CasesAnimation,
+    'employment-status-form': EmploymentStatusFormAnimation,
+    payments: PaymentsAnimation,
+    accessibility: AccessibilityAnimation,
+    family: FamilyAnimation,
+    health: HealthAnimation,
+    pension: PensionAnimation,
+    social_counselling: SocialCounsellingAnimation,
+    work: WorkAnimation,
+};
+
+const DefaultComponent = () => <div>{'Ugyldig grafikkvalg'}</div>;
+
+export const getAreaGraphicsComponent = (type: string) =>
+    areaTypeComponentMap[type] || DefaultComponent;
+
+type Props = {
+    type: string;
+};
+
+export const AreaCardGraphics = ({ type }: Props) => {
+    const GraphicComponent = getAreaGraphicsComponent(type);
+
+    return (
+        <div className={classNames(style.graphics)}>
+            <GraphicComponent />
+        </div>
+    );
+};

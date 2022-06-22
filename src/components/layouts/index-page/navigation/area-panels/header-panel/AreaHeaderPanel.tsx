@@ -58,7 +58,7 @@ export const AreaHeaderPanel = ({ areaContent, currentContent }: Props) => {
         >
             <AreaCard
                 path={path}
-                title={areaContent.displayName}
+                title={areaContent.data.header}
                 area={areaContent.data.area}
             />
         </div>

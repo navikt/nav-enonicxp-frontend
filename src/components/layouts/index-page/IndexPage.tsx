@@ -48,23 +48,23 @@ const IndexPageContent = (basePageProps: IndexPageContentProps) => {
                     </LenkeInline>
                 </AlertBox>
             )}
-            <AnimateHeight trigger={currentPageProps._id}>
-                {currentPageProps.__typename === ContentType.FrontPage && (
-                    <Region
-                        pageProps={currentPageProps}
-                        regionProps={regions.contentTop}
-                    />
-                )}
-            </AnimateHeight>
+            {/*<AnimateHeight trigger={currentPageProps._id}>*/}
+            {currentPageProps.__typename === ContentType.FrontPage && (
+                <Region
+                    pageProps={currentPageProps}
+                    regionProps={regions.contentTop}
+                />
+            )}
+            {/*</AnimateHeight>*/}
             <IndexPageRoutingProvider>
                 <IndexPageNavigation pageProps={currentPageProps} />
             </IndexPageRoutingProvider>
-            <AnimateHeight trigger={currentPageProps._id}>
-                <Region
-                    pageProps={currentPageProps}
-                    regionProps={regions.contentBottom}
-                />
-            </AnimateHeight>
+            {/*<AnimateHeight trigger={currentPageProps._id}>*/}
+            <Region
+                pageProps={currentPageProps}
+                regionProps={regions.contentBottom}
+            />
+            {/*</AnimateHeight>*/}
         </LayoutContainer>
     );
 };
