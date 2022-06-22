@@ -4,21 +4,21 @@ import { useIndexPageNavigation } from '../../useIndexPageRouting';
 
 type Props = React.ComponentProps<typeof LenkeBase>;
 
-export const IndexPageLink = ({ href, children, ...rest }: Props) => {
+export const IndexPageLink = ({ href, onClick, children, ...rest }: Props) => {
     const { navigate, indexPages } = useIndexPageNavigation();
 
     return (
         <LenkeBase
             {...rest}
             href={href}
-            onClick={
-                indexPages.has(href)
-                    ? (e) => {
-                          e.preventDefault();
-                          navigate(href);
-                      }
-                    : undefined
-            }
+            onClick={(e) => {
+                onClick?.(e);
+
+                if (indexPages.has(href)) {
+                    e.preventDefault();
+                    navigate(href);
+                }
+            }}
         >
             {children}
         </LenkeBase>

@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { IndexPageContentProps } from './IndexPage';
-import { getPublicPathname } from '../../../utils/urls';
+import { getPublicPathname, xpDraftPathPrefix } from '../../../utils/urls';
 import { fetchPageCacheContent } from '../../../utils/fetch/fetch-cache-content';
 import {
     ContentProps,
     ContentType,
 } from '../../../types/content-props/_content-common';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 type CacheEntries = Record<string, IndexPageContentProps>;
 
@@ -17,9 +18,7 @@ type IndexPageRoutingContext = {
 
 const IndexPageRoutingContext = React.createContext<IndexPageRoutingContext>({
     indexPages: new Set(),
-    navigate: (path: string) => {
-        console.log('IndexPage navigation not initialized');
-    },
+    navigate: (_: string) => {},
 });
 
 const fetchIndexPageContentProps = (
@@ -51,6 +50,8 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     const indexPages = new Set([basePath, ...areasRefsPaths]);
 
     const router = useRouter();
+    const { pageConfig } = usePageConfig();
+    const { editorView } = pageConfig;
 
     const [currentPageProps, setCurrentPageProps] = useState(pageProps);
     const [localPageCache, setLocalPageCache] = useState<CacheEntries>({
@@ -62,6 +63,11 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     };
 
     const navigate = (path: string) => {
+        if (editorView) {
+            router.push(`${xpDraftPathPrefix}${path}`);
+            return;
+        }
+
         const cachedPage = localPageCache[path];
 
         if (cachedPage) {
@@ -133,11 +139,20 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
     return {
         currentPageProps,
-        IndexPageRoutingProvider: IndexPageRoutingContext.Provider,
-        contextValue: {
-            navigate,
-            indexPages,
-        },
+        IndexPageRoutingProvider: ({
+            children,
+        }: {
+            children: React.ReactNode;
+        }) => (
+            <IndexPageRoutingContext.Provider
+                value={{
+                    navigate,
+                    indexPages,
+                }}
+            >
+                {children}
+            </IndexPageRoutingContext.Provider>
+        ),
     };
 };
 
