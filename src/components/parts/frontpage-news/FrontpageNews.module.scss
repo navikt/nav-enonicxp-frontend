@@ -16,10 +16,34 @@
 }
 
 .newsItem {
-    margin: 0 1em 1em 0;
+    margin: 0 1em 1.5em 0;
     flex: 1;
 
     &:last-child {
         margin-right: 0;
+    }
+}
+
+.moreNews {
+    color: var(--navds-semantic-component-background-inverted);
+    font-weight: 600;
+    padding-right: 0.5rem;
+    text-decoration: none;
+
+    svg {
+        color: black;
+        height: 1.3rem;
+        margin-right: 0.2rem;
+        width: auto;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: transparent;
+        color: var(--navds-global-color-blue-500);
+
+        svg {
+            color: var(--navds-global-color-blue-500);
+        }
     }
 }

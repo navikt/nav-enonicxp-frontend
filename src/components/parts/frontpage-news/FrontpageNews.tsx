@@ -1,3 +1,5 @@
+import { Next } from '@navikt/ds-icons';
+import { Button, Link } from '@navikt/ds-react';
 import { NewsCard } from 'components/_common/card/NewsCard';
 import { Header } from 'components/_common/headers/Header';
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -8,7 +10,7 @@ import { getPublicPathname } from 'utils/urls';
 import style from './FrontpageNews.module.scss';
 
 export const FrontpageNews = ({ config }: FrontpageNewsProps) => {
-    const { newsList, title } = config;
+    const { newsList, title, moreNews } = config;
     const { language } = usePageConfig();
 
     return (
@@ -34,6 +36,12 @@ export const FrontpageNews = ({ config }: FrontpageNewsProps) => {
                     />
                 ))}
             </div>
+            {moreNews && (
+                <Link href={moreNews.url} className={style.moreNews}>
+                    <Next />
+                    {moreNews.text}
+                </Link>
+            )}
         </div>
     );
 };

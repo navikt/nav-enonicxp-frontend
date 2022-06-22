@@ -7,5 +7,9 @@ export interface FrontpageNewsProps extends PartComponentProps {
     config: {
         title: string;
         newsList: ContentProps[];
+        moreNews: {
+            url: string;
+            text: string;
+        };
     };
 }
