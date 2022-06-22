@@ -35,6 +35,12 @@ $mq-screen-tablet-and-mobile: 'only screen and (max-width: #{$tabletMaxWidth}) '
 $mq-screen-desktop: 'only screen and (min-width: #{$desktopMinWidth}) ';
 $mq-screen-desktop-large: 'only screen and (min-width: #{$desktopMaxWidth}) ';
 
+// Index page breakpoints
+$mobileSmallMaxWidth: 30rem; // 480px
+$desktopSmallMaxWidth: 75rem; // 1200px
+$mq-screen-mobile-small: 'only screen and (max-width: #{$mobileSmallMaxWidth})';
+$mq-screen-desktop-small: 'only screen and (max-width: #{$desktopSmallMaxWidth})';
+
 // Max-width for SituationPage & Layouts
 $contentMaxWidth: px-to-rem(900);
 $sectionMaxWidth: calc(#{$contentMaxWidth} * 2 / 3);

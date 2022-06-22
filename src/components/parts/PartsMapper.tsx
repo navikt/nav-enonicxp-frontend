@@ -40,6 +40,7 @@ import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
 import { AlertPanelPart } from './alert-panel/AlertPanelPart';
 import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
+import { AreaCardPart } from './area-card/AreaCardPart';
 import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 
@@ -85,6 +86,7 @@ const partsWithOwnData: {
     [PartType.ProductDetails]: ProductDetailsPart,
     [PartType.ContactOption]: ContactOptionPart,
     [PartType.PayoutDates]: PayoutDatesPart,
+    [PartType.AreaCard]: AreaCardPart,
     [PartType.AreapageSituationCard]: AreapageSituationCardPart,
     [PartType.LoggedinCard]: LoggedinCardPart,
 };
