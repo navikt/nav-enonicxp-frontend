@@ -31,15 +31,12 @@ const areaTypeComponentMap: {
 
 const DefaultComponent = () => <div>{'Ugyldig grafikkvalg'}</div>;
 
-export const getAreaGraphicsComponent = (type: string) =>
-    areaTypeComponentMap[type] || DefaultComponent;
-
 type Props = {
     type: string;
 };
 
 export const AreaCardGraphics = ({ type }: Props) => {
-    const GraphicComponent = getAreaGraphicsComponent(type);
+    const GraphicComponent = areaTypeComponentMap[type] || DefaultComponent;
 
     return (
         <div className={classNames(style.graphics)}>

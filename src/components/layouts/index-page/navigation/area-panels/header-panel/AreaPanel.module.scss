@@ -27,16 +27,11 @@
     animation-direction: alternate;
     animation-timing-function: ease-in;
 
-    @media not screen and (prefers-reduced-motion) {
+    @media (prefers-reduced-motion: no-preference) {
         &.animate {
             animation-duration: 500ms;
         }
     }
-}
-
-.icon {
-    min-width: 30px;
-    min-height: 30px;
 }
 
 @keyframes expandActive {
