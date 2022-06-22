@@ -1,0 +1,54 @@
+@import '../../AreaCard.module.scss';
+
+.shapes {
+    @include transitionMixin;
+    position: absolute;
+    right: 52px;
+    top: 49px;
+
+    :hover > & {
+        right: 214px;
+        top: 81px;
+    }
+}
+
+.letterU {
+    @include transitionMixin;
+    position: absolute;
+    right: -98px;
+    top: 0px;
+
+    :hover > & {
+        right: 0px;
+    }
+}
+
+.mask {
+    background-color: var(--navds-global-color-deepblue-100);
+
+    @include transitionMixin;
+    position: absolute;
+    width: 145px;
+    height: 245px;
+    right: -30px;
+    top: -45px;
+    transform: rotate(22.09deg);
+
+    :hover > & {
+        right: -184px;
+    }
+}
+
+.wallet {
+    @include transitionMixin;
+    position: absolute;
+    width: 75.73px;
+    height: 71px;
+    right: 56.27px;
+    top: 40px;
+
+    :hover > & {
+        right: 114.27px;
+        top: 89px;
+    }
+}

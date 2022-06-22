@@ -2,36 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { AreaPageProps } from '../../../../../../types/content-props/index-pages-props';
 import { IndexPageContentProps } from '../../../IndexPage';
 import { ContentType } from '../../../../../../types/content-props/_content-common';
-import { WarningFilled } from '@navikt/ds-icons';
 import { classNames } from '../../../../../../utils/classnames';
 import { AreaHeaderPanelExpanded } from './expanded/AreaHeaderPanelExpanded';
 import { getPublicPathname } from '../../../../../../utils/urls';
-import { IndexPageLink } from '../../link/IndexPageLink';
+import { AreaCard } from 'components/_common/area-card/AreaCard';
 
 import style from './AreaPanel.module.scss';
-
-const AreaCardPlaceholder = ({
-    areaContent,
-}: {
-    areaContent: AreaPageProps;
-    className?: string;
-}) => {
-    const path = getPublicPathname(areaContent);
-
-    return (
-        <IndexPageLink
-            href={path}
-            style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%',
-            }}
-        >
-            <span>{areaContent.data.header}</span>
-            <WarningFilled className={style.icon} />
-        </IndexPageLink>
-    );
-};
 
 type Props = {
     areaContent: AreaPageProps;
@@ -44,6 +20,8 @@ export const AreaHeaderPanel = ({ areaContent, currentContent }: Props) => {
     const [currentId, setCurrentId] = useState(_id);
     const [currentType, setCurrentType] = useState<ContentType>(__typename);
     const [prevType, setPrevType] = useState<ContentType>();
+
+    const path = getPublicPathname(areaContent);
 
     useEffect(() => {
         if (currentId === _id) {
@@ -78,7 +56,11 @@ export const AreaHeaderPanel = ({ areaContent, currentContent }: Props) => {
                 useFrontpageTransition && style.animate
             )}
         >
-            <AreaCardPlaceholder areaContent={areaContent} />
+            <AreaCard
+                path={path}
+                title={areaContent.displayName}
+                area={areaContent.data.area}
+            />
         </div>
     );
 };
