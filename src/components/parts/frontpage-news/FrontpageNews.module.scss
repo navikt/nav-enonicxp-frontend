@@ -1,0 +1,25 @@
+@use 'src/common' as common;
+
+.frontpageNews {
+    background-color: var(--navds-global-semantic-canvas-background);
+    padding: 2em;
+    @include common.full-width-mixin();
+}
+
+.header {
+    margin-bottom: 2em;
+}
+
+.newsList {
+    display: flex;
+    flex-direction: row;
+}
+
+.newsItem {
+    margin: 0 1em 1em 0;
+    flex: 1;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
