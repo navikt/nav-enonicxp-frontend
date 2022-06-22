@@ -1,16 +1,17 @@
 import React from 'react';
 import { IndexPageContentProps } from '../../IndexPage';
 import { AreaHeaderPanel } from './header-panel/AreaHeaderPanel';
-
-import style from './IndexPageAreaPanels.module.scss';
 import { classNames } from '../../../../../utils/classnames';
 import { ContentType } from '../../../../../types/content-props/_content-common';
 
+import style from './IndexPageAreaPanels.module.scss';
+
 type Props = {
     content: IndexPageContentProps;
+    navigate: (path: string) => void;
 };
 
-export const IndexPageAreaPanels = ({ content }: Props) => {
+export const IndexPageAreasPanels = ({ content, navigate }: Props) => {
     const { __typename, data } = content;
     const { areasRefs } = data;
 
@@ -25,6 +26,7 @@ export const IndexPageAreaPanels = ({ content }: Props) => {
                     <AreaHeaderPanel
                         areaContent={areaContent}
                         currentContent={content}
+                        navigate={navigate}
                         key={areaContent._id}
                     />
                 );

@@ -73,7 +73,6 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
             }
 
             const cachedPage = localPageCache[path];
-            console.log(!!cachedPage);
 
             if (cachedPage) {
                 setCurrentPageProps(cachedPage);
@@ -133,9 +132,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     // Handle regular next.js routing to the initial page
     useEffect(() => {
         const handler = (url, { shallow }) => {
-            console.log(url, shallow);
             if (!shallow) {
-                console.log('Navigating');
                 navigate(url);
             }
         };
@@ -148,20 +145,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
     return {
         currentPageProps,
-        IndexPageRoutingProvider: ({
-            children,
-        }: {
-            children: React.ReactNode;
-        }) => (
-            <IndexPageRoutingContext.Provider
-                value={{
-                    navigate,
-                    indexPages,
-                }}
-            >
-                {children}
-            </IndexPageRoutingContext.Provider>
-        ),
+        navigate,
     };
 };
 

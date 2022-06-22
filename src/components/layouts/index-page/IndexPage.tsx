@@ -22,8 +22,7 @@ import style from './IndexPage.module.scss';
 export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
 const IndexPageContent = (basePageProps: IndexPageContentProps) => {
-    const { currentPageProps, IndexPageRoutingProvider } =
-        useIndexPageRouting(basePageProps);
+    const { currentPageProps, navigate } = useIndexPageRouting(basePageProps);
 
     const { regions } = currentPageProps.page;
 
@@ -48,17 +47,18 @@ const IndexPageContent = (basePageProps: IndexPageContentProps) => {
                     </LenkeInline>
                 </AlertBox>
             )}
-            <AnimateHeight trigger={currentPageProps._id}>
-                {currentPageProps.__typename === ContentType.FrontPage && (
-                    <Region
-                        pageProps={currentPageProps}
-                        regionProps={regions.contentTop}
-                    />
-                )}
-            </AnimateHeight>
-            <IndexPageRoutingProvider>
-                <IndexPageNavigation pageProps={currentPageProps} />
-            </IndexPageRoutingProvider>
+            {/*<AnimatedElement trigger={currentPageProps._id}>*/}
+            {currentPageProps.__typename === ContentType.FrontPage && (
+                <Region
+                    pageProps={currentPageProps}
+                    regionProps={regions.contentTop}
+                />
+            )}
+            {/*</AnimatedElement>*/}
+            <IndexPageNavigation
+                pageProps={currentPageProps}
+                navigate={navigate}
+            />
             <AnimateHeight trigger={currentPageProps._id}>
                 <Region
                     pageProps={currentPageProps}

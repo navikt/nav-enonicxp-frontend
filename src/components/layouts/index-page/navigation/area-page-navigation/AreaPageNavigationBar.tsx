@@ -12,24 +12,25 @@ type Props = {
     isVisible: boolean;
     areasRefs: AreaPageProps[];
     pageId: string;
+    navigate: (path: string) => void;
 };
 
 export const AreaPageNavigationBar = ({
     isVisible,
     areasRefs,
     pageId,
+    navigate,
 }: Props) => {
     const navigationBar = useRef(null);
 
     const focusEventHandler = (e: React.FocusEvent) => {
         const { target } = e;
         const navBar: Element = navigationBar.current;
-        const item = target;
 
-        const isVisble = isElementVisible(item, navBar);
+        const isVisble = isElementVisible(target, navBar);
 
         if (!isVisble) {
-            const itemBounds = item.getBoundingClientRect();
+            const itemBounds = target.getBoundingClientRect();
             const scrollTargetPos = itemBounds.x + itemBounds.width;
             const scrollOptions: ScrollToOptions = {
                 left: scrollTargetPos,
@@ -58,6 +59,7 @@ export const AreaPageNavigationBar = ({
                             className={style.areasPageNavigationLink}
                             key={areaContent._id}
                             onFocus={focusEventHandler}
+                            navigate={navigate}
                         >
                             <Chip selected={areaContent._id === pageId}>
                                 {areaContent.data.header}

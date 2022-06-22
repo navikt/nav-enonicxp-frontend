@@ -12,9 +12,14 @@ import style from './AreaPanel.module.scss';
 type Props = {
     areaContent: AreaPageProps;
     currentContent: IndexPageContentProps;
+    navigate: (path: string) => void;
 };
 
-export const AreaHeaderPanel = ({ areaContent, currentContent }: Props) => {
+export const AreaHeaderPanel = ({
+    areaContent,
+    currentContent,
+    navigate,
+}: Props) => {
     const { __typename, _id } = currentContent;
 
     const [currentId, setCurrentId] = useState(_id);
@@ -60,6 +65,7 @@ export const AreaHeaderPanel = ({ areaContent, currentContent }: Props) => {
                 path={path}
                 title={areaContent.data.header}
                 area={areaContent.data.area}
+                navigate={navigate}
             />
         </div>
     );

@@ -12,9 +12,10 @@ type Props = {
     path: string;
     title: string;
     area: string;
+    navigate: (path: string) => void;
 };
 
-export const AreaCard = ({ path, title, area }: Props) => {
+export const AreaCard = ({ path, title, area, navigate }: Props) => {
     if (!area) {
         return <EditorHelp text={'Velg en grafikk for kortet'} />;
     }
@@ -25,10 +26,11 @@ export const AreaCard = ({ path, title, area }: Props) => {
             className={classNames(style.linkPanel, graphicsStyle.expandOnHover)}
             as={(props) => (
                 <IndexPageLink
+                    {...props}
                     href={path}
                     analyticsLabel={title}
                     component="area-card"
-                    {...props}
+                    navigate={navigate}
                 >
                     {props.children}
                 </IndexPageLink>

@@ -3,10 +3,12 @@
 .areasPageNavigation {
     display: flex;
     flex-wrap: wrap;
-    opacity: 1;
     padding-bottom: 1rem;
     padding-top: 2px; // In order not to clip focus outline
+
     visibility: visible;
+    max-height: 60px;
+    opacity: 1;
 
     transition-property: max-height, visibility, padding, opacity;
     transition-duration: 500ms;
@@ -50,6 +52,6 @@
 .hidden {
     max-height: 0;
     opacity: 0;
-    padding-bottom: 0;
+    padding: 0;
     visibility: hidden;
 }
