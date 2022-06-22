@@ -2,7 +2,7 @@
 
 .container {
     @include common.full-width-mixin();
-    padding-top: 2rem;
+    padding-top: 2.5rem;
     padding-bottom: 2rem;
     background-color: common.$navds-global-color-deepblue-50;
 
@@ -32,5 +32,5 @@
 }
 
 .header {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
