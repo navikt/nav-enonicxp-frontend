@@ -3,7 +3,7 @@ import { PartType } from '../parts';
 import { PartComponentProps } from '../_component-common';
 
 export interface FrontpageNewsProps extends PartComponentProps {
-    descriptor: PartType.NewsList;
+    descriptor: PartType.FrontpageNews;
     config: {
         title: string;
         newsList: ContentProps[];
