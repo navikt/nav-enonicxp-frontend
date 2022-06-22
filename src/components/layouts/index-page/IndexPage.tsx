@@ -21,9 +21,9 @@ import style from './IndexPage.module.scss';
 
 export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
-const IndexPageContent = (pageProps: IndexPageContentProps) => {
-    const { currentPageProps, IndexPageRoutingProvider, contextValue } =
-        useIndexPageRouting(pageProps);
+const IndexPageContent = (basePageProps: IndexPageContentProps) => {
+    const { currentPageProps, IndexPageRoutingProvider } =
+        useIndexPageRouting(basePageProps);
 
     const { regions } = currentPageProps.page;
 
@@ -38,7 +38,7 @@ const IndexPageContent = (pageProps: IndexPageContentProps) => {
                 {/*TODO: Remove this before public release*/}
                 <meta name={'robots'} content={'noindex, nofollow'} />
             </Head>
-            {pageProps.serverEnv === 'prod' && (
+            {basePageProps.serverEnv === 'prod' && (
                 <AlertBox variant={'warning'}>
                     {
                         'Hei! Disse sidene er under utvikling og er ikke helt klare til bruk ennå. '
@@ -56,7 +56,7 @@ const IndexPageContent = (pageProps: IndexPageContentProps) => {
                     />
                 )}
             </AnimateHeight>
-            <IndexPageRoutingProvider value={contextValue}>
+            <IndexPageRoutingProvider>
                 <IndexPageNavigation pageProps={currentPageProps} />
             </IndexPageRoutingProvider>
             <AnimateHeight trigger={currentPageProps._id}>
