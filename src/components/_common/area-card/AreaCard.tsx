@@ -13,14 +13,37 @@ import { HealthAnimation } from './open-pages/health/HealthAnimation';
 import { PensionAnimation } from './open-pages/pension/PensionAnimation';
 import { SocialCounsellingAnimation } from './open-pages/social-counselling/SocialCounsellingAnimation';
 import { WorkAnimation } from './open-pages/work/WorkAnimation';
+import { AreaCardType } from '../../../types/component-props/parts/area-card';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+
+const areaTypeComponentMap: { [key in AreaCardType]: React.FunctionComponent } =
+    {
+        cases: CasesAnimation,
+        'employment-status-form': EmploymentStatusFormAnimation,
+        payments: PaymentsAnimation,
+        accessibility: AccessibilityAnimation,
+        family: FamilyAnimation,
+        health: HealthAnimation,
+        pension: PensionAnimation,
+        social_counselling: SocialCounsellingAnimation,
+        work: WorkAnimation,
+    };
+
+const DefaultComponent = () => <div>{'Ugyldig grafikkvalg'}</div>;
 
 type Props = {
     path: string;
     title: string;
-    area?: string;
+    area: string;
 };
 
 export const AreaCard = ({ path, title, area }: Props) => {
+    if (!area) {
+        return <EditorHelp text={'Velg en grafikk for kortet'} />;
+    }
+
+    const GraphicComponent = areaTypeComponentMap[area] || DefaultComponent;
+
     return (
         <LinkPanel
             border={false}
@@ -44,24 +67,7 @@ export const AreaCard = ({ path, title, area }: Props) => {
                 <LinkPanel.Title>{title}</LinkPanel.Title>
             </div>
             <div className={style.animationArea}>
-                {title === 'Dine saker' ? <CasesAnimation /> : ''}
-                {title === 'Dine meldekort' ? (
-                    <EmploymentStatusFormAnimation />
-                ) : (
-                    ''
-                )}
-                {title === 'Dine utbetalinger' ? <PaymentsAnimation /> : ''}
-
-                {area === 'accessibility' ? <AccessibilityAnimation /> : ''}
-                {area === 'family' ? <FamilyAnimation /> : ''}
-                {area === 'health' ? <HealthAnimation /> : ''}
-                {area === 'pension' ? <PensionAnimation /> : ''}
-                {area === 'social_counselling' ? (
-                    <SocialCounsellingAnimation />
-                ) : (
-                    ''
-                )}
-                {area === 'work' ? <WorkAnimation /> : ''}
+                <GraphicComponent />
             </div>
         </LinkPanel>
     );

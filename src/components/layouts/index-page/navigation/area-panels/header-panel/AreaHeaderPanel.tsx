@@ -60,7 +60,7 @@ export const AreaHeaderPanel = ({ areaContent, currentContent }: Props) => {
                 path={path}
                 title={areaContent.displayName}
                 area={areaContent.data.area}
-            ></AreaCard>
+            />
         </div>
     );
 };

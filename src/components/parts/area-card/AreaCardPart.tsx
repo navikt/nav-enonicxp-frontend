@@ -3,14 +3,15 @@ import { AreaCardPartProps } from '../../../types/component-props/parts/area-car
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 
 import { AreaCard } from 'components/_common/area-card/AreaCard';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 export const AreaCardPart = ({ config }: AreaCardPartProps) => {
     if (!config) {
-        return null;
+        return <EditorHelp text={'Kortet mangler konfigurasjon'} />;
     }
 
-    const { link } = config;
+    const { link, area } = config;
     const linkProps = getSelectableLinkProps(link);
 
-    return <AreaCard path={linkProps.url} title={linkProps.text}></AreaCard>;
+    return <AreaCard path={linkProps.url} title={linkProps.text} area={area} />;
 };
