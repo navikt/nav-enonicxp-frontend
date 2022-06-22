@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkPanel } from '@navikt/ds-react';
-import { IndexPageNavigationLink } from 'components/layouts/index-page/navigation/link/IndexPageNavigationLink';
+import { IndexPageLink } from 'components/layouts/index-page/navigation/link/IndexPageLink';
 import style from './AreaCard.module.scss';
 
 import { CasesAnimation } from './logged-in/cases/CasesAnimation';
@@ -26,14 +26,14 @@ export const AreaCard = ({ path, title, area }: Props) => {
             border={false}
             className={style.linkPanel}
             as={(props) => (
-                <IndexPageNavigationLink
+                <IndexPageLink
                     href={path}
                     analyticsLabel={title}
                     component="area-card"
                     {...props}
                 >
                     {props.children}
-                </IndexPageNavigationLink>
+                </IndexPageLink>
             )}
         >
             <div
