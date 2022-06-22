@@ -14,6 +14,7 @@ export enum PartType {
     PageList = 'no.nav.navno:page-list',
     PublishingCalendar = 'no.nav.navno:publishing-calendar',
 
+    AreaCard = 'no.nav.navno:area-card',
     AlertPanel = 'no.nav.navno:alert-panel',
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
     AlertBox = 'no.nav.navno:dynamic-alert',
@@ -74,5 +75,6 @@ export type PartWithOwnData =
     | PartType.ProductDetails
     | PartType.AlertPanel
     | PartType.PayoutDates
+    | PartType.AreaCard
     | PartType.AreapageSituationCard
     | PartType.LoggedinCard;
