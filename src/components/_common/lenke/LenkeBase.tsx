@@ -9,13 +9,13 @@ import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import Link from 'next/link';
 import { usePathMap } from '../../../store/hooks/usePathMap';
 import { useLayoutConfig } from "../../layouts/useLayoutConfig";
+import { onlyText } from 'utils/react-children';
 
 /**
  * This component handles client-side async navigation for URLs internal to this app (as well as analytics for links)
  * This is necessary as there are many other apps sharing the nav.no domain, and attempting async navigation to other
  * apps may result in errors
  **/
-
 type Props = {
     href: string;
     onClick?: (e: React.MouseEvent) => void;
@@ -38,6 +38,7 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
+
     const { layoutConfig } = useLayoutConfig();
     const { internalPathToCustomPath } = usePathMap();
     // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
@@ -50,7 +51,6 @@ export const LenkeBase = ({
             const internalPath = getInternalRelativePath(href);
             return internalPathToCustomPath[internalPath] || internalPath;
         }
-
         return href || '/';
     };
     const finalHref = getFinalHref();
@@ -59,7 +59,7 @@ export const LenkeBase = ({
         lenkegruppe: linkGroup,
         seksjon: linkGroup || layoutConfig.title,
         destinasjon: finalHref,
-        lenketekst: analyticsLabel || (typeof children === 'string' ? children : undefined),
+        lenketekst: analyticsLabel || onlyText(children),
     }
     const linkElement = (
         <a
