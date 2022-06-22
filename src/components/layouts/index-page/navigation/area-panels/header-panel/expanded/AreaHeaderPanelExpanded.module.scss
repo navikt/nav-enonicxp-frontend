@@ -10,6 +10,8 @@
 .headerContainer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+
     width: 100%;
     max-width: 700px;
 
@@ -33,5 +35,5 @@
     overflow: hidden;
 
     width: 350px;
-    height: 250px;
+    height: 160px;
 }
