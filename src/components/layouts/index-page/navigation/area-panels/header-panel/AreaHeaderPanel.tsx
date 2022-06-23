@@ -47,8 +47,8 @@ export const AreaHeaderPanel = ({
         <div
             className={classNames(
                 style.areaPanel,
-                style.areaPanelActive,
-                useFrontpageTransition && style.animate
+                style.areaPanelActive
+                // useFrontpageTransition && style.animate
             )}
         >
             <AreaHeaderPanelExpanded areaContent={currentContent} />
@@ -57,8 +57,8 @@ export const AreaHeaderPanel = ({
         <div
             className={classNames(
                 style.areaPanel,
-                currentType === ContentType.AreaPage && style.areaPanelHidden,
-                useFrontpageTransition && style.animate
+                currentType === ContentType.AreaPage && style.areaPanelHidden
+                // useFrontpageTransition && style.animate
             )}
         >
             <AreaCard
