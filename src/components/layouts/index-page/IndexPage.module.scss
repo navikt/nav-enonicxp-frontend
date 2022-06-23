@@ -1,4 +1,6 @@
+$maxWidth: 1272px;
+
 .indexPage {
-    max-width: 1272px;
-    margin: 0 auto;
+    max-width: $maxWidth;
+    margin: 0 auto -2rem auto;
 }

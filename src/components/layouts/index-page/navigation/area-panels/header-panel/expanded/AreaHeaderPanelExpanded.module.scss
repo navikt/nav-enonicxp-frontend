@@ -1,36 +1,31 @@
 @use 'src/common' as common;
+@use '../../../../IndexPage.module' as indexPage;
+
+$graphicsHeight: 160px;
+$graphicsWidth: 320px;
 
 .panel {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-
-    &.withBanner {
-        flex-direction: column;
-    }
-}
-
-.header {
+    flex-direction: row;
+    justify-content: flex-start;
     width: 100%;
 }
 
-.iconContainer {
+.headerContainer {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
 
-    .banner {
-        margin-top: 1rem;
-        padding: 2rem 0;
-        position: relative;
-        width: 50vw;
-        background-image: linear-gradient(110deg, common.$navPink 90%, white 0);
+    width: 100%;
+    max-width: indexPage.$maxWidth / 2;
+}
 
-        @include common.full-width-mixin(true, false);
-    }
+.gfxContainer {
+    position: relative;
+    align-self: flex-end;
+    overflow: hidden;
 
-    .icon {
-        width: 30px;
-        height: 30px;
-        align-self: flex-end;
-    }
+    width: $graphicsWidth;
+    min-width: $graphicsWidth;
+    height: $graphicsHeight;
 }

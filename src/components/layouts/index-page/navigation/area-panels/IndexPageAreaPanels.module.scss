@@ -16,4 +16,23 @@
     @media #{common.$mq-screen-mobile-small} {
         gap: 0.75rem;
     }
+
+    //display: flex;
+    //flex-wrap: wrap;
+    //width: 100%;
+    //justify-content: space-between;
+
+    //@include common.flex-cols-mixin(3);
+    //
+    //@media #{common.$mq-screen-desktop-small} {
+    //    @include common.flex-cols-mixin(2);
+    //}
+    //
+    //@media #{common.$mq-screen-mobile} {
+    //    @include common.flex-cols-mixin(1);
+    //}
+    //
+    //@media #{common.$mq-screen-mobile-small} {
+    //    @include common.flex-cols-mixin(1, 0.75rem);
+    //}
 }

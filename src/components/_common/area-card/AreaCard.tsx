@@ -1,62 +1,42 @@
 import React from 'react';
 import { LinkPanel } from '@navikt/ds-react';
 import { IndexPageLink } from 'components/layouts/index-page/navigation/link/IndexPageLink';
-import style from './AreaCard.module.scss';
-
-import { CasesAnimation } from './logged-in/cases/CasesAnimation';
-import { EmploymentStatusFormAnimation } from './logged-in/employment-status-form/EmploymentStatusFormAnimation';
-import { PaymentsAnimation } from './logged-in/payments/PaymentsAnimation';
-
-import { AccessibilityAnimation } from './open-pages/accessibility/AccessibilityAnimation';
-import { FamilyAnimation } from './open-pages/family/FamilyAnimation';
-import { HealthAnimation } from './open-pages/health/HealthAnimation';
-import { PensionAnimation } from './open-pages/pension/PensionAnimation';
-import { SocialCounsellingAnimation } from './open-pages/social-counselling/SocialCounsellingAnimation';
-import { WorkAnimation } from './open-pages/work/WorkAnimation';
-import { AreaCardType } from '../../../types/component-props/parts/area-card';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { classNames } from '../../../utils/classnames';
+import { AreaCardGraphics } from './graphics/AreaCardGraphics';
+import { LenkeBase } from '../lenke/LenkeBase';
 
-const areaTypeComponentMap: { [key in AreaCardType]: React.FunctionComponent } =
-    {
-        cases: CasesAnimation,
-        'employment-status-form': EmploymentStatusFormAnimation,
-        payments: PaymentsAnimation,
-        accessibility: AccessibilityAnimation,
-        family: FamilyAnimation,
-        health: HealthAnimation,
-        pension: PensionAnimation,
-        social_counselling: SocialCounsellingAnimation,
-        work: WorkAnimation,
-    };
-
-const DefaultComponent = () => <div>{'Ugyldig grafikkvalg'}</div>;
+import style from './AreaCard.module.scss';
+import graphicsStyle from './graphics/AreaCardGraphicsCommon.module.scss';
 
 type Props = {
     path: string;
     title: string;
     area: string;
+    navigate?: (path: string) => void;
 };
 
-export const AreaCard = ({ path, title, area }: Props) => {
+export const AreaCard = ({ path, title, area, navigate }: Props) => {
     if (!area) {
         return <EditorHelp text={'Velg en grafikk for kortet'} />;
     }
 
-    const GraphicComponent = areaTypeComponentMap[area] || DefaultComponent;
+    const LinkComponent = navigate ? IndexPageLink : LenkeBase;
 
     return (
         <LinkPanel
             border={false}
-            className={style.linkPanel}
+            className={classNames(style.linkPanel, graphicsStyle.expandOnHover)}
             as={(props) => (
-                <IndexPageLink
+                <LinkComponent
+                    {...props}
                     href={path}
                     analyticsLabel={title}
                     component="area-card"
-                    {...props}
+                    navigate={navigate}
                 >
                     {props.children}
-                </IndexPageLink>
+                </LinkComponent>
             )}
         >
             <div
@@ -66,9 +46,7 @@ export const AreaCard = ({ path, title, area }: Props) => {
             >
                 <LinkPanel.Title>{title}</LinkPanel.Title>
             </div>
-            <div className={style.animationArea}>
-                <GraphicComponent />
-            </div>
+            <AreaCardGraphics type={area} />
         </LinkPanel>
     );
 };

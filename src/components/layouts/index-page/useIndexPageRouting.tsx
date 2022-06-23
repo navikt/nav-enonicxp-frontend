@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { IndexPageContentProps } from './IndexPage';
 import { getPublicPathname, xpDraftPathPrefix } from '../../../utils/urls';
 import { fetchPageCacheContent } from '../../../utils/fetch/fetch-cache-content';
@@ -58,32 +58,45 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         [basePath]: pageProps,
     });
 
-    const addLocalPageCacheEntries = (cacheEntries: CacheEntries) => {
-        setLocalPageCache({ ...localPageCache, ...cacheEntries });
-    };
+    const addLocalPageCacheEntries = useCallback(
+        (cacheEntries: CacheEntries) => {
+            setLocalPageCache({ ...localPageCache, ...cacheEntries });
+        },
+        [localPageCache]
+    );
 
-    const navigate = (path: string) => {
-        if (editorView) {
-            router.push(`${xpDraftPathPrefix}${path}`);
-            return;
-        }
+    const navigate = useCallback(
+        (path: string) => {
+            if (editorView) {
+                router.push(`${xpDraftPathPrefix}${path}`);
+                return;
+            }
 
-        const cachedPage = localPageCache[path];
+            const cachedPage = localPageCache[path];
 
-        if (cachedPage) {
-            setCurrentPageProps(cachedPage);
-        } else {
+            if (cachedPage) {
+                setCurrentPageProps(cachedPage);
+                router.push(path, undefined, { shallow: true });
+                return;
+            }
+
             fetchIndexPageContentProps(path).then((contentProps) => {
+                if (!contentProps) {
+                    router.push(path);
+                    return;
+                }
+
                 addLocalPageCacheEntries({
                     ...localPageCache,
                     [path]: contentProps,
                 });
                 setCurrentPageProps(contentProps);
-            });
-        }
 
-        router.push(path, undefined, { shallow: true });
-    };
+                router.push(path, undefined, { shallow: true });
+            });
+        },
+        [localPageCache, router, editorView, addLocalPageCacheEntries]
+    );
 
     // Prefetch all referenced pages
     useEffect(() => {
@@ -108,7 +121,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
             addLocalPageCacheEntries({ ...localPageCache, ...pages });
         });
-    }, [currentPageProps]);
+    }, []);
 
     // Handle back/forward navigation in the browser
     useEffect(() => {
@@ -121,12 +134,12 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         return () => {
             router.beforePopState(undefined);
         };
-    }, [router, localPageCache]);
+    }, [navigate, router]);
 
     // Handle regular next.js routing to the initial page
     useEffect(() => {
         const handler = (url, { shallow }) => {
-            if (url === basePath && !shallow) {
+            if (!shallow) {
                 navigate(url);
             }
         };
@@ -135,24 +148,11 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         return () => {
             router.events.off('routeChangeComplete', handler);
         };
-    }, [pageProps]);
+    }, [navigate, router, basePath]);
 
     return {
         currentPageProps,
-        IndexPageRoutingProvider: ({
-            children,
-        }: {
-            children: React.ReactNode;
-        }) => (
-            <IndexPageRoutingContext.Provider
-                value={{
-                    navigate,
-                    indexPages,
-                }}
-            >
-                {children}
-            </IndexPageRoutingContext.Provider>
-        ),
+        navigate,
     };
 };
 

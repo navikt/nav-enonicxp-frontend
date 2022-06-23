@@ -12,9 +12,14 @@ import style from './AreaPanel.module.scss';
 type Props = {
     areaContent: AreaPageProps;
     currentContent: IndexPageContentProps;
+    navigate: (path: string) => void;
 };
 
-export const AreaHeaderPanel = ({ areaContent, currentContent }: Props) => {
+export const AreaHeaderPanel = ({
+    areaContent,
+    currentContent,
+    navigate,
+}: Props) => {
     const { __typename, _id } = currentContent;
 
     const [currentId, setCurrentId] = useState(_id);
@@ -42,8 +47,8 @@ export const AreaHeaderPanel = ({ areaContent, currentContent }: Props) => {
         <div
             className={classNames(
                 style.areaPanel,
-                style.areaPanelActive,
-                useFrontpageTransition && style.animate
+                style.areaPanelActive
+                // useFrontpageTransition && style.animate
             )}
         >
             <AreaHeaderPanelExpanded areaContent={currentContent} />
@@ -52,14 +57,15 @@ export const AreaHeaderPanel = ({ areaContent, currentContent }: Props) => {
         <div
             className={classNames(
                 style.areaPanel,
-                currentType === ContentType.AreaPage && style.areaPanelHidden,
-                useFrontpageTransition && style.animate
+                currentType === ContentType.AreaPage && style.areaPanelHidden
+                // useFrontpageTransition && style.animate
             )}
         >
             <AreaCard
                 path={path}
-                title={areaContent.displayName}
+                title={areaContent.data.header}
                 area={areaContent.data.area}
+                navigate={navigate}
             />
         </div>
     );

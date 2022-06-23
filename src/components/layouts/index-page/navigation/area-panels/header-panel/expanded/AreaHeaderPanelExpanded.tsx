@@ -1,9 +1,10 @@
 import React from 'react';
 import { AreaPageProps } from '../../../../../../../types/content-props/index-pages-props';
-import { WarningFilled } from '@navikt/ds-icons';
 import { Heading } from '@navikt/ds-react';
-import { ParsedHtml } from '../../../../../../_common/parsed-html/ParsedHtml';
+import { AreaCardGraphics } from '../../../../../../_common/area-card/graphics/AreaCardGraphics';
 import { classNames } from '../../../../../../../utils/classnames';
+import graphicsStyle from '../../../../../../_common/area-card/graphics/AreaCardGraphicsCommon.module.scss';
+import { AreaPageHeaderBanner } from './banner/AreaPageHeaderBanner';
 
 import style from './AreaHeaderPanelExpanded.module.scss';
 
@@ -12,20 +13,23 @@ type Props = {
 };
 
 export const AreaHeaderPanelExpanded = ({ areaContent }: Props) => {
-    const { header, banner } = areaContent.data;
+    const { header, banner, area } = areaContent.data;
 
     return (
-        <div className={classNames(style.panel, banner && style.withBanner)}>
-            <Heading level={'2'} size={'xlarge'} className={style.header}>
-                {header}
-            </Heading>
-            <div className={style.iconContainer}>
-                {banner && (
-                    <div className={style.banner}>
-                        <ParsedHtml htmlProps={banner} />
-                    </div>
+        <div className={style.panel}>
+            <div className={style.headerContainer}>
+                <Heading level={'2'} size={'xlarge'}>
+                    {header}
+                </Heading>
+                {banner && <AreaPageHeaderBanner {...banner} />}
+            </div>
+            <div
+                className={classNames(
+                    style.gfxContainer,
+                    graphicsStyle.expandGraphics
                 )}
-                <WarningFilled className={style.icon} />
+            >
+                <AreaCardGraphics type={area} />
             </div>
         </div>
     );

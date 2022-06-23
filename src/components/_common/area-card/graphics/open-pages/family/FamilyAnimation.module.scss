@@ -1,14 +1,16 @@
-@import '../../AreaCard.module.scss';
+@use 'src/components/_common/area-card/graphics/AreaCardGraphicsCommon.module'
+    as areaGraphics;
+@import 'src/components/_common/area-card/AreaCard.module';
 
 .house {
     @include transitionMixin;
     position: absolute;
     right: 6px;
     top: 112px;
+}
 
-    :hover > & {
-        right: 206px;
-    }
+#{areaGraphics.onExpand('.house')} {
+    right: 206px;
 }
 
 .letterPartOrange {
@@ -20,10 +22,10 @@
     height: 40px;
     right: -20px;
     top: 72px;
+}
 
-    :hover > & {
-        right: 32px;
-    }
+#{areaGraphics.onExpand('.letterPartOrange')} {
+    right: 32px;
 }
 
 .letterPartBlue {
@@ -34,11 +36,11 @@
     width: 104px;
     height: 40px;
     right: -52px;
-    top: 0px;
+    top: 0;
+}
 
-    :hover > & {
-        right: 0px;
-    }
+#{areaGraphics.onExpand('.letterPartBlue')} {
+    right: 0;
 }
 
 .mask {
@@ -51,16 +53,15 @@
     right: -42px;
     top: -100px;
     transform: skewX(-22.09deg);
+}
 
-    :hover > & {
-        background-color: #ffb8b8;
-        width: 48px;
-        height: 160px;
-        right: 100px;
-        top: 0px;
-
-        transform: skewX(0);
-    }
+#{areaGraphics.onExpand('.mask')} {
+    background-color: #ffb8b8;
+    width: 48px;
+    height: 160px;
+    right: 100px;
+    top: 0;
+    transform: skewX(0);
 }
 
 .stroller {
@@ -68,9 +69,9 @@
     position: absolute;
     right: 52.23px;
     top: 40px;
+}
 
-    :hover > & {
-        right: 105.23px;
-        top: 76px;
-    }
+#{areaGraphics.onExpand('.stroller')} {
+    right: 105.23px;
+    top: 76px;
 }

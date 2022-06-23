@@ -14,7 +14,7 @@ type Props = {
 
 export const AnimateHeight = ({
     trigger,
-    pxPerSec = 1500,
+    pxPerSec = 2000,
     fadeTime = 200,
     children,
 }: Props) => {

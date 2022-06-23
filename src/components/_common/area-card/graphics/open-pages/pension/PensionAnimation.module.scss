@@ -1,25 +1,27 @@
-@import '../../AreaCard.module.scss';
+@use 'src/components/_common/area-card/graphics/AreaCardGraphicsCommon.module'
+    as areaGraphics;
+@import 'src/components/_common/area-card/AreaCard.module';
 
 .shapes {
     @include transitionMixin;
     position: absolute;
     right: 25px;
     top: 96px;
+}
 
-    :hover > & {
-        right: 204px;
-    }
+#{areaGraphics.onExpand('.shapes')} {
+    right: 204px;
 }
 
 .letterPartBlue {
     @include transitionMixin;
     position: absolute;
     right: -79px;
-    top: 0px;
+    top: 0;
+}
 
-    :hover > & {
-        right: 0px;
-    }
+#{areaGraphics.onExpand('.letterPartBlue')} {
+    right: 0;
 }
 
 .mask {
@@ -32,16 +34,15 @@
     right: -42px;
     top: -100px;
     transform: skewX(-22.09deg);
+}
 
-    :hover > & {
-        background-color: #ffb8b8;
-        width: 48px;
-        height: 160px;
-        right: 100px;
-        top: 0px;
-
-        transform: skewX(0);
-    }
+#{areaGraphics.onExpand('.mask')} {
+    background-color: #ffb8b8;
+    width: 48px;
+    height: 160px;
+    right: 100px;
+    top: 0;
+    transform: skewX(0);
 }
 
 .piggyBank {
@@ -49,11 +50,11 @@
     position: absolute;
     right: 53px;
     top: 41px;
+}
 
-    :hover > & {
-        right: 101px;
-        top: 82px;
-    }
+#{areaGraphics.onExpand('.piggyBank')} {
+    right: 101px;
+    top: 82px;
 }
 
 .coin {
@@ -66,8 +67,8 @@
     height: 28px;
     right: 123px;
     top: -32px;
+}
 
-    :hover > & {
-        top: 80px;
-    }
+#{areaGraphics.onExpand('.coin')} {
+    top: 80px;
 }

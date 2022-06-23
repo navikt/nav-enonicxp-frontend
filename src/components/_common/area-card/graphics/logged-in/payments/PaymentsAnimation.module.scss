@@ -1,26 +1,28 @@
-@import '../../AreaCard.module.scss';
+@use 'src/components/_common/area-card/graphics/AreaCardGraphicsCommon.module'
+    as areaGraphics;
+@import 'src/components/_common/area-card/AreaCard.module';
 
 .shapes {
     @include transitionMixin;
     position: absolute;
     right: 52px;
     top: 49px;
+}
 
-    :hover > & {
-        right: 214px;
-        top: 81px;
-    }
+#{areaGraphics.onExpand('.shapes')} {
+    right: 214px;
+    top: 81px;
 }
 
 .letterU {
     @include transitionMixin;
     position: absolute;
     right: -98px;
-    top: 0px;
+    top: 0;
+}
 
-    :hover > & {
-        right: 0px;
-    }
+#{areaGraphics.onExpand('.letterU')} {
+    right: 0;
 }
 
 .mask {
@@ -33,10 +35,10 @@
     right: -30px;
     top: -45px;
     transform: rotate(22.09deg);
+}
 
-    :hover > & {
-        right: -184px;
-    }
+#{areaGraphics.onExpand('.mask')} {
+    right: -184px;
 }
 
 .wallet {
@@ -46,9 +48,9 @@
     height: 71px;
     right: 56.27px;
     top: 40px;
+}
 
-    :hover > & {
-        right: 114.27px;
-        top: 89px;
-    }
+#{areaGraphics.onExpand('.wallet')} {
+    right: 114.27px;
+    top: 89px;
 }
