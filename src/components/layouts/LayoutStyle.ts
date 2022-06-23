@@ -5,7 +5,8 @@ export const getCommonLayoutStyle = (config: LayoutCommonConfigMixin) => {
         return undefined;
     }
 
-    const { bgColor, marginTop, marginBottom, paddingSides } = config;
+    const { bgColor, marginTop, marginBottom, paddingSides, paddingTopBottom } =
+        config;
 
     return {
         // Check for undefined specifically. We want to allow margin values of 0
@@ -14,9 +15,18 @@ export const getCommonLayoutStyle = (config: LayoutCommonConfigMixin) => {
             marginBottom: `${marginBottom}rem`,
         }),
         ...(bgColor && { backgroundColor: bgColor.color }),
-        ...(paddingSides?._selected === 'custom' && {
-            paddingLeft: `${paddingSides.custom?.remValue}rem`,
-            paddingRight: `${paddingSides.custom?.remValue}rem`,
+        ...(paddingSides?._selected === 'custom' &&
+            paddingSides.custom?.remValue && {
+                paddingLeft: `${paddingSides.custom.remValue}rem`,
+                paddingRight: `${paddingSides.custom.remValue}rem`,
+            }),
+        ...(paddingTopBottom?._selected === 'custom' && {
+            ...(paddingTopBottom.custom?.top && {
+                paddingTop: `${paddingTopBottom.custom.top}rem`,
+            }),
+            ...(paddingTopBottom.custom?.bottom && {
+                paddingBottom: `${paddingTopBottom.custom.bottom}rem`,
+            }),
         }),
     };
 };

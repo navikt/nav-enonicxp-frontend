@@ -1,8 +1,6 @@
 import { LinkProps } from 'types/link-props';
-import { BEM } from 'utils/classnames';
 import { BodyLong } from '@navikt/ds-react';
 import { CardSize, CardType } from 'types/card';
-
 import { Card } from './Card';
 import { Illustration } from '../illustration/Illustration';
 import { IllustrationPlacements } from 'types/illustrationPlacements';
@@ -11,18 +9,17 @@ import { useCardState } from './useCard';
 import { Interaction } from 'types/interaction';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
+import style from './MiniCard.module.scss';
+
 export type MiniKortProps = {
     link: LinkProps;
     illustration?: AnimatedIconsProps;
     type: CardType;
 };
 
-const bem = BEM('card');
-
 export const MiniCard = (props: MiniKortProps) => {
     const { link, illustration, type } = props;
     const { text } = link;
-
     const { isHovering, cardInteractionHandler } = useCardState();
     const { pageConfig } = usePageConfig();
 
@@ -37,13 +34,13 @@ export const MiniCard = (props: MiniKortProps) => {
         >
             <>
                 <Illustration
-                    className="card__illustration"
+                    className={style.illustration}
                     illustration={illustration}
                     isHovering={isHovering}
                     placement={IllustrationPlacements.SMALL_CARD}
                     preferStaticIllustration={pageConfig.editorView === 'edit'}
                 />
-                <BodyLong className={bem('title')}>{text}</BodyLong>
+                <BodyLong className={style.title}>{text}</BodyLong>
             </>
         </Card>
     );

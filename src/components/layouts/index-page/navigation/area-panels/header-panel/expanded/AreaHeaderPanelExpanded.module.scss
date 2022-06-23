@@ -1,0 +1,31 @@
+@use 'src/common' as common;
+@use '../../../../IndexPage.module' as indexPage;
+
+$graphicsHeight: 160px;
+$graphicsWidth: 320px;
+
+.panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    max-width: indexPage.$maxWidth / 2;
+}
+
+.gfxContainer {
+    position: relative;
+    align-self: flex-end;
+    overflow: hidden;
+
+    width: $graphicsWidth;
+    min-width: $graphicsWidth;
+    height: $graphicsHeight;
+}

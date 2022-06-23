@@ -1,7 +1,7 @@
 import {
-    fetchAdminContent,
-    fetchAdminUserId,
-    fetchUserInfo,
+    editorFetchAdminContent,
+    editorFetchAdminUserId,
+    editorFetchUserInfo,
 } from '../editor-fetch-utils';
 import {
     ContentProps,
@@ -48,6 +48,11 @@ const currentContentDidUpdate = (
 const getUserNameFromEmail = (userEmail) =>
     userEmail?.split('@')[0].replace('.', ' ');
 
+const ignoredContentTypes = {
+    [ContentType.GlobalNumberValuesSet]: true,
+    [ContentType.GlobalCaseTimeSet]: true,
+};
+
 // Hook the dispatchEvent function on the content studio parent window
 // in order to prevent certain events from propagating
 export const hookDispatchEventForBatchContentServerEvent = ({
@@ -63,8 +68,8 @@ export const hookDispatchEventForBatchContentServerEvent = ({
 }) => {
     const { _id: contentId, __typename: contentType } = content;
 
-    // The global-values content type is updated via a custom editor and is not relevant for this functionality
-    if (contentType === ContentType.GlobalNumberValuesSet) {
+    // Some content types use a custom editor. This hack only applies to built-in CS functionality
+    if (ignoredContentTypes[contentType]) {
         return;
     }
 
@@ -78,12 +83,13 @@ export const hookDispatchEventForBatchContentServerEvent = ({
 
     let prevWorkflowState;
     let userId;
+    let skipNextEventIfBatchContentServerEvent = false;
 
-    fetchAdminUserId().then((id) => {
+    editorFetchAdminUserId().then((id) => {
         userId = id;
     });
 
-    fetchAdminContent(contentId).then((res) => {
+    editorFetchAdminContent(contentId).then((res) => {
         prevWorkflowState = res?.workflow.state;
     });
 
@@ -94,6 +100,7 @@ export const hookDispatchEventForBatchContentServerEvent = ({
         // We only want to intercept events of the BatchContentServerEvent type, which is what triggers UI updates
         // for content changes on the client. All other events should be dispatched as normal.
         if (eventType !== 'BatchContentServerEvent') {
+            skipNextEventIfBatchContentServerEvent = false;
             return dispatchEvent(event);
         }
 
@@ -106,15 +113,28 @@ export const hookDispatchEventForBatchContentServerEvent = ({
         // Changes to other content may trigger an unnecessary UI-reload if it references the current content
         // Ignore events for other content to prevent this
         if (!currentContentDidUpdate(detail, contentId)) {
+            console.log(
+                'Skipping this event as current content was not updated'
+            );
+            return false;
+        }
+
+        if (skipNextEventIfBatchContentServerEvent) {
+            console.log('Skipping this event as skipNext flag was set');
+            skipNextEventIfBatchContentServerEvent = false;
             return false;
         }
 
         // Publish and unpublish events must always be dispatched in order to keep the editor UI consistent
+        // These events are sometimes followed by a BatchContentServerEvent, despite no actual content changes
+        // having occurred (the skipNext flag is used to handle this)
         if (detailType === NodeServerChangeType.PUBLISH) {
             console.log('Content published - dispatching event');
+            skipNextEventIfBatchContentServerEvent = true;
             return dispatchEvent(event);
         } else if (detailType === NodeServerChangeType.DELETE) {
             console.log('Content unpublished - dispatching event');
+            skipNextEventIfBatchContentServerEvent = true;
             return dispatchEvent(event);
         }
 
@@ -129,7 +149,7 @@ export const hookDispatchEventForBatchContentServerEvent = ({
         }
 
         // We use the internal Content Studio content api to check who last modified the content
-        fetchAdminContent(contentId).then((content) => {
+        editorFetchAdminContent(contentId).then((content) => {
             if (!content) {
                 // In the unexpected event that this call fails, just dispatch the event as normal to ensure we
                 // don't break anything :)
@@ -164,7 +184,7 @@ export const hookDispatchEventForBatchContentServerEvent = ({
                     `Content was updated by another user (${userId}) - showing warning`
                 );
 
-                fetchUserInfo(content.modifier).then((userInfo) => {
+                editorFetchUserInfo(content.modifier).then((userInfo) => {
                     if (userInfo) {
                         setExternalUserName(
                             getUserNameFromEmail(userInfo.displayName)

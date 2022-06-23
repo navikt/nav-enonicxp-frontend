@@ -1,19 +1,28 @@
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { getMediaUrl } from 'utils/urls';
 import { classNames } from '../../../utils/classnames';
+import { buildImageCacheUrl, NextImageProps } from '../image/NextImage';
 
 import styleCommon from './Illustration.module.scss';
 import styleStatic from './IllustrationStatic.module.scss';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 interface IllustrationStaticProps {
     illustration: AnimatedIconsProps;
     className?: string;
 }
 
+const nextImageProps: NextImageProps = {
+    maxWidth: 96,
+    quality: 90,
+};
+
 export const IllustrationStatic = ({
     illustration,
     className,
 }: IllustrationStaticProps) => {
+    const { pageConfig } = usePageConfig();
+
     if (!illustration) {
         return null;
     }
@@ -43,24 +52,32 @@ export const IllustrationStatic = ({
             aria-hidden="true"
             role="presentation"
         >
-            <div
-                className={styleStatic.icon}
-                style={{
-                    backgroundImage: `url(${getMediaUrl(
-                        icon1.icon?.mediaUrl
-                    )})`,
-                    transform: buildTransformStyling(icon1, 'none'),
-                }}
-            />
-            <div
-                className={styleStatic.icon}
-                style={{
-                    backgroundImage: `url(${getMediaUrl(
-                        icon2.icon?.mediaUrl
-                    )})`,
-                    transform: buildTransformStyling(icon2, 'none'),
-                }}
-            />
+            {icon1 && (
+                <div
+                    className={styleStatic.icon}
+                    style={{
+                        backgroundImage: `url(${buildImageCacheUrl({
+                            src: getMediaUrl(icon1.icon?.mediaUrl),
+                            isEditorView: !!pageConfig.editorView,
+                            ...nextImageProps,
+                        })})`,
+                        transform: buildTransformStyling(icon1, 'none'),
+                    }}
+                />
+            )}
+            {icon2 && (
+                <div
+                    className={styleStatic.icon}
+                    style={{
+                        backgroundImage: `url(${buildImageCacheUrl({
+                            src: getMediaUrl(icon2.icon?.mediaUrl),
+                            isEditorView: !!pageConfig.editorView,
+                            ...nextImageProps,
+                        })})`,
+                        transform: buildTransformStyling(icon2, 'none'),
+                    }}
+                />
+            )}
         </div>
     );
 };

@@ -1,10 +1,10 @@
 import {
     ContentType,
+    ContentCommonProps,
     ContentProps,
-    SeoDataProps,
-    ContentDecoratorToggles,
 } from './_content-common';
 import { LanguageProps } from '../language';
+import { MenuListItems } from '../menu-list-items';
 
 export type PageListData = Partial<{
     languages: LanguageProps[];
@@ -13,11 +13,10 @@ export type PageListData = Partial<{
     hide_date: boolean;
     hideSectionContentsDate: boolean;
     orderSectionContentsByPublished: boolean;
-}> &
-    SeoDataProps &
-    ContentDecoratorToggles;
+    menuListItems: MenuListItems;
+}>;
 
-export interface PageListProps extends ContentProps {
+export interface PageListProps extends ContentCommonProps {
     __typename: ContentType.PageList;
     data: PageListData;
 }

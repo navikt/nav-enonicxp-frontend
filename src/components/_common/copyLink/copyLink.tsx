@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { translator } from 'translations';
-
-import { classNames } from '../../../utils/classnames';
+import { classNames } from 'utils/classnames';
 import { StaticImage } from '../image/StaticImage';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 
 import linkIcon from '/public/gfx/link.svg';
-
 import style from './copyLink.module.scss';
 
 type CopyLinkProps = {
@@ -20,7 +20,7 @@ const linkCopiedDisplayTimeMs = 2500;
 export const CopyLink = ({ anchor, label, className }: CopyLinkProps) => {
     const [showCopyTooltip, setShowCopyTooltip] = useState(false);
     const { language } = usePageConfig();
-
+    const { layoutConfig } = useLayoutConfig();
     const getLabel = translator('header', language);
 
     if (!anchor) {
@@ -42,6 +42,9 @@ export const CopyLink = ({ anchor, label, className }: CopyLinkProps) => {
                     linkCopiedDisplayTimeMs
                 );
             }
+            logAmplitudeEvent(analyticsEvents.COPY_LINK, {
+                seksjon: layoutConfig.title,
+            });
         }
     };
 

@@ -22,8 +22,8 @@ import {
 import { ContentProps } from '../../types/content-props/_content-common';
 import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
 import { HeaderPart } from './header/HeaderPart';
-import { LinkList } from './link-list/LinkList';
-import { NewsList } from './news-list/NewsList';
+import { LinkListPart } from './link-list/LinkListPart';
+import { NewsListPart } from './news-list/NewsListPart';
 import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar';
 import { BEM, classNames } from '../../utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
@@ -34,11 +34,17 @@ import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { FiltersMenu } from './filters-menu/FiltersMenu';
+import { FrontpageNews } from './frontpage-news/FrontpageNews';
+import { FrontpageShortcuts } from './frontpage-shortcuts/FrontpageShortcuts';
 import { ProductCardPart } from './product-card/ProductCard';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
 import { AlertPanelPart } from './alert-panel/AlertPanelPart';
+import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
+import { AreaCardPart } from './area-card/AreaCardPart';
+import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
+import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -67,8 +73,8 @@ const partsWithOwnData: {
     [PartType.AlertBox]: AlertBoxPart,
     [PartType.Header]: HeaderPart,
     [PartType.LinkPanel]: LinkPanelPart,
-    [PartType.LinkList]: LinkList,
-    [PartType.NewsList]: NewsList,
+    [PartType.LinkList]: LinkListPart,
+    [PartType.NewsList]: NewsListPart,
     [PartType.HtmlArea]: HtmlArea,
     [PartType.Calculator]: CalculatorPart,
     [PartType.PageHeader]: PageHeaderPart,
@@ -76,11 +82,17 @@ const partsWithOwnData: {
     [PartType.ProviderCard]: ProviderCardPart,
     [PartType.PageNavigationMenu]: PageNavigationMenuPart,
     [PartType.FiltersMenu]: FiltersMenu,
+    [PartType.FrontpageNews]: FrontpageNews,
+    [PartType.FrontpageShortcuts]: FrontpageShortcuts,
     [PartType.ProductCard]: ProductCardPart,
     [PartType.ProductCardMicro]: ProductCardMicroPart,
     [PartType.ProductCardMini]: ProductCardPart,
     [PartType.ProductDetails]: ProductDetailsPart,
     [PartType.ContactOption]: ContactOptionPart,
+    [PartType.PayoutDates]: PayoutDatesPart,
+    [PartType.AreaCard]: AreaCardPart,
+    [PartType.AreapageSituationCard]: AreapageSituationCardPart,
+    [PartType.LoggedinCard]: LoggedinCardPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {

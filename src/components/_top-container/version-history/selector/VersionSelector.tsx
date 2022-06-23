@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { BEM, classNames } from '../../../../utils/classnames';
+import { classNames } from '../../../../utils/classnames';
 import { BodyLong, Radio, RadioGroup } from '@navikt/ds-react';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
 
-const bem = BEM('version-selector');
+import style from './VersionSelector.module.scss';
 
 const containerId = 'version-selector';
-
 type SelectorType = 'datetime' | 'published';
-
 type Props = {
     content: ContentProps;
     isOpen: boolean;
@@ -25,7 +23,6 @@ export const VersionSelector = ({
     submitVersionUrl,
 }: Props) => {
     const [selectorType, setSelectorType] = useState<SelectorType>('datetime');
-
     const { editorView } = content;
 
     useEffect(() => {
@@ -37,7 +34,6 @@ export const VersionSelector = ({
                 setIsOpen(false);
             }
         };
-
         if (isOpen) {
             document.addEventListener('click', closeSelector);
         } else {
@@ -50,14 +46,9 @@ export const VersionSelector = ({
     }, [isOpen, setIsOpen]);
 
     return (
-        <div className={bem()} id={containerId}>
-            <div
-                className={classNames(
-                    bem('inner'),
-                    isOpen && bem('inner', 'open')
-                )}
-            >
-                <div className={bem('type-selector')}>
+        <div className={style.versionSelector} id={containerId}>
+            <div className={classNames(style.inner, isOpen && style.open)}>
+                <div className={style.typeSelector}>
                     <RadioGroup
                         legend={'Velg tidspunkt'}
                         defaultValue={'datetime'}
@@ -73,7 +64,7 @@ export const VersionSelector = ({
                         </Radio>
                     </RadioGroup>
                 </div>
-                <div className={bem('input')}>
+                <div className={style.input}>
                     {selectorType === 'datetime' ? (
                         <VersionSelectorDateTime
                             content={content}
@@ -89,7 +80,7 @@ export const VersionSelector = ({
                     )}
                 </div>
                 {editorView && (
-                    <div className={bem('help-text')}>
+                    <div>
                         <hr />
                         <BodyLong size="small">
                             {

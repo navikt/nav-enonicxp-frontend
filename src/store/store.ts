@@ -6,7 +6,7 @@ import pathMap from './slices/pathMap';
 import gvEditorState from './slices/gvEditorState';
 import authState from './slices/authState';
 
-export const store = configureStore({
+const options = {
     reducer: {
         contentFilters,
         pageConfig,
@@ -14,20 +14,16 @@ export const store = configureStore({
         gvEditorState,
         authState,
     },
-});
+};
+
+export const store = configureStore(options);
 
 // MockStore is used by component-preview etc in order to be able to
 // provide a store to the underlying components to get them to work on a basic level,
 // without affecting the entire pages store.
-export const mockStore = configureStore({
-    reducer: {
-        contentFilters,
-        pageConfig,
-        pathMap,
-        gvEditorState,
-        authState,
-    },
-});
+export const mockStore = configureStore(options);
+
+export const createNewStore = () => configureStore(options);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

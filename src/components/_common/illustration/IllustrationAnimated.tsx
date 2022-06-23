@@ -33,14 +33,12 @@ export const IllustrationAnimated = ({
         }
 
         try {
-            const player = lottie.loadAnimation({
+            lottiePlayer.current = lottie.loadAnimation({
                 container: container,
                 animationData: JSON.parse(lottieData),
                 autoplay: false,
                 loop: false,
             });
-
-            lottiePlayer.current = player;
         } catch (error) {
             return;
         }

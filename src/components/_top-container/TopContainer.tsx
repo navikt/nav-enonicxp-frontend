@@ -1,5 +1,5 @@
 import React from 'react';
-import { BEM, classNames } from '../../utils/classnames';
+import { classNames } from '../../utils/classnames';
 import {
     ContentProps,
     ContentType,
@@ -8,28 +8,27 @@ import { getContentLanguages } from '../../utils/languages';
 import { VersionHistory } from './version-history/VersionHistory';
 import { PageWarning } from './page-warning/PageWarning';
 
-const bem = BEM('top-container');
+import style from './TopContainer.module.scss';
 
 export const contentTypesWithWhiteHeader = {
     [ContentType.ProductPage]: true,
     [ContentType.SituationPage]: true,
     [ContentType.GuidePage]: true,
+    [ContentType.GenericPage]: true,
     [ContentType.ThemedArticlePage]: true,
     [ContentType.Overview]: true,
+    [ContentType.FrontPage]: true,
+    [ContentType.AreaPage]: true,
 };
-
 type Props = {
     content: ContentProps;
 };
 
 export const TopContainer = ({ content }: Props) => {
     const { __typename, breadcrumbs, isFailover, isPagePreview } = content;
-
     const hasDecoratorWidgets =
         breadcrumbs?.length > 0 || getContentLanguages(content)?.length > 0;
-
     const hasWhiteHeader = contentTypesWithWhiteHeader[__typename];
-
     // Should be shown in Content Studio only (except the edit view)
     const showVersionPicker =
         !!content.editorView && content.editorView !== 'edit';
@@ -50,9 +49,9 @@ export const TopContainer = ({ content }: Props) => {
             )}
             <div
                 className={classNames(
-                    bem(),
-                    hasWhiteHeader && bem(undefined, 'white'),
-                    hasDecoratorWidgets && bem(undefined, 'widgets-offset')
+                    style.topContainer,
+                    hasWhiteHeader && style.white,
+                    hasDecoratorWidgets && style.widgetsOffset
                 )}
             >
                 {showVersionPicker && <VersionHistory content={content} />}

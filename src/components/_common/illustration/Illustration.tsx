@@ -26,10 +26,10 @@ export const Illustration = ({
             return false;
         }
 
-        const icon1 = icons[0] && icons[0].icon;
-        const icon2 = icons[1] && icons[1].icon;
+        const icon1 = icons[0]?.icon;
+        const icon2 = icons[1]?.icon;
 
-        return !!(icon1 && icon2);
+        return !!(icon1 || icon2);
     };
 
     const isAnimated = !!illustration.data?.lottieHover?.mediaText;

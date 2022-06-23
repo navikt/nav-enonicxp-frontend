@@ -5,5 +5,7 @@ const getLastUpdatedUnixTime = (content: ContentProps) =>
         content.modifiedTime.split('.')[0] || content.createdTime.split('.')[0]
     ).getTime();
 
-export const sortContentByLastModified = (a: ContentProps, b: ContentProps) =>
-    getLastUpdatedUnixTime(b) - getLastUpdatedUnixTime(a);
+export const sortContentByLastModified = (
+    a: ContentProps,
+    b: ContentProps
+) => getLastUpdatedUnixTime(b) - getLastUpdatedUnixTime(a);

@@ -14,6 +14,7 @@ export enum PartType {
     PageList = 'no.nav.navno:page-list',
     PublishingCalendar = 'no.nav.navno:publishing-calendar',
 
+    AreaCard = 'no.nav.navno:area-card',
     AlertPanel = 'no.nav.navno:alert-panel',
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
     AlertBox = 'no.nav.navno:dynamic-alert',
@@ -21,6 +22,8 @@ export enum PartType {
     LinkList = 'no.nav.navno:dynamic-link-list',
     NewsList = 'no.nav.navno:dynamic-news-list',
     HtmlArea = 'no.nav.navno:html-area',
+    FrontpageNews = 'no.nav.navno:frontpage-news',
+    FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
     Calculator = 'no.nav.navno:calculator',
     PageHeader = 'no.nav.navno:page-header',
     Button = 'no.nav.navno:button',
@@ -32,6 +35,9 @@ export enum PartType {
     ProductCardMicro = 'no.nav.navno:product-card-micro',
     ProductDetails = 'no.nav.navno:product-details',
     ContactOption = 'no.nav.navno:contact-option',
+    PayoutDates = 'no.nav.navno:payout-dates',
+    AreapageSituationCard = 'no.nav.navno:areapage-situation-card',
+    LoggedinCard = 'no.nav.navno:loggedin-card',
 }
 
 export type PartDeprecated =
@@ -64,9 +70,15 @@ export type PartWithOwnData =
     | PartType.ProviderCard
     | PartType.PageNavigationMenu
     | PartType.FiltersMenu
+    | PartType.FrontpageNews
+    | PartType.FrontpageShortcuts
     | PartType.ProductCard
     | PartType.ProductCardMini
     | PartType.ProductCardMicro
     | PartType.ContactOption
     | PartType.ProductDetails
-    | PartType.AlertPanel;
+    | PartType.AlertPanel
+    | PartType.PayoutDates
+    | PartType.AreaCard
+    | PartType.AreapageSituationCard
+    | PartType.LoggedinCard;

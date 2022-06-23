@@ -10,6 +10,8 @@ interface LegacyCall {
 interface Options {
     chat: DefaultContactData;
     write: DefaultContactData;
+    navoffice: DefaultContactData;
+    aidcentral: DefaultContactData;
     custom: DefaultContactData;
     call: SharedContactInformationData & LegacyCall;
 }

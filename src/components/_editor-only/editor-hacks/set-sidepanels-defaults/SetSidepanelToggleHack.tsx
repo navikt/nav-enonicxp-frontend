@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { fetchAdminContent } from '../editor-fetch-utils';
+import { editorFetchAdminContent } from '../editor-fetch-utils';
 
 /*
  * Closes the left-side data editor panel for content which has been customized
@@ -23,7 +23,7 @@ type Props = {
 
 export const SetSidepanelToggleHack = ({ contentId }: Props) => {
     useEffect(() => {
-        fetchAdminContent(contentId).then((res) => {
+        editorFetchAdminContent(contentId).then((res) => {
             if (res?.page?.type === 'page') {
                 minimizeLeftPanel();
             }

@@ -1,0 +1,103 @@
+@use 'src/common' as common;
+
+@mixin transitionMixin {
+    transition: all 0.3s ease-out;
+}
+
+$border-radius: 0.5rem;
+
+.linkPanel {
+    @include transitionMixin;
+
+    background-color: var(--navds-global-color-deepblue-50);
+    height: 160px;
+    width: 100%;
+    border-radius: $border-radius;
+    border-style: none;
+    padding: 0;
+    overflow: hidden;
+
+    :global(.navds-link-panel__content) {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: $border-radius;
+    }
+
+    :global(.navds-link-panel__title) {
+        text-decoration: underline;
+    }
+
+    :global(.navds-link-panel__chevron) {
+        display: none;
+    }
+
+    &:hover {
+        box-shadow: none;
+
+        :global(.navds-link-panel__title) {
+            text-decoration: none;
+        }
+
+        @media only screen and (min-width: common.$mobileSmallMaxWidth) {
+            background-color: var(
+                --navds-semantic-color-component-background-alternate
+            );
+
+            @media (prefers-reduced-motion: no-preference) {
+                .titleShort {
+                    transform: translateY(-2.5rem);
+                }
+
+                .titleLong {
+                    transform: translateY(-1.5rem);
+                }
+            }
+        }
+    }
+
+    &:active {
+        background-color: var(--navds-global-color-deepblue-50);
+
+        :global(.navds-link-panel__title) {
+            color: var(--navds-global-color-gray-900);
+        }
+    }
+
+    @media #{common.$mq-screen-mobile-small} {
+        height: 80px;
+
+        .titleShort,
+        .titleLong {
+            margin-left: 1rem;
+        }
+
+        :global(.navds-link-panel__title) {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+    }
+}
+
+.titleShort,
+.titleLong {
+    @include transitionMixin;
+
+    width: 180px;
+    margin-left: 1.5rem;
+}
+
+.animationArea {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: $border-radius;
+
+    @media #{common.$mq-screen-mobile-small} {
+        transform: scale(0.5) translateX(-50%);
+        width: 200%;
+        height: 200%;
+    }
+}

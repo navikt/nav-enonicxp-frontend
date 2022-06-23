@@ -1,4 +1,5 @@
 export enum Taxonomy {
+    ALL = 'all',
     ASSISTIVE_TOOLS = 'assistive_tools',
     BENEFITS = 'benefits',
     FOLLOWUP = 'followup',

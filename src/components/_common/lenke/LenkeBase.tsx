@@ -1,24 +1,25 @@
 import React from 'react';
+import Link from 'next/link';
 import {
     isNofollowUrl,
     getInternalRelativePath,
     isAppUrl,
     isInternalUrl,
 } from 'utils/urls';
-import { logLinkClick } from 'utils/amplitude';
-import Link from 'next/link';
-import { usePathMap } from '../../../store/hooks/usePathMap';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { onlyText } from 'utils/react-children';
+import { usePathMap } from 'store/hooks/usePathMap';
+import { useLayoutConfig } from "components/layouts/useLayoutConfig";
 
 /**
  * This component handles client-side async navigation for URLs internal to this app (as well as analytics for links)
  * This is necessary as there are many other apps sharing the nav.no domain, and attempting async navigation to other
  * apps may result in errors
  **/
-
 type Props = {
     href: string;
     onClick?: (e: React.MouseEvent) => void;
+    event?: analyticsEvents;
     component?: string;
     linkGroup?: string;
     analyticsLabel?: string;
@@ -29,6 +30,7 @@ type Props = {
 export const LenkeBase = ({
     href,
     onClick,
+    event,
     component,
     linkGroup,
     analyticsLabel,
@@ -36,9 +38,9 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
-    const { internalPathToCustomPath } = usePathMap();
-    const { pageConfig } = usePageConfig();
 
+    const { layoutConfig } = useLayoutConfig();
+    const { internalPathToCustomPath } = usePathMap();
     // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
     // (setting to always false for the time being to prevent backend load spikes with cold cache)
     const shouldPrefetch = false;
@@ -49,25 +51,21 @@ export const LenkeBase = ({
             const internalPath = getInternalRelativePath(href);
             return internalPathToCustomPath[internalPath] || internalPath;
         }
-
         return href || '/';
     };
-
     const finalHref = getFinalHref();
-
-    const analyticsLinkText =
-        analyticsLabel || (typeof children === 'string' ? children : undefined);
-
+    const analyticsData = {
+        komponent: component,
+        lenkegruppe: linkGroup,
+        seksjon: linkGroup || layoutConfig.title,
+        destinasjon: finalHref,
+        lenketekst: analyticsLabel || onlyText(children),
+    }
     const linkElement = (
         <a
             href={finalHref}
             onClick={(e) => {
-                logLinkClick(
-                    finalHref,
-                    analyticsLinkText,
-                    component,
-                    linkGroup
-                );
+                logAmplitudeEvent(event || analyticsEvents.NAVIGATION, analyticsData);
                 onClick?.(e);
             }}
             rel={isNofollowUrl(finalHref) ? 'nofollow' : undefined}

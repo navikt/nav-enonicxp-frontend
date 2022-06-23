@@ -11,6 +11,10 @@ import { SingleColPage } from './single-col-page/SingleColPage';
 import { SituationPageFlexColsLayout } from './flex-cols/SituationPageFlexColsLayout';
 import { ProductPageFlexColsLayout } from './flex-cols/ProductPageFlexColsLayout';
 import { ProductDetailsLayout } from './product-details-layout/ProductDetailsLayout';
+import { IndexPage } from './index-page/IndexPage';
+import { useLayoutConfig } from './useLayoutConfig';
+import { AreapageSituationsLayout } from './areapage-situations/AreapageSituationsLayout';
+import { FrontpageLoggedinSectionLayout } from './frontpage-loggedin-section/FrontpageLoggedinSectionLayout';
 
 type Props = {
     pageProps: ContentProps;
@@ -26,7 +30,6 @@ const layoutComponents: {
     [LayoutType.Fixed1Col]: FixedColsLayout,
     [LayoutType.Fixed2Col]: FixedColsLayout,
     [LayoutType.Fixed3Col]: FixedColsLayout,
-    [LayoutType.Fixed4Col]: FixedColsLayout,
     [LayoutType.FlexCols]: FlexColsLayout,
     [LayoutType.SectionWithHeader]: SectionWithHeaderLayout,
     [LayoutType.PageWithSideMenus]: PageWithSideMenus,
@@ -34,11 +37,16 @@ const layoutComponents: {
     [LayoutType.SituationPageFlexCols]: SituationPageFlexColsLayout,
     [LayoutType.ProductPageFlexCols]: ProductPageFlexColsLayout,
     [LayoutType.ProductDetailsPage]: ProductDetailsLayout,
+    [LayoutType.IndexPage]: IndexPage,
+    [LayoutType.AreapageSituations]: AreapageSituationsLayout,
+    [LayoutType.FrontpageLoggedinSection]: FrontpageLoggedinSectionLayout,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
-    const { descriptor, path, regions } = layoutProps;
+    const { config, descriptor, path, regions } = layoutProps;
     const isEditView = pageProps.editorView === 'edit';
+
+    const { LayoutConfigProvider } = useLayoutConfig();
 
     const editorProps = {
         'data-portal-component-type': ComponentType.Layout,
@@ -59,5 +67,14 @@ export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
         );
     }
 
-    return <LayoutComponent pageProps={pageProps} layoutProps={layoutProps} />;
+    return (
+        <LayoutConfigProvider
+            value={{
+                type: descriptor,
+                title: config?.title,
+            }}
+        >
+            <LayoutComponent pageProps={pageProps} layoutProps={layoutProps} />
+        </LayoutConfigProvider>
+    );
 };

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Heading, Ingress } from '@navikt/ds-react';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import {
+    ContentProps,
+    ContentType,
+} from 'types/content-props/_content-common';
 
 import style from './PageHeading.module.scss';
 

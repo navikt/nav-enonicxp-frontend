@@ -19,6 +19,7 @@ const xpLangToDecoratorLang: {
     nn: 'nn',
     pl: 'pl',
     se: 'se',
+    uk: 'uk',
 };
 
 const getDecoratorLangFromXpLang = (xpLang: Language) =>
@@ -62,10 +63,12 @@ const defaultParams = {
 };
 
 const taSurveys = {
-    taSurveys: '03229',
+    taSurveys: '',
 };
 
-export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
+export const getDecoratorParams = (
+    content: ContentProps
+): DecoratorParams => {
     if (!content || content.__typename === ContentType.Error) {
         return errorParams(content);
     }

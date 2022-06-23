@@ -4,6 +4,7 @@ import { Taxonomy } from 'types/taxonomies';
 import { Area } from 'types/areas';
 
 const productTaxonomies: { [key in Taxonomy]: string } = {
+    [Taxonomy.ALL]: 'All',
     [Taxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
     [Taxonomy.BENEFITS]: 'Benefits',
     [Taxonomy.FOLLOWUP]: 'Follow-up',
@@ -84,6 +85,7 @@ export const translationsBundleEn: Translations = {
             tomorrow: 'i morgen',
         },
         day: 'day',
+        date: 'date',
     },
     relatedContent: {
         [MenuListItemKey.AppealRights]: 'Appeal rights',
@@ -125,6 +127,8 @@ export const translationsBundleEn: Translations = {
         ariaExplanation: 'Filter list by area',
         ariaItemExplanation: 'Show area',
         chooseArea: 'Choose area',
+        chooseType: 'Choose type',
+        search: 'Search',
         loading: 'Loading product details',
     },
     pagination: {
@@ -141,6 +145,15 @@ export const translationsBundleEn: Translations = {
             title: 'Write to us',
             ingress:
                 'Need to send us updated information about your case? "Write to us" is a secure alternative to e-mail.',
+        },
+        navoffice: {
+            title: 'Find your local NAV office',
+            ingress: 'Search for a NAV office using postal code or city.',
+        },
+        aidcentral: {
+            title: 'Find your Assistive Technology Center',
+            ingress:
+                'Find contact information and information on pickup and delivery at your nearest Assistive Technology Center.',
         },
         call: {
             title: 'Call us at +47 55 55 33 33',
@@ -182,5 +195,9 @@ export const translationsBundleEn: Translations = {
             weeks: 'weeks',
             months: 'months',
         },
+    },
+    payoutDates: {
+        tableHeaderPrefix: 'Payment dates in',
+        tableHeaderPrefixNoYear: 'Payment dates',
     },
 };

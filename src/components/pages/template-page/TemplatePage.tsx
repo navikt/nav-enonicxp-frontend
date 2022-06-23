@@ -5,7 +5,10 @@ import { linkPanelsDataMock } from './mocks/linkPanelsDataMock';
 import { mainArticleDataMock } from './mocks/mainArticleDataMock';
 import { mainPanelDataMock } from './mocks/mainPanelsDataMock';
 import { officeInformationMock } from './mocks/officeInformationMock';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import {
+    ContentType,
+    ContentProps,
+} from '../../../types/content-props/_content-common';
 import ErrorPage404 from '../../../pages/404';
 
 const legacyMockData = {
@@ -16,14 +19,31 @@ const legacyMockData = {
     ...officeInformationMock,
 };
 
+const legacyTemplateTypes = {
+    [ContentType.MainArticle]: true,
+    [ContentType.MainArticleChapter]: true,
+    [ContentType.OfficeInformation]: true,
+    [ContentType.SectionPage]: true,
+    [ContentType.PageList]: true,
+    [ContentType.TransportPage]: true,
+    [ContentType.Melding]: true,
+    [ContentType.PublishingCalendar]: true,
+};
+
 export const TemplatePage = (props: ContentProps) => {
     if (!props.editorView) {
         return <ErrorPage404 />;
     }
 
-    const propsWithMocks = {
-        ...props,
-        data: { ...legacyMockData, ...props?.data },
-    };
-    return <DynamicPage {...propsWithMocks} />;
+    if (legacyTemplateTypes[props.__typename]) {
+        const propsWithMocks = {
+            ...props,
+            data: { ...legacyMockData, ...props?.data },
+        };
+
+        // @ts-ignore (templates for these old types will never ever be changed)
+        return <DynamicPage {...propsWithMocks} />;
+    }
+
+    return <DynamicPage {...props} />;
 };

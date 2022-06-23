@@ -1,0 +1,116 @@
+@use 'src/common' as common;
+
+.cardWrapper {
+    height: 100%;
+    display: grid;
+}
+
+.cardWrapperDefault {
+    grid-template-columns: auto auto auto;
+    grid-template-rows: max-content max-content auto;
+    gap: 0px 0px;
+    grid-template-areas:
+        'Illustration Illustration Illustration'
+        'Title Title Title'
+        'Text Text Text';
+}
+
+.cardWrapperSituation {
+    @media #{common.$mq-screen-mobile} {
+        grid-template-columns: 5.25rem auto auto;
+        grid-template-rows: max-content max-content auto;
+        grid-template-areas:
+            'Illustration Title Title'
+            'Text Text Text'
+            'Text Text Text';
+    }
+
+    @media #{common.$mq-screen-tablet} {
+        grid-template-columns: 5.25rem auto auto;
+        grid-template-rows: max-content max-content auto;
+        grid-template-areas:
+            'Illustration Title Title'
+            'Text Text Text'
+            'Text Text Text';
+    }
+
+    @media #{common.$mq-screen-desktop} {
+        grid-template-columns: auto auto auto;
+        grid-template-rows: max-content max-content auto;
+        grid-template-areas:
+            'Illustration Title Title'
+            'Illustration Text Text'
+            'Illustration Text Text';
+    }
+
+    .illustration {
+        margin-bottom: 0;
+        margin-right: 1.25rem;
+
+        @media #{common.$mq-screen-tablet-and-mobile} {
+            width: 4rem;
+            height: 4rem;
+        }
+    }
+
+    .textContainer {
+        @media #{common.$mq-screen-tablet-and-mobile} {
+            margin-top: 1rem;
+        }
+    }
+
+    .title {
+        @media #{common.$mq-screen-tablet-and-mobile} {
+            align-self: center;
+            margin-bottom: 0;
+        }
+
+        @media #{common.$mq-screen-mobile} {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+    }
+}
+
+.illustration {
+    align-self: center;
+    display: flex;
+    flex-shrink: 0;
+    grid-area: Illustration;
+    justify-self: center;
+    margin-bottom: 2.3rem;
+    margin-top: 0;
+    width: 6rem;
+    height: 6rem;
+}
+
+.textContainer {
+    grid-area: Text;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    text-decoration: underline;
+    color: var(--navds-global-color-gray-900);
+    margin-bottom: 1rem;
+    grid-area: Title;
+
+    :global(.provider) & {
+        color: var(--navds-semantic-color-link);
+    }
+}
+
+.description {
+    color: var(--navds-global-color-gray-900);
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+.category {
+    color: var(--navds-global-color-gray-600);
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-top: auto; // Aligns category to bottom inside flexbox
+    text-transform: uppercase;
+}

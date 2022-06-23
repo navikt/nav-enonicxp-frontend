@@ -22,6 +22,6 @@ export enum MenuListItemKey {
     Shortcuts = 'shortcuts',
 }
 
-export type MenuListItem = OptionSetMulti<{
+export type MenuListItems = OptionSetMulti<{
     [key in MenuListItemKey]: LinkItem;
 }>;
