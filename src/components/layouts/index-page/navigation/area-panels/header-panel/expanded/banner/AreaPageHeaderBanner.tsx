@@ -8,11 +8,15 @@ import { RightFilled } from '@navikt/ds-icons';
 
 type Props = AreaPageProps['data']['banner'];
 
-export const AreaPageHeaderBanner = ({ html, link }: Props) => {
+export const AreaPageHeaderBanner = ({ html, link, color }: Props) => {
     const { url } = getSelectableLinkProps(link);
 
     return (
-        <a className={style.banner} href={url}>
+        <a
+            className={style.banner}
+            href={url}
+            style={{ '--hover-color': color } as React.CSSProperties}
+        >
             <div className={style.content}>
                 <ParsedHtml htmlProps={html} />
             </div>
