@@ -3,10 +3,10 @@ import { AreaPageProps } from '../../../../../../../types/content-props/index-pa
 import { Heading } from '@navikt/ds-react';
 import { AreaCardGraphics } from '../../../../../../_common/area-card/graphics/AreaCardGraphics';
 import { classNames } from '../../../../../../../utils/classnames';
-import { ParsedHtml } from '../../../../../../_common/parsed-html/ParsedHtml';
+import graphicsStyle from '../../../../../../_common/area-card/graphics/AreaCardGraphicsCommon.module.scss';
+import { AreaPageHeaderBanner } from './banner/AreaPageHeaderBanner';
 
 import style from './AreaHeaderPanelExpanded.module.scss';
-import graphicsStyle from '../../../../../../_common/area-card/graphics/AreaCardGraphicsCommon.module.scss';
 
 type Props = {
     areaContent: AreaPageProps;
@@ -21,11 +21,7 @@ export const AreaHeaderPanelExpanded = ({ areaContent }: Props) => {
                 <Heading level={'2'} size={'xlarge'}>
                     {header}
                 </Heading>
-                {banner && (
-                    <div className={style.banner}>
-                        <ParsedHtml htmlProps={banner} />
-                    </div>
-                )}
+                {banner && <AreaPageHeaderBanner {...banner} />}
             </div>
             <div
                 className={classNames(

@@ -1,6 +1,8 @@
 @use 'src/common' as common;
+@use '../../../../IndexPage.module' as indexPage;
 
 $graphicsHeight: 160px;
+$graphicsWidth: 320px;
 
 .panel {
     display: flex;
@@ -15,19 +17,7 @@ $graphicsHeight: 160px;
     justify-content: center;
 
     width: 100%;
-    max-width: 700px;
-
-    .header {
-    }
-
-    .banner {
-        max-height: $graphicsHeight;
-        margin-top: 1rem;
-        padding: 2rem 0;
-        background-image: linear-gradient(110deg, common.$navPink 90%, white 0);
-
-        @include common.full-width-mixin(true, false);
-    }
+    max-width: indexPage.$maxWidth / 2;
 }
 
 .gfxContainer {
@@ -35,6 +25,7 @@ $graphicsHeight: 160px;
     align-self: flex-end;
     overflow: hidden;
 
-    width: 350px;
+    width: $graphicsWidth;
+    min-width: $graphicsWidth;
     height: $graphicsHeight;
 }

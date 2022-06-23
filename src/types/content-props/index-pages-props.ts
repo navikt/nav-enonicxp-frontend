@@ -3,7 +3,7 @@ import { ContentType, ContentCommonProps } from './_content-common';
 import { Area } from '../areas';
 import { ProcessedHtmlProps } from '../processed-html-props';
 import { IndexPageProps } from '../component-props/pages/index-page';
-import { Audience } from '../component-props/_mixins';
+import { Audience, LinkSelectable } from '../component-props/_mixins';
 
 type CommonData = {
     areasRefs: AreaPageProps[];
@@ -23,7 +23,7 @@ export interface FrontPageProps extends ContentCommonProps {
 export type AreaPageData = {
     area: Area;
     header: string;
-    banner: ProcessedHtmlProps;
+    banner: { link: LinkSelectable; html: ProcessedHtmlProps };
 } & CommonData;
 
 export interface AreaPageProps extends ContentCommonProps {
