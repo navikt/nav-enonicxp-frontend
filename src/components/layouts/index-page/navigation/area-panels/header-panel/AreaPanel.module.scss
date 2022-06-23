@@ -11,11 +11,11 @@
     animation-direction: alternate;
     animation-timing-function: ease-in;
 
-    @media not screen and (prefers-reduced-motion) {
-        &.animate {
-            animation-duration: 500ms;
-        }
-    }
+    //@media not screen and (prefers-reduced-motion) {
+    //    &.animate {
+    //        animation-duration: 500ms;
+    //    }
+    //}
 }
 
 .areaPanelHidden {
@@ -26,11 +26,11 @@
     animation-direction: alternate;
     animation-timing-function: ease-in;
 
-    @media (prefers-reduced-motion: no-preference) {
-        &.animate {
-            animation-duration: 500ms;
-        }
-    }
+    //@media (prefers-reduced-motion: no-preference) {
+    //    &.animate {
+    //        animation-duration: 500ms;
+    //    }
+    //}
 }
 
 @keyframes expandActive {
