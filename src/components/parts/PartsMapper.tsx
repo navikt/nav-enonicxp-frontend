@@ -34,6 +34,8 @@ import { ButtonPart } from './button/ButtonPart';
 import { ProviderCardPart } from './provider-card/ProviderCardPart';
 import { PageNavigationMenuPart } from './page-navigation-menu/PageNavigationMenuPart';
 import { FiltersMenu } from './filters-menu/FiltersMenu';
+import { FrontpageNews } from './frontpage-news/FrontpageNews';
+import { FrontpageShortcuts } from './frontpage-shortcuts/FrontpageShortcuts';
 import { ProductCardPart } from './product-card/ProductCard';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
@@ -80,6 +82,8 @@ const partsWithOwnData: {
     [PartType.ProviderCard]: ProviderCardPart,
     [PartType.PageNavigationMenu]: PageNavigationMenuPart,
     [PartType.FiltersMenu]: FiltersMenu,
+    [PartType.FrontpageNews]: FrontpageNews,
+    [PartType.FrontpageShortcuts]: FrontpageShortcuts,
     [PartType.ProductCard]: ProductCardPart,
     [PartType.ProductCardMicro]: ProductCardMicroPart,
     [PartType.ProductCardMini]: ProductCardPart,

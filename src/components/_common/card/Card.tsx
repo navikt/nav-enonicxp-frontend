@@ -13,11 +13,12 @@ type CardProps = {
     link: LinkProps;
     type: CardType;
     size: CardSize;
+    className?: string;
     interactionHandler?: (type: Interaction) => void;
 };
 
 export const Card = (props: CardProps) => {
-    const { children, link, type, size, interactionHandler } = props;
+    const { children, link, type, size, interactionHandler, className } = props;
     const { text, url } = link;
     const handleUserEvent = (e: React.MouseEvent | React.TouchEvent): void => {
         const eventType = e.type.toString() as keyof typeof Interaction;
@@ -55,7 +56,8 @@ export const Card = (props: CardProps) => {
             component={componentDisplayName(type, size)}
             className={classNames(
                 style.card,
-                size === CardSize.Micro ? style.inline : ''
+                size === CardSize.Micro ? style.inline : '',
+                className
             )}
             onMouseEnter={handleUserEvent}
             onMouseLeave={handleUserEvent}

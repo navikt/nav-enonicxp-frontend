@@ -1,0 +1,46 @@
+@use 'src/common' as common;
+
+$illustrationSize: common.px-to-rem(64);
+
+.shortcutCard {
+    :global(.shortcutCard.mini) {
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        justify-content: flex-start;
+        padding: 1.5rem;
+
+        &:not(:hover):not(:active) {
+            box-shadow: none;
+            border: 0;
+            background-color: white;
+        }
+        &:hover,
+        &:active {
+            box-shadow: none;
+            border: 0;
+            background-color: white;
+        }
+    }
+    &:hover,
+    &:focus {
+        .title {
+            color: var(--navds-global-color-blue-500) !important;
+        }
+    }
+}
+
+.illustration {
+    width: $illustrationSize;
+    height: $illustrationSize;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.title {
+    text-decoration: none;
+    color: var(--navds-global-color-gray-900);
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 0;
+}
