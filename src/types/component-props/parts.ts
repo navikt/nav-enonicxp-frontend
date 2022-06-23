@@ -22,6 +22,8 @@ export enum PartType {
     LinkList = 'no.nav.navno:dynamic-link-list',
     NewsList = 'no.nav.navno:dynamic-news-list',
     HtmlArea = 'no.nav.navno:html-area',
+    FrontpageNews = 'no.nav.navno:frontpage-news',
+    FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
     Calculator = 'no.nav.navno:calculator',
     PageHeader = 'no.nav.navno:page-header',
     Button = 'no.nav.navno:button',
@@ -68,6 +70,8 @@ export type PartWithOwnData =
     | PartType.ProviderCard
     | PartType.PageNavigationMenu
     | PartType.FiltersMenu
+    | PartType.FrontpageNews
+    | PartType.FrontpageShortcuts
     | PartType.ProductCard
     | PartType.ProductCardMini
     | PartType.ProductCardMicro

@@ -1,0 +1,45 @@
+@use 'src/common' as common;
+
+$illustrationSize: common.px-to-rem(64);
+
+.newsCard {
+    :global(.newsCard.mini) {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 1.5rem;
+
+        &:not(:hover):not(:active) {
+            box-shadow: none;
+            border: 0;
+            background-color: white;
+        }
+        &:hover,
+        &:active {
+            box-shadow: none;
+            border: 0;
+            background-color: white;
+        }
+    }
+    &:hover,
+    &:focus {
+        .title {
+            color: var(--navds-global-color-blue-500) !important;
+        }
+        .dateTag {
+            color: var(--navds-semantic-color-text-muted) !important;
+        }
+    }
+}
+
+.title {
+    text-decoration: underline;
+    color: var(--navds-global-color-gray-900);
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: 0;
+    margin-bottom: 1.5rem;
+}
+
+.dateTag {
+    color: var(--navds-semantic-color-text-muted);
+}

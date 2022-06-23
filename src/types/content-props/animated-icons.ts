@@ -1,4 +1,4 @@
-import { ContentType, ContentCommonProps } from './_content-common';
+import { ContentType } from './_content-common';
 import { XpImageProps } from '../media';
 
 type AnimatedIcon = {
@@ -13,7 +13,7 @@ export type AnimatedIconsData = {
     lottieHover?: { mediaText: string };
 };
 
-export interface AnimatedIconsProps extends ContentCommonProps {
+export interface AnimatedIconsProps {
     __typename: ContentType.AnimatedIcons;
     data: AnimatedIconsData;
 }

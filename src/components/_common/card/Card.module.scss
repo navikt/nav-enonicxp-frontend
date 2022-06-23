@@ -145,6 +145,11 @@
                 background-color: var(--navds-global-color-lightblue-500);
             }
         }
+        &:global(.newsCard) {
+            &:before {
+                background-color: var(--navds-global-color-lightblue-500);
+            }
+        }
     }
 
     :global(.mini) {
