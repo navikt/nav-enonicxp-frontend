@@ -45,7 +45,7 @@ export const AreaPageNavigationBar = ({
 
         if (!isVisble) {
             const itemBounds = item.getBoundingClientRect();
-            const scrollTargetPos = itemBounds.x + itemBounds.width;
+            const scrollTargetPos = itemBounds.x;
             const scrollOptions: ScrollToOptions = {
                 left: scrollTargetPos,
                 top: 0,
@@ -73,15 +73,11 @@ export const AreaPageNavigationBar = ({
         const navBar: Element = navigationBar.current;
         const currentScrollPosition = navBar.scrollLeft;
 
-        console.log(currentScrollPosition);
-
         const scrollOptions: ScrollToOptions = {
-            left: currentScrollPosition - direction,
+            left: currentScrollPosition - direction * 10,
             top: 0,
             behavior: 'smooth',
         };
-
-        console.log(scrollOptions);
 
         navBar.scrollTo(scrollOptions);
         checkScrollability();
