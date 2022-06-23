@@ -4,6 +4,7 @@ import { IndexPageLink } from 'components/layouts/index-page/navigation/link/Ind
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { classNames } from '../../../utils/classnames';
 import { AreaCardGraphics } from './graphics/AreaCardGraphics';
+import { LenkeBase } from '../lenke/LenkeBase';
 
 import style from './AreaCard.module.scss';
 import graphicsStyle from './graphics/AreaCardGraphicsCommon.module.scss';
@@ -12,7 +13,7 @@ type Props = {
     path: string;
     title: string;
     area: string;
-    navigate: (path: string) => void;
+    navigate?: (path: string) => void;
 };
 
 export const AreaCard = ({ path, title, area, navigate }: Props) => {
@@ -20,12 +21,14 @@ export const AreaCard = ({ path, title, area, navigate }: Props) => {
         return <EditorHelp text={'Velg en grafikk for kortet'} />;
     }
 
+    const LinkComponent = navigate ? IndexPageLink : LenkeBase;
+
     return (
         <LinkPanel
             border={false}
             className={classNames(style.linkPanel, graphicsStyle.expandOnHover)}
             as={(props) => (
-                <IndexPageLink
+                <LinkComponent
                     {...props}
                     href={path}
                     analyticsLabel={title}
@@ -33,7 +36,7 @@ export const AreaCard = ({ path, title, area, navigate }: Props) => {
                     navigate={navigate}
                 >
                     {props.children}
-                </IndexPageLink>
+                </LinkComponent>
             )}
         >
             <div

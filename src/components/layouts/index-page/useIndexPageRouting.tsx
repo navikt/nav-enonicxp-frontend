@@ -76,17 +76,24 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
             if (cachedPage) {
                 setCurrentPageProps(cachedPage);
-            } else {
-                fetchIndexPageContentProps(path).then((contentProps) => {
-                    addLocalPageCacheEntries({
-                        ...localPageCache,
-                        [path]: contentProps,
-                    });
-                    setCurrentPageProps(contentProps);
-                });
+                router.push(path, undefined, { shallow: true });
+                return;
             }
 
-            router.push(path, undefined, { shallow: true });
+            fetchIndexPageContentProps(path).then((contentProps) => {
+                if (!contentProps) {
+                    router.push(path);
+                    return;
+                }
+
+                addLocalPageCacheEntries({
+                    ...localPageCache,
+                    [path]: contentProps,
+                });
+                setCurrentPageProps(contentProps);
+
+                router.push(path, undefined, { shallow: true });
+            });
         },
         [localPageCache, router, editorView, addLocalPageCacheEntries]
     );
