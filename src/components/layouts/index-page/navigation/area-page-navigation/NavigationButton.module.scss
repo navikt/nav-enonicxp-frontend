@@ -1,0 +1,27 @@
+@use 'src/common' as common;
+
+.navigationButton {
+    background-color: white;
+    border: 0;
+    padding: 0.5rem;
+    margin: 0;
+    top: 0.5rem;
+    display: block;
+    position: absolute;
+
+    @media #{common.$mq-screen-desktop} {
+        display: none;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.leftSide {
+    left: 0;
+}
+
+.rightSide {
+    right: 0;
+}

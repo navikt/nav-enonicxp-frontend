@@ -1,6 +1,12 @@
 @use 'src/common' as common;
 
 .areasPageNavigation {
+    position: relative;
+    display: flex;
+}
+
+.navigationBar {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     opacity: 1;
