@@ -23,8 +23,6 @@ export const MiniCard = (props: MiniKortProps) => {
     const { isHovering, cardInteractionHandler } = useCardState();
     const { pageConfig } = usePageConfig();
 
-    console.log(illustration);
-
     return (
         <Card
             link={link}
