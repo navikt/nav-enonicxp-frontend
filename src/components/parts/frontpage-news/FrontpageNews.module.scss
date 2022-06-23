@@ -13,6 +13,18 @@
 .newsList {
     display: flex;
     flex-direction: row;
+
+    @media #{common.$mq-screen-mobile} {
+        flex-direction: column;
+        .newsItem {
+        }
+    }
+    @media #{common.$mq-screen-tablet} {
+        .newsItem {
+        }
+    }
+    @media #{common.$mq-screen-desktop} {
+    }
 }
 
 .newsItem {

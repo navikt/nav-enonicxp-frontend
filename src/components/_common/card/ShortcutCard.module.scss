@@ -4,10 +4,11 @@ $illustrationSize: common.px-to-rem(64);
 
 .shortcutCard {
     :global(.shortcutCard.mini) {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 1.5rem;
+        align-items: center;
+        flex-direction: row;
         justify-content: center;
+        justify-content: flex-start;
+        padding: 1.5rem;
 
         &:not(:hover):not(:active) {
             box-shadow: none;
@@ -27,6 +28,13 @@ $illustrationSize: common.px-to-rem(64);
             color: var(--navds-global-color-blue-500) !important;
         }
     }
+}
+
+.illustration {
+    width: $illustrationSize;
+    height: $illustrationSize;
+    margin-right: 1rem;
+    flex-shrink: 0;
 }
 
 .title {

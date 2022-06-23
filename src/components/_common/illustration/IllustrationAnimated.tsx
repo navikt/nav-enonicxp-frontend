@@ -40,6 +40,7 @@ export const IllustrationAnimated = ({
                 loop: false,
             });
         } catch (error) {
+            console.log(error);
             return;
         }
     };
