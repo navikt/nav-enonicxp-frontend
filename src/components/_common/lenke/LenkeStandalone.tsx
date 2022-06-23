@@ -4,6 +4,7 @@ import { classNames } from 'utils/classnames';
 import { LenkeBase } from './LenkeBase';
 import { getExternalDomain } from '../../../utils/links';
 import { Chevron } from '../chevron/Chevron';
+
 import style from './LenkeStandalone.module.scss';
 
 const getExternalUrlString = (url: string, linkText: string) => {
