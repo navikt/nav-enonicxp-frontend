@@ -16,6 +16,8 @@ import {
 import { AlertBox } from '../../_common/alert-box/AlertBox';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import { AnimateHeight } from '../../_common/animate-height/AnimateHeight';
+import { IndexPageProps } from '../../../types/component-props/pages/index-page';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 import style from './IndexPage.module.scss';
 
@@ -76,6 +78,32 @@ type Props = {
 // This page component should always be used in the templates for the FrontPage and AreaPage types
 // (and nothing else!)
 export const IndexPage = ({ pageProps }: Props) => {
+    if (pageProps.__typename === ContentType.TemplatePage) {
+        const pageComponent = pageProps.page as IndexPageProps;
+
+        return (
+            <LayoutContainer
+                pageProps={pageProps}
+                layoutProps={pageComponent}
+                className={style.indexPage}
+            >
+                <Region
+                    pageProps={pageProps}
+                    regionProps={pageComponent.regions.contentTop}
+                />
+                <EditorHelp
+                    text={
+                        'Seksjon for område-navigasjon og header settes inn automatisk her'
+                    }
+                />
+                <Region
+                    pageProps={pageProps}
+                    regionProps={pageComponent.regions.contentBottom}
+                />
+            </LayoutContainer>
+        );
+    }
+
     if (
         pageProps.__typename !== ContentType.AreaPage &&
         pageProps.__typename !== ContentType.FrontPage

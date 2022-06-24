@@ -124,8 +124,16 @@ type SiteProps = {
     __typename: ContentType.Site;
 } & ContentCommonProps;
 
+type TemplateProps = {
+    __typename: ContentType.TemplatePage;
+    data: {
+        supports?: string | string[];
+    };
+} & ContentCommonProps;
+
 type SpecificContentProps =
     | SiteProps
+    | TemplateProps
     | ContentListProps
     | ErrorProps
     | ExternalLinkProps
