@@ -11,7 +11,3 @@
     height: 60px;
     overflow: hidden;
 }
-
-.grid {
-    @include common.grid-layout-mixin();
-}

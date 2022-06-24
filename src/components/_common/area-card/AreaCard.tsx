@@ -14,9 +14,10 @@ type Props = {
     title: string;
     area: string;
     navigate?: (path: string) => void;
+    className?: string;
 };
 
-export const AreaCard = ({ path, title, area, navigate }: Props) => {
+export const AreaCard = ({ path, title, area, navigate, className }: Props) => {
     if (!area) {
         return <EditorHelp text={'Velg en grafikk for kortet'} />;
     }
@@ -26,7 +27,11 @@ export const AreaCard = ({ path, title, area, navigate }: Props) => {
     return (
         <LinkPanel
             border={false}
-            className={classNames(style.linkPanel, graphicsStyle.expandOnHover)}
+            className={classNames(
+                style.linkPanel,
+                graphicsStyle.expandOnHover,
+                className
+            )}
             as={(props) => (
                 <LinkComponent
                     {...props}
