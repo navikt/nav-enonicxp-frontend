@@ -1,11 +1,21 @@
 import React from 'react';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { classNames } from '../../../utils/classnames';
-import { useRouter } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import { isAppUrl } from '../../../utils/urls';
 import { usePublicHref } from '../../../utils/usePublicHref';
 
 import style from './LinkPanelNew.module.scss';
+
+const enterKeyCode = 13;
+
+const navigate = (router: NextRouter, href: string) => {
+    if (isAppUrl(href)) {
+        router.push(href);
+    } else {
+        window.location.href = href;
+    }
+};
 
 type Props<As = React.ElementType> = {
     linkText: string;
@@ -41,11 +51,22 @@ export const LinkPanelNew = ({
                 }
 
                 e.preventDefault();
-                if (isAppUrl(publicHref)) {
-                    router.push(publicHref);
-                } else {
-                    window.location.href = publicHref;
+                navigate(router, href);
+            }}
+            onKeyDown={(e) => {
+                const { which } = e;
+
+                if (which !== enterKeyCode) {
+                    return;
                 }
+
+                divProps.onClick?.(e);
+
+                if (e.defaultPrevented) {
+                    return;
+                }
+
+                navigate(router, href);
             }}
             className={classNames(style.linkPanel, divProps.className)}
             tabIndex={0}
