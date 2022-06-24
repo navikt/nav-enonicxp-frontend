@@ -4,11 +4,12 @@ import {
     AreaPageProps,
     FrontPageProps,
 } from '../../../../types/content-props/index-pages-props';
-import { IndexPageAreasPanels } from './area-panels/IndexPageAreasPanels';
-import { AreaPageNavigationBar } from './area-page-navigation/AreaPageNavigationBar';
+import { AreaPageNavigationBar } from './area-page-navigation-bar/AreaPageNavigationBar';
 import { FrontPageAreasHeader } from './front-page-areas-header/FrontPageAreasHeader';
 
 import style from './IndexPageNavigation.module.scss';
+import { classNames } from '../../../../utils/classnames';
+import { AreaHeaderPanel } from './area-panels/header-panel/AreaHeaderPanel';
 
 type Props = {
     pageProps: FrontPageProps | AreaPageProps;
@@ -37,11 +38,22 @@ export const IndexPageNavigation = ({ pageProps, navigate }: Props) => {
                 <FrontPageAreasHeader content={pageProps} />
             </div>
             {/*<AnimateHeight trigger={_id}>*/}
-            <IndexPageAreasPanels
-                content={pageProps}
-                areasRefs={areasRefs}
-                navigate={navigate}
-            />
+            <div
+                className={classNames(
+                    __typename === ContentType.FrontPage && style.grid
+                )}
+            >
+                {areasRefs.map((areaContent) => {
+                    return (
+                        <AreaHeaderPanel
+                            areaContent={areaContent}
+                            currentContent={pageProps}
+                            navigate={navigate}
+                            key={areaContent._id}
+                        />
+                    );
+                })}
+            </div>
             {/*</AnimateHeight>*/}
         </div>
     );

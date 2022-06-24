@@ -3,7 +3,7 @@ import { AreaPageProps } from '../../../../../../types/content-props/index-pages
 import { IndexPageContentProps } from '../../../IndexPage';
 import { ContentType } from '../../../../../../types/content-props/_content-common';
 import { classNames } from '../../../../../../utils/classnames';
-import { AreaHeaderPanelExpanded } from './expanded/AreaHeaderPanelExpanded';
+import { AreaPageHeader } from './expanded/AreaPageHeader';
 import { getPublicPathname } from '../../../../../../utils/urls';
 import { AreaCard } from 'components/_common/area-card/AreaCard';
 
@@ -51,7 +51,7 @@ export const AreaHeaderPanel = ({
                 // useFrontpageTransition && style.animate
             )}
         >
-            <AreaHeaderPanelExpanded areaContent={currentContent} />
+            <AreaPageHeader areaContent={currentContent} />
         </div>
     ) : (
         <div

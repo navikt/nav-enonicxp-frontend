@@ -6,13 +6,13 @@ import { classNames } from '../../../../../../../utils/classnames';
 import graphicsStyle from '../../../../../../_common/area-card/graphics/AreaCardGraphicsCommon.module.scss';
 import { AreaPageHeaderBanner } from './banner/AreaPageHeaderBanner';
 
-import style from './AreaHeaderPanelExpanded.module.scss';
+import style from './AreaPageHeader.module.scss';
 
 type Props = {
     areaContent: AreaPageProps;
 };
 
-export const AreaHeaderPanelExpanded = ({ areaContent }: Props) => {
+export const AreaPageHeader = ({ areaContent }: Props) => {
     const { header, banner, area } = areaContent.data;
 
     return (
