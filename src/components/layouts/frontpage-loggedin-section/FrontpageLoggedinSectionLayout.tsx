@@ -33,7 +33,7 @@ const HeaderWithName = ({ headerText }: { headerText: string }) => {
     return (
         <Header
             level={'2'}
-            size={'xlarge'}
+            size={'large'}
             justify={'left'}
             className={style.header}
         >

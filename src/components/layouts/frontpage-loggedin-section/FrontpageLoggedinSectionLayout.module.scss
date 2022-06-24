@@ -17,4 +17,8 @@
 .myPage {
     margin-top: 1rem;
     color: black;
+
+    & > * {
+        font-weight: bold;
+    }
 }
