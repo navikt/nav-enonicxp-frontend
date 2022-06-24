@@ -25,7 +25,7 @@ export const FrontpageContactPart = ({
         <div className={style.container}>
             <LinkPanelNew
                 className={style.chat}
-                href={''}
+                href={'#'}
                 linkText={chatTitle}
                 onClick={(e) => openChatbot(e)}
             >
