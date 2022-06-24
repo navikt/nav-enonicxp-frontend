@@ -8,5 +8,8 @@ export interface FrontpageContanctPartProps extends PartComponentProps {
         chatIngress: string;
         contactUsTitle: string;
         contactUsIngress: string;
+        contactUsLink: {
+            _path: string;
+        };
     };
 }

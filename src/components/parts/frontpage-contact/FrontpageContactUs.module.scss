@@ -2,4 +2,18 @@
 
 .container {
     @include common.grid-layout-mixin(2);
+    @include common.full-width-mixin();
+
+    background-color: #fff;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.chat {
+    background-color: common.$navds-global-color-blue-50;
+    border-radius: 24px;
+
+    &::after {
+        content: '';
+    }
 }
