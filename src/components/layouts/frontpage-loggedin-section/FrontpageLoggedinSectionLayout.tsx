@@ -20,7 +20,11 @@ const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
 
     const { text, url } = getSelectableLinkProps(link);
 
-    return <LenkeStandalone href={url}>{text}</LenkeStandalone>;
+    return (
+        <LenkeStandalone href={url} className={style.myPage}>
+            {text}
+        </LenkeStandalone>
+    );
 };
 
 const HeaderWithName = ({ headerText }: { headerText: string }) => {
@@ -60,7 +64,7 @@ export const FrontpageLoggedinSectionLayout = ({
     const { header, mypage } = config;
 
     return (
-        <AuthDependantRender renderOn={'loggedIn'}>
+        <AuthDependantRender renderOn={'always'}>
             <LayoutContainer
                 pageProps={pageProps}
                 layoutProps={layoutProps}
