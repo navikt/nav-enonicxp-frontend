@@ -4,7 +4,7 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { openChatbot } from '../../../utils/chatbot';
 import { LinkPanelNew } from '../../_common/linkpanel/LinkPanelNew';
 
-import style from './FrontpageContactUs.module.scss';
+import style from './FrontpageContactPart.module.scss';
 
 export const FrontpageContactPart = ({
     config,
