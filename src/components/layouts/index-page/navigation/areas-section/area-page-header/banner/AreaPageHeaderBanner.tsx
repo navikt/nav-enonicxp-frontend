@@ -1,7 +1,7 @@
 import React from 'react';
-import { ParsedHtml } from '../../../../../../../_common/parsed-html/ParsedHtml';
-import { AreaPageProps } from '../../../../../../../../types/content-props/index-pages-props';
-import { getSelectableLinkProps } from '../../../../../../../../utils/links-from-content';
+import { ParsedHtml } from '../../../../../../_common/parsed-html/ParsedHtml';
+import { AreaPageProps } from '../../../../../../../types/content-props/index-pages-props';
+import { getSelectableLinkProps } from '../../../../../../../utils/links-from-content';
 import { RightFilled } from '@navikt/ds-icons';
 
 import style from './AreaPageHeaderBanner.module.scss';

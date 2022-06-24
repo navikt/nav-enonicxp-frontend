@@ -3,16 +3,17 @@ import { classNames } from '../../../../../utils/classnames';
 import { AreaPageProps } from '../../../../../types/content-props/index-pages-props';
 import { getPublicPathname } from '../../../../../utils/urls';
 import { IndexPageLink } from '../link/IndexPageLink';
-
-import style from './AreaPageNavigationBar.module.scss';
 import { Chip } from 'components/_common/chip/Chip';
 import { isElementVisible } from 'utils/scroll-to';
+import { IndexPageNavigationCallback } from '../../useIndexPageRouting';
+
+import style from './AreaPageNavigationBar.module.scss';
 
 type Props = {
     isVisible: boolean;
     areasRefs: AreaPageProps[];
     pageId: string;
-    navigate: (path: string) => void;
+    navigate: IndexPageNavigationCallback;
 };
 
 export const AreaPageNavigationBar = ({

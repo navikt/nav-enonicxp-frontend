@@ -1,48 +1,44 @@
 import React from 'react';
 import { ContentType } from '../../../../types/content-props/_content-common';
-import {
-    AreaPageProps,
-    FrontPageProps,
-} from '../../../../types/content-props/index-pages-props';
-import { IndexPageAreasPanels } from './area-panels/IndexPageAreasPanels';
-import { AreaPageNavigationBar } from './area-page-navigation/AreaPageNavigationBar';
-import { FrontPageAreasHeader } from './front-page-areas-header/FrontPageAreasHeader';
+import { AreaPageNavigationBar } from './area-page-navigation-bar/AreaPageNavigationBar';
+import { FrontPageHeader } from './front-page-header/FrontPageHeader';
+import { IndexPageNavigationCallback } from '../useIndexPageRouting';
+import { IndexPageAreasSection } from './areas-section/IndexPageAreasSection';
+import { IndexPageContentProps } from '../IndexPage';
 
 import style from './IndexPageNavigation.module.scss';
 
 type Props = {
-    pageProps: FrontPageProps | AreaPageProps;
-    navigate: (path: string) => void;
+    pageProps: IndexPageContentProps;
+    navigate: IndexPageNavigationCallback;
 };
 
 export const IndexPageNavigation = ({ pageProps, navigate }: Props) => {
     const { __typename, _id, data } = pageProps;
     const { areasRefs: _areasRefs } = data;
 
-    const areasRefs =
+    const areaRefs =
         __typename === ContentType.AreaPage &&
         !_areasRefs.some((ref) => ref._id === _id)
             ? [pageProps, ..._areasRefs]
             : _areasRefs;
 
     return (
-        <div className={style.centerNavigation}>
+        <div className={style.areaNavigation}>
             <div className={style.headerAndNavBar}>
                 <AreaPageNavigationBar
                     isVisible={__typename === ContentType.AreaPage}
-                    areasRefs={areasRefs}
+                    areasRefs={areaRefs}
                     pageId={_id}
                     navigate={navigate}
                 />
-                <FrontPageAreasHeader content={pageProps} />
+                <FrontPageHeader content={pageProps} />
             </div>
-            {/*<AnimateHeight trigger={_id}>*/}
-            <IndexPageAreasPanels
-                content={pageProps}
-                areasRefs={areasRefs}
+            <IndexPageAreasSection
+                pageProps={pageProps}
+                areaRefs={areaRefs}
                 navigate={navigate}
             />
-            {/*</AnimateHeight>*/}
         </div>
     );
 };

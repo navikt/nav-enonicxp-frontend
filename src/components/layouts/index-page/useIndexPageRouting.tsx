@@ -11,15 +11,7 @@ import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 type CacheEntries = Record<string, IndexPageContentProps>;
 
-type IndexPageRoutingContext = {
-    indexPages: Set<string>;
-    navigate: (path: string) => void;
-};
-
-const IndexPageRoutingContext = React.createContext<IndexPageRoutingContext>({
-    indexPages: new Set(),
-    navigate: (_: string) => {},
-});
+export type IndexPageNavigationCallback = (path: string) => void;
 
 const fetchIndexPageContentProps = (
     path: string
@@ -47,7 +39,6 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     const areasRefsPaths = pageProps.data.areasRefs.map((ref) =>
         getPublicPathname(ref)
     );
-    const indexPages = new Set([basePath, ...areasRefsPaths]);
 
     const router = useRouter();
     const { pageConfig } = usePageConfig();
@@ -65,7 +56,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         [localPageCache]
     );
 
-    const navigate = useCallback(
+    const navigate: IndexPageNavigationCallback = useCallback(
         (path: string) => {
             if (editorView) {
                 router.push(`${xpDraftPathPrefix}${path}`);
@@ -154,8 +145,4 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         currentPageProps,
         navigate,
     };
-};
-
-export const useIndexPageNavigation = () => {
-    return useContext(IndexPageRoutingContext);
 };
