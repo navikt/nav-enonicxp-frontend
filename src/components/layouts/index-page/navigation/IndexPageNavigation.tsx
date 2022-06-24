@@ -1,60 +1,44 @@
 import React from 'react';
 import { ContentType } from '../../../../types/content-props/_content-common';
-import {
-    AreaPageProps,
-    FrontPageProps,
-} from '../../../../types/content-props/index-pages-props';
 import { AreaPageNavigationBar } from './area-page-navigation-bar/AreaPageNavigationBar';
 import { FrontPageHeader } from './front-page-header/FrontPageHeader';
+import { IndexPageNavigationCallback } from '../useIndexPageRouting';
+import { IndexPageAreasSection } from './area-panels/IndexPageAreaPanels';
+import { IndexPageContentProps } from '../IndexPage';
 
 import style from './IndexPageNavigation.module.scss';
-import { classNames } from '../../../../utils/classnames';
-import { AreaHeaderPanel } from './area-panels/AreaHeaderPanel';
 
 type Props = {
-    pageProps: FrontPageProps | AreaPageProps;
-    navigate: (path: string) => void;
+    pageProps: IndexPageContentProps;
+    navigate: IndexPageNavigationCallback;
 };
 
 export const IndexPageNavigation = ({ pageProps, navigate }: Props) => {
     const { __typename, _id, data } = pageProps;
     const { areasRefs: _areasRefs } = data;
 
-    const areasRefs =
+    const areaRefs =
         __typename === ContentType.AreaPage &&
         !_areasRefs.some((ref) => ref._id === _id)
             ? [pageProps, ..._areasRefs]
             : _areasRefs;
 
     return (
-        <div className={style.centerNavigation}>
+        <div className={style.areaNavigation}>
             <div className={style.headerAndNavBar}>
                 <AreaPageNavigationBar
                     isVisible={__typename === ContentType.AreaPage}
-                    areasRefs={areasRefs}
+                    areasRefs={areaRefs}
                     pageId={_id}
                     navigate={navigate}
                 />
                 <FrontPageHeader content={pageProps} />
             </div>
-            {/*<AnimateHeight trigger={_id}>*/}
-            <div
-                className={classNames(
-                    __typename === ContentType.FrontPage && style.grid
-                )}
-            >
-                {areasRefs.map((areaContent) => {
-                    return (
-                        <AreaHeaderPanel
-                            areaContent={areaContent}
-                            currentContent={pageProps}
-                            navigate={navigate}
-                            key={areaContent._id}
-                        />
-                    );
-                })}
-            </div>
-            {/*</AnimateHeight>*/}
+            <IndexPageAreasSection
+                pageProps={pageProps}
+                areaRefs={areaRefs}
+                navigate={navigate}
+            />
         </div>
     );
 };

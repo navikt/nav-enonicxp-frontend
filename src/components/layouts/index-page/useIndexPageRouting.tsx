@@ -11,6 +11,8 @@ import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 type CacheEntries = Record<string, IndexPageContentProps>;
 
+export type IndexPageNavigationCallback = (path: string) => void;
+
 const fetchIndexPageContentProps = (
     path: string
 ): Promise<IndexPageContentProps | null> =>
@@ -54,7 +56,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         [localPageCache]
     );
 
-    const navigate = useCallback(
+    const navigate: IndexPageNavigationCallback = useCallback(
         (path: string) => {
             if (editorView) {
                 router.push(`${xpDraftPathPrefix}${path}`);

@@ -16,8 +16,7 @@ import {
 import { AlertBox } from '../../_common/alert-box/AlertBox';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import { AnimateHeight } from '../../_common/animate-height/AnimateHeight';
-import { IndexPageProps } from '../../../types/component-props/pages/index-page';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { IndexPageTemplate } from './IndexPageTemplate';
 
 import style from './IndexPage.module.scss';
 
@@ -37,6 +36,8 @@ const PreReleaseWarning = () => {
 };
 
 export type IndexPageContentProps = FrontPageProps | AreaPageProps;
+
+export type IndexPageContentType = IndexPageContentProps['__typename'];
 
 const IndexPageContent = (basePageProps: IndexPageContentProps) => {
     const { currentPageProps, navigate } = useIndexPageRouting(basePageProps);
@@ -83,29 +84,7 @@ type Props = {
 // (and nothing else!)
 export const IndexPage = ({ pageProps }: Props) => {
     if (pageProps.__typename === ContentType.TemplatePage) {
-        const pageComponent = pageProps.page as IndexPageProps;
-
-        return (
-            <LayoutContainer
-                pageProps={pageProps}
-                layoutProps={pageComponent}
-                className={style.indexPage}
-            >
-                <Region
-                    pageProps={pageProps}
-                    regionProps={pageComponent.regions.contentTop}
-                />
-                <EditorHelp
-                    text={
-                        'Seksjon for område-navigasjon og header settes inn automatisk her'
-                    }
-                />
-                <Region
-                    pageProps={pageProps}
-                    regionProps={pageComponent.regions.contentBottom}
-                />
-            </LayoutContainer>
-        );
+        return <IndexPageTemplate pageProps={pageProps} />;
     }
 
     if (

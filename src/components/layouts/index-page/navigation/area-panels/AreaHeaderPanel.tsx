@@ -6,13 +6,14 @@ import { classNames } from '../../../../../utils/classnames';
 import { AreaPageHeader } from '../area-page-header/AreaPageHeader';
 import { getPublicPathname } from '../../../../../utils/urls';
 import { AreaCard } from 'components/_common/area-card/AreaCard';
+import { IndexPageNavigationCallback } from '../../useIndexPageRouting';
 
 import style from './AreaPanel.module.scss';
 
 type Props = {
     areaContent: AreaPageProps;
     currentContent: IndexPageContentProps;
-    navigate: (path: string) => void;
+    navigate: IndexPageNavigationCallback;
 };
 
 export const AreaHeaderPanel = ({
