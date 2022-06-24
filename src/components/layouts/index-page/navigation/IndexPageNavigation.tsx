@@ -7,7 +7,6 @@ import {
 import { IndexPageAreasPanels } from './area-panels/IndexPageAreasPanels';
 import { AreaPageNavigationBar } from './area-page-navigation/AreaPageNavigationBar';
 import { FrontPageAreasHeader } from './front-page-areas-header/FrontPageAreasHeader';
-import { AnimateHeight } from '../../../_common/animate-height/AnimateHeight';
 
 import style from './IndexPageNavigation.module.scss';
 
@@ -18,7 +17,13 @@ type Props = {
 
 export const IndexPageNavigation = ({ pageProps, navigate }: Props) => {
     const { __typename, _id, data } = pageProps;
-    const { areasRefs } = data;
+    const { areasRefs: _areasRefs } = data;
+
+    const areasRefs =
+        __typename === ContentType.AreaPage &&
+        !_areasRefs.some((ref) => ref._id === _id)
+            ? [pageProps, ..._areasRefs]
+            : _areasRefs;
 
     return (
         <div className={style.centerNavigation}>
@@ -32,7 +37,11 @@ export const IndexPageNavigation = ({ pageProps, navigate }: Props) => {
                 <FrontPageAreasHeader content={pageProps} />
             </div>
             {/*<AnimateHeight trigger={_id}>*/}
-            <IndexPageAreasPanels content={pageProps} navigate={navigate} />
+            <IndexPageAreasPanels
+                content={pageProps}
+                areasRefs={areasRefs}
+                navigate={navigate}
+            />
             {/*</AnimateHeight>*/}
         </div>
     );

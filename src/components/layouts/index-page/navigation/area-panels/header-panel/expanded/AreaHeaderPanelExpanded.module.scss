@@ -17,15 +17,22 @@ $graphicsWidth: 320px;
     justify-content: center;
 
     width: 100%;
-    max-width: indexPage.$maxWidth / 2;
+    max-width: 600px;
 }
 
 .gfxContainer {
+    display: flex;
+    justify-content: center;
     position: relative;
     align-self: flex-end;
     overflow: hidden;
 
-    width: $graphicsWidth;
+    width: 100%;
     min-width: $graphicsWidth;
+    max-width: 625px;
     height: $graphicsHeight;
+
+    & > * {
+        width: $graphicsWidth;
+    }
 }

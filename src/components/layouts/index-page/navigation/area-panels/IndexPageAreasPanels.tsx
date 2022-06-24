@@ -8,12 +8,16 @@ import style from './IndexPageAreaPanels.module.scss';
 
 type Props = {
     content: IndexPageContentProps;
+    areasRefs: IndexPageContentProps['data']['areasRefs'];
     navigate: (path: string) => void;
 };
 
-export const IndexPageAreasPanels = ({ content, navigate }: Props) => {
-    const { __typename, data } = content;
-    const { areasRefs } = data;
+export const IndexPageAreasPanels = ({
+    content,
+    areasRefs,
+    navigate,
+}: Props) => {
+    const { __typename } = content;
 
     return (
         <div
