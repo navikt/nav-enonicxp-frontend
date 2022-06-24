@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { AreaPageProps } from '../../../../../../types/content-props/index-pages-props';
-import { IndexPageContentProps } from '../../../IndexPage';
-import { ContentType } from '../../../../../../types/content-props/_content-common';
-import { classNames } from '../../../../../../utils/classnames';
-import { AreaPageHeader } from './expanded/AreaPageHeader';
-import { getPublicPathname } from '../../../../../../utils/urls';
+import { AreaPageProps } from '../../../../../types/content-props/index-pages-props';
+import { IndexPageContentProps } from '../../IndexPage';
+import { ContentType } from '../../../../../types/content-props/_content-common';
+import { classNames } from '../../../../../utils/classnames';
+import { AreaPageHeader } from '../area-page-header/AreaPageHeader';
+import { getPublicPathname } from '../../../../../utils/urls';
 import { AreaCard } from 'components/_common/area-card/AreaCard';
 
 import style from './AreaPanel.module.scss';

@@ -10,7 +10,7 @@ type Props = {
     content: IndexPageContentProps;
 };
 
-export const FrontPageAreasHeader = ({ content }: Props) => {
+export const FrontPageHeader = ({ content }: Props) => {
     const { __typename, data } = content;
 
     const [header, setHeader] = useState(

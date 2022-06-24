@@ -5,11 +5,11 @@ import {
     FrontPageProps,
 } from '../../../../types/content-props/index-pages-props';
 import { AreaPageNavigationBar } from './area-page-navigation-bar/AreaPageNavigationBar';
-import { FrontPageAreasHeader } from './front-page-areas-header/FrontPageAreasHeader';
+import { FrontPageHeader } from './front-page-header/FrontPageHeader';
 
 import style from './IndexPageNavigation.module.scss';
 import { classNames } from '../../../../utils/classnames';
-import { AreaHeaderPanel } from './area-panels/header-panel/AreaHeaderPanel';
+import { AreaHeaderPanel } from './area-panels/AreaHeaderPanel';
 
 type Props = {
     pageProps: FrontPageProps | AreaPageProps;
@@ -35,7 +35,7 @@ export const IndexPageNavigation = ({ pageProps, navigate }: Props) => {
                     pageId={_id}
                     navigate={navigate}
                 />
-                <FrontPageAreasHeader content={pageProps} />
+                <FrontPageHeader content={pageProps} />
             </div>
             {/*<AnimateHeight trigger={_id}>*/}
             <div
