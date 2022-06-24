@@ -1,7 +1,7 @@
 @use 'src/common' as common;
 
 .frontpageNews {
-    background-color: var(--navds-global-semantic-canvas-background);
+    background-color: common.$navds-semantic-color-canvas-background;
     padding: 2em;
     @include common.full-width-mixin();
 }

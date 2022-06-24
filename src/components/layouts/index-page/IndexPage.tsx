@@ -55,14 +55,12 @@ const IndexPageContent = (basePageProps: IndexPageContentProps) => {
                 <meta name={'robots'} content={'noindex, nofollow'} />
             </Head>
             {basePageProps.serverEnv === 'prod' && <PreReleaseWarning />}
-            {/*<AnimatedElement trigger={currentPageProps._id}>*/}
-            {currentPageProps.__typename === ContentType.FrontPage && (
+            <AnimateHeight trigger={currentPageProps._id}>
                 <Region
                     pageProps={currentPageProps}
                     regionProps={regions.contentTop}
                 />
-            )}
-            {/*</AnimatedElement>*/}
+            </AnimateHeight>
             <IndexPageNavigation
                 pageProps={currentPageProps}
                 navigate={navigate}
