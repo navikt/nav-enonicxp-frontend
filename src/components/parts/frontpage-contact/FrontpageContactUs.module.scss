@@ -1,0 +1,5 @@
+@use 'src/common' as common;
+
+.container {
+    @include common.grid-layout-mixin(2);
+}

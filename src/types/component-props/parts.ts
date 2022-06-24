@@ -38,6 +38,7 @@ export enum PartType {
     PayoutDates = 'no.nav.navno:payout-dates',
     AreapageSituationCard = 'no.nav.navno:areapage-situation-card',
     LoggedinCard = 'no.nav.navno:loggedin-card',
+    FrontpageContact = 'no.nav.navno:frontpage-contact',
 }
 
 export type PartDeprecated =
@@ -81,4 +82,5 @@ export type PartWithOwnData =
     | PartType.PayoutDates
     | PartType.AreaCard
     | PartType.AreapageSituationCard
-    | PartType.LoggedinCard;
+    | PartType.LoggedinCard
+    | PartType.FrontpageContact;

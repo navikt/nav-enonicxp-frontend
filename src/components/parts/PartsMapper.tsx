@@ -45,6 +45,7 @@ import { PayoutDatesPart } from './payout-dates/PayoutDatesPart';
 import { AreaCardPart } from './area-card/AreaCardPart';
 import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
+import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -93,6 +94,7 @@ const partsWithOwnData: {
     [PartType.AreaCard]: AreaCardPart,
     [PartType.AreapageSituationCard]: AreapageSituationCardPart,
     [PartType.LoggedinCard]: LoggedinCardPart,
+    [PartType.FrontpageContact]: FrontpageContactPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {
