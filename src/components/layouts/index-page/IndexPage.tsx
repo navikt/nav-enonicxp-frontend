@@ -37,17 +37,16 @@ const PreReleaseWarning = () => {
 
 export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
-export type IndexPageContentType = IndexPageContentProps['__typename'];
-
 const IndexPageContent = (basePageProps: IndexPageContentProps) => {
     const { currentPageProps, navigate } = useIndexPageRouting(basePageProps);
 
-    const { regions } = currentPageProps.page;
+    const { __typename, _id, page } = currentPageProps;
+    const { regions } = page;
 
     return (
         <LayoutContainer
             pageProps={currentPageProps}
-            layoutProps={currentPageProps.page}
+            layoutProps={page}
             className={style.indexPage}
         >
             <Head>
@@ -56,17 +55,19 @@ const IndexPageContent = (basePageProps: IndexPageContentProps) => {
                 <meta name={'robots'} content={'noindex, nofollow'} />
             </Head>
             {basePageProps.serverEnv === 'prod' && <PreReleaseWarning />}
-            <AnimateHeight trigger={currentPageProps._id}>
-                <Region
-                    pageProps={currentPageProps}
-                    regionProps={regions.contentTop}
-                />
+            <AnimateHeight trigger={_id}>
+                {__typename === ContentType.FrontPage && (
+                    <Region
+                        pageProps={currentPageProps}
+                        regionProps={regions.contentTop}
+                    />
+                )}
             </AnimateHeight>
             <IndexPageNavigation
                 pageProps={currentPageProps}
                 navigate={navigate}
             />
-            <AnimateHeight trigger={currentPageProps._id}>
+            <AnimateHeight trigger={_id}>
                 <Region
                     pageProps={currentPageProps}
                     regionProps={regions.contentBottom}
