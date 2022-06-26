@@ -21,4 +21,8 @@
     & > * {
         font-weight: bold;
     }
+
+    :global(.chevron) {
+        transform: translateY(2px);
+    }
 }
