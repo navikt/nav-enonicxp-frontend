@@ -33,26 +33,28 @@ export const LinkPanelNew = ({
     as,
     contentProps,
     children,
-    ...divProps
+    ...elementProps
 }: Props) => {
     const router = useRouter();
     const publicHref = usePublicHref(href);
 
     const Tag = as || 'div';
 
+    const handleClick = (e) => {
+        elementProps.onClick?.(e);
+
+        if (e.defaultPrevented) {
+            return;
+        }
+
+        e.preventDefault();
+        navigate(router, publicHref);
+    };
+
     return (
         <Tag
-            {...divProps}
-            onClick={(e) => {
-                divProps.onClick?.(e);
-
-                if (e.defaultPrevented) {
-                    return;
-                }
-
-                e.preventDefault();
-                navigate(router, href);
-            }}
+            {...elementProps}
+            onClick={handleClick}
             onKeyDown={(e) => {
                 const { which } = e;
 
@@ -60,15 +62,9 @@ export const LinkPanelNew = ({
                     return;
                 }
 
-                divProps.onClick?.(e);
-
-                if (e.defaultPrevented) {
-                    return;
-                }
-
-                navigate(router, href);
+                handleClick(e);
             }}
-            className={classNames(style.linkPanel, divProps.className)}
+            className={classNames(style.linkPanel, elementProps.className)}
             tabIndex={0}
         >
             <LenkeBase
