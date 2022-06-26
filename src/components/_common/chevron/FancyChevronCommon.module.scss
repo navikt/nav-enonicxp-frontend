@@ -1,0 +1,9 @@
+$animateOnHover: animateOnHover;
+
+@function animateOnHover($graphics-element) {
+    @return ':global(.#{$animateOnHover}):hover #{$graphics-element}';
+}
+
+:export {
+    animateOnHover: $animateOnHover;
+}
