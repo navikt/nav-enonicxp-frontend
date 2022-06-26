@@ -1,11 +1,11 @@
 import { PartType } from '../parts';
 import { PartComponentProps } from '../_component-common';
-import { ContentListProps } from '../../content-props/content-list-props';
+import { FrontpageContentListData } from './frontpage-shortcuts';
 
 export interface FrontpageCurrentTopicsProps extends PartComponentProps {
     descriptor: PartType.FrontpageCurrentTopics;
     config: {
         title: string;
-        contentList: ContentListProps;
+        contentList: FrontpageContentListData;
     };
 }
