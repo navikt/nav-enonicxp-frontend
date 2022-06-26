@@ -24,6 +24,9 @@
         background-color: var(--hover-color);
     }
 
+    &:focus {
+        @include common.panel-focus-mixin();
+    }
     @include common.full-width-mixin(true, false);
 }
 

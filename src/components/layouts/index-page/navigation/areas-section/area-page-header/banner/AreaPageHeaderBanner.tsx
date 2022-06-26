@@ -7,6 +7,7 @@ import { LenkeBase } from '../../../../../../_common/lenke/LenkeBase';
 import { classNames } from '../../../../../../../utils/classnames';
 
 import style from './AreaPageHeaderBanner.module.scss';
+import chevronStyle from '../../../../../../_common/chevron/FancyChevronCommon.module.scss';
 
 type Props = AreaPageProps['data']['banner'];
 
@@ -15,7 +16,7 @@ export const AreaPageHeaderBanner = ({ html, link, color }: Props) => {
 
     return (
         <LenkeBase
-            className={classNames(style.banner, 'animateOnHover')}
+            className={classNames(style.banner, chevronStyle.animateOnHover)}
             href={url}
             style={{ '--hover-color': color } as React.CSSProperties}
         >

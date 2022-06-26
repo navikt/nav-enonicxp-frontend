@@ -1,10 +1,5 @@
 @use 'src/common' as common;
-
-$animateOnHover: animateOnHover;
-
-@function animateOnHover($graphics-element) {
-    @return ':global(.#{$animateOnHover}):hover #{$graphics-element}';
-}
+@use './FancyChevronCommon.module' as chevronCommon;
 
 $size: 96px;
 $blueColor: #cce2f0;
@@ -95,7 +90,7 @@ $chevronPositionTweak: -4px;
     }
 }
 
-#{animateOnHover('.chevronOuter')} {
+#{chevronCommon.animateOnHover('.chevronOuter')} {
     transform: translateX(28px) scale(1.2);
 }
 
@@ -122,7 +117,7 @@ $colorLineStrokeWidth: 6px;
     top: 24px;
 }
 
-#{animateOnHover('.line1')} {
+#{chevronCommon.animateOnHover('.line1')} {
     transform: translateX(-13px);
 }
 
@@ -131,7 +126,7 @@ $colorLineStrokeWidth: 6px;
     top: 30px;
 }
 
-#{animateOnHover('.line2')} {
+#{chevronCommon.animateOnHover('.line2')} {
     transform: translateX(-14px);
 }
 
@@ -140,12 +135,12 @@ $colorLineStrokeWidth: 6px;
     top: 46px;
 }
 
-#{animateOnHover('.line3')} {
+#{chevronCommon.animateOnHover('.line3')} {
     transform: translateX(-2px);
 }
 
 // The circle transforms into the 4th line
-#{animateOnHover('.circle')} {
+#{chevronCommon.animateOnHover('.circle')} {
     height: $colorLineStrokeWidth;
     width: 42px;
     transform: translate(4px, 4px);
@@ -157,7 +152,7 @@ $colorLineStrokeWidth: 6px;
     top: 62px;
 }
 
-#{animateOnHover('.line5')} {
+#{chevronCommon.animateOnHover('.line5')} {
     transform: translateX(-16px);
 }
 
@@ -166,6 +161,6 @@ $colorLineStrokeWidth: 6px;
     top: 68px;
 }
 
-#{animateOnHover('.line6')} {
+#{chevronCommon.animateOnHover('.line6')} {
     transform: translateX(-10px);
 }
