@@ -77,6 +77,7 @@ export const LinkPanelNavno = ({
                 elementProps.className
             )}
             tabIndex={0}
+            role={'link'}
         >
             {icon && <div className={'linkPanelNavnoIcon'}>{icon}</div>}
             <div>
