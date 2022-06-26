@@ -5,6 +5,7 @@ import { getSelectableLinkProps } from '../../../../../../../utils/links-from-co
 import { RightFilled } from '@navikt/ds-icons';
 
 import style from './AreaPageHeaderBanner.module.scss';
+import { FancyChevron } from './FancyChevron';
 
 type Props = AreaPageProps['data']['banner'];
 
@@ -21,7 +22,7 @@ export const AreaPageHeaderBanner = ({ html, link, color }: Props) => {
                 <ParsedHtml htmlProps={html} />
             </div>
 
-            <RightFilled className={style.icon} />
+            <FancyChevron color={'white'} className={style.icon} />
         </a>
     );
 };
