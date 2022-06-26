@@ -1,0 +1,32 @@
+@use 'src/common' as common;
+
+// Use global CSS rather than module to simplify overriding of styles
+
+$padding: 1.5rem;
+
+.linkPanelNavno {
+    padding: $padding;
+    cursor: pointer;
+    border-radius: common.$border-radius-large;
+
+    &:hover {
+        .linkPanelNavnoLink {
+            border-bottom: 2px transparent solid;
+        }
+    }
+
+    &:focus,
+    &:focus-within {
+        @include common.panel-focus-mixin(true);
+    }
+}
+
+.linkPanelNavnoLink {
+    text-decoration: none;
+    border-bottom: 2px common.$navds-semantic-color-link solid;
+    transition: border-bottom-color 0.15s ease-out;
+}
+
+.linkPanelNavnoContent {
+    margin-top: 1rem;
+}

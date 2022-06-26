@@ -5,8 +5,6 @@ import { NextRouter, useRouter } from 'next/router';
 import { isAppUrl } from '../../../utils/urls';
 import { usePublicHref } from '../../../utils/usePublicHref';
 
-import style from './LinkPanelNew.module.scss';
-
 const enterKeyCode = 13;
 
 const navigate = (router: NextRouter, href: string) => {
@@ -26,56 +24,50 @@ type Props<As = React.ElementType> = {
     children?: React.ReactNode;
 } & React.HTMLAttributes<As>;
 
-export const LinkPanelNew = ({
+export const LinkPanelNavno = ({
     linkText,
     href,
     linkProps,
     as,
     contentProps,
     children,
-    ...divProps
+    ...elementProps
 }: Props) => {
     const router = useRouter();
     const publicHref = usePublicHref(href);
 
     const Tag = as || 'div';
 
+    const handleClick = (e) => {
+        elementProps.onClick?.(e);
+
+        if (e.defaultPrevented) {
+            return;
+        }
+
+        e.preventDefault();
+        navigate(router, publicHref);
+    };
+
     return (
         <Tag
-            {...divProps}
-            onClick={(e) => {
-                divProps.onClick?.(e);
-
-                if (e.defaultPrevented) {
-                    return;
-                }
-
-                e.preventDefault();
-                navigate(router, href);
-            }}
+            {...elementProps}
+            onClick={handleClick}
             onKeyDown={(e) => {
-                const { which } = e;
-
-                if (which !== enterKeyCode) {
+                if (e.which !== enterKeyCode) {
                     return;
                 }
 
-                divProps.onClick?.(e);
-
-                if (e.defaultPrevented) {
-                    return;
-                }
-
-                navigate(router, href);
+                handleClick(e);
             }}
-            className={classNames(style.linkPanel, divProps.className)}
+            className={classNames('linkPanelNavno', elementProps.className)}
             tabIndex={0}
         >
             <LenkeBase
                 {...linkProps}
                 href={publicHref}
                 className={classNames(
-                    style.link,
+                    'linkPanelNavnoLink',
                     linkProps?.className,
                     'navds-heading',
                     'navds-heading--medium'
@@ -88,7 +80,7 @@ export const LinkPanelNew = ({
                 <div
                     {...contentProps}
                     className={classNames(
-                        style.content,
+                        'linkPanelNavnoContent',
                         contentProps?.className
                     )}
                 >
