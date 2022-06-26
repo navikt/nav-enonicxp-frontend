@@ -2,9 +2,12 @@ import React from 'react';
 import { ParsedHtml } from '../../../../../../_common/parsed-html/ParsedHtml';
 import { AreaPageProps } from '../../../../../../../types/content-props/index-pages-props';
 import { getSelectableLinkProps } from '../../../../../../../utils/links-from-content';
-import { RightFilled } from '@navikt/ds-icons';
+import { FancyChevron } from '../../../../../../_common/chevron/FancyChevron';
+import { LenkeBase } from '../../../../../../_common/lenke/LenkeBase';
+import { classNames } from '../../../../../../../utils/classnames';
 
 import style from './AreaPageHeaderBanner.module.scss';
+import chevronStyle from '../../../../../../_common/chevron/FancyChevronCommon.module.scss';
 
 type Props = AreaPageProps['data']['banner'];
 
@@ -12,8 +15,8 @@ export const AreaPageHeaderBanner = ({ html, link, color }: Props) => {
     const { url } = getSelectableLinkProps(link);
 
     return (
-        <a
-            className={style.banner}
+        <LenkeBase
+            className={classNames(style.banner, chevronStyle.animateOnHover)}
             href={url}
             style={{ '--hover-color': color } as React.CSSProperties}
         >
@@ -21,7 +24,9 @@ export const AreaPageHeaderBanner = ({ html, link, color }: Props) => {
                 <ParsedHtml htmlProps={html} />
             </div>
 
-            <RightFilled className={style.icon} />
-        </a>
+            <div className={style.icon}>
+                <FancyChevron color={'white'} />
+            </div>
+        </LenkeBase>
     );
 };
