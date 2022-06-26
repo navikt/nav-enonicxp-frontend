@@ -5,8 +5,6 @@ import { NextRouter, useRouter } from 'next/router';
 import { isAppUrl } from '../../../utils/urls';
 import { usePublicHref } from '../../../utils/usePublicHref';
 
-import style from './LinkPanelNew.module.scss';
-
 const enterKeyCode = 13;
 
 const navigate = (router: NextRouter, href: string) => {
@@ -56,22 +54,20 @@ export const LinkPanelNew = ({
             {...elementProps}
             onClick={handleClick}
             onKeyDown={(e) => {
-                const { which } = e;
-
-                if (which !== enterKeyCode) {
+                if (e.which !== enterKeyCode) {
                     return;
                 }
 
                 handleClick(e);
             }}
-            className={classNames(style.linkPanel, elementProps.className)}
+            className={classNames('linkPanelNavno', elementProps.className)}
             tabIndex={0}
         >
             <LenkeBase
                 {...linkProps}
                 href={publicHref}
                 className={classNames(
-                    style.link,
+                    'linkPanelNavnoLink',
                     linkProps?.className,
                     'navds-heading',
                     'navds-heading--medium'
@@ -84,7 +80,7 @@ export const LinkPanelNew = ({
                 <div
                     {...contentProps}
                     className={classNames(
-                        style.content,
+                        'linkPanelNavnoContent',
                         contentProps?.className
                     )}
                 >
