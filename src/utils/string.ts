@@ -55,3 +55,13 @@ export const stripLineBreaks = (str: string) =>
         /\r?\n|\r/g,
         (value) => ({ '\n': '\\n', '\r': '\\r', '\r\n': '\\r\\n' }[value])
     );
+
+export const capitalize = (str: string) =>
+    str
+        .split(' ')
+        .map((word) => {
+            return `${word.charAt(0).toUpperCase()}${word
+                .slice(1)
+                .toLowerCase()}`;
+        })
+        .join(' ');
