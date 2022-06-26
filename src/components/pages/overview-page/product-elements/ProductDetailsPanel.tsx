@@ -47,6 +47,8 @@ export const ProductDetailsPanel = ({
             handleProductDetailsFetch();
             setIsOpen(true);
         }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleProductDetailsFetch = () => {

@@ -115,6 +115,8 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
             addLocalPageCacheEntries({ ...localPageCache, ...pages });
         });
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Handle back/forward navigation in the browser
