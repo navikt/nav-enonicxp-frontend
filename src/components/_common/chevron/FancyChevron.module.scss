@@ -96,7 +96,7 @@ $chevronPositionTweak: -4px;
 }
 
 #{animateOnHover('.chevronOuter')} {
-    transform: translateX(28px);
+    transform: translateX(28px) scale(1.2);
 }
 
 $blackLineStrokeWidth: 3px;
