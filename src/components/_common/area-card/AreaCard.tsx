@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkPanel } from '@navikt/ds-react';
-import { IndexPageLink } from 'components/layouts/index-page/navigation/link/IndexPageLink';
+import { IndexPageLink } from 'components/layouts/index-page/navigation/routing/IndexPageLink';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { classNames } from '../../../utils/classnames';
 import { AreaCardGraphics } from './graphics/AreaCardGraphics';
@@ -15,9 +15,16 @@ type Props = {
     area: string;
     navigate?: (path: string) => void;
     className?: string;
-};
+} & Omit<React.ComponentProps<typeof LinkPanel>, 'as'>;
 
-export const AreaCard = ({ path, title, area, navigate, className }: Props) => {
+export const AreaCard = ({
+    path,
+    title,
+    area,
+    navigate,
+    className,
+    ...rest
+}: Props) => {
     if (!area) {
         return <EditorHelp text={'Velg en grafikk for kortet'} />;
     }
@@ -26,6 +33,7 @@ export const AreaCard = ({ path, title, area, navigate, className }: Props) => {
 
     return (
         <LinkPanel
+            {...rest}
             border={false}
             className={classNames(
                 style.linkPanel,

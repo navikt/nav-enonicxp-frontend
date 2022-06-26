@@ -13,13 +13,15 @@ const scrollToLegacy = (position: number) => {
     window.scrollTo(0, position);
 };
 
-const scrollTo = hasScrollOptionsSupport ? scrollToCurrent : scrollToLegacy;
+export const windowScrollTo = hasScrollOptionsSupport
+    ? scrollToCurrent
+    : scrollToLegacy;
 
 export const smoothScrollToTarget = (targetId: string, offset = 0) => {
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
         const top = targetElement.getBoundingClientRect().top + window.scrollY;
-        scrollTo(top - offset);
+        windowScrollTo(top - offset);
         targetElement.focus({ preventScroll: true });
     }
 };

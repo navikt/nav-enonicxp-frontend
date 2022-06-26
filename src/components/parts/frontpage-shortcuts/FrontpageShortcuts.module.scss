@@ -1,40 +1,23 @@
 @use 'src/common' as common;
 
-.frontpageShortcuts {
-    background-color: rgba(255, 230, 230, 1);
-    padding: 2em;
-    margin-bottom: 0.5rem;
+.shortcuts {
+    background-color: common.$navPink;
+    padding: 2rem;
     @include common.full-width-mixin();
 }
 
 .header {
-    margin-bottom: 2em;
+    margin-bottom: 2rem;
 }
 
-.shortcutList {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    column-gap: 1.5rem;
-    column-gap: 1.5rem;
-
-    @media #{common.$mq-screen-mobile} {
-        flex-direction: column;
-        .shortcutItem {
-        }
-    }
-    @media #{common.$mq-screen-tablet} {
-        .shortcutItem {
-        }
-    }
-    @media #{common.$mq-screen-desktop} {
-    }
+.list {
+    @include common.grid-layout-mixin(3);
 }
 
-.shortcutItem {
-    flex: 1;
+.item {
+    background-color: white;
 
-    &:last-child {
-        margin-right: 0;
+    :global(.linkPanelNavnoIcon) {
+        margin-right: 1.5rem;
     }
 }

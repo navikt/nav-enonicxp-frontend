@@ -2,10 +2,10 @@ import React, { useRef } from 'react';
 import { classNames } from '../../../../../utils/classnames';
 import { AreaPageProps } from '../../../../../types/content-props/index-pages-props';
 import { getPublicPathname } from '../../../../../utils/urls';
-import { IndexPageLink } from '../link/IndexPageLink';
+import { IndexPageLink } from '../routing/IndexPageLink';
 import { Chip } from 'components/_common/chip/Chip';
 import { isElementVisible } from 'utils/scroll-to';
-import { IndexPageNavigationCallback } from '../../useIndexPageRouting';
+import { IndexPageNavigationCallback } from '../routing/useIndexPageRouting';
 
 import style from './AreaPageNavigationBar.module.scss';
 

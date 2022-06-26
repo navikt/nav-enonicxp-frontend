@@ -1,11 +1,20 @@
-import { ContentProps } from 'types/content-props/_content-common';
 import { PartType } from '../parts';
 import { PartComponentProps } from '../_component-common';
+import { ContentProps } from '../../content-props/_content-common';
+
+export type FrontpageContentListData = {
+    data: {
+        sectionContents: Pick<
+            ContentProps,
+            '_id' | '_path' | 'displayName' | 'modifiedTime'
+        >[];
+    };
+};
 
 export interface FrontpageShortcutsProps extends PartComponentProps {
-    descriptor: PartType.NewsList;
+    descriptor: PartType.FrontpageShortcuts;
     config: {
         title: string;
-        shortcutList: ContentProps[];
+        contentList: FrontpageContentListData;
     };
 }

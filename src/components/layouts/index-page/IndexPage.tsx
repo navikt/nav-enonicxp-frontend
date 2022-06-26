@@ -8,7 +8,7 @@ import {
     FrontPageProps,
 } from '../../../types/content-props/index-pages-props';
 import { getPageTitle } from '../../_common/metatags/HeadWithMetatags';
-import { useIndexPageRouting } from './useIndexPageRouting';
+import { useIndexPageRouting } from './navigation/routing/useIndexPageRouting';
 import {
     ContentProps,
     ContentType,

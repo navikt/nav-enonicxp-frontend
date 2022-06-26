@@ -1,0 +1,28 @@
+@use 'src/common' as common;
+
+.currentTopics {
+    background-color: common.$navds-semantic-color-canvas-background;
+    padding: 2rem;
+    @include common.full-width-mixin();
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.list {
+    @include common.grid-layout-mixin(2);
+}
+
+.item {
+    background-color: white;
+
+    :global(.linkPanelNavnoLink) {
+        color: black;
+        border-bottom-color: black;
+    }
+}
+
+.date {
+    color: common.$navds-global-color-gray-600;
+}

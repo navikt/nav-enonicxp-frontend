@@ -25,7 +25,7 @@ export const AreaPageHeaderBanner = ({ html, link, color }: Props) => {
             </div>
 
             <div className={style.icon}>
-                <FancyChevron color={'white'} />
+                <FancyChevron color={'white'} scale={0.66} />
             </div>
         </LenkeBase>
     );
