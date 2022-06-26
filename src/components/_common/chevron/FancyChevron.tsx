@@ -9,6 +9,8 @@ type Props = {
     className?: string;
 };
 
+// TODO: Just use an svg for the actual chevron. This is too clunky :D
+
 export const FancyChevron = ({ color, scale, className }: Props) => {
     return (
         <div
