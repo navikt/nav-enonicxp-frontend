@@ -1,13 +1,16 @@
 import { useRouter } from 'next/router';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { IndexPageContentProps } from './IndexPage';
-import { getPublicPathname, xpDraftPathPrefix } from '../../../utils/urls';
-import { fetchPageCacheContent } from '../../../utils/fetch/fetch-cache-content';
+import { IndexPageContentProps } from '../../IndexPage';
+import {
+    getPublicPathname,
+    xpDraftPathPrefix,
+} from '../../../../../utils/urls';
+import { fetchPageCacheContent } from '../../../../../utils/fetch/fetch-cache-content';
 import {
     ContentProps,
     ContentType,
-} from '../../../types/content-props/_content-common';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
+} from '../../../../../types/content-props/_content-common';
+import { usePageConfig } from '../../../../../store/hooks/usePageConfig';
 
 type CacheEntries = Record<string, IndexPageContentProps>;
 

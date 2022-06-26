@@ -3,12 +3,13 @@ import { classNames } from '../../../../../utils/classnames';
 import { ContentType } from '../../../../../types/content-props/_content-common';
 import { IndexPageContentProps } from '../../IndexPage';
 import { AreaPageProps } from '../../../../../types/content-props/index-pages-props';
-import { IndexPageNavigationCallback } from '../../useIndexPageRouting';
+import { IndexPageNavigationCallback } from '../routing/useIndexPageRouting';
 import { getPublicPathname } from '../../../../../utils/urls';
 import { AreaPageHeader } from './area-page-header/AreaPageHeader';
 import { AreaCard } from '../../../../_common/area-card/AreaCard';
 
 import style from './IndexPageAreasSection.module.scss';
+import { windowScrollTo } from '../../../../../utils/scroll-to';
 
 type Props = {
     pageProps: IndexPageContentProps;
@@ -75,6 +76,9 @@ export const IndexPageAreasSection = ({
                                 style.areaPanelHidden
                             // useFrontpageTransition && style.animate
                         )}
+                        onClick={() => {
+                            windowScrollTo(0);
+                        }}
                         key={_id}
                     />
                 );

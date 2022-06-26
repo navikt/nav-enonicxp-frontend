@@ -2,7 +2,7 @@ import React from 'react';
 import { ContentType } from '../../../../types/content-props/_content-common';
 import { AreaPageNavigationBar } from './area-page-navigation-bar/AreaPageNavigationBar';
 import { FrontPageHeader } from './front-page-header/FrontPageHeader';
-import { IndexPageNavigationCallback } from '../useIndexPageRouting';
+import { IndexPageNavigationCallback } from './routing/useIndexPageRouting';
 import { IndexPageAreasSection } from './areas-section/IndexPageAreasSection';
 import { IndexPageContentProps } from '../IndexPage';
 
