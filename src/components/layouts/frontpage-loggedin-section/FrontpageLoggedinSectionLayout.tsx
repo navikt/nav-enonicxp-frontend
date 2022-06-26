@@ -10,6 +10,7 @@ import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LinkSelectable } from '../../../types/component-props/_mixins';
 import { AuthDependantRender } from '../../_common/auth-dependant-render/AuthDependantRender';
 import { useAuthState } from '../../../store/hooks/useAuthState';
+import { capitalize } from '../../../utils/string';
 
 import style from './FrontpageLoggedinSectionLayout.module.scss';
 
@@ -37,7 +38,7 @@ const HeaderWithName = ({ headerText }: { headerText: string }) => {
             justify={'left'}
             className={style.header}
         >
-            {name ? headerText.replace('$navn', name) : 'Hei!'}
+            {name ? headerText.replace('$navn', capitalize(name)) : 'Hei!'}
         </Header>
     );
 };
