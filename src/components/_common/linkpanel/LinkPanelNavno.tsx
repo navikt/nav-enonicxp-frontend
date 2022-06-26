@@ -4,7 +4,7 @@ import { classNames } from '../../../utils/classnames';
 import { NextRouter, useRouter } from 'next/router';
 import { isAppUrl } from '../../../utils/urls';
 import { usePublicHref } from '../../../utils/usePublicHref';
-import { HeadingProps } from '@navikt/ds-react/src/typography/Heading';
+import { Heading } from '@navikt/ds-react';
 
 const enterKeyCode = 13;
 
@@ -16,7 +16,7 @@ const navigate = (router: NextRouter, href: string) => {
     }
 };
 
-type DsHeadingSize = HeadingProps['size'];
+type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 
 type Props<As = React.ElementType> = {
     href: string;
