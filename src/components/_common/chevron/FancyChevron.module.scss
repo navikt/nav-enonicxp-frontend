@@ -1,8 +1,19 @@
 @use 'src/common' as common;
 @use './FancyChevronCommon.module' as chevronCommon;
 
+$defaultScale: 1;
 $size: 96px;
 $blueColor: #cce2f0;
+
+.scaleWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: scale(var(--scale, $defaultScale));
+    width: calc(#{$size} * var(--scale, #{$defaultScale}));
+    height: calc(#{$size} * var(--scale, #{$defaultScale}));
+}
 
 .outer {
     position: relative;

@@ -3,15 +3,27 @@
 // Use global CSS rather than module to simplify overriding of styles
 
 $padding: 1.5rem;
+$color: common.$navds-semantic-color-link;
 
 .linkPanelNavno {
+    display: flex;
+    align-items: center;
+
     padding: $padding;
     cursor: pointer;
-    border-radius: common.$border-radius-large;
+    border-radius: common.$border-radius-xlarge;
 
     &:hover {
         .linkPanelNavnoLink {
-            border-bottom: 2px transparent solid;
+            border-bottom-color: transparent;
+
+            &.underlineToggle {
+                border-bottom-color: $color;
+
+                &.linkBlack {
+                    border-bottom-color: black;
+                }
+            }
         }
     }
 
@@ -25,8 +37,21 @@ $padding: 1.5rem;
     text-decoration: none;
     border-bottom: 2px common.$navds-semantic-color-link solid;
     transition: border-bottom-color 0.15s ease-out;
+
+    &.linkBlack {
+        color: black;
+        border-bottom-color: black;
+    }
+
+    &.underlineToggle {
+        border-bottom-color: transparent;
+    }
 }
 
-.linkPanelNavnoContent {
+.linkPanelNavnoIngress {
     margin-top: 1rem;
+}
+
+.linkPanelNavnoIcon {
+    margin-right: 1rem;
 }

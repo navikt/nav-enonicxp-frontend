@@ -4,7 +4,7 @@
     transition: all 0.3s ease-out;
 }
 
-$border-radius: 0.5rem;
+$border-radius: common.$border-radius-xlarge;
 
 .linkPanel {
     @include transitionMixin;

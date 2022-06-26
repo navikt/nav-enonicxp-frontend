@@ -32,6 +32,7 @@ export const FrontpageCurrentTopics = ({
                 {contentList.data.sectionContents.map((item) => (
                     <LinkPanelNavno
                         linkText={item.displayName}
+                        linkTextSize={'medium'}
                         href={item._path}
                         className={style.item}
                         key={item._id}

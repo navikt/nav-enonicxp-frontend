@@ -4,6 +4,7 @@ import { classNames } from '../../../utils/classnames';
 import { NextRouter, useRouter } from 'next/router';
 import { isAppUrl } from '../../../utils/urls';
 import { usePublicHref } from '../../../utils/usePublicHref';
+import { HeadingProps } from '@navikt/ds-react/src/typography/Heading';
 
 const enterKeyCode = 13;
 
@@ -15,9 +16,15 @@ const navigate = (router: NextRouter, href: string) => {
     }
 };
 
+type DsHeadingSize = HeadingProps['size'];
+
 type Props<As = React.ElementType> = {
-    linkText: string;
     href: string;
+    linkText: string;
+    linkTextSize?: DsHeadingSize;
+    linkUnderline?: 'default' | 'onHover';
+    linkColor?: 'blue' | 'black';
+    icon?: React.ReactNode;
     linkProps?: Omit<React.HTMLAttributes<HTMLAnchorElement>, 'href'>;
     contentProps?: React.HTMLAttributes<HTMLDivElement>;
     as?: As;
@@ -25,8 +32,12 @@ type Props<As = React.ElementType> = {
 } & React.HTMLAttributes<As>;
 
 export const LinkPanelNavno = ({
-    linkText,
     href,
+    linkText,
+    linkTextSize = 'medium',
+    linkUnderline = 'default',
+    linkColor = 'blue',
+    icon,
     linkProps,
     as,
     contentProps,
@@ -63,30 +74,35 @@ export const LinkPanelNavno = ({
             className={classNames('linkPanelNavno', elementProps.className)}
             tabIndex={0}
         >
-            <LenkeBase
-                {...linkProps}
-                href={publicHref}
-                className={classNames(
-                    'linkPanelNavnoLink',
-                    linkProps?.className,
-                    'navds-heading',
-                    'navds-heading--medium'
-                )}
-                tabIndex={-1}
-            >
-                {linkText}
-            </LenkeBase>
-            {children && (
-                <div
-                    {...contentProps}
+            {icon && <div className={'linkPanelNavnoIcon'}>{icon}</div>}
+            <div>
+                <LenkeBase
+                    {...linkProps}
+                    href={href}
                     className={classNames(
-                        'linkPanelNavnoContent',
-                        contentProps?.className
+                        'linkPanelNavnoLink',
+                        linkUnderline === 'onHover' && 'underlineToggle',
+                        linkColor === 'black' && 'linkBlack',
+                        'navds-heading',
+                        `navds-heading--${linkTextSize}`,
+                        linkProps?.className
                     )}
+                    tabIndex={-1}
                 >
-                    {children}
-                </div>
-            )}
+                    {linkText}
+                </LenkeBase>
+                {children && (
+                    <div
+                        {...contentProps}
+                        className={classNames(
+                            'linkPanelNavnoIngress',
+                            contentProps?.className
+                        )}
+                    >
+                        {children}
+                    </div>
+                )}
+            </div>
         </Tag>
     );
 };
