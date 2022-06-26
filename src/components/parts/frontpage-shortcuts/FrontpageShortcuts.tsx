@@ -7,7 +7,7 @@ import { getPublicPathname } from 'utils/urls';
 import style from './FrontpageShortcuts.module.scss';
 
 export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
-    const { shortcutList, title } = config;
+    const { contentList, title } = config;
     const { language } = usePageConfig();
 
     return (
@@ -21,7 +21,7 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
                 {title}
             </Header>
             <div className={style.shortcutList}>
-                {shortcutList.map((item) => (
+                {contentList.map((item) => (
                     <ShortcutCard
                         link={{
                             text: item.displayName,
