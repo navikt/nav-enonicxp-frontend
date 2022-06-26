@@ -7,11 +7,15 @@ $color: common.$navds-semantic-color-link;
 
 .linkPanelNavno {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 
     padding: $padding;
     cursor: pointer;
     border-radius: common.$border-radius-xlarge;
+
+    &.linkPanelWithIcon {
+        align-items: center;
+    }
 
     &:hover {
         .linkPanelNavnoLink {

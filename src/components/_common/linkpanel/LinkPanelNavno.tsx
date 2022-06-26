@@ -71,7 +71,11 @@ export const LinkPanelNavno = ({
 
                 handleClick(e);
             }}
-            className={classNames('linkPanelNavno', elementProps.className)}
+            className={classNames(
+                'linkPanelNavno',
+                icon && 'linkPanelWithIcon',
+                elementProps.className
+            )}
             tabIndex={0}
         >
             {icon && <div className={'linkPanelNavnoIcon'}>{icon}</div>}
