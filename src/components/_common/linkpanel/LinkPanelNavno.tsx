@@ -24,7 +24,7 @@ type Props<As = React.ElementType> = {
     children?: React.ReactNode;
 } & React.HTMLAttributes<As>;
 
-export const LinkPanelNew = ({
+export const LinkPanelNavno = ({
     linkText,
     href,
     linkProps,

@@ -2,7 +2,7 @@ import React from 'react';
 import { FrontpageContanctPartProps } from '../../../types/component-props/parts/frontpage-contact';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { openChatbot } from '../../../utils/chatbot';
-import { LinkPanelNew } from '../../_common/linkpanel/LinkPanelNew';
+import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
 
 import style from './FrontpageContactPart.module.scss';
 
@@ -23,17 +23,20 @@ export const FrontpageContactPart = ({
 
     return (
         <div className={style.container}>
-            <LinkPanelNew
+            <LinkPanelNavno
                 className={style.chat}
                 href={'#'}
                 linkText={chatTitle}
                 onClick={(e) => openChatbot(e)}
             >
                 {chatIngress}
-            </LinkPanelNew>
-            <LinkPanelNew href={contactUsLink?._path} linkText={contactUsTitle}>
+            </LinkPanelNavno>
+            <LinkPanelNavno
+                href={contactUsLink?._path}
+                linkText={contactUsTitle}
+            >
                 {contactUsIngress}
-            </LinkPanelNew>
+            </LinkPanelNavno>
         </div>
     );
 };
