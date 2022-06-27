@@ -1,5 +1,5 @@
 import { Next, Back } from '@navikt/ds-icons';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { classNames } from 'utils/classnames';
 import style from './NavigationButton.module.scss';
 
@@ -31,8 +31,13 @@ export const NavigationButton = ({
         navigateCallback(direction);
 
         if (isScrolling.current) {
-            setTimeout(singleNavigation, 500);
+            setTimeout(singleNavigation, 50);
         }
+    };
+
+    // Prevents the "right click" menu popping up.
+    const onContextMenu = (e: React.SyntheticEvent) => {
+        e.preventDefault();
     };
 
     const icon = direction === 1 ? <Back /> : <Next />;
@@ -50,6 +55,9 @@ export const NavigationButton = ({
             onMouseLeave={onNavigateEnd}
             onMouseUp={onNavigateEnd}
             onTouchEnd={onNavigateEnd}
+            onTouchMove={onNavigateEnd}
+            onTouchCancel={onNavigateEnd}
+            onContextMenu={onContextMenu}
         >
             {icon}
         </button>

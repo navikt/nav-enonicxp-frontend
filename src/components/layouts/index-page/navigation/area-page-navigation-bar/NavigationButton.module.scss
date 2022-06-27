@@ -10,6 +10,8 @@
     position: absolute;
     top: 0.5rem;
     user-select: none;
+    z-index: 2;
+    transition: opacity 0.2s linear;
 
     @media #{common.$mq-screen-desktop} {
         display: none;
@@ -17,7 +19,8 @@
 }
 
 .hidden {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .leftSide {

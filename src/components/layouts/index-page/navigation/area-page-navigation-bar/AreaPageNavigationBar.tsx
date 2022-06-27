@@ -22,9 +22,9 @@ type Props = {
 };
 
 enum Scrollability {
-    LEFT_ONLY,
-    RIGHT_ONLY,
-    BOTH,
+    LEFT_ONLY = 'left_only',
+    RIGHT_ONLY = 'right_only',
+    BOTH = 'both',
 }
 
 export const AreaPageNavigationBar = ({
@@ -59,14 +59,20 @@ export const AreaPageNavigationBar = ({
 
     const checkScrollability = () => {
         const navBar: Element = navigationBar.current;
-        const item = navigationWrapper?.current;
+        const wrapper = navigationWrapper?.current;
 
-        if (isHorizontalScrollAtStart(item)) {
+        if (isHorizontalScrollAtStart(wrapper)) {
             setScrollability(Scrollability.RIGHT_ONLY);
+            return;
         }
 
-        if (isHorizontalScrollAtEnd(item, navBar)) {
-            setScrollability(Scrollability.RIGHT_ONLY);
+        if (isHorizontalScrollAtEnd(wrapper, navBar)) {
+            setScrollability(Scrollability.LEFT_ONLY);
+            return;
+        }
+
+        if (scrollability !== Scrollability.BOTH) {
+            setScrollability(Scrollability.BOTH);
         }
     };
 
@@ -78,17 +84,19 @@ export const AreaPageNavigationBar = ({
         const scrollOptions: ScrollToOptions = {
             left: currentScrollPosition - direction * 10,
             top: 0,
-            behavior: 'smooth',
         };
 
         navBar.scrollTo(scrollOptions);
+    };
+
+    const onNavigationBarScroll = () => {
         checkScrollability();
     };
 
     return (
         <nav
             className={classNames(
-                style.areasPageNavigation,
+                style.areaPageNavigation,
                 !isVisible && style.hidden
             )}
         >
@@ -97,7 +105,11 @@ export const AreaPageNavigationBar = ({
                 navigateCallback={onNavigationStep}
                 hidden={scrollability === Scrollability.RIGHT_ONLY}
             />
-            <div ref={navigationBar} className={style.navigationBar}>
+            <div
+                ref={navigationBar}
+                className={style.navigationBar}
+                onScroll={onNavigationBarScroll}
+            >
                 <div
                     className={style.navigationWrapper}
                     ref={navigationWrapper}
@@ -120,12 +132,12 @@ export const AreaPageNavigationBar = ({
                         );
                     })}
                 </div>
-                <NavigationButton
-                    direction={-1}
-                    navigateCallback={onNavigationStep}
-                    hidden={scrollability == Scrollability.LEFT_ONLY}
-                />
             </div>
+            <NavigationButton
+                direction={-1}
+                navigateCallback={onNavigationStep}
+                hidden={scrollability == Scrollability.LEFT_ONLY}
+            />
         </nav>
     );
 };

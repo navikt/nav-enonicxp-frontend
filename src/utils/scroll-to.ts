@@ -52,5 +52,7 @@ export const isHorizontalScrollAtEnd = (element: Element, parent: Element) => {
     const elementRect = element.getBoundingClientRect();
     const parentRect = parent.getBoundingClientRect();
 
-    return elementRect.x <= parentRect.width - elementRect.width;
+    const maxScroll = -Math.round(elementRect.width - parentRect.width);
+
+    return elementRect.x <= maxScroll;
 };

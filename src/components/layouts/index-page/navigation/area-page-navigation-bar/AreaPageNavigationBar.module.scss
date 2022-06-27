@@ -1,21 +1,19 @@
 @use 'src/common' as common;
 
-.areasPageNavigation {
+.areaPageNavigation {
     position: relative;
     display: flex;
     margin: 0 -0.5rem;
 }
 
 .navigationBar {
-    position: relative;
     display: flex;
     flex-wrap: wrap;
-    padding-bottom: 1rem;
-    padding-top: 2px; // In order not to clip focus outline
-
-    visibility: visible;
     max-height: 70px;
     opacity: 1;
+    padding-bottom: 1rem;
+    padding-top: 2px; // In order not to clip focus outline
+    position: relative;
 
     transition-property: max-height, visibility, padding-top, padding-bottom,
         transform, opacity;
@@ -39,6 +37,10 @@
     display: flex;
     flex-wrap: inherit;
     padding: 10px 0;
+
+    @media #{common.$mq-screen-tablet-and-mobile} {
+        padding: 10px 20px;
+    }
 }
 
 .areasPageNavigationLink {
