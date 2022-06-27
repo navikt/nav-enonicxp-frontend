@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
-import lottie from 'lottie-web';
+import lottie from 'lottie-web/build/player/lottie_light.min';
 import { classNames } from '../../../utils/classnames';
 
 import styleCommon from './Illustration.module.scss';
