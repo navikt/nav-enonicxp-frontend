@@ -5,6 +5,12 @@ $maxWidth: 1272px;
 .indexPage {
     max-width: $maxWidth;
     margin: 0 auto -2rem auto;
+
+    :global(.region__contentTop) {
+        & > :last-child {
+            padding-bottom: 2rem;
+        }
+    }
 }
 
 .warning {

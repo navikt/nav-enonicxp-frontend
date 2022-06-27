@@ -218,6 +218,9 @@ export const translationsBundleNb = {
         tableHeaderPrefix: 'Utbetalingsdatoer i',
         tableHeaderPrefixNoYear: 'Utbetalingsdatoer',
     },
+    greetings: {
+        hi: 'Hei!',
+    },
 };
 
 export type Translations = DeepPartial<typeof translationsBundleNb>;

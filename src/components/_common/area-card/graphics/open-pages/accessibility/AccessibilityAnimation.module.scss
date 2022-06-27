@@ -9,8 +9,10 @@
     top: 120px;
 }
 
-#{areaGraphics.onExpand('.arrow')} {
-    right: 198px;
+@media (hover) {
+    #{areaGraphics.onExpand('.arrow')} {
+        right: 198px;
+    }
 }
 
 .letterPartOrange {
@@ -24,9 +26,11 @@
     top: 58px;
 }
 
-#{areaGraphics.onExpand('.letterPartOrange')} {
-    right: 48px;
-    top: 58px;
+@media (hover) {
+    #{areaGraphics.onExpand('.letterPartOrange')} {
+        right: 48px;
+        top: 58px;
+    }
 }
 
 .letterPartBlue {
@@ -40,8 +44,10 @@
     top: 0;
 }
 
-#{areaGraphics.onExpand('.letterPartBlue')} {
-    right: 0;
+@media (hover) {
+    #{areaGraphics.onExpand('.letterPartBlue')} {
+        right: 0;
+    }
 }
 
 .mask {
@@ -56,13 +62,15 @@
     transform: skewX(-22.09deg);
 }
 
-#{areaGraphics.onExpand('.mask')} {
-    background-color: #ffb8b8;
-    width: 48px;
-    height: 160px;
-    right: 100px;
-    top: 0;
-    transform: skewX(0);
+@media (hover) {
+    #{areaGraphics.onExpand('.mask')} {
+        background-color: #ffb8b8;
+        width: 48px;
+        height: 160px;
+        right: 100px;
+        top: 0;
+        transform: skewX(0);
+    }
 }
 
 .dog {
@@ -72,7 +80,9 @@
     top: 36px;
 }
 
-#{areaGraphics.onExpand('.dog')} {
-    right: 71px;
-    top: 72px;
+@media (hover) {
+    #{areaGraphics.onExpand('.dog')} {
+        right: 71px;
+        top: 72px;
+    }
 }

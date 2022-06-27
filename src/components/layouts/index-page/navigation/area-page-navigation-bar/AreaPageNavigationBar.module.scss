@@ -11,7 +11,10 @@
 .navigationBar {
     display: flex;
     flex-wrap: wrap;
-    max-height: 70px;
+    padding-bottom: 1rem;
+    padding-top: 2px; // In order not to clip focus outline
+
+    visibility: visible;
     opacity: 1;
     padding-bottom: 1rem;
     padding-top: 2px; // In order not to clip focus outline

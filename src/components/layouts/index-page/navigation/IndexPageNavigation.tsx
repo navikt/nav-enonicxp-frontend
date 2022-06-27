@@ -5,6 +5,7 @@ import { FrontPageHeader } from './front-page-header/FrontPageHeader';
 import { IndexPageNavigationCallback } from './routing/useIndexPageRouting';
 import { IndexPageAreasSection } from './areas-section/IndexPageAreasSection';
 import { IndexPageContentProps } from '../IndexPage';
+import { classNames } from '../../../../utils/classnames';
 
 import style from './IndexPageNavigation.module.scss';
 
@@ -17,17 +18,23 @@ export const IndexPageNavigation = ({ pageProps, navigate }: Props) => {
     const { __typename, _id, data } = pageProps;
     const { areasRefs: _areasRefs } = data;
 
+    const isAreaPage = __typename === ContentType.AreaPage;
+
     const areaRefs =
-        __typename === ContentType.AreaPage &&
-        !_areasRefs.some((ref) => ref._id === _id)
+        isAreaPage && !_areasRefs.some((ref) => ref._id === _id)
             ? [pageProps, ..._areasRefs]
             : _areasRefs;
 
     return (
-        <div className={style.areaNavigation}>
+        <div
+            className={classNames(
+                style.areaNavigation,
+                isAreaPage && style.areaPage
+            )}
+        >
             <div className={style.headerAndNavBar}>
                 <AreaPageNavigationBar
-                    isVisible={__typename === ContentType.AreaPage}
+                    isVisible={isAreaPage}
                     areasRefs={areaRefs}
                     pageId={_id}
                     navigate={navigate}

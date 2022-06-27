@@ -35,24 +35,28 @@ $border-radius: common.$border-radius-xlarge;
     }
 
     &:hover {
-        box-shadow: none;
+        &:not(:focus) {
+            box-shadow: none;
+        }
 
         :global(.navds-link-panel__title) {
             text-decoration: none;
         }
 
-        @media only screen and (min-width: common.$mobileSmallMaxWidth) {
-            background-color: var(
-                --navds-semantic-color-component-background-alternate
-            );
+        @media (hover) {
+            @media only screen and (min-width: common.$mobileSmallMaxWidth) {
+                background-color: var(
+                    --navds-semantic-color-component-background-alternate
+                );
 
-            @media (prefers-reduced-motion: no-preference) {
-                .titleShort {
-                    transform: translateY(-2.5rem);
-                }
+                @media (prefers-reduced-motion: no-preference) {
+                    .titleShort {
+                        transform: translateY(-2.5rem);
+                    }
 
-                .titleLong {
-                    transform: translateY(-1.5rem);
+                    .titleLong {
+                        transform: translateY(-1.5rem);
+                    }
                 }
             }
         }

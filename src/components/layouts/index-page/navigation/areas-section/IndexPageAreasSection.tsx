@@ -58,7 +58,6 @@ export const IndexPageAreasSection = ({
                     <AreaPageHeader
                         areaContent={pageProps}
                         className={classNames(
-                            style.areaPanel,
                             style.areaPanelActive
                             // useFrontpageTransition && style.animate
                         )}
