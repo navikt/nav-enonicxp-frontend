@@ -44,7 +44,7 @@ export const isElementVisible = (element: Element, parent: Element) => {
 
 export const isHorizontalScrollAtStart = (element: Element) => {
     const elementRect = element.getBoundingClientRect();
-
+    console.log(elementRect.x);
     return elementRect.x === 0;
 };
 
