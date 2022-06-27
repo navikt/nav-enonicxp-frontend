@@ -8,6 +8,7 @@ import { LanguageProps } from '../../types/language';
 import { stripXpPathPrefix } from '../urls';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { contentTypesWithWhiteHeader } from '../../components/_top-container/TopContainer';
+import { Audience } from '../../types/component-props/_mixins';
 
 const defaultLanguage: DecoratorParams['language'] = 'nb';
 
@@ -52,6 +53,13 @@ const pathToRoleContext: { [key: string]: DecoratorParams['context'] } = {
     samarbeidspartner: 'samarbeidspartner',
 };
 
+const audienceToRoleContext: { [key in Audience]: DecoratorParams['context'] } =
+    {
+        [Audience.PERSON]: 'privatperson',
+        [Audience.EMPLOYER]: 'arbeidsgiver',
+        [Audience.PROVIDER]: 'samarbeidspartner',
+    };
+
 const errorParams = (content: ContentProps): DecoratorParams => ({
     feedback: false,
     breadcrumbs: content?.breadcrumbs || [],
@@ -66,22 +74,22 @@ const taSurveys = {
     taSurveys: '',
 };
 
-export const getDecoratorParams = (
-    content: ContentProps
-): DecoratorParams => {
+export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     if (!content || content.__typename === ContentType.Error) {
         return errorParams(content);
     }
 
-    const { _path, breadcrumbs, language } = content;
+    const { __typename, _path, breadcrumbs, language, data, editorView } =
+        content;
     const rolePath = _path.split('/')[3];
-    const context = pathToRoleContext[rolePath];
+    const context =
+        audienceToRoleContext[data?.audience] || pathToRoleContext[rolePath];
     const decoratorLanguage = getDecoratorLangFromXpLang(language);
-    const feedbackEnabled = content.data?.feedbackToggle;
+    const feedbackEnabled = data?.feedbackToggle;
     const chatbotDisabled =
-        content.data?.chatbotToggle === false ||
-        content.editorView === 'edit' ||
-        content.editorView === 'inline';
+        data?.chatbotToggle === false ||
+        editorView === 'edit' ||
+        editorView === 'inline';
 
     return {
         ...defaultParams,
@@ -99,7 +107,7 @@ export const getDecoratorParams = (
         ),
         ...(feedbackEnabled && { feedback: true }),
         ...(chatbotDisabled && { chatbot: false }),
-        utilsBackground: contentTypesWithWhiteHeader[content.__typename]
+        utilsBackground: contentTypesWithWhiteHeader[__typename]
             ? 'white'
             : 'gray',
         ...taSurveys,

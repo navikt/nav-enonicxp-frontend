@@ -9,6 +9,8 @@ import lightBulb from '/public/gfx/lightbulb.svg';
 import arrowUp from '/public/gfx/arrowUp.svg';
 import arrowDown from '/public/gfx/arrowDown.svg';
 
+// eslint does not understand bracket notation
+// eslint-disable-next-line css-modules/no-unused-class
 import style from './EditorHelp.module.scss';
 
 const imagePath = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { LenkeBase } from '../../../../_common/lenke/LenkeBase';
-import { IndexPageNavigationCallback } from '../../useIndexPageRouting';
+import { IndexPageNavigationCallback } from './useIndexPageRouting';
 
 type Props = React.ComponentProps<typeof LenkeBase> & {
     navigate: IndexPageNavigationCallback;

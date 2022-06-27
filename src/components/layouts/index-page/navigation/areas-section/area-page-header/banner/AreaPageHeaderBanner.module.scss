@@ -11,7 +11,6 @@
     max-height: parent.$graphicsHeight;
     margin-top: 1rem;
     padding: 2rem 0;
-    //background-image: linear-gradient(110deg, common.$navPink 90%, white 0);
     background-color: common.$navPink;
     transform: skewX(-20deg);
 
@@ -23,11 +22,11 @@
 
     &:hover {
         background-color: var(--hover-color);
-        .icon {
-            transform: translateX(2rem) skewX(20deg);
-        }
     }
 
+    &:focus {
+        @include common.panel-focus-mixin();
+    }
     @include common.full-width-mixin(true, false);
 }
 
@@ -37,8 +36,5 @@
 
 .icon {
     align-self: center;
-    margin-right: 3rem;
-    height: 3rem;
-    width: 3rem;
-    transition: transform 200ms ease-out;
+    margin-right: 2rem;
 }

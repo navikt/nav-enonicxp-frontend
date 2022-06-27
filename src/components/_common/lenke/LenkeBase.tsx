@@ -1,15 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
-import {
-    isNofollowUrl,
-    getInternalRelativePath,
-    isAppUrl,
-    isInternalUrl,
-} from 'utils/urls';
+import { isNofollowUrl, isAppUrl } from 'utils/urls';
 import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { onlyText } from 'utils/react-children';
-import { usePathMap } from 'store/hooks/usePathMap';
-import { useLayoutConfig } from "components/layouts/useLayoutConfig";
+import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
+import { usePublicHref } from '../../../utils/usePublicHref';
 
 /**
  * This component handles client-side async navigation for URLs internal to this app (as well as analytics for links)
@@ -38,34 +33,29 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
-
     const { layoutConfig } = useLayoutConfig();
-    const { internalPathToCustomPath } = usePathMap();
+
     // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
     // (setting to always false for the time being to prevent backend load spikes with cold cache)
     const shouldPrefetch = false;
     // prefetch === false || !!pageConfig.editorView ? false : undefined;
 
-    const getFinalHref = () => {
-        if (isInternalUrl(href)) {
-            const internalPath = getInternalRelativePath(href);
-            return internalPathToCustomPath[internalPath] || internalPath;
-        }
-        return href || '/';
-    };
-    const finalHref = getFinalHref();
+    const finalHref = usePublicHref(href);
     const analyticsData = {
         komponent: component,
         lenkegruppe: linkGroup,
         seksjon: linkGroup || layoutConfig.title,
         destinasjon: finalHref,
         lenketekst: analyticsLabel || onlyText(children),
-    }
+    };
     const linkElement = (
         <a
             href={finalHref}
             onClick={(e) => {
-                logAmplitudeEvent(event || analyticsEvents.NAVIGATION, analyticsData);
+                logAmplitudeEvent(
+                    event || analyticsEvents.NAVIGATION,
+                    analyticsData
+                );
                 onClick?.(e);
             }}
             rel={isNofollowUrl(finalHref) ? 'nofollow' : undefined}
