@@ -17,7 +17,13 @@ $graphicsWidth: 320px;
     justify-content: center;
 
     width: 100%;
+    min-width: 600px;
     max-width: 600px;
+
+    @media #{common.$mq-screen-mobile} {
+        min-width: 100%;
+        max-width: 100%;
+    }
 }
 
 .gfxContainer {
@@ -31,8 +37,13 @@ $graphicsWidth: 320px;
     min-width: $graphicsWidth;
     max-width: 625px;
     height: $graphicsHeight;
+    margin-bottom: -0.5rem;
 
     & > * {
         width: $graphicsWidth;
+    }
+
+    @media #{common.$mq-screen-mobile} {
+        display: none;
     }
 }
