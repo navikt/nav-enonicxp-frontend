@@ -1,6 +1,16 @@
 @use 'src/common' as common;
 
-.areasPageNavigation {
+.areaPageNavigation {
+    position: relative;
+    display: flex;
+    z-index: 2;
+
+    @media #{common.$mq-screen-mobile} {
+        margin: 0 -0.5rem;
+    }
+}
+
+.navigationBar {
     display: flex;
     flex-wrap: wrap;
     padding-bottom: 1rem;
@@ -8,6 +18,9 @@
 
     visibility: visible;
     opacity: 1;
+    padding-bottom: 1rem;
+    padding-top: 2px; // In order not to clip focus outline
+    position: relative;
 
     transition-property: max-height, visibility, padding-top, padding-bottom,
         transform, opacity;
@@ -29,8 +42,20 @@
 
 .navigationWrapper {
     display: flex;
+    list-style-type: none;
     flex-wrap: inherit;
-    padding: 10px 0;
+    margin: 0;
+    padding: 0.5rem 0;
+
+    li {
+        display: inline-flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    @media #{common.$mq-screen-tablet-and-mobile} {
+        padding: 0.5rem 1.5rem;
+    }
 }
 
 .areasPageNavigationLink {

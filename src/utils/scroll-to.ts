@@ -41,3 +41,17 @@ export const isElementVisible = (element: Element, parent: Element) => {
 
     return isVisibleHorizontally && isVisibleVertically;
 };
+
+export const isHorizontalScrollAtStart = (element: Element) => {
+    const elementRect = element.getBoundingClientRect();
+    return elementRect.x === 0;
+};
+
+export const isHorizontalScrollAtEnd = (element: Element, parent: Element) => {
+    const elementRect = element.getBoundingClientRect();
+    const parentRect = parent.getBoundingClientRect();
+
+    const maxScroll = -Math.round(elementRect.width - parentRect.width);
+
+    return elementRect.x <= maxScroll;
+};
