@@ -200,4 +200,7 @@ export const translationsBundleEn: Translations = {
         tableHeaderPrefix: 'Payment dates in',
         tableHeaderPrefixNoYear: 'Payment dates',
     },
+    greetings: {
+        hi: 'Hi!',
+    },
 };
