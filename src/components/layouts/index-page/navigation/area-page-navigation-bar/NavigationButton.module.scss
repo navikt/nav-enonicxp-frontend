@@ -28,7 +28,7 @@
     left: 0;
 
     @media #{common.$mq-screen-tablet} {
-        left: -16px;
+        left: -8px;
     }
 }
 
@@ -36,6 +36,6 @@
     right: 0;
 
     @media #{common.$mq-screen-tablet} {
-        right: -16px;
+        right: -8px;
     }
 }

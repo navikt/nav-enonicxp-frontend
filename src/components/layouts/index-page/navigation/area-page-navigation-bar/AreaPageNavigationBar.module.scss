@@ -43,10 +43,10 @@
 .navigationWrapper {
     display: flex;
     flex-wrap: inherit;
-    padding: 10px 0;
+    padding: 0.5rem 0;
 
     @media #{common.$mq-screen-tablet-and-mobile} {
-        padding: 10px 20px;
+        padding: 0.5rem 1.5rem;
     }
 }
 
