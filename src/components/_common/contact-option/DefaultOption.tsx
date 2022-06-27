@@ -113,7 +113,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
                     <div
                         className={classNames(style.icon, style[getIconName()])}
                     />
-                    <Heading level="2" size="medium">
+                    <Heading level="3" size="medium">
                         {getTitle()}
                     </Heading>
                 </div>
