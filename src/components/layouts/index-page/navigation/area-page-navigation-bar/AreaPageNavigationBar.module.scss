@@ -3,6 +3,8 @@
 .areaPageNavigation {
     position: relative;
     display: flex;
+    z-index: 2;
+
     @media #{common.$mq-screen-mobile} {
         margin: 0 -0.5rem;
     }
