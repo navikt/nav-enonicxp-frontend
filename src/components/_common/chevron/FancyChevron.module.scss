@@ -45,11 +45,11 @@ $blueColor: #cce2f0;
 
 .chevron {
     position: absolute;
-    transform: translateX(4px);
+    transform: translateX(4px) scale(1.15);
 }
 
 #{chevronCommon.animateOnHover('.chevron')} {
-    transform: translateX(36px) scale(1.25);
+    transform: translateX(36px) scale(1.35);
 }
 
 $blackLineStrokeWidth: 3px;

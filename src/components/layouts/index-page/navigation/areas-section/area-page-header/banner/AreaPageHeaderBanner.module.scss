@@ -2,13 +2,15 @@
 @use 'src/components/layouts/index-page/navigation/areas-section/area-page-header/AreaPageHeader.module'
     as parent;
 
+$bannerHeight: 172px;
+
 .banner {
     display: flex;
     justify-content: space-between;
 
     text-decoration: none;
     color: black;
-    max-height: common.px-to-rem(172);
+    max-height: common.px-to-rem($bannerHeight);
     margin-top: 1rem;
     padding: 2rem 0;
     background-color: common.$navPink;
@@ -51,4 +53,7 @@
 .icon {
     align-self: center;
     margin-right: 2rem;
+    @media #{common.$mq-screen-mobile} {
+        margin-right: 1rem;
+    }
 }
