@@ -1,25 +1,21 @@
 @use 'src/common' as common;
 
-// Use global CSS rather than module to simplify overriding of styles
-// The component this styling applies to is intended for very flexible styling
-
-$padding: 1.5rem;
 $color: common.$navds-semantic-color-link;
 
-.linkPanelNavno {
+.linkPanel {
     display: flex;
-    align-items: flex-start;
 
-    padding: $padding;
-    cursor: pointer;
+    padding: 1.5rem;
     border-radius: common.$border-radius-xlarge;
 
-    &.linkPanelWithIcon {
+    text-decoration: none;
+
+    &.withIcon {
         align-items: center;
     }
 
     &:hover {
-        .linkPanelNavnoLink {
+        .text {
             border-bottom-color: transparent;
 
             &.underline {
@@ -32,16 +28,18 @@ $color: common.$navds-semantic-color-link;
         }
     }
 
-    &:focus,
-    &:focus-within {
+    &:focus {
         @include common.panel-focus-mixin(true);
     }
 }
 
-.linkPanelNavnoLink {
-    text-decoration: none;
-    border-bottom: 2px common.$navds-semantic-color-link solid;
+.icon {
+    margin-right: 1.25rem;
+}
+
+.text {
     transition: border-bottom-color 0.15s ease-out;
+    border-bottom: 2px common.$navds-semantic-color-link solid;
 
     &.black {
         color: black;
@@ -51,12 +49,4 @@ $color: common.$navds-semantic-color-link;
     &.underline {
         border-bottom-color: transparent;
     }
-}
-
-.linkPanelNavnoIngress {
-    margin-top: 1rem;
-}
-
-.linkPanelNavnoIcon {
-    margin-right: 1rem;
 }
