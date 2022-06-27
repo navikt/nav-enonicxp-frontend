@@ -35,7 +35,9 @@ $border-radius: common.$border-radius-xlarge;
     }
 
     &:hover {
-        box-shadow: none;
+        &:not(:focus) {
+            box-shadow: none;
+        }
 
         :global(.navds-link-panel__title) {
             text-decoration: none;

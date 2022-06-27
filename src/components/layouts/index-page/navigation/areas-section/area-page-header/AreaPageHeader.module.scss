@@ -1,13 +1,8 @@
 @use 'src/common' as common;
 @use 'src/components/layouts/index-page/IndexPage.module' as indexPage;
 
-$graphicsHeight: 160px;
-$graphicsWidth: 320px;
-
 .panel {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
     width: 100%;
 }
 
@@ -15,24 +10,31 @@ $graphicsWidth: 320px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex-shrink: 1;
 
     width: 100%;
-    max-width: 600px;
+    max-width: common.px-to-rem(600px);
+
+    @media #{common.$mq-screen-mobile} {
+        min-width: 100%;
+        max-width: 100%;
+    }
 }
 
 .gfxContainer {
     display: flex;
-    justify-content: center;
-    position: relative;
+    flex-shrink: 3;
+    justify-content: flex-end;
     align-self: flex-end;
-    overflow: hidden;
 
-    width: 100%;
-    min-width: $graphicsWidth;
-    max-width: 625px;
-    height: $graphicsHeight;
+    width: common.px-to-rem(500px);
+    max-width: common.px-to-rem(500px);
+    height: common.px-to-rem(160px);
+    margin-bottom: -0.5rem;
 
-    & > * {
-        width: $graphicsWidth;
+    pointer-events: none;
+
+    @media #{common.$mq-screen-mobile} {
+        display: none;
     }
 }

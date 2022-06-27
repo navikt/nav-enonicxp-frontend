@@ -46,6 +46,7 @@
 @media (hover) {
     #{areaGraphics.onExpand('.mask')} {
         right: -184px;
+        visibility: hidden;
     }
 }
 

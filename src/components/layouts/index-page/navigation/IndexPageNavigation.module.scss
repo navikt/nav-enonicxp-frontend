@@ -1,13 +1,18 @@
 @use 'src/common' as common;
 
 .areaNavigation {
-    padding-top: 2rem;
+    padding-top: 0.5rem;
     padding-bottom: 2rem;
     background-color: #fff;
+
+    &.areaPage {
+        padding-bottom: 0.5rem;
+    }
+
     @include common.full-width-mixin();
 }
 
 .headerAndNavBar {
-    height: 60px;
+    min-height: common.px-to-rem(74px);
     overflow: hidden;
 }

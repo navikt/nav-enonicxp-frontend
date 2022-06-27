@@ -6,8 +6,6 @@ import { isAppUrl } from '../../../utils/urls';
 import { usePublicHref } from '../../../utils/usePublicHref';
 import { Heading } from '@navikt/ds-react';
 
-const enterKeyCode = 13;
-
 const navigate = (router: NextRouter, href: string) => {
     if (isAppUrl(href)) {
         router.push(href);
@@ -18,19 +16,19 @@ const navigate = (router: NextRouter, href: string) => {
 
 type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 
-type Props<As = React.ElementType> = {
+export type LinkPanelNavnoProps = {
     href: string;
     linkText: string;
     linkTextSize?: DsHeadingSize;
     linkUnderline?: 'default' | 'onHover';
     linkColor?: 'blue' | 'black';
     icon?: React.ReactNode;
-    linkProps?: Omit<React.HTMLAttributes<HTMLAnchorElement>, 'href'>;
-    contentProps?: React.HTMLAttributes<HTMLDivElement>;
-    as?: As;
     children?: React.ReactNode;
-} & React.HTMLAttributes<As>;
+} & React.HTMLAttributes<HTMLDivElement>;
 
+// This component wraps only the link text in an anchor tag, although the whole panel is clickable as a navigation
+// element. This is meant to improve the experience when using screen readers on link panels with rich content.
+// For simpler link panels with only a brief text content, consider using <LinkPanelNavnoSimple> instead.
 export const LinkPanelNavno = ({
     href,
     linkText,
@@ -38,19 +36,14 @@ export const LinkPanelNavno = ({
     linkUnderline = 'default',
     linkColor = 'blue',
     icon,
-    linkProps,
-    as,
-    contentProps,
     children,
-    ...elementProps
-}: Props) => {
+    ...divAttribs
+}: LinkPanelNavnoProps) => {
     const router = useRouter();
     const publicHref = usePublicHref(href);
 
-    const Tag = as || 'div';
-
     const handleClick = (e) => {
-        elementProps.onClick?.(e);
+        divAttribs.onClick?.(e);
 
         if (e.defaultPrevented) {
             return;
@@ -61,11 +54,11 @@ export const LinkPanelNavno = ({
     };
 
     return (
-        <Tag
-            {...elementProps}
+        <div
+            {...divAttribs}
             onClick={handleClick}
             onKeyDown={(e) => {
-                if (e.which !== enterKeyCode) {
+                if (e.key !== 'Enter') {
                     return;
                 }
 
@@ -74,7 +67,7 @@ export const LinkPanelNavno = ({
             className={classNames(
                 'linkPanelNavno',
                 icon && 'linkPanelWithIcon',
-                elementProps.className
+                divAttribs.className
             )}
             tabIndex={0}
             role={'link'}
@@ -82,32 +75,24 @@ export const LinkPanelNavno = ({
             {icon && <div className={'linkPanelNavnoIcon'}>{icon}</div>}
             <div>
                 <LenkeBase
-                    {...linkProps}
-                    href={href}
+                    href={publicHref}
                     className={classNames(
                         'linkPanelNavnoLink',
                         linkUnderline === 'onHover' && 'underlineToggle',
                         linkColor === 'black' && 'linkBlack',
                         'navds-heading',
-                        `navds-heading--${linkTextSize}`,
-                        linkProps?.className
+                        `navds-heading--${linkTextSize}`
                     )}
                     tabIndex={-1}
                 >
                     {linkText}
                 </LenkeBase>
                 {children && (
-                    <div
-                        {...contentProps}
-                        className={classNames(
-                            'linkPanelNavnoIngress',
-                            contentProps?.className
-                        )}
-                    >
+                    <div className={classNames('linkPanelNavnoIngress')}>
                         {children}
                     </div>
                 )}
             </div>
-        </Tag>
+        </div>
     );
 };
