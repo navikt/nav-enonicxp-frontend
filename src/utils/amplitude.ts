@@ -1,7 +1,6 @@
 import amplitude from 'amplitude-js';
 
 export enum analyticsEvents {
-    SCROLL = 'scroll',
     NAVIGATION = 'navigere',
     FILTER = 'filtervalg',
     ACC_EXPAND = 'accordion åpnet',

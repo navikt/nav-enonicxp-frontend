@@ -1,6 +1,5 @@
 import { Next, Back } from '@navikt/ds-icons';
 import React, { useRef } from 'react';
-import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
 
 import style from './NavigationButton.module.scss';
@@ -21,11 +20,6 @@ export const NavigationButton = ({
     const onNavigateStart = () => {
         isScrolling.current = true;
         singleNavigation();
-
-        logAmplitudeEvent(analyticsEvents.FILTER, {
-            retning: direction === 1 ? 'venstre' : 'høyre',
-            opprinnelse: 'områdenavigasjon',
-        });
     };
 
     const onNavigateEnd = () => {
