@@ -1,12 +1,17 @@
 import { getInternalRelativePath, isAppUrl } from './urls';
 import { NextRouter } from 'next/router';
 
+const elementIsAnchor = (element: HTMLElement): element is HTMLAnchorElement =>
+    element.tagName?.toLowerCase() === 'a';
+
 const getLinkHref = (element: HTMLElement | null): string | null => {
     if (!element) {
         return null;
     }
-    if (element.tagName?.toLowerCase() === 'a') {
-        return (element as HTMLAnchorElement).href;
+    if (elementIsAnchor(element)) {
+        return !element.href || element.href.includes('#')
+            ? null
+            : element.href;
     }
     return getLinkHref(element.parentElement);
 };
