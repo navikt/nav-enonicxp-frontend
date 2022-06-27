@@ -1,14 +1,14 @@
 const fs = require('fs');
 
 const invalidateCachedPage = (path, app) => {
-    const pathActual = path === '/' ? '/index' : path;
+    const pagePath = path === '/' ? '/index' : path;
 
     try {
         const pageCacheBasePath =
             app.server.incrementalCache.incrementalOptions.pagesDir;
 
-        const htmlPath = `${pageCacheBasePath}${pathActual}.html`;
-        const jsonPath = `${pageCacheBasePath}${pathActual}.json`;
+        const htmlPath = `${pageCacheBasePath}${pagePath}.html`;
+        const jsonPath = `${pageCacheBasePath}${pagePath}.json`;
 
         if (fs.existsSync(htmlPath)) {
             fs.unlinkSync(htmlPath);
@@ -18,12 +18,12 @@ const invalidateCachedPage = (path, app) => {
             fs.unlinkSync(jsonPath);
         }
 
-        app.server.incrementalCache.cache.del(pathActual);
+        app.server.incrementalCache.cache.del(pagePath);
 
-        console.log(`Invalidated page cache for path ${pathActual}`);
+        console.log(`Invalidated page cache for path ${pagePath}`);
     } catch (e) {
         console.error(
-            `Error occurred while invalidating page cache for path ${pathActual} - ${e}`
+            `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
         );
     }
 };
