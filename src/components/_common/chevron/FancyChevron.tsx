@@ -1,15 +1,16 @@
 import React from 'react';
 import { classNames } from '../../../utils/classnames';
+import { StaticImage } from '../image/StaticImage';
 
 import style from './FancyChevron.module.scss';
+
+import chevron from './chevron_icon.svg';
 
 type Props = {
     color: 'white' | 'blue';
     scale?: number;
     className?: string;
 };
-
-// TODO: Just use an svg for the actual chevron. This is too clunky :D
 
 export const FancyChevron = ({ color, scale, className }: Props) => {
     return (
@@ -34,14 +35,11 @@ export const FancyChevron = ({ color, scale, className }: Props) => {
                 <div className={style.line5} />
                 <div className={classNames(style.line6, style.colorLine)} />
                 <div className={style.circle} />
-                <div className={style.chevronOuter}>
-                    <div className={style.chevron}>
-                        <div className={style.top} />
-                        <div className={style.topInner} />
-                        <div className={style.bottom} />
-                        <div className={style.bottomInner} />
-                    </div>
-                </div>
+                <StaticImage
+                    imageData={chevron}
+                    alt={''}
+                    className={style.chevron}
+                />
             </div>
         </div>
     );

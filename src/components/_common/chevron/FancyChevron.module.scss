@@ -43,66 +43,13 @@ $blueColor: #cce2f0;
     height: $size;
 }
 
-$chevronStrokeWidth: 3px;
-$chevronHeight: 16px;
-$chevronWidth: 40px;
-$chevronPositionTweak: -4px;
-
-.chevronOuter {
-    position: relative;
-    left: 0;
-}
-
 .chevron {
     position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateX($chevronPositionTweak) rotate(45deg);
-
-    .top,
-    .bottom {
-        position: absolute;
-        background-color: black;
-        z-index: 0;
-    }
-
-    .top,
-    .topInner {
-        width: $chevronWidth;
-        height: $chevronHeight;
-        transform: translateY(-($chevronWidth - $chevronHeight) / 2);
-    }
-
-    .bottom,
-    .bottomInner {
-        width: $chevronHeight;
-        height: $chevronWidth;
-        transform: translateX(($chevronWidth - $chevronHeight) / 2);
-    }
-
-    .topInner,
-    .bottomInner {
-        position: absolute;
-        content: '';
-        background-color: white;
-        margin: $chevronStrokeWidth;
-        z-index: 1;
-    }
-
-    .topInner {
-        width: $chevronWidth -$chevronStrokeWidth * 2;
-        height: $chevronHeight - $chevronStrokeWidth * 2;
-    }
-
-    .bottomInner {
-        width: $chevronHeight -$chevronStrokeWidth * 2;
-        height: $chevronWidth - $chevronStrokeWidth * 2;
-    }
+    transform: translateX(4px);
 }
 
-#{chevronCommon.animateOnHover('.chevronOuter')} {
-    transform: translateX(28px) scale(1.2);
+#{chevronCommon.animateOnHover('.chevron')} {
+    transform: translateX(32px) scale(1.25);
 }
 
 $blackLineStrokeWidth: 3px;
