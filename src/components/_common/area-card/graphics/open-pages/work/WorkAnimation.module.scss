@@ -9,8 +9,10 @@
     top: 115px;
 }
 
-#{areaGraphics.onExpand('.shapes')} {
-    right: 197px;
+@media (hover) {
+    #{areaGraphics.onExpand('.shapes')} {
+        right: 197px;
+    }
 }
 
 .letterPartOrange {
@@ -24,9 +26,11 @@
     top: 53px;
 }
 
-#{areaGraphics.onExpand('.letterPartOrange')} {
-    right: 51px;
-    top: 73px;
+@media (hover) {
+    #{areaGraphics.onExpand('.letterPartOrange')} {
+        right: 51px;
+        top: 73px;
+    }
 }
 
 .letterPartBlue {
@@ -41,8 +45,10 @@
     transform: skewX(18.8967deg);
 }
 
-#{areaGraphics.onExpand('.letterPartBlue')} {
-    right: 27px;
+@media (hover) {
+    #{areaGraphics.onExpand('.letterPartBlue')} {
+        right: 27px;
+    }
 }
 
 .mask {
@@ -57,14 +63,16 @@
     transform: skewX(-22.09deg);
 }
 
-#{areaGraphics.onExpand('.mask')} {
-    background-color: #ffb8b8;
-    width: 49.23px;
-    height: 160px;
-    right: 82px;
-    top: 0;
+@media (hover) {
+    #{areaGraphics.onExpand('.mask')} {
+        background-color: #ffb8b8;
+        width: 49.23px;
+        height: 160px;
+        right: 82px;
+        top: 0;
 
-    transform: skewX(-18.8967deg);
+        transform: skewX(-18.8967deg);
+    }
 }
 
 .briefcase {
@@ -74,7 +82,9 @@
     top: 39px;
 }
 
-#{areaGraphics.onExpand('.briefcase')} {
-    right: 106px;
-    top: 83px;
+@media (hover) {
+    #{areaGraphics.onExpand('.briefcase')} {
+        right: 106px;
+        top: 83px;
+    }
 }

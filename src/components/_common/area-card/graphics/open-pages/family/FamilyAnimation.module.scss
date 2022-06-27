@@ -9,8 +9,10 @@
     top: 112px;
 }
 
-#{areaGraphics.onExpand('.house')} {
-    right: 206px;
+@media (hover) {
+    #{areaGraphics.onExpand('.house')} {
+        right: 206px;
+    }
 }
 
 .letterPartOrange {
@@ -24,8 +26,10 @@
     top: 72px;
 }
 
-#{areaGraphics.onExpand('.letterPartOrange')} {
-    right: 32px;
+@media (hover) {
+    #{areaGraphics.onExpand('.letterPartOrange')} {
+        right: 32px;
+    }
 }
 
 .letterPartBlue {
@@ -39,8 +43,10 @@
     top: 0;
 }
 
-#{areaGraphics.onExpand('.letterPartBlue')} {
-    right: 0;
+@media (hover) {
+    #{areaGraphics.onExpand('.letterPartBlue')} {
+        right: 0;
+    }
 }
 
 .mask {
@@ -55,13 +61,15 @@
     transform: skewX(-22.09deg);
 }
 
-#{areaGraphics.onExpand('.mask')} {
-    background-color: #ffb8b8;
-    width: 48px;
-    height: 160px;
-    right: 100px;
-    top: 0;
-    transform: skewX(0);
+@media (hover) {
+    #{areaGraphics.onExpand('.mask')} {
+        background-color: #ffb8b8;
+        width: 48px;
+        height: 160px;
+        right: 100px;
+        top: 0;
+        transform: skewX(0);
+    }
 }
 
 .stroller {
@@ -71,7 +79,9 @@
     top: 40px;
 }
 
-#{areaGraphics.onExpand('.stroller')} {
-    right: 105.23px;
-    top: 76px;
+@media (hover) {
+    #{areaGraphics.onExpand('.stroller')} {
+        right: 105.23px;
+        top: 76px;
+    }
 }

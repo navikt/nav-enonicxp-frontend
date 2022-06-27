@@ -9,8 +9,10 @@
     top: 114px;
 }
 
-#{areaGraphics.onExpand('.shapes')} {
-    right: 209px;
+@media (hover) {
+    #{areaGraphics.onExpand('.shapes')} {
+        right: 209px;
+    }
 }
 
 .letterS {
@@ -20,8 +22,10 @@
     top: 0;
 }
 
-#{areaGraphics.onExpand('.letterS')} {
-    right: 1px;
+@media (hover) {
+    #{areaGraphics.onExpand('.letterS')} {
+        right: 1px;
+    }
 }
 
 .mask {
@@ -36,8 +40,10 @@
     transform: rotate(22.09deg);
 }
 
-#{areaGraphics.onExpand('.mask')} {
-    right: -184px;
+@media (hover) {
+    #{areaGraphics.onExpand('.mask')} {
+        right: -184px;
+    }
 }
 
 .document {
@@ -47,7 +53,9 @@
     top: 42px;
 }
 
-#{areaGraphics.onExpand('.document')} {
-    right: 125px;
-    top: 85px;
+@media (hover) {
+    #{areaGraphics.onExpand('.document')} {
+        right: 125px;
+        top: 85px;
+    }
 }
