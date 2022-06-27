@@ -109,28 +109,30 @@ export const AreaPageNavigationBar = ({
                 className={style.navigationBar}
                 onScroll={onNavigationBarScroll}
             >
-                <div
+                <ul
                     className={style.navigationWrapper}
                     ref={navigationWrapper}
+                    role="navigation"
                 >
                     {areasRefs.map((areaContent) => {
                         const path = getPublicPathname(areaContent);
 
                         return (
-                            <IndexPageLink
-                                href={path}
-                                className={style.areasPageNavigationLink}
-                                key={areaContent._id}
-                                onFocus={focusEventHandler}
-                                navigate={navigate}
-                            >
-                                <Chip selected={areaContent._id === pageId}>
-                                    {areaContent.data.header}
-                                </Chip>
-                            </IndexPageLink>
+                            <li key={areaContent._id}>
+                                <IndexPageLink
+                                    href={path}
+                                    className={style.areasPageNavigationLink}
+                                    onFocus={focusEventHandler}
+                                    navigate={navigate}
+                                >
+                                    <Chip selected={areaContent._id === pageId}>
+                                        {areaContent.data.header}
+                                    </Chip>
+                                </IndexPageLink>
+                            </li>
                         );
                     })}
-                </div>
+                </ul>
             </div>
             <NavigationButton
                 direction={-1}

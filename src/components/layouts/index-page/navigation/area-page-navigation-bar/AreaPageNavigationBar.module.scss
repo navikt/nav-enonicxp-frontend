@@ -42,8 +42,16 @@
 
 .navigationWrapper {
     display: flex;
+    list-style-type: none;
     flex-wrap: inherit;
+    margin: 0;
     padding: 0.5rem 0;
+
+    li {
+        display: inline-flex;
+        margin: 0;
+        padding: 0;
+    }
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         padding: 0.5rem 1.5rem;
