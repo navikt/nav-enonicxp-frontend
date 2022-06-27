@@ -9,9 +9,11 @@
     top: 49px;
 }
 
-#{areaGraphics.onExpand('.shapes')} {
-    right: 214px;
-    top: 81px;
+@media (hover) {
+    #{areaGraphics.onExpand('.shapes')} {
+        right: 214px;
+        top: 81px;
+    }
 }
 
 .letterU {
@@ -21,8 +23,10 @@
     top: 0;
 }
 
-#{areaGraphics.onExpand('.letterU')} {
-    right: 0;
+@media (hover) {
+    #{areaGraphics.onExpand('.letterU')} {
+        right: 0;
+    }
 }
 
 .mask {
@@ -37,8 +41,10 @@
     transform: rotate(22.09deg);
 }
 
-#{areaGraphics.onExpand('.mask')} {
-    right: -184px;
+@media (hover) {
+    #{areaGraphics.onExpand('.mask')} {
+        right: -184px;
+    }
 }
 
 .wallet {
@@ -50,7 +56,9 @@
     top: 40px;
 }
 
-#{areaGraphics.onExpand('.wallet')} {
-    right: 114.27px;
-    top: 89px;
+@media (hover) {
+    #{areaGraphics.onExpand('.wallet')} {
+        right: 114.27px;
+        top: 89px;
+    }
 }
