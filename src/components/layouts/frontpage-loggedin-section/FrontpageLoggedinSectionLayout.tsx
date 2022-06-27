@@ -11,6 +11,8 @@ import { LinkSelectable } from '../../../types/component-props/_mixins';
 import { AuthDependantRender } from '../../_common/auth-dependant-render/AuthDependantRender';
 import { useAuthState } from '../../../store/hooks/useAuthState';
 import { capitalize } from '../../../utils/string';
+import { translator } from '../../../translations';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 import style from './FrontpageLoggedinSectionLayout.module.scss';
 
@@ -29,7 +31,11 @@ const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
 };
 
 const HeaderWithName = ({ headerText }: { headerText: string }) => {
+    const { language } = usePageConfig();
     const { name } = useAuthState();
+
+    // Fallback message if for some reason the users name is not available
+    const greetings = translator('greetings', language);
 
     return (
         <Header
@@ -38,7 +44,9 @@ const HeaderWithName = ({ headerText }: { headerText: string }) => {
             justify={'left'}
             className={style.header}
         >
-            {name ? headerText.replace('$navn', capitalize(name)) : 'Hei!'}
+            {name
+                ? headerText.replace('$navn', capitalize(name))
+                : greetings('hi')}
         </Header>
     );
 };

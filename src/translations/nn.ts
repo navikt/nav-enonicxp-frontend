@@ -207,4 +207,7 @@ export const translationsBundleNn = {
         tableHeaderPrefix: 'Utbetalingsdatoar i',
         tableHeaderPrefixNoYear: 'Utbetalingsdatoar',
     },
+    greetings: {
+        hi: 'Hei!',
+    },
 };
