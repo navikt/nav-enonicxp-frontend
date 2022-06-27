@@ -1,6 +1,7 @@
 import amplitude from 'amplitude-js';
 
 export enum analyticsEvents {
+    SCROLL = 'scroll',
     NAVIGATION = 'navigere',
     FILTER = 'filtervalg',
     ACC_EXPAND = 'accordion åpnet',
@@ -22,7 +23,10 @@ export const initAmplitude = () => {
     });
 };
 
-export function logAmplitudeEvent(eventName: analyticsEvents, data?: any): Promise<any> {
+export function logAmplitudeEvent(
+    eventName: analyticsEvents,
+    data?: any
+): Promise<any> {
     return new Promise(function (resolve: any) {
         const eventData = {
             ...data,

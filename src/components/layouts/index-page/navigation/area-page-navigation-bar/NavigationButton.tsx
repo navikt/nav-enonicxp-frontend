@@ -1,6 +1,8 @@
 import { Next, Back } from '@navikt/ds-icons';
 import React, { useRef } from 'react';
+import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
+
 import style from './NavigationButton.module.scss';
 
 type NavigationButtonProps = {
@@ -8,8 +10,6 @@ type NavigationButtonProps = {
     direction: number;
     navigateCallback: (direction: number) => void;
 };
-
-let navigateInterval: NodeJS.Timer;
 
 export const NavigationButton = ({
     direction,
@@ -21,6 +21,11 @@ export const NavigationButton = ({
     const onNavigateStart = () => {
         isScrolling.current = true;
         singleNavigation();
+
+        logAmplitudeEvent(analyticsEvents.FILTER, {
+            retning: direction === 1 ? 'venstre' : 'høyre',
+            opprinnelse: 'områdenavigasjon',
+        });
     };
 
     const onNavigateEnd = () => {
@@ -49,6 +54,10 @@ export const NavigationButton = ({
                 hidden && style.hidden,
                 direction === 1 ? style.leftSide : style.rightSide
             )}
+            type="button"
+            disabled={hidden}
+            aria-hidden={hidden}
+            aria-label={direction === 1 ? 'Rull til venstre' : 'Rull til høyre'}
             onClick={() => navigateCallback(direction)}
             onMouseDown={onNavigateStart}
             onTouchStart={onNavigateStart}

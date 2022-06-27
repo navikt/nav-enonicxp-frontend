@@ -42,16 +42,15 @@ export const AreaPageNavigationBar = ({
     const focusEventHandler = (e: React.FocusEvent) => {
         const { target } = e;
         const navBar: Element = navigationBar.current;
+        const element = target as HTMLAnchorElement;
 
         const isVisble = isElementVisible(target, navBar);
 
         if (!isVisble) {
-            const itemBounds = target.getBoundingClientRect();
-            const scrollTargetPos = itemBounds.x + itemBounds.width;
+            const scrollTargetPos = element.offsetLeft;
             const scrollOptions: ScrollToOptions = {
                 left: scrollTargetPos,
                 top: 0,
-                behavior: 'smooth',
             };
             navBar.scrollTo(scrollOptions);
         }
