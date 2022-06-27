@@ -1,0 +1,78 @@
+@use 'src/components/_common/area-card/graphics/AreaCardGraphicsCommon.module'
+    as areaGraphics;
+@import 'src/components/_common/area-card/AreaCard.module';
+
+.pill {
+    @include transitionMixin;
+    position: absolute;
+    right: 30px;
+    top: 104px;
+}
+
+#{areaGraphics.onExpand('.pill')} {
+    right: 214px;
+}
+
+.letterPartOrange {
+    background-color: var(--navds-global-color-orange-200);
+
+    @include transitionMixin;
+    position: absolute;
+    width: 56px;
+    height: 44px;
+    right: -2px;
+    top: 58px;
+}
+
+#{areaGraphics.onExpand('.letterPartOrange')} {
+    right: 48px;
+    top: 58px;
+}
+
+.letterPartBlue {
+    background-color: var(--navds-global-color-deepblue-200);
+
+    @include transitionMixin;
+    position: absolute;
+    width: 48px;
+    height: 160px;
+    right: -26px;
+    top: 0;
+}
+
+#{areaGraphics.onExpand('.letterPartBlue')} {
+    right: 0;
+}
+
+.mask {
+    background-color: var(--navds-global-color-deepblue-100);
+
+    @include transitionMixin;
+    position: absolute;
+    width: 193.56px;
+    height: 499px;
+    right: -42px;
+    top: -100px;
+    transform: skewX(-22.09deg);
+}
+
+#{areaGraphics.onExpand('.mask')} {
+    background-color: #ffb8b8;
+    width: 48px;
+    height: 160px;
+    right: 100px;
+    top: 0;
+    transform: skewX(0);
+}
+
+.stethoscope {
+    @include transitionMixin;
+    position: absolute;
+    right: 42px;
+    top: 33px;
+}
+
+#{areaGraphics.onExpand('.stethoscope')} {
+    right: 82px;
+    top: 59px;
+}

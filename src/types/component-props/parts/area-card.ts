@@ -2,7 +2,7 @@ import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 import { LinkSelectable } from '../_mixins';
 
-export type AreaCardType =
+export type AreaCardGraphicsType =
     | 'payments'
     | 'cases'
     | 'employment-status-form'
@@ -17,6 +17,6 @@ export interface AreaCardPartProps extends PartComponentProps {
     descriptor: PartType.AreaCard;
     config: {
         link: LinkSelectable;
-        area: AreaCardType;
+        area: AreaCardGraphicsType;
     };
 }

@@ -1,10 +1,7 @@
 import React from 'react';
-import {
-    ContentProps,
-    ContentType,
-} from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { BodyLong } from '@navikt/ds-react';
-import LenkepanelNavNo from '../../../_common/lenkepanel/LenkepanelNavNo';
+import LenkepanelNavNo from '../../../_common/lenkepanel-legacy/LenkepanelNavNo';
 import { translator } from '../../../../translations';
 
 import style from './MainPanels.module.scss';

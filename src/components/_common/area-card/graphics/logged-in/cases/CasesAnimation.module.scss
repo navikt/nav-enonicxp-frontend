@@ -1,0 +1,53 @@
+@use 'src/components/_common/area-card/graphics/AreaCardGraphicsCommon.module'
+    as areaGraphics;
+@import 'src/components/_common/area-card/AreaCard.module';
+
+.shapes {
+    @include transitionMixin;
+    position: absolute;
+    right: 0;
+    top: 114px;
+}
+
+#{areaGraphics.onExpand('.shapes')} {
+    right: 209px;
+}
+
+.letterS {
+    @include transitionMixin;
+    position: absolute;
+    right: -74px;
+    top: 0;
+}
+
+#{areaGraphics.onExpand('.letterS')} {
+    right: 1px;
+}
+
+.mask {
+    background-color: var(--navds-global-color-deepblue-100);
+
+    @include transitionMixin;
+    position: absolute;
+    width: 145px;
+    height: 245px;
+    right: -30px;
+    top: -45px;
+    transform: rotate(22.09deg);
+}
+
+#{areaGraphics.onExpand('.mask')} {
+    right: -184px;
+}
+
+.document {
+    @include transitionMixin;
+    position: absolute;
+    right: 67px;
+    top: 42px;
+}
+
+#{areaGraphics.onExpand('.document')} {
+    right: 125px;
+    top: 85px;
+}

@@ -35,6 +35,7 @@ import { PayoutDatesProps } from './payout-dates';
 import { LanguageProps } from '../language';
 import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageProps } from './index-pages-props';
+import { Audience } from '../component-props/_mixins';
 
 export enum ContentType {
     Error = 'error',
@@ -101,6 +102,7 @@ type ContentCommonData = Partial<{
     ingress: string;
     description: string;
     languages: LanguageProps[];
+    audience: Audience;
 }>;
 
 export type PathMap = { [key: string]: string };
@@ -124,8 +126,16 @@ type SiteProps = {
     __typename: ContentType.Site;
 } & ContentCommonProps;
 
+type TemplateProps = {
+    __typename: ContentType.TemplatePage;
+    data: {
+        supports?: string | string[];
+    };
+} & ContentCommonProps;
+
 type SpecificContentProps =
     | SiteProps
+    | TemplateProps
     | ContentListProps
     | ErrorProps
     | ExternalLinkProps

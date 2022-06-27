@@ -1,4 +1,14 @@
+@use 'src/common' as common;
+
+$maxWidth: 1272px;
+
 .indexPage {
-    max-width: 1272px;
-    margin: 0 auto;
+    max-width: $maxWidth;
+    margin: 0 auto -2rem auto;
+}
+
+.warning {
+    background-color: white;
+    padding-bottom: 2rem;
+    @include common.full-width-mixin();
 }

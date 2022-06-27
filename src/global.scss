@@ -10,6 +10,7 @@
 @import 'components/layouts/section-with-header/SectionWithHeaderLayout.scss';
 @import 'components/pages/situation-page/SituationPage.scss';
 @import 'components/pages/product-page/ProductPage.scss';
+@import 'components/_common/linkpanel/LinkPanelNavno.scss';
 
 #__next,
 .decorator-utils-container {
@@ -51,13 +52,10 @@
 }
 
 #decorator-header {
-    min-height: 88px;
+    min-height: 72px;
 
     @media #{common.$mq-screen-tablet-and-desktop} {
-        min-height: 106px;
-        &.with-context {
-            min-height: 150px;
-        }
+        min-height: 80px;
     }
 }
 

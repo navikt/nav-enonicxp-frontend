@@ -1,0 +1,20 @@
+.frontpageHeader {
+    margin-bottom: 1.5rem;
+    max-height: 70px;
+    visibility: visible;
+    overflow: hidden;
+    opacity: 1;
+
+    transition-property: max-height, visibility, transform, margin-bottom,
+        opacity;
+    transition-duration: 400ms;
+    transition-timing-function: ease-in-out;
+}
+
+.hidden {
+    max-height: 0;
+    visibility: hidden;
+    opacity: 0;
+    margin-bottom: 0;
+    transform: translateY(70px);
+}

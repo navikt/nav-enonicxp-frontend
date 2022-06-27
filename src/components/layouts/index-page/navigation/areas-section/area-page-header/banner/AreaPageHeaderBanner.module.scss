@@ -1,0 +1,40 @@
+@use 'src/common' as common;
+@use 'src/components/layouts/index-page/navigation/areas-section/area-page-header/AreaPageHeader.module'
+    as parent;
+
+.banner {
+    display: flex;
+    justify-content: space-between;
+
+    text-decoration: none;
+    color: black;
+    max-height: parent.$graphicsHeight;
+    margin-top: 1rem;
+    padding: 2rem 0;
+    background-color: common.$navPink;
+    transform: skewX(-20deg);
+
+    transition: background-color 200ms ease-out;
+
+    & > * {
+        transform: skewX(20deg);
+    }
+
+    &:hover {
+        background-color: var(--hover-color);
+    }
+
+    &:focus {
+        @include common.panel-focus-mixin();
+    }
+    @include common.full-width-mixin(true, false);
+}
+
+.content {
+    width: 100%;
+}
+
+.icon {
+    align-self: center;
+    margin-right: 2rem;
+}

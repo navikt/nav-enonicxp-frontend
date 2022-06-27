@@ -10,9 +10,19 @@
 }
 
 .cards {
-    display: flex;
-    flex-wrap: wrap;
-
-    @include common.flex-cols-mixin(3);
+    @include common.grid-layout-mixin();
     @include common.content-studio-drop-zone-fix-local();
+}
+
+.myPage {
+    margin-top: 1rem;
+    color: black;
+
+    & > * {
+        font-weight: bold;
+    }
+
+    :global(.chevron) {
+        transform: translateY(2px);
+    }
 }

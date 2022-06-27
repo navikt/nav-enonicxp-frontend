@@ -1,0 +1,61 @@
+@use 'src/common' as common;
+
+// Use global CSS rather than module to simplify overriding of styles
+
+$padding: 1.5rem;
+$color: common.$navds-semantic-color-link;
+
+.linkPanelNavno {
+    display: flex;
+    align-items: flex-start;
+
+    padding: $padding;
+    cursor: pointer;
+    border-radius: common.$border-radius-xlarge;
+
+    &.linkPanelWithIcon {
+        align-items: center;
+    }
+
+    &:hover {
+        .linkPanelNavnoLink {
+            border-bottom-color: transparent;
+
+            &.underlineToggle {
+                border-bottom-color: $color;
+
+                &.linkBlack {
+                    border-bottom-color: black;
+                }
+            }
+        }
+    }
+
+    &:focus,
+    &:focus-within {
+        @include common.panel-focus-mixin(true);
+    }
+}
+
+.linkPanelNavnoLink {
+    text-decoration: none;
+    border-bottom: 2px common.$navds-semantic-color-link solid;
+    transition: border-bottom-color 0.15s ease-out;
+
+    &.linkBlack {
+        color: black;
+        border-bottom-color: black;
+    }
+
+    &.underlineToggle {
+        border-bottom-color: transparent;
+    }
+}
+
+.linkPanelNavnoIngress {
+    margin-top: 1rem;
+}
+
+.linkPanelNavnoIcon {
+    margin-right: 1rem;
+}

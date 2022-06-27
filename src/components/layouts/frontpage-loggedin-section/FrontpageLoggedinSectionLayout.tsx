@@ -10,6 +10,7 @@ import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LinkSelectable } from '../../../types/component-props/_mixins';
 import { AuthDependantRender } from '../../_common/auth-dependant-render/AuthDependantRender';
 import { useAuthState } from '../../../store/hooks/useAuthState';
+import { capitalize } from '../../../utils/string';
 
 import style from './FrontpageLoggedinSectionLayout.module.scss';
 
@@ -20,7 +21,11 @@ const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
 
     const { text, url } = getSelectableLinkProps(link);
 
-    return <LenkeStandalone href={url}>{text}</LenkeStandalone>;
+    return (
+        <LenkeStandalone href={url} className={style.myPage}>
+            {text}
+        </LenkeStandalone>
+    );
 };
 
 const HeaderWithName = ({ headerText }: { headerText: string }) => {
@@ -29,11 +34,11 @@ const HeaderWithName = ({ headerText }: { headerText: string }) => {
     return (
         <Header
             level={'2'}
-            size={'xlarge'}
+            size={'large'}
             justify={'left'}
             className={style.header}
         >
-            {name ? headerText.replace('$navn', name) : 'Hei!'}
+            {name ? headerText.replace('$navn', capitalize(name)) : 'Hei!'}
         </Header>
     );
 };

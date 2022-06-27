@@ -35,7 +35,7 @@
     }
 
     @media #{common.$mq-screen-desktop} {
-        grid-template-columns: auto auto auto;
+        grid-template-columns: max-content auto auto;
         grid-template-rows: max-content max-content auto;
         grid-template-areas:
             'Illustration Title Title'

@@ -1,0 +1,177 @@
+@use 'src/common' as common;
+@use './FancyChevronCommon.module' as chevronCommon;
+
+$defaultScale: 1;
+$size: 96px;
+$blueColor: #cce2f0;
+
+.scaleWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: scale(var(--scale, $defaultScale));
+    width: calc(#{$size} * var(--scale, #{$defaultScale}));
+    height: calc(#{$size} * var(--scale, #{$defaultScale}));
+}
+
+.outer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $size;
+    height: $size;
+
+    & * {
+        transition: all 250ms ease-in-out;
+    }
+
+    &.blue {
+        .circle,
+        .colorLine {
+            background-color: $blueColor;
+        }
+    }
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: white;
+    width: $size;
+    height: $size;
+}
+
+$chevronStrokeWidth: 3px;
+$chevronHeight: 16px;
+$chevronWidth: 40px;
+$chevronPositionTweak: -4px;
+
+.chevronOuter {
+    position: relative;
+    left: 0;
+}
+
+.chevron {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX($chevronPositionTweak) rotate(45deg);
+
+    .top,
+    .bottom {
+        position: absolute;
+        background-color: black;
+        z-index: 0;
+    }
+
+    .top,
+    .topInner {
+        width: $chevronWidth;
+        height: $chevronHeight;
+        transform: translateY(-($chevronWidth - $chevronHeight) / 2);
+    }
+
+    .bottom,
+    .bottomInner {
+        width: $chevronHeight;
+        height: $chevronWidth;
+        transform: translateX(($chevronWidth - $chevronHeight) / 2);
+    }
+
+    .topInner,
+    .bottomInner {
+        position: absolute;
+        content: '';
+        background-color: white;
+        margin: $chevronStrokeWidth;
+        z-index: 1;
+    }
+
+    .topInner {
+        width: $chevronWidth -$chevronStrokeWidth * 2;
+        height: $chevronHeight - $chevronStrokeWidth * 2;
+    }
+
+    .bottomInner {
+        width: $chevronHeight -$chevronStrokeWidth * 2;
+        height: $chevronWidth - $chevronStrokeWidth * 2;
+    }
+}
+
+#{chevronCommon.animateOnHover('.chevronOuter')} {
+    transform: translateX(28px) scale(1.2);
+}
+
+$blackLineStrokeWidth: 3px;
+$colorLineStrokeWidth: 6px;
+
+.line1,
+.line2,
+.line3,
+.line5,
+.line6 {
+    position: absolute;
+    background-color: black;
+    height: $blackLineStrokeWidth;
+}
+
+.colorLine {
+    background-color: white;
+    height: $colorLineStrokeWidth;
+}
+
+.line1 {
+    width: 34px;
+    top: 24px;
+}
+
+#{chevronCommon.animateOnHover('.line1')} {
+    transform: translateX(-13px);
+}
+
+.line2 {
+    width: 24px;
+    top: 30px;
+}
+
+#{chevronCommon.animateOnHover('.line2')} {
+    transform: translateX(-14px);
+}
+
+.line3 {
+    width: 36px;
+    top: 46px;
+}
+
+#{chevronCommon.animateOnHover('.line3')} {
+    transform: translateX(-2px);
+}
+
+// The circle transforms into the 4th line
+#{chevronCommon.animateOnHover('.circle')} {
+    height: $colorLineStrokeWidth;
+    width: 42px;
+    transform: translate(4px, 4px);
+    border-radius: 0;
+}
+
+.line5 {
+    width: 22px;
+    top: 62px;
+}
+
+#{chevronCommon.animateOnHover('.line5')} {
+    transform: translateX(-16px);
+}
+
+.line6 {
+    width: 40px;
+    top: 68px;
+}
+
+#{chevronCommon.animateOnHover('.line6')} {
+    transform: translateX(-10px);
+}
