@@ -3,8 +3,6 @@
 
 .panel {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
     width: 100%;
 }
 
@@ -15,7 +13,7 @@
     flex-shrink: 1;
 
     width: 100%;
-    max-width: 600px;
+    max-width: common.px-to-rem(600px);
 
     @media #{common.$mq-screen-mobile} {
         min-width: 100%;
@@ -25,22 +23,16 @@
 
 .gfxContainer {
     display: flex;
-    justify-content: flex-end;
     flex-shrink: 3;
-
-    position: relative;
+    justify-content: flex-end;
     align-self: flex-end;
 
-    width: 100%;
+    width: common.px-to-rem(500px);
     max-width: common.px-to-rem(500px);
     height: common.px-to-rem(160px);
     margin-bottom: -0.5rem;
 
     pointer-events: none;
-
-    & > * {
-        width: common.px-to-rem(320px);
-    }
 
     @media #{common.$mq-screen-mobile} {
         display: none;
