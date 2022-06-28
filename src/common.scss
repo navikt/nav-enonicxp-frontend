@@ -113,7 +113,7 @@ $navPink: #fde6e6;
     grid-template-columns: repeat($numCols, 1fr);
 
     @media #{$mq-screen-desktop-small} {
-        grid-template-columns: repeat(math.max($numCols - 1, 1), 1fr);
+        grid-template-columns: repeat(math.max($numCols - 1, 2), 1fr);
     }
 
     @media #{$mq-screen-mobile} {
