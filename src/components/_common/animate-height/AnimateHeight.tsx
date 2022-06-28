@@ -22,6 +22,7 @@ export const AnimateHeight = ({
 }: Props) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
+    const [isFirstRender, setIsFirstRender] = useState(true);
     const [prevHeight, setPrevHeight] = useState<number | null>(null);
     const [heightToRender, setHeightToRender] = useState<number | null>(null);
     const [fadeOut, setFadeOut] = useState(false);
@@ -31,6 +32,12 @@ export const AnimateHeight = ({
         useState<React.ReactNode>(children);
 
     useEffect(() => {
+        // Prevents the animations from running on the initial render
+        if (isFirstRender) {
+            setIsFirstRender(false);
+            return;
+        }
+
         // We first get the current container height
         const height = containerRef.current.scrollHeight;
         setPrevHeight(height);

@@ -14,6 +14,7 @@ const getTargetPath = (contentData: ContentProps) => {
             return !contentData.isDraft
                 ? contentData.data?.externalProductUrl
                 : null;
+        // TODO: this can be removed when we're confident there's no need to roll back the root-level frontpage
         case ContentType.Site:
             return '/no/person';
         case ContentType.InternalLink:

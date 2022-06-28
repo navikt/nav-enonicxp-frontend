@@ -184,15 +184,11 @@ module.exports = withPlugins([withTranspileModules, withBundleAnalyzer], {
         return config;
     },
     redirects: async () => [
-        ...(process.env.ENV === 'prod'
-            ? [
-                  {
-                      source: '/forsiden',
-                      destination: '/no/person',
-                      permanent: false,
-                  },
-              ]
-            : []),
+        {
+            source: '/forsiden',
+            destination: '/',
+            permanent: false,
+        },
         {
             source: '/www.nav.no',
             destination: '/',
