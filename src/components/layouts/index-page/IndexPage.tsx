@@ -22,21 +22,6 @@ import { setPathMapAction } from '../../../store/slices/pathMap';
 
 import style from './IndexPage.module.scss';
 
-const PreReleaseWarning = () => {
-    return (
-        <div className={style.warning}>
-            <AlertBox variant={'warning'}>
-                {
-                    'Hei! Disse sidene er under utvikling og er ikke helt klare til bruk ennå. '
-                }
-                <LenkeInline href={'/no/person'}>
-                    {'Gå til dagens forside.'}
-                </LenkeInline>
-            </AlertBox>
-        </div>
-    );
-};
-
 export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
 const IndexPageContent = (basePageProps: IndexPageContentProps) => {
@@ -56,9 +41,10 @@ const IndexPageContent = (basePageProps: IndexPageContentProps) => {
             <Head>
                 <title>{getPageTitle(currentPageProps)}</title>
                 {/*TODO: Remove this before public release*/}
-                <meta name={'robots'} content={'noindex, nofollow'} />
+                {!currentPageProps.data?.customPath && (
+                    <meta name={'robots'} content={'noindex, nofollow'} />
+                )}
             </Head>
-            {basePageProps.serverEnv === 'prod' && <PreReleaseWarning />}
             <AnimateHeight trigger={_id}>
                 {__typename === ContentType.FrontPage && (
                     <Region
@@ -101,8 +87,6 @@ export const IndexPage = ({ pageProps }: Props) => {
         );
         return null;
     }
-
-    console.log(pageProps._path);
 
     return <IndexPageContent {...pageProps} />;
 };
