@@ -136,7 +136,7 @@ export const translationsBundleNn = {
         write: {
             title: 'Skriv til oss',
             ingress:
-                'Send beskjed eller nye opplysningar i saka di. Du kan òg sende spørsmål. <br/><br/> Svartida er 4 arbeidsdagar. Vil du ha raskare svar kan du bruke chat.',
+                'Send beskjed eller nye opplysningar i saka di. Du kan òg sende spørsmål. <br/><br/> Svartida er 4 arbeidsdagar. Vil du ha raskare svar, kan du bruke chat.',
         },
         navoffice: {
             title: 'Finn ditt NAV-kontor',
