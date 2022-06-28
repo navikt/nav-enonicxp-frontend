@@ -6,7 +6,11 @@
 }
 
 .header {
-    padding-bottom: 1rem;
+    padding-bottom: 0.75rem;
+}
+
+.services {
+    margin-bottom: 1.5rem;
 }
 
 .cards {
@@ -16,13 +20,19 @@
 
 .myPage {
     margin-top: 1rem;
-    color: black;
+    // color: black;
 
     & > * {
         font-weight: bold;
     }
 
     :global(.chevron) {
-        transform: translateY(2px);
+        display: none;
     }
+}
+
+.arrow {
+    transform: translateY(3px);
+    margin-left: -1.5rem;
+    margin-right: 0.625rem;
 }
