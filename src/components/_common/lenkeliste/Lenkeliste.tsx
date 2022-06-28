@@ -40,7 +40,6 @@ export const Lenkeliste = ({
                         className={style.lenke}
                         component={'link-list'}
                         linkGroup={tittel}
-                        showExternalLinkLabel={true}
                         withChevron={withChevron}
                     >
                         {lenke.text}
