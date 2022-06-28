@@ -9,6 +9,7 @@ type Props = {
     trigger: any;
     pxPerSec?: number;
     fadeTime?: number;
+    fullwidth?: boolean;
     children: React.ReactNode;
 };
 
@@ -16,6 +17,7 @@ export const AnimateHeight = ({
     trigger,
     pxPerSec = 2000,
     fadeTime = 200,
+    fullwidth,
     children,
 }: Props) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -82,7 +84,8 @@ export const AnimateHeight = ({
         <div
             className={classNames(
                 heightToRender !== null && style.animated,
-                fadeOut && style.fade
+                fadeOut && style.fade,
+                fullwidth && style.fullwidth
             )}
             ref={containerRef}
             style={{

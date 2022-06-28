@@ -45,7 +45,7 @@ const IndexPageContent = (basePageProps: IndexPageContentProps) => {
                     <meta name={'robots'} content={'noindex, nofollow'} />
                 )}
             </Head>
-            <AnimateHeight trigger={_id}>
+            <AnimateHeight trigger={_id} fadeTime={0} fullwidth={true}>
                 {__typename === ContentType.FrontPage && (
                     <Region
                         pageProps={currentPageProps}
@@ -57,7 +57,7 @@ const IndexPageContent = (basePageProps: IndexPageContentProps) => {
                 pageProps={currentPageProps}
                 navigate={navigate}
             />
-            <AnimateHeight trigger={_id}>
+            <AnimateHeight trigger={_id} fullwidth={true}>
                 <Region
                     pageProps={currentPageProps}
                     regionProps={regions.contentBottom}

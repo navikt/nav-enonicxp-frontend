@@ -1,7 +1,13 @@
+@use 'src/common' as common;
+
 .animated {
-    overflow: hidden;
+    overflow-y: hidden;
     transition-property: height, opacity;
     transition-timing-function: ease-in;
+}
+
+.fullwidth {
+    @include common.full-width-mixin();
 }
 
 .fade {
