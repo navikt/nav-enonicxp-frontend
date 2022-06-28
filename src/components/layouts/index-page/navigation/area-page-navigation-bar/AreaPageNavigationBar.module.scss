@@ -4,10 +4,24 @@
     position: relative;
     display: flex;
     z-index: 2;
+    opacity: 1;
+
+    transition-property: max-height, visibility, padding-top, padding-bottom,
+        transform, opacity;
+    transition-duration: 400ms;
+    transition-timing-function: ease-in-out;
 
     @media #{common.$mq-screen-mobile} {
         margin: 0 -0.5rem;
     }
+}
+
+.hidden {
+    max-height: 0;
+    opacity: 0;
+    padding: 0;
+    visibility: hidden;
+    transform: translateY(-70px);
 }
 
 .navigationBar {
@@ -16,16 +30,7 @@
     padding-bottom: 1rem;
     padding-top: 2px; // In order not to clip focus outline
 
-    visibility: visible;
-    opacity: 1;
-    padding-bottom: 1rem;
-    padding-top: 2px; // In order not to clip focus outline
     position: relative;
-
-    transition-property: max-height, visibility, padding-top, padding-bottom,
-        transform, opacity;
-    transition-duration: 400ms;
-    transition-timing-function: ease-in-out;
 
     @media #{common.$mq-screen-tablet-and-mobile} {
         overflow-y: hidden;
@@ -70,13 +75,4 @@
     @media #{common.$mq-screen-tablet-and-mobile} {
         margin: 0 0.5rem 0 0;
     }
-}
-
-.hidden {
-    max-height: 0;
-    opacity: 0;
-    padding: 0;
-    visibility: hidden;
-    transform: translateY(-70px);
-    display: none;
 }

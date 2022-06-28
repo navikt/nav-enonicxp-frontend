@@ -1,19 +1,24 @@
+@use 'src/common' as common;
+
+$desktopHeight: 70px;
+
 .frontpageHeader {
-    margin-bottom: 1.5rem;
     visibility: visible;
     overflow: hidden;
     opacity: 1;
 
-    transition-property: max-height, visibility, transform, margin-bottom,
-        opacity;
-    transition-duration: 400ms;
-    transition-timing-function: ease-in-out;
+    @media #{common.$mq-screen-desktop} {
+        max-height: $desktopHeight;
+
+        transition-property: max-height, visibility, transform, opacity;
+        transition-duration: 400ms;
+        transition-timing-function: ease-in-out;
+    }
 }
 
 .hidden {
     max-height: 0;
     visibility: hidden;
     opacity: 0;
-    margin-bottom: 0;
-    transform: translateY(70px);
+    transform: translateY($desktopHeight);
 }

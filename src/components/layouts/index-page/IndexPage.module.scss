@@ -12,9 +12,3 @@ $maxWidth: 1272px;
         }
     }
 }
-
-.warning {
-    background-color: white;
-    padding-bottom: 2rem;
-    @include common.full-width-mixin();
-}
