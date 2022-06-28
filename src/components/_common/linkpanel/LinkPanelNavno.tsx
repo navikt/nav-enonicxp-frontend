@@ -54,10 +54,10 @@ export const LinkPanelNavno = ({
         });
 
         e.preventDefault();
-        if (isAppUrl(href)) {
-            router.push(href);
+        if (isAppUrl(publicHref)) {
+            router.push(publicHref);
         } else {
-            window.location.href = href;
+            window.location.href = publicHref;
         }
     };
 
