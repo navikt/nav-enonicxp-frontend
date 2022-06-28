@@ -5,6 +5,8 @@ import { NextRouter, useRouter } from 'next/router';
 import { isAppUrl } from '../../../utils/urls';
 import { usePublicHref } from '../../../utils/usePublicHref';
 import { Heading } from '@navikt/ds-react';
+import { analyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
+import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 
 const navigate = (router: NextRouter, href: string) => {
     if (isAppUrl(href)) {
@@ -22,6 +24,10 @@ export type LinkPanelNavnoProps = {
     linkTextSize?: DsHeadingSize;
     linkUnderline?: 'default' | 'onHover';
     linkColor?: 'blue' | 'black';
+    linkProps?: Omit<
+        React.ComponentProps<typeof LenkeBase>,
+        'href' | 'children'
+    >;
     icon?: React.ReactNode;
     children?: React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>;
@@ -35,15 +41,26 @@ export const LinkPanelNavno = ({
     linkTextSize = 'medium',
     linkUnderline = 'default',
     linkColor = 'blue',
+    linkProps,
     icon,
     children,
-    ...divAttribs
+    ...divProps
 }: LinkPanelNavnoProps) => {
     const router = useRouter();
     const publicHref = usePublicHref(href);
+    const { layoutConfig } = useLayoutConfig();
 
     const handleClick = (e) => {
-        divAttribs.onClick?.(e);
+        logAmplitudeEvent(linkProps.event || analyticsEvents.NAVIGATION, {
+            komponent: 'LinkPanelNavno' || linkProps.component,
+            lenkegruppe: linkProps.linkGroup,
+            seksjon: linkProps.linkGroup || layoutConfig.title,
+            destinasjon: publicHref,
+            lenketekst: linkProps.analyticsLabel || linkText,
+        });
+
+        divProps.onClick?.(e);
+        linkProps.onClick?.(e);
 
         if (e.defaultPrevented) {
             return;
@@ -55,7 +72,7 @@ export const LinkPanelNavno = ({
 
     return (
         <div
-            {...divAttribs}
+            {...divProps}
             onClick={handleClick}
             onKeyDown={(e) => {
                 if (e.key !== 'Enter') {
@@ -67,7 +84,7 @@ export const LinkPanelNavno = ({
             className={classNames(
                 'linkPanelNavno',
                 icon && 'linkPanelWithIcon',
-                divAttribs.className
+                divProps.className
             )}
             tabIndex={0}
             role={'link'}

@@ -28,12 +28,18 @@ export const FrontpageContactPart = ({
                 href={'#'}
                 linkText={chatTitle}
                 onClick={(e) => openChatbot(e)}
+                linkProps={{
+                    linkGroup: 'frontpage-contact',
+                }}
             >
                 {chatIngress}
             </LinkPanelNavno>
             <LinkPanelNavno
                 href={contactUsLink?._path}
                 linkText={contactUsTitle}
+                linkProps={{
+                    linkGroup: 'frontpage-contact',
+                }}
             >
                 {contactUsIngress}
             </LinkPanelNavno>

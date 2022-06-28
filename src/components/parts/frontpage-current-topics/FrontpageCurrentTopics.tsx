@@ -35,6 +35,9 @@ export const FrontpageCurrentTopics = ({
                         linkTextSize={'medium'}
                         href={item._path}
                         className={style.item}
+                        linkProps={{
+                            linkGroup: 'frontpage-current-topics',
+                        }}
                         key={item._id}
                     >
                         <span className={style.date}>

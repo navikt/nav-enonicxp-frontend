@@ -33,6 +33,7 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
                         linkUnderline={'onHover'}
                         linkColor={'black'}
                         icon={<FancyChevron color={'blue'} scale={0.55} />}
+                        linkGroup={'frontpage-shortcuts'}
                         className={classNames(
                             style.item,
                             chevronStyle.animateOnHover

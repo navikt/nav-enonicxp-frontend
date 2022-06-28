@@ -69,6 +69,7 @@ export const IndexPageAreasSection = ({
                         title={areaContent.data.header}
                         area={areaContent.data.area}
                         navigate={navigate}
+                        linkGroup={'frontpage-area-navigation'}
                         className={classNames(
                             style.areaPanel,
                             currentType === ContentType.AreaPage &&
