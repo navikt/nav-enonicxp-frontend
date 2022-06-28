@@ -13,6 +13,7 @@ import { useAuthState } from '../../../store/hooks/useAuthState';
 import { capitalize } from '../../../utils/string';
 import { translator } from '../../../translations';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { Right } from '@navikt/ds-icons';
 
 import style from './FrontpageLoggedinSectionLayout.module.scss';
 
@@ -25,6 +26,7 @@ const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
 
     return (
         <LenkeStandalone href={url} className={style.myPage}>
+            <Right className={style.arrow} />
             {text}
         </LenkeStandalone>
     );
@@ -80,6 +82,14 @@ export const FrontpageLoggedinSectionLayout = ({
                 className={style.layout}
             >
                 <HeaderWithName headerText={header} />
+                <Header
+                    level={'2'}
+                    size={'small'}
+                    justify={'left'}
+                    className={style.services}
+                >
+                    Dine tjenester
+                </Header>
                 <Region
                     pageProps={pageProps}
                     regionProps={regions.cards}
