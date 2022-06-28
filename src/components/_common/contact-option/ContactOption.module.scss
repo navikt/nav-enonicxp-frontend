@@ -50,6 +50,7 @@
     .linkContent {
         // Set a padding with equivalent negative margins to allow focus-highlight
         // to break out of the container
+        display: flex;
         $outerPadding: 0.5rem;
         $bottomMargin: 1rem - $outerPadding;
         padding: $outerPadding;
@@ -58,13 +59,17 @@
     }
 
     .icon {
-        height: 2.53rem;
-        background-size: 2rem;
+        display: flex;
+        align-self: center;
+        height: 1.4rem;
+        width: 1.4rem;
+        background-size: 1.4rem;
         background-repeat: no-repeat;
         background-position: center left;
-        margin-bottom: 1rem;
+        margin-right: 0.5rem;
 
         &.chat {
+            margin-right: 0.7rem;
             background-image: url('/gfx/chat.svg');
         }
 
@@ -73,6 +78,7 @@
         }
 
         &.call {
+            margin-right: 0.5rem;
             background-image: url('/gfx/phone.svg');
         }
 

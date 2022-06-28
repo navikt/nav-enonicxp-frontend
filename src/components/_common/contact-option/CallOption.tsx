@@ -141,7 +141,7 @@ export const CallOption = (props: CallOptionProps) => {
             return buildOpeningLaterTodayString(from);
         }
 
-        return `${openClosedText} (${sharedTranslations['businessDays']} ${from} - ${to})`;
+        return `${openClosedText}`;
     };
 
     const todaysOpeningHour =
@@ -165,7 +165,7 @@ export const CallOption = (props: CallOptionProps) => {
             >
                 <div className={style.linkContent}>
                     <div className={classNames(style.icon, style.call)} />
-                    <Heading level="3" size="medium" className={style.link}>
+                    <Heading level="3" size="small" className={style.link}>
                         {title}
                     </Heading>
                 </div>

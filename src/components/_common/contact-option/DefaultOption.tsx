@@ -113,12 +113,14 @@ export const DefaultOption = (props: DefaultContactProps) => {
                     <div
                         className={classNames(style.icon, style[getIconName()])}
                     />
-                    <Heading level="3" size="medium">
+                    <Heading level="3" size="small">
                         {getTitle()}
                     </Heading>
                 </div>
             </LenkeBase>
-            <BodyLong className={style.text}>{getIngress()}</BodyLong>
+            <BodyLong className={style.text}>
+                <div dangerouslySetInnerHTML={{ __html: getIngress() }} />
+            </BodyLong>
         </div>
     );
 };

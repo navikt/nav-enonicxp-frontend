@@ -168,7 +168,7 @@ export const translationsBundleEn: Translations = {
             openNow: 'Open',
             opensAt: 'Opens {$1} at {$2}',
             closedNow: 'Closed now',
-            seeMoreOptions: 'See more options',
+            seeMoreOptions: 'See more phone numbers and calling options',
             todaysPhoneOpeningHours: 'Phone hours today',
             callUsAt: 'Call us at',
             businessDays: 'business days',
