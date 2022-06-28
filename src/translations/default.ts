@@ -137,14 +137,14 @@ export const translationsBundleNb = {
     },
     contactPoint: {
         chat: {
-            title: 'Chat med Frida',
+            title: 'Chat med oss',
             ingress:
-                'Du møter først en chatbot, men kan gå videre og chatte med en veileder uten å logge inn (hverdager 09.00–15.00).',
+                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 09:00-15:00). <br/><br/> Vil du ha hjelp i saken din, ber vi deg om å logge inn.',
         },
         write: {
             title: 'Skriv til oss',
             ingress:
-                'Skal du sende oss nye opplysninger i saken din? "Skriv til oss" er et sikkert alternativ til e-post.',
+                'Send beskjed eller nye opplysninger i saken din. Du kan også sende spørsmål. <br/><br/> Svartid er 4 arbeidsdager. Vil du ha svar raskere, kan du bruke chat.',
         },
         navoffice: {
             title: 'Finn ditt NAV-kontor',
@@ -158,7 +158,7 @@ export const translationsBundleNb = {
         call: {
             title: 'Ring oss på 55 55 33 33',
             ingress:
-                'Åpningstider: hverdager 09:00–15:00. Hvis åpningstidene er midlertidig endret, får du beskjed via automatisk svarer.',
+                'Hverdager 09:00–15:00. Vi kan ringe deg tilbake hvis ventetiden er over 5 minutter.',
         },
         shared: {
             generalOpeningHours: 'Ordinære åpningstider',
@@ -168,7 +168,7 @@ export const translationsBundleNb = {
             openNow: 'Åpent nå',
             opensAt: 'Åpner {$1} kl {$2}',
             closedNow: 'Stengt nå',
-            seeMoreOptions: 'Mer om åpningstider og tastevalg',
+            seeMoreOptions: 'Se flere telefonnummer og tastevalg',
             todaysPhoneOpeningHours: 'Åpningstider på telefon i dag',
             callUsAt: 'Ring oss på',
             businessDays: 'hverdager',
