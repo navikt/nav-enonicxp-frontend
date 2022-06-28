@@ -3,6 +3,9 @@ const withTranspileModules = require('next-transpile-modules')([
     '@navikt/ds-react',
     '@navikt/ds-icons',
 ]);
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE_BUNDLE === 'true',
+});
 
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
@@ -141,7 +144,7 @@ console.log(
     `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Failover: ${isFailover}`
 );
 
-module.exports = withPlugins([withTranspileModules], {
+module.exports = withPlugins([withTranspileModules, withBundleAnalyzer], {
     distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: isFailover
         ? process.env.FAILOVER_ORIGIN
