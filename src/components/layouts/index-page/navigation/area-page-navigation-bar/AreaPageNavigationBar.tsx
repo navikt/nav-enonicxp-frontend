@@ -109,11 +109,7 @@ export const AreaPageNavigationBar = ({
                 className={style.navigationBar}
                 onScroll={onNavigationBarScroll}
             >
-                <ul
-                    className={style.navigationWrapper}
-                    ref={navigationWrapper}
-                    role="navigation"
-                >
+                <ul className={style.navigationWrapper} ref={navigationWrapper}>
                     {areasRefs.map((areaContent) => {
                         const path = getPublicPathname(areaContent);
 

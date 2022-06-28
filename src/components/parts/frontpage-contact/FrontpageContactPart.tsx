@@ -3,6 +3,7 @@ import { FrontpageContanctPartProps } from '../../../types/component-props/parts
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { openChatbot } from '../../../utils/chatbot';
 import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
+import { Heading } from '@navikt/ds-react';
 
 import style from './FrontpageContactPart.module.scss';
 
@@ -14,6 +15,7 @@ export const FrontpageContactPart = ({
     }
 
     const {
+        title,
         chatTitle,
         chatIngress,
         contactUsTitle,
@@ -23,20 +25,25 @@ export const FrontpageContactPart = ({
 
     return (
         <div className={style.container}>
-            <LinkPanelNavno
-                className={style.chat}
-                href={'#'}
-                linkText={chatTitle}
-                onClick={(e) => openChatbot(e)}
-            >
-                {chatIngress}
-            </LinkPanelNavno>
-            <LinkPanelNavno
-                href={contactUsLink?._path}
-                linkText={contactUsTitle}
-            >
-                {contactUsIngress}
-            </LinkPanelNavno>
+            <Heading size={'large'} level={'2'} className={style.header}>
+                {title}
+            </Heading>
+            <div className={style.links}>
+                <LinkPanelNavno
+                    className={style.chat}
+                    href={'#'}
+                    linkText={chatTitle}
+                    onClick={(e) => openChatbot(e)}
+                >
+                    {chatIngress}
+                </LinkPanelNavno>
+                <LinkPanelNavno
+                    href={contactUsLink?._path}
+                    linkText={contactUsTitle}
+                >
+                    {contactUsIngress}
+                </LinkPanelNavno>
+            </div>
         </div>
     );
 };
