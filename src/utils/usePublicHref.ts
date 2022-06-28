@@ -1,5 +1,9 @@
 import { usePathMap } from '../store/hooks/usePathMap';
-import { getInternalRelativePath, isInternalUrl } from './urls';
+import {
+    getInternalRelativePath,
+    isInternalUrl,
+    stripXpPathPrefix,
+} from './urls';
 
 export const usePublicHref = (href: string) => {
     const { internalPathToCustomPath } = usePathMap();
@@ -9,5 +13,5 @@ export const usePublicHref = (href: string) => {
         return internalPathToCustomPath[internalPath] || internalPath;
     }
 
-    return href || '/';
+    return stripXpPathPrefix(href) || '/';
 };
