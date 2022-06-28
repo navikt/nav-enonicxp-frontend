@@ -32,6 +32,7 @@ export const FrontpageContactPart = ({
                 <LinkPanelNavno
                     className={style.chat}
                     href={'#'}
+                    linkGroup={title}
                     linkText={chatTitle}
                     onClick={(e) => openChatbot(e)}
                 >
@@ -39,6 +40,7 @@ export const FrontpageContactPart = ({
                 </LinkPanelNavno>
                 <LinkPanelNavno
                     href={contactUsLink?._path}
+                    linkGroup={title}
                     linkText={contactUsTitle}
                 >
                     {contactUsIngress}

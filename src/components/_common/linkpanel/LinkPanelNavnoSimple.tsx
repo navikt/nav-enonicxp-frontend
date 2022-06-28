@@ -37,7 +37,7 @@ export const LinkPanelNavnoSimple = ({
                 icon && style.withIcon,
                 className,
             )}
-            component={'Lenkepanel navno'}
+            component={'Lenkepanel navno enkel'}
             linkGroup={linkGroup}
         >
             {icon && <div className={style.icon}>{icon}</div>}
