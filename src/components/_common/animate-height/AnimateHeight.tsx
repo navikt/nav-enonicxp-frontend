@@ -32,6 +32,7 @@ export const AnimateHeight = ({
         useState<React.ReactNode>(children);
 
     useEffect(() => {
+        // Prevents the animations from running on the initial render
         if (isFirstRender) {
             setIsFirstRender(false);
             return;
