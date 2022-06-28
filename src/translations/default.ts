@@ -54,6 +54,9 @@ const productDetailTypes: { [key in ProductDetailType]: string } = {
 };
 
 export const translationsBundleNb = {
+    areaPage: {
+        chooseArea: 'Velg et område',
+    },
     stringParts: {
         conjunction: 'og',
     },
