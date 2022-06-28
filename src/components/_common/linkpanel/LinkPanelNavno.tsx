@@ -19,6 +19,7 @@ type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 export type LinkPanelNavnoProps = {
     href: string;
     linkText: string;
+    linkGroup?: string;
     linkTextSize?: DsHeadingSize;
     linkUnderline?: 'default' | 'onHover';
     linkColor?: 'blue' | 'black';
@@ -32,30 +33,29 @@ export type LinkPanelNavnoProps = {
 export const LinkPanelNavno = ({
     href,
     linkText,
+    linkGroup,
     linkTextSize = 'medium',
     linkUnderline = 'default',
     linkColor = 'blue',
     icon,
     children,
-    ...divAttribs
+    ...divProps
 }: LinkPanelNavnoProps) => {
     const router = useRouter();
     const publicHref = usePublicHref(href);
 
     const handleClick = (e) => {
-        divAttribs.onClick?.(e);
-
+        divProps.onClick?.(e);
         if (e.defaultPrevented) {
             return;
         }
-
         e.preventDefault();
         navigate(router, publicHref);
     };
 
     return (
         <div
-            {...divAttribs}
+            {...divProps}
             onClick={handleClick}
             onKeyDown={(e) => {
                 if (e.key !== 'Enter') {
@@ -67,7 +67,7 @@ export const LinkPanelNavno = ({
             className={classNames(
                 'linkPanelNavno',
                 icon && 'linkPanelWithIcon',
-                divAttribs.className
+                divProps.className
             )}
             tabIndex={0}
             role={'link'}
@@ -83,6 +83,9 @@ export const LinkPanelNavno = ({
                         'navds-heading',
                         `navds-heading--${linkTextSize}`
                     )}
+                    analyticsLabel={linkText}
+                    component={'Lenkepanel navno'}
+                    linkGroup={linkGroup}
                     tabIndex={-1}
                 >
                     {linkText}

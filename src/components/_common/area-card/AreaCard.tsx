@@ -14,6 +14,7 @@ type Props = {
     title: string;
     area: string;
     navigate?: (path: string) => void;
+    linkGroup?: string;
     className?: string;
 } & Omit<React.ComponentProps<typeof LinkPanel>, 'as'>;
 
@@ -22,6 +23,7 @@ export const AreaCard = ({
     title,
     area,
     navigate,
+    linkGroup,
     className,
     ...rest
 }: Props) => {
@@ -45,7 +47,8 @@ export const AreaCard = ({
                     {...props}
                     href={path}
                     analyticsLabel={title}
-                    component="area-card"
+                    component={'Områdekort'}
+                    linkGroup={linkGroup}
                     navigate={navigate}
                 >
                     {props.children}

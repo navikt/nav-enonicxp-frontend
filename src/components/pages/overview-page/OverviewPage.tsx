@@ -14,7 +14,6 @@ import { OverviewSearch } from './overview-search/OverviewSearch';
 import style from './OverviewPage.module.scss';
 import { TaxonomyFilter } from './taxonomy-filter/TaxonomyFilter';
 import { Taxonomy } from 'types/taxonomies';
-import { typeOf } from 'mathjs';
 import { classNames } from 'utils/classnames';
 import { ProductDetailType } from 'types/content-props/product-details';
 
