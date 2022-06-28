@@ -5,8 +5,6 @@ import { NextRouter, useRouter } from 'next/router';
 import { isAppUrl } from '../../../utils/urls';
 import { usePublicHref } from '../../../utils/usePublicHref';
 import { Heading } from '@navikt/ds-react';
-import { analyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
-import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 
 const navigate = (router: NextRouter, href: string) => {
     if (isAppUrl(href)) {
@@ -21,13 +19,10 @@ type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 export type LinkPanelNavnoProps = {
     href: string;
     linkText: string;
+    linkGroup?: string;
     linkTextSize?: DsHeadingSize;
     linkUnderline?: 'default' | 'onHover';
     linkColor?: 'blue' | 'black';
-    linkProps?: Omit<
-        React.ComponentProps<typeof LenkeBase>,
-        'href' | 'children'
-    >;
     icon?: React.ReactNode;
     children?: React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>;
@@ -38,34 +33,22 @@ export type LinkPanelNavnoProps = {
 export const LinkPanelNavno = ({
     href,
     linkText,
+    linkGroup,
     linkTextSize = 'medium',
     linkUnderline = 'default',
     linkColor = 'blue',
-    linkProps,
     icon,
     children,
     ...divProps
 }: LinkPanelNavnoProps) => {
     const router = useRouter();
     const publicHref = usePublicHref(href);
-    const { layoutConfig } = useLayoutConfig();
 
     const handleClick = (e) => {
-        logAmplitudeEvent(linkProps.event || analyticsEvents.NAVIGATION, {
-            komponent: 'LinkPanelNavno' || linkProps.component,
-            lenkegruppe: linkProps.linkGroup,
-            seksjon: linkProps.linkGroup || layoutConfig.title,
-            destinasjon: publicHref,
-            lenketekst: linkProps.analyticsLabel || linkText,
-        });
-
         divProps.onClick?.(e);
-        linkProps.onClick?.(e);
-
         if (e.defaultPrevented) {
             return;
         }
-
         e.preventDefault();
         navigate(router, publicHref);
     };
@@ -100,6 +83,9 @@ export const LinkPanelNavno = ({
                         'navds-heading',
                         `navds-heading--${linkTextSize}`
                     )}
+                    analyticsLabel={linkText}
+                    component={'Lenkepanel navno'}
+                    linkGroup={linkGroup}
                     tabIndex={-1}
                 >
                     {linkText}

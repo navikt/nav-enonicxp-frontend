@@ -30,10 +30,10 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
                 {contentList.data.sectionContents.map((item) => (
                     <LinkPanelNavnoSimple
                         href={item._path}
+                        linkGroup={title}
                         linkUnderline={'onHover'}
                         linkColor={'black'}
                         icon={<FancyChevron color={'blue'} scale={0.55} />}
-                        linkGroup={'frontpage-shortcuts'}
                         className={classNames(
                             style.item,
                             chevronStyle.animateOnHover

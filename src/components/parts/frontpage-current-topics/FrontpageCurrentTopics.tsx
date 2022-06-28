@@ -31,13 +31,11 @@ export const FrontpageCurrentTopics = ({
             <div className={style.list}>
                 {contentList.data.sectionContents.map((item) => (
                     <LinkPanelNavno
+                        linkGroup={title}
                         linkText={item.displayName}
                         linkTextSize={'medium'}
                         href={item._path}
                         className={style.item}
-                        linkProps={{
-                            linkGroup: 'frontpage-current-topics',
-                        }}
                         key={item._id}
                     >
                         <span className={style.date}>

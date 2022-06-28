@@ -38,10 +38,6 @@ export const IndexPageAreasSection = ({
         setCurrentType(__typename);
     }, [__typename, currentType, currentId, _id]);
 
-    const useFrontpageTransition =
-        prevType === ContentType.FrontPage &&
-        currentType === ContentType.AreaPage;
-
     return (
         <div
             className={classNames(
@@ -69,7 +65,7 @@ export const IndexPageAreasSection = ({
                         title={areaContent.data.header}
                         area={areaContent.data.area}
                         navigate={navigate}
-                        linkGroup={'frontpage-area-navigation'}
+                        linkGroup={pageProps.data.areasHeader}
                         className={classNames(
                             style.areaPanel,
                             currentType === ContentType.AreaPage &&

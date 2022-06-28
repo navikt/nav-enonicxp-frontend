@@ -47,7 +47,7 @@ export const AreaCard = ({
                     {...props}
                     href={path}
                     analyticsLabel={title}
-                    component={'area-card'}
+                    component={'Områdekort'}
                     linkGroup={linkGroup}
                     navigate={navigate}
                 >
