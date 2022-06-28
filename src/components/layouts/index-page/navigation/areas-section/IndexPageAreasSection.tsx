@@ -26,7 +26,7 @@ export const IndexPageAreasSection = ({
 
     const [currentId, setCurrentId] = useState(_id);
     const [currentType, setCurrentType] = useState<ContentType>(__typename);
-    const [prevType, setPrevType] = useState<ContentType>();
+    const [setPrevType] = useState<ContentType>();
 
     useEffect(() => {
         if (currentId === _id) {
@@ -65,7 +65,7 @@ export const IndexPageAreasSection = ({
                         title={areaContent.data.header}
                         area={areaContent.data.area}
                         navigate={navigate}
-                        linkGroup={pageProps.data.areasHeader}
+                        linkGroup={__typename === ContentType.FrontPage && pageProps.data.areasHeader}
                         className={classNames(
                             style.areaPanel,
                             currentType === ContentType.AreaPage &&
