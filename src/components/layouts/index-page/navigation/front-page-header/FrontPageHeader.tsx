@@ -25,7 +25,7 @@ export const FrontPageHeader = ({ content }: Props) => {
 
     return (
         <Header
-            level={'1'}
+            level={'2'}
             justify={'left'}
             size={'large'}
             className={classNames(
