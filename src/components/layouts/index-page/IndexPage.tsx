@@ -102,5 +102,7 @@ export const IndexPage = ({ pageProps }: Props) => {
         return null;
     }
 
+    console.log(pageProps._path);
+
     return <IndexPageContent {...pageProps} />;
 };
