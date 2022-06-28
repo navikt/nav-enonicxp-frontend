@@ -187,11 +187,6 @@ module.exports = withPlugins([withTranspileModules, withBundleAnalyzer], {
         ...(process.env.ENV === 'prod'
             ? [
                   {
-                      source: '/',
-                      destination: '/no/person',
-                      permanent: false,
-                  },
-                  {
                       source: '/forsiden',
                       destination: '/no/person',
                       permanent: false,
