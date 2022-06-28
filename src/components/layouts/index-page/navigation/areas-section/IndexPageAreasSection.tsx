@@ -26,7 +26,7 @@ export const IndexPageAreasSection = ({
 
     const [currentId, setCurrentId] = useState(_id);
     const [currentType, setCurrentType] = useState<ContentType>(__typename);
-    const [setPrevType] = useState<ContentType>();
+    const [prevType, setPrevType] = useState<ContentType>();
 
     useEffect(() => {
         if (currentId === _id) {
