@@ -28,8 +28,10 @@ spec:
     - name: NPM_CONFIG_CACHE
       value: /tmp/npm-cache
   replicas:
-    min: 1
-    max: 2
+  {{#with replicas}}
+    min: {{min}}
+    max: {{max}}
+  {{/with}}
   accessPolicy:
     inbound:
       rules:
