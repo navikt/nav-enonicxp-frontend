@@ -10,6 +10,11 @@
     }
 
     @include common.full-width-mixin();
+
+    @media #{common.$mq-screen-mobile} {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
 
 .headerAndNavBar {
