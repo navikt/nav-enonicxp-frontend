@@ -3,17 +3,28 @@
 $chatPointerSize: 1.5rem;
 
 .container {
-    $padding: 2.75rem;
+    $padding-desktop: 2.75rem;
 
     @include common.full-width-mixin();
 
     background-color: #fff;
-    padding-top: $padding - 0.5rem; // subtract white gap
-    padding-bottom: $padding;
+    padding-top: $padding-desktop - 0.5rem; // subtract white gap
+    padding-bottom: $padding-desktop;
+
+    @media #{common.$mq-screen-mobile} {
+        padding-top: 1.5rem - 0.5rem; // subtract white gap
+        padding-bottom: 1.5rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
 }
 
 .header {
     margin-bottom: 1.5rem;
+
+    @media #{common.$mq-screen-mobile} {
+        margin-bottom: 1rem;
+    }
 }
 
 .links {

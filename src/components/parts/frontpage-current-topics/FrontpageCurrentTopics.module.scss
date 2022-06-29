@@ -4,10 +4,18 @@
     background-color: common.$navds-semantic-color-canvas-background;
     padding: 2.75rem;
     @include common.full-width-mixin();
+
+    @media #{common.$mq-screen-mobile} {
+        padding: 1.5rem 1rem;
+    }
 }
 
 .header {
     margin-bottom: 1.5rem;
+
+    @media #{common.$mq-screen-mobile} {
+        margin-bottom: 1rem;
+    }
 }
 
 .list {
