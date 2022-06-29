@@ -27,15 +27,13 @@ export const AreaPageHeaderBanner = ({ banner, header }: Props) => {
             analyticsLabel={header}
             linkGroup={header}
         >
-            <>
-                <div className={style.content}>
-                    <ParsedHtml htmlProps={html} />
-                </div>
+            <div className={style.content}>
+                <ParsedHtml htmlProps={html} />
+            </div>
 
-                <div className={style.icon}>
-                    <FancyChevron color={'white'} scale={0.55} />
-                </div>
-            </>
+            <div className={style.icon}>
+                <FancyChevron color={'white'} scale={0.55} />
+            </div>
         </LenkeBase>
     );
 };
