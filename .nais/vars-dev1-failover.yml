@@ -4,3 +4,6 @@ revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev1
 secret: nav-enonicxp-dev1
 ingresses:
   - https://www-failover.dev.nav.no
+replicas:
+  min: 1
+  max: 2
