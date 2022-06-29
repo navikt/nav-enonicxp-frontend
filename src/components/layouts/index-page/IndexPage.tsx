@@ -13,8 +13,6 @@ import {
     ContentProps,
     ContentType,
 } from '../../../types/content-props/_content-common';
-import { AlertBox } from '../../_common/alert-box/AlertBox';
-import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import { AnimateHeight } from '../../_common/animate-height/AnimateHeight';
 import { IndexPageTemplate } from './IndexPageTemplate';
 import { store } from '../../../store/store';
