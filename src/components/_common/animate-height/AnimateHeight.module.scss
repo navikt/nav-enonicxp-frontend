@@ -1,5 +1,9 @@
 @use 'src/common' as common;
 
+.container {
+    background-color: var(--navds-semantic-color-component-background-light);
+}
+
 .animated {
     overflow-y: hidden;
     transition-property: height, opacity;

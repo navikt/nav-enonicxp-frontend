@@ -59,6 +59,7 @@ const IndexPageContent = (basePageProps: IndexPageContentProps) => {
             />
             <AnimateHeight trigger={_id} fullwidth={true}>
                 <Region
+                    className={style.contentBottom}
                     pageProps={currentPageProps}
                     regionProps={regions.contentBottom}
                 />
