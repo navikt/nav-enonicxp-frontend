@@ -17,7 +17,7 @@ type Props = {
 export const AreaPageHeaderBanner = ({ banner, header }: Props) => {
     const { link, html, color } = banner;
     const { url } = getSelectableLinkProps(link);
-    console.log(header);
+
     return (
         <LenkeBase
             className={classNames(style.banner, chevronStyle.animateOnHover)}
