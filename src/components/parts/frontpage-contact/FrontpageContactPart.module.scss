@@ -3,17 +3,17 @@
 $chatPointerSize: 1.5rem;
 
 .container {
-    $padding: 2rem;
+    $padding: 2.75rem;
 
     @include common.full-width-mixin();
 
     background-color: #fff;
-    padding-top: $padding;
+    padding-top: $padding - 0.5rem; // subtract white gap
     padding-bottom: $padding + $chatPointerSize;
 }
 
 .header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .links {

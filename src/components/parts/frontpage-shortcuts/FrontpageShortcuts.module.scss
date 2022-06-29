@@ -2,12 +2,14 @@
 
 .shortcuts {
     background-color: common.$navPink;
-    padding: 2rem;
+    padding-top: 2.75rem;
+    padding-bottom: 4rem;
+
     @include common.full-width-mixin();
 }
 
 .header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .list {

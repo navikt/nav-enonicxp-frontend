@@ -2,12 +2,12 @@
 
 .currentTopics {
     background-color: common.$navds-semantic-color-canvas-background;
-    padding: 2rem;
+    padding: 2.75rem;
     @include common.full-width-mixin();
 }
 
 .header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .list {
