@@ -6,6 +6,11 @@ metadata:
   namespace: personbruker
   labels:
     team: personbruker
+  annotations:
+    config.linkerd.io/proxy-cpu-limit: 2
+    config.linkerd.io/proxy-cpu-request: 500m
+    config.linkerd.io/proxy-memory-limit: 2Gi
+    config.linkerd.io/proxy-memory-request: 1Gi
 spec:
   image: {{image}}
   team: personbruker
