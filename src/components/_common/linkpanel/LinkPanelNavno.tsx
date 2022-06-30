@@ -1,8 +1,7 @@
 import React from 'react';
 import { classNames } from '../../../utils/classnames';
 import { useRouter } from 'next/router';
-import { isAppUrl } from '../../../utils/urls';
-import { usePublicHref } from '../../../utils/usePublicHref';
+import { usePublicUrl } from '../../../utils/usePublicUrl';
 import { Heading } from '@navikt/ds-react';
 import { analyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
@@ -35,7 +34,7 @@ export const LinkPanelNavno = ({
     ...divProps
 }: LinkPanelNavnoProps) => {
     const router = useRouter();
-    const publicHref = usePublicHref(href);
+    const { url, canRouteClientSide } = usePublicUrl(href);
     const { layoutConfig } = useLayoutConfig();
 
     const handleClick = (e) => {
@@ -49,15 +48,15 @@ export const LinkPanelNavno = ({
             komponent: 'Lenkepanel navno',
             lenkegruppe: linkGroup,
             seksjon: linkGroup || layoutConfig.title,
-            destinasjon: publicHref,
+            destinasjon: url,
             lenketekst: linkText,
         });
 
         e.preventDefault();
-        if (isAppUrl(publicHref)) {
-            router.push(publicHref);
+        if (canRouteClientSide) {
+            router.push(url);
         } else {
-            window.location.href = publicHref;
+            window.location.href = url;
         }
     };
 
@@ -83,7 +82,7 @@ export const LinkPanelNavno = ({
             {icon && <div className={'linkPanelNavnoIcon'}>{icon}</div>}
             <div>
                 <a
-                    href={publicHref}
+                    href={url}
                     className={classNames(
                         'linkPanelNavnoLink',
                         linkUnderline === 'onHover' && 'underlineToggle',
