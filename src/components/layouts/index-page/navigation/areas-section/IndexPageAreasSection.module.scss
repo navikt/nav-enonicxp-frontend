@@ -3,22 +3,3 @@
 .grid {
     @include common.grid-layout-mixin();
 }
-
-.frontpageAreaCard {
-    display: flex;
-    justify-content: space-between;
-}
-
-.areaPageHeader {
-    animation-name: expandActive;
-    animation-duration: 0ms;
-    animation-fill-mode: forwards;
-    animation-direction: alternate;
-    animation-timing-function: ease-in;
-
-    @media (prefers-reduced-motion: no-preference) {
-        &.animate {
-            animation-duration: 500ms;
-        }
-    }
-}

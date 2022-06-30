@@ -29,11 +29,7 @@ export const IndexPageAreasSection = ({
     return (
         <div className={classNames(!isAreapage && style.grid)}>
             {isAreapage ? (
-                <AreaPageHeader
-                    areaContent={pageProps}
-                    className={classNames(style.areaPageHeader)}
-                    key={_id}
-                />
+                <AreaPageHeader areaContent={pageProps} key={_id} />
             ) : (
                 areaRefs.map((areaContent) => (
                     <AreaCard
@@ -42,7 +38,6 @@ export const IndexPageAreasSection = ({
                         area={areaContent.data.area}
                         navigate={navigate}
                         linkGroup={pageProps.data.areasHeader}
-                        className={classNames(style.frontpageAreaCard)}
                         onClick={() => {
                             windowScrollTo(0);
                         }}
