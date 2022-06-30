@@ -10,6 +10,10 @@ $color: common.$navds-semantic-color-link;
 
     text-decoration: none;
 
+    @media #{common.$mq-screen-mobile-small} {
+        padding: 0.625rem;
+    }
+
     &.withIcon {
         align-items: center;
     }
@@ -40,6 +44,11 @@ $color: common.$navds-semantic-color-link;
 .text {
     transition: border-bottom-color 0.15s ease-out;
     border-bottom: 2px common.$navds-semantic-color-link solid;
+
+    @media #{common.$mq-screen-mobile-small} {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
 
     &.black {
         color: common.$navds-semantic-color-text;
