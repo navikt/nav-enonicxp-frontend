@@ -40,7 +40,7 @@ $color: common.$navds-semantic-color-link;
 
 .linkPanelNavnoLink {
     text-decoration: none;
-    border-bottom: 2px common.$navds-semantic-color-link solid;
+    border-bottom: 1.5px common.$navds-semantic-color-link solid;
     transition: border-bottom-color 0.15s ease-out;
 
     &.black {
