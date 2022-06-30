@@ -2,12 +2,22 @@
 
 .shortcuts {
     background-color: common.$navPink;
-    padding: 2rem;
+    padding-top: 2.75rem;
+    padding-bottom: 4rem;
+
     @include common.full-width-mixin();
+
+    @media #{common.$mq-screen-mobile} {
+        padding: 1.5rem 1rem;
+    }
 }
 
 .header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+
+    @media #{common.$mq-screen-mobile} {
+        margin-bottom: 1rem;
+    }
 }
 
 .list {

@@ -11,4 +11,14 @@ $maxWidth: 1272px;
             padding-bottom: 2rem;
         }
     }
+
+    @media #{common.$mq-screen-mobile} {
+        margin-top: -0.5rem; //kompenser for TopContainer
+    }
+}
+
+.contentBottom {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
 }

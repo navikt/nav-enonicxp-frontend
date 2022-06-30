@@ -90,6 +90,7 @@ export const AnimateHeight = ({
     return (
         <div
             className={classNames(
+                style.container,
                 heightToRender !== null && style.animated,
                 fadeOut && style.fade,
                 fullwidth && style.fullwidth
