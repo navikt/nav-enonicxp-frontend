@@ -1,13 +1,26 @@
 import React from 'react';
 import { MacroGlobalValueWithMathProps } from '../../../types/macro-props/global-value-with-math';
-import { create, all } from 'mathjs/lib/esm/number';
+import {
+    create,
+    evaluateDependencies,
+    addDependencies,
+    subtractDependencies,
+    multiplyDependencies,
+    divideDependencies,
+} from 'mathjs/lib/esm/number';
 import globalState from '../../../globalState';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language } from 'translations';
 
 import { formatNumber } from '../../../utils/math';
 
-const math = create(all);
+const math = create({
+    evaluateDependencies,
+    addDependencies,
+    subtractDependencies,
+    multiplyDependencies,
+    divideDependencies,
+});
 
 type ExpressionProps =
     MacroGlobalValueWithMathProps['config']['global_value_with_math'];
