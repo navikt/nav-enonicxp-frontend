@@ -28,35 +28,28 @@ export const IndexPageAreasSection = ({
 
     return (
         <div className={classNames(!isAreapage && style.grid)}>
-            {isAreapage && (
+            {isAreapage ? (
                 <AreaPageHeader
                     areaContent={pageProps}
-                    className={classNames(style.areaPanelActive)}
+                    className={classNames(style.areaPageHeader)}
                     key={_id}
                 />
-            )}
-            {areaRefs.map((areaContent) => {
-                return (
+            ) : (
+                areaRefs.map((areaContent) => (
                     <AreaCard
                         path={getPublicPathname(areaContent)}
                         title={areaContent.data.header}
                         area={areaContent.data.area}
                         navigate={navigate}
-                        linkGroup={
-                            __typename === ContentType.FrontPage &&
-                            pageProps.data.areasHeader
-                        }
-                        className={classNames(
-                            style.areaPanel,
-                            isAreapage && style.areaPanelHidden
-                        )}
+                        linkGroup={pageProps.data.areasHeader}
+                        className={classNames(style.areaCard)}
                         onClick={() => {
                             windowScrollTo(0);
                         }}
                         key={areaContent._id}
                     />
-                );
-            })}
+                ))
+            )}
         </div>
     );
 };
