@@ -42,7 +42,7 @@ export const IndexPageAreasSection = ({
                         area={areaContent.data.area}
                         navigate={navigate}
                         linkGroup={pageProps.data.areasHeader}
-                        className={classNames(style.areaCard)}
+                        className={classNames(style.frontpageAreaCard)}
                         onClick={() => {
                             windowScrollTo(0);
                         }}
