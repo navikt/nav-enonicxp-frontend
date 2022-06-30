@@ -19,7 +19,11 @@
 }
 
 .list {
-    @include common.grid-layout-mixin(2);
+    @include common.grid-layout-mixin(
+        $numCols: 2,
+        $rowGapMobileSmall: 0.75rem,
+        $columnGapMobileSmall: 0.75rem
+    );
 }
 
 .item {
