@@ -7,9 +7,9 @@ import { IndexPageNavigationCallback } from '../routing/useIndexPageRouting';
 import { getPublicPathname } from '../../../../../utils/urls';
 import { AreaPageHeader } from './area-page-header/AreaPageHeader';
 import { AreaCard } from '../../../../_common/area-card/AreaCard';
+import { windowScrollTo } from '../../../../../utils/scroll-to';
 
 import style from './IndexPageAreasSection.module.scss';
-import { windowScrollTo } from '../../../../../utils/scroll-to';
 
 type Props = {
     pageProps: IndexPageContentProps;
@@ -24,61 +24,27 @@ export const IndexPageAreasSection = ({
 }: Props) => {
     const { __typename, _id } = pageProps;
 
-    const [currentId, setCurrentId] = useState(_id);
-    const [currentType, setCurrentType] = useState<ContentType>(__typename);
-    const [prevType, setPrevType] = useState<ContentType>();
-
-    useEffect(() => {
-        if (currentId === _id) {
-            return;
-        }
-
-        setCurrentId(_id);
-        setPrevType(currentType);
-        setCurrentType(__typename);
-    }, [__typename, currentType, currentId, _id]);
+    const isAreapage = __typename === ContentType.AreaPage;
 
     return (
-        <div
-            className={classNames(
-                __typename === ContentType.FrontPage && style.grid
-            )}
-        >
-            {areaRefs.map((areaContent) => {
-                const { _id } = areaContent;
-
-                const isHeaderPanel =
-                    __typename === ContentType.AreaPage && currentId === _id;
-
-                return isHeaderPanel ? (
-                    <AreaPageHeader
-                        areaContent={pageProps}
-                        className={classNames(
-                            style.areaPanelActive
-                            // useFrontpageTransition && style.animate
-                        )}
-                        key={_id}
-                    />
-                ) : (
+        <div className={classNames(!isAreapage && style.grid)}>
+            {isAreapage ? (
+                <AreaPageHeader areaContent={pageProps} key={_id} />
+            ) : (
+                areaRefs.map((areaContent) => (
                     <AreaCard
                         path={getPublicPathname(areaContent)}
                         title={areaContent.data.header}
                         area={areaContent.data.area}
                         navigate={navigate}
-                        linkGroup={__typename === ContentType.FrontPage && pageProps.data.areasHeader}
-                        className={classNames(
-                            style.areaPanel,
-                            currentType === ContentType.AreaPage &&
-                                style.areaPanelHidden
-                            // useFrontpageTransition && style.animate
-                        )}
+                        linkGroup={pageProps.data.areasHeader}
                         onClick={() => {
                             windowScrollTo(0);
                         }}
-                        key={_id}
+                        key={areaContent._id}
                     />
-                );
-            })}
+                ))
+            )}
         </div>
     );
 };
