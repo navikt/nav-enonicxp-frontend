@@ -8,7 +8,7 @@ import {
 
 type ReturnValue = {
     url: string;
-    isAppUrl: boolean; // If this is true, navigation to the url can be done client-side with next router
+    canRouteClientSide: boolean; // If this is true, navigation to the url can be done client-side with next router
 };
 
 export const usePublicUrl = (href: string): ReturnValue => {
@@ -18,9 +18,9 @@ export const usePublicUrl = (href: string): ReturnValue => {
         const internalPath = getInternalRelativePath(href);
         return {
             url: internalPathToCustomPath[internalPath] || internalPath,
-            isAppUrl: isAppUrl(internalPath),
+            canRouteClientSide: isAppUrl(internalPath),
         };
     }
 
-    return { url: stripXpPathPrefix(href) || '/', isAppUrl: false };
+    return { url: stripXpPathPrefix(href) || '/', canRouteClientSide: false };
 };

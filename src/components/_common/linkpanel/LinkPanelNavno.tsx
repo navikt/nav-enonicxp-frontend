@@ -34,7 +34,7 @@ export const LinkPanelNavno = ({
     ...divProps
 }: LinkPanelNavnoProps) => {
     const router = useRouter();
-    const { url, isAppUrl } = usePublicUrl(href);
+    const { url, canRouteClientSide } = usePublicUrl(href);
     const { layoutConfig } = useLayoutConfig();
 
     const handleClick = (e) => {
@@ -53,7 +53,7 @@ export const LinkPanelNavno = ({
         });
 
         e.preventDefault();
-        if (isAppUrl) {
+        if (canRouteClientSide) {
             router.push(url);
         } else {
             window.location.href = url;

@@ -40,7 +40,7 @@ export const LenkeBase = ({
     const shouldPrefetch = false;
     // prefetch === false || !!pageConfig.editorView ? false : undefined;
 
-    const { url, isAppUrl } = usePublicUrl(href);
+    const { url, canRouteClientSide } = usePublicUrl(href);
     const analyticsData = {
         komponent: component,
         lenkegruppe: linkGroup,
@@ -65,7 +65,7 @@ export const LenkeBase = ({
         </a>
     );
 
-    return isAppUrl ? (
+    return canRouteClientSide ? (
         <Link href={url} passHref={true} prefetch={shouldPrefetch}>
             {linkElement}
         </Link>
