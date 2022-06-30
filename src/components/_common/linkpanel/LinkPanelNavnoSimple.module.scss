@@ -5,7 +5,7 @@ $color: common.$navds-semantic-color-link;
 .linkPanel {
     display: flex;
 
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
     border-radius: common.$border-radius-xlarge;
 
     text-decoration: none;
@@ -34,7 +34,7 @@ $color: common.$navds-semantic-color-link;
 }
 
 .icon {
-    margin-right: 1.25rem;
+    margin-right: 1rem;
 }
 
 .text {
