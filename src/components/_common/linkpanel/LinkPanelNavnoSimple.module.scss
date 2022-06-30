@@ -42,8 +42,8 @@ $color: common.$navds-semantic-color-link;
     border-bottom: 2px common.$navds-semantic-color-link solid;
 
     &.black {
-        color: black;
-        border-bottom-color: black;
+        color: common.$navds-semantic-color-text;
+        border-bottom-color: common.$navds-semantic-color-text;
     }
 
     &.underline {
