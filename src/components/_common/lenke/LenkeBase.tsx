@@ -1,10 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
-import { isNofollowUrl, isAppUrl } from 'utils/urls';
+import { isNofollowUrl } from 'utils/urls';
 import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { onlyText } from 'utils/react-children';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
-import { usePublicHref } from '../../../utils/usePublicHref';
+import { usePublicUrl } from '../../../utils/usePublicUrl';
 
 /**
  * This component handles client-side async navigation for URLs internal to this app (as well as analytics for links)
@@ -40,17 +40,17 @@ export const LenkeBase = ({
     const shouldPrefetch = false;
     // prefetch === false || !!pageConfig.editorView ? false : undefined;
 
-    const finalHref = usePublicHref(href);
+    const { url, isAppUrl } = usePublicUrl(href);
     const analyticsData = {
         komponent: component,
         lenkegruppe: linkGroup,
         seksjon: linkGroup || layoutConfig.title,
-        destinasjon: finalHref,
+        destinasjon: url,
         lenketekst: analyticsLabel || onlyText(children),
     };
     const linkElement = (
         <a
-            href={finalHref}
+            href={url}
             onClick={(e) => {
                 logAmplitudeEvent(
                     event || analyticsEvents.NAVIGATION,
@@ -58,15 +58,15 @@ export const LenkeBase = ({
                 );
                 onClick?.(e);
             }}
-            rel={isNofollowUrl(finalHref) ? 'nofollow' : undefined}
+            rel={isNofollowUrl(url) ? 'nofollow' : undefined}
             {...rest}
         >
             {children}
         </a>
     );
 
-    return isAppUrl(href) ? (
-        <Link href={finalHref} passHref={true} prefetch={shouldPrefetch}>
+    return isAppUrl ? (
+        <Link href={url} passHref={true} prefetch={shouldPrefetch}>
             {linkElement}
         </Link>
     ) : (
