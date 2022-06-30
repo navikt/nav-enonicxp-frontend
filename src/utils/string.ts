@@ -60,8 +60,8 @@ export const capitalize = (str: string) =>
     str
         .split(' ')
         .map((word) => {
-            return `${word.charAt(0).toUpperCase()}${word
-                .slice(1)
-                .toLowerCase()}`;
+            return `${word
+                .toLowerCase()
+                .replace(/(^|[\s-])\S/g, (word) => word.toUpperCase())}`;
         })
         .join(' ');
