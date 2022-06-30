@@ -46,6 +46,9 @@ const areas: { [key in Area]: string } = {
 };
 
 export const translationsBundleNn = {
+    areaPage: {
+        chooseArea: 'Velg eit område',
+    },
     stringParts: {
         conjunction: 'og',
     },

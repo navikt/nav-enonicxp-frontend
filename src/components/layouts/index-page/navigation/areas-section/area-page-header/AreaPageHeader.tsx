@@ -22,7 +22,7 @@ export const AreaPageHeader = ({ areaContent, className }: Props) => {
                 <Heading level={'1'} size={'xlarge'}>
                     {header}
                 </Heading>
-                {banner && <AreaPageHeaderBanner {...banner} />}
+                {banner && <AreaPageHeaderBanner banner={banner} header={header} />}
             </div>
             <div
                 className={classNames(

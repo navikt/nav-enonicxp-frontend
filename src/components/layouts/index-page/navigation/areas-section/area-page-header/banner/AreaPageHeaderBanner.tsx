@@ -9,9 +9,13 @@ import { classNames } from '../../../../../../../utils/classnames';
 import style from './AreaPageHeaderBanner.module.scss';
 import chevronStyle from '../../../../../../_common/chevron/FancyChevronCommon.module.scss';
 
-type Props = AreaPageProps['data']['banner'];
+type Props = {
+    banner: AreaPageProps['data']['banner'],
+    header: AreaPageProps['data']['header'],
+};
 
-export const AreaPageHeaderBanner = ({ html, link, color }: Props) => {
+export const AreaPageHeaderBanner = ({ banner, header }: Props) => {
+    const { link, html, color } = banner;
     const { url } = getSelectableLinkProps(link);
 
     return (
@@ -19,6 +23,9 @@ export const AreaPageHeaderBanner = ({ html, link, color }: Props) => {
             className={classNames(style.banner, chevronStyle.animateOnHover)}
             href={url}
             style={{ '--hover-color': color } as React.CSSProperties}
+            component={'Områdebanner'}
+            analyticsLabel={header}
+            linkGroup={header}
         >
             <div className={style.content}>
                 <ParsedHtml htmlProps={html} />

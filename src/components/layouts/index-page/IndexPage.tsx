@@ -38,10 +38,6 @@ const IndexPageContent = (basePageProps: IndexPageContentProps) => {
         >
             <Head>
                 <title>{getPageTitle(currentPageProps)}</title>
-                {/*TODO: Remove this before public release*/}
-                {!currentPageProps.data?.customPath && (
-                    <meta name={'robots'} content={'noindex, nofollow'} />
-                )}
             </Head>
             <AnimateHeight trigger={_id} fadeTime={0} fullwidth={true}>
                 {__typename === ContentType.FrontPage && (

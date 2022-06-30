@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { classNames } from '../../../../../utils/classnames';
+import { translator } from 'translations';
 import { AreaPageProps } from '../../../../../types/content-props/index-pages-props';
 import { getPublicPathname } from '../../../../../utils/urls';
 import { IndexPageLink } from '../routing/IndexPageLink';
@@ -13,8 +14,10 @@ import { NavigationButton } from './NavigationButton';
 import { IndexPageNavigationCallback } from '../routing/useIndexPageRouting';
 
 import style from './AreaPageNavigationBar.module.scss';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 type Props = {
+    header: string;
     isVisible: boolean;
     areasRefs: AreaPageProps[];
     pageId: string;
@@ -28,16 +31,20 @@ enum Scrollability {
 }
 
 export const AreaPageNavigationBar = ({
+    header,
     isVisible,
     areasRefs,
     pageId,
     navigate,
 }: Props) => {
+    const { language } = usePageConfig();
     const navigationBar = useRef(null);
     const navigationWrapper = useRef(null);
     const [scrollability, setScrollability] = useState<Scrollability>(
         Scrollability.RIGHT_ONLY
     );
+
+    const getLanguageLabels = translator('areaPage', language);
 
     const focusEventHandler = (e: React.FocusEvent) => {
         const { target } = e;
@@ -98,6 +105,7 @@ export const AreaPageNavigationBar = ({
                 style.areaPageNavigation,
                 !isVisible && style.hidden
             )}
+            aria-label={getLanguageLabels('chooseArea')}
         >
             <NavigationButton
                 direction={1}
@@ -117,6 +125,7 @@ export const AreaPageNavigationBar = ({
                             <li key={areaContent._id}>
                                 <IndexPageLink
                                     href={path}
+                                    header={header}
                                     className={style.areasPageNavigationLink}
                                     onFocus={focusEventHandler}
                                     navigate={navigate}
