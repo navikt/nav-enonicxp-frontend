@@ -18,7 +18,11 @@
 }
 
 .headerAndNavBar {
-    min-height: common.px-to-rem(74px);
     overflow: hidden;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
+
+    @media #{common.$mq-screen-desktop} {
+        min-height: common.px-to-rem(64px);
+        padding-bottom: 0;
+    }
 }
