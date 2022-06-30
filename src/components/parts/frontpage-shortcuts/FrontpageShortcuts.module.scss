@@ -30,4 +30,11 @@
     :global(.linkPanelNavnoIcon) {
         margin-right: 1.5rem;
     }
+
+    :global(.linkPanelNavnoLink) {
+        @media #{common.$mq-screen-mobile-small} {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+    }
 }
