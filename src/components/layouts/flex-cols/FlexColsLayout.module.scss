@@ -21,6 +21,10 @@
 
     :global(.region__flexcols--2-cols) {
         @include common.flex-cols-mixin(2, 2rem);
+
+        @media #{common.$mq-screen-mobile} {
+            @include common.flex-cols-mixin(1, 2rem);
+        }
     }
 
     :global(.region__flexcols--3-cols) {
