@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkPanelNavno } from '../linkpanel/LinkPanelNavno';
-import { openChatbot } from '../../../utils/chatbot';
+import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 
 import style from './ChatbotLinkPanel.module.scss';
 
@@ -17,7 +17,10 @@ export const ChatbotLinkPanel = ({
             href={'#'}
             linkGroup={analyticsGroup}
             linkText={linkText}
-            onClick={(e) => openChatbot(e)}
+            onClick={(e) => {
+                e.preventDefault();
+                openChatbot();
+            }}
         >
             {ingress}
         </LinkPanelNavno>

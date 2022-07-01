@@ -25,7 +25,7 @@
         "@navikt/ds-react": "^0.16.7",
         "@navikt/ds-tokens": "^0.8.3",
         "@navikt/fnrvalidator": "^1.1.4",
-        "@navikt/nav-dekoratoren-moduler": "^1.6.16",
+        "@navikt/nav-dekoratoren-moduler": "^1.6.17-beta.0",
         "@reduxjs/toolkit": "^1.8.0",
         "amplitude-js": "^8.17.0",
         "classnames": "^2.3.1",
