@@ -12,7 +12,6 @@ const showOnContentTypes: { [Type in ContentType]?: true } = {
     [ContentType.MainArticleChapter]: true,
     [ContentType.PageList]: true,
     [ContentType.SectionPage]: true,
-    [ContentType.MainArticle]: true,
 };
 
 type Props = {
