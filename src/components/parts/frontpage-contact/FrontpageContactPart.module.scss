@@ -1,7 +1,5 @@
 @use 'src/common' as common;
 
-$chatPointerSize: 1.5rem;
-
 .container {
     $padding-desktop: 2.75rem;
 
@@ -34,26 +32,4 @@ $chatPointerSize: 1.5rem;
 
 .links {
     @include common.grid-layout-mixin(2);
-}
-
-.chat {
-    $bgColor: common.$navds-global-color-blue-50;
-    $borderRadius: 24px;
-
-    position: relative;
-    background-color: $bgColor;
-    border-radius: $borderRadius $borderRadius $borderRadius 0;
-
-    &:after {
-        content: '';
-        position: absolute;
-        bottom: -$chatPointerSize;
-        left: 0;
-        width: 0;
-        height: 0;
-        border-right: $chatPointerSize solid transparent;
-        border-top: $chatPointerSize solid $bgColor;
-
-        display: block;
-    }
 }
