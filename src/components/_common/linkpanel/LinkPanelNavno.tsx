@@ -81,20 +81,22 @@ export const LinkPanelNavno = ({
             role={'link'}
         >
             {icon && <div className={'linkPanelNavnoIcon'}>{icon}</div>}
-            <div>
-                <a
-                    href={publicHref}
-                    className={classNames(
-                        'linkPanelNavnoLink',
-                        linkUnderline === 'onHover' && 'underlineToggle',
-                        linkColor === 'black' && 'linkBlack',
-                        'navds-heading',
-                        `navds-heading--${linkTextSize}`
-                    )}
-                    tabIndex={-1}
-                >
-                    {linkText}
-                </a>
+            <div className="linkPanelNavnoTextContent">
+                <div>
+                    <a
+                        href={publicHref}
+                        className={classNames(
+                            'linkPanelNavnoLink',
+                            linkUnderline === 'onHover' && 'underlineToggle',
+                            linkColor === 'black' && 'linkBlack',
+                            'navds-heading',
+                            `navds-heading--${linkTextSize}`
+                        )}
+                        tabIndex={-1}
+                    >
+                        {linkText}
+                    </a>
+                </div>
                 {children && (
                     <div className={classNames('linkPanelNavnoIngress')}>
                         {children}
