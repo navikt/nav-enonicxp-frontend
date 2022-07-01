@@ -49,15 +49,15 @@ $border-radius: common.$border-radius-xlarge;
                     --navds-semantic-color-component-background-alternate
                 );
 
-                @media (prefers-reduced-motion: no-preference) {
-                    .titleShort {
-                        transform: translateY(-2.5rem);
-                    }
+                // @media (prefers-reduced-motion: no-preference) {
+                //     .titleShort {
+                //         transform: translateY(-2.5rem);
+                //     }
 
-                    .titleLong {
-                        transform: translateY(-1.5rem);
-                    }
-                }
+                //     .titleLong {
+                //         transform: translateY(-1.5rem);
+                //     }
+                // }
             }
         }
     }
