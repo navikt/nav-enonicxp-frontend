@@ -21,10 +21,10 @@ type Props = {
 
 // Temporary component for legacy english pages
 export const EnglishChatbot = ({ content }: Props) => {
-    if (content.language !== 'en' && !showOnContentTypes[content.__typename]) {
+    if (content.language !== 'en' || !showOnContentTypes[content.__typename]) {
         return null;
     }
-    //
+
     return (
         <div className={style.englishChat}>
             <ChatbotLinkPanel
