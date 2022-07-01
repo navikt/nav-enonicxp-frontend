@@ -59,9 +59,9 @@ export const stripLineBreaks = (str: string) =>
 export const capitalize = (str: string) =>
     str
         .split(' ')
-        .map((word) => {
-            return `${word.charAt(0).toUpperCase()}${word
-                .slice(1)
-                .toLowerCase()}`;
+        .map((letter) => {
+            return `${letter
+                .toLowerCase()
+                .replace(/(^|[\s-])\S/g, (letter) => letter.toUpperCase())}`;
         })
         .join(' ');
