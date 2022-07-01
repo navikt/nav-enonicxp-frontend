@@ -26,7 +26,7 @@ $color: common.$navds-semantic-color-link;
                 border-bottom-color: $color;
 
                 &.black {
-                    border-bottom-color: black;
+                    border-bottom-color: common.$navds-semantic-color-text;
                 }
             }
         }
