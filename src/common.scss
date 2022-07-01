@@ -106,7 +106,13 @@ $navPink: #fde6e6;
     }
 }
 
-@mixin grid-layout-mixin($numCols: 3, $rowGap: 1.5rem, $colGap: 1.5rem) {
+@mixin grid-layout-mixin(
+    $numCols: 3,
+    $rowGap: 1.5rem,
+    $colGap: 1.5rem,
+    $rowGapMobileSmall: 0.5rem,
+    $columnGapMobileSmall: 0.5rem
+) {
     display: grid;
     row-gap: $rowGap;
     column-gap: $colGap;
@@ -122,7 +128,8 @@ $navPink: #fde6e6;
 
     @media #{$mq-screen-mobile-small} {
         grid-template-columns: repeat(1, 1fr);
-        gap: 0.75rem;
+        row-gap: $rowGapMobileSmall;
+        column-gap: $columnGapMobileSmall;
     }
 }
 

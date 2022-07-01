@@ -13,8 +13,6 @@ import {
     ContentProps,
     ContentType,
 } from '../../../types/content-props/_content-common';
-import { AlertBox } from '../../_common/alert-box/AlertBox';
-import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import { AnimateHeight } from '../../_common/animate-height/AnimateHeight';
 import { IndexPageTemplate } from './IndexPageTemplate';
 import { store } from '../../../store/store';
@@ -40,10 +38,6 @@ const IndexPageContent = (basePageProps: IndexPageContentProps) => {
         >
             <Head>
                 <title>{getPageTitle(currentPageProps)}</title>
-                {/*TODO: Remove this before public release*/}
-                {!currentPageProps.data?.customPath && (
-                    <meta name={'robots'} content={'noindex, nofollow'} />
-                )}
             </Head>
             <AnimateHeight trigger={_id} fadeTime={0} fullwidth={true}>
                 {__typename === ContentType.FrontPage && (
@@ -59,6 +53,7 @@ const IndexPageContent = (basePageProps: IndexPageContentProps) => {
             />
             <AnimateHeight trigger={_id} fullwidth={true}>
                 <Region
+                    className={style.contentBottom}
                     pageProps={currentPageProps}
                     regionProps={regions.contentBottom}
                 />

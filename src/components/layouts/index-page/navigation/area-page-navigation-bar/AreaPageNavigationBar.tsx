@@ -17,6 +17,7 @@ import style from './AreaPageNavigationBar.module.scss';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 type Props = {
+    header: string;
     isVisible: boolean;
     areasRefs: AreaPageProps[];
     pageId: string;
@@ -30,6 +31,7 @@ enum Scrollability {
 }
 
 export const AreaPageNavigationBar = ({
+    header,
     isVisible,
     areasRefs,
     pageId,
@@ -123,6 +125,7 @@ export const AreaPageNavigationBar = ({
                             <li key={areaContent._id}>
                                 <IndexPageLink
                                     href={path}
+                                    header={header}
                                     className={style.areasPageNavigationLink}
                                     onFocus={focusEventHandler}
                                     navigate={navigate}

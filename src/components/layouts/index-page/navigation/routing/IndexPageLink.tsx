@@ -4,11 +4,13 @@ import { IndexPageNavigationCallback } from './useIndexPageRouting';
 
 type Props = React.ComponentProps<typeof LenkeBase> & {
     navigate: IndexPageNavigationCallback;
+    header: string;
 };
 
 export const IndexPageLink = ({
     href,
     onClick,
+    header,
     children,
     navigate,
     ...rest
@@ -17,6 +19,8 @@ export const IndexPageLink = ({
         <LenkeBase
             {...rest}
             href={href}
+            component={'Områdenavigasjon'}
+            linkGroup={header}
             onClick={(e) => {
                 onClick?.(e);
                 e.preventDefault();
