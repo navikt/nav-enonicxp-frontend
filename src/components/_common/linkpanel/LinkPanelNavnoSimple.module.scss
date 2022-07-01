@@ -23,7 +23,7 @@ $color: common.$navds-semantic-color-link;
             color: common.$navds-semantic-color-link;
             border-bottom-color: transparent;
 
-            &.underline {
+            &.underlineOnHover {
                 border-bottom-color: $color;
 
                 &.black {
@@ -44,7 +44,7 @@ $color: common.$navds-semantic-color-link;
 
 .text {
     transition: border-bottom-color 0.15s ease-out;
-    border-bottom: 2px common.$navds-semantic-color-link solid;
+    border-bottom: 1px common.$navds-semantic-color-link solid;
 
     @media #{common.$mq-screen-mobile-small} {
         font-size: 1.25rem;
@@ -56,7 +56,11 @@ $color: common.$navds-semantic-color-link;
         border-bottom-color: common.$navds-semantic-color-text;
     }
 
-    &.underline {
+    &.underlineOnHover {
         border-bottom-color: transparent;
+    }
+
+    &.underlineNone {
+        border-bottom: none;
     }
 }

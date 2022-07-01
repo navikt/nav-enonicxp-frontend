@@ -26,11 +26,4 @@
 
 .item {
     background-color: white;
-
-    :global(.linkPanelNavnoLink) {
-        @media #{common.$mq-screen-mobile-small} {
-            font-size: 1.25rem;
-            line-height: 1.75rem;
-        }
-    }
 }
