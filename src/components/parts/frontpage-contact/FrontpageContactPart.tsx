@@ -25,9 +25,10 @@ export const FrontpageContactPart = ({
     } = config;
 
     const contactUsUrl =
-        contactUsLink.__typename === ContentType.ExternalLink
+        contactUsLink &&
+        (contactUsLink.__typename === ContentType.ExternalLink
             ? contactUsLink.data.url
-            : contactUsLink._path;
+            : contactUsLink._path);
 
     return (
         <div className={style.container}>
