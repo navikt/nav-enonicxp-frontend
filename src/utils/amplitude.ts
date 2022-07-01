@@ -32,7 +32,7 @@ export function logAmplitudeEvent(
             app: 'nav-enonicxp-frontend',
             origin: 'navno-frontend',
             originVersion: 'unknown',
-            sideUrl: window.location.toString().replace(/^https?:\/\//, ''),
+            platform: window.location.toString(),
         };
         amplitude.getInstance().logEvent(eventName, eventData, resolve);
     });
