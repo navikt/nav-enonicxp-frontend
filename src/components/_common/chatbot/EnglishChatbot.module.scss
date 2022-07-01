@@ -1,0 +1,19 @@
+@use 'src/common';
+
+.englishChat {
+    $width: common.$desktopMaxWidth / 2;
+
+    display: flex;
+    justify-content: center;
+
+    margin: 2rem 0 1rem 0;
+
+    & > div {
+        width: $width;
+        max-width: 100%;
+        background-color: white;
+        &::after {
+            border-top-color: white;
+        }
+    }
+}

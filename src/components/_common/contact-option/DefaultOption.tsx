@@ -7,10 +7,10 @@ import {
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { openChatbot } from 'utils/chatbot';
 import { classNames } from 'utils/classnames';
 import { analyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
+import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 
 import style from './ContactOption.module.scss';
 
@@ -66,7 +66,10 @@ export const DefaultOption = (props: DefaultContactProps) => {
         if (channel === 'chat') {
             return {
                 href: '#',
-                onClick: openChatbot,
+                onClick: (e) => {
+                    e.preventDefault();
+                    openChatbot();
+                },
                 event: analyticsEvents.CHAT_OPEN,
             };
         }
