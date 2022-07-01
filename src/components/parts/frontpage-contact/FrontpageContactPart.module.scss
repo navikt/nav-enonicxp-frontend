@@ -19,6 +19,11 @@ $chatPointerSize: 1.5rem;
     }
 }
 
+// Quick fix for margins when used on the old frontpage type
+:global(.page__main-page) .container {
+    margin-bottom: -2rem;
+}
+
 .header {
     margin-bottom: 1.5rem;
 

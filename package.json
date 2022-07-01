@@ -39,7 +39,7 @@
         "lodash": "^4.17.21",
         "lodash.debounce": "^4.0.8",
         "lottie-web": "^5.8.1",
-        "mathjs": "^10.1.1",
+        "mathjs": "^10.6.4",
         "next": "^12.1.6",
         "next-compose-plugins": "^2.2.1",
         "next-transpile-modules": "^9.0.0",
@@ -55,7 +55,7 @@
         "react-movable": "2.5.4",
         "react-redux": "^7.2.6",
         "rss": "^1.2.2",
-        "sharp": "^0.30.4",
+        "sharp": "^0.30.7",
         "ssri": "6.0.2"
     },
     "devDependencies": {
@@ -63,6 +63,7 @@
         "@next/eslint-plugin-next": "^12.1.6",
         "@octokit/core": "^3.5.1",
         "@types/amplitude-js": "^8.9.3",
+        "@types/mathjs": "^9.4.2",
         "@types/node": "^16.11.19",
         "@types/react": "^17.0.38",
         "@types/react-collapse": "^5.0.1",

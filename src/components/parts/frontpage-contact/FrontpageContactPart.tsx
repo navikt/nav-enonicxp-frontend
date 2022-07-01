@@ -4,6 +4,7 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { openChatbot } from '../../../utils/chatbot';
 import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
 import { Heading } from '@navikt/ds-react';
+import { ContentType } from '../../../types/content-props/_content-common';
 
 import style from './FrontpageContactPart.module.scss';
 
@@ -23,6 +24,12 @@ export const FrontpageContactPart = ({
         contactUsLink,
     } = config;
 
+    const contactUsUrl =
+        contactUsLink &&
+        (contactUsLink.__typename === ContentType.ExternalLink
+            ? contactUsLink.data.url
+            : contactUsLink._path);
+
     return (
         <div className={style.container}>
             <Heading size={'large'} level={'2'} className={style.header}>
@@ -39,7 +46,7 @@ export const FrontpageContactPart = ({
                     {chatIngress}
                 </LinkPanelNavno>
                 <LinkPanelNavno
-                    href={contactUsLink?._path}
+                    href={contactUsUrl}
                     linkGroup={title}
                     linkText={contactUsTitle}
                 >

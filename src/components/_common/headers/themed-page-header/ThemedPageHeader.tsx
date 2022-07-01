@@ -14,6 +14,7 @@ import {
     GuidePageProps,
     ThemedArticlePageProps,
     OverviewPageProps,
+    GenericPageProps,
 } from '../../../../types/content-props/dynamic-page-props';
 import { Audience } from '../../../../types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
@@ -27,7 +28,8 @@ type Props = {
         | ProductPageProps
         | GuidePageProps
         | ThemedArticlePageProps
-        | OverviewPageProps;
+        | OverviewPageProps
+        | GenericPageProps;
 };
 
 export const ThemedPageHeader = ({

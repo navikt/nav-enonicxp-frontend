@@ -142,12 +142,12 @@ export const translationsBundleEn: Translations = {
         chat: {
             title: 'Chat with Frida',
             ingress:
-                'You will meet a chatbot at first, but you can be directed to a counsellor (veileder) without logging in (weekdays 09.00–15.00).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09: 00-15: 00).',
         },
         write: {
             title: 'Write to us',
             ingress:
-                'Need to send us updated information about your case? "Write to us" is a secure alternative to e-mail.',
+                'Send messages or new information regarding your case. You may also ask questions should you have any. <br/> <br/> Response time is a few business days. If you need answers faster, please see our chat service.',
         },
         navoffice: {
             title: 'Find your local NAV office',
