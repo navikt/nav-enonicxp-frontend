@@ -4,10 +4,7 @@ import { ContentProps } from '../../content-props/_content-common';
 
 export type FrontpageContentListData = {
     data: {
-        sectionContents: Pick<
-            ContentProps,
-            '_id' | '_path' | 'displayName' | 'modifiedTime'
-        >[];
+        sectionContents: Partial<ContentProps>[];
     };
 };
 

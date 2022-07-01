@@ -5,6 +5,7 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { FancyChevron } from '../../_common/chevron/FancyChevron';
 import { classNames } from '../../../utils/classnames';
 import { LinkPanelNavnoSimple } from '../../_common/linkpanel/LinkPanelNavnoSimple';
+import { ContentType } from '../../../types/content-props/_content-common';
 
 import style from './FrontpageShortcuts.module.scss';
 import chevronStyle from '../../_common/chevron/FancyChevronCommon.module.scss';
@@ -29,7 +30,11 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
             <div className={style.list}>
                 {contentList.data.sectionContents.map((item) => (
                     <LinkPanelNavnoSimple
-                        href={item._path}
+                        href={
+                            item.__typename === ContentType.ExternalLink
+                                ? item.data.url
+                                : item._path
+                        }
                         linkGroup={title}
                         linkUnderline={'onHover'}
                         linkColor={'black'}
