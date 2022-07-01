@@ -20,6 +20,7 @@ $color: common.$navds-semantic-color-link;
 
     &:hover {
         .text {
+            color: common.$navds-semantic-color-link;
             border-bottom-color: transparent;
 
             &.underline {
