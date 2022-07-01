@@ -134,12 +134,12 @@ export const translationsBundleNn = {
         chat: {
             title: 'Chat med oss',
             ingress:
-                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00). <br/><br/> Vil du ha hjelp i saka di, ber vi deg logge inn.',
+                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00).',
         },
         write: {
             title: 'Skriv til oss',
             ingress:
-                'Send beskjed eller nye opplysningar i saka di. Du kan òg sende spørsmål. <br/><br/> Svartida er 4 arbeidsdagar. Vil du ha raskare svar, kan du bruke chat.',
+                'Send beskjed eller nye opplysningar i saka di. Du kan òg sende spørsmål. <br/><br/> Svartida er nokre arbeidsdagar. Vil du ha raskare svar, kan du bruke chat.',
         },
         navoffice: {
             title: 'Finn ditt NAV-kontor',
