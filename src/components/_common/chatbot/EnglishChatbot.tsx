@@ -29,8 +29,10 @@ export const EnglishChatbot = ({ content }: Props) => {
         <div className={style.englishChat}>
             <ChatbotLinkPanel
                 analyticsGroup={'English chat panel'}
-                linkText={'Chat with us'}
-                ingress={'¯\\_(ツ)_/¯'}
+                linkText={'You can chat with us'}
+                ingress={
+                    'You will first meet chatbot Frida. You can ask Frida to chat with a counsellor (weekdays 09:00–15:00)'
+                }
             />
         </div>
     );
