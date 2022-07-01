@@ -12,9 +12,13 @@ import chevronStyle from '../../_common/chevron/FancyChevronCommon.module.scss';
 export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
     const { contentList, title } = config;
 
-    if (!contentList) {
+    const links = contentList?.data?.sectionContents;
+
+    if (!links) {
         return <EditorHelp text={'Velg en innholdsliste'} />;
     }
+
+    const threeCols = links.length % 3 === 0;
 
     return (
         <div className={style.shortcuts}>
@@ -26,8 +30,13 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
             >
                 {title}
             </Header>
-            <div className={style.list}>
-                {contentList.data.sectionContents.map((item) => (
+            <div
+                className={classNames(
+                    style.list,
+                    threeCols && style.threeCols
+                )}
+            >
+                {links.map((item) => (
                     <LinkPanelNavnoSimple
                         href={item._path}
                         linkGroup={title}
