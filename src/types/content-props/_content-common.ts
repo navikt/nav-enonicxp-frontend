@@ -14,6 +14,7 @@ import { OfficeInformationProps } from './office-information-props';
 import { UrlProps } from './url-props';
 import {
     DynamicPageProps,
+    GenericPageProps,
     GuidePageProps,
     OverviewPageProps,
     ProductDetailsProps,
@@ -164,6 +165,7 @@ type SpecificContentProps =
     | FragmentPageProps
     | ContactInformationProps
     | FrontPageProps
-    | AreaPageProps;
+    | AreaPageProps
+    | GenericPageProps;
 
 export type ContentProps = ContentCommonProps & SpecificContentProps;

@@ -21,7 +21,11 @@
 }
 
 .list {
-    @include common.grid-layout-mixin(3);
+    @include common.grid-layout-mixin(2);
+
+    &.threeCols {
+        @include common.grid-layout-mixin(3);
+    }
 }
 
 .item {

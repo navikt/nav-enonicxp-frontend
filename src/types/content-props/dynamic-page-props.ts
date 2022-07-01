@@ -19,6 +19,7 @@ export type GuidePageData = ProductDataMixin & DynamicPageData;
 export type ProductDetailsData = ProductDetailsDataMixin & DynamicPageData;
 export type SituationPageData = ProductDataMixin & DynamicPageData;
 export type ToolsPageData = ProductDataMixin & DynamicPageData;
+export type GenericPageData = ProductDataMixin & DynamicPageData;
 export type OverviewPageData = Partial<{
     productList: SimplifiedProductData[];
     overviewType: OverviewType;
@@ -58,6 +59,11 @@ export interface SituationPageProps extends ContentCommonProps {
 export interface ToolsPageProps extends ContentCommonProps {
     __typename: ContentType.ToolsPage;
     data: ToolsPageData;
+}
+
+export interface GenericPageProps extends ContentCommonProps {
+    __typename: ContentType.GenericPage;
+    data: GenericPageData;
 }
 
 export interface OverviewPageProps extends ContentCommonProps {
