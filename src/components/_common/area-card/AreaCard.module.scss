@@ -44,21 +44,9 @@ $border-radius: common.$border-radius-xlarge;
         }
 
         @media (hover) {
-            @media only screen and (min-width: common.$mobileSmallMaxWidth) {
-                background-color: var(
-                    --navds-semantic-color-component-background-alternate
-                );
-
-                @media (prefers-reduced-motion: no-preference) {
-                    .titleShort {
-                        transform: translateY(-2.5rem);
-                    }
-
-                    .titleLong {
-                        transform: translateY(-1.5rem);
-                    }
-                }
-            }
+            background-color: var(
+                --navds-semantic-color-component-background-alternate
+            );
         }
     }
 
@@ -68,6 +56,10 @@ $border-radius: common.$border-radius-xlarge;
         :global(.navds-link-panel__title) {
             color: var(--navds-global-color-gray-900);
         }
+    }
+
+    @media only screen and (max-width: 1272px) {
+        height: 136px;
     }
 
     @media #{common.$mq-screen-mobile-small} {
@@ -91,17 +83,4 @@ $border-radius: common.$border-radius-xlarge;
 
     width: 180px;
     margin-left: 1.5rem;
-}
-
-.animationArea {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: $border-radius;
-
-    @media #{common.$mq-screen-mobile-small} {
-        transform: scale(0.5) translateX(-50%);
-        width: 200%;
-        height: 200%;
-    }
 }
