@@ -53,7 +53,8 @@ export const LinkPanelNavnoSimple = ({
                 <span
                     className={classNames(
                         style.text,
-                        linkUnderline === 'onHover' && style.underline,
+                        linkUnderline === 'onHover' && style.underlineOnHover,
+                        linkUnderline === 'none' && style.underlineNone,
                         linkColor === 'black' && style.black
                     )}
                 >

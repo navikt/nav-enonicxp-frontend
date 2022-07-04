@@ -36,8 +36,8 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
                 {links.map((item) => (
                     <LinkPanelNavnoSimple
                         href={item._path}
+                        linkUnderline={'none'}
                         analyticsLinkGroup={title}
-                        linkUnderline={'onHover'}
                         linkColor={'black'}
                         icon={<FancyChevron color={'blue'} scale={0.55} />}
                         className={classNames(
