@@ -15,6 +15,13 @@
         padding-right: 1rem;
         padding-left: 1rem;
     }
+
+    :global(.linkPanelNavnoLink) {
+        @media #{common.$mq-screen-mobile-small} {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+    }
 }
 
 // Quick fix for margins when used on the old frontpage type
