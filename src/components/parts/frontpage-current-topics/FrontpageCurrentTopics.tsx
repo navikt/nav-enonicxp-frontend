@@ -34,6 +34,7 @@ export const FrontpageCurrentTopics = ({
                         analyticsLinkGroup={title}
                         linkText={item.displayName}
                         linkTextSize={'medium'}
+                        linkColor={'black'}
                         href={item._path}
                         className={style.item}
                         key={item._id}
