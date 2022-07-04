@@ -95,7 +95,7 @@ export const PageWrapper = (props: Props) => {
                 footerElement.removeEventListener('mouseover', linkPrefetcher);
             }
         };
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [router, editorView]);
 
     useEffect(() => {
         if (!content) {

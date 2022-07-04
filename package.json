@@ -40,7 +40,7 @@
         "lodash.debounce": "^4.0.8",
         "lottie-web": "^5.8.1",
         "mathjs": "^10.6.4",
-        "next": "^12.1.6",
+        "next": "^12.2.0",
         "next-compose-plugins": "^2.2.1",
         "next-transpile-modules": "^9.0.0",
         "node-cache": "^5.1.2",

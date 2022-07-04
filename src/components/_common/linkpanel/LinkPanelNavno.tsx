@@ -71,6 +71,12 @@ export const LinkPanelNavno = ({
 
                 handleClick(e);
             }}
+            onMouseOver={(e) => {
+                divProps.onMouseOver?.(e);
+                if (canRouteClientSide) {
+                    router.prefetch(url);
+                }
+            }}
             className={classNames(
                 'linkPanelNavno',
                 icon && 'linkPanelWithIcon',
