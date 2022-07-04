@@ -47,7 +47,7 @@ export const LinkPanelNavno = ({
                         'linkPanelNavnoLink',
                         'navds-heading',
                         `navds-heading--${linkTextSize}`,
-                        linkUnderline === 'onHover' && 'underlineToggle',
+                        linkUnderline === 'onHover' && 'underline',
                         linkColor === 'black' && 'linkBlack'
                     )}
                     analyticsComponent={'Lenkepanel navno'}

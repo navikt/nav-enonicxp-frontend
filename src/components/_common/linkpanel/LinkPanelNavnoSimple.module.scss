@@ -1,6 +1,7 @@
 @use 'src/common' as common;
 
-$color: common.$navds-semantic-color-link;
+$blueLinkColor: common.$navds-semantic-color-link;
+$blackLinkColor: common.$navds-semantic-color-text;
 
 .linkPanel {
     display: flex;
@@ -20,14 +21,14 @@ $color: common.$navds-semantic-color-link;
 
     &:hover {
         .text {
-            color: common.$navds-semantic-color-link;
+            color: $blueLinkColor;
             border-bottom-color: transparent;
 
             &.underlineOnHover {
-                border-bottom-color: $color;
+                border-bottom-color: $blueLinkColor;
 
                 &.black {
-                    border-bottom-color: common.$navds-semantic-color-text;
+                    border-bottom-color: $blackLinkColor;
                 }
             }
         }
@@ -43,8 +44,11 @@ $color: common.$navds-semantic-color-link;
 }
 
 .text {
-    transition: border-bottom-color 0.15s ease-out;
-    border-bottom: 1px common.$navds-semantic-color-link solid;
+    transition-property: border-bottom-color, color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+
+    border-bottom: 1px $blueLinkColor solid;
 
     @media #{common.$mq-screen-mobile-small} {
         font-size: 1.25rem;
@@ -53,7 +57,7 @@ $color: common.$navds-semantic-color-link;
 
     &.black {
         color: common.$navds-semantic-color-text;
-        border-bottom-color: common.$navds-semantic-color-text;
+        border-bottom-color: $blackLinkColor;
     }
 
     &.underlineOnHover {

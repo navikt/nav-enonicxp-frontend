@@ -41,7 +41,9 @@ $blackLinkColor: common.$navds-semantic-color-text;
     text-decoration: none;
     color: $blueLinkColor;
     border-bottom: 1px $blueLinkColor solid;
-    transition: border-bottom-color 0.15s ease-out;
+    transition-property: border-bottom-color, color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
 
     &.linkBlack {
         color: $blackLinkColor;
