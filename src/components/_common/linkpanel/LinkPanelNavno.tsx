@@ -40,22 +40,24 @@ export const LinkPanelNavno = ({
         >
             {icon && <div className={'linkPanelNavnoIcon'}>{icon}</div>}
             <div className="linkPanelNavnoTextContent">
-                <LenkeBase
-                    {...elementAttribs}
-                    href={href}
-                    className={classNames(
-                        'linkPanelNavnoLink',
-                        'navds-heading',
-                        `navds-heading--${linkTextSize}`,
-                        linkUnderline === 'onHover' && 'underline',
-                        linkColor === 'black' && 'linkBlack'
-                    )}
-                    analyticsComponent={'Lenkepanel navno'}
-                    analyticsLinkGroup={analyticsLinkGroup}
-                    analyticsLabel={linkText}
-                >
-                    {linkText}
-                </LenkeBase>
+                <span>
+                    <LenkeBase
+                        {...elementAttribs}
+                        href={href}
+                        className={classNames(
+                            'linkPanelNavnoLink',
+                            'navds-heading',
+                            `navds-heading--${linkTextSize}`,
+                            linkUnderline === 'onHover' && 'underline',
+                            linkColor === 'black' && 'linkBlack'
+                        )}
+                        analyticsComponent={'Lenkepanel navno'}
+                        analyticsLinkGroup={analyticsLinkGroup}
+                        analyticsLabel={linkText}
+                    >
+                        {linkText}
+                    </LenkeBase>
+                </span>
                 {children && (
                     <div className={classNames('linkPanelNavnoIngress')}>
                         {children}

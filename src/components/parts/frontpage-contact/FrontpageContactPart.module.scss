@@ -2,18 +2,21 @@
 
 .container {
     $padding-desktop: 2.75rem;
+    $padding-mobile-y: 1rem;
+    $padding-mobile-x: 1.5rem;
+    $whiteGap: 0.5rem;
 
     @include common.full-width-mixin();
 
     background-color: #fff;
-    padding-top: $padding-desktop - 0.5rem; // subtract white gap
+    padding-top: $padding-desktop - $whiteGap;
     padding-bottom: $padding-desktop;
 
     @media #{common.$mq-screen-mobile} {
-        padding-top: 1.5rem - 0.5rem; // subtract white gap
-        padding-bottom: 1.5rem;
-        padding-right: 1rem;
-        padding-left: 1rem;
+        padding-top: $padding-mobile-y - $whiteGap;
+        padding-bottom: $padding-mobile-y;
+        padding-right: $padding-mobile-x;
+        padding-left: $padding-mobile-x;
     }
 }
 
