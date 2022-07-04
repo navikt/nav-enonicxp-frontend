@@ -5,12 +5,15 @@
 }
 
 $border-radius: common.$border-radius-xlarge;
+$height-full-size: 160px;
+$size-medium: 0.85;
+$size-small: 0.5;
 
 .linkPanel {
     @include transitionMixin;
 
     background-color: var(--navds-global-color-deepblue-50);
-    height: 160px;
+    height: $height-full-size;
     width: 100%;
     border-radius: $border-radius;
     border-style: none;
@@ -59,11 +62,11 @@ $border-radius: common.$border-radius-xlarge;
     }
 
     @media only screen and (max-width: 1272px) {
-        height: 136px;
+        height: $height-full-size * $size-medium;
     }
 
-    @media #{common.$mq-screen-mobile-small} {
-        height: 80px;
+    @media #{common.$mq-screen-mobile} {
+        height: $height-full-size * $size-small;
 
         .titleShort,
         .titleLong {
