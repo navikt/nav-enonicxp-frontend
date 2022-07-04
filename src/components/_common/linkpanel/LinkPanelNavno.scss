@@ -57,6 +57,7 @@ $color: common.$navds-semantic-color-link;
         outline: none;
     }
 
+    // Stretches the link over the entire parent container
     &:after {
         content: '';
         position: absolute;
