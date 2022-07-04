@@ -8,11 +8,11 @@ type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 export type LinkPanelNavnoProps = {
     href: string;
     linkText: string;
-    linkGroup?: string;
     linkTextSize?: DsHeadingSize;
     linkUnderline?: 'default' | 'onHover';
     linkColor?: 'blue' | 'black';
     icon?: React.ReactNode;
+    analyticsLinkGroup?: string;
     children?: React.ReactNode;
 } & React.HTMLAttributes<HTMLAnchorElement>;
 
@@ -22,11 +22,11 @@ export type LinkPanelNavnoProps = {
 export const LinkPanelNavno = ({
     href,
     linkText,
-    linkGroup,
     linkTextSize = 'medium',
     linkUnderline = 'default',
     linkColor = 'blue',
     icon,
+    analyticsLinkGroup,
     children,
     ...elementAttribs
 }: LinkPanelNavnoProps) => {
@@ -51,7 +51,7 @@ export const LinkPanelNavno = ({
                         linkColor === 'black' && 'linkBlack'
                     )}
                     analyticsComponent={'Lenkepanel navno'}
-                    analyticsLinkGroup={linkGroup}
+                    analyticsLinkGroup={analyticsLinkGroup}
                     analyticsLabel={linkText}
                 >
                     {linkText}

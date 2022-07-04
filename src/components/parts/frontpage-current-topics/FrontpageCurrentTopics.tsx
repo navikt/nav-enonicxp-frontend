@@ -31,7 +31,7 @@ export const FrontpageCurrentTopics = ({
             <div className={style.list}>
                 {contentList.data.sectionContents.map((item) => (
                     <LinkPanelNavno
-                        linkGroup={title}
+                        analyticsLinkGroup={title}
                         linkText={item.displayName}
                         linkTextSize={'medium'}
                         href={item._path}

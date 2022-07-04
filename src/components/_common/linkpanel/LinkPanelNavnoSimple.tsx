@@ -3,13 +3,16 @@ import { classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 
 import style from './LinkPanelNavnoSimple.module.scss';
+import { Heading } from '@navikt/ds-react';
+
+type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 
 type Props = {
     href: string;
     analyticsLinkGroup?: string;
-    linkTextSize?;
-    linkUnderline?;
-    linkColor?;
+    linkTextSize?: DsHeadingSize;
+    linkUnderline?: 'default' | 'onHover';
+    linkColor?: 'blue' | 'black';
     icon?: React.ReactNode;
     children: React.ReactNode;
 } & React.ComponentProps<typeof LenkeBase>;

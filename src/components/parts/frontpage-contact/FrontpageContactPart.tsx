@@ -43,7 +43,7 @@ export const FrontpageContactPart = ({
                 />
                 <LinkPanelNavno
                     href={contactUsUrl}
-                    linkGroup={title}
+                    analyticsLinkGroup={title}
                     linkText={contactUsTitle}
                 >
                     {contactUsIngress}
