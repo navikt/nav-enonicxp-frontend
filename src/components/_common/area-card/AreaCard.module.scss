@@ -51,6 +51,23 @@ $size-small: 0.5;
             background-color: var(
                 --navds-semantic-color-component-background-alternate
             );
+
+            // 04.07.22 - (Midlertidig) skru av animasjon av tekst. Skal kanskje reverseres en gang.
+            // @media only screen and (min-width: common.$mobileSmallMaxWidth) {
+            //     background-color: var(
+            //         --navds-semantic-color-component-background-alternate
+            //     );
+
+            //     @media (prefers-reduced-motion: no-preference) {
+            //         .titleShort {
+            //             transform: translateY(-2.5rem);
+            //         }
+
+            //         .titleLong {
+            //             transform: translateY(-1.5rem);
+            //         }
+            //     }
+            // }
         }
     }
 
