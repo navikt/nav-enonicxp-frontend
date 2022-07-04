@@ -33,7 +33,7 @@
         color: common.$navds-semantic-color-text;
         border-bottom-color: common.$navds-semantic-color-text;
 
-        @media #{common.$mq-screen-mobile-small} {
+        @media #{common.$mq-screen-mobile} {
             font-size: 1.25rem;
             line-height: 1.75rem;
         }
