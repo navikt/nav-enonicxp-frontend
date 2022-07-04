@@ -1,9 +1,9 @@
 import React from 'react';
 import { classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
+import { Heading } from '@navikt/ds-react';
 
 import style from './LinkPanelNavnoSimple.module.scss';
-import { Heading } from '@navikt/ds-react';
 
 type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 
@@ -11,7 +11,7 @@ type Props = {
     href: string;
     analyticsLinkGroup?: string;
     linkTextSize?: DsHeadingSize;
-    linkUnderline?: 'default' | 'onHover';
+    linkUnderline?: 'default' | 'onHover' | 'none';
     linkColor?: 'blue' | 'black';
     icon?: React.ReactNode;
     children: React.ReactNode;

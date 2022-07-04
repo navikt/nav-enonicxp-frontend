@@ -1,7 +1,5 @@
 import React from 'react';
 import { classNames } from '../../../utils/classnames';
-import { useRouter } from 'next/router';
-import { usePublicUrl } from '../../../utils/usePublicUrl';
 import { Heading } from '@navikt/ds-react';
 import { LenkeBase } from '../lenke/LenkeBase';
 
@@ -42,22 +40,6 @@ export const LinkPanelNavno = ({
         >
             {icon && <div className={'linkPanelNavnoIcon'}>{icon}</div>}
             <div className="linkPanelNavnoTextContent">
-                <div>
-                    <a
-                        href={url}
-                        className={classNames(
-                            'linkPanelNavnoLink',
-                            linkUnderline === 'onHover' && 'underlineToggle',
-                            linkColor === 'black' && 'linkBlack',
-                            'navds-heading',
-                            `navds-heading--${linkTextSize}`
-                        )}
-                        tabIndex={-1}
-                    >
-                        {linkText}
-                    </a>
-                </div>
-            <div>
                 <LenkeBase
                     {...elementAttribs}
                     href={href}
