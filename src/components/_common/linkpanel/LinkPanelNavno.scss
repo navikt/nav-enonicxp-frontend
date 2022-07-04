@@ -26,7 +26,7 @@ $color: common.$navds-semantic-color-link;
                 border-bottom-color: $color;
 
                 &.black {
-                    border-bottom-color: black;
+                    border-bottom-color: common.$navds-semantic-color-text;
                 }
             }
         }
@@ -40,12 +40,12 @@ $color: common.$navds-semantic-color-link;
 
 .linkPanelNavnoLink {
     text-decoration: none;
-    border-bottom: 2px common.$navds-semantic-color-link solid;
+    border-bottom: 1px common.$navds-semantic-color-link solid;
     transition: border-bottom-color 0.15s ease-out;
 
     &.black {
-        color: black;
-        border-bottom-color: black;
+        color: common.$navds-semantic-color-text;
+        border-bottom-color: common.$navds-semantic-color-text;
     }
 
     &.underline {

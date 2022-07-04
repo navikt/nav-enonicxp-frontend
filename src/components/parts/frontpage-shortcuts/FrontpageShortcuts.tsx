@@ -40,7 +40,7 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
                     <LinkPanelNavnoSimple
                         href={item._path}
                         linkGroup={title}
-                        linkUnderline={'onHover'}
+                        linkUnderline={'none'}
                         linkColor={'black'}
                         icon={<FancyChevron color={'blue'} scale={0.55} />}
                         className={classNames(
