@@ -51,9 +51,9 @@ export const Card = (props: CardProps) => {
         <LenkeBase
             href={url}
             title={text}
-            linkGroup={layoutConfig.title}
+            analyticsLinkGroup={layoutConfig.title}
             analyticsLabel={link.text}
-            component={componentDisplayName(type, size)}
+            analyticsComponent={componentDisplayName(type, size)}
             className={classNames(
                 style.card,
                 size === CardSize.Micro ? style.inline : '',

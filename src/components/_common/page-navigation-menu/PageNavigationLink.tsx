@@ -50,8 +50,8 @@ export const PageNavigationLink = React.memo(
             <LenkeBase
                 href={`#${targetId}`}
                 onClick={setLocationHashAndScrollToTarget}
-                linkGroup={'Innhold'}
-                component={'Meny for intern-navigasjon'}
+                analyticsLinkGroup={'Innhold'}
+                analyticsComponent={'Meny for intern-navigasjon'}
                 className={classNames(
                     style.pageNavLink,
                     currentViewStyle.pageNavLink,

@@ -1,10 +1,7 @@
 import React from 'react';
 import { classNames } from '../../../utils/classnames';
-import { useRouter } from 'next/router';
-import { usePublicUrl } from '../../../utils/usePublicUrl';
 import { Heading } from '@navikt/ds-react';
-import { analyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
-import { useLayoutConfig } from '../../layouts/useLayoutConfig';
+import { LenkeBase } from '../lenke/LenkeBase';
 
 type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
 
@@ -17,7 +14,7 @@ export type LinkPanelNavnoProps = {
     linkColor?: 'blue' | 'black';
     icon?: React.ReactNode;
     children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLDivElement>;
+} & React.HTMLAttributes<HTMLAnchorElement>;
 
 // This component wraps only the link text in an anchor tag, although the whole panel is clickable as a navigation
 // element. This is meant to improve the experience when using screen readers on link panels with rich content.
@@ -31,75 +28,34 @@ export const LinkPanelNavno = ({
     linkColor = 'blue',
     icon,
     children,
-    ...divProps
+    ...elementAttribs
 }: LinkPanelNavnoProps) => {
-    const router = useRouter();
-    const { url, canRouteClientSide } = usePublicUrl(href);
-    const { layoutConfig } = useLayoutConfig();
-
-    const handleClick = (e) => {
-        divProps.onClick?.(e);
-        if (e.defaultPrevented) {
-            return;
-        }
-
-        // TODO: rewrite this for commonality with LenkeBase and other implementations
-        logAmplitudeEvent(analyticsEvents.NAVIGATION, {
-            komponent: 'Lenkepanel navno',
-            lenkegruppe: linkGroup,
-            seksjon: linkGroup || layoutConfig.title,
-            destinasjon: url,
-            lenketekst: linkText,
-        });
-
-        e.preventDefault();
-        if (canRouteClientSide) {
-            router.push(url);
-        } else {
-            window.location.href = url;
-        }
-    };
-
     return (
         <div
-            {...divProps}
-            onClick={handleClick}
-            onKeyDown={(e) => {
-                if (e.key !== 'Enter') {
-                    return;
-                }
-
-                handleClick(e);
-            }}
-            onMouseOver={(e) => {
-                divProps.onMouseOver?.(e);
-                if (canRouteClientSide) {
-                    router.prefetch(url);
-                }
-            }}
             className={classNames(
                 'linkPanelNavno',
                 icon && 'linkPanelWithIcon',
-                divProps.className
+                elementAttribs.className
             )}
-            tabIndex={0}
-            role={'link'}
         >
             {icon && <div className={'linkPanelNavnoIcon'}>{icon}</div>}
             <div>
-                <a
-                    href={url}
+                <LenkeBase
+                    {...elementAttribs}
+                    href={href}
                     className={classNames(
                         'linkPanelNavnoLink',
-                        linkUnderline === 'onHover' && 'underlineToggle',
-                        linkColor === 'black' && 'linkBlack',
                         'navds-heading',
-                        `navds-heading--${linkTextSize}`
+                        `navds-heading--${linkTextSize}`,
+                        linkUnderline === 'onHover' && 'underlineToggle',
+                        linkColor === 'black' && 'linkBlack'
                     )}
-                    tabIndex={-1}
+                    analyticsComponent={'Lenkepanel navno'}
+                    analyticsLinkGroup={linkGroup}
+                    analyticsLabel={linkText}
                 >
                     {linkText}
-                </a>
+                </LenkeBase>
                 {children && (
                     <div className={classNames('linkPanelNavnoIngress')}>
                         {children}

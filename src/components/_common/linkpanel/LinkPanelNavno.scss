@@ -7,11 +7,13 @@ $padding: 1.5rem;
 $color: common.$navds-semantic-color-link;
 
 .linkPanelNavno {
+    position: relative;
+
     display: flex;
     align-items: flex-start;
 
     padding: $padding;
-    cursor: pointer;
+    //cursor: pointer;
     border-radius: common.$border-radius-xlarge;
 
     &.linkPanelWithIcon {
@@ -50,6 +52,19 @@ $color: common.$navds-semantic-color-link;
 
     &.underline {
         border-bottom-color: transparent;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
     }
 }
 

@@ -6,7 +6,7 @@ import style from './LinkPanelNavnoSimple.module.scss';
 
 type Props = {
     href: string;
-    linkGroup?: string;
+    analyticsLinkGroup?: string;
     linkTextSize?;
     linkUnderline?;
     linkColor?;
@@ -19,7 +19,7 @@ type Props = {
 // content
 export const LinkPanelNavnoSimple = ({
     href,
-    linkGroup,
+    analyticsLinkGroup,
     linkTextSize = 'medium',
     linkUnderline = 'default',
     linkColor = 'blue',
@@ -35,10 +35,10 @@ export const LinkPanelNavnoSimple = ({
             className={classNames(
                 style.linkPanel,
                 icon && style.withIcon,
-                className,
+                className
             )}
-            component={'Lenkepanel navno enkel'}
-            linkGroup={linkGroup}
+            analyticsComponent={'Lenkepanel navno enkel'}
+            analyticsLinkGroup={analyticsLinkGroup}
         >
             {icon && <div className={style.icon}>{icon}</div>}
             <div

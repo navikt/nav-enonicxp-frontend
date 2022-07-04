@@ -55,7 +55,7 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                 <LenkeBase
                     href={props.href}
                     analyticsLabel={linkProps.text}
-                    component={legacyAnalyticsComponentLabel}
+                    analyticsComponent={legacyAnalyticsComponentLabel}
                     {...props}
                 >
                     {props.children}

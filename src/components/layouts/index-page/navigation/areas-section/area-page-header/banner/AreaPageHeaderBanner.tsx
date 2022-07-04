@@ -10,8 +10,8 @@ import style from './AreaPageHeaderBanner.module.scss';
 import chevronStyle from '../../../../../../_common/chevron/FancyChevronCommon.module.scss';
 
 type Props = {
-    banner: AreaPageProps['data']['banner'],
-    header: AreaPageProps['data']['header'],
+    banner: AreaPageProps['data']['banner'];
+    header: AreaPageProps['data']['header'];
 };
 
 export const AreaPageHeaderBanner = ({ banner, header }: Props) => {
@@ -23,9 +23,9 @@ export const AreaPageHeaderBanner = ({ banner, header }: Props) => {
             className={classNames(style.banner, chevronStyle.animateOnHover)}
             href={url}
             style={{ '--hover-color': color } as React.CSSProperties}
-            component={'Områdebanner'}
+            analyticsComponent={'Områdebanner'}
             analyticsLabel={header}
-            linkGroup={header}
+            analyticsLinkGroup={header}
         >
             <div className={style.content}>
                 <ParsedHtml htmlProps={html} />

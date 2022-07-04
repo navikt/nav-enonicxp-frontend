@@ -36,8 +36,8 @@ export const LenkeStandalone = ({
                 withChevron && style.withChevron,
                 className
             )}
-            component={component}
-            linkGroup={linkGroup}
+            analyticsComponent={component}
+            analyticsLinkGroup={linkGroup}
             analyticsLabel={
                 analyticsLabel ||
                 (typeof children === 'string' ? children : undefined)
