@@ -5,10 +5,14 @@ $color: common.$navds-semantic-color-link;
 .linkPanel {
     display: flex;
 
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
     border-radius: common.$border-radius-xlarge;
 
     text-decoration: none;
+
+    @media #{common.$mq-screen-mobile-small} {
+        padding: 0.625rem;
+    }
 
     &.withIcon {
         align-items: center;
@@ -16,13 +20,14 @@ $color: common.$navds-semantic-color-link;
 
     &:hover {
         .text {
+            color: common.$navds-semantic-color-link;
             border-bottom-color: transparent;
 
-            &.underline {
+            &.underlineOnHover {
                 border-bottom-color: $color;
 
                 &.black {
-                    border-bottom-color: black;
+                    border-bottom-color: common.$navds-semantic-color-text;
                 }
             }
         }
@@ -34,19 +39,28 @@ $color: common.$navds-semantic-color-link;
 }
 
 .icon {
-    margin-right: 1.25rem;
+    margin-right: 1rem;
 }
 
 .text {
     transition: border-bottom-color 0.15s ease-out;
-    border-bottom: 2px common.$navds-semantic-color-link solid;
+    border-bottom: 1px common.$navds-semantic-color-link solid;
 
-    &.black {
-        color: black;
-        border-bottom-color: black;
+    @media #{common.$mq-screen-mobile-small} {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
     }
 
-    &.underline {
+    &.black {
+        color: common.$navds-semantic-color-text;
+        border-bottom-color: common.$navds-semantic-color-text;
+    }
+
+    &.underlineOnHover {
         border-bottom-color: transparent;
+    }
+
+    &.underlineNone {
+        border-bottom: none;
     }
 }

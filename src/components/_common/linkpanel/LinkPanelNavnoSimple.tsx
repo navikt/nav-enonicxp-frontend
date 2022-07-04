@@ -35,7 +35,7 @@ export const LinkPanelNavnoSimple = ({
             className={classNames(
                 style.linkPanel,
                 icon && style.withIcon,
-                className,
+                className
             )}
             component={'Lenkepanel navno enkel'}
             linkGroup={linkGroup}
@@ -50,7 +50,8 @@ export const LinkPanelNavnoSimple = ({
                 <span
                     className={classNames(
                         style.text,
-                        linkUnderline === 'onHover' && style.underline,
+                        linkUnderline === 'onHover' && style.underlineOnHover,
+                        linkUnderline === 'none' && style.underlineNone,
                         linkColor === 'black' && style.black
                     )}
                 >
