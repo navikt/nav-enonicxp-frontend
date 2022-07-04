@@ -10,7 +10,7 @@ $color: common.$navds-semantic-color-link;
 
     text-decoration: none;
 
-    @media #{common.$mq-screen-mobile} {
+    @media #{common.$mq-screen-mobile-small} {
         padding: 0.625rem;
     }
 
@@ -46,7 +46,7 @@ $color: common.$navds-semantic-color-link;
     transition: border-bottom-color 0.15s ease-out;
     border-bottom: 1px common.$navds-semantic-color-link solid;
 
-    @media #{common.$mq-screen-mobile} {
+    @media #{common.$mq-screen-mobile-small} {
         font-size: 1.25rem;
         line-height: 1.75rem;
     }

@@ -110,8 +110,8 @@ $navPink: #fde6e6;
     $numCols: 3,
     $rowGap: 1.5rem,
     $colGap: 1.5rem,
-    $rowGapMobile: 0.5rem,
-    $columnGapMobile: 0.5rem
+    $rowGapMobileSmall: 0.5rem,
+    $columnGapMobileSmall: 0.5rem
 ) {
     display: grid;
     row-gap: $rowGap;
@@ -123,16 +123,13 @@ $navPink: #fde6e6;
     }
 
     @media #{$mq-screen-mobile} {
-        row-gap: $rowGapMobile;
-        column-gap: $columnGapMobile;
-    }
-
-    @media only screen and (max-width: 600px) {
         grid-template-columns: repeat(math.max($numCols - 2, 1), 1fr);
     }
 
     @media #{$mq-screen-mobile-small} {
         grid-template-columns: repeat(1, 1fr);
+        row-gap: $rowGapMobileSmall;
+        column-gap: $columnGapMobileSmall;
     }
 }
 

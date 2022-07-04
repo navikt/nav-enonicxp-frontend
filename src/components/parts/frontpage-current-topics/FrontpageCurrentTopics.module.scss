@@ -21,8 +21,8 @@
 .list {
     @include common.grid-layout-mixin(
         $numCols: 2,
-        $rowGapMobile: 0.75rem,
-        $columnGapMobile: 0.75rem
+        $rowGapMobileSmall: 0.75rem,
+        $columnGapMobileSmall: 0.75rem
     );
 }
 
