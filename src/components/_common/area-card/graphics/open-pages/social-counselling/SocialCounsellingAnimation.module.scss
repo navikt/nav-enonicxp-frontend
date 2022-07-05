@@ -10,11 +10,9 @@
     transform: rotate(-45deg);
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.compass')} {
-        right: 201px;
-        transform: rotate(0deg);
-    }
+@include areaGraphics.onExpandMixin('.compass') {
+    right: 201px;
+    transform: rotate(0deg);
 }
 
 .letterS {
@@ -24,10 +22,8 @@
     top: 0;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.letterS')} {
-        right: 1px;
-    }
+@include areaGraphics.onExpandMixin('.letterS') {
+    right: 1px;
 }
 
 .mask {
@@ -42,11 +38,9 @@
     transform: rotate(22.09deg);
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.mask')} {
-        right: -184px;
-        visibility: hidden;
-    }
+@include areaGraphics.onExpandMixin('.mask') {
+    right: -184px;
+    visibility: hidden;
 }
 
 .heart {
@@ -58,13 +52,11 @@
     top: 30px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.heart')} {
-        width: 56px;
-        height: 48px;
-        right: 94px;
-        top: 91px;
-    }
+@include areaGraphics.onExpandMixin('.heart') {
+    width: 56px;
+    height: 48px;
+    right: 94px;
+    top: 91px;
 }
 
 .hand {
@@ -76,9 +68,7 @@
     top: 80.08px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.hand')} {
-        right: 75px;
-        top: 114px;
-    }
+@include areaGraphics.onExpandMixin('.hand') {
+    right: 75px;
+    top: 114px;
 }

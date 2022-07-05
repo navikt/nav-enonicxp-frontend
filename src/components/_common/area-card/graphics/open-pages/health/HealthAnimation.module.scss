@@ -9,10 +9,8 @@
     top: 115px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.pill')} {
-        right: 208px;
-    }
+@include areaGraphics.onExpandMixin('.pill') {
+    right: 208px;
 }
 
 .letterPartOrange {
@@ -26,11 +24,9 @@
     top: 58px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.letterPartOrange')} {
-        right: 48px;
-        top: 58px;
-    }
+@include areaGraphics.onExpandMixin('.letterPartOrange') {
+    right: 48px;
+    top: 58px;
 }
 
 .letterPartBlue {
@@ -44,10 +40,8 @@
     top: 0;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.letterPartBlue')} {
-        right: 0;
-    }
+@include areaGraphics.onExpandMixin('.letterPartBlue') {
+    right: 0;
 }
 
 .mask {
@@ -62,15 +56,13 @@
     transform: skewX(-22.09deg);
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.mask')} {
-        background-color: #ffb8b8;
-        width: 48px;
-        height: 160px;
-        right: 100px;
-        top: 0;
-        transform: skewX(0);
-    }
+@include areaGraphics.onExpandMixin('.mask') {
+    background-color: #ffb8b8;
+    width: 48px;
+    height: 160px;
+    right: 100px;
+    top: 0;
+    transform: skewX(0);
 }
 
 .stethoscope {
@@ -80,9 +72,7 @@
     top: 33px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.stethoscope')} {
-        right: 82px;
-        top: 59px;
-    }
+@include areaGraphics.onExpandMixin('.stethoscope') {
+    right: 82px;
+    top: 59px;
 }
