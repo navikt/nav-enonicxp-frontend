@@ -10,9 +10,13 @@
 }
 
 @media (hover) {
-    #{areaGraphics.onExpand('.shapes')} {
+    :global(.expandOnHover):hover .shapes {
         right: 197px;
     }
+}
+
+:global(.expandGraphics) .shapes {
+    right: 197px;
 }
 
 .letterPartOrange {
