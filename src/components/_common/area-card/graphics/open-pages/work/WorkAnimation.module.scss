@@ -6,7 +6,7 @@
     @include transitionMixin;
     position: absolute;
     right: -12px;
-    top: 124px;
+    bottom: 0;
 }
 
 @media (hover) {
