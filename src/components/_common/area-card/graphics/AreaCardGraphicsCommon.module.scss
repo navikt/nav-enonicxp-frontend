@@ -4,8 +4,16 @@ $expandGraphics: expandGraphics;
 // Set this class on an element to transition on hover to the expanded version of any contained graphics
 $expandOnHover: expandOnHover;
 
-@function onExpand($graphics-element) {
-    @return ':global(.#{$expandOnHover}):hover #{$graphics-element},:global(.#{$expandGraphics}) #{$graphics-element}';
+@mixin onExpandMixin($graphics-element) {
+    :global(.#{$expandOnHover}):hover #{$graphics-element} {
+        @media (hover) {
+            @content;
+        }
+    }
+
+    :global(.#{$expandGraphics}) #{$graphics-element} {
+        @content;
+    }
 }
 
 :export {

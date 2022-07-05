@@ -9,10 +9,8 @@
     top: 108px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.shapes')} {
-        right: 201px;
-    }
+@include areaGraphics.onExpandMixin('.shapes') {
+    right: 201px;
 }
 
 .letterPartBlue {
@@ -22,10 +20,8 @@
     top: 0;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.letterPartBlue')} {
-        right: 0;
-    }
+@include areaGraphics.onExpandMixin('.letterPartBlue') {
+    right: 0;
 }
 
 .mask {
@@ -40,15 +36,13 @@
     transform: skewX(-22.09deg);
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.mask')} {
-        background-color: #ffb8b8;
-        width: 48px;
-        height: 160px;
-        right: 100px;
-        top: 0;
-        transform: skewX(0);
-    }
+@include areaGraphics.onExpandMixin('.mask') {
+    background-color: #ffb8b8;
+    width: 48px;
+    height: 160px;
+    right: 100px;
+    top: 0;
+    transform: skewX(0);
 }
 
 .piggyBank {
@@ -58,11 +52,9 @@
     top: 41px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.piggyBank')} {
-        right: 101px;
-        top: 82px;
-    }
+@include areaGraphics.onExpandMixin('.piggyBank') {
+    right: 101px;
+    top: 82px;
 }
 
 .coin {
@@ -77,8 +69,6 @@
     top: -32px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.coin')} {
-        top: 80px;
-    }
+@include areaGraphics.onExpandMixin('.coin') {
+    top: 80px;
 }
