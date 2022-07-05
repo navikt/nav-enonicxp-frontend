@@ -6,12 +6,12 @@
     @include transitionMixin;
     position: absolute;
     right: 25px;
-    top: 96px;
+    top: 108px;
 }
 
 @media (hover) {
     #{areaGraphics.onExpand('.shapes')} {
-        right: 204px;
+        right: 201px;
     }
 }
 
