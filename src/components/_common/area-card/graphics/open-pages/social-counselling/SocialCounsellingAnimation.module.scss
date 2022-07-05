@@ -5,16 +5,15 @@
 .compass {
     @include transitionMixin;
     position: absolute;
-    width: 48px;
-    height: 48px;
     right: 0;
-    top: 112px;
+    top: 120px;
+    transform: rotate(-45deg);
 }
 
 @media (hover) {
     #{areaGraphics.onExpand('.compass')} {
-        right: 200px;
-        transform: rotate(45deg);
+        right: 201px;
+        transform: rotate(0deg);
     }
 }
 
