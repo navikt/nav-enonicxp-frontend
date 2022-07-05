@@ -3,6 +3,7 @@ import {
     ContentProps,
 } from '../types/content-props/_content-common';
 import { stripXpPathPrefix } from './urls';
+import { getInternalLinkUrl } from './links-from-content';
 
 const getTargetPath = (contentData: ContentProps) => {
     switch (contentData?.__typename) {
@@ -14,11 +15,8 @@ const getTargetPath = (contentData: ContentProps) => {
             return !contentData.isDraft
                 ? contentData.data?.externalProductUrl
                 : null;
-        // TODO: this can be removed when we're confident there's no need to roll back the root-level frontpage
-        case ContentType.Site:
-            return '/no/person';
         case ContentType.InternalLink:
-            return contentData.data?.target?._path;
+            return getInternalLinkUrl(contentData);
         case ContentType.ExternalLink:
         case ContentType.Url:
             return contentData.data?.url;
