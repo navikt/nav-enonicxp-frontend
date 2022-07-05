@@ -6,12 +6,12 @@
     @include transitionMixin;
     position: absolute;
     right: 0;
-    top: 120px;
+    top: 127px;
 }
 
 @media (hover) {
     #{areaGraphics.onExpand('.arrow')} {
-        right: 198px;
+        right: 191px;
     }
 }
 
@@ -76,13 +76,13 @@
 .dog {
     @include transitionMixin;
     position: absolute;
-    right: 29px;
-    top: 36px;
+    right: 30px;
+    top: 38px;
 }
 
 @media (hover) {
     #{areaGraphics.onExpand('.dog')} {
         right: 71px;
-        top: 72px;
+        top: 76px;
     }
 }
