@@ -6,7 +6,7 @@ export type InternalLinkData = {
         _path: string;
     };
     permanentRedirect?: boolean;
-    anchorId: string;
+    anchorId?: string;
 };
 
 export interface InternalLinkProps extends ContentCommonProps {
