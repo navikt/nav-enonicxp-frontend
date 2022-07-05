@@ -38,8 +38,8 @@ const LenkepanelNavNo = ({
             as={(props) => (
                 <LenkeBase
                     href={href}
-                    component={component}
-                    linkGroup={linkGroup}
+                    analyticsComponent={component}
+                    analyticsLinkGroup={linkGroup}
                     analyticsLabel={tittel}
                     {...props}
                 >

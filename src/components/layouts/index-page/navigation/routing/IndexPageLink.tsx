@@ -19,8 +19,8 @@ export const IndexPageLink = ({
         <LenkeBase
             {...rest}
             href={href}
-            component={'Områdenavigasjon'}
-            linkGroup={header}
+            analyticsComponent={'Områdenavigasjon'}
+            analyticsLinkGroup={header}
             onClick={(e) => {
                 onClick?.(e);
                 e.preventDefault();

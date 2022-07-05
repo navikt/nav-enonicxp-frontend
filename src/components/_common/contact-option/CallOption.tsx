@@ -159,9 +159,9 @@ export const CallOption = (props: CallOptionProps) => {
             <LenkeBase
                 href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
                 className={style.link}
-                event={analyticsEvents.CALL}
-                linkGroup={layoutConfig.title}
-                component={'Kontakt-oss kanal'}
+                analyticsEvent={analyticsEvents.CALL}
+                analyticsLinkGroup={layoutConfig.title}
+                analyticsComponent={'Kontakt-oss kanal'}
             >
                 <div className={style.linkContent}>
                     <div className={classNames(style.icon, style.call)} />
@@ -187,7 +187,7 @@ export const CallOption = (props: CallOptionProps) => {
                     buildOpenInformationText(todaysOpeningHour)}
             </BodyShort>
             <LenkeBase
-                linkGroup={layoutConfig.title}
+                analyticsLinkGroup={layoutConfig.title}
                 className={style.moreLink}
                 href={language === 'no' ? contactUrlNO : contactUrlEN}
             >

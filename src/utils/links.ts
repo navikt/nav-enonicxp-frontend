@@ -22,11 +22,7 @@ export const hookAndInterceptInternalLink =
         if (isAppUrl(href)) {
             e.preventDefault();
             const path = getInternalRelativePath(href);
-            router
-                .push(path)
-                .then(() =>
-                    document?.getElementById('top-element')?.scrollIntoView()
-                );
+            router.push(path);
         }
     };
 

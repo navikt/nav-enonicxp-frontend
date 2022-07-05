@@ -30,18 +30,9 @@
     background-color: white;
 
     :global(.linkPanelNavnoLink) {
-        color: common.$navds-semantic-color-text;
-        border-bottom-color: common.$navds-semantic-color-text;
-
         @media #{common.$mq-screen-mobile-small} {
             font-size: 1.25rem;
             line-height: 1.75rem;
-        }
-    }
-
-    &:hover {
-        :global(.linkPanelNavnoLink) {
-            color: common.$navds-semantic-color-link;
         }
     }
 

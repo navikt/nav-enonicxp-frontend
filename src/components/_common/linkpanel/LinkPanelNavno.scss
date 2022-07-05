@@ -4,14 +4,16 @@
 // The component this styling applies to is intended for very flexible styling
 
 $padding: 1.5rem;
-$color: common.$navds-semantic-color-link;
+$blueLinkColor: common.$navds-semantic-color-link;
+$blackLinkColor: common.$navds-semantic-color-text;
 
 .linkPanelNavno {
+    position: relative;
+
     display: flex;
     align-items: flex-start;
 
     padding: $padding;
-    cursor: pointer;
     border-radius: common.$border-radius-xlarge;
 
     &.linkPanelWithIcon {
@@ -21,13 +23,10 @@ $color: common.$navds-semantic-color-link;
     &:hover {
         .linkPanelNavnoLink {
             border-bottom-color: transparent;
+            color: $blueLinkColor;
 
             &.underline {
-                border-bottom-color: $color;
-
-                &.black {
-                    border-bottom-color: common.$navds-semantic-color-text;
-                }
+                border-bottom-color: $blueLinkColor;
             }
         }
     }
@@ -40,16 +39,33 @@ $color: common.$navds-semantic-color-link;
 
 .linkPanelNavnoLink {
     text-decoration: none;
-    border-bottom: 1px common.$navds-semantic-color-link solid;
-    transition: border-bottom-color 0.15s ease-out;
+    color: $blueLinkColor;
+    border-bottom: 1px $blueLinkColor solid;
+    transition-property: border-bottom-color, color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
 
-    &.black {
-        color: common.$navds-semantic-color-text;
-        border-bottom-color: common.$navds-semantic-color-text;
+    &.linkBlack {
+        color: $blackLinkColor;
+        border-bottom-color: $blackLinkColor;
     }
 
     &.underline {
         border-bottom-color: transparent;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    // Stretches the link over the entire parent container
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
     }
 }
 

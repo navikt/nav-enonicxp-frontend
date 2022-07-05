@@ -1,5 +1,6 @@
 @use 'src/common' as common;
 
-.grid {
+.cards {
     @include common.grid-layout-mixin();
+    @include common.unstyled-list();
 }

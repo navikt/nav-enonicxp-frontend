@@ -7,9 +7,7 @@
 .lenker {
     display: flex;
     flex-direction: column;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    @include common.unstyled-list();
 }
 
 .lenke {

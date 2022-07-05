@@ -14,20 +14,20 @@ import { usePublicUrl } from '../../../utils/usePublicUrl';
 type Props = {
     href: string;
     onClick?: (e: React.MouseEvent) => void;
-    event?: analyticsEvents;
-    component?: string;
-    linkGroup?: string;
-    analyticsLabel?: string;
     prefetch?: boolean;
+    analyticsEvent?: analyticsEvents;
+    analyticsComponent?: string;
+    analyticsLinkGroup?: string;
+    analyticsLabel?: string;
     children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const LenkeBase = ({
     href,
     onClick,
-    event,
-    component,
-    linkGroup,
+    analyticsEvent,
+    analyticsComponent,
+    analyticsLinkGroup,
     analyticsLabel,
     prefetch,
     children,
@@ -42,9 +42,9 @@ export const LenkeBase = ({
 
     const { url, canRouteClientSide } = usePublicUrl(href);
     const analyticsData = {
-        komponent: component,
-        lenkegruppe: linkGroup,
-        seksjon: linkGroup || layoutConfig.title,
+        komponent: analyticsComponent,
+        lenkegruppe: analyticsLinkGroup,
+        seksjon: analyticsLinkGroup || layoutConfig.title,
         destinasjon: url,
         lenketekst: analyticsLabel || onlyText(children),
     };
@@ -53,7 +53,7 @@ export const LenkeBase = ({
             href={url}
             onClick={(e) => {
                 logAmplitudeEvent(
-                    event || analyticsEvents.NAVIGATION,
+                    analyticsEvent || analyticsEvents.NAVIGATION,
                     analyticsData
                 );
                 onClick?.(e);
