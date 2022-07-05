@@ -6,12 +6,12 @@
     @include transitionMixin;
     position: absolute;
     right: 30px;
-    top: 104px;
+    top: 115px;
 }
 
 @media (hover) {
     #{areaGraphics.onExpand('.pill')} {
-        right: 214px;
+        right: 208px;
     }
 }
 

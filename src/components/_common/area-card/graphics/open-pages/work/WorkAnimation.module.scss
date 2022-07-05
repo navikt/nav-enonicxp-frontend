@@ -6,12 +6,12 @@
     @include transitionMixin;
     position: absolute;
     right: -12px;
-    top: 115px;
+    top: 124px;
 }
 
 @media (hover) {
     #{areaGraphics.onExpand('.shapes')} {
-        right: 197px;
+        right: 190px;
     }
 }
 
@@ -84,7 +84,7 @@
 
 @media (hover) {
     #{areaGraphics.onExpand('.briefcase')} {
-        right: 106px;
+        right: 102px;
         top: 83px;
     }
 }
