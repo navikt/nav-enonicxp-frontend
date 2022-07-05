@@ -33,13 +33,19 @@ const DefaultComponent = () => <div>{'Ugyldig grafikkvalg'}</div>;
 
 type Props = {
     type: string;
+    insideCard: boolean;
 };
 
-export const AreaCardGraphics = ({ type }: Props) => {
+export const AreaCardGraphics = ({ type, insideCard }: Props) => {
     const GraphicComponent = areaTypeComponentMap[type] || DefaultComponent;
 
     return (
-        <div className={classNames(style.graphics)}>
+        <div
+            className={classNames(
+                style.graphics,
+                insideCard ? style.insideCard : ''
+            )}
+        >
             <GraphicComponent />
         </div>
     );

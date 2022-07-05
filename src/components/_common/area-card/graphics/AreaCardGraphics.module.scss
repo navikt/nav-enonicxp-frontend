@@ -10,7 +10,9 @@
     & > * {
         @include transitionMixin;
     }
+}
 
+.insideCard {
     @media only screen and (max-width: $maxWidth) {
         transform: scale($size-medium) translateX(-$size-medium * 10%);
         width: (1 / $size-medium) * 100%;

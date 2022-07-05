@@ -22,7 +22,9 @@ export const AreaPageHeader = ({ areaContent, className }: Props) => {
                 <Heading level={'1'} size={'xlarge'}>
                     {header}
                 </Heading>
-                {banner && <AreaPageHeaderBanner banner={banner} header={header} />}
+                {banner && (
+                    <AreaPageHeaderBanner banner={banner} header={header} />
+                )}
             </div>
             <div
                 className={classNames(
@@ -30,7 +32,7 @@ export const AreaPageHeader = ({ areaContent, className }: Props) => {
                     graphicsStyle.expandGraphics
                 )}
             >
-                <AreaCardGraphics type={area} />
+                <AreaCardGraphics type={area} insideCard={false} />
             </div>
         </div>
     );

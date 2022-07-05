@@ -62,7 +62,7 @@ export const AreaCard = ({
             >
                 <LinkPanel.Title>{title}</LinkPanel.Title>
             </div>
-            <AreaCardGraphics type={area} />
+            <AreaCardGraphics type={area} insideCard />
         </LinkPanel>
     );
 };
