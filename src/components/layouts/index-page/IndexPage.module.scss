@@ -8,7 +8,11 @@ $maxWidth: 1272px;
 
     :global(.region__contentTop) {
         & > :last-child {
-            padding-bottom: 1.75rem;
+            padding-bottom: 2rem;
+
+            @media #{common.$mq-screen-mobile-small} {
+                padding-bottom: 1.75rem;
+            }
         }
     }
 
