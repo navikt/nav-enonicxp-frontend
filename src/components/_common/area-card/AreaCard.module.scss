@@ -2,7 +2,7 @@
 @import '../../layouts/index-page/IndexPage.module.scss';
 
 @mixin transitionMixin {
-    transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out, box-shadow 0s;
 }
 
 $border-radius: common.$border-radius-xlarge;
