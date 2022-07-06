@@ -7,10 +7,18 @@
 
 .header {
     padding-bottom: 0.75rem;
+
+    @media #{common.$mq-screen-mobile-small} {
+        padding-bottom: 0.5rem;
+    }
 }
 
 .services {
     margin-bottom: 1.5rem;
+
+    @media #{common.$mq-screen-mobile-small} {
+        margin-bottom: 1rem;
+    }
 }
 
 .cards {
@@ -20,7 +28,6 @@
 
 .myPage {
     margin-top: 1rem;
-    // color: black;
 
     & > * {
         font-weight: bold;
