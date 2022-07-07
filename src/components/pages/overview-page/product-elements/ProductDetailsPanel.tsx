@@ -32,24 +32,25 @@ export const ProductDetailsPanel = ({
     productDetails,
     visible,
 }: Props) => {
+    const { productDetailsPath, anchorId, illustration, sortTitle } =
+        productDetails;
+
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [productDetailsPage, setProductDetailsPage] = useState(null);
 
     const detailTypeStrings = translator('productDetailTypes', 'no');
+    const anchorIdWithHash = `#${anchorId}`;
 
     useEffect(() => {
-        const anchorTarget = getAnchorFromPath(
-            productDetails.productDetailsPath
-        );
-        if (window.location.hash.includes(anchorTarget)) {
+        if (window.location.hash === anchorIdWithHash) {
             handleProductDetailsFetch();
             setIsOpen(true);
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [anchorIdWithHash]);
 
     const handleProductDetailsFetch = () => {
         if (isLoading || productDetailsPage) {
@@ -58,7 +59,7 @@ export const ProductDetailsPanel = ({
 
         setIsLoading(true);
 
-        fetchPageCacheContent(productDetails.productDetailsPath)
+        fetchPageCacheContent(productDetailsPath)
             .then((contentFromCache) => {
                 if (
                     !contentFromCache ||
@@ -80,14 +81,9 @@ export const ProductDetailsPanel = ({
             });
     };
 
-    const getAnchorFromPath = (path: string) => {
-        const lastPathSegment = `${path.substring(path.lastIndexOf('/') + 1)}`;
-        return sanitizeLegacyUrl(lastPathSegment);
-    };
-
     return (
         <>
-            <div id={getAnchorFromPath(productDetails.productDetailsPath)} />
+            <div id={anchorId} />
             <Accordion className={classNames(!visible && style.hidden)}>
                 <Accordion.Item open={isOpen} className={style.accordionItem}>
                     <Accordion.Header
@@ -103,18 +99,16 @@ export const ProductDetailsPanel = ({
                     >
                         <IllustrationStatic
                             className={style.illustration}
-                            illustration={productDetails.illustration}
+                            illustration={illustration}
                         />
-                        {productDetails.sortTitle}
+                        {sortTitle}
                     </Accordion.Header>
                     <Accordion.Content>
                         {error && (
                             <AlertBox variant={'error'}>{error}</AlertBox>
                         )}
                         <CopyLink
-                            anchor={`#${getAnchorFromPath(
-                                productDetails.productDetailsPath
-                            )}`}
+                            anchor={anchorIdWithHash}
                             className={style.copyLink}
                         />
                         {isLoading ? (
