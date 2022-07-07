@@ -1,30 +1,22 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Heading, Tag } from '@navikt/ds-react';
-
-import { Area } from 'types/areas';
-
 import { translator } from '../../../../translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
+import { Taxonomy } from 'types/taxonomies';
 
 import styles from './TaxonomyFilter.module.scss';
-import { Taxonomy } from 'types/taxonomies';
 
 interface TaxonomyFilerProps {
     filterUpdateCallback: (filters: Taxonomy) => void;
+    productList: SimplifiedProductData[];
 }
 
 export const TaxonomyFilter = ({
     filterUpdateCallback,
+    productList,
 }: TaxonomyFilerProps) => {
-    const filterableTaxonomies = [
-        Taxonomy.ALL,
-        Taxonomy.ASSISTIVE_TOOLS,
-        Taxonomy.BENEFITS,
-        Taxonomy.FOLLOWUP,
-        Taxonomy.MEASURES,
-        Taxonomy.RIGHTS,
-    ];
     const [currentFilter, setCurrentFilter] = useState<Taxonomy>(Taxonomy.ALL);
     const { language } = usePageConfig();
 
@@ -36,6 +28,12 @@ export const TaxonomyFilter = ({
         filterUpdateCallback(taxonomy);
     };
 
+    const taxonomiesInProductList = Object.values(Taxonomy).filter((taxonomy) =>
+        productList.some((product) =>
+            product.taxonomy.some((taxonomyItem) => taxonomyItem === taxonomy)
+        )
+    );
+
     return (
         <div className={styles.overviewFilter}>
             <Heading size="small" level="2">
@@ -46,34 +44,38 @@ export const TaxonomyFilter = ({
                 aria-label={overviewTranslations('ariaExplanation')}
             >
                 <ul className={styles.filterWrapper}>
-                    {filterableTaxonomies.map((taxonomy) => {
-                        const isActive = currentFilter === taxonomy;
+                    {[Taxonomy.ALL, ...taxonomiesInProductList].map(
+                        (taxonomy) => {
+                            const isActive = currentFilter === taxonomy;
 
-                        return (
-                            <li key={taxonomy}>
-                                <button
-                                    type="button"
-                                    onClick={() => handleFilterUpdate(taxonomy)}
-                                    aria-current={isActive}
-                                    aria-label={`${overviewTranslations(
-                                        'ariaItemExplanation'
-                                    )} ${productTaxonomies(taxonomy)}}`}
-                                    className={classNames(
-                                        styles.filterButton,
-                                        isActive && styles.activeButton
-                                    )}
-                                >
-                                    <Tag
-                                        variant="info"
-                                        className={styles.tag}
-                                        size="small"
+                            return (
+                                <li key={taxonomy}>
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            handleFilterUpdate(taxonomy)
+                                        }
+                                        aria-current={isActive}
+                                        aria-label={`${overviewTranslations(
+                                            'ariaItemExplanation'
+                                        )} ${productTaxonomies(taxonomy)}}`}
+                                        className={classNames(
+                                            styles.filterButton,
+                                            isActive && styles.activeButton
+                                        )}
                                     >
-                                        {productTaxonomies(taxonomy)}
-                                    </Tag>
-                                </button>
-                            </li>
-                        );
-                    })}
+                                        <Tag
+                                            variant="info"
+                                            className={styles.tag}
+                                            size="small"
+                                        >
+                                            {productTaxonomies(taxonomy)}
+                                        </Tag>
+                                    </button>
+                                </li>
+                            );
+                        }
+                    )}
                 </ul>
             </nav>
         </div>
