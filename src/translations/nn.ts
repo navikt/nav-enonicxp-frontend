@@ -34,14 +34,14 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
 
 const areas: { [key in Area]: string } = {
     [Area.ALL]: 'Alle',
-    [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
+    [Area.ACCESSIBILITY]: 'Hjelpemiddel og tilrettelegging',
     [Area.FAMILY]: 'Familie og barn',
-    [Area.HEALTH]: 'Helse og sykdom',
+    [Area.HEALTH]: 'Helse og sjukdom',
     [Area.MUNICIPALITY]: 'For kommunen',
-    [Area.OTHER]: 'Annet',
+    [Area.OTHER]: 'Anna',
     [Area.PENSION]: 'Pensjon',
-    [Area.SELF_EMPLOYED]: 'For selvstendig næringsdrivende',
-    [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
+    [Area.SELF_EMPLOYED]: 'For sjølvstendig næringsdrivande',
+    [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og rettleiing',
     [Area.WORK]: 'Arbeid',
 };
 
@@ -121,10 +121,10 @@ export const translationsBundleNn = {
         noProducts: 'Ingen produkt å vise',
         ariaExplanation: 'Filtrer lista etter område',
         ariaItemExplanation: 'Vis område',
-        chooseArea: 'Velg område',
-        chooseType: 'Velg type',
+        chooseArea: 'Vel område',
+        chooseType: 'Vel type',
         search: 'Søk',
-        loading: 'Henter produktdetaljar',
+        loading: 'Hentar produktdetaljar',
     },
     pagination: {
         goTo: 'Gå til',

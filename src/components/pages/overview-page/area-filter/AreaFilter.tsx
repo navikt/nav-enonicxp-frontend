@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Heading, Tag } from '@navikt/ds-react';
-
+import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
 import { Area } from 'types/areas';
-
 import { translator } from '../../../../translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
@@ -11,18 +10,13 @@ import styles from './AreaFilter.module.scss';
 
 interface OverviewFilterProps {
     filterUpdateCallback: (filters: Area) => void;
+    productList: SimplifiedProductData[];
 }
 
-export const AreaFilter = ({ filterUpdateCallback }: OverviewFilterProps) => {
-    const filterableAreas = [
-        Area.ALL,
-        Area.FAMILY,
-        Area.WORK,
-        Area.HEALTH,
-        Area.ACCESSIBILITY,
-        Area.PENSION,
-        Area.SOCIAL_COUNSELLING,
-    ];
+export const AreaFilter = ({
+    filterUpdateCallback,
+    productList,
+}: OverviewFilterProps) => {
     const [currentArea, setCurrentArea] = useState<Area>(Area.ALL);
     const { language } = usePageConfig();
 
@@ -34,6 +28,12 @@ export const AreaFilter = ({ filterUpdateCallback }: OverviewFilterProps) => {
         filterUpdateCallback(area);
     };
 
+    const areasInProductList = Object.values(Area).filter((area) =>
+        productList.some((product) =>
+            product.area.some((areaItem) => areaItem === area)
+        )
+    );
+
     return (
         <div className={styles.overviewFilter}>
             <Heading size="small" level="2">
@@ -44,7 +44,7 @@ export const AreaFilter = ({ filterUpdateCallback }: OverviewFilterProps) => {
                 aria-label={overviewTranslations('ariaExplanation')}
             >
                 <ul className={styles.filterWrapper}>
-                    {filterableAreas.map((area) => {
+                    {[Area.ALL, ...areasInProductList].map((area) => {
                         const isActive = currentArea === area;
 
                         return (
