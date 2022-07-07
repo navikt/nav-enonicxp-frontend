@@ -7,15 +7,14 @@ import { ComponentMapper } from 'components/ComponentMapper';
 import { AreaFilter } from 'components/pages/overview-page/area-filter/AreaFilter';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 import { SimplifiedProductData } from '../../../types/component-props/_mixins';
-
 import { ProductItem } from './product-elements/ProductItem';
-
 import { OverviewSearch } from './overview-search/OverviewSearch';
-import style from './OverviewPage.module.scss';
 import { TaxonomyFilter } from './taxonomy-filter/TaxonomyFilter';
 import { Taxonomy } from 'types/taxonomies';
 import { classNames } from 'utils/classnames';
 import { ProductDetailType } from 'types/content-props/product-details';
+
+import style from './OverviewPage.module.scss';
 
 export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
@@ -57,6 +56,14 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const showTaxonomyFilter = overviewType === ProductDetailType.ALL_PRODUCTS;
     const showSearch = overviewType === ProductDetailType.ALL_PRODUCTS;
 
+    const areasInProductList = Object.values(Area).filter((area) =>
+        productList.some((product) =>
+            product.area.some((areaItem) => areaItem === area)
+        )
+    );
+
+    console.log(areasInProductList);
+
     return (
         <div className={style.overviewPage}>
             <ThemedPageHeader contentProps={props} showTimeStamp={false} />
@@ -69,6 +76,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
             <div className={style.content}>
                 <AreaFilter
                     filterUpdateCallback={(value: Area) => setAreaFilter(value)}
+                    filterableAreas={areasInProductList}
                 />
                 {showTaxonomyFilter && (
                     <TaxonomyFilter

@@ -10,19 +10,14 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import styles from './AreaFilter.module.scss';
 
 interface OverviewFilterProps {
+    filterableAreas: Area[];
     filterUpdateCallback: (filters: Area) => void;
 }
 
-export const AreaFilter = ({ filterUpdateCallback }: OverviewFilterProps) => {
-    const filterableAreas = [
-        Area.ALL,
-        Area.FAMILY,
-        Area.WORK,
-        Area.HEALTH,
-        Area.ACCESSIBILITY,
-        Area.PENSION,
-        Area.SOCIAL_COUNSELLING,
-    ];
+export const AreaFilter = ({
+    filterUpdateCallback,
+    filterableAreas,
+}: OverviewFilterProps) => {
     const [currentArea, setCurrentArea] = useState<Area>(Area.ALL);
     const { language } = usePageConfig();
 
@@ -44,7 +39,7 @@ export const AreaFilter = ({ filterUpdateCallback }: OverviewFilterProps) => {
                 aria-label={overviewTranslations('ariaExplanation')}
             >
                 <ul className={styles.filterWrapper}>
-                    {filterableAreas.map((area) => {
+                    {[Area.ALL, ...filterableAreas].map((area) => {
                         const isActive = currentArea === area;
 
                         return (
