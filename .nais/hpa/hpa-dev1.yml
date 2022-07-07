@@ -1,0 +1,20 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nav-enonicxp-frontend-dev1
+  namespace: personbruker
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nav-enonicxp-frontend-dev1
+  minReplicas: 1
+  maxReplicas: 40
+  metrics:
+    - type: Pods
+      pods:
+        metric:
+          name: linkerd_request_total
+        target:
+          type: AverageValue
+          averageValue: 5
