@@ -56,14 +56,6 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const showTaxonomyFilter = overviewType === ProductDetailType.ALL_PRODUCTS;
     const showSearch = overviewType === ProductDetailType.ALL_PRODUCTS;
 
-    const areasInProductList = Object.values(Area).filter((area) =>
-        productList.some((product) =>
-            product.area.some((areaItem) => areaItem === area)
-        )
-    );
-
-    console.log(areasInProductList);
-
     return (
         <div className={style.overviewPage}>
             <ThemedPageHeader contentProps={props} showTimeStamp={false} />
@@ -76,13 +68,14 @@ export const OverviewPage = (props: OverviewPageProps) => {
             <div className={style.content}>
                 <AreaFilter
                     filterUpdateCallback={(value: Area) => setAreaFilter(value)}
-                    filterableAreas={areasInProductList}
+                    productList={productList}
                 />
                 {showTaxonomyFilter && (
                     <TaxonomyFilter
                         filterUpdateCallback={(value: Taxonomy) =>
                             setTaxonomyFilter(value)
                         }
+                        productList={productList}
                     />
                 )}
                 {showSearch && (
