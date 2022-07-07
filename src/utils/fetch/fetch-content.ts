@@ -161,6 +161,7 @@ export const fetchPage = async ({
     const content = await fetchAndHandleErrors({
         idOrPath,
         isDraft,
+        isPreview,
         time: timeRequested,
     });
 
