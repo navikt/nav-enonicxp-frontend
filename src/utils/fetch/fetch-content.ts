@@ -24,22 +24,25 @@ const getCacheKey =
           })
         : () => ({});
 
-type FetchSiteContentProps = {
+type FetchSiteContentArgs = {
     idOrPath: string;
-    isDraft?: boolean;
     time?: string;
+    isDraft?: boolean;
+    isPreview?: boolean;
 };
 
 const fetchSiteContent = async ({
     idOrPath,
-    isDraft = false,
     time,
-}: FetchSiteContentProps) => {
+    isDraft = false,
+    isPreview = false,
+}: FetchSiteContentArgs) => {
     const params = objectToQueryString({
-        ...(isDraft && { branch: 'draft' }),
         id: idOrPath,
+        ...(isDraft && { branch: 'draft' }),
         ...(time && { time }),
         ...(!isDraft && getCacheKey()),
+        ...(isPreview && { preview: true }),
     });
     const url = `${xpServiceUrl}/sitecontent${params}`;
     const config = {
@@ -59,7 +62,7 @@ const fetchSiteContent = async ({
 // For pages generated at build-time, any errors thrown will abort the build process.
 // Retry a few times, and just throw a generic server error if anything fails.
 const fetchAndHandleErrorsBuildtime = async (
-    props: FetchSiteContentProps & { retries?: number }
+    props: FetchSiteContentArgs & { retries?: number }
 ) => {
     const { idOrPath, retries = 5 } = props;
 
@@ -83,7 +86,7 @@ const fetchAndHandleErrorsBuildtime = async (
 };
 
 const fetchAndHandleErrorsRuntime = async (
-    props: FetchSiteContentProps
+    props: FetchSiteContentArgs
 ): Promise<XpResponseProps> => {
     const res = await fetchSiteContent(props);
 
@@ -142,11 +145,19 @@ const fetchAndHandleErrors =
         ? fetchAndHandleErrorsBuildtime
         : fetchAndHandleErrorsRuntime;
 
-export const fetchPage = async (
-    idOrPath: string,
+type FetchPageArgs = {
+    idOrPath: string;
+    isDraft?: boolean;
+    timeRequested?: string;
+    isPreview?: boolean;
+};
+
+export const fetchPage = async ({
+    idOrPath,
+    timeRequested,
     isDraft = false,
-    timeRequested?: string
-): Promise<XpResponseProps> => {
+    isPreview = false,
+}: FetchPageArgs): Promise<XpResponseProps> => {
     const content = await fetchAndHandleErrors({
         idOrPath,
         isDraft,
