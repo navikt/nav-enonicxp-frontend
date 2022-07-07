@@ -26,12 +26,13 @@ export type SimplifiedProductData = Partial<{
     _id: string;
     productDetailsPath: string;
     path: string;
+    sortTitle: string;
+    anchorId: string;
 }> &
     ProductDataMixin;
 
 export type ProductDataMixin = {
     title: string;
-    sortTitle: string;
     ingress?: string;
     taxonomy?: Taxonomy[];
     audience?: Audience;
