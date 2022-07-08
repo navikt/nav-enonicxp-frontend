@@ -41,13 +41,15 @@
         margin-top: 2.75rem;
     }
 
-    :last-child {
-        margin-bottom: 0;
-    }
-
     // pull lists upward to text above if any.
     :global(.navds-body-long + ul),
     :global(.navds-body-long + ol) {
         margin-top: -1rem;
+    }
+}
+
+:global(.part__html-area):last-child {
+    .htmlArea > :last-child {
+        margin-bottom: 0;
     }
 }
