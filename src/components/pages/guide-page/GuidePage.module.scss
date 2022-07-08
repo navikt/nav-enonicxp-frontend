@@ -20,8 +20,4 @@
             margin-right: -(common.$padding-sides-desktop);
         }
     }
-
-    // For now use product-mixins. If page is to divert from product
-    // page layout at some later date, separate mixins can be created.
-    @include common.product-mixins();
 }

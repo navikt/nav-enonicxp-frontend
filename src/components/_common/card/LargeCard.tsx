@@ -8,9 +8,9 @@ import { AnimatedIconsProps } from '../../../types/content-props/animated-icons'
 import { useCardState } from './useCard';
 import { Interaction } from 'types/interaction';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { classNames } from 'utils/classnames';
 
 import style from './LargeCard.module.scss';
-import { classNames } from 'utils/classnames';
 
 enum LayoutVariation {
     DEFAULT = 'Default',
