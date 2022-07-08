@@ -28,6 +28,8 @@ const cardTypeMap = {
     [ContentType.ToolsPage]: CardType.Tool,
     [ContentType.ThemedArticlePage]: CardType.ThemedArticle,
     [ContentType.GuidePage]: CardType.Guide,
+    [ContentType.Overview]: CardType.Overview,
+    [ContentType.GenericPage]: CardType.Generic,
 };
 
 const getCardCategory = (

@@ -118,13 +118,13 @@ export const translationsBundleNn = {
         copiedLinkConfirmed: 'Lenka er kopiert',
     },
     overview: {
-        noProducts: 'Ingen produkt å vise',
+        noProducts: 'Ingen treff',
         ariaExplanation: 'Filtrer lista etter område',
         ariaItemExplanation: 'Vis område',
         chooseArea: 'Vel område',
         chooseType: 'Vel type',
         search: 'Søk',
-        loading: 'Hentar produktdetaljar',
+        loading: 'Laster innhald...',
     },
     pagination: {
         goTo: 'Gå til',

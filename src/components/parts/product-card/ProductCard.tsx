@@ -9,6 +9,7 @@ import {
 import { getCardProps } from '../../_common/card/card-utils';
 import { MiniCard } from '../../_common/card/MiniCard';
 import { LargeCard } from '../../_common/card/LargeCard';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 export const ProductCardPart = ({
     config,
@@ -18,9 +19,11 @@ export const ProductCardPart = ({
 
     if (!config?.targetPage) {
         return (
-            <div>
-                Velg en produktside eller livssituasjon for å aktivere kortet
-            </div>
+            <EditorHelp
+                text={
+                    'Velg en produktside eller livssituasjon for å aktivere kortet'
+                }
+            />
         );
     }
 
@@ -29,7 +32,7 @@ export const ProductCardPart = ({
     const props = getCardProps(targetPage, language, ingressOverride);
 
     if (!props) {
-        return null;
+        return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
     }
 
     if (descriptor === PartType.ProductCard) {
@@ -49,5 +52,5 @@ export const ProductCardPart = ({
         );
     }
 
-    return null;
+    return <EditorHelp type={'error'} text={'Kortet har ugyldig type'} />;
 };
