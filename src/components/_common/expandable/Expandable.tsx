@@ -34,14 +34,14 @@ export const Expandable = ({
     };
 
     useEffect(() => {
-        const searchHandler = (e: KeyboardEvent) => {
+        const openOnBrowserSearch = (e: KeyboardEvent) => {
             if (e.ctrlKey && e.code === 'KeyF') {
                 setIsOpen(true);
             }
         };
 
-        window.addEventListener('keydown', searchHandler);
-        return () => window.removeEventListener('keydown', searchHandler);
+        window.addEventListener('keydown', openOnBrowserSearch);
+        return () => window.removeEventListener('keydown', openOnBrowserSearch);
     }, []);
 
     useEffect(() => {
