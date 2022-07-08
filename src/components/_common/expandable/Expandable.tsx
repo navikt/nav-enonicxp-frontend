@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Accordion } from '@navikt/ds-react';
 import { analyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
 import { classNames } from '../../../utils/classnames';
@@ -22,7 +22,7 @@ export const Expandable = ({
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const onExpandCollapse = () => {
+    const toggleExpandCollapse = () => {
         logAmplitudeEvent(
             isOpen ? analyticsEvents.ACC_COLLAPSE : analyticsEvents.ACC_EXPAND,
             {
@@ -33,6 +33,23 @@ export const Expandable = ({
         setIsOpen(!isOpen);
     };
 
+    useEffect(() => {
+        const searchHandler = (e: KeyboardEvent) => {
+            if (e.ctrlKey && e.code === 'KeyF') {
+                setIsOpen(true);
+            }
+        };
+
+        window.addEventListener('keydown', searchHandler);
+        return () => window.removeEventListener('keydown', searchHandler);
+    }, []);
+
+    useEffect(() => {
+        if (anchorId && window.location.hash === `#${anchorId}`) {
+            setIsOpen(true);
+        }
+    }, [anchorId]);
+
     return (
         <Accordion
             id={anchorId}
@@ -40,9 +57,10 @@ export const Expandable = ({
         >
             <Accordion.Item
                 renderContentWhenClosed={true}
+                open={isOpen}
                 className={style.expandable}
             >
-                <Accordion.Header onClick={onExpandCollapse}>
+                <Accordion.Header onClick={toggleExpandCollapse}>
                     {title}
                 </Accordion.Header>
                 <Accordion.Content>{children}</Accordion.Content>
