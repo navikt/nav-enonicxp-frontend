@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Accordion } from '@navikt/ds-react';
 import { analyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
+import { classNames } from '../../../utils/classnames';
 
 import style from './Expandable.module.scss';
 
@@ -22,15 +23,21 @@ export const Expandable = ({
     const [isOpen, setIsOpen] = useState(false);
 
     const onExpandCollapse = () => {
-        logAmplitudeEvent(isOpen ? analyticsEvents.ACC_COLLAPSE : analyticsEvents.ACC_EXPAND, {
-            tittel: title,
-            opprinnelse: analyticsOriginTag,
-        });
+        logAmplitudeEvent(
+            isOpen ? analyticsEvents.ACC_COLLAPSE : analyticsEvents.ACC_EXPAND,
+            {
+                tittel: title,
+                opprinnelse: analyticsOriginTag,
+            }
+        );
         setIsOpen(!isOpen);
     };
 
     return (
-        <Accordion id={anchorId} className={className}>
+        <Accordion
+            id={anchorId}
+            className={classNames(className, style.expandableWrapper)}
+        >
             <Accordion.Item
                 renderContentWhenClosed={true}
                 className={style.expandable}

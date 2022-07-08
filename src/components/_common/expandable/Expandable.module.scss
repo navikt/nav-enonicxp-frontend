@@ -27,14 +27,8 @@
     }
 }
 
-// TODO: move this to the respective SCSS-files when these page types have
-// been migrated to SCSS?
-$page-classes: '.productPage', '.situationPage', '.guidePage';
-@each $page-class in $page-classes {
-    :global(#{$page-class} .part__html-area),
-    :global(#{$page-class} .part__product-details) {
-        .expandable {
-            margin-bottom: 1.75rem;
-        }
+:global(:not(:last-child)) {
+    & > .expandableWrapper {
+        margin-bottom: 1.75rem;
     }
 }

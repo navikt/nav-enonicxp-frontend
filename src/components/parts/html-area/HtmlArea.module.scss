@@ -37,6 +37,13 @@
         }
     }
 
+    p,
+    ul {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
     // pull lists upward to text above if any.
     :global(.navds-body-long + ul),
     :global(.navds-body-long + ol) {
