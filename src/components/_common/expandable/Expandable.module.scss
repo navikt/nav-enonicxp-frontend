@@ -24,6 +24,13 @@
         visibility: hidden;
         transition: visibility 250ms;
         padding: 1rem 0 0.5rem 0;
+
+        & > :first-child {
+            margin-top: 0;
+            & > :first-child {
+                margin-top: 0;
+            }
+        }
     }
 }
 
