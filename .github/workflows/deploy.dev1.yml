@@ -15,6 +15,7 @@ jobs:
       DECORATOR_FALLBACK_URL: https://dekoratoren.ekstern.dev.nav.no
       XP_ORIGIN: https://www.dev.nav.no
       INNLOGGINGSSTATUS_URL: https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth
+      NAVNO_API_URL: https://www.dev.nav.no/person/navno-api
       FAILOVER_ORIGIN: https://www-failover.dev.nav.no
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}

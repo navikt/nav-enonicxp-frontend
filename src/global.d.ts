@@ -16,6 +16,7 @@ declare global {
             IMAGE_CACHE_DIR: string;
             FAILOVER_ORIGIN: string;
             IS_FAILOVER_INSTANCE: string;
+            NAVNO_API_URL?: string;
         }
     }
 }

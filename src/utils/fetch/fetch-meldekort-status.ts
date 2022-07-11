@@ -1,8 +1,8 @@
 import { fetchJson } from './fetch-utils';
-import { setAuthStateAction } from '../../store/slices/authState';
+import { setMeldekortInfoAction } from '../../store/slices/authState';
 import { store } from '../../store/store';
 
-type FetchMeldekortstatustatusResponse = {
+export type Meldekortstatus = {
     meldekort: number;
     etterregistrerteMeldekort: number;
     antallGjenstaaendeFeriedager: number;
@@ -10,30 +10,23 @@ type FetchMeldekortstatustatusResponse = {
     nesteInnsendingAvMeldekort: null | unknown;
 };
 
-export const fetchAndSetMeldekortStatus = () =>
-    fetchJson<FetchMeldekortstatustatusResponse>(
-        process.env.INNLOGGINGSSTATUS_URL,
-        5000,
-        {
-            credentials: 'include',
-        }
-    ).then((res) => {
-        if (!res) {
-            console.error('Failed to fetch innloggingsstatus');
-            store.dispatch(setAuthStateAction({ authState: 'loggedOut' }));
-            return null;
+const meldekortStatusUrl = process.env.NAVNO_API_URL
+    ? `${process.env.NAVNO_API_URL}/meldekortstatus`
+    : null;
+
+export const fetchAndSetMeldekortStatus = () => {
+    if (!meldekortStatusUrl) {
+        return;
+    }
+
+    return fetchJson<Meldekortstatus>(meldekortStatusUrl, 5000, {
+        credentials: 'include',
+    }).then((response) => {
+        if (!response) {
+            console.error('Failed to fetch meldekortinfo');
+            return;
         }
 
-        // store.dispatch(
-        //     setAuthStateAction(
-        //         res.authenticated
-        //             ? {
-        //                   authState: 'loggedIn',
-        //                   name: res.name,
-        //               }
-        //             : { authState: 'loggedOut' }
-        //     )
-        // );
-
-        return res;
+        store.dispatch(setMeldekortInfoAction(response));
     });
+};

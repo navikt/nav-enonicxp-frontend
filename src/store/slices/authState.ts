@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Meldekortstatus } from '../../utils/fetch/fetch-meldekort-status';
 
 export type AuthStateType = 'loggedIn' | 'loggedOut' | 'waiting';
 
 export type AuthState = {
     authState: AuthStateType;
     name?: string;
+    meldekortStatus?: Meldekortstatus;
 };
 
 const initialState: AuthState = {
@@ -21,9 +23,20 @@ export const authStateSlice = createSlice({
                 state.name = action.payload.name;
             }
         },
+        setMeldekortInfo: (
+            state,
+            action: PayloadAction<AuthState['meldekortStatus']>
+        ) => {
+            if (action.payload) {
+                state.meldekortStatus = action.payload;
+            }
+        },
     },
 });
 
-export const { setAuthState: setAuthStateAction } = authStateSlice.actions;
+export const {
+    setAuthState: setAuthStateAction,
+    setMeldekortInfo: setMeldekortInfoAction,
+} = authStateSlice.actions;
 
 export default authStateSlice.reducer;

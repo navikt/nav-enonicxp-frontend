@@ -157,6 +157,7 @@ module.exports = withPlugins([withTranspileModules, withBundleAnalyzer], {
         FAILOVER_ORIGIN: process.env.FAILOVER_ORIGIN,
         IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
+        NAVNO_API_URL: process.env.NAVNO_API_URL,
     },
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
