@@ -1,6 +1,5 @@
 import { LinkProps } from 'types/link-props';
 import { CardSize, CardType } from 'types/card';
-import { Card } from './Card';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { useCard } from './useCard';
 
