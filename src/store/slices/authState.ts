@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { MeldekortStatus } from '../../utils/fetch/fetch-meldekort-status';
+import { MeldekortStatusResponse } from '../../utils/fetch/fetch-meldekort-status';
 
 export type AuthStateType = 'loggedIn' | 'loggedOut' | 'waiting';
+
+export type MeldekortStatus = MeldekortStatusResponse & {
+    isMeldekortBruker: boolean;
+};
 
 export type AuthState = {
     authState: AuthStateType;
@@ -25,10 +29,14 @@ export const authStateSlice = createSlice({
         },
         setMeldekortInfo: (
             state,
-            action: PayloadAction<AuthState['meldekortStatus']>
+            action: PayloadAction<MeldekortStatusResponse>
         ) => {
             if (action.payload) {
-                state.meldekortStatus = action.payload;
+                state.meldekortStatus = {
+                    ...action.payload,
+                    isMeldekortBruker:
+                        !!action.payload.nesteInnsendingAvMeldekort,
+                };
             }
         },
     },

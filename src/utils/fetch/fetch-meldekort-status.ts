@@ -2,15 +2,15 @@ import { fetchJson } from './fetch-utils';
 import { setMeldekortStatusAction } from '../../store/slices/authState';
 import { store } from '../../store/store';
 
-export type MeldekortStatus = {
+export type MeldekortStatusResponse = {
     meldekort: number;
     etterregistrerteMeldekort: number;
     antallGjenstaaendeFeriedager: number;
-    nesteMeldekort: null | unknown;
+    nesteMeldekort: null | string;
     nesteInnsendingAvMeldekort: null | string;
 };
 
-const meldekortStatusMock: MeldekortStatus = {
+const meldekortStatusMock: MeldekortStatusResponse = {
     meldekort: 0,
     etterregistrerteMeldekort: 1,
     antallGjenstaaendeFeriedager: 0,
@@ -32,11 +32,11 @@ export const fetchAndSetMeldekortStatus = () => {
         return;
     }
 
-    return fetchJson<MeldekortStatus>(meldekortStatusUrl, 5000, {
+    return fetchJson<MeldekortStatusResponse>(meldekortStatusUrl, 5000, {
         credentials: 'include',
     }).then((response) => {
         if (!response) {
-            console.error('Failed to fetch meldekortinfo');
+            console.error('Failed to fetch meldekort status');
             return null;
         }
 

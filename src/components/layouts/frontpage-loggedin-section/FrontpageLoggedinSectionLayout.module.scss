@@ -24,6 +24,10 @@
 .cards {
     @include common.grid-layout-mixin();
     @include common.content-studio-drop-zone-fix-local();
+
+    & > :empty {
+        display: none;
+    }
 }
 
 .myPage {
