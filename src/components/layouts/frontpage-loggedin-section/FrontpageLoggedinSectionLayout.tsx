@@ -75,7 +75,7 @@ export const FrontpageLoggedinSectionLayout = ({
     const { header, mypage } = config;
 
     return (
-        <AuthDependantRender renderOn={'always'}>
+        <AuthDependantRender renderOn={'loggedIn'}>
             <LayoutContainer
                 pageProps={pageProps}
                 layoutProps={layoutProps}

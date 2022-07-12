@@ -30,7 +30,7 @@ on:
         required: true
         type: string
       NAVNO_API_URL:
-        required: false
+        required: true
         type: string
       FAILOVER_ORIGIN:
         required: true
