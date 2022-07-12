@@ -1,19 +1,21 @@
-import { LinkProps } from 'types/link-props';
+import { classNames } from 'utils/classnames';
+
+import { AnimatedIconsProps } from '../../../types/content-props/animated-icons';
 import { CardSize, CardType } from 'types/card';
 import { Illustration } from '../illustration/Illustration';
 import { IllustrationPlacements } from 'types/illustrationPlacements';
-import { AnimatedIconsProps } from '../../../types/content-props/animated-icons';
-import { useCard } from './useCard';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-
-import style from './MiniCard.module.scss';
-import sharedStyle from './Card.module.scss';
 import { LenkeBase } from '../lenke/LenkeBase';
-import { classNames } from 'utils/classnames';
+import { LinkProps } from 'types/link-props';
+
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { useCard } from './useCard';
+
+import sharedStyle from './Card.module.scss';
+import style from './MiniCard.module.scss';
 
 export type MiniKortProps = {
-    link: LinkProps;
     illustration?: AnimatedIconsProps;
+    link: LinkProps;
     type: CardType;
 };
 

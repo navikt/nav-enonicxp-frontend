@@ -1,16 +1,18 @@
-import { LinkProps } from 'types/link-props';
-import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
+import { classNames } from 'utils/classnames';
+
+import { AnimatedIconsProps } from '../../../types/content-props/animated-icons';
 import { CardSize, CardType } from 'types/card';
+import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
 import { Illustration } from '../illustration/Illustration';
 import { IllustrationPlacements } from 'types/illustrationPlacements';
-import { AnimatedIconsProps } from '../../../types/content-props/animated-icons';
-import { useCard } from './useCard';
+import { LenkeBase } from '../lenke/LenkeBase';
+import { LinkProps } from 'types/link-props';
+
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { classNames } from 'utils/classnames';
+import { useCard } from './useCard';
 
 import style from './LargeCard.module.scss';
 import sharedStyle from './Card.module.scss';
-import { LenkeBase } from '../lenke/LenkeBase';
 
 enum LayoutVariation {
     DEFAULT = 'Default',
@@ -18,27 +20,30 @@ enum LayoutVariation {
 }
 
 export type StortKortProps = {
-    link: LinkProps;
-    illustration?: AnimatedIconsProps;
-    description: string;
     category: string;
+    description: string;
+    illustration?: AnimatedIconsProps;
+    link: LinkProps;
     type: CardType;
 };
 
 export const LargeCard = (props: StortKortProps) => {
     const { link, description, type, category, illustration } = props;
     const { text } = link;
+
     const hasIllustration =
         illustration &&
         (type === CardType.Product ||
             type === CardType.Situation ||
             type === CardType.ThemedArticle ||
             type === CardType.Guide);
+
     const { isHovering, userEventProps, analyticsProps } = useCard({
         type,
         size: CardSize.Large,
         link,
     });
+
     const { pageConfig } = usePageConfig();
 
     const layoutVariation =
