@@ -13,7 +13,7 @@ export const LoggedinCardMeldekort = ({ link }: Props) => {
         return <div>{'Har ikke hentet meldekort info'}</div>;
     }
 
-    if (!meldekortStatus.meldekort) {
+    if (meldekortStatus.nesteInnsendingAvMeldekort) {
         return <div>{'Er ikke meldekortbruker'}</div>;
     }
 

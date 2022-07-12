@@ -1,13 +1,21 @@
 import { fetchJson } from './fetch-utils';
-import { setMeldekortInfoAction } from '../../store/slices/authState';
+import { setMeldekortStatusAction } from '../../store/slices/authState';
 import { store } from '../../store/store';
 
-export type Meldekortstatus = {
+export type MeldekortStatus = {
     meldekort: number;
     etterregistrerteMeldekort: number;
     antallGjenstaaendeFeriedager: number;
     nesteMeldekort: null | unknown;
-    nesteInnsendingAvMeldekort: null | unknown;
+    nesteInnsendingAvMeldekort: null | string;
+};
+
+const meldekortStatusMock: MeldekortStatus = {
+    meldekort: 0,
+    etterregistrerteMeldekort: 1,
+    antallGjenstaaendeFeriedager: 0,
+    nesteMeldekort: null,
+    nesteInnsendingAvMeldekort: '2022-07-23',
 };
 
 const meldekortStatusUrl = process.env.NAVNO_API_URL
@@ -15,18 +23,25 @@ const meldekortStatusUrl = process.env.NAVNO_API_URL
     : null;
 
 export const fetchAndSetMeldekortStatus = () => {
+    if (process.env.ENV === 'localhost') {
+        store.dispatch(setMeldekortStatusAction(meldekortStatusMock));
+        return;
+    }
+
     if (!meldekortStatusUrl) {
         return;
     }
 
-    return fetchJson<Meldekortstatus>(meldekortStatusUrl, 5000, {
+    return fetchJson<MeldekortStatus>(meldekortStatusUrl, 5000, {
         credentials: 'include',
     }).then((response) => {
         if (!response) {
             console.error('Failed to fetch meldekortinfo');
-            return;
+            return null;
         }
 
-        store.dispatch(setMeldekortInfoAction(response));
+        store.dispatch(setMeldekortStatusAction(response));
+
+        return response;
     });
 };

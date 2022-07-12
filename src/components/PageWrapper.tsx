@@ -61,6 +61,8 @@ export const PageWrapper = (props: Props) => {
                     fetchAndSetMeldekortStatus();
                 }
             });
+
+            fetchAndSetMeldekortStatus();
         }
 
         onBreadcrumbClick((breadcrumb) =>
