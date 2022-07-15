@@ -7,4 +7,6 @@ export enum Interaction {
     touchstart = 'touchstart',
     touchmove = 'touchmove',
     touchcancel = 'touchcancel',
+    touch = 'touch',
+    click = 'click',
 }

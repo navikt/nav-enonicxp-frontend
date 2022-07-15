@@ -6,6 +6,7 @@
     outline: 0;
     text-decoration: none;
     width: 100%;
+    cursor: pointer;
 
     &.inline {
         display: inline-block;
@@ -21,7 +22,7 @@
         height: 100%;
     }
     &:hover,
-    &:focus {
+    &:focus-within {
         > :global(.situation) {
             background-color: var(--navds-global-color-orange-200);
         }
@@ -44,7 +45,7 @@
         }
     }
 
-    &:focus,
+    &:focus-within,
     &:active {
         .bed {
             position: relative;
@@ -220,6 +221,11 @@
     }
 }
 
+.lenkeBaseOverride {
+    &:focus {
+        outline: 0;
+    }
+}
 // Handle card-margin in layouts
 :global(.layout__situation-flex-cols),
 :global(.layout__product-flex-cols) {
