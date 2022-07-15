@@ -16,8 +16,6 @@ const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
 const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
     quiet: process.env.ENV === 'prod',
-    hostname: 'localhost',
-    port: 3000,
 });
 
 const validateSecret = (req, res, next) => {
