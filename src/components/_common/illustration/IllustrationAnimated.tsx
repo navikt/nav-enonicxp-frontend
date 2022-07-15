@@ -80,7 +80,7 @@ const IllustrationAnimatedComponent = ({
 };
 
 export const IllustrationAnimated = (props: IllustrationAnimatedProps) => {
-    if (!props.illustration) {
+    if (!props.illustration?.data.lottieHover?.mediaUrl) {
         return null;
     }
 
