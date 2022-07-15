@@ -78,6 +78,8 @@ export const useCard = ({
         const eventType = e.type.toString() as keyof typeof Interaction;
         const type: Interaction = Interaction[eventType];
 
+        e.stopPropagation();
+
         if (
             type === Interaction.mouseenter ||
             type === Interaction.mouseleave
@@ -101,11 +103,22 @@ export const useCard = ({
             setIsPressed(false);
         }
         if (type === Interaction.touch || type === Interaction.click) {
+            // User should be able to select text for text-to-speech, so abort all
+            // routing if clicking is captured while text is selected.
             const isTextSelected = !!window.getSelection().toString();
+            const isOpeningInNewWindow = e.ctrlKey || e.metaKey;
+            const target = stripXpPathPrefix(link.url);
+
             if (!isTextSelected) {
-                const target = stripXpPathPrefix(link.url);
-                router.push(target);
                 logAmplitudeEvent(analyticsEvents.NAVIGATION, analyticsPayload);
+            }
+
+            if (!isOpeningInNewWindow && !isTextSelected) {
+                router.push(target);
+            }
+
+            if (isOpeningInNewWindow && !isTextSelected) {
+                window.open(target);
             }
         }
     };
