@@ -7,6 +7,10 @@ import { fetchJson } from '../../../utils/fetch/fetch-utils';
 import styleCommon from './Illustration.module.scss';
 import styleAnimated from './IllustrationAnimated.module.scss';
 
+// JSON files in XP are double-encoded...
+const fetchAndParse = (url: string) =>
+    fetchJson(url).then((jsonString) => JSON.parse(jsonString));
+
 interface IllustrationAnimatedProps {
     illustration: AnimatedIconsProps;
     className: string;
@@ -26,29 +30,8 @@ const IllustrationAnimatedComponent = ({
 
     const { data: lottieData } = useSWR(
         illustration.data.lottieHover.mediaUrl,
-        fetchJson<string>
+        fetchAndParse
     );
-
-    const updateLottieContainer = async (lottieData: string) => {
-        const lottie = await import('lottie-web/build/player/lottie_light.min');
-
-        const container = lottieContainer.current;
-
-        if (container.innerHTML) {
-            container.innerHTML = '';
-        }
-
-        try {
-            lottiePlayer.current = lottie.loadAnimation({
-                container: container,
-                animationData: JSON.parse(lottieData),
-                autoplay: false,
-                loop: false,
-            });
-        } catch (error) {
-            return;
-        }
-    };
 
     useEffect(() => {
         const newDirection = isHovering ? 1 : -1;
@@ -60,8 +43,31 @@ const IllustrationAnimatedComponent = ({
     }, [isHovering, direction]);
 
     useEffect(() => {
+        const updateLottieContainer = async () => {
+            const lottie = await import(
+                'lottie-web/build/player/lottie_light.min'
+            );
+
+            const container = lottieContainer.current;
+
+            if (container.innerHTML) {
+                container.innerHTML = '';
+            }
+
+            try {
+                lottiePlayer.current = lottie.loadAnimation({
+                    container: container,
+                    animationData: lottieData,
+                    autoplay: false,
+                    loop: false,
+                });
+            } catch (error) {
+                return;
+            }
+        };
+
         if (lottieData) {
-            updateLottieContainer(lottieData);
+            updateLottieContainer();
         }
     }, [lottieData]);
 
