@@ -24,9 +24,9 @@ const IllustrationAnimatedComponent = ({
     const lottieContainer = useRef(null);
     const lottiePlayer = useRef(null);
 
-    const { data: lottieData } = useSWR<string | null>(
+    const { data: lottieData } = useSWR(
         illustration.data.lottieHover.mediaUrl,
-        fetchJson
+        fetchJson<string>
     );
 
     const updateLottieContainer = async (lottieData: string) => {
