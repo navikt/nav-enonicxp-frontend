@@ -79,9 +79,7 @@ export const LargeCard = (props: StortKortProps) => {
                             sharedStyle.lenkeBaseOverride
                         )}
                     >
-                        <Heading level="3" size="medium">
-                            {text}
-                        </Heading>
+                        {text}
                     </LenkeBase>
                     <div className={style.textContainer}>
                         <BodyLong className={style.description}>
