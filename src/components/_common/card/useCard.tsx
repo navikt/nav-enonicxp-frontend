@@ -101,9 +101,12 @@ export const useCard = ({
             setIsPressed(false);
         }
         if (type === Interaction.touch || type === Interaction.click) {
-            const target = stripXpPathPrefix(link.url);
-            router.push(target);
-            logAmplitudeEvent(analyticsEvents.NAVIGATION, analyticsPayload);
+            const isTextSelected = !!window.getSelection().toString();
+            if (!isTextSelected) {
+                const target = stripXpPathPrefix(link.url);
+                router.push(target);
+                logAmplitudeEvent(analyticsEvents.NAVIGATION, analyticsPayload);
+            }
         }
     };
 
