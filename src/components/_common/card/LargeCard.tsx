@@ -51,8 +51,6 @@ export const LargeCard = (props: StortKortProps) => {
             ? LayoutVariation.SITUATION
             : LayoutVariation.DEFAULT;
 
-    const describedbyId = `largecard-${link.url}`;
-
     return (
         <div {...userEventProps} className={classNames(sharedStyle.card)}>
             <div className={classNames(sharedStyle.bed, type, CardSize.Large)}>
@@ -80,18 +78,13 @@ export const LargeCard = (props: StortKortProps) => {
                             style.title,
                             sharedStyle.lenkeBaseOverride
                         )}
-                        aria-details={describedbyId}
-                        aria-describedby={describedbyId}
                     >
                         <Heading level="3" size="medium">
                             {text}
                         </Heading>
                     </LenkeBase>
                     <div className={style.textContainer}>
-                        <BodyLong
-                            className={style.description}
-                            id={describedbyId}
-                        >
+                        <BodyLong className={style.description}>
                             {description}
                         </BodyLong>
                         <BodyShort className={style.category}>
