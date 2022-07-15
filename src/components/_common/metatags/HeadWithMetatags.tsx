@@ -40,8 +40,8 @@ const getDescription = (content: ContentProps) => {
     return content.displayName;
 };
 
-const shouldNotIndex = (content: ContentProps, router: NextRouter) => {
-    if (router.query.utkastRouter) {
+const shouldNotIndex = (content: ContentProps) => {
+    if (content.isPagePreview) {
         return true;
     }
     return content.data?.noindex;
@@ -61,12 +61,10 @@ export const getPageTitle = (content: ContentProps) =>
     `${content.displayName} - nav.no`;
 
 export const HeadWithMetatags = ({ content, children }: Props) => {
-    const router = useRouter();
-
     const title = getPageTitle(content);
     const description = getDescription(content).slice(0, descriptionMaxLength);
     const url = getCanonicalUrl(content);
-    const noIndex = shouldNotIndex(content, router);
+    const noIndex = shouldNotIndex(content);
     const imageUrl = `${appOrigin}/gfx/social-share-fallback.png`;
 
     return (

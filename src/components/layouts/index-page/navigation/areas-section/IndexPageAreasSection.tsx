@@ -22,29 +22,26 @@ export const IndexPageAreasSection = ({
     areaRefs,
     navigate,
 }: Props) => {
-    const { __typename, _id } = pageProps;
-
-    const isAreapage = __typename === ContentType.AreaPage;
-
-    return (
-        <div className={classNames(!isAreapage && style.grid)}>
-            {isAreapage ? (
-                <AreaPageHeader areaContent={pageProps} key={_id} />
-            ) : (
-                areaRefs.map((areaContent) => (
-                    <AreaCard
-                        path={getPublicPathname(areaContent)}
-                        title={areaContent.data.header}
-                        area={areaContent.data.area}
-                        navigate={navigate}
-                        linkGroup={pageProps.data.areasHeader}
-                        onClick={() => {
-                            windowScrollTo(0);
-                        }}
-                        key={areaContent._id}
-                    />
-                ))
-            )}
-        </div>
+    return pageProps.__typename === ContentType.AreaPage ? (
+        <AreaPageHeader areaContent={pageProps} />
+    ) : (
+        <nav>
+            <ul className={style.cards}>
+                {areaRefs.map((areaContent) => (
+                    <li key={areaContent._id}>
+                        <AreaCard
+                            path={getPublicPathname(areaContent)}
+                            title={areaContent.data.header}
+                            area={areaContent.data.area}
+                            navigate={navigate}
+                            linkGroup={pageProps.data.areasHeader}
+                            onClick={() => {
+                                windowScrollTo(0);
+                            }}
+                        />
+                    </li>
+                ))}
+            </ul>
+        </nav>
     );
 };

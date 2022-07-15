@@ -15,7 +15,7 @@ export const ChatbotLinkPanel = ({
         <LinkPanelNavno
             className={style.chat}
             href={'#'}
-            linkGroup={analyticsGroup}
+            analyticsLinkGroup={analyticsGroup}
             linkText={linkText}
             onClick={(e) => {
                 e.preventDefault();

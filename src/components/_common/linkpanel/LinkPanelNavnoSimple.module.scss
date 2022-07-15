@@ -1,14 +1,19 @@
 @use 'src/common' as common;
 
-$color: common.$navds-semantic-color-link;
+$blueLinkColor: common.$navds-semantic-color-link;
+$blackLinkColor: common.$navds-semantic-color-text;
 
 .linkPanel {
     display: flex;
 
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
     border-radius: common.$border-radius-xlarge;
 
     text-decoration: none;
+
+    @media #{common.$mq-screen-mobile-small} {
+        padding: 0.625rem;
+    }
 
     &.withIcon {
         align-items: center;
@@ -16,13 +21,14 @@ $color: common.$navds-semantic-color-link;
 
     &:hover {
         .text {
+            color: $blueLinkColor;
             border-bottom-color: transparent;
 
-            &.underline {
-                border-bottom-color: $color;
+            &.underlineOnHover {
+                border-bottom-color: $blueLinkColor;
 
                 &.black {
-                    border-bottom-color: black;
+                    border-bottom-color: $blackLinkColor;
                 }
             }
         }
@@ -34,19 +40,31 @@ $color: common.$navds-semantic-color-link;
 }
 
 .icon {
-    margin-right: 1.25rem;
+    margin-right: 1rem;
 }
 
 .text {
-    transition: border-bottom-color 0.15s ease-out;
-    border-bottom: 2px common.$navds-semantic-color-link solid;
+    transition-property: border-bottom-color, color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
 
-    &.black {
-        color: black;
-        border-bottom-color: black;
+    border-bottom: 1px $blueLinkColor solid;
+
+    @media #{common.$mq-screen-mobile-small} {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
     }
 
-    &.underline {
+    &.black {
+        color: common.$navds-semantic-color-text;
+        border-bottom-color: $blackLinkColor;
+    }
+
+    &.underlineOnHover {
         border-bottom-color: transparent;
+    }
+
+    &.underlineNone {
+        border-bottom: none;
     }
 }

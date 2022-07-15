@@ -126,13 +126,13 @@ export const translationsBundleNb = {
         copiedLinkConfirmed: 'Lenken er kopiert',
     },
     overview: {
-        noProducts: 'Ingen produkter å vise',
+        noProducts: 'Ingen treff',
         ariaExplanation: 'Filtrer listen etter område',
         ariaItemExplanation: 'Vis område',
         chooseArea: 'Velg område',
         chooseType: 'Velg type',
         search: 'Søk',
-        loading: 'Henter produktdetaljer',
+        loading: 'Laster innhold...',
     },
     pagination: {
         goTo: 'Gå til',

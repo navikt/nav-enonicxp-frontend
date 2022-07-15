@@ -126,13 +126,13 @@ export const translationsBundleEn: Translations = {
         copiedLinkConfirmed: 'Link successfully copied',
     },
     overview: {
-        noProducts: 'No products to show',
+        noProducts: 'No hits',
         ariaExplanation: 'Filter list by area',
         ariaItemExplanation: 'Show area',
         chooseArea: 'Choose area',
         chooseType: 'Choose type',
         search: 'Search',
-        loading: 'Loading product details',
+        loading: 'Loading content...',
     },
     pagination: {
         goTo: 'Go to',

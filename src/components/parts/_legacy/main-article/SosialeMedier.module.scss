@@ -1,11 +1,11 @@
+@use 'src/common' as common;
+
 .socialMedia {
     text-align: center;
     margin-top: 3.3rem;
 
     ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+        @include common.unstyled-list();
     }
 
     li {

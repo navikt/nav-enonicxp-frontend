@@ -73,3 +73,13 @@ figure {
     margin-left: 0;
     margin-right: 0;
 }
+
+// Catch-all to prevent unnecessary margin-bottom whitespace
+.region:last-child,
+.layout:last-child,
+.part:last-child {
+    margin-bottom: 0;
+    & > :last-child {
+        margin-bottom: 0;
+    }
+}

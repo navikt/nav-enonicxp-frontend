@@ -6,13 +6,11 @@
     @include transitionMixin;
     position: absolute;
     right: 0;
-    top: 120px;
+    top: 127px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.arrow')} {
-        right: 198px;
-    }
+@include areaGraphics.onExpandMixin('.arrow') {
+    right: 191px;
 }
 
 .letterPartOrange {
@@ -26,11 +24,9 @@
     top: 58px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.letterPartOrange')} {
-        right: 48px;
-        top: 58px;
-    }
+@include areaGraphics.onExpandMixin('.letterPartOrange') {
+    right: 48px;
+    top: 58px;
 }
 
 .letterPartBlue {
@@ -44,10 +40,8 @@
     top: 0;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.letterPartBlue')} {
-        right: 0;
-    }
+@include areaGraphics.onExpandMixin('.letterPartBlue') {
+    right: 0;
 }
 
 .mask {
@@ -62,27 +56,23 @@
     transform: skewX(-22.09deg);
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.mask')} {
-        background-color: #ffb8b8;
-        width: 48px;
-        height: 160px;
-        right: 100px;
-        top: 0;
-        transform: skewX(0);
-    }
+@include areaGraphics.onExpandMixin('.mask') {
+    background-color: #ffb8b8;
+    width: 48px;
+    height: 160px;
+    right: 100px;
+    top: 0;
+    transform: skewX(0);
 }
 
 .dog {
     @include transitionMixin;
     position: absolute;
-    right: 29px;
-    top: 36px;
+    right: 30px;
+    top: 38px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.dog')} {
-        right: 71px;
-        top: 72px;
-    }
+@include areaGraphics.onExpandMixin('.dog') {
+    right: 71px;
+    top: 76px;
 }

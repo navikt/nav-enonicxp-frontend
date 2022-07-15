@@ -10,9 +10,7 @@
 }
 
 .list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    @include common.unstyled-list();
 }
 
 .pageNavLink {
@@ -81,7 +79,8 @@
         .decor {
             visibility: visible;
             min-width: $decorWidth;
-            margin: (-$verticalPadding) $decorWidth (-$verticalPadding) (-$decorWidth - $horizontalPadding);
+            margin: (-$verticalPadding) $decorWidth (-$verticalPadding)
+                (-$decorWidth - $horizontalPadding);
             background-color: common.$navds-semantic-color-link;
 
             transform: scaleY(0);

@@ -11,13 +11,10 @@
 }
 
 .list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    @include common.unstyled-list();
 }
 
 .pageNavLink {
-    padding: 0.5rem;
     padding: 0.6875rem 0.5rem;
     margin: 0 -0.5rem;
 

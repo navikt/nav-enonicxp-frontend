@@ -1,15 +1,18 @@
 import React from 'react';
 import { classNames } from '../../../utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
+import { Heading } from '@navikt/ds-react';
 
 import style from './LinkPanelNavnoSimple.module.scss';
 
+type DsHeadingSize = React.ComponentProps<typeof Heading>['size'];
+
 type Props = {
     href: string;
-    linkGroup?: string;
-    linkTextSize?;
-    linkUnderline?;
-    linkColor?;
+    analyticsLinkGroup?: string;
+    linkTextSize?: DsHeadingSize;
+    linkUnderline?: 'default' | 'onHover' | 'none';
+    linkColor?: 'blue' | 'black';
     icon?: React.ReactNode;
     children: React.ReactNode;
 } & React.ComponentProps<typeof LenkeBase>;
@@ -19,7 +22,7 @@ type Props = {
 // content
 export const LinkPanelNavnoSimple = ({
     href,
-    linkGroup,
+    analyticsLinkGroup,
     linkTextSize = 'medium',
     linkUnderline = 'default',
     linkColor = 'blue',
@@ -35,10 +38,10 @@ export const LinkPanelNavnoSimple = ({
             className={classNames(
                 style.linkPanel,
                 icon && style.withIcon,
-                className,
+                className
             )}
-            component={'Lenkepanel navno enkel'}
-            linkGroup={linkGroup}
+            analyticsComponent={'Lenkepanel navno enkel'}
+            analyticsLinkGroup={analyticsLinkGroup}
         >
             {icon && <div className={style.icon}>{icon}</div>}
             <div
@@ -50,7 +53,8 @@ export const LinkPanelNavnoSimple = ({
                 <span
                     className={classNames(
                         style.text,
-                        linkUnderline === 'onHover' && style.underline,
+                        linkUnderline === 'onHover' && style.underlineOnHover,
+                        linkUnderline === 'none' && style.underlineNone,
                         linkColor === 'black' && style.black
                     )}
                 >

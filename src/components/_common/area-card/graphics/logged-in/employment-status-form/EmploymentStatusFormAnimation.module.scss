@@ -9,10 +9,8 @@
     top: 126px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.shapes')} {
-        right: 206px;
-    }
+@include areaGraphics.onExpandMixin('.shapes') {
+    right: 206px;
 }
 
 .letterPartOrange {
@@ -27,10 +25,8 @@
     transform: skewX(-22.5914deg);
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.letterPartOrange')} {
-        right: 25px;
-    }
+@include areaGraphics.onExpandMixin('.letterPartOrange') {
+    right: 25px;
 }
 
 .letterPartBlue {
@@ -44,10 +40,8 @@
     top: 0;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.letterPartBlue')} {
-        right: 0;
-    }
+@include areaGraphics.onExpandMixin('.letterPartBlue') {
+    right: 0;
 }
 
 .letterPartBlueTwo {
@@ -62,10 +56,8 @@
     transform: skewX(22.5914deg);
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.letterPartBlueTwo')} {
-        right: 75px;
-    }
+@include areaGraphics.onExpandMixin('.letterPartBlueTwo') {
+    right: 75px;
 }
 
 .mask {
@@ -80,15 +72,13 @@
     transform: skewX(-22.09deg);
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.mask')} {
-        background-color: #ffb8b8;
-        width: 48px;
-        height: 160px;
-        right: 102px;
-        top: 0;
-        transform: skewX(0);
-    }
+@include areaGraphics.onExpandMixin('.mask') {
+    background-color: #ffb8b8;
+    width: 48px;
+    height: 160px;
+    right: 102px;
+    top: 0;
+    transform: skewX(0);
 }
 
 .letter {
@@ -98,9 +88,7 @@
     top: 44px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.letter')} {
-        right: 112px;
-        top: 88px;
-    }
+@include areaGraphics.onExpandMixin('.letter') {
+    right: 102px;
+    top: 88px;
 }

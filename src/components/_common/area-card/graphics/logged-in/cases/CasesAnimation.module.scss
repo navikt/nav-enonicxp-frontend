@@ -6,13 +6,11 @@
     @include transitionMixin;
     position: absolute;
     right: 0;
-    top: 114px;
+    top: 122px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.shapes')} {
-        right: 209px;
-    }
+@include areaGraphics.onExpandMixin('.shapes') {
+    right: 203px;
 }
 
 .letterS {
@@ -22,10 +20,8 @@
     top: 0;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.letterS')} {
-        right: 1px;
-    }
+@include areaGraphics.onExpandMixin('.letterS') {
+    right: 1px;
 }
 
 .mask {
@@ -40,10 +36,8 @@
     transform: rotate(22.09deg);
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.mask')} {
-        right: -184px;
-    }
+@include areaGraphics.onExpandMixin('.mask') {
+    right: -184px;
 }
 
 .document {
@@ -53,9 +47,7 @@
     top: 42px;
 }
 
-@media (hover) {
-    #{areaGraphics.onExpand('.document')} {
-        right: 125px;
-        top: 85px;
-    }
+@include areaGraphics.onExpandMixin('.document') {
+    right: 110px;
+    top: 85px;
 }

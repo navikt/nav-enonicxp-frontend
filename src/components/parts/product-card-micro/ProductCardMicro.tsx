@@ -4,30 +4,40 @@ import { MicroCard } from 'components/_common/card/MicroCard';
 import { ProductCardMicroProps } from '../../../types/component-props/parts/product-card';
 import { getCardProps } from '../../_common/card/card-utils';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {
     const { language } = usePageConfig();
 
-    if (config?.card_list?.length === 0 || !config?.card_list) {
+    if (!config?.card_list || config.card_list.length === 0) {
         return (
-            <div>
-                Velg minst én produktside eller livssituasjon for å aktivere
-                mikrokortet!
-            </div>
+            <EditorHelp
+                text={'Velg minst én lenke for å aktivere mikrokortene'}
+            />
         );
     }
 
     const { card_list, header } = config;
 
+    const cardProps = card_list.reduce((acc, card) => {
+        const props = getCardProps(card.targetPage, language);
+        return props ? [...acc, props] : acc;
+    }, []);
+
+    if (cardProps.length === 0) {
+        return (
+            <EditorHelp
+                text={'Velg minst én lenke for å aktivere mikrokortene'}
+            />
+        );
+    }
+
     return (
         <>
             {header && <Label size="medium">{header}</Label>}
-            {card_list.map((card) => {
-                const props = getCardProps(card.targetPage, language);
-                return (
-                    props && <MicroCard {...props} key={card.targetPage._id} />
-                );
-            })}
+            {cardProps.map((card, index) => (
+                <MicroCard {...card} key={index} />
+            ))}
         </>
     );
 };

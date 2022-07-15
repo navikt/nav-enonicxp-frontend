@@ -30,8 +30,21 @@
     background-color: white;
 
     :global(.linkPanelNavnoLink) {
-        color: black;
-        border-bottom-color: black;
+        @media #{common.$mq-screen-mobile-small} {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+    }
+
+    :global(.linkPanelNavnoTextContent) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    @media #{common.$mq-screen-mobile-small} {
+        padding: 0.5rem 0.75rem;
     }
 }
 

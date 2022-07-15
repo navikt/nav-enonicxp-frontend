@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Accordion, Loader } from '@navikt/ds-react';
+import { Accordion, BodyShort, Loader } from '@navikt/ds-react';
 import { IllustrationStatic } from '../../../_common/illustration/IllustrationStatic';
 import { ComponentMapper } from '../../../ComponentMapper';
 import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
 import { fetchPageCacheContent } from '../../../../utils/fetch/fetch-cache-content';
-import { sanitizeLegacyUrl } from 'utils/urls';
-
 import { AlertBox } from '../../../_common/alert-box/AlertBox';
 import {
     ContentProps,
     ContentType,
 } from '../../../../types/content-props/_content-common';
-
 import { classNames } from '../../../../utils/classnames';
 import { translator } from '../../../../translations';
 import { ProductDetailType } from '../../../../types/content-props/product-details';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
+import { usePageConfig } from '../../../../store/hooks/usePageConfig';
 
 import style from './ProductDetailsPanel.module.scss';
 
@@ -32,24 +30,29 @@ export const ProductDetailsPanel = ({
     productDetails,
     visible,
 }: Props) => {
+    const { productDetailsPath, anchorId, illustration, sortTitle } =
+        productDetails;
+
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [productDetailsPage, setProductDetailsPage] = useState(null);
 
-    const detailTypeStrings = translator('productDetailTypes', 'no');
+    const { language } = usePageConfig();
+
+    const detailTypeStrings = translator('productDetailTypes', language);
+    const loadingText = translator('overview', language)('loading');
+
+    const anchorIdWithHash = `#${anchorId}`;
 
     useEffect(() => {
-        const anchorTarget = getAnchorFromPath(
-            productDetails.productDetailsPath
-        );
-        if (window.location.hash.includes(anchorTarget)) {
+        if (window.location.hash === anchorIdWithHash) {
             handleProductDetailsFetch();
             setIsOpen(true);
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [anchorIdWithHash]);
 
     const handleProductDetailsFetch = () => {
         if (isLoading || productDetailsPage) {
@@ -58,7 +61,7 @@ export const ProductDetailsPanel = ({
 
         setIsLoading(true);
 
-        fetchPageCacheContent(productDetails.productDetailsPath)
+        fetchPageCacheContent(productDetailsPath)
             .then((contentFromCache) => {
                 if (
                     !contentFromCache ||
@@ -80,14 +83,9 @@ export const ProductDetailsPanel = ({
             });
     };
 
-    const getAnchorFromPath = (path: string) => {
-        const lastPathSegment = `${path.substring(path.lastIndexOf('/') + 1)}`;
-        return sanitizeLegacyUrl(lastPathSegment);
-    };
-
     return (
         <>
-            <div id={getAnchorFromPath(productDetails.productDetailsPath)} />
+            <div id={anchorId} />
             <Accordion className={classNames(!visible && style.hidden)}>
                 <Accordion.Item open={isOpen} className={style.accordionItem}>
                     <Accordion.Header
@@ -103,23 +101,22 @@ export const ProductDetailsPanel = ({
                     >
                         <IllustrationStatic
                             className={style.illustration}
-                            illustration={productDetails.illustration}
+                            illustration={illustration}
                         />
-                        {productDetails.sortTitle}
+                        {sortTitle}
                     </Accordion.Header>
                     <Accordion.Content>
                         {error && (
                             <AlertBox variant={'error'}>{error}</AlertBox>
                         )}
                         <CopyLink
-                            anchor={`#${getAnchorFromPath(
-                                productDetails.productDetailsPath
-                            )}`}
+                            anchor={anchorIdWithHash}
                             className={style.copyLink}
                         />
                         {isLoading ? (
                             <div className={style.detailsLoader}>
                                 <Loader size={'2xlarge'} />
+                                <BodyShort>{loadingText}</BodyShort>
                             </div>
                         ) : productDetailsPage ? (
                             <ComponentMapper

@@ -41,7 +41,7 @@ export const PageWrapper = (props: Props) => {
         setPageConfigAction({
             pageId: content._id,
             language: content.language,
-            isPagePreview: !!router.query.utkastRouter,
+            isPagePreview: content.isPagePreview,
             editorView: content.editorView,
         })
     );

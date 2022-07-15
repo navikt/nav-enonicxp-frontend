@@ -193,52 +193,6 @@ $navPink: #fde6e6;
     }
 }
 
-// This is an override mixin specific for product and livesituation pages.
-// To be removed when DS has updated design packages.
-@mixin product-mixins() {
-    // h3 signifies a new "sub chapter" within a section.
-    // should have extra spacing above content, but only if
-    // not the topmost element within region or within an accordion. Except first-child.
-    .part {
-        &__html-area,
-        &__dynamic-header {
-            h3 {
-                margin-top: 2.75rem;
-            }
-        }
-    }
-    .part {
-        &__html-area {
-            .navds-accordion__content {
-                h3:first-child {
-                    margin-top: 0;
-                }
-            }
-        }
-    }
-    .region__content {
-        > :first-child {
-            h3:first-child {
-                margin-top: 0;
-            }
-        }
-
-        // The very last child of the very last part or fragment
-        // within a region__content should not have margin-bottom.
-        // Reason for select all (">"): fragments are inserted without a class,
-        // so just select any child that may contain any of the elements.
-        > :last-child:not(.part__product-details),
-        .part__product-details .navds-accordion__content > :last-child {
-            .card:last-child,
-            .calculator,
-            ul:last-child,
-            p:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
-}
-
 // Fixes for content studio drag and drop placeholders
 @mixin content-studio-drop-zone-fix-local() {
     :global(.xp-page-editor-region-placeholder:last-child) {
@@ -272,4 +226,10 @@ $navPink: #fde6e6;
             height: 100%;
         }
     }
+}
+
+@mixin unstyled-list() {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }

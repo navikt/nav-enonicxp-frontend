@@ -106,7 +106,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
             _path
         ),
         ...(feedbackEnabled && { feedback: true }),
-        ...(chatbotDisabled && { chatbot: false }),
+        chatbot: !chatbotDisabled,
         utilsBackground: contentTypesWithWhiteHeader[__typename]
             ? 'white'
             : 'gray',

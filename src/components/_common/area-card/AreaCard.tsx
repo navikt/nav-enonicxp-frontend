@@ -47,8 +47,8 @@ export const AreaCard = ({
                     {...props}
                     href={path}
                     analyticsLabel={title}
-                    component={'Områdekort'}
-                    linkGroup={linkGroup}
+                    analyticsComponent={'Områdekort'}
+                    analyticsLinkGroup={linkGroup}
                     navigate={navigate}
                 >
                     {props.children}
@@ -62,7 +62,7 @@ export const AreaCard = ({
             >
                 <LinkPanel.Title>{title}</LinkPanel.Title>
             </div>
-            <AreaCardGraphics type={area} />
+            <AreaCardGraphics type={area} insideCard />
         </LinkPanel>
     );
 };

@@ -108,8 +108,8 @@ export const DefaultOption = (props: DefaultContactProps) => {
         <div className={style.contactOption}>
             <LenkeBase
                 {...getUrlOrClickHandler(channel)}
-                linkGroup={layoutConfig.title}
-                component={'Kontakt-oss kanal'}
+                analyticsLinkGroup={layoutConfig.title}
+                analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
             >
                 <div className={style.linkContent}>
