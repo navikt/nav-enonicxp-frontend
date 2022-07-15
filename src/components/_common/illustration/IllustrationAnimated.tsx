@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
+import useSWR from 'swr';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { classNames } from '../../../utils/classnames';
+import { fetchJson } from '../../../utils/fetch/fetch-utils';
 
 import styleCommon from './Illustration.module.scss';
 import styleAnimated from './IllustrationAnimated.module.scss';
-import { fetchJson } from '../../../utils/fetch/fetch-utils';
 
 interface IllustrationAnimatedProps {
     illustration: AnimatedIconsProps;
@@ -22,9 +23,11 @@ const IllustrationAnimatedComponent = ({
     const [direction, setDirection] = useState(null);
     const lottieContainer = useRef(null);
     const lottiePlayer = useRef(null);
-    const [lottieDataHover, setLottieDataHover] = useState(null);
 
-    const { mediaUrl } = illustration.data.lottieHover;
+    const { data: lottieData } = useSWR<string | null>(
+        illustration.data.lottieHover.mediaUrl,
+        fetchJson
+    );
 
     const updateLottieContainer = async (lottieData: string) => {
         const lottie = await import('lottie-web/build/player/lottie_light.min');
@@ -57,16 +60,10 @@ const IllustrationAnimatedComponent = ({
     }, [isHovering, direction]);
 
     useEffect(() => {
-        if (lottieDataHover) {
-            updateLottieContainer(lottieDataHover);
+        if (lottieData) {
+            updateLottieContainer(lottieData);
         }
-    }, [lottieDataHover]);
-
-    useEffect(() => {
-        fetchJson(mediaUrl).then((json) => {
-            setLottieDataHover(json);
-        });
-    }, [mediaUrl]);
+    }, [lottieData]);
 
     return (
         <div
