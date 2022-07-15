@@ -3,13 +3,13 @@ require('dotenv').config();
 const express = require('express');
 const next = require('next');
 const fetch = require('node-fetch');
-const path = require('next/dist/shared/lib/isomorphic/path');
 
 const { setJsonCacheHeaders } = require('./set-json-cache-headers');
 const {
     handleInvalidateReq,
     handleInvalidateAllReq,
     setCacheKey,
+    getFsPath,
 } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
 
@@ -48,28 +48,16 @@ nextApp.prepare().then(() => {
 
     const currentBuildId = nextApp.server.getBuildId();
 
-    console.log(currentBuildId);
-
     const isFailover = IS_FAILOVER_INSTANCE === 'true';
 
     if (!isFailover && PAGE_CACHE_DIR) {
-        console.log('WHAAAAT');
-        console.log(
-            `Before: ${nextApp.server.incrementalCache.cacheHandler.getFsPath}`
-        );
-        nextApp.server.incrementalCache.cacheHandler.getFsPath = (pathname) =>
-            path.join(PAGE_CACHE_DIR, pathname);
-        console.log(
-            `After: ${nextApp.server.incrementalCache.cacheHandler.getFsPath}`
-        );
+        nextApp.server.incrementalCache.cacheHandler.getFsPath = getFsPath;
     }
 
     if (IMAGE_CACHE_DIR) {
         nextApp.server.imageResponseCache.incrementalCache.cacheDir =
             IMAGE_CACHE_DIR;
     }
-
-    console.log('more what');
 
     if (isFailover && ENV === 'prod') {
         // Assets from /_next and internal apis should be served as normal
