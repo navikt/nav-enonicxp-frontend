@@ -4,6 +4,7 @@ import { classNames } from '../../../utils/classnames';
 
 import styleCommon from './Illustration.module.scss';
 import styleAnimated from './IllustrationAnimated.module.scss';
+import { fetchJson } from '../../../utils/fetch/fetch-utils';
 
 interface IllustrationAnimatedProps {
     illustration: AnimatedIconsProps;
@@ -11,7 +12,7 @@ interface IllustrationAnimatedProps {
     isHovering: boolean;
 }
 
-export const IllustrationAnimated = ({
+const IllustrationAnimatedComponent = ({
     illustration,
     className,
     isHovering,
@@ -21,8 +22,9 @@ export const IllustrationAnimated = ({
     const [direction, setDirection] = useState(null);
     const lottieContainer = useRef(null);
     const lottiePlayer = useRef(null);
+    const [lottieDataHover, setLottieDataHover] = useState(null);
 
-    const lottieDataHover = illustration.data?.lottieHover?.mediaText;
+    const { mediaUrl } = illustration.data.lottieHover;
 
     const updateLottieContainer = async (lottieData: string) => {
         const lottie = await import('lottie-web/build/player/lottie_light.min');
@@ -55,12 +57,16 @@ export const IllustrationAnimated = ({
     }, [isHovering, direction]);
 
     useEffect(() => {
-        updateLottieContainer(lottieDataHover);
+        if (lottieDataHover) {
+            updateLottieContainer(lottieDataHover);
+        }
     }, [lottieDataHover]);
 
-    if (!illustration) {
-        return null;
-    }
+    useEffect(() => {
+        fetchJson(mediaUrl).then((json) => {
+            setLottieDataHover(json);
+        });
+    }, [mediaUrl]);
 
     return (
         <div
@@ -74,4 +80,12 @@ export const IllustrationAnimated = ({
             />
         </div>
     );
+};
+
+export const IllustrationAnimated = (props: IllustrationAnimatedProps) => {
+    if (!props.illustration) {
+        return null;
+    }
+
+    return <IllustrationAnimatedComponent {...props} />;
 };

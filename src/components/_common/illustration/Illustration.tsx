@@ -32,7 +32,7 @@ export const Illustration = ({
         return !!(icon1 || icon2);
     };
 
-    const isAnimated = !!illustration.data?.lottieHover?.mediaText;
+    const isAnimated = !!illustration.data?.lottieHover?.mediaUrl;
 
     if (hasStaticIllustration() && (!isAnimated || preferStaticIllustration)) {
         return (
