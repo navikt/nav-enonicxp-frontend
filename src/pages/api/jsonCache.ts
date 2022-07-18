@@ -17,7 +17,7 @@ const validateUrl = (
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method !== 'GET') {
-        return res.status(405);
+        return res.status(405).send('Method not allowed');
     }
 
     const { url } = req.query;
@@ -48,7 +48,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (!fetchedItem) {
         console.error(`JSON file not found: ${url}`);
-        return res.status(404);
+        return res.status(404).send('Not found');
     }
 
     cache.set(url, fetchedItem);
