@@ -6,9 +6,7 @@ import { fetchJson } from '../../../utils/fetch/fetch-utils';
 import styleCommon from './Illustration.module.scss';
 import styleAnimated from './IllustrationAnimated.module.scss';
 
-// JSON files in XP are double-encoded...
-const fetchAndParse = (url: string) =>
-    fetchJson(url).then((jsonString) => JSON.parse(jsonString));
+const fetchJsonData = (url: string) => fetchJson(`/api/jsonCache?url=${url}`);
 
 interface IllustrationAnimatedProps {
     dataUrl: string;
@@ -27,7 +25,7 @@ export const IllustrationAnimated = ({
     const lottieContainer = useRef(null);
     const lottiePlayer = useRef(null);
 
-    const { data: lottieData } = useSWRImmutable(dataUrl, fetchAndParse);
+    const { data: lottieData } = useSWRImmutable(dataUrl, fetchJsonData);
 
     useEffect(() => {
         const newDirection = isHovering ? 1 : -1;
