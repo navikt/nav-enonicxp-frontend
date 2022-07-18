@@ -32,23 +32,24 @@ export const Illustration = ({
         return !!(icon1 || icon2);
     };
 
-    const isAnimated = !!illustration.data?.lottieHover?.mediaText;
+    if (!preferStaticIllustration) {
+        const animationDataUrl = illustration.data.lottieHover?.mediaUrl;
+        if (animationDataUrl) {
+            return (
+                <IllustrationAnimated
+                    dataUrl={animationDataUrl}
+                    className={className}
+                    isHovering={isHovering}
+                />
+            );
+        }
+    }
 
-    if (hasStaticIllustration() && (!isAnimated || preferStaticIllustration)) {
+    if (hasStaticIllustration()) {
         return (
             <IllustrationStatic
                 illustration={illustration}
                 className={className}
-            />
-        );
-    }
-
-    if (isAnimated) {
-        return (
-            <IllustrationAnimated
-                illustration={illustration}
-                className={className}
-                isHovering={isHovering}
             />
         );
     }
