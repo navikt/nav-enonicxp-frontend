@@ -5,7 +5,7 @@ import { CardSize, CardType } from 'types/card';
 import { Interaction } from 'types/interaction';
 import { LinkProps } from 'types/link-props';
 import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { stripXpPathPrefix } from 'utils/urls';
+import { usePublicUrl } from '../../../utils/usePublicUrl';
 
 type AnalyticsProps = {
     analyticsLinkGroup: string;
@@ -49,6 +49,8 @@ export const useCard = ({
     const router = useRouter();
 
     const { layoutConfig } = useLayoutConfig();
+
+    const { url, canRouteClientSide } = usePublicUrl(link.url);
 
     const getComponentAnalyticsName = (type: CardType, size: CardSize) => {
         switch (type) {
@@ -106,19 +108,23 @@ export const useCard = ({
             // User should be able to select text for text-to-speech, so abort all
             // routing if clicking is captured while text is selected.
             const isTextSelected = !!window.getSelection().toString();
+
+            if (isTextSelected) {
+                return;
+            }
+
+            logAmplitudeEvent(analyticsEvents.NAVIGATION, analyticsPayload);
+
             const isOpeningInNewWindow = e.ctrlKey || e.metaKey;
-            const target = stripXpPathPrefix(link.url);
-
-            if (!isTextSelected) {
-                logAmplitudeEvent(analyticsEvents.NAVIGATION, analyticsPayload);
+            if (isOpeningInNewWindow) {
+                window.open(url);
+                return;
             }
 
-            if (!isOpeningInNewWindow && !isTextSelected) {
-                router.push(target);
-            }
-
-            if (isOpeningInNewWindow && !isTextSelected) {
-                window.open(target);
+            if (canRouteClientSide) {
+                router.push(url);
+            } else {
+                window.location.assign(url);
             }
         }
     };
