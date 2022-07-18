@@ -1,38 +1,38 @@
-import { LinkProps } from 'types/link-props';
-import { BodyLong } from '@navikt/ds-react';
+import { classNames } from 'utils/classnames';
+
+import { AnimatedIconsProps } from '../../../types/content-props/animated-icons';
 import { CardSize, CardType } from 'types/card';
-import { Card } from './Card';
 import { Illustration } from '../illustration/Illustration';
 import { IllustrationPlacements } from 'types/illustrationPlacements';
-import { AnimatedIconsProps } from '../../../types/content-props/animated-icons';
-import { useCardState } from './useCard';
-import { Interaction } from 'types/interaction';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { LenkeBase } from '../lenke/LenkeBase';
+import { LinkProps } from 'types/link-props';
 
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { useCard } from './useCard';
+
+import sharedStyle from './Card.module.scss';
 import style from './MiniCard.module.scss';
 
 export type MiniKortProps = {
-    link: LinkProps;
     illustration?: AnimatedIconsProps;
+    link: LinkProps;
     type: CardType;
 };
 
 export const MiniCard = (props: MiniKortProps) => {
     const { link, illustration, type } = props;
     const { text } = link;
-    const { isHovering, cardInteractionHandler } = useCardState();
+    const { isHovering, userEventProps, analyticsProps } = useCard({
+        type,
+        size: CardSize.Mini,
+        link,
+    });
+
     const { pageConfig } = usePageConfig();
 
     return (
-        <Card
-            link={link}
-            type={type}
-            size={CardSize.Mini}
-            interactionHandler={(type: Interaction) =>
-                cardInteractionHandler(type)
-            }
-        >
-            <>
+        <div {...userEventProps} className={classNames(sharedStyle.card)}>
+            <div className={classNames(sharedStyle.bed, type, CardSize.Mini)}>
                 <Illustration
                     className={style.illustration}
                     illustration={illustration}
@@ -40,8 +40,17 @@ export const MiniCard = (props: MiniKortProps) => {
                     placement={IllustrationPlacements.SMALL_CARD}
                     preferStaticIllustration={pageConfig.editorView === 'edit'}
                 />
-                <BodyLong className={style.title}>{text}</BodyLong>
-            </>
-        </Card>
+                <LenkeBase
+                    className={classNames(
+                        sharedStyle.lenkeBaseOverride,
+                        style.title
+                    )}
+                    href={link.url}
+                    {...analyticsProps}
+                >
+                    {text}
+                </LenkeBase>
+            </div>
+        </div>
     );
 };
