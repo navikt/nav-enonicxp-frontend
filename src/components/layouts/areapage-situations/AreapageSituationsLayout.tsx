@@ -7,6 +7,7 @@ import { Header } from '../../_common/headers/Header';
 import Region from '../Region';
 
 import style from './AreapageSituationsLayout.module.scss';
+import { ComponentProps } from 'types/component-props/_component-common';
 
 type Props = {
     pageProps: ContentProps;
@@ -25,7 +26,13 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
         );
     }
 
+    const elementWrapper = (element: JSX.Element, key: string) => {
+        return <li key={key}>{element}</li>;
+    };
+
     const { title } = config;
+
+    console.log(regions.situations);
 
     return (
         <LayoutContainer
@@ -57,6 +64,8 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
                 pageProps={pageProps}
                 regionProps={regions.situations}
                 className={style.situations}
+                wrapperFunction={elementWrapper}
+                as="ul"
             />
         </LayoutContainer>
     );

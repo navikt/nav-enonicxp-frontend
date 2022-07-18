@@ -4,12 +4,15 @@ import { BEM, classNames } from '../../utils/classnames';
 import { ComponentMapper } from '../ComponentMapper';
 import { RegionProps } from '../../types/component-props/layouts';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { ComponentProps } from 'types/component-props/_component-common';
 
 type Props = {
     pageProps: ContentProps;
     regionProps: RegionProps;
     regionStyle?: React.CSSProperties;
     bemModifier?: string;
+    as?: React.ElementType<any>;
+    wrapperFunction?: (element: JSX.Element, key: string) => React.ReactNode;
 };
 
 const bem = BEM('region');
@@ -19,6 +22,8 @@ export const Region = ({
     regionProps,
     regionStyle,
     bemModifier,
+    as: Component = 'div',
+    wrapperFunction,
     ...divElementProps
 }: Props & React.HTMLAttributes<HTMLDivElement>) => {
     if (!regionProps) {
@@ -33,7 +38,7 @@ export const Region = ({
     const { name, components } = regionProps;
 
     return (
-        <div
+        <Component
             {...divElementProps}
             style={regionStyle}
             className={classNames(
@@ -44,14 +49,26 @@ export const Region = ({
             )}
             data-portal-region={!!pageProps.editorView ? name : undefined}
         >
-            {components.map((component) => (
-                <ComponentMapper
-                    key={component.path}
-                    componentProps={component}
-                    pageProps={pageProps}
-                />
-            ))}
-        </div>
+            {components.map((component) => {
+                if (wrapperFunction) {
+                    return wrapperFunction(
+                        <ComponentMapper
+                            componentProps={component}
+                            pageProps={pageProps}
+                        />,
+                        component.path
+                    );
+                }
+
+                return (
+                    <ComponentMapper
+                        key={component.path}
+                        componentProps={component}
+                        pageProps={pageProps}
+                    />
+                );
+            })}
+        </Component>
     );
 };
 
