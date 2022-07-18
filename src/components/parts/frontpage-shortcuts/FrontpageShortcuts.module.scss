@@ -22,9 +22,17 @@
 
 .list {
     @include common.grid-layout-mixin(2);
+    list-style: none;
+    display: flex;
+    position: relative;
+    padding: 0;
 
     &.threeCols {
         @include common.grid-layout-mixin(3);
+    }
+
+    li {
+        display: flex;
     }
 }
 
