@@ -6,7 +6,8 @@ import { fetchJson } from '../../../utils/fetch/fetch-utils';
 import styleCommon from './Illustration.module.scss';
 import styleAnimated from './IllustrationAnimated.module.scss';
 
-const fetchJsonData = (url: string) => fetchJson(`/api/jsonCache?url=${url}`);
+const fetchJsonData = (url: string) =>
+    fetchJson(`${process.env.APP_ORIGIN}/api/jsonCache?url=${url}`);
 
 interface IllustrationAnimatedProps {
     dataUrl: string;
