@@ -8,10 +8,12 @@ const cache = new LRUCache({
     max: 2000,
 });
 
+const validUrlPattern = new RegExp(/^\/_\/attachment\/inline\/.+\.json$/i);
+
 const validateUrl = (
     fileUrl: NextApiRequest['query'][string]
 ): fileUrl is string =>
-    typeof fileUrl === 'string' && fileUrl.startsWith('/_/attachment/inline');
+    typeof fileUrl === 'string' && validUrlPattern.test(fileUrl);
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method !== 'GET') {
@@ -21,7 +23,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { url } = req.query;
     if (!validateUrl(url)) {
         console.warn(`Invalid url specified for xp file cache - ${url}`);
-
         return res.status(400).send('A valid url parameter must be specified');
     }
 
