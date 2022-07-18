@@ -5,7 +5,7 @@ import { fetchJson } from '../../utils/fetch/fetch-utils';
 const xpOrigin = process.env.XP_ORIGIN;
 
 const cache = new LRUCache({
-    max: 2000,
+    max: 1000,
 });
 
 const validUrlPattern = new RegExp(/^\/_\/attachment\/inline\/.+\.json$/i);
