@@ -22,7 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { url } = req.query;
     if (!validateUrl(url)) {
-        console.warn(`Invalid url specified for xp file cache - ${url}`);
+        console.log(`Invalid url specified for xp file cache - ${url}`);
         return res.status(400).send('A valid url parameter must be specified');
     }
 
@@ -47,7 +47,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     );
 
     if (!fetchedItem) {
-        console.error(`JSON file not found: ${url}`);
+        console.log(`JSON file not found: ${url}`);
         return res.status(404).send('Not found');
     }
 
