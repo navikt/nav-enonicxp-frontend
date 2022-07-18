@@ -98,7 +98,7 @@ nextApp.prepare().then(() => {
                 req.path = req.path.replace(buildId, currentBuildId);
             }
 
-            setJsonCacheHeaders(req, res);
+            // setJsonCacheHeaders(req, res);
             return nextRequestHandler(req, res);
         });
 
