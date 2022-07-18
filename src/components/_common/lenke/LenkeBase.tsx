@@ -5,6 +5,7 @@ import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { onlyText } from 'utils/react-children';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { usePublicUrl } from '../../../utils/usePublicUrl';
+import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 /**
  * This component handles client-side async navigation for URLs internal to this app (as well as analytics for links)
@@ -33,12 +34,12 @@ export const LenkeBase = ({
     children,
     ...rest
 }: Props) => {
+    const { pageConfig } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
 
     // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
-    // (setting to always false for the time being to prevent backend load spikes with cold cache)
-    const shouldPrefetch = false;
-    // prefetch === false || !!pageConfig.editorView ? false : undefined;
+    const shouldPrefetch =
+        prefetch === false || !!pageConfig.editorView ? false : undefined;
 
     const { url, canRouteClientSide } = usePublicUrl(href);
     const analyticsData = {
