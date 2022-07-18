@@ -5,7 +5,7 @@ const onHeaders = require('on-headers');
 // by browsers/proxies/CDNs etc
 const setJsonCacheHeaders = (req, res) => {
     onHeaders(res, () => {
-        res.setHeader('Cache-Control', 's-max-age=1, must-revalidate');
+        res.setHeader('Cache-Control', 's-maxage=0, must-revalidate');
     });
 };
 
