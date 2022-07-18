@@ -28,8 +28,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const cachedItem = cache.get(url);
     if (cachedItem) {
-        res.setHeader('Cache-Control', 'max-age=31536000');
-        return res.status(200).send(cachedItem);
+        res.setHeader('Cache-Control', 's-max-age=31536000');
+        return res.status(200).json(cachedItem);
     }
 
     const fetchedItem = await fetchJson<string>(`${xpOrigin}${url}`).then(
@@ -54,8 +54,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     cache.set(url, fetchedItem);
 
-    res.setHeader('Cache-Control', 'max-age=31536000');
-    return res.status(200).send(fetchedItem);
+    res.setHeader('Cache-Control', 's-max-age=31536000');
+    return res.status(200).json(fetchedItem);
 };
 
 export default handler;
