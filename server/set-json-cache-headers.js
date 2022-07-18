@@ -5,7 +5,7 @@ const onHeaders = require('on-headers');
 // by browsers/proxies/CDNs etc
 const setJsonCacheHeaders = (req, res) => {
     onHeaders(res, () => {
-        res.setHeader('Cache-Control', 'no-cache');
+        res.removeHeader('Cache-Control');
     });
 };
 
