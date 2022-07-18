@@ -1,11 +1,11 @@
 const onHeaders = require('on-headers');
 
-// Set the no-cache header on json files from the incremental cache to ensure
-// data requested during client side navigation is always validated if cached
+// Set cache headers on json files from the incremental cache to ensure
+// data requested during client side navigation is always "fresh" if cached
 // by browsers/proxies/CDNs etc
 const setJsonCacheHeaders = (req, res) => {
     onHeaders(res, () => {
-        res.removeHeader('Cache-Control');
+        res.setHeader('Cache-Control', 'max-age=0, must-revalidate');
     });
 };
 
