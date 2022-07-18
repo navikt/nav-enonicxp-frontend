@@ -32,9 +32,12 @@ export const Illustration = ({
         return !!(icon1 || icon2);
     };
 
-    const isAnimated = !!illustration.data?.lottieHover?.mediaUrl;
+    const animationDataUrl = illustration.data?.lottieHover?.mediaUrl;
 
-    if (hasStaticIllustration() && (!isAnimated || preferStaticIllustration)) {
+    if (
+        hasStaticIllustration() &&
+        (!animationDataUrl || preferStaticIllustration)
+    ) {
         return (
             <IllustrationStatic
                 illustration={illustration}
@@ -43,10 +46,10 @@ export const Illustration = ({
         );
     }
 
-    if (isAnimated) {
+    if (animationDataUrl) {
         return (
             <IllustrationAnimated
-                illustration={illustration}
+                dataUrl={animationDataUrl}
                 className={className}
                 isHovering={isHovering}
             />

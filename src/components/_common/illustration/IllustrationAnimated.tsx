@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import useSWR from 'swr';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import useSWRImmutable from 'swr/immutable';
 import { classNames } from '../../../utils/classnames';
 import { fetchJson } from '../../../utils/fetch/fetch-utils';
 
@@ -12,13 +11,13 @@ const fetchAndParse = (url: string) =>
     fetchJson(url).then((jsonString) => JSON.parse(jsonString));
 
 interface IllustrationAnimatedProps {
-    illustration: AnimatedIconsProps;
+    dataUrl: string;
     className: string;
     isHovering: boolean;
 }
 
-const IllustrationAnimatedComponent = ({
-    illustration,
+export const IllustrationAnimated = ({
+    dataUrl,
     className,
     isHovering,
 }: IllustrationAnimatedProps) => {
@@ -28,10 +27,7 @@ const IllustrationAnimatedComponent = ({
     const lottieContainer = useRef(null);
     const lottiePlayer = useRef(null);
 
-    const { data: lottieData } = useSWR(
-        illustration.data.lottieHover.mediaUrl,
-        fetchAndParse
-    );
+    const { data: lottieData } = useSWRImmutable(dataUrl, fetchAndParse);
 
     useEffect(() => {
         const newDirection = isHovering ? 1 : -1;
@@ -83,12 +79,4 @@ const IllustrationAnimatedComponent = ({
             />
         </div>
     );
-};
-
-export const IllustrationAnimated = (props: IllustrationAnimatedProps) => {
-    if (!props.illustration?.data.lottieHover?.mediaUrl) {
-        return null;
-    }
-
-    return <IllustrationAnimatedComponent {...props} />;
 };
