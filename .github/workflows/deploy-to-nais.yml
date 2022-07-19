@@ -14,6 +14,9 @@ on:
       vars_file:
         required: true
         type: string
+      hpa_file:
+        required: true
+        type: string
     secrets:
       NAIS_DEPLOY_APIKEY:
         required: true
@@ -30,6 +33,6 @@ jobs:
         env:
           CLUSTER: ${{ inputs.cluster }}
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          RESOURCE: .nais/${{ inputs.config_file }}
+          RESOURCE: .nais/${{ inputs.config_file }},.nais/hpa/${{ inputs.hpa_file }}
           VAR: image=${{ inputs.image }}
-          VARS: .nais/${{ inputs.vars_file }}
+          VARS: .nais/vars/${{ inputs.vars_file }}
