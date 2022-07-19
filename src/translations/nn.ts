@@ -156,17 +156,11 @@ export const translationsBundleNn = {
                 'Kvardagar 09:00-15:00. Vi kan ringe deg tilbake viss ventetida er over 5 minutt. Opningstider: kvardagar 09:00–15:00. Dersom opningstidene er mellombels endra, får du beskjed via automatisk svarar.',
         },
         shared: {
-            generalOpeningHours: 'Ordinære opningstider',
-            openingHours: 'Opningstider',
-            specialHours: 'Særskilde opningstider',
             closed: 'Stengt',
             openNow: 'Ope no',
             opensAt: 'Opnar {$1} kl {$2}',
             closedNow: 'Stengt no',
             seeMoreOptions: 'Sjå fleire telefonnummer og tasteval.',
-            todaysPhoneOpeningHours: 'Opningstider på telefon i dag',
-            callUsAt: 'Ring oss på',
-            businessDays: 'kvardagar',
         },
     },
     dateTime: {

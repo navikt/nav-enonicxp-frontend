@@ -164,17 +164,11 @@ export const translationsBundleNb = {
                 'Hverdager 09:00–15:00. Vi kan ringe deg tilbake hvis ventetiden er over 5 minutter.',
         },
         shared: {
-            generalOpeningHours: 'Ordinære åpningstider',
-            openingHours: 'Åpningstider',
-            specialHours: 'Spesielle åpningstider',
             closed: 'Stengt',
             openNow: 'Åpent nå',
             opensAt: 'Åpner {$1} kl {$2}',
             closedNow: 'Stengt nå',
             seeMoreOptions: 'Se flere telefonnummer og tastevalg',
-            todaysPhoneOpeningHours: 'Åpningstider på telefon i dag',
-            callUsAt: 'Ring oss på',
-            businessDays: 'hverdager',
         },
     },
     dateTime: {

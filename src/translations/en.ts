@@ -164,17 +164,11 @@ export const translationsBundleEn: Translations = {
                 'Opening hours: weekdays 09:00–15:00. If the opening hours are changed, you will be notified by voice message.',
         },
         shared: {
-            generalOpeningHours: 'General opening hours',
-            openingHours: 'Opening hours',
-            specialHours: 'Other opening hours',
             closed: 'Closed',
             openNow: 'Open',
             opensAt: 'Opens {$1} at {$2}',
             closedNow: 'Closed now',
             seeMoreOptions: 'See more phone numbers and calling options',
-            todaysPhoneOpeningHours: 'Phone hours today',
-            callUsAt: 'Call us at',
-            businessDays: 'business days',
         },
     },
     versionHistory: {
