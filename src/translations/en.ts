@@ -161,7 +161,7 @@ export const translationsBundleEn: Translations = {
         call: {
             title: 'Call us at +47 55 55 33 33',
             ingress:
-                'Opening hours: weekdays 09:00–15:00. If the opening hours are changed, you will be notified by voice message.',
+                'Weekdays 09:00–15:00. We can call you back if the wait time is more than 5 minutes.',
         },
         shared: {
             closed: 'Closed',

@@ -117,31 +117,20 @@
         display: block;
     }
 
-    .openingHour {
-        display: flex;
+    .openingStatus {
         align-items: center;
-        margin-top: 1rem;
-
-        &:before {
-            display: inline-flex;
-            border-radius: 9px;
-            background-color: pink;
-            content: '';
-            width: 18px;
-            height: 18px;
-            margin-top: -2px;
-            margin-right: 0.5rem;
-        }
+        border-radius: var(--navds-border-radius-medium);
+        color: var(--navds-global-color-black);
+        display: inline-flex;
+        margin: 0 0 1rem 0;
+        padding: 3px 8px;
     }
 
     .open {
-        &:before {
-            background-color: #0fb601;
-        }
+        background-color: var(--navds-global-color-green-100);
     }
+
     .closed {
-        &:before {
-            background-color: #000000;
-        }
+        background-color: var(--navds-global-color-gray-300);
     }
 }

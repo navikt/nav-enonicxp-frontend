@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { translator } from 'translations';
-import { Heading, BodyLong, Alert, BodyShort } from '@navikt/ds-react';
+import { Heading, BodyLong, Alert } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { dateDiff, formatDate, getCurrentISODate } from 'utils/datetime';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { Chip } from '../chip/Chip';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import {
     OpeningHour,
@@ -176,16 +177,15 @@ export const CallOption = (props: CallOptionProps) => {
                 </Alert>
             )}
             <BodyLong className={style.text}>{ingress || text}</BodyLong>
-            <BodyShort
-                spacing
+            <Chip
                 className={classNames(
-                    style.openingHour,
+                    style.openingStatus,
                     isClosed ? style.closed : style.open
                 )}
             >
                 {typeof window !== 'undefined' &&
                     buildOpenInformationText(todaysOpeningHour)}
-            </BodyShort>
+            </Chip>
             <LenkeBase
                 analyticsLinkGroup={layoutConfig.title}
                 className={style.moreLink}

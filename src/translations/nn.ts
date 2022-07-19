@@ -153,7 +153,7 @@ export const translationsBundleNn = {
         call: {
             title: 'Ring oss på 55 55 33 33',
             ingress:
-                'Kvardagar 09:00-15:00. Vi kan ringe deg tilbake viss ventetida er over 5 minutt. Opningstider: kvardagar 09:00–15:00. Dersom opningstidene er mellombels endra, får du beskjed via automatisk svarar.',
+                'Kvardagar 09:00-15:00. Vi kan ringe deg tilbake viss ventetida er over 5 minutt.',
         },
         shared: {
             closed: 'Stengt',
