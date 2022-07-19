@@ -10,5 +10,14 @@ type Props = {
 export const StaticImage = (props: Props) => {
     const { imageData, alt, ...imgAttribs } = props;
 
-    return <NextImage {...imgAttribs} src={imageData.src} alt={alt} />;
+    const ariaRole = imgAttribs.role || !alt ? 'presentation' : null;
+
+    return (
+        <NextImage
+            {...imgAttribs}
+            src={imageData.src}
+            alt={alt}
+            role={ariaRole}
+        />
+    );
 };

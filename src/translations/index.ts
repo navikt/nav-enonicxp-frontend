@@ -25,6 +25,5 @@ export const translator = <Module extends keyof Translations>(
         ...(selectedLanguage && selectedLanguage[module]),
     };
 
-    return <Key extends keyof Translations[Module]>(key: Key) =>
-        pack[key] || '';
+    return <Key extends keyof Translations[Module]>(key: Key) => pack[key];
 };

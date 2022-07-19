@@ -9,6 +9,7 @@ const {
     handleInvalidateReq,
     handleInvalidateAllReq,
     setCacheKey,
+    getFsPath,
 } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
 
@@ -48,8 +49,7 @@ nextApp.prepare().then(() => {
     const isFailover = IS_FAILOVER_INSTANCE === 'true';
 
     if (!isFailover && PAGE_CACHE_DIR) {
-        nextApp.server.incrementalCache.incrementalOptions.pagesDir =
-            PAGE_CACHE_DIR;
+        nextApp.server.incrementalCache.cacheHandler.getFsPath = getFsPath;
     }
 
     if (IMAGE_CACHE_DIR) {

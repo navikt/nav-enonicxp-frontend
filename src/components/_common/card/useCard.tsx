@@ -1,17 +1,88 @@
+import React from 'react';
+import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { CardSize, CardType } from 'types/card';
 import { Interaction } from 'types/interaction';
+import { LinkProps } from 'types/link-props';
+import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { usePublicUrl } from '../../../utils/usePublicUrl';
 
-interface UseCardState {
+type AnalyticsProps = {
+    analyticsLinkGroup: string;
+    analyticsLabel: string;
+    analyticsComponent: string;
+};
+
+type HandleUserEvent = (e: React.MouseEvent | React.TouchEvent) => void;
+
+type UserEventProps = {
+    onMouseEnter: HandleUserEvent;
+    onMouseLeave: HandleUserEvent;
+    onMouseDown: HandleUserEvent;
+    onMouseUp: HandleUserEvent;
+    onTouchStart: HandleUserEvent;
+    onTouchEnd: HandleUserEvent;
+    onTouchCancel: HandleUserEvent;
+    onTouchMove: HandleUserEvent;
+};
+
+type UseCardState = {
     isHovering: boolean;
     isPressed: boolean;
-    cardInteractionHandler: (type: Interaction) => void;
-}
+    analyticsProps: AnalyticsProps;
+    userEventProps: UserEventProps;
+};
 
-export const useCardState = (): UseCardState => {
+type UseCardSettings = {
+    type: CardType;
+    size: CardSize;
+    link: LinkProps;
+};
+
+export const useCard = ({
+    link,
+    size,
+    type,
+}: UseCardSettings): UseCardState => {
     const [isHovering, setIsHovering] = useState(false);
     const [isPressed, setIsPressed] = useState(false);
+    const router = useRouter();
 
-    const cardInteractionHandler = (type: Interaction): void => {
+    const { layoutConfig } = useLayoutConfig();
+
+    const { url, canRouteClientSide } = usePublicUrl(link.url);
+
+    const getComponentAnalyticsName = (type: CardType, size: CardSize) => {
+        switch (type) {
+            case CardType.Provider:
+                return 'Tilbyderkort';
+            default:
+                switch (size) {
+                    case CardSize.Mini:
+                        return 'Kort mini';
+                    case CardSize.Micro:
+                        return 'Kort mikro';
+                    default:
+                        return 'Kort';
+                }
+        }
+    };
+
+    const analyticsPayload = {
+        komponent: getComponentAnalyticsName(type, size),
+        lenkegruppe: layoutConfig.title,
+        seksjon: layoutConfig.title,
+        destinasjon: link.url,
+        lenketekst: link.text,
+    };
+
+    const handleUserEvent = (e: React.MouseEvent | React.TouchEvent): void => {
+        const eventType = e.type.toString() as keyof typeof Interaction;
+        const type = Interaction[eventType];
+
+        e.stopPropagation();
+
         if (
             type === Interaction.mouseenter ||
             type === Interaction.mouseleave
@@ -34,7 +105,58 @@ export const useCardState = (): UseCardState => {
         if (type === Interaction.touchend || type === Interaction.touchcancel) {
             setIsPressed(false);
         }
+
+        if (type === Interaction.touch || type === Interaction.click) {
+            // User should be able to select text for text-to-speech, so abort all
+            // routing if clicking is captured while text is selected.
+            const isTextSelected = !!window.getSelection().toString();
+            if (isTextSelected) {
+                return;
+            }
+
+            logAmplitudeEvent(analyticsEvents.NAVIGATION, analyticsPayload);
+
+            const isOpeningInNewWindow = e.ctrlKey || e.metaKey;
+            if (isOpeningInNewWindow) {
+                window.open(url);
+                return;
+            }
+
+            if (canRouteClientSide) {
+                router.push(url);
+            } else {
+                window.location.assign(url);
+            }
+        }
     };
 
-    return { isHovering, isPressed, cardInteractionHandler };
+    const buildAnalyticsProps = () => {
+        return {
+            analyticsLinkGroup: analyticsPayload.lenkegruppe,
+            analyticsLabel: analyticsPayload.lenketekst,
+            analyticsComponent: analyticsPayload.komponent,
+        };
+    };
+
+    const buildUserEventProps = () => {
+        return {
+            onMouseEnter: handleUserEvent,
+            onMouseLeave: handleUserEvent,
+            onMouseDown: handleUserEvent,
+            onMouseUp: handleUserEvent,
+            onClick: handleUserEvent,
+            onTouch: handleUserEvent,
+            onTouchStart: handleUserEvent,
+            onTouchEnd: handleUserEvent,
+            onTouchCancel: handleUserEvent,
+            onTouchMove: handleUserEvent,
+        };
+    };
+
+    return {
+        isHovering,
+        isPressed,
+        analyticsProps: buildAnalyticsProps(),
+        userEventProps: buildUserEventProps(),
+    };
 };
