@@ -32,8 +32,6 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
 
     const { title } = config;
 
-    console.log(regions.situations);
-
     return (
         <LayoutContainer
             pageProps={pageProps}
