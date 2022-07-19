@@ -12,4 +12,4 @@ resources:
     memory: 1000Mi
 replicas:
   min: 2
-  max: 4
+  max: 2
