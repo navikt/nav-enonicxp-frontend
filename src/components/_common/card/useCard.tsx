@@ -1,3 +1,4 @@
+import React from 'react';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
@@ -5,7 +6,7 @@ import { CardSize, CardType } from 'types/card';
 import { Interaction } from 'types/interaction';
 import { LinkProps } from 'types/link-props';
 import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { stripXpPathPrefix } from 'utils/urls';
+import { usePublicUrl } from '../../../utils/usePublicUrl';
 
 type AnalyticsProps = {
     analyticsLinkGroup: string;
@@ -50,6 +51,8 @@ export const useCard = ({
 
     const { layoutConfig } = useLayoutConfig();
 
+    const { url, canRouteClientSide } = usePublicUrl(link.url);
+
     const getComponentAnalyticsName = (type: CardType, size: CardSize) => {
         switch (type) {
             case CardType.Provider:
@@ -76,7 +79,7 @@ export const useCard = ({
 
     const handleUserEvent = (e: React.MouseEvent | React.TouchEvent): void => {
         const eventType = e.type.toString() as keyof typeof Interaction;
-        const type: Interaction = Interaction[eventType];
+        const type = Interaction[eventType];
 
         e.stopPropagation();
 
@@ -102,23 +105,27 @@ export const useCard = ({
         if (type === Interaction.touchend || type === Interaction.touchcancel) {
             setIsPressed(false);
         }
+
         if (type === Interaction.touch || type === Interaction.click) {
             // User should be able to select text for text-to-speech, so abort all
             // routing if clicking is captured while text is selected.
             const isTextSelected = !!window.getSelection().toString();
+            if (isTextSelected) {
+                return;
+            }
+
+            logAmplitudeEvent(analyticsEvents.NAVIGATION, analyticsPayload);
+
             const isOpeningInNewWindow = e.ctrlKey || e.metaKey;
-            const target = stripXpPathPrefix(link.url);
-
-            if (!isTextSelected) {
-                logAmplitudeEvent(analyticsEvents.NAVIGATION, analyticsPayload);
+            if (isOpeningInNewWindow) {
+                window.open(url);
+                return;
             }
 
-            if (!isOpeningInNewWindow && !isTextSelected) {
-                router.push(target);
-            }
-
-            if (isOpeningInNewWindow && !isTextSelected) {
-                window.open(target);
+            if (canRouteClientSide) {
+                router.push(url);
+            } else {
+                window.location.assign(url);
             }
         }
     };
