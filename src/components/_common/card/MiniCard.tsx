@@ -17,10 +17,11 @@ export type MiniKortProps = {
     illustration?: AnimatedIconsProps;
     link: LinkProps;
     type: CardType;
+    className?: string;
 };
 
 export const MiniCard = (props: MiniKortProps) => {
-    const { link, illustration, type } = props;
+    const { link, illustration, type, className } = props;
     const { text } = link;
     const { isHovering, userEventProps, analyticsProps } = useCard({
         type,
@@ -31,7 +32,10 @@ export const MiniCard = (props: MiniKortProps) => {
     const { pageConfig } = usePageConfig();
 
     return (
-        <div {...userEventProps} className={classNames(sharedStyle.card)}>
+        <div
+            {...userEventProps}
+            className={classNames(sharedStyle.card, className)}
+        >
             <div className={classNames(sharedStyle.bed, type, CardSize.Mini)}>
                 <Illustration
                     className={style.illustration}

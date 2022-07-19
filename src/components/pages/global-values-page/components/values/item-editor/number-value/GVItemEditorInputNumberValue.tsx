@@ -36,6 +36,10 @@ export const GVItemEditorInputNumberValue = ({
     errors,
     setInputState,
 }: Props) => {
+    const inputValue = inputState.numberValue
+        ? inputState.numberValue.toString()
+        : '';
+
     return (
         <>
             <TextField
@@ -52,7 +56,7 @@ export const GVItemEditorInputNumberValue = ({
                 size={'small'}
                 label={'Tallverdi'}
                 name={'numberValue'}
-                value={inputState.numberValue ?? ''}
+                value={inputValue}
                 onChange={(e) => {
                     setInputState({
                         ...inputState,

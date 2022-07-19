@@ -38,10 +38,25 @@ const getStaticPathsFailover = async () => {
     };
 };
 
+const logLargePageData = (
+    pageProps: Awaited<ReturnType<typeof fetchPageProps>>
+) => {
+    const pagePropsLength = JSON.stringify(pageProps).length;
+    if (pagePropsLength > 128000) {
+        console.warn(
+            `${
+                (pageProps as any)?.props?.content?._id
+            } props size warning: ${pagePropsLength}`
+        );
+    }
+};
+
 const getStaticPropsRegular: GetStaticProps = async (context) => {
     const pageProps = await fetchPageProps({
         routerQuery: context?.params?.pathRouter,
     });
+
+    logLargePageData(pageProps);
 
     return {
         ...pageProps,
