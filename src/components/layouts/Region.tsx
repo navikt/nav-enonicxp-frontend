@@ -49,17 +49,15 @@ export const Region = ({
             data-portal-region={!!pageProps.editorView ? name : undefined}
         >
             {components.map((component) => {
-                if (wrapperFunction) {
-                    return wrapperFunction(
+                return wrapperFunction ? (
+                    wrapperFunction(
                         <ComponentMapper
                             componentProps={component}
                             pageProps={pageProps}
                         />,
                         component.path
-                    );
-                }
-
-                return (
+                    )
+                ) : (
                     <ComponentMapper
                         key={component.path}
                         componentProps={component}
