@@ -23,7 +23,7 @@ import { setPathMapAction } from '../store/slices/pathMap';
 import { setPageConfigAction } from '../store/slices/pageConfig';
 import { fetchAndSetInnloggingsstatus } from '../utils/fetch/fetch-innloggingsstatus';
 import { setAuthStateAction } from '../store/slices/authState';
-import { EnglishChatbot } from './_common/chatbot/EnglishChatbot';
+import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
 
 type Props = {
     content: ContentProps;
@@ -125,7 +125,7 @@ export const PageWrapper = (props: Props) => {
                 tabIndex={-1}
             >
                 {children}
-                <EnglishChatbot content={content} />
+                <LegacyPageChatbot content={content} />
             </div>
         </div>
     );
