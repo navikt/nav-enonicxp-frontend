@@ -1,6 +1,6 @@
 @use 'src/common';
 
-.englishChat {
+.legacyChat {
     $width: common.$desktopMaxWidth / 2;
 
     display: flex;
