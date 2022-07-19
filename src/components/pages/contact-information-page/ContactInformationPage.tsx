@@ -44,9 +44,7 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
         );
     }
 
-    console.log(contactType);
-
-    const getPreview = () => {
+    const buildPreview = () => {
         if (contactType.telephone) {
             const telephone = contactType?.telephone;
             return (
@@ -60,8 +58,16 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
                 />
             );
         }
+        const data = contactType?.write;
 
-        return <DefaultOption channel="write" ingress={} />;
+        return (
+            <DefaultOption
+                channel="write"
+                ingress={data.ingress}
+                title={data.title}
+                url={data.url}
+            />
+        );
     };
 
     return (
@@ -71,7 +77,7 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
                     Redaktørvarsel: Denne informasjonen kan være i bruk på tvers
                     av livssituasjonssider. Endres med varsomhet.
                 </Alert>
-                {getPreview()}
+                {buildPreview()}
             </div>
         </div>
     );
