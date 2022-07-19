@@ -17,4 +17,4 @@ spec:
           name: linkerd_request_total
         target:
           type: AverageValue
-          averageValue: 5
+          averageValue: 2
