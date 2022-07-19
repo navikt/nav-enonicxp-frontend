@@ -15,15 +15,13 @@ export const ProductLink = ({ product, visible }: ProductLinkProps) => {
         url: product.path,
         text: product.sortTitle,
     };
+
     return (
-        <div
+        <MiniCard
+            link={link}
+            type={CardType.Product}
+            illustration={product.illustration}
             className={classNames(style.productLink, !visible && style.hidden)}
-        >
-            <MiniCard
-                link={link}
-                type={CardType.Product}
-                illustration={product.illustration}
-            />
-        </div>
+        />
     );
 };

@@ -142,7 +142,12 @@ export const translationsBundleEn: Translations = {
         chat: {
             title: 'Chat with Frida',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09: 00-15: 00).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
+        },
+        legacyChat: {
+            title: 'You can chat with us',
+            ingress:
+                'You will first meet chatbot Frida. You can ask Frida to chat with a counsellor (weekdays 09:00–15:00)',
         },
         write: {
             title: 'Write to us',
