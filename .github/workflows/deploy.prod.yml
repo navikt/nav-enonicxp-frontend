@@ -28,5 +28,6 @@ jobs:
       cluster: prod-gcp
       vars_file: vars-prod.yml
       config_file: config.yml
+      hpa_file: hpa-prod.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

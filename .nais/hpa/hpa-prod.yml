@@ -1,13 +1,13 @@
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: nav-enonicxp-frontend-dev1
+  name: nav-enonicxp-frontend
   namespace: personbruker
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: nav-enonicxp-frontend-dev1
+    name: nav-enonicxp-frontend
   minReplicas: 2
   maxReplicas: 40
   metrics:

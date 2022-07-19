@@ -3,7 +3,6 @@ revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev1
 secret: nav-enonicxp-dev1
 ingresses:
   - https://www.dev.nav.no
-  - https://www.dev.nav.no/arbeids
 resources:
   limits:
     cpu: 1000m
