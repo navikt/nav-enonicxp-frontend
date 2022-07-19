@@ -4,7 +4,6 @@ import { BEM, classNames } from '../../utils/classnames';
 import { ComponentMapper } from '../ComponentMapper';
 import { RegionProps } from '../../types/component-props/layouts';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { ComponentProps } from 'types/component-props/_component-common';
 
 type Props = {
     pageProps: ContentProps;

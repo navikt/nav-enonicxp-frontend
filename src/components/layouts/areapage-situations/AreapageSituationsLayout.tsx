@@ -4,10 +4,10 @@ import { ContentProps } from '../../../types/content-props/_content-common';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { LayoutContainer } from '../LayoutContainer';
 import { Header } from '../../_common/headers/Header';
+
 import Region from '../Region';
 
 import style from './AreapageSituationsLayout.module.scss';
-import { ComponentProps } from 'types/component-props/_component-common';
 
 type Props = {
     pageProps: ContentProps;
