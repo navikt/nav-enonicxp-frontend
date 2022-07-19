@@ -26,5 +26,6 @@ jobs:
       cluster: dev-gcp
       vars_file: vars-dev2.yml
       config_file: config.yml
+      hpa_file: hpa-dev2.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

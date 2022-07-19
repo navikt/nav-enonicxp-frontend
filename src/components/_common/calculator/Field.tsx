@@ -26,7 +26,7 @@ export const Field = (props: FieldProps) => {
                     name={inputField.variableName}
                     label={inputField.label}
                     type="number"
-                    value={value}
+                    value={value.toString()}
                     onChange={(e) =>
                         onChange(
                             field.inputField.variableName,
