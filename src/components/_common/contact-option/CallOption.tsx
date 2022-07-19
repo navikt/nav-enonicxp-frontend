@@ -16,7 +16,7 @@ import {
     getDates,
     getIsClosedForToday,
     getIsCurrentyClosed,
-} from '../contact-details/contactHelpers';
+} from './contactHelpers';
 import { analyticsEvents } from '../../../utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { useLayoutEffectClientSide } from '../../../utils/react';

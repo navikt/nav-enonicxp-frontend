@@ -35,7 +35,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
 
     const getIngress = () => {
         if (channel === 'custom' || ingress) {
-            return ingress;
+            return <ParsedHtml htmlProps={ingress} />;
         }
 
         return <ParsedHtml htmlProps={getTranslations(channel).ingress} />;
