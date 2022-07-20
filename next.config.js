@@ -140,6 +140,13 @@ const buildCspHeader = () => {
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 const isLocal = process.env.ENV === 'localhost';
 
+const corsHeaders = [
+    {
+        key: 'Access-Control-Allow-Origin',
+        value: isFailover ? process.env.APP_ORIGIN : process.env.ADMIN_ORIGIN,
+    },
+];
+
 console.log(
     `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Failover: ${isFailover}`
 );
@@ -263,14 +270,11 @@ module.exports = withPlugins([withTranspileModules, withBundleAnalyzer], {
     headers: async () => [
         {
             source: '/_next/(.*)',
-            headers: [
-                {
-                    key: 'Access-Control-Allow-Origin',
-                    value: isFailover
-                        ? process.env.APP_ORIGIN
-                        : process.env.ADMIN_ORIGIN,
-                },
-            ],
+            headers: corsHeaders,
+        },
+        {
+            source: '/api/jsonCache',
+            headers: corsHeaders,
         },
         {
             source: '/:path*',
