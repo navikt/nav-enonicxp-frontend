@@ -14,7 +14,7 @@ import {
     findTodaysOpeningHour,
     getDates,
     getIsClosedForToday,
-    getIsCurrentyClosed,
+    getIsCurrentlyClosed,
 } from '../contact-details/contactHelpers';
 import { analyticsEvents } from '../../../utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
@@ -42,7 +42,7 @@ export const CallOption = (props: CallOptionProps) => {
     } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
-    const [isClosed, setIsClosed] = useState(false);
+    const [isClosed, setIsClosed] = useState<boolean | null>(null);
     const getDateTimeTranslations = translator('dateTime', language);
     const relatives = getDateTimeTranslations('relatives');
     const getContactTranslations = translator('contactPoint', language);
@@ -148,7 +148,7 @@ export const CallOption = (props: CallOptionProps) => {
         typeof window !== 'undefined'
             ? findTodaysOpeningHour(allOpeningHours)
             : null;
-    const isCurrentlyClosed = getIsCurrentyClosed(todaysOpeningHour);
+    const isCurrentlyClosed = getIsCurrentlyClosed(todaysOpeningHour);
 
     useLayoutEffectClientSide(() => {
         setIsClosed(isCurrentlyClosed);
@@ -176,16 +176,17 @@ export const CallOption = (props: CallOptionProps) => {
                 </Alert>
             )}
             <BodyLong className={style.text}>{ingress || text}</BodyLong>
-            <BodyShort
-                spacing
-                className={classNames(
-                    style.openingHour,
-                    isClosed ? style.closed : style.open
-                )}
-            >
-                {typeof window !== 'undefined' &&
-                    buildOpenInformationText(todaysOpeningHour)}
-            </BodyShort>
+            {isClosed !== null && (
+                <BodyShort
+                    spacing
+                    className={classNames(
+                        style.openingHour,
+                        isClosed ? style.closed : style.open
+                    )}
+                >
+                    {buildOpenInformationText(todaysOpeningHour)}
+                </BodyShort>
+            )}
             <LenkeBase
                 analyticsLinkGroup={layoutConfig.title}
                 className={style.moreLink}
