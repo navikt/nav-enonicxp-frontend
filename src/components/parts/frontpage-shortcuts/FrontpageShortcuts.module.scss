@@ -23,7 +23,6 @@
 .list {
     @include common.grid-layout-mixin(2);
     list-style: none;
-    display: flex;
     position: relative;
     padding: 0;
 
@@ -32,7 +31,7 @@
     }
 
     li {
-        display: flex;
+        display: contents;
     }
 }
 
