@@ -145,7 +145,6 @@ export const useCard = ({
             onMouseDown: handleUserEvent,
             onMouseUp: handleUserEvent,
             onClick: handleUserEvent,
-            onTouch: handleUserEvent,
             onTouchStart: handleUserEvent,
             onTouchEnd: handleUserEvent,
             onTouchCancel: handleUserEvent,
