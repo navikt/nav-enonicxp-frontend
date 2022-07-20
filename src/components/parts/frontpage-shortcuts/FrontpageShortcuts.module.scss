@@ -31,10 +31,11 @@
     }
 
     li {
-        display: contents;
+        display: flex;
     }
 }
 
 .item {
     background-color: white;
+    width: 100%;
 }
