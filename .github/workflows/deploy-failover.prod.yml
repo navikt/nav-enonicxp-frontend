@@ -21,6 +21,7 @@ jobs:
       IS_FAILOVER_INSTANCE: true
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
