@@ -6,6 +6,7 @@ const withTranspileModules = require('next-transpile-modules')([
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE_BUNDLE === 'true',
 });
+const { withSentryConfig } = require('@sentry/nextjs');
 
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
@@ -151,143 +152,148 @@ console.log(
     `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Failover: ${isFailover}`
 );
 
-module.exports = withPlugins([withTranspileModules, withBundleAnalyzer], {
-    distDir: isFailover && isLocal ? '.next-static' : '.next',
-    assetPrefix: isFailover
-        ? process.env.FAILOVER_ORIGIN
-        : process.env.APP_ORIGIN,
-    env: {
-        ENV: process.env.ENV,
-        APP_ORIGIN: process.env.APP_ORIGIN,
-        XP_ORIGIN: process.env.XP_ORIGIN,
-        ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
-        FAILOVER_ORIGIN: process.env.FAILOVER_ORIGIN,
-        IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
-        INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
-    },
-    images: {
-        minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
-        dangerouslyAllowSVG: true,
-        domains: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map((origin) =>
-            // Domain whitelist must not include protocol prefixes
-            origin?.replace(/^https?:\/\//, '')
-        ),
-        deviceSizes: [480, 768, 1024, 1440],
-        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    },
-    webpack: (config, options) => {
-        fixNextImageOptsAllowSvg(config, options);
-        cssModulesNoDashesInClassnames(config);
-        resolveNodeLibsClientSide(config, options);
+module.exports = withPlugins(
+    [withTranspileModules, withBundleAnalyzer, withSentryConfig],
+    {
+        distDir: isFailover && isLocal ? '.next-static' : '.next',
+        assetPrefix: isFailover
+            ? process.env.FAILOVER_ORIGIN
+            : process.env.APP_ORIGIN,
+        env: {
+            ENV: process.env.ENV,
+            APP_ORIGIN: process.env.APP_ORIGIN,
+            XP_ORIGIN: process.env.XP_ORIGIN,
+            ADMIN_ORIGIN: process.env.ADMIN_ORIGIN,
+            FAILOVER_ORIGIN: process.env.FAILOVER_ORIGIN,
+            IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
+            INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
+            SENTRY_DSN: process.env.SENTRY_DSN,
+        },
+        images: {
+            minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
+            dangerouslyAllowSVG: true,
+            domains: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map(
+                (origin) =>
+                    // Domain whitelist must not include protocol prefixes
+                    origin?.replace(/^https?:\/\//, '')
+            ),
+            deviceSizes: [480, 768, 1024, 1440],
+            imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+        },
+        webpack: (config, options) => {
+            fixNextImageOptsAllowSvg(config, options);
+            cssModulesNoDashesInClassnames(config);
+            resolveNodeLibsClientSide(config, options);
 
-        const { webpack, buildId } = options;
+            const { webpack, buildId } = options;
 
-        config.plugins.push(
-            new webpack.DefinePlugin({
-                'process.env.BUILD_ID': JSON.stringify(buildId),
-            })
-        );
+            config.plugins.push(
+                new webpack.DefinePlugin({
+                    'process.env.BUILD_ID': JSON.stringify(buildId),
+                })
+            );
 
-        return config;
-    },
-    redirects: async () => [
-        {
-            source: '/forsiden',
-            destination: '/',
-            permanent: false,
+            return config;
         },
-        {
-            source: '/www.nav.no',
-            destination: '/',
-            permanent: false,
-        },
-        {
-            source: '/www.nav.no/:path*',
-            destination: '/:path*',
-            permanent: false,
-        },
-        {
-            source: '/Global%20Utlogging',
-            destination: '/global-utlogging',
-            permanent: true,
-        },
-    ],
-    rewrites: async () => [
-        {
-            source: '/sitemap.xml',
-            destination: '/api/sitemap',
-        },
-        {
-            source: '/rss',
-            destination: '/api/rss',
-        },
-        // The historic url for RSS
-        {
-            source: '/no/rss',
-            destination: '/api/rss',
-        },
-        // Send some very common 404-resulting requests directly to 404
-        // to prevent unnecessary backend-calls
-        {
-            source: '/autodiscover/autodiscover.xml',
-            destination: '/404',
-        },
-        {
-            source: '/Forsiden/driftsmelding',
-            destination: '/404',
-        },
-        {
-            source: '/_public/beta.nav.no/:path*',
-            destination: '/404',
-        },
-        {
-            source: '/frontendlogger/:path*',
-            destination: '/404',
-        },
-        {
-            source: '/feilside',
-            destination: '/404',
-        },
-        // /_/* should point to XP services. Rewrite only if XP is on a different origin
-        ...(process.env.XP_ORIGIN !== process.env.APP_ORIGIN
-            ? [
-                  {
-                      source: '/_/:path*',
-                      destination: `${process.env.XP_ORIGIN}/_/:path*`,
-                  },
-              ]
-            : []),
-        ...(isLocal
-            ? [
-                  {
-                      source: '/admin/site/preview/default/draft/:path*',
-                      destination:
-                          'http://localhost:8080/admin/site/preview/default/draft/:path*',
-                  },
-              ]
-            : []),
-    ],
-    headers: async () => [
-        {
-            source: '/_next/(.*)',
-            headers: corsHeaders,
-        },
-        {
-            source: '/api/jsonCache',
-            headers: corsHeaders,
-        },
-        {
-            source: '/:path*',
-            headers: [
-                {
-                    key: 'app-name',
-                    value: 'nav-enonicxp-frontend',
-                },
-                {
-                    key: 'Content-Security-Policy',
-                    value: buildCspHeader(),
-                },
-            ],
-        },
-    ],
-});
+        redirects: async () => [
+            {
+                source: '/forsiden',
+                destination: '/',
+                permanent: false,
+            },
+            {
+                source: '/www.nav.no',
+                destination: '/',
+                permanent: false,
+            },
+            {
+                source: '/www.nav.no/:path*',
+                destination: '/:path*',
+                permanent: false,
+            },
+            {
+                source: '/Global%20Utlogging',
+                destination: '/global-utlogging',
+                permanent: true,
+            },
+        ],
+        rewrites: async () => [
+            {
+                source: '/sitemap.xml',
+                destination: '/api/sitemap',
+            },
+            {
+                source: '/rss',
+                destination: '/api/rss',
+            },
+            // The historic url for RSS
+            {
+                source: '/no/rss',
+                destination: '/api/rss',
+            },
+            // Send some very common 404-resulting requests directly to 404
+            // to prevent unnecessary backend-calls
+            {
+                source: '/autodiscover/autodiscover.xml',
+                destination: '/404',
+            },
+            {
+                source: '/Forsiden/driftsmelding',
+                destination: '/404',
+            },
+            {
+                source: '/_public/beta.nav.no/:path*',
+                destination: '/404',
+            },
+            {
+                source: '/frontendlogger/:path*',
+                destination: '/404',
+            },
+            {
+                source: '/feilside',
+                destination: '/404',
+            },
+            // /_/* should point to XP services. Rewrite only if XP is on a different origin
+            ...(process.env.XP_ORIGIN !== process.env.APP_ORIGIN
+                ? [
+                      {
+                          source: '/_/:path*',
+                          destination: `${process.env.XP_ORIGIN}/_/:path*`,
+                      },
+                  ]
+                : []),
+            ...(isLocal
+                ? [
+                      {
+                          source: '/admin/site/preview/default/draft/:path*',
+                          destination:
+                              'http://localhost:8080/admin/site/preview/default/draft/:path*',
+                      },
+                  ]
+                : []),
+        ],
+        headers: async () => [
+            {
+                source: '/_next/(.*)',
+                headers: corsHeaders,
+            },
+            {
+                source: '/api/jsonCache',
+                headers: corsHeaders,
+            },
+            {
+                source: '/:path*',
+                headers: [
+                    {
+                        key: 'app-name',
+                        value: 'nav-enonicxp-frontend',
+                    },
+                    {
+                        key: 'Content-Security-Policy',
+                        value: buildCspHeader(),
+                    },
+                ],
+            },
+        ],
+    }
+);
