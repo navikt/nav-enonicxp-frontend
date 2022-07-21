@@ -1,9 +1,9 @@
 @use 'src/components/_common/area-card/graphics/AreaCardGraphicsCommon.module'
     as areaGraphics;
-@import 'src/components/_common/area-card/AreaCard.module';
+@use 'src/components/_common/area-card/AreaCard.module' as areaCard;
 
 .shapes {
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     right: 0;
     top: 122px;
@@ -14,7 +14,7 @@
 }
 
 .letterS {
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     right: -74px;
     top: 0;
@@ -27,7 +27,7 @@
 .mask {
     background-color: var(--navds-global-color-deepblue-100);
 
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     width: 145px;
     height: 245px;
@@ -41,7 +41,7 @@
 }
 
 .document {
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     right: 67px;
     top: 42px;
