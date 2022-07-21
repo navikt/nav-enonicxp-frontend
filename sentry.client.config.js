@@ -1,4 +1,4 @@
-import Sentry from '@sentry/nextjs';
+import * as Sentry from '@sentry/nextjs';
 import { CaptureConsole } from '@sentry/integrations';
 
 Sentry.init({
