@@ -1,9 +1,9 @@
 @use 'src/components/_common/area-card/graphics/AreaCardGraphicsCommon.module'
     as areaGraphics;
-@import 'src/components/_common/area-card/AreaCard.module';
+@use 'src/components/_common/area-card/AreaCard.module' as areaCard;
 
 .compass {
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     right: 0;
     top: 120px;
@@ -16,7 +16,7 @@
 }
 
 .letterS {
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     right: -74px;
     top: 0;
@@ -29,7 +29,7 @@
 .mask {
     background-color: var(--navds-global-color-deepblue-100);
 
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     width: 145px;
     height: 245px;
@@ -44,7 +44,7 @@
 }
 
 .heart {
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     width: 48px;
     height: 40.08px;
@@ -60,7 +60,7 @@
 }
 
 .hand {
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     width: 98px;
     height: 45.96px;
