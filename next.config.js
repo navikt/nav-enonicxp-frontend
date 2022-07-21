@@ -8,7 +8,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 const { withSentryConfig } = require('@sentry/nextjs');
 
-const withSentry = [withSentryConfig, {}];
+const withSentry = [withSentryConfig, { deploy: { env: process.env.ENV } }];
 
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
