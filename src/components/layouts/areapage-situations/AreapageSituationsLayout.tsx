@@ -4,6 +4,7 @@ import { ContentProps } from '../../../types/content-props/_content-common';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { LayoutContainer } from '../LayoutContainer';
 import { Header } from '../../_common/headers/Header';
+
 import Region from '../Region';
 
 import style from './AreapageSituationsLayout.module.scss';
@@ -24,6 +25,10 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
             />
         );
     }
+
+    const elementWrapper = (element: JSX.Element, key: string) => {
+        return <li key={key}>{element}</li>;
+    };
 
     const { title } = config;
 
@@ -57,6 +62,8 @@ export const AreapageSituationsLayout = ({ pageProps, layoutProps }: Props) => {
                 pageProps={pageProps}
                 regionProps={regions.situations}
                 className={style.situations}
+                wrapperFunction={elementWrapper}
+                as="ul"
             />
         </LayoutContainer>
     );

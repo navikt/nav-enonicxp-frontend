@@ -23,12 +23,20 @@
 
 .list {
     @include common.grid-layout-mixin(2);
+    list-style: none;
+    position: relative;
+    padding: 0;
 
     &.threeCols {
         @include common.grid-layout-mixin(3);
+    }
+
+    li {
+        display: flex;
     }
 }
 
 .item {
     background-color: white;
+    width: 100%;
 }

@@ -30,26 +30,27 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
             >
                 {title}
             </Header>
-            <div
+            <ul
                 className={classNames(style.list, threeCols && style.threeCols)}
             >
                 {links.map((item) => (
-                    <LinkPanelNavnoSimple
-                        href={item._path}
-                        linkUnderline={'none'}
-                        analyticsLinkGroup={title}
-                        linkColor={'black'}
-                        icon={<FancyChevron color={'blue'} scale={0.55} />}
-                        className={classNames(
-                            style.item,
-                            chevronStyle.animateOnHover
-                        )}
-                        key={item._id}
-                    >
-                        {item.displayName}
-                    </LinkPanelNavnoSimple>
+                    <li key={item._id}>
+                        <LinkPanelNavnoSimple
+                            href={item._path}
+                            linkUnderline={'none'}
+                            analyticsLinkGroup={title}
+                            linkColor={'black'}
+                            icon={<FancyChevron color={'blue'} scale={0.55} />}
+                            className={classNames(
+                                style.item,
+                                chevronStyle.animateOnHover
+                            )}
+                        >
+                            {item.displayName}
+                        </LinkPanelNavnoSimple>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </div>
     );
 };

@@ -20,6 +20,10 @@
 }
 
 .list {
+    list-style: none;
+    position: relative;
+    padding: 0;
+
     @include common.grid-layout-mixin(
         $numCols: 2,
         $rowGapMobileSmall: 0.75rem,
@@ -29,6 +33,7 @@
 
 .item {
     background-color: white;
+    height: 100%;
 
     :global(.linkPanelNavnoLink) {
         @media #{common.$mq-screen-mobile-small} {

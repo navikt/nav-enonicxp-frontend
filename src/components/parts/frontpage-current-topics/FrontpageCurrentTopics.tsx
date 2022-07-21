@@ -28,23 +28,24 @@ export const FrontpageCurrentTopics = ({
             >
                 {title}
             </Header>
-            <div className={style.list}>
+            <ul className={style.list}>
                 {contentList.data.sectionContents.map((item) => (
-                    <LinkPanelNavno
-                        analyticsLinkGroup={title}
-                        linkText={item.displayName}
-                        linkTextSize={'medium'}
-                        linkColor={'black'}
-                        href={item._path}
-                        className={style.item}
-                        key={item._id}
-                    >
-                        <span className={style.date}>
-                            {formatDate(item.modifiedTime, language)}
-                        </span>
-                    </LinkPanelNavno>
+                    <li key={item._id}>
+                        <LinkPanelNavno
+                            analyticsLinkGroup={title}
+                            linkText={item.displayName}
+                            linkTextSize={'medium'}
+                            linkColor={'black'}
+                            href={item._path}
+                            className={style.item}
+                        >
+                            <span className={style.date}>
+                                {formatDate(item.modifiedTime, language)}
+                            </span>
+                        </LinkPanelNavno>
+                    </li>
                 ))}
-            </div>
+            </ul>
         </div>
     );
 };

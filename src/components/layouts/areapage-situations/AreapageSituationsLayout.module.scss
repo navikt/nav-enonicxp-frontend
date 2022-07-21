@@ -19,6 +19,17 @@
 .situations {
     display: flex;
     flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+
+    li {
+        display: flex;
+
+        :global(.part__areapage-situation-card) {
+            display: flex;
+            width: 100%;
+        }
+    }
 
     @media #{common.$mq-screen-mobile} {
         @include common.flex-cols-mixin(1, 1rem, 1rem);
