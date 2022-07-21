@@ -45,7 +45,7 @@ Error.getInitialProps = async (context): Promise<ContentProps> => {
         }
     }
 
-    res.statusCode = err.content?.data?.errorCode || res.statusCode;
+    res.statusCode = err?.content?.data?.errorCode || res.statusCode;
 
     const errorId = uuid();
     const errorMsg = err?.toString() || 'Empty error message';
