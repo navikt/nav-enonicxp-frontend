@@ -8,9 +8,15 @@ interface LegacyCall {
     phoneNumber?: string;
 }
 
+interface LegacyWrite {
+    ingress?: ProcessedHtmlProps;
+    title?: string;
+    url?: string;
+}
+
 interface Options {
     chat: DefaultContactData;
-    write: DefaultContactData;
+    write: SharedContactInformationData & LegacyWrite;
     navoffice: DefaultContactData;
     aidcentral: DefaultContactData;
     custom: DefaultContactData;
@@ -40,6 +46,7 @@ export interface SharedContactInformationData extends DefaultContactData {
         data: {
             contactType: {
                 telephone?: TelephoneData;
+                write?: WriteData;
             };
         };
     };
@@ -61,6 +68,12 @@ export interface TelephoneData {
         validTo: string;
         hours: OpeningHour[];
     };
+}
+
+export interface WriteData {
+    title?: string;
+    url?: string;
+    ingress?: ProcessedHtmlProps;
 }
 
 export interface ContactOptionProps extends PartComponentProps {

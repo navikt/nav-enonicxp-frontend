@@ -4,6 +4,7 @@ import { DefaultOption } from 'components/_common/contact-option/DefaultOption';
 import { CallOption } from 'components/_common/contact-option/CallOption';
 import { ContactOptionProps } from '../../../types/component-props/parts/contact-option';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { WriteOption } from 'components/_common/contact-option/WriteOption';
 
 export const ContactOptionPart = ({ config }: ContactOptionProps) => {
     const channel = config?.contactOptions?._selected;
@@ -37,6 +38,42 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
         return (
             <CallOption
                 {...sharedContactInformation.data.contactType.telephone}
+                _path={sharedContactInformation._path}
+                ingress={ingress}
+            />
+        );
+    }
+
+    if (channel === 'write') {
+        const { sharedContactInformation, ingress, title, url } = channelData;
+
+        if (!sharedContactInformation) {
+            // If title was set, it means this part was added previous to the shared
+            // WriteOption, so we need to just legacy handle this until the editors
+            // get around to update the page in question.
+            if (title) {
+                return (
+                    <DefaultOption
+                        ingress={ingress}
+                        title={title}
+                        url={url}
+                        channel={channel}
+                    />
+                );
+            }
+
+            return (
+                <EditorHelp
+                    text={
+                        'Velg telefonnummer før denne kontaktkanalen kan vises.'
+                    }
+                />
+            );
+        }
+
+        return (
+            <WriteOption
+                {...sharedContactInformation.data.contactType.write}
                 _path={sharedContactInformation._path}
                 ingress={ingress}
             />
