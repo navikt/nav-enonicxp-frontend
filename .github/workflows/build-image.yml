@@ -80,6 +80,7 @@ jobs:
           INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
           PAGE_CACHE_DIR=/tmp/pages
           IMAGE_CACHE_DIR=/tmp/images
+          SENTRY_DSN=https://7d6de132401448989071436f6e54c748@sentry.gc.nav.no/131
           EOF
       - name: Nextjs cache
         uses: actions/cache@v2
