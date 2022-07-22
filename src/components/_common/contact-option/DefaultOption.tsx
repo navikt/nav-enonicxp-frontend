@@ -53,7 +53,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
         if (channel === 'call') {
             return {
                 href: 'tel:+4755553333',
-                event: analyticsEvents.CALL,
+                analyticsEvent: analyticsEvents.CALL,
             };
         }
 
@@ -64,7 +64,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
                     e.preventDefault();
                     openChatbot();
                 },
-                event: analyticsEvents.CHAT_OPEN,
+                analyticsEvent: analyticsEvents.CHAT_OPEN,
             };
         }
         if (channel === 'navoffice') {
@@ -83,7 +83,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
             return {
                 href: url,
                 target: '_blank',
-                event: analyticsEvents.NAVIGATION,
+                analyticsEvent: analyticsEvents.NAVIGATION,
             };
         }
 
