@@ -1,6 +1,6 @@
 import { Filter } from 'types/store/filter-menu';
 import { classNames } from '../../../utils/classnames';
-import { v4 as uuid } from 'uuid';
+import { useId } from 'react';
 
 import style from './FilterCheckbox.module.scss';
 
@@ -15,7 +15,7 @@ export const FilterCheckbox = ({
     filter,
     onToggleFilterHandler,
 }: FilterCheckboxProps) => {
-    const id = uuid();
+    const id = useId();
 
     return (
         <div
@@ -29,7 +29,7 @@ export const FilterCheckbox = ({
                 onChange={onToggleFilterHandler}
                 checked={isSelected}
                 value={filter.id}
-                id={id}
+                id={filter.id}
                 className={style.checkbox}
             />
             <label
