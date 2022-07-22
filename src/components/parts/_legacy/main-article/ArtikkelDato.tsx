@@ -15,29 +15,30 @@ interface Props {
 
 const ArtikkelDato = (props: Props) => {
     const { language } = usePageConfig();
-    const { publish, createdTime, modifiedTime, publishLabel, modifiedLabel} = props;
+    const { publish, createdTime, modifiedTime, publishLabel, modifiedLabel } =
+        props;
     const publishedDate = publish?.first ?? createdTime;
     const publishedString = `${publishLabel} ${formatDate(
-        publishedDate, language
+        publishedDate,
+        language
     )}`;
     let modifiedString = '';
     if (new Date(modifiedTime) > new Date(publishedDate)) {
         modifiedString = ` ${modifiedLabel} ${formatDate(
-            modifiedTime, language
+            modifiedTime,
+            language
         )}`;
     }
     return (
-        <time dateTime={publishedDate}>
-            <BodyLong className={'page-modified-info'}>
-                {publishedString}
-                {modifiedString &&
-                    <>
-                        <span aria-hidden='true'>{' |'}</span>
-                        {modifiedString}
-                    </>
-                }
-            </BodyLong>
-        </time>
+        <BodyLong as={'time'} dateTime={publishedDate}>
+            {publishedString}
+            {modifiedString && (
+                <>
+                    <span aria-hidden="true">{' |'}</span>
+                    {modifiedString}
+                </>
+            )}
+        </BodyLong>
     );
 };
 export default ArtikkelDato;
