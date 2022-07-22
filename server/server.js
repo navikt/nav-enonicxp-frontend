@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const next = require('next');
 const fetch = require('node-fetch');
+const { createHttpTerminator } = require('http-terminator');
 
 const { setJsonCacheHeaders } = require('./set-json-cache-headers');
 const {
@@ -139,12 +140,15 @@ nextApp.prepare().then(() => {
         }
     });
 
+    const httpTerminator = createHttpTerminator({ server: serverInstance });
+
     const shutdown = () => {
         console.log('Server shutting down');
-
-        serverInstance.close(() => {
-            console.log('Shutdown complete!');
-            process.exit(0);
+        httpTerminator.terminate().then(() => {
+            serverInstance.close(() => {
+                console.log('Shutdown complete!');
+                process.exit(0);
+            });
         });
     };
 
