@@ -155,6 +155,7 @@ console.log(
 module.exports = withPlugins(
     [withTranspileModules, withBundleAnalyzer, withSentryConfig],
     {
+        productionBrowserSourceMaps: true,
         distDir: isFailover && isLocal ? '.next-static' : '.next',
         assetPrefix: isFailover
             ? process.env.FAILOVER_ORIGIN

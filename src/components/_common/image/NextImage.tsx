@@ -2,7 +2,7 @@ import React from 'react';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { isValidImageUrl } from '../../../utils/urls';
-import { updateImageManifest } from '../../../utils/fetch/fetch-images';
+import dynamic from 'next/dynamic';
 
 // These types should match what's specified in next.config
 type DeviceSize = 480 | 768 | 1024 | 1440;
@@ -14,7 +14,7 @@ export type NextImageProps = {
     quality?: number;
 };
 
-type Props = {
+export type ImageProps = {
     src: string;
     alt: string;
 } & React.ImgHTMLAttributes<HTMLImageElement> &
@@ -52,28 +52,7 @@ export const buildImageCacheUrl = ({
     )}&w=${maxWidth}&q=${quality}`;
 };
 
-const NextImageBuildTime = (props: Props) => {
-    const { src, alt, maxWidth = 1440, quality = 90, ...imgAttribs } = props;
-    const { pageConfig } = usePageConfig();
-
-    if (!src) {
-        return null;
-    }
-
-    const cachedSrc = buildImageCacheUrl({
-        src,
-        maxWidth,
-        quality,
-        isEditorView: !!pageConfig.editorView,
-    });
-
-    // This should only run at build-time
-    updateImageManifest(cachedSrc);
-
-    return <img {...imgAttribs} src={cachedSrc} alt={alt} />;
-};
-
-const NextImageRunTime = (props: Props) => {
+const NextImageRunTime = (props: ImageProps) => {
     const {
         src,
         alt,
@@ -105,5 +84,10 @@ const NextImageRunTime = (props: Props) => {
 export const NextImage =
     typeof process.env !== 'undefined' &&
     process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
-        ? NextImageBuildTime
+        ? dynamic(
+              import('./NextImageBuildTime').then((module) => {
+                  const { NextImageBuildTime } = module;
+                  return NextImageBuildTime;
+              })
+          )
         : NextImageRunTime;
