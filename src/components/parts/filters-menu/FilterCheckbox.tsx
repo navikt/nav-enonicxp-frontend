@@ -29,7 +29,7 @@ export const FilterCheckbox = ({
                 onChange={onToggleFilterHandler}
                 checked={isSelected}
                 value={filter.id}
-                id={filter.id}
+                id={id}
                 className={style.checkbox}
             />
             <label

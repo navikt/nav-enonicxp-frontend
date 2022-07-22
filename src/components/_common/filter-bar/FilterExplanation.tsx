@@ -65,7 +65,7 @@ export const FilterExplanation = ({
                     )}
                     role="img"
                     focusable="false"
-                    aria-labelledby={'qwer'}
+                    aria-labelledby={explanationId}
                 />
                 <Information
                     className={classNames(
@@ -74,10 +74,10 @@ export const FilterExplanation = ({
                     )}
                     role="img"
                     focusable="false"
-                    aria-labelledby={'qwer'}
+                    aria-labelledby={explanationId}
                 />
             </div>
-            <div className="text" id={'qwer'}>
+            <div className="text" id={explanationId}>
                 {filterExplanation}
             </div>
         </div>
