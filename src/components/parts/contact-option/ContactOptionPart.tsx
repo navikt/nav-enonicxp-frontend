@@ -71,11 +71,13 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
             );
         }
 
+        const overrideIngress = ingress ? { ingress } : null;
+
         return (
             <WriteOption
                 {...sharedContactInformation.data.contactType.write}
+                {...overrideIngress}
                 _path={sharedContactInformation._path}
-                ingress={ingress}
             />
         );
     }
