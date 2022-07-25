@@ -22,6 +22,7 @@ import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { useLayoutEffectClientSide } from '../../../utils/react';
 
 import style from './ContactOption.module.scss';
+import { ParsedHtml } from '../parsed-html/ParsedHtml';
 
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
@@ -145,6 +146,10 @@ export const CallOption = (props: CallOptionProps) => {
         return `${openClosedText}`;
     };
 
+    const getIngress = () => {
+        return <ParsedHtml htmlProps={ingress || text} />;
+    };
+
     const todaysOpeningHour =
         typeof window !== 'undefined'
             ? findTodaysOpeningHour(allOpeningHours)
@@ -176,7 +181,7 @@ export const CallOption = (props: CallOptionProps) => {
                     {alertText}
                 </Alert>
             )}
-            <BodyLong className={style.text}>{ingress || text}</BodyLong>
+            <BodyLong className={style.text}>{getIngress()}</BodyLong>
             {isClosed !== null && (
                 <Chip
                     className={classNames(

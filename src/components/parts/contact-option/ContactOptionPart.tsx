@@ -5,9 +5,12 @@ import { CallOption } from 'components/_common/contact-option/CallOption';
 import { ContactOptionProps } from '../../../types/component-props/parts/contact-option';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 export const ContactOptionPart = ({ config }: ContactOptionProps) => {
     const channel = config?.contactOptions?._selected;
+    const { pageConfig } = usePageConfig();
+    const { editorView } = pageConfig;
 
     if (!channel) {
         return <EditorHelp text={'Velg kanal fra listen til høyre'} />;
@@ -51,7 +54,7 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
             // If title was set, it means this part was added previous to the shared
             // WriteOption, so we need to just legacy handle this until the editors
             // get around to update the page in question.
-            if (title) {
+            if (editorView !== 'edit') {
                 return (
                     <DefaultOption
                         ingress={ingress}
@@ -65,7 +68,7 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
             return (
                 <EditorHelp
                     text={
-                        'Velg telefonnummer før denne kontaktkanalen kan vises.'
+                        'Velg en "skriv til oss"-side før denne kontaktkanalen kan vises.'
                     }
                 />
             );
