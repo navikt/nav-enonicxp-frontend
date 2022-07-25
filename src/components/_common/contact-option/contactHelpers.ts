@@ -104,7 +104,7 @@ export const getIsClosedForToday = (openingHour: OpeningHour) => {
     return isClosed;
 };
 
-export const getIsCurrentyClosed = (openingHour: OpeningHour) => {
+export const getIsCurrentlyClosed = (openingHour: OpeningHour) => {
     if (!getDates(openingHour)) {
         return true;
     }

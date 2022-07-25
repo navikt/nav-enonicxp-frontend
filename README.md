@@ -47,10 +47,18 @@ Kjør så `npm run start-clean`
 -   Lag en release på master med versjon-bump, beskrivende tittel og oppsummering av endringene dine
 -   Publiser release'en for å starte deploy til prod
 
-# Henvendelser
+## Logger og metrikker
+
+[Sentry](https://sentry.gc.nav.no/organizations/nav/projects/pb-nav-enonicxp-frontend/?project=131)
+
+[Kibana](https://logs.adeo.no/app/discover#/view/952d2110-d396-11eb-af21-ffc7c2f0592f)
+
+[Grafana](https://grafana.nais.io/d/mUGKZWtMz/personbruker-app-metrikker?orgId=1&var-datasource=prod-gcp&var-app=nav-enonicxp-frontend)
+
+## Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot https://github.com/orgs/navikt/teams/personbruker
 
-## For NAV-ansatte
+### For NAV-ansatte
 
 Interne henvendelser kan sendes via Slack i kanalen #team-personbruker

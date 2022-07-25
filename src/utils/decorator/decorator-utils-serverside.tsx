@@ -8,8 +8,20 @@ import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { objectToQueryString } from '../fetch/fetch-utils';
 
 const decoratorUrl = process.env.DECORATOR_FALLBACK_URL;
-const decoratorEnv = process.env.ENV as Props['env'];
 const decoratorLocalPort = process.env.DECORATOR_LOCAL_PORT || 8100;
+
+type AppEnv = typeof process.env.ENV;
+type DecoratorEnv = Props['env'];
+
+const envMap: { [Key in AppEnv]: DecoratorEnv } = {
+    localhost: 'localhost',
+    dev1: 'dev',
+    dev2: 'dev',
+    prod: 'prod',
+};
+
+const decoratorEnv = envMap[process.env.ENV] || 'prod';
+
 const fetchTimeoutMs = 15000;
 
 // Client-side rendered decorator is used as a fallback if the server-side

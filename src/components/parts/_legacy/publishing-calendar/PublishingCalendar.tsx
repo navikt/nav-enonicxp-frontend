@@ -63,12 +63,8 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
             <Table>
                 <thead>
                     <tr>
-                        <th scope="col">
-                            {getLabel('publishdate')}
-                        </th>
-                        <th scope="col">
-                            {getLabel('event')}
-                        </th>
+                        <th scope="col">{getLabel('publishdate')}</th>
+                        <th scope="col">{getLabel('event')}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,11 +73,11 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
                             <tr key={`${item.displayName}_${index}`}>
                                 <td>
                                     <time>
-                                        <div>{item.day}</div>
-                                        <div>{item.month}</div>
+                                        <span>{item.day}</span>
+                                        <span>{item.month}</span>
                                     </time>
                                 </td>
-                                <td className={style.eventInfo}>
+                                <td>
                                     <BodyLong className={style.dateInfo}>
                                         {item.period}
                                     </BodyLong>

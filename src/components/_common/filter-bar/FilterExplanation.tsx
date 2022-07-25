@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useId } from 'react';
 import { classNames } from '../../../utils/classnames';
 import { Information, InformationFilled } from '@navikt/ds-icons';
 import { translator } from 'translations';
-import { v4 as uuid } from 'uuid';
-
 import { usePageConfig } from 'store/hooks/usePageConfig';
+
 import style from './FilterExplanation.module.scss';
 
 interface FilterExplanationProps {
@@ -16,7 +15,7 @@ export const FilterExplanation = ({
     selectedFilters,
     availableFilters,
 }: FilterExplanationProps) => {
-    const [explanationId] = useState(uuid());
+    const explanationId = useId();
     const [selectCount, setSelectCount] = useState(0);
     const [showHighlight, setShowHighlight] = useState(false);
 

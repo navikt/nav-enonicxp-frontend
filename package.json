@@ -27,12 +27,15 @@
         "@navikt/fnrvalidator": "^1.1.4",
         "@navikt/nav-dekoratoren-moduler": "^1.6.17",
         "@reduxjs/toolkit": "^1.8.3",
+        "@sentry/integrations": "^7.7.0",
+        "@sentry/nextjs": "^7.7.0",
         "amplitude-js": "^8.18.5",
         "classnames": "^2.3.1",
         "dayjs": "^1.11.3",
         "dotenv": "^16.0.1",
         "express": "^4.18.1",
         "html-react-parser": "^3.0.1",
+        "http-terminator": "^3.2.0",
         "js-cookie": "^3.0.1",
         "jsdom": "^20.0.0",
         "lodash.debounce": "^4.0.8",
@@ -84,6 +87,8 @@
     "browserslist": {
         "production": [
             ">0.2% in no",
+            "iOS >= 11",
+            "safari >= 11",
             "not dead",
             "not op_mini all",
             "not ie 11"

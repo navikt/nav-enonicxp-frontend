@@ -7,7 +7,9 @@ export const formatNumber = (
 ) => {
     const decimalsOOM = 10 ** maxPlaces;
     const rounded = Math.floor(num * decimalsOOM + 0.5) / decimalsOOM;
-    return rounded.toLocaleString(language);
+    // Not all browsers process the "nn" locale correctly. Formatting is identical
+    // to "no", so we just use that
+    return rounded.toLocaleString(language === 'nn' ? 'no' : language);
 };
 
 export const isStringOnlyNumber = (numberAsString: string) => {
