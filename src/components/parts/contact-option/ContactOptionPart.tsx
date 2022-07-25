@@ -17,10 +17,10 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
     }
 
     const channelData = config.contactOptions[channel];
+    const { sharedContactInformation, ingress, title, url, phoneNumber } =
+        channelData;
 
     if (channel === 'call') {
-        const { sharedContactInformation, ingress, phoneNumber } = channelData;
-
         if (!sharedContactInformation) {
             // For backwards compatibility, show default call information
             // if no sharedContactInformation has been selected but a legacy
@@ -48,12 +48,10 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
     }
 
     if (channel === 'write') {
-        const { sharedContactInformation, ingress, title, url } = channelData;
-
         if (!sharedContactInformation) {
-            // If title was set, it means this part was added previous to the shared
-            // WriteOption, so we need to just legacy handle this until the editors
-            // get around to update the page in question.
+            // If no sharedContactInformation is set, this might mean that the part was
+            // added before the new 'write to us', so use the DefaultOption
+            // which will pull legacy text from translation library.
             if (editorView !== 'edit') {
                 return (
                     <DefaultOption
