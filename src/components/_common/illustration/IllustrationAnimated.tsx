@@ -47,6 +47,10 @@ export const IllustrationAnimated = ({
 
             const container = lottieContainer.current;
 
+            if (!container) {
+                return;
+            }
+
             if (container.innerHTML) {
                 container.innerHTML = '';
             }
