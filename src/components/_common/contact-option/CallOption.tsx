@@ -43,15 +43,13 @@ export const CallOption = (props: CallOptionProps) => {
     } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
-
     const [isClosed, setIsClosed] = useState<boolean | null>(null);
+    const isClientSide = useClientSide();
 
     const getDateTimeTranslations = translator('dateTime', language);
     const getContactTranslations = translator('contactPoint', language);
     const relatives = getDateTimeTranslations('relatives');
     const sharedTranslations = getContactTranslations('shared');
-
-    const isClientSide = useClientSide();
 
     const allOpeningHours = mergeOpeningHours(
         regularOpeningHours?.hours || [],
