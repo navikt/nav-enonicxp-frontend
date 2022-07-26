@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { translator } from 'translations';
 import { Heading, BodyLong, Alert, BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
@@ -21,6 +21,7 @@ import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { useLayoutEffectClientSide } from '../../../utils/react';
 
 import style from './ContactOption.module.scss';
+import { useClientSide } from 'utils/useIsClientSide';
 
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
@@ -44,16 +45,13 @@ export const CallOption = (props: CallOptionProps) => {
     const { layoutConfig } = useLayoutConfig();
 
     const [isClosed, setIsClosed] = useState<boolean | null>(null);
-    const [isClientSide, setIsClientSide] = useState<boolean>(false);
 
     const getDateTimeTranslations = translator('dateTime', language);
     const getContactTranslations = translator('contactPoint', language);
     const relatives = getDateTimeTranslations('relatives');
     const sharedTranslations = getContactTranslations('shared');
 
-    useEffect(() => {
-        setIsClientSide(true);
-    }, []);
+    const isClientSide = useClientSide();
 
     const allOpeningHours = mergeOpeningHours(
         regularOpeningHours?.hours || [],
