@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { translator } from 'translations';
 import { Heading, BodyLong, Alert, BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
@@ -42,11 +42,19 @@ export const CallOption = (props: CallOptionProps) => {
     } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
+
     const [isClosed, setIsClosed] = useState<boolean | null>(null);
+    const [isClientSide, setIsClientSide] = useState<boolean>(false);
+
     const getDateTimeTranslations = translator('dateTime', language);
-    const relatives = getDateTimeTranslations('relatives');
     const getContactTranslations = translator('contactPoint', language);
+    const relatives = getDateTimeTranslations('relatives');
     const sharedTranslations = getContactTranslations('shared');
+
+    useEffect(() => {
+        setIsClientSide(true);
+    }, []);
+
     const allOpeningHours = mergeOpeningHours(
         regularOpeningHours?.hours || [],
         specialOpeningHours?.hours || []
@@ -144,10 +152,10 @@ export const CallOption = (props: CallOptionProps) => {
         return `${openClosedText}`;
     };
 
-    const todaysOpeningHour =
-        typeof window !== 'undefined'
-            ? findTodaysOpeningHour(allOpeningHours)
-            : null;
+    const todaysOpeningHour = isClientSide
+        ? findTodaysOpeningHour(allOpeningHours)
+        : null;
+
     const isCurrentlyClosed = getIsCurrentlyClosed(todaysOpeningHour);
 
     useLayoutEffectClientSide(() => {
