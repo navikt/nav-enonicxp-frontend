@@ -16,7 +16,7 @@ type CacheEntries = Record<string, IndexPageContentProps>;
 
 export type IndexPageNavigationCallback = (path: string) => void;
 
-const fetchIndexPageContentProps = (
+const fetchPageContentProps = (
     path: string
 ): Promise<IndexPageContentProps | null> =>
     fetchPageCacheContent(path).then((res) => {
@@ -28,7 +28,8 @@ const fetchIndexPageContentProps = (
             res.__typename !== ContentType.AreaPage &&
             res.__typename !== ContentType.FrontPage
         ) {
-            console.error('Invalid content type for this page');
+            // Could be the case if user navigates via next/prev buttons
+            // in browser, which will still trigger call to navigation.
             return null;
         }
 
@@ -74,7 +75,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
                 return;
             }
 
-            fetchIndexPageContentProps(path).then((contentProps) => {
+            fetchPageContentProps(path).then((contentProps) => {
                 if (!contentProps) {
                     router.push(path);
                     return;
@@ -100,7 +101,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
                     return null;
                 }
 
-                return fetchIndexPageContentProps(path);
+                return fetchPageContentProps(path);
             })
         ).then((res) => {
             const pages = res.reduce((acc, page) => {
