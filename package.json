@@ -46,7 +46,7 @@
         "next-compose-plugins": "^2.2.1",
         "next-transpile-modules": "^9.0.0",
         "node-cache": "^5.1.2",
-        "node-fetch": "2.6.7",
+        "node-fetch": "3.2.10",
         "on-headers": "^1.0.2",
         "p-limit": "^4.0.0",
         "prom-client": "^14.0.1",
