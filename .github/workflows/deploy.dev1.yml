@@ -8,7 +8,7 @@ jobs:
     with:
       environment: dev-gcp:dev1
       imagename: dev1-deploy
-      ENV: dev
+      ENV: dev1
       ADMIN_ORIGIN: https://portal-admin-dev.oera.no
       APP_ORIGIN: https://www.dev.nav.no
       REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev1
@@ -19,6 +19,7 @@ jobs:
       FAILOVER_ORIGIN: https://www-failover.dev.nav.no
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
     needs: build
@@ -27,5 +28,6 @@ jobs:
       cluster: dev-gcp
       vars_file: vars-dev1.yml
       config_file: config.yml
+      hpa_file: hpa-dev1.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

@@ -1,9 +1,9 @@
 @use 'src/components/_common/area-card/graphics/AreaCardGraphicsCommon.module'
     as areaGraphics;
-@import 'src/components/_common/area-card/AreaCard.module';
+@use 'src/components/_common/area-card/AreaCard.module' as areaCard;
 
 .house {
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     right: 6px;
     top: 112px;
@@ -16,7 +16,7 @@
 .letterPartOrange {
     background-color: var(--navds-global-color-orange-200);
 
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     width: 72px;
     height: 40px;
@@ -31,7 +31,7 @@
 .letterPartBlue {
     background-color: var(--navds-global-color-deepblue-200);
 
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     width: 104px;
     height: 40px;
@@ -46,7 +46,7 @@
 .mask {
     background-color: var(--navds-global-color-deepblue-100);
 
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     width: 193.56px;
     height: 499px;
@@ -65,7 +65,7 @@
 }
 
 .stroller {
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     right: 52.23px;
     top: 40px;

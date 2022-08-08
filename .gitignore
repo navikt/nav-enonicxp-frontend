@@ -44,3 +44,6 @@ yarn-error.log*
 /tsconfig.tsbuildinfo
 /image-manifest
 /benchmark.mjs
+
+# Sentry
+.sentryclirc

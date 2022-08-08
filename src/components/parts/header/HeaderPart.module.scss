@@ -1,3 +1,16 @@
 .headerPart {
-    margin: 1rem 0;
+    margin-top: 2.75rem;
+    margin-bottom: 1rem;
+}
+
+:global(.part__dynamic-header):last-child {
+    .headerPart {
+        margin-bottom: 0;
+    }
+}
+
+:global(.part__dynamic-header):first-child {
+    .headerPart {
+        margin-top: 0;
+    }
 }

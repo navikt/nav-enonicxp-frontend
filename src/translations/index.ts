@@ -4,7 +4,7 @@ import { translationsBundlePl as pl } from './pl';
 import { translationsBundleNn as nn } from './nn';
 import { translationsBundleNb as defaultPack, Translations } from './default';
 
-export type Language = 'no' | 'nn' | 'en' | 'se' | 'pl' | 'uk';
+export type Language = 'no' | 'nn' | 'en' | 'se' | 'pl' | 'uk' | 'ru';
 
 const supportedLanguages: { [key in Language]: Translations } = {
     en: en,
@@ -13,6 +13,7 @@ const supportedLanguages: { [key in Language]: Translations } = {
     nn: nn,
     no: defaultPack,
     uk: en,
+    ru: en,
 };
 
 export const translator = <Module extends keyof Translations>(
@@ -25,6 +26,5 @@ export const translator = <Module extends keyof Translations>(
         ...(selectedLanguage && selectedLanguage[module]),
     };
 
-    return <Key extends keyof Translations[Module]>(key: Key) =>
-        pack[key] || '';
+    return <Key extends keyof Translations[Module]>(key: Key) => pack[key];
 };

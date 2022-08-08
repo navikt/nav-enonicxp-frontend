@@ -95,6 +95,10 @@
     color: var(--navds-global-color-gray-900);
     margin-bottom: 1rem;
     grid-area: Title;
+    letter-spacing: -0.002em;
+    font-size: var(--navds-font-size-heading-medium);
+    line-height: var(--navds-font-line-height-heading-medium);
+    font-weight: var(--navds-font-weight-bold);
 
     :global(.provider) & {
         color: var(--navds-semantic-color-link);

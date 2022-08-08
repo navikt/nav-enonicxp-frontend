@@ -43,6 +43,8 @@ export const GVItemEditorInputCaseTime = ({
     errors,
     setInputState,
 }: Props) => {
+    const inputValue = inputState.value ? inputState.value.toString() : '';
+
     return (
         <>
             <TextField
@@ -59,7 +61,7 @@ export const GVItemEditorInputCaseTime = ({
                 size={'small'}
                 label={'Behandlingstid'}
                 name={'value'}
-                value={inputState.value ?? ''}
+                value={inputValue}
                 onChange={(e) => {
                     setInputState({ ...inputState, value: e.target.value });
                 }}

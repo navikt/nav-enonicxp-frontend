@@ -3,12 +3,14 @@ require('dotenv').config();
 const express = require('express');
 const next = require('next');
 const fetch = require('node-fetch');
+const { createHttpTerminator } = require('http-terminator');
 
 const { setJsonCacheHeaders } = require('./set-json-cache-headers');
 const {
     handleInvalidateReq,
     handleInvalidateAllReq,
     setCacheKey,
+    getFsPath,
 } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
 
@@ -48,8 +50,7 @@ nextApp.prepare().then(() => {
     const isFailover = IS_FAILOVER_INSTANCE === 'true';
 
     if (!isFailover && PAGE_CACHE_DIR) {
-        nextApp.server.incrementalCache.incrementalOptions.pagesDir =
-            PAGE_CACHE_DIR;
+        nextApp.server.incrementalCache.cacheHandler.getFsPath = getFsPath;
     }
 
     if (IMAGE_CACHE_DIR) {
@@ -139,12 +140,15 @@ nextApp.prepare().then(() => {
         }
     });
 
+    const httpTerminator = createHttpTerminator({ server: serverInstance });
+
     const shutdown = () => {
         console.log('Server shutting down');
-
-        serverInstance.close(() => {
-            console.log('Shutdown complete!');
-            process.exit(0);
+        httpTerminator.terminate().then(() => {
+            serverInstance.close(() => {
+                console.log('Shutdown complete!');
+                process.exit(0);
+            });
         });
     };
 

@@ -1,9 +1,9 @@
 @use 'src/components/_common/area-card/graphics/AreaCardGraphicsCommon.module'
     as areaGraphics;
-@import 'src/components/_common/area-card/AreaCard.module';
+@use 'src/components/_common/area-card/AreaCard.module' as areaCard;
 
 .shapes {
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     right: 25px;
     top: 108px;
@@ -14,7 +14,7 @@
 }
 
 .letterPartBlue {
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     right: -79px;
     top: 0;
@@ -27,7 +27,7 @@
 .mask {
     background-color: var(--navds-global-color-deepblue-100);
 
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     width: 193.56px;
     height: 499px;
@@ -46,7 +46,7 @@
 }
 
 .piggyBank {
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     right: 53px;
     top: 41px;
@@ -61,7 +61,7 @@
     background-color: var(--navds-global-color-orange-200);
     border-radius: 50%;
 
-    @include transitionMixin;
+    @include areaCard.transitionMixin;
     position: absolute;
     width: 28px;
     height: 28px;

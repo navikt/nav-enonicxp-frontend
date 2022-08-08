@@ -11,6 +11,7 @@ import { classNames } from 'utils/classnames';
 import { analyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
+import { ParsedHtml } from '../parsed-html/ParsedHtml';
 
 import style from './ContactOption.module.scss';
 
@@ -29,13 +30,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
             return title;
         }
 
-        const translations = getTranslations(channel);
-
-        if (translations && translations.title) {
-            return translations.title;
-        }
-
-        return '';
+        return getTranslations(channel).title;
     };
 
     const getIngress = () => {
@@ -43,8 +38,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
             return ingress;
         }
 
-        const translations = getTranslations(channel);
-        return ingress || (translations && translations.ingress);
+        return <ParsedHtml htmlProps={getTranslations(channel).ingress} />;
     };
 
     // In order to open chatbot, onClick is needed instead of href. Therefore
@@ -59,7 +53,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
         if (channel === 'call') {
             return {
                 href: 'tel:+4755553333',
-                event: analyticsEvents.CALL,
+                analyticsEvent: analyticsEvents.CALL,
             };
         }
 
@@ -70,7 +64,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
                     e.preventDefault();
                     openChatbot();
                 },
-                event: analyticsEvents.CHAT_OPEN,
+                analyticsEvent: analyticsEvents.CHAT_OPEN,
             };
         }
         if (channel === 'navoffice') {
@@ -89,7 +83,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
             return {
                 href: url,
                 target: '_blank',
-                event: analyticsEvents.NAVIGATION,
+                analyticsEvent: analyticsEvents.NAVIGATION,
             };
         }
 
@@ -121,9 +115,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
                     </Heading>
                 </div>
             </LenkeBase>
-            <BodyLong className={style.text}>
-                <div dangerouslySetInnerHTML={{ __html: getIngress() }} />
-            </BodyLong>
+            <BodyLong className={style.text}>{getIngress()}</BodyLong>
         </div>
     );
 };

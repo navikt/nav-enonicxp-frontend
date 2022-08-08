@@ -3,7 +3,6 @@ revalidatorApp: nav-enonicxp-frontend-revalidator-proxy
 secret: nav-enonicxp
 ingresses:
   - https://www.nav.no
-  - https://www.nav.no/arbeids
 resources:
   limits:
     cpu: 3000m
@@ -12,5 +11,5 @@ resources:
     cpu: 1500m
     memory: 2500Mi
 replicas:
-  min: 20
-  max: 40
+  min: 2
+  max: 2

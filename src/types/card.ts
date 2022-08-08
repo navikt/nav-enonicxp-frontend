@@ -5,8 +5,8 @@ export enum CardType {
     Provider = 'provider',
     ThemedArticle = 'themed-article',
     Guide = 'guide',
-    NewsCard = 'newsCard',
-    ShortcutCard = 'shortcutCard',
+    Overview = 'overview',
+    Generic = 'generic',
 }
 
 export enum CardSize {

@@ -126,13 +126,13 @@ export const translationsBundleEn: Translations = {
         copiedLinkConfirmed: 'Link successfully copied',
     },
     overview: {
-        noProducts: 'No products to show',
+        noProducts: 'No hits',
         ariaExplanation: 'Filter list by area',
         ariaItemExplanation: 'Show area',
         chooseArea: 'Choose area',
         chooseType: 'Choose type',
         search: 'Search',
-        loading: 'Loading product details',
+        loading: 'Loading content...',
     },
     pagination: {
         goTo: 'Go to',
@@ -142,7 +142,12 @@ export const translationsBundleEn: Translations = {
         chat: {
             title: 'Chat with Frida',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09: 00-15: 00).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
+        },
+        legacyChat: {
+            title: 'You can chat with us',
+            ingress:
+                'You will first meet chatbot Frida. You can ask Frida to chat with a counsellor (weekdays 09:00–15:00)',
         },
         write: {
             title: 'Write to us',

@@ -17,24 +17,23 @@
     }
 
     table {
-
         th {
             padding: 0;
             visibility: hidden;
         }
 
         td {
-            padding: 1rem 0;
-
             time {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
                 width: 4.5rem;
                 height: 4.5rem;
-                display: block;
                 font-weight: 600;
                 padding: 1rem;
                 border-radius: 50%;
                 background-color: #d1d1d1;
-                text-align: center;
 
                 p {
                     text-transform: uppercase;
@@ -44,12 +43,8 @@
                 }
             }
 
-            &.eventInfo {
-                padding-left: 1.6rem;
-
-                .dateInfo {
-                    text-transform: uppercase;
-                }
+            .dateInfo {
+                text-transform: uppercase;
             }
         }
     }

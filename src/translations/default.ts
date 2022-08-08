@@ -126,13 +126,13 @@ export const translationsBundleNb = {
         copiedLinkConfirmed: 'Lenken er kopiert',
     },
     overview: {
-        noProducts: 'Ingen produkter å vise',
+        noProducts: 'Ingen treff',
         ariaExplanation: 'Filtrer listen etter område',
         ariaItemExplanation: 'Vis område',
         chooseArea: 'Velg område',
         chooseType: 'Velg type',
         search: 'Søk',
-        loading: 'Henter produktdetaljer',
+        loading: 'Laster innhold...',
     },
     pagination: {
         goTo: 'Gå til',
@@ -143,6 +143,11 @@ export const translationsBundleNb = {
             title: 'Chat med oss',
             ingress:
                 'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 09:00-15:00).',
+        },
+        legacyChat: {
+            title: 'Du kan chatte med oss',
+            ingress:
+                'Du møter først chatbot Frida. Du kan be Frida om å få chatte med en veileder (hverdager 09:00–15:00)',
         },
         write: {
             title: 'Skriv til oss',

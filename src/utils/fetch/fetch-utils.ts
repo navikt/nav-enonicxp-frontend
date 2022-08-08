@@ -2,11 +2,11 @@ import fetch from 'node-fetch';
 
 const defaultTimeout = 15000;
 
-export const fetchWithTimeout = (
+export const fetchWithTimeout = <ResponseType = any>(
     url: string,
     timeoutMs = defaultTimeout,
     config?: Record<string, any>
-): Promise<any> =>
+): Promise<ResponseType> =>
     Promise.race([
         fetch(url, config),
         new Promise((res) =>

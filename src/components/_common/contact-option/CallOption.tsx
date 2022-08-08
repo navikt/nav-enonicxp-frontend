@@ -14,13 +14,14 @@ import {
     findTodaysOpeningHour,
     getDates,
     getIsClosedForToday,
-    getIsCurrentyClosed,
+    getIsCurrentlyClosed,
 } from '../contact-details/contactHelpers';
 import { analyticsEvents } from '../../../utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { useLayoutEffectClientSide } from '../../../utils/react';
 
 import style from './ContactOption.module.scss';
+import { useClientSide } from 'utils/useIsClientSide';
 
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
@@ -42,11 +43,14 @@ export const CallOption = (props: CallOptionProps) => {
     } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
-    const [isClosed, setIsClosed] = useState(false);
+    const [isClosed, setIsClosed] = useState<boolean | null>(null);
+    const isClientSide = useClientSide();
+
     const getDateTimeTranslations = translator('dateTime', language);
-    const relatives = getDateTimeTranslations('relatives');
     const getContactTranslations = translator('contactPoint', language);
+    const relatives = getDateTimeTranslations('relatives');
     const sharedTranslations = getContactTranslations('shared');
+
     const allOpeningHours = mergeOpeningHours(
         regularOpeningHours?.hours || [],
         specialOpeningHours?.hours || []
@@ -144,11 +148,11 @@ export const CallOption = (props: CallOptionProps) => {
         return `${openClosedText}`;
     };
 
-    const todaysOpeningHour =
-        typeof window !== 'undefined'
-            ? findTodaysOpeningHour(allOpeningHours)
-            : null;
-    const isCurrentlyClosed = getIsCurrentyClosed(todaysOpeningHour);
+    const todaysOpeningHour = isClientSide
+        ? findTodaysOpeningHour(allOpeningHours)
+        : null;
+
+    const isCurrentlyClosed = getIsCurrentlyClosed(todaysOpeningHour);
 
     useLayoutEffectClientSide(() => {
         setIsClosed(isCurrentlyClosed);
@@ -176,16 +180,17 @@ export const CallOption = (props: CallOptionProps) => {
                 </Alert>
             )}
             <BodyLong className={style.text}>{ingress || text}</BodyLong>
-            <BodyShort
-                spacing
-                className={classNames(
-                    style.openingHour,
-                    isClosed ? style.closed : style.open
-                )}
-            >
-                {typeof window !== 'undefined' &&
-                    buildOpenInformationText(todaysOpeningHour)}
-            </BodyShort>
+            {isClosed !== null && (
+                <BodyShort
+                    spacing
+                    className={classNames(
+                        style.openingHour,
+                        isClosed ? style.closed : style.open
+                    )}
+                >
+                    {buildOpenInformationText(todaysOpeningHour)}
+                </BodyShort>
+            )}
             <LenkeBase
                 analyticsLinkGroup={layoutConfig.title}
                 className={style.moreLink}

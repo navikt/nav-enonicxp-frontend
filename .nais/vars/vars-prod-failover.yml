@@ -6,4 +6,4 @@ ingresses:
   - https://www-failover.nav.no
 replicas:
   min: 2
-  max: 10
+  max: 2

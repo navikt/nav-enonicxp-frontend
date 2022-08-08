@@ -1,9 +1,9 @@
-@use 'src/common' as common;
+@use 'common' as common;
 @import '@navikt/ds-css/dist/index.css';
 
 // Import scss that aren't modules
 @import 'components/layouts/fixed-cols/FixedColsLayout.scss';
-@import 'src/components/layouts/flex-cols/FlexColsLayoutGlobal';
+@import 'components/layouts/flex-cols/FlexColsLayoutGlobal';
 @import 'components/layouts/legacy/LegacyLayout.scss';
 @import 'components/layouts/page-with-side-menus/left-menu-section/LeftMenuSection.scss';
 @import 'components/layouts/page-with-side-menus/PageWithSideMenus.scss';
@@ -14,7 +14,7 @@
 
 #__next,
 .decorator-utils-container {
-    background-color: var(--navds-semantic-color-canvas-background);
+    background-color: common.$navds-semantic-color-canvas-background;
 }
 
 .decorator-utils-container {
@@ -25,8 +25,8 @@
     max-width: common.$desktopMaxWidth;
     min-height: 22.5rem;
     margin: 0 auto;
-    font-size: var(--navds-front-size-l);
-    line-height: var(--navds-font-line-height-m);
+    font-size: common.$navds-font-size-large;
+    line-height: common.$navds-font-line-height-xlarge;
 
     @media #{common.$mq-screen-mobile} {
         padding: 0 common.$padding-sides-mobile 2rem
@@ -72,4 +72,14 @@
 figure {
     margin-left: 0;
     margin-right: 0;
+}
+
+// Catch-all to prevent unnecessary margin-bottom whitespace
+.region:last-child,
+.layout:last-child,
+.part:last-child {
+    margin-bottom: 0;
+    & > :last-child {
+        margin-bottom: 0;
+    }
 }

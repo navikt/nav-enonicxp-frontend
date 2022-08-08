@@ -1,18 +1,24 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
+import useSWRImmutable from 'swr/immutable';
 import { classNames } from '../../../utils/classnames';
+import { fetchJson } from '../../../utils/fetch/fetch-utils';
 
 import styleCommon from './Illustration.module.scss';
 import styleAnimated from './IllustrationAnimated.module.scss';
 
+const appOrigin = process.env.APP_ORIGIN;
+
+const fetchJsonData = (url: string) =>
+    fetchJson(`${appOrigin}/api/jsonCache?url=${url}`);
+
 interface IllustrationAnimatedProps {
-    illustration: AnimatedIconsProps;
+    dataUrl: string;
     className: string;
     isHovering: boolean;
 }
 
 export const IllustrationAnimated = ({
-    illustration,
+    dataUrl,
     className,
     isHovering,
 }: IllustrationAnimatedProps) => {
@@ -22,28 +28,7 @@ export const IllustrationAnimated = ({
     const lottieContainer = useRef(null);
     const lottiePlayer = useRef(null);
 
-    const lottieDataHover = illustration.data?.lottieHover?.mediaText;
-
-    const updateLottieContainer = async (lottieData: string) => {
-        const lottie = await import('lottie-web/build/player/lottie_light.min');
-
-        const container = lottieContainer.current;
-
-        if (container.innerHTML) {
-            container.innerHTML = '';
-        }
-
-        try {
-            lottiePlayer.current = lottie.loadAnimation({
-                container: container,
-                animationData: JSON.parse(lottieData),
-                autoplay: false,
-                loop: false,
-            });
-        } catch (error) {
-            return;
-        }
-    };
+    const { data: lottieData } = useSWRImmutable(dataUrl, fetchJsonData);
 
     useEffect(() => {
         const newDirection = isHovering ? 1 : -1;
@@ -55,12 +40,37 @@ export const IllustrationAnimated = ({
     }, [isHovering, direction]);
 
     useEffect(() => {
-        updateLottieContainer(lottieDataHover);
-    }, [lottieDataHover]);
+        const updateLottieContainer = async () => {
+            const lottie = await import(
+                'lottie-web/build/player/lottie_light.min'
+            );
 
-    if (!illustration) {
-        return null;
-    }
+            const container = lottieContainer.current;
+
+            if (!container) {
+                return;
+            }
+
+            if (container.innerHTML) {
+                container.innerHTML = '';
+            }
+
+            try {
+                lottiePlayer.current = lottie.loadAnimation({
+                    container: container,
+                    animationData: lottieData,
+                    autoplay: false,
+                    loop: false,
+                });
+            } catch (error) {
+                return;
+            }
+        };
+
+        if (lottieData) {
+            updateLottieContainer();
+        }
+    }, [lottieData]);
 
     return (
         <div

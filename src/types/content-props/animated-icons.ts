@@ -10,7 +10,7 @@ type AnimatedIcon = {
 
 export type AnimatedIconsData = {
     icons: AnimatedIcon[];
-    lottieHover?: { mediaText: string };
+    lottieHover?: { mediaUrl: string };
 };
 
 export interface AnimatedIconsProps {
