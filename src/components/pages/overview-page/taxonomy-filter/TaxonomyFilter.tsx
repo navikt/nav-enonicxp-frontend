@@ -44,38 +44,38 @@ export const TaxonomyFilter = ({
                 aria-label={overviewTranslations('ariaExplanation')}
             >
                 <ul className={styles.filterWrapper}>
-                    {[Taxonomy.ALL, ...taxonomiesInProductList].map(
-                        (taxonomy) => {
-                            const isActive = currentFilter === taxonomy;
+                    {[
+                        Taxonomy.ALL,
+                        ...taxonomiesInProductList,
+                        Taxonomy.FORMS,
+                    ].map((taxonomy) => {
+                        const isActive = currentFilter === taxonomy;
 
-                            return (
-                                <li key={taxonomy}>
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            handleFilterUpdate(taxonomy)
-                                        }
-                                        aria-current={isActive}
-                                        aria-label={`${overviewTranslations(
-                                            'ariaItemExplanation'
-                                        )} ${productTaxonomies(taxonomy)}}`}
-                                        className={classNames(
-                                            styles.filterButton,
-                                            isActive && styles.activeButton
-                                        )}
+                        return (
+                            <li key={taxonomy}>
+                                <button
+                                    type="button"
+                                    onClick={() => handleFilterUpdate(taxonomy)}
+                                    aria-current={isActive}
+                                    aria-label={`${overviewTranslations(
+                                        'ariaItemExplanation'
+                                    )} ${productTaxonomies(taxonomy)}}`}
+                                    className={classNames(
+                                        styles.filterButton,
+                                        isActive && styles.activeButton
+                                    )}
+                                >
+                                    <Tag
+                                        variant="info"
+                                        className={styles.tag}
+                                        size="small"
                                     >
-                                        <Tag
-                                            variant="info"
-                                            className={styles.tag}
-                                            size="small"
-                                        >
-                                            {productTaxonomies(taxonomy)}
-                                        </Tag>
-                                    </button>
-                                </li>
-                            );
-                        }
-                    )}
+                                        {productTaxonomies(taxonomy)}
+                                    </Tag>
+                                </button>
+                            </li>
+                        );
+                    })}
                 </ul>
             </nav>
         </div>

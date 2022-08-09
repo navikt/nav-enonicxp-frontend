@@ -24,6 +24,7 @@ export type FilterSelection = string[];
 
 export type SimplifiedProductData = Partial<{
     _id: string;
+    type: string;
     productDetailsPath: string;
     path: string;
     sortTitle: string;

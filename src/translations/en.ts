@@ -15,6 +15,7 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.FOR_PROVIDERS]: 'For providers',
     [Taxonomy.MEASURES]: 'Measures',
     [Taxonomy.RIGHTS]: 'Counselling',
+    [Taxonomy.FORMS]: 'Skjema',
 };
 
 const areas: { [key in Area]: string } = {
