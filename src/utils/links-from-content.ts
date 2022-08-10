@@ -4,20 +4,20 @@ import {
 } from '../types/content-props/_content-common';
 import { LinkSelectable } from '../types/component-props/_mixins';
 import { LinkProps } from '../types/link-props';
-import { InternalLinkProps } from '../types/content-props/internal-link-props';
+import { InternalLinkData } from '../types/content-props/internal-link-props';
 
 const invalidLinkProps = {
     url: '/',
     text: 'Invalid link',
 };
 
-export const getInternalLinkUrl = (content: InternalLinkProps) => {
-    const targetPath = content.data?.target?._path;
+export const getInternalLinkUrl = (content: InternalLinkData) => {
+    const targetPath = content.targetUrl;
     if (!targetPath) {
         return undefined;
     }
 
-    const targetAnchorId = content.data.anchorId;
+    const targetAnchorId = content.anchorId;
     if (!targetAnchorId) {
         return targetPath;
     }
@@ -31,7 +31,7 @@ export const getUrlFromContent = (content: ContentProps) => {
     }
 
     if (content.__typename === ContentType.InternalLink) {
-        return getInternalLinkUrl(content);
+        return getInternalLinkUrl(content.data);
     }
     if (
         content.__typename === ContentType.ExternalLink ||
@@ -56,8 +56,9 @@ export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
             return invalidLinkProps;
         }
 
+        console.log(internal);
         return {
-            url: getUrlFromContent(internal.target),
+            url: getInternalLinkUrl(internal),
             text: internal.text || internal.target.displayName,
         };
     }
