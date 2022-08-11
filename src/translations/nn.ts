@@ -30,6 +30,7 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.FOR_PROVIDERS]: 'For samhandlarar',
     [Taxonomy.MEASURES]: 'Tiltak',
     [Taxonomy.RIGHTS]: 'Rettleiing',
+    [Taxonomy.FORMS]: 'Skjema',
 };
 
 const areas: { [key in Area]: string } = {
