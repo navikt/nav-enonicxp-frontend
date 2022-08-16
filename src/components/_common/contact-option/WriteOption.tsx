@@ -22,11 +22,11 @@ export const WriteOption = (props: WriteOptionProps) => {
     const { layoutConfig } = useLayoutConfig();
     const getTranslations = translator('contactPoint', language);
 
-    console.log(props);
-
     const getTitle = () => {
         return title || getTranslations('write').title;
     };
+
+    console.log(ingress);
 
     const getIngress = () => {
         return (
@@ -51,7 +51,7 @@ export const WriteOption = (props: WriteOptionProps) => {
                     </Heading>
                 </div>
             </LenkeBase>
-            <BodyLong className={style.text}>{getIngress()}</BodyLong>
+            <div className={style.text}>{getIngress()}</div>
         </div>
     );
 };
