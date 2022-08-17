@@ -20,9 +20,10 @@ import {
 import { analyticsEvents } from '../../../utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { useLayoutEffectClientSide } from '../../../utils/react';
+import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import { useClientSide } from 'utils/useIsClientSide';
 
 import style from './ContactOption.module.scss';
-import { ParsedHtml } from '../parsed-html/ParsedHtml';
 
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
@@ -45,10 +46,13 @@ export const CallOption = (props: CallOptionProps) => {
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
     const [isClosed, setIsClosed] = useState<boolean | null>(null);
+    const isClientSide = useClientSide();
+
     const getDateTimeTranslations = translator('dateTime', language);
-    const relatives = getDateTimeTranslations('relatives');
     const getContactTranslations = translator('contactPoint', language);
+    const relatives = getDateTimeTranslations('relatives');
     const sharedTranslations = getContactTranslations('shared');
+
     const allOpeningHours = mergeOpeningHours(
         regularOpeningHours?.hours || [],
         specialOpeningHours?.hours || []
@@ -150,10 +154,10 @@ export const CallOption = (props: CallOptionProps) => {
         return <ParsedHtml htmlProps={ingress || text} />;
     };
 
-    const todaysOpeningHour =
-        typeof window !== 'undefined'
-            ? findTodaysOpeningHour(allOpeningHours)
-            : null;
+    const todaysOpeningHour = isClientSide
+        ? findTodaysOpeningHour(allOpeningHours)
+        : null;
+
     const isCurrentlyClosed = getIsCurrentlyClosed(todaysOpeningHour);
 
     useLayoutEffectClientSide(() => {

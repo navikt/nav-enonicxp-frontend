@@ -23,6 +23,7 @@ import { setPathMapAction } from '../store/slices/pathMap';
 import { setPageConfigAction } from '../store/slices/pageConfig';
 import { fetchAndSetInnloggingsstatus } from '../utils/fetch/fetch-innloggingsstatus';
 import { setAuthStateAction } from '../store/slices/authState';
+import { fetchAndSetMeldekortStatus } from '../utils/fetch/fetch-meldekort-status';
 import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
 
 type Props = {
@@ -55,7 +56,11 @@ export const PageWrapper = (props: Props) => {
                 })
             );
         } else {
-            fetchAndSetInnloggingsstatus();
+            fetchAndSetInnloggingsstatus().then((res) => {
+                if (res?.authenticated) {
+                    fetchAndSetMeldekortStatus();
+                }
+            });
         }
 
         onBreadcrumbClick((breadcrumb) =>

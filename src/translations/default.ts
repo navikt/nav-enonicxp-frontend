@@ -31,6 +31,7 @@ const productTaxonomies: { [key in Taxonomy]: string } = {
     [Taxonomy.FOR_PROVIDERS]: 'For samarbeidspartnere',
     [Taxonomy.MEASURES]: 'Tiltak',
     [Taxonomy.RIGHTS]: 'Veiledning',
+    [Taxonomy.FORMS]: 'Skjema',
 };
 
 const areas: { [key in Area]: string } = {

@@ -21,6 +21,7 @@ const xpLangToDecoratorLang: {
     pl: 'pl',
     se: 'se',
     uk: 'uk',
+    ru: 'ru',
 };
 
 const getDecoratorLangFromXpLang = (xpLang: Language) =>

@@ -17,6 +17,7 @@ jobs:
       DECORATOR_FALLBACK_URL: https://www.nav.no/dekoratoren
       XP_ORIGIN: https://www.nav.no
       INNLOGGINGSSTATUS_URL: https://www.nav.no/person/innloggingsstatus/auth
+      NAVNO_API_URL: https://www.nav.no/person/navno-api
       FAILOVER_ORIGIN: https://www-failover.nav.no
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}

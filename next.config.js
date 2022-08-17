@@ -169,6 +169,7 @@ module.exports = withPlugins(
             IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
             INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
             SENTRY_DSN: process.env.SENTRY_DSN,
+            NAVNO_API_URL: process.env.NAVNO_API_URL,
         },
         images: {
             minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
