@@ -21,9 +21,9 @@ export const IndexPageLink = ({
             href={href}
             analyticsComponent={'Områdenavigasjon'}
             analyticsLinkGroup={header}
-            onClick={(e) => {
-                onClick?.(e);
+            onClick={(e: React.MouseEvent) => {
                 e.preventDefault();
+                onClick?.(e);
                 navigate(href);
             }}
         >

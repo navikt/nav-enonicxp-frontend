@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { IndexPageContentProps } from '../../IndexPage';
 import {
     getPublicPathname,
@@ -13,6 +13,14 @@ import {
 import { usePageConfig } from '../../../../../store/hooks/usePageConfig';
 
 type CacheEntries = Record<string, IndexPageContentProps>;
+
+// 18/08/22: In relation with quick fix for checking if browser is
+// safari before calling navigate on beforePopState.
+declare global {
+    interface Window {
+        safari: any;
+    }
+}
 
 export type IndexPageNavigationCallback = (path: string) => void;
 
@@ -71,7 +79,11 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
             if (cachedPage) {
                 setCurrentPageProps(cachedPage);
-                router.push(path, undefined, { shallow: true });
+                // 18.08.22: There is a quirk seemingly with Safari bfcache where
+                // links that redirect seem to get stuck in the redirect loop when clicking back button.
+                // Setting shallow depending on Safari seems to fix the symptoms for now.
+                const shallow = !!window.safari;
+                router.push(path, undefined, { shallow });
                 return;
             }
 
@@ -82,7 +94,6 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
                 }
 
                 addLocalPageCacheEntries({
-                    ...localPageCache,
                     [path]: contentProps,
                 });
                 setCurrentPageProps(contentProps);
@@ -114,7 +125,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
                 return { ...acc, [path]: page };
             }, {});
 
-            addLocalPageCacheEntries({ ...localPageCache, ...pages });
+            addLocalPageCacheEntries(pages);
         });
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -135,8 +146,11 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
     // Handle regular next.js routing to the initial page
     useEffect(() => {
-        const handler = (url, { shallow }) => {
-            if (!shallow) {
+        const handler = (url: string, { shallow }) => {
+            // Pushing a route non-shallow will send the browser into a loop,
+            // so check that the paths are actually dissimilar.
+            const currentPath = window.location.pathname;
+            if (!shallow && currentPath !== url) {
                 navigate(url);
             }
         };
