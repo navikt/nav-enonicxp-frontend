@@ -42,11 +42,19 @@ export const OverviewPage = (props: OverviewPageProps) => {
             taxonomyFilter === Taxonomy.ALL ||
             product.taxonomy.includes(taxonomyFilter);
 
+        const isGuidePageMatching =
+            taxonomyFilter === Taxonomy.FORMS &&
+            product.type === 'no.nav.navno:guide-page';
+
         const isSearchMatching = product.sortTitle
             .toLowerCase()
             .includes(searchValue.toLowerCase());
 
-        return isAreaMatching && isSearchMatching && isTaxonomyMatching;
+        return (
+            isAreaMatching &&
+            isSearchMatching &&
+            (isTaxonomyMatching || isGuidePageMatching)
+        );
     };
 
     const hasVisibleProducts = productList.some((product) =>

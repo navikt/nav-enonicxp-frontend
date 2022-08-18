@@ -10,4 +10,5 @@ export enum Taxonomy {
     FOR_MUNICIPALITY = 'for_municipality',
     FOR_HEALTH_SERVICE = 'for_health_service',
     FOR_PROVIDERS = 'for_providers',
+    FORMS = 'forms',
 }
