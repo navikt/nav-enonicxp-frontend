@@ -12,7 +12,7 @@ const invalidLinkProps = {
 };
 
 export const getInternalLinkUrl = (content: InternalLinkData) => {
-    const targetPath = content.targetUrl;
+    const targetPath = content.target._path;
     if (!targetPath) {
         return undefined;
     }
