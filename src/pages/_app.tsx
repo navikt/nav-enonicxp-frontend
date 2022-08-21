@@ -19,9 +19,9 @@ const App = ({ Component, pageProps }: AppProps) => {
     const pageShowHandler = (event: PageTransitionEvent) => {
         console.log('page is shown from bfcache');
         if (window.safari && event.persisted) {
-            router.reload();
             event.preventDefault();
             event.stopPropagation();
+            router.reload();
         }
     };
 
