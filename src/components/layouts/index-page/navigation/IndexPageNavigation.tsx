@@ -33,13 +33,15 @@ export const IndexPageNavigation = ({ pageProps, navigate }: Props) => {
             )}
         >
             <div className={style.headerAndNavBar}>
-                <AreaPageNavigationBar
-                    isVisible={isAreaPage}
-                    areasRefs={areaRefs}
-                    pageId={_id}
-                    header={isAreaPage && pageProps.data.header}
-                    navigate={navigate}
-                />
+                {isAreaPage && (
+                    <AreaPageNavigationBar
+                        isVisible={isAreaPage}
+                        areasRefs={areaRefs}
+                        pageId={_id}
+                        header={isAreaPage && pageProps.data.header}
+                        navigate={navigate}
+                    />
+                )}
                 <FrontPageHeader content={pageProps} />
             </div>
             <IndexPageAreasSection
