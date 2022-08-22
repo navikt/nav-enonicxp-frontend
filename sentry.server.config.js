@@ -3,7 +3,7 @@ import { CaptureConsole } from '@sentry/integrations';
 
 Sentry.init({
     dsn: process.env.SENTRY_DSN,
-    tracesSampleRate: 1,
+    tracesSampleRate: 1.0,
     environment: process.env.ENV,
     integrations: [new CaptureConsole({ levels: ['error'] })],
 });
