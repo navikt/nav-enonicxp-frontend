@@ -1,8 +1,8 @@
+// Note: This will not work correctly with next.js page navigation. Should only
+// be used for api calls and external rewrites. Temporary fix until this issue has
+// been resolved: <url goes here>
+
 const rewrites = [
-    {
-        source: '/test',
-        destination: '/no/bedrift',
-    },
     {
         source: '/sitemap.xml',
         destination: '/api/sitemap',
