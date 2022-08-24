@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { classNames } from '../../../../../utils/classnames';
 import { translator } from 'translations';
 import { AreaPageProps } from '../../../../../types/content-props/index-pages-props';
@@ -32,7 +32,6 @@ enum Scrollability {
 
 export const AreaPageNavigationBar = ({
     header,
-    isVisible,
     areasRefs,
     pageId,
     navigate,
@@ -40,6 +39,7 @@ export const AreaPageNavigationBar = ({
     const { language } = usePageConfig();
     const navigationBar = useRef(null);
     const navigationWrapper = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
     const [scrollability, setScrollability] = useState<Scrollability>(
         Scrollability.RIGHT_ONLY
     );
@@ -98,6 +98,12 @@ export const AreaPageNavigationBar = ({
     const onNavigationBarScroll = () => {
         checkScrollability();
     };
+
+    useEffect(() => {
+        // Will remove the hidden css class at the point of
+        // clientside render, which will trigger downwards animation transition.
+        setIsVisible(true);
+    }, []);
 
     return (
         <nav
