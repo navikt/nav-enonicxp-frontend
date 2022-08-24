@@ -41,6 +41,8 @@ export const NavigationButton = ({
 
     const icon = direction === 1 ? <Back /> : <Next />;
 
+    const tabDisabler = hidden ? { tabIndex: -1 } : null;
+
     return (
         <button
             className={classNames(
@@ -50,7 +52,7 @@ export const NavigationButton = ({
             )}
             type="button"
             disabled={hidden}
-            aria-hidden={hidden}
+            aria-disabled={hidden}
             aria-label={direction === 1 ? 'Rull til venstre' : 'Rull til høyre'}
             onClick={() => navigateCallback(direction)}
             onMouseDown={onNavigateStart}
@@ -61,6 +63,7 @@ export const NavigationButton = ({
             onTouchMove={onNavigateEnd}
             onTouchCancel={onNavigateEnd}
             onContextMenu={onContextMenu}
+            {...tabDisabler}
         >
             {icon}
         </button>
