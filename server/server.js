@@ -13,6 +13,7 @@ const {
     getFsPath,
 } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
+const { setupRewrites } = require('./rewrites');
 
 const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
@@ -74,6 +75,8 @@ nextApp.prepare().then(() => {
             return nextRequestHandler(req, res);
         });
     } else {
+        setupRewrites(server, nextRequestHandler);
+
         server.post(
             '/invalidate',
             validateSecret,
