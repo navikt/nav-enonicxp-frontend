@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import {
     onBreadcrumbClick,
@@ -35,6 +35,7 @@ export const PageWrapper = (props: Props) => {
     const { content, children } = props;
     const { editorView } = content;
 
+    const [isFirstRender, setIsFirstRender] = useState(true);
     const router = useRouter();
 
     store.dispatch(setPathMapAction(content?.pathMap));
@@ -46,6 +47,17 @@ export const PageWrapper = (props: Props) => {
             editorView: content.editorView,
         })
     );
+
+    useEffect(() => {
+        if (isFirstRender) {
+            router.replace(router.asPath, router.asPath, {
+                shallow: undefined,
+                locale: router.locale,
+                scroll: false,
+            });
+            setIsFirstRender(false);
+        }
+    }, [isFirstRender, router]);
 
     useEffect(() => {
         // Checking auth status is not supported when viewed via Content Studio

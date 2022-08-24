@@ -219,9 +219,61 @@ module.exports = withPlugins(
                 permanent: true,
             },
         ],
-        // Using the built in next.js rewrites breaks certain routing in our app
-        // as of version 12.5. Do not use until this issue is fixed: <url to issue>
-        // rewrites: async () => [],
+        rewrites: async () => [
+            {
+                source: '/sitemap.xml',
+                destination: '/api/sitemap',
+            },
+            {
+                source: '/rss',
+                destination: '/api/rss',
+            },
+            // The historic url for RSS
+            {
+                source: '/no/rss',
+                destination: '/api/rss',
+            },
+            // Send some very common 404-resulting requests directly to 404
+            // to prevent unnecessary backend-calls
+            {
+                source: '/autodiscover/autodiscover.xml',
+                destination: '/404',
+            },
+            {
+                source: '/Forsiden/driftsmelding',
+                destination: '/404',
+            },
+            {
+                source: '/_public/beta.nav.no/:path*',
+                destination: '/404',
+            },
+            {
+                source: '/frontendlogger/:path*',
+                destination: '/404',
+            },
+            {
+                source: '/feilside',
+                destination: '/404',
+            },
+            // /_/* should point to XP services. Rewrite only if XP is on a different origin
+            ...(process.env.XP_ORIGIN !== process.env.APP_ORIGIN
+                ? [
+                      {
+                          source: '/_/:path*',
+                          destination: `${process.env.XP_ORIGIN}/_/:path*`,
+                      },
+                  ]
+                : []),
+            ...(isLocal
+                ? [
+                      {
+                          source: '/admin/site/preview/default/draft/:path*',
+                          destination:
+                              'http://localhost:8080/admin/site/preview/default/draft/:path*',
+                      },
+                  ]
+                : []),
+        ],
         headers: async () => [
             {
                 source: '/_next/(.*)',
