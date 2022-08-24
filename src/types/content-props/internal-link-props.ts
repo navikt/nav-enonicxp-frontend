@@ -2,7 +2,6 @@ import { ContentType, ContentCommonProps } from './_content-common';
 
 export type InternalLinkData = {
     description?: string;
-    targetUrl?: string
     target: {
         _path: string;
     };

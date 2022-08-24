@@ -29,7 +29,6 @@ export const getUrlFromContent = (content: ContentProps) => {
     if (!content) {
         return '';
     }
-
     if (content.__typename === ContentType.InternalLink) {
         return getInternalLinkUrl(content.data);
     }
@@ -48,7 +47,6 @@ export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
     }
 
     const { _selected } = link;
-
     if (_selected === 'internal') {
         const { internal } = link;
 
@@ -56,7 +54,6 @@ export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
             return invalidLinkProps;
         }
 
-        console.log(internal);
         return {
             url: getInternalLinkUrl(internal),
             text: internal.text || internal.target.displayName,
@@ -65,7 +62,6 @@ export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
 
     if (_selected === 'external') {
         const { external } = link;
-
         if (!external) {
             return invalidLinkProps;
         }
