@@ -48,6 +48,9 @@ export const PageWrapper = (props: Props) => {
         })
     );
 
+    // Workaround for a next.js bug which breaks back/forwards navigation under certain
+    // circumstances if the user reloads the page. Ensuring that the shallow option
+    // is not set fixes the issue.
     useEffect(() => {
         if (isFirstRender) {
             router.replace(router.asPath, router.asPath, {

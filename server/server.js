@@ -74,8 +74,6 @@ nextApp.prepare().then(() => {
             return nextRequestHandler(req, res);
         });
     } else {
-        // setupRewrites(server, nextRequestHandler);
-
         server.post(
             '/invalidate',
             validateSecret,

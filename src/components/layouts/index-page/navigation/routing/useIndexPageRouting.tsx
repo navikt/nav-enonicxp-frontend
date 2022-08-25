@@ -124,6 +124,8 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
         router.beforePopState(({ as }) => {
             navigate(as);
 
+            console.log(`Popping state as ${as}`);
+
             return false;
         });
 
