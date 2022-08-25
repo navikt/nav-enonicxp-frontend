@@ -36,6 +36,13 @@
     :global(.navds-accordion__expand-icon) {
         margin-left: auto;
     }
+
+    :global(.region__intro) {
+        margin-bottom: 1rem;
+    }
+    :global(.region__main) {
+        margin-bottom: 1rem;
+    }
 }
 
 .hidden {
