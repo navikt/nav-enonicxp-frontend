@@ -81,7 +81,6 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
                 }
 
                 addLocalPageCacheEntries({
-                    ...localPageCache,
                     [path]: contentProps,
                 });
                 setCurrentPageProps(contentProps);
@@ -113,7 +112,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
                 return { ...acc, [path]: page };
             }, {});
 
-            addLocalPageCacheEntries({ ...localPageCache, ...pages });
+            addLocalPageCacheEntries(pages);
         });
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -133,17 +132,29 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
     // Handle regular next.js routing to the initial page
     useEffect(() => {
-        const handler = (url, { shallow }) => {
-            if (!shallow) {
-                navigate(url);
+        const handler = (url) => {
+            if (url !== router.asPath) {
+                return;
             }
+
+            const cachedPage = localPageCache[url];
+            if (cachedPage) {
+                setCurrentPageProps(cachedPage);
+                return;
+            }
+
+            fetchIndexPageContentProps(url).then((contentProps) => {
+                if (contentProps) {
+                    setCurrentPageProps(contentProps);
+                }
+            });
         };
 
         router.events.on('routeChangeComplete', handler);
         return () => {
             router.events.off('routeChangeComplete', handler);
         };
-    }, [navigate, router, basePath]);
+    }, [router, basePath, localPageCache]);
 
     return {
         currentPageProps,
