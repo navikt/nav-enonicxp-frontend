@@ -99,7 +99,6 @@ type ContentCommonData = Partial<{
     metaDescription: string;
     canonicalUrl: string;
     noindex: boolean;
-    customPath: string;
     ingress: string;
     description: string;
     languages: LanguageProps[];

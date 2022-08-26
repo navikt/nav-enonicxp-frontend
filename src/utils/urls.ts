@@ -121,7 +121,7 @@ export const getMediaUrl = (
 };
 
 export const getPublicPathname = (content: ContentProps) =>
-    content.data?.customPath || stripXpPathPrefix(content._path);
+    stripXpPathPrefix(content._path);
 
 export const isUUID = (id: string) =>
     id &&

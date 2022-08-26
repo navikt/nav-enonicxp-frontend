@@ -8,7 +8,6 @@ import {
 import { ProductDetailType as OverviewType } from './product-details';
 
 export type DynamicPageData = Partial<{
-    customPath: string;
     languages: LanguageProps[];
     description: string;
 }>;
