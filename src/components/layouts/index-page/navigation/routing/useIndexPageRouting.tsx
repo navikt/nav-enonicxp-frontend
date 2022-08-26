@@ -136,12 +136,6 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
                 return;
             }
 
-            const cachedPage = localPageCache[url];
-            if (cachedPage) {
-                setCurrentPageProps(cachedPage);
-                return;
-            }
-
             fetchIndexPageContentProps(url).then((contentProps) => {
                 if (contentProps) {
                     setCurrentPageProps(contentProps);
