@@ -11,14 +11,14 @@ export const getVersionSelectorUrl = (
     utcDateTime: string,
     branch: Branch
 ) => {
-    const contentPath = content._path.split(xpContentPathPrefix)[1];
+    const contentPath = stripXpPathPrefix(content._path);
     if (!contentPath) {
         return null;
     }
 
-    const query = `${stripXpPathPrefix(content._path)}?time=${utcDateTime}&id=${
-        content._id
-    }${branch === 'draft' ? '&branch=draft' : ''}`;
+    const query = `${contentPath}?time=${utcDateTime}&id=${content._id}${
+        branch === 'draft' ? '&branch=draft' : ''
+    }`;
 
     return content.editorView
         ? `${xpDraftPathPrefix}${query}`

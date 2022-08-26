@@ -19,7 +19,6 @@ import { getInternalRelativePath } from '../utils/urls';
 import { EditorHacks } from './_editor-only/editor-hacks/EditorHacks';
 
 import { store } from '../store/store';
-import { setPathMapAction } from '../store/slices/pathMap';
 import { setPageConfigAction } from '../store/slices/pageConfig';
 import { fetchAndSetInnloggingsstatus } from '../utils/fetch/fetch-innloggingsstatus';
 import { setAuthStateAction } from '../store/slices/authState';
@@ -38,7 +37,6 @@ export const PageWrapper = (props: Props) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
     const router = useRouter();
 
-    store.dispatch(setPathMapAction(content?.pathMap));
     store.dispatch(
         setPageConfigAction({
             pageId: content._id,
