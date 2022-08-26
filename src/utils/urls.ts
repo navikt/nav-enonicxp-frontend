@@ -23,6 +23,7 @@ const internalUrlPrefixPattern = new RegExp(internalUrlPrefix, 'i');
 // we don't show 404-errors on links from our app
 const internalPaths = [
     '$',
+    '(?!_\\/)', // /_/* is used for Enonic XP services and assets
     'no(?!\\/rss)', // rss-feed must be a full page load
     'en',
     'se(?!\\/samegiella\\/bestilling-av-samtale)', // "bestilling-av-samtale" is a separate app
@@ -42,8 +43,7 @@ const appUrlPattern = new RegExp(
     `${internalUrlPrefix}($|\\/(${internalPaths.join('|')}))`,
     'i'
 );
-export const isAppUrl = (url: string) =>
-    url && (url.startsWith('/') || appUrlPattern.test(url));
+export const isAppUrl = (url: string) => url && appUrlPattern.test(url);
 
 // Matches urls which can be cached by next-image
 const validImageUrlPattern = new RegExp(
