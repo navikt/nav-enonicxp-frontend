@@ -123,7 +123,6 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     useEffect(() => {
         router.beforePopState(({ as }) => {
             navigate(as);
-
             return false;
         });
 
