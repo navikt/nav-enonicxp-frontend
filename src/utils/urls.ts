@@ -42,7 +42,8 @@ const appUrlPattern = new RegExp(
     `${internalUrlPrefix}($|\\/(${internalPaths.join('|')}))`,
     'i'
 );
-export const isAppUrl = (url: string) => url && appUrlPattern.test(url);
+export const isAppUrl = (url: string) =>
+    url && (url.startsWith('/') || appUrlPattern.test(url));
 
 // Matches urls which can be cached by next-image
 const validImageUrlPattern = new RegExp(
