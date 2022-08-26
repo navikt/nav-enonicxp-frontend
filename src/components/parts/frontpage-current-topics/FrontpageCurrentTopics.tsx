@@ -5,6 +5,7 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
 import { formatDate } from '../../../utils/datetime';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { getUrlFromContent } from '../../../utils/links-from-content';
 
 import style from './FrontpageCurrentTopics.module.scss';
 
@@ -36,7 +37,7 @@ export const FrontpageCurrentTopics = ({
                             linkText={item.displayName}
                             linkTextSize={'medium'}
                             linkColor={'black'}
-                            href={item._path}
+                            href={getUrlFromContent(item)}
                             className={style.item}
                         >
                             <span className={style.date}>

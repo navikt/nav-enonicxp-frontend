@@ -5,6 +5,7 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { FancyChevron } from '../../_common/chevron/FancyChevron';
 import { classNames } from '../../../utils/classnames';
 import { LinkPanelNavnoSimple } from '../../_common/linkpanel/LinkPanelNavnoSimple';
+import { getUrlFromContent } from '../../../utils/links-from-content';
 
 import style from './FrontpageShortcuts.module.scss';
 import chevronStyle from '../../_common/chevron/FancyChevronCommon.module.scss';
@@ -36,7 +37,7 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
                 {links.map((item) => (
                     <li key={item._id}>
                         <LinkPanelNavnoSimple
-                            href={item._path}
+                            href={getUrlFromContent(item)}
                             linkUnderline={'none'}
                             analyticsLinkGroup={title}
                             linkColor={'black'}

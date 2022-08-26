@@ -99,14 +99,11 @@ type ContentCommonData = Partial<{
     metaDescription: string;
     canonicalUrl: string;
     noindex: boolean;
-    customPath: string;
     ingress: string;
     description: string;
     languages: LanguageProps[];
     audience: Audience;
 }>;
-
-export type PathMap = { [key: string]: string };
 
 export type ContentCommonProps = {
     __typename: ContentType;
@@ -116,7 +113,6 @@ export type ContentCommonProps = {
     page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
-    pathMap?: PathMap;
     livePath?: string;
     versionTimestamps?: string[];
     isFailover?: boolean;
