@@ -15,8 +15,6 @@ import {
 } from '../../../types/content-props/_content-common';
 import { AnimateHeight } from '../../_common/animate-height/AnimateHeight';
 import { IndexPageTemplate } from './IndexPageTemplate';
-import { store } from '../../../store/store';
-import { setPathMapAction } from '../../../store/slices/pathMap';
 
 import style from './IndexPage.module.scss';
 
@@ -25,10 +23,8 @@ export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 const IndexPageContent = (basePageProps: IndexPageContentProps) => {
     const { currentPageProps, navigate } = useIndexPageRouting(basePageProps);
 
-    const { __typename, _id, page, pathMap } = currentPageProps;
+    const { __typename, _id, page } = currentPageProps;
     const { regions } = page;
-
-    store.dispatch(setPathMapAction(pathMap));
 
     return (
         <LayoutContainer

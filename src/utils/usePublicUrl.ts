@@ -1,4 +1,3 @@
-import { usePathMap } from '../store/hooks/usePathMap';
 import {
     getInternalRelativePath,
     isAppUrl,
@@ -12,12 +11,10 @@ type ReturnValue = {
 };
 
 export const usePublicUrl = (href: string): ReturnValue => {
-    const { internalPathToCustomPath } = usePathMap();
-
     if (isInternalUrl(href)) {
         const internalPath = getInternalRelativePath(href);
         return {
-            url: internalPathToCustomPath[internalPath] || internalPath,
+            url: internalPath,
             canRouteClientSide: isAppUrl(internalPath),
         };
     }

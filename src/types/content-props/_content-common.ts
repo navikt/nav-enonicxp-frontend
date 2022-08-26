@@ -106,8 +106,6 @@ type ContentCommonData = Partial<{
     audience: Audience;
 }>;
 
-export type PathMap = { [key: string]: string };
-
 export type ContentCommonProps = {
     __typename: ContentType;
     children?: ContentCommonProps[];
@@ -116,7 +114,6 @@ export type ContentCommonProps = {
     page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
-    pathMap?: PathMap;
     livePath?: string;
     versionTimestamps?: string[];
     isFailover?: boolean;
