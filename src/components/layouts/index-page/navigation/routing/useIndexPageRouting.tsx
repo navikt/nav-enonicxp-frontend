@@ -28,7 +28,6 @@ const fetchIndexPageContentProps = (
             res.__typename !== ContentType.AreaPage &&
             res.__typename !== ContentType.FrontPage
         ) {
-            console.error('Invalid content type for this page');
             return null;
         }
 
