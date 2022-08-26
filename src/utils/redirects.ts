@@ -16,7 +16,7 @@ const getTargetPath = (contentData: ContentProps) => {
                 ? contentData.data?.externalProductUrl
                 : null;
         case ContentType.InternalLink:
-            return getInternalLinkUrl(contentData);
+            return getInternalLinkUrl(contentData.data);
         case ContentType.ExternalLink:
         case ContentType.Url:
             return contentData.data?.url;

@@ -36,6 +36,8 @@ export const Region = ({
 
     const { name, components } = regionProps;
 
+    const isEditView = pageProps.editorView === 'edit';
+
     return (
         <Component
             {...divElementProps}
@@ -46,10 +48,10 @@ export const Region = ({
                 bemModifier && bem(name, bemModifier),
                 divElementProps.className
             )}
-            data-portal-region={!!pageProps.editorView ? name : undefined}
+            data-portal-region={isEditView ? name : undefined}
         >
             {components.map((component) => {
-                return wrapperFunction ? (
+                return wrapperFunction && !isEditView ? (
                     wrapperFunction(
                         <ComponentMapper
                             componentProps={component}
