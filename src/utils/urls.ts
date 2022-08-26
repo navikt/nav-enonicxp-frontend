@@ -37,13 +37,17 @@ const internalPaths = [
     'version',
 ];
 
+const relativeAppUrlPattern = '^\\/(?!_\\/)'; // /_/* is used for Enonic XP services and assets
+const absoluteAppUrlPattern = `^${internalUrlPrefix}($|\\/(${internalPaths.join(
+    '|'
+)}))`;
+
 // Matches both relative and absolute urls which points to any content internal to the app
 const appUrlPattern = new RegExp(
-    `${internalUrlPrefix}($|\\/(${internalPaths.join('|')}))`,
+    `(${absoluteAppUrlPattern})|(${relativeAppUrlPattern})`,
     'i'
 );
-export const isAppUrl = (url: string) =>
-    url && (url.startsWith('/') || appUrlPattern.test(url));
+export const isAppUrl = (url: string) => url && appUrlPattern.test(url);
 
 // Matches urls which can be cached by next-image
 const validImageUrlPattern = new RegExp(
@@ -63,9 +67,6 @@ export const isInternalUrl = (url: string) =>
 // Matches urls which should have the nofollow flag
 const nofollowPattern = new RegExp(`^(${appOrigin})?(\\/sok($|\\?|\\/))`, 'i');
 export const isNofollowUrl = (url: string) => nofollowPattern.test(url);
-
-export const isNavUrl = (url: string) =>
-    /^(https:\/\/)?([a-z0-9-]*(\.)?nav\.no)?(\/|$)/i.test(url);
 
 export const stripXpPathPrefix = (path: string) =>
     path?.startsWith(xpContentPathPrefix)
