@@ -59,6 +59,7 @@ export type ContentListMixin = {
 
 export type InternalLinkMixin = {
     target: ContentProps;
+    anchorId?: string;
     text?: string;
 };
 

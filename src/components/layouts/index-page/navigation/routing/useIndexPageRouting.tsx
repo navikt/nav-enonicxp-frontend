@@ -28,7 +28,6 @@ const fetchIndexPageContentProps = (
             res.__typename !== ContentType.AreaPage &&
             res.__typename !== ContentType.FrontPage
         ) {
-            console.error('Invalid content type for this page');
             return null;
         }
 
@@ -81,7 +80,6 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
                 }
 
                 addLocalPageCacheEntries({
-                    ...localPageCache,
                     [path]: contentProps,
                 });
                 setCurrentPageProps(contentProps);
@@ -113,7 +111,7 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
                 return { ...acc, [path]: page };
             }, {});
 
-            addLocalPageCacheEntries({ ...localPageCache, ...pages });
+            addLocalPageCacheEntries(pages);
         });
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -123,7 +121,6 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
     useEffect(() => {
         router.beforePopState(({ as }) => {
             navigate(as);
-
             return false;
         });
 
@@ -134,17 +131,23 @@ export const useIndexPageRouting = (pageProps: IndexPageContentProps) => {
 
     // Handle regular next.js routing to the initial page
     useEffect(() => {
-        const handler = (url, { shallow }) => {
-            if (!shallow) {
-                navigate(url);
+        const handler = (url) => {
+            if (url !== router.asPath) {
+                return;
             }
+
+            fetchIndexPageContentProps(url).then((contentProps) => {
+                if (contentProps) {
+                    setCurrentPageProps(contentProps);
+                }
+            });
         };
 
         router.events.on('routeChangeComplete', handler);
         return () => {
             router.events.off('routeChangeComplete', handler);
         };
-    }, [navigate, router, basePath]);
+    }, [router, basePath, localPageCache]);
 
     return {
         currentPageProps,
