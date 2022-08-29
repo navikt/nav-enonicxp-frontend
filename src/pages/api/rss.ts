@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { fetchWithTimeout } from 'utils/fetch/fetch-utils';
+import { fetchJson } from 'utils/fetch/fetch-utils';
 import Cache from 'node-cache';
 import RSS from 'rss';
 import { apiErrorHandler } from '../../utils/api-error-handler';
 
-interface feedItem {
+interface FeedItem {
     title: string;
     url: string;
     pubDate?: string;
@@ -24,19 +24,6 @@ const cache = new Cache({
     deleteOnExpire: false, // We still want to serve expired cache while a new fetch is being fetched in background.
 });
 
-// TODO: Util function to use from rss and sitemap
-const processResponse = async (response: Response) => {
-    if (response.ok) {
-        const rssFeed: feedItem[] = await response.json();
-        return rssFeed;
-    } else {
-        console.error(
-            `Error while fetching RSS data: ${response.status} - ${response.statusText}`
-        );
-        return null;
-    }
-};
-
 const saveToCache = (xml: any): void => {
     cache.set(cacheKey, xml);
 };
@@ -45,13 +32,13 @@ const fetchRSSFeedAndUpdateCache = async (url: string) => {
     const fetchOptions: RequestInit = {
         headers: { secret: rssServiceSecret },
     };
-    const response = await fetchWithTimeout(
+    const jsonFeed = await fetchJson<FeedItem[]>(
         url,
         millisecondsToFetchTimeout,
         fetchOptions
     );
-    const jsonFeed = await processResponse(response);
     if (!jsonFeed) {
+        console.error('Error while fetching RSS data');
         return null;
     }
     const rssFeed = new RSS({
@@ -62,7 +49,7 @@ const fetchRSSFeedAndUpdateCache = async (url: string) => {
         language: 'no',
         pubDate: Date.now(),
     });
-    jsonFeed.forEach((item: feedItem) => {
+    jsonFeed.forEach((item) => {
         rssFeed.item(item);
     });
     const xml = rssFeed.xml({ indent: true });
