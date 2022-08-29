@@ -3,6 +3,7 @@ import { ContentList } from '../../../_common/content-list/ContentList';
 import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
 import { translator } from 'translations';
 import { SectionPageProps } from '../../../../types/content-props/section-page-props';
+import { appOrigin } from '../../../../utils/urls';
 
 import style from './LinkLists.module.scss';
 
@@ -10,6 +11,12 @@ const LinkLists = (props: SectionPageProps) => {
     const getLabel = translator('linkLists', props.language);
     const { data } = props;
     const { newsContents, moreNewsUrl, ntkContents, scContents } = data;
+
+    const newsUrlAbsolute =
+        moreNewsUrl &&
+        (moreNewsUrl.startsWith('/')
+            ? `${appOrigin}${moreNewsUrl}`
+            : moreNewsUrl);
 
     return (
         <>
@@ -31,7 +38,7 @@ const LinkLists = (props: SectionPageProps) => {
                             />
                             {moreNewsUrl && (
                                 <LenkeStandalone
-                                    href={moreNewsUrl}
+                                    href={newsUrlAbsolute}
                                     className={style.moreNews}
                                     component={'link-list'}
                                     withChevron={false}
