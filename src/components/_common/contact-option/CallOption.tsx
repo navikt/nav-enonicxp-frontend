@@ -182,7 +182,7 @@ export const CallOption = (props: CallOptionProps) => {
                 </Alert>
             )}
             <BodyLong className={style.text}>
-                <ParsedHtml htmlProps={ingress || text} />;
+                <ParsedHtml htmlProps={ingress || text} />
             </BodyLong>
             {isClosed !== null && (
                 <Chip
