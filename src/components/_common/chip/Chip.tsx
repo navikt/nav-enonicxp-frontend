@@ -5,11 +5,18 @@ import style from './Chip.module.scss';
 type ChipProps = {
     children: ReactNode;
     selected?: boolean;
+    className?: string;
 };
 
-export const Chip = ({ children, selected }: ChipProps) => {
+export const Chip = ({ children, selected, className }: ChipProps) => {
     return (
-        <div className={classNames(style.chip, selected && style.selected)}>
+        <div
+            className={classNames(
+                style.chip,
+                selected && style.selected,
+                className
+            )}
+        >
             {children}
         </div>
     );
