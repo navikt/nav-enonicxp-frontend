@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { translator } from 'translations';
-import { Heading, BodyLong, Alert, BodyShort } from '@navikt/ds-react';
+import { Heading, BodyLong, Alert } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { dateDiff, formatDate, getCurrentISODate } from 'utils/datetime';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { Chip } from '../chip/Chip';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import {
     OpeningHour,
@@ -15,13 +16,14 @@ import {
     getDates,
     getIsClosedForToday,
     getIsCurrentlyClosed,
-} from '../contact-details/contactHelpers';
+} from './contactHelpers';
 import { analyticsEvents } from '../../../utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { useLayoutEffectClientSide } from '../../../utils/react';
+import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import { useClientSide } from 'utils/useIsClientSide';
 
 import style from './ContactOption.module.scss';
-import { useClientSide } from 'utils/useIsClientSide';
 
 const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
 const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
@@ -179,17 +181,18 @@ export const CallOption = (props: CallOptionProps) => {
                     {alertText}
                 </Alert>
             )}
-            <BodyLong className={style.text}>{ingress || text}</BodyLong>
+            <BodyLong className={style.text}>
+                <ParsedHtml htmlProps={ingress || text} />
+            </BodyLong>
             {isClosed !== null && (
-                <BodyShort
-                    spacing
+                <Chip
                     className={classNames(
-                        style.openingHour,
+                        style.openingStatus,
                         isClosed ? style.closed : style.open
                     )}
                 >
                     {buildOpenInformationText(todaysOpeningHour)}
-                </BodyShort>
+                </Chip>
             )}
             <LenkeBase
                 analyticsLinkGroup={layoutConfig.title}
