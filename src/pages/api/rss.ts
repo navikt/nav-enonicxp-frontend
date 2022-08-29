@@ -19,6 +19,10 @@ const rssUrl = `${process.env.XP_ORIGIN}/_/service/no.nav.navno/rss`;
 const rssServiceSecret = process.env.SERVICE_SECRET;
 const cacheKey = 'rss-cache';
 
+const fetchOptions: RequestInit = {
+    headers: { secret: rssServiceSecret },
+};
+
 const cache = new Cache({
     stdTTL: secondsToCacheExpiration,
     deleteOnExpire: false, // We still want to serve expired cache while a new fetch is being fetched in background.
@@ -29,9 +33,6 @@ const saveToCache = (xml: any): void => {
 };
 
 const fetchRSSFeedAndUpdateCache = async (url: string) => {
-    const fetchOptions: RequestInit = {
-        headers: { secret: rssServiceSecret },
-    };
     const jsonFeed = await fetchJson<FeedItem[]>(
         url,
         millisecondsToFetchTimeout,
