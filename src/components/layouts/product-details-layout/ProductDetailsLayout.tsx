@@ -5,6 +5,8 @@ import { LayoutContainer } from '../LayoutContainer';
 import { LegacyLayoutProps } from '../../../types/component-props/layouts/legacy-layout';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
+import style from './ProductDetailsLayout.module.scss';
+
 type Props = {
     pageProps: ContentProps;
     layoutProps?: LegacyLayoutProps;
@@ -24,7 +26,11 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
     ];
 
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+        <LayoutContainer
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+            className={style.productDetails}
+        >
             {Object.values(regions).map((regionProps, index) => {
                 return (
                     <Fragment key={index}>
