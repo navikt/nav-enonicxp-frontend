@@ -150,10 +150,6 @@ export const CallOption = (props: CallOptionProps) => {
         return `${openClosedText}`;
     };
 
-    const getIngress = () => {
-        return <ParsedHtml htmlProps={ingress || text} />;
-    };
-
     const todaysOpeningHour = isClientSide
         ? findTodaysOpeningHour(allOpeningHours)
         : null;
@@ -185,7 +181,9 @@ export const CallOption = (props: CallOptionProps) => {
                     {alertText}
                 </Alert>
             )}
-            <BodyLong className={style.text}>{getIngress()}</BodyLong>
+            <BodyLong className={style.text}>
+                <ParsedHtml htmlProps={ingress || text} />;
+            </BodyLong>
             {isClosed !== null && (
                 <Chip
                     className={classNames(

@@ -17,8 +17,6 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
     const { data } = props;
     const { contactType } = data;
 
-    console.log(data);
-
     const hasContactType = !!(contactType.telephone || contactType.write);
 
     const hasSpecialHours = !!contactType?.telephone?.specialOpeningHours;

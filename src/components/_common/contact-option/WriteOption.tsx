@@ -26,16 +26,6 @@ export const WriteOption = (props: WriteOptionProps) => {
         return title || getTranslations('write').title;
     };
 
-    console.log(ingress);
-
-    const getIngress = () => {
-        return (
-            <ParsedHtml
-                htmlProps={ingress || getTranslations('write').ingress}
-            />
-        );
-    };
-
     return (
         <div className={style.contactOption}>
             <LenkeBase
@@ -51,7 +41,11 @@ export const WriteOption = (props: WriteOptionProps) => {
                     </Heading>
                 </div>
             </LenkeBase>
-            <div className={style.text}>{getIngress()}</div>
+            <div className={style.text}>
+                <ParsedHtml
+                    htmlProps={ingress || getTranslations('write').ingress}
+                />
+            </div>
         </div>
     );
 };
