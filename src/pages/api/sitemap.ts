@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-import { fetchWithTimeout } from 'utils/fetch/fetch-utils';
+import { fetchJson } from 'utils/fetch/fetch-utils';
 import Cache from 'node-cache';
 import { apiErrorHandler } from '../../utils/api-error-handler';
 
@@ -23,6 +22,10 @@ const secondsToCacheExpiration = 60 * 10; // 10 minutes expiration.
 const sitemapUrl = `${process.env.XP_ORIGIN}/_/service/no.nav.navno/sitemap`;
 const sitemapServiceSecret = process.env.SERVICE_SECRET;
 const cacheKey = 'sitemap-cache';
+
+const fetchOptions: RequestInit = {
+    headers: { secret: sitemapServiceSecret },
+};
 
 const cache = new Cache({
     stdTTL: secondsToCacheExpiration,
@@ -63,34 +66,18 @@ const buildXMLSitemap = (jsonSitemap: SitemapEntity[]): string => {
     return xmlString;
 };
 
-const processResponse = async (response: Response) => {
-    if (response.ok) {
-        const sitemap: SitemapEntity[] = await response.json();
-        return sitemap;
-    } else {
-        console.error(
-            `Error while fetching sitemap data: ${response.status} - ${response.statusText}`
-        );
-        return null;
-    }
-};
-
 const saveToCache = (xml: any): void => {
     cache.set(cacheKey, xml);
 };
 
 const fetchSitemapAndUpdateCache = async (url: string) => {
-    const fetchOptions: RequestInit = {
-        headers: { secret: sitemapServiceSecret },
-    };
-    const response = await fetchWithTimeout(
+    const jsonSitemap = await fetchJson<SitemapEntity[]>(
         url,
         millisecondsToFetchTimeout,
         fetchOptions
     );
-
-    const jsonSitemap = await processResponse(response);
     if (!jsonSitemap) {
+        console.error('Error while fetching sitemap data');
         return null;
     }
 
