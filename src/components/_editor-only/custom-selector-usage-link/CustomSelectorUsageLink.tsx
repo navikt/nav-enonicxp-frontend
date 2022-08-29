@@ -1,5 +1,5 @@
 import React from 'react';
-import { editorPathPrefix } from '../../../utils/urls';
+import { adminOrigin, editorPathPrefix } from '../../../utils/urls';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import { EditorLinkWrapper } from '../editor-link-wrapper/EditorLinkWrapper';
 
@@ -16,7 +16,7 @@ export const CustomSelectorUsageLink = ({
     name,
     path,
 }: CustomSelectorUsageData) => {
-    const editorUrl = `${editorPathPrefix}/${id}`;
+    const editorUrl = `${adminOrigin}${editorPathPrefix}/${id}`;
 
     return (
         <div className={style.usageLink} key={id}>
