@@ -25,25 +25,25 @@ jobs:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
   deploy:
-    - name: Deploy to nais
-      uses: ./.github/workflows/deploy-to-nais.yml
-      needs: build
-      with:
-        image: ${{ needs.build.outputs.image }}
-        cluster: prod-gcp
-        vars_file: vars-prod.yml
-        config_file: config.yml
-        hpa_file: hpa-prod.yml
-      secrets:
-        NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-    - name: Report new release to Sentry
-      uses: getsentry/action-release@v1
-      env:
-        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-        SENTRY_URL: https://sentry.gc.nav.no
-        SENTRY_ORG: nav
-        SENTRY_PROJECT: pb-nav-enonicxp-frontend
-      with:
-        environment: production
-        version: ${{ github.ref_name }}
-        set_commits: skip
+    uses: ./.github/workflows/deploy-to-nais.yml
+    needs: build
+    with:
+      image: ${{ needs.build.outputs.image }}
+      cluster: prod-gcp
+      vars_file: vars-prod.yml
+      config_file: config.yml
+      hpa_file: hpa-prod.yml
+    secrets:
+      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+  sentry:
+    name: Report new release to Sentry
+    uses: getsentry/action-release@v1
+    env:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SENTRY_URL: https://sentry.gc.nav.no
+      SENTRY_ORG: nav
+      SENTRY_PROJECT: pb-nav-enonicxp-frontend
+    with:
+      environment: production
+      version: ${{ github.ref_name }}
+      set_commits: skip
