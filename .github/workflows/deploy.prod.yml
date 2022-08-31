@@ -36,7 +36,7 @@ jobs:
         hpa_file: hpa-prod.yml
       secrets:
         NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-    - name: Create new release for Sentry
+    - name: Report new release to Sentry
       uses: getsentry/action-release@v1
       env:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
