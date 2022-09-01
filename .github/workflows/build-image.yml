@@ -1,3 +1,4 @@
+#prettier-ignore
 name: Build docker image
 on:
   workflow_call:
@@ -33,6 +34,9 @@ on:
         required: true
         type: string
       FAILOVER_ORIGIN:
+        required: true
+        type: string
+      RELEASE_TAG:
         required: true
         type: string
       IS_FAILOVER_INSTANCE:

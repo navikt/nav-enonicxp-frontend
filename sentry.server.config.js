@@ -5,5 +5,6 @@ Sentry.init({
     dsn: process.env.SENTRY_DSN,
     tracesSampleRate: 1.0,
     environment: process.env.ENV,
+    release: process.env.RELEASE_TAG,
     integrations: [new CaptureConsole({ levels: ['error'] })],
 });

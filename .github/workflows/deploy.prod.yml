@@ -1,3 +1,4 @@
+#prettier-ignore
 name: Deploy to prod
 on:
   release:
@@ -17,6 +18,7 @@ jobs:
       DECORATOR_FALLBACK_URL: https://www.nav.no/dekoratoren
       XP_ORIGIN: https://www.nav.no
       INNLOGGINGSSTATUS_URL: https://www.nav.no/person/innloggingsstatus/auth
+      RELEASE_TAG: ${{  github.ref_name }}
       NAVNO_API_URL: https://www.nav.no/person/navno-api
       FAILOVER_ORIGIN: https://www-failover.nav.no
     secrets:
@@ -33,3 +35,8 @@ jobs:
       hpa_file: hpa-prod.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+  sentry:
+    uses: ./.github/workflows/report-version-to-sentry.yml
+    needs: deploy
+    secrets:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}

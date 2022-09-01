@@ -1,3 +1,4 @@
+# prettier-ignore
 name: Deploy to dev1
 on:
   workflow_dispatch
@@ -15,6 +16,7 @@ jobs:
       DECORATOR_FALLBACK_URL: https://dekoratoren.ekstern.dev.nav.no
       XP_ORIGIN: https://www.dev.nav.no
       INNLOGGINGSSTATUS_URL: https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth
+      RELEASE_TAG: dev2-${{ github.sha }}
       NAVNO_API_URL: https://www.dev.nav.no/person/navno-api
       FAILOVER_ORIGIN: https://www-failover.dev.nav.no
     secrets:
