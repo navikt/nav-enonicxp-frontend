@@ -26,13 +26,14 @@ export function logAmplitudeEvent(
     eventName: analyticsEvents,
     data?: any
 ): Promise<any> {
+    const platform = window.location.toString();  // Be sure to get url before navigation
     return new Promise(function (resolve: any) {
         const eventData = {
             ...data,
             app: 'nav-enonicxp-frontend',
             origin: 'navno-frontend',
             originVersion: 'unknown',
-            platform: window.location.toString(),
+            platform,
         };
         amplitude.getInstance().logEvent(eventName, eventData, resolve);
     });
