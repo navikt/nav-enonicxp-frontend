@@ -19,6 +19,6 @@ jobs:
           SENTRY_ORG: nav
           SENTRY_PROJECT: pb-nav-enonicxp-frontend
         with:
-          environment: production
+          environment: prod
           version: ${{ github.ref_name }}
           set_commits: skip
