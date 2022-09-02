@@ -1,4 +1,3 @@
-# prettier-ignore
 name: Report version to Sentry
 on:
   workflow_call:
