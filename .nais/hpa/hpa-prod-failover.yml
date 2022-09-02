@@ -1,20 +1,20 @@
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: nav-enonicxp-frontend-dev2
+  name: nav-enonicxp-frontend-failover
   namespace: personbruker
   ownerReferences:
     - apiVersion: nais.io/v1alpha1
       kind: Application
-      name: nav-enonicxp-frontend-dev2
-      uid: d5a2e4bc-116c-4bca-adde-c16639e476b6
+      name: nav-enonicxp-frontend-failover
+      uid: ac65a21c-d6c1-4370-822e-7bb14d887b51
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: nav-enonicxp-frontend-dev2
+    name: nav-enonicxp-frontend-failover
   minReplicas: 2
-  maxReplicas: 4
+  maxReplicas: 40
   metrics:
     - type: Resource
       resource:

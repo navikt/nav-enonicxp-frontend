@@ -1,4 +1,3 @@
-# prettier-ignore
 name: Deploy to dev2
 on:
   workflow_dispatch
