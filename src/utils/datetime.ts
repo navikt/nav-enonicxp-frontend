@@ -25,7 +25,7 @@ export const formatDate = (
 ) => {
     const currentLocale = language === 'en' ? 'en-gb' : 'nb';
 
-    const format = short ? 'D. MMMM' : 'L';
+    const format = short ? 'D. MMMM YYYY' : 'L';
 
     return datetime
         ? dayjs(datetime).locale(currentLocale).format(format)
