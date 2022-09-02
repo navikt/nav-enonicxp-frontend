@@ -36,7 +36,7 @@ on:
         required: true
         type: string
       RELEASE_TAG:
-        required: true
+        required: false
         type: string
       IS_FAILOVER_INSTANCE:
         required: false
