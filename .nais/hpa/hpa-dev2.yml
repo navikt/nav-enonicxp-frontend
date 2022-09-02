@@ -7,7 +7,7 @@ metadata:
     - apiVersion: nais.io/v1alpha1
       kind: Application
       name: nav-enonicxp-frontend-dev2
-      uid: 'test'
+      uid: d5a2e4bc-116c-4bca-adde-c16639e476b6
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -28,4 +28,4 @@ spec:
           name: linkerd_request_total
         target:
           type: AverageValue
-          averageValue: 500
+          averageValue: '500'
