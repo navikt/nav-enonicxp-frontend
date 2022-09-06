@@ -11,6 +11,13 @@ import { AreaPageHeader } from './area-page/AreaPageHeader';
 
 import style from './IndexPage.module.scss';
 
+const contentTypeSpecificComponent: {
+    [key in ContentType]?: React.FunctionComponent<{ content: ContentProps }>;
+} = {
+    [ContentType.FrontPage]: FrontPageAreaNavigation,
+    [ContentType.AreaPage]: AreaPageHeader,
+};
+
 type Props = {
     pageProps: ContentProps;
     layoutProps: IndexPageProps;
@@ -23,6 +30,8 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
 
     const { __typename } = pageProps;
     const { regions } = layoutProps;
+
+    const MiddleComponent = contentTypeSpecificComponent[__typename];
 
     return (
         <LayoutContainer
@@ -37,13 +46,7 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
                         regionProps={regions.contentTop}
                     />
                 )}
-                {__typename === ContentType.FrontPage ? (
-                    <FrontPageAreaNavigation content={pageProps} />
-                ) : __typename === ContentType.AreaPage ? (
-                    <AreaPageHeader content={pageProps} />
-                ) : (
-                    () => null
-                )}
+                {MiddleComponent && <MiddleComponent content={pageProps} />}
                 <Region
                     className={style.contentBottom}
                     pageProps={pageProps}
