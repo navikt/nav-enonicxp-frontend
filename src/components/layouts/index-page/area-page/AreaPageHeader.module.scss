@@ -3,8 +3,7 @@
 
 .panel {
     display: flex;
-    padding-top: 0.5rem;
-    padding-bottom: 2.75rem;
+    padding-bottom: 0.5rem;
     background-color: #fff;
 
     @include common.full-width-mixin();
