@@ -2,20 +2,14 @@ import React from 'react';
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
 import {
-    AreaPageProps,
-    FrontPageProps,
-} from '../../../types/content-props/index-pages-props';
-import {
     ContentProps,
     ContentType,
 } from '../../../types/content-props/_content-common';
 import { FrontPageAreaNavigation } from './front-page/FrontPageAreaNavigation';
 import { IndexPageProps } from '../../../types/component-props/pages/index-page';
-import { AreaPageHeader } from './navigation/areas-section/area-page-header/AreaPageHeader';
+import { AreaPageHeader } from './area-page/AreaPageHeader';
 
 import style from './IndexPage.module.scss';
-
-export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
 type Props = {
     pageProps: ContentProps;

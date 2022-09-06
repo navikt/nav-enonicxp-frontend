@@ -5,10 +5,6 @@
     padding-bottom: 2.75rem;
     background-color: #fff;
 
-    &.areaPage {
-        padding-bottom: 0.5rem;
-    }
-
     @include common.full-width-mixin();
 
     @media #{common.$mq-screen-mobile-small} {
