@@ -4,7 +4,7 @@
 .panel {
     display: flex;
     padding-bottom: 0.5rem;
-    background-color: #fff;
+    background-color: common.$navds-global-color-white;
 
     @include common.full-width-mixin();
 }

@@ -24,4 +24,8 @@ $maxWidth: 1272px;
 .contentBottom {
     display: flex;
     flex-direction: column;
+    row-gap: 0.5rem;
+    background-color: common.$navds-global-color-white;
+
+    @include common.full-width-mixin();
 }
