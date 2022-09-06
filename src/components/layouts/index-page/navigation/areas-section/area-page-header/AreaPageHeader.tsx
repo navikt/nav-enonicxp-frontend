@@ -9,12 +9,12 @@ import { AreaPageHeaderBanner } from './banner/AreaPageHeaderBanner';
 import style from './AreaPageHeader.module.scss';
 
 type Props = {
-    areaContent: AreaPageProps;
+    content: AreaPageProps;
     className?: string;
 };
 
-export const AreaPageHeader = ({ areaContent, className }: Props) => {
-    const { header, banner, area } = areaContent.data;
+export const AreaPageHeader = ({ content, className }: Props) => {
+    const { header, banner, area } = content.data;
 
     return (
         <div className={classNames(style.panel, className)}>

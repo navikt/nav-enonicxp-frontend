@@ -1,83 +1,61 @@
 import React from 'react';
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
-import { IndexPageNavigation } from './navigation/IndexPageNavigation';
-import Head from 'next/head';
 import {
     AreaPageProps,
     FrontPageProps,
 } from '../../../types/content-props/index-pages-props';
-import { getPageTitle } from '../../_common/metatags/HeadWithMetatags';
-import { useIndexPageRouting } from './navigation/routing/useIndexPageRouting';
 import {
     ContentProps,
     ContentType,
 } from '../../../types/content-props/_content-common';
-import { AnimateHeight } from '../../_common/animate-height/AnimateHeight';
-import { IndexPageTemplate } from './IndexPageTemplate';
+import { FrontPageAreaNavigation } from './front-page/FrontPageAreaNavigation';
+import { IndexPageProps } from '../../../types/component-props/pages/index-page';
+import { AreaPageHeader } from './navigation/areas-section/area-page-header/AreaPageHeader';
 
 import style from './IndexPage.module.scss';
 
 export type IndexPageContentProps = FrontPageProps | AreaPageProps;
 
-const IndexPageContent = (basePageProps: IndexPageContentProps) => {
-    const { currentPageProps, navigate } = useIndexPageRouting(basePageProps);
+type Props = {
+    pageProps: ContentProps;
+    layoutProps: IndexPageProps;
+};
 
-    const { __typename, _id, page } = currentPageProps;
-    const { regions } = page;
+export const IndexPage = ({ pageProps, layoutProps }: Props) => {
+    // if (pageProps.__typename === ContentType.TemplatePage) {
+    //     return <IndexPageTemplate pageProps={pageProps} />;
+    // }
+
+    const { __typename } = pageProps;
+    const { regions } = layoutProps;
 
     return (
         <LayoutContainer
-            pageProps={currentPageProps}
-            layoutProps={page}
+            pageProps={pageProps}
+            layoutProps={layoutProps}
             className={style.indexPage}
         >
-            <Head>
-                <title>{getPageTitle(currentPageProps)}</title>
-            </Head>
-            <AnimateHeight trigger={_id} fadeTime={0} fullwidth={true}>
-                {__typename === ContentType.FrontPage && (
+            <>
+                {__typename !== ContentType.AreaPage && (
                     <Region
-                        pageProps={currentPageProps}
+                        pageProps={pageProps}
                         regionProps={regions.contentTop}
                     />
                 )}
-            </AnimateHeight>
-            <IndexPageNavigation
-                pageProps={currentPageProps}
-                navigate={navigate}
-            />
-            <AnimateHeight trigger={_id} fullwidth={true}>
+                {__typename === ContentType.FrontPage ? (
+                    <FrontPageAreaNavigation content={pageProps} />
+                ) : __typename === ContentType.AreaPage ? (
+                    <AreaPageHeader content={pageProps} />
+                ) : (
+                    () => null
+                )}
                 <Region
                     className={style.contentBottom}
-                    pageProps={currentPageProps}
+                    pageProps={pageProps}
                     regionProps={regions.contentBottom}
                 />
-            </AnimateHeight>
+            </>
         </LayoutContainer>
     );
-};
-
-type Props = {
-    pageProps: ContentProps;
-};
-
-// This page component should always be used in the templates for the FrontPage and AreaPage types
-// (and nothing else!)
-export const IndexPage = ({ pageProps }: Props) => {
-    if (pageProps.__typename === ContentType.TemplatePage) {
-        return <IndexPageTemplate pageProps={pageProps} />;
-    }
-
-    if (
-        pageProps.__typename !== ContentType.AreaPage &&
-        pageProps.__typename !== ContentType.FrontPage
-    ) {
-        console.error(
-            `Invalid content type specified for IndexPage - id ${pageProps._id}`
-        );
-        return null;
-    }
-
-    return <IndexPageContent {...pageProps} />;
 };

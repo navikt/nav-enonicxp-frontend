@@ -1,7 +1,5 @@
 import React from 'react';
 import { ContentType } from '../../../../types/content-props/_content-common';
-import { AreaPageNavigationBar } from './area-page-navigation-bar/AreaPageNavigationBar';
-import { FrontPageHeader } from './front-page-header/FrontPageHeader';
 import { IndexPageNavigationCallback } from './routing/useIndexPageRouting';
 import { IndexPageAreasSection } from './areas-section/IndexPageAreasSection';
 import { IndexPageContentProps } from '../IndexPage';
@@ -32,18 +30,6 @@ export const IndexPageNavigation = ({ pageProps, navigate }: Props) => {
                 isAreaPage && style.areaPage
             )}
         >
-            <div className={style.headerAndNavBar}>
-                {isAreaPage && (
-                    <AreaPageNavigationBar
-                        isVisible={isAreaPage}
-                        areasRefs={areaRefs}
-                        pageId={_id}
-                        header={isAreaPage && pageProps.data.header}
-                        navigate={navigate}
-                    />
-                )}
-                <FrontPageHeader content={pageProps} />
-            </div>
             <IndexPageAreasSection
                 pageProps={pageProps}
                 areaRefs={areaRefs}

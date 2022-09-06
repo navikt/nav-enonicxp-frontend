@@ -22,9 +22,7 @@ export const IndexPageAreasSection = ({
     areaRefs,
     navigate,
 }: Props) => {
-    return pageProps.__typename === ContentType.AreaPage ? (
-        <AreaPageHeader areaContent={pageProps} />
-    ) : (
+    return (
         <nav>
             <ul className={style.cards}>
                 {areaRefs.map((areaContent) => (
