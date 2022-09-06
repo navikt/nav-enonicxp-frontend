@@ -24,10 +24,6 @@ type Props = {
 };
 
 export const IndexPage = ({ pageProps, layoutProps }: Props) => {
-    // if (pageProps.__typename === ContentType.TemplatePage) {
-    //     return <IndexPageTemplate pageProps={pageProps} />;
-    // }
-
     const { __typename } = pageProps;
     const { regions } = layoutProps;
 
