@@ -28,13 +28,30 @@ const fetchFailoverHtml = async (path: string) => {
         });
 };
 
+const handleClientsideError = (err: any) => {
+    if (!err?.content) {
+        return makeErrorProps();
+    }
+
+    const errorCode = err.content.data?.errorCode;
+    if (errorCode === 404) {
+        console.log('Reloading');
+        window.location.reload();
+        return;
+    }
+
+    return err.content;
+};
+
 const Error = (props: ContentProps) => <PageBase content={props} />;
 
 Error.getInitialProps = async (context): Promise<ContentProps> => {
     const { res, err, asPath } = context;
 
+    // If the error occured client-side, res will not be defined
     if (!res) {
-        return err?.content || makeErrorProps();
+        console.log(`Path: ${asPath}`);
+        return handleClientsideError(err);
     }
 
     if (process.env.IS_FAILOVER_INSTANCE !== 'true') {
