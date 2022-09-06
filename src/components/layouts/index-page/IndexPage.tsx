@@ -36,6 +36,7 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
             className={style.indexPage}
         >
             <>
+                {/* We don't use this region on the AreaPage atm */}
                 {__typename !== ContentType.AreaPage && (
                     <Region
                         pageProps={pageProps}
