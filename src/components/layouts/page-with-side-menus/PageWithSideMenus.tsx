@@ -18,7 +18,7 @@ const mqlWidthBreakpoint = windowMatchMedia(
 
 type Props = {
     pageProps: ContentProps;
-    layoutProps?: PageWithSideMenusProps;
+    layoutProps: PageWithSideMenusProps;
 };
 
 export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {

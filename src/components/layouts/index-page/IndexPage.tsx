@@ -1,83 +1,55 @@
 import React from 'react';
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
-import { IndexPageNavigation } from './navigation/IndexPageNavigation';
-import Head from 'next/head';
-import {
-    AreaPageProps,
-    FrontPageProps,
-} from '../../../types/content-props/index-pages-props';
-import { getPageTitle } from '../../_common/metatags/HeadWithMetatags';
-import { useIndexPageRouting } from './navigation/routing/useIndexPageRouting';
 import {
     ContentProps,
     ContentType,
 } from '../../../types/content-props/_content-common';
-import { AnimateHeight } from '../../_common/animate-height/AnimateHeight';
-import { IndexPageTemplate } from './IndexPageTemplate';
+import { FrontPageAreaNavigation } from './front-page/FrontPageAreaNavigation';
+import { IndexPageProps } from '../../../types/component-props/pages/index-page';
+import { AreaPageHeader } from './area-page/AreaPageHeader';
 
 import style from './IndexPage.module.scss';
 
-export type IndexPageContentProps = FrontPageProps | AreaPageProps;
-
-const IndexPageContent = (basePageProps: IndexPageContentProps) => {
-    const { currentPageProps, navigate } = useIndexPageRouting(basePageProps);
-
-    const { __typename, _id, page } = currentPageProps;
-    const { regions } = page;
-
-    return (
-        <LayoutContainer
-            pageProps={currentPageProps}
-            layoutProps={page}
-            className={style.indexPage}
-        >
-            <Head>
-                <title>{getPageTitle(currentPageProps)}</title>
-            </Head>
-            <AnimateHeight trigger={_id} fadeTime={0} fullwidth={true}>
-                {__typename === ContentType.FrontPage && (
-                    <Region
-                        pageProps={currentPageProps}
-                        regionProps={regions.contentTop}
-                    />
-                )}
-            </AnimateHeight>
-            <IndexPageNavigation
-                pageProps={currentPageProps}
-                navigate={navigate}
-            />
-            <AnimateHeight trigger={_id} fullwidth={true}>
-                <Region
-                    className={style.contentBottom}
-                    pageProps={currentPageProps}
-                    regionProps={regions.contentBottom}
-                />
-            </AnimateHeight>
-        </LayoutContainer>
-    );
+const contentTypeSpecificComponent: {
+    [key in ContentType]?: React.FunctionComponent<{ content: ContentProps }>;
+} = {
+    [ContentType.FrontPage]: FrontPageAreaNavigation,
+    [ContentType.AreaPage]: AreaPageHeader,
 };
 
 type Props = {
     pageProps: ContentProps;
+    layoutProps: IndexPageProps;
 };
 
-// This page component should always be used in the templates for the FrontPage and AreaPage types
-// (and nothing else!)
-export const IndexPage = ({ pageProps }: Props) => {
-    if (pageProps.__typename === ContentType.TemplatePage) {
-        return <IndexPageTemplate pageProps={pageProps} />;
-    }
+export const IndexPage = ({ pageProps, layoutProps }: Props) => {
+    const { __typename } = pageProps;
+    const { regions } = layoutProps;
 
-    if (
-        pageProps.__typename !== ContentType.AreaPage &&
-        pageProps.__typename !== ContentType.FrontPage
-    ) {
-        console.error(
-            `Invalid content type specified for IndexPage - id ${pageProps._id}`
-        );
-        return null;
-    }
+    const MiddleComponent = contentTypeSpecificComponent[__typename];
 
-    return <IndexPageContent {...pageProps} />;
+    return (
+        <LayoutContainer
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+            className={style.indexPage}
+        >
+            <>
+                {/* We don't use this region on the AreaPage atm */}
+                {__typename !== ContentType.AreaPage && (
+                    <Region
+                        pageProps={pageProps}
+                        regionProps={regions.contentTop}
+                    />
+                )}
+                {MiddleComponent && <MiddleComponent content={pageProps} />}
+                <Region
+                    className={style.contentBottom}
+                    pageProps={pageProps}
+                    regionProps={regions.contentBottom}
+                />
+            </>
+        </LayoutContainer>
+    );
 };

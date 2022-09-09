@@ -1,0 +1,22 @@
+@use 'src/common' as common;
+
+.wrapper {
+    padding-top: 0.5rem;
+    padding-bottom: 2.75rem;
+    background-color: common.$navds-global-color-white;
+
+    @include common.full-width-mixin();
+
+    @media #{common.$mq-screen-mobile-small} {
+        padding-bottom: 1.5rem;
+    }
+}
+
+.header {
+    margin-bottom: 1.5rem;
+}
+
+.cards {
+    @include common.grid-layout-mixin();
+    @include common.unstyled-list();
+}
