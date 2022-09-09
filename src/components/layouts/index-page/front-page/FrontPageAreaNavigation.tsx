@@ -1,7 +1,7 @@
 import React from 'react';
-import { FrontPageProps } from '../../../../types/content-props/index-pages-props';
-import { Header } from '../../../_common/headers/Header';
-import { AreaCard } from '../../../_common/area-card/AreaCard';
+import { FrontPageProps } from 'types/content-props/index-pages-props';
+import { Header } from 'components/_common/headers/Header';
+import { AreaCard } from 'components/_common/area-card/AreaCard';
 
 import style from './FrontPageAreaNavigation.module.scss';
 

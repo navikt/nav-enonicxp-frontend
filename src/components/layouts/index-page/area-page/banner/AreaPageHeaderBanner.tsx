@@ -1,10 +1,10 @@
 import React from 'react';
-import { AreaPageProps } from '../../../../../types/content-props/index-pages-props';
-import { getSelectableLinkProps } from '../../../../../utils/links-from-content';
-import { LenkeBase } from '../../../../_common/lenke/LenkeBase';
-import { classNames } from '../../../../../utils/classnames';
-import { ParsedHtml } from '../../../../_common/parsed-html/ParsedHtml';
-import { FancyChevron } from '../../../../_common/chevron/FancyChevron';
+import { AreaPageProps } from 'types/content-props/index-pages-props';
+import { getSelectableLinkProps } from 'utils/links-from-content';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { classNames } from 'utils/classnames';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { FancyChevron } from 'components/_common/chevron/FancyChevron';
 
 import style from './AreaPageHeaderBanner.module.scss';
 import chevronStyle from '../../../../_common/chevron/FancyChevronCommon.module.scss';
