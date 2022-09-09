@@ -3,7 +3,10 @@
 
 .panel {
     display: flex;
-    width: 100%;
+    padding-bottom: 0.5rem;
+    background-color: common.$navds-global-color-white;
+
+    @include common.full-width-mixin();
 }
 
 .headerContainer {

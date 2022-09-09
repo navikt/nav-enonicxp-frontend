@@ -1,6 +1,6 @@
 @use 'src/common' as common;
-@use 'src/components/layouts/index-page/navigation/areas-section/area-page-header/AreaPageHeader.module'
-    as parent;
+@use 'src/components/layouts/index-page/area-page/AreaPageHeader.module' as
+    parent;
 
 .banner {
     display: flex;
