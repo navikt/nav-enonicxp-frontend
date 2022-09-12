@@ -21,11 +21,20 @@ export const days = [
 export const formatDate = (
     datetime: string,
     language: string = 'nb',
-    short = false
+    short = false,
+    year = false
 ) => {
     const currentLocale = language === 'en' ? 'en-gb' : 'nb';
 
-    const format = short ? 'D. MMMM YYYY' : 'L';
+    let format: string;
+
+    if (short && year) {
+        format = 'D. MMMM YYYY';
+    } else if (short) {
+        format = 'D. MMMM ';
+    } else {
+        format = 'L';
+    }
 
     return datetime
         ? dayjs(datetime).locale(currentLocale).format(format)
