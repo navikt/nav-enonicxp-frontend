@@ -5,24 +5,21 @@ import {
     onLanguageSelect,
     setParams,
 } from '@navikt/nav-dekoratoren-moduler';
-import { ContentProps } from '../types/content-props/_content-common';
-import {
-    hookAndInterceptInternalLink,
-    prefetchOnMouseover,
-} from '../utils/links';
+import { ContentProps } from 'types/content-props/_content-common';
+import { hookAndInterceptInternalLink, prefetchOnMouseover } from 'utils/links';
 import { TopContainer } from './_top-container/TopContainer';
-import { initAmplitude } from '../utils/amplitude';
+import { initAmplitude } from 'utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
-import { getDecoratorParams } from '../utils/decorator/decorator-utils';
+import { getDecoratorParams } from 'utils/decorator/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
-import { getInternalRelativePath } from '../utils/urls';
+import { getInternalRelativePath } from 'utils/urls';
 import { EditorHacks } from './_editor-only/editor-hacks/EditorHacks';
 
-import { store } from '../store/store';
-import { setPageConfigAction } from '../store/slices/pageConfig';
-import { fetchAndSetInnloggingsstatus } from '../utils/fetch/fetch-innloggingsstatus';
-import { setAuthStateAction } from '../store/slices/authState';
-import { fetchAndSetMeldekortStatus } from '../utils/fetch/fetch-meldekort-status';
+import { store } from 'store/store';
+import { setPageConfigAction } from 'store/slices/pageConfig';
+import { fetchAndSetInnloggingsstatus } from 'utils/fetch/fetch-innloggingsstatus';
+import { setAuthStateAction } from 'store/slices/authState';
+import { fetchAndSetMeldekortStatus } from 'utils/fetch/fetch-meldekort-status';
 import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
 
 type Props = {
@@ -128,7 +125,12 @@ export const PageWrapper = (props: Props) => {
         focusedElement?.blur && focusedElement.blur();
 
         // Updates decorator-parameters client-side when navigating to new content
-        setParams(getDecoratorParams(content));
+        const decoratorParams = getDecoratorParams(content);
+        setParams(decoratorParams);
+
+        decoratorParams.availableLanguages.forEach((language) =>
+            router.prefetch(language.url)
+        );
 
         document.documentElement.lang = content.language || 'no';
     }, [content, router]);
