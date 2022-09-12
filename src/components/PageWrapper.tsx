@@ -128,9 +128,11 @@ export const PageWrapper = (props: Props) => {
         const decoratorParams = getDecoratorParams(content);
         setParams(decoratorParams);
 
-        decoratorParams.availableLanguages.forEach((language) =>
-            router.prefetch(language.url)
-        );
+        if (decoratorParams.availableLanguages) {
+            decoratorParams.availableLanguages.forEach((language) =>
+                router.prefetch(language.url)
+            );
+        }
 
         document.documentElement.lang = content.language || 'no';
     }, [content, router]);
