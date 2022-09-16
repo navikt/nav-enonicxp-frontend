@@ -16,6 +16,7 @@ import {
     DynamicPageProps,
     GenericPageProps,
     GuidePageProps,
+    OfficePageProps,
     OverviewPageProps,
     ProductDetailsProps,
     ProductPageProps,
@@ -63,6 +64,7 @@ export enum ContentType {
     ProductPage = 'no_nav_navno_ContentPageWithSidemenus',
     ProductDetails = 'no_nav_navno_ProductDetails',
     GuidePage = 'no_nav_navno_GuidePage',
+    OfficePage = 'no_nav_navno_OfficePage',
     ThemedArticlePage = 'no_nav_navno_ThemedArticlePage',
     SituationPage = 'no_nav_navno_SituationPage',
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',
@@ -148,6 +150,7 @@ type SpecificContentProps =
     | PublishingCalendarProps
     | ProductPageProps
     | SituationPageProps
+    | OfficePageProps
     | AnimatedIconsProps
     | GlobalValuesProps
     | GlobalCaseTimeSetProps
