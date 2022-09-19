@@ -31,7 +31,7 @@ export const formatDate = (
     if (short && year) {
         format = 'D. MMMM YYYY';
     } else if (short) {
-        format = 'D. MMMM ';
+        format = 'D. MMMM';
     } else {
         format = 'L';
     }
