@@ -107,6 +107,7 @@ type ContentCommonData = Partial<{
 
 export type ContentCommonProps = {
     __typename: ContentType;
+    originalType?: string;
     children?: ContentCommonProps[];
     parent?: ContentCommonProps;
     data?: ContentCommonData;

@@ -1,21 +1,15 @@
 import React from 'react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { translator } from 'translations';
-import { Translations } from '../../../translations/default';
 import { AlertBox } from '../../_common/alert-box/AlertBox';
-import { classNames } from '../../../utils/classnames';
+import { classNames } from 'utils/classnames';
 
 import style from './PageWarning.module.scss';
 
 type Props = {
-    labelKey: keyof Translations['pageWarnings'];
     whiteBg?: boolean;
+    children: React.ReactNode;
 };
 
-export const PageWarning = ({ labelKey, whiteBg }: Props) => {
-    const { language } = usePageConfig();
-    const getDraftLabels = translator('pageWarnings', language);
-
+export const PageWarning = ({ whiteBg, children }: Props) => {
     return (
         <div className={classNames(style.container, whiteBg && style.whiteBg)}>
             <AlertBox
@@ -23,7 +17,7 @@ export const PageWarning = ({ labelKey, whiteBg }: Props) => {
                 size={'small'}
                 className={style.warning}
             >
-                {getDraftLabels(labelKey)}
+                {children}
             </AlertBox>
         </div>
     );
