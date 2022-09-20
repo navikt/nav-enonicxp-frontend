@@ -3,11 +3,11 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: nav-enonicxp-frontend-dev1
   namespace: personbruker
-  ownerReferences:
-    - apiVersion: nais.io/v1alpha1
-      kind: Application
-      name: nav-enonicxp-frontend-dev1
-      uid: bd92454a-03ea-4c28-9f1d-332ee70b77e6
+#  ownerReferences:
+#    - apiVersion: nais.io/v1alpha1
+#      kind: Application
+#      name: nav-enonicxp-frontend-dev1
+#      uid: bd92454a-03ea-4c28-9f1d-332ee70b77e6
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
