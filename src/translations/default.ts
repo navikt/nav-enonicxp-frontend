@@ -204,9 +204,9 @@ export const translationsBundleNb = {
         failoverWarning:
             'Vi har for tiden tekniske problemer på nav.no. Du kan oppleve noe treghet eller at innhold mangler. Du kan prøve å laste inn siden på nytt.',
         contentTypeChangedWarningPre:
-            'Obs! Denne siden var tidligere av typen ',
+            'Obs! Denne siden var opprinnelig av typen ',
         contentTypeChangedWarningPost:
-            ' - Sjekk om versjonshistorikken har innhold som må arkiveres før eventuell sletting.',
+            '. Den inneholder versjonshistorikk og skal derfor ikke slettes. Innholdet bør endres tilbake til opprinnelig innholdstype før arkivering.',
     },
     caseTimeUnit: {
         single: {
