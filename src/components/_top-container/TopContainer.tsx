@@ -53,7 +53,10 @@ export const TopContainer = ({ content }: Props) => {
                 </PageWarning>
             )}
             {originalType && content.editorView && (
-                <PageWarning whiteBg={hasWhiteHeader}>{`${warningLabels(
+                <PageWarning
+                    whiteBg={hasWhiteHeader}
+                    size={'medium'}
+                >{`${warningLabels(
                     'contentTypeChangedWarningPre'
                 )}"${originalType}"${warningLabels(
                     'contentTypeChangedWarningPost'
