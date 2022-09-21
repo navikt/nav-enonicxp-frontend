@@ -179,11 +179,13 @@ export const Calculator = ({
                     size={'small'}
                     onClick={handleCalculateButtonClick}
                     className={style.calculateButton}
+                    dsIcon={
+                        <CalculatorIcon
+                            title={'Kalkulator-ikon'}
+                            className={style.calculateIcon}
+                        />
+                    }
                 >
-                    <CalculatorIcon
-                        title={'Kalkulator-ikon'}
-                        className={style.calculateIcon}
-                    />
                     <span>{getLabel('calculate')}</span>
                 </Button>
                 <CalculatorResult
