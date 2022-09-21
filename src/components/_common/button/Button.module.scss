@@ -3,10 +3,6 @@
 .button {
     white-space: break-spaces;
 
-    :global(.navds-button__inner) {
-        font-weight: common.$navds-font-weight-bold;
-    }
-
     &__icon {
         height: 1.5rem;
         margin-right: 0.5rem;
