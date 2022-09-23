@@ -4,9 +4,7 @@ import { CardSize, CardType } from 'types/card';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { useCard } from './useCard';
 import { classNames } from 'utils/classnames';
-import {
-    TargetPage,
-} from 'types/component-props/parts/product-card';
+import { TargetPage } from 'types/component-props/parts/product-card';
 import { getCardProps } from 'components/_common/card/card-utils';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { Label } from '@navikt/ds-react';
