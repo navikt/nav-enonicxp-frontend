@@ -18,14 +18,17 @@
         border-bottom: 0;
     }
 
-    :global(.navds-accordion__header-content) {
-        display: flex;
+    :global(.navds-accordion__header) {
         background-color: white;
         margin-bottom: 3px;
 
         @include common.expandable-panel-mixin();
         &:focus {
             @include common.panel-focus-mixin(true);
+        }
+
+        :global(.navds-accordion__header-content) {
+            display: flex;
         }
     }
 
