@@ -19,6 +19,7 @@
     }
 
     :global(.navds-accordion__header-content) {
+        display: flex;
         background-color: white;
         margin-bottom: 3px;
 
