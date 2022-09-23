@@ -14,7 +14,7 @@ import { make404Props } from '../utils/make-error-props';
 import { SituationPage } from './pages/situation-page/SituationPage';
 import { GuidePage } from './pages/guide-page/GuidePage';
 import { OverviewPage } from './pages/overview-page/OverviewPage';
-import { OfficePage } from './pages/office-page/OfficePage';
+import { OfficeEditorialPage } from './pages/office-editorial-page/OfficeEditorialPage';
 import { ThemedArticlePage } from './pages/themed-article-page/ThemedArticlePage';
 import { ProductPage } from './pages/product-page/ProductPage';
 import { ProductDetailsPage } from './pages/product-details-page/ProductDetailsPage';
@@ -43,7 +43,7 @@ const contentToReactComponent: Partial<{
     [ContentType.ThemedArticlePage]: ThemedArticlePage,
     [ContentType.Overview]: OverviewPage,
     [ContentType.GenericPage]: GenericPage,
-    [ContentType.OfficePage]: OfficePage,
+    [ContentType.OfficeEditorialPage]: OfficeEditorialPage,
 
     [ContentType.AreaPage]: DynamicPage,
     [ContentType.FrontPage]: DynamicPage,

@@ -17,7 +17,7 @@ export const contentTypesWithWhiteHeader = {
     [ContentType.GenericPage]: true,
     [ContentType.ThemedArticlePage]: true,
     [ContentType.Overview]: true,
-    [ContentType.OfficePage]: true,
+    [ContentType.OfficeEditorialPage]: true,
     [ContentType.FrontPage]: true,
     [ContentType.AreaPage]: true,
 };

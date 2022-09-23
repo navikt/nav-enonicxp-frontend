@@ -15,8 +15,7 @@ import {
     ThemedArticlePageProps,
     OverviewPageProps,
     GenericPageProps,
-    OfficePageProps,
-    OfficePageData,
+    OfficeEditorialPageProps,
 } from '../../../../types/content-props/dynamic-page-props';
 import { Audience } from '../../../../types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
@@ -30,7 +29,7 @@ type ContentProps =
     | ThemedArticlePageProps
     | OverviewPageProps
     | GenericPageProps
-    | OfficePageProps;
+    | OfficeEditorialPageProps;
 
 type Props = {
     showTimeStamp?: boolean;
@@ -51,7 +50,7 @@ export const ThemedPageHeader = ({
     const { language } = usePageConfig();
 
     const getProps = () => {
-        if (pageType === ContentType.OfficePage) {
+        if (pageType === ContentType.OfficeEditorialPageProps) {
             const { title } = data;
             return { title };
         }

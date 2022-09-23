@@ -16,7 +16,7 @@ import {
     DynamicPageProps,
     GenericPageProps,
     GuidePageProps,
-    OfficePageProps,
+    OfficeEditorialPageProps,
     OverviewPageProps,
     ProductDetailsProps,
     ProductPageProps,
@@ -59,12 +59,13 @@ export enum ContentType {
     Melding = 'no_nav_navno_Melding',
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
+    OfficeEditorialPageProps = 'no_nav_navno_OfficeEditorialPage',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
     GlobalNumberValuesSet = 'no_nav_navno_GlobalValueSet',
     ProductPage = 'no_nav_navno_ContentPageWithSidemenus',
     ProductDetails = 'no_nav_navno_ProductDetails',
     GuidePage = 'no_nav_navno_GuidePage',
-    OfficePage = 'no_nav_navno_OfficePage',
+    OfficeEditorialPage = 'no_nav_navno_OfficeEditorialPage',
     ThemedArticlePage = 'no_nav_navno_ThemedArticlePage',
     SituationPage = 'no_nav_navno_SituationPage',
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',
@@ -150,7 +151,7 @@ type SpecificContentProps =
     | PublishingCalendarProps
     | ProductPageProps
     | SituationPageProps
-    | OfficePageProps
+    | OfficeEditorialPageProps
     | AnimatedIconsProps
     | GlobalValuesProps
     | GlobalCaseTimeSetProps

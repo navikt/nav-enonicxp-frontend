@@ -25,7 +25,7 @@ export type OverviewPageData = Partial<{
 }> &
     ProductDataMixin &
     DynamicPageData;
-export type OfficePageData = {
+export type OfficeEditorialPageData = {
     title: string;
     ingress?: string;
     externalProductUrl?: string;
@@ -59,9 +59,9 @@ export interface SituationPageProps extends ContentCommonProps {
     __typename: ContentType.SituationPage;
     data: SituationPageData;
 }
-export interface OfficePageProps extends ContentCommonProps {
-    __typename: ContentType.OfficePage;
-    data: OfficePageData;
+export interface OfficeEditorialPageProps extends ContentCommonProps {
+    __typename: ContentType.OfficeEditorialPage;
+    data: OfficeEditorialPageData;
 }
 
 export interface ToolsPageProps extends ContentCommonProps {
