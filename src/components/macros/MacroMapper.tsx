@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-    MacroPropsCommon,
-    MacroType,
-} from '../../types/macro-props/_macros-common';
+import { MacroPropsCommon, MacroType } from 'types/macro-props/_macros-common';
 import { MacroButton } from './button/MacroButton';
 import { MacroButtonBlue } from './button-blue/MacroButtonBlue';
 import { MacroChevronLinkExternal } from './chevron-link-external/MacroChevronLinkExternal';
@@ -25,6 +22,7 @@ import { MacroIngress } from './ingress/MacroIngress';
 import { MacroAlertBox } from './alert-box/MacroAlertBox';
 import { MacroSaksbehandlingstid } from './saksbehandlingstid/MacroSaksbehandlingstid';
 import { MacroPayoutDates } from './payout-dates/MacroPayoutDates';
+import { MacroProductCardMicro } from 'components/macros/product-card-micro/MacroProductCardMicro';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
@@ -46,6 +44,7 @@ const macroComponents: {
     [MacroType.LenkeFiler]: MacroLenkeFiler,
     [MacroType.PayoutDates]: MacroPayoutDates,
     [MacroType.PhoneLink]: MacroPhoneLink,
+    [MacroType.ProductCardMicro]: MacroProductCardMicro,
     [MacroType.ProductCardMini]: MacroProductCardMini,
     [MacroType.Quote]: MacroQuote,
     [MacroType.Tankestrek]: MacroTankestrek,

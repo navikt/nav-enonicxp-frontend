@@ -16,6 +16,7 @@ export enum MacroType {
     PayoutDates = 'payout-dates',
     PhoneLink = 'phone-link',
     ProductCardMini = 'product-card-mini',
+    ProductCardMicro = 'product-card-micro',
     Quote = 'quote',
     Saksbehandlingstid = 'saksbehandlingstid',
     Tankestrek = 'tankestrek',
