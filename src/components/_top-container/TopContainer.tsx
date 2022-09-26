@@ -18,6 +18,7 @@ export const contentTypesWithWhiteHeader = {
     [ContentType.ThemedArticlePage]: true,
     [ContentType.Overview]: true,
     [ContentType.OfficeEditorialPage]: true,
+    [ContentType.OfficeBranchPage]: true,
     [ContentType.FrontPage]: true,
     [ContentType.AreaPage]: true,
 };

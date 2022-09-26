@@ -1,0 +1,34 @@
+@use 'src/common' as common;
+
+.wide {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    @include common.full-width-mixin();
+}
+
+.officeDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.addressPoster,
+.phonePoster {
+    padding: common.$padding-sides-mobile;
+
+    @media #{common.$mq-screen-tablet} {
+        padding: common.$padding-sides-tablet;
+    }
+
+    @media #{common.$mq-screen-desktop} {
+        padding: common.$padding-sides-desktop;
+    }
+}
+
+.addressPoster {
+    background-color: var(--navds-global-color-orange-50);
+}
+
+.phonePoster {
+    background-color: var(--navds-global-color-gray-50);
+}

@@ -63,6 +63,11 @@ export interface OfficeEditorialPageProps extends ContentCommonProps {
     __typename: ContentType.OfficeEditorialPage;
     data: OfficeEditorialPageData;
 }
+export interface OfficeBranchPageProps extends ContentCommonProps {
+    __typename: ContentType.OfficeEditorialPage;
+    data: OfficeEditorialPageData;
+    editorial: SituationPageProps;
+}
 
 export interface ToolsPageProps extends ContentCommonProps {
     __typename: ContentType.ToolsPage;

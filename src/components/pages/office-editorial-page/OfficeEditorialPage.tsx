@@ -1,9 +1,9 @@
 import React from 'react';
 import { ComponentMapper } from '../../ComponentMapper';
-import { OfficePageProps } from '../../../types/content-props/dynamic-page-props';
+import { OfficeEditorialPageProps } from '../../../types/content-props/dynamic-page-props';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 
-export const OfficeEditorialPage = (props: OfficePageProps) => {
+export const OfficeEditorialPage = (props: OfficeEditorialPageProps) => {
     return (
         <div className={'officeEditorialPage'}>
             <ThemedPageHeader contentProps={props} showTimeStamp={false} />
