@@ -69,7 +69,10 @@ export const DefaultOption = (props: DefaultContactProps) => {
         }
         if (channel === 'navoffice') {
             return {
-                href: 'https://www.nav.no/sok-nav-kontor',
+                href:
+                    language === 'en'
+                        ? 'https://www.nav.no/sok-nav-kontor/en'
+                        : 'https://www.nav.no/sok-nav-kontor',
                 target: '_blank',
             };
         }
