@@ -23,6 +23,7 @@ export enum PartType {
     NewsList = 'no.nav.navno:dynamic-news-list',
     HtmlArea = 'no.nav.navno:html-area',
     Calculator = 'no.nav.navno:calculator',
+    OfficeEditorialDetail = 'no.nav.navno:office-editorial-detail',
     PageHeader = 'no.nav.navno:page-header',
     Button = 'no.nav.navno:button',
     ProviderCard = 'no.nav.navno:provider-card',
@@ -76,6 +77,7 @@ export type PartWithOwnData =
     | PartType.ProductCard
     | PartType.ProductCardMini
     | PartType.ProductCardMicro
+    | PartType.OfficeEditorialDetail
     | PartType.ContactOption
     | PartType.ProductDetails
     | PartType.AlertPanel
