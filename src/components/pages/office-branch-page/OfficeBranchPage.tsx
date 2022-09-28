@@ -14,7 +14,7 @@ export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
             <div className={'content'}>
                 <ComponentMapper
                     componentProps={editorialPage.page}
-                    pageProps={editorialPage}
+                    pageProps={props}
                 />
             </div>
         </div>

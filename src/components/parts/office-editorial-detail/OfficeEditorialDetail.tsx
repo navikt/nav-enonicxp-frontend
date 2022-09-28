@@ -11,6 +11,7 @@ import { PlaceholderIndicator } from './PlaceholderIndicator';
 
 export const OfficeEditorialDetail = ({
     config,
+    pageProps,
 }: OfficeEditorialDetailProps) => {
     const { detailType } = config;
     const { pageConfig } = usePageConfig();
