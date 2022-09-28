@@ -1,9 +1,9 @@
 import classNames from 'classnames';
-import { OfficeInformationData } from 'types/content-props/office-information-props';
+import { OfficeEditorialPageData } from 'types/content-props/dynamic-page-props';
 import styles from './OfficeDetails.module.scss';
 
 type OfficeDetailsProps = {
-    officeData: OfficeInformationData;
+    officeData: OfficeEditorialPageData;
 };
 
 export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {

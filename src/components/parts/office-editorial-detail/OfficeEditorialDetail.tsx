@@ -19,7 +19,7 @@ export const OfficeEditorialDetail = ({
     // of what information the placeholder represent.
     const editorTranslation: { [key in DetailType]: string } = {
         [DetailType.SERVICE_INFORMATION]:
-            'informasjon om tjenestene på til kontoret.',
+            'informasjon om tjenestene til kontoret.',
         [DetailType.SOCIAL_HELP_LINK]: 'lenke til søknad om sosialhjelp.',
         [DetailType.SOCIAL_HELP_PAYOUT_INFORMATION]:
             'informasjon om utbetaling av sosialhjelp',
