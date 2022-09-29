@@ -57,7 +57,6 @@ export type PartWithPageData =
     | PartType.MenuList
     | PartType.OfficeInformation
     | PartType.PageList
-    | PartType.OfficeEditorialDetail
     | PartType.PublishingCalendar;
 
 export type PartWithOwnData =
@@ -67,6 +66,7 @@ export type PartWithOwnData =
     | PartType.LinkList
     | PartType.NewsList
     | PartType.HtmlArea
+    | PartType.OfficeEditorialDetail
     | PartType.Calculator
     | PartType.PageHeader
     | PartType.Button
