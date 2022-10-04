@@ -6,7 +6,6 @@ import {
 } from '../site-info/feature-toggles/utils';
 import { SetSidepanelToggleHack } from './set-sidepanels-defaults/SetSidepanelToggleHack';
 import { CustomSelectorLinkTargetHack } from './custom-selector-link-target/CustomSelectorLinkTargetHack';
-import { PublishedNameDisplayHack } from './published-name-display/PublishedNameDisplayHack';
 
 // This implements quality-of-life fixes to improve the experiences for Content Studio users
 
@@ -23,7 +22,6 @@ export const EditorHacks = ({ content }: Props) => {
 
     return (
         <>
-            <PublishedNameDisplayHack contentId={_id} />
             {editorView === 'edit' && (
                 <>
                     <AutoReloadDisableHack content={content} />
