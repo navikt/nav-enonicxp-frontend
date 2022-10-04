@@ -99,7 +99,7 @@
     font-size: var(--navds-font-size-heading-medium);
     line-height: var(--navds-font-line-height-heading-medium);
     font-weight: var(--navds-font-weight-bold);
-    word-break: break-all;
+    word-break: break-word;
 
     :global(.provider) & {
         color: var(--navds-semantic-color-link);
