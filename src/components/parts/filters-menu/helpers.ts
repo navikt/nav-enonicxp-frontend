@@ -10,17 +10,24 @@ interface Props {
 export const checkIfFilterFirstInPage = ({ path, page }: Props) => {
     const regions = page?.regions;
 
+    // If no regions, the part is used inside the ComponentPreview.
+    // Assume that the filter is first for now and any duplicate
+    // filters will end up giving a warning when editor pressed "Mark as ready"
     if (!regions) {
-        return false;
+        return true;
     }
 
-    const allComponents = Object.values(regions).reduce((collection, regionObject) => {
-        const { components } = regionObject;
-        return [...collection, ...components]
-    }, [])
+    const allComponents = Object.values(regions).reduce(
+        (collection, regionObject) => {
+            const { components } = regionObject;
+            return [...collection, ...components];
+        },
+        []
+    );
 
     const allFilterMenus = allComponents.filter(
-        (component: PartComponentProps) => component.descriptor === PartType.FiltersMenu
+        (component: PartComponentProps) =>
+            component.descriptor === PartType.FiltersMenu
     );
 
     if (allFilterMenus.length === 0) {

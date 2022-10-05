@@ -1,12 +1,10 @@
 import React from 'react';
-import { classNames } from '../../utils/classnames';
-import {
-    ContentProps,
-    ContentType,
-} from '../../types/content-props/_content-common';
-import { getContentLanguages } from '../../utils/languages';
+import { classNames } from 'utils/classnames';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { getContentLanguages } from 'utils/languages';
 import { VersionHistory } from './version-history/VersionHistory';
 import { PageWarning } from './page-warning/PageWarning';
+import { translator } from 'translations';
 
 import style from './TopContainer.module.scss';
 
@@ -25,7 +23,14 @@ type Props = {
 };
 
 export const TopContainer = ({ content }: Props) => {
-    const { __typename, breadcrumbs, isFailover, isPagePreview } = content;
+    const {
+        __typename,
+        breadcrumbs,
+        isFailover,
+        isPagePreview,
+        originalType,
+        language,
+    } = content;
     const hasDecoratorWidgets =
         breadcrumbs?.length > 0 || getContentLanguages(content)?.length > 0;
     const hasWhiteHeader = contentTypesWithWhiteHeader[__typename];
@@ -33,19 +38,29 @@ export const TopContainer = ({ content }: Props) => {
     const showVersionPicker =
         !!content.editorView && content.editorView !== 'edit';
 
+    const warningLabels = translator('pageWarnings', language);
+
     return (
         <>
             {isPagePreview && (
-                <PageWarning
-                    labelKey={'draftWarning'}
-                    whiteBg={hasWhiteHeader}
-                />
+                <PageWarning whiteBg={hasWhiteHeader}>
+                    {warningLabels('draftWarning')}
+                </PageWarning>
             )}
             {isFailover && (
+                <PageWarning whiteBg={hasWhiteHeader}>
+                    {warningLabels('failoverWarning')}
+                </PageWarning>
+            )}
+            {originalType && content.editorView && (
                 <PageWarning
-                    labelKey={'failoverWarning'}
                     whiteBg={hasWhiteHeader}
-                />
+                    size={'medium'}
+                >{`${warningLabels(
+                    'contentTypeChangedWarningPre'
+                )}"${originalType}"${warningLabels(
+                    'contentTypeChangedWarningPost'
+                )}`}</PageWarning>
             )}
             <div
                 className={classNames(

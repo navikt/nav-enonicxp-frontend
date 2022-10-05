@@ -203,6 +203,10 @@ export const translationsBundleNb = {
         draftWarning: 'Utkast - siden er under arbeid',
         failoverWarning:
             'Vi har for tiden tekniske problemer på nav.no. Du kan oppleve noe treghet eller at innhold mangler. Du kan prøve å laste inn siden på nytt.',
+        contentTypeChangedWarningPre:
+            'Obs! Denne siden var opprinnelig av typen ',
+        contentTypeChangedWarningPost:
+            '. Den inneholder versjonshistorikk og skal derfor ikke slettes. Innholdet bør endres tilbake til opprinnelig innholdstype før arkivering.',
     },
     caseTimeUnit: {
         single: {
