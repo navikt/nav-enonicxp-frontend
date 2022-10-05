@@ -51,7 +51,7 @@ export const MicroCards = ({
 
     return (
         <>
-            {header && <Label size="medium">{header}</Label>}
+            {header && <Label size="medium" style={{ display: 'block' }}>{header}</Label>}
             {cardProps.map((card, index) => (
                 <MicroCard {...card} key={index} />
             ))}
