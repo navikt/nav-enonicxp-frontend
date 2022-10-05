@@ -35,7 +35,7 @@ export const ButtonPart = ({ config }: ButtonPartProps) => {
         <Button
             href={linkProps.url}
             variant={typePropToVariant[type]}
-            icon={icon}
+            xpIcon={icon}
             size={legacySizeToSize[size] || size}
             fullWidth={fullwidth}
         >

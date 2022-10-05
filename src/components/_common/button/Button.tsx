@@ -11,7 +11,9 @@ type Props = {
     href?: string;
     variant?: ButtonProps['variant'];
     size?: ButtonProps['size'];
-    icon?: XpImageProps;
+    xpIcon?: XpImageProps;
+    dsIcon?: React.ReactNode;
+    iconPosition?: 'left' | 'right';
     fullWidth?: boolean;
     disabled?: boolean;
     prefetch?: boolean;
@@ -24,7 +26,9 @@ export const Button = ({
     href,
     variant = 'secondary',
     size = 'medium',
-    icon,
+    xpIcon,
+    dsIcon,
+    iconPosition,
     fullWidth,
     disabled,
     prefetch,
@@ -51,20 +55,21 @@ export const Button = ({
             variant={variant}
             size={size}
             disabled={disabled}
-        >
-            {icon ? (
-                <>
+            icon={
+                xpIcon ? (
                     <XpImage
-                        imageProps={icon}
+                        imageProps={xpIcon}
                         className={style.button__icon}
                         alt={''}
                         maxWidth={64}
                     />
-                    <span>{children}</span>
-                </>
-            ) : (
-                <>{children}</>
-            )}
+                ) : (
+                    dsIcon
+                )
+            }
+            iconPosition={iconPosition}
+        >
+            {children}
         </DsButton>
     );
 };

@@ -19,12 +19,21 @@
     }
 
     :global(.navds-accordion__header) {
+        align-items: center;
         background-color: white;
         margin-bottom: 3px;
+        padding-top: var(--navds-spacing-4);
+        padding-bottom: var(--navds-spacing-4);
 
         @include common.expandable-panel-mixin();
         &:focus {
             @include common.panel-focus-mixin(true);
+        }
+
+        :global(.navds-accordion__header-content) {
+            display: flex;
+            align-items: center;
+            gap: var(--navds-spacing-4);
         }
     }
 
