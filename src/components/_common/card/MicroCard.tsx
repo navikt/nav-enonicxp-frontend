@@ -7,7 +7,7 @@ import { classNames } from 'utils/classnames';
 import { TargetPage } from 'types/component-props/parts/product-card';
 import { getCardProps } from 'components/_common/card/card-utils';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { Label } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './Card.module.scss';
@@ -51,7 +51,11 @@ export const MicroCards = ({
 
     return (
         <>
-            {header && <Label size="medium" style={{ display: 'block' }}>{header}</Label>}
+            {header && (
+                <BodyShort size={'medium'} className={style.cardHeader}>
+                    {header}
+                </BodyShort>
+            )}
             {cardProps.map((card, index) => (
                 <MicroCard {...card} key={index} />
             ))}

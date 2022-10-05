@@ -10,11 +10,11 @@ import {
 } from '../component-props/_mixins';
 
 type CommonData = {
-    areasRefs: AreaPageProps[];
     audience: Audience;
 } & DynamicPageData;
 
 export type FrontPageData = {
+    areasRefs: AreaPageProps[];
     areasHeader: string;
 } & CommonData;
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Heading, Label } from '@navikt/ds-react';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import classNames from 'classnames';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
-import { MainArticleChapterNavigationData } from '../../../../types/content-props/main-article-chapter-props';
+import { MainArticleChapterNavigationData } from 'types/content-props/main-article-chapter-props';
 import { LenkeBase } from '../../../_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
@@ -54,15 +54,14 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
             <ul>
                 <li>
                     {parentSelected ? (
-                        <Label className={classNames(style.item, style.active)}>
-                            {parentTitle}
-                        </Label>
-                    ) : (
-                        <LenkeBase
-                            href={parentPath}
-                            className={classNames(style.item)}
+                        <BodyShort
+                            className={classNames(style.item, style.active)}
                         >
-                            <Label>{parentTitle}</Label>
+                            {parentTitle}
+                        </BodyShort>
+                    ) : (
+                        <LenkeBase href={parentPath} className={style.item}>
+                            {parentTitle}
                         </LenkeBase>
                     )}
                 </li>
@@ -75,20 +74,20 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
                     return (
                         <li key={chapter._path}>
                             {chapterSelected ? (
-                                <Label
+                                <BodyShort
                                     className={classNames(
                                         style.item,
                                         style.active
                                     )}
                                 >
                                     {chapter.displayName}
-                                </Label>
+                                </BodyShort>
                             ) : (
                                 <LenkeBase
                                     href={chapterPath}
-                                    className={classNames(style.item)}
+                                    className={style.item}
                                 >
-                                    <Label>{chapter.displayName}</Label>
+                                    {chapter.displayName}
                                 </LenkeBase>
                             )}
                         </li>

@@ -221,6 +221,11 @@
     }
 }
 
+.cardHeader {
+    font-weight: common.$navds-font-weight-bold;
+    margin-bottom: 0.5rem;
+}
+
 .lenkeBaseOverride {
     &:focus {
         outline: 0;
