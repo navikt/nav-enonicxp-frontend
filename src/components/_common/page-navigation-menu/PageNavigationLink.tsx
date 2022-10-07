@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyShort, Label } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { PageNavViewStyle } from 'types/component-props/parts/page-navigation-menu';
