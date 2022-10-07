@@ -44,9 +44,7 @@ export const MiniCard = (props: MiniKortProps) => {
                 {...userEventProps}
                 className={classNames(sharedStyle.card, className)}
             >
-                <div
-                    className={classNames(sharedStyle.bed, type, CardSize.Mini)}
-                >
+                <div className={classNames(sharedStyle.bed, style.mini, type)}>
                     <Illustration
                         className={style.illustration}
                         illustration={illustration}

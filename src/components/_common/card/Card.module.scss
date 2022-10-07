@@ -14,13 +14,16 @@
         padding: 0.7rem 0;
         text-decoration: none;
     }
+
     &.inline:not(:last-child) {
         margin-bottom: 0;
     }
+
     .bed {
         transition: all 0.3s;
         height: 100%;
     }
+
     &:hover,
     &:focus-within {
         > :global(.situation) {
@@ -69,43 +72,6 @@
                 width: calc(100% - 8px);
                 margin: 4px;
             }
-        }
-        .bed:global(.mini) {
-            &:after {
-                box-shadow: 0 0 0 2px white;
-                height: calc(100% - 2px);
-                margin: 1px;
-                width: calc(100% - 2px);
-            }
-        }
-        .bed:global(.mini) {
-            &:after {
-                border-radius: 6px;
-            }
-        }
-    }
-
-    :global(.mini) {
-        align-items: center;
-        border-radius: 8px;
-        border: 1px solid #b0b0b0; // Don't exist in @navikt/ds
-        display: inline-flex; // Ensures margins don't collapse
-        padding: common.px-to-rem(12);
-        text-decoration: none;
-        width: 100%;
-
-        &:not(:hover):not(:active) {
-            box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
-                0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
-        }
-
-        &:hover {
-            box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
-                0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
-        }
-        &:hover,
-        &:focus {
-            border: 1px solid transparent;
         }
     }
 
