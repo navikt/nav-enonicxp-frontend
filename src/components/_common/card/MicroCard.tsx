@@ -10,7 +10,8 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { BodyShort } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import style from './Card.module.scss';
+import sharedStyle from './Card.module.scss';
+import style from './MicroCard.module.scss';
 
 const MicroCard = ({ link, type }: { link: LinkProps; type: CardType }) => {
     const { analyticsProps } = useCard({ type, size: CardSize.Micro, link });
@@ -18,22 +19,21 @@ const MicroCard = ({ link, type }: { link: LinkProps; type: CardType }) => {
         <LenkeBase
             href={link.url}
             {...analyticsProps}
-            className={classNames(style.card, style.inline)}
+            className={classNames(sharedStyle.card, sharedStyle.inline)}
         >
-            <div className={classNames(style.bed, type, CardSize.Micro)}>
+            <div className={classNames(sharedStyle.bed, style.micro, type)}>
                 {link.text}
             </div>
         </LenkeBase>
     );
 };
 
-export const MicroCards = ({
-    header,
-    card_list,
-}: {
+type Props = {
     header?: string;
     card_list: TargetPage[];
-}) => {
+};
+
+export const MicroCards = ({ header, card_list }: Props) => {
     const { language } = usePageConfig();
 
     const cardProps = card_list.reduce((acc, card) => {
@@ -52,7 +52,7 @@ export const MicroCards = ({
     return (
         <>
             {header && (
-                <BodyShort size={'medium'} className={style.cardHeader}>
+                <BodyShort size={'medium'} className={style.header}>
                     {header}
                 </BodyShort>
             )}

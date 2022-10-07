@@ -19,3 +19,7 @@ $illustrationSize: common.px-to-rem(64);
     }
 }
 
+.header {
+    font-weight: common.$navds-font-weight-bold;
+    margin-bottom: 0.5rem;
+}

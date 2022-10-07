@@ -36,7 +36,7 @@ export const MiniCard = (props: MiniKortProps) => {
     return (
         <>
             {header && (
-                <BodyShort size={'medium'} className={sharedStyle.cardHeader}>
+                <BodyShort size={'medium'} className={style.header}>
                     {header}
                 </BodyShort>
             )}

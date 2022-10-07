@@ -70,8 +70,7 @@
                 margin: 4px;
             }
         }
-        .bed:global(.mini),
-        .bed:global(.micro) {
+        .bed:global(.mini) {
             &:after {
                 box-shadow: 0 0 0 2px white;
                 height: calc(100% - 2px);
@@ -82,78 +81,6 @@
         .bed:global(.mini) {
             &:after {
                 border-radius: 6px;
-            }
-        }
-        .bed:global(.micro) {
-            &:after {
-                border-radius: 16px;
-            }
-        }
-    }
-
-    :global(.micro) {
-        border-radius: 16px;
-        border: 1px solid #b0b0b0;
-        box-shadow: 0 0 0 3px var(--navds-semantic-color-link);
-        color: var(--navds-global-color-gray-900);
-        display: inline-flex;
-        font-size: common.px-to-rem(14);
-        line-height: 1.5625rem;
-        margin: 0 0.5rem 0 0;
-        padding: 0 0.5rem;
-        position: relative;
-
-        &:not(:hover):not(:active) {
-            box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
-                0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
-        }
-        &:hover,
-        &:focus {
-            border: 1px solid transparent;
-        }
-        &:before {
-            content: '';
-            align-self: center;
-            position: relative;
-            display: flex;
-            width: 0.5rem;
-            height: 0.5rem;
-            border-radius: 0.5rem;
-            margin: 0 0.5rem 0 0;
-        }
-        &:global(.situation) {
-            &:before {
-                background-color: var(--navds-global-color-orange-500);
-            }
-        }
-        &:global(.product) {
-            &:before {
-                background-color: var(--navds-global-color-green-500);
-            }
-        }
-        &:global(.tool) {
-            &:before {
-                background-color: var(--navds-global-color-deepblue-500);
-            }
-        }
-        &:global(.themed-article) {
-            &:before {
-                background-color: var(--navds-global-color-limegreen-500);
-            }
-        }
-        &:global(.guide) {
-            &:before {
-                background-color: var(--navds-global-color-lightblue-500);
-            }
-        }
-        &:global(.overview) {
-            &:before {
-                background-color: var(--navds-global-color-deepblue-400);
-            }
-        }
-        &:global(.generic) {
-            &:before {
-                background-color: var(--navds-global-color-gray-600);
             }
         }
     }
@@ -221,16 +148,12 @@
     }
 }
 
-.cardHeader {
-    font-weight: common.$navds-font-weight-bold;
-    margin-bottom: 0.5rem;
-}
-
 .lenkeBaseOverride {
     &:focus {
         outline: 0;
     }
 }
+
 // Handle card-margin in layouts
 :global(.layout__situation-flex-cols),
 :global(.layout__product-flex-cols) {
