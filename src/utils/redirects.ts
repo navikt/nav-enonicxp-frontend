@@ -1,9 +1,12 @@
-import {
-    ContentType,
-    ContentProps,
-} from '../types/content-props/_content-common';
+import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from './urls';
 import { getInternalLinkUrl } from './links-from-content';
+
+const redirectTypes: { [type in ContentType]?: boolean } = {
+    [ContentType.InternalLink]: true,
+    [ContentType.ExternalLink]: true,
+    [ContentType.Url]: true,
+};
 
 const getTargetPath = (contentData: ContentProps) => {
     switch (contentData?.__typename) {
@@ -32,6 +35,9 @@ const getTargetPath = (contentData: ContentProps) => {
             return null;
     }
 };
+
+export const isRedirectType = (content: ContentProps) =>
+    redirectTypes[content.__typename];
 
 export const getTargetIfRedirect = (contentData: ContentProps) => {
     const targetPath = getTargetPath(contentData);
