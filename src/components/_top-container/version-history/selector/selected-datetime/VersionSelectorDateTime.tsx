@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Checkbox, Label } from '@navikt/ds-react';
-import { ContentProps } from '../../../../../types/content-props/_content-common';
-import {
-    getCurrentDateAndTime,
-    getUtcTimeFromLocal,
-} from '../../../../../utils/datetime';
-import { Branch } from '../../../../../types/branch';
+import { ContentProps } from 'types/content-props/_content-common';
+import { getCurrentDateAndTime, getUtcTimeFromLocal } from 'utils/datetime';
+import { Branch } from 'types/branch';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
 
@@ -46,13 +43,16 @@ export const VersionSelectorDateTime = ({
     return (
         <>
             <div className={style.left}>
-                <Label>{'Velg tid og dato:'}</Label>
+                <Label id={'version-selector-label'}>
+                    {'Velg tid og dato:'}
+                </Label>
                 <input
                     type={'time'}
                     className={style.time}
                     onChange={(e) => {
                         setTimeSelected(e.target.value);
                     }}
+                    aria-labelledby={'version-selector-label'}
                     value={timeSelected.slice(0, 5)}
                 />
                 <input
@@ -61,6 +61,7 @@ export const VersionSelectorDateTime = ({
                     onChange={(e) => {
                         setDateSelected(e.target.value);
                     }}
+                    aria-labelledby={'version-selector-label'}
                     min={startDate}
                     max={initialDate}
                     value={dateSelected}
