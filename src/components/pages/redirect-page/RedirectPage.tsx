@@ -1,15 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { getTargetIfRedirect } from '../../../utils/redirects';
-import { BodyLong } from '@navikt/ds-react';
+import { getTargetIfRedirect } from 'utils/redirects';
+import { BodyLong, Loader } from '@navikt/ds-react';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
-import { ContentProps } from '../../../types/content-props/_content-common';
-import { stripXpPathPrefix } from '../../../utils/urls';
+import { ContentProps } from 'types/content-props/_content-common';
+import { ErrorPage } from 'components/pages/error-page/ErrorPage';
+import { make404Props } from 'utils/make-error-props';
 
 import style from './RedirectPage.module.scss';
 
 const getTarget = (props: ContentProps, isShadow: boolean) => {
-    const target = getTargetIfRedirect(props) || stripXpPathPrefix(props._path);
+    const target = getTargetIfRedirect(props);
 
     if (isShadow) {
         return `/shadow${target}`;
@@ -19,7 +20,10 @@ const getTarget = (props: ContentProps, isShadow: boolean) => {
 
 export const RedirectPage = (props: ContentProps) => {
     const { editorView, _path } = props;
+
     const router = useRouter();
+    const [is404, setIs404] = useState(false);
+
     const isShadow = !!router.query?.shadowRouter;
     const shouldNotRedirect = !!editorView || isShadow;
     const target = getTarget(props, isShadow);
@@ -33,8 +37,9 @@ export const RedirectPage = (props: ContentProps) => {
         }
 
         if (target) {
-            console.log(`Redirecting from ${_path} to ${target}`);
             router.push(target);
+        } else {
+            setIs404(true);
         }
     }, [target, shouldNotRedirect, _path, router]);
 
@@ -45,5 +50,11 @@ export const RedirectPage = (props: ContentProps) => {
                 <LenkeInline href={target}>{target}</LenkeInline>
             </BodyLong>
         </div>
-    ) : null;
+    ) : is404 ? (
+        <ErrorPage {...make404Props(_path)} />
+    ) : (
+        <div className={style.loader}>
+            <Loader size={'3xlarge'} />
+        </div>
+    );
 };
