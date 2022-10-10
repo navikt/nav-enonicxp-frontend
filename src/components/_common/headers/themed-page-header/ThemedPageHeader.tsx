@@ -50,7 +50,6 @@ export const ThemedPageHeader = ({
         audience = Audience.PERSON,
         customCategory,
     } = data;
-    console.log(taxonomy);
 
     const { language } = usePageConfig();
 
