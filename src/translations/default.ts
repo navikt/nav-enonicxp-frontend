@@ -2,6 +2,7 @@ import { DeepPartial } from '../types/util-types';
 import { MenuListItemKey } from '../types/menu-list-items';
 import {
     ProductTaxonomy,
+    Taxonomy,
     ThemedArticlePageTaxonomy,
     ToolsPageTaxonomy,
 } from 'types/taxonomies';
@@ -24,10 +25,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 };
 
 const productTaxonomies: {
-    [key in
-        | ProductTaxonomy
-        | ThemedArticlePageTaxonomy
-        | ToolsPageTaxonomy]: string;
+    [key in Taxonomy]: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
     [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
