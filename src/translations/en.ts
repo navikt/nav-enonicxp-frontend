@@ -15,6 +15,7 @@ const productTaxonomies: {
     [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
     [ProductTaxonomy.BENEFITS]: 'Benefits',
     [ProductTaxonomy.FOLLOWUP]: 'Follow-up',
+    [ProductTaxonomy.SERVICE]: 'Service',
     [ProductTaxonomy.FOR_EMPLOYERS]: 'For employers',
     [ProductTaxonomy.FOR_EVENT_ORGANIZERS]: 'For schemes organizers',
     [ProductTaxonomy.FOR_HEALTH_SERVICE]: 'For physicians and other therapists',

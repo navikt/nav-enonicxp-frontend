@@ -4,6 +4,7 @@ export enum ProductTaxonomy {
     BENEFITS = 'benefits',
     FOLLOWUP = 'followup',
     MEASURES = 'measures',
+    SERVICE = 'service',
     RIGHTS = 'rights',
     FOR_EMPLOYERS = 'for_employers',
     FOR_EVENT_ORGANIZERS = 'for_event_organizers',

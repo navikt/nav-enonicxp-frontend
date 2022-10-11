@@ -31,6 +31,7 @@ const productTaxonomies: {
     [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
     [ProductTaxonomy.BENEFITS]: 'Pengestøtte',
     [ProductTaxonomy.FOLLOWUP]: 'Oppfølging',
+    [ProductTaxonomy.SERVICE]: 'Tjeneste',
     [ProductTaxonomy.FOR_EMPLOYERS]: 'For arbeidsgivere',
     [ProductTaxonomy.FOR_EVENT_ORGANIZERS]: 'For tiltaksarrangører',
     [ProductTaxonomy.FOR_HEALTH_SERVICE]: 'For leger og andre behandlere',
