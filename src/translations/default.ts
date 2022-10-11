@@ -48,7 +48,7 @@ const productTaxonomies: {
     [ThemedArticlePageTaxonomy.USER_SUPPORT]: 'Brukerstøtte',
     [ThemedArticlePageTaxonomy.ABOUT_NAV]: 'Om NAV',
     [ThemedArticlePageTaxonomy.MEMBERSHIP_NATIONAL_INSURANCE]: 'Brukerstøtte',
-    [ThemedArticlePageTaxonomy.RECRUITMENT]: 'Rekruttering (for arbeidsgiver)',
+    [ThemedArticlePageTaxonomy.RECRUITMENT]: 'Rekruttering',
     [ToolsPageTaxonomy.CALCULATOR]: 'Kalkulator',
     [ToolsPageTaxonomy.NAVIGATOR]: 'Veiviser',
 };

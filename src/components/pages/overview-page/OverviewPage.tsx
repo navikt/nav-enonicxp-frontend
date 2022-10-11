@@ -10,7 +10,7 @@ import { SimplifiedProductData } from '../../../types/component-props/_mixins';
 import { ProductItem } from './product-elements/ProductItem';
 import { OverviewSearch } from './overview-search/OverviewSearch';
 import { TaxonomyFilter } from './taxonomy-filter/TaxonomyFilter';
-import { Taxonomy } from 'types/taxonomies';
+import { ProductTaxonomy } from 'types/taxonomies';
 import { classNames } from 'utils/classnames';
 import { ProductDetailType } from 'types/content-props/product-details';
 
@@ -24,8 +24,8 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const getTranslationString = translator('overview', language);
 
     const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
-    const [taxonomyFilter, setTaxonomyFilter] = useState<Taxonomy>(
-        Taxonomy.ALL
+    const [taxonomyFilter, setTaxonomyFilter] = useState<ProductTaxonomy>(
+        ProductTaxonomy.ALL
     );
     const [searchString, setSearchString] = useState<string>('');
 
@@ -39,11 +39,11 @@ export const OverviewPage = (props: OverviewPageProps) => {
             product.area.some((area) => area === areaFilter);
 
         const isTaxonomyMatching =
-            taxonomyFilter === Taxonomy.ALL ||
+            taxonomyFilter === ProductTaxonomy.ALL ||
             product.taxonomy.includes(taxonomyFilter);
 
         const isGuidePageMatching =
-            taxonomyFilter === Taxonomy.FORMS &&
+            taxonomyFilter === ProductTaxonomy.FORMS &&
             product.type === 'no.nav.navno:guide-page';
 
         const isSearchMatching = product.sortTitle
@@ -80,7 +80,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                 />
                 {showTaxonomyFilter && (
                     <TaxonomyFilter
-                        filterUpdateCallback={(value: Taxonomy) =>
+                        filterUpdateCallback={(value: ProductTaxonomy) =>
                             setTaxonomyFilter(value)
                         }
                         productList={productList}

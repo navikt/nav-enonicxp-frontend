@@ -2,16 +2,14 @@ import { Translations } from './default';
 import { MenuListItemKey } from '../types/menu-list-items';
 import {
     ProductTaxonomy,
+    Taxonomy,
     ThemedArticlePageTaxonomy,
     ToolsPageTaxonomy,
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
 
 const productTaxonomies: {
-    [key in
-        | ProductTaxonomy
-        | ThemedArticlePageTaxonomy
-        | ToolsPageTaxonomy]: string;
+    [key in Taxonomy]: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
     [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
