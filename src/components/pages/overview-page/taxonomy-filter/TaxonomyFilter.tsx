@@ -4,12 +4,12 @@ import { Heading, Tag } from '@navikt/ds-react';
 import { translator } from '../../../../translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
-import { Taxonomy } from 'types/taxonomies';
+import { ProductTaxonomy } from 'types/taxonomies';
 
 import styles from './TaxonomyFilter.module.scss';
 
 interface TaxonomyFilerProps {
-    filterUpdateCallback: (filters: Taxonomy) => void;
+    filterUpdateCallback: (filters: ProductTaxonomy) => void;
     productList: SimplifiedProductData[];
 }
 
@@ -17,21 +17,26 @@ export const TaxonomyFilter = ({
     filterUpdateCallback,
     productList,
 }: TaxonomyFilerProps) => {
-    const [currentFilter, setCurrentFilter] = useState<Taxonomy>(Taxonomy.ALL);
+    const [currentFilter, setCurrentFilter] = useState<ProductTaxonomy>(
+        ProductTaxonomy.ALL
+    );
     const { language } = usePageConfig();
 
     const productTaxonomies = translator('productTaxonomies', language);
     const overviewTranslations = translator('overview', language);
 
-    const handleFilterUpdate = (taxonomy: Taxonomy) => {
+    const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
         setCurrentFilter(taxonomy);
         filterUpdateCallback(taxonomy);
     };
 
-    const taxonomiesInProductList = Object.values(Taxonomy).filter((taxonomy) =>
-        productList.some((product) =>
-            product.taxonomy.some((taxonomyItem) => taxonomyItem === taxonomy)
-        )
+    const taxonomiesInProductList = Object.values(ProductTaxonomy).filter(
+        (ProductTaxonomy) =>
+            productList.some((product) =>
+                product.taxonomy.some(
+                    (taxonomyItem) => taxonomyItem === ProductTaxonomy
+                )
+            )
     );
 
     return (
@@ -45,9 +50,9 @@ export const TaxonomyFilter = ({
             >
                 <ul className={styles.filterWrapper}>
                     {[
-                        Taxonomy.ALL,
+                        ProductTaxonomy.ALL,
                         ...taxonomiesInProductList,
-                        Taxonomy.FORMS,
+                        ProductTaxonomy.FORMS,
                     ].map((taxonomy) => {
                         const isActive = currentFilter === taxonomy;
 

@@ -1,21 +1,41 @@
 import { Translations } from './default';
 import { MenuListItemKey } from '../types/menu-list-items';
-import { Taxonomy } from 'types/taxonomies';
+import {
+    ProductTaxonomy,
+    Taxonomy,
+    ThemedArticlePageTaxonomy,
+    ToolsPageTaxonomy,
+} from 'types/taxonomies';
 import { Area } from 'types/areas';
 
-const productTaxonomies: { [key in Taxonomy]: string } = {
-    [Taxonomy.ALL]: 'All',
-    [Taxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
-    [Taxonomy.BENEFITS]: 'Benefits',
-    [Taxonomy.FOLLOWUP]: 'Follow-up',
-    [Taxonomy.FOR_EMPLOYERS]: 'For employers',
-    [Taxonomy.FOR_EVENT_ORGANIZERS]: 'For schemes organizers',
-    [Taxonomy.FOR_HEALTH_SERVICE]: 'For physicians and other therapists',
-    [Taxonomy.FOR_MUNICIPALITY]: 'For the municipality',
-    [Taxonomy.FOR_PROVIDERS]: 'For providers',
-    [Taxonomy.MEASURES]: 'Measures',
-    [Taxonomy.RIGHTS]: 'Counselling',
-    [Taxonomy.FORMS]: 'Forms',
+const productTaxonomies: {
+    [key in Taxonomy]: string;
+} = {
+    [ProductTaxonomy.ALL]: 'Alle',
+    [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
+    [ProductTaxonomy.BENEFITS]: 'Benefits',
+    [ProductTaxonomy.FOLLOWUP]: 'Follow-up',
+    [ProductTaxonomy.SERVICE]: 'Service',
+    [ProductTaxonomy.FOR_EMPLOYERS]: 'For employers',
+    [ProductTaxonomy.FOR_EVENT_ORGANIZERS]: 'For schemes organizers',
+    [ProductTaxonomy.FOR_HEALTH_SERVICE]: 'For physicians and other therapists',
+    [ProductTaxonomy.FOR_MUNICIPALITY]: 'For the municipality',
+    [ProductTaxonomy.FOR_PROVIDERS]: 'For providers',
+    [ProductTaxonomy.MEASURES]: 'Measures',
+    [ProductTaxonomy.RIGHTS]: 'Counselling',
+    [ProductTaxonomy.FORMS]: 'Forms',
+    [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Advice for jobseekers',
+    [ThemedArticlePageTaxonomy.HELP_WORK]: 'Help to get employed',
+    [ThemedArticlePageTaxonomy.WHEN_SICK]: 'When you are ill',
+    [ThemedArticlePageTaxonomy.PAYMENT]: 'Payment',
+    [ThemedArticlePageTaxonomy.COMPLAINT_RIGHTS]: 'Right to appeal',
+    [ThemedArticlePageTaxonomy.USER_SUPPORT]: 'User support',
+    [ThemedArticlePageTaxonomy.ABOUT_NAV]: 'About NAV',
+    [ThemedArticlePageTaxonomy.MEMBERSHIP_NATIONAL_INSURANCE]:
+        'Membership in Folketrygden (The National Insurance Scheme)',
+    [ThemedArticlePageTaxonomy.RECRUITMENT]: 'Recruitment',
+    [ToolsPageTaxonomy.CALCULATOR]: 'Calculator',
+    [ToolsPageTaxonomy.NAVIGATOR]: 'Navigator',
 };
 
 const areas: { [key in Area]: string } = {
