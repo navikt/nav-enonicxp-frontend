@@ -24,6 +24,7 @@ const productTaxonomies: {
     [ProductTaxonomy.MEASURES]: 'Measures',
     [ProductTaxonomy.RIGHTS]: 'Counselling',
     [ProductTaxonomy.FORMS]: 'Forms',
+    [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Advice for jobseekers',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Help to get employed',
     [ThemedArticlePageTaxonomy.WHEN_SICK]: 'When you are ill',
     [ThemedArticlePageTaxonomy.PAYMENT]: 'Payment',

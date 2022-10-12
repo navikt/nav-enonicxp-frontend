@@ -15,6 +15,7 @@ export enum ProductTaxonomy {
 }
 
 export enum ThemedArticlePageTaxonomy {
+    TIPS_JOB = 'tips_job',
     HELP_WORK = 'help_work',
     WHEN_SICK = 'when_sick',
     PAYMENT = 'payment',
