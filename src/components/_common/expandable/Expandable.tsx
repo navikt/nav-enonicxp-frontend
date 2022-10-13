@@ -55,11 +55,7 @@ export const Expandable = ({
             id={anchorId}
             className={classNames(className, style.expandableWrapper)}
         >
-            <Accordion.Item
-                renderContentWhenClosed={true}
-                open={isOpen}
-                className={style.expandable}
-            >
+            <Accordion.Item open={isOpen} className={style.expandable}>
                 <Accordion.Header onClick={toggleExpandCollapse}>
                     {title}
                 </Accordion.Header>

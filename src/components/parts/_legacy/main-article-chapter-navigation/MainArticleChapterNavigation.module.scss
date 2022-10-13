@@ -29,6 +29,7 @@ $decorWidth: 0.5rem;
             position: relative;
             text-decoration: none;
             z-index: 1;
+            font-weight: common.$navds-font-weight-bold;
 
             &:before {
                 content: ' ';

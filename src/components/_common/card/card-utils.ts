@@ -3,7 +3,7 @@ import { LinkProps } from 'types/link-props';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { ContentType } from 'types/content-props/_content-common';
 import { Audience } from 'types/component-props/_mixins';
-import { Taxonomy } from 'types/taxonomies';
+import { ProductTaxonomy } from 'types/taxonomies';
 import {
     ProductPageProps,
     SituationPageProps,
@@ -48,8 +48,11 @@ const getCardCategory = (
 
     if (audience === Audience.EMPLOYER || audience === Audience.PROVIDER) {
         return audience === Audience.EMPLOYER
-            ? getTranslatedTaxonomies([Taxonomy.FOR_EMPLOYERS], language)
-            : getTranslatedTaxonomies([Taxonomy.FOR_PROVIDERS], language);
+            ? getTranslatedTaxonomies([ProductTaxonomy.FOR_EMPLOYERS], language)
+            : getTranslatedTaxonomies(
+                  [ProductTaxonomy.FOR_PROVIDERS],
+                  language
+              );
     }
 
     return [];

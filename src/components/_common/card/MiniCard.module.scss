@@ -1,11 +1,19 @@
 @use 'src/common' as common;
 
 $illustrationSize: common.px-to-rem(64);
+$illustrationSizeSmall: common.px-to-rem(48);
 
 .illustration {
     width: $illustrationSize;
+    min-width: $illustrationSize;
     height: $illustrationSize;
     margin-right: 1rem;
+
+    @media #{common.$mq-screen-mobile-small} {
+        width: $illustrationSizeSmall;
+        min-width: $illustrationSizeSmall;
+        height: $illustrationSizeSmall;
+    }
 }
 
 .title {
@@ -19,3 +27,40 @@ $illustrationSize: common.px-to-rem(64);
     }
 }
 
+.header {
+    font-weight: common.$navds-font-weight-bold;
+    margin-bottom: 0.5rem;
+}
+
+.mini {
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid #b0b0b0; // Don't exist in @navikt/ds
+    display: inline-flex; // Ensures margins don't collapse
+    padding: common.px-to-rem(12);
+    text-decoration: none;
+    width: 100%;
+
+    &:after {
+        box-shadow: 0 0 0 2px white;
+        height: calc(100% - 2px);
+        margin: 1px;
+        width: calc(100% - 2px);
+        border-radius: 6px;
+    }
+
+    &:not(:hover):not(:active) {
+        box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
+            0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
+    }
+
+    &:hover {
+        box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),
+            0 1px 6px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(38, 38, 38, 0.12);
+    }
+
+    &:hover,
+    &:focus {
+        border: 1px solid transparent;
+    }
+}

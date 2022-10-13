@@ -8,6 +8,7 @@ import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { IllustrationPlacements } from 'types/illustrationPlacements';
+
 import {
     ProductPageProps,
     SituationPageProps,
@@ -139,7 +140,7 @@ export const ThemedPageHeader = ({
         showTimeStamp &&
         getDatesLabel('lastChanged') +
             ' ' +
-            formatDate(modifiedTime, language, true);
+            formatDate(modifiedTime, language, true, true);
 
     // This is a temporaty fix, especially for "Arbeidsavklaringspenger".
     // Will work with design to find solution for how long titles and illustration can stack better on mobile.

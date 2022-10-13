@@ -6,12 +6,13 @@ import {
     stripXpPathPrefix,
 } from '../urls';
 import { fetchPage } from './fetch-content';
-import { isMediaContent } from '../../types/media';
+import { isMediaContent } from 'types/media';
 import { errorHandler, isNotFound } from '../errors';
-import { ContentType } from '../../types/content-props/_content-common';
+import { ContentType } from 'types/content-props/_content-common';
 import {
     getTargetIfRedirect,
     isPermanentRedirect,
+    isRedirectType,
     redirectPageProps,
 } from '../redirects';
 
@@ -62,11 +63,21 @@ export const fetchPageProps = async ({
 
     if (!noRedirect) {
         const redirectTarget = getTargetIfRedirect(content);
+
         if (redirectTarget) {
             return redirectPageProps(
                 getRelativePathIfInternal(redirectTarget, isDraft),
                 isPermanentRedirect(content)
             );
+        }
+
+        // If a content type which should always be a redirect did not have a
+        // valid target we just return 404
+        if (isRedirectType(content)) {
+            return {
+                props: {},
+                notFound: true,
+            };
         }
     }
 

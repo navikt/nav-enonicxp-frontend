@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { PageNavViewStyle } from 'types/component-props/parts/page-navigation-menu';
@@ -66,7 +66,7 @@ export const PageNavigationLink = React.memo(
                         aria-hidden={true}
                     />
                 )}
-                <Label>{children}</Label>
+                <BodyShort className={style.linkText}>{children}</BodyShort>
             </LenkeBase>
         );
     }

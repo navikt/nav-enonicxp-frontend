@@ -28,6 +28,6 @@ export interface ProductCardMicroProps extends PartComponentProps {
     descriptor: PartType.ProductCardMicro;
     config: {
         header?: string;
-        card_list: ProductTarget[];
+        card_list: { targetPage: TargetPage }[];
     };
 }

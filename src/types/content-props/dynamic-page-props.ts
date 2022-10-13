@@ -6,6 +6,7 @@ import {
     ProductDetailsDataMixin,
 } from '../component-props/_mixins';
 import { ProductDetailType as OverviewType } from './product-details';
+import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from '../taxonomies';
 
 export type DynamicPageData = Partial<{
     languages: LanguageProps[];
@@ -13,11 +14,13 @@ export type DynamicPageData = Partial<{
 }>;
 
 export type ProductPageData = ProductDataMixin & DynamicPageData;
-export type ThemedArticlePageData = ProductDataMixin & DynamicPageData;
+export type ThemedArticlePageData = Omit<ProductDataMixin, 'taxonomy'> &
+    DynamicPageData & { taxonomy: ThemedArticlePageTaxonomy[] };
 export type GuidePageData = ProductDataMixin & DynamicPageData;
 export type ProductDetailsData = ProductDetailsDataMixin & DynamicPageData;
 export type SituationPageData = ProductDataMixin & DynamicPageData;
-export type ToolsPageData = ProductDataMixin & DynamicPageData;
+export type ToolsPageData = Omit<ProductDataMixin, 'taxonomy'> &
+    DynamicPageData & { taxonomy: ToolsPageTaxonomy[] };
 export type GenericPageData = ProductDataMixin & DynamicPageData;
 export type OverviewPageData = Partial<{
     productList: SimplifiedProductData[];

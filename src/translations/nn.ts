@@ -1,6 +1,10 @@
-import { DeepPartial } from '../types/util-types';
 import { MenuListItemKey } from '../types/menu-list-items';
-import { Taxonomy } from 'types/taxonomies';
+import {
+    ProductTaxonomy,
+    Taxonomy,
+    ThemedArticlePageTaxonomy,
+    ToolsPageTaxonomy,
+} from 'types/taxonomies';
 import { Area } from 'types/areas';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
@@ -18,19 +22,34 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.Shortcuts]: 'Snarvegar',
 };
 
-const productTaxonomies: { [key in Taxonomy]: string } = {
-    [Taxonomy.ALL]: 'Alle',
-    [Taxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
-    [Taxonomy.BENEFITS]: 'Pengestønad',
-    [Taxonomy.FOLLOWUP]: 'Oppfylging',
-    [Taxonomy.FOR_EMPLOYERS]: 'For arbeidsgjevarar',
-    [Taxonomy.FOR_EVENT_ORGANIZERS]: 'For tiltaksarrangørar',
-    [Taxonomy.FOR_HEALTH_SERVICE]: 'For leger og andre behandlarar',
-    [Taxonomy.FOR_MUNICIPALITY]: 'For kommunen',
-    [Taxonomy.FOR_PROVIDERS]: 'For samhandlarar',
-    [Taxonomy.MEASURES]: 'Tiltak',
-    [Taxonomy.RIGHTS]: 'Rettleiing',
-    [Taxonomy.FORMS]: 'Skjema',
+const productTaxonomies: {
+    [key in Taxonomy]: string;
+} = {
+    [ProductTaxonomy.ALL]: 'Alle',
+    [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
+    [ProductTaxonomy.BENEFITS]: 'Pengestønad',
+    [ProductTaxonomy.FOLLOWUP]: 'Oppfylging',
+    [ProductTaxonomy.SERVICE]: 'Teneste',
+    [ProductTaxonomy.FOR_EMPLOYERS]: 'For arbeidsgjevarar',
+    [ProductTaxonomy.FOR_EVENT_ORGANIZERS]: 'For tiltaksarrangørar',
+    [ProductTaxonomy.FOR_HEALTH_SERVICE]: 'For leger og andre behandlarar',
+    [ProductTaxonomy.FOR_MUNICIPALITY]: 'For kommunen',
+    [ProductTaxonomy.FOR_PROVIDERS]: 'For samhandlarar',
+    [ProductTaxonomy.MEASURES]: 'Tiltak',
+    [ProductTaxonomy.RIGHTS]: 'Rettleiing',
+    [ProductTaxonomy.FORMS]: 'Skjema',
+    [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Jobbsøkartips',
+    [ThemedArticlePageTaxonomy.HELP_WORK]: 'Hjelp til å kome i jobb',
+    [ThemedArticlePageTaxonomy.WHEN_SICK]: 'Når du er sjuk',
+    [ThemedArticlePageTaxonomy.PAYMENT]: 'Utbetaling',
+    [ThemedArticlePageTaxonomy.COMPLAINT_RIGHTS]: 'Klagerettar',
+    [ThemedArticlePageTaxonomy.USER_SUPPORT]: 'Brukarstøtte',
+    [ThemedArticlePageTaxonomy.ABOUT_NAV]: 'Om NAV',
+    [ThemedArticlePageTaxonomy.MEMBERSHIP_NATIONAL_INSURANCE]:
+        'Medlemskap i folketrygda',
+    [ThemedArticlePageTaxonomy.RECRUITMENT]: 'Rekruttering',
+    [ToolsPageTaxonomy.CALCULATOR]: 'Kalkulator',
+    [ToolsPageTaxonomy.NAVIGATOR]: 'Vegvisar',
 };
 
 const areas: { [key in Area]: string } = {
