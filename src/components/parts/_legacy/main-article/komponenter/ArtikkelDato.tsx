@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { formatDate } from '../../../../utils/datetime';
+import { formatDate } from '../../../../../utils/datetime';
 import { BodyLong } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 

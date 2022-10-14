@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ParsedHtml } from '../../../_common/parsed-html/ParsedHtml';
-import { StaticImage } from '../../../_common/image/StaticImage';
-import { ProcessedHtmlProps } from '../../../../types/processed-html-props';
+import { ParsedHtml } from '../../../../_common/parsed-html/ParsedHtml';
+import { StaticImage } from '../../../../_common/image/StaticImage';
+import { ProcessedHtmlProps } from '../../../../../types/processed-html-props';
 
 import style from './Faktaboks.module.scss';
 
