@@ -22,17 +22,11 @@
     }
 
     .header {
-        margin-bottom: 1.5rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 1px solid #d1d1d1;
+        margin-bottom: 1rem;
     }
 
     .headerWithToc {
         margin-bottom: 1.5rem;
-    }
-
-    .title {
-        margin: 0.5rem 0 1rem;
     }
 
     .text {
@@ -60,6 +54,9 @@
             outline: 0.2109rem solid common.$navds-semantic-color-focus;
         }
 
+        figcaption {
+            color: var(--navds-global-color-gray-500);
+        }
         img {
             display: block;
             max-width: 100%;

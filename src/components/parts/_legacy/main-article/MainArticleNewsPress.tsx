@@ -1,6 +1,6 @@
 import React from 'react';
 import { translator } from 'translations';
-import { Heading, Ingress } from '@navikt/ds-react';
+import { Ingress } from '@navikt/ds-react';
 import Innholdsfortegnelse from './komponenter/Innholdsfortegnelse';
 import { SosialeMedier } from './komponenter/SosialeMedier';
 import ArtikkelDato from './komponenter/ArtikkelDato';
@@ -15,6 +15,7 @@ import ErrorPage404 from '../../../../pages/404';
 
 import style from './MainArticleNewsPress.module.scss';
 import classNames from 'classnames';
+import { NewsPressHeader } from './komponenter/NewsPressHeader';
 
 type Props = MainArticleProps | MainArticleChapterProps;
 
@@ -53,6 +54,7 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
         data.text?.processedHtml,
         hasTableOfContest
     );
+
     const headerClassName =
         innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
 
@@ -61,21 +63,18 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
             className={classNames(style.mainArticle, style.newsPressBackground)}
         >
             <header className={headerClassName}>
+                <NewsPressHeader
+                    type={data.contentType}
+                    title={props.displayName}
+                />
                 <ArtikkelDato
                     publish={props.publish}
                     createdTime={props.createdTime}
                     modifiedTime={props.modifiedTime}
                     publishLabel={getLabel('published')}
                     modifiedLabel={getLabel('lastChanged')}
+                    type="press"
                 />
-                <Heading
-                    level="1"
-                    size="xlarge"
-                    className={style.title}
-                    spacing
-                >
-                    {props.displayName}
-                </Heading>
                 {data.ingress && <Ingress>{data.ingress}</Ingress>}
                 <Innholdsfortegnelse
                     innholdsfortegnelse={innholdsfortegnelse}

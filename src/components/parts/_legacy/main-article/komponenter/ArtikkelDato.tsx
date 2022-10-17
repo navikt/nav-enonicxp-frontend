@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { formatDate } from '../../../../../utils/datetime';
-import { BodyLong } from '@navikt/ds-react';
+import { BodyLong, Detail } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+
+import styles from './ArtikkelDato.module.scss';
+import classNames from 'classnames';
 
 interface Props {
     publish?: {
@@ -11,23 +14,51 @@ interface Props {
     modifiedTime: string;
     publishLabel: string;
     modifiedLabel: string;
+    type?: 'normal' | 'press';
 }
 
 const ArtikkelDato = (props: Props) => {
     const { language } = usePageConfig();
-    const { publish, createdTime, modifiedTime, publishLabel, modifiedLabel } =
-        props;
+    const {
+        publish,
+        createdTime,
+        modifiedTime,
+        publishLabel,
+        modifiedLabel,
+        type = 'normal',
+    } = props;
+
+    const hasMonthName = type === 'press';
+    const hasYear = type === 'press';
+
     const publishedDate = publish?.first ?? createdTime;
     const publishedString = `${publishLabel} ${formatDate(
         publishedDate,
-        language
+        language,
+        hasMonthName,
+        hasYear
     )}`;
     let modifiedString = '';
     if (new Date(modifiedTime) > new Date(publishedDate)) {
         modifiedString = ` ${modifiedLabel} ${formatDate(
             modifiedTime,
-            language
+            language,
+            hasMonthName,
+            hasYear
         )}`;
+    }
+    if (type === 'press') {
+        return (
+            <Detail className={classNames(styles.artikkelDato, styles.small)}>
+                {publishedString}
+                {modifiedString && (
+                    <>
+                        <span aria-hidden="true">{','}</span>
+                        {modifiedString.toLowerCase()}
+                    </>
+                )}
+            </Detail>
+        );
     }
     return (
         <BodyLong as={'time'} dateTime={publishedDate}>

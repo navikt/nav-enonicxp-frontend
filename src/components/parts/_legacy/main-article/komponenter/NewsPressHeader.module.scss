@@ -1,0 +1,30 @@
+@use 'src/common' as common;
+
+.newsPressHeader {
+    display: block;
+    border-bottom: 3px solid var(--navds-global-color-gray-400);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+
+    @include common.full-width-mixin();
+    margin-right: calc((100vw - 100%) / -1); // Override margin-right
+}
+
+.tagWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.tagLabel {
+    color: var(--navds-global-color-purple-500);
+    padding-left: 0.5rem;
+    text-transform: uppercase;
+    font-weight: common.$navds-font-weight-bold;
+}
+
+.tagIcon {
+    width: 1rem;
+    height: 1rem;
+}
