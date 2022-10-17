@@ -60,7 +60,10 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
 
     return (
         <article
-            className={classNames(style.mainArticle, style.newsPressBackground)}
+            className={classNames(
+                style.newsPressArticle,
+                style.newsPressBackground
+            )}
         >
             <header className={headerClassName}>
                 <NewsPressHeader

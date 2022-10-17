@@ -4,7 +4,7 @@
     background-color: white;
 }
 
-.mainArticle {
+.newsPressArticle {
     width: 100%;
     background: white;
     border-radius: 0.25rem;
@@ -31,7 +31,7 @@
 
     .text {
         p {
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
     }
 
@@ -83,7 +83,7 @@
         h4,
         .h4 {
             font-size: common.$navds-font-size-heading-small;
-            margin: 1.75rem 0 0.6875rem;
+            margin: 3rem 0 0.6875rem;
 
             &:first-child {
                 margin-top: 0;
