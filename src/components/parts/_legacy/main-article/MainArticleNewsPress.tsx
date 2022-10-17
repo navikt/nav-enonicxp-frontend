@@ -14,6 +14,7 @@ import { MainArticleChapterProps } from '../../../../types/content-props/main-ar
 import ErrorPage404 from '../../../../pages/404';
 
 import style from './MainArticleNewsPress.module.scss';
+import classNames from 'classnames';
 
 type Props = MainArticleProps | MainArticleChapterProps;
 
@@ -56,7 +57,9 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
         innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
 
     return (
-        <article className={style.mainArticle}>
+        <article
+            className={classNames(style.mainArticle, style.newsPressBackground)}
+        >
             <header className={headerClassName}>
                 <ArtikkelDato
                     publish={props.publish}

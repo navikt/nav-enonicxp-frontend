@@ -1,5 +1,9 @@
 @use 'src/common' as common;
 
+:global(#__next):has(.newsPressBackground) {
+    background-color: white;
+}
+
 .mainArticle {
     width: 100%;
     background: white;
