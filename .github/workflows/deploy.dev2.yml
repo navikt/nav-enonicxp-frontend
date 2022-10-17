@@ -14,7 +14,7 @@ jobs:
       REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev2
       DECORATOR_FALLBACK_URL: https://dekoratoren.ekstern.dev.nav.no
       XP_ORIGIN: https://www-q6.nav.no
-      INNLOGGINGSSTATUS_URL: https://innloggingsstatus.dev.nav.no/person/innloggingsstatus/auth
+      INNLOGGINGSSTATUS_URL: https://www.dev.nav.no/person/nav-dekoratoren-api/auth
       RELEASE_TAG: dev2-${{ github.sha }}
       NAVNO_API_URL: https://www.dev.nav.no/person/navno-api
       FAILOVER_ORIGIN: https://www-2-failover.dev.nav.no
