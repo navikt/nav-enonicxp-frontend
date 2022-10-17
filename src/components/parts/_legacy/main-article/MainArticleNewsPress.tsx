@@ -89,7 +89,11 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
                 className={style.text}
                 hasTableOfContents={hasTableOfContest}
             />
-            <Faktaboks fakta={data.fact} label={getLabel('facts')} />
+            <Faktaboks
+                fakta={data.fact}
+                label={getLabel('facts')}
+                version="2"
+            />
             <SosialeMedier
                 social={data.social}
                 displayName={props.displayName}

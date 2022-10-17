@@ -1,4 +1,9 @@
-.facts {
+.facts_v1 {
+    background: #f1f1f1;
+    border: 1px solid #d1d1d1;
+    padding: 1.5rem;
+    margin-top: 4.2rem;
+
     p {
         margin-bottom: 1rem;
     }
@@ -25,8 +30,23 @@
             width: 2rem;
         }
     }
-    background: #f1f1f1;
-    border: 1px solid #d1d1d1;
+}
+
+.facts_v2 {
+    background: var(--navds-global-color-purple-50);
     padding: 1.5rem;
-    margin-top: 4.2rem;
+    margin-top: 2.75rem;
+    border-left: 8px solid var(--navds-global-color-purple-300);
+
+    p {
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        color: var(--navds-global-color-purple-500);
+    }
+
+    .decorated {
+        margin-bottom: 1.4rem;
+    }
 }
