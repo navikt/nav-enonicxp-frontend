@@ -6,20 +6,18 @@
 
 .newsPressArticle {
     width: 100%;
-    background: white;
     border-radius: 0.25rem;
-    counter-reset: figures;
 
     @media #{common.$mq-screen-desktop} {
-        padding: 2.8rem;
+        padding: 0 2.8rem 2.8rem 2.8rem;
     }
 
     @media #{common.$mq-screen-mobile} {
-        padding: 1.5rem;
+        padding: 0 0.5rem 0.5rem 0.5rem;
     }
 
     @media #{common.$mq-screen-tablet} {
-        padding: 1.5rem;
+        padding: 0 1.5rem 1.5rem 1.5rem;
     }
 
     .header {
@@ -56,23 +54,17 @@
         }
 
         figure {
-            counter-increment: figures;
             margin: 0 0 1.75rem 0;
         }
 
         figcaption {
-            margin: 0.5rem 0;
+            color: var(--navds-semantic-color-text);
             font-size: var(--navds-font-size-small);
             letter-spacing: 0.004em;
             line-height: var(--navds-font-line-height-medium);
             margin: 0.5rem 0;
-            color: var(--navds-semantic-color-text);
-
-            &:before {
-                content: 'Figur ' counter(figures) ': ';
-                font-weight: common.$navds-font-weight-bold;
-            }
         }
+
         img {
             display: block;
             max-width: 100%;
@@ -98,12 +90,21 @@
         .h3,
         h4,
         .h4 {
-            font-size: common.$navds-font-size-heading-small;
             margin: 2.5rem 0 0.6875rem;
 
             &:first-child {
                 margin-top: 0;
             }
+        }
+
+        h2 {
+            font-size: common.$navds-font-size-heading-large;
+        }
+        h3 {
+            font-size: common.$navds-font-size-heading-medium;
+        }
+        h4 {
+            font-size: common.$navds-font-size-heading-small;
         }
 
         ul,

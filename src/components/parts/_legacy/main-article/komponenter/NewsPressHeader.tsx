@@ -39,6 +39,7 @@ export const NewsPressHeader = ({
             <Heading level={'1'} size={'xlarge'}>
                 {title}
             </Heading>
+            <div className={styles.newsPressLine} />
         </div>
     );
 };

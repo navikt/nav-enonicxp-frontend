@@ -2,11 +2,19 @@
 
 .newsPressHeader {
     display: block;
-    border-bottom: 3px solid var(--navds-global-color-gray-400);
     padding-bottom: 0.75rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 
     @include common.full-width-mixin();
+}
+
+.newsPressLine {
+    border-bottom: 3px solid var(--navds-global-color-gray-400);
+    margin-top: 1rem;
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100vw;
 }
 
 .tagWrapper {
