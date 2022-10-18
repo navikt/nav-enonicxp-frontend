@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import { translator } from 'translations';
 import { Ingress } from '@navikt/ds-react';
 import Innholdsfortegnelse from './komponenter/Innholdsfortegnelse';
@@ -12,10 +13,9 @@ import { ContentType } from '../../../../types/content-props/_content-common';
 import { MainArticleProps } from '../../../../types/content-props/main-article-props';
 import { MainArticleChapterProps } from '../../../../types/content-props/main-article-chapter-props';
 import ErrorPage404 from '../../../../pages/404';
+import { NewsPressHeader } from './komponenter/NewsPressHeader';
 
 import style from './MainArticleNewsPress.module.scss';
-import classNames from 'classnames';
-import { NewsPressHeader } from './komponenter/NewsPressHeader';
 
 type Props = MainArticleProps | MainArticleChapterProps;
 
@@ -77,7 +77,7 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
                     modifiedTime={props.modifiedTime}
                     publishLabel={getLabel('published')}
                     modifiedLabel={getLabel('lastChanged')}
-                    type="press"
+                    type="newsPress"
                 />
                 {data.ingress && <Ingress>{data.ingress}</Ingress>}
                 <Innholdsfortegnelse

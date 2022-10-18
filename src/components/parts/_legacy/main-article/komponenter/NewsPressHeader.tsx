@@ -9,15 +9,15 @@ import styles from './NewsPressHeader.module.scss';
 import { Language, translator } from 'translations';
 
 type NewsPressHeaderProps = {
-    type: ArticleContentType;
-    title: string;
     language: Language;
+    title: string;
+    type: ArticleContentType;
 };
 
 export const NewsPressHeader = ({
-    type,
-    title,
     language,
+    title,
+    type,
 }: NewsPressHeaderProps) => {
     const icon = type === 'news' ? newsPaper : pressSpeaker;
     const getLabel = translator('mainArticle', language);

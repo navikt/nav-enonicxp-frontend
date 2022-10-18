@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { formatDate } from '../../../../../utils/datetime';
+import classNames from 'classnames';
 import { BodyLong, Detail } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './ArtikkelDato.module.scss';
-import classNames from 'classnames';
 
 interface Props {
     publish?: {
@@ -14,7 +14,7 @@ interface Props {
     modifiedTime: string;
     publishLabel: string;
     modifiedLabel: string;
-    type?: 'normal' | 'press';
+    type?: 'normal' | 'newsPress';
 }
 
 const ArtikkelDato = (props: Props) => {
@@ -28,8 +28,8 @@ const ArtikkelDato = (props: Props) => {
         type = 'normal',
     } = props;
 
-    const hasMonthName = type === 'press';
-    const hasYear = type === 'press';
+    const hasMonthName = type === 'newsPress';
+    const hasYear = type === 'newsPress';
 
     const publishedDate = publish?.first ?? createdTime;
     const publishedString = `${publishLabel} ${formatDate(
@@ -47,7 +47,7 @@ const ArtikkelDato = (props: Props) => {
             hasYear
         )}`;
     }
-    if (type === 'press') {
+    if (type === 'newsPress') {
         return (
             <Detail className={classNames(styles.artikkelDato, styles.small)}>
                 {publishedString}

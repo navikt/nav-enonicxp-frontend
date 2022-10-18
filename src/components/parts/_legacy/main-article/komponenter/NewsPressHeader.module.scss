@@ -10,28 +10,28 @@
 
 .newsPressLine {
     border-bottom: 3px solid var(--navds-global-color-gray-400);
-    margin-top: 1rem;
     display: block;
-    position: absolute;
     left: 0;
+    margin-top: 1rem;
+    position: absolute;
     width: 100vw;
 }
 
 .tagWrapper {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    align-items: center;
     margin-bottom: 0.25rem;
 }
 
 .tagLabel {
     color: var(--navds-global-color-purple-500);
+    font-weight: common.$navds-font-weight-bold;
     padding-left: 0.5rem;
     text-transform: uppercase;
-    font-weight: common.$navds-font-weight-bold;
 }
 
 .tagIcon {
-    width: 1rem;
     height: 1rem;
+    width: 1rem;
 }
