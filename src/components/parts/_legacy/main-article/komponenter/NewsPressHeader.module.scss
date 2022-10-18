@@ -7,7 +7,6 @@
     margin-bottom: 1.5rem;
 
     @include common.full-width-mixin();
-    margin-right: calc((100vw - 100%) / -1); // Override margin-right
 }
 
 .tagWrapper {
