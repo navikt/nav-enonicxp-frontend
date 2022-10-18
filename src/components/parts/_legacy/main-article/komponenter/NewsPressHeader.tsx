@@ -6,11 +6,22 @@ import pressSpeaker from '/public/gfx/press-speaker-icon.svg';
 import { StaticImage } from 'components/_common/image/StaticImage';
 
 import styles from './NewsPressHeader.module.scss';
+import { Language, translator } from 'translations';
 
-type NewsPressHeaderProps = { type: ArticleContentType; title: string };
+type NewsPressHeaderProps = {
+    type: ArticleContentType;
+    title: string;
+    language: Language;
+};
 
-export const NewsPressHeader = ({ type, title }: NewsPressHeaderProps) => {
+export const NewsPressHeader = ({
+    type,
+    title,
+    language,
+}: NewsPressHeaderProps) => {
     const icon = type === 'news' ? newsPaper : pressSpeaker;
+    const getLabel = translator('mainArticle', language);
+
     return (
         <div className={styles.newsPressHeader}>
             <div className={styles.tagWrapper}>
@@ -19,7 +30,7 @@ export const NewsPressHeader = ({ type, title }: NewsPressHeaderProps) => {
                     alt={''}
                     className={styles.tagIcon}
                 />
-                <Detail className={styles.tagLabel}>{type}</Detail>
+                <Detail className={styles.tagLabel}>{getLabel(type)}</Detail>
             </div>
             <Heading level={'1'} size={'xlarge'}>
                 {title}

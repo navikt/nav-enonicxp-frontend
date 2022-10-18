@@ -113,6 +113,8 @@ export const translationsBundleNb = {
         published: 'Publisert',
         tableOfContents: 'Innholdsfortegnelse',
         contents: 'Innholdsoversikt',
+        news: 'Nyheter',
+        pressRelease: 'Pressemelding',
     },
     mainPanels: {
         label: 'Hovedvalg',

@@ -69,6 +69,7 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
                 <NewsPressHeader
                     type={data.contentType}
                     title={props.displayName}
+                    language={props.language}
                 />
                 <ArtikkelDato
                     publish={props.publish}
