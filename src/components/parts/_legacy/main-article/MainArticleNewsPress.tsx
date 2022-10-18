@@ -58,6 +58,8 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
     const headerClassName =
         innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
 
+    console.log(data.text);
+
     return (
         <article
             className={classNames(
