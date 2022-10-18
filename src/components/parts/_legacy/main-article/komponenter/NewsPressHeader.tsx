@@ -22,6 +22,8 @@ export const NewsPressHeader = ({
     const icon = type === 'news' ? newsPaper : pressSpeaker;
     const getLabel = translator('mainArticle', language);
 
+    const tagLocaleId = type === 'news' ? 'news' : 'pressRelease';
+
     return (
         <div className={styles.newsPressHeader}>
             <div className={styles.tagWrapper}>
@@ -30,7 +32,9 @@ export const NewsPressHeader = ({
                     alt={''}
                     className={styles.tagIcon}
                 />
-                <Detail className={styles.tagLabel}>{getLabel(type)}</Detail>
+                <Detail className={styles.tagLabel}>
+                    {getLabel(tagLocaleId)}
+                </Detail>
             </div>
             <Heading level={'1'} size={'xlarge'}>
                 {title}
