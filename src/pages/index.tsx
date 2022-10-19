@@ -1,7 +1,21 @@
 import { PageBase } from 'components/PageBase';
 import { getStaticProps as getStaticPropsMaster } from 'pages/[...pathRouter]';
+import { GetStaticProps } from 'next';
+import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 
-export const getStaticProps = getStaticPropsMaster;
+const isDevBuild =
+    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD &&
+    process.env.ENV !== 'prod';
+
+const getStaticPropsBuildDev: GetStaticProps = async () => {
+    return {
+        notFound: true,
+    };
+};
+
+export const getStaticProps = isDevBuild
+    ? getStaticPropsBuildDev
+    : getStaticPropsMaster;
 
 export default PageBase;
 
