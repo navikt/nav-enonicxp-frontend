@@ -71,6 +71,14 @@ const fetchAndHandleErrorsBuildtime = async (
             return res.json();
         }
 
+        if (process.env.ENV !== 'prod') {
+            return makeErrorProps(
+                idOrPath,
+                `Build-time fetch error: ${res.status} - ${res.statusText}`,
+                404
+            );
+        }
+
         if (retries > 0) {
             return fetchAndHandleErrorsBuildtime({
                 idOrPath,
