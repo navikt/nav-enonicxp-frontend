@@ -1,14 +1,9 @@
 const fs = require('fs');
-const path = require('next/dist/shared/lib/isomorphic/path');
-
-const pageCacheDir = process.env.PAGE_CACHE_DIR;
-
-const getFsPath = (pathname) => {
-    return { filePath: path.join(pageCacheDir, pathname), isAppPath: false };
-};
 
 const invalidateCachedPage = (path, app) => {
     const pagePath = path === '/' ? '/index' : path;
+    const { getFsPath } =
+        app.server.responseCache.incrementalCache.cacheHandler;
 
     try {
         const htmlPath = getFsPath(`${pagePath}.html`);
@@ -22,7 +17,9 @@ const invalidateCachedPage = (path, app) => {
             fs.unlinkSync(jsonPath);
         }
 
-        app.server.incrementalCache.cacheHandler.memoryCache.del(pagePath);
+        app.server.responseCache.incrementalCache.cacheHandler.memoryCache.del(
+            pagePath
+        );
 
         console.log(`Invalidated page cache for path ${pagePath}`);
     } catch (e) {
@@ -33,6 +30,9 @@ const invalidateCachedPage = (path, app) => {
 };
 
 const wipePageCache = (app) => {
+    const { getFsPath } =
+        app.server.responseCache.incrementalCache.cacheHandler;
+
     try {
         const pageCacheBasePath = getFsPath('');
 
@@ -40,7 +40,7 @@ const wipePageCache = (app) => {
             fs.rmSync(pageCacheBasePath, { recursive: true });
         }
 
-        app.server.incrementalCache.cacheHandler.memoryCache.reset();
+        app.server.responseCache.incrementalCache.cacheHandler.memoryCache.reset();
 
         console.log('Wiped all cached pages!');
         return true;
@@ -118,5 +118,4 @@ module.exports = {
     handleInvalidateReq,
     handleInvalidateAllReq,
     setCacheKey,
-    getFsPath,
 };

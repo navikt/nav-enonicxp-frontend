@@ -10,7 +10,6 @@ const {
     handleInvalidateReq,
     handleInvalidateAllReq,
     setCacheKey,
-    getFsPath,
 } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
 
