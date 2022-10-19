@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 import classNames from 'classnames';
@@ -33,36 +33,10 @@ const getChapters = (contentProps: ContentProps) => {
 
 export const MainArticleChapterNavigation = (props: ContentProps) => {
     const { language } = usePageConfig();
-    const [anchorTop, setAnchorTop] = React.useState(0);
-
-    const updateMenuOffset = () => {
-        const header = document.getElementById('main-article-header-anchor');
-        const dateAnchor = document.getElementById('main-article-date-anchor');
-
-        if (dateAnchor && header) {
-            const headerTop = header.getBoundingClientRect().top;
-            const dateAnchorTop = dateAnchor.getBoundingClientRect().top;
-
-            const menuOffsetTop =
-                window.innerWidth > 768 ? dateAnchorTop - headerTop - 32 : 0;
-
-            setAnchorTop(menuOffsetTop);
-        }
-    };
-
-    useEffect(() => {
-        updateMenuOffset();
-        window.addEventListener('resize', updateMenuOffset);
-
-        return () => {
-            window.removeEventListener('resize', updateMenuOffset);
-        };
-    }, []);
 
     const chapters = getChapters(props);
     if (!chapters || chapters.length === 0) {
-        // Still need to offset the anchor to account for the header
-        return <div style={{ marginTop: `${anchorTop}px` }} />;
+        return null;
     }
 
     const getLabel = translator('mainArticle', language);
@@ -75,7 +49,7 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
     return (
         <nav
             className={style.mainArticleChapterNavigation}
-            style={{ marginTop: `${anchorTop}px` }}
+            id="chapter-container"
         >
             <Heading level="2" size="medium" className={style.title}>
                 {getLabel('contents')}

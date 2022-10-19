@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { translator } from 'translations';
 import { Ingress } from '@navikt/ds-react';
@@ -38,13 +38,47 @@ const getPropsToRender = (propsInitial: Props) => {
 
 export const MainArticleNewsPress = (propsInitial: Props) => {
     const props = getPropsToRender(propsInitial);
+
+    const updateMenuOffset = () => {
+        const header = document.getElementById('main-article-header-anchor');
+        const dateAnchor = document.getElementById('main-article-date-anchor');
+
+        if (dateAnchor && header) {
+            const headerTop = header.getBoundingClientRect().top;
+            const dateAnchorTop = dateAnchor.getBoundingClientRect().top;
+
+            const menuOffsetTop =
+                window.innerWidth > 768 ? dateAnchorTop - headerTop : 0;
+
+            const chapterContainer =
+                document.getElementById('chapter-container');
+            const linkListContainer = document.getElementById(
+                'link-list-container'
+            );
+
+            if (chapterContainer) {
+                chapterContainer.style.marginTop = `${menuOffsetTop - 32}px`;
+            } else if (linkListContainer) {
+                linkListContainer.style.marginTop = `${menuOffsetTop}px`;
+            }
+        }
+    };
+
+    useEffect(() => {
+        updateMenuOffset();
+        window.addEventListener('resize', updateMenuOffset);
+
+        return () => {
+            window.removeEventListener('resize', updateMenuOffset);
+        };
+    }, []);
+
     if (!props) {
         console.error(
             `Misplaced MainArticle part on content type ${propsInitial.__typename} - ${propsInitial._path} - ${propsInitial._id}`
         );
         return <ErrorPage404 />;
     }
-
     const { data } = props;
     const getLabel = translator('mainArticle', props.language);
     const hasTableOfContest =
