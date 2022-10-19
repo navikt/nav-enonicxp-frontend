@@ -3,7 +3,9 @@ const path = require('next/dist/shared/lib/isomorphic/path');
 
 const pageCacheDir = process.env.PAGE_CACHE_DIR;
 
-const getFsPath = (pathname) => path.join(pageCacheDir, pathname);
+const getFsPath = (pathname) => {
+    return { filePath: path.join(pageCacheDir, pathname), isAppPath: false };
+};
 
 const invalidateCachedPage = (path, app) => {
     const pagePath = path === '/' ? '/index' : path;

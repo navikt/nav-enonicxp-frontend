@@ -52,6 +52,8 @@ const logLargePageData = (
 };
 
 const getStaticPropsRegular: GetStaticProps = async (context) => {
+    console.log(context);
+
     const pageProps = await fetchPageProps({
         routerQuery: context?.params?.pathRouter,
     });
