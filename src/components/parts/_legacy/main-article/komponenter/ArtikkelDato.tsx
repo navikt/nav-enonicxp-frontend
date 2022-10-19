@@ -49,7 +49,10 @@ const ArtikkelDato = (props: Props) => {
     }
     if (type === 'newsPress') {
         return (
-            <Detail className={classNames(styles.artikkelDato, styles.small)}>
+            <Detail
+                className={classNames(styles.artikkelDato, styles.small)}
+                id="main-article-date-anchor"
+            >
                 {publishedString}
                 {modifiedString && (
                     <>

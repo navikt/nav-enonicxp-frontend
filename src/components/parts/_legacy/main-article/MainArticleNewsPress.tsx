@@ -65,7 +65,7 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
                 style.newsPressBackground
             )}
         >
-            <header className={headerClassName}>
+            <header className={headerClassName} id="main-article-header-anchor">
                 <NewsPressHeader
                     type={data.contentType}
                     title={props.displayName}
