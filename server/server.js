@@ -46,8 +46,6 @@ nextApp.prepare().then(() => {
 
     const currentBuildId = nextApp.server.getBuildId();
 
-    console.log(`Build id: ${currentBuildId}`);
-
     const isFailover = IS_FAILOVER_INSTANCE === 'true';
 
     if (!isFailover && PAGE_CACHE_DIR) {
