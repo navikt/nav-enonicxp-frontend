@@ -56,10 +56,19 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
                 'link-list-container'
             );
 
-            if (chapterContainer) {
+            const isMobile = window.innerWidth < 768;
+
+            if (chapterContainer && !isMobile) {
                 chapterContainer.style.marginTop = `${menuOffsetTop - 32}px`;
-            } else if (linkListContainer) {
+            } else if (linkListContainer && !isMobile) {
                 linkListContainer.style.marginTop = `${menuOffsetTop}px`;
+            } else {
+                if (chapterContainer) {
+                    chapterContainer.style.marginTop = '0';
+                }
+                if (linkListContainer) {
+                    linkListContainer.style.marginTop = '0';
+                }
             }
         }
     };
