@@ -1,11 +1,12 @@
 import { PageBase } from 'components/PageBase';
-import { getStaticProps as getStaticPropsMaster } from 'pages/[...pathRouter]';
 import { GetStaticProps } from 'next';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
+import { fetchPageProps } from 'utils/fetch/fetch-page-props';
+import Config from 'config';
 
 const isDevBuild =
     process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD &&
-    process.env.ENV !== 'prod';
+    (process.env.ENV === 'dev1' || process.env.ENV === 'dev2');
 
 // The build workflow on GHA does not have access to our dev-backend, so we just return not found for this page on build
 const getStaticPropsBuildDev: GetStaticProps = async () => {
@@ -14,9 +15,22 @@ const getStaticPropsBuildDev: GetStaticProps = async () => {
     };
 };
 
+const getStaticPropsNormal: GetStaticProps = async () => {
+    console.log('Fetching index page props');
+
+    const pageProps = await fetchPageProps({
+        routerQuery: '',
+    });
+
+    return {
+        ...pageProps,
+        revalidate: Config.vars.revalidatePeriod,
+    };
+};
+
 export const getStaticProps = isDevBuild
     ? getStaticPropsBuildDev
-    : getStaticPropsMaster;
+    : getStaticPropsNormal;
 
 export default PageBase;
 
