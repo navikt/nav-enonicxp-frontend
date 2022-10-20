@@ -58,13 +58,15 @@ const wipePageCache = async (nextApp) => {
 const handleInvalidateAllReq = (app) => (req, res) => {
     const { eventid } = req.headers;
 
-    const success = wipePageCache(app);
-
-    return success
-        ? res
-              .status(200)
-              .send(`Successfully wiped page cache - event ${eventid}`)
-        : res.status(500).send(`Failed to wipe page cache! - event ${eventid}`);
+    wipePageCache(app).then((success) => {
+        success
+            ? res
+                  .status(200)
+                  .send(`Successfully wiped page cache - event id ${eventid}`)
+            : res
+                  .status(500)
+                  .send(`Failed to wipe page cache! - event id ${eventid}`);
+    });
 };
 
 let currentCacheTimestamp = 0;
@@ -105,7 +107,7 @@ const handleInvalidateReq = (app) => (req, res) => {
 
     paths.forEach((path) => invalidateCachedPage(path, app));
 
-    const msg = `Received cache invalidation event for ${paths.length} paths - event ${eventid}`;
+    const msg = `Received cache invalidation event for ${paths.length} paths - event id ${eventid}`;
     console.log(msg);
 
     return res.status(200).send(msg);
