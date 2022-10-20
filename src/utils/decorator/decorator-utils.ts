@@ -84,9 +84,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         content;
 
     if (!_path) {
-        console.error(
-            `Content missing _path field - ${JSON.stringify(content)}`
-        );
+        console.error(`Content missing _path field`, content);
     }
 
     const rolePath = _path?.split('/')[3];
