@@ -40,7 +40,7 @@ Error.getInitialProps = async (context): Promise<ContentProps> => {
     if (process.env.IS_FAILOVER_INSTANCE !== 'true') {
         const failoverHtml = await fetchFailoverHtml(asPath);
 
-        if (failoverHtml) {
+        if (typeof failoverHtml === 'string') {
             return res.status(200).send(failoverHtml);
         }
     }
