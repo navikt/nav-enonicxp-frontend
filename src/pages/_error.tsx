@@ -38,10 +38,14 @@ Error.getInitialProps = async (context): Promise<ContentProps> => {
     }
 
     if (process.env.IS_FAILOVER_INSTANCE !== 'true') {
+        console.log(`Fetching failover html for ${asPath}`);
         const failoverHtml = await fetchFailoverHtml(asPath);
 
         if (typeof failoverHtml === 'string') {
-            return res.status(200).send(failoverHtml);
+            res.status(200).send(failoverHtml);
+            return;
+        } else {
+            console.error(`Failover html is not text!`);
         }
     }
 
