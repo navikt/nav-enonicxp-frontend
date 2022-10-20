@@ -82,7 +82,14 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 
     const { __typename, _path, breadcrumbs, language, data, editorView } =
         content;
-    const rolePath = _path.split('/')[3];
+
+    if (!_path) {
+        console.error(
+            `Content missing _path field - ${JSON.stringify(content)}`
+        );
+    }
+
+    const rolePath = _path?.split('/')[3];
     const context =
         audienceToRoleContext[data?.audience] || pathToRoleContext[rolePath];
     const decoratorLanguage = getDecoratorLangFromXpLang(language);
