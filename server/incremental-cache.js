@@ -33,11 +33,12 @@ const invalidateCachedPage = async (path, nextApp) => {
         });
 };
 
-const wipePageCache = (nextApp) => {
+const wipePageCache = async (nextApp) => {
     try {
-        const pageCacheBasePath =
-            nextApp.server.responseCache.incrementalCache.cacheHandler.getFsPath(
-                ''
+        const { filePath: pageCacheBasePath } =
+            await nextApp.server.responseCache.incrementalCache.cacheHandler.getFsPath(
+                '',
+                false
             );
 
         if (fs.existsSync(pageCacheBasePath)) {
