@@ -25,11 +25,18 @@ export const VersionSelectorPublished = ({
     );
 
     useEffect(() => {
+        console.log(timeRequested, versionTimestamps);
         // Reset the current selection when receiving live content
         if (!timeRequested) {
             setSelectedDateTime(currentVersionTimestamp);
+        } else if (
+            versionTimestamps.some(
+                (versionTimestamp) => versionTimestamp === timeRequested
+            )
+        ) {
+            setSelectedDateTime(timeRequested);
         }
-    }, [timeRequested, currentVersionTimestamp]);
+    }, [timeRequested, currentVersionTimestamp, versionTimestamps]);
 
     if (!currentVersionTimestamp) {
         return <div>{'Fant ingen publiseringer for dette innholdet'}</div>;
@@ -47,7 +54,11 @@ export const VersionSelectorPublished = ({
                 className={style.select}
             >
                 {versionTimestamps.map((timestamp, index) => (
-                    <option value={timestamp} key={index}>
+                    <option
+                        value={timestamp}
+                        selected={timestamp === selectedDateTime}
+                        key={index}
+                    >
                         {formatDateTime(timestamp, 'nb', true)}
                     </option>
                 ))}

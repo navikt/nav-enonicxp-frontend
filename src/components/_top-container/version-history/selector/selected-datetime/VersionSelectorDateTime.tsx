@@ -37,6 +37,10 @@ export const VersionSelectorDateTime = ({
             const [currentDate, currentTime] = getCurrentDateAndTime();
             setDateSelected(currentDate);
             setTimeSelected(currentTime);
+        } else {
+            const [requestedDate, requestedTime] = timeRequested.split('T');
+            setDateSelected(requestedDate);
+            setTimeSelected(requestedTime);
         }
     }, [timeRequested]);
 
