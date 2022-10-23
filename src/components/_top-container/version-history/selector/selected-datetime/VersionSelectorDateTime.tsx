@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Checkbox, Label } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { getCurrentDateAndTime, getUtcTimeFromLocal } from 'utils/datetime';
+import {
+    getCurrentDateAndTime,
+    getCurrentISODate,
+    getUtcTimeFromLocal,
+} from 'utils/datetime';
 import { Branch } from 'types/branch';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
@@ -21,13 +25,11 @@ export const VersionSelectorDateTime = ({
 }: Props) => {
     const { editorView, timeRequested } = content;
 
-    const [currentDate, currentTime] = getCurrentDateAndTime();
-
     const nbTime = dayjs(timeRequested).locale('nb').format();
 
     const [initialDate, initialTime] = timeRequested
         ? nbTime.split('T')
-        : [currentDate, currentTime];
+        : getCurrentDateAndTime();
 
     const [dateSelected, setDateSelected] = useState(initialDate);
     const [timeSelected, setTimeSelected] = useState(initialTime);
@@ -62,7 +64,7 @@ export const VersionSelectorDateTime = ({
                     }}
                     aria-labelledby={'version-selector-label'}
                     min={startDate}
-                    max={currentDate}
+                    max={getCurrentISODate()}
                     value={dateSelected}
                 />
             </div>

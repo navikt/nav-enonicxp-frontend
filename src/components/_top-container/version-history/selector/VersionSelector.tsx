@@ -59,7 +59,7 @@ export const VersionSelector = ({
                 <div className={style.typeSelector}>
                     <RadioGroup
                         legend={'Velg tidspunkt'}
-                        defaultValue={selectorType}
+                        value={selectorType}
                         onChange={(value) => {
                             setSelectorType(value as SelectorType);
                         }}
