@@ -24,11 +24,13 @@ export const VersionSelector = ({
 }: Props) => {
     const { editorView, timeRequested, versionTimestamps } = content;
 
-    const [selectorType, setSelectorType] = useState<SelectorType>('datetime');
-
     // Set the selection to a specific version if it was previously selected by the user
     const selectedVersion = versionTimestamps.find(
         (versionTimestamp) => versionTimestamp === timeRequested
+    );
+
+    const [selectorType, setSelectorType] = useState<SelectorType>(
+        selectedVersion ? 'published' : 'datetime'
     );
 
     useEffect(() => {
@@ -71,16 +73,16 @@ export const VersionSelector = ({
                     </RadioGroup>
                 </div>
                 <div className={style.input}>
-                    {selectedVersion || selectorType === 'published' ? (
+                    {selectorType === 'datetime' ? (
+                        <VersionSelectorDateTime
+                            content={content}
+                            submitVersionUrl={submitVersionUrl}
+                        />
+                    ) : selectorType === 'published' ? (
                         <VersionSelectorPublished
                             content={content}
                             submitVersionUrl={submitVersionUrl}
                             initialSelection={selectedVersion}
-                        />
-                    ) : selectorType === 'datetime' ? (
-                        <VersionSelectorDateTime
-                            content={content}
-                            submitVersionUrl={submitVersionUrl}
                         />
                     ) : (
                         <div>{'Feil: velg en input-type'}</div>
