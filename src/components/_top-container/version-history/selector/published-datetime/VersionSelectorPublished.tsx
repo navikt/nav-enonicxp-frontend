@@ -10,35 +10,21 @@ import style from './VersionSelectorPublished.module.scss';
 type Props = {
     content: ContentProps;
     submitVersionUrl: (url: string) => void;
+    initialSelection?: string;
 };
 
 export const VersionSelectorPublished = ({
     content,
     submitVersionUrl,
+    initialSelection,
 }: Props) => {
-    const { versionTimestamps, editorView, timeRequested } = content;
-
-    const currentVersionTimestamp = versionTimestamps?.[0];
+    const { versionTimestamps = [], editorView } = content;
 
     const [selectedDateTime, setSelectedDateTime] = useState(
-        currentVersionTimestamp
+        initialSelection || versionTimestamps[0]
     );
 
-    useEffect(() => {
-        console.log(timeRequested, versionTimestamps);
-        // Reset the current selection when receiving live content
-        if (!timeRequested) {
-            setSelectedDateTime(currentVersionTimestamp);
-        } else if (
-            versionTimestamps.some(
-                (versionTimestamp) => versionTimestamp === timeRequested
-            )
-        ) {
-            setSelectedDateTime(timeRequested);
-        }
-    }, [timeRequested, currentVersionTimestamp, versionTimestamps]);
-
-    if (!currentVersionTimestamp) {
+    if (versionTimestamps.length === 0) {
         return <div>{'Fant ingen publiseringer for dette innholdet'}</div>;
     }
 

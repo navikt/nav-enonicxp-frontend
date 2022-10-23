@@ -18,31 +18,21 @@ export const VersionSelectorDateTime = ({
     content,
     submitVersionUrl,
 }: Props) => {
-    const [initialDate, initialTime] = getCurrentDateAndTime();
+    const { editorView, timeRequested } = content;
+
+    const [initialDate, initialTime] = timeRequested
+        ? timeRequested.split('T')
+        : getCurrentDateAndTime();
+
     const [dateSelected, setDateSelected] = useState(initialDate);
     const [timeSelected, setTimeSelected] = useState(initialTime);
     const [branchSelected, setBranchSelected] = useState<Branch>('master');
-
-    const { editorView, timeRequested } = content;
 
     const url = getVersionSelectorUrl(
         content,
         getUtcTimeFromLocal(`${dateSelected}T${timeSelected}`),
         branchSelected
     );
-
-    useEffect(() => {
-        // Reset the current date/time selection when receiving live content
-        if (!timeRequested) {
-            const [currentDate, currentTime] = getCurrentDateAndTime();
-            setDateSelected(currentDate);
-            setTimeSelected(currentTime);
-        } else {
-            const [requestedDate, requestedTime] = timeRequested.split('T');
-            setDateSelected(requestedDate);
-            setTimeSelected(requestedTime);
-        }
-    }, [timeRequested]);
 
     return (
         <>
