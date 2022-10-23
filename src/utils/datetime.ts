@@ -64,6 +64,10 @@ export const getUtcTimeFromLocal = (datetime: string) => {
     return dayjs(datetime).utc().format();
 };
 
+export const getLocaleTimeFromUtc = (datetime: string, locale = 'nb') => {
+    return dayjs(datetime).locale(locale).format();
+};
+
 export const getDayNumberFromName = (dayToFind: string): number | null => {
     return days.findIndex((day) => day === dayToFind) || null;
 };
