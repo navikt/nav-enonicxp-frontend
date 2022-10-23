@@ -41,7 +41,7 @@ const fetchSiteContent = async ({
         id: idOrPath,
         ...(isDraft && { branch: 'draft' }),
         ...(time && { time }),
-        ...(!isDraft && getCacheKey()),
+        ...(!isDraft && !time && getCacheKey()), // We don't want to use backend-cache for version history or draft content requests
         ...(isPreview && { preview: true }),
     });
     const url = `${xpServiceUrl}/sitecontent${params}`;

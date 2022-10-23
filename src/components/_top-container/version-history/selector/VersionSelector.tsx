@@ -22,8 +22,16 @@ export const VersionSelector = ({
     setIsOpen,
     submitVersionUrl,
 }: Props) => {
-    const [selectorType, setSelectorType] = useState<SelectorType>('datetime');
-    const { editorView } = content;
+    const { editorView, timeRequested, versionTimestamps } = content;
+
+    // Set the selection to a specific version if it was previously selected by the user
+    const selectedVersion = versionTimestamps.find(
+        (versionTimestamp) => versionTimestamp === timeRequested
+    );
+
+    const [selectorType, setSelectorType] = useState<SelectorType>(
+        selectedVersion ? 'published' : 'datetime'
+    );
 
     useEffect(() => {
         const closeSelector = (e: MouseEvent) => {
@@ -51,7 +59,7 @@ export const VersionSelector = ({
                 <div className={style.typeSelector}>
                     <RadioGroup
                         legend={'Velg tidspunkt'}
-                        defaultValue={'datetime'}
+                        value={selectorType}
                         onChange={(value) => {
                             setSelectorType(value as SelectorType);
                         }}
@@ -74,6 +82,7 @@ export const VersionSelector = ({
                         <VersionSelectorPublished
                             content={content}
                             submitVersionUrl={submitVersionUrl}
+                            initialSelection={selectedVersion}
                         />
                     ) : (
                         <div>{'Feil: velg en input-type'}</div>
