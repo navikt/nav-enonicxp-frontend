@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Checkbox, Label } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
-import {
-    getCurrentDateAndTime,
-    getLocaleTimeFromUtc,
-    getUtcTimeFromLocal,
-} from 'utils/datetime';
+import { getCurrentDateAndTime, getUtcTimeFromLocal } from 'utils/datetime';
 import { Branch } from 'types/branch';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
+import dayjs from 'dayjs';
 
 import style from './VersionSelectorDateTime.module.scss';
 
@@ -26,8 +23,10 @@ export const VersionSelectorDateTime = ({
 
     const [currentDate, currentTime] = getCurrentDateAndTime();
 
+    const nbTime = dayjs(timeRequested).locale('nb').format();
+
     const [initialDate, initialTime] = timeRequested
-        ? getLocaleTimeFromUtc(timeRequested).split('T')
+        ? nbTime.split('T')
         : [currentDate, currentTime];
 
     const [dateSelected, setDateSelected] = useState(initialDate);
