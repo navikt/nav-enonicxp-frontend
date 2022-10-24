@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heading, BodyLong, Ingress } from '@navikt/ds-react';
-import ArtikkelDato from '../main-article/ArtikkelDato';
+import ArtikkelDato from '../main-article/komponenter/ArtikkelDato';
 import { translator } from 'translations';
 import { PageListProps } from 'types/content-props/page-list-props';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';

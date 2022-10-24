@@ -9,7 +9,7 @@ import {
 } from './utils';
 import { Email } from './Email';
 import { translator } from 'translations';
-import ArtikkelDato from '../main-article/ArtikkelDato';
+import ArtikkelDato from '../main-article/komponenter/ArtikkelDato';
 import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
 import {
     AudienceReception,

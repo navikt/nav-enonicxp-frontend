@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ParsedHtml } from '../../../_common/parsed-html/ParsedHtml';
-import { ProcessedHtmlProps } from '../../../../types/processed-html-props';
+import { ParsedHtml } from '../../../../_common/parsed-html/ParsedHtml';
+import { ProcessedHtmlProps } from '../../../../../types/processed-html-props';
 
 const modifyHtml = (htmlText: string, hasTableOfContent: boolean) => {
     if (!htmlText) {

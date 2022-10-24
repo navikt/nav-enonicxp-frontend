@@ -1,6 +1,6 @@
 import React from 'react';
-import { Picture } from '../../../../types/content-props/main-article-props';
-import { XpImage } from '../../../_common/image/XpImage';
+import { Picture } from '../../../../../types/content-props/main-article-props';
+import { XpImage } from '../../../../_common/image/XpImage';
 
 import style from './Bilde.module.scss';
 
