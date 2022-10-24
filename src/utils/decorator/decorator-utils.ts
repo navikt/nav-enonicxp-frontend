@@ -82,6 +82,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 
     const { __typename, _path, breadcrumbs, language, data, editorView } =
         content;
+
     const rolePath = _path.split('/')[3];
     const context =
         audienceToRoleContext[data?.audience] || pathToRoleContext[rolePath];
