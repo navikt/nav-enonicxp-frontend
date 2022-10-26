@@ -1,5 +1,5 @@
-const fsPromises = require('fs/promises');
-const fs = require('fs');
+import fsPromises from 'fs/promises';
+import fs from 'fs';
 
 const removePageCacheFile = async (nextApp, pathname) =>
     nextApp.server.responseCache.incrementalCache.cacheHandler
@@ -55,7 +55,7 @@ const wipePageCache = async (nextApp) => {
     }
 };
 
-const handleInvalidateAllReq = (app) => (req, res) => {
+export const handleInvalidateAllReq = (app) => (req, res) => {
     const { eventid } = req.headers;
 
     wipePageCache(app).then((success) => {
@@ -71,7 +71,7 @@ const handleInvalidateAllReq = (app) => (req, res) => {
 
 let currentCacheTimestamp = 0;
 
-const setCacheKey = (req, res, next) => {
+export const setCacheKey = (req, res, next) => {
     const { cache_key, cache_ts } = req.headers;
 
     if (cache_key) {
@@ -94,7 +94,7 @@ const setCacheKey = (req, res, next) => {
     next();
 };
 
-const handleInvalidateReq = (app) => (req, res) => {
+export const handleInvalidateReq = (app) => (req, res) => {
     const { eventid } = req.headers;
 
     const { paths } = req.body;
@@ -111,10 +111,4 @@ const handleInvalidateReq = (app) => (req, res) => {
     console.log(msg);
 
     return res.status(200).send(msg);
-};
-
-module.exports = {
-    handleInvalidateReq,
-    handleInvalidateAllReq,
-    setCacheKey,
 };

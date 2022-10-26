@@ -1,17 +1,18 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
-const express = require('express');
-const next = require('next');
-const fetch = require('node-fetch');
-const { createHttpTerminator } = require('http-terminator');
+import express from 'express';
+import next from 'next';
+import fetch from 'node-fetch';
+import { createHttpTerminator } from 'http-terminator';
 
-const { setJsonCacheHeaders } = require('./set-json-cache-headers');
-const {
+import { setJsonCacheHeaders } from './set-json-cache-headers';
+import {
     handleInvalidateReq,
     handleInvalidateAllReq,
     setCacheKey,
-} = require('./incremental-cache');
-const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
+} from './incremental-cache';
+import { initHeartbeat } from './revalidator-proxy-heartbeat';
 
 const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
@@ -44,17 +45,20 @@ nextApp.prepare().then(() => {
         ENV,
     } = process.env;
 
-    const currentBuildId = nextApp.server.getBuildId();
+    // @ts-ignore
+    const nextServer = nextApp.server;
+
+    const currentBuildId = nextServer.getBuildId();
 
     const isFailover = IS_FAILOVER_INSTANCE === 'true';
 
     if (!isFailover && PAGE_CACHE_DIR) {
-        nextApp.server.responseCache.incrementalCache.cacheHandler.serverDistDir =
+        nextServer.responseCache.incrementalCache.cacheHandler.serverDistDir =
             PAGE_CACHE_DIR;
     }
 
     if (IMAGE_CACHE_DIR) {
-        nextApp.server.imageResponseCache.incrementalCache.cacheDir =
+        nextServer.imageResponseCache.incrementalCache.cacheDir =
             IMAGE_CACHE_DIR;
     }
 

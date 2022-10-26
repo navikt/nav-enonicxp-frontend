@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "build": "next build",
-        "start": "node server/server.js",
+        "start": "node server/.dist/server.js",
         "dev": "cp .env.development .env && npm start",
         "build-local": "cp .env.prod-local .env && npm run build",
         "start-local": "cp .env.prod-local .env && npm run start",
