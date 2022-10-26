@@ -3,6 +3,7 @@ import { BodyLong } from '@navikt/ds-react';
 import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
 import { formatDateTime } from '../../../../utils/datetime';
 import { ContentProps } from '../../../../types/content-props/_content-common';
+import dayjs from 'dayjs';
 
 import style from './VersionStatus.module.scss';
 
@@ -14,15 +15,15 @@ type Props = {
 export const VersionStatus = ({ content, requestedDateTime }: Props) => {
     const contentDateTime = content.modifiedTime || content.createdTime;
 
-    const requestedUnixTime = new Date(requestedDateTime).getTime();
-    const contentUnixTime = new Date(contentDateTime).getTime();
-
     const requestedTimeFormatted = formatDateTime(
         requestedDateTime,
         'nb',
         true
     );
     const contentTimeFormatted = formatDateTime(contentDateTime, 'nb', true);
+
+    const requestedUnixTime = dayjs(requestedDateTime).startOf('minute').unix();
+    const contentUnixTime = dayjs(contentDateTime).startOf('minute').unix();
 
     return (
         <div className={style.versionStatus}>

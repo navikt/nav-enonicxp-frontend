@@ -10,4 +10,8 @@
     &--fullWidth {
         width: 100%;
     }
+
+    :global(.navds-label) {
+        text-align: center;
+    }
 }

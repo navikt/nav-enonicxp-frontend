@@ -24,10 +24,11 @@
         }
 
         figcaption {
-            padding-top: 0.42rem;
-            margin-bottom: 0;
-            color: #555;
-            font-size: 0.84rem;
+            font-size: var(--navds-font-size-small);
+            letter-spacing: 0.004em;
+            line-height: var(--navds-font-line-height-medium);
+            margin: 0.5rem 0;
+            text-align: left;
         }
     }
 }

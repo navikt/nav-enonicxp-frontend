@@ -8,7 +8,7 @@ import { translator } from 'translations';
 
 import style from './TopContainer.module.scss';
 
-export const contentTypesWithWhiteHeader = {
+const contentTypesWithWhiteHeader = {
     [ContentType.ProductPage]: true,
     [ContentType.SituationPage]: true,
     [ContentType.GuidePage]: true,
@@ -18,22 +18,32 @@ export const contentTypesWithWhiteHeader = {
     [ContentType.FrontPage]: true,
     [ContentType.AreaPage]: true,
 };
+
 type Props = {
     content: ContentProps;
 };
 
+export const checkForWhiteHeader = (content: ContentProps) => {
+    const { __typename } = content;
+
+    if (
+        __typename === ContentType.MainArticle &&
+        (content.data.contentType === 'news' ||
+            content.data.contentType === 'pressRelease')
+    ) {
+        return true;
+    }
+
+    return contentTypesWithWhiteHeader[__typename];
+};
+
 export const TopContainer = ({ content }: Props) => {
-    const {
-        __typename,
-        breadcrumbs,
-        isFailover,
-        isPagePreview,
-        originalType,
-        language,
-    } = content;
+    const { breadcrumbs, isFailover, isPagePreview, originalType, language } =
+        content;
     const hasDecoratorWidgets =
         breadcrumbs?.length > 0 || getContentLanguages(content)?.length > 0;
-    const hasWhiteHeader = contentTypesWithWhiteHeader[__typename];
+    const hasWhiteHeader = checkForWhiteHeader(content);
+
     // Should be shown in Content Studio only (except the edit view)
     const showVersionPicker =
         !!content.editorView && content.editorView !== 'edit';

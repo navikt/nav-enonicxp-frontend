@@ -104,6 +104,8 @@ export const translationsBundleNn = {
         published: 'Publisert',
         tableOfContents: 'Innhaldsoversikt',
         contents: 'Innhald',
+        news: 'Nyheiter',
+        pressRelease: 'Pressemelding',
     },
     mainPanels: {
         label: 'Hovudval',

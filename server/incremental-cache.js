@@ -1,44 +1,51 @@
+const fsPromises = require('fs/promises');
 const fs = require('fs');
-const path = require('next/dist/shared/lib/isomorphic/path');
 
-const pageCacheDir = process.env.PAGE_CACHE_DIR;
+const removePageCacheFile = async (nextApp, pathname) =>
+    nextApp.server.responseCache.incrementalCache.cacheHandler
+        .getFsPath(pathname, false)
+        .then(({ filePath }) => fsPromises.unlink(filePath))
+        .then(() => {
+            console.log(`Removed file from page cache: ${pathname}`);
+        })
+        .catch((e) => {
+            console.log(
+                `Failed to remove file from page cache: ${pathname} - ${e}`
+            );
+        });
 
-const getFsPath = (pathname) => path.join(pageCacheDir, pathname);
-
-const invalidateCachedPage = (path, app) => {
+const invalidateCachedPage = async (path, nextApp) => {
     const pagePath = path === '/' ? '/index' : path;
 
-    try {
-        const htmlPath = getFsPath(`${pagePath}.html`);
-        const jsonPath = getFsPath(`${pagePath}.json`);
-
-        if (fs.existsSync(htmlPath)) {
-            fs.unlinkSync(htmlPath);
-        }
-
-        if (fs.existsSync(jsonPath)) {
-            fs.unlinkSync(jsonPath);
-        }
-
-        app.server.incrementalCache.cacheHandler.memoryCache.del(pagePath);
-
-        console.log(`Invalidated page cache for path ${pagePath}`);
-    } catch (e) {
-        console.error(
-            `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
-        );
-    }
+    return Promise.all([
+        removePageCacheFile(nextApp, `${pagePath}.html`),
+        removePageCacheFile(nextApp, `${pagePath}.json`),
+    ])
+        .then(() => {
+            nextApp.server.responseCache.incrementalCache.cacheHandler.memoryCache.del(
+                pagePath
+            );
+        })
+        .catch((e) => {
+            console.error(
+                `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
+            );
+        });
 };
 
-const wipePageCache = (app) => {
+const wipePageCache = async (nextApp) => {
     try {
-        const pageCacheBasePath = getFsPath('');
+        const { filePath: pageCacheBasePath } =
+            await nextApp.server.responseCache.incrementalCache.cacheHandler.getFsPath(
+                '',
+                false
+            );
 
         if (fs.existsSync(pageCacheBasePath)) {
             fs.rmSync(pageCacheBasePath, { recursive: true });
         }
 
-        app.server.incrementalCache.cacheHandler.memoryCache.reset();
+        nextApp.server.responseCache.incrementalCache.cacheHandler.memoryCache.reset();
 
         console.log('Wiped all cached pages!');
         return true;
@@ -51,13 +58,15 @@ const wipePageCache = (app) => {
 const handleInvalidateAllReq = (app) => (req, res) => {
     const { eventid } = req.headers;
 
-    const success = wipePageCache(app);
-
-    return success
-        ? res
-              .status(200)
-              .send(`Successfully wiped page cache - event ${eventid}`)
-        : res.status(500).send(`Failed to wipe page cache! - event ${eventid}`);
+    wipePageCache(app).then((success) => {
+        success
+            ? res
+                  .status(200)
+                  .send(`Successfully wiped page cache - event id ${eventid}`)
+            : res
+                  .status(500)
+                  .send(`Failed to wipe page cache! - event id ${eventid}`);
+    });
 };
 
 let currentCacheTimestamp = 0;
@@ -88,33 +97,24 @@ const setCacheKey = (req, res, next) => {
 const handleInvalidateReq = (app) => (req, res) => {
     const { eventid } = req.headers;
 
-    try {
-        const { paths } = req.body;
+    const { paths } = req.body;
 
-        if (!Array.isArray(paths)) {
-            const msg = `Invalid path array for event ${eventid}`;
-            console.error(msg);
-            return res.status(400).send(msg);
-        }
-
-        paths.forEach((path) => invalidateCachedPage(path, app));
-
-        const msg = `Invalidated cached pages for ${paths.length} paths - event ${eventid}`;
-        console.log(msg);
-
-        return res.status(200).send(msg);
-    } catch (e) {
-        return res
-            .status(500)
-            .send(
-                `Error while invalidating cache - event: ${eventid} - error: ${e}`
-            );
+    if (!Array.isArray(paths)) {
+        const msg = `Invalid path array for event ${eventid}`;
+        console.error(msg);
+        return res.status(400).send(msg);
     }
+
+    paths.forEach((path) => invalidateCachedPage(path, app));
+
+    const msg = `Received cache invalidation event for ${paths.length} paths - event id ${eventid}`;
+    console.log(msg);
+
+    return res.status(200).send(msg);
 };
 
 module.exports = {
     handleInvalidateReq,
     handleInvalidateAllReq,
     setCacheKey,
-    getFsPath,
 };
