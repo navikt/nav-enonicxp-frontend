@@ -14,7 +14,6 @@ app.get('/internal/isReady', (req, res) => {
 });
 
 app.use(
-    '*',
     proxy('http://nav-enonicxp-frontend-dev1', {
         userResDecorator: async function (
             proxyRes,
