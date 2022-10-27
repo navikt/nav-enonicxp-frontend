@@ -38,8 +38,7 @@ app.use(
                     DECORATOR_FOOTER,
                 } = await fetchDecoratorHtml({
                     ...params,
-                    env: 'localhost',
-                    port: 8100,
+                    env: 'dev',
                 });
 
                 return proxyResData
