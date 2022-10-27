@@ -104,6 +104,11 @@ nextApp.prepare().then(() => {
         });
 
         server.all('*', (req, res) => {
+            const pendingResponses =
+                nextApp.server.responseCache.pendingResponses;
+            if (pendingResponses?.size > 0) {
+                console.log(`Pending responses:`, [...pendingResponses.keys()]);
+            }
             return nextRequestHandler(req, res);
         });
     }
