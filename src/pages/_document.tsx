@@ -37,7 +37,7 @@ class MyDocument extends Document<DocumentProps> {
             DocumentParameter.DecoratorParams
         );
 
-        if (decoratorParams) {
+        if (decoratorParams && ctx.res) {
             ctx.res.setHeader('DecoratorParams', decoratorParams);
         }
 
