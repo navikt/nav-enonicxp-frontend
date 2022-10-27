@@ -1,9 +1,6 @@
 import express from 'express';
 import proxy from 'express-http-proxy';
-import {
-    fetchDecoratorHtml,
-    fetchDecoratorReact,
-} from '@navikt/nav-dekoratoren-moduler/ssr';
+import { fetchDecoratorHtml } from '@navikt/nav-dekoratoren-moduler/ssr';
 
 const app = express();
 const appPort = 3001;
@@ -18,7 +15,7 @@ app.get('/internal/isReady', (req, res) => {
 
 app.use(
     '*',
-    proxy('http://localhost:3000', {
+    proxy('http://nav-enonicxp-frontend-dev1', {
         userResDecorator: async function (
             proxyRes,
             proxyResData,
