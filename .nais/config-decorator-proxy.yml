@@ -7,15 +7,15 @@ metadata:
   labels:
     team: personbruker
 spec:
-  image: {{image}}
+  image: {{decoratorProxyImage}}
   team: personbruker
   port: 3001
   liveness:
-    path: /api/internal/isAlive
+    path: /internal/isAlive
     initialDelay: 10
     timeout: 5
   readiness:
-    path: /api/internal/isReady
+    path: /internal/isReady
     initialDelay: 10
   prometheus:
     enabled: true
