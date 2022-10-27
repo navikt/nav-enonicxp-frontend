@@ -25,10 +25,6 @@ spec:
   prometheus:
     enabled: true
     path: /api/internal/metrics
-  ingresses:
-  {{#each ingresses as |url|}}
-    - {{url}}
-  {{/each}}
   envFrom:
     - secret: {{secret}}
   env:
@@ -46,6 +42,7 @@ spec:
     inbound:
       rules:
         - application: {{revalidatorApp}}
+        - application: nav-enonicxp-frontend-decorator-proxy
   resources:
   {{#with resources}}
     limits:

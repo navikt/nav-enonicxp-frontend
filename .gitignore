@@ -47,3 +47,5 @@ yarn-error.log*
 
 # Sentry
 .sentryclirc
+/decorator-proxy/node_modules/
+/decorator-proxy/dist/

@@ -20,19 +20,48 @@ on:
     secrets:
       NAIS_DEPLOY_APIKEY:
         required: true
+      READER_TOKEN:
+        required: false
 
 jobs:
   deploy:
     name: Deploy to nais k8s
     runs-on: ubuntu-latest
+    env:
+      decoratorProxyImage: ghcr.io/${{ github.repository }}:decorator-proxy-${{ github.sha }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+      - name: Setup node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.15.0'
+          registry-url: 'https://npm.pkg.github.com'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+        working-directory: ./decorator-proxy
+      - name: Build application
+        run: npm run build
+        working-directory: ./decorator-proxy
+      - name: Login to Docker registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push docker image
+        run: |
+          docker build -t ${{ env.decoratorProxyImage }} .
+          docker push ${{ env.decoratorProxyImage }}
+        working-directory: ./decorator-proxy
       - name: Deploy to nais
         uses: nais/deploy/actions/deploy@v1
         env:
           CLUSTER: ${{ inputs.cluster }}
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          RESOURCE: .nais/${{ inputs.config_file }},.nais/hpa/${{ inputs.hpa_file }}
-          VAR: image=${{ inputs.image }}
+          RESOURCE: .nais/config-decorator-proxy.yml,.nais/${{ inputs.config_file }},.nais/hpa/${{ inputs.hpa_file }}
+          VAR: image=${{ inputs.image }},decoratorProxyImage=${{ env.decoratorProxyImage }}
           VARS: .nais/vars/${{ inputs.vars_file }}

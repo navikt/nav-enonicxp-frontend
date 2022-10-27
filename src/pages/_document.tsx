@@ -37,6 +37,10 @@ class MyDocument extends Document<DocumentProps> {
             DocumentParameter.DecoratorParams
         );
 
+        if (decoratorParams) {
+            ctx.res.setHeader('DecoratorParams', decoratorParams);
+        }
+
         const language = getDocumentParameter(
             initialProps,
             DocumentParameter.HtmlLang
@@ -65,12 +69,9 @@ class MyDocument extends Document<DocumentProps> {
 
         return (
             <Html lang={language || 'no'}>
-                <Head>{Decorator && <Decorator.Styles />}</Head>
+                <Head />
                 <body>
-                    {Decorator && <Decorator.Header />}
                     <Main />
-                    {Decorator && <Decorator.Footer />}
-                    {Decorator && <Decorator.Scripts />}
                     <NextScript />
                 </body>
             </Html>

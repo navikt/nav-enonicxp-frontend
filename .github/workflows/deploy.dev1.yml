@@ -33,3 +33,4 @@ jobs:
       hpa_file: hpa-dev1.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+      READER_TOKEN: ${{ secrets.READER_TOKEN }}
