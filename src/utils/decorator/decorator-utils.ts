@@ -7,7 +7,7 @@ import {
 import { LanguageProps } from '../../types/language';
 import { stripXpPathPrefix } from '../urls';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
-import { contentTypesWithWhiteHeader } from '../../components/_top-container/TopContainer';
+import { checkForWhiteHeader } from '../../components/_top-container/TopContainer';
 import { Audience } from '../../types/component-props/_mixins';
 
 const defaultLanguage: DecoratorParams['language'] = 'nb';
@@ -82,6 +82,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 
     const { __typename, _path, breadcrumbs, language, data, editorView } =
         content;
+
     const rolePath = _path.split('/')[3];
     const context =
         audienceToRoleContext[data?.audience] || pathToRoleContext[rolePath];
@@ -108,9 +109,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         ),
         ...(feedbackEnabled && { feedback: true }),
         chatbot: !chatbotDisabled,
-        utilsBackground: contentTypesWithWhiteHeader[__typename]
-            ? 'white'
-            : 'gray',
+        utilsBackground: checkForWhiteHeader(content) ? 'white' : 'gray',
         ...taSurveys,
     };
 };

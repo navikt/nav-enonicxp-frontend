@@ -16,13 +16,14 @@ jobs:
       REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy/revalidator-proxy
       DECORATOR_FALLBACK_URL: https://www.nav.no/dekoratoren
       XP_ORIGIN: https://www.nav.no
-      INNLOGGINGSSTATUS_URL: https://www.nav.no/person/innloggingsstatus/auth
+      INNLOGGINGSSTATUS_URL: https://www.nav.no/person/nav-dekoratoren-api/auth
       RELEASE_TAG: ${{  github.ref_name }}
       NAVNO_API_URL: https://www.nav.no/person/navno-api
       FAILOVER_ORIGIN: https://www-failover.nav.no
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
     needs: build

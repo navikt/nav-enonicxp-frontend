@@ -108,11 +108,13 @@ export const translationsBundleNb = {
     },
     mainArticle: {
         facts: 'Fakta',
-        lastChanged: 'Sist endret',
+        lastChanged: 'Oppdatert',
         linkedListDescription: 'Kapitler',
         published: 'Publisert',
         tableOfContents: 'Innholdsfortegnelse',
         contents: 'Innholdsoversikt',
+        news: 'Nyheter',
+        pressRelease: 'Pressemelding',
     },
     mainPanels: {
         label: 'Hovedvalg',
