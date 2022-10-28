@@ -38,7 +38,10 @@ class MyDocument extends Document<DocumentProps> {
         );
 
         if (decoratorParams && ctx.res) {
-            ctx.res.setHeader('DecoratorParams', decoratorParams);
+            ctx.res.setHeader(
+                'Decorator-Params',
+                Buffer.from(decoratorParams).toString('base64')
+            );
         }
 
         const language = getDocumentParameter(
