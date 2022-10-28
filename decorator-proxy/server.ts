@@ -1,6 +1,9 @@
 import express from 'express';
 import proxy from 'express-http-proxy';
-import { fetchDecoratorHtml } from '@navikt/nav-dekoratoren-moduler/ssr';
+import {
+    Elements,
+    fetchDecoratorHtml,
+} from '@navikt/nav-dekoratoren-moduler/ssr';
 
 const app = express();
 const appPort = 3001;
@@ -21,35 +24,29 @@ app.use(
             userReq,
             userRes
         ) {
-            if (proxyRes.headers['content-type']?.startsWith('text/html')) {
-                const decoratorParams = proxyRes.headers[
-                    'decorator-params'
-                ] as string;
+            const decoratorParams = proxyRes.headers['decorator-params'];
 
-                const params = decoratorParams
-                    ? JSON.parse(decoratorParams)
-                    : {};
-
-                const {
-                    DECORATOR_STYLES,
-                    DECORATOR_SCRIPTS,
-                    DECORATOR_HEADER,
-                    DECORATOR_FOOTER,
-                } = await fetchDecoratorHtml({
-                    ...params,
-                    env: 'dev',
-                });
-
-                return proxyResData
-                    .toString()
-                    .replace('<head>', `<head>${DECORATOR_STYLES}`)
-                    .replace(
-                        '<body>',
-                        `<body>${DECORATOR_SCRIPTS}${DECORATOR_HEADER}`
-                    )
-                    .replace('</body>', `</body>${DECORATOR_FOOTER}`);
+            if (typeof decoratorParams !== 'string') {
+                return proxyResData;
             }
-            return proxyResData;
+
+            const params = JSON.parse(
+                Buffer.from(decoratorParams, 'base64').toString('ascii')
+            );
+
+            const decorator = await fetchDecoratorHtml({
+                ...params,
+                env: 'dev',
+            });
+
+            return proxyResData
+                .toString()
+                .replace(
+                    /DECORATOR_(STYLES|HEADER|FOOTER|SCRIPTS)/g,
+                    (match: keyof Elements) => {
+                        return decorator[match];
+                    }
+                );
         },
     })
 );

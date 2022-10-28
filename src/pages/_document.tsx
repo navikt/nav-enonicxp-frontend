@@ -9,7 +9,6 @@ import Document, {
 import { Language } from '../translations';
 import { DocumentInitialProps } from 'next/dist/pages/_document';
 import { DocumentParameter } from '../components/_common/metatags/DocumentParameterMetatags';
-import { getDecoratorComponents } from '../utils/decorator/decorator-utils-serverside';
 import { Components } from '@navikt/nav-dekoratoren-moduler/ssr';
 
 type DocumentProps = {
@@ -37,10 +36,10 @@ class MyDocument extends Document<DocumentProps> {
             DocumentParameter.DecoratorParams
         );
 
-        if (decoratorParams && ctx.res) {
+        if (ctx.res) {
             ctx.res.setHeader(
-                'Decorator-Params',
-                Buffer.from(decoratorParams).toString('base64')
+                'decorator-params',
+                Buffer.from(decoratorParams || '{}').toString('base64')
             );
         }
 
@@ -49,32 +48,23 @@ class MyDocument extends Document<DocumentProps> {
             DocumentParameter.HtmlLang
         );
 
-        const decoratorDisabled = getDocumentParameter(
-            initialProps,
-            DocumentParameter.DecoratorDisabled
-        );
-
-        const Decorator =
-            !decoratorDisabled &&
-            (await getDecoratorComponents(
-                decoratorParams ? JSON.parse(decoratorParams) : undefined
-            ));
-
         return {
             ...initialProps,
-            Decorator,
             language,
         };
     }
 
     render() {
-        const { Decorator, language } = this.props;
+        const { language } = this.props;
 
         return (
             <Html lang={language || 'no'}>
-                <Head />
+                <Head>{'DECORATOR_STYLES'}</Head>
                 <body>
+                    {'DECORATOR_HEADER'}
                     <Main />
+                    {'DECORATOR_FOOTER'}
+                    {'DECORATOR_SCRIPTS'}
                     <NextScript />
                 </body>
             </Html>
