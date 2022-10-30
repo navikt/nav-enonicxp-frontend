@@ -9,16 +9,18 @@ import style from './VersionSelectorPublished.module.scss';
 
 type Props = {
     content: ContentProps;
+    versionTimestamps: string[];
     submitVersionUrl: (url: string) => void;
     initialSelection?: string;
 };
 
 export const VersionSelectorPublished = ({
     content,
+    versionTimestamps,
     submitVersionUrl,
     initialSelection,
 }: Props) => {
-    const { versionTimestamps = [], editorView } = content;
+    const { editorView } = content;
 
     const [selectedDateTime, setSelectedDateTime] = useState(
         initialSelection || versionTimestamps[0]

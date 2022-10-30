@@ -4,6 +4,8 @@ import { BodyLong, Radio, RadioGroup } from '@navikt/ds-react';
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
+import { fetchJson } from 'utils/fetch/fetch-utils';
+import { xpServiceUrl } from 'utils/urls';
 
 import style from './VersionSelector.module.scss';
 
@@ -22,16 +24,27 @@ export const VersionSelector = ({
     setIsOpen,
     submitVersionUrl,
 }: Props) => {
-    const { editorView, timeRequested, versionTimestamps } = content;
+    const [publishedVersionTimestamps, setPublishedVersionTimestamps] =
+        useState<string[] | null>(null);
+
+    const { editorView, timeRequested } = content;
 
     // Set the selection to a specific version if it was previously selected by the user
-    const selectedVersion = versionTimestamps.find(
+    const selectedVersion = publishedVersionTimestamps?.find(
         (versionTimestamp) => versionTimestamp === timeRequested
     );
 
     const [selectorType, setSelectorType] = useState<SelectorType>(
         selectedVersion ? 'published' : 'datetime'
     );
+
+    useEffect(() => {
+        fetchJson(
+            `${xpServiceUrl}/sitecontentVersions/publishedVersions?id=${content._id}`
+        ).then((res) => {
+            setPublishedVersionTimestamps(res);
+        });
+    }, [content]);
 
     useEffect(() => {
         const closeSelector = (e: MouseEvent) => {
@@ -81,6 +94,7 @@ export const VersionSelector = ({
                     ) : selectorType === 'published' ? (
                         <VersionSelectorPublished
                             content={content}
+                            versionTimestamps={publishedVersionTimestamps}
                             submitVersionUrl={submitVersionUrl}
                             initialSelection={selectedVersion}
                         />

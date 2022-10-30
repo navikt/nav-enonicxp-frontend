@@ -1,10 +1,6 @@
 import { ContentProps } from '../../../../types/content-props/_content-common';
 import { Branch } from '../../../../types/branch';
-import {
-    stripXpPathPrefix,
-    xpContentPathPrefix,
-    xpDraftPathPrefix,
-} from '../../../../utils/urls';
+import { stripXpPathPrefix, xpDraftPathPrefix } from '../../../../utils/urls';
 
 export const getVersionSelectorUrl = (
     content: ContentProps,
@@ -16,11 +12,9 @@ export const getVersionSelectorUrl = (
         return null;
     }
 
-    const query = `${contentPath}?time=${utcDateTime}&id=${content._id}${
+    const query = `?time=${utcDateTime}&id=${content._id}${
         branch === 'draft' ? '&branch=draft' : ''
     }`;
 
-    return content.editorView
-        ? `${xpDraftPathPrefix}${query}`
-        : `/version${contentPath}${query}`;
+    return `${xpDraftPathPrefix}${contentPath}${query}`;
 };
