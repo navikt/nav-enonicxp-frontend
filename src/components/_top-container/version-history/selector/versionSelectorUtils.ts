@@ -1,6 +1,6 @@
-import { ContentProps } from '../../../../types/content-props/_content-common';
-import { Branch } from '../../../../types/branch';
-import { stripXpPathPrefix, xpDraftPathPrefix } from '../../../../utils/urls';
+import { ContentProps } from 'types/content-props/_content-common';
+import { Branch } from 'types/branch';
+import { stripXpPathPrefix, xpDraftPathPrefix } from 'utils/urls';
 
 export const getVersionSelectorUrl = (
     content: ContentProps,
