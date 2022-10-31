@@ -21,7 +21,7 @@ type FetchPagePropsArgs = {
     isDraft?: boolean;
     isPreview?: boolean;
     noRedirect?: boolean;
-    versionTimestamp?: string;
+    timeRequested?: string;
 };
 
 export const fetchPageProps = async ({
@@ -29,12 +29,12 @@ export const fetchPageProps = async ({
     isDraft = false,
     isPreview = false,
     noRedirect = false,
-    versionTimestamp,
+    timeRequested,
 }: FetchPagePropsArgs) => {
     const xpPath = routerQueryToXpPathOrId(routerQuery || '');
     const content = await fetchPage({
         idOrPath: xpPath,
-        timeRequested: versionTimestamp,
+        timeRequested,
         isDraft,
         isPreview,
     });
