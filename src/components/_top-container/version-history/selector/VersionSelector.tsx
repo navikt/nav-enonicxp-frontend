@@ -4,10 +4,11 @@ import { BodyLong, Heading, Loader, Radio, RadioGroup } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
-import { fetchJson } from 'utils/fetch/fetch-utils';
+import { fetchWithTimeout } from 'utils/fetch/fetch-utils';
 import { xpServiceUrl } from 'utils/urls';
 
 import style from './VersionSelector.module.scss';
+import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 const containerId = 'version-selector';
 
@@ -32,30 +33,47 @@ export const VersionSelector = ({
         string | null
     >(null);
     const [selectorType, setSelectorType] = useState<SelectorType>('datetime');
+    const [versionsError, setVersionsError] = useState(null);
 
     useEffect(() => {
-        fetchJson<string[]>(
-            `${xpServiceUrl}/sitecontentVersions/publishedVersions?id=${content._id}`
-        ).then((versions) => {
-            if (!versions) {
+        fetchWithTimeout(
+            `${xpServiceUrl}/sitecontentVersions/publishedVersions?id=${content._id}`,
+            5000
+        )
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+
+                throw new Error(
+                    `Kunne ikke hente publiseringstidspunkter - forsøk å laste editoren på nytt (F5) [${res.status} - ${res.statusText}]`
+                );
+            })
+            .then((versions) => {
+                if (!versions) {
+                    setPublishedVersions([]);
+                    return;
+                }
+
+                setPublishedVersions(versions);
+
+                // Set the selection to a specific version if it was previously selected by the user
+                const selectedVersion = versions.find(
+                    (versionTimestamp) =>
+                        versionTimestamp === content.timeRequested
+                );
+
+                if (!selectedVersion) {
+                    return;
+                }
+
+                setSelectedPublishedVersion(selectedVersion);
+                setSelectorType('published');
+            })
+            .catch((e) => {
+                setVersionsError(e.toString());
                 setPublishedVersions([]);
-                return;
-            }
-
-            setPublishedVersions(versions);
-
-            // Set the selection to a specific version if it was previously selected by the user
-            const selectedVersion = versions.find(
-                (versionTimestamp) => versionTimestamp === content.timeRequested
-            );
-
-            if (!selectedVersion) {
-                return;
-            }
-
-            setSelectedPublishedVersion(selectedVersion);
-            setSelectorType('published');
-        });
+            });
     }, [content]);
 
     useEffect(() => {
@@ -126,6 +144,16 @@ export const VersionSelector = ({
                     )}
                 </div>
                 <div>
+                    {versionsError && (
+                        <AlertBox
+                            variant={'error'}
+                            size={'small'}
+                            inline={true}
+                            className={style.error}
+                        >
+                            {versionsError}
+                        </AlertBox>
+                    )}
                     <hr />
                     <BodyLong size="small">
                         {
