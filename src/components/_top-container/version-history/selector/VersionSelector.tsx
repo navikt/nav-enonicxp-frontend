@@ -25,7 +25,7 @@ export const VersionSelector = ({
     const { editorView, timeRequested, versionTimestamps } = content;
 
     // Set the selection to a specific version if it was previously selected by the user
-    const selectedVersion = versionTimestamps.find(
+    const selectedVersion = versionTimestamps?.find(
         (versionTimestamp) => versionTimestamp === timeRequested
     );
 
