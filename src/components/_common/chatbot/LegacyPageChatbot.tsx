@@ -25,6 +25,7 @@ type Props = {
 
 export const LegacyPageChatbot = ({ content }: Props) => {
     if (
+        !content.data.chatbotToggle ||
         !showOnContentTypes[content.__typename] ||
         !showOnLanguage[content.language]
     ) {
