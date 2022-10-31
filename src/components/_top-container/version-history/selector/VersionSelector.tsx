@@ -5,14 +5,17 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
 import { fetchWithTimeout } from 'utils/fetch/fetch-utils';
-import { xpServiceUrl } from 'utils/urls';
+import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 
 import style from './VersionSelector.module.scss';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 const containerId = 'version-selector';
 
+const publishedVersionsServiceUrl = `${xpDraftPathPrefix}${xpServicePath}/sitecontentVersions/publishedVersions`;
+
 type SelectorType = 'datetime' | 'published';
+
 type Props = {
     content: ContentProps;
     isOpen: boolean;
@@ -37,7 +40,7 @@ export const VersionSelector = ({
 
     useEffect(() => {
         fetchWithTimeout(
-            `${xpServiceUrl}/sitecontentVersions/publishedVersions?id=${content._id}`,
+            `${publishedVersionsServiceUrl}?id=${content._id}`,
             5000
         )
             .then((res) => {
