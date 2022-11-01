@@ -113,6 +113,14 @@ export const translationsBundleNn = {
     officeInformation: {
         closed: 'Stengt',
     },
+    audienceServices: {
+        BARNEVERN: 'Barnevern',
+        KRIMINALOMSORG: 'Kriminalomsorg',
+        FLYKTNING: 'Flyktning',
+        RUS: 'Rus',
+        STARTLAN: 'Startlån',
+        STOETTEKONTAKT: 'Støttekontakt',
+    },
     relatedContent: relatedContent,
     productTaxonomies,
     areas,

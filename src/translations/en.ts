@@ -81,6 +81,14 @@ export const translationsBundleEn: Translations = {
         customizeContent: 'Customize content',
         showingInformationFor: 'Showing information for:',
     },
+    audienceServices: {
+        BARNEVERN: 'Barnevern',
+        KRIMINALOMSORG: 'Kriminalomsorg',
+        FLYKTNING: 'Flyktning',
+        RUS: 'Rus',
+        STARTLAN: 'Startlån',
+        STOETTEKONTAKT: 'Støttekontakt',
+    },
     mainArticle: {
         facts: 'Facts',
         lastChanged: 'Updated',

@@ -7,6 +7,7 @@ import {
 } from '../component-props/_mixins';
 import { ProductDetailType as OverviewType } from './product-details';
 import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from '../taxonomies';
+import { OfficeInformationData } from './office-information-props';
 
 export type DynamicPageData = Partial<{
     languages: LanguageProps[];
@@ -68,7 +69,7 @@ export interface OfficeEditorialPageProps extends ContentCommonProps {
 }
 export interface OfficeBranchPageProps extends ContentCommonProps {
     __typename: ContentType.OfficeEditorialPage;
-    data: OfficeEditorialPageData;
+    data: OfficeInformationData;
     editorial: SituationPageProps;
 }
 
