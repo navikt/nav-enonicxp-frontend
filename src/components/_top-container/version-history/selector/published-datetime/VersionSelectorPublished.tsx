@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Select } from '@navikt/ds-react';
-import { ContentProps } from '../../../../../types/content-props/_content-common';
-import { formatDateTime } from '../../../../../utils/datetime';
+import { ContentProps } from 'types/content-props/_content-common';
+import { formatDateTime } from 'utils/datetime';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
 
@@ -9,17 +9,17 @@ import style from './VersionSelectorPublished.module.scss';
 
 type Props = {
     content: ContentProps;
+    versionTimestamps: string[];
     submitVersionUrl: (url: string) => void;
     initialSelection?: string;
 };
 
 export const VersionSelectorPublished = ({
     content,
+    versionTimestamps,
     submitVersionUrl,
     initialSelection,
 }: Props) => {
-    const { versionTimestamps = [], editorView } = content;
-
     const [selectedDateTime, setSelectedDateTime] = useState(
         initialSelection || versionTimestamps[0]
     );
@@ -51,7 +51,6 @@ export const VersionSelectorPublished = ({
             </Select>
             <VersionSelectorSubmitButton
                 url={url}
-                isEditorView={!!editorView}
                 submitVersionUrl={submitVersionUrl}
             />
         </div>

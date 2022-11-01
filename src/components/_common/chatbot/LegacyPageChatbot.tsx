@@ -1,10 +1,7 @@
 import React from 'react';
 import { ChatbotLinkPanel } from './ChatbotLinkPanel';
-import {
-    ContentProps,
-    ContentType,
-} from '../../../types/content-props/_content-common';
-import { Language, translator } from '../../../translations';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { Language, translator } from 'translations';
 
 import style from './LegacyPageChatbot.module.scss';
 
@@ -25,6 +22,7 @@ type Props = {
 
 export const LegacyPageChatbot = ({ content }: Props) => {
     if (
+        content.data?.chatbotToggle === false ||
         !showOnContentTypes[content.__typename] ||
         !showOnLanguage[content.language]
     ) {

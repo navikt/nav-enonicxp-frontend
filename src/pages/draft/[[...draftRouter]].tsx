@@ -1,9 +1,26 @@
-import { GetServerSideProps } from 'next';
-import { fetchPageProps } from '../../utils/fetch/fetch-page-props';
-import { PageBase } from '../../components/PageBase';
-import { ContentProps } from '../../types/content-props/_content-common';
-import { isPropsWithContent } from '../../types/_type-guards';
-import { fetchVersionPageProps } from '../version/[[...versionRouter]]';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { fetchPageProps } from 'utils/fetch/fetch-page-props';
+import { PageBase } from 'components/PageBase';
+import { ContentProps } from 'types/content-props/_content-common';
+import { isPropsWithContent } from 'types/_type-guards';
+
+const getDateTime = (dateTime: string | string[]) => {
+    return Array.isArray(dateTime) ? dateTime[0] : dateTime;
+};
+
+const fetchVersionPageProps = async (
+    context: GetServerSidePropsContext,
+    isDraft = false
+) => {
+    const { time, id } = context.query;
+
+    return fetchPageProps({
+        routerQuery: id,
+        isDraft,
+        noRedirect: true,
+        timeRequested: getDateTime(time),
+    });
+};
 
 const getPageProps = async (context) => {
     const { time, branch } = context.query;
@@ -12,6 +29,7 @@ const getPageProps = async (context) => {
     }
 
     const pathSegments = context?.params?.draftRouter;
+
     return await fetchPageProps({
         routerQuery: pathSegments,
         isDraft: true,
@@ -30,8 +48,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     if (isPropsWithContent(pageProps.props)) {
         pageProps.props.content.editorView =
-            (context.query.mode as ContentProps['editorView']) ||
-            'preview';
+            (context.query.mode as ContentProps['editorView']) || 'preview';
     }
 
     return pageProps;
