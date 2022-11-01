@@ -11,4 +11,8 @@
 .socialHelpLink {
     display: inline-block;
     margin-bottom: var(--navds-spacing-7);
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
 }

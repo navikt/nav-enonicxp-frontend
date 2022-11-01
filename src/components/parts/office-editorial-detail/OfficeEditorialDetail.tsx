@@ -31,6 +31,8 @@ export type DetailProps = {
     officeData: OfficeBranchData;
 };
 
+// Todo: IMPORTANT! This is dummy data for development until
+// keys are supported by NORG
 const officeDummyData = {
     lokalkontor: {
         enhetNr: '0533',
@@ -206,7 +208,8 @@ const officeDummyData = {
                 },
                 {
                     lenke: 'https://ytrested.kommune.no/sosialhjelpsoknad',
-                    lenketekst: 'Papirsøknad for sosialhjelp i kommunen',
+                    lenketekst:
+                        'Alternativ digital søknad for sosialhjelp i kommunen',
                 },
             ],
             papirsoeknadInformasjon:
