@@ -78,7 +78,7 @@ type AudienceContact = {
 
 interface AudienceContactInformation {
     spraakdrakt: 'NN' | 'NB';
-    informasjonsUtbetalinger?: string;
+    informasjonUtbetalinger?: string;
     brukertjenesteTilbud?: AudienceServices;
     publikumsmottak: AudienceReception[];
     sosialhjelp?: SocialServices;

@@ -10,14 +10,18 @@ import {
 import { OfficeBranchData } from 'types/content-props/office-branch-props';
 import { ServiceInformation } from './details/ServiceInformation';
 import { SocialHelpLinks } from './details/SocialHelpLinks';
+import { SocialHelpPayoutInformation } from './details/SocialHelpPayoutInformation';
+import { SocialHelpPostalInformation } from './details/SocialHelpPostalInformation';
 import { PlaceholderIndicator } from './PlaceholderIndicator';
 
 const getDetailComponent = (type: DetailType) => {
     const detailComponents = {
         [DetailType.SERVICE_INFORMATION]: ServiceInformation,
         [DetailType.SOCIAL_HELP_LINKS]: SocialHelpLinks,
-        [DetailType.SOCIAL_HELP_PAYOUT_INFORMATION]: SocialHelpLinks,
-        [DetailType.SOCIAL_HELP_POSTAL_INFORMATION]: SocialHelpLinks,
+        [DetailType.SOCIAL_HELP_PAYOUT_INFORMATION]:
+            SocialHelpPayoutInformation,
+        [DetailType.SOCIAL_HELP_POSTAL_INFORMATION]:
+            SocialHelpPostalInformation,
     };
 
     return detailComponents[type] || null;
@@ -73,7 +77,7 @@ const officeDummyData = {
                 },
             ],
             ytterligereInformasjon:
-                'UKRAINA-KRISEN\nDet er opprettet et eget senter i kommunens lokaler på Rådhuset. Her kan flyktninger få råd på ukrainsk til å finne informasjon og svar på praktiske spørsmål om asylprosessen.',
+                'UKRAINA-KRISEN\nDet er opprettet et eget senter i kommunens lokaler på Rådhuset. \nHer kan flyktninger få råd på ukrainsk til å finne informasjon og svar på praktiske spørsmål om asylprosessen.',
         },
         publikumsmottak: [
             {
