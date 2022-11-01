@@ -2,7 +2,8 @@ import classNames from 'classnames';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { DetailProps } from '../OfficeEditorialDetail';
 
-import styles from './Details.module.scss';
+/* eslint-disable-next-line */
+import styles from './SharedDetails.module.scss';
 
 export const SocialHelpLinks = ({ officeData }: DetailProps) => {
     const socialHelpLinks =

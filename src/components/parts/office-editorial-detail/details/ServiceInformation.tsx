@@ -1,8 +1,10 @@
 import { DetailProps } from '../OfficeEditorialDetail';
-import styles from './Details.module.scss';
 
 import { translator } from '../../../../translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+
+/* eslint-disable-next-line */
+import styles from './SharedDetails.module.scss';
 
 export const ServiceInformation = ({ officeData }: DetailProps) => {
     const { language } = usePageConfig();
