@@ -41,7 +41,7 @@ export const VersionSelector = ({
     useEffect(() => {
         fetchWithTimeout(
             `${publishedVersionsServiceUrl}?id=${content._id}`,
-            5000
+            15000
         )
             .then((res) => {
                 if (res.ok) {
