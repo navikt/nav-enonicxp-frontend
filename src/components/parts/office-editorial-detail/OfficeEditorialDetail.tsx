@@ -204,6 +204,10 @@ const officeDummyData = {
                     lenke: 'https://ytrested.kommune.no/sosialhjelpsoknad',
                     lenketekst: 'Digital søknad for sosialhjelp i kommunen',
                 },
+                {
+                    lenke: 'https://ytrested.kommune.no/sosialhjelpsoknad',
+                    lenketekst: 'Papirsøknad for sosialhjelp i kommunen',
+                },
             ],
             papirsoeknadInformasjon:
                 'Papirsøknadsskjema finnes på kommunens nettside og ved inngangsdøren. Kan leveres i brevsprekk utenom åpningstidene.',

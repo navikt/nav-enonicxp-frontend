@@ -2,3 +2,13 @@
     margin: 0;
     padding-left: 1.4rem;
 }
+.anchor {
+    border-bottom: 1px var(--navds-semantic-color-link) solid;
+    text-decoration: none;
+    transition: border-bottom-color 0.12s ease-out;
+}
+
+.socialHelpLink {
+    display: inline-block;
+    margin-bottom: var(--navds-spacing-7);
+}
