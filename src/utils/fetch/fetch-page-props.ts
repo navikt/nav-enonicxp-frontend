@@ -1,7 +1,6 @@
 import {
     getMediaUrl,
     getRelativePathIfInternal,
-    isUUID,
     routerQueryToXpPathOrId,
     sanitizeLegacyUrl,
     stripXpPathPrefix,
@@ -28,7 +27,7 @@ type FetchPagePropsArgs = {
 
 const isValidIdOrPath = (idOrPath: string) => {
     try {
-        return isUUID(idOrPath) || !!decodeURI(idOrPath);
+        return !!decodeURI(idOrPath);
     } catch (e) {
         console.error(`Invalid id or path - ${idOrPath}`);
         return false;
