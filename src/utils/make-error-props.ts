@@ -45,6 +45,7 @@ export const makeErrorProps = (
         data: {
             feedback: false,
             errorMessage: publicMessage,
+            errorMessageInternal: errorMessage,
             errorCode: errorCode,
             errorId: errorId,
         },

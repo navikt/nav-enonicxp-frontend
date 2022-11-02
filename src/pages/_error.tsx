@@ -64,7 +64,9 @@ const fetchFailoverHtml = async (path: string) => {
 
 const parseErrorContent = (err: any, asPath: string) => {
     try {
-        return JSON.parse(err.toString().replace('Error: ', '')).content;
+        return JSON.parse(err.toString().replace('Error: ', '')).content as
+            | ContentProps
+            | undefined;
     } catch (e) {
         console.error(`Failed to parse error content on ${asPath}`);
         return null;
@@ -94,7 +96,7 @@ Error.getInitialProps = async ({ res, err, asPath }): Promise<ContentProps> => {
         res.statusCode = errorContent.data.errorCode;
         logPageLoadError(
             errorId,
-            `${errorContent.data.errorCode} - ${errorContent.data.errorMessage}`
+            `Error on path ${asPath} - ${errorContent.data.errorCode} ${errorContent.data.errorMessageInternal}`
         );
         return errorContent;
     }
