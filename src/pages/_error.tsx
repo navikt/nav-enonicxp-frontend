@@ -62,6 +62,15 @@ const fetchFailoverHtml = async (path: string) => {
         });
 };
 
+const parseErrorContent = (err: any, asPath: string) => {
+    try {
+        return JSON.parse(err.toString().replace('Error: ', '')).content;
+    } catch (e) {
+        console.error(`Failed to parse error content on ${asPath}`);
+        return null;
+    }
+};
+
 const Error = (props: ContentProps) => <PageBase content={props} />;
 
 Error.getInitialProps = async ({ res, err, asPath }): Promise<ContentProps> => {
@@ -73,20 +82,28 @@ Error.getInitialProps = async ({ res, err, asPath }): Promise<ContentProps> => {
 
     if (process.env.IS_FAILOVER_INSTANCE !== 'true') {
         const failoverHtml = await fetchFailoverHtml(asPath);
-
         if (failoverHtml) {
             return res.status(200).send(failoverHtml);
         }
     }
 
-    res.statusCode = err?.content?.data?.errorCode || res.statusCode;
-
     const errorId = uuid();
+    const errorContent = parseErrorContent(err, asPath);
+
+    if (errorContent?.__typename === ContentType.Error) {
+        res.statusCode = errorContent.data.errorCode;
+        logPageLoadError(
+            errorId,
+            `${errorContent.data.errorCode} - ${errorContent.data.errorMessage}`
+        );
+        return errorContent;
+    }
+
     const errorMsg = err?.toString() || 'Empty error message';
 
     logPageLoadError(
         errorId,
-        `Unhandled error on path ${asPath} - ${errorMsg}`
+        `Unhandled error on path ${asPath} - ${res.statusCode} ${errorMsg}`
     );
 
     return makeErrorProps(asPath, errorMsg, res.statusCode, errorId);
