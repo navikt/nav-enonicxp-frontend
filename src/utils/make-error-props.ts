@@ -27,8 +27,6 @@ export const makeErrorProps = (
     errorCode = 500,
     errorId?: string
 ): ErrorProps => {
-    console.log(errorMessage);
-
     const publicMessage =
         errorMessageByMessage(errorMessage) ||
         errorMessageByCode[errorCode] ||
