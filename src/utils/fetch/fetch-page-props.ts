@@ -15,6 +15,7 @@ import {
     isRedirectType,
     redirectPageProps,
 } from '../redirects';
+import { errorMessageURIError, makeErrorProps } from 'utils/make-error-props';
 
 type FetchPagePropsArgs = {
     routerQuery: string | string[];
@@ -24,6 +25,15 @@ type FetchPagePropsArgs = {
     timeRequested?: string;
 };
 
+const isValidIdOrPath = (idOrPath: string) => {
+    try {
+        return !!decodeURI(idOrPath);
+    } catch (e) {
+        console.error(`Invalid id or path - ${idOrPath}`);
+        return false;
+    }
+};
+
 export const fetchPageProps = async ({
     routerQuery,
     isDraft = false,
@@ -31,9 +41,20 @@ export const fetchPageProps = async ({
     noRedirect = false,
     timeRequested,
 }: FetchPagePropsArgs) => {
-    const xpPath = routerQueryToXpPathOrId(routerQuery || '');
+    const idOrPath = routerQueryToXpPathOrId(routerQuery || '');
+
+    if (!isValidIdOrPath(idOrPath)) {
+        return errorHandler(
+            makeErrorProps(
+                stripXpPathPrefix(idOrPath),
+                errorMessageURIError,
+                400
+            )
+        );
+    }
+
     const content = await fetchPage({
-        idOrPath: xpPath,
+        idOrPath,
         timeRequested,
         isDraft,
         isPreview,
@@ -45,9 +66,9 @@ export const fetchPageProps = async ({
     }
 
     if (isNotFound(content)) {
-        const sanitizedPath = sanitizeLegacyUrl(xpPath);
+        const sanitizedPath = sanitizeLegacyUrl(idOrPath);
 
-        if (sanitizedPath !== xpPath) {
+        if (sanitizedPath !== idOrPath) {
             return redirectPageProps(stripXpPathPrefix(sanitizedPath), false);
         }
 
