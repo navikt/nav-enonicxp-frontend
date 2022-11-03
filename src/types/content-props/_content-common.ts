@@ -120,7 +120,6 @@ export type ContentCommonProps = {
     editorView?: 'inline' | 'preview' | 'edit';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     livePath?: string;
-    versionTimestamps?: string[];
     isFailover?: boolean;
     isPagePreview?: boolean;
 } & ContentAndMediaCommonProps;

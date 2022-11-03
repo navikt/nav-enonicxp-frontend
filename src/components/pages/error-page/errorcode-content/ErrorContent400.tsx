@@ -1,15 +1,14 @@
 import React from 'react';
 import { BodyLong } from '@navikt/ds-react';
-import { ErrorProps } from '../../../../types/content-props/error-props';
+import { ErrorProps } from 'types/content-props/error-props';
 import { ErrorFeedbackLink } from './feedback-link/ErrorFeedbackLink';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import Config from '../../../../config';
-import { appOrigin } from '../../../../utils/urls';
-
-export const errorMessageParamDecodePublic = 'Ugyldig adresseformat';
+import { appOrigin } from 'utils/urls';
+import { errorMessageURIErrorPublic } from 'utils/make-error-props';
 
 export const ErrorContent400 = (props: ErrorProps) => {
-    if (props.data.errorMessage === errorMessageParamDecodePublic) {
+    if (props.data.errorMessage === errorMessageURIErrorPublic) {
         return (
             <>
                 <BodyLong>{'Den forespurte adressen er ikke gyldig:'}</BodyLong>

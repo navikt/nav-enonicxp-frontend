@@ -23,7 +23,7 @@ export const VersionSelectorDateTime = ({
     content,
     submitVersionUrl,
 }: Props) => {
-    const { editorView, timeRequested } = content;
+    const { timeRequested } = content;
 
     const nbTime = dayjs(timeRequested).locale('nb').format();
 
@@ -69,23 +69,20 @@ export const VersionSelectorDateTime = ({
                 />
             </div>
             <div className={style.right}>
-                {editorView && (
-                    <Checkbox
-                        checked={branchSelected === 'master'}
-                        id={'version-branch-input'}
-                        onChange={(e) => {
-                            setBranchSelected(
-                                e.target.checked ? 'master' : 'draft'
-                            );
-                        }}
-                        size={'small'}
-                    >
-                        {'Kun publisert innhold'}
-                    </Checkbox>
-                )}
+                <Checkbox
+                    checked={branchSelected === 'master'}
+                    id={'version-branch-input'}
+                    onChange={(e) => {
+                        setBranchSelected(
+                            e.target.checked ? 'master' : 'draft'
+                        );
+                    }}
+                    size={'small'}
+                >
+                    {'Kun publisert innhold'}
+                </Checkbox>
                 <VersionSelectorSubmitButton
                     url={url}
-                    isEditorView={!!editorView}
                     submitVersionUrl={submitVersionUrl}
                 />
             </div>

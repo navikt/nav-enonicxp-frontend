@@ -7,7 +7,9 @@ const vars = {
 
 const urls = {
     prodOrigin: 'https://www.nav.no',
-    errorFeedback: '/person/kontakt-oss/nb/tilbakemeldinger/feil-og-mangler',
+    errorFeedback: `https://www${
+        process.env.ENV !== 'prod' ? '.dev' : ''
+    }.nav.no/person/kontakt-oss/nb/tilbakemeldinger/feil-og-mangler`,
 };
 
 const Config = {
