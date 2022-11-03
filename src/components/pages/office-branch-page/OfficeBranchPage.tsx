@@ -9,10 +9,7 @@ export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
 
     return (
         <div className={'officeBranchPage'}>
-            <ThemedPageHeader
-                contentProps={editorialPage}
-                showTimeStamp={false}
-            />
+            <ThemedPageHeader contentProps={props} showTimeStamp={false} />
             <OfficeDetails officeData={props.data} />
             <div className={'content'}>
                 <ComponentMapper
