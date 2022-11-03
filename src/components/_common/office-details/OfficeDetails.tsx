@@ -1,9 +1,10 @@
 import classNames from 'classnames';
 import { OfficeEditorialPageData } from 'types/content-props/dynamic-page-props';
+import { OfficeBranchData } from 'types/content-props/office-branch-props';
 import styles from './OfficeDetails.module.scss';
 
 type OfficeDetailsProps = {
-    officeData: OfficeEditorialPageData;
+    officeData: OfficeBranchData;
 };
 
 export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
