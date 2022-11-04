@@ -2,7 +2,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE_BUNDLE === 'true',
 });
 const { withSentryConfig } = require('@sentry/nextjs');
-const { getCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
+const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
 
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
@@ -36,7 +36,7 @@ const resolveNodeLibsClientSide = (config, options) => {
     }
 };
 
-const buildCspHeader = async () => {
+const csp = async () => {
     const prodHost = 'nav.no';
     const prodWithSubdomains = `*.${prodHost}`;
 
@@ -68,7 +68,7 @@ const buildCspHeader = async () => {
         prod: 'prod',
     };
 
-    return getCspHeader(
+    return buildCspHeader(
         {
             'default-src': [
                 ...internalHosts,
@@ -235,7 +235,7 @@ const config = {
                 },
                 {
                     key: 'Content-Security-Policy',
-                    value: await buildCspHeader(),
+                    value: await csp(),
                 },
             ],
         },
