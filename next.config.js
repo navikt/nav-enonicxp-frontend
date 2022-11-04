@@ -3,6 +3,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 const { withSentryConfig } = require('@sentry/nextjs');
 const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
+const { DATA } = require('csp-header');
 
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
@@ -72,13 +73,13 @@ const csp = async () => {
         {
             'default-src': [
                 ...internalHosts,
-                process.env.NODE_ENV === 'development' ? ' ws:' : '',
+                process.env.NODE_ENV === 'development' ? 'ws:' : '',
             ],
             'script-src': [...internalHosts, ...tiTiHosts],
             'worker-src': internalHosts,
             'style-src': internalHosts,
-            'font-src': [...internalHosts, 'data:'],
-            'img-src': [...internalHosts, 'data:'],
+            'font-src': [...internalHosts, DATA],
+            'img-src': [...internalHosts, DATA],
             'frame-src': [qbrickHost],
         },
         { env: envMap[process.env.ENV], port: process.env.DECORATOR_LOCAL_PORT }
