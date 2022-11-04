@@ -8,6 +8,7 @@ import {
     OfficeEditorialDetailProps,
 } from 'types/component-props/parts/office-editorial-detail';
 import { OfficeBranchData } from 'types/content-props/office-branch-props';
+import { ContentType } from 'types/content-props/_content-common';
 import { ServiceInformation } from './details/ServiceInformation';
 import { SocialHelpLinks } from './details/SocialHelpLinks';
 import { SocialHelpPayoutInformation } from './details/SocialHelpPayoutInformation';
@@ -249,6 +250,8 @@ export const OfficeEditorialDetail = ({
     const { detailType } = config;
     const { pageConfig } = usePageConfig();
 
+    console.log(config, pageProps);
+
     const officeData = officeDummyData as OfficeBranchData; //pageProps.data as OfficeBranchData;
 
     // Note these texts are presented to editors only to give an idea
@@ -263,7 +266,9 @@ export const OfficeEditorialDetail = ({
             'informasjon om postkasse/henting av søknad for sosialhjelp.',
     };
 
-    if (pageConfig.editorView) {
+    // If editing the editorial page directy, we can't merge any actual
+    // office data into the editorial parts, so just show the placeholder
+    if (pageProps.__typename === ContentType.OfficeEditorialPage) {
         if (!detailType) {
             <EditorHelp text="Angi hvilken informasjon fra kontoret som skal vises her ved å velge fra innstillingene til høyre." />;
         }
