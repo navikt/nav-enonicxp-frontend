@@ -46,7 +46,7 @@ services:
 
   dekoratoren:
     container_name: dekoratoren-xpfrontend
-    image: 'ghcr.io/navikt/nav-dekoratoren:latest'
+    image: 'ghcr.io/navikt/nav-dekoratoren/nav-dekoratoren:latest'
     ports:
       - '8100:8088'
     environment:
