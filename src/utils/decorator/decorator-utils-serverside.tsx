@@ -26,7 +26,7 @@ const envProps =
     decoratorEnv === 'localhost'
         ? {
               env: decoratorEnv,
-              port: Number(decoratorLocalPort),
+              port: decoratorLocalPort,
           }
         : { env: decoratorEnv };
 
