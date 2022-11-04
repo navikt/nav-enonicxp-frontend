@@ -56,9 +56,11 @@ export const MicroCards = ({ header, card_list }: Props) => {
                     {header}
                 </BodyShort>
             )}
-            {cardProps.map((card, index) => (
-                <MicroCard {...card} key={index} />
-            ))}
+            <div className={style.wrapper}>
+                {cardProps.map((card, index) => (
+                    <MicroCard {...card} key={index} />
+                ))}
+            </div>
         </>
     );
 };

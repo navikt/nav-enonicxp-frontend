@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 const defaultTimeout = 15000;
 
-export const fetchWithTimeout = <ResponseType = any>(
+export const fetchWithTimeout = <ResponseType = Response>(
     url: string,
     timeoutMs = defaultTimeout,
     config?: Record<string, any>

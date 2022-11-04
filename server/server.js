@@ -10,7 +10,6 @@ const {
     handleInvalidateReq,
     handleInvalidateAllReq,
     setCacheKey,
-    getFsPath,
 } = require('./incremental-cache');
 const { initHeartbeat } = require('./revalidator-proxy-heartbeat');
 
@@ -28,6 +27,26 @@ const validateSecret = (req, res, next) => {
 
     next();
 };
+
+// Temporary spammy logging to investigate an occasional hang on cache-response for certain paths
+const logPendingResponses =
+    process.env.ENV !== 'localhost'
+        ? (nextServer) => {
+              try {
+                  const pendingResponses =
+                      nextServer.responseCache.pendingResponses;
+                  if (pendingResponses?.size > 0) {
+                      console.log(
+                          `Pending responses: ${JSON.stringify([
+                              ...pendingResponses.keys(),
+                          ])}`
+                      );
+                  }
+              } catch (e) {
+                  console.error(`Error accessing pendingResponses - ${e}`);
+              }
+          }
+        : () => ({});
 
 nextApp.prepare().then(() => {
     const server = express();
@@ -50,7 +69,8 @@ nextApp.prepare().then(() => {
     const isFailover = IS_FAILOVER_INSTANCE === 'true';
 
     if (!isFailover && PAGE_CACHE_DIR) {
-        nextApp.server.incrementalCache.cacheHandler.getFsPath = getFsPath;
+        nextApp.server.responseCache.incrementalCache.cacheHandler.serverDistDir =
+            PAGE_CACHE_DIR;
     }
 
     if (IMAGE_CACHE_DIR) {
@@ -104,6 +124,8 @@ nextApp.prepare().then(() => {
         });
 
         server.all('*', (req, res) => {
+            logPendingResponses(nextApp.server);
+
             return nextRequestHandler(req, res);
         });
     }

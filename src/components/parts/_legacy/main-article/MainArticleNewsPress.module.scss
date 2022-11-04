@@ -1,0 +1,115 @@
+@use 'src/common' as common;
+
+:global(#__next):has(.newsPressBackground) {
+    background-color: white;
+}
+
+.newsPressArticle {
+    width: 100%;
+    border-radius: 0.25rem;
+
+    @media #{common.$mq-screen-desktop} {
+        padding: 0 2.8rem 2.8rem 2.8rem;
+    }
+
+    @media #{common.$mq-screen-mobile} {
+        padding: 0 0.5rem 0.5rem 0.5rem;
+    }
+
+    @media #{common.$mq-screen-tablet} {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+
+    .header {
+        margin-bottom: 2rem;
+    }
+
+    .headerWithToc {
+        margin-bottom: 1.5rem;
+    }
+
+    .text {
+        p {
+            margin-bottom: 2rem;
+        }
+    }
+
+    .text {
+        li {
+            margin-bottom: 0.3rem;
+            font-size: 1.125rem;
+        }
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+
+        .chapterHeader {
+            display: inline-block;
+        }
+
+        .chapterHeader:focus {
+            outline-offset: 0.2109rem;
+            outline: 0.2109rem solid common.$navds-semantic-color-focus;
+        }
+
+        figure {
+            margin: 0 0 1.75rem 0;
+        }
+
+        figcaption {
+            font-size: var(--navds-font-size-small);
+            letter-spacing: 0.004em;
+            line-height: var(--navds-font-line-height-medium);
+            margin: 0.5rem 0;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        table {
+            float: none;
+            margin-bottom: 1rem;
+
+            th,
+            td {
+                vertical-align: top;
+                padding: 0.7rem;
+                line-height: 150%;
+                font-size: 1.125rem;
+            }
+        }
+
+        h2,
+        .h2,
+        h3,
+        .h3,
+        h4,
+        .h4 {
+            margin: 2.5rem 0 0.6875rem;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        h2 {
+            font-size: common.$navds-font-size-heading-large;
+        }
+        h3 {
+            font-size: common.$navds-font-size-heading-medium;
+        }
+        h4 {
+            font-size: common.$navds-font-size-heading-small;
+        }
+
+        ul,
+        ol {
+            padding-left: 1.4rem;
+            margin-bottom: 1rem;
+        }
+    }
+}

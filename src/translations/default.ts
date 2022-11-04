@@ -108,17 +108,33 @@ export const translationsBundleNb = {
     },
     mainArticle: {
         facts: 'Fakta',
-        lastChanged: 'Sist endret',
+        lastChanged: 'Oppdatert',
         linkedListDescription: 'Kapitler',
         published: 'Publisert',
         tableOfContents: 'Innholdsfortegnelse',
         contents: 'Innholdsoversikt',
+        news: 'Nyheter',
+        pressRelease: 'Pressemelding',
     },
     mainPanels: {
         label: 'Hovedvalg',
     },
     officeInformation: {
         closed: 'Stengt',
+    },
+    audienceServices: {
+        NODSITUASJON:
+            'Hjelp i nødsituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
+        TILGANGPC: 'Tilgang til PC',
+        HJELPDIGITALETJENESTER:
+            'Hjelp til å bruke digitale tjenester hvis du trenger det',
+        BARNEVERN: 'Barnevern',
+        KRIMINALOMSORG: 'Fengsel- og kriminalomsorg',
+        FLYKTNING: 'Flyktningetjeneste',
+        RUS: 'Rus og psykisk helse',
+        STARTLAN: 'Startlån',
+        SJOFART: 'Sjøfartsoppgaver',
+        STOETTEKONTAKT: 'Støttekontakt',
     },
     relatedContent: relatedContent,
     productTaxonomies,

@@ -87,6 +87,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image:src" content={imageUrl} />
             <meta name="description" content={description} />
+            <meta name="contentId" content={content._id} />
             <link
                 rel="apple-touch-icon"
                 sizes="180x180"

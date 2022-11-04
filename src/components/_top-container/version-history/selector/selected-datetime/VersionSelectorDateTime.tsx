@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Checkbox, Label } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { getCurrentDateAndTime, getUtcTimeFromLocal } from 'utils/datetime';
+import {
+    getCurrentDateAndTime,
+    getCurrentISODate,
+    getUtcTimeFromLocal,
+} from 'utils/datetime';
 import { Branch } from 'types/branch';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
+import dayjs from 'dayjs';
 
 import style from './VersionSelectorDateTime.module.scss';
 
@@ -18,27 +23,23 @@ export const VersionSelectorDateTime = ({
     content,
     submitVersionUrl,
 }: Props) => {
-    const [initialDate, initialTime] = getCurrentDateAndTime();
+    const { timeRequested } = content;
+
+    const nbTime = dayjs(timeRequested).locale('nb').format();
+
+    const [initialDate, initialTime] = timeRequested
+        ? nbTime.split('T')
+        : getCurrentDateAndTime();
+
     const [dateSelected, setDateSelected] = useState(initialDate);
     const [timeSelected, setTimeSelected] = useState(initialTime);
     const [branchSelected, setBranchSelected] = useState<Branch>('master');
-
-    const { editorView, timeRequested } = content;
 
     const url = getVersionSelectorUrl(
         content,
         getUtcTimeFromLocal(`${dateSelected}T${timeSelected}`),
         branchSelected
     );
-
-    useEffect(() => {
-        // Reset the current date/time selection when receiving live content
-        if (!timeRequested) {
-            const [currentDate, currentTime] = getCurrentDateAndTime();
-            setDateSelected(currentDate);
-            setTimeSelected(currentTime);
-        }
-    }, [timeRequested]);
 
     return (
         <>
@@ -63,28 +64,25 @@ export const VersionSelectorDateTime = ({
                     }}
                     aria-labelledby={'version-selector-label'}
                     min={startDate}
-                    max={initialDate}
+                    max={getCurrentISODate()}
                     value={dateSelected}
                 />
             </div>
             <div className={style.right}>
-                {editorView && (
-                    <Checkbox
-                        checked={branchSelected === 'master'}
-                        id={'version-branch-input'}
-                        onChange={(e) => {
-                            setBranchSelected(
-                                e.target.checked ? 'master' : 'draft'
-                            );
-                        }}
-                        size={'small'}
-                    >
-                        {'Kun publisert innhold'}
-                    </Checkbox>
-                )}
+                <Checkbox
+                    checked={branchSelected === 'master'}
+                    id={'version-branch-input'}
+                    onChange={(e) => {
+                        setBranchSelected(
+                            e.target.checked ? 'master' : 'draft'
+                        );
+                    }}
+                    size={'small'}
+                >
+                    {'Kun publisert innhold'}
+                </Checkbox>
                 <VersionSelectorSubmitButton
                     url={url}
-                    isEditorView={!!editorView}
                     submitVersionUrl={submitVersionUrl}
                 />
             </div>

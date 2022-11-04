@@ -1,16 +1,14 @@
-import { Button } from '../../../../_common/button/Button';
 import React from 'react';
+import { Button } from 'components/_common/button/Button';
 
 type Props = {
     url: string;
-    isEditorView: boolean;
     submitVersionUrl: (url: string) => void;
 };
 
 export const VersionSelectorSubmitButton = ({
     url,
     submitVersionUrl,
-    isEditorView,
 }: Props) => {
     return (
         <Button
@@ -18,9 +16,7 @@ export const VersionSelectorSubmitButton = ({
             size={'small'}
             className={'version-selector-submit'}
             onClick={(e) => {
-                if (isEditorView) {
-                    e.stopPropagation();
-                }
+                e.stopPropagation();
                 e.preventDefault();
                 submitVersionUrl(url);
             }}
