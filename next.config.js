@@ -2,6 +2,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE_BUNDLE === 'true',
 });
 const { withSentryConfig } = require('@sentry/nextjs');
+const { getCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
 
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
@@ -35,79 +36,53 @@ const resolveNodeLibsClientSide = (config, options) => {
     }
 };
 
-const buildCspHeader = () => {
-    const getOrigin = (url) => url.replace(/^https?:\/\//, '').split('/')[0];
+const buildCspHeader = async () => {
+    const prodHost = 'nav.no';
+    const prodWithSubdomains = `*.${prodHost}`;
 
-    const prodOrigin = 'nav.no';
-    const prodWithSubdomains = `*.${prodOrigin}`;
+    const appHost = new URL(process.env.APP_ORIGIN).host;
+    const adminHost = new URL(process.env.ADMIN_ORIGIN).host;
+    const xpHost = new URL(process.env.XP_ORIGIN).host;
 
-    const appOrigin = getOrigin(process.env.APP_ORIGIN);
-    const adminOrigin = getOrigin(process.env.ADMIN_ORIGIN);
-    const xpOrigin = getOrigin(process.env.XP_ORIGIN);
-    const decoratorOrigin = getOrigin(process.env.DECORATOR_FALLBACK_URL);
-    const innloggingsStatusOrigin = getOrigin(
-        process.env.INNLOGGINGSSTATUS_URL
-    );
-
-    const vergicOrigin = '*.psplugin.com'; // screen sharing
-    const boostOrigin = `nav.boost.ai${
-        process.env.ENV !== 'prod' ? ' staging-nav.boost.ai' : ''
-    }`; // chatbot
-    const qbrickOrigin = 'video.qbrick.com';
-    const vimeoPlayerOrigin = 'player.vimeo.com';
-    const vimeoCdnOrigin = '*.vimeocdn.com'; // used for video preview images
-
-    const gaOrigin = 'www.google-analytics.com';
-    const gtmOrigin = 'www.googletagmanager.com';
-    const hotjarOrigin = '*.hotjar.com *.hotjar.io';
-    const taOrigin = '*.taskanalytics.com ta-survey-v2.herokuapp.com';
+    const qbrickHost = 'video.qbrick.com';
 
     // These are used by a NAV-funded research project for accessibility-related feedback
-    const tingtunOrigin = '*.tingtun.no';
-    const termerOrigin = 'termer.no';
-    const tiTiOrigins = [tingtunOrigin, termerOrigin].join(' ');
+    const tingtunHost = '*.tingtun.no';
+    const termerHost = 'termer.no';
+    const tiTiHosts = [tingtunHost, termerHost];
 
     // Filter duplicates, as some origins may be identical, depending on
     // deployment environment
-    const internalOrigins = [
+    const internalHosts = [
         prodWithSubdomains,
-        ...[
-            appOrigin,
-            adminOrigin,
-            xpOrigin,
-            decoratorOrigin,
-            innloggingsStatusOrigin,
-        ].filter(
+        ...[appHost, adminHost, xpHost].filter(
             (origin, index, array) =>
-                !origin.endsWith(prodOrigin) && array.indexOf(origin) === index
+                !origin.endsWith(prodHost) && array.indexOf(origin) === index
         ),
-    ].join(' ');
+    ];
 
-    const externalOriginsServices = [vergicOrigin, boostOrigin].join(' ');
+    const envMap = {
+        localhost: 'localhost',
+        dev1: 'dev',
+        dev2: 'dev',
+        prod: 'prod',
+    };
 
-    const externalOriginsAnalytics = [
-        taOrigin,
-        hotjarOrigin,
-        gtmOrigin,
-        gaOrigin,
-    ].join(' ');
-
-    // NOTES:
-    // script unsafe-eval and worker blob: is required by the psplugin script
-    // unsafe-inline script is required by GTM
-    // unsafe-inline style is required by several third party modules
-    // next.js dev mode requires ws: and unsafe-eval
-    return [
-        `default-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics}${
-            process.env.NODE_ENV === 'development' ? ' ws:' : ''
-        }`,
-        `script-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics} ${tiTiOrigins} 'unsafe-inline' 'unsafe-eval'`,
-        `worker-src ${internalOrigins} blob:`,
-        `style-src ${internalOrigins} ${vergicOrigin} 'unsafe-inline'`,
-        `font-src ${internalOrigins} ${vergicOrigin} data:`,
-        `img-src ${internalOrigins} ${vimeoCdnOrigin} ${vergicOrigin} ${gaOrigin} data:`,
-        `frame-src ${qbrickOrigin} ${vimeoPlayerOrigin} ${hotjarOrigin} ${gtmOrigin}`,
-    ].join('; ');
+    return getCspHeader(
+        {
+            'default-src': [
+                ...internalHosts,
+                process.env.NODE_ENV === 'development' ? ' ws:' : '',
+            ],
+            'script-src': [...internalHosts, ...tiTiHosts],
+            'worker-src': internalHosts,
+            'style-src': internalHosts,
+            'font-src': [...internalHosts, 'data:'],
+            'img-src': [...internalHosts, 'data:'],
+            'frame-src': [qbrickHost],
+        },
+        { env: envMap[process.env.ENV], port: process.env.DECORATOR_LOCAL_PORT }
+    );
 };
 
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
@@ -260,7 +235,7 @@ const config = {
                 },
                 {
                     key: 'Content-Security-Policy',
-                    value: buildCspHeader(),
+                    value: await buildCspHeader(),
                 },
             ],
         },

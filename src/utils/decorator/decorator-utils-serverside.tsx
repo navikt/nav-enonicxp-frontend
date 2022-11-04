@@ -22,6 +22,14 @@ const envMap: { [Key in AppEnv]: DecoratorEnv } = {
 
 const decoratorEnv = envMap[process.env.ENV] || 'prod';
 
+const envProps =
+    decoratorEnv === 'localhost'
+        ? {
+              env: decoratorEnv,
+              port: Number(decoratorLocalPort),
+          }
+        : { env: decoratorEnv };
+
 const fetchTimeoutMs = 15000;
 
 // Client-side rendered decorator is used as a fallback if the server-side
@@ -54,9 +62,8 @@ export const getDecoratorComponents = async (
     try {
         const decoratorComponents = await Promise.race([
             fetchDecoratorReact({
-                env: decoratorEnv,
-                port: decoratorLocalPort,
                 ...params,
+                ...envProps,
             }),
             new Promise((res, rej) =>
                 setTimeout(() => rej('Fetch timeout'), fetchTimeoutMs)
