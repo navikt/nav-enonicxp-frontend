@@ -60,6 +60,7 @@ export enum ContentType {
     Melding = 'no_nav_navno_Melding',
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
+    OfficeDetails = 'no_nav_navno_office-branch',
     OfficeEditorialPageProps = 'no_nav_navno_OfficeEditorialPage',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
     GlobalNumberValuesSet = 'no_nav_navno_GlobalValueSet',

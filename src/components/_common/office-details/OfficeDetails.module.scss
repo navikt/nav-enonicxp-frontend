@@ -12,9 +12,18 @@
     flex-direction: column;
 }
 
+.openingHours {
+    background-color: var(--navds-global-color-deepblue-50);
+}
+
 .addressPoster,
 .phonePoster {
     padding: common.$padding-sides-mobile;
+    background-color: var(--navds-global-color-gray-50);
+    a:link {
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+    }
 
     @media #{common.$mq-screen-tablet} {
         padding: common.$padding-sides-tablet;
@@ -27,8 +36,4 @@
 
 .addressPoster {
     background-color: var(--navds-global-color-orange-50);
-}
-
-.phonePoster {
-    background-color: var(--navds-global-color-gray-50);
 }
