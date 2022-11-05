@@ -81,6 +81,7 @@ const csp = async () => {
             'font-src': [...internalHosts, DATA],
             'img-src': [...internalHosts, DATA],
             'frame-src': [qbrickHost],
+            'connect-src': internalHosts,
         },
         { env: envMap[process.env.ENV], port: process.env.DECORATOR_LOCAL_PORT }
     );
