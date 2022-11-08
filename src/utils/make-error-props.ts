@@ -1,9 +1,9 @@
-import { ContentType } from '../types/content-props/_content-common';
-import { ErrorProps } from '../types/content-props/error-props';
-import { errorMessageParamDecodePublic } from '../components/pages/error-page/errorcode-content/ErrorContent400';
+import { ContentType } from 'types/content-props/_content-common';
+import { ErrorProps } from 'types/content-props/error-props';
 
 const errorMessageDefault = 'Ukjent feil';
-const errorMessageParamDecode = 'Failed to decode param';
+export const errorMessageURIError = 'URIError';
+export const errorMessageURIErrorPublic = 'Ugyldig adresseformat';
 
 const errorMessageByCode = {
     400: 'Ugyldig forespørsel',
@@ -13,9 +13,9 @@ const errorMessageByCode = {
     408: 'Tidsavbrudd',
 };
 
-const errorMessageByMessage = (message) => {
-    if (message?.includes(errorMessageParamDecode)) {
-        return errorMessageParamDecodePublic;
+const errorMessageByMessage = (message?: string) => {
+    if (message?.startsWith(errorMessageURIError)) {
+        return errorMessageURIErrorPublic;
     }
 
     return null;
@@ -45,6 +45,7 @@ export const makeErrorProps = (
         data: {
             feedback: false,
             errorMessage: publicMessage,
+            errorMessageInternal: errorMessage,
             errorCode: errorCode,
             errorId: errorId,
         },

@@ -88,6 +88,8 @@ export const translationsBundleEn: Translations = {
         published: 'Published',
         tableOfContents: 'Table of contents',
         contents: 'Contents',
+        news: 'News',
+        pressRelease: 'Press release',
     },
     mainPanels: { label: 'Main panels' },
     publishingCalendar: {

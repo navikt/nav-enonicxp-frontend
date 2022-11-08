@@ -1,0 +1,39 @@
+---
+apiVersion: "nais.io/v1"
+kind: "Alert"
+metadata:
+  name: nav-enonicxp-frontend-alert
+  namespace: personbruker
+  labels:
+    team: personbruker
+spec:
+  receivers:
+    slack:
+      channel: "#navno-alerts"
+      prependText: "[nav-enonicxp-frontend] [<!here>] "
+  alerts:
+    - alert: Appen er nede! (ingen tilgjengelige pods)
+      severity: danger
+      expr: kube_deployment_status_replicas_available{deployment="nav-enonicxp-frontend"} == 0
+      for: 2m
+      action: "`kubectl describe pod -l app={{ $labels.app }} -n {{ $labels.namespace }}` for events, og `kubectl logs -l app={{ $labels.app }} -n {{ $labels.namespace }}` for logger"
+    - alert: Høy andel 5xx-feil (>1%)
+      severity: danger
+      expr: (100 * (sum by (service) (rate(nginx_ingress_controller_requests{status=~"^5\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[3m])) / sum by (service) (rate(nginx_ingress_controller_requests{namespace="personbruker", service="nav-enonicxp-frontend"}[3m])))) > 1
+      for: 3m
+      action: "Sjekk loggene for å se hvorfor appen returnerer 5xx-feil"
+    - alert: Høy andel 4xx-feil (>10%)
+      severity: warning
+      expr: (100 * (sum by (service) (rate(nginx_ingress_controller_requests{status=~"^4\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[3m])) / sum by (service) (rate(nginx_ingress_controller_requests{namespace="personbruker", service="nav-enonicxp-frontend"}[3m])))) > 10
+      for: 3m
+      action: "Sjekk loggene for å se hvorfor appen returnerer 4xx-feil"
+    - alert: Treg 99th percentile responsetid (>5 sec)
+      severity: warning
+      expr: histogram_quantile(0.99, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[10m])) by (le)) > 5
+      for: 3m
+      action: "Undersøk hvorfor en andel av requestene er trege"
+    - alert: Treg median responsetid (>20 ms)
+      severity: warning
+      expr: histogram_quantile(0.5, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[10m])) by (le)) > 0.02
+      for: 3m
+      action: "Undersøk hvorfor appen svarer tregt"

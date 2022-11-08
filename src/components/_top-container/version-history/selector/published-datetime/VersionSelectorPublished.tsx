@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Select } from '@navikt/ds-react';
-import { ContentProps } from '../../../../../types/content-props/_content-common';
-import { formatDateTime } from '../../../../../utils/datetime';
+import { ContentProps } from 'types/content-props/_content-common';
+import { formatDateTime } from 'utils/datetime';
 import { getVersionSelectorUrl } from '../versionSelectorUtils';
 import { VersionSelectorSubmitButton } from '../submit-button/VersionSelectorSubmitButton';
 
@@ -9,29 +9,22 @@ import style from './VersionSelectorPublished.module.scss';
 
 type Props = {
     content: ContentProps;
+    versionTimestamps: string[];
     submitVersionUrl: (url: string) => void;
+    initialSelection?: string;
 };
 
 export const VersionSelectorPublished = ({
     content,
+    versionTimestamps,
     submitVersionUrl,
+    initialSelection,
 }: Props) => {
-    const { versionTimestamps, editorView, timeRequested } = content;
-
-    const currentVersionTimestamp = versionTimestamps?.[0];
-
     const [selectedDateTime, setSelectedDateTime] = useState(
-        currentVersionTimestamp
+        initialSelection || versionTimestamps[0]
     );
 
-    useEffect(() => {
-        // Reset the current selection when receiving live content
-        if (!timeRequested) {
-            setSelectedDateTime(currentVersionTimestamp);
-        }
-    }, [timeRequested, currentVersionTimestamp]);
-
-    if (!currentVersionTimestamp) {
+    if (versionTimestamps.length === 0) {
         return <div>{'Fant ingen publiseringer for dette innholdet'}</div>;
     }
 
@@ -47,14 +40,17 @@ export const VersionSelectorPublished = ({
                 className={style.select}
             >
                 {versionTimestamps.map((timestamp, index) => (
-                    <option value={timestamp} key={index}>
+                    <option
+                        value={timestamp}
+                        selected={timestamp === selectedDateTime}
+                        key={index}
+                    >
                         {formatDateTime(timestamp, 'nb', true)}
                     </option>
                 ))}
             </Select>
             <VersionSelectorSubmitButton
                 url={url}
-                isEditorView={!!editorView}
                 submitVersionUrl={submitVersionUrl}
             />
         </div>

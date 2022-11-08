@@ -22,8 +22,24 @@ const invalidateCachedPage = async (path, nextApp) => {
         removePageCacheFile(nextApp, `${pagePath}.json`),
     ])
         .then(() => {
+            console.log(`Removing page data from memory cache: ${pagePath}`);
+
+            const wasCached =
+                nextApp.server.responseCache.incrementalCache.cacheHandler.memoryCache.has(
+                    pagePath
+                );
+
             nextApp.server.responseCache.incrementalCache.cacheHandler.memoryCache.del(
                 pagePath
+            );
+
+            const isStillCached =
+                nextApp.server.responseCache.incrementalCache.cacheHandler.memoryCache.has(
+                    pagePath
+                );
+
+            console.log(
+                `Was cached: ${wasCached} - Is still cached: ${isStillCached}`
             );
         })
         .catch((e) => {

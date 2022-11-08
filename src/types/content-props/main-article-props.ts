@@ -13,6 +13,8 @@ export type Picture = Partial<{
 }>;
 
 export type SocialMedia = 'facebook' | 'twitter' | 'linkedin';
+export type ArticleContentType = 'news' | 'pressRelease' | 'lastingContent';
+export type ArticleSubContentType = 'statistics' | 'none';
 
 export type MainArticleData = Partial<{
     languages: LanguageProps[];
@@ -21,6 +23,8 @@ export type MainArticleData = Partial<{
     hasTableOfContents: string;
     fact: ProcessedHtmlProps;
     social: SocialMedia[];
+    contentType: ArticleContentType;
+    subContentType: ArticleSubContentType;
     picture: Picture;
     menuListItems: MenuListItems;
     chapters: MainArticleChapterNavigationData[];

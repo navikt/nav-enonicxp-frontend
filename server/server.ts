@@ -29,6 +29,26 @@ const validateSecret = (req, res, next) => {
     next();
 };
 
+// Temporary spammy logging to investigate an occasional hang on cache-response for certain paths
+const logPendingResponses =
+    process.env.ENV !== 'localhost'
+        ? (nextServer) => {
+              try {
+                  const pendingResponses =
+                      nextServer.responseCache.pendingResponses;
+                  if (pendingResponses?.size > 0) {
+                      console.log(
+                          `Pending responses: ${JSON.stringify([
+                              ...pendingResponses.keys(),
+                          ])}`
+                      );
+                  }
+              } catch (e) {
+                  console.error(`Error accessing pendingResponses - ${e}`);
+              }
+          }
+        : () => ({});
+
 nextApp.prepare().then(() => {
     const server = express();
     const port = process.env.PORT || 3000;
@@ -108,6 +128,8 @@ nextApp.prepare().then(() => {
         });
 
         server.all('*', (req, res) => {
+            logPendingResponses(nextApp.server);
+
             return nextRequestHandler(req, res);
         });
     }

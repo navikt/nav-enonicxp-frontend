@@ -24,6 +24,13 @@ const getCacheKey =
           })
         : () => ({});
 
+const fetchConfig = {
+    headers: {
+        secret: process.env.SERVICE_SECRET,
+        'Cache-Control': 'no-store, no-cache',
+    },
+};
+
 type FetchSiteContentArgs = {
     idOrPath: string;
     time?: string;
@@ -33,28 +40,42 @@ type FetchSiteContentArgs = {
 
 const fetchSiteContent = async ({
     idOrPath,
-    time,
     isDraft = false,
     isPreview = false,
 }: FetchSiteContentArgs) => {
     const params = objectToQueryString({
         id: idOrPath,
         ...(isDraft && { branch: 'draft' }),
-        ...(time && { time }),
-        ...(!isDraft && getCacheKey()),
+        ...(!isDraft && getCacheKey()), // We don't want to use backend-cache for draft content requests
         ...(isPreview && { preview: true }),
     });
+
     const url = `${xpServiceUrl}/sitecontent${params}`;
-    const config = {
-        headers: {
-            secret: process.env.SERVICE_SECRET,
-            'Cache-Control': 'no-store, no-cache',
-        },
-    };
     console.log(`Fetching content from ${url}`);
 
-    return fetchWithTimeout(url, fetchTimeoutMs, config).catch((e) => {
+    return fetchWithTimeout(url, fetchTimeoutMs, fetchConfig).catch((e) => {
         console.log(`Sitecontent fetch error: ${e}`);
+        return null;
+    });
+};
+
+const fetchSiteContentVersion = async ({
+    idOrPath,
+    time,
+    isDraft = false,
+}: FetchSiteContentArgs) => {
+    const params = objectToQueryString({
+        id: idOrPath,
+        ...(isDraft && { branch: 'draft' }),
+        time,
+    });
+
+    const url = `${xpServiceUrl}/sitecontentVersions${params}`;
+
+    console.log(`Fetching version history content from ${url}`);
+
+    return fetchWithTimeout(url, fetchTimeoutMs, fetchConfig).catch((e) => {
+        console.log(`Sitecontent version fetch error: ${e}`);
         return null;
     });
 };
@@ -88,7 +109,9 @@ const fetchAndHandleErrorsBuildtime = async (
 const fetchAndHandleErrorsRuntime = async (
     props: FetchSiteContentArgs
 ): Promise<XpResponseProps> => {
-    const res = await fetchSiteContent(props);
+    const res = props.time
+        ? await fetchSiteContentVersion(props)
+        : await fetchSiteContent(props);
 
     const { idOrPath } = props;
     const errorId = uuid();
