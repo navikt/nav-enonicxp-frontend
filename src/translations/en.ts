@@ -1,5 +1,5 @@
 import { Translations } from './default';
-import { MenuListItemKey } from '../types/menu-list-items';
+import { MenuListItemKey } from 'types/menu-list-items';
 import {
     ProductTaxonomy,
     Taxonomy,
@@ -8,7 +8,7 @@ import {
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
 
-const productTaxonomies: {
+const taxonomies: {
     [key in Taxonomy]: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
@@ -52,9 +52,6 @@ const areas: { [key in Area]: string } = {
 };
 
 export const translationsBundleEn: Translations = {
-    areaPage: {
-        chooseArea: 'Choose an area',
-    },
     stringParts: {
         conjunction: 'and',
     },
@@ -142,7 +139,7 @@ export const translationsBundleEn: Translations = {
         employer: 'For employers',
         provider: 'For providers',
     },
-    productTaxonomies,
+    taxonomies,
     areas,
     header: {
         copyLink: 'Copy link',
@@ -150,12 +147,18 @@ export const translationsBundleEn: Translations = {
     },
     overview: {
         noProducts: 'No hits',
-        ariaExplanation: 'Filter list by area',
-        ariaItemExplanation: 'Show area',
-        chooseArea: 'Choose area',
-        chooseType: 'Choose type',
         search: 'Search',
         loading: 'Loading content...',
+        areas: {
+            choose: 'Choose area',
+            ariaExplanation: 'Filter list by area',
+            ariaItemExplanation: 'Show area',
+        },
+        taxonomies: {
+            choose: 'Choose type',
+            ariaExplanation: 'Filter list by type',
+            ariaItemExplanation: 'Show type',
+        },
     },
     pagination: {
         goTo: 'Go to',
