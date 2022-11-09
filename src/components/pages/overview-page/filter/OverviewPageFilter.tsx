@@ -32,7 +32,7 @@ export const OverviewPageFilter = <Type extends Filters>({
     const { language } = usePageConfig();
 
     const translations = translator('overview', language)(type);
-    const translationsOptions = translator(type, language) as (
+    const optionsTranslations = translator(type, language) as (
         key: Type
     ) => string;
 
@@ -48,7 +48,7 @@ export const OverviewPageFilter = <Type extends Filters>({
                 <ul className={styles.filterWrapper}>
                     {options.map((filter) => {
                         const isActive = selected === filter;
-                        const optionLabel = translationsOptions(filter);
+                        const optionLabel = optionsTranslations(filter);
 
                         return (
                             <li key={filter}>
