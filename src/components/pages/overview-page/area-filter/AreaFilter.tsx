@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Heading, Tag } from '@navikt/ds-react';
-import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
+import { SimplifiedProductData } from 'types/component-props/_mixins';
 import { Area } from 'types/areas';
-import { translator } from '../../../../translations';
+import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './AreaFilter.module.scss';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 
 interface OverviewFilterProps {
     filterUpdateCallback: (filters: Area) => void;
@@ -24,6 +25,10 @@ export const AreaFilter = ({
     const overviewTranslations = translator('overview', language);
 
     const handleFilterUpdate = (area: Area) => {
+        logAmplitudeEvent(AnalyticsEvents.FILTER, {
+            omrade: area,
+            opprinnelse: 'områdefilter',
+        });
         setCurrentArea(area);
         filterUpdateCallback(area);
     };

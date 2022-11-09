@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Heading, Tag } from '@navikt/ds-react';
-import { translator } from '../../../../translations';
+import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
+import { SimplifiedProductData } from 'types/component-props/_mixins';
 import { ProductTaxonomy } from 'types/taxonomies';
 
 import styles from './TaxonomyFilter.module.scss';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 
 interface TaxonomyFilerProps {
     filterUpdateCallback: (filters: ProductTaxonomy) => void;
@@ -26,6 +27,10 @@ export const TaxonomyFilter = ({
     const overviewTranslations = translator('overview', language);
 
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
+        logAmplitudeEvent(AnalyticsEvents.FILTER, {
+            type: taxonomy,
+            opprinnelse: 'typefilter',
+        });
         setCurrentFilter(taxonomy);
         filterUpdateCallback(taxonomy);
     };
