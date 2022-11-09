@@ -1,0 +1,47 @@
+@use 'src/common' as common;
+
+$margin: 2rem;
+
+.newsArticlePage {
+    display: flex;
+    flex-direction: column;
+
+    .region__pageContent {
+        display: flex;
+        flex-direction: column;
+
+        & > :not(.layout__situation-flex-cols) {
+            margin-bottom: $margin;
+        }
+
+        & > :not(.layout__situation-flex-cols) {
+            max-width: common.$sectionMaxWidth;
+        }
+
+        // Prevent margins between adjacent situation-flex-cols layouts
+        .layout__situation-flex-cols + .layout__situation-flex-cols {
+            margin-top: -($margin * 2);
+        }
+    }
+
+    .content {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-start;
+        align-self: center;
+        width: 100%;
+        max-width: common.$contentMaxWidth;
+
+        & > * {
+            width: 100%;
+        }
+    }
+
+    .icon-container {
+        background-color: var(--navds-global-color-orange-200);
+        img {
+            height: 50%;
+            width: 50%;
+        }
+    }
+}
