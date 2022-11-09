@@ -85,12 +85,10 @@ const csp = async () => {
         directives['script-src'].push(UNSAFE_INLINE, UNSAFE_EVAL);
     }
 
-    const cspHeader = await buildCspHeader(directives, {
+    return buildCspHeader(directives, {
         env: envMap[process.env.ENV],
         port: process.env.DECORATOR_LOCAL_PORT,
     });
-
-    return cspHeader;
 };
 
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
