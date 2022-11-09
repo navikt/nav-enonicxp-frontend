@@ -8,22 +8,22 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './OverviewPageFilter.module.scss';
 
-type FilterTypes = Area | Taxonomy;
+type Filters = Area | Taxonomy;
 
-type FilterType<Type extends FilterTypes> = Type extends Area
+type FilterType<Type extends Filters> = Type extends Area
     ? 'areas'
     : Type extends Taxonomy
     ? 'taxonomies'
     : never;
 
-type OverviewFilterProps<Type extends FilterTypes> = {
+type OverviewFilterProps<Type extends Filters> = {
     type: FilterType<Type>;
     selectionCallback: (filter: Type) => void;
     selected: Type;
     options: Type[];
 };
 
-export const OverviewPageFilter = <Type extends FilterTypes>({
+export const OverviewPageFilter = <Type extends Filters>({
     type,
     selectionCallback,
     selected,
