@@ -40,7 +40,7 @@ export const TaxonomyFilter = ({
             type={'taxonomies'}
             selectionCallback={handleFilterUpdate}
             selected={currentFilter}
-            options={taxonomiesInProductList}
+            options={[ProductTaxonomy.ALL, ...taxonomiesInProductList]}
         />
     );
 };

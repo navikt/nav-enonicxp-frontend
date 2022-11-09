@@ -35,7 +35,7 @@ export const AreaFilter = ({
             type={'areas'}
             selectionCallback={handleFilterUpdate}
             selected={currentArea}
-            options={areasInProductList}
+            options={[Area.ALL, ...areasInProductList]}
         />
     );
 };
