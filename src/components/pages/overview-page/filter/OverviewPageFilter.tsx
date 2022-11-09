@@ -67,7 +67,7 @@ export const OverviewPageFilter = <Type extends Filters>({
                                         className={styles.tag}
                                         size={'small'}
                                     >
-                                        {` ${optionLabel}`}
+                                        {optionLabel}
                                     </Tag>
                                 </button>
                             </li>
