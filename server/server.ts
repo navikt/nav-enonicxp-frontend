@@ -1,7 +1,8 @@
 import dotenv from 'dotenv';
+
 dotenv.config();
 
-import express from 'express';
+import express, { ErrorRequestHandler, RequestHandler } from 'express';
 import next from 'next';
 import fetch from 'node-fetch';
 import { createHttpTerminator } from 'http-terminator';
@@ -11,19 +12,21 @@ import {
     handleInvalidateReq,
     handleInvalidateAllReq,
     setCacheKey,
-} from './incremental-cache';
+} from './req-handlers/incremental-cache';
 import { initHeartbeat } from './revalidator-proxy-heartbeat';
+import { IncomingMessage, ServerResponse } from 'http';
+import { BaseNextRequest, BaseNextResponse } from 'next/dist/server/base-http';
 
 const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
     quiet: process.env.ENV === 'prod',
 });
 
-const validateSecret = (req, res, next) => {
+const validateSecret: RequestHandler = (req, res, next) => {
     if (req.headers.secret !== process.env.SERVICE_SECRET) {
         console.warn(`Invalid secret for ${req.path}`);
         res.status(404);
-        return nextApp.renderError(undefined, req, res, req.path);
+        return nextApp.renderError(null, req, res, req.path);
     }
 
     next();
@@ -134,8 +137,7 @@ nextApp.prepare().then(() => {
         });
     }
 
-    // Handle errors
-    server.use((err, req, res, next) => {
+    const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
         const { path } = req;
         const { status, stack } = err;
         const msg = stack?.split('\n')[0];
@@ -144,7 +146,9 @@ nextApp.prepare().then(() => {
 
         res.status(status || 500);
         return nextApp.renderError(msg, req, res, path);
-    });
+    };
+
+    server.use(errorHandler);
 
     const serverInstance = server.listen(port, (error) => {
         if (error) {
