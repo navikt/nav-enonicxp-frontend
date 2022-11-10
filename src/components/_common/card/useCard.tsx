@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { CardSize, CardType } from 'types/card';
 import { Interaction } from 'types/interaction';
 import { LinkProps } from 'types/link-props';
-import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePublicUrl } from '../../../utils/usePublicUrl';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
@@ -116,7 +116,7 @@ export const useCard = ({
                 return;
             }
 
-            logAmplitudeEvent(analyticsEvents.NAVIGATION, analyticsPayload);
+            logAmplitudeEvent(AnalyticsEvents.NAVIGATION, analyticsPayload);
 
             const isOpeningInNewWindow = e.ctrlKey || e.metaKey;
             if (isOpeningInNewWindow) {

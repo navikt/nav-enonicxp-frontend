@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { isNofollowUrl } from 'utils/urls';
-import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { onlyText } from 'utils/react-children';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
 import { usePublicUrl } from '../../../utils/usePublicUrl';
@@ -16,7 +16,7 @@ type Props = {
     href: string;
     onClick?: (e: React.MouseEvent) => void;
     prefetch?: boolean;
-    analyticsEvent?: analyticsEvents;
+    analyticsEvent?: AnalyticsEvents;
     analyticsComponent?: string;
     analyticsLinkGroup?: string;
     analyticsLabel?: string;
@@ -54,7 +54,7 @@ export const LenkeBase = ({
             href={url}
             onClick={(e) => {
                 logAmplitudeEvent(
-                    analyticsEvent || analyticsEvents.NAVIGATION,
+                    analyticsEvent || AnalyticsEvents.NAVIGATION,
                     analyticsData
                 );
                 onClick?.(e);
