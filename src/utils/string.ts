@@ -21,7 +21,7 @@ export const getTranslatedTaxonomies = (
     if (!Array.isArray(taxonomies)) {
         return [];
     }
-    const getTaxonomyLabel = translator('productTaxonomies', language);
+    const getTaxonomyLabel = translator('taxonomies', language);
     const taxonomyLabels = taxonomies.map((taxonomy) => {
         return getTaxonomyLabel(taxonomy) || '';
     });
