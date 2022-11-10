@@ -18,7 +18,7 @@ export const AreaFilter = ({
     const handleFilterUpdate = (area: Area) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             omrade: area,
-            opprinnelse: 'områdefilter',
+            opprinnelse: 'oversiktsside områder',
         });
         setCurrentArea(area);
         filterUpdateCallback(area);

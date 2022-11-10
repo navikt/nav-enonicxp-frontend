@@ -20,7 +20,7 @@ export const TaxonomyFilter = ({
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             type: taxonomy,
-            opprinnelse: 'typefilter',
+            opprinnelse: 'oversiktsside typer',
         });
         setCurrentFilter(taxonomy);
         filterUpdateCallback(taxonomy);
