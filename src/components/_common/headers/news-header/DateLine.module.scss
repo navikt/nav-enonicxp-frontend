@@ -1,0 +1,15 @@
+@use 'src/common' as common;
+
+.dateLine {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    margin-top: 1rem;
+
+    @include common.full-width-mixin;
+}
+
+.container {
+    width: 100%;
+    max-width: 63.5rem;
+}

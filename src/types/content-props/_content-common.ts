@@ -16,6 +16,7 @@ import {
     DynamicPageProps,
     GenericPageProps,
     GuidePageProps,
+    NewsArticlePageProps,
     OverviewPageProps,
     ProductDetailsProps,
     ProductPageProps,
@@ -153,6 +154,7 @@ type SpecificContentProps =
     | GlobalValuesProps
     | GlobalCaseTimeSetProps
     | PayoutDatesProps
+    | NewsArticlePageProps
     | ThemedArticlePageProps
     | GuidePageProps
     | ToolsPageProps

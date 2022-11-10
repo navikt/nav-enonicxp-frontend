@@ -19,6 +19,8 @@ export type ThemedArticlePageData = Omit<ProductDataMixin, 'taxonomy'> &
 export type GuidePageData = ProductDataMixin & DynamicPageData;
 export type ProductDetailsData = ProductDetailsDataMixin & DynamicPageData;
 export type SituationPageData = ProductDataMixin & DynamicPageData;
+export type NewsArticlePageData = Omit<ProductDataMixin, 'illustration'> &
+    DynamicPageData;
 export type ToolsPageData = Omit<ProductDataMixin, 'taxonomy'> &
     DynamicPageData & { taxonomy: ToolsPageTaxonomy[] };
 export type GenericPageData = ProductDataMixin & DynamicPageData;
@@ -56,6 +58,10 @@ export interface GuidePageProps extends ContentCommonProps {
 export interface SituationPageProps extends ContentCommonProps {
     __typename: ContentType.SituationPage;
     data: SituationPageData;
+}
+export interface NewsArticlePageProps extends ContentCommonProps {
+    __typename: ContentType.NewsArticlePage;
+    data: NewsArticlePageData;
 }
 
 export interface ToolsPageProps extends ContentCommonProps {

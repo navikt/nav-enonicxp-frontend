@@ -1,0 +1,24 @@
+@use 'src/common' as common;
+// @use '../../../pages/situation-page/SituationPage' as SituationPage;
+// @use '../../../pages/product-page/ProductPage' as ProductPage;
+// @use '../../../pages/guide-page/GuidePage' as GuidePage;
+
+.themedPageHeader {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+
+    @include common.full-width-mixin;
+
+    box-shadow: 0 -4px 0 var(--navds-global-color-gray-400) inset;
+
+    @media #{common.$mq-screen-mobile} {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+.text {
+    width: 100%;
+    max-width: 63.5rem;
+}

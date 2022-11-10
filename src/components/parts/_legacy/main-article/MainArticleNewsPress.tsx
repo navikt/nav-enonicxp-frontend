@@ -105,7 +105,7 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
         <article
             className={classNames(
                 style.newsPressArticle,
-                style.newsPressBackground
+                style.setWhiteBackground
             )}
         >
             <header className={headerClassName} id="main-article-header-anchor">

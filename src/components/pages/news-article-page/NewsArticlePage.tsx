@@ -1,19 +1,24 @@
 import React from 'react';
 import { ComponentMapper } from '../../ComponentMapper';
-import { SituationPageProps } from '../../../types/content-props/dynamic-page-props';
-import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
+import { NewsArticlePageProps } from '../../../types/content-props/dynamic-page-props';
 
 import styles from './NewsArticlePage.module.scss';
+import classNames from 'classnames';
+import { NewsHeader } from 'components/_common/headers/news-header/NewsHeader';
 
-export const NewsArticlePage = (props: SituationPageProps) => {
+export const NewsArticlePage = (props: NewsArticlePageProps) => {
     return (
-        <div className={styles.newsArticlePage}>
-            <ThemedPageHeader contentProps={props} />
-            <div className={'content'}>
-                <ComponentMapper
-                    componentProps={props.page}
-                    pageProps={props}
-                />
+        <div
+            className={classNames(styles.newsArticlePage, 'setWhiteBackground')}
+        >
+            <NewsHeader contentProps={props} />
+            <div className={styles.wrapper}>
+                <div className={styles.content}>
+                    <ComponentMapper
+                        componentProps={props.page}
+                        pageProps={props}
+                    />
+                </div>
             </div>
         </div>
     );

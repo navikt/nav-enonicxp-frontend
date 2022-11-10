@@ -97,6 +97,9 @@ export const translationsBundleNn = {
         shortcuts: 'Snarvegar',
         label: 'Lenker',
     },
+    newsArticle: {
+        tag: 'Aktuelt',
+    },
     mainArticle: {
         facts: 'Fakta',
         lastChanged: 'Sist endra',

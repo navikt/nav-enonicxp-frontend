@@ -15,6 +15,10 @@
 #__next,
 .decorator-utils-container {
     background-color: common.$navds-semantic-color-canvas-background;
+
+    &:has(.setWhiteBackground) {
+        background-color: white;
+    }
 }
 
 .decorator-utils-container {

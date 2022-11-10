@@ -11,6 +11,7 @@ import style from './TopContainer.module.scss';
 const contentTypesWithWhiteHeader = {
     [ContentType.ProductPage]: true,
     [ContentType.SituationPage]: true,
+    [ContentType.NewsArticlePage]: true,
     [ContentType.GuidePage]: true,
     [ContentType.GenericPage]: true,
     [ContentType.ThemedArticlePage]: true,

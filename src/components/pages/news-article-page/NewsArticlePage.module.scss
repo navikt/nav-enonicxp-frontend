@@ -24,13 +24,24 @@ $margin: 2rem;
         }
     }
 
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        padding-bottom: 1.5rem;
+        padding-left: calc((100vw - 100%) / 2);
+        margin-left: calc((100vw - 100%) / -2);
+        padding-right: calc((100vw - 100%) / 2);
+        margin-right: calc((100vw - 100%) / -2);
+    }
+
     .content {
         margin-top: 2rem;
         display: flex;
         justify-content: flex-start;
         align-self: center;
         width: 100%;
-        max-width: common.$contentMaxWidth;
+        max-width: 37.5rem;
 
         & > * {
             width: 100%;
