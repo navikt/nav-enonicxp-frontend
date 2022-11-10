@@ -16,7 +16,7 @@ import {
     DynamicPageProps,
     GenericPageProps,
     GuidePageProps,
-    NewsArticlePageProps,
+    FeaturedArticlePageProps,
     OverviewPageProps,
     ProductDetailsProps,
     ProductPageProps,
@@ -65,7 +65,7 @@ export enum ContentType {
     ProductDetails = 'no_nav_navno_ProductDetails',
     GuidePage = 'no_nav_navno_GuidePage',
     ThemedArticlePage = 'no_nav_navno_ThemedArticlePage',
-    NewsArticlePage = 'no_nav_navno_NewsArticlePage',
+    FeaturedArticlePage = 'no_nav_navno_FeaturedArticlePage',
     SituationPage = 'no_nav_navno_SituationPage',
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',
     ToolsPage = 'no_nav_navno_ToolsPage',
@@ -154,7 +154,7 @@ type SpecificContentProps =
     | GlobalValuesProps
     | GlobalCaseTimeSetProps
     | PayoutDatesProps
-    | NewsArticlePageProps
+    | FeaturedArticlePageProps
     | ThemedArticlePageProps
     | GuidePageProps
     | ToolsPageProps

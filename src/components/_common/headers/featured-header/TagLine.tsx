@@ -7,12 +7,14 @@ import styles from './TagLine.module.scss';
 export const TagLine = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className={styles.tagLine}>
-            <StaticImage
-                imageData={pinIcon}
-                alt={''}
-                className={styles.tagIcon}
-            />
-            <Detail className={styles.tagLabel}>{children}</Detail>
+            <div className={styles.wrapper}>
+                <StaticImage
+                    imageData={pinIcon}
+                    alt={''}
+                    className={styles.tagIcon}
+                />
+                <Detail className={styles.tagLabel}>{children}</Detail>
+            </div>
         </div>
     );
 };

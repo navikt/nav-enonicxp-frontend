@@ -3,17 +3,17 @@ import { classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import { Language, translator } from 'translations';
-import { NewsArticlePageProps } from '../../../../types/content-props/dynamic-page-props';
+import { translator } from 'translations';
+import { FeaturedArticlePageProps } from '../../../../types/content-props/dynamic-page-props';
 import { DateLine } from './DateLine';
 
-import style from './NewsHeader.module.scss';
+import style from './FeaturedHeader.module.scss';
 import { Heading } from '@navikt/ds-react';
 import { TagLine } from './TagLine';
 
 type Props = {
     showTimeStamp?: boolean;
-    contentProps: NewsArticlePageProps;
+    contentProps: FeaturedArticlePageProps;
 };
 
 export const NewsHeader = ({ contentProps }: Props) => {
@@ -31,7 +31,7 @@ export const NewsHeader = ({ contentProps }: Props) => {
     return (
         <>
             <TagLine>{tagLineLabel}</TagLine>
-            <header className={classNames(style.themedPageHeader)}>
+            <header className={classNames(style.featuredHeader)}>
                 <Heading className={style.header} level={'1'} size={'xlarge'}>
                     {pageTitle}
                 </Heading>

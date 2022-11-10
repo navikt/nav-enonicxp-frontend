@@ -1,10 +1,18 @@
 @use 'src/common' as common;
 
 .tagLine {
-    align-items: center;
     display: flex;
+    justify-content: center;
     flex-direction: row;
     margin-bottom: 0.25rem;
+
+    @include common.full-width-mixin;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 63.5rem;
 }
 
 .tagLabel {
