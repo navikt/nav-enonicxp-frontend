@@ -8,27 +8,27 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './OverviewPageFilter.module.scss';
 
-type Filters = Area | Taxonomy;
+type FilterOptions = Area | Taxonomy;
 
-type FilterType<Type extends Filters> = Type extends Area
+type FilterType<Type extends FilterOptions> = Type extends Area
     ? 'areas'
     : Type extends Taxonomy
     ? 'taxonomies'
     : never;
 
-type OverviewFilterProps<Type extends Filters> = {
+type Props<Type extends FilterOptions> = {
     type: FilterType<Type>;
     selectionCallback: (filter: Type) => void;
     selected: Type;
     options: Type[];
 };
 
-export const OverviewPageFilter = <Type extends Filters>({
+export const OverviewPageFilter = <Type extends FilterOptions>({
     type,
     selectionCallback,
     selected,
     options,
-}: OverviewFilterProps<Type>) => {
+}: Props<Type>) => {
     const { language } = usePageConfig();
 
     const translations = translator('overview', language)(type);
@@ -46,15 +46,15 @@ export const OverviewPageFilter = <Type extends Filters>({
                 aria-label={translations['ariaExplanation']}
             >
                 <ul className={styles.filterWrapper}>
-                    {options.map((filter) => {
-                        const isActive = selected === filter;
-                        const optionLabel = optionsTranslations(filter);
+                    {options.map((option) => {
+                        const isActive = selected === option;
+                        const optionLabel = optionsTranslations(option);
 
                         return (
-                            <li key={filter}>
+                            <li key={option}>
                                 <button
                                     type={'button'}
-                                    onClick={() => selectionCallback(filter)}
+                                    onClick={() => selectionCallback(option)}
                                     aria-current={isActive}
                                     aria-label={`${translations['ariaItemExplanation']} ${optionLabel}}`}
                                     className={classNames(
