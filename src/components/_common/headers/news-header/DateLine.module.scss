@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     background-color: white;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 
     @include common.full-width-mixin;
 }
@@ -12,4 +12,9 @@
 .container {
     width: 100%;
     max-width: 63.5rem;
+}
+
+.dateLabel {
+    margin-bottom: 0.75rem;
+    color: var(--navds-semantic-color-text-muted);
 }

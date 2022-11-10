@@ -12,12 +12,14 @@ export const NewsArticlePage = (props: NewsArticlePageProps) => {
             className={classNames(styles.newsArticlePage, 'setWhiteBackground')}
         >
             <NewsHeader contentProps={props} />
-            <div className={styles.wrapper}>
-                <div className={styles.content}>
-                    <ComponentMapper
-                        componentProps={props.page}
-                        pageProps={props}
-                    />
+            <div className={styles.contentWrapper}>
+                <div className={styles.contentAligner}>
+                    <div className={styles.content}>
+                        <ComponentMapper
+                            componentProps={props.page}
+                            pageProps={props}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

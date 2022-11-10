@@ -3,10 +3,13 @@ import { classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
+import { Language, translator } from 'translations';
 import { NewsArticlePageProps } from '../../../../types/content-props/dynamic-page-props';
 import { DateLine } from './DateLine';
 
 import style from './NewsHeader.module.scss';
+import { Heading } from '@navikt/ds-react';
+import { TagLine } from './TagLine';
 
 type Props = {
     showTimeStamp?: boolean;
@@ -15,25 +18,29 @@ type Props = {
 
 export const NewsHeader = ({ contentProps }: Props) => {
     const { displayName, createdTime, modifiedTime, data } = contentProps;
+    const { language } = usePageConfig();
+
+    const getFeaturedTranslations = translator('featuredArticle', language);
 
     const { title } = data;
 
-    const { language } = usePageConfig();
+    const tagLineLabel = getFeaturedTranslations('tag');
 
     const pageTitle = title || displayName;
 
     return (
-        <div>
+        <>
+            <TagLine>{tagLineLabel}</TagLine>
             <header className={classNames(style.themedPageHeader)}>
-                <div className={style.text}>
-                    <PageHeader justify={'left'}>{pageTitle}</PageHeader>
-                </div>
+                <Heading className={style.header} level={'1'} size={'xlarge'}>
+                    {pageTitle}
+                </Heading>
             </header>
             <DateLine
                 createdTime={createdTime}
                 modifiedTime={modifiedTime}
                 language={language}
             />
-        </div>
+        </>
     );
 };

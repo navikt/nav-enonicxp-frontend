@@ -6,53 +6,48 @@ $margin: 2rem;
     display: flex;
     flex-direction: column;
 
-    .region__pageContent {
-        display: flex;
-        flex-direction: column;
-
-        & > :not(.layout__situation-flex-cols) {
-            margin-bottom: $margin;
-        }
-
-        & > :not(.layout__situation-flex-cols) {
-            max-width: common.$sectionMaxWidth;
-        }
-
-        // Prevent margins between adjacent situation-flex-cols layouts
-        .layout__situation-flex-cols + .layout__situation-flex-cols {
-            margin-top: -($margin * 2);
-        }
+    @media #{common.$mq-screen-mobile} {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
+}
 
-    .wrapper {
-        display: flex;
-        justify-content: center;
-        background-color: white;
-        padding-bottom: 1.5rem;
-        padding-left: calc((100vw - 100%) / 2);
-        margin-left: calc((100vw - 100%) / -2);
-        padding-right: calc((100vw - 100%) / 2);
-        margin-right: calc((100vw - 100%) / -2);
-    }
+.contentAligner {
+    display: flex;
+    width: 100%;
+    max-width: 63.5rem;
+}
 
-    .content {
-        margin-top: 2rem;
-        display: flex;
-        justify-content: flex-start;
-        align-self: center;
+.contentWrapper {
+    display: flex;
+    justify-content: center;
+    @include common.full-width-mixin;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    max-width: 37.5rem;
+
+    & > * {
         width: 100%;
-        max-width: 37.5rem;
+    }
+}
 
-        & > * {
-            width: 100%;
-        }
+.region__pageContent {
+    display: flex;
+    flex-direction: column;
+
+    & > :not(.layout__situation-flex-cols) {
+        margin-bottom: $margin;
     }
 
-    .icon-container {
-        background-color: var(--navds-global-color-orange-200);
-        img {
-            height: 50%;
-            width: 50%;
-        }
+    & > :not(.layout__situation-flex-cols) {
+        max-width: common.$sectionMaxWidth;
+    }
+
+    // Prevent margins between adjacent situation-flex-cols layouts
+    .layout__situation-flex-cols + .layout__situation-flex-cols {
+        margin-top: -($margin * 2);
     }
 }

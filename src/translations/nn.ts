@@ -97,7 +97,7 @@ export const translationsBundleNn = {
         shortcuts: 'Snarvegar',
         label: 'Lenker',
     },
-    newsArticle: {
+    featuredArticle: {
         tag: 'Aktuelt',
     },
     mainArticle: {

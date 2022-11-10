@@ -11,14 +11,10 @@
     @include common.full-width-mixin;
 
     box-shadow: 0 -4px 0 var(--navds-global-color-gray-400) inset;
-
-    @media #{common.$mq-screen-mobile} {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
 }
 
-.text {
+.header {
     width: 100%;
     max-width: 63.5rem;
+    margin-bottom: 1rem;
 }

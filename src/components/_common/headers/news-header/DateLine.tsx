@@ -1,3 +1,4 @@
+import { Detail } from '@navikt/ds-react';
 import { Language, translator } from 'translations';
 import { formatDate } from 'utils/datetime';
 
@@ -34,7 +35,9 @@ export const DateLine = ({
 
     return (
         <div className={styles.dateLine}>
-            <div className={styles.container}>{dateString}</div>
+            <div className={styles.container}>
+                <Detail className={styles.dateLabel}>{dateString}</Detail>
+            </div>
         </div>
     );
 };

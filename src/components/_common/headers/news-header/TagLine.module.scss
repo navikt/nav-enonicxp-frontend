@@ -1,0 +1,20 @@
+@use 'src/common' as common;
+
+.tagLine {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.25rem;
+}
+
+.tagLabel {
+    color: var(--navds-global-color-lightblue-700);
+    font-weight: common.$navds-font-weight-bold;
+    padding-left: 0.5rem;
+    text-transform: uppercase;
+}
+
+.tagIcon {
+    height: 1.25rem;
+    width: 1.25rem;
+}
