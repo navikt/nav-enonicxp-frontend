@@ -102,12 +102,7 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
         innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
 
     return (
-        <article
-            className={classNames(
-                style.newsPressArticle,
-                style.setWhiteBackground
-            )}
-        >
+        <article className={classNames(style.newsPressArticle)}>
             <header className={headerClassName} id="main-article-header-anchor">
                 <NewsPressHeader
                     type={data.contentType}

@@ -1,20 +1,20 @@
 @use 'src/common' as common;
 
 .dateLine {
+    background-color: white;
     display: flex;
     justify-content: center;
-    background-color: white;
     margin-top: 1.5rem;
 
     @include common.full-width-mixin;
 }
 
 .container {
-    width: 100%;
     max-width: 63.5rem;
+    width: 100%;
 }
 
 .dateLabel {
-    margin-bottom: 0.75rem;
     color: var(--navds-semantic-color-text-muted);
+    margin-bottom: 0.75rem;
 }

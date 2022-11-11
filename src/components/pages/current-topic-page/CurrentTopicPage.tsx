@@ -8,12 +8,7 @@ import styles from './CurrentTopicPage.module.scss';
 
 export const CurrentTopicPage = (props: CurrentTopicPageProps) => {
     return (
-        <div
-            className={classNames(
-                styles.currentTopicPage,
-                'setWhiteBackground'
-            )}
-        >
+        <div className={classNames(styles.currentTopicPage)}>
             <NewsHeader contentProps={props} />
             <div className={styles.contentWrapper}>
                 <div className={styles.contentAligner}>

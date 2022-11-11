@@ -1,9 +1,9 @@
 @use 'src/common' as common;
 
 .featuredHeader {
+    background-color: white;
     display: flex;
     justify-content: center;
-    background-color: white;
 
     @include common.full-width-mixin;
 
@@ -11,7 +11,7 @@
 }
 
 .header {
-    width: 100%;
-    max-width: 63.5rem;
     margin-bottom: 1rem;
+    max-width: 63.5rem;
+    width: 100%;
 }

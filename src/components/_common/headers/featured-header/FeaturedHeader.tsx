@@ -1,15 +1,14 @@
 import React from 'react';
+import { Heading } from '@navikt/ds-react';
 import { classNames } from '../../../../utils/classnames';
-import { PageHeader } from '../page-header/PageHeader';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { translator } from 'translations';
 import { CurrentTopicPageProps } from '../../../../types/content-props/dynamic-page-props';
 import { DateLine } from './DateLine';
+import { TagLine } from './TagLine';
 
 import style from './FeaturedHeader.module.scss';
-import { Heading } from '@navikt/ds-react';
-import { TagLine } from './TagLine';
 
 type Props = {
     showTimeStamp?: boolean;
@@ -19,14 +18,11 @@ type Props = {
 export const NewsHeader = ({ contentProps }: Props) => {
     const { displayName, createdTime, modifiedTime, data } = contentProps;
     const { language } = usePageConfig();
+    const pageTitle = data.title || displayName;
 
     const getFeaturedTranslations = translator('currentTopic', language);
 
-    const { title } = data;
-
     const tagLineLabel = getFeaturedTranslations('tag');
-
-    const pageTitle = title || displayName;
 
     return (
         <>

@@ -19,8 +19,6 @@ export type ThemedArticlePageData = Omit<ProductDataMixin, 'taxonomy'> &
 export type GuidePageData = ProductDataMixin & DynamicPageData;
 export type ProductDetailsData = ProductDetailsDataMixin & DynamicPageData;
 export type SituationPageData = ProductDataMixin & DynamicPageData;
-export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'> &
-    DynamicPageData;
 export type ToolsPageData = Omit<ProductDataMixin, 'taxonomy'> &
     DynamicPageData & { taxonomy: ToolsPageTaxonomy[] };
 export type GenericPageData = ProductDataMixin & DynamicPageData;
@@ -29,6 +27,8 @@ export type OverviewPageData = Partial<{
     overviewType: OverviewType;
 }> &
     ProductDataMixin &
+    DynamicPageData;
+export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'> &
     DynamicPageData;
 
 export interface DynamicPageProps extends ContentCommonProps {

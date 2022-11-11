@@ -15,14 +15,17 @@
 #__next,
 .decorator-utils-container {
     background-color: common.$navds-semantic-color-canvas-background;
-
-    &:has(.setWhiteBackground) {
-        background-color: white;
-    }
 }
 
 .decorator-utils-container {
     min-height: 4rem;
+}
+
+.app-background {
+    background-color: common.$navds-semantic-color-canvas-background;
+    &.white {
+        background-color: var(--navds-global-color-white);
+    }
 }
 
 .app-container {

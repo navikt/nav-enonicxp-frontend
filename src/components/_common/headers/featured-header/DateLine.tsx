@@ -17,19 +17,19 @@ export const DateLine = ({
 }: DateLineProps) => {
     const getDatesLabel = translator('dates', language);
 
-    const publishedString = `${getDatesLabel('published')}: ${formatDate(
-        createdTime,
-        language,
-        true,
-        true
-    )}`;
+    const buildDateString = (desc: string, date: string) => {
+        return `${desc}: ${formatDate(date, language, true, true)}`;
+    };
 
-    const lastChangedString = `${getDatesLabel('lastChanged')}: ${formatDate(
-        modifiedTime,
-        language,
-        true,
-        true
-    )}`;
+    const publishedString = buildDateString(
+        getDatesLabel('published'),
+        createdTime
+    );
+
+    const lastChangedString = buildDateString(
+        getDatesLabel('lastChanged'),
+        modifiedTime
+    );
 
     const dateString = `${publishedString}, ${lastChangedString}`;
 
