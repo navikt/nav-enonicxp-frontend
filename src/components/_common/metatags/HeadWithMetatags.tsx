@@ -16,7 +16,7 @@ type Props = {
 
 const descriptionMaxLength = 140;
 
-const decoratorUrl = process.env.DECORATOR_FALLBACK_URL;
+const decoratorUrl = process.env.DECORATOR_URL;
 
 const getDescription = (content: ContentProps) => {
     if (hasMetaDescription(content)) {

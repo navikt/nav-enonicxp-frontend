@@ -121,7 +121,7 @@ const config = {
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
         SENTRY_DSN: process.env.SENTRY_DSN,
         NAVNO_API_URL: process.env.NAVNO_API_URL,
-        DECORATOR_FALLBACK_URL: process.env.DECORATOR_FALLBACK_URL,
+        DECORATOR_URL: process.env.DECORATOR_URL,
     },
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
