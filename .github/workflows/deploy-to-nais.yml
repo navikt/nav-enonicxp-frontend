@@ -29,9 +29,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: Set HPA resource if specified
+        if: ${{ inputs.hpa_file }}
         run: |
           echo "HPA_RESOURCE=,.nais/hpa/${{inputs.hpa_file}}"
-        if: ${{inputs.hpa_file}}
       - name: Deploy to nais
         uses: nais/deploy/actions/deploy@v1
         env:
