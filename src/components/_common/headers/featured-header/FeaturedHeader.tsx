@@ -4,7 +4,7 @@ import { PageHeader } from '../page-header/PageHeader';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import { translator } from 'translations';
-import { FeaturedArticlePageProps } from '../../../../types/content-props/dynamic-page-props';
+import { CurrentTopicPageProps } from '../../../../types/content-props/dynamic-page-props';
 import { DateLine } from './DateLine';
 
 import style from './FeaturedHeader.module.scss';
@@ -13,14 +13,14 @@ import { TagLine } from './TagLine';
 
 type Props = {
     showTimeStamp?: boolean;
-    contentProps: FeaturedArticlePageProps;
+    contentProps: CurrentTopicPageProps;
 };
 
 export const NewsHeader = ({ contentProps }: Props) => {
     const { displayName, createdTime, modifiedTime, data } = contentProps;
     const { language } = usePageConfig();
 
-    const getFeaturedTranslations = translator('featuredArticle', language);
+    const getFeaturedTranslations = translator('currentTopic', language);
 
     const { title } = data;
 

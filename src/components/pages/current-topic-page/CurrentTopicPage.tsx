@@ -1,16 +1,16 @@
 import React from 'react';
 import { ComponentMapper } from '../../ComponentMapper';
-import { FeaturedArticlePageProps } from '../../../types/content-props/dynamic-page-props';
+import { CurrentTopicPageProps } from '../../../types/content-props/dynamic-page-props';
 
 import classNames from 'classnames';
 import { NewsHeader } from 'components/_common/headers/featured-header/FeaturedHeader';
-import styles from './FeaturedArticlePage.module.scss';
+import styles from './CurrentTopicPage.module.scss';
 
-export const FeaturedArticlePage = (props: FeaturedArticlePageProps) => {
+export const CurrentTopicPage = (props: CurrentTopicPageProps) => {
     return (
         <div
             className={classNames(
-                styles.featuredArticlePage,
+                styles.currentTopicPage,
                 'setWhiteBackground'
             )}
         >

@@ -103,7 +103,7 @@ export const translationsBundleNb = {
         shortcuts: 'Snarveier',
         label: 'Lenker',
     },
-    featuredArticle: {
+    currentTopic: {
         tag: 'Aktuelt',
     },
     mainArticle: {
