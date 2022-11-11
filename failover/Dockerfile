@@ -20,7 +20,7 @@ COPY "/failover/$ENV_FILE" /app/.env
 RUN npm run build
 
 # Multistage build to avoid leaking secrets to the final image
-FROM node:16-alpine
+FROM node:16-bullseye-slim
 
 WORKDIR /app
 
