@@ -7,7 +7,7 @@ import {
     hasIngress,
     hasMetaDescription,
 } from 'types/_type-guards';
-import { appOrigin, getPublicPathname, stripXpPathPrefix } from 'utils/urls';
+import { appOrigin, getPublicPathname } from 'utils/urls';
 
 type Props = {
     content: ContentProps;
@@ -34,12 +34,10 @@ const getDescription = (content: ContentProps) => {
     return content.displayName;
 };
 
-const shouldNotIndex = (content: ContentProps) => {
-    if (content.isPagePreview) {
-        return true;
-    }
-    return content.data?.noindex;
-};
+const shouldNotIndex = (content: ContentProps) =>
+    content.isPagePreview ||
+    content.__typename === ContentType.Error ||
+    content.data?.noindex;
 
 const getCanonicalUrl = (content: ContentProps) => {
     if (hasCanonicalUrl(content)) {
