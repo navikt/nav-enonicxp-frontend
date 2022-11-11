@@ -28,11 +28,15 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+      - name: Set HPA file if specified
+        run: |
+          echo "HPA_FILE_PATH=.nais/hpa/${{inputs.hpa_file}}"
+        if: {{inputs.hpa_file}}
       - name: Deploy to nais
         uses: nais/deploy/actions/deploy@v1
         env:
           CLUSTER: ${{ inputs.cluster }}
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          RESOURCE: .nais/${{ inputs.config_file }},.nais/hpa/${{ inputs.hpa_file }}
+          RESOURCE: .nais/${{ inputs.config_file }},${{env.HPA_FILE_PATH}}
           VAR: image=${{ inputs.image }}
           VARS: .nais/vars/${{ inputs.vars_file }}
