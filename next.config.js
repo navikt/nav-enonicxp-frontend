@@ -183,6 +183,28 @@ const config = {
             source: '/no/rss',
             destination: '/api/rss',
         },
+        // Send some very common invalid requests directly to 404
+        // to prevent unnecessary spam in our error logs
+        {
+            source: '/autodiscover/autodiscover.xml',
+            destination: '/404',
+        },
+        {
+            source: '/Forsiden/driftsmelding',
+            destination: '/404',
+        },
+        {
+            source: '/_public/beta.nav.no/:path*',
+            destination: '/404',
+        },
+        {
+            source: '/frontendlogger/:path*',
+            destination: '/404',
+        },
+        {
+            source: '/feilside',
+            destination: '/404',
+        },
         // /_/* should point to XP services. Rewrite only if XP is on a different origin
         ...(process.env.XP_ORIGIN !== process.env.APP_ORIGIN
             ? [

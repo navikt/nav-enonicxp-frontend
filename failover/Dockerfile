@@ -7,13 +7,13 @@ ARG SERVICE_SECRET
 ARG ENV_FILE
 
 COPY package*.json /failover/.npmrc /app/
-RUN npm ci
+RUN npm ci --force
 RUN rm -f .npmrc
 
 COPY public /app/public/
 COPY server /app/server/
 COPY src /app/src/
-COPY next.config.js tsconfig.json .eslintrc.json /app/
+COPY next.config.js tsconfig.json .eslintrc.json sentry.client.config.js sentry.server.config.js sentry.properties /app/
 
 COPY "/failover/$ENV_FILE" /app/.env
 
