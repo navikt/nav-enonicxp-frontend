@@ -7,7 +7,7 @@ import {
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { objectToQueryString } from '../fetch/fetch-utils';
 
-const decoratorUrl = process.env.DECORATOR_FALLBACK_URL;
+const decoratorUrl = process.env.DECORATOR_URL;
 const decoratorLocalPort = process.env.DECORATOR_LOCAL_PORT || 8100;
 
 type AppEnv = typeof process.env.ENV;
