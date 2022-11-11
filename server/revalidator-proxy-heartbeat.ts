@@ -46,7 +46,7 @@ export const initHeartbeat = (() => {
         return () => {};
     }
 
-    let heartbeatInterval;
+    let heartbeatInterval: NodeJS.Timer;
     const url = getProxyLivenessUrl();
 
     return () => {

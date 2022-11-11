@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "allowJs": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -20,5 +19,6 @@
   },
   "include": [
     "./**/*.ts",
+    "../src/nodeenv.d.ts"
   ],
 }

@@ -20,6 +20,8 @@ declare global {
             NAVNO_API_URL: string;
         }
     }
+
+    var cacheKey: string | undefined;
 }
 
 export {};

@@ -14,8 +14,7 @@ import {
     setCacheKey,
 } from './req-handlers/incremental-cache';
 import { initHeartbeat } from './revalidator-proxy-heartbeat';
-import { IncomingMessage, ServerResponse } from 'http';
-import { BaseNextRequest, BaseNextResponse } from 'next/dist/server/base-http';
+import NextNodeServer from 'next/dist/server/next-server';
 
 const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
@@ -35,10 +34,10 @@ const validateSecret: RequestHandler = (req, res, next) => {
 // Temporary spammy logging to investigate an occasional hang on cache-response for certain paths
 const logPendingResponses =
     process.env.ENV !== 'localhost'
-        ? (nextServer) => {
+        ? (nextServer: NextNodeServer) => {
               try {
                   const pendingResponses =
-                      nextServer.responseCache.pendingResponses;
+                      nextServer['responseCache'].pendingResponses;
                   if (pendingResponses?.size > 0) {
                       console.log(
                           `Pending responses: ${JSON.stringify([
@@ -68,20 +67,20 @@ nextApp.prepare().then(() => {
         ENV,
     } = process.env;
 
-    // @ts-ignore
-    const nextServer = nextApp.server;
+    const nextServer = nextApp['server'] as NextNodeServer;
 
-    const currentBuildId = nextServer.getBuildId();
+    const currentBuildId = nextServer['getBuildId']();
 
     const isFailover = IS_FAILOVER_INSTANCE === 'true';
 
     if (!isFailover && PAGE_CACHE_DIR) {
-        nextServer.responseCache.incrementalCache.cacheHandler.serverDistDir =
-            PAGE_CACHE_DIR;
+        nextServer[
+            'responseCache'
+        ].incrementalCache.cacheHandler.serverDistDir = PAGE_CACHE_DIR;
     }
 
     if (IMAGE_CACHE_DIR) {
-        nextServer.imageResponseCache.incrementalCache.cacheDir =
+        nextServer['imageResponseCache'].incrementalCache.cacheDir =
             IMAGE_CACHE_DIR;
     }
 
@@ -106,14 +105,14 @@ nextApp.prepare().then(() => {
             validateSecret,
             jsonBodyParser,
             setCacheKey,
-            handleInvalidateReq(nextApp)
+            handleInvalidateReq(nextServer)
         );
 
         server.get(
             '/invalidate/wipe-all',
             validateSecret,
             setCacheKey,
-            handleInvalidateAllReq(nextApp)
+            handleInvalidateAllReq(nextServer)
         );
 
         server.get('/_next/data/:buildId/*.json', (req, res) => {
@@ -131,7 +130,7 @@ nextApp.prepare().then(() => {
         });
 
         server.all('*', (req, res) => {
-            logPendingResponses(nextApp.server);
+            logPendingResponses(nextServer);
 
             return nextRequestHandler(req, res);
         });
@@ -150,10 +149,7 @@ nextApp.prepare().then(() => {
 
     server.use(errorHandler);
 
-    const serverInstance = server.listen(port, (error) => {
-        if (error) {
-            throw error;
-        }
+    const serverInstance = server.listen(port, () => {
         if (!SERVICE_SECRET) {
             throw new Error('Authentication key is not defined!');
         }

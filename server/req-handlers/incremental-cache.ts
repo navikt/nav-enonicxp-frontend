@@ -1,42 +1,56 @@
 import fsPromises from 'fs/promises';
 import fs from 'fs';
+import NextNodeServer from 'next/dist/server/next-server';
+import { RequestHandler } from 'express';
+import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 
-const removePageCacheFile = async (nextApp, pathname) =>
-    nextApp.server.responseCache.incrementalCache.cacheHandler
-        .getFsPath(pathname, false)
-        .then(({ filePath }) => fsPromises.unlink(filePath))
+const removePageCacheFile = async (
+    nextServer: NextNodeServer,
+    pathname: string
+) =>
+    (
+        nextServer['responseCache'].incrementalCache
+            .cacheHandler as FileSystemCache
+    )
+        ['getFsPath'](pathname, false)
+        .then(({ filePath }: { filePath: string }) =>
+            fsPromises.unlink(filePath)
+        )
         .then(() => {
             console.log(`Removed file from page cache: ${pathname}`);
         })
-        .catch((e) => {
+        .catch((e: any) => {
             console.log(
                 `Failed to remove file from page cache: ${pathname} - ${e}`
             );
         });
 
-const invalidateCachedPage = async (path, nextApp) => {
+const invalidateCachedPage = async (
+    path: string,
+    nextServer: NextNodeServer
+) => {
     const pagePath = path === '/' ? '/index' : path;
 
     return Promise.all([
-        removePageCacheFile(nextApp, `${pagePath}.html`),
-        removePageCacheFile(nextApp, `${pagePath}.json`),
+        removePageCacheFile(nextServer, `${pagePath}.html`),
+        removePageCacheFile(nextServer, `${pagePath}.json`),
     ])
         .then(() => {
             console.log(`Removing page data from memory cache: ${pagePath}`);
 
             const wasCached =
-                nextApp.server.responseCache.incrementalCache.cacheHandler.memoryCache.has(
-                    pagePath
-                );
+                nextServer[
+                    'responseCache'
+                ].incrementalCache.cacheHandler.memoryCache.has(pagePath);
 
-            nextApp.server.responseCache.incrementalCache.cacheHandler.memoryCache.del(
-                pagePath
-            );
+            nextServer[
+                'responseCache'
+            ].incrementalCache.cacheHandler.memoryCache.del(pagePath);
 
             const isStillCached =
-                nextApp.server.responseCache.incrementalCache.cacheHandler.memoryCache.has(
-                    pagePath
-                );
+                nextServer[
+                    'responseCache'
+                ].incrementalCache.cacheHandler.memoryCache.has(pagePath);
 
             console.log(
                 `Was cached: ${wasCached} - Is still cached: ${isStillCached}`
@@ -49,19 +63,19 @@ const invalidateCachedPage = async (path, nextApp) => {
         });
 };
 
-const wipePageCache = async (nextApp) => {
+const wipePageCache = async (nextServer: NextNodeServer) => {
     try {
-        const { filePath: pageCacheBasePath } =
-            await nextApp.server.responseCache.incrementalCache.cacheHandler.getFsPath(
-                '',
-                false
-            );
+        const { filePath: pageCacheBasePath } = await nextServer[
+            'responseCache'
+        ].incrementalCache.cacheHandler.getFsPath('', false);
 
         if (fs.existsSync(pageCacheBasePath)) {
             fs.rmSync(pageCacheBasePath, { recursive: true });
         }
 
-        nextApp.server.responseCache.incrementalCache.cacheHandler.memoryCache.reset();
+        nextServer[
+            'responseCache'
+        ].incrementalCache.cacheHandler.memoryCache.reset();
 
         console.log('Wiped all cached pages!');
         return true;
@@ -71,26 +85,30 @@ const wipePageCache = async (nextApp) => {
     }
 };
 
-export const handleInvalidateAllReq = (app) => (req, res) => {
-    const { eventid } = req.headers;
+export const handleInvalidateAllReq =
+    (nextServer: NextNodeServer): RequestHandler =>
+    (req, res) => {
+        const { eventid } = req.headers;
 
-    wipePageCache(app).then((success) => {
-        success
-            ? res
-                  .status(200)
-                  .send(`Successfully wiped page cache - event id ${eventid}`)
-            : res
-                  .status(500)
-                  .send(`Failed to wipe page cache! - event id ${eventid}`);
-    });
-};
+        wipePageCache(nextServer).then((success) => {
+            success
+                ? res
+                      .status(200)
+                      .send(
+                          `Successfully wiped page cache - event id ${eventid}`
+                      )
+                : res
+                      .status(500)
+                      .send(`Failed to wipe page cache! - event id ${eventid}`);
+        });
+    };
 
 let currentCacheTimestamp = 0;
 
-export const setCacheKey = (req, res, next) => {
+export const setCacheKey: RequestHandler = (req, res, next) => {
     const { cache_key, cache_ts } = req.headers;
 
-    if (cache_key) {
+    if (typeof cache_key === 'string') {
         const newCacheTimestamp = Number(cache_ts);
         if (newCacheTimestamp > currentCacheTimestamp) {
             console.log(
@@ -104,27 +122,29 @@ export const setCacheKey = (req, res, next) => {
             );
         }
     } else {
-        console.error('No cache key provided!');
+        console.error(`No valid cache key provided - ${cache_key}`);
     }
 
     next();
 };
 
-export const handleInvalidateReq = (app) => (req, res) => {
-    const { eventid } = req.headers;
+export const handleInvalidateReq =
+    (nextServer: NextNodeServer): RequestHandler =>
+    (req, res) => {
+        const { eventid } = req.headers;
 
-    const { paths } = req.body;
+        const { paths } = req.body;
 
-    if (!Array.isArray(paths)) {
-        const msg = `Invalid path array for event ${eventid}`;
-        console.error(msg);
-        return res.status(400).send(msg);
-    }
+        if (!Array.isArray(paths)) {
+            const msg = `Invalid path array for event ${eventid}`;
+            console.error(msg);
+            return res.status(400).send(msg);
+        }
 
-    paths.forEach((path) => invalidateCachedPage(path, app));
+        paths.forEach((path) => invalidateCachedPage(path, nextServer));
 
-    const msg = `Received cache invalidation event for ${paths.length} paths - event id ${eventid}`;
-    console.log(msg);
+        const msg = `Received cache invalidation event for ${paths.length} paths - event id ${eventid}`;
+        console.log(msg);
 
-    return res.status(200).send(msg);
-};
+        return res.status(200).send(msg);
+    };
