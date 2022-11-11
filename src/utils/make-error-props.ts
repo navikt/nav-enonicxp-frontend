@@ -48,6 +48,7 @@ export const makeErrorProps = (
             errorMessageInternal: errorMessage,
             errorCode: errorCode,
             errorId: errorId,
+            noindex: true,
         },
         breadcrumbs: [{ title: title, url: '/' }],
         serverEnv: process.env.ENV,

@@ -6,6 +6,7 @@ export type ErrorData = {
     errorCode?: number;
     errorId?: string;
     feedback?: boolean;
+    noindex: true;
 };
 
 export interface ErrorProps extends ContentCommonProps {

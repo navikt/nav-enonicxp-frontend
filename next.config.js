@@ -121,6 +121,7 @@ const config = {
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
         SENTRY_DSN: process.env.SENTRY_DSN,
         NAVNO_API_URL: process.env.NAVNO_API_URL,
+        DECORATOR_FALLBACK_URL: process.env.DECORATOR_FALLBACK_URL,
     },
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
@@ -181,28 +182,6 @@ const config = {
         {
             source: '/no/rss',
             destination: '/api/rss',
-        },
-        // Send some very common 404-resulting requests directly to 404
-        // to prevent unnecessary backend-calls
-        {
-            source: '/autodiscover/autodiscover.xml',
-            destination: '/404',
-        },
-        {
-            source: '/Forsiden/driftsmelding',
-            destination: '/404',
-        },
-        {
-            source: '/_public/beta.nav.no/:path*',
-            destination: '/404',
-        },
-        {
-            source: '/frontendlogger/:path*',
-            destination: '/404',
-        },
-        {
-            source: '/feilside',
-            destination: '/404',
         },
         // /_/* should point to XP services. Rewrite only if XP is on a different origin
         ...(process.env.XP_ORIGIN !== process.env.APP_ORIGIN
