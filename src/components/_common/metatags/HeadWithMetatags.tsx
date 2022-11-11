@@ -83,8 +83,8 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
             <meta name={'twitter:image:src'} content={imageUrl} />
             <meta name={'description'} content={description} />
             <meta name={'contentId'} content={content._id} />
-            <meta name={'msapplication-TileColor'} content="#ffffff" />
-            <meta name={'theme-color'} content="#ffffff" />
+            <meta name={'msapplication-TileColor'} content={'#c30000'} />
+            <meta name={'theme-color'} content={'#c30000'} />
             <link
                 rel={'icon'}
                 href={`${decoratorUrl}/media/favicon.ico`}
