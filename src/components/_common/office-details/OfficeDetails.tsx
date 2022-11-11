@@ -12,10 +12,11 @@ import { OfficeDetailsProps } from 'types/content-props/office-details-props';
 
 export const OfficeDetails = (props: OfficeDetailsProps) => {
     console.log(props);
-    const { kontaktinformasjon } = props.officeData;
+    const { kontaktinformasjon, enhet } = props.officeData;
+
     const telephone = parsePhoneNumber(kontaktinformasjon.telefonnummer);
     const telephoneCommentary = kontaktinformasjon.telefonnummerKommentar;
-    // const postAdress = kontaktinformasjon.postadresse;
+
     const visitingAdress = formatAddress(
         kontaktinformasjon.besoeksadresse,
         true
@@ -25,7 +26,6 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
     const publikumsmottak = normalizeReceptionAsArray(
         kontaktinformasjon.publikumsmottak
     );
-    // const contact = kontaktinformasjon;
 
     return (
         <div className={styles.wide}>
@@ -36,7 +36,14 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
                         'region__pageContent'
                     )}
                 >
+                    <Heading level="2" size="medium">
+                        Du finner oss her
+                    </Heading>
+
                     <div className={styles.openingHours}>
+                        <Heading level="2" size="medium">
+                            Adresse
+                        </Heading>
                         <Reception
                             receptions={publikumsmottak}
                             language={props.language}
@@ -44,29 +51,27 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
                     </div>
                     <div className={styles.phonePoster}>
                         <div>
-                            <Heading level="2" size="small">
+                            <Heading as="span" level="2" size="small">
                                 Telefonnummeret til NAV er
                             </Heading>
-                            <span
-                                className={classNames(
-                                    'navds-heading',
-                                    'navds-heading--medium'
-                                )}
-                            >
+                            <BodyShort as="h2">
                                 <Link href="tel:{telephone}">{telephone}</Link>
-                            </span>
+                            </BodyShort>
                             {telephoneCommentary && (
                                 <BodyShort>{telephoneCommentary}</BodyShort>
                             )}
                         </div>
                     </div>
-                    <div className={styles.addressPoster}>
+                    <div>
                         <Heading level="2" size="medium">
                             Kontorinformasjon
                         </Heading>
-                        <Heading level="2" size="small">
-                            Beliggenhet
-                        </Heading>
+                        <div>
+                            <Heading level="2" size="small">
+                                Beliggenhet
+                            </Heading>
+                            <BodyShort>{visitingAdress}</BodyShort>
+                        </div>
                         <div>
                             <Heading level="2" size="small">
                                 Postadresse
@@ -76,9 +81,23 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
                             </BodyShort>
                         </div>
                         <Heading level="2" size="small">
-                            Kontorinformasjon
+                            Kontorinformasjon som skal ha en annen overskrift
                         </Heading>
-                        <BodyShort>{visitingAdress}</BodyShort>
+                        {enhet.organisasjonsnummer && (
+                            <div>
+                                <BodyShort>
+                                    Organisasjonsnummer:{' '}
+                                    {enhet.organisasjonsnummer}
+                                </BodyShort>
+                            </div>
+                        )}
+                        {kontaktinformasjon.enhetNr && (
+                            <div>
+                                <BodyShort>
+                                    Kontornummer: {kontaktinformasjon.enhetNr}
+                                </BodyShort>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

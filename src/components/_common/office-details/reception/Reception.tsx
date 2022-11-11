@@ -49,8 +49,13 @@ const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
 const formatAudienceReception = (
     audienceReception: AudienceReception,
     language: string = 'no'
-): FormattedAudienceReception => {
+): FormattedAudienceReception | null => {
     // filter regular and exceptions for opening hour then introduce formatting for display
+    if (!audienceReception) {
+        return null;
+    }
+    console.log(audienceReception);
+
     const aapningstider = audienceReception.aapningstider.reduce(
         (acc, elem) => {
             if (elem.dato) {
@@ -95,12 +100,14 @@ const Reception = (props: LocationsProps) => {
     if (!props.receptions) {
         return null;
     }
+    console.log(props);
 
     const getLabel = translator('officeInformation', props.language);
     const receptionArray = normalizeReceptionAsArray(props.receptions);
     const displayAsTable = receptionArray.length > 1;
 
     const Location = (props: AudienceReception) => {
+        console.log(props);
         const { address, openingHours, openingHoursExceptions } =
             formatAudienceReception(props);
         return (
@@ -126,10 +133,10 @@ const Reception = (props: LocationsProps) => {
                         <Heading level="4" size="small">
                             Spesielle åpningstider
                         </Heading>
-                        <MetaOpeningHours
+                        {/* <MetaOpeningHours
                             openingHours={openingHoursExceptions}
                             metaKey="meta-exceptions"
-                        />
+                        /> */}
                         <OpeningHours
                             openingHours={openingHoursExceptions}
                             closedLabel={getLabel('closed')}
@@ -141,13 +148,24 @@ const Reception = (props: LocationsProps) => {
         );
     };
     const LocationsTable = (props: LocationsProps) => {
-        const [state, setState] = useState('locations');
         const { receptions } = props;
+
+        const lokasjon =
+            receptions[0]?.stedsbeskrivelse ||
+            receptions[0]?.besoeksadresse.poststed;
+
+        const [state, setState] = useState(lokasjon);
+
+        if (!receptions) {
+            return null;
+        }
+
         return (
             <Tabs value={state} onChange={setState}>
                 <Tabs.List>
                     {receptions.map((loc: AudienceReception, index) => {
                         const { place } = formatAudienceReception(loc);
+                        console.log(place);
                         return (
                             <Tabs.Tab key={index} value={place} label={place} />
                         );
@@ -167,9 +185,6 @@ const Reception = (props: LocationsProps) => {
 
     return (
         <div className={style.publikumsmottak}>
-            <Heading level="2" size="medium" className={style.header}>
-                Du finner oss her
-            </Heading>
             {displayAsTable ? (
                 <LocationsTable {...props} />
             ) : (

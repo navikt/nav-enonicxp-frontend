@@ -6,12 +6,13 @@
     table {
         margin-bottom: 1.6rem;
         width: auto;
-
         th,
         td {
             vertical-align: top;
             padding: 0.3rem 1rem 0.3rem 0;
             font-size: 1.125rem;
+            border: none;
+            padding-left: 3rem;
         }
 
         :global(.dayInformation) {
