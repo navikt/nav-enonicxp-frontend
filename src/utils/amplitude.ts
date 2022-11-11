@@ -1,6 +1,6 @@
 import amplitude from 'amplitude-js';
 
-export enum analyticsEvents {
+export enum AnalyticsEvents {
     NAVIGATION = 'navigere',
     FILTER = 'filtervalg',
     ACC_EXPAND = 'accordion åpnet',
@@ -23,10 +23,10 @@ export const initAmplitude = () => {
 };
 
 export function logAmplitudeEvent(
-    eventName: analyticsEvents,
+    eventName: AnalyticsEvents,
     data?: any
 ): Promise<any> {
-    const platform = window.location.toString();  // Be sure to get url before navigation
+    const platform = window.location.toString(); // Be sure to get url before navigation
     return new Promise(function (resolve: any) {
         const eventData = {
             ...data,

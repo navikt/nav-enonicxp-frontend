@@ -1,4 +1,4 @@
-import { MenuListItemKey } from '../types/menu-list-items';
+import { MenuListItemKey } from 'types/menu-list-items';
 import {
     ProductTaxonomy,
     Taxonomy,
@@ -6,6 +6,7 @@ import {
     ToolsPageTaxonomy,
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
+import { Translations } from 'translations/default';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.AppealRights]: 'Klagerettar',
@@ -22,7 +23,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.Shortcuts]: 'Snarvegar',
 };
 
-const productTaxonomies: {
+const taxonomies: {
     [key in Taxonomy]: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
@@ -65,10 +66,7 @@ const areas: { [key in Area]: string } = {
     [Area.WORK]: 'Arbeid',
 };
 
-export const translationsBundleNn = {
-    areaPage: {
-        chooseArea: 'Velg eit område',
-    },
+export const translationsBundleNn: Translations = {
     stringParts: {
         conjunction: 'og',
     },
@@ -113,8 +111,8 @@ export const translationsBundleNn = {
     officeInformation: {
         closed: 'Stengt',
     },
-    relatedContent: relatedContent,
-    productTaxonomies,
+    relatedContent,
+    taxonomies,
     areas,
     products: {
         person: 'For privatpersonar',
@@ -141,12 +139,18 @@ export const translationsBundleNn = {
     },
     overview: {
         noProducts: 'Ingen treff',
-        ariaExplanation: 'Filtrer lista etter område',
-        ariaItemExplanation: 'Vis område',
-        chooseArea: 'Vel område',
-        chooseType: 'Vel type',
         search: 'Søk',
         loading: 'Laster innhald...',
+        areas: {
+            choose: 'Vel område',
+            ariaExplanation: 'Filtrer lista etter område',
+            ariaItemExplanation: 'Vis område',
+        },
+        taxonomies: {
+            choose: 'Vel type',
+            ariaExplanation: 'Filtrer lista etter type',
+            ariaItemExplanation: 'Vis type',
+        },
     },
     pagination: {
         goTo: 'Gå til',

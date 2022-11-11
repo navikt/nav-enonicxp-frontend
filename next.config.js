@@ -3,7 +3,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 const { withSentryConfig } = require('@sentry/nextjs');
 const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
-const { DATA } = require('csp-header');
+const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
 
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
@@ -69,22 +69,26 @@ const csp = async () => {
         prod: 'prod',
     };
 
-    return buildCspHeader(
-        {
-            'default-src': [
-                ...internalHosts,
-                process.env.NODE_ENV === 'development' ? 'ws:' : '',
-            ],
-            'script-src': [...internalHosts, ...tiTiHosts],
-            'worker-src': internalHosts,
-            'style-src': internalHosts,
-            'font-src': [...internalHosts, DATA],
-            'img-src': [...internalHosts, DATA],
-            'frame-src': [qbrickHost],
-            'connect-src': internalHosts,
-        },
-        { env: envMap[process.env.ENV], port: process.env.DECORATOR_LOCAL_PORT }
-    );
+    const directives = {
+        'default-src': internalHosts,
+        'script-src': [...internalHosts, ...tiTiHosts],
+        'worker-src': internalHosts,
+        'style-src': [...internalHosts, UNSAFE_INLINE],
+        'font-src': [...internalHosts, DATA],
+        'img-src': [...internalHosts, DATA],
+        'frame-src': [qbrickHost],
+        'connect-src': internalHosts,
+    };
+
+    if (process.env.NODE_ENV === 'development') {
+        directives['default-src'].push('ws:');
+        directives['script-src'].push(UNSAFE_INLINE, UNSAFE_EVAL);
+    }
+
+    return buildCspHeader(directives, {
+        env: envMap[process.env.ENV],
+        port: process.env.DECORATOR_LOCAL_PORT,
+    });
 };
 
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
@@ -117,6 +121,7 @@ const config = {
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
         SENTRY_DSN: process.env.SENTRY_DSN,
         NAVNO_API_URL: process.env.NAVNO_API_URL,
+        DECORATOR_URL: process.env.DECORATOR_URL,
     },
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
@@ -178,8 +183,8 @@ const config = {
             source: '/no/rss',
             destination: '/api/rss',
         },
-        // Send some very common 404-resulting requests directly to 404
-        // to prevent unnecessary backend-calls
+        // Send some very common invalid requests directly to 404
+        // to prevent unnecessary spam in our error logs
         {
             source: '/autodiscover/autodiscover.xml',
             destination: '/404',
