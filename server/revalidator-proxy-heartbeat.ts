@@ -41,7 +41,7 @@ const getProxyLivenessUrl = () => {
         : null;
 };
 
-export const initHeartbeat = (() => {
+export const initRevalidatorProxyHeartbeat = (() => {
     if (NODE_ENV === 'development') {
         return () => {};
     }

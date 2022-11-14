@@ -1,5 +1,4 @@
 import fsPromises from 'fs/promises';
-import fs from 'fs';
 import NextNodeServer from 'next/dist/server/next-server';
 import { RequestHandler } from 'express';
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
@@ -63,72 +62,7 @@ const invalidateCachedPage = async (
         });
 };
 
-const wipePageCache = async (nextServer: NextNodeServer) => {
-    try {
-        const { filePath: pageCacheBasePath } = await nextServer[
-            'responseCache'
-        ].incrementalCache.cacheHandler.getFsPath('', false);
-
-        if (fs.existsSync(pageCacheBasePath)) {
-            fs.rmSync(pageCacheBasePath, { recursive: true });
-        }
-
-        nextServer[
-            'responseCache'
-        ].incrementalCache.cacheHandler.memoryCache.reset();
-
-        console.log('Wiped all cached pages!');
-        return true;
-    } catch (e) {
-        console.error(`Error occurred while wiping page-cache - ${e}`);
-        return false;
-    }
-};
-
-export const handleInvalidateAllReq =
-    (nextServer: NextNodeServer): RequestHandler =>
-    (req, res) => {
-        const { eventid } = req.headers;
-
-        wipePageCache(nextServer).then((success) => {
-            success
-                ? res
-                      .status(200)
-                      .send(
-                          `Successfully wiped page cache - event id ${eventid}`
-                      )
-                : res
-                      .status(500)
-                      .send(`Failed to wipe page cache! - event id ${eventid}`);
-        });
-    };
-
-let currentCacheTimestamp = 0;
-
-export const setCacheKey: RequestHandler = (req, res, next) => {
-    const { cache_key, cache_ts } = req.headers;
-
-    if (typeof cache_key === 'string') {
-        const newCacheTimestamp = Number(cache_ts);
-        if (newCacheTimestamp > currentCacheTimestamp) {
-            console.log(
-                `Setting new cache key ${cache_key} with timestamp ${cache_ts}`
-            );
-            global.cacheKey = cache_key;
-            currentCacheTimestamp = newCacheTimestamp;
-        } else {
-            console.log(
-                `Rejecting cache key ${cache_key} with timestamp ${newCacheTimestamp} - current cache key ${global.cacheKey} is same or newer (${currentCacheTimestamp})`
-            );
-        }
-    } else {
-        console.error(`No valid cache key provided - ${cache_key}`);
-    }
-
-    next();
-};
-
-export const handleInvalidateReq =
+export const handleInvalidatePathsReq =
     (nextServer: NextNodeServer): RequestHandler =>
     (req, res) => {
         const { eventid } = req.headers;

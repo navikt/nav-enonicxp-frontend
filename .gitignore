@@ -49,3 +49,4 @@ yarn-error.log*
 .sentryclirc
 /.serverDist/
 /server/.dist/
+/server/tsconfig.tsbuildinfo

@@ -1,139 +1,33 @@
 import dotenv from 'dotenv';
-
 dotenv.config();
 
-import express, { ErrorRequestHandler, RequestHandler } from 'express';
+import express, { ErrorRequestHandler } from 'express';
 import next from 'next';
 import fetch from 'node-fetch';
 import { createHttpTerminator } from 'http-terminator';
 
-import { setJsonCacheHeaders } from './set-json-cache-headers';
-import {
-    handleInvalidateReq,
-    handleInvalidateAllReq,
-    setCacheKey,
-} from './req-handlers/incremental-cache';
-import { initHeartbeat } from './revalidator-proxy-heartbeat';
-import NextNodeServer from 'next/dist/server/next-server';
+import { initRevalidatorProxyHeartbeat } from './revalidator-proxy-heartbeat';
+import { serverSetupFailover } from './server-setup-failover';
+import { serverSetup } from './server-setup';
+import { getNextServer } from './next-utils';
 
 const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
     quiet: process.env.ENV === 'prod',
 });
 
-const validateSecret: RequestHandler = (req, res, next) => {
-    if (req.headers.secret !== process.env.SERVICE_SECRET) {
-        console.warn(`Invalid secret for ${req.path}`);
-        res.status(404);
-        return nextApp.renderError(null, req, res, req.path);
-    }
-
-    next();
-};
-
-// Temporary spammy logging to investigate an occasional hang on cache-response for certain paths
-const logPendingResponses =
-    process.env.ENV !== 'localhost'
-        ? (nextServer: NextNodeServer) => {
-              try {
-                  const pendingResponses =
-                      nextServer['responseCache'].pendingResponses;
-                  if (pendingResponses?.size > 0) {
-                      console.log(
-                          `Pending responses: ${JSON.stringify([
-                              ...pendingResponses.keys(),
-                          ])}`
-                      );
-                  }
-              } catch (e) {
-                  console.error(`Error accessing pendingResponses - ${e}`);
-              }
-          }
-        : () => ({});
-
 nextApp.prepare().then(() => {
-    const server = express();
+    const expressApp = express();
     const port = process.env.PORT || 3000;
 
-    const jsonBodyParser = express.json();
+    const nextServer = getNextServer(nextApp);
 
-    const nextRequestHandler = nextApp.getRequestHandler();
+    const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
-    const {
-        SERVICE_SECRET,
-        PAGE_CACHE_DIR,
-        IMAGE_CACHE_DIR,
-        IS_FAILOVER_INSTANCE,
-        ENV,
-    } = process.env;
-
-    const nextServer = nextApp['server'] as NextNodeServer;
-
-    const currentBuildId = nextServer['getBuildId']();
-
-    const isFailover = IS_FAILOVER_INSTANCE === 'true';
-
-    if (!isFailover && PAGE_CACHE_DIR) {
-        nextServer[
-            'responseCache'
-        ].incrementalCache.cacheHandler.serverDistDir = PAGE_CACHE_DIR;
-    }
-
-    if (IMAGE_CACHE_DIR) {
-        nextServer['imageResponseCache'].incrementalCache.cacheDir =
-            IMAGE_CACHE_DIR;
-    }
-
-    if (isFailover && ENV === 'prod') {
-        // Assets from /_next and internal apis should be served as normal
-        server.get(['/_next/*', '/api/internal/*'], (req, res) => {
-            return nextRequestHandler(req, res);
-        });
-
-        // We don't want the full site to be publicly available via failover instance.
-        // This is served via the public-facing regular frontend when needed
-        server.all('*', (req, res) => {
-            if (req.headers.secret !== SERVICE_SECRET) {
-                return res.status(404).send();
-            }
-
-            return nextRequestHandler(req, res);
-        });
+    if (isFailover) {
+        serverSetupFailover(expressApp, nextApp);
     } else {
-        server.post(
-            '/invalidate',
-            validateSecret,
-            jsonBodyParser,
-            setCacheKey,
-            handleInvalidateReq(nextServer)
-        );
-
-        server.get(
-            '/invalidate/wipe-all',
-            validateSecret,
-            setCacheKey,
-            handleInvalidateAllReq(nextServer)
-        );
-
-        server.get('/_next/data/:buildId/*.json', (req, res) => {
-            const { buildId } = req.params;
-            if (buildId !== currentBuildId) {
-                console.log(
-                    `Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`
-                );
-                req.url = req.url.replace(buildId, currentBuildId);
-                req.path = req.path.replace(buildId, currentBuildId);
-            }
-
-            setJsonCacheHeaders(req, res);
-            return nextRequestHandler(req, res);
-        });
-
-        server.all('*', (req, res) => {
-            logPendingResponses(nextServer);
-
-            return nextRequestHandler(req, res);
-        });
+        serverSetup(expressApp, nextApp);
     }
 
     const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
@@ -144,34 +38,34 @@ nextApp.prepare().then(() => {
         console.log(`Express error on path ${path}: ${status} ${msg}`);
 
         res.status(status || 500);
-        return nextApp.renderError(msg, req, res, path);
+        return nextServer.renderError(msg, req, res, path);
     };
 
-    server.use(errorHandler);
+    expressApp.use(errorHandler);
 
-    const serverInstance = server.listen(port, () => {
-        if (!SERVICE_SECRET) {
+    const expressServer = expressApp.listen(port, () => {
+        if (!process.env.SERVICE_SECRET) {
             throw new Error('Authentication key is not defined!');
         }
 
-        console.log(`Server started on port ${port}`);
-
         // Ensure the isReady-api is called when running locally
-        if (ENV === 'localhost') {
+        if (process.env.ENV === 'localhost') {
             fetch(`http://localhost:${port}/api/internal/isReady`);
         }
 
         if (!isFailover) {
-            initHeartbeat();
+            initRevalidatorProxyHeartbeat();
         }
+
+        console.log(`Server started on port ${port}`);
     });
 
-    const httpTerminator = createHttpTerminator({ server: serverInstance });
+    const httpTerminator = createHttpTerminator({ server: expressServer });
 
     const shutdown = () => {
         console.log('Server shutting down');
         httpTerminator.terminate().then(() => {
-            serverInstance.close(() => {
+            expressServer.close(() => {
                 console.log('Shutdown complete!');
                 process.exit(0);
             });
