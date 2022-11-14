@@ -20,7 +20,11 @@ export const serverSetupFailover = (
 
     // We don't want the full site to be publicly available via failover instance.
     // This is served via the public-facing regular frontend when needed
-    expressApp.all('*', validateSecret(nextApp), (req, res) => {
+    expressApp.all('*', (req, res) => {
+        if (req.headers.secret !== process.env.SERVICE_SECRET) {
+            return res.status(404).send();
+        }
+
         return nextRequestHandler(req, res);
     });
 };
