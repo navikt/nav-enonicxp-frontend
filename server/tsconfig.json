@@ -5,7 +5,7 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "module": "CommonJS",
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "isolatedModules": true,
     "incremental": true,
     "baseUrl": "./",

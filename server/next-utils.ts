@@ -42,6 +42,7 @@ export const setImageCacheDir = (nextServer: NextNodeServer) => {
     }
 };
 
+// Get the private server member from the next app
 export const getNextServer = (nextApp: NextServer) => {
     return nextApp['server'] as NextNodeServer;
 };
