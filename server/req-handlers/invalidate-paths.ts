@@ -1,15 +1,17 @@
 import fsPromises from 'fs/promises';
 import NextNodeServer from 'next/dist/server/next-server';
 import { RequestHandler } from 'express';
-import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
-import { getResponseCache } from '../next-utils';
+import {
+    GetFsPathFunction,
+    getIncrementalCacheGetFsPathFunction,
+    getIncrementalCacheMemoryCache,
+} from '../next-utils';
 
 const removePageCacheFile = async (
-    nextServer: NextNodeServer,
+    getFsPath: GetFsPathFunction,
     pathname: string
 ) =>
-    getResponseCache(nextServer)
-        .incrementalCache.cacheHandler['getFsPath'](pathname, false)
+    getFsPath(pathname, false)
         .then(({ filePath }: { filePath: string }) =>
             fsPromises.unlink(filePath)
         )
@@ -27,18 +29,19 @@ const invalidateCachedPage = async (
     nextServer: NextNodeServer
 ) => {
     const pagePath = path === '/' ? '/index' : path;
-    const cacheHandler = getResponseCache(nextServer);
+    const getFsPath = getIncrementalCacheGetFsPathFunction(nextServer);
 
     return Promise.all([
-        removePageCacheFile(nextServer, `${pagePath}.html`),
-        removePageCacheFile(nextServer, `${pagePath}.json`),
+        removePageCacheFile(getFsPath, `${pagePath}.html`),
+        removePageCacheFile(getFsPath, `${pagePath}.json`),
     ])
         .then(() => {
             console.log(`Removing page data from memory cache: ${pagePath}`);
+            const cacheHandler = getIncrementalCacheMemoryCache(nextServer);
 
-            const wasCached = cacheHandler.memoryCache.has(pagePath);
-            cacheHandler.memoryCache.del(pagePath);
-            const isStillCached = cacheHandler.memoryCache.has(pagePath);
+            const wasCached = cacheHandler.has(pagePath);
+            cacheHandler.del(pagePath);
+            const isStillCached = cacheHandler.has(pagePath);
 
             console.log(
                 `Was cached: ${wasCached} - Is still cached: ${isStillCached}`
@@ -55,7 +58,6 @@ export const handleInvalidatePathsReq =
     (nextServer: NextNodeServer): RequestHandler =>
     (req, res) => {
         const { eventid } = req.headers;
-
         const { paths } = req.body;
 
         if (!Array.isArray(paths)) {

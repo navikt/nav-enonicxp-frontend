@@ -1,5 +1,7 @@
 import NextNodeServer from 'next/dist/server/next-server';
 import { NextServer } from 'next/dist/server/next';
+import LRUCache from 'lru-cache';
+import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 
 export const setPageCacheDir = (nextServer: NextNodeServer) => {
     const { PAGE_CACHE_DIR } = process.env;
@@ -42,13 +44,34 @@ export const setImageCacheDir = (nextServer: NextNodeServer) => {
     }
 };
 
-// Helper functions for accessing private members (very naughty!)
+// Helper functions for accessing private class members (very naughty!)
+//
 export const getNextServer = (nextApp: NextServer) => {
     return nextApp['server'] as NextNodeServer;
 };
+
 export const getNextBuildId = (nextServer: NextNodeServer) => {
     return nextServer['getBuildId']();
 };
-export const getResponseCache = (nextServer: NextNodeServer) => {
-    return nextServer['responseCache'];
+
+export const getIncrementalCacheMemoryCache = (nextServer: NextNodeServer) => {
+    return nextServer['responseCache'].incrementalCache.cacheHandler
+        .memoryCache as LRUCache<string, CacheHandlerValue>;
+};
+
+// The type for this function is not exported from next.js
+// Be aware it may change when updating the next.js version
+export type GetFsPathFunction = (
+    pathname: string,
+    appDir?: boolean
+) => Promise<{
+    filePath: string;
+    isAppPath: boolean;
+}>;
+export const getIncrementalCacheGetFsPathFunction = (
+    nextServer: NextNodeServer
+): GetFsPathFunction => {
+    const cacheHandler =
+        nextServer['responseCache'].incrementalCache.cacheHandler;
+    return cacheHandler['getFsPath'].bind(cacheHandler);
 };
