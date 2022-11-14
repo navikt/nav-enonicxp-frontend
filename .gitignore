@@ -47,6 +47,6 @@ yarn-error.log*
 
 # Sentry
 .sentryclirc
+
 /.serverDist/
-/server/.dist/
 /server/tsconfig.tsbuildinfo

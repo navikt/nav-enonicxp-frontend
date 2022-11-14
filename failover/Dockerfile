@@ -14,7 +14,7 @@ RUN npm ci --force
 RUN rm -f .npmrc
 
 COPY public /app/public/
-COPY server /app/server/
+COPY .serverDist /app/server/
 COPY src /app/src/
 COPY next.config.js tsconfig.json .eslintrc.json sentry.client.config.js sentry.server.config.js sentry.properties .sentryclirc /app/
 
