@@ -2,7 +2,6 @@ import { Express } from 'express';
 import { NextServer } from 'next/dist/server/next';
 
 import { getNextServer, setImageCacheDir } from './next-utils';
-import { validateSecret } from './req-handlers/validate-secret';
 
 export const serverSetupFailover = (
     expressApp: Express,
