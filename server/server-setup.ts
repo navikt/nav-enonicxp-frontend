@@ -46,6 +46,8 @@ const setJsonCacheHeaders = (req: Request, res: Response) => {
 export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
     const jsonBodyParser = express.json();
 
+    const validateSecretMiddleware = validateSecret(nextApp);
+
     const nextRequestHandler = nextApp.getRequestHandler();
     const nextServer = getNextServer(nextApp);
     const currentBuildId = getNextBuildId(nextServer);
@@ -55,7 +57,7 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
 
     expressApp.post(
         '/invalidate',
-        validateSecret,
+        validateSecretMiddleware,
         jsonBodyParser,
         setCacheKey,
         handleInvalidatePathsReq(nextServer)
@@ -63,7 +65,7 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
 
     expressApp.get(
         '/invalidate/wipe-all',
-        validateSecret,
+        validateSecretMiddleware,
         setCacheKey,
         handleInvalidateAllReq(nextServer)
     );
