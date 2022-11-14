@@ -9,7 +9,7 @@ COPY .next /app/.next/
 COPY public /app/public/
 
 COPY next.config.js .env image-manifest* /app/
-COPY .serverDist /app/server/
+COPY .serverDist /app/.serverDist/
 
 EXPOSE 3000
 CMD ["npm", "run", "start"]
