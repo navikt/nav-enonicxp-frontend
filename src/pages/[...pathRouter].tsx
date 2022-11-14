@@ -1,9 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { PageBase } from '../components/PageBase';
+import { PageBase } from 'components/PageBase';
 import Config from '../config';
-import { fetchPageProps } from '../utils/fetch/fetch-page-props';
-import { isPropsWithContent } from '../types/_type-guards';
-import { fetchPrerenderPaths } from '../utils/fetch/fetch-prerender-paths';
+import { fetchPageProps } from 'utils/fetch/fetch-page-props';
+import { isPropsWithContent } from 'types/_type-guards';
+import { fetchPrerenderPaths } from 'utils/fetch/fetch-prerender-paths';
 
 // For failover deployments we fully prerender a static version of the site
 // during build-time. For regular app deployments we generate pages on demand
@@ -38,25 +38,10 @@ const getStaticPathsFailover = async () => {
     };
 };
 
-const logLargePageData = (
-    pageProps: Awaited<ReturnType<typeof fetchPageProps>>
-) => {
-    const pagePropsLength = JSON.stringify(pageProps).length;
-    if (pagePropsLength > 128000) {
-        console.warn(
-            `${
-                (pageProps as any)?.props?.content?._id
-            } props size warning: ${pagePropsLength}`
-        );
-    }
-};
-
 const getStaticPropsRegular: GetStaticProps = async (context) => {
     const pageProps = await fetchPageProps({
         routerQuery: context?.params?.pathRouter,
     });
-
-    logLargePageData(pageProps);
 
     return {
         ...pageProps,

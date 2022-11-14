@@ -1,5 +1,8 @@
 FROM node:16-bullseye-slim
 
+RUN apt-get update
+RUN apt-get --assume-yes install ca-certificates
+
 WORKDIR /app
 
 ARG GITHUB_PAT
@@ -7,20 +10,22 @@ ARG SERVICE_SECRET
 ARG ENV_FILE
 
 COPY package*.json /failover/.npmrc /app/
-RUN npm ci
+RUN npm ci --force
 RUN rm -f .npmrc
 
 COPY public /app/public/
 COPY server /app/server/
 COPY src /app/src/
-COPY next.config.js tsconfig.json .eslintrc.json /app/
+COPY next.config.js tsconfig.json .eslintrc.json sentry.client.config.js sentry.server.config.js sentry.properties .sentryclirc /app/
 
 COPY "/failover/$ENV_FILE" /app/.env
 
 RUN npm run build
 
+RUN rm -f .sentryclirc
+
 # Multistage build to avoid leaking secrets to the final image
-FROM node:16-alpine
+FROM node:16-bullseye-slim
 
 WORKDIR /app
 

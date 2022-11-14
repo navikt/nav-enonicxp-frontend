@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BodyLong, CheckboxGroup } from '@navikt/ds-react';
-import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -55,7 +55,7 @@ export const FiltersMenu = ({ config, path, pageProps }: FilterMenuProps) => {
     const getLabel = translator('filteredContent', language);
 
     const onToggleFilterHandler = (filter: Filter, category) => {
-        logAmplitudeEvent(analyticsEvents.FILTER, {
+        logAmplitudeEvent(AnalyticsEvents.FILTER, {
             kategori: category.categoryName,
             filternavn: filter.filterName,
             opprinnelse: 'filtermeny',

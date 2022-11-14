@@ -2,6 +2,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE_BUNDLE === 'true',
 });
 const { withSentryConfig } = require('@sentry/nextjs');
+const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
+const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
 
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
@@ -35,79 +37,58 @@ const resolveNodeLibsClientSide = (config, options) => {
     }
 };
 
-const buildCspHeader = () => {
-    const getOrigin = (url) => url.replace(/^https?:\/\//, '').split('/')[0];
+const csp = async () => {
+    const prodHost = 'nav.no';
+    const prodWithSubdomains = `*.${prodHost}`;
 
-    const prodOrigin = 'nav.no';
-    const prodWithSubdomains = `*.${prodOrigin}`;
+    const appHost = new URL(process.env.APP_ORIGIN).host;
+    const adminHost = new URL(process.env.ADMIN_ORIGIN).host;
+    const xpHost = new URL(process.env.XP_ORIGIN).host;
 
-    const appOrigin = getOrigin(process.env.APP_ORIGIN);
-    const adminOrigin = getOrigin(process.env.ADMIN_ORIGIN);
-    const xpOrigin = getOrigin(process.env.XP_ORIGIN);
-    const decoratorOrigin = getOrigin(process.env.DECORATOR_FALLBACK_URL);
-    const innloggingsStatusOrigin = getOrigin(
-        process.env.INNLOGGINGSSTATUS_URL
-    );
-
-    const vergicOrigin = '*.psplugin.com'; // screen sharing
-    const boostOrigin = `nav.boost.ai${
-        process.env.ENV !== 'prod' ? ' staging-nav.boost.ai' : ''
-    }`; // chatbot
-    const qbrickOrigin = 'video.qbrick.com';
-    const vimeoPlayerOrigin = 'player.vimeo.com';
-    const vimeoCdnOrigin = '*.vimeocdn.com'; // used for video preview images
-
-    const gaOrigin = 'www.google-analytics.com';
-    const gtmOrigin = 'www.googletagmanager.com';
-    const hotjarOrigin = '*.hotjar.com *.hotjar.io';
-    const taOrigin = '*.taskanalytics.com ta-survey-v2.herokuapp.com';
+    const qbrickHost = 'video.qbrick.com';
 
     // These are used by a NAV-funded research project for accessibility-related feedback
-    const tingtunOrigin = '*.tingtun.no';
-    const termerOrigin = 'termer.no';
-    const tiTiOrigins = [tingtunOrigin, termerOrigin].join(' ');
+    const tingtunHost = '*.tingtun.no';
+    const termerHost = 'termer.no';
+    const tiTiHosts = [tingtunHost, termerHost];
 
     // Filter duplicates, as some origins may be identical, depending on
     // deployment environment
-    const internalOrigins = [
+    const internalHosts = [
         prodWithSubdomains,
-        ...[
-            appOrigin,
-            adminOrigin,
-            xpOrigin,
-            decoratorOrigin,
-            innloggingsStatusOrigin,
-        ].filter(
+        ...[appHost, adminHost, xpHost].filter(
             (origin, index, array) =>
-                !origin.endsWith(prodOrigin) && array.indexOf(origin) === index
+                !origin.endsWith(prodHost) && array.indexOf(origin) === index
         ),
-    ].join(' ');
+    ];
 
-    const externalOriginsServices = [vergicOrigin, boostOrigin].join(' ');
+    const envMap = {
+        localhost: 'localhost',
+        dev1: 'dev',
+        dev2: 'dev',
+        prod: 'prod',
+    };
 
-    const externalOriginsAnalytics = [
-        taOrigin,
-        hotjarOrigin,
-        gtmOrigin,
-        gaOrigin,
-    ].join(' ');
+    const directives = {
+        'default-src': internalHosts,
+        'script-src': [...internalHosts, ...tiTiHosts],
+        'worker-src': internalHosts,
+        'style-src': [...internalHosts, UNSAFE_INLINE],
+        'font-src': [...internalHosts, DATA],
+        'img-src': [...internalHosts, DATA],
+        'frame-src': [qbrickHost],
+        'connect-src': internalHosts,
+    };
 
-    // NOTES:
-    // script unsafe-eval and worker blob: is required by the psplugin script
-    // unsafe-inline script is required by GTM
-    // unsafe-inline style is required by several third party modules
-    // next.js dev mode requires ws: and unsafe-eval
-    return [
-        `default-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics}${
-            process.env.NODE_ENV === 'development' ? ' ws:' : ''
-        }`,
-        `script-src ${internalOrigins} ${externalOriginsServices} ${externalOriginsAnalytics} ${tiTiOrigins} 'unsafe-inline' 'unsafe-eval'`,
-        `worker-src ${internalOrigins} blob:`,
-        `style-src ${internalOrigins} ${vergicOrigin} 'unsafe-inline'`,
-        `font-src ${internalOrigins} ${vergicOrigin} data:`,
-        `img-src ${internalOrigins} ${vimeoCdnOrigin} ${vergicOrigin} ${gaOrigin} data:`,
-        `frame-src ${qbrickOrigin} ${vimeoPlayerOrigin} ${hotjarOrigin} ${gtmOrigin}`,
-    ].join('; ');
+    if (process.env.NODE_ENV === 'development') {
+        directives['default-src'].push('ws:');
+        directives['script-src'].push(UNSAFE_INLINE, UNSAFE_EVAL);
+    }
+
+    return buildCspHeader(directives, {
+        env: envMap[process.env.ENV],
+        port: process.env.DECORATOR_LOCAL_PORT,
+    });
 };
 
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
@@ -140,6 +121,7 @@ const config = {
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
         SENTRY_DSN: process.env.SENTRY_DSN,
         NAVNO_API_URL: process.env.NAVNO_API_URL,
+        DECORATOR_URL: process.env.DECORATOR_URL,
     },
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
@@ -201,8 +183,8 @@ const config = {
             source: '/no/rss',
             destination: '/api/rss',
         },
-        // Send some very common 404-resulting requests directly to 404
-        // to prevent unnecessary backend-calls
+        // Send some very common invalid requests directly to 404
+        // to prevent unnecessary spam in our error logs
         {
             source: '/autodiscover/autodiscover.xml',
             destination: '/404',
@@ -260,7 +242,7 @@ const config = {
                 },
                 {
                     key: 'Content-Security-Policy',
-                    value: buildCspHeader(),
+                    value: await csp(),
                 },
             ],
         },
