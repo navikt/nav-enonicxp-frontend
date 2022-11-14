@@ -42,7 +42,13 @@ export const setImageCacheDir = (nextServer: NextNodeServer) => {
     }
 };
 
-// Get the private server member from the next app
+// Helper functions for accessing private members (very naughty!)
 export const getNextServer = (nextApp: NextServer) => {
     return nextApp['server'] as NextNodeServer;
+};
+export const getNextBuildId = (nextServer: NextNodeServer) => {
+    return nextServer['getBuildId']();
+};
+export const getResponseCache = (nextServer: NextNodeServer) => {
+    return nextServer['responseCache'];
 };

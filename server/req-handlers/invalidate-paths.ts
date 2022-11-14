@@ -2,16 +2,14 @@ import fsPromises from 'fs/promises';
 import NextNodeServer from 'next/dist/server/next-server';
 import { RequestHandler } from 'express';
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
+import { getResponseCache } from '../next-utils';
 
 const removePageCacheFile = async (
     nextServer: NextNodeServer,
     pathname: string
 ) =>
-    (
-        nextServer['responseCache'].incrementalCache
-            .cacheHandler as FileSystemCache
-    )
-        ['getFsPath'](pathname, false)
+    getResponseCache(nextServer)
+        .incrementalCache.cacheHandler['getFsPath'](pathname, false)
         .then(({ filePath }: { filePath: string }) =>
             fsPromises.unlink(filePath)
         )
@@ -29,6 +27,7 @@ const invalidateCachedPage = async (
     nextServer: NextNodeServer
 ) => {
     const pagePath = path === '/' ? '/index' : path;
+    const cacheHandler = getResponseCache(nextServer);
 
     return Promise.all([
         removePageCacheFile(nextServer, `${pagePath}.html`),
@@ -37,19 +36,9 @@ const invalidateCachedPage = async (
         .then(() => {
             console.log(`Removing page data from memory cache: ${pagePath}`);
 
-            const wasCached =
-                nextServer[
-                    'responseCache'
-                ].incrementalCache.cacheHandler.memoryCache.has(pagePath);
-
-            nextServer[
-                'responseCache'
-            ].incrementalCache.cacheHandler.memoryCache.del(pagePath);
-
-            const isStillCached =
-                nextServer[
-                    'responseCache'
-                ].incrementalCache.cacheHandler.memoryCache.has(pagePath);
+            const wasCached = cacheHandler.memoryCache.has(pagePath);
+            cacheHandler.memoryCache.del(pagePath);
+            const isStillCached = cacheHandler.memoryCache.has(pagePath);
 
             console.log(
                 `Was cached: ${wasCached} - Is still cached: ${isStillCached}`

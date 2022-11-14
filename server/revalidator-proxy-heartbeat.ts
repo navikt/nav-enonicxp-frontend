@@ -52,12 +52,13 @@ export const initRevalidatorProxyHeartbeat = (() => {
     return () => {
         if (!heartbeatInterval && url) {
             console.log('Starting heartbeat loop');
-            const heartbeatFunc = () =>
+            const heartbeatFunc = () => {
                 fetch(url, {
                     headers: { secret: SERVICE_SECRET },
                 }).catch((e) =>
                     console.error(`Failed to send heartbeat signal - ${e}`)
                 );
+            };
             heartbeatFunc();
             heartbeatInterval = setInterval(heartbeatFunc, heartbeatPeriodMs);
         }

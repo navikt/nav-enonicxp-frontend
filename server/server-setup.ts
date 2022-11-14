@@ -4,7 +4,12 @@ import NextNodeServer from 'next/dist/server/next-server';
 import onHeaders from 'on-headers';
 
 import { validateSecret } from './req-handlers/validate-secret';
-import { getNextServer, setImageCacheDir, setPageCacheDir } from './next-utils';
+import {
+    getNextBuildId,
+    getNextServer,
+    setImageCacheDir,
+    setPageCacheDir,
+} from './next-utils';
 import { handleInvalidatePathsReq } from './req-handlers/invalidate-paths';
 import { setCacheKey } from './req-handlers/set-cache-key';
 import { handleInvalidateAllReq } from './req-handlers/invalidate-all';
@@ -43,7 +48,7 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
 
     const nextRequestHandler = nextApp.getRequestHandler();
     const nextServer = getNextServer(nextApp);
-    const currentBuildId = nextServer['getBuildId']();
+    const currentBuildId = getNextBuildId(nextServer);
 
     setPageCacheDir(nextServer);
     setImageCacheDir(nextServer);
