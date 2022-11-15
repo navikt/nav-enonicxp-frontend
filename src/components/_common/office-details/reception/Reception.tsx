@@ -50,11 +50,11 @@ const formatAudienceReception = (
     audienceReception: AudienceReception,
     language: string = 'no'
 ): FormattedAudienceReception | null => {
+    console.log(audienceReception);
     // filter regular and exceptions for opening hour then introduce formatting for display
     if (!audienceReception) {
         return null;
     }
-    console.log(audienceReception);
 
     const aapningstider = audienceReception.aapningstider.reduce(
         (acc, elem) => {
@@ -112,13 +112,16 @@ const Reception = (props: LocationsProps) => {
             formatAudienceReception(props);
         return (
             <>
-                <BodyShort>{address}</BodyShort>
+                <Heading level="2" size="medium" spacing>
+                    Adresse
+                </Heading>
+                <BodyShort className={style.address}>{address}</BodyShort>
 
                 {/* opening hours */}
                 {openingHours.length > 0 && (
                     <>
-                        <Heading level="4" size="small">
-                            Åpningstider
+                        <Heading level="3" size="medium" spacing>
+                            Åpningstider når du ikke har avtale
                         </Heading>
                         <OpeningHours
                             openingHours={openingHours}
@@ -130,7 +133,7 @@ const Reception = (props: LocationsProps) => {
                 {/* exceptions in opening hours */}
                 {openingHoursExceptions.length > 0 && (
                     <>
-                        <Heading level="4" size="small">
+                        <Heading level="3" size="medium" spacing>
                             Spesielle åpningstider
                         </Heading>
                         {/* <MetaOpeningHours

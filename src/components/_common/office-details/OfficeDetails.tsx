@@ -1,3 +1,4 @@
+import { Accordion } from '@navikt/ds-react';
 import classNames from 'classnames';
 import { OfficeEditorialPageData } from 'types/content-props/dynamic-page-props';
 import { Heading, Link, BodyShort } from '@navikt/ds-react';
@@ -11,7 +12,7 @@ import Reception from './reception/Reception';
 import { OfficeDetailsProps } from 'types/content-props/office-details-props';
 
 export const OfficeDetails = (props: OfficeDetailsProps) => {
-    console.log(props);
+    // console.log(props);
     const { kontaktinformasjon, enhet } = props.officeData;
 
     const telephone = parsePhoneNumber(kontaktinformasjon.telefonnummer);
@@ -22,11 +23,12 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
         true
     );
     const postalAddress = formatAddress(kontaktinformasjon.postadresse, true);
-    console.log(postalAddress);
+    // console.log(postalAddress);
     const publikumsmottak = normalizeReceptionAsArray(
         kontaktinformasjon.publikumsmottak
     );
 
+    console.log(publikumsmottak);
     return (
         <div className={styles.wide}>
             <div className="content">
@@ -39,16 +41,15 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
                     <Heading level="2" size="medium">
                         Du finner oss her
                     </Heading>
+                    {publikumsmottak.length > 0 && (
+                        <div className={styles.openingHours}>
+                            <Reception
+                                receptions={publikumsmottak}
+                                language={props.language}
+                            />
+                        </div>
+                    )}
 
-                    <div className={styles.openingHours}>
-                        <Heading level="2" size="medium">
-                            Adresse
-                        </Heading>
-                        <Reception
-                            receptions={publikumsmottak}
-                            language={props.language}
-                        />
-                    </div>
                     <div className={styles.phonePoster}>
                         <div>
                             <Heading as="span" level="2" size="small">
@@ -63,41 +64,59 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
                         </div>
                     </div>
                     <div>
-                        <Heading level="2" size="medium">
-                            Kontorinformasjon
-                        </Heading>
-                        <div>
-                            <Heading level="2" size="small">
-                                Beliggenhet
-                            </Heading>
-                            <BodyShort>{visitingAdress}</BodyShort>
-                        </div>
-                        <div>
-                            <Heading level="2" size="small">
-                                Postadresse
-                            </Heading>
-                            <BodyShort>
-                                <span>{postalAddress}</span>
-                            </BodyShort>
-                        </div>
-                        <Heading level="2" size="small">
-                            Kontorinformasjon som skal ha en annen overskrift
-                        </Heading>
-                        {enhet.organisasjonsnummer && (
-                            <div>
-                                <BodyShort>
-                                    Organisasjonsnummer:{' '}
-                                    {enhet.organisasjonsnummer}
-                                </BodyShort>
-                            </div>
-                        )}
-                        {kontaktinformasjon.enhetNr && (
-                            <div>
-                                <BodyShort>
-                                    Kontornummer: {kontaktinformasjon.enhetNr}
-                                </BodyShort>
-                            </div>
-                        )}
+                        <Accordion className={styles.officeInformation}>
+                            <Accordion.Item>
+                                <Accordion.Header>
+                                    Kontorinformasjon
+                                </Accordion.Header>
+                                <Accordion.Content
+                                    className={styles.officeInformation}
+                                >
+                                    <div>
+                                        <Heading
+                                            level="3"
+                                            size="medium"
+                                            spacing
+                                        >
+                                            Beliggenhet
+                                        </Heading>
+                                        <BodyShort>{visitingAdress}</BodyShort>
+                                    </div>
+                                    <div>
+                                        <Heading
+                                            level="3"
+                                            size="medium"
+                                            spacing
+                                        >
+                                            Postadresse
+                                        </Heading>
+                                        <BodyShort>
+                                            <span>{postalAddress}</span>
+                                        </BodyShort>
+                                    </div>
+                                    <Heading level="3" size="medium" spacing>
+                                        Kontorinformasjon som skal ha en annen
+                                        overskrift
+                                    </Heading>
+                                    {enhet.organisasjonsnummer && (
+                                        <div>
+                                            <BodyShort>
+                                                Organisasjonsnummer:{' '}
+                                                {enhet.organisasjonsnummer}
+                                            </BodyShort>
+                                        </div>
+                                    )}
+                                    {kontaktinformasjon.enhetNr && (
+                                        <div>
+                                            <BodyShort>
+                                                Kontornummer:{' '}
+                                                {kontaktinformasjon.enhetNr}
+                                            </BodyShort>
+                                        </div>
+                                    )}
+                                </Accordion.Content>
+                            </Accordion.Item>
+                        </Accordion>
                     </div>
                 </div>
             </div>

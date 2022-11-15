@@ -16,6 +16,7 @@
 .openingHours {
     background-color: var(--navds-global-color-deepblue-50);
     border-bottom: 0px;
+    padding: 2rem;
 }
 .phonePoster {
     padding: common.$padding-sides-mobile;
@@ -40,4 +41,8 @@
 
 .header {
     margin-bottom: 1rem;
+}
+
+.officeInformation {
+    background-color: none;
 }
