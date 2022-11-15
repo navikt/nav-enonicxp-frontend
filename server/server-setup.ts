@@ -79,7 +79,6 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
                 `Expected build-id ${currentBuildId}, got ${buildId} on ${req.path}`
             );
             req.url = req.url.replace(buildId, currentBuildId);
-            req.path = req.path.replace(buildId, currentBuildId);
         }
 
         setJsonCacheHeaders(req, res);
