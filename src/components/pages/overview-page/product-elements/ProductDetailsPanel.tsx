@@ -43,6 +43,15 @@ export const ProductDetailsPanel = ({
 
     const anchorIdWithHash = `#${anchorId}`;
 
+    useEffect(() => {
+        if (window.location.hash === anchorIdWithHash) {
+            handleProductDetailsFetch();
+            setIsOpen(true);
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [anchorIdWithHash]);
+
     const handleClick = () => {
         logAmplitudeEvent(
             isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
@@ -83,15 +92,6 @@ export const ProductDetailsPanel = ({
                 setIsLoading(false);
             });
     };
-
-    useEffect(() => {
-        if (window.location.hash === anchorIdWithHash) {
-            handleProductDetailsFetch();
-            setIsOpen(true);
-        }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [anchorIdWithHash]);
 
     return (
         <>
