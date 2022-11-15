@@ -7,7 +7,9 @@ export const setPageCacheDir = (nextServer: NextNodeServer) => {
     const { PAGE_CACHE_DIR } = process.env;
 
     if (!PAGE_CACHE_DIR) {
-        console.warn(`Page cache dir was not set, using Next.js default`);
+        console.error(
+            'No PAGE_CACHE_DIR was defined, Next.js default will be used'
+        );
         return;
     }
 
@@ -28,7 +30,9 @@ export const setImageCacheDir = (nextServer: NextNodeServer) => {
     const { IMAGE_CACHE_DIR } = process.env;
 
     if (!IMAGE_CACHE_DIR) {
-        console.warn(`Image cache dir was not set, using Next.js default`);
+        console.error(
+            'No IMAGE_CACHE_DIR was defined, Next.js default will be used'
+        );
         return;
     }
 
@@ -36,10 +40,10 @@ export const setImageCacheDir = (nextServer: NextNodeServer) => {
         nextServer['imageResponseCache'].incrementalCache.cacheDir =
             IMAGE_CACHE_DIR;
 
-        console.log(`Set Image cache dir to ${IMAGE_CACHE_DIR}`);
+        console.log(`Set image cache dir to ${IMAGE_CACHE_DIR}`);
     } catch (e) {
         console.error(
-            `Failed to set Image cache dir to ${IMAGE_CACHE_DIR} - ${e}`
+            `Failed to set image cache dir to ${IMAGE_CACHE_DIR} - ${e}`
         );
     }
 };
