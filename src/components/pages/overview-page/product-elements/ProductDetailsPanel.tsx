@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Accordion, BodyShort, Loader } from '@navikt/ds-react';
-import { IllustrationStatic } from '../../../_common/illustration/IllustrationStatic';
-import { ComponentMapper } from '../../../ComponentMapper';
-import { SimplifiedProductData } from '../../../../types/component-props/_mixins';
-import { fetchPageCacheContent } from '../../../../utils/fetch/fetch-cache-content';
-import { AlertBox } from '../../../_common/alert-box/AlertBox';
-import {
-    ContentProps,
-    ContentType,
-} from '../../../../types/content-props/_content-common';
-import { classNames } from '../../../../utils/classnames';
-import { translator } from '../../../../translations';
-import { ProductDetailType } from '../../../../types/content-props/product-details';
+import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
+import { ComponentMapper } from 'components/ComponentMapper';
+import { SimplifiedProductData } from 'types/component-props/_mixins';
+import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
+import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { classNames } from 'utils/classnames';
+import { translator } from 'translations';
+import { ProductDetailType } from 'types/content-props/product-details';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
-import { usePageConfig } from '../../../../store/hooks/usePageConfig';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 
 import style from './ProductDetailsPanel.module.scss';
 
@@ -45,14 +43,17 @@ export const ProductDetailsPanel = ({
 
     const anchorIdWithHash = `#${anchorId}`;
 
-    useEffect(() => {
-        if (window.location.hash === anchorIdWithHash) {
-            handleProductDetailsFetch();
-            setIsOpen(true);
-        }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [anchorIdWithHash]);
+    const handleClick = () => {
+        logAmplitudeEvent(
+            isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
+            {
+                tittel: sortTitle,
+                opprinnelse: 'oversiktsside accordion',
+            }
+        );
+        setIsOpen(!isOpen);
+        handleProductDetailsFetch();
+    };
 
     const handleProductDetailsFetch = () => {
         if (isLoading || productDetailsPage) {
@@ -83,16 +84,22 @@ export const ProductDetailsPanel = ({
             });
     };
 
+    useEffect(() => {
+        if (window.location.hash === anchorIdWithHash) {
+            handleProductDetailsFetch();
+            setIsOpen(true);
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [anchorIdWithHash]);
+
     return (
         <>
             <div id={anchorId} />
             <Accordion className={classNames(!visible && style.hidden)}>
                 <Accordion.Item open={isOpen} className={style.accordionItem}>
                     <Accordion.Header
-                        onClick={() => {
-                            setIsOpen(!isOpen);
-                            handleProductDetailsFetch();
-                        }}
+                        onClick={handleClick}
                         onMouseOver={
                             productDetailsPage
                                 ? null
