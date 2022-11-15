@@ -52,6 +52,8 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
     const nextServer = getNextServer(nextApp);
     const currentBuildId = getNextBuildId(nextServer);
 
+    console.log(`Current build id: ${currentBuildId}`);
+
     setPageCacheDir(nextServer);
     setImageCacheDir(nextServer);
 
