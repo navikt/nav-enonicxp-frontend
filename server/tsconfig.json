@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "isolatedModules": true,
+    "incremental": true,
+    "baseUrl": "./",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "outDir": "../.serverDist"
+  },
+  "include": [
+    "./**/*.ts",
+    "../src/nodeenv.d.ts"
+  ],
+}
