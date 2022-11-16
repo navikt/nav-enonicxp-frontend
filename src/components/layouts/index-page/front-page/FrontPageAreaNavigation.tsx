@@ -23,7 +23,7 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
             >
                 {areasHeader}
             </Header>
-            <nav>
+            <nav aria-label="Velg område">
                 <ul className={style.cards}>
                     {areasRefs.map((areaContent) => (
                         <li key={areaContent._id}>
