@@ -1,8 +1,8 @@
 // Sends periodic heartbeat signals to an internal app which proxies revalidation
 // requests from Enonic XP to all frontend pods
 // See: https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy
-const fetch = require('node-fetch');
-const { networkInterfaces } = require('os');
+import fetch from 'node-fetch';
+import { networkInterfaces } from 'os';
 
 const {
     ENV,
@@ -41,27 +41,26 @@ const getProxyLivenessUrl = () => {
         : null;
 };
 
-const initHeartbeat = () => {
+export const initRevalidatorProxyHeartbeat = (() => {
     if (NODE_ENV === 'development') {
         return () => {};
     }
 
-    let heartbeatInterval;
+    let heartbeatInterval: NodeJS.Timer;
     const url = getProxyLivenessUrl();
 
     return () => {
         if (!heartbeatInterval && url) {
             console.log('Starting heartbeat loop');
-            const heartbeatFunc = () =>
+            const heartbeatFunc = () => {
                 fetch(url, {
                     headers: { secret: SERVICE_SECRET },
                 }).catch((e) =>
                     console.error(`Failed to send heartbeat signal - ${e}`)
                 );
+            };
             heartbeatFunc();
             heartbeatInterval = setInterval(heartbeatFunc, heartbeatPeriodMs);
         }
     };
-};
-
-exports.initHeartbeat = initHeartbeat();
+})();
