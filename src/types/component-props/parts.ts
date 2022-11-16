@@ -84,5 +84,4 @@ export type PartWithOwnData =
     | PartType.AreaCard
     | PartType.AreapageSituationCard
     | PartType.LoggedinCard
-    | PartType.FrontpageContact
-    | PartType.Ingress;
+    | PartType.FrontpageContact;
