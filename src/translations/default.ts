@@ -103,6 +103,9 @@ export const translationsBundleNb = {
         shortcuts: 'Snarveier',
         label: 'Lenker',
     },
+    currentTopic: {
+        tag: 'Aktuelt',
+    },
     mainArticle: {
         facts: 'Fakta',
         lastChanged: 'Oppdatert',

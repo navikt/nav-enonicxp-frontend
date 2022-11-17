@@ -78,6 +78,9 @@ export const translationsBundleEn: Translations = {
         customizeContent: 'Customize content',
         showingInformationFor: 'Showing information for:',
     },
+    currentTopic: {
+        tag: 'Featured',
+    },
     mainArticle: {
         facts: 'Facts',
         lastChanged: 'Updated',

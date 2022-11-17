@@ -21,6 +21,13 @@
     min-height: 4rem;
 }
 
+.app-background {
+    background-color: common.$navds-semantic-color-canvas-background;
+    &.white {
+        background-color: var(--navds-global-color-white);
+    }
+}
+
 .app-container {
     max-width: common.$desktopMaxWidth;
     min-height: 22.5rem;

@@ -28,6 +28,8 @@ export type OverviewPageData = Partial<{
 }> &
     ProductDataMixin &
     DynamicPageData;
+export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'> &
+    DynamicPageData;
 
 export interface DynamicPageProps extends ContentCommonProps {
     __typename: ContentType.DynamicPage;
@@ -56,6 +58,10 @@ export interface GuidePageProps extends ContentCommonProps {
 export interface SituationPageProps extends ContentCommonProps {
     __typename: ContentType.SituationPage;
     data: SituationPageData;
+}
+export interface CurrentTopicPageProps extends ContentCommonProps {
+    __typename: ContentType.CurrentTopicPage;
+    data: CurrentTopicPageData;
 }
 
 export interface ToolsPageProps extends ContentCommonProps {
