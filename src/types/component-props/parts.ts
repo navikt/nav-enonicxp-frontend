@@ -39,7 +39,6 @@ export enum PartType {
     FrontpageContact = 'no.nav.navno:frontpage-contact',
     FrontpageCurrentTopics = 'no.nav.navno:frontpage-current-topics',
     FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
-    Ingress = 'no.nav.navno:ingress',
 }
 
 export type PartDeprecated =
