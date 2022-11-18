@@ -7,7 +7,7 @@ import {
     DetailType,
     OfficeEditorialDetailProps,
 } from 'types/component-props/parts/office-editorial-detail';
-import { OfficeBranchData } from 'types/content-props/office-branch-props';
+import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { ContentType } from 'types/content-props/_content-common';
 import { ServiceInformation } from './details/ServiceInformation';
 import { SocialHelpLinks } from './details/SocialHelpLinks';
@@ -29,27 +29,25 @@ const getDetailComponent = (type: DetailType) => {
 };
 
 export type DetailProps = {
-    officeData: OfficeBranchData;
+    officeData: OfficeDetailsData;
 };
 
 // Todo: IMPORTANT! This is dummy data for development until
 // keys are supported by NORG
 const officeDummyData = {
-    lokalkontor: {
-        enhetNr: '0533',
-        navn: 'NAV Indre Ytrested',
-        orgNrTilKommunaltNavKontor: '911002234',
-        organisasjonsnummer: '919121321',
-        sosialeTjenester:
-            '--> Flyktninger fra Ukraina som har behov for å komme i kontakt med NAV og ikke har d-nummer eller f-nummer kan settes til Daria Mysyniuk på 91996754. Husk å sjekke kalender i Outlook om hun er ledig.\n\n--> Kontoret har tilpasset åpningstid pga Korona-viruset\n\nOppfølging og timeavtaler vil kunne bli gjennomført pr telefon. \nVed behov for akutt nødhjelp mellom 1530 og 0800 kan bruker ta kontakt med kommunenes sosialtjenestevakt (legevakten) på 23487090\n-----------------------------------------\n\n6 PCer tilgjengelig i V/P som bruker kan benytte til selvbetjening.\n\nNAV Oslo (0300) registrerer Del A for Nav kontorene i Oslo. Spørsmål skal til NAV kontoret.\n\nSosialfaglige henvendelser\nTil saksbehandler, ingen vakttelefon. \nVed purring på manglende utbetaling: Send Gosys-oppgave til kontorbenk att. Maria Breistrand\n\nSosialfaglige tjenester: Gjeldsrådgivning, frivillig/tvungen forvaltning, rustjenesten med booppfølging, boligkontor (midlertidig bolig, bostøtte, startlån, kommunal bostøtte, kommunalt boligtilskudd), flyktningetjenesten, kommunalt frikort\n\nSender post digitalt\nPapirsøknadsskjema finnes på kommunens nettside og i V/P\n\nOslo kommune har en døgnåpen vakttjeneste i Storgata 40, de behandler søknad om akutt nødhjelp når NAV-kontoret er stengt.\n\nSaksbehandlingstider: \nØkonomisk sosialhjelp: 3 uker \nStartlån: 4 mnd\n\nUtbetalinger:\nFast utbetalingsdager: Mandag, onsdag, fredag\nSiste tidspunkt for kjøring: 1400\nUtbetaling når utbetaling havner på helg/helligdag: siste/første virkedag før/etter\nUtbetalingsmåter for nødhjelp: kronekort (kontonr. starter på 1315)\nKvalifiseringsstønad: 28 i mnd',
-        spesielleOpplysninger:
-            'Informasjon i forbindelse med korona-situasjonen: Vi oppfordrer alle til å benytte våre skriftlige kanaler på nav.no fremfor å oppsøke NAV-kontorene.  På nav.no kan du søke om økonomisk sosialhjelp, dagpenger og andre ytelser fra NAV. Begrens besøkene dine til NAV–kontoret med mindre det er helt nødvendig for deg\n\nDersom du skal søke om dagpenger fordi du har blitt permittert eller arbeidsledig, må du først registrere deg som arbeidssøker på nav.no. Deretter kan du søke om dagpenger på nav.no: https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering',
-        status: 'AKTIV',
-        underEtableringDato: '1970-01-01',
-        aktiveringsdato: '1970-01-01',
-        underAvviklingDato: null,
-        nedleggelsesdato: null,
-    },
+    enhetNr: '0533',
+    navn: 'NAV Indre Ytrested',
+    orgNrTilKommunaltNavKontor: '911002234',
+    organisasjonsnummer: '919121321',
+    sosialeTjenester:
+        '--> Flyktninger fra Ukraina som har behov for å komme i kontakt med NAV og ikke har d-nummer eller f-nummer kan settes til Daria Mysyniuk på 91996754. Husk å sjekke kalender i Outlook om hun er ledig.\n\n--> Kontoret har tilpasset åpningstid pga Korona-viruset\n\nOppfølging og timeavtaler vil kunne bli gjennomført pr telefon. \nVed behov for akutt nødhjelp mellom 1530 og 0800 kan bruker ta kontakt med kommunenes sosialtjenestevakt (legevakten) på 23487090\n-----------------------------------------\n\n6 PCer tilgjengelig i V/P som bruker kan benytte til selvbetjening.\n\nNAV Oslo (0300) registrerer Del A for Nav kontorene i Oslo. Spørsmål skal til NAV kontoret.\n\nSosialfaglige henvendelser\nTil saksbehandler, ingen vakttelefon. \nVed purring på manglende utbetaling: Send Gosys-oppgave til kontorbenk att. Maria Breistrand\n\nSosialfaglige tjenester: Gjeldsrådgivning, frivillig/tvungen forvaltning, rustjenesten med booppfølging, boligkontor (midlertidig bolig, bostøtte, startlån, kommunal bostøtte, kommunalt boligtilskudd), flyktningetjenesten, kommunalt frikort\n\nSender post digitalt\nPapirsøknadsskjema finnes på kommunens nettside og i V/P\n\nOslo kommune har en døgnåpen vakttjeneste i Storgata 40, de behandler søknad om akutt nødhjelp når NAV-kontoret er stengt.\n\nSaksbehandlingstider: \nØkonomisk sosialhjelp: 3 uker \nStartlån: 4 mnd\n\nUtbetalinger:\nFast utbetalingsdager: Mandag, onsdag, fredag\nSiste tidspunkt for kjøring: 1400\nUtbetaling når utbetaling havner på helg/helligdag: siste/første virkedag før/etter\nUtbetalingsmåter for nødhjelp: kronekort (kontonr. starter på 1315)\nKvalifiseringsstønad: 28 i mnd',
+    spesielleOpplysninger:
+        'Informasjon i forbindelse med korona-situasjonen: Vi oppfordrer alle til å benytte våre skriftlige kanaler på nav.no fremfor å oppsøke NAV-kontorene.  På nav.no kan du søke om økonomisk sosialhjelp, dagpenger og andre ytelser fra NAV. Begrens besøkene dine til NAV–kontoret med mindre det er helt nødvendig for deg\n\nDersom du skal søke om dagpenger fordi du har blitt permittert eller arbeidsledig, må du først registrere deg som arbeidssøker på nav.no. Deretter kan du søke om dagpenger på nav.no: https://www.nav.no/no/person/arbeid/dagpenger-ved-arbeidsloshet-og-permittering',
+    status: 'AKTIV',
+    underEtableringDato: '1970-01-01',
+    aktiveringsdato: '1970-01-01',
+    underAvviklingDato: null,
+    nedleggelsesdato: null,
     beliggenhet: {
         type: 'stedsadresse',
         gatenavn: 'Svingen',
@@ -250,7 +248,7 @@ export const OfficeEditorialDetail = ({
     const { detailType } = config;
     const { pageConfig } = usePageConfig();
 
-    const officeData = officeDummyData as OfficeBranchData; //pageProps.data as OfficeBranchData;
+    const officeData = officeDummyData as OfficeDetailsData; //pageProps.data as OfficeBranchData;
 
     // Note these texts are presented to editors only to give an idea
     // of what information the placeholder represent.

@@ -1,71 +1,88 @@
 import { ContentType, ContentCommonProps } from './_content-common';
 
-export interface Office {
-    enhetId: number;
-    navn: string;
-    enhetNr: string;
-    antallRessurser: number;
-    status: string;
-    orgNivaa: string;
-    type: string;
-    organisasjonsnummer: string;
-}
-
-export interface EMail {
-    adresse: string;
-    kommentar: string;
-    kunIntern: string;
-}
-
 export interface Address {
-    gatenavn: string;
+    type?: 'stedsadresse' | 'postboksadresse';
+    gatenavn?: string;
     husbokstav?: string;
-    husnummer: string;
+    husnummer?: string;
     postboksanlegg?: string;
     postboksnummer?: string;
     postnummer: string;
     poststed: string;
-    type: string;
 }
 
-export interface OpeningHoursProps {
-    id: number;
-    dag?: string;
+export interface OpeningHours {
+    dag?: 'Mandag' | 'Tirsdag' | 'Onsdag' | 'Torsdag' | 'Fredag';
     dato?: string;
     fra?: string;
     til?: string;
     kommentar?: string;
-    stengt?: string;
-    isoDate?: string;
+    stengt?: boolean;
 }
 
 export interface AudienceReception {
-    id: number;
-    besoeksadresse: Address;
-    aapningstider: OpeningHoursProps[];
     stedsbeskrivelse?: string;
+    aapningstider: OpeningHours[];
+    besoeksadresse?: Address;
+    adkomst?: string;
 }
 
-interface ContactInfo {
-    id: number;
-    enhetNr: string;
-    telefonnummer: string;
-    telefonnummerKommentar?: string;
-    faksnummer?: string;
-    epost?: EMail;
-    postadresse: Address;
-    besoeksadresse: Address;
-    spesielleOpplysninger: string;
-    publikumsmottak: AudienceReception[] | AudienceReception | undefined;
+export type Service = {
+    type:
+        | 'NODSITUASJON'
+        | 'TILGANGPC'
+        | 'HJELPDIGITALETJENESTER'
+        | 'BARNEVERN'
+        | 'KRIMINALOMSORG'
+        | 'FLYKTNING'
+        | 'RUS'
+        | 'STARTLAN'
+        | 'STOETTEKONTAKT'
+        | 'SJOFART';
+};
+
+type AudienceServices = {
+    tjenester: Service[];
+    ytterligereInformasjon?: string;
+};
+
+type DigitalApplication = {
+    lenke: string;
+    lenketekst: string;
+};
+
+type SocialServices = {
+    digitaleSoeknader: DigitalApplication[];
+    papirsoeknadInformasjon?: string;
+};
+
+type AudienceContact = {
+    beskrivelse?: string;
+    telefon?: string;
+    epost?: string;
+    sortOrder: number;
+};
+interface AudienceContactInformation {
+    spraakdrakt: 'NN' | 'NB';
+    informasjonUtbetalinger?: string;
+    brukertjenesteTilbud?: AudienceServices;
+    publikumsmottak: AudienceReception[];
+    sosialhjelp?: SocialServices;
+    publikumskanaler: AudienceContact[];
 }
 
 export type OfficeDetailsData = {
-    enhet: Office;
-    overordnetEnhet: string;
-    kontaktinformasjon: ContactInfo;
+    enhetNr: string;
+    navn: string;
+    organisasjonsnummer: string;
+    orgNrTilKommunalNavKontor?: string;
+    sosialeTjenester?: string;
+    spesielleOpplysninger?: string;
+    status: string;
+    underEtableringDato?: string;
+    aktiveringsdato?: string;
+    nedleggesesdato?: string;
+    beliggenhet: Address;
+    postadresse: Address;
+    brukerkontakt: AudienceContactInformation;
 };
-
-export interface OfficeDetailsProps extends ContentCommonProps {
-    __typename: ContentType.OfficeDetails;
-    officeData: OfficeDetailsData;
-}

@@ -1,8 +1,8 @@
 import {
     Address,
     AudienceReception,
-    OpeningHoursProps,
-} from '../../../types/content-props/office-information-props';
+    OpeningHours,
+} from '../../../types/content-props/office-details-props';
 
 export const formatAddress = (address: Address, withZip: boolean) => {
     if (!address) {
@@ -41,7 +41,7 @@ export const parsePhoneNumber = (phoneNumber: string, mod: number = null) => {
 
 /** Takes each opening our and builds into proper object as recommended by Google. */
 export const buildOpeningHoursSpecification = (
-    openingHour: OpeningHoursProps
+    openingHour: OpeningHours
 ): {
     '@type': string;
     dayOfWeek?: string;
@@ -77,7 +77,7 @@ export const buildOpeningHoursSpecification = (
 
     // Google says to set both opens and closed to '00:00' in order
     // to signify that the office is closed the entire day.
-    if (openingHour.stengt === 'true') {
+    if (openingHour.stengt) {
         part = {
             ...part,
             opens: '00:00',

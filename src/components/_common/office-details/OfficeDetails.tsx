@@ -1,6 +1,5 @@
 import { Accordion } from '@navikt/ds-react';
 import classNames from 'classnames';
-import { OfficeEditorialPageData } from 'types/content-props/dynamic-page-props';
 import { Heading, Link, BodyShort } from '@navikt/ds-react';
 import styles from './OfficeDetails.module.scss';
 import {
@@ -9,23 +8,29 @@ import {
     parsePhoneNumber,
 } from './utils';
 import Reception from './reception/Reception';
-import { OfficeDetailsProps } from 'types/content-props/office-details-props';
+import { OfficeDetailsData } from 'types/content-props/office-details-props';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+
+export interface OfficeDetailsProps {
+    officeData: OfficeDetailsData;
+}
 
 export const OfficeDetails = (props: OfficeDetailsProps) => {
-    // console.log(props);
-    const { kontaktinformasjon, enhet } = props.officeData;
+    const { language } = usePageConfig();
 
-    const telephone = parsePhoneNumber(kontaktinformasjon.telefonnummer);
-    const telephoneCommentary = kontaktinformasjon.telefonnummerKommentar;
+    const { postadresse, brukerkontakt, organisasjonsnummer, enhetNr } =
+        props.officeData;
 
-    const visitingAdress = formatAddress(
-        kontaktinformasjon.besoeksadresse,
-        true
-    );
-    const postalAddress = formatAddress(kontaktinformasjon.postadresse, true);
+    // Todo: Hente telefon fra publikumskanaler
+    const telephone = parsePhoneNumber('22222222');
+    const telephoneCommentary = 'Test-kommentar';
+
+    // Todo: Hente besøksadresse fra publikumskanaler
+    const visitingAdress = formatAddress(postadresse, true);
+    const postalAddress = formatAddress(postadresse, true);
     // console.log(postalAddress);
     const publikumsmottak = normalizeReceptionAsArray(
-        kontaktinformasjon.publikumsmottak
+        brukerkontakt.publikumsmottak
     );
 
     console.log(publikumsmottak);
@@ -45,7 +50,7 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
                         <div className={styles.openingHours}>
                             <Reception
                                 receptions={publikumsmottak}
-                                language={props.language}
+                                language={language}
                             />
                         </div>
                     )}
@@ -98,19 +103,18 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
                                         Kontorinformasjon som skal ha en annen
                                         overskrift
                                     </Heading>
-                                    {enhet.organisasjonsnummer && (
+                                    {organisasjonsnummer && (
                                         <div>
                                             <BodyShort>
                                                 Organisasjonsnummer:{' '}
-                                                {enhet.organisasjonsnummer}
+                                                {organisasjonsnummer}
                                             </BodyShort>
                                         </div>
                                     )}
-                                    {kontaktinformasjon.enhetNr && (
+                                    {enhetNr && (
                                         <div>
                                             <BodyShort>
-                                                Kontornummer:{' '}
-                                                {kontaktinformasjon.enhetNr}
+                                                Kontornummer: {enhetNr}
                                             </BodyShort>
                                         </div>
                                     )}

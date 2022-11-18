@@ -6,10 +6,10 @@ import { formatDate } from 'utils/datetime';
 import { translator, Language } from 'translations';
 import {
     AudienceReception,
-    OpeningHoursProps,
-} from '../../../../types/content-props/office-information-props';
+    OpeningHours as OpeningHoursProps,
+} from '../../../../types/content-props/office-details-props';
 import { Heading, BodyShort } from '@navikt/ds-react';
-import { MetaOpeningHours, OpeningHours } from './OpeningHours';
+import { OpeningHours } from './OpeningHours';
 import style from './Reception.module.scss';
 
 interface FormattedOpeningHours extends OpeningHoursProps {

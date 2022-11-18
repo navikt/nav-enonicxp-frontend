@@ -1,5 +1,5 @@
 import React from 'react';
-import { OpeningHoursProps } from '../../../../types/content-props/office-information-props';
+import { OpeningHours as OpeningHoursProps } from '../../../../types/content-props/office-details-props';
 import { Table } from '../../../_common/table/Table';
 
 export const MetaOpeningHours = (props: {
@@ -12,8 +12,8 @@ export const MetaOpeningHours = (props: {
                 const compKey = `${props.metaKey}-${ix}`;
                 return (
                     <li key={compKey}>
-                        <time dateTime={opening.isoDate}>{opening.dato}</time>
-                        <time dateTime={opening.isoDate}>{opening.dato}</time>
+                        <time dateTime={opening.dato}>{opening.dato}</time>
+                        <time dateTime={opening.dato}>{opening.dato}</time>
                         {!opening.stengt && (
                             <>
                                 <time dateTime={opening.fra}>
@@ -55,7 +55,7 @@ export const OpeningHours = (props: {
             tempString = `${opening.fra} - ${opening.til}`;
         }
 
-        if (opening.stengt === 'true') {
+        if (opening.stengt) {
             tempString = props.closedLabel;
         }
 
