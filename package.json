@@ -5,7 +5,7 @@
     "scripts": {
         "build": "next build && tsc -p server",
         "start": "node .serverDist/server.js",
-        "dev": "cp .env.development .env && npm start",
+        "dev": "cp .env.development .env && tsc -p server && npm start",
         "dev-server": "cp .env.prod-local .env && concurrently \"tsc -w -p server\" \"nodemon -w .serverDist .serverDist/server.js\"",
         "build-local": "cp .env.prod-local .env && npm run build",
         "start-local": "cp .env.prod-local .env && npm run start",
