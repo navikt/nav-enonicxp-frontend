@@ -4,15 +4,20 @@ import {
     getIncrementalCacheMemoryCache,
     getNextBuildId,
     getNextServer,
+    setImageCacheDir,
+    setPageCacheDir,
 } from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
+import path from 'path';
 
-const nextApp = next({
-    conf: {},
-    dir: `__next-dummy`,
-});
+const getNextApp = () =>
+    next({
+        conf: {},
+        dir: path.join(__dirname, '__next-dummy'),
+    });
 
 describe('Next.js server private accessors', () => {
+    const nextApp = getNextApp();
     let nextServer: NextNodeServer;
 
     beforeAll(async () => {
@@ -55,7 +60,41 @@ describe('Next.js server private accessors', () => {
 
         const returnValue = await getFsPath('/test', false);
 
-        expect(returnValue.filePath.endsWith('test')).toBe(true);
+        expect(returnValue.filePath).toMatch(/test$/);
         expect(returnValue.isAppPath).toBe(false);
+    });
+});
+
+describe('Next.js server cache dir setters', () => {
+    const nextApp = getNextApp();
+    let nextServer: NextNodeServer;
+
+    const processEnv = process.env;
+
+    beforeAll(async () => {
+        await nextApp.prepare();
+        nextServer = getNextServer(nextApp);
+    });
+
+    beforeEach(() => {
+        jest.resetModules();
+        process.env = processEnv;
+    });
+
+    test('Should set page cache dir from env var', () => {
+        process.env.PAGE_CACHE_DIR = '/testDir';
+        setPageCacheDir(nextServer);
+        expect(
+            nextServer['responseCache'].incrementalCache.cacheHandler
+                .serverDistDir
+        ).toMatch(/\/testDir$/);
+    });
+
+    test('Should set image cache dir from env var', () => {
+        process.env.IMAGE_CACHE_DIR = '/testDir';
+        setImageCacheDir(nextServer);
+        expect(
+            nextServer['imageResponseCache'].incrementalCache.cacheDir
+        ).toMatch(/\/testDir$/);
     });
 });
