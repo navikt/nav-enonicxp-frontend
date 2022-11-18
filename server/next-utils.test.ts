@@ -1,4 +1,3 @@
-import next from 'next';
 import {
     getIncrementalCacheGetFsPathFunction,
     getIncrementalCacheMemoryCache,
@@ -8,13 +7,7 @@ import {
     setPageCacheDir,
 } from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
-import path from 'path';
-
-const getNextApp = () =>
-    next({
-        conf: {},
-        dir: path.join(__dirname, '__next-dummy'),
-    });
+import { getNextApp } from '__test-utils.test';
 
 describe('Next.js server private accessors', () => {
     const nextApp = getNextApp();

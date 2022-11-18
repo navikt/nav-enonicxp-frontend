@@ -47,6 +47,7 @@
         "lottie-web": "5.9.6",
         "lru-cache": "7.13.1",
         "mathjs": "10.6.4",
+        "mock-express-response": "0.3.0",
         "next": "12.3.1",
         "node-cache": "5.1.2",
         "node-fetch": "2.6.7",
