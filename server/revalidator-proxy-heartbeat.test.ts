@@ -4,6 +4,8 @@ const revalidatorProxyOrigin = 'revalidator-proxy';
 
 describe('Revalidator proxy heartbeat', () => {
     enableFetchMocks();
+    jest.useFakeTimers();
+
     process.env.REVALIDATOR_PROXY_ORIGIN = revalidatorProxyOrigin;
     process.env.ENV = 'localhost';
 

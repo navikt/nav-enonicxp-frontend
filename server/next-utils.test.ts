@@ -7,7 +7,14 @@ import {
     setPageCacheDir,
 } from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
-import { getNextApp } from '__test-utils.test';
+import next from 'next';
+import path from 'path';
+
+const getNextApp = () =>
+    next({
+        conf: {},
+        dir: path.join(__dirname, '__next-dummy'),
+    });
 
 describe('Next.js server private accessors', () => {
     const nextApp = getNextApp();
@@ -16,6 +23,10 @@ describe('Next.js server private accessors', () => {
     beforeAll(async () => {
         await nextApp.prepare();
         nextServer = getNextServer(nextApp);
+    });
+
+    afterAll(() => {
+        nextApp.close();
     });
 
     test('Should get a NextNodeServer', () => {
