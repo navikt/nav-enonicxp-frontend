@@ -250,8 +250,6 @@ export const OfficeEditorialDetail = ({
     const { detailType } = config;
     const { pageConfig } = usePageConfig();
 
-    console.log(config, pageProps);
-
     const officeData = officeDummyData as OfficeBranchData; //pageProps.data as OfficeBranchData;
 
     // Note these texts are presented to editors only to give an idea
