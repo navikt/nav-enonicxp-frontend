@@ -6,16 +6,20 @@ import {
     getNextServer,
 } from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
-
-const nextApp = next({
-    conf: {},
-    dir: '../',
-});
+import { NextServer } from 'next/dist/server/next';
+import { execFileSync, execSync } from 'child_process';
 
 describe('Next server private accessors', () => {
+    let nextApp: NextServer;
     let nextServer: NextNodeServer;
 
     beforeAll(async () => {
+        console.log(__dirname);
+        execFileSync('./__next-test/build.sh');
+        nextApp = next({
+            dir: './__next-test',
+        });
+
         await nextApp.prepare();
         nextServer = getNextServer(nextApp);
     });
