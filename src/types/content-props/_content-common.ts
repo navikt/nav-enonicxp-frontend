@@ -18,6 +18,7 @@ import {
     GuidePageProps,
     OfficeBranchPageProps,
     OfficeEditorialPageProps,
+    CurrentTopicPageProps,
     OverviewPageProps,
     ProductDetailsProps,
     ProductPageProps,
@@ -70,6 +71,7 @@ export enum ContentType {
     OfficeEditorialPage = 'no_nav_navno_OfficeEditorialPage',
     OfficeBranchPage = 'no_nav_navno_OfficeBranch',
     ThemedArticlePage = 'no_nav_navno_ThemedArticlePage',
+    CurrentTopicPage = 'no_nav_navno_CurrentTopicPage',
     SituationPage = 'no_nav_navno_SituationPage',
     AnimatedIcons = 'no_nav_navno_AnimatedIcons',
     ToolsPage = 'no_nav_navno_ToolsPage',
@@ -160,6 +162,7 @@ type SpecificContentProps =
     | GlobalValuesProps
     | GlobalCaseTimeSetProps
     | PayoutDatesProps
+    | CurrentTopicPageProps
     | ThemedArticlePageProps
     | GuidePageProps
     | ToolsPageProps

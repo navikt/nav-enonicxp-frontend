@@ -35,6 +35,9 @@ export type OfficeEditorialPageData = {
     externalProductUrl?: string;
 } & DynamicPageData;
 
+export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'> &
+    DynamicPageData;
+
 export interface DynamicPageProps extends ContentCommonProps {
     __typename: ContentType.DynamicPage;
     data: DynamicPageData;
@@ -63,6 +66,7 @@ export interface SituationPageProps extends ContentCommonProps {
     __typename: ContentType.SituationPage;
     data: SituationPageData;
 }
+
 export interface OfficeEditorialPageProps extends ContentCommonProps {
     __typename: ContentType.OfficeEditorialPage;
     data: OfficeEditorialPageData;
@@ -71,6 +75,11 @@ export interface OfficeBranchPageProps extends ContentCommonProps {
     __typename: ContentType.OfficeEditorialPage;
     data: OfficeDetailsData;
     editorial: OfficeEditorialPageProps;
+}
+
+export interface CurrentTopicPageProps extends ContentCommonProps {
+    __typename: ContentType.CurrentTopicPage;
+    data: CurrentTopicPageData;
 }
 
 export interface ToolsPageProps extends ContentCommonProps {

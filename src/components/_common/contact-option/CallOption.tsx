@@ -17,7 +17,7 @@ import {
     getIsClosedForToday,
     getIsCurrentlyClosed,
 } from './contactHelpers';
-import { analyticsEvents } from '../../../utils/amplitude';
+import { AnalyticsEvents } from '../../../utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { useLayoutEffectClientSide } from '../../../utils/react';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
@@ -165,7 +165,7 @@ export const CallOption = (props: CallOptionProps) => {
             <LenkeBase
                 href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
                 className={style.link}
-                analyticsEvent={analyticsEvents.CALL}
+                analyticsEvent={AnalyticsEvents.CALL}
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
             >
