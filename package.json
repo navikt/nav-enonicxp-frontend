@@ -19,7 +19,7 @@
         "deploy": "npx run-func trigger-workflow.js triggerWorkflow",
         "deploy-dev1": "npm run deploy -- deploy.dev1.yml",
         "deploy-dev2": "npm run deploy -- deploy.dev2.yml",
-        "test-server": "cd server && next build __next-dummy && jest"
+        "test-server": "cd server && next build __next-test-dummy && jest"
     },
     "dependenciesComments":{
         "@sentry/nextjs": "[7.7.0] Newer versions breaks the failover-html response in our _error page. Needs to be solved before upgrading."

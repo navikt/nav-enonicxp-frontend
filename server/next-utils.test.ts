@@ -13,7 +13,7 @@ import path from 'path';
 const getNextApp = () =>
     next({
         conf: {},
-        dir: path.join(__dirname, '__next-dummy'),
+        dir: path.join(__dirname, '__next-test-dummy'),
     });
 
 describe('Next.js server private accessors', () => {
