@@ -50,4 +50,4 @@ yarn-error.log*
 
 /.serverDist/
 /server/tsconfig.tsbuildinfo
-/server/__next-test/.next/
+/server/__next-dummy/.next/

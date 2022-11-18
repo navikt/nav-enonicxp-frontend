@@ -6,20 +6,16 @@ import {
     getNextServer,
 } from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
-import { NextServer } from 'next/dist/server/next';
-import { execFileSync, execSync } from 'child_process';
 
-describe('Next server private accessors', () => {
-    let nextApp: NextServer;
+const nextApp = next({
+    conf: {},
+    dir: `__next-dummy`,
+});
+
+describe('Next.js server private accessors', () => {
     let nextServer: NextNodeServer;
 
     beforeAll(async () => {
-        console.log(__dirname);
-        execFileSync('./__next-test/build.sh');
-        nextApp = next({
-            dir: './__next-test',
-        });
-
         await nextApp.prepare();
         nextServer = getNextServer(nextApp);
     });
@@ -30,7 +26,8 @@ describe('Next server private accessors', () => {
 
     test('Should get a buildId', () => {
         const buildId = getNextBuildId(nextServer);
-        expect(typeof buildId === 'string').toBe(true);
+
+        expect(buildId).toEqual('testId');
     });
 
     test('LRU memory cache should be an instance of LRUCache', () => {
@@ -53,7 +50,7 @@ describe('Next server private accessors', () => {
         expect(getFsPath).toBeInstanceOf(Function);
     });
 
-    test('getFsPath function should have the expected call signature', async () => {
+    test('getFsPath function should have the expected return value', async () => {
         const getFsPath = getIncrementalCacheGetFsPathFunction(nextServer);
 
         const returnValue = await getFsPath('/test', false);
