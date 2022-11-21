@@ -27,10 +27,6 @@ describe('Next.js server private accessors', () => {
         nextServer = getNextServer(nextApp);
     });
 
-    afterAll(() => {
-        nextApp.close();
-    });
-
     test('Should get a NextNodeServer', () => {
         expect(nextServer).toBeInstanceOf(NextNodeServer);
     });
