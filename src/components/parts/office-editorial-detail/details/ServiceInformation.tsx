@@ -10,7 +10,11 @@ export const ServiceInformation = ({ officeData }: DetailProps) => {
     const { language } = usePageConfig();
     const getServiceTranslation = translator('audienceServices', language);
     const serviceInformation =
-        officeData.brukerkontakt.brukertjenesteTilbud.tjenester;
+        officeData.brukerkontakt?.brukertjenesteTilbud?.tjenester;
+
+    if (!serviceInformation) {
+        return null;
+    }
 
     return (
         <ul className={styles.bulletList}>

@@ -3,7 +3,11 @@ import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { DetailProps } from '../OfficeEditorialDetail';
 
 export const SocialHelpPayoutInformation = ({ officeData }: DetailProps) => {
-    const payoutInformation = officeData.brukerkontakt.informasjonUtbetalinger;
+    const payoutInformation = officeData.brukerkontakt?.informasjonUtbetalinger;
+
+    if (!payoutInformation) {
+        return null;
+    }
     const payoutInformatioWithBreaks = payoutInformation.replaceAll(
         '\n',
         '<br/>'

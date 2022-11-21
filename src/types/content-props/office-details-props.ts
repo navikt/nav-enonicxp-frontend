@@ -7,8 +7,8 @@ export interface Address {
     husnummer?: string;
     postboksanlegg?: string;
     postboksnummer?: string;
-    postnummer: string;
-    poststed: string;
+    postnummer?: string;
+    poststed?: string;
 }
 
 export interface OpeningHours {
@@ -42,7 +42,7 @@ export type Service = {
 };
 
 type AudienceServices = {
-    tjenester: Service[];
+    tjenester?: Service[];
     ytterligereInformasjon?: string;
 };
 
@@ -52,7 +52,7 @@ type DigitalApplication = {
 };
 
 type SocialServices = {
-    digitaleSoeknader: DigitalApplication[];
+    digitaleSoeknader?: DigitalApplication[];
     papirsoeknadInformasjon?: string;
 };
 
@@ -75,7 +75,6 @@ export type OfficeDetailsData = {
     enhetNr: string;
     navn: string;
     organisasjonsnummer: string;
-    orgNrTilKommunalNavKontor?: string;
     sosialeTjenester?: string;
     spesielleOpplysninger?: string;
     status: string;
