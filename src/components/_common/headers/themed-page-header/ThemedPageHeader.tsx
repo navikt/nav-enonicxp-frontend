@@ -158,21 +158,13 @@ export const ThemedPageHeader = ({
                             </BodyShort>
                         )}
                         {subTitle && modified && (
-                            <span
-                                aria-hidden="true"
-                                className={classNames(
-                                    'page-modified-info',
-                                    style.divider
-                                )}
-                            >
+                            <span aria-hidden="true" className={style.divider}>
                                 {'|'}
                             </span>
                         )}
                         {modified && (
                             <Detail size="small">
-                                <span className={'page-modified-info'}>
-                                    {modified}
-                                </span>
+                                <span>{modified}</span>
                             </Detail>
                         )}
                     </div>
