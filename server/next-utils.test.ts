@@ -9,6 +9,8 @@ import {
 import NextNodeServer from 'next/dist/server/next-server';
 import next from 'next';
 import path from 'path';
+import fsPromises from 'fs/promises';
+import mockFs from 'mock-fs';
 
 const getNextApp = () =>
     next({
@@ -33,7 +35,7 @@ describe('Next.js server private accessors', () => {
         expect(nextServer).toBeInstanceOf(NextNodeServer);
     });
 
-    test('Should get a buildId', () => {
+    test('Should the specified buildId', () => {
         const buildId = getNextBuildId(nextServer);
 
         expect(buildId).toEqual('testId');
@@ -69,36 +71,90 @@ describe('Next.js server private accessors', () => {
     });
 });
 
-describe('Next.js server cache dir setters', () => {
+describe('Set next.js page cache dir', () => {
     const nextApp = getNextApp();
     let nextServer: NextNodeServer;
 
-    const processEnv = process.env;
+    const pageCacheDir = 'myPageCacheDir';
+
+    process.env.PAGE_CACHE_DIR = `/${pageCacheDir}`;
 
     beforeAll(async () => {
         await nextApp.prepare();
         nextServer = getNextServer(nextApp);
-    });
-
-    beforeEach(() => {
-        jest.resetModules();
-        process.env = processEnv;
-    });
-
-    test('Should set page cache dir from env var', () => {
-        process.env.PAGE_CACHE_DIR = '/testDir';
         setPageCacheDir(nextServer);
-        expect(
-            nextServer['responseCache'].incrementalCache.cacheHandler
-                .serverDistDir
-        ).toMatch(/\/testDir$/);
     });
 
-    test('Should set image cache dir from env var', () => {
-        process.env.IMAGE_CACHE_DIR = '/testDir';
+    afterEach(() => {
+        mockFs.restore();
+    });
+
+    test('getFsPath should return paths with the correct page cache dir', async () => {
+        const { filePath } = await getIncrementalCacheGetFsPathFunction(
+            nextServer
+        )('');
+
+        expect(filePath).toContain(pageCacheDir);
+    });
+
+    test('IncremetalCache should write to the correct page cache dir', async () => {
+        mockFs({});
+        fsPromises.writeFile = jest.fn();
+
+        await nextServer['responseCache'].incrementalCache.cacheHandler.set(
+            'foo',
+            {
+                kind: 'PAGE',
+                html: 'test',
+            },
+            1
+        );
+
+        expect(fsPromises.writeFile).toHaveBeenCalledWith(
+            expect.stringContaining(pageCacheDir),
+            expect.anything(),
+            expect.anything()
+        );
+    });
+});
+
+describe('Set next.js image cache dir', () => {
+    const nextApp = getNextApp();
+    let nextServer: NextNodeServer;
+
+    const imgCacheDir = 'myImgCacheDir';
+
+    process.env.IMAGE_CACHE_DIR = `/${imgCacheDir}`;
+
+    beforeAll(async () => {
+        await nextApp.prepare();
+        nextServer = getNextServer(nextApp);
+
         setImageCacheDir(nextServer);
-        expect(
-            nextServer['imageResponseCache'].incrementalCache.cacheDir
-        ).toMatch(/\/testDir$/);
+    });
+
+    afterEach(() => {
+        mockFs.restore();
+    });
+
+    test('IncremetalCache should write to the correct image cache dir', async () => {
+        mockFs({});
+        fsPromises.writeFile = jest.fn();
+
+        await nextServer['imageResponseCache'].incrementalCache.set(
+            'foo',
+            {
+                kind: 'IMAGE',
+                buffer: Buffer.from('bar', 'utf-8'),
+                etag: 'test',
+                extension: 'png',
+            },
+            1
+        );
+
+        expect(fsPromises.writeFile).toHaveBeenCalledWith(
+            expect.stringContaining(imgCacheDir),
+            expect.anything()
+        );
     });
 });
