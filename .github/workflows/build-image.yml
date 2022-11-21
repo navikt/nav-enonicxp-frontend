@@ -98,6 +98,8 @@ jobs:
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      - name: Run server tests
+        run: npm run test-server
       - name: Build application
         run: npm run build
         env:
