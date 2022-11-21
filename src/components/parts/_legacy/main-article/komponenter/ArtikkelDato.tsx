@@ -40,7 +40,7 @@ const ArtikkelDato = (props: Props) => {
     )}`;
     let modifiedString = '';
     if (new Date(modifiedTime) > new Date(publishedDate)) {
-        modifiedString = ` ${modifiedLabel} ${formatDate(
+        modifiedString = `${modifiedLabel} ${formatDate(
             modifiedTime,
             language,
             hasMonthName,
@@ -56,8 +56,10 @@ const ArtikkelDato = (props: Props) => {
                 {publishedString}
                 {modifiedString && (
                     <>
-                        <span aria-hidden="true">{','}</span>
-                        {modifiedString.toLowerCase()}
+                        <span aria-hidden="true" className={styles.divider}>
+                            {'|'}
+                        </span>
+                        {modifiedString}
                     </>
                 )}
             </Detail>
