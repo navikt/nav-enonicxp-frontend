@@ -10,7 +10,6 @@ import {
 import Reception from './reception/Reception';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { officeDummyData } from 'components/parts/office-editorial-detail/OfficeEditorialDetail';
 export interface OfficeDetailsProps {
     officeData: OfficeDetailsData;
 }
@@ -19,10 +18,9 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
     const { language } = usePageConfig();
     console.log(props);
     // Henter dummydata intil NORG er oppdatert med ny datamodell
-    const officeData = officeDummyData as OfficeDetailsData;
+
     const { navn, postadresse, brukerkontakt, organisasjonsnummer, enhetNr } =
-        officeData;
-    console.log(navn);
+        props.officeData;
 
     // Todo: Hente telefon fra publikumskanaler
     const telephone = parsePhoneNumber('22222222');
