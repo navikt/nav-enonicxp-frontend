@@ -3,6 +3,8 @@ import { formatDate } from 'utils/datetime';
 import { OpeningHours as OpeningHoursProps } from '../../../../types/content-props/office-details-props';
 import { Table } from '../../../_common/table/Table';
 
+import styles from './OpeningHours.module.scss';
+
 type Props = {
     openingHours: OpeningHoursProps[];
     closedLabel: string;
@@ -39,7 +41,7 @@ export const OpeningHours = ({
     };
 
     return (
-        <Table zebraStripes={false}>
+        <Table zebraStripes={false} className={styles.openingHours}>
             <tbody>
                 {openingHours.map((opening, index) => {
                     const dayInformation = buildDayLabel(opening);

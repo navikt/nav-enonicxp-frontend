@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Heading, Link, BodyShort } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { formatAddress, normalizeReceptionAsArray } from './utils';
-import Reception from './reception/Reception';
+import { Reception } from './reception/Reception';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import styles from './OfficeDetails.module.scss';
@@ -41,12 +41,7 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
                         {getOfficeTranslations('youFindUsHere')}
                     </Heading>
                     {publikumsmottak.length > 0 && (
-                        <div className={styles.openingHours}>
-                            <Reception
-                                receptions={publikumsmottak}
-                                language={language}
-                            />
-                        </div>
+                        <Reception receptions={publikumsmottak} />
                     )}
                     <PhonePoster officeData={props.officeData} />
                     <div>

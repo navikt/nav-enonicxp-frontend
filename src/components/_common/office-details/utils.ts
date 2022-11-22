@@ -96,10 +96,10 @@ export const buildOpeningHoursSpecification = (
  * Make sure to normalize all cases into an array.
  */
 export const normalizeReceptionAsArray = (
-    publikumsmottak: AudienceReception[] | AudienceReception
+    receptions: AudienceReception[] | AudienceReception
 ): AudienceReception[] => {
-    if (!publikumsmottak) {
+    if (!receptions) {
         return [];
     }
-    return Array.isArray(publikumsmottak) ? publikumsmottak : [publikumsmottak];
+    return Array.isArray(receptions) ? receptions : [receptions];
 };

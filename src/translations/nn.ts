@@ -156,6 +156,9 @@ export const translationsBundleNn: Translations = {
         openingHoursWithoutAppointment: 'Åpningstidar når du ikkje har avtale',
         appointmentOnly: 'Kun timeavtale',
         specialOpeningHours: 'Spesielle åpningstider',
+        address: 'Adresse',
+        youCanMakeAppointment:
+            'Du kan avtale møte med veilederen din utenom disse åpningstidene.',
     },
     overview: {
         noProducts: 'Ingen treff',

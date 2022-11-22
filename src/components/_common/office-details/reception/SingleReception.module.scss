@@ -1,0 +1,46 @@
+.singleReception {
+    padding: 1.5rem;
+    background-color: var(--navds-global-color-deepblue-50);
+    margin: 1rem 0;
+    .header {
+        margin-bottom: 1rem;
+    }
+
+    .address {
+        margin-bottom: 2rem;
+    }
+
+    .appointmentBookingInfo {
+        border: 0;
+        background-color: transparent;
+        padding: 0;
+    }
+
+    table {
+        margin-bottom: 1.6rem;
+        width: auto;
+        th,
+        td {
+            vertical-align: top;
+            padding: 0.3rem 1rem 0.3rem 0;
+            font-size: 1.125rem;
+            border: none;
+            padding-right: 2rem;
+        }
+        td:last-of-type {
+            padding-right: 0;
+        }
+
+        :global(.dayInformation) {
+            min-width: 5.6rem;
+        }
+
+        :global(.openingInformation) {
+            min-width: 7.3rem;
+
+            &:first-letter {
+                text-transform: capitalize;
+            }
+        }
+    }
+}
