@@ -18,22 +18,6 @@
     border-bottom: 0px;
     padding: 2rem;
 }
-.phonePoster {
-    padding: common.$padding-sides-mobile;
-    background-color: var(--navds-global-color-gray-50);
-    a:link {
-        text-decoration: none;
-        color: rgb(0, 0, 0);
-    }
-
-    @media #{common.$mq-screen-tablet} {
-        padding: common.$padding-sides-tablet;
-    }
-
-    @media #{common.$mq-screen-desktop} {
-        padding: common.$padding-sides-desktop;
-    }
-}
 
 .addressPoster {
     background-color: var(--navds-global-color-orange-50);
