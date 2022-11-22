@@ -23,6 +23,7 @@ import { MainArticleChapterPage } from './pages/main-article-chapter-page/MainAr
 import { PayoutDatesPage } from './pages/payout-dates-page/PayoutDatesPage';
 import { GenericPage } from './pages/generic-page/GenericPage';
 import { OfficeBranchPage } from './pages/office-branch-page/OfficeBranchPage';
+import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
 
 const contentToReactComponent: Partial<{
     [key in ContentType]: React.FunctionComponent<ContentProps>;
@@ -46,6 +47,7 @@ const contentToReactComponent: Partial<{
     [ContentType.GenericPage]: GenericPage,
     [ContentType.OfficeEditorialPage]: OfficeEditorialPage,
     [ContentType.OfficeBranchPage]: OfficeBranchPage,
+    [ContentType.CurrentTopicPage]: CurrentTopicPage,
 
     [ContentType.AreaPage]: DynamicPage,
     [ContentType.FrontPage]: DynamicPage,

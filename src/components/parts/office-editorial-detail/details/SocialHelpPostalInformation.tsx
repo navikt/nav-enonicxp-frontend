@@ -4,7 +4,11 @@ import { DetailProps } from '../OfficeEditorialDetail';
 
 export const SocialHelpPostalInformation = ({ officeData }: DetailProps) => {
     const postalInfo =
-        officeData.brukerkontakt.sosialhjelp.papirsoeknadInformasjon;
+        officeData.brukerkontakt?.sosialhjelp?.papirsoeknadInformasjon;
+
+    if (!postalInfo) {
+        return null;
+    }
 
     return (
         <Alert variant="info">

@@ -20,7 +20,7 @@ on:
       REVALIDATOR_PROXY_ORIGIN:
         required: true
         type: string
-      DECORATOR_FALLBACK_URL:
+      DECORATOR_URL:
         required: true
         type: string
       XP_ORIGIN:
@@ -78,7 +78,7 @@ jobs:
           NODE_ENV=production
           ADMIN_ORIGIN=${{ inputs.ADMIN_ORIGIN }}
           APP_ORIGIN=${{ inputs.APP_ORIGIN }}
-          DECORATOR_FALLBACK_URL=${{ inputs.DECORATOR_FALLBACK_URL }}
+          DECORATOR_URL=${{ inputs.DECORATOR_URL }}
           XP_ORIGIN=${{ inputs.XP_ORIGIN }}
           REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
           FAILOVER_ORIGIN=${{ inputs.FAILOVER_ORIGIN }}
@@ -98,6 +98,8 @@ jobs:
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      - name: Run server tests
+        run: npm run test-server
       - name: Build application
         run: npm run build
         env:

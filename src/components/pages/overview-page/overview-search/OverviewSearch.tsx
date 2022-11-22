@@ -1,6 +1,20 @@
-import { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { TextField } from '@navikt/ds-react';
+import debounce from 'lodash.debounce';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+
 import style from './OverviewSearch.module.scss';
+
+const analytics = debounce(
+    (value: string) => {
+        logAmplitudeEvent(AnalyticsEvents.FILTER, {
+            tekst: value,
+            opprinnelse: 'oversiktsside fritekst',
+        });
+    },
+    250,
+    { maxWait: 1000 }
+);
 
 type OverviewSearchProps = {
     searchUpdateCallback: (string) => void;
@@ -17,6 +31,8 @@ export const OverviewSearch = ({
         const { value } = event.target;
         setSearchString(value);
         searchUpdateCallback(value);
+
+        analytics(value);
     };
 
     return (

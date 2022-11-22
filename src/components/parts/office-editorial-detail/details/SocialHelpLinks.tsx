@@ -7,7 +7,12 @@ import styles from './SharedDetails.module.scss';
 
 export const SocialHelpLinks = ({ officeData }: DetailProps) => {
     const socialHelpLinks =
-        officeData.brukerkontakt.sosialhjelp.digitaleSoeknader;
+        officeData.brukerkontakt?.sosialhjelp?.digitaleSoeknader;
+
+    if (!socialHelpLinks || socialHelpLinks.length === 0) {
+        return null;
+    }
+
     return (
         <div>
             {socialHelpLinks.map((link) => (
