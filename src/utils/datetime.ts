@@ -18,12 +18,19 @@ export const days = [
     'saturday',
 ];
 
-export const formatDate = (
-    datetime: string,
-    language: string = 'nb',
+interface FormatDateProps {
+    datetime: string;
+    language?: string;
+    short?: boolean;
+    year?: boolean;
+}
+
+export const formatDate = ({
+    datetime,
+    language = 'nb',
     short = false,
-    year = false
-) => {
+    year = false,
+}: FormatDateProps) => {
     const currentLocale = language === 'en' ? 'en-gb' : 'nb';
 
     let format: string;

@@ -32,20 +32,20 @@ const ArtikkelDato = (props: Props) => {
     const hasYear = type === 'newsPress';
 
     const publishedDate = publish?.first ?? createdTime;
-    const publishedString = `${publishLabel} ${formatDate(
-        publishedDate,
+    const publishedString = `${publishLabel} ${formatDate({
+        datetime: publishedDate,
         language,
-        hasMonthName,
-        hasYear
-    )}`;
+        short: hasMonthName,
+        year: hasYear,
+    })}`;
     let modifiedString = '';
     if (new Date(modifiedTime) > new Date(publishedDate)) {
-        modifiedString = `${modifiedLabel} ${formatDate(
-            modifiedTime,
+        modifiedString = `${modifiedLabel} ${formatDate({
+            datetime: modifiedTime,
             language,
-            hasMonthName,
-            hasYear
-        )}`;
+            short: hasMonthName,
+            year: hasYear,
+        })}`;
     }
 
     const publishedAndModifiedString = (
