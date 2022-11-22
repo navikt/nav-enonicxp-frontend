@@ -10,6 +10,7 @@ import {
 } from '../../../../types/content-props/office-details-props';
 import { Heading, BodyShort } from '@navikt/ds-react';
 import { OpeningHours } from './OpeningHours';
+
 import style from './Reception.module.scss';
 
 interface FormattedOpeningHours extends OpeningHoursProps {
@@ -100,7 +101,7 @@ const Reception = (props: LocationsProps) => {
         return null;
     }
 
-    const getLabel = translator('officeInformation', props.language);
+    const getLabel = translator('office', props.language);
     const receptionArray = normalizeReceptionAsArray(props.receptions);
     const displayAsTable = receptionArray.length > 1;
 
@@ -123,7 +124,8 @@ const Reception = (props: LocationsProps) => {
                         <OpeningHours
                             openingHours={openingHours}
                             closedLabel={getLabel('closed')}
-                            metaKey="standard"
+                            appointmentOnlyLabel={getLabel('appointmentOnly')}
+                            language={props.language}
                         />
                     </>
                 )}
@@ -131,16 +133,13 @@ const Reception = (props: LocationsProps) => {
                 {openingHoursExceptions.length > 0 && (
                     <>
                         <Heading level="3" size="medium" spacing>
-                            Spesielle åpningstider
+                            {getLabel('specialOpeningHours')}
                         </Heading>
-                        {/* <MetaOpeningHours
-                            openingHours={openingHoursExceptions}
-                            metaKey="meta-exceptions"
-                        /> */}
                         <OpeningHours
                             openingHours={openingHoursExceptions}
                             closedLabel={getLabel('closed')}
-                            metaKey="exception"
+                            appointmentOnlyLabel={getLabel('appointmentOnly')}
+                            language={props.language}
                         />
                     </>
                 )}

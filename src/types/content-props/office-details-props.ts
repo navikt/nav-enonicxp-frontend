@@ -16,8 +16,9 @@ export interface OpeningHours {
     dato?: string;
     fra?: string;
     til?: string;
+    kunTimeavtale?: string;
     kommentar?: string;
-    stengt?: boolean;
+    stengt?: string;
 }
 
 export interface AudienceReception {

@@ -148,6 +148,15 @@ export const translationsBundleNn: Translations = {
         copyLink: 'Kopier lenke',
         copiedLinkConfirmed: 'Lenka er kopiert',
     },
+    office: {
+        youFindUsHere: 'Du finn oss her',
+        phoneToNav: 'Telefonnummeret til NAV er',
+        officeInformation: 'Kontorinformasjon',
+        closed: 'Stengt',
+        openingHoursWithoutAppointment: 'Åpningstidar når du ikkje har avtale',
+        appointmentOnly: 'Kun timeavtale',
+        specialOpeningHours: 'Spesielle åpningstider',
+    },
     overview: {
         noProducts: 'Ingen treff',
         search: 'Søk',
