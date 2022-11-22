@@ -10,16 +10,19 @@ import {
 import Reception from './reception/Reception';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-
+import { officeDummyData } from 'components/parts/office-editorial-detail/OfficeEditorialDetail';
 export interface OfficeDetailsProps {
     officeData: OfficeDetailsData;
 }
 
 export const OfficeDetails = (props: OfficeDetailsProps) => {
     const { language } = usePageConfig();
-
-    const { postadresse, brukerkontakt, organisasjonsnummer, enhetNr } =
-        props.officeData;
+    console.log(props);
+    // Henter dummydata intil NORG er oppdatert med ny datamodell
+    const officeData = officeDummyData as OfficeDetailsData;
+    const { navn, postadresse, brukerkontakt, organisasjonsnummer, enhetNr } =
+        officeData;
+    console.log(navn);
 
     // Todo: Hente telefon fra publikumskanaler
     const telephone = parsePhoneNumber('22222222');
@@ -28,12 +31,11 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
     // Todo: Hente besøksadresse fra publikumskanaler
     const visitingAdress = formatAddress(postadresse, true);
     const postalAddress = formatAddress(postadresse, true);
-    // console.log(postalAddress);
+
     const publikumsmottak = normalizeReceptionAsArray(
         brukerkontakt.publikumsmottak
     );
 
-    console.log(publikumsmottak);
     return (
         <div className={styles.wide}>
             <div className="content">
@@ -100,8 +102,7 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
                                         </BodyShort>
                                     </div>
                                     <Heading level="3" size="medium" spacing>
-                                        Kontorinformasjon som skal ha en annen
-                                        overskrift
+                                        Kontorinformasjon
                                     </Heading>
                                     {organisasjonsnummer && (
                                         <div>

@@ -1,0 +1,114 @@
+@use 'src/common' as common;
+// @use '../../../pages/situation-page/SituationPage' as SituationPage;
+// @use '../../../pages/product-page/ProductPage' as ProductPage;
+// @use '../../../pages/guide-page/GuidePage' as GuidePage;
+
+.wide {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    @include common.full-width-mixin();
+}
+
+.officeDetails {
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+
+.officePageHeader {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    padding-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border: none;
+
+    @include common.full-width-mixin;
+
+    // &.situation {
+    //     box-shadow: 0 -4px 0 var(--navds-global-color-orange-500) inset;
+    // }
+
+    // &.product {
+    //     box-shadow: 0 -4px 0 var(--navds-global-color-green-500) inset;
+    // }
+
+    // &.guide {
+    //     box-shadow: 0 -4px 0 var(--navds-global-color-lightblue-500) inset;
+    // }
+
+    // &.themedpage {
+    //     box-shadow: 0 -4px 0 var(--navds-global-color-limegreen-500) inset;
+    // }
+
+    // &.officepage {
+    //     box-shadow: 0 -4px 0 var(--navds-global-color-limegreen-500) inset;
+    // }
+
+    // &.tool {
+    //     box-shadow: 0 -4px 0 var(--navds-global-color-deepblue-500) inset;
+    // }
+
+    // &.overview {
+    //     box-shadow: 0 -4px 0 var(--navds-global-color-deepblue-400) inset;
+    // }
+
+    // &.generic {
+    //     box-shadow: 0 -4px 0 var(--navds-global-color-gray-600) inset;
+    // }
+
+    @media #{common.$mq-screen-mobile} {
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        .illustration {
+            display: none;
+        }
+    }
+}
+
+.illustration {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 2rem;
+    pointer-events: none;
+}
+
+.text {
+    width: 100%;
+    max-width: 63.5rem;
+    text-align: center;
+    background-color: brown;
+}
+
+.taglineWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    @media #{common.$mq-screen-mobile} {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.taglineLabel {
+    @media #{common.$mq-screen-mobile} {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.divider {
+    padding: 0 1rem;
+
+    @media #{common.$mq-screen-mobile} {
+        display: none;
+    }
+}
+
+.divider,
+.modifiedLabel {
+    color: common.$navds-global-color-gray-600;
+}

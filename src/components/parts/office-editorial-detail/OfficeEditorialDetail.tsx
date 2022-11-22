@@ -34,7 +34,7 @@ export type DetailProps = {
 
 // Todo: IMPORTANT! This is dummy data for development until
 // keys are supported by NORG
-const officeDummyData = {
+export const officeDummyData = {
     enhetNr: '0533',
     navn: 'NAV Indre Ytrested',
     orgNrTilKommunaltNavKontor: '911002234',

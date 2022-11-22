@@ -50,7 +50,6 @@ const formatAudienceReception = (
     audienceReception: AudienceReception,
     language: string = 'no'
 ): FormattedAudienceReception | null => {
-    console.log(audienceReception);
     // filter regular and exceptions for opening hour then introduce formatting for display
     if (!audienceReception) {
         return null;
@@ -100,14 +99,12 @@ const Reception = (props: LocationsProps) => {
     if (!props.receptions) {
         return null;
     }
-    console.log(props);
 
     const getLabel = translator('officeInformation', props.language);
     const receptionArray = normalizeReceptionAsArray(props.receptions);
     const displayAsTable = receptionArray.length > 1;
 
     const Location = (props: AudienceReception) => {
-        console.log(props);
         const { address, openingHours, openingHoursExceptions } =
             formatAudienceReception(props);
         return (
@@ -168,7 +165,7 @@ const Reception = (props: LocationsProps) => {
                 <Tabs.List>
                     {receptions.map((loc: AudienceReception, index) => {
                         const { place } = formatAudienceReception(loc);
-                        console.log(place);
+
                         return (
                             <Tabs.Tab key={index} value={place} label={place} />
                         );

@@ -55,6 +55,7 @@ export const ThemedPageHeader = ({
     const getProps = () => {
         if (pageType === ContentType.OfficeEditorialPageProps) {
             const title = displayName;
+            console.log(title);
             return { title };
         }
         const {
