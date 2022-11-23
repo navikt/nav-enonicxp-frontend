@@ -8,6 +8,7 @@ import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import styles from './OfficeDetails.module.scss';
 import { PhonePoster } from './phonePoster/PhonePoster';
+import { PlaceFilled } from '@navikt/ds-icons';
 export interface OfficeDetailsProps {
     officeData: OfficeDetailsData;
 }
@@ -37,7 +38,10 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
                         'region__pageContent'
                     )}
                 >
-                    <Heading level="2" size="medium">
+                    <Heading level="2" size="large" className={styles.header}>
+                        <div className={styles.placeIcon}>
+                            <PlaceFilled />
+                        </div>
                         {getOfficeTranslations('youFindUsHere')}
                     </Heading>
                     {publikumsmottak.length > 0 && (

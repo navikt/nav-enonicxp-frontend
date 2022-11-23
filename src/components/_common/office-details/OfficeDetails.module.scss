@@ -7,6 +7,28 @@
     @include common.full-width-mixin();
 }
 
+.placeIcon {
+    background-color: var(--navds-global-color-blue-50);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    border-radius: 1.25rem;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem;
+
+    svg {
+        color: var(--navds-global-color-blue-500);
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
 .officeDetails {
     display: flex;
     flex-direction: column;
@@ -15,10 +37,6 @@
 
 .addressPoster {
     background-color: var(--navds-global-color-orange-50);
-}
-
-.header {
-    margin-bottom: 1rem;
 }
 
 .officeInformation {
