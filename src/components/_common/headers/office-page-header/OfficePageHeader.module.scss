@@ -17,7 +17,6 @@
 }
 
 .officePageHeader {
-    display: flex;
     justify-content: center;
     background-color: white;
     padding-bottom: 1.5rem;
@@ -26,38 +25,6 @@
     border: none;
 
     @include common.full-width-mixin;
-
-    // &.situation {
-    //     box-shadow: 0 -4px 0 var(--navds-global-color-orange-500) inset;
-    // }
-
-    // &.product {
-    //     box-shadow: 0 -4px 0 var(--navds-global-color-green-500) inset;
-    // }
-
-    // &.guide {
-    //     box-shadow: 0 -4px 0 var(--navds-global-color-lightblue-500) inset;
-    // }
-
-    // &.themedpage {
-    //     box-shadow: 0 -4px 0 var(--navds-global-color-limegreen-500) inset;
-    // }
-
-    // &.officepage {
-    //     box-shadow: 0 -4px 0 var(--navds-global-color-limegreen-500) inset;
-    // }
-
-    // &.tool {
-    //     box-shadow: 0 -4px 0 var(--navds-global-color-deepblue-500) inset;
-    // }
-
-    // &.overview {
-    //     box-shadow: 0 -4px 0 var(--navds-global-color-deepblue-400) inset;
-    // }
-
-    // &.generic {
-    //     box-shadow: 0 -4px 0 var(--navds-global-color-gray-600) inset;
-    // }
 
     @media #{common.$mq-screen-mobile} {
         padding-left: 1rem;
@@ -80,7 +47,7 @@
     width: 100%;
     max-width: 63.5rem;
     text-align: center;
-    background-color: brown;
+    background-color: white;
 }
 
 .taglineWrapper {

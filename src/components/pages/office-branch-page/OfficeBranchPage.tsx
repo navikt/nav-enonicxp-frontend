@@ -7,8 +7,6 @@ import { OfficeDetails } from 'components/_common/office-details/OfficeDetails';
 export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
     const editorialPage = props.editorial;
 
-    console.log(props);
-
     return (
         <div className={'officeBranchPage'}>
             <OfficePageHeader
