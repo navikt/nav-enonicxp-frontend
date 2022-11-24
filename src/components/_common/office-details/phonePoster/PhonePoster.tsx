@@ -12,7 +12,6 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
 
     const phoneNumber = '55553333';
     const humanReadablePhoneNumber = parsePhoneNumber('22222222');
-    const telephoneCommentary = 'Test-kommentar';
 
     return (
         <div className={styles.phonePoster}>
@@ -25,9 +24,6 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
                         {humanReadablePhoneNumber}
                     </Link>
                 </BodyShort>
-                {telephoneCommentary && (
-                    <BodyShort>{telephoneCommentary}</BodyShort>
-                )}
             </div>
         </div>
     );
