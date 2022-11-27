@@ -3,19 +3,6 @@
 // @use '../../../pages/product-page/ProductPage' as ProductPage;
 // @use '../../../pages/guide-page/GuidePage' as GuidePage;
 
-.wide {
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    @include common.full-width-mixin();
-}
-
-.officeDetails {
-    display: flex;
-    flex-direction: column;
-    border: none;
-}
-
 .officePageHeader {
     justify-content: center;
     background-color: white;
@@ -23,8 +10,9 @@
     display: flex;
     flex-direction: column;
     border: none;
+    align-items: center;
 
-    @include common.full-width-mixin;
+    @include common.full-width-mixin();
 
     @media #{common.$mq-screen-mobile} {
         padding-left: 1rem;
@@ -43,9 +31,9 @@
     pointer-events: none;
 }
 
-.text {
+.content {
     width: 100%;
-    max-width: 63.5rem;
+    max-width: 56.25rem;
     text-align: center;
     background-color: white;
 }

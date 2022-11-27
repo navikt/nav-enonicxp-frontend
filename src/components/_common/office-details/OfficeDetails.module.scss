@@ -1,5 +1,11 @@
 @use 'src/common' as common;
 
+.officeDetails {
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+
 .wide {
     background-color: white;
     display: flex;
@@ -27,12 +33,6 @@
 .header {
     display: flex;
     align-items: center;
-}
-
-.officeDetails {
-    display: flex;
-    flex-direction: column;
-    border: none;
 }
 
 .addressPoster {

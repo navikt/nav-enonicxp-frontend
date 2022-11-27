@@ -47,7 +47,7 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
 
     return (
         <header className={classNames(style.officePageHeader)}>
-            <div className={style.text}>
+            <div className={style.content}>
                 <PageHeader justify={'left'}>{navn}</PageHeader>
                 <div className={style.taglineWrapper}>
                     <BodyShort size="small" className={style.taglineLabel}>
