@@ -11,7 +11,7 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const getOfficeTranslations = translator('office', language);
 
     const phoneNumber = '55553333';
-    const humanReadablePhoneNumber = parsePhoneNumber('22222222');
+    const humanReadablePhoneNumber = parsePhoneNumber(phoneNumber);
 
     return (
         <div className={styles.phonePoster}>
