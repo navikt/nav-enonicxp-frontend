@@ -68,27 +68,13 @@ const ArtikkelDato = (props: Props) => {
                 className={classNames(styles.artikkelDato, styles.small)}
                 id="main-article-date-anchor"
             >
-                {publishedString}
-                {modifiedString && (
-                    <>
-                        <span aria-hidden="true" className={styles.divider}>
-                            {'|'}
-                        </span>
-                        {modifiedString}
-                    </>
-                )}
+                {publishedAndModifiedString}
             </Detail>
         );
     }
     return (
         <BodyLong as={'time'} dateTime={publishedDate}>
-            {publishedString}
-            {modifiedString && (
-                <>
-                    <span aria-hidden="true">{' | '}</span>
-                    {modifiedString}
-                </>
-            )}
+            {publishedAndModifiedString}
         </BodyLong>
     );
 };
