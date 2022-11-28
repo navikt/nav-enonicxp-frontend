@@ -48,6 +48,20 @@ const ArtikkelDato = (props: Props) => {
         })}`;
     }
 
+    const publishedAndModifiedString = (
+        <>
+            {publishedString}
+            {modifiedString && (
+                <>
+                    <span aria-hidden="true" className={styles.divider}>
+                        {'|'}
+                    </span>
+                    {modifiedString}
+                </>
+            )}
+        </>
+    );
+
     if (type === 'newsPress') {
         return (
             <Detail
