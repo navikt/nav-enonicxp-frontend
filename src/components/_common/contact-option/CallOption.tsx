@@ -94,7 +94,7 @@ export const CallOption = (props: CallOptionProps) => {
 
         if (daysToNextOpeningHour > 1) {
             return `${opensTemplate
-                .replace('{$1}', formatDate(futureDate, language))
+                .replace('{$1}', formatDate({ datetime: futureDate, language }))
                 .replace('{$2}', futureTime)}`;
         }
         const openingTemplate =

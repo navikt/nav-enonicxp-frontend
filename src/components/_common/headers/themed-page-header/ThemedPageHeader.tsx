@@ -125,7 +125,12 @@ export const ThemedPageHeader = ({
         showTimeStamp &&
         getDatesLabel('lastChanged') +
             ' ' +
-            formatDate(modifiedTime, language, true, true);
+            formatDate({
+                datetime: modifiedTime,
+                language,
+                short: true,
+                year: true,
+            });
 
     // This is a temporaty fix, especially for "Arbeidsavklaringspenger".
     // Will work with design to find solution for how long titles and illustration can stack better on mobile.
@@ -158,21 +163,13 @@ export const ThemedPageHeader = ({
                             </BodyShort>
                         )}
                         {subTitle && modified && (
-                            <span
-                                aria-hidden="true"
-                                className={classNames(
-                                    'page-modified-info',
-                                    style.divider
-                                )}
-                            >
+                            <span aria-hidden="true" className={style.divider}>
                                 {'|'}
                             </span>
                         )}
                         {modified && (
                             <Detail size="small">
-                                <span className={'page-modified-info'}>
-                                    {modified}
-                                </span>
+                                <span>{modified}</span>
                             </Detail>
                         )}
                     </div>

@@ -41,7 +41,12 @@ export const FrontpageCurrentTopics = ({
                             className={style.item}
                         >
                             <span className={style.date}>
-                                {formatDate(item.modifiedTime, language)}
+                                {formatDate({
+                                    datetime: item.modifiedTime,
+                                    language: language,
+                                    short: true,
+                                    year: true,
+                                })}
                             </span>
                         </LinkPanelNavno>
                     </li>
