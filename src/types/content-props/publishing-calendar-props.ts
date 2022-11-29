@@ -2,6 +2,7 @@ import { ContentType, ContentCommonProps } from './_content-common';
 
 export type PublishingCalendarEntryProps
     = ContentCommonProps & {
+    __typename: ContentType.PublishingCalendarEntry;
     displayName: string;
     data: {
         date: string;
