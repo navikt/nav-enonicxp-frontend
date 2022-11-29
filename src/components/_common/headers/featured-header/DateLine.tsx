@@ -18,7 +18,12 @@ export const DateLine = ({
     const getDatesLabel = translator('dates', language);
 
     const buildDateString = (desc: string, date: string) => {
-        return `${desc}: ${formatDate(date, language, true, true)}`;
+        return `${desc}: ${formatDate({
+            datetime: date,
+            language,
+            short: true,
+            year: true,
+        })}`;
     };
 
     const publishedString = buildDateString(
