@@ -57,6 +57,7 @@ const contentToReactComponent: Partial<{
     [ContentType.SectionPage]: DynamicPage,
     [ContentType.TransportPage]: DynamicPage,
     [ContentType.PublishingCalendar]: DynamicPage,
+    [ContentType.PublishingCalendarEntry]: DynamicPage,
     [ContentType.Melding]: DynamicPage,
 
     [ContentType.ExternalLink]: RedirectPage,
