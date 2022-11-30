@@ -22,6 +22,7 @@ import { MainArticleChapterPage } from './pages/main-article-chapter-page/MainAr
 import { PayoutDatesPage } from './pages/payout-dates-page/PayoutDatesPage';
 import { GenericPage } from './pages/generic-page/GenericPage';
 import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
+import PublishingCalendarEntryPage from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
 
 const contentToReactComponent: Partial<{
     [key in ContentType]: React.FunctionComponent<ContentProps>;
@@ -57,7 +58,7 @@ const contentToReactComponent: Partial<{
     [ContentType.SectionPage]: DynamicPage,
     [ContentType.TransportPage]: DynamicPage,
     [ContentType.PublishingCalendar]: DynamicPage,
-    [ContentType.PublishingCalendarEntry]: DynamicPage,
+    [ContentType.PublishingCalendarEntry]: PublishingCalendarEntryPage,
     [ContentType.Melding]: DynamicPage,
 
     [ContentType.ExternalLink]: RedirectPage,

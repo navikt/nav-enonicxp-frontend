@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BodyLong } from '@navikt/ds-react';
-import { PublishingCalendarEntryProps } from '../../../../types/content-props/publishing-calendar-props';
+import { PublishingCalendarEntryProps } from 'types/content-props/publishing-calendar-props';
 
 import style from './PublishingCalendar.module.scss';
 
@@ -26,9 +26,7 @@ const monthShortName = [
     'DES',
 ];
 
-export const sortEntries = (
-    children: PublishingCalendarEntryProps[]
-): PublishingCalendarEntryProps[] => {
+export const sortEntries = (children: PublishingCalendarEntryProps[]): PublishingCalendarEntryProps[] => {
     return (
         children.sort((a, b) => {
             const aDate = new Date(a.data.date);
@@ -38,9 +36,7 @@ export const sortEntries = (
     ); // Dato for publisering: stigende
 };
 
-const processEntry = (
-    item: PublishingCalendarEntryProps
-): PublishingCalendarEntryData => {
+const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEntryData => {
     const publDate = new Date(item.data.date);
     return {
         displayName: item.displayName,
@@ -65,7 +61,9 @@ const PublishingCalendarEntry = (props: PublishingCalendarEntryProps) => {
                 <BodyLong className={style.dateInfo}>
                     {entry.period}
                 </BodyLong>
-                <BodyLong>{entry.displayName}</BodyLong>
+                <BodyLong>
+                    {entry.displayName}
+                </BodyLong>
             </td>
         </tr>
     );

@@ -3,7 +3,7 @@ import { Heading, Ingress } from '@navikt/ds-react';
 import { translator } from '../../../../translations';
 import { PublishingCalendarProps } from '../../../../types/content-props/publishing-calendar-props';
 import PublishingCalendarEntry, { sortEntries } from './PublishingCalendarEntry';
-import { Table } from '../../../_common/table/Table';
+import { Table } from 'components/_common/table/Table';
 
 import style from './PublishingCalendar.module.scss';
 
