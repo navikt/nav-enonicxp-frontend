@@ -3,8 +3,9 @@ import { SimplifiedProductData } from 'types/component-props/_mixins';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { OverviewPageFilter } from 'components/pages/overview-page/filter/OverviewPageFilter';
+import { ContentType } from 'types/content-props/_content-common';
 
-interface TaxonomyFilerProps {
+interface TaxonomyFilterProps {
     filterUpdateCallback: (filters: ProductTaxonomy) => void;
     productList: SimplifiedProductData[];
 }
@@ -12,7 +13,7 @@ interface TaxonomyFilerProps {
 export const TaxonomyFilter = ({
     filterUpdateCallback,
     productList,
-}: TaxonomyFilerProps) => {
+}: TaxonomyFilterProps) => {
     const [currentFilter, setCurrentFilter] = useState<ProductTaxonomy>(
         ProductTaxonomy.ALL
     );
@@ -34,6 +35,14 @@ export const TaxonomyFilter = ({
                 )
             )
     );
+
+    const productListHasGuidePage = productList.some(
+        (product) => product.type === ContentType.GuidePage
+    );
+
+    if (productListHasGuidePage) {
+        taxonomiesInProductList.push(ProductTaxonomy.FORMS);
+    }
 
     return (
         <OverviewPageFilter
