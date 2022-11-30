@@ -37,7 +37,7 @@ export const TaxonomyFilter = ({
     );
 
     const productListHasGuidePage = productList.some(
-        (product) => product.type === ContentType.GuidePage
+        (product) => product.type === 'no.nav.navno:guide-page'
     );
 
     if (productListHasGuidePage) {
