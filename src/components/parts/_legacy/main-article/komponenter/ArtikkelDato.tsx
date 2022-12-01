@@ -53,9 +53,7 @@ const ArtikkelDato = (props: Props) => {
             {publishedString}
             {modifiedString && (
                 <>
-                    <span aria-hidden="true" className={styles.divider}>
-                        {'|'}
-                    </span>
+                    {', '}
                     {modifiedString}
                 </>
             )}
