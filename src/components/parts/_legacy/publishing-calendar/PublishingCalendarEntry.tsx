@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BodyLong } from '@navikt/ds-react';
+import { Table, BodyLong } from '@navikt/ds-react';
 import { PublishingCalendarEntryProps } from 'types/content-props/publishing-calendar-props';
 
 import style from './PublishingCalendar.module.scss';
@@ -50,22 +50,22 @@ const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEnt
 const PublishingCalendarEntry = (props: PublishingCalendarEntryProps) => {
     const entry = processEntry(props);
     return (
-        <tr key={`${entry.displayName}`}>
-            <td>
+        <Table.Row>
+            <Table.DataCell>
                 <time>
                     <span>{entry.day}</span>
                     <span>{entry.month}</span>
                 </time>
-            </td>
-            <td>
+            </Table.DataCell>
+            <Table.DataCell>
                 <BodyLong className={style.dateInfo}>
                     {entry.period}
                 </BodyLong>
                 <BodyLong>
                     {entry.displayName}
                 </BodyLong>
-            </td>
-        </tr>
+            </Table.DataCell>
+        </Table.Row>
     );
 };
 
