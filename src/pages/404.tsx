@@ -4,6 +4,8 @@ import { PageBase } from 'components/PageBase';
 import { useRouter } from 'next/router';
 import * as Sentry from '@sentry/react';
 
+const loopDetectionParam = 'error';
+
 export const ErrorPage404 = () => {
     const props = make404Props();
     const router = useRouter();
@@ -13,12 +15,18 @@ export const ErrorPage404 = () => {
         // next.js page route. Client-side 404 can sometimes be a result of badly formed
         // links to external apps, so we do a full reload to ensure such links will resolve
         // anyway.
-        if (router.pathname !== '/404') {
+
+        if (
+            router.pathname !== '/404' &&
+            !window.location.search.includes(loopDetectionParam)
+        ) {
             Sentry.captureMessage(
                 `Client-side 404 error on path: ${router.asPath}`,
                 'error'
             );
-            window.location.reload();
+            window.location.replace(
+                `${window.location.origin}${window.location.pathname}?${loopDetectionParam}`
+            );
         }
     }, []);
 
