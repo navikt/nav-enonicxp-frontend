@@ -44,7 +44,7 @@ export const DateLine = ({
     ).toLowerCase();
 
     const dateString = wasChangedAfterPublish
-        ? `${publishedString}, ${lastChangedString}`
+        ? `${publishedString} | ${lastChangedString}`
         : publishedString;
 
     return (
