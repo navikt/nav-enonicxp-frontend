@@ -31,7 +31,7 @@ jobs:
       - name: Set HPA resource if specified
         if: ${{ inputs.hpa_file }}
         run: |
-          echo "HPA_RESOURCE=,.nais/hpa/${{inputs.hpa_file}}"
+          echo "HPA_RESOURCE=,.nais/hpa/${{inputs.hpa_file}}" >> $GITHUB_ENV
       - name: Deploy to nais
         uses: nais/deploy/actions/deploy@v1
         env:
