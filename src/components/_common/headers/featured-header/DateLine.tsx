@@ -41,7 +41,7 @@ export const DateLine = ({
     const lastChangedString = buildDateString(
         getDatesLabel('lastChanged'),
         modifiedTime
-    ).toLowerCase();
+    );
 
     const dateString = wasChangedAfterPublish
         ? `${publishedString} | ${lastChangedString}`

@@ -45,7 +45,7 @@ const ArtikkelDato = (props: Props) => {
             language,
             short: hasMonthName,
             year: hasYear,
-        })}`.toLowerCase();
+        })}`;
     }
 
     const publishedAndModifiedString = (
