@@ -7,6 +7,8 @@ import {
 } from '../component-props/_mixins';
 import { ProductDetailType as OverviewType } from './product-details';
 import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from '../taxonomies';
+import { ContentListProps } from './content-list-props';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 export type DynamicPageData = Partial<{
     languages: LanguageProps[];
@@ -29,6 +31,13 @@ export type OverviewPageData = Partial<{
     ProductDataMixin &
     DynamicPageData;
 export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'> &
+    DynamicPageData;
+
+export type PressLandingPageData = Partial<{
+    pressCall: ProcessedHtmlProps;
+    pressNews: ContentListProps[];
+    shortcuts: ContentListProps[];
+}> &
     DynamicPageData;
 
 export interface DynamicPageProps extends ContentCommonProps {
@@ -77,4 +86,8 @@ export interface GenericPageProps extends ContentCommonProps {
 export interface OverviewPageProps extends ContentCommonProps {
     __typename: ContentType.Overview;
     data: OverviewPageData;
+}
+export interface PressLandingPageProps extends ContentCommonProps {
+    __typename: ContentType.PressLandingPage;
+    data: PressLandingPageData;
 }
