@@ -96,6 +96,13 @@ export const translationsBundleNb = {
         customizeContent: 'Tilpass innhold',
         showingInformationFor: 'Viser informasjon for:',
     },
+    pressLanding: {
+        latestPressNews: 'Siste pressemeldinger og nyheter',
+        pressShortcuts: 'Snarveier',
+        news: 'Nyhet',
+        press: 'Pressemelding',
+        published: 'Publisert',
+    },
     linkLists: {
         news: 'Nyheter',
         moreNews: 'Flere nyheter',

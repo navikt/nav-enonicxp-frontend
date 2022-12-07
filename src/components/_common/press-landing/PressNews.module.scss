@@ -1,0 +1,51 @@
+@use 'src/common' as common;
+
+.pressNews {
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    @include common.full-width-mixin;
+}
+
+.content {
+    width: 37.5rem;
+    max-width: 37.5rem;
+}
+
+.newsList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ingress {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.newsItem {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.newsTagline {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.5rem;
+}
+
+.tagIcon {
+    img {
+        fill: black;
+    }
+}
+
+.newsType {
+    margin-left: 0.5rem;
+    font-weight: 600;
+}
+
+.publishDate {
+    margin-left: 0.5rem;
+    color: var(--navds-global-color-gray-600);
+}

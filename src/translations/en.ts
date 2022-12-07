@@ -81,6 +81,13 @@ export const translationsBundleEn: Translations = {
     currentTopic: {
         tag: 'Featured',
     },
+    pressLanding: {
+        latestPressNews: 'Latest press and news',
+        pressShortcuts: 'Shortcuts',
+        news: 'Nyhet',
+        press: 'Pressemelding',
+        published: 'Published',
+    },
     mainArticle: {
         facts: 'Facts',
         lastChanged: 'Updated',

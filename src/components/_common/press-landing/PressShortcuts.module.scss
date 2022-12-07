@@ -1,0 +1,13 @@
+@use 'src/common' as common;
+
+.pressShortcuts {
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    @include common.full-width-mixin;
+}
+
+.content {
+    width: 37.5rem;
+    max-width: 37.5rem;
+}
