@@ -29,7 +29,7 @@ const getUsageMessages = (usage) => {
                 <>
                     <EditorLinkWrapper>
                         <LenkeStandalone
-                            href={`${adminOrigin}${content.path.replace(
+                            href={`${content.path.replace(
                                 '/www.nav.no',
                                 xpDraftPathPrefix
                             )}`}
