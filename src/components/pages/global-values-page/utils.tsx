@@ -29,10 +29,10 @@ const getUsageMessages = (usage) => {
                 <>
                     <EditorLinkWrapper>
                         <LenkeStandalone
-                            href={`${content.path.replace(
+                            href={content.path.replace(
                                 '/www.nav.no',
                                 xpDraftPathPrefix
-                            )}`}
+                            )}
                             target={'_blank'}
                             withChevron={false}
                             onClick={(e) => {
