@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Link from 'next/link';
 import { adminOrigin, isNofollowUrl } from 'utils/urls';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
@@ -8,6 +8,13 @@ import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './LenkeBase.module.scss';
+
+const BadLinkWarning = ({ children }: { children: React.ReactNode }) => (
+    <span className={style.badLinkWarning}>
+        {'Obs! Lenke til portal-admin: '}
+        {children}
+    </span>
+);
 
 /**
  * This component handles client-side async navigation for URLs internal to this app (as well as analytics for links)
@@ -52,35 +59,37 @@ export const LenkeBase = ({
         lenketekst: analyticsLabel || onlyText(children),
     };
 
+    const WrapperComponent =
+        pageConfig.editorView && href.includes(adminOrigin)
+            ? BadLinkWarning
+            : Fragment;
+
     const linkElement = (
-        <>
-            {pageConfig.editorView && href.includes(adminOrigin) && (
-                <span className={style.badLinkWarning}>
-                    {'Obs! Lenke til portal-admin: '}
-                </span>
-            )}
-            <a
-                href={url}
-                onClick={(e) => {
-                    logAmplitudeEvent(
-                        analyticsEvent || AnalyticsEvents.NAVIGATION,
-                        analyticsData
-                    );
-                    onClick?.(e);
-                }}
-                rel={isNofollowUrl(url) ? 'nofollow' : undefined}
-                {...rest}
-            >
-                {children}
-            </a>
-        </>
+        <a
+            href={url}
+            onClick={(e) => {
+                logAmplitudeEvent(
+                    analyticsEvent || AnalyticsEvents.NAVIGATION,
+                    analyticsData
+                );
+                onClick?.(e);
+            }}
+            rel={isNofollowUrl(url) ? 'nofollow' : undefined}
+            {...rest}
+        >
+            {children}
+        </a>
     );
 
-    return canRouteClientSide ? (
-        <Link href={url} passHref={true} prefetch={shouldPrefetch}>
-            {linkElement}
-        </Link>
-    ) : (
-        linkElement
+    return (
+        <WrapperComponent>
+            {canRouteClientSide ? (
+                <Link href={url} passHref={true} prefetch={shouldPrefetch}>
+                    {linkElement}
+                </Link>
+            ) : (
+                linkElement
+            )}
+        </WrapperComponent>
     );
 };
