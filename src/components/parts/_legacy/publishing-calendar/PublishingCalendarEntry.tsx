@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Table, BodyLong } from '@navikt/ds-react';
 import { PublishingCalendarEntryProps } from 'types/content-props/publishing-calendar-props';
 
+// eslint-disable-next-line css-modules/no-unused-class
 import style from './PublishingCalendar.module.scss';
 
 interface PublishingCalendarEntryData {
@@ -26,17 +27,19 @@ const monthShortName = [
     'DES',
 ];
 
-export const sortEntries = (children: PublishingCalendarEntryProps[]): PublishingCalendarEntryProps[] => {
-    return (
-        children.sort((a, b) => {
-            const aDate = new Date(a.data.date);
-            const bDate = new Date(b.data.date);
-            return aDate.getTime() - bDate.getTime()
-        })
-    ); // Dato for publisering: stigende
+export const sortEntries = (
+    children: PublishingCalendarEntryProps[]
+): PublishingCalendarEntryProps[] => {
+    return children.sort((a, b) => {
+        const aDate = new Date(a.data.date);
+        const bDate = new Date(b.data.date);
+        return aDate.getTime() - bDate.getTime();
+    }); // Dato for publisering: stigende
 };
 
-const processEntry = (item: PublishingCalendarEntryProps): PublishingCalendarEntryData => {
+const processEntry = (
+    item: PublishingCalendarEntryProps
+): PublishingCalendarEntryData => {
     const publDate = new Date(item.data.date);
     return {
         displayName: item.displayName,
@@ -58,12 +61,8 @@ const PublishingCalendarEntry = (props: PublishingCalendarEntryProps) => {
                 </time>
             </Table.DataCell>
             <Table.DataCell>
-                <BodyLong className={style.dateInfo}>
-                    {entry.period}
-                </BodyLong>
-                <BodyLong>
-                    {entry.displayName}
-                </BodyLong>
+                <BodyLong className={style.dateInfo}>{entry.period}</BodyLong>
+                <BodyLong>{entry.displayName}</BodyLong>
             </Table.DataCell>
         </Table.Row>
     );
