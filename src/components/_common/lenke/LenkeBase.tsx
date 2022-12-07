@@ -1,11 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { isNofollowUrl } from 'utils/urls';
+import { adminOrigin, isNofollowUrl } from 'utils/urls';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { onlyText } from 'utils/react-children';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
-import { usePublicUrl } from '../../../utils/usePublicUrl';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { usePublicUrl } from 'utils/usePublicUrl';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+
+import style from './LenkeBase.module.scss';
 
 /**
  * This component handles client-side async navigation for URLs internal to this app (as well as analytics for links)
@@ -49,21 +51,29 @@ export const LenkeBase = ({
         destinasjon: url,
         lenketekst: analyticsLabel || onlyText(children),
     };
+
     const linkElement = (
-        <a
-            href={url}
-            onClick={(e) => {
-                logAmplitudeEvent(
-                    analyticsEvent || AnalyticsEvents.NAVIGATION,
-                    analyticsData
-                );
-                onClick?.(e);
-            }}
-            rel={isNofollowUrl(url) ? 'nofollow' : undefined}
-            {...rest}
-        >
-            {children}
-        </a>
+        <>
+            {pageConfig.editorView && href.includes(adminOrigin) && (
+                <span className={style.badLinkWarning}>
+                    {'Obs! Lenke til portal-admin: '}
+                </span>
+            )}
+            <a
+                href={url}
+                onClick={(e) => {
+                    logAmplitudeEvent(
+                        analyticsEvent || AnalyticsEvents.NAVIGATION,
+                        analyticsData
+                    );
+                    onClick?.(e);
+                }}
+                rel={isNofollowUrl(url) ? 'nofollow' : undefined}
+                {...rest}
+            >
+                {children}
+            </a>
+        </>
     );
 
     return canRouteClientSide ? (
