@@ -48,7 +48,7 @@ export const LenkeBase = ({
 
     // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
     const shouldPrefetch =
-        prefetch === false || !!pageConfig.editorView ? false : undefined;
+        prefetch === false || pageConfig.editorView ? false : undefined;
 
     const { url, canRouteClientSide } = usePublicUrl(href);
     const analyticsData = {
