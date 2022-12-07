@@ -38,14 +38,7 @@ const invalidateCachedPage = async (
         .then(() => {
             console.log(`Removing page data from memory cache: ${pagePath}`);
             const cacheHandler = getIncrementalCacheMemoryCache(nextServer);
-
-            const wasCached = cacheHandler.has(pagePath);
             cacheHandler.del(pagePath);
-            const isStillCached = cacheHandler.has(pagePath);
-
-            console.log(
-                `Was cached: ${wasCached} - Is still cached: ${isStillCached}`
-            );
         })
         .catch((e) => {
             console.error(
