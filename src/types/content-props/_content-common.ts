@@ -24,7 +24,7 @@ import {
     ThemedArticlePageProps,
     ToolsPageProps,
 } from './dynamic-page-props';
-import { PublishingCalendarProps } from './publishing-calendar-props';
+import { PublishingCalendarProps, PublishingCalendarEntryProps } from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsProps } from './animated-icons';
 import {
@@ -60,6 +60,7 @@ export enum ContentType {
     LargeTable = 'no_nav_navno_LargeTable',
     OfficeInformation = 'no_nav_navno_OfficeInformation',
     PublishingCalendar = 'no_nav_navno_PublishingCalendar',
+    PublishingCalendarEntry = 'no_nav_navno_PublishingCalendarEntry',
     GlobalNumberValuesSet = 'no_nav_navno_GlobalValueSet',
     ProductPage = 'no_nav_navno_ContentPageWithSidemenus',
     ProductDetails = 'no_nav_navno_ProductDetails',
@@ -148,6 +149,7 @@ type SpecificContentProps =
     | SectionPageProps
     | TransportPageProps
     | PublishingCalendarProps
+    | PublishingCalendarEntryProps
     | ProductPageProps
     | SituationPageProps
     | AnimatedIconsProps

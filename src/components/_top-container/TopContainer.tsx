@@ -29,8 +29,8 @@ export const checkForWhiteHeader = (content: ContentProps) => {
 
     if (
         __typename === ContentType.MainArticle &&
-        (content.data.contentType === 'news' ||
-            content.data.contentType === 'pressRelease')
+        (content.data?.contentType === 'news' ||
+            content.data?.contentType === 'pressRelease')
     ) {
         return true;
     }

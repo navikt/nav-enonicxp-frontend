@@ -17,8 +17,15 @@ export const DateLine = ({
 }: DateLineProps) => {
     const getDatesLabel = translator('dates', language);
 
+    const createdDate = createdTime.split('T')[0];
+    const modifiedDate = modifiedTime.split('T')[0];
+    const wasChangedAfterPublish = createdDate !== modifiedDate;
+
     const buildDateString = (desc: string, date: string) => {
-        return `${desc}: ${formatDate({
+        if (!date) {
+            return '';
+        }
+        return `${desc} ${formatDate({
             datetime: date,
             language,
             short: true,
@@ -36,7 +43,9 @@ export const DateLine = ({
         modifiedTime
     );
 
-    const dateString = `${publishedString}, ${lastChangedString}`;
+    const dateString = wasChangedAfterPublish
+        ? `${publishedString} | ${lastChangedString}`
+        : publishedString;
 
     return (
         <div className={styles.dateLine}>
