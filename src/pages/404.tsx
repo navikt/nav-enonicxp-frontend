@@ -28,6 +28,7 @@ export const ErrorPage404 = () => {
                 `${window.location.origin}${window.location.pathname}?${loopDetectionParam}`
             );
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return <PageBase content={props} />;

@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Link from 'next/link';
-import { isNofollowUrl } from 'utils/urls';
+import { adminOrigin, isNofollowUrl, xpDraftPathPrefix } from 'utils/urls';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { onlyText } from 'utils/react-children';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
-import { usePublicUrl } from '../../../utils/usePublicUrl';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { usePublicUrl } from 'utils/usePublicUrl';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+
+import style from './LenkeBase.module.scss';
+
+const adminPreviewUrlPrefix = `${adminOrigin}${xpDraftPathPrefix}`;
+
+const BadLinkWarning = ({ children }: { children: React.ReactNode }) => (
+    <span className={style.badLinkWarning}>
+        {'Obs! Lenke til portal-admin: '}
+        {children}
+    </span>
+);
 
 /**
  * This component handles client-side async navigation for URLs internal to this app (as well as analytics for links)
@@ -39,7 +50,7 @@ export const LenkeBase = ({
 
     // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
     const shouldPrefetch =
-        prefetch === false || !!pageConfig.editorView ? false : undefined;
+        prefetch === false || pageConfig.editorView ? false : undefined;
 
     const { url, canRouteClientSide } = usePublicUrl(href);
     const analyticsData = {
@@ -49,6 +60,12 @@ export const LenkeBase = ({
         destinasjon: url,
         lenketekst: analyticsLabel || onlyText(children),
     };
+
+    const WrapperComponent =
+        pageConfig.editorView && href?.startsWith(adminPreviewUrlPrefix)
+            ? BadLinkWarning
+            : Fragment;
+
     const linkElement = (
         <a
             href={url}
@@ -66,11 +83,15 @@ export const LenkeBase = ({
         </a>
     );
 
-    return canRouteClientSide ? (
-        <Link href={url} passHref={true} prefetch={shouldPrefetch}>
-            {linkElement}
-        </Link>
-    ) : (
-        linkElement
+    return (
+        <WrapperComponent>
+            {canRouteClientSide ? (
+                <Link href={url} passHref={true} prefetch={shouldPrefetch}>
+                    {linkElement}
+                </Link>
+            ) : (
+                linkElement
+            )}
+        </WrapperComponent>
     );
 };

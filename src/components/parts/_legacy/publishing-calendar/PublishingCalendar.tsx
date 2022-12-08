@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { Heading, Ingress, Table } from '@navikt/ds-react';
-import { translator } from '../../../../translations';
-import { PublishingCalendarProps } from '../../../../types/content-props/publishing-calendar-props';
-import PublishingCalendarEntry, { sortEntries } from './PublishingCalendarEntry';
+import { translator } from 'translations';
+import { PublishingCalendarProps } from 'types/content-props/publishing-calendar-props';
+import PublishingCalendarEntry, {
+    sortEntries,
+} from './PublishingCalendarEntry';
 
+// eslint-disable-next-line css-modules/no-unused-class
 import style from './PublishingCalendar.module.scss';
 
 const PublishingCalendar = (props: PublishingCalendarProps) => {
@@ -25,14 +28,18 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
             <Table zebraStripes>
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell scope="col">{getLabel('publishdate')}</Table.HeaderCell>
-                        <Table.HeaderCell scope="col">{getLabel('event')}</Table.HeaderCell>
+                        <Table.HeaderCell scope="col">
+                            {getLabel('publishdate')}
+                        </Table.HeaderCell>
+                        <Table.HeaderCell scope="col">
+                            {getLabel('event')}
+                        </Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                    {items.map((item, index) =>
+                    {items.map((item, index) => (
                         <PublishingCalendarEntry key={index} {...item} />
-                    )}
+                    ))}
                 </Table.Body>
             </Table>
         </div>
