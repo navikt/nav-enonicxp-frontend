@@ -23,6 +23,7 @@ import {
     SituationPageProps,
     ThemedArticlePageProps,
     ToolsPageProps,
+    PressLandingPageProps,
 } from './dynamic-page-props';
 import {
     PublishingCalendarProps,
@@ -41,6 +42,7 @@ import { LanguageProps } from '../language';
 import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageProps } from './index-pages-props';
 import { Audience } from '../component-props/_mixins';
+import { PressLandingPage } from 'components/pages/press-landing-page/PressLandingPage';
 
 export enum ContentType {
     Error = 'error',
@@ -171,6 +173,7 @@ type SpecificContentProps =
     | ContactInformationProps
     | FrontPageProps
     | AreaPageProps
-    | GenericPageProps;
+    | GenericPageProps
+    | PressLandingPageProps;
 
 export type ContentProps = ContentCommonProps & SpecificContentProps;
