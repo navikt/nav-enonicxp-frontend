@@ -15,15 +15,25 @@ type PressNewsProps = {
 };
 
 export const PressNews = (props: PressNewsProps) => {
-    const { pressNews, morePressNews } = props.page?.data;
+    const { pressNews, moreNewsUrl, maxNewsCount } = props.page?.data;
     const { language } = props.page;
 
     const getTranslations = translator('pressLanding', language);
 
     if (!pressNews || pressNews.length === 0) return null;
 
-    // TODO: CHECK MAX NEWS ITEMS
-    const pressNewsItems = pressNews.data.sectionContents.slice(0, 3);
+    const pressNewsItems = pressNews.data.sectionContents.slice(
+        0,
+        parseInt(maxNewsCount, 10) || 5
+    );
+
+    const shortenIngress = (ingress: string) => {
+        const maxIngressLength = 234;
+        if (ingress.length > maxIngressLength + 30) {
+            return ingress.substring(0, maxIngressLength) + '...';
+        }
+        return ingress;
+    };
 
     return (
         <div className={styles.pressNews}>
@@ -43,7 +53,7 @@ export const PressNews = (props: PressNewsProps) => {
                                     </Heading>
                                 </Link>
                                 <div className={styles.ingress}>
-                                    {newsItem.data.ingress}
+                                    {shortenIngress(newsItem.data.ingress)}
                                 </div>
                                 <div className={styles.newsTagline}>
                                     <StaticImage
@@ -64,7 +74,7 @@ export const PressNews = (props: PressNewsProps) => {
                                         {formatDate({
                                             datetime: newsItem.createdTime,
                                             language,
-                                            short: false,
+                                            short: true,
                                             year: true,
                                         })}
                                     </Detail>
@@ -73,8 +83,8 @@ export const PressNews = (props: PressNewsProps) => {
                         );
                     })}
                 </ul>
-                {morePressNews && (
-                    <Link href={getPublicPathname(morePressNews)}>
+                {moreNewsUrl && (
+                    <Link href={moreNewsUrl}>
                         <Next />
                         {getTranslations('morePressNews')}
                     </Link>

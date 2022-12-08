@@ -35,8 +35,10 @@ export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'> &
 export type PressLandingPageData = Partial<{
     pressCall: ProcessedHtmlProps;
     pressNews: any;
-    morePressNews: any;
     shortcuts: any;
+    moreNewsUrl: string;
+    maxNewsCount: string;
+    maxShortcutsCount: string;
 }> &
     DynamicPageData;
 

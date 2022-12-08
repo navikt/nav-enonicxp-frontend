@@ -11,11 +11,15 @@ type PressShortcutsProps = {
 
 export const PressShortcuts = (props: PressShortcutsProps) => {
     const { language } = props.page;
+    const { maxShortcutsCount } = props.page?.data;
     const getTranslations = translator('pressLanding', language);
 
     const shortcuts = props.page.data.shortcuts;
     if (!shortcuts) return null;
-    const shortcutItems = shortcuts.data.sectionContents.slice(0, 3);
+    const shortcutItems = shortcuts.data.sectionContents.slice(
+        0,
+        parseInt(maxShortcutsCount, 10) || 5
+    );
 
     if (!shortcutItems || shortcutItems.length === 0) return null;
 
