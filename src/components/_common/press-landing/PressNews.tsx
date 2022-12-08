@@ -28,7 +28,7 @@ export const PressNews = (props: PressNewsProps) => {
     );
 
     const shortenIngress = (ingress: string) => {
-        const maxIngressLength = 234;
+        const maxIngressLength = 240;
         if (ingress.length > maxIngressLength + 30) {
             return ingress.substring(0, maxIngressLength) + '...';
         }
