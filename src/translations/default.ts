@@ -98,6 +98,7 @@ export const translationsBundleNb = {
     },
     pressLanding: {
         latestPressNews: 'Siste pressemeldinger og nyheter',
+        morePressNews: 'Flere pressemeldinger og nyheter',
         pressShortcuts: 'Snarveier',
         news: 'Nyhet',
         press: 'Pressemelding',

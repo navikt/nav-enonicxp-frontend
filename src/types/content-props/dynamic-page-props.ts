@@ -7,7 +7,6 @@ import {
 } from '../component-props/_mixins';
 import { ProductDetailType as OverviewType } from './product-details';
 import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from '../taxonomies';
-import { ContentListProps } from './content-list-props';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 export type DynamicPageData = Partial<{
@@ -36,6 +35,7 @@ export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'> &
 export type PressLandingPageData = Partial<{
     pressCall: ProcessedHtmlProps;
     pressNews: any;
+    morePressNews: any;
     shortcuts: any;
 }> &
     DynamicPageData;

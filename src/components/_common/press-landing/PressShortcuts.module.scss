@@ -1,13 +1,37 @@
 @use 'src/common' as common;
 
 .pressShortcuts {
-    display: flex;
     background-color: white;
+    display: flex;
     justify-content: center;
+    margin-bottom: -2rem;
+    margin-top: 2.5rem;
+    padding: 2.75rem 0;
     @include common.full-width-mixin;
 }
 
 .content {
     width: 37.5rem;
     max-width: 37.5rem;
+}
+
+.shortcutItem,
+.shortcutItem:hover {
+    border: 0;
+    border-bottom: 2px solid var(--navds-global-color-gray-600);
+    margin: 0.25rem 0;
+
+    &:hover {
+        box-shadow: none;
+    }
+
+    :global(.navds-link-panel__content) {
+        font-size: 1.25rem;
+    }
+}
+
+.shortcutList {
+    list-style: none;
+    margin: 1.5rem 0;
+    padding: 0;
 }

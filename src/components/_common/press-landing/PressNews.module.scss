@@ -2,8 +2,8 @@
 
 .pressNews {
     display: flex;
-    background-color: white;
     justify-content: center;
+    margin-top: 2.5rem;
     @include common.full-width-mixin;
 }
 
@@ -14,18 +14,17 @@
 
 .newsList {
     list-style-type: none;
-    margin: 0;
+    margin: 1rem 0 2rem 0;
     padding: 0;
+}
+
+.newsItem {
+    margin-bottom: 1.5rem;
 }
 
 .ingress {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-}
-
-.newsItem {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
 }
 
 .newsTagline {

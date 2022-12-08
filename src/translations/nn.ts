@@ -157,6 +157,7 @@ export const translationsBundleNn: Translations = {
     },
     pressLanding: {
         latestPressNews: 'Siste pressemeldingar og nyheiter',
+        morePressNews: 'Fleire pressemeldingar og nyheiter',
         pressShortcuts: 'Snarvegar',
         news: 'Nyheit',
         press: 'Pressemelding',

@@ -7,22 +7,23 @@ import pressIcon from '/public/gfx/press-speaker-icon-black.svg';
 import newsIcon from '/public/gfx/news-paper-icon-black.svg';
 import { StaticImage } from '../image/StaticImage';
 import { formatDate } from 'utils/datetime';
+import { Next } from '@navikt/ds-icons';
+import { getPublicPathname } from 'utils/urls';
 
 type PressNewsProps = {
     page: PressLandingPageProps;
 };
 
 export const PressNews = (props: PressNewsProps) => {
-    const { pressNews } = props.page?.data;
+    const { pressNews, morePressNews } = props.page?.data;
     const { language } = props.page;
 
     const getTranslations = translator('pressLanding', language);
 
-    if (!pressNews || pressNews.length === 0) {
-        return null;
-    }
+    if (!pressNews || pressNews.length === 0) return null;
 
-    const pressNewsItems = pressNews.data.sectionContents;
+    // TODO: CHECK MAX NEWS ITEMS
+    const pressNewsItems = pressNews.data.sectionContents.slice(0, 3);
 
     return (
         <div className={styles.pressNews}>
@@ -36,7 +37,7 @@ export const PressNews = (props: PressNewsProps) => {
                         const icon = isNews ? newsIcon : pressIcon;
                         return (
                             <li key={index} className={styles.newsItem}>
-                                <Link href={newsItem._path}>
+                                <Link href={getPublicPathname(newsItem)}>
                                     <Heading level={'3'} size={'medium'}>
                                         {newsItem.displayName}
                                     </Heading>
@@ -72,6 +73,12 @@ export const PressNews = (props: PressNewsProps) => {
                         );
                     })}
                 </ul>
+                {morePressNews && (
+                    <Link href={getPublicPathname(morePressNews)}>
+                        <Next />
+                        {getTranslations('morePressNews')}
+                    </Link>
+                )}
             </div>
         </div>
     );
