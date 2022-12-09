@@ -85,8 +85,8 @@ export const translationsBundleEn: Translations = {
         latestPressNews: 'Latest press and news',
         morePressNews: 'More press releases and news',
         pressShortcuts: 'Shortcuts',
-        news: 'Nyhet',
-        press: 'Pressemelding',
+        news: 'News',
+        press: 'Press release',
         published: 'Published',
     },
     mainArticle: {
