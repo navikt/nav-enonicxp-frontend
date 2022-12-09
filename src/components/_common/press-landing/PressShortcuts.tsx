@@ -14,16 +14,21 @@ export const PressShortcuts = (props: PressShortcutsProps) => {
     const { maxShortcutsCount } = props.page?.data;
     const getTranslations = translator('pressLanding', language);
 
-    const shortcuts = props.page.data.shortcuts;
-    if (!shortcuts) return null;
+    const shortcuts = props.page.data?.shortcuts;
+
+    if (
+        !shortcuts?.data?.sectionContents ||
+        shortcuts?.data?.sectionContents?.length === 0
+    ) {
+        return null;
+    }
+
     const shortcutItems = shortcuts.data.sectionContents.slice(
         0,
         parseInt(maxShortcutsCount, 10) || 5
     );
 
-    if (!shortcutItems || shortcutItems.length === 0) return null;
-
-    console.log(shortcutItems);
+    if (shortcutItems.length === 0) return null;
 
     return (
         <div className={styles.pressShortcuts}>
@@ -32,9 +37,9 @@ export const PressShortcuts = (props: PressShortcutsProps) => {
                     {getTranslations('pressShortcuts')}
                 </Heading>
                 <ul className={styles.shortcutList}>
-                    {shortcutItems.map((shortcut, index) => {
+                    {shortcutItems.map((shortcut) => {
                         return (
-                            <li key={index}>
+                            <li key={shortcut._path}>
                                 <LinkPanel
                                     href={getPublicPathname(shortcut)}
                                     className={styles.shortcutItem}
