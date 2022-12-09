@@ -65,3 +65,14 @@ export const capitalize = (str: string) =>
                 .replace(/(^|[\s-])\S/g, (letter) => letter.toUpperCase())}`;
         })
         .join(' ');
+
+export const shortenText = (
+    text: string,
+    maxLength: number,
+    maxOverflowLength: number = 0
+) => {
+    if (text.length > maxLength + maxOverflowLength) {
+        return text.substring(0, maxLength) + '...';
+    }
+    return text;
+};
