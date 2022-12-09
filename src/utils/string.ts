@@ -71,7 +71,7 @@ export const shortenText = (
     maxLength: number,
     maxOverflowLength: number = 0
 ) => {
-    if (text.length > maxLength + maxOverflowLength) {
+    if (!!text && text.length > maxLength + maxOverflowLength) {
         return text.substring(0, maxLength) + '...';
     }
     return text;

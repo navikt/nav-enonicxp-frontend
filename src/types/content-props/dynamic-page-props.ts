@@ -8,6 +8,7 @@ import {
 import { ProductDetailType as OverviewType } from './product-details';
 import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from '../taxonomies';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { ContentListProps } from './content-list-props';
 
 export type DynamicPageData = Partial<{
     languages: LanguageProps[];
@@ -34,8 +35,8 @@ export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'> &
 
 export type PressLandingPageData = Partial<{
     pressCall: ProcessedHtmlProps;
-    pressNews: any;
-    shortcuts: any;
+    pressNews: ContentListProps;
+    shortcuts: ContentListProps;
     moreNewsUrl: string;
     maxNewsCount: string;
     maxShortcutsCount: string;

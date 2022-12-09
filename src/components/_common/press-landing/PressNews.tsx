@@ -5,6 +5,7 @@ import { Next } from '@navikt/ds-icons';
 import { PressNewsItem } from './PressNewsItem';
 
 import styles from './PressNews.module.scss';
+import { MainArticleProps } from 'types/content-props/main-article-props';
 
 type PressNewsProps = {
     page: PressLandingPageProps;

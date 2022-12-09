@@ -8,16 +8,28 @@ import { getPublicPathname } from 'utils/urls';
 import { formatDate } from 'utils/datetime';
 
 import styles from './PressNewsItem.module.scss';
+import { MainArticleProps } from 'types/content-props/main-article-props';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 type PressNewsItemProps = {
-    newsItem: any;
+    newsItem: ContentProps;
 };
 
 export const PressNewsItem = ({ newsItem }: PressNewsItemProps) => {
     const { language } = newsItem;
     const getTranslations = translator('pressLanding', language);
-    const isNews = newsItem?.data?.contentType === 'news';
-    const icon = isNews ? newsIcon : pressIcon;
+
+    const getTaglineElements = (newsItem: ContentProps) => {
+        if (newsItem.__typename === ContentType.MainArticle) {
+            const isNews = newsItem?.data?.contentType === 'news';
+            const icon = isNews ? newsIcon : pressIcon;
+            const tagName = getTranslations(isNews ? 'news' : 'press');
+            return { icon, tagName };
+        }
+        return { icon: null, tagName: null };
+    };
+
+    const { icon, tagName } = getTaglineElements(newsItem);
 
     return (
         <li key={newsItem._path} className={styles.newsItem}>
@@ -27,17 +39,21 @@ export const PressNewsItem = ({ newsItem }: PressNewsItemProps) => {
                 </Heading>
             </Link>
             <div className={styles.ingress}>
-                {shortenText(newsItem.data.ingress, 240, 30)}
+                {shortenText(newsItem.data?.ingress, 240, 30)}
             </div>
             <div className={styles.newsTagline}>
-                <StaticImage
-                    imageData={icon}
-                    alt={''}
-                    className={styles.tagIcon}
-                />
-                <Detail className={styles.newsType} uppercase={true}>
-                    {getTranslations(isNews ? 'news' : 'press')}
-                </Detail>
+                {icon && (
+                    <StaticImage
+                        imageData={icon}
+                        alt={''}
+                        className={styles.tagIcon}
+                    />
+                )}
+                {tagName && (
+                    <Detail className={styles.newsType} uppercase={true}>
+                        {tagName}
+                    </Detail>
+                )}
                 <Detail className={styles.publishDate}>
                     {getTranslations('published')}{' '}
                     {formatDate({
