@@ -28,8 +28,6 @@ export const PressShortcuts = (props: PressShortcutsProps) => {
         parseInt(maxShortcutsCount, 10) || 5
     );
 
-    if (shortcutItems.length === 0) return null;
-
     return (
         <div className={styles.pressShortcuts}>
             <div className={styles.content}>
