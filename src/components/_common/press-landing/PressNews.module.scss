@@ -1,0 +1,19 @@
+@use 'src/common' as common;
+
+.pressNews {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+    @include common.full-width-mixin;
+}
+
+.content {
+    width: calc(100% - 1rem);
+    max-width: 37.5rem;
+}
+
+.newsList {
+    list-style-type: none;
+    margin: 1rem 0 2rem 0;
+    padding: 0;
+}
