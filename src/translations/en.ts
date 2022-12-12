@@ -169,6 +169,7 @@ export const translationsBundleEn: Translations = {
     },
     contactPoint: {
         chat: {
+            downAlert: 'Chat is currently unavailable due to technical issues.',
             title: 'Chat with Frida',
             ingress:
                 'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
