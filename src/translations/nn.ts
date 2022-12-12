@@ -165,7 +165,7 @@ export const translationsBundleNn: Translations = {
                 'Chatten er stengt på grunn av tekniske problem. Vi arbeidar med å rette feilen og beklagar ulempane.',
             title: 'Chat med oss',
             ingress:
-                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00).',
+                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (i romjula, kvardagar 10:00–14:30). Chatten for arbeidsgivarar er stengd i romjula.',
         },
         write: {
             title: 'Skriv til oss',
