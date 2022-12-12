@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import {
     ChannelType,
     DefaultContactData,
@@ -118,11 +118,6 @@ export const DefaultOption = (props: DefaultContactProps) => {
                     </Heading>
                 </div>
             </LenkeBase>
-            {channel === 'chat' && (
-                <Alert variant="warning" inline className={style.alert}>
-                    {getTranslations('chat').downAlert}
-                </Alert>
-            )}
             <BodyLong className={style.text}>{getIngress()}</BodyLong>
         </div>
     );
