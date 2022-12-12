@@ -177,7 +177,7 @@ export const CallOption = (props: CallOptionProps) => {
                 </div>
             </LenkeBase>
             {alertText && (
-                <Alert variant="warning" inline>
+                <Alert variant="warning" inline className={style.alert}>
                     {alertText}
                 </Alert>
             )}
