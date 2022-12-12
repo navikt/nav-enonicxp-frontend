@@ -7,9 +7,8 @@ import { StaticImage } from '../image/StaticImage';
 import { getPublicPathname } from 'utils/urls';
 import { formatDate } from 'utils/datetime';
 
-import styles from './PressNewsItem.module.scss';
-import { MainArticleProps } from 'types/content-props/main-article-props';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import styles from './PressNewsItem.module.scss';
 
 type PressNewsItemProps = {
     newsItem: ContentProps;
@@ -42,13 +41,7 @@ export const PressNewsItem = ({ newsItem }: PressNewsItemProps) => {
                 {shortenText(newsItem.data?.ingress, 240, 30)}
             </div>
             <div className={styles.newsTagline}>
-                {icon && (
-                    <StaticImage
-                        imageData={icon}
-                        alt={''}
-                        className={styles.tagIcon}
-                    />
-                )}
+                {icon && <StaticImage imageData={icon} alt={''} />}
                 {tagName && (
                     <Detail className={styles.newsType} uppercase={true}>
                         {tagName}
