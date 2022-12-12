@@ -9,7 +9,10 @@
 
 .content {
     width: 37.5rem;
-    max-width: 37.5rem;
+
+    @media #{common.$mq-screen-mobile} {
+        width: 100%;
+    }
 }
 
 .pressCall {
