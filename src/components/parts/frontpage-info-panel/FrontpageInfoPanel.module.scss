@@ -1,0 +1,43 @@
+@use 'src/common' as common;
+
+.infoPanel {
+    width: 100%;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content 1fr;
+    grid-template-areas:
+        'icon header'
+        'icon description';
+    gap: 0px 0px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    background-color: var(--navds-global-color-gray-100);
+    border-radius: common.$border-radius-xlarge;
+}
+
+.icon {
+    grid-area: icon;
+    display: flex;
+    align-items: center;
+    margin: 0 1.5rem 0 0;
+
+    img {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+.header {
+    grid-area: header;
+}
+
+.description {
+    grid-area: description;
+    max-width: 37.5rem;
+    :global(.navds-body-long:last-child) {
+        margin-bottom: 0;
+    }
+}
