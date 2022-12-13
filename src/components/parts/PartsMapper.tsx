@@ -47,6 +47,7 @@ import { AreaCardPart } from './area-card/AreaCardPart';
 import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
+import { FrontpageSurveyPanel } from './frontpage-survey-panel/FrontpageSurveyPanel';
 
 type Props = {
     partProps: PartComponentProps;
@@ -97,6 +98,7 @@ const partsWithOwnData: {
     [PartType.AreapageSituationCard]: AreapageSituationCardPart,
     [PartType.LoggedinCard]: LoggedinCardPart,
     [PartType.FrontpageContact]: FrontpageContactPart,
+    [PartType.FrontpageSurveyPanel]: FrontpageSurveyPanel,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {
