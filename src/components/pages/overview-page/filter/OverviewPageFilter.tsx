@@ -56,7 +56,7 @@ export const OverviewPageFilter = <Type extends FilterOptions>({
                                     type={'button'}
                                     onClick={() => selectionCallback(option)}
                                     aria-current={isActive}
-                                    aria-label={`${translations['ariaItemExplanation']} ${optionLabel}}`}
+                                    aria-label={`${translations['ariaItemExplanation']} ${optionLabel}`}
                                     className={classNames(
                                         styles.filterButton,
                                         isActive && styles.activeButton
