@@ -5,6 +5,7 @@ import ErrorPage404 from 'pages/404';
 
 import { CallOption } from 'components/_common/contact-option/CallOption';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
+import { ChatOption } from 'components/_common/contact-option/ChatOption';
 import { DefaultOption } from 'components/_common/contact-option/DefaultOption';
 
 import style from './ContactInformationPage.module.scss';
@@ -17,7 +18,11 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
     const { data } = props;
     const { contactType } = data;
 
-    const hasContactType = !!(contactType.telephone || contactType.write);
+    const hasContactType = !!(
+        contactType.telephone ||
+        contactType.write ||
+        contactType.chat
+    );
 
     const hasSpecialHours = !!contactType?.telephone?.specialOpeningHours;
     const hasRegularHours = !!contactType?.telephone?.regularOpeningHours;
@@ -65,6 +70,16 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
                     alertText={data.alertText}
                     title={data.title}
                     url={data.url}
+                />
+            );
+        }
+        if (contactType.chat) {
+            const data = contactType?.chat;
+            return (
+                <ChatOption
+                    ingress={data.ingress}
+                    alertText={data.alertText}
+                    title={data.title}
                 />
             );
         }

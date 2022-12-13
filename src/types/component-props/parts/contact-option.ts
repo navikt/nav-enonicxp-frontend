@@ -60,6 +60,9 @@ export interface TelephoneData {
 export interface WriteData extends DefaultContactData {
     alertText?: string;
 }
+export interface ChatData extends Omit<DefaultContactData, 'url'> {
+    alertText?: string;
+}
 
 export interface SharedContactInformationData extends DefaultContactData {
     sharedContactInformation: {
