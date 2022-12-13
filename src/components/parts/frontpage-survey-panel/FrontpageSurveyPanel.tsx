@@ -17,7 +17,7 @@ export const FrontpageSurveyPanel = ({ config }: FrontPageSurveyPanelProps) => {
 
     const { description, header, icon } = config;
     return (
-        <div className={style.infoPanel}>
+        <div className={style.surveyPanel}>
             <div className={style.container}>
                 <div className={style.icon}>
                     {icon?.icon && (
