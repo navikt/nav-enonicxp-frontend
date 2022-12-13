@@ -18,6 +18,10 @@
     padding: 2.5rem;
     background-color: var(--navds-global-color-purple-50);
 
+    @media #{common.$mq-screen-mobile} {
+        padding: 1rem;
+    }
+
     p:last-of-type {
         margin-bottom: 0;
     }
