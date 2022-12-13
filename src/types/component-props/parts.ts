@@ -40,7 +40,7 @@ export enum PartType {
     FrontpageContact = 'no.nav.navno:frontpage-contact',
     FrontpageCurrentTopics = 'no.nav.navno:frontpage-current-topics',
     FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
-    FrontpageInfoPanel = 'no.nav.navno:frontpage-info-panel',
+    FrontpageSurveyPanel = 'no.nav.navno:frontpage-survey-panel',
 }
 
 export type PartDeprecated =
@@ -87,4 +87,4 @@ export type PartWithOwnData =
     | PartType.AreapageSituationCard
     | PartType.LoggedinCard
     | PartType.FrontpageContact
-    | PartType.FrontpageInfoPanel;
+    | PartType.FrontpageSurveyPanel;
