@@ -18,6 +18,8 @@ export const ChatOption = (props: ChatData) => {
     const { layoutConfig } = useLayoutConfig();
     const getTranslations = translator('contactPoint', language);
 
+    console.log(props);
+
     const getTitle = () => {
         const legacyTitle = getTranslations('chat').title;
 
