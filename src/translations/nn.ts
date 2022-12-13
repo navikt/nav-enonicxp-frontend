@@ -155,6 +155,14 @@ export const translationsBundleNn: Translations = {
             ariaItemExplanation: 'Vis type',
         },
     },
+    pressLanding: {
+        latestPressNews: 'Siste pressemeldingar og nyheiter',
+        morePressNews: 'Fleire pressemeldingar og nyheiter',
+        pressShortcuts: 'Snarvegar',
+        news: 'Nyheit',
+        press: 'Pressemelding',
+        published: 'Publisert',
+    },
     pagination: {
         goTo: 'Gå til',
         ariaExplanation: 'Navigering av innhaldet med paginering',

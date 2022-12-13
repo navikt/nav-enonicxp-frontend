@@ -23,8 +23,12 @@ import {
     SituationPageProps,
     ThemedArticlePageProps,
     ToolsPageProps,
+    PressLandingPageProps,
 } from './dynamic-page-props';
-import { PublishingCalendarProps, PublishingCalendarEntryProps } from './publishing-calendar-props';
+import {
+    PublishingCalendarProps,
+    PublishingCalendarEntryProps,
+} from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsProps } from './animated-icons';
 import {
@@ -38,6 +42,7 @@ import { LanguageProps } from '../language';
 import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageProps } from './index-pages-props';
 import { Audience } from '../component-props/_mixins';
+import { PressLandingPage } from 'components/pages/press-landing-page/PressLandingPage';
 
 export enum ContentType {
     Error = 'error',
@@ -76,6 +81,7 @@ export enum ContentType {
     PayoutDates = 'no_nav_navno_PayoutDates',
     FrontPage = 'no_nav_navno_FrontPage',
     AreaPage = 'no_nav_navno_AreaPage',
+    PressLandingPage = 'no_nav_navno_PressLandingPage',
 }
 
 export type ContentAndMediaCommonProps = {
@@ -167,6 +173,7 @@ type SpecificContentProps =
     | ContactInformationProps
     | FrontPageProps
     | AreaPageProps
-    | GenericPageProps;
+    | GenericPageProps
+    | PressLandingPageProps;
 
 export type ContentProps = ContentCommonProps & SpecificContentProps;
