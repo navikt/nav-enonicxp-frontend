@@ -177,16 +177,14 @@ export const translationsBundleEn: Translations = {
     },
     contactPoint: {
         chat: {
-            downAlert:
-                'The chat is closed due to technical problems. We are working to correct the error and apologize for any inconvenience.',
             title: 'Chat with Frida',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
+                'You will first be met by chatbot Frida. You can also ask Frida to chat with a counsellor (during Christmas, weekdays 10:00–14:30). Chat for employers is closed during Christmas.',
         },
         legacyChat: {
             title: 'You can chat with us',
             ingress:
-                'You will first meet chatbot Frida. You can ask Frida to chat with a counsellor (weekdays 09:00–15:00)',
+                'You will first be met by chatbot Frida. You can also ask Frida to chat with a counsellor (during Christmas, weekdays 10:00–14:30). Chat for employers is closed during Christmas.',
         },
         write: {
             title: 'Write to us',
