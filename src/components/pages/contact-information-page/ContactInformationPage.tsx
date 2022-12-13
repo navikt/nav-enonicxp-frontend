@@ -2,9 +2,9 @@ import React from 'react';
 import { Alert } from '@navikt/ds-react';
 import { ContactInformationProps } from '../../../types/content-props/contact-information-props';
 import ErrorPage404 from 'pages/404';
-import { TelephoneDetails } from 'components/_common/contact-details/TelephoneDetails';
 
 import { CallOption } from 'components/_common/contact-option/CallOption';
+import { WriteOption } from 'components/_common/contact-option/WriteOption';
 import { DefaultOption } from 'components/_common/contact-option/DefaultOption';
 
 import style from './ContactInformationPage.module.scss';
@@ -56,16 +56,20 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
                 />
             );
         }
-        const data = contactType?.write;
 
-        return (
-            <DefaultOption
-                channel="write"
-                ingress={data.ingress}
-                title={data.title}
-                url={data.url}
-            />
-        );
+        if (contactType.write) {
+            const data = contactType?.write;
+            return (
+                <WriteOption
+                    ingress={data.ingress}
+                    alertText={data.alertText}
+                    title={data.title}
+                    url={data.url}
+                />
+            );
+        }
+
+        return <div>Ingen visbar kontaktkanal</div>;
     };
 
     return (

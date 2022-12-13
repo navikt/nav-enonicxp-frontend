@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { WriteData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -13,11 +13,12 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 interface WriteOptionProps extends WriteData {
     _path?: string;
-    ingress: string & ProcessedHtmlProps;
+    ingress: ProcessedHtmlProps;
+    alertText?: string;
 }
 
 export const WriteOption = (props: WriteOptionProps) => {
-    const { ingress, title, url } = props;
+    const { ingress, title, url, alertText } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
     const getTranslations = translator('contactPoint', language);
@@ -42,6 +43,11 @@ export const WriteOption = (props: WriteOptionProps) => {
                 </div>
             </LenkeBase>
             <div className={style.text}>
+                {alertText && (
+                    <Alert variant="warning" className={style.alert} inline>
+                        {alertText}
+                    </Alert>
+                )}
                 <ParsedHtml
                     htmlProps={ingress || getTranslations('write').ingress}
                 />
