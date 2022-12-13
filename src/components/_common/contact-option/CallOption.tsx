@@ -48,6 +48,8 @@ export const CallOption = (props: CallOptionProps) => {
     const [isClosed, setIsClosed] = useState<boolean | null>(null);
     const isClientSide = useClientSide();
 
+    console.log(props);
+
     const getDateTimeTranslations = translator('dateTime', language);
     const getContactTranslations = translator('contactPoint', language);
     const relatives = getDateTimeTranslations('relatives');

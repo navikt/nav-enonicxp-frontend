@@ -15,6 +15,16 @@ const editorHelpText = {
     chat: 'Velg en "chat"-side før denne kontaktkanalen kan vises.',
 };
 
+const getContactOptionComponent = (channel: string) => {
+    const options = {
+        call: CallOption,
+        write: WriteOption,
+        chat: ChatOption,
+    }[channel];
+
+    return options || DefaultOption;
+};
+
 export const ContactOptionPart = ({ config }: ContactOptionProps) => {
     const channel = config?.contactOptions?._selected;
     const { pageConfig } = usePageConfig();
@@ -25,8 +35,15 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
     }
 
     const channelData = config.contactOptions[channel];
-    const { sharedContactInformation, ingress, title, url, phoneNumber } =
-        channelData;
+    const { sharedContactInformation, ingress, phoneNumber } = channelData;
+
+    const getSharedContactInformation = (channel: string) => {
+        return {
+            call: sharedContactInformation.data.contactType.telephone,
+            write: sharedContactInformation.data.contactType.write,
+            chat: sharedContactInformation.data.contactType.chat,
+        }[channel];
+    };
 
     const isSharedContactChannel = sharedContactChannels.includes(channel);
 
@@ -35,91 +52,21 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
             // For backwards compatibility, show default call information
             // if no sharedContactInformation has been selected but a legacy
             // phoneNumber field exists.
-
-            if (phoneNumber) {
+            if (channel === 'call' && phoneNumber) {
                 return <DefaultOption {...channelData} channel={channel} />;
             }
 
             return <EditorHelp text={editorHelpText[channel]} />;
         }
 
+        const OptionComponent = getContactOptionComponent(channel);
+        const overrideIngress = ingress ? { ingress } : {};
+
         return (
-            <CallOption
-                {...sharedContactInformation.data.contactType.telephone}
+            <OptionComponent
+                {...getSharedContactInformation(channel)}
                 _path={sharedContactInformation._path}
-                ingress={ingress}
-            />
-        );
-    }
-
-    if (channel === 'write') {
-        if (!sharedContactInformation) {
-            // If no sharedContactInformation is set, this might mean that the part was
-            // added before the new 'write to us', so use the DefaultOption
-            // which will pull legacy text from translation library.
-            if (editorView !== 'edit') {
-                return (
-                    <DefaultOption
-                        ingress={ingress}
-                        title={title}
-                        url={url}
-                        channel={channel}
-                    />
-                );
-            }
-
-            return (
-                <EditorHelp
-                    text={
-                        'Velg en "skriv til oss"-side før denne kontaktkanalen kan vises.'
-                    }
-                />
-            );
-        }
-
-        const overrideIngress = ingress ? { ingress } : null;
-
-        return (
-            <WriteOption
-                {...sharedContactInformation.data.contactType.write}
                 {...overrideIngress}
-                _path={sharedContactInformation._path}
-            />
-        );
-    }
-
-    if (channel === 'chat') {
-        if (!sharedContactInformation) {
-            // If no sharedContactInformation is set, this might mean that the part was
-            // added before the new 'write to us', so use the DefaultOption
-            // which will pull legacy text from translation library.
-            if (editorView !== 'edit') {
-                return (
-                    <DefaultOption
-                        ingress={ingress}
-                        title={title}
-                        url={url}
-                        channel={channel}
-                    />
-                );
-            }
-
-            return (
-                <EditorHelp
-                    text={
-                        'Velg en "chat med oss"-side før denne kontaktkanalen kan vises.'
-                    }
-                />
-            );
-        }
-
-        const overrideIngress = ingress ? { ingress } : null;
-
-        return (
-            <ChatOption
-                {...sharedContactInformation.data.contactType.chat}
-                {...overrideIngress}
-                _path={sharedContactInformation._path}
             />
         );
     }
