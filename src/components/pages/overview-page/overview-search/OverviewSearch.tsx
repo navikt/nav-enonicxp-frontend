@@ -26,17 +26,18 @@ export const OverviewSearch = ({
     label,
 }: OverviewSearchProps) => {
     const [searchString, setSearchString] = useState<string>('');
-
     const searchEventHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
+        const container = document.getElementById('search-container');
+
         setSearchString(value);
         searchUpdateCallback(value);
-
+        container.scrollIntoView();
         analytics(value);
     };
 
     return (
-        <div className={style.overviewSearch}>
+        <div id='search-container' className={style.overviewSearch}>
             <TextField
                 label={label}
                 value={searchString}
