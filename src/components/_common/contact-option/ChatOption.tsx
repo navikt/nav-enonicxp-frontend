@@ -18,17 +18,16 @@ export const ChatOption = (props: ChatData) => {
     const { layoutConfig } = useLayoutConfig();
     const getTranslations = translator('contactPoint', language);
 
-    console.log(props);
-
     const getTitle = () => {
         const legacyTitle = getTranslations('chat').title;
 
         return title || legacyTitle;
     };
+
     const getIngress = () => {
         const legacyIngress = getTranslations('chat').ingress;
 
-        return ingress ? <ParsedHtml htmlProps={ingress} /> : legacyIngress;
+        return ingress || legacyIngress;
     };
 
     return (
@@ -56,7 +55,9 @@ export const ChatOption = (props: ChatData) => {
                     {alertText}
                 </Alert>
             )}
-            <BodyLong className={style.text}>{getIngress()}</BodyLong>
+            <BodyLong as="div" className={style.text}>
+                <ParsedHtml htmlProps={getIngress()} />
+            </BodyLong>
         </div>
     );
 };
