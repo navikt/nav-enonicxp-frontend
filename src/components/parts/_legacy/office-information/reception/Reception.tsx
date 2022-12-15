@@ -5,9 +5,9 @@ import { translator, Language } from 'translations';
 import {
     AudienceReception,
     OpeningHoursProps,
-} from '../../../../../types/content-props/office-information-props';
+} from 'types/content-props/office-information-props';
 import { Heading, BodyShort } from '@navikt/ds-react';
-import { MetaOpeningHours, OpeningHours } from './OpeningHours';
+import { OpeningHours } from './OpeningHours';
 
 import style from './Reception.module.scss';
 
@@ -21,18 +21,6 @@ interface FormattedAudienceReception {
     openingHoursExceptions: FormattedOpeningHours[];
     openingHours: FormattedOpeningHours[];
 }
-
-const formatMetaOpeningHours = (el: OpeningHoursProps) => {
-    const days: { [key: string]: string } = {
-        Mandag: 'Mo',
-        Tirsdag: 'Tu',
-        Onsdag: 'We',
-        Torsdag: 'Th',
-        Fredag: 'Fr',
-    };
-    const day = days[el.dag];
-    return `${day} ${el.fra}-${el.til}`;
-};
 
 const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
     const dagArr: string[] = [
@@ -62,10 +50,7 @@ const formatAudienceReception = (
                     dato,
                 });
             } else {
-                acc.regular.push({
-                    ...elem,
-                    meta: formatMetaOpeningHours(elem),
-                });
+                acc.regular.push(elem);
             }
             return acc;
         },
@@ -92,7 +77,7 @@ interface Props {
     language: Language;
 }
 
-const Reception = (props: Props) => {
+export const Reception = (props: Props) => {
     if (!props.receptions) {
         return null;
     }
@@ -119,12 +104,6 @@ const Reception = (props: Props) => {
                                 <Heading level="4" size="small">
                                     Spesielle åpningstider
                                 </Heading>
-                                <MetaOpeningHours
-                                    openingHours={
-                                        reception.openingHoursExceptions
-                                    }
-                                    metaKey="meta-exceptions"
-                                />
                                 <OpeningHours
                                     openingHours={
                                         reception.openingHoursExceptions
@@ -154,5 +133,3 @@ const Reception = (props: Props) => {
         </div>
     );
 };
-
-export default Reception;
