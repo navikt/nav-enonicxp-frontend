@@ -118,7 +118,9 @@ export const DefaultOption = (props: DefaultContactProps) => {
                     </Heading>
                 </div>
             </LenkeBase>
-            <BodyLong className={style.text}>{getIngress()}</BodyLong>
+            <BodyLong as="div" className={style.text}>
+                {getIngress()}
+            </BodyLong>
         </div>
     );
 };
