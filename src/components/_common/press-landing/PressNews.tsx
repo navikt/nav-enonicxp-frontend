@@ -24,10 +24,11 @@ export const PressNews = (props: PressNewsProps) => {
         return null;
     }
 
-    const pressNewsItems = pressNews.data.sectionContents.slice(
-        0,
-        parseInt(maxNewsCount, 10) || 5
-    );
+    const pressNewsItems = pressNews.data.sectionContents
+        .sort((a: MainArticleProps, b: MainArticleProps) =>
+            a.createdTime < b.createdTime ? 1 : -1
+        )
+        .slice(0, parseInt(maxNewsCount, 10) || 5);
 
     return (
         <div className={styles.pressNews}>
