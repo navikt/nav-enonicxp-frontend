@@ -25,9 +25,13 @@ export const PressNews = (props: PressNewsProps) => {
     }
 
     const pressNewsItems = pressNews.data.sectionContents
-        .sort((a: MainArticleProps, b: MainArticleProps) =>
-            a.createdTime < b.createdTime ? 1 : -1
-        )
+        .sort((a: MainArticleProps, b: MainArticleProps) => {
+            if (!a?.publish?.first || !b?.publish?.first) {
+                return 0;
+            }
+
+            return a.publish.first < b.publish.first ? 1 : -1;
+        })
         .slice(0, parseInt(maxNewsCount, 10) || 5);
 
     return (
