@@ -1,35 +1,6 @@
-import { OpeningHoursProps } from '../../../../../types/content-props/office-information-props';
 import React from 'react';
-import { Table } from '../../../../_common/table/Table';
-
-export const MetaOpeningHours = (props: {
-    openingHours: OpeningHoursProps[];
-    metaKey: string;
-}) => {
-    return (
-        <ul className="hidden">
-            {props.openingHours.map((opening, ix) => {
-                const compKey = `${props.metaKey}-${ix}`;
-                return (
-                    <li key={compKey}>
-                        <time dateTime={opening.isoDate}>{opening.dato}</time>
-                        <time dateTime={opening.isoDate}>{opening.dato}</time>
-                        {!opening.stengt && (
-                            <>
-                                <time dateTime={opening.fra}>
-                                    {opening.fra}
-                                </time>
-                                <time dateTime={opening.til}>
-                                    {opening.til}
-                                </time>
-                            </>
-                        )}
-                    </li>
-                );
-            })}
-        </ul>
-    );
-};
+import { OpeningHoursProps } from 'types/content-props/office-information-props';
+import { Table } from 'components/_common/table/Table';
 
 export const OpeningHours = (props: {
     openingHours: OpeningHoursProps[];
