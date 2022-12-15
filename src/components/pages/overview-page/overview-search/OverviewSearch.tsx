@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import { TextField } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { smoothScrollToTarget} from 'utils/scroll-to';
 
 import style from './OverviewSearch.module.scss';
 
@@ -28,12 +29,13 @@ export const OverviewSearch = ({
     const [searchString, setSearchString] = useState<string>('');
     const searchEventHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
-        const container = document.getElementById('overviewsearch-container');
 
         setSearchString(value);
         searchUpdateCallback(value);
-        container.scrollIntoView();
         analytics(value);
+
+        // Sikre at resultatlisten er i synlig ved å legge feltet øverst
+        smoothScrollToTarget('overviewsearch-container', 10);
     };
 
     return (
