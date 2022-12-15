@@ -23,6 +23,7 @@ import { MacroAlertBox } from './alert-box/MacroAlertBox';
 import { MacroSaksbehandlingstid } from './saksbehandlingstid/MacroSaksbehandlingstid';
 import { MacroPayoutDates } from './payout-dates/MacroPayoutDates';
 import { MacroProductCardMicro } from 'components/macros/product-card-micro/MacroProductCardMicro';
+import { MacroTall } from 'components/macros/tall/MacroTall';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
@@ -47,6 +48,7 @@ const macroComponents: {
     [MacroType.ProductCardMicro]: MacroProductCardMicro,
     [MacroType.ProductCardMini]: MacroProductCardMini,
     [MacroType.Quote]: MacroQuote,
+    [MacroType.Tall]: MacroTall,
     [MacroType.Tankestrek]: MacroTankestrek,
     [MacroType.VarselBoks]: MacroVarselBoks,
     [MacroType.Video]: MacroVideo,
