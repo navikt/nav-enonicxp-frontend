@@ -4,7 +4,7 @@ export interface MacroTallProps extends MacroPropsCommon {
     name: MacroType.Tall;
     config: {
         tall: {
-            verdi: string;
+            verdi: number;
         };
     };
 }
