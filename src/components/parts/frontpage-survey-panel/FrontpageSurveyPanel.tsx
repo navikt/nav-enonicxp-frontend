@@ -18,9 +18,14 @@ export const FrontpageSurveyPanel = ({ config }: FrontPageSurveyPanelProps) => {
     const { description, header, icon } = config;
     return (
         <div className={style.surveyPanel}>
+            {header && (
+                <Heading level="2" size="large" className={style.header}>
+                    {header}
+                </Heading>
+            )}
             <div className={style.container}>
-                <div className={style.icon}>
-                    {icon?.icon && (
+                {icon?.icon && (
+                    <div className={style.icon}>
                         <XpImage
                             imageProps={icon?.icon}
                             alt={''}
@@ -31,12 +36,7 @@ export const FrontpageSurveyPanel = ({ config }: FrontPageSurveyPanelProps) => {
                                 }),
                             }}
                         />
-                    )}
-                </div>
-                {header && (
-                    <Heading level="2" size="medium" className={style.header}>
-                        {header}
-                    </Heading>
+                    </div>
                 )}
                 <div className={style.description}>
                     <ParsedHtml htmlProps={description} />
