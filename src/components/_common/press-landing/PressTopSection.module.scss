@@ -33,4 +33,8 @@
         text-underline-offset: 0.2rem;
         border: 0;
     }
+    a:hover {
+        text-decoration: none;
+        color: var(--navds-semantic-color-link);
+    }
 }
