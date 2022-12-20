@@ -12,7 +12,7 @@ const sharedContactChannels = ['call', 'write', 'chat'];
 const editorHelpText = {
     call: 'Velg telefonnummer før denne kontaktkanalen kan vises.  Alternativt vises gammel hardkodet telefon-informasjon.',
     write: 'Velg en "skriv til oss"-side før denne kontaktkanalen kan vises.',
-    chat: 'Velg en "chat"-side før denne kontaktkanalen kan vises. Alternativt vises gammel hardkodet chat-informasjon.',
+    chat: 'Velg en "chat"-side før denne kontaktkanalen kan vises. Alternativt vises standard chat-tekstinnhold.',
 };
 
 const getContactOptionComponent = (channel: string) => {

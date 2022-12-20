@@ -42,16 +42,16 @@ export const WriteOption = (props: WriteOptionProps) => {
                     </Heading>
                 </div>
             </LenkeBase>
-            <div className={style.text}>
-                {alertText && (
-                    <Alert variant="warning" className={style.alert} inline>
-                        {alertText}
-                    </Alert>
-                )}
+            {alertText && (
+                <Alert variant="warning" className={style.alert} inline>
+                    {alertText}
+                </Alert>
+            )}
+            <BodyLong as="div" className={style.text}>
                 <ParsedHtml
                     htmlProps={ingress || getTranslations('write').ingress}
                 />
-            </div>
+            </BodyLong>
         </div>
     );
 };

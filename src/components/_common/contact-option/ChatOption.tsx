@@ -19,15 +19,13 @@ export const ChatOption = (props: ChatData) => {
     const getTranslations = translator('contactPoint', language);
 
     const getTitle = () => {
-        const legacyTitle = getTranslations('chat').title;
-
-        return title || legacyTitle;
+        const dictionaryTitle = getTranslations('chat').title;
+        return title || dictionaryTitle;
     };
 
     const getIngress = () => {
-        const legacyIngress = getTranslations('chat').ingress;
-
-        return ingress || legacyIngress;
+        const dictionaryIngress = getTranslations('chat').ingress;
+        return ingress || dictionaryIngress;
     };
 
     return (
