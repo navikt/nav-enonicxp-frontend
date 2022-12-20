@@ -33,7 +33,7 @@ export const Expandable = ({
         setIsOpen(!isOpen);
     };
 
-    const checkForOpen = () => {
+    const checkAndOpenPanel = () => {
         if (anchorId && window.location.hash === `#${anchorId}`) {
             console.log('setting open');
             setIsOpen(true);
@@ -41,7 +41,7 @@ export const Expandable = ({
     };
 
     const hashChangeHandler = () => {
-        checkForOpen();
+        checkAndOpenPanel();
     };
 
     useEffect(() => {
@@ -61,7 +61,7 @@ export const Expandable = ({
     }, []);
 
     useEffect(() => {
-        checkForOpen();
+        checkAndOpenPanel();
     }, [anchorId]);
 
     return (
