@@ -33,6 +33,17 @@ export const Expandable = ({
         setIsOpen(!isOpen);
     };
 
+    const checkForOpen = () => {
+        if (anchorId && window.location.hash === `#${anchorId}`) {
+            console.log('setting open');
+            setIsOpen(true);
+        }
+    };
+
+    const hashChangeHandler = () => {
+        checkForOpen();
+    };
+
     useEffect(() => {
         const openOnBrowserSearch = (e: KeyboardEvent) => {
             if (e.ctrlKey && e.code === 'KeyF') {
@@ -41,13 +52,16 @@ export const Expandable = ({
         };
 
         window.addEventListener('keydown', openOnBrowserSearch);
-        return () => window.removeEventListener('keydown', openOnBrowserSearch);
+        window.addEventListener('hashchange', hashChangeHandler);
+
+        return () => {
+            window.removeEventListener('keydown', openOnBrowserSearch);
+            window.removeEventListener('hashchange', hashChangeHandler);
+        };
     }, []);
 
     useEffect(() => {
-        if (anchorId && window.location.hash === `#${anchorId}`) {
-            setIsOpen(true);
-        }
+        checkForOpen();
     }, [anchorId]);
 
     return (
