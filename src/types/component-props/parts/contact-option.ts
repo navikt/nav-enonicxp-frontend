@@ -40,18 +40,6 @@ export interface DefaultContactData {
     icon?: string;
 }
 
-export interface SharedContactInformationData extends DefaultContactData {
-    sharedContactInformation: {
-        _path: string;
-        data: {
-            contactType: {
-                telephone?: TelephoneData;
-                write?: WriteData;
-            };
-        };
-    };
-}
-
 export interface TelephoneData {
     phoneNumber?: string;
     title?: string;
@@ -69,10 +57,29 @@ export interface TelephoneData {
         hours: OpeningHour[];
     };
 }
+export interface WriteData extends DefaultContactData {
+    alertText?: string;
+}
+export interface ChatData extends Omit<DefaultContactData, 'url'> {
+    alertText?: string;
+}
+
+export interface SharedContactInformationData extends DefaultContactData {
+    sharedContactInformation: {
+        _path: string;
+        data: {
+            contactType: {
+                telephone?: TelephoneData;
+                write?: WriteData;
+            };
+        };
+    };
+}
 
 export interface WriteData {
     title?: string;
     url?: string;
+    alertText?: string;
     ingress?: ProcessedHtmlProps;
 }
 
