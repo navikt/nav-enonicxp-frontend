@@ -35,7 +35,6 @@ export const Expandable = ({
 
     const checkAndOpenPanel = () => {
         if (anchorId && window.location.hash === `#${anchorId}`) {
-            console.log('setting open');
             setIsOpen(true);
         }
     };
