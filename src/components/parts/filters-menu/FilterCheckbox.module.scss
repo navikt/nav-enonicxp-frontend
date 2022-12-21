@@ -3,7 +3,7 @@
 .filterCheckbox {
     background-color: transparent;
     border-radius: 0.25rem;
-    box-shadow: common.$navds-semantic-color-link inset 0 0 0 1px;
+    box-shadow: common.$a-text-action inset 0 0 0 1px;
     cursor: pointer;
     display: flex;
     justify-items: center;
@@ -11,12 +11,12 @@
     padding: 0.3rem 0.6rem 0.3rem 0.3rem;
 
     &:focus-within {
-        box-shadow: common.$navds-semantic-color-focus inset 0 0 0 3px;
+        box-shadow: common.$a-border-focus inset 0 0 0 3px;
     }
 
     &:hover {
         .label {
-            color: common.$navds-semantic-color-link;
+            color: common.$a-text-action;
 
             &:before {
                 background-color: #c0e1ff;
@@ -27,10 +27,10 @@
 
     &.selected {
         background-color: #c0e1ff;
-        box-shadow: common.$navds-semantic-color-link inset 0 0 0 1px;
+        box-shadow: common.$a-text-action inset 0 0 0 1px;
 
         &:hover {
-            background-color: common.$navds-semantic-color-link;
+            background-color: common.$a-text-action;
             .label {
                 color: white;
 
@@ -65,7 +65,7 @@
             background-size: 1rem;
             border-radius: 2px;
             border: 0;
-            box-shadow: common.$navds-global-color-gray-600 inset 0 0 0 1px;
+            box-shadow: common.$a-gray-600 inset 0 0 0 1px;
             content: '';
             display: inline-flex;
             height: 1rem;

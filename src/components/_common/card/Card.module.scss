@@ -24,24 +24,24 @@
     &:hover,
     &:focus-within {
         > :global(.situation) {
-            background-color: var(--navds-global-color-orange-200);
+            background-color: var(--a-orange-200);
         }
         > :global(.product) {
-            background-color: var(--navds-global-color-green-200);
+            background-color: var(--a-green-200);
         }
         > :global(.tool) {
-            background-color: var(--navds-global-color-deepblue-200);
+            background-color: var(--a-deepblue-200);
         }
         > :global(.themed-article) {
-            background-color: var(--navds-global-color-limegreen-300);
+            background-color: var(--a-limegreen-300);
         }
         > :global(.guide) {
-            background-color: var(--navds-global-color-lightblue-200);
+            background-color: var(--a-lightblue-200);
         }
         //TODO: Find a better way? (can't specify classes in Card Size modules here or vice versa)
         * {
             text-decoration: none;
-            color: var(--navds-global-color-gray-900) !important;
+            color: var(--a-gray-900) !important;
         }
     }
 
@@ -49,7 +49,7 @@
     &:active {
         .bed {
             position: relative;
-            box-shadow: 0 0 0 3px var(--navds-global-color-blue-800) !important;
+            box-shadow: 0 0 0 3px var(--a-blue-800) !important;
 
             &:after {
                 background-color: transparent;

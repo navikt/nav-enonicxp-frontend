@@ -92,28 +92,28 @@
 
 .title {
     text-decoration: underline;
-    color: var(--navds-global-color-gray-900);
+    color: var(--a-gray-900);
     margin-bottom: 1rem;
     grid-area: Title;
     letter-spacing: -0.002em;
-    font-size: var(--navds-font-size-heading-medium);
-    line-height: var(--navds-font-line-height-heading-medium);
-    font-weight: var(--navds-font-weight-bold);
+    font-size: var(--a-font-size-heading-medium);
+    line-height: var(--a-font-line-height-heading-medium);
+    font-weight: var(--a-font-weight-bold);
     word-break: break-word;
 
     :global(.provider) & {
-        color: var(--navds-semantic-color-link);
+        color: var(--a-text-action);
     }
 }
 
 .description {
-    color: var(--navds-global-color-gray-900);
+    color: var(--a-gray-900);
     font-weight: 400;
     margin-bottom: 2rem;
 }
 
 .category {
-    color: var(--navds-global-color-gray-600);
+    color: var(--a-gray-600);
     font-size: 0.875rem;
     font-weight: 400;
     margin-top: auto; // Aligns category to bottom inside flexbox

@@ -12,31 +12,31 @@
     @include common.full-width-mixin;
 
     &.situation {
-        box-shadow: 0 -4px 0 var(--navds-global-color-orange-500) inset;
+        box-shadow: 0 -4px 0 var(--a-orange-500) inset;
     }
 
     &.product {
-        box-shadow: 0 -4px 0 var(--navds-global-color-green-500) inset;
+        box-shadow: 0 -4px 0 var(--a-green-500) inset;
     }
 
     &.guide {
-        box-shadow: 0 -4px 0 var(--navds-global-color-lightblue-500) inset;
+        box-shadow: 0 -4px 0 var(--a-lightblue-500) inset;
     }
 
     &.themedpage {
-        box-shadow: 0 -4px 0 var(--navds-global-color-limegreen-500) inset;
+        box-shadow: 0 -4px 0 var(--a-limegreen-500) inset;
     }
 
     &.tool {
-        box-shadow: 0 -4px 0 var(--navds-global-color-deepblue-500) inset;
+        box-shadow: 0 -4px 0 var(--a-deepblue-500) inset;
     }
 
     &.overview {
-        box-shadow: 0 -4px 0 var(--navds-global-color-deepblue-400) inset;
+        box-shadow: 0 -4px 0 var(--a-deepblue-400) inset;
     }
 
     &.generic {
-        box-shadow: 0 -4px 0 var(--navds-global-color-gray-600) inset;
+        box-shadow: 0 -4px 0 var(--a-gray-600) inset;
     }
 
     @media #{common.$mq-screen-mobile} {
@@ -88,5 +88,5 @@
 
 .divider,
 .modifiedLabel {
-    color: common.$navds-global-color-gray-600;
+    color: common.$a-gray-600;
 }

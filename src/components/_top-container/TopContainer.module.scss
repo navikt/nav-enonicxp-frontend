@@ -9,7 +9,7 @@
     @include common.full-width-mixin();
 
     &.white {
-        background-color: var(--navds-semantic-color-canvas-background-light);
+        background-color: var(--a-bg-default);
     }
 
     &.widgetsOffset {
