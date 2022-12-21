@@ -171,12 +171,12 @@ export const translationsBundleNn: Translations = {
         chat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida. Du kan be Frida om å få chatte med ein rettleiar (i romjula, kvardagar 10:00–14:30). Chatten for arbeidsgivarar er stengd i romjula.',
+                'Du møter først chatbot Frida. Du kan be Frida om å få chatte med ein rettleiar (i romjula, kvardagar 10:15–14:30). Chatten for arbeidsgivarar er stengd i romjula.',
         },
         legacyChat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida. Du kan be Frida om å få chatte med ein rettleiar (i romjula, kvardagar 10:00–14:30). Chatten for arbeidsgivarar er stengd i romjula.',
+                'Du møter først chatbot Frida. Du kan be Frida om å få chatte med ein rettleiar (i romjula, kvardagar 10:15–14:30). Chatten for arbeidsgivarar er stengd i romjula.',
         },
         write: {
             title: 'Skriv til oss',
