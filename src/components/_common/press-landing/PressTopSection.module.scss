@@ -18,6 +18,10 @@
     padding: 2.5rem;
     background-color: var(--navds-global-color-purple-50);
 
+    @media #{common.$mq-screen-mobile} {
+        padding: 1rem;
+    }
+
     p:last-of-type {
         margin-bottom: 0;
     }
@@ -28,5 +32,9 @@
         text-decoration-thickness: 1px;
         text-underline-offset: 0.2rem;
         border: 0;
+    }
+    a:hover {
+        text-decoration: none;
+        color: var(--navds-semantic-color-link);
     }
 }

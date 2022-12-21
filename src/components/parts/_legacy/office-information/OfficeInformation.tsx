@@ -1,5 +1,5 @@
 import React from 'react';
-import Reception from './reception/Reception';
+import { Reception } from './reception/Reception';
 import { SpecialInformation } from './SpecialInfo';
 import {
     formatAddress,
@@ -14,12 +14,12 @@ import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
 import {
     AudienceReception,
     OfficeInformationProps,
-} from '../../../../types/content-props/office-information-props';
-import { getInternalAbsoluteUrl } from '../../../../utils/urls';
+} from 'types/content-props/office-information-props';
+import { getInternalAbsoluteUrl } from 'utils/urls';
 import {
     GovernmentOfficeSchema,
     SpecialAnnouncementSchema,
-} from '../../../../types/structuredData';
+} from 'types/structuredData';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 
 import style from './OfficeInformation.module.scss';

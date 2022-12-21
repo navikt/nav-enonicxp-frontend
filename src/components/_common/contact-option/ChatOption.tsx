@@ -1,56 +1,60 @@
 import React from 'react';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
-import { WriteData } from 'types/component-props/parts/contact-option';
+import { ChatData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { classNames } from 'utils/classnames';
+import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
+import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 
 import style from './ContactOption.module.scss';
-import { ProcessedHtmlProps } from 'types/processed-html-props';
 
-interface WriteOptionProps extends WriteData {
-    _path?: string;
-    ingress: ProcessedHtmlProps;
-    alertText?: string;
-}
-
-export const WriteOption = (props: WriteOptionProps) => {
-    const { ingress, title, url, alertText } = props;
+export const ChatOption = (props: ChatData) => {
+    const { ingress, title, alertText } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
     const getTranslations = translator('contactPoint', language);
 
     const getTitle = () => {
-        return title || getTranslations('write').title;
+        const dictionaryTitle = getTranslations('chat').title;
+        return title || dictionaryTitle;
+    };
+
+    const getIngress = () => {
+        const dictionaryIngress = getTranslations('chat').ingress;
+        return ingress || dictionaryIngress;
     };
 
     return (
         <div className={style.contactOption}>
             <LenkeBase
-                href={url || '/person/kontakt-oss/nb/skriv-til-oss'}
+                onClick={(e) => {
+                    e.preventDefault();
+                    openChatbot();
+                }}
+                href="#"
+                analyticsEvent={AnalyticsEvents.CHAT_OPEN}
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
             >
                 <div className={style.linkContent}>
-                    <div className={classNames(style.icon, style['write'])} />
+                    <div className={classNames(style.icon, style.chat)} />
                     <Heading level="3" size="small">
                         {getTitle()}
                     </Heading>
                 </div>
             </LenkeBase>
             {alertText && (
-                <Alert variant="warning" className={style.alert} inline>
+                <Alert variant="warning" inline className={style.alert}>
                     {alertText}
                 </Alert>
             )}
             <BodyLong as="div" className={style.text}>
-                <ParsedHtml
-                    htmlProps={ingress || getTranslations('write').ingress}
-                />
+                <ParsedHtml htmlProps={getIngress()} />
             </BodyLong>
         </div>
     );

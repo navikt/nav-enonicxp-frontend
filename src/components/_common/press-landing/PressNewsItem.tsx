@@ -50,7 +50,7 @@ export const PressNewsItem = ({ newsItem }: PressNewsItemProps) => {
                 <Detail className={styles.publishDate}>
                     {getTranslations('published')}{' '}
                     {formatDate({
-                        datetime: newsItem.createdTime,
+                        datetime: newsItem.publish.first,
                         language,
                         short: true,
                         year: true,

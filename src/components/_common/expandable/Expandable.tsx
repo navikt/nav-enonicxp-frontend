@@ -33,6 +33,16 @@ export const Expandable = ({
         setIsOpen(!isOpen);
     };
 
+    const checkAndOpenPanel = () => {
+        if (anchorId && window.location.hash === `#${anchorId}`) {
+            setIsOpen(true);
+        }
+    };
+
+    const hashChangeHandler = () => {
+        checkAndOpenPanel();
+    };
+
     useEffect(() => {
         const openOnBrowserSearch = (e: KeyboardEvent) => {
             if (e.ctrlKey && e.code === 'KeyF') {
@@ -41,13 +51,16 @@ export const Expandable = ({
         };
 
         window.addEventListener('keydown', openOnBrowserSearch);
-        return () => window.removeEventListener('keydown', openOnBrowserSearch);
+        window.addEventListener('hashchange', hashChangeHandler);
+
+        return () => {
+            window.removeEventListener('keydown', openOnBrowserSearch);
+            window.removeEventListener('hashchange', hashChangeHandler);
+        };
     }, []);
 
     useEffect(() => {
-        if (anchorId && window.location.hash === `#${anchorId}`) {
-            setIsOpen(true);
-        }
+        checkAndOpenPanel();
     }, [anchorId]);
 
     return (
