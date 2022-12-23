@@ -169,11 +169,14 @@ export const translationsBundleNn: Translations = {
     },
     contactPoint: {
         chat: {
-            downAlert:
-                'Chatten er stengt på grunn av tekniske problem. Vi arbeidar med å rette feilen og beklagar ulempane.',
-            title: 'Chat med oss',
+            title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00).',
+                'Du møter først chatbot Frida. Du kan be Frida om å få chatte med ein rettleiar (i romjula, kvardagar 10:15–14:30). Chatten for arbeidsgivarar er stengd i romjula.',
+        },
+        legacyChat: {
+            title: 'Du kan chatte med oss',
+            ingress:
+                'Du møter først chatbot Frida. Du kan be Frida om å få chatte med ein rettleiar (i romjula, kvardagar 10:15–14:30). Chatten for arbeidsgivarar er stengd i romjula.',
         },
         write: {
             title: 'Skriv til oss',
