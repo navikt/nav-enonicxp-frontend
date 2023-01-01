@@ -179,12 +179,12 @@ export const translationsBundleEn: Translations = {
         chat: {
             title: 'Chat with Frida',
             ingress:
-                'You will first be met by chatbot Frida. You can also ask Frida to chat with a counsellor (Between December 24-31, weekdays 10:15-14:30). Chat for employers is closed during Christmas.',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
         },
         legacyChat: {
             title: 'You can chat with us',
             ingress:
-                'You will first be met by chatbot Frida. You can also ask Frida to chat with a counsellor (Between December 24-31, weekdays 10:15-14:30). Chat for employers is closed during Christmas.',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
         },
         write: {
             title: 'Write to us',

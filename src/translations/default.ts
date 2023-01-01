@@ -179,12 +179,12 @@ export const translationsBundleNb = {
         chat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida. Du kan be Frida om å få chatte med en veileder (i romjulen, hverdager 10:15–14:30). Chatten for arbeidsgivere er stengt i romjulen.',
+                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 09:00-15:00).',
         },
         legacyChat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida. Du kan be Frida om å få chatte med en veileder (i romjulen, hverdager 10:15–14:30). Chatten for arbeidsgivere er stengt i romjulen.',
+                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 09:00-15:00).',
         },
         write: {
             title: 'Skriv til oss',
