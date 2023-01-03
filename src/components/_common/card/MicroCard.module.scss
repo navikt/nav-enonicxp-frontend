@@ -1,7 +1,7 @@
 @use 'src/common' as common;
 
 .header {
-    font-weight: common.$navds-font-weight-bold;
+    font-weight: common.$a-font-weight-bold;
 }
 
 .wrapper {
@@ -9,18 +9,18 @@
     flex-wrap: wrap;
     align-items: flex-start;
     column-gap: 0.75rem;
-    margin-top: var(--navds-spacing-1);
-    margin-bottom: var(--navds-spacing-7);
+    margin-top: var(--a-spacing-1);
+    margin-bottom: var(--a-spacing-7);
 }
 
 .micro {
     border-radius: 16px;
     border: 1px solid #b0b0b0;
-    box-shadow: 0 0 0 3px var(--navds-semantic-color-link);
-    color: var(--navds-global-color-gray-900);
+    box-shadow: 0 0 0 3px var(--a-text-action);
+    color: var(--a-gray-900);
     display: inline-flex;
     font-size: common.px-to-rem(14);
-    line-height: 1.325rem;
+    line-height: 1.25rem;
     padding: 0.25rem 0.5rem;
     position: relative;
 
@@ -56,43 +56,43 @@
 
     &:global(.situation) {
         &:before {
-            background-color: var(--navds-global-color-orange-500);
+            background-color: var(--a-orange-500);
         }
     }
 
     &:global(.product) {
         &:before {
-            background-color: var(--navds-global-color-green-500);
+            background-color: var(--a-green-500);
         }
     }
 
     &:global(.tool) {
         &:before {
-            background-color: var(--navds-global-color-deepblue-500);
+            background-color: var(--a-deepblue-500);
         }
     }
 
     &:global(.themed-article) {
         &:before {
-            background-color: var(--navds-global-color-limegreen-500);
+            background-color: var(--a-limegreen-500);
         }
     }
 
     &:global(.guide) {
         &:before {
-            background-color: var(--navds-global-color-lightblue-500);
+            background-color: var(--a-lightblue-500);
         }
     }
 
     &:global(.overview) {
         &:before {
-            background-color: var(--navds-global-color-deepblue-400);
+            background-color: var(--a-deepblue-400);
         }
     }
 
     &:global(.generic) {
         &:before {
-            background-color: var(--navds-global-color-gray-600);
+            background-color: var(--a-gray-600);
         }
     }
 }

@@ -22,14 +22,14 @@
         "test-server": "next build server/__next-test-dummy && jest --testPathPattern=server/",
         "test-client": "jest --testPathPattern=src/"
     },
-    "dependenciesComments":{
+    "dependenciesComments": {
         "@sentry/nextjs": "[7.7.0] Newer versions breaks the failover-html response in our _error page. Needs to be solved before upgrading."
     },
     "dependencies": {
-        "@navikt/ds-css": "1.5.6",
-        "@navikt/ds-icons": "1.5.6",
-        "@navikt/ds-react": "1.5.6",
-        "@navikt/ds-tokens": "1.5.6",
+        "@navikt/ds-css": "2.0.11",
+        "@navikt/ds-icons": "2.0.11",
+        "@navikt/ds-react": "2.0.11",
+        "@navikt/ds-tokens": "2.0.11",
         "@navikt/nav-dekoratoren-moduler": "1.8.1",
         "@reduxjs/toolkit": "1.9.0",
         "@sentry/integrations": "7.7.0",
@@ -80,7 +80,7 @@
         "@types/react-collapse": "5.0.1",
         "@types/react-dom": "18.0.6",
         "@types/react-redux": "7.1.24",
-        "@types/react": "18.0.15",
+        "@types/react": "18.0.26",
         "@typescript-eslint/eslint-plugin": "5.30.6",
         "@typescript-eslint/parser": "5.30.6",
         "babel-eslint": "10.1.0",

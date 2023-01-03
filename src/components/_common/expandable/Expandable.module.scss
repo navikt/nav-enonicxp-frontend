@@ -2,7 +2,7 @@
 
 .expandable {
     &:global(.navds-accordion__item) {
-        border-bottom: 1px common.$navds-semantic-color-divider solid;
+        border-bottom: 1px common.$a-border-divider solid;
     }
 
     &:global(.navds-accordion__item--open) {
@@ -12,7 +12,7 @@
     }
 
     :global(.navds-accordion__header) {
-        color: common.$navds-semantic-color-link;
+        color: common.$a-text-action;
 
         @include common.expandable-panel-mixin();
         &:focus {

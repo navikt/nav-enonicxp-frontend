@@ -14,7 +14,7 @@
 }
 
 .letterPartOrange {
-    background-color: var(--navds-global-color-orange-200);
+    background-color: var(--a-orange-200);
 
     @include areaCard.transitionMixin;
     position: absolute;
@@ -30,7 +30,7 @@
 }
 
 .letterPartBlue {
-    background-color: var(--navds-global-color-deepblue-200);
+    background-color: var(--a-deepblue-200);
 
     @include areaCard.transitionMixin;
     position: absolute;
@@ -46,7 +46,7 @@
 }
 
 .mask {
-    background-color: var(--navds-global-color-deepblue-100);
+    background-color: var(--a-deepblue-100);
 
     @include areaCard.transitionMixin;
     position: absolute;

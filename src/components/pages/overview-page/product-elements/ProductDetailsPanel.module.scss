@@ -11,7 +11,7 @@
 }
 
 .accordionItem {
-    border-bottom: 1px common.$navds-semantic-color-divider solid;
+    border-bottom: 1px common.$a-border-divider solid;
 
     :global(.navds-accordion__header),
     :global(.navds-accordion__content) {
@@ -22,8 +22,8 @@
         align-items: center;
         background-color: white;
         margin-bottom: 3px;
-        padding-top: var(--navds-spacing-4);
-        padding-bottom: var(--navds-spacing-4);
+        padding-top: var(--a-spacing-4);
+        padding-bottom: var(--a-spacing-4);
 
         @include common.expandable-panel-mixin();
         &:focus {
@@ -33,7 +33,7 @@
         :global(.navds-accordion__header-content) {
             display: flex;
             align-items: center;
-            gap: var(--navds-spacing-4);
+            gap: var(--a-spacing-4);
         }
     }
 

@@ -158,7 +158,7 @@ $navPink: #fde6e6;
 
 @mixin panel-focus-mixin($inset: true) {
     outline: unset;
-    box-shadow: 0 0 0 3px if($inset, inset, null) $navds-semantic-color-focus;
+    box-shadow: 0 0 0 3px if($inset, inset, null) $a-border-focus;
 }
 
 @mixin section-padding-mixin() {
@@ -175,7 +175,7 @@ $navPink: #fde6e6;
 
 @mixin link-border-bottom-mixin($underlineDefault: true) {
     @if $underlineDefault {
-        border-bottom: 1px $navds-semantic-color-link solid;
+        border-bottom: 1px $a-text-action solid;
     } @else {
         border-bottom-color: transparent;
     }
@@ -188,7 +188,7 @@ $navPink: #fde6e6;
         @if $underlineDefault {
             border-bottom-color: transparent;
         } @else {
-            border-bottom: 1px $navds-semantic-color-link solid;
+            border-bottom: 1px $a-text-action solid;
         }
     }
 }

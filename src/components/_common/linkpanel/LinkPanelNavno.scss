@@ -4,8 +4,8 @@
 // The component this styling applies to is intended for very flexible styling
 
 $padding: 1.5rem;
-$blueLinkColor: common.$navds-semantic-color-link;
-$blackLinkColor: common.$navds-semantic-color-text;
+$blueLinkColor: common.$a-text-action;
+$blackLinkColor: common.$a-text-default;
 
 .linkPanelNavno {
     position: relative;

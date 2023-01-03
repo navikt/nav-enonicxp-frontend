@@ -1,7 +1,7 @@
 @use 'src/common' as common;
 
-$blueLinkColor: common.$navds-semantic-color-link;
-$blackLinkColor: common.$navds-semantic-color-text;
+$blueLinkColor: common.$a-text-action;
+$blackLinkColor: common.$a-text-default;
 
 .linkPanel {
     display: flex;
@@ -56,7 +56,7 @@ $blackLinkColor: common.$navds-semantic-color-text;
     }
 
     &.black {
-        color: common.$navds-semantic-color-text;
+        color: common.$a-text-default;
         border-bottom-color: $blackLinkColor;
     }
 
