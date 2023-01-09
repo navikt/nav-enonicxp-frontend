@@ -5,11 +5,17 @@ import { Alert } from '@navikt/ds-react';
 
 import style from './ChatbotLinkPanel.module.scss';
 
-type Props = { analyticsGroup: string; linkText: string; ingress: string };
+type Props = {
+    analyticsGroup: string;
+    linkText: string;
+    alertText: string;
+    ingress: string;
+};
 
 export const ChatbotLinkPanel = ({
     analyticsGroup,
     linkText,
+    alertText,
     ingress,
 }: Props) => {
     return (
@@ -23,9 +29,7 @@ export const ChatbotLinkPanel = ({
                 openChatbot();
             }}
         >
-            <Alert variant="warning">
-                Akkurat nå virker ikke chatten, vi jobber med å fikse feilen.
-            </Alert>
+            {alertText && <Alert variant="warning">{alertText}</Alert>}
             {ingress}
         </LinkPanelNavno>
     );

@@ -18,6 +18,7 @@ export const FrontpageContactPart = ({
     const {
         title,
         chatTitle,
+        chatAlertText,
         chatIngress,
         contactUsTitle,
         contactUsIngress,
@@ -39,6 +40,7 @@ export const FrontpageContactPart = ({
                 <ChatbotLinkPanel
                     analyticsGroup={title}
                     linkText={chatTitle}
+                    alertText={chatAlertText}
                     ingress={chatIngress}
                 />
                 <LinkPanelNavno
