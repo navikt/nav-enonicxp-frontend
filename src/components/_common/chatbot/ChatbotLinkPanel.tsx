@@ -1,6 +1,7 @@
 import React from 'react';
 import { LinkPanelNavno } from '../linkpanel/LinkPanelNavno';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
+import { Alert } from '@navikt/ds-react';
 
 import style from './ChatbotLinkPanel.module.scss';
 
@@ -22,6 +23,9 @@ export const ChatbotLinkPanel = ({
                 openChatbot();
             }}
         >
+            <Alert variant="warning">
+                Akkurat nå virker ikke chatten, vi jobber med å fikse feilen.
+            </Alert>
             {ingress}
         </LinkPanelNavno>
     );
