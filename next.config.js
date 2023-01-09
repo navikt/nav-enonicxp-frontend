@@ -72,7 +72,7 @@ const csp = async () => {
 
     const directives = {
         'default-src': internalHosts,
-        'script-src': [...internalHosts, ...tiTiHosts, qbrickScript ],
+        'script-src': [...internalHosts, ...tiTiHosts, ...qbrickScript],
         'worker-src': internalHosts,
         'style-src': [...internalHosts, UNSAFE_INLINE],
         'font-src': [...internalHosts, DATA],
