@@ -45,8 +45,7 @@ const csp = async () => {
     const adminHost = new URL(process.env.ADMIN_ORIGIN).host;
     const xpHost = new URL(process.env.XP_ORIGIN).host;
 
-    const qbrickHost = 'video.qbrick.com';
-    const qbrickScript = 'play2.qbrick.com';
+    const qbrickHosts = ['video.qbrick.com', 'play2.qbrick.com'];
 
     // These are used by a NAV-funded research project for accessibility-related feedback
     const tingtunHost = '*.tingtun.no';
@@ -72,17 +71,20 @@ const csp = async () => {
 
     const directives = {
         'default-src': internalHosts,
-        'script-src': [...internalHosts, ...tiTiHosts, ...qbrickScript],
+        'script-src': [...internalHosts, ...tiTiHosts],
+        'script-src-elem': qbrickHosts,
         'worker-src': internalHosts,
         'style-src': [...internalHosts, UNSAFE_INLINE],
         'font-src': [...internalHosts, DATA],
         'img-src': [...internalHosts, DATA],
-        'frame-src': [qbrickHost],
-        'connect-src': internalHosts,
+        'frame-src': qbrickHosts,
+        'media-src': qbrickHosts,
+        'connect-src': [...internalHosts, ...qbrickHosts],
     };
 
     if (process.env.NODE_ENV === 'development') {
         directives['default-src'].push('ws:');
+        directives['connect-src'].push('ws:');
         directives['script-src'].push(UNSAFE_INLINE, UNSAFE_EVAL);
     }
 
