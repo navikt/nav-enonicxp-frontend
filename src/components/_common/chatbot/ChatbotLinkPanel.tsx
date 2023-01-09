@@ -29,7 +29,11 @@ export const ChatbotLinkPanel = ({
                 openChatbot();
             }}
         >
-            {alertText && <Alert variant="warning">{alertText}</Alert>}
+            {alertText && (
+                <Alert variant="warning" className={style.alert}>
+                    {alertText}
+                </Alert>
+            )}
             {ingress}
         </LinkPanelNavno>
     );

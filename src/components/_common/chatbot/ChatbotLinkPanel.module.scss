@@ -22,10 +22,10 @@ $chatPointerSize: 1.5rem;
 
         display: block;
     }
+}
 
-    :global(.navds-alert) {
-        margin-bottom: 0.75rem;
-        background-color: white;
-        border: none;
-    }
+.alert {
+    margin-bottom: 0.75rem;
+    background-color: white;
+    border: none;
 }
