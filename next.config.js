@@ -46,6 +46,7 @@ const csp = async () => {
     const xpHost = new URL(process.env.XP_ORIGIN).host;
 
     const qbrickHost = 'video.qbrick.com';
+    const qbrickScript = 'play2.qbrick.com';
 
     // These are used by a NAV-funded research project for accessibility-related feedback
     const tingtunHost = '*.tingtun.no';
@@ -71,7 +72,7 @@ const csp = async () => {
 
     const directives = {
         'default-src': internalHosts,
-        'script-src': [...internalHosts, ...tiTiHosts],
+        'script-src': [...internalHosts, ...tiTiHosts, qbrickScript ],
         'worker-src': internalHosts,
         'style-src': [...internalHosts, UNSAFE_INLINE],
         'font-src': [...internalHosts, DATA],
