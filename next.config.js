@@ -77,7 +77,6 @@ const csp = async () => {
         'style-src': [...internalHosts, UNSAFE_INLINE],
         'font-src': [...internalHosts, DATA],
         'img-src': [...internalHosts, DATA],
-        'frame-src': qbrickHosts,
         'media-src': qbrickHosts,
         'connect-src': [...internalHosts, ...qbrickHosts],
     };
