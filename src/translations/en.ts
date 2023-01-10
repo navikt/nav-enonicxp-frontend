@@ -46,7 +46,6 @@ const areas: { [key in Area]: string } = {
     [Area.MUNICIPALITY]: 'For government',
     [Area.OTHER]: 'Other',
     [Area.PENSION]: 'Pension',
-    [Area.SELF_EMPLOYED]: 'For the self-employed',
     [Area.SOCIAL_COUNSELLING]: 'Financial social advice and guidance',
     [Area.WORK]: 'Work',
 };
