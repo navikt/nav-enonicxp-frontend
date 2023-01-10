@@ -1,7 +1,8 @@
 import React from 'react';
 import { LinkPanelNavno } from '../linkpanel/LinkPanelNavno';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
-import { Alert } from '@navikt/ds-react';
+import { Warning } from '@navikt/ds-icons';
+import { BodyLong } from '@navikt/ds-react';
 
 import style from './ChatbotLinkPanel.module.scss';
 
@@ -30,9 +31,10 @@ export const ChatbotLinkPanel = ({
             }}
         >
             {alertText && (
-                <Alert variant="warning" className={style.alert}>
-                    {alertText}
-                </Alert>
+                <div className={style.alert}>
+                    <Warning title="Advarsel" className={style.alertIcon} />
+                    <BodyLong as="div">{alertText}</BodyLong>
+                </div>
             )}
             {ingress}
         </LinkPanelNavno>
