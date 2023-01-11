@@ -63,8 +63,6 @@ export const FilterExplanation = ({
                         style.icon,
                         showHighlight ? style.iconVisible : style.iconHidden
                     )}
-                    role="img"
-                    focusable="false"
                     aria-labelledby={explanationId}
                 />
                 <Information
@@ -72,8 +70,6 @@ export const FilterExplanation = ({
                         style.icon,
                         showHighlight ? style.iconHidden : style.iconVisible
                     )}
-                    role="img"
-                    focusable="false"
                     aria-labelledby={explanationId}
                 />
             </div>
