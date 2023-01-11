@@ -30,7 +30,7 @@
         "@navikt/ds-icons": "2.0.11",
         "@navikt/ds-react": "2.0.11",
         "@navikt/ds-tokens": "2.0.11",
-        "@navikt/nav-dekoratoren-moduler": "1.8.2-beta.0",
+        "@navikt/nav-dekoratoren-moduler": "1.8.2-beta.1",
         "@reduxjs/toolkit": "1.9.0",
         "@sentry/integrations": "7.7.0",
         "@sentry/nextjs": "7.7.0",
