@@ -9,7 +9,7 @@ import style from './ChatbotLinkPanel.module.scss';
 type Props = {
     analyticsGroup: string;
     linkText: string;
-    alertText: string;
+    alertText?: string;
     ingress: string;
 };
 
