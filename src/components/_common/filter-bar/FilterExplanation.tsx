@@ -58,9 +58,9 @@ export const FilterExplanation = ({
         >
             <div className={style.iconWrapper}>
                 <InformationFilled
-                    color="#006A23"
                     className={classNames(
                         style.icon,
+                        style.highlighted,
                         showHighlight ? style.iconVisible : style.iconHidden
                     )}
                     aria-labelledby={explanationId}

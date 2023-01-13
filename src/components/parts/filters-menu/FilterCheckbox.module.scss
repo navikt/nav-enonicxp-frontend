@@ -19,16 +19,13 @@
             color: common.$a-text-action;
 
             &:before {
-                background-color: #c0e1ff;
+                background-color: common.$a-surface-action;
                 box-shadow: 0 0 0;
             }
         }
     }
 
     &.selected {
-        background-color: #c0e1ff;
-        box-shadow: common.$a-text-action inset 0 0 0 1px;
-
         &:hover {
             background-color: common.$a-text-action;
             .label {
@@ -77,10 +74,6 @@
             &:before {
                 background-image: url('/gfx/success-stroke.svg');
                 box-shadow: 0 0 0;
-            }
-
-            &:hover {
-                color: inherit;
             }
         }
     }
