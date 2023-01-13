@@ -26,6 +26,8 @@
     }
 
     &.selected {
+        background-color: common.$a-surface-selected;
+
         &:hover {
             background-color: common.$a-text-action;
             .label {
