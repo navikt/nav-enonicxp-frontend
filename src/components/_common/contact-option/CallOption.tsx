@@ -44,7 +44,7 @@ const contactURLs = {
 interface CallOptionProps extends TelephoneData {
     _path?: string;
     ingress: string;
-    audience: Audience;
+    audience?: Audience;
 }
 
 export const CallOption = (props: CallOptionProps) => {
@@ -56,7 +56,7 @@ export const CallOption = (props: CallOptionProps) => {
         regularOpeningHours,
         specialOpeningHours,
         text,
-        audience,
+        audience = Audience.PERSON,
     } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
