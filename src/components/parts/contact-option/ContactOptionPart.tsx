@@ -25,10 +25,14 @@ const getContactOptionComponent = (channel: string) => {
     return options || DefaultOption;
 };
 
-export const ContactOptionPart = ({ config }: ContactOptionProps) => {
+export const ContactOptionPart = ({
+    config,
+    pageProps,
+}: ContactOptionProps) => {
     const channel = config?.contactOptions?._selected;
     const { pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
+    const { audience } = pageProps.data;
 
     if (!channel) {
         return <EditorHelp text={'Velg kontaktkanal fra listen til høyre'} />;
@@ -69,6 +73,7 @@ export const ContactOptionPart = ({ config }: ContactOptionProps) => {
             <OptionComponent
                 {...getSharedContactInformation(channel)}
                 _path={sharedContactInformation._path}
+                audience={audience}
                 {...overrideIngress}
             />
         );

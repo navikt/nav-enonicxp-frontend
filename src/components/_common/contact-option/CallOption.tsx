@@ -24,13 +24,27 @@ import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { useClientSide } from 'utils/useIsClientSide';
 
 import style from './ContactOption.module.scss';
+import { Audience } from 'types/component-props/_mixins';
 
-const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
-const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
+const contactURLs = {
+    person: {
+        no: '/kontaktoss#ring-oss',
+        en: '/kontaktoss/en#call-us',
+    },
+    employer: {
+        no: '/arbeidsgiver/kontaktoss',
+        en: '/kontaktoss/en#call-us',
+    },
+    provider: {
+        no: '/kontaktoss#ring-oss',
+        en: '/kontaktoss/en#call-us',
+    },
+};
 
 interface CallOptionProps extends TelephoneData {
     _path?: string;
     ingress: string;
+    audience: Audience;
 }
 
 export const CallOption = (props: CallOptionProps) => {
@@ -42,6 +56,7 @@ export const CallOption = (props: CallOptionProps) => {
         regularOpeningHours,
         specialOpeningHours,
         text,
+        audience,
     } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
@@ -103,6 +118,13 @@ export const CallOption = (props: CallOptionProps) => {
         return opensTemplate
             .replace('{$1}', openingTemplate)
             .replace('{$2}', futureTime);
+    };
+
+    const getContactUrl = () => {
+        const audienceUrls = contactURLs[audience];
+        return language === 'no' || language === 'se'
+            ? audienceUrls.no
+            : audienceUrls.en;
     };
 
     const buildOpenInformationText = (openingHour: OpeningHour) => {
@@ -197,7 +219,7 @@ export const CallOption = (props: CallOptionProps) => {
             <LenkeBase
                 analyticsLinkGroup={layoutConfig.title}
                 className={style.moreLink}
-                href={language === 'no' ? contactUrlNO : contactUrlEN}
+                href={getContactUrl()}
             >
                 {sharedTranslations['seeMoreOptions']}
             </LenkeBase>
