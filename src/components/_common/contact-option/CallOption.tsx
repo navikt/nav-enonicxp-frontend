@@ -122,6 +122,9 @@ export const CallOption = (props: CallOptionProps) => {
 
     const getContactUrl = () => {
         const audienceUrls = contactURLs[audience];
+        if (!audienceUrls) {
+            return contactURLs.person.no;
+        }
         return language === 'no' || language === 'se'
             ? audienceUrls.no
             : audienceUrls.en;
