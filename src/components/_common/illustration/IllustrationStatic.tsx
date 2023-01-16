@@ -47,12 +47,12 @@ export const IllustrationStatic = ({
     }
 
     return (
-        <div
+        <span
             className={classNames(styleCommon.image, className)}
             aria-hidden="true"
         >
             {icon1 && (
-                <div
+                <span
                     className={styleStatic.icon}
                     style={{
                         backgroundImage: `url(${buildImageCacheUrl({
@@ -65,7 +65,7 @@ export const IllustrationStatic = ({
                 />
             )}
             {icon2 && (
-                <div
+                <span
                     className={styleStatic.icon}
                     style={{
                         backgroundImage: `url(${buildImageCacheUrl({
@@ -77,6 +77,6 @@ export const IllustrationStatic = ({
                     }}
                 />
             )}
-        </div>
+        </span>
     );
 };
