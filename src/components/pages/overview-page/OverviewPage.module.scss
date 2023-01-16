@@ -19,8 +19,9 @@
     }
 
     :global(.icon-container) {
-        background-color: var(--a-green-200);
-        img {
+        background-color: var(
+            --a-red-100
+        ) !important; //Midlertidig override, fargen finnes ikke i fargevelgeren i XP per nå
             height: 50%;
             width: 50%;
         }
