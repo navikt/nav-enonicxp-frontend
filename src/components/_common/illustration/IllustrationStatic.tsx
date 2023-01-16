@@ -50,7 +50,6 @@ export const IllustrationStatic = ({
         <div
             className={classNames(styleCommon.image, className)}
             aria-hidden="true"
-            role="presentation"
         >
             {icon1 && (
                 <div

@@ -24,6 +24,10 @@
     margin-right: 0.5em;
     position: relative;
     width: 14px;
+
+    .highlighted {
+        color: common.$a-surface-success;
+    }
 }
 
 .icon {

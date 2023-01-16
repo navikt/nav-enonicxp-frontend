@@ -58,13 +58,11 @@ export const FilterExplanation = ({
         >
             <div className={style.iconWrapper}>
                 <InformationFilled
-                    color="#006A23"
                     className={classNames(
                         style.icon,
+                        style.highlighted,
                         showHighlight ? style.iconVisible : style.iconHidden
                     )}
-                    role="img"
-                    focusable="false"
                     aria-labelledby={explanationId}
                 />
                 <Information
@@ -72,8 +70,6 @@ export const FilterExplanation = ({
                         style.icon,
                         showHighlight ? style.iconHidden : style.iconVisible
                     )}
-                    role="img"
-                    focusable="false"
                     aria-labelledby={explanationId}
                 />
             </div>
