@@ -41,8 +41,7 @@ export const VersionHistory = ({ content }: Props) => {
     }, [versionUrlRequested, router]);
 
     return (
-        <div
-            role={'navigation'}
+        <nav
             className={style.versionHistory}
             aria-label={getLabel('label')}
         >
@@ -80,6 +79,6 @@ export const VersionHistory = ({ content }: Props) => {
                     <Loader size={'2xlarge'} />
                 </div>
             )}
-        </div>
+        </nav>
     );
 };
