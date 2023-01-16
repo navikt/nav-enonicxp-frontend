@@ -19,9 +19,7 @@
     }
 
     :global(.icon-container) {
-        background-color: var(
-            --a-red-100
-        ) !important; //TODO fjern important. Finn ut hvor fargen settes. Kommer fra config i SectionWithHeaderLayout
+        background-color: var(--a-green-200);
         img {
             height: 50%;
             width: 50%;
