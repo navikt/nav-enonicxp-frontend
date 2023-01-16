@@ -18,7 +18,7 @@ export function logAmplitudeEvent(
 ): Promise<any> {
     return logAmplitudeEventDecorator({
         eventName,
-        appName: 'nav-enonicxp-frontend',
+        origin: 'nav-enonicxp-frontend',
         eventData: data,
     });
 }
