@@ -14,11 +14,11 @@ export enum AnalyticsEvents {
 
 export function logAmplitudeEvent(
     eventName: AnalyticsEvents,
-    data?: any
+    data?: Record<string, any>
 ): Promise<any> {
     return logAmplitudeEventDecorator({
         eventName,
-        origin: 'nav-enonicxp-frontend',
+        origin: 'navno-frontend',
         eventData: data,
     });
 }
