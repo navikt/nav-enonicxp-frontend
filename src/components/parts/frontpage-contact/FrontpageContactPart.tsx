@@ -2,11 +2,12 @@ import React from 'react';
 import { FrontpageContanctPartProps } from '../../../types/component-props/parts/frontpage-contact';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
-import { Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import { ContentType } from '../../../types/content-props/_content-common';
 import { ChatbotLinkPanel } from '../../_common/chatbot/ChatbotLinkPanel';
 
 import style from './FrontpageContactPart.module.scss';
+import { Warning } from '@navikt/ds-icons';
 
 export const FrontpageContactPart = ({
     config,
@@ -21,6 +22,7 @@ export const FrontpageContactPart = ({
         chatAlertText,
         chatIngress,
         contactUsTitle,
+        contactUsAlertText,
         contactUsIngress,
         contactUsLink,
     } = config;
@@ -48,6 +50,15 @@ export const FrontpageContactPart = ({
                     analyticsLinkGroup={title}
                     linkText={contactUsTitle}
                 >
+                    {contactUsAlertText && (
+                        <div className={style.alert}>
+                            <Warning
+                                title="Advarsel"
+                                className={style.alertIcon}
+                            />
+                            <BodyLong as="div">{contactUsAlertText}</BodyLong>
+                        </div>
+                    )}
                     {contactUsIngress}
                 </LinkPanelNavno>
             </div>
