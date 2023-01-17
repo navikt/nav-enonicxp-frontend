@@ -1,8 +1,7 @@
 import React from 'react';
 import { LinkPanelNavno } from '../linkpanel/LinkPanelNavno';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
-import { Warning } from '@navikt/ds-icons';
-import { BodyLong } from '@navikt/ds-react';
+import { FrontpageContactAlert } from 'components/parts/frontpage-contact/FrontPageContactAlert/FrontPageContactAlert';
 
 import style from './ChatbotLinkPanel.module.scss';
 
@@ -30,12 +29,7 @@ export const ChatbotLinkPanel = ({
                 openChatbot();
             }}
         >
-            {alertText && (
-                <div className={style.alert}>
-                    <Warning title="Advarsel" className={style.alertIcon} />
-                    <BodyLong as="div">{alertText}</BodyLong>
-                </div>
-            )}
+            {alertText && <FrontpageContactAlert alertText={alertText} />}
             {ingress}
         </LinkPanelNavno>
     );
