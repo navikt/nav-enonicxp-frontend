@@ -119,7 +119,7 @@ export type ContentCommonProps = {
     originalType?: string;
     children?: ContentCommonProps[];
     parent?: ContentCommonProps;
-    data?: unknown;
+    data?: ContentCommonData;
     page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
