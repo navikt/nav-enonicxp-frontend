@@ -5,7 +5,7 @@ import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
 import { Heading } from '@navikt/ds-react';
 import { ContentType } from '../../../types/content-props/_content-common';
 import { ChatbotLinkPanel } from '../../_common/chatbot/ChatbotLinkPanel';
-import { FrontpageContactAlert } from './FrontPageContactAlert';
+import { FrontpageContactAlert } from './FrontpageContactAlert';
 
 import style from './FrontpageContactPart.module.scss';
 

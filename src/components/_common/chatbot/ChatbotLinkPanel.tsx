@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinkPanelNavno } from '../linkpanel/LinkPanelNavno';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
-import { FrontpageContactAlert } from 'components/parts/frontpage-contact/FrontPageContactAlert';
+import { FrontpageContactAlert } from 'components/parts/frontpage-contact/FrontpageContactAlert';
 
 import style from './ChatbotLinkPanel.module.scss';
 
