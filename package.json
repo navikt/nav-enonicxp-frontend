@@ -45,7 +45,7 @@
         "jsdom": "20.0.2",
         "lodash.debounce": "4.0.8",
         "lottie-web": "5.9.6",
-        "lru-cache": "7.13.1",
+        "lru-cache": "7.14.1",
         "mathjs": "10.6.4",
         "next": "12.3.1",
         "node-cache": "5.1.2",
