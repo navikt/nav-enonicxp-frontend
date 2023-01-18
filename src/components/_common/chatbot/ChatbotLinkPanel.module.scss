@@ -23,20 +23,3 @@ $chatPointerSize: 1.5rem;
         display: block;
     }
 }
-
-.alert {
-    margin-bottom: 0.75rem;
-    background-color: white;
-    border-radius: 0.5rem;
-    padding: var(--a-spacing-3);
-    display: flex;
-    gap: var(--a-spacing-3);
-    align-items: center;
-}
-
-.alertIcon {
-    flex-shrink: 0;
-    font-size: 1.5rem;
-    align-self: flex-start;
-    height: var(--a-font-line-height-xlarge);
-}
