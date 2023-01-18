@@ -14,7 +14,7 @@ export const TelephoneDetails = (props: TelephoneData) => {
     } = props;
 
     return (
-        <CallOption 
+        <CallOption
             title={title}
             alertText={alertText}
             ingress={text}
