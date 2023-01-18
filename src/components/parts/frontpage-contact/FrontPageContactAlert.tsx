@@ -2,7 +2,7 @@ import React from 'react';
 import { BodyLong } from '@navikt/ds-react';
 import { Warning } from '@navikt/ds-icons';
 
-import style from './FrontpageContactAlert.module.scss';
+import style from './FrontPageContactAlert.module.scss';
 
 type Props = {
     alertText: string;
