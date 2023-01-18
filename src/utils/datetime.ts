@@ -3,9 +3,11 @@ import 'dayjs/locale/nb';
 import 'dayjs/locale/en';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
 dayjs.extend(localizedFormat);
 dayjs.extend(utc);
+dayjs.extend(timezone);
 
 // JS starts week on a Sunday.
 export const days = [

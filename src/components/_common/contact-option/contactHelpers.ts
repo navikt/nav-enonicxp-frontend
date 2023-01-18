@@ -1,6 +1,7 @@
 import { OpeningHour } from 'types/component-props/parts/contact-option';
 import { getDayNameFromNumber } from 'utils/datetime';
 import { getCurrentISODate } from 'utils/datetime';
+import dayjs from 'dayjs';
 
 /** Special opening hours take precidence over regular opening hours,
  * so merge the two in order to create a correct list of opening
@@ -95,10 +96,10 @@ export const getIsClosedForToday = (openingHour: OpeningHour) => {
     if (!getDates(openingHour)) {
         return true;
     }
-    const { closesEpoch, currentEpoch, endOfToday } = getDates(openingHour);
+    const { closesEpoch, norwayEpoch, endOfToday } = getDates(openingHour);
 
     const isClosed =
-        (closesEpoch < currentEpoch && closesEpoch < endOfToday) ||
+        (closesEpoch < norwayEpoch && closesEpoch < endOfToday) ||
         openingHour.status === 'CLOSED';
 
     return isClosed;
@@ -108,12 +109,12 @@ export const getIsCurrentlyClosed = (openingHour: OpeningHour) => {
     if (!getDates(openingHour)) {
         return true;
     }
-    const { closesEpoch, opensEpoch, currentEpoch, endOfToday } =
+    const { closesEpoch, opensEpoch, norwayEpoch, endOfToday } =
         getDates(openingHour);
 
     const isCurrentlyClosed =
-        currentEpoch < opensEpoch ||
-        currentEpoch > closesEpoch ||
+        norwayEpoch < opensEpoch ||
+        norwayEpoch > closesEpoch ||
         openingHour.status === 'CLOSED';
 
     return isCurrentlyClosed;
@@ -125,7 +126,7 @@ export const getDates = (openingHours: OpeningHour) => {
     }
 
     const currentISODate = getCurrentISODate();
-    const currentEpoch = Date.now();
+    const norwayEpoch = dayjs(new Date()).tz('Europe/Oslo').valueOf();
 
     const { from, to } = openingHours;
     const startOfToday = new Date(`${currentISODate}T00:00:00`).getTime();
@@ -139,6 +140,6 @@ export const getDates = (openingHours: OpeningHour) => {
         endOfToday,
         opensEpoch,
         closesEpoch,
-        currentEpoch,
+        norwayEpoch,
     };
 };

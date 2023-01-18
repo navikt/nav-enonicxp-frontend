@@ -112,7 +112,7 @@ export const CallOption = (props: CallOptionProps) => {
 
         const {
             closesEpoch,
-            currentEpoch,
+            norwayEpoch,
             endOfToday,
             opensEpoch,
             startOfToday,
@@ -120,12 +120,11 @@ export const CallOption = (props: CallOptionProps) => {
         const { from, to } = openingHour;
 
         // Misc opening / closed states
-        const isOpenNow =
-            currentEpoch > opensEpoch && currentEpoch < closesEpoch;
+        const isOpenNow = norwayEpoch > opensEpoch && norwayEpoch < closesEpoch;
         const isOpeningLaterToday =
-            startOfToday < currentEpoch &&
-            endOfToday > currentEpoch &&
-            currentEpoch < opensEpoch;
+            startOfToday < norwayEpoch &&
+            endOfToday > norwayEpoch &&
+            norwayEpoch < opensEpoch;
         const isClosedForToday = getIsClosedForToday(openingHour);
         const openClosedText = isOpenNow
             ? sharedTranslations['openNow']
