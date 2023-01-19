@@ -9,7 +9,7 @@ metadata:
 spec:
   receivers:
     slack:
-      channel: "#navno-alerts"
+      channel: "#team-navno-frontend-alerts"
       prependText: "[nav-enonicxp-frontend] [<!here>] "
   alerts:
     - alert: Appen er nede! (ingen tilgjengelige pods)

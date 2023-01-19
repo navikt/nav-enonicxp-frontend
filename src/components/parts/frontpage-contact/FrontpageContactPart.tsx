@@ -5,6 +5,7 @@ import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
 import { Heading } from '@navikt/ds-react';
 import { ContentType } from '../../../types/content-props/_content-common';
 import { ChatbotLinkPanel } from '../../_common/chatbot/ChatbotLinkPanel';
+import { FrontpageContactAlert } from './FrontpageContactAlert';
 
 import style from './FrontpageContactPart.module.scss';
 
@@ -21,6 +22,7 @@ export const FrontpageContactPart = ({
         chatAlertText,
         chatIngress,
         contactUsTitle,
+        contactUsAlertText,
         contactUsIngress,
         contactUsLink,
     } = config;
@@ -48,6 +50,12 @@ export const FrontpageContactPart = ({
                     analyticsLinkGroup={title}
                     linkText={contactUsTitle}
                 >
+                    {contactUsAlertText && (
+                        <FrontpageContactAlert
+                            alertText={contactUsAlertText}
+                            yellow
+                        />
+                    )}
                     {contactUsIngress}
                 </LinkPanelNavno>
             </div>

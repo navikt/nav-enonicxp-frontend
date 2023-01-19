@@ -22,6 +22,7 @@ export interface FrontpageContanctPartProps extends PartComponentProps {
         chatAlertText?: string;
         chatIngress: string;
         contactUsTitle: string;
+        contactUsAlertText?: string;
         contactUsIngress: string;
         contactUsLink: InternalContactUs | ExternalContactUs;
     };
