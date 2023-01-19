@@ -128,12 +128,12 @@ export const getDates = (openingHours: OpeningHour) => {
     const currentISODate = getCurrentISODate();
     const norwayEpoch = dayjs(new Date()).tz('Europe/Oslo').valueOf();
 
-    const { from, to } = openingHours;
-    const startOfToday = new Date(`${currentISODate}T00:00:00`).getTime();
-    const endOfToday = new Date(`${currentISODate}T23:59:59`).getTime();
+    const startOfToday = new Date(`${currentISODate}T00:00:00+01:00`).getTime();
+    const endOfToday = new Date(`${currentISODate}T23:59:59+01:00`).getTime();
 
-    const opensEpoch = new Date(`${currentISODate}T${from}`).getTime();
-    const closesEpoch = new Date(`${currentISODate}T${to}`).getTime();
+    const { from, to } = openingHours;
+    const opensEpoch = new Date(`${currentISODate}T${from}+01:00`).getTime();
+    const closesEpoch = new Date(`${currentISODate}T${to}+01:00`).getTime();
 
     return {
         startOfToday,
