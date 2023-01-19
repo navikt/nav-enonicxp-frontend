@@ -9,7 +9,7 @@ metadata:
 spec:
   receivers:
     slack:
-      channel: "#navno-alerts"
+      channel: "#team-navno-frontend-alerts"
       prependText: "[nav-enonicxp-frontend] [<!here>] "
   alerts:
     - alert: Appen er nede! (ingen tilgjengelige pods)
@@ -35,5 +35,5 @@ spec:
     - alert: Treg median responsetid (>20 ms)
       severity: warning
       expr: histogram_quantile(0.5, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[10m])) by (le)) > 0.02
-      for: 3m
+      for: 10m
       action: "Undersøk hvorfor appen svarer tregt"

@@ -1,7 +1,4 @@
 @use 'src/common' as common;
-// @use '../../../pages/situation-page/SituationPage' as SituationPage;
-// @use '../../../pages/product-page/ProductPage' as ProductPage;
-// @use '../../../pages/guide-page/GuidePage' as GuidePage;
 
 .themedPageHeader {
     display: flex;
@@ -32,7 +29,7 @@
     }
 
     &.overview {
-        box-shadow: 0 -4px 0 var(--a-deepblue-400) inset;
+        box-shadow: 0 -4px 0 var(--a-red-100) inset;
     }
 
     &.generic {

@@ -6,7 +6,6 @@ import ErrorPage404 from 'pages/404';
 import { CallOption } from 'components/_common/contact-option/CallOption';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
 import { ChatOption } from 'components/_common/contact-option/ChatOption';
-import { DefaultOption } from 'components/_common/contact-option/DefaultOption';
 
 import style from './ContactInformationPage.module.scss';
 
