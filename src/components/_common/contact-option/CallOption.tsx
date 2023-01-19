@@ -136,10 +136,10 @@ export const CallOption = (props: CallOptionProps) => {
         }
 
         const {
-            closesEpoch,
             norwayEpoch,
-            endOfToday,
+            closesEpoch,
             opensEpoch,
+            endOfToday,
             startOfToday,
         } = getDates(openingHour);
         const { from, to } = openingHour;
