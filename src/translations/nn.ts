@@ -131,6 +131,9 @@ export const translationsBundleNn: Translations = {
         employer: 'For arbeidsgjevarar',
         provider: 'For samhandlarar',
     },
+    overviews: {
+        any: 'Frå A til Å',
+    },
     publishingCalendar: {
         event: 'Kalenderhending',
         publishdate: 'Publiseringsdato',

@@ -64,6 +64,11 @@ export const ThemedPageHeader = ({
             return getTaxonomyLabel(audience);
         }
 
+        if (pageType === ContentType.Overview) {
+            const getTaxonomyLabel = translator('overviews', language);
+            return getTaxonomyLabel('any');
+        }
+
         if (pageType === ContentType.ThemedArticlePage) {
             const taxonomyArray = getTranslatedTaxonomies(taxonomy, language);
             const allCategories = customCategory
