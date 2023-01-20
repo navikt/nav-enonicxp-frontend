@@ -2,13 +2,18 @@ import React from 'react';
 import { Header } from 'components/_common/headers/Header';
 import { FrontpageShortcutsProps } from 'types/component-props/parts/frontpage-shortcuts';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { FancyChevron } from '../../_common/chevron/FancyChevron';
 import { classNames } from '../../../utils/classnames';
 import { LinkPanelNavnoSimple } from '../../_common/linkpanel/LinkPanelNavnoSimple';
 import { getUrlFromContent } from '../../../utils/links-from-content';
+import { StaticImage } from 'components/_common/image/StaticImage';
+
+// kopi av ikoner som ligger under /www.nav.no/nav.no-ressurser/ikoner, som brukes inne på oversiktssidene
+import saksbehandlingstider from '/public/gfx/front-page-shortcuts/saksbehandlingstider_nav_ikon.svg';
+import utbetalingsdatoer from '/public/gfx/front-page-shortcuts/utbetalingsdatoer_nav_ikon.svg';
+import pengestotter from '/public/gfx/front-page-shortcuts/pengestotter_og_tjenester_fra_a_til_a_nav_ikon.svg';
+import soknader from '/public/gfx/front-page-shortcuts/soknader_og_skjema_nav_ikon.svg';
 
 import style from './FrontpageShortcuts.module.scss';
-import chevronStyle from '../../_common/chevron/FancyChevronCommon.module.scss';
 
 export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
     const { contentList, title } = config;
@@ -20,6 +25,13 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
     }
 
     const threeCols = links.length % 3 === 0;
+
+    const icons = [
+        saksbehandlingstider,
+        utbetalingsdatoer,
+        pengestotter,
+        soknader,
+    ];
 
     return (
         <div className={style.shortcuts}>
@@ -34,18 +46,20 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
             <ul
                 className={classNames(style.list, threeCols && style.threeCols)}
             >
-                {links.map((item) => (
+                {links.map((item, index) => (
                     <li key={item._id}>
                         <LinkPanelNavnoSimple
                             href={getUrlFromContent(item)}
                             linkUnderline={'none'}
                             analyticsLinkGroup={title}
                             linkColor={'black'}
-                            icon={<FancyChevron color={'blue'} scale={0.55} />}
-                            className={classNames(
-                                style.item,
-                                chevronStyle.animateOnHover
-                            )}
+                            icon={
+                                <StaticImage
+                                    imageData={icons[index]}
+                                    alt={''}
+                                />
+                            }
+                            className={classNames(style.item)}
                         >
                             {item.displayName}
                         </LinkPanelNavnoSimple>

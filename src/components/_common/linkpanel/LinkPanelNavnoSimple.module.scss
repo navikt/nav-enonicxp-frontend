@@ -6,7 +6,7 @@ $blackLinkColor: common.$a-text-default;
 .linkPanel {
     display: flex;
 
-    padding: 1.5rem 1rem;
+    padding: 1.5rem;
     border-radius: common.$border-radius-xlarge;
 
     text-decoration: none;
@@ -41,6 +41,7 @@ $blackLinkColor: common.$a-text-default;
 
 .icon {
     margin-right: 1rem;
+    display: flex;
 }
 
 .text {
