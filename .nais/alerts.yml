@@ -24,8 +24,8 @@ spec:
       action: "Sjekk loggene for å se hvorfor appen returnerer 5xx-feil"
     - alert: Høy andel 4xx-feil (>10%)
       severity: warning
-      expr: (100 * (sum by (service) (rate(nginx_ingress_controller_requests{status=~"^4\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[3m])) / sum by (service) (rate(nginx_ingress_controller_requests{namespace="personbruker", service="nav-enonicxp-frontend"}[3m])))) > 10
-      for: 3m
+      expr: (100 * (sum by (service) (rate(nginx_ingress_controller_requests{status=~"^4\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[15m])) / sum by (service) (rate(nginx_ingress_controller_requests{namespace="personbruker", service="nav-enonicxp-frontend"}[15m])))) > 10
+      for: 15m
       action: "Sjekk loggene for å se hvorfor appen returnerer 4xx-feil"
     - alert: Treg 99th percentile responsetid (>5 sec)
       severity: warning
