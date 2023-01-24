@@ -19,6 +19,10 @@
             // border-bottom-color: transparent;
         }
     }
+
+    @media #{common.$mq-screen-mobile-small} {
+        padding: 0.625rem;
+    }
 }
 
 .illustration {
