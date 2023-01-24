@@ -149,6 +149,9 @@ export const translationsBundleEn: Translations = {
         employer: 'For employers',
         provider: 'For providers',
     },
+    overviews: {
+        any: 'From A to Z',
+    },
     taxonomies,
     areas,
     header: {
