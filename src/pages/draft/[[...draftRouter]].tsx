@@ -23,7 +23,7 @@ const fetchVersionPageProps = async (
 };
 
 const getPageProps = async (context) => {
-    const { time, branch } = context.query;
+    const { time, branch, locale } = context.query;
     if (time) {
         return fetchVersionPageProps(context, branch === 'draft');
     }
@@ -34,6 +34,7 @@ const getPageProps = async (context) => {
         routerQuery: pathSegments,
         isDraft: true,
         noRedirect: true,
+        locale,
     });
 };
 
