@@ -1,6 +1,5 @@
 import React from 'react';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
-import { LinkProps } from 'types/link-props';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { Heading } from '@navikt/ds-react';
