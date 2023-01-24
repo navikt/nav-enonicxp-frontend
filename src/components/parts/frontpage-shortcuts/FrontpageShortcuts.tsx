@@ -9,6 +9,10 @@ import { getUrlFromContent } from '../../../utils/links-from-content';
 
 import style from './FrontpageShortcuts.module.scss';
 import chevronStyle from '../../_common/chevron/FancyChevronCommon.module.scss';
+import { MiniCard } from 'components/_common/card/MiniCard';
+
+import { CardSize, CardType } from 'types/card';
+import { FrontPageShortcutsCard } from './FrontpageShortcutsCard';
 
 export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
     const { contentList, title } = config;
@@ -36,19 +40,14 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
             >
                 {links.map((item) => (
                     <li key={item._id}>
-                        <LinkPanelNavnoSimple
-                            href={getUrlFromContent(item)}
-                            linkUnderline={'none'}
+                        <FrontPageShortcutsCard
+                            link={{
+                                url: getUrlFromContent(item),
+                                text: item.displayName,
+                            }}
+                            illustration={(item.data as any).illustration}
                             analyticsLinkGroup={title}
-                            linkColor={'black'}
-                            icon={<FancyChevron color={'blue'} scale={0.55} />}
-                            className={classNames(
-                                style.item,
-                                chevronStyle.animateOnHover
-                            )}
-                        >
-                            {item.displayName}
-                        </LinkPanelNavnoSimple>
+                        />
                     </li>
                 ))}
             </ul>
