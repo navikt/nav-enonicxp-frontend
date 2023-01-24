@@ -8,11 +8,17 @@
     padding: 1.5rem;
     border-radius: 8px;
 
-    color: var(--a-text-default);
     background-color: white;
 
     text-decoration: none;
     cursor: pointer;
+
+    &:hover {
+        .text {
+            color: var(--a-text-action);
+            // border-bottom-color: transparent;
+        }
+    }
 }
 
 .illustration {
@@ -25,6 +31,15 @@
 }
 
 .text {
+    color: var(--a-text-default);
+
+    transition-property: border-bottom-color, color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+
+    // border-bottom: 1px var(--a-text-action) solid;
+    // border-bottom-color: var(--a-text-default);
+
     @media #{common.$mq-screen-mobile-small} {
         font-size: 1.25rem;
     }
