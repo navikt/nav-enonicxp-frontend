@@ -1,18 +1,31 @@
-.card {
-    background-color: white;
-    width: 100%;
+@use 'src/common' as common;
 
+.card {
     display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
     padding: 1.5rem;
     border-radius: 8px;
-    text-decoration: none;
-    gap: 1rem;
-    align-items: center;
 
+    color: var(--a-text-default);
+    background-color: white;
+
+    text-decoration: none;
     cursor: pointer;
 }
 
 .illustration {
-    width: 4rem;
-    height: 4rem;
+    flex-basis: 4rem;
+    flex-shrink: 0;
+
+    @media #{common.$mq-screen-mobile-small} {
+        flex-basis: 3rem;
+    }
+}
+
+.text {
+    @media #{common.$mq-screen-mobile-small} {
+        font-size: 1.25rem;
+    }
 }

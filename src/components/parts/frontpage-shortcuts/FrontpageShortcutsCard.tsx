@@ -3,7 +3,7 @@ import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { LinkProps } from 'types/link-props';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { usePageConfig } from 'store/hooks/usePageConfig';
+import { Heading } from '@navikt/ds-react';
 import style from './FrontpageShortcutsCard.module.scss';
 
 export type FrontPageShortcutsCardProps = {
@@ -14,7 +14,6 @@ export type FrontPageShortcutsCardProps = {
 
 export const FrontPageShortcutsCard = (props: FrontPageShortcutsCardProps) => {
     const { link, illustration, analyticsLinkGroup } = props;
-    const { pageConfig } = usePageConfig();
 
     return (
         <LenkeBase
@@ -25,9 +24,10 @@ export const FrontPageShortcutsCard = (props: FrontPageShortcutsCardProps) => {
             <Illustration
                 className={style.illustration}
                 illustration={illustration}
-                preferStaticIllustration={pageConfig.editorView === 'edit'}
             />
-            {link.text}
+            <Heading size="medium" level="3" className={style.text}>
+                {link.text}
+            </Heading>
         </LenkeBase>
     );
 };

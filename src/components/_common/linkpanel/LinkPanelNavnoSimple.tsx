@@ -44,6 +44,7 @@ export const LinkPanelNavnoSimple = ({
             analyticsLinkGroup={analyticsLinkGroup}
         >
             {icon && <div className={style.icon}>{icon}</div>}
+
             <div
                 className={classNames(
                     'navds-heading',
