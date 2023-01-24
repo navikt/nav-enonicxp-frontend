@@ -21,7 +21,9 @@ const fetchVersionPageProps = async (context: GetServerSidePropsContext) => {
 };
 
 const getPageProps = async (context: GetServerSidePropsContext) => {
-    if (context.query.time) {
+    const { time, locale } = context.query;
+
+    if (time) {
         return fetchVersionPageProps(context);
     }
 
@@ -31,7 +33,7 @@ const getPageProps = async (context: GetServerSidePropsContext) => {
         routerQuery: pathSegments,
         isDraft: true,
         noRedirect: true,
-        locale: forceString(context.query.locale),
+        locale: forceString(locale),
     });
 };
 
