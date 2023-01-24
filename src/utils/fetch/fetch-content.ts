@@ -66,10 +66,12 @@ const fetchSiteContentVersion = async ({
     idOrPath,
     time,
     isDraft = false,
+    locale,
 }: FetchSiteContentArgs) => {
     const params = objectToQueryString({
         id: idOrPath,
         ...(isDraft && { branch: 'draft' }),
+        ...(locale && { locale }),
         time,
     });
 
