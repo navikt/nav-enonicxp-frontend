@@ -2,7 +2,7 @@ import { classNames } from 'utils/classnames';
 
 import { AnimatedIconsProps } from '../../../types/content-props/animated-icons';
 import { CardSize, CardType } from 'types/card';
-import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
+import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { Illustration } from '../illustration/Illustration';
 import { IllustrationPlacements } from 'types/illustrationPlacements';
 import { LenkeBase } from '../lenke/LenkeBase';
