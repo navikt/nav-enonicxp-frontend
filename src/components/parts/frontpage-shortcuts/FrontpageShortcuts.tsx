@@ -41,10 +41,8 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
                 {links.map((item) => (
                     <li key={item._id}>
                         <FrontPageShortcutsCard
-                            link={{
-                                url: getUrlFromContent(item),
-                                text: item.displayName,
-                            }}
+                            href={getUrlFromContent(item)}
+                            text={item.displayName}
                             illustration={(item.data as any).illustration}
                             analyticsLinkGroup={title}
                         />

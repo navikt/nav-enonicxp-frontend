@@ -6,19 +6,23 @@ import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { Heading } from '@navikt/ds-react';
 import style from './FrontpageShortcutsCard.module.scss';
 
-export type FrontPageShortcutsCardProps = {
-    link: LinkProps;
-    illustration?: AnimatedIconsProps;
+type FrontPageShortcutsCardProps = {
+    href: string;
+    text: string;
     analyticsLinkGroup: string;
+    illustration?: AnimatedIconsProps;
 };
 
-export const FrontPageShortcutsCard = (props: FrontPageShortcutsCardProps) => {
-    const { link, illustration, analyticsLinkGroup } = props;
-
+export const FrontPageShortcutsCard = ({
+    href,
+    text,
+    analyticsLinkGroup,
+    illustration,
+}: FrontPageShortcutsCardProps) => {
     return (
         <LenkeBase
             className={style.card}
-            href={link.url}
+            href={href}
             analyticsLinkGroup={analyticsLinkGroup}
         >
             <Illustration
@@ -26,7 +30,7 @@ export const FrontPageShortcutsCard = (props: FrontPageShortcutsCardProps) => {
                 illustration={illustration}
             />
             <Heading size="medium" level="3" className={style.text}>
-                {link.text}
+                {text}
             </Heading>
         </LenkeBase>
     );
