@@ -4,7 +4,6 @@ import { IllustrationAnimated } from './IllustrationAnimated';
 
 interface IllustrationProps {
     illustration: AnimatedIconsProps;
-    placement: string;
     className: string;
     isHovering?: boolean;
     preferStaticIllustration?: boolean;

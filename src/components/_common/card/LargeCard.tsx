@@ -4,7 +4,6 @@ import { AnimatedIconsProps } from '../../../types/content-props/animated-icons'
 import { CardSize, CardType } from 'types/card';
 import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { Illustration } from '../illustration/Illustration';
-import { IllustrationPlacements } from 'types/illustrationPlacements';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
 
@@ -63,7 +62,6 @@ export const LargeCard = (props: StortKortProps) => {
                     {hasIllustration && (
                         <Illustration
                             illustration={illustration}
-                            placement={IllustrationPlacements.LARGE_CARD}
                             className={style.illustration}
                             isHovering={isHovering}
                             preferStaticIllustration={
