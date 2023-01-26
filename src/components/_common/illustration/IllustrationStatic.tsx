@@ -25,7 +25,7 @@ const StaticIcon = ({
     icon,
     isEditorView,
 }: {
-    icon: AnimatedIcon;
+    icon: string;
     isEditorView: boolean;
 }) => (
     <span
