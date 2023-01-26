@@ -115,7 +115,7 @@ export const translationsBundleEn: Translations = {
         ],
         relatives: {
             today: 'today',
-            tomorrow: 'i morgen',
+            tomorrow: 'tomorrow',
         },
         day: 'day',
         date: 'date',
@@ -148,6 +148,9 @@ export const translationsBundleEn: Translations = {
         person: 'How to',
         employer: 'For employers',
         provider: 'For providers',
+    },
+    overviews: {
+        any: 'From A to Z',
     },
     taxonomies,
     areas,

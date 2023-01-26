@@ -22,10 +22,3 @@ spec:
         target:
           type: Utilization
           averageUtilization: 50
-    - type: Pods
-      pods:
-        metric:
-          name: linkerd_request_total
-        target:
-          type: AverageValue
-          averageValue: '500'

@@ -69,6 +69,7 @@ const errorParams = (content: ContentProps): DecoratorParams => ({
 const defaultParams = {
     feedback: false,
     language: 'nb',
+    maskHotjar: false,
 };
 
 const taSurveys = {
@@ -80,8 +81,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         return errorParams(content);
     }
 
-    const { __typename, _path, breadcrumbs, language, data, editorView } =
-        content;
+    const { _path, breadcrumbs, language, data, editorView } = content;
 
     const rolePath = _path.split('/')[3];
     const context =
