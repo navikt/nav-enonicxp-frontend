@@ -42,7 +42,10 @@ export const IllustrationStatic = ({
 
     const [icon1, icon2] = icons;
 
-    if (!icon1 || !icon2) {
+    const icon1Url = icon1?.icon?.mediaUrl;
+    const icon2Url = icon2?.icon?.mediaUrl;
+
+    if (!icon1Url && !icon2Url) {
         return null;
     }
 
@@ -51,27 +54,27 @@ export const IllustrationStatic = ({
             className={classNames(styleCommon.image, className)}
             aria-hidden="true"
         >
-            {icon1 && (
+            {icon1Url && (
                 <span
                     className={styleStatic.icon}
                     style={{
                         backgroundImage: `url(${buildImageCacheUrl({
-                            src: getMediaUrl(icon1.icon?.mediaUrl),
-                            isEditorView: !!pageConfig.editorView,
                             ...nextImageProps,
+                            src: getMediaUrl(icon1Url),
+                            isEditorView: !!pageConfig.editorView,
                         })})`,
                         transform: buildTransformStyling(icon1, 'none'),
                     }}
                 />
             )}
-            {icon2 && (
+            {icon2Url && (
                 <span
                     className={styleStatic.icon}
                     style={{
                         backgroundImage: `url(${buildImageCacheUrl({
-                            src: getMediaUrl(icon2.icon?.mediaUrl),
-                            isEditorView: !!pageConfig.editorView,
                             ...nextImageProps,
+                            src: getMediaUrl(icon2Url),
+                            isEditorView: !!pageConfig.editorView,
                         })})`,
                         transform: buildTransformStyling(icon2, 'none'),
                     }}
