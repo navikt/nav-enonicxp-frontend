@@ -26,11 +26,11 @@
 }
 
 .illustration {
-    flex-basis: 4rem;
+    width: 4rem;
     flex-shrink: 0;
 
     @media #{common.$mq-screen-mobile-small} {
-        flex-basis: 3rem;
+        width: 3rem;
     }
 }
 
