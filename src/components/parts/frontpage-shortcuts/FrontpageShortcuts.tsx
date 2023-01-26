@@ -43,7 +43,11 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
                         <FrontPageShortcutsCard
                             href={getUrlFromContent(item)}
                             text={item.displayName}
-                            illustration={(item.data as any).illustration}
+                            illustration={
+                                (item.data as any).illustration
+                                    ? (item.data as any).illustration
+                                    : ''
+                            }
                             analyticsLinkGroup={title}
                         />
                     </li>

@@ -3,7 +3,8 @@ import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { Heading } from '@navikt/ds-react';
-import { FancyChevron } from 'components/_common/chevron/FancyChevron';
+import { StaticImage } from 'components/_common/image/StaticImage';
+import soknaderOgSkjema from '/public/gfx/soknader_og_skjema_nav_ikon.svg';
 import style from './FrontpageShortcutsCard.module.scss';
 
 type FrontPageShortcutsCardProps = {
@@ -25,13 +26,14 @@ export const FrontPageShortcutsCard = ({
             href={href}
             analyticsLinkGroup={analyticsLinkGroup}
         >
-            {illustration ? (
+            {/* Midlertidig løsning, enn så lenge "Søknad og skjema" er en ekstern lenke */}
+            {text !== 'Søknad og skjema' ? (
                 <Illustration
                     className={style.illustration}
                     illustration={illustration}
                 />
             ) : (
-                <FancyChevron color={'blue'} scale={0.55} />
+                <StaticImage imageData={soknaderOgSkjema} alt="" />
             )}
             <Heading size="medium" level="3" className={style.text}>
                 {text}
