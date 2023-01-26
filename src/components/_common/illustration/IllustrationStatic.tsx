@@ -36,7 +36,7 @@ const StaticIcon = ({
                 src: getMediaUrl(icon.icon.mediaUrl),
                 isEditorView,
             })})`,
-            transform: icon.transformStart || 'non',
+            transform: icon.transformStart || 'none',
         }}
     />
 );
