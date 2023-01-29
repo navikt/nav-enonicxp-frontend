@@ -20,7 +20,9 @@
         "deploy-dev1": "npm run deploy -- deploy.dev1.yml",
         "deploy-dev2": "npm run deploy -- deploy.dev2.yml",
         "test-server": "next build server/__next-test-dummy && jest --testPathPattern=server/",
-        "test-client": "jest --testPathPattern=src/"
+        "test-client": "jest --testPathPattern=src/",
+        "test": "npm run test-server && npm run test-client",
+        "prepare": "husky install"
     },
     "dependenciesComments": {
         "@sentry/nextjs": "[7.7.0] Newer versions breaks the failover-html response in our _error page. Needs to be solved before upgrading."
@@ -86,7 +88,7 @@
         "eslint": "8.31.0",
         "eslint-config-next": "12.3.1",
         "eslint-plugin-css-modules": "2.11.0",
-        "husky": "8.0.1",
+        "husky": "^8.0.3",
         "jest": "29.3.1",
         "jest-fetch-mock": "3.0.3",
         "lint-staged": "13.0.3",
@@ -115,12 +117,6 @@
     },
     "browser": {
         "jsdom": false
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged",
-            "pre-push": "npm run typeCheck && npm run lint"
-        }
     },
     "lint-staged": {
         "*.{js,jsx,json,md,ts,tsx,scss,css}": "prettier --write"
