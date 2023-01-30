@@ -19,6 +19,7 @@ export const Chevron = ({ direction = 'right', className }: Props) => {
                 direction && style[direction],
                 className
             )}
+            aria-hidden="true"
         />
     );
 };
