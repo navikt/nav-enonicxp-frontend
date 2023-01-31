@@ -14,7 +14,7 @@ spec:
     kind: Deployment
     name: nav-enonicxp-frontend-dev1
   minReplicas: 2
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
@@ -28,4 +28,4 @@ spec:
           name: http_request_duration_seconds_count
         target:
           type: AverageValue
-          averageValue: 1
+          averageValue: '250'
