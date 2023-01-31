@@ -14,7 +14,7 @@ spec:
     kind: Deployment
     name: nav-enonicxp-frontend-dev1
   minReplicas: 2
-  maxReplicas: 40
+  maxReplicas: 10
   metrics:
     - type: Resource
       resource:
@@ -22,3 +22,10 @@ spec:
         target:
           type: Utilization
           averageUtilization: 50
+    - type: Pods
+      pods:
+        metric:
+          name: http_request_duration_seconds_count
+        target:
+          type: AverageValue
+          averageValue: 1
