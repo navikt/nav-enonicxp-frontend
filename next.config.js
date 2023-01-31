@@ -249,8 +249,4 @@ const config = {
     ],
 };
 
-module.exports = withSentryConfig(withBundleAnalyzer(config), {
-    errorHandler: (err, invokeErr, compilation) => {
-        compilation.warnings.push(`Sentry CLI Plugin error: ${err.message}`);
-    },
-});
+module.exports = withSentryConfig(withBundleAnalyzer(config));
