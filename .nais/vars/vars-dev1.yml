@@ -4,6 +4,9 @@ secret: nav-enonicxp-dev1
 ingresses:
   - https://www.dev.nav.no
 resources:
+  limits:
+    cpu: 3000m
+    memory: 5000Mi
   requests:
     cpu: 1500m
     memory: 2500Mi
