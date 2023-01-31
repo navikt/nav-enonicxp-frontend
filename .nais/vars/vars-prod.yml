@@ -4,9 +4,6 @@ secret: nav-enonicxp
 ingresses:
   - https://www.nav.no
 resources:
-  limits:
-    cpu: 3000m
-    memory: 4000Mi
   requests:
     cpu: 1500m
     memory: 2500Mi

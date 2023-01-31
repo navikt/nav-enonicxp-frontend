@@ -22,3 +22,10 @@ spec:
         target:
           type: Utilization
           averageUtilization: 50
+    - type: Pods
+      pods:
+        metric:
+          name: http_request_duration_seconds_count
+        target:
+          type: AverageValue
+          averageValue: '250'
