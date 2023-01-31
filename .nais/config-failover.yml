@@ -45,6 +45,9 @@ spec:
       rules:
         - application: {{revalidatorApp}}
   resources:
+    limits:
+      cpu: 3000m
+      memory: 5000Mi
     requests:
       cpu: 500m
       memory: 500Mi
