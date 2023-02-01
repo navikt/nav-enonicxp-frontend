@@ -9,6 +9,8 @@ import { getUrlFromContent } from '../../../utils/links-from-content';
 
 import style from './FrontpageShortcuts.module.scss';
 import chevronStyle from '../../_common/chevron/FancyChevronCommon.module.scss';
+import { MiniCard } from 'components/_common/card/MiniCard';
+import { CardType } from 'types/card';
 
 export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
     const { contentList, title } = config;
@@ -36,7 +38,7 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
             >
                 {links.map((item) => (
                     <li key={item._id}>
-                        <LinkPanelNavnoSimple
+                        {/* <LinkPanelNavnoSimple
                             href={getUrlFromContent(item)}
                             linkUnderline={'none'}
                             analyticsLinkGroup={title}
@@ -48,7 +50,15 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
                             )}
                         >
                             {item.displayName}
-                        </LinkPanelNavnoSimple>
+                        </LinkPanelNavnoSimple> */}
+                        <MiniCard
+                            link={{
+                                url: getUrlFromContent(item),
+                                text: item.displayName,
+                            }}
+                            type={CardType.Overview}
+                            illustration={(item.data as any).illustration}
+                        />
                     </li>
                 ))}
             </ul>

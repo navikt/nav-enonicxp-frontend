@@ -38,6 +38,9 @@
         > :global(.guide) {
             background-color: var(--a-lightblue-200);
         }
+        > :global(.overview) {
+            background-color: var(--a-red-100);
+        }
         //TODO: Find a better way? (can't specify classes in Card Size modules here or vice versa)
         * {
             text-decoration: none;

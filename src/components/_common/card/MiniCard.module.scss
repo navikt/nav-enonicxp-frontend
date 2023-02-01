@@ -40,6 +40,7 @@ $illustrationSizeSmall: common.px-to-rem(48);
     padding: common.px-to-rem(12);
     text-decoration: none;
     width: 100%;
+    background-color: white;
 
     &:after {
         box-shadow: 0 0 0 2px white;
