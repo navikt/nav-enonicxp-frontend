@@ -38,20 +38,8 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
             >
                 {links.map((item) => (
                     <li key={item._id}>
-                        {/* <LinkPanelNavnoSimple
-                            href={getUrlFromContent(item)}
-                            linkUnderline={'none'}
-                            analyticsLinkGroup={title}
-                            linkColor={'black'}
-                            icon={<FancyChevron color={'blue'} scale={0.55} />}
-                            className={classNames(
-                                style.item,
-                                chevronStyle.animateOnHover
-                            )}
-                        >
-                            {item.displayName}
-                        </LinkPanelNavnoSimple> */}
                         <MiniCard
+                            className={style.item}
                             link={{
                                 url: getUrlFromContent(item),
                                 text: item.displayName,
