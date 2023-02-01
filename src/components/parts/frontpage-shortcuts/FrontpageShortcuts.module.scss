@@ -42,5 +42,9 @@
     div {
         border: none !important;
         box-shadow: none !important;
+
+        @media #{common.$mq-screen-tablet-and-desktop} {
+            font-size: 1.25rem;
+        }
     }
 }
