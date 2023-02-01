@@ -44,6 +44,7 @@
         box-shadow: none !important;
 
         @media #{common.$mq-screen-tablet-and-desktop} {
+            padding: 1.5rem;
             font-size: 1.25rem;
         }
     }
