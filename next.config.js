@@ -5,6 +5,12 @@ const { withSentryConfig } = require('@sentry/nextjs');
 const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
 const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
 
+const sentryConfig = {
+    errorHandler: (err, invokeErr, compilation) => {
+        compilation.warnings.push('Sentry CLI Plugin: ' + err.message);
+    },
+};
+
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
 const cssModulesNoDashesInClassnames = (config) => {
@@ -247,6 +253,10 @@ const config = {
             ],
         },
     ],
+    sentry: {
+        autoInstrumentServerFunctions: false,
+        hideSourceMaps: true,
+    },
 };
 
-module.exports = withSentryConfig(withBundleAnalyzer(config));
+module.exports = withSentryConfig(withBundleAnalyzer(config), sentryConfig);

@@ -6,6 +6,8 @@ import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from 'utils/errors';
 import { fetchWithTimeout } from 'utils/fetch/fetch-utils';
 
+const isFailoverInstance = process.env.IS_FAILOVER_INSTANCE === 'true';
+
 // Workaround for next.js bug which fail to propagate error props from the server for client-side rendering
 // See related issue: https://github.com/vercel/next.js/issues/39616
 const getClientsideProps = (path: string) => {
@@ -73,16 +75,37 @@ const parseErrorContent = (err: any, asPath: string) => {
     }
 };
 
+const withFileExtensionPattern = new RegExp('.[a-zA-Z0-9]+$');
+
+const isFileRequest = (req) => {
+    const pathname = req?._parsedUrl?.pathname;
+    if (!pathname) {
+        return false;
+    }
+
+    return withFileExtensionPattern.test(pathname);
+};
+
+// The failover app should not fetch from itself, and we only want to fetch html-documents
+// Ignore requests for json-files, images, etc
+const shouldFetchFromFailoverApp = (req) =>
+    !isFailoverInstance && !isFileRequest(req);
+
 const Error = (props: ContentProps) => <PageBase content={props} />;
 
-Error.getInitialProps = async ({ res, err, asPath }): Promise<ContentProps> => {
+Error.getInitialProps = async ({
+    req,
+    res,
+    err,
+    asPath,
+}): Promise<ContentProps> => {
     // the res object is undefined on the client-side
     if (!res) {
         const pageProps = getClientsideProps(asPath);
         return pageProps || makeErrorProps(asPath, 'Unknown client-side error');
     }
 
-    if (process.env.IS_FAILOVER_INSTANCE !== 'true') {
+    if (shouldFetchFromFailoverApp(req)) {
         const failoverHtml = await fetchFailoverHtml(asPath);
         if (failoverHtml) {
             return res.status(200).send(failoverHtml);

@@ -12,12 +12,8 @@ import { serverSetup } from './server-setup';
 import { getNextServer } from './next-utils';
 
 const promMiddleware = promBundle({
-    includePath: true,
     metricsPath: '/internal/metrics',
     customLabels: { hpa: 'rate' },
-    promClient: {
-        collectDefaultMetrics: {},
-    },
 });
 
 const nextApp = next({
