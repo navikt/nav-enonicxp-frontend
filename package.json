@@ -24,9 +24,6 @@
         "test": "npm run test-server && npm run test-client",
         "prepare": "husky install"
     },
-    "dependenciesComments": {
-        "@sentry/nextjs": "[7.7.0] Newer versions breaks the failover-html response in our _error page. Needs to be solved before upgrading."
-    },
     "dependencies": {
         "@navikt/ds-css": "^2.0.17",
         "@navikt/ds-icons": "^2.0.17",
