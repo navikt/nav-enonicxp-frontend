@@ -75,7 +75,7 @@ const parseErrorContent = (err: any, asPath: string) => {
     }
 };
 
-const withFileExtensionPattern = new RegExp('.[a-zA-Z0-9]+$');
+const withFileExtensionPattern = /\.[a-zA-Z0-9]+$/;
 
 const isFileRequest = (req) => {
     const pathname = req?._parsedUrl?.pathname;
