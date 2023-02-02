@@ -31,10 +31,6 @@ export const PageBase = (props: PageProps) => {
         return;
     }
 
-    if (props.content.__typename === 'no_nav_navno_AreaPage') {
-        throw Error('lol wut');
-    }
-
     if (!props?.content) {
         return (
             <ErrorPage
