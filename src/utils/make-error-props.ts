@@ -10,6 +10,7 @@ const errorMessageByCode = {
     401: 'Ingen tilgang',
     403: 'Ingen tilgang',
     404: 'Fant ikke siden',
+    405: 'Ugyldig forespørsel',
     408: 'Tidsavbrudd',
 };
 

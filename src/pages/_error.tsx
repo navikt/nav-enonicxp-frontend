@@ -128,7 +128,7 @@ Error.getInitialProps = async ({
 
     logPageLoadError(
         errorId,
-        `Unhandled error on path ${asPath} - ${res.statusCode} ${errorMsg}`
+        `Unhandled error on path ${asPath} - ${res.statusCode} [${req.method}] ${errorMsg}`
     );
 
     return makeErrorProps(asPath, errorMsg, res.statusCode, errorId);
