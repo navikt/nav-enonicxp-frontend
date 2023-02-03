@@ -1,14 +1,14 @@
 @use 'src/common' as common;
 
-$blueLinkColor: common.$a-text-action;
 $blackLinkColor: common.$a-text-default;
 
 .linkPanel {
     display: flex;
     padding: 1.5rem;
     border-radius: common.$border-radius-xlarge;
-    text-decoration-color: common.$a-text-default !important;
     text-decoration: underline;
+    text-decoration-color: common.$a-text-default !important;
+
     @media #{common.$mq-screen-mobile-small} {
         padding: 0.625rem;
     }

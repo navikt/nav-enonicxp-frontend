@@ -12,7 +12,6 @@ type Props = {
     analyticsLinkGroup?: string;
     linkTextSize?: DsHeadingSize;
     linkUnderline?: 'default' | 'onHover' | 'none';
-    linkColor?: 'blue' | 'black';
     icon?: React.ReactNode;
     children: React.ReactNode;
 } & React.ComponentProps<typeof LenkeBase>;
@@ -49,15 +48,7 @@ export const LinkPanelNavnoSimple = ({
                     `navds-heading--${linkTextSize}`
                 )}
             >
-                <span
-                    className={classNames(
-                        style.text,
-                        linkUnderline === 'onHover' && style.underlineOnHover,
-                        linkUnderline === 'none' && style.underlineNone
-                    )}
-                >
-                    {children}
-                </span>
+                <span className={style.text}>{children}</span>
             </div>
         </LenkeBase>
     );
