@@ -9,6 +9,8 @@ const sentryConfig = {
     errorHandler: (err, invokeErr, compilation) => {
         compilation.warnings.push('Sentry CLI Plugin: ' + err.message);
     },
+    silent: process.env.NODE_ENV === 'development',
+    dryRun: process.env.ENV === 'localhost',
 };
 
 // Remove dashes from js variable names for classnames generated from CSS-modules
