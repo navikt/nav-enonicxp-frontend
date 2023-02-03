@@ -21,7 +21,6 @@ $blackLinkColor: common.$a-text-default;
 
     &:hover {
         .text {
-            color: $blueLinkColor;
             border-bottom-color: transparent;
 
             &.underlineOnHover {
@@ -61,10 +60,8 @@ $blackLinkColor: common.$a-text-default;
         line-height: 1.75rem;
     }
 
-    &.black {
-        color: common.$a-text-default;
-        border-bottom-color: $blackLinkColor;
-    }
+    color: common.$a-text-default;
+    border-bottom-color: $blackLinkColor;
 
     &.underlineOnHover {
         border-bottom-color: transparent;

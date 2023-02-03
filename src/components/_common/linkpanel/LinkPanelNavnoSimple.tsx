@@ -25,7 +25,6 @@ export const LinkPanelNavnoSimple = ({
     analyticsLinkGroup,
     linkTextSize = 'medium',
     linkUnderline = 'default',
-    linkColor = 'blue',
     icon,
     children,
     className,
@@ -54,8 +53,7 @@ export const LinkPanelNavnoSimple = ({
                     className={classNames(
                         style.text,
                         linkUnderline === 'onHover' && style.underlineOnHover,
-                        linkUnderline === 'none' && style.underlineNone,
-                        linkColor === 'black' && style.black
+                        linkUnderline === 'none' && style.underlineNone
                     )}
                 >
                     {children}

@@ -52,7 +52,6 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
                             href={getUrlFromContent(item)}
                             linkUnderline={'none'}
                             analyticsLinkGroup={title}
-                            linkColor={'black'}
                             icon={
                                 <StaticImage
                                     imageData={icons[index]}
