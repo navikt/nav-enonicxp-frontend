@@ -60,6 +60,9 @@ const csp = async () => {
     const termerHost = 'termer.no';
     const tiTiHosts = [tingtunHost, termerHost];
 
+    const uxSignalsScriptHost = 'uxsignals-frontend.uxsignals.app.iterate.no';
+    const uxSignalsApiHost = 'api.uxsignals.com';
+
     // Filter duplicates, as some origins may be identical, depending on
     // deployment environment
     const internalHosts = [
@@ -77,19 +80,23 @@ const csp = async () => {
         prod: 'prod',
     };
 
+    const scriptSrc = [...internalHosts, ...tiTiHosts, uxSignalsScriptHost];
+
     const directives = {
         'default-src': internalHosts,
-        'script-src': [...internalHosts, ...tiTiHosts],
+        'script-src-elem': scriptSrc,
+        'script-src': scriptSrc,
         'worker-src': internalHosts,
         'style-src': [...internalHosts, UNSAFE_INLINE],
         'font-src': [...internalHosts, DATA],
         'img-src': [...internalHosts, DATA],
         'frame-src': [qbrickHost],
-        'connect-src': internalHosts,
+        'connect-src': [...internalHosts, uxSignalsApiHost],
     };
 
     if (process.env.NODE_ENV === 'development') {
         directives['default-src'].push('ws:');
+        directives['connect-src'].push('ws:');
         directives['script-src'].push(UNSAFE_INLINE, UNSAFE_EVAL);
     }
 
