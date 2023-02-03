@@ -7,7 +7,7 @@ import style from './UxSignalsWidgetPart.module.scss';
 
 export const UxSignalsWidgetPart = ({ config }: UxSignalsWidgetPartProps) => {
     if (!config) {
-        return null;
+        return <EditorHelp text={'Tom komponent'} type={'error'} />;
     }
 
     const { embedCode } = config;
