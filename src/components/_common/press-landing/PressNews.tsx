@@ -50,7 +50,7 @@ export const PressNews = (props: PressNewsProps) => {
                 </ul>
                 {moreNewsUrl && (
                     <Link href={moreNewsUrl}>
-                        <Next />
+                        <Next aria-hidden={true} />
                         {getTranslations('morePressNews')}
                     </Link>
                 )}
