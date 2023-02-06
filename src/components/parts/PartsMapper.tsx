@@ -48,6 +48,7 @@ import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSit
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 import { FrontpageSurveyPanel } from './frontpage-survey-panel/FrontpageSurveyPanel';
+import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -99,6 +100,7 @@ const partsWithOwnData: {
     [PartType.LoggedinCard]: LoggedinCardPart,
     [PartType.FrontpageContact]: FrontpageContactPart,
     [PartType.FrontpageSurveyPanel]: FrontpageSurveyPanel,
+    [PartType.UxSignalsWidget]: UxSignalsWidgetPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {
