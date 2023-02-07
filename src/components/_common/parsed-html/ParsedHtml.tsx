@@ -92,6 +92,9 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
     const parserOptions = {
         replace: (element: Element) => {
+            //Fjern all eventuell inline styling
+            delete element?.attribs?.style;
+
             const { name, attribs, children } = element;
             const tag = name?.toLowerCase();
             const props = !!attribs && attributesToProps(attribs);
@@ -210,7 +213,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Replace empty rows with stylable element
             if (tag === 'tr' && !validChildren) {
-                return <tr {...props} className={'spacer-row'} />;
+                return <tr {...props} role="none" className={'spacer-row'} />;
             }
 
             // Remove empty divs
