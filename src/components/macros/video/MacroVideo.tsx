@@ -1,3 +1,4 @@
+import { BodyShort, Detail } from '@navikt/ds-react';
 import React from 'react';
 import { MacroVideoProps } from '../../../types/macro-props/video';
 import style from './MacroVideo.module.scss';
@@ -16,31 +17,17 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         //     />
         // </div>
 
-        <figure>
-            <div>
-                <img
-                    src="https://eb5c686abfd0ac2c5fae39833b9cd350-httpcache0-15227-cachedown0.dna.ip-only.net/15227-cachedown0/assets/2018-09-04/daf2f6bd-00015227/daf2f6bd-00015227725.jpg"
-                    alt=""
-                />
-                <div>
-                    <svg
-                        focusable="false"
-                        aria-hidden="true"
-                        width="22"
-                        height="26"
-                        viewBox="0 0 22 26"
-                    >
-                        <path fill="#fff" d="M22 13 0 26V0Z" />
-                    </svg>
-                </div>
-            </div>
+        <figure className={style.figure}>
+            <img
+                className={style.previewImage}
+                src="https://eb5c686abfd0ac2c5fae39833b9cd350-httpcache0-15227-cachedown0.dna.ip-only.net/15227-cachedown0/assets/2018-09-04/daf2f6bd-00015227/daf2f6bd-00015227725.jpg"
+                alt=""
+            />
             <figcaption>
-                <h4>
-                    <button>{title}</button>
-                </h4>
-                <p>
-                    <span>Varighet er 02.33 minutter</span>
-                </p>
+                <BodyShort className={style.text}>Se video "{title}"</BodyShort>
+                <Detail className={style.text}>
+                    Varighet er 02.33 minutter
+                </Detail>
             </figcaption>
         </figure>
     );
