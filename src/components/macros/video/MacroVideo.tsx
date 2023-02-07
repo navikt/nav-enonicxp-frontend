@@ -36,9 +36,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
             </div>
             <figcaption>
                 <h4>
-                    <button>
-                        Se video om budsjett og hva det kan brukes&nbsp;til
-                    </button>
+                    <button>{title}</button>
                 </h4>
                 <p>
                     <span>Varighet er 02.33 minutter</span>
