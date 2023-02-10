@@ -28,7 +28,7 @@
         "@navikt/ds-css": "^2.0.17",
         "@navikt/ds-icons": "^2.0.17",
         "@navikt/ds-react": "^2.0.17",
-        "@navikt/ds-tokens": "^2.0.17",
+        "@navikt/ds-tokens": "^2.0.18",
         "@navikt/nav-dekoratoren-moduler": "1.9.0",
         "@reduxjs/toolkit": "^1.9.1",
         "@sentry/integrations": "7.35.0",
