@@ -51,11 +51,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const mediaId = params?.mediaId;
     return (
         <>
-            <div
-                className={`${style.macroVideo} ${
-                    isClicked ? '' : style.hidden
-                }`}
-            >
+            <div className={`${style.macroVideo}`}>
                 <div id="divPageContainer" className={style.macroVideo}>
                     <div id="divPlayerContainer">
                         <div
@@ -68,7 +64,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 </div>
             </div>
             <figure
-                className={`${style.figure} ${isClicked ? style.hidden : ''}`}
+                className={`${style.figure}`}
                 onClick={() => setIsClicked(true)}
             >
                 <img
