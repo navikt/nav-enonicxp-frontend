@@ -8,30 +8,45 @@ import style from './MacroVideo.module.scss';
 export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [isClicked, setIsClicked] = useState(false);
 
+    // useEffect(() => {
+    //     const script = document.createElement('script');
+    //     script.src = '//play2.qbrick.com/framework/GoBrain.min.js';
+    //     script.async = true;
+    //     document.body.appendChild(script);
+
+    //     //HACK for logge start av video, vil bare fungere for initiell start av video
+    //     const player = document.querySelector('.gobrain-play');
+    //     console.log(player);
+    //     if (player) {
+    //         player.addEventListener('click', () => {
+    //             logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
+    //         });
+    //     }
+
+    //     return () => {
+    //         document.body.removeChild(script);
+    //     };
+    // }, []);
+
     useEffect(() => {
-        const script = document.createElement('script');
-        script.src = '//play2.qbrick.com/framework/GoBrain.min.js';
-        script.async = true;
-        document.body.appendChild(script);
+        if (isClicked) {
+            console.log('click');
 
-        //HACK for logge start av video, vil bare fungere for initiell start av video
-        const player = document.querySelector('.gobrain-play');
-        if (player) {
-            player.addEventListener('click', () => {
-                logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
-            });
+            const player = document.querySelector(
+                '.gobrain-play'
+            ) as HTMLElement;
+            if (player) {
+                console.log(player);
+                player.click();
+            }
         }
-
-        return () => {
-            document.body.removeChild(script);
-        };
-    }, []);
+    }, [isClicked]);
 
     if (!config?.video) {
         return null;
     }
 
-    const { video } = config.video;
+    const { video, title } = config.video;
     const params = parse(video);
     const mediaId = params?.mediaId;
     return (
@@ -51,11 +66,6 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                         ></div>
                     </div>
                 </div>
-                {/* <iframe
-                    title={`Video: ${title}`}
-                    src={video}
-                    allow={'fullscreen'}
-                /> */}
             </div>
             <figure
                 className={`${style.figure} ${isClicked ? style.hidden : ''}`}
@@ -68,8 +78,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 />
                 <figcaption>
                     <BodyShort className={style.text}>
-                        {/* Se video "{title}" */}
-                        Title
+                        Se video "{title}"
                     </BodyShort>
                     <Detail className={style.text}>
                         Varighet er 02.33 minutter
