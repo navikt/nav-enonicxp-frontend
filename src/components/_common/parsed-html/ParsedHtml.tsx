@@ -92,11 +92,13 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
     const parserOptions = {
         replace: (element: Element) => {
-            //Remove all inline styling from source
-            delete element?.attribs?.style;
-
-            const { name, attribs, children } = element;
+            const { name } = element;
             const tag = name?.toLowerCase();
+            //Remove all inline styling except in table cells
+            if (tag !== 'td') {
+                delete element?.attribs?.style;
+            }
+            const { attribs, children } = element;
             const props = !!attribs && attributesToProps(attribs);
             const validChildren = getNonEmptyChildren(element);
 
