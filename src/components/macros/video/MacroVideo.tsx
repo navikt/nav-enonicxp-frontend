@@ -74,7 +74,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 />
                 <figcaption>
                     <BodyShort className={style.text}>
-                        Se video "{title}"
+                        Se video {title}
                     </BodyShort>
                     <Detail className={style.text}>
                         Varighet er 02.33 minutter
