@@ -3,7 +3,7 @@
 .wrapper {
     padding-top: 0.5rem;
     padding-bottom: 2.75rem;
-    background-color: common.$navds-global-color-white;
+    background-color: common.$a-white;
 
     @include common.full-width-mixin();
 

@@ -76,7 +76,6 @@ export const IllustrationAnimated = ({
         <div
             className={classNames(styleCommon.image, className)}
             aria-hidden="true"
-            role="presentation"
         >
             <div
                 ref={lottieContainer}

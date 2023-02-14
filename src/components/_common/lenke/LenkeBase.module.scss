@@ -1,8 +1,8 @@
 @use 'src/common' as common;
 
 .badLinkWarning {
-    color: common.$navds-semantic-color-feedback-danger-text;
+    color: common.$a-text-danger;
     font-weight: bolder;
     padding: 0.25rem;
-    border: dashed 2px common.$navds-semantic-color-feedback-danger-text;
+    border: dashed 2px common.$a-text-danger;
 }

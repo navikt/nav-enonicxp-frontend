@@ -15,7 +15,7 @@
 
 #__next,
 .decorator-utils-container {
-    background-color: common.$navds-semantic-color-canvas-background;
+    background-color: common.$a-bg-subtle;
 }
 
 .decorator-utils-container {
@@ -23,9 +23,9 @@
 }
 
 .app-background {
-    background-color: common.$navds-semantic-color-canvas-background;
+    background-color: common.$a-bg-subtle;
     &.white {
-        background-color: var(--navds-global-color-white);
+        background-color: var(--a-white);
     }
 }
 
@@ -33,8 +33,8 @@
     max-width: common.$desktopMaxWidth;
     min-height: 22.5rem;
     margin: 0 auto;
-    font-size: common.$navds-font-size-large;
-    line-height: common.$navds-font-line-height-xlarge;
+    font-size: common.$a-font-size-large;
+    line-height: common.$a-font-line-height-xlarge;
 
     @media #{common.$mq-screen-mobile} {
         padding: 0 common.$padding-sides-mobile 2rem

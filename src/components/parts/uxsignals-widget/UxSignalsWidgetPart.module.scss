@@ -1,0 +1,13 @@
+.uxSignalsWidget {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+
+    &:empty {
+        display: none;
+    }
+
+    & > div {
+        margin: 0;
+    }
+}

@@ -17,7 +17,7 @@
 
 .tag {
     background-color: white;
-    border: 1px solid var(--navds-global-color-gray-600);
+    border: 1px solid var(--a-gray-600);
     cursor: pointer;
     white-space: nowrap;
 }
@@ -31,8 +31,8 @@
 
 .activeButton {
     .tag {
-        background-color: common.$navds-global-color-blue-100;
-        outline: 2px solid common.$navds-global-color-blue-500;
+        background-color: common.$a-blue-100;
+        outline: 2px solid common.$a-blue-500;
         border-color: transparent;
     }
 }

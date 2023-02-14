@@ -1,15 +1,13 @@
 @use 'src/common' as common;
 
-$blueLinkColor: common.$navds-semantic-color-link;
-$blackLinkColor: common.$navds-semantic-color-text;
+$blackLinkColor: common.$a-text-default;
 
 .linkPanel {
     display: flex;
-
-    padding: 1.5rem 1rem;
+    padding: 1.5rem;
     border-radius: common.$border-radius-xlarge;
-
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: common.$a-text-default !important;
 
     @media #{common.$mq-screen-mobile-small} {
         padding: 0.625rem;
@@ -20,18 +18,7 @@ $blackLinkColor: common.$navds-semantic-color-text;
     }
 
     &:hover {
-        .text {
-            color: $blueLinkColor;
-            border-bottom-color: transparent;
-
-            &.underlineOnHover {
-                border-bottom-color: $blueLinkColor;
-
-                &.black {
-                    border-bottom-color: $blackLinkColor;
-                }
-            }
-        }
+        text-decoration: none;
     }
 
     &:focus {
@@ -41,30 +28,19 @@ $blackLinkColor: common.$navds-semantic-color-text;
 
 .icon {
     margin-right: 1rem;
+    display: flex;
+
+    @media #{common.$mq-screen-mobile-small} {
+        width: 3rem;
+        height: 3rem;
+    }
 }
 
 .text {
-    transition-property: border-bottom-color, color;
-    transition-duration: 0.15s;
-    transition-timing-function: ease-out;
-
-    border-bottom: 1px $blueLinkColor solid;
-
     @media #{common.$mq-screen-mobile-small} {
         font-size: 1.25rem;
         line-height: 1.75rem;
     }
 
-    &.black {
-        color: common.$navds-semantic-color-text;
-        border-bottom-color: $blackLinkColor;
-    }
-
-    &.underlineOnHover {
-        border-bottom-color: transparent;
-    }
-
-    &.underlineNone {
-        border-bottom: none;
-    }
+    color: common.$a-text-default;
 }

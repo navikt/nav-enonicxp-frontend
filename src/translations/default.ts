@@ -62,7 +62,6 @@ const areas: { [key in Area]: string } = {
     [Area.MUNICIPALITY]: 'For kommunen',
     [Area.OTHER]: 'Annet',
     [Area.PENSION]: 'Pensjon',
-    [Area.SELF_EMPLOYED]: 'For selvstendig næringsdrivende',
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
     [Area.WORK]: 'Arbeid',
 };
@@ -147,6 +146,9 @@ export const translationsBundleNb = {
         person: 'Slik gjør du det',
         employer: 'For arbeidsgivere',
         provider: 'For samarbeidspartnere',
+    },
+    overviews: {
+        any: 'Fra A til Å',
     },
     publishingCalendar: {
         event: 'Kalenderhendelse',

@@ -80,6 +80,7 @@ export const FrontpageLoggedinSectionLayout = ({
                 pageProps={pageProps}
                 layoutProps={layoutProps}
                 className={style.layout}
+                data-hj-suppress
             >
                 <HeaderWithName headerText={header} />
                 <Header

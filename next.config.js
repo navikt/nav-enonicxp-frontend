@@ -5,6 +5,14 @@ const { withSentryConfig } = require('@sentry/nextjs');
 const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
 const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
 
+const sentryConfig = {
+    errorHandler: (err, invokeErr, compilation) => {
+        compilation.warnings.push('Sentry CLI Plugin: ' + err.message);
+    },
+    silent: process.env.NODE_ENV === 'development',
+    dryRun: process.env.ENV === 'localhost',
+};
+
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
 const cssModulesNoDashesInClassnames = (config) => {
@@ -52,6 +60,9 @@ const csp = async () => {
     const termerHost = 'termer.no';
     const tiTiHosts = [tingtunHost, termerHost];
 
+    const uxSignalsScriptHost = 'uxsignals-frontend.uxsignals.app.iterate.no';
+    const uxSignalsApiHost = 'api.uxsignals.com';
+
     // Filter duplicates, as some origins may be identical, depending on
     // deployment environment
     const internalHosts = [
@@ -69,16 +80,18 @@ const csp = async () => {
         prod: 'prod',
     };
 
+    const scriptSrc = [...internalHosts, ...tiTiHosts, uxSignalsScriptHost];
+
     const directives = {
         'default-src': internalHosts,
-        'script-src': [...internalHosts, ...tiTiHosts],
-        'script-src-elem': qbrickHosts,
+        'script-src': scriptSrc,
+        'script-src-elem': [...scriptSrc, ...qbrickHosts],
         'worker-src': internalHosts,
         'style-src': [...internalHosts, UNSAFE_INLINE],
         'font-src': [...internalHosts, DATA],
         'img-src': [...internalHosts, DATA],
         'media-src': qbrickHosts,
-        'connect-src': [...internalHosts, ...qbrickHosts],
+        'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost],
     };
 
     if (process.env.NODE_ENV === 'development') {
@@ -249,6 +262,10 @@ const config = {
             ],
         },
     ],
+    sentry: {
+        autoInstrumentServerFunctions: false,
+        hideSourceMaps: true,
+    },
 };
 
-module.exports = withSentryConfig(withBundleAnalyzer(config));
+module.exports = withSentryConfig(withBundleAnalyzer(config), sentryConfig);

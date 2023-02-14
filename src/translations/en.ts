@@ -46,7 +46,6 @@ const areas: { [key in Area]: string } = {
     [Area.MUNICIPALITY]: 'For government',
     [Area.OTHER]: 'Other',
     [Area.PENSION]: 'Pension',
-    [Area.SELF_EMPLOYED]: 'For the self-employed',
     [Area.SOCIAL_COUNSELLING]: 'Financial social advice and guidance',
     [Area.WORK]: 'Work',
 };
@@ -116,7 +115,7 @@ export const translationsBundleEn: Translations = {
         ],
         relatives: {
             today: 'today',
-            tomorrow: 'i morgen',
+            tomorrow: 'tomorrow',
         },
         day: 'day',
         date: 'date',
@@ -149,6 +148,9 @@ export const translationsBundleEn: Translations = {
         person: 'How to',
         employer: 'For employers',
         provider: 'For providers',
+    },
+    overviews: {
+        any: 'From A to Z',
     },
     taxonomies,
     areas,

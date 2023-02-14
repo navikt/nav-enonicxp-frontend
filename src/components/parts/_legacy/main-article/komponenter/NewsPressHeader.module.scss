@@ -9,7 +9,7 @@
 }
 
 .newsPressLine {
-    border-bottom: 3px solid var(--navds-global-color-gray-400);
+    border-bottom: 3px solid var(--a-gray-400);
     display: block;
     left: 0;
     margin-top: 1rem;
@@ -25,8 +25,8 @@
 }
 
 .tagLabel {
-    color: var(--navds-global-color-purple-500);
-    font-weight: common.$navds-font-weight-bold;
+    color: var(--a-purple-500);
+    font-weight: common.$a-font-weight-bold;
     padding-left: 0.5rem;
     text-transform: uppercase;
 }

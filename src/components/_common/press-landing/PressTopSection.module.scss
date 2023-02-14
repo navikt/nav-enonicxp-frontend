@@ -16,7 +16,7 @@
     margin-top: 1.5rem;
     margin-bottom: 2.75rem;
     padding: 2.5rem;
-    background-color: var(--navds-global-color-purple-50);
+    background-color: var(--a-purple-50);
 
     @media #{common.$mq-screen-mobile} {
         padding: 1rem;
@@ -27,7 +27,7 @@
     }
 
     a {
-        color: var(--navds-global-color-gray-900);
+        color: var(--a-gray-900);
         text-decoration: underline;
         text-decoration-thickness: 1px;
         text-underline-offset: 0.2rem;
@@ -35,6 +35,6 @@
     }
     a:hover {
         text-decoration: none;
-        color: var(--navds-semantic-color-link);
+        color: var(--a-text-action);
     }
 }

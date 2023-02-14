@@ -41,10 +41,7 @@ export const OverviewPageFilter = <Type extends FilterOptions>({
             <Heading size={'small'} level={'2'}>
                 {translations['choose']}
             </Heading>
-            <nav
-                role={'navigation'}
-                aria-label={translations['ariaExplanation']}
-            >
+            <nav aria-label={translations['ariaExplanation']}>
                 <ul className={styles.filterWrapper}>
                     {options.map((option) => {
                         const isActive = selected === option;

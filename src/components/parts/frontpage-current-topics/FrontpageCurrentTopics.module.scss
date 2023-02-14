@@ -1,7 +1,7 @@
 @use 'src/common' as common;
 
 .currentTopics {
-    background-color: common.$navds-semantic-color-canvas-background;
+    background-color: common.$a-bg-subtle;
     padding: 2.75rem;
     @include common.full-width-mixin();
 
@@ -55,5 +55,5 @@
 }
 
 .date {
-    color: common.$navds-global-color-gray-600;
+    color: common.$a-gray-600;
 }

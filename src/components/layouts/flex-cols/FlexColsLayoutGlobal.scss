@@ -57,12 +57,8 @@
             @include common.flex-cols-mixin(1);
         }
     }
-
-    &:last-of-type {
-        padding-bottom: 0;
-    }
 }
 
 .layout__situation-flex-cols {
-    background-color: common.$navds-global-color-green-100;
+    background-color: common.$a-green-100;
 }

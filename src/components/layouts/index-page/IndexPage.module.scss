@@ -25,7 +25,7 @@ $maxWidth: 1272px;
     display: flex;
     flex-direction: column;
     row-gap: 0.5rem;
-    background-color: common.$navds-global-color-white;
+    background-color: common.$a-white;
 
     @include common.full-width-mixin();
 }
