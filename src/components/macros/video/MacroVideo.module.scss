@@ -1,19 +1,19 @@
-// .macroVideo {
-//     position: relative;
-//     padding-bottom: 56.25%;
-//     padding-top: 1.5rem;
-//     height: 0;
-//     overflow: hidden;
-//     margin: 1rem 0;
+.macroVideo {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 1.5rem;
+    height: 0;
+    overflow: hidden;
+    margin: 1rem 0;
 
-//     iframe {
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//         width: 100%;
-//         height: 100%;
-//     }
-// }
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
 
 .figure {
     display: flex;
