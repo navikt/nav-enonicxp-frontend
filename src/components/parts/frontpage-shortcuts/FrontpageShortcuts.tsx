@@ -55,6 +55,8 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
                             icon={
                                 <StaticImage
                                     imageData={icons[index]}
+                                    width={64}
+                                    height={64}
                                     alt={''}
                                 />
                             }
