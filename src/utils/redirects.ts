@@ -22,9 +22,7 @@ const hasExternalProductUrl = (
 
 const getTargetPath = (contentData: ContentProps) => {
     if (hasExternalProductUrl(contentData)) {
-        return !contentData.isDraft
-            ? contentData.data?.externalProductUrl
-            : null;
+        return contentData.isDraft ? null : contentData.data.externalProductUrl;
     }
 
     switch (contentData?.__typename) {
