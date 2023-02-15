@@ -13,15 +13,15 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: nav-enonicxp-frontend-dev2
-  minReplicas: 2
-  maxReplicas: 4
+  minReplicas: 1
+  maxReplicas: 2
   metrics:
     - type: Resource
       resource:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 50
+          averageUtilization: 60
     - type: Pods
       pods:
         metric:

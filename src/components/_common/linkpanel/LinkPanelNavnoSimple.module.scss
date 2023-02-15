@@ -29,6 +29,7 @@ $blackLinkColor: common.$a-text-default;
 .icon {
     margin-right: 1rem;
     display: flex;
+    flex-shrink: 0;
 
     @media #{common.$mq-screen-mobile-small} {
         width: 3rem;
