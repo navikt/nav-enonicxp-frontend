@@ -57,7 +57,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 className={`${style.macroVideo} ${
                     isClicked ? '' : style.hidden
                 }`}
-                title="Video: Er du en Naver?_Høydeformat"
+                title={title}
                 data-gobrain-widgetid="player"
                 // data-gobrain-language="en"
                 // data-gobrain-autoplay="true"
