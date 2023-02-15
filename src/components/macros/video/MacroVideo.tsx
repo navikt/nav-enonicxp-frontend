@@ -53,20 +53,6 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const mediaId = params?.mediaId;
     return (
         <>
-            <div
-                className={`${style.macroVideo} ${
-                    isClicked ? '' : style.hidden
-                }`}
-                title={title}
-                data-gobrain-widgetid="player"
-                // data-gobrain-language="en"
-                // data-gobrain-autoplay="true"
-                data-gobrain-repeat="false"
-                data-gobrain-modulesettings='{"TopControls":{"download":{"enabled":false},"sharing":{"enabled":true}},"MobileControls":{"download":{"enabled":false},"sharing":{"enabled":true}}}'
-                data-gobrain-config="https://video.qbrick.com/play2/api/v1/accounts/763558/configurations/qbrick-player"
-                data-gobrain-data={`https://video.qbrick.com/api/v1/public/accounts/763558/medias/${mediaId}`}
-            ></div>
-            <script src="https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js"></script>
             <figure
                 className={`${style.figure} ${isClicked ? style.hidden : ''}`}
                 onClick={() => setIsClicked(true)}
@@ -85,6 +71,20 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     </Detail>
                 </figcaption>
             </figure>
+            <div
+                className={`${style.macroVideo} ${
+                    isClicked ? '' : style.hidden
+                }`}
+                title={title}
+                data-gobrain-widgetid="player"
+                // data-gobrain-language="en"
+                // data-gobrain-autoplay="true"
+                data-gobrain-repeat="false"
+                data-gobrain-modulesettings='{"TopControls":{"download":{"enabled":false},"sharing":{"enabled":true}},"MobileControls":{"download":{"enabled":false},"sharing":{"enabled":true}}}'
+                data-gobrain-config="https://video.qbrick.com/play2/api/v1/accounts/763558/configurations/qbrick-player"
+                data-gobrain-data={`https://video.qbrick.com/api/v1/public/accounts/763558/medias/${mediaId}`}
+            ></div>
+            <script src="https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js"></script>
         </>
     );
 };
