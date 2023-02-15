@@ -126,6 +126,7 @@ export type ContentCommonProps = {
     livePath?: string;
     isFailover?: boolean;
     isPagePreview?: boolean;
+    languages?: LanguageProps[];
 } & ContentAndMediaCommonProps;
 
 type SiteProps = {

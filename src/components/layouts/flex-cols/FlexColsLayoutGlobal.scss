@@ -57,10 +57,6 @@
             @include common.flex-cols-mixin(1);
         }
     }
-
-    &:last-of-type {
-        padding-bottom: 0;
-    }
 }
 
 .layout__situation-flex-cols {
