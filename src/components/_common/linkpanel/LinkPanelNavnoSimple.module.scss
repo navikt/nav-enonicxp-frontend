@@ -35,6 +35,10 @@ $blackLinkColor: common.$a-text-default;
         height: 3rem;
     }
 }
+.icon img {
+    max-width: 100%;
+    height: auto;
+}
 
 .text {
     @media #{common.$mq-screen-mobile-small} {
