@@ -30,13 +30,10 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
 
     useEffect(() => {
         if (isClicked) {
-            console.log('click');
-
             const player = document.querySelector(
                 '.gobrain-play'
             ) as HTMLElement;
             if (player) {
-                console.log(player);
                 player.click();
             }
         }
@@ -48,6 +45,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
 
     const { video, title } = config.video;
     const params = parse(video);
+    console.log(config.video);
+
     console.log(params);
 
     const mediaId = params?.mediaId;
@@ -76,14 +75,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     isClicked ? '' : style.hidden
                 }`}
                 title={title}
-                data-gobrain-widgetid="player"
-                // data-gobrain-language="en"
-                // data-gobrain-autoplay="true"
-                data-gobrain-repeat="false"
-                data-gobrain-modulesettings='{"TopControls":{"download":{"enabled":false},"sharing":{"enabled":true}},"MobileControls":{"download":{"enabled":false},"sharing":{"enabled":true}}}'
                 data-gobrain-config="https://video.qbrick.com/play2/api/v1/accounts/763558/configurations/qbrick-player"
                 data-gobrain-data={`https://video.qbrick.com/api/v1/public/accounts/763558/medias/${mediaId}`}
-            ></div>
+            />
             <script src="https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js"></script>
         </>
     );
