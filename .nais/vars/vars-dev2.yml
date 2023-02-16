@@ -5,11 +5,11 @@ ingresses:
   - https://www-2.dev.nav.no
 resources:
   limits:
-    cpu: 1000m
-    memory: 2000Mi
-  requests:
     cpu: 500m
     memory: 1000Mi
+  requests:
+    cpu: 250m
+    memory: 500Mi
 replicas:
-  min: 2
-  max: 2
+  min: 1
+  max: 1

@@ -1,6 +1,7 @@
-import { ContentType, ContentProps } from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from './urls';
 import { getInternalLinkUrl } from './links-from-content';
+import { ProductDataMixin } from 'types/component-props/_mixins';
 
 const redirectTypes: { [type in ContentType]?: boolean } = {
     [ContentType.InternalLink]: true,
@@ -8,16 +9,23 @@ const redirectTypes: { [type in ContentType]?: boolean } = {
     [ContentType.Url]: true,
 };
 
+type ContentWithExternalProductUrl = ContentProps & {
+    data: Pick<ProductDataMixin, 'externalProductUrl'>;
+};
+
+const hasExternalProductUrl = (
+    content: ContentProps
+): content is ContentWithExternalProductUrl => {
+    return !!(content as ContentWithExternalProductUrl).data
+        ?.externalProductUrl;
+};
+
 const getTargetPath = (contentData: ContentProps) => {
+    if (hasExternalProductUrl(contentData)) {
+        return contentData.isDraft ? null : contentData.data.externalProductUrl;
+    }
+
     switch (contentData?.__typename) {
-        case ContentType.SituationPage:
-        case ContentType.ProductPage:
-        case ContentType.ToolsPage:
-        case ContentType.GuidePage:
-        case ContentType.ThemedArticlePage:
-            return !contentData.isDraft
-                ? contentData.data?.externalProductUrl
-                : null;
         case ContentType.InternalLink:
             return getInternalLinkUrl(contentData.data);
         case ContentType.ExternalLink:
