@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MacroVideoProps } from 'types/macro-props/video';
 import { parse } from 'querystring';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { BodyShort, Detail } from '@navikt/ds-react';
+import { BodyShort, Button, Detail } from '@navikt/ds-react';
 import style from './MacroVideo.module.scss';
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
@@ -34,24 +34,25 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const mediaId = params?.mediaId;
     return (
         <>
-            <figure
-                className={`${style.figure} ${isClicked ? style.hidden : ''}`}
+            <Button
+                className={`${style.previewButton} ${
+                    isClicked ? style.hidden : ''
+                }`}
+                variant="tertiary"
                 onClick={() => setIsClicked(true)}
+                icon={
+                    <img
+                        className={style.previewImage}
+                        src="https://eb5c686abfd0ac2c5fae39833b9cd350-httpcache0-15227-cachedown0.dna.ip-only.net/15227-cachedown0/assets/2018-09-04/daf2f6bd-00015227/daf2f6bd-00015227725.jpg"
+                        alt=""
+                    />
+                }
             >
-                <img
-                    className={style.previewImage}
-                    src="https://eb5c686abfd0ac2c5fae39833b9cd350-httpcache0-15227-cachedown0.dna.ip-only.net/15227-cachedown0/assets/2018-09-04/daf2f6bd-00015227/daf2f6bd-00015227725.jpg"
-                    alt=""
-                />
-                <figcaption>
-                    <BodyShort className={style.text}>
-                        Se video {title}
-                    </BodyShort>
-                    <Detail className={style.text}>
-                        Varighet er 02.33 minutter
-                    </Detail>
-                </figcaption>
-            </figure>
+                <BodyShort className={style.text}>Se video {title}</BodyShort>
+                <Detail className={style.text}>
+                    Varighet er 02.33 minutter
+                </Detail>
+            </Button>
             <div
                 className={`${style.macroVideo} ${
                     isClicked ? '' : style.hidden
