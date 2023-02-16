@@ -82,6 +82,13 @@ figure {
     margin-right: 0;
 }
 
+table {
+    .spacer-row {
+        height: 1rem;
+        background-color: transparent;
+    }
+}
+
 // Catch-all to prevent unnecessary margin-bottom whitespace
 .region:last-child,
 .layout:last-child,
