@@ -9,6 +9,12 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [isClicked, setIsClicked] = useState(false);
 
     useEffect(() => {
+        console.log(
+            document
+                .querySelector('.gobrain-poster')
+                ?.getAttribute('style')
+                .match(/"([^"]+)"/)[1]
+        );
         logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
 
         if (isClicked) {
