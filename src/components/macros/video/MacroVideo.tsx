@@ -8,27 +8,9 @@ import style from './MacroVideo.module.scss';
 export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [isClicked, setIsClicked] = useState(false);
 
-    // useEffect(() => {
-    //     const script = document.createElement('script');
-    //     script.src = '//play2.qbrick.com/framework/GoBrain.min.js';
-    //     script.async = true;
-    //     document.body.appendChild(script);
-
-    //     //HACK for logge start av video, vil bare fungere for initiell start av video
-    //     const player = document.querySelector('.gobrain-play');
-    //     console.log(player);
-    //     if (player) {
-    //         player.addEventListener('click', () => {
-    //             logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
-    //         });
-    //     }
-
-    //     return () => {
-    //         document.body.removeChild(script);
-    //     };
-    // }, []);
-
     useEffect(() => {
+        logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
+
         if (isClicked) {
             const player = document.querySelector(
                 '.gobrain-play'
