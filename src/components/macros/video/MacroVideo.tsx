@@ -7,14 +7,18 @@ import style from './MacroVideo.module.scss';
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [isClicked, setIsClicked] = useState(false);
+    const [previewImageUrl, setPreviewImageUrl] = useState('');
 
     useEffect(() => {
-        console.log(
+        setPreviewImageUrl(
             document
                 .querySelector('.gobrain-poster')
                 ?.getAttribute('style')
                 .match(/"([^"]+)"/)[1]
         );
+    });
+
+    useEffect(() => {
         logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
 
         if (isClicked) {
@@ -49,7 +53,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 icon={
                     <img
                         className={style.previewImage}
-                        src="https://eb5c686abfd0ac2c5fae39833b9cd350-httpcache0-15227-cachedown0.dna.ip-only.net/15227-cachedown0/assets/2018-09-04/daf2f6bd-00015227/daf2f6bd-00015227725.jpg"
+                        src={previewImageUrl}
                         alt=""
                     />
                 }
