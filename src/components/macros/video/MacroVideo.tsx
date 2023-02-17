@@ -12,6 +12,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
 
     const [isClicked, setIsClicked] = useState(false);
     const [previewImageUrl, setPreviewImageUrl] = useState('');
+    const [previewVideoLength, setPreviewVideoLength] = useState('');
 
     useEffect(() => {
         setPreviewImageUrl(
@@ -19,6 +20,10 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 .querySelector('.gobrain-poster')
                 ?.getAttribute('style')
                 .match(/"([^"]+)"/)[1]
+        );
+
+        setPreviewVideoLength(
+            document.querySelector('.gobrain-duration')?.innerHTML
         );
     });
 
@@ -56,9 +61,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 <BodyShort
                     className={style.text}
                 >{`Se video "${title}"`}</BodyShort>
-                <Detail className={style.text}>
-                    Varighet er 02.33 minutter
-                </Detail>
+                <Detail className={style.text}>{previewVideoLength}</Detail>
             </Button>
             <div
                 className={`${style.macroVideo} ${
