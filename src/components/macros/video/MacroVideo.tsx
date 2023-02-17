@@ -48,7 +48,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 className={`${style.previewButton} ${
                     isClicked ? style.hidden : ''
                 }`}
-                variant="tertiary"
+                variant="tertiary-neutral"
                 onClick={() => setIsClicked(true)}
                 icon={
                     <img
