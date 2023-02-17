@@ -15,17 +15,25 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [previewVideoLength, setPreviewVideoLength] = useState('');
 
     useEffect(() => {
-        setPreviewImageUrl(
-            document
+        const observer = new MutationObserver(() => {
+            const qbrickImageUrl = document
                 .querySelector('.gobrain-poster')
                 ?.getAttribute('style')
-                .match(/"([^"]+)"/)[1]
-        );
+                ?.match(/"([^"]+)"/)[1];
 
-        setPreviewVideoLength(
-            document.querySelector('.gobrain-duration')?.innerHTML
-        );
-    });
+            const qbrickVideoDuration =
+                document.querySelector('.gobrain-duration')?.innerHTML;
+
+            if (qbrickImageUrl && qbrickVideoDuration) {
+                setPreviewImageUrl(qbrickImageUrl);
+                setPreviewVideoLength(qbrickVideoDuration);
+                observer.disconnect();
+            }
+        });
+
+        const target = document.getElementById('playerContainer');
+        observer.observe(target, { childList: true, subtree: true });
+    }, []);
 
     useEffect(() => {
         if (isClicked) {
@@ -37,11 +45,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
 
     const { video, title } = config.video;
     const params = parse(video);
-    console.log(config.video);
-
-    console.log(params);
-
     const mediaId = params?.mediaId;
+
     return (
         <div suppressHydrationWarning>
             <Button
@@ -63,20 +68,22 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 >{`Se video "${title}"`}</BodyShort>
                 <Detail className={style.text}>{previewVideoLength}</Detail>
             </Button>
-            <div
-                className={`${style.macroVideo} ${
-                    isClicked ? '' : style.hidden
-                }`}
-                title={title}
-                data-gobrain-widgetid="player"
-                // data-gobrain-language="en"
-                // data-gobrain-autoplay="true"
-                // data-gobrain-repeat="false"
-                // data-gobrain-modulesettings='{"TopControls":{"download":{"enabled":false},"sharing":{"enabled":true}},"MobileControls":{"download":{"enabled":false},"sharing":{"enabled":true}}}'
-                data-gobrain-config="https://video.qbrick.com/play2/api/v1/accounts/763558/configurations/qbrick-player"
-                data-gobrain-data={`https://video.qbrick.com/api/v1/public/accounts/763558/medias/${mediaId}`}
-            />
-            <script src="https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js"></script>
+            <div id="playerContainer">
+                <div
+                    className={`${style.macroVideo} ${
+                        isClicked ? '' : style.hidden
+                    }`}
+                    title={title}
+                    data-gobrain-widgetid="player"
+                    // data-gobrain-language="en"
+                    // data-gobrain-autoplay="true"
+                    // data-gobrain-repeat="false"
+                    // data-gobrain-modulesettings='{"TopControls":{"download":{"enabled":false},"sharing":{"enabled":true}},"MobileControls":{"download":{"enabled":false},"sharing":{"enabled":true}}}'
+                    data-gobrain-config="https://video.qbrick.com/play2/api/v1/accounts/763558/configurations/qbrick-player"
+                    data-gobrain-data={`https://video.qbrick.com/api/v1/public/accounts/763558/medias/${mediaId}`}
+                />
+                <script src="https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js"></script>
+            </div>
         </div>
     );
 };
