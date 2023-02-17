@@ -6,6 +6,10 @@ import { BodyShort, Button, Detail } from '@navikt/ds-react';
 import style from './MacroVideo.module.scss';
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
+    if (!config?.video) {
+        return null;
+    }
+
     const [isClicked, setIsClicked] = useState(false);
     const [previewImageUrl, setPreviewImageUrl] = useState('');
 
@@ -25,10 +29,6 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
             logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
         }
     }, [isClicked]);
-
-    if (!config?.video) {
-        return null;
-    }
 
     const { video, title } = config.video;
     const params = parse(video);
