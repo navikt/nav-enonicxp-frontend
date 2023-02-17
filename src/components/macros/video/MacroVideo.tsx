@@ -21,6 +21,10 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 document.querySelector('.gobrain-duration')?.innerHTML;
 
             if (qbrickImageUrl) {
+                console.log(document.querySelector('.gobrain-poster'));
+                document
+                    .getElementById('tester')
+                    .appendChild(document.querySelector('.gobrain-poster'));
                 setPreviewImageUrl(qbrickImageUrl);
             }
             if (qbrickVideoDuration) {
@@ -47,12 +51,14 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         return null;
     }
 
+    console.log(config);
+
     const { video, title } = config.video;
     const params = parse(video);
     const mediaId = params?.mediaId;
 
     return (
-        <div suppressHydrationWarning>
+        <div suppressHydrationWarning id="tester" className={style.wrapper}>
             <Button
                 className={isClicked ? style.hidden : ''}
                 variant="tertiary-neutral"
