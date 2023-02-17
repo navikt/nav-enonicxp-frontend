@@ -22,11 +22,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
 
         if (isClicked) {
-            const player = document.querySelector(
-                '.gobrain-play'
-            ) as HTMLElement;
+            const player = document.querySelector('.gobrain-play');
             if (player) {
-                player.click();
+                (player as HTMLElement).click();
             }
         }
     }, [isClicked]);
