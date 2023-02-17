@@ -24,8 +24,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
 
     useEffect(() => {
         if (isClicked) {
-            const player = document.querySelector('.gobrain-play');
-            (player as HTMLElement)?.click();
+            const qbrickPlayButton = document.querySelector('.gobrain-play');
+            (qbrickPlayButton as HTMLElement)?.click();
             logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
         }
     }, [isClicked]);
