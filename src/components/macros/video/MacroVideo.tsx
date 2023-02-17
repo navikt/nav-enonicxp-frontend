@@ -24,9 +24,13 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
             const qbrickVideoDuration =
                 document.querySelector('.gobrain-duration')?.innerHTML;
 
-            if (qbrickImageUrl && qbrickVideoDuration) {
+            if (qbrickImageUrl) {
                 setPreviewImageUrl(qbrickImageUrl);
+            }
+            if (qbrickVideoDuration) {
                 setPreviewVideoLength(qbrickVideoDuration);
+            }
+            if (qbrickImageUrl && qbrickVideoDuration) {
                 observer.disconnect();
             }
         });
