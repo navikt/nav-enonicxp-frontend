@@ -43,7 +43,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
 
     const mediaId = params?.mediaId;
     return (
-        <>
+        <div suppressHydrationWarning>
             <Button
                 className={`${style.previewButton} ${
                     isClicked ? style.hidden : ''
@@ -58,7 +58,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     />
                 }
             >
-                <BodyShort className={style.text}>Se video {title}</BodyShort>
+                <BodyShort
+                    className={style.text}
+                >{`Se video "${title}"`}</BodyShort>
                 <Detail className={style.text}>
                     Varighet er 02.33 minutter
                 </Detail>
@@ -77,6 +79,6 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 data-gobrain-data={`https://video.qbrick.com/api/v1/public/accounts/763558/medias/${mediaId}`}
             />
             <script src="https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js"></script>
-        </>
+        </div>
     );
 };
