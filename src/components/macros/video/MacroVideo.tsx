@@ -6,10 +6,6 @@ import { BodyShort, Button, Detail } from '@navikt/ds-react';
 import style from './MacroVideo.module.scss';
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
-    if (!config?.video) {
-        return null;
-    }
-
     const [isClicked, setIsClicked] = useState(false);
     const [previewImageUrl, setPreviewImageUrl] = useState('');
     const [previewVideoLength, setPreviewVideoLength] = useState('');
@@ -47,6 +43,10 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         }
     }, [isClicked]);
 
+    if (!config?.video) {
+        return null;
+    }
+
     const { video, title } = config.video;
     const params = parse(video);
     const mediaId = params?.mediaId;
@@ -54,9 +54,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     return (
         <div suppressHydrationWarning>
             <Button
-                className={`${style.previewButton} ${
-                    isClicked ? style.hidden : ''
-                }`}
+                className={isClicked ? style.hidden : ''}
                 variant="tertiary-neutral"
                 onClick={() => setIsClicked(true)}
                 icon={
