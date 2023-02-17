@@ -84,7 +84,10 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     data-gobrain-config="https://video.qbrick.com/play2/api/v1/accounts/763558/configurations/qbrick-player"
                     data-gobrain-data={`https://video.qbrick.com/api/v1/public/accounts/763558/medias/${mediaId}`}
                 />
-                <script src="https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js"></script>
+                <script
+                    src="https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js"
+                    async
+                />
             </div>
         </div>
     );
