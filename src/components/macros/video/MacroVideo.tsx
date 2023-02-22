@@ -60,7 +60,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     return (
         <div suppressHydrationWarning id="tester" className={style.wrapper}>
             <Button
-                className={isClicked ? style.hidden : ''}
+                className={`${style.button} ${isClicked ? style.hidden : ''}`}
                 variant="tertiary-neutral"
                 onClick={() => setIsClicked(true)}
                 icon={
