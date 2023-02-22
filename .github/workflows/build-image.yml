@@ -68,7 +68,7 @@ jobs:
       - name: Setup node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16.15.0'
+          node-version: '18'
           registry-url: 'https://npm.pkg.github.com'
           cache: 'npm'
       - name: Set app environmment

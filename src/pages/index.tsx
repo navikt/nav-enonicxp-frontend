@@ -10,7 +10,7 @@ const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 const isDevBuild =
     process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD &&
     !isFailover &&
-    (process.env.ENV === 'dev1' || process.env.ENV === 'dev2');
+    process.env.ENV !== 'prod';
 
 // The build workflow on GHA does not have access to our dev-backend, so we just return not found for this page on build
 const getStaticPropsBuildDev: GetStaticProps = async () => {
