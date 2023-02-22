@@ -88,9 +88,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     as="p"
                     className={style.text}
                 >{`Se video "${title}"`}</Label>
-                <Detail className={style.text}>
+                <Detail className={`${style.text} ${style.videoLength}`}>
                     {/* {previewVideoLength} */}
-                    02:07
+                    Varighet er 02:07
                 </Detail>
             </Button>
             <div id="playerContainer">
