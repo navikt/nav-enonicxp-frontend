@@ -23,6 +23,13 @@
         background-size: auto 100%;
         background-repeat: no-repeat;
     }
+
+    &:hover {
+        .playIcon {
+            transform: scale(0.9);
+            opacity: 1;
+        }
+    }
 }
 
 .iconWrapper {
