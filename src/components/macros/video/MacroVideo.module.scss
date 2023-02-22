@@ -25,6 +25,10 @@
     }
 
     &:hover {
+        .button {
+            background-color: #eff6ff;
+        }
+
         .playIcon {
             transform: scale(0.9);
             opacity: 1;
@@ -36,6 +40,7 @@
     width: 100%;
     justify-content: flex-start;
     gap: var(--a-spacing-3);
+    padding: var(--a-spacing-1);
 }
 
 .iconWrapper {
@@ -72,12 +77,13 @@
 }
 
 .text {
+    color: var(--a-text-default);
     margin-bottom: 0 !important; //overstyr kanskje litt for generell regel i MainArticlePermanent?
 }
 
 .videoLength {
     font-weight: 400;
-    color: var(--a-gray-700);
+    color: var(--a-text-subtle);
     width: fit-content;
 }
 
