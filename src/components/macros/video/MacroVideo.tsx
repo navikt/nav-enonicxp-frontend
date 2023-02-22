@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MacroVideoProps } from 'types/macro-props/video';
 import { parse } from 'querystring';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { BodyShort, Button, Detail } from '@navikt/ds-react';
+import { BodyShort, Button, Detail, Label } from '@navikt/ds-react';
 import style from './MacroVideo.module.scss';
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
@@ -22,10 +22,10 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
 
             if (qbrickImageUrl) {
                 console.log(document.querySelector('.gobrain-poster'));
-                document
-                    .getElementById('tester')
-                    .appendChild(document.querySelector('.gobrain-poster'));
-                setPreviewImageUrl(qbrickImageUrl);
+                // document
+                //     .getElementById('tester')
+                //     .appendChild(document.querySelector('.gobrain-poster'));
+                // setPreviewImageUrl(qbrickImageUrl);
             }
             if (qbrickVideoDuration) {
                 setPreviewVideoLength(qbrickVideoDuration);
@@ -84,10 +84,14 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     </div>
                 }
             >
-                <BodyShort
+                <Label
+                    as="p"
                     className={style.text}
-                >{`Se video "${title}"`}</BodyShort>
-                <Detail className={style.text}>{previewVideoLength}</Detail>
+                >{`Se video "${title}"`}</Label>
+                <Detail className={style.text}>
+                    {/* {previewVideoLength} */}
+                    02:07
+                </Detail>
             </Button>
             <div id="playerContainer">
                 <div
