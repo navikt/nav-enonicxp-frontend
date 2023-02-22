@@ -25,6 +25,25 @@
     }
 }
 
+.iconWrapper {
+    position: relative;
+}
+
+.playIcon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+    transition-property: transform;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transform: scale(0.75);
+    opacity: 0.8;
+}
+
 .macroVideo {
     :global(.gobrain-poster) {
         //hindrer "flash" av forhåndsvisningsbilde før videoen starter
@@ -34,8 +53,9 @@
 
 .previewImage {
     width: 80px;
-    max-height: 53.33px;
+    min-height: 53.33px;
     border-radius: 0.125rem;
+    object-fit: cover;
 }
 
 .text {

@@ -64,11 +64,24 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 variant="tertiary-neutral"
                 onClick={() => setIsClicked(true)}
                 icon={
-                    <img
-                        className={style.previewImage}
-                        src={previewImageUrl}
-                        alt=""
-                    />
+                    <div className={style.iconWrapper}>
+                        <img
+                            className={style.previewImage}
+                            // src={previewImageUrl}
+                            src="https://delicate-sunburst-edd62f.netlify.app/images/forbedre-okonomi.jpg"
+                            alt=""
+                        />
+                        <svg
+                            className={style.playIcon}
+                            focusable="false"
+                            aria-hidden="true"
+                            width="22"
+                            height="26"
+                            viewBox="0 0 22 26"
+                        >
+                            <path fill="#fff" d="M22 13 0 26V0Z" />
+                        </svg>
+                    </div>
                 }
             >
                 <BodyShort
