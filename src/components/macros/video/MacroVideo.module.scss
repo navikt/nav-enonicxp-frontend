@@ -23,17 +23,6 @@
         background-size: auto 100%;
         background-repeat: no-repeat;
     }
-
-    &:hover {
-        .button {
-            background-color: #eff6ff;
-        }
-
-        .playIcon {
-            transform: scale(0.9);
-            opacity: 1;
-        }
-    }
 }
 
 .button {
@@ -44,6 +33,15 @@
 
     :global(.navds-button__icon) {
         margin: 0;
+    }
+
+    &:hover {
+        background-color: #eff6ff;
+
+        .playIcon {
+            transform: scale(0.9);
+            opacity: 1;
+        }
     }
 }
 
