@@ -1,25 +1,27 @@
 import { BodyLong, Heading, Ingress } from '@navikt/ds-react';
 import {
-    ApplicationTypes,
-    ComplaintTypes,
+    FormApplicationTypes,
+    FormComplaintTypes,
     FormDetailsData,
-    FormType,
     Variation,
 } from 'types/content-props/form-details';
 import { FormsListItem } from './FormsListItem';
 
 type FormsListProps = {
     formDetails: FormDetailsData;
-    type: FormType;
 };
 
-type AllVariations = Variation<ApplicationTypes> | Variation<ComplaintTypes>;
+type AllVariations =
+    | Variation<FormApplicationTypes>
+    | Variation<FormComplaintTypes>;
 
-export const FormsList = ({ formDetails, type }: FormsListProps) => {
-    const { applicationVariations, complaintVariations } = formDetails;
+export const FormsList = ({ formDetails }: FormsListProps) => {
+    const { formType } = formDetails;
 
     const variations =
-        type === 'application' ? applicationVariations : complaintVariations;
+        formType._selected === 'application'
+            ? formType.application.variations
+            : formType.complaint.variations;
 
     if (variations.length === 0) {
         return null;
@@ -36,7 +38,6 @@ export const FormsList = ({ formDetails, type }: FormsListProps) => {
                     key={variation.label}
                     formDetails={formDetails}
                     variation={variation}
-                    type={type}
                 />
             ))}
         </>

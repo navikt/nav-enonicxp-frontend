@@ -1,8 +1,13 @@
+@use 'src/common' as common;
+
 .cta {
     display: block;
     width: max-content;
 
     &:not(:last-child) {
         margin-bottom: 1.75rem;
+    }
+    @media #{common.$mq-screen-mobile} {
+        width: 100%;
     }
 }

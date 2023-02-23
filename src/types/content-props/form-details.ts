@@ -1,31 +1,34 @@
-import { Ingress } from '@navikt/ds-react';
-import { FormDetailsProps } from 'types/component-props/parts/form-details';
 import { ContentCommonProps, ContentType } from './_content-common';
 
-export type ApplicationTypes =
+type FormTypes = 'application' | 'complaint';
+
+export type FormApplicationTypes =
     | 'digital'
     | 'paper'
     | 'addendum_digital'
     | 'addendum_paper';
 
-export type ComplaintTypes = 'complaint' | 'appeal' | 'addendum';
-
-export type FormType = 'form' | 'complaint';
+export type FormComplaintTypes = 'complaint' | 'appeal' | 'addendum';
 
 export interface Variation<T = string> {
     type: T;
     url: string;
     label: string;
-    ingress?: string;
 }
 
 export interface FormDetailsData {
     formNumbers: string[];
-    formType: FormType;
     title: string;
     ingress: string;
-    applicationVariations: Variation<ApplicationTypes>[];
-    complaintVariations: Variation<ComplaintTypes>[];
+    formType: {
+        _selected: FormTypes;
+        application: {
+            variations: Variation<FormApplicationTypes>[];
+        };
+        complaint: {
+            variations: Variation<FormComplaintTypes>[];
+        };
+    };
 }
 
 export interface FormDetails extends ContentCommonProps {
