@@ -49,6 +49,7 @@ import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 import { FrontpageSurveyPanel } from './frontpage-survey-panel/FrontpageSurveyPanel';
 import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
+import { FormDetailsPart } from './form-details/FormDetailsPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -93,6 +94,7 @@ const partsWithOwnData: {
     [PartType.ProductCardMicro]: ProductCardMicroPart,
     [PartType.ProductCardMini]: ProductCardPart,
     [PartType.ProductDetails]: ProductDetailsPart,
+    [PartType.FormDetails]: FormDetailsPart,
     [PartType.ContactOption]: ContactOptionPart,
     [PartType.PayoutDates]: PayoutDatesPart,
     [PartType.AreaCard]: AreaCardPart,
