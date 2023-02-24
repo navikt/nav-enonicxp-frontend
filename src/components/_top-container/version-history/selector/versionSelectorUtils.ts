@@ -11,7 +11,7 @@ export const getVersionSelectorUrl = (
         time: utcDateTime,
         id: content._id,
         branch: branch === 'draft' ? branch : undefined,
-        locale: content.language,
+        locale: content.layerLocale,
     });
 
     return `${window.location.origin}${window.location.pathname}${params}`;

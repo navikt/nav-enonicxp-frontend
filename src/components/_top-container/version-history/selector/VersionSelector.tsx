@@ -41,7 +41,7 @@ export const VersionSelector = ({
     useEffect(() => {
         const params = objectToQueryString({
             id: content._id,
-            locale: content.language,
+            locale: content.layerLocale,
         });
 
         fetchWithTimeout(`${publishedVersionsServiceUrl}${params}`, 15000)
