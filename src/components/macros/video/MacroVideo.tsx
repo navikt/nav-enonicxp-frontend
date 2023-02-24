@@ -84,10 +84,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     </div>
                 }
             >
-                <Label
-                    as="p"
-                    className={style.text}
-                >{`Se video "${title}"`}</Label>
+                <Label as="p" className={style.text}>{`Se video "${
+                    title === 'Video: undefined' ? '' : title
+                }"`}</Label>
                 <Detail className={`${style.text} ${style.videoLength}`}>
                     {/* {previewVideoLength} */}
                     Varighet er 02:07
