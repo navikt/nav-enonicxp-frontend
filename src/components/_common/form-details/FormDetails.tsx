@@ -1,13 +1,15 @@
-import { BodyLong, Heading, Ingress } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import {
     FormApplicationTypes,
     FormComplaintTypes,
     FormDetailsData,
     Variation,
 } from 'types/content-props/form-details';
-import { FormsListItem } from './FormsListItem';
+import { FormDetailsItem } from './FormDetailsItem';
 
-type FormsListProps = {
+import styles from './FormDetails.module.scss';
+
+type FormDetailsProps = {
     formDetails: FormDetailsData;
 };
 
@@ -15,7 +17,7 @@ type AllVariations =
     | Variation<FormApplicationTypes>
     | Variation<FormComplaintTypes>;
 
-export const FormsList = ({ formDetails }: FormsListProps) => {
+export const FormDetails = ({ formDetails }: FormDetailsProps) => {
     const { formType } = formDetails;
 
     const variations =
@@ -28,18 +30,20 @@ export const FormsList = ({ formDetails }: FormsListProps) => {
     }
 
     return (
-        <>
+        <div className={styles.formDetails}>
             <Heading size="medium" level="3">
                 {formDetails.title}
             </Heading>
             <BodyLong spacing>{formDetails.ingress}</BodyLong>
-            {variations.map((variation: AllVariations) => (
-                <FormsListItem
-                    key={variation.label}
-                    formDetails={formDetails}
-                    variation={variation}
-                />
-            ))}
-        </>
+            <div className={styles.buttonContainer}>
+                {variations.map((variation: AllVariations, index: number) => (
+                    <FormDetailsItem
+                        key={variation.label}
+                        variation={variation}
+                        index={index}
+                    />
+                ))}
+            </div>
+        </div>
     );
 };
