@@ -44,11 +44,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         };
     }
 
+    const { locale } = context.query;
+
     const pageProps = await getPageProps(context);
 
     if (isPropsWithContent(pageProps.props)) {
         pageProps.props.content.editorView =
             (context.query.mode as ContentProps['editorView']) || 'preview';
+        pageProps.props.content.layerLocale = forceString(locale);
     }
 
     return pageProps;

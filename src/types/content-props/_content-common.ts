@@ -100,6 +100,7 @@ export type ContentAndMediaCommonProps = {
     isDraft?: boolean;
     timeRequested?: string;
     serverEnv?: string;
+    layerLocale?: string;
 };
 
 type ContentCommonData = Partial<{
