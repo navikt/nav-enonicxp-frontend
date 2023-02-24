@@ -1,7 +1,7 @@
 @use 'src/common' as common;
 
 .cta {
-    display: block;
+    display: flex;
     width: max-content;
 
     &:not(:last-child) {
@@ -11,5 +11,9 @@
     @media #{common.$mq-screen-mobile} {
         width: 100%;
         margin-right: 0;
+
+        &:not(:last-child) {
+            margin-bottom: 0.5rem;
+        }
     }
 }
