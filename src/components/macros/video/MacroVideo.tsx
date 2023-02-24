@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MacroVideoProps } from 'types/macro-props/video';
 import { parse } from 'querystring';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { BodyShort, Button, Detail, Label } from '@navikt/ds-react';
+import { Button, Detail, Label } from '@navikt/ds-react';
 import style from './MacroVideo.module.scss';
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
