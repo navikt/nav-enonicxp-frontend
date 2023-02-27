@@ -5,7 +5,6 @@ import { FormDetails } from 'components/_common/form-details/FormDetails';
 
 export const FormDetailsPart = ({ config }: FormDetailsProps) => {
     const { targetFormDetails } = config;
-    const formDetails = targetFormDetails.data;
 
     if (!targetFormDetails) {
         return (
@@ -14,6 +13,7 @@ export const FormDetailsPart = ({ config }: FormDetailsProps) => {
             />
         );
     }
+    const formDetails = targetFormDetails.data;
 
     return <FormDetails formDetails={formDetails} />;
 };
