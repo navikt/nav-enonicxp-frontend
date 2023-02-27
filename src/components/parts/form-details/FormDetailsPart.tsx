@@ -7,11 +7,7 @@ export const FormDetailsPart = ({ config }: FormDetailsProps) => {
     const { targetFormDetails } = config;
 
     if (!targetFormDetails) {
-        return (
-            <EditorHelp
-                text={'Velg hvilken produktdetalj-type som skal vises'}
-            />
-        );
+        return <EditorHelp text={'Velg hvilken skjemadetalj som skal vises'} />;
     }
     const formDetails = targetFormDetails.data;
 
