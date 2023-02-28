@@ -75,7 +75,7 @@ export const ProductDetailsPanel = ({
             .then((contentFromCache) => {
                 if (
                     !contentFromCache ||
-                    contentFromCache.__typename !== ContentType.ProductDetails
+                    contentFromCache.type !== ContentType.ProductDetails
                 ) {
                     setError(
                         `Teknisk feil: Kunne ikke laste ${detailTypeStrings(

@@ -1,16 +1,13 @@
 import React from 'react';
 import { Heading, Ingress } from '@navikt/ds-react';
-import {
-    ContentProps,
-    ContentType,
-} from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './PageHeading.module.scss';
 
 const PageHeading = (props: ContentProps) => {
     const displayName = props.displayName;
     const ingress =
-        props.__typename !== ContentType.SectionPage && props.data?.ingress;
+        props.type !== ContentType.SectionPage && props.data?.ingress;
 
     return (
         <header className={style.pageHeading}>

@@ -21,7 +21,7 @@ const getLinkData = (content: ContentProps | null): TableData | null => {
         return null;
     }
 
-    switch (content.__typename) {
+    switch (content.type) {
         case ContentType.InternalLink:
             return {
                 url: getInternalLinkUrl(content.data),

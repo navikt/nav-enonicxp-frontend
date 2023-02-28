@@ -6,6 +6,6 @@ export type LargeTableData = {
 };
 
 export interface LargeTableProps extends ContentCommonProps {
-    __typename: ContentType.LargeTable;
+    type: ContentType.LargeTable;
     data: LargeTableData;
 }

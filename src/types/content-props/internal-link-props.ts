@@ -10,6 +10,6 @@ export type InternalLinkData = {
 };
 
 export interface InternalLinkProps extends ContentCommonProps {
-    __typename: ContentType.InternalLink;
+    type: ContentType.InternalLink;
     data: InternalLinkData;
 }

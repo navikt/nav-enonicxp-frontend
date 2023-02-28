@@ -77,7 +77,7 @@ const taSurveys = {
 };
 
 export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
-    if (!content || content.__typename === ContentType.Error) {
+    if (!content || content.type === ContentType.Error) {
         return errorParams(content);
     }
 

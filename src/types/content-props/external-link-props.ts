@@ -7,6 +7,6 @@ export type ExternalLinkData = {
 };
 
 export interface ExternalLinkProps extends ContentCommonProps {
-    __typename: ContentType.ExternalLink;
+    type: ContentType.ExternalLink;
     data: ExternalLinkData;
 }

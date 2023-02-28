@@ -3,12 +3,12 @@ import { PartType } from '../parts';
 import { ContentType } from '../../content-props/_content-common';
 
 type InternalContactUs = {
-    __typename: ContentType.GenericPage;
+    type: ContentType.GenericPage;
     _path: string;
 };
 
 type ExternalContactUs = {
-    __typename: ContentType.ExternalLink;
+    type: ContentType.ExternalLink;
     data: {
         url: string;
     };

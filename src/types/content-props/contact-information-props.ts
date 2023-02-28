@@ -14,6 +14,6 @@ export interface ContactInformationData {
 }
 
 export interface ContactInformationProps extends ContentCommonProps {
-    __typename: ContentType.ContactInformationPage;
+    type: ContentType.ContactInformationPage;
     data: ContactInformationData;
 }

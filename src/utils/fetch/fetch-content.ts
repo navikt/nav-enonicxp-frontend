@@ -196,7 +196,7 @@ export const fetchPage = async ({
         locale,
     });
 
-    if (!content?.__typename) {
+    if (!content?.type) {
         const errorId = uuid();
         logPageLoadError(
             errorId,

@@ -9,6 +9,6 @@ export type ErrorData = {
 };
 
 export interface ErrorProps extends ContentCommonProps {
-    __typename: ContentType.Error;
+    type: ContentType.Error;
     data: ErrorData;
 }
