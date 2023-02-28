@@ -10,12 +10,11 @@ export const logPageLoadError = (errorId: string, message: string) =>
     console.error(`[Page load error] ${errorId} - ${stripLineBreaks(message)}`);
 
 const isEmptyMainArticleChapter = (content: ContentProps) =>
-    content.__typename === ContentType.MainArticleChapter &&
-    !content.data?.article;
+    content.type === ContentType.MainArticleChapter && !content.data?.article;
 
 export const isNotFound = (content: ContentProps) => {
     return (
-        (content.__typename === ContentType.Error &&
+        (content.type === ContentType.Error &&
             content.data.errorCode === 404) ||
         !isContentTypeImplemented(content) ||
         isEmptyMainArticleChapter(content)

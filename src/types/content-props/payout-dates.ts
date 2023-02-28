@@ -20,6 +20,6 @@ export type PayoutDatesData = {
 };
 
 export interface PayoutDatesProps extends ContentCommonProps {
-    __typename: ContentType.PayoutDates;
+    type: ContentType.PayoutDates;
     data: PayoutDatesData;
 }

@@ -44,53 +44,53 @@ export type PressLandingPageData = Partial<{
     DynamicPageData;
 
 export interface DynamicPageProps extends ContentCommonProps {
-    __typename: ContentType.DynamicPage;
+    type: ContentType.DynamicPage;
     data: DynamicPageData;
 }
 
 export interface ProductPageProps extends ContentCommonProps {
-    __typename: ContentType.ProductPage;
+    type: ContentType.ProductPage;
     data: ProductPageData;
 }
 
 export interface ProductDetailsProps extends ContentCommonProps {
-    __typename: ContentType.ProductDetails;
+    type: ContentType.ProductDetails;
     data: ProductDetailsData;
 }
 
 export interface ThemedArticlePageProps extends ContentCommonProps {
-    __typename: ContentType.ThemedArticlePage;
+    type: ContentType.ThemedArticlePage;
     data: ThemedArticlePageData;
 }
 
 export interface GuidePageProps extends ContentCommonProps {
-    __typename: ContentType.GuidePage;
+    type: ContentType.GuidePage;
     data: GuidePageData;
 }
 export interface SituationPageProps extends ContentCommonProps {
-    __typename: ContentType.SituationPage;
+    type: ContentType.SituationPage;
     data: SituationPageData;
 }
 export interface CurrentTopicPageProps extends ContentCommonProps {
-    __typename: ContentType.CurrentTopicPage;
+    type: ContentType.CurrentTopicPage;
     data: CurrentTopicPageData;
 }
 
 export interface ToolsPageProps extends ContentCommonProps {
-    __typename: ContentType.ToolsPage;
+    type: ContentType.ToolsPage;
     data: ToolsPageData;
 }
 
 export interface GenericPageProps extends ContentCommonProps {
-    __typename: ContentType.GenericPage;
+    type: ContentType.GenericPage;
     data: GenericPageData;
 }
 
 export interface OverviewPageProps extends ContentCommonProps {
-    __typename: ContentType.Overview;
+    type: ContentType.Overview;
     data: OverviewPageData;
 }
 export interface PressLandingPageProps extends ContentCommonProps {
-    __typename: ContentType.PressLandingPage;
+    type: ContentType.PressLandingPage;
     data: PressLandingPageData;
 }

@@ -24,10 +24,10 @@ type Props = {
 };
 
 export const IndexPage = ({ pageProps, layoutProps }: Props) => {
-    const { __typename } = pageProps;
+    const { type } = pageProps;
     const { regions } = layoutProps;
 
-    const MiddleComponent = contentTypeSpecificComponent[__typename];
+    const MiddleComponent = contentTypeSpecificComponent[type];
 
     return (
         <LayoutContainer
@@ -37,7 +37,7 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
         >
             <>
                 {/* We don't use this region on the AreaPage atm */}
-                {__typename !== ContentType.AreaPage && (
+                {type !== ContentType.AreaPage && (
                     <Region
                         pageProps={pageProps}
                         regionProps={regions.contentTop}

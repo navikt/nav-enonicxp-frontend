@@ -13,7 +13,7 @@ import style from './MenuList.module.scss';
 export const MenuList = (
     props: MainArticleProps | MainArticleChapterProps | PageListProps
 ) => {
-    const { __typename: type, language } = props;
+    const { type: type, language } = props;
 
     const propsActual =
         type === ContentType.MainArticleChapter ? props.data?.article : props;

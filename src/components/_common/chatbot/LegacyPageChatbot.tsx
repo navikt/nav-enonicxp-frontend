@@ -23,7 +23,7 @@ type Props = {
 export const LegacyPageChatbot = ({ content }: Props) => {
     if (
         content.data?.chatbotToggle === false ||
-        !showOnContentTypes[content.__typename] ||
+        !showOnContentTypes[content.type] ||
         !showOnLanguage[content.language]
     ) {
         return null;

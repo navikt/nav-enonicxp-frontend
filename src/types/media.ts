@@ -18,17 +18,17 @@ export enum MediaType {
 }
 
 export type MediaProps = {
-    __typename: MediaType;
+    type: MediaType;
     mediaUrl: string;
 } & ContentAndMediaCommonProps;
 
 export type VectorImage = {
-    __typename: MediaType.Vector;
+    type: MediaType.Vector;
     mediaUrl?: string;
 };
 
 export type BitmapImage = {
-    __typename: MediaType.Image;
+    type: MediaType.Image;
     imageUrl?: string;
     mediaUrl?: string;
     imageInfo?: {
@@ -43,4 +43,4 @@ export type XpImageProps = VectorImage | BitmapImage;
 export const isMediaContent = (
     content: XpResponseProps
 ): content is MediaProps =>
-    Object.values(MediaType).includes(content.__typename as MediaType);
+    Object.values(MediaType).includes(content.type as MediaType);

@@ -8,9 +8,9 @@ import { MainArticlePermanent } from './MainArticlePermanent';
 type Props = MainArticleProps | MainArticleChapterProps;
 
 export const MainArticle = (propsInitial: Props) => {
-    const { __typename } = propsInitial;
+    const { type } = propsInitial;
     if (
-        __typename === ContentType.MainArticle &&
+        type === ContentType.MainArticle &&
         (propsInitial.data.contentType === 'news' ||
             propsInitial.data.contentType === 'pressRelease')
     ) {

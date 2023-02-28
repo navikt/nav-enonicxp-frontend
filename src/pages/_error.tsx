@@ -27,9 +27,9 @@ const getClientsideProps = (path: string) => {
     try {
         const contentProps = JSON.parse(nextData)?.props
             ?.pageProps as ContentProps;
-        if (contentProps.__typename !== ContentType.Error) {
+        if (contentProps.type !== ContentType.Error) {
             console.error(
-                `Unexpected __NEXT_DATA__ contentProps on ${path} - ${contentProps._id} ${contentProps.__typename}`
+                `Unexpected __NEXT_DATA__ contentProps on ${path} - ${contentProps._id} ${contentProps.type}`
             );
             return null;
         }
@@ -115,7 +115,7 @@ Error.getInitialProps = async ({
     const errorId = uuid();
     const errorContent = parseErrorContent(err, asPath);
 
-    if (errorContent?.__typename === ContentType.Error) {
+    if (errorContent?.type === ContentType.Error) {
         res.statusCode = errorContent.data.errorCode;
         logPageLoadError(
             errorId,
