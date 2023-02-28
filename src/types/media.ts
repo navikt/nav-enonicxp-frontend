@@ -1,20 +1,20 @@
-import { XpResponseProps } from '../utils/fetch/fetch-content';
+import { XpResponseProps } from 'utils/fetch/fetch-content';
 import { ContentAndMediaCommonProps } from './content-props/_content-common';
 
 export enum MediaType {
-    Archive = 'media_Archive',
-    Audio = 'media_Audio',
-    Code = 'media_Code',
-    Data = 'media_Data',
-    Document = 'media_Document',
-    Executable = 'media_Executable',
-    Image = 'media_Image',
-    Presentation = 'media_Presentation',
-    Spreadsheet = 'media_Spreadsheet',
-    Text = 'media_Text',
-    Unknown = 'media_Unknown',
-    Vector = 'media_Vector',
-    Video = 'media_Video',
+    Archive = 'media:archive',
+    Audio = 'media:audio',
+    Code = 'media:code',
+    Data = 'media:data',
+    Document = 'media:document',
+    Executable = 'media:executable',
+    Image = 'media:image',
+    Presentation = 'media:presentation',
+    Spreadsheet = 'media:spreadsheet',
+    Text = 'media:text',
+    Unknown = 'media:unknown',
+    Vector = 'media:vector',
+    Video = 'media:video',
 }
 
 export type MediaProps = {
