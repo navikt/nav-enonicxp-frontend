@@ -26,17 +26,17 @@ type Props = {
 };
 
 export const checkForWhiteHeader = (content: ContentProps) => {
-    const { __typename } = content;
+    const { type } = content;
 
     if (
-        __typename === ContentType.MainArticle &&
+        type === ContentType.MainArticle &&
         (content.data?.contentType === 'news' ||
             content.data?.contentType === 'pressRelease')
     ) {
         return true;
     }
 
-    return contentTypesWithWhiteHeader[__typename];
+    return contentTypesWithWhiteHeader[type];
 };
 
 export const TopContainer = ({ content }: Props) => {

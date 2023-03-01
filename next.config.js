@@ -183,6 +183,12 @@ const config = {
             destination: '/global-utlogging',
             permanent: true,
         },
+        // Redirects from an old invalid link which must be resolved for the time being
+        {
+            source: '/no/nav-og-samfunn/samarbeid/for-kommunen/digisos/til-kommuner-som-onsker-a-ta-i-bruk-digital-soknad-om-okonomisk-sosialhjelp/_/attachment/download/ec690be3-b949-4945-9e73-e7fd7437fc94(:)91ebdeaf85cd092e2c96f4ecc82d5bf88b1838b3/handbok-for-innforing-av-digital-soknad---oppdatert-25.05.2020.pdf',
+            destination: `${process.env.APP_ORIGIN}/no/nav-og-samfunn/samarbeid/for-kommunen/digisos/til-kommuner-som-onsker-a-ta-i-bruk-digital-soknad-om-okonomisk-sosialhjelp/Håndbok for innføring av digital søknad %2800B%29 12.12.19.pdf`,
+            permanent: false,
+        },
     ],
     rewrites: async () => [
         {

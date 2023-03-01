@@ -21,13 +21,13 @@ type Props = MainArticleProps | MainArticleChapterProps;
 
 // Get props from the chapter article if the content is a chapter
 const getPropsToRender = (propsInitial: Props) => {
-    if (propsInitial.__typename !== ContentType.MainArticleChapter) {
+    if (propsInitial.type !== ContentType.MainArticleChapter) {
         return propsInitial;
     }
 
     const articleProps = propsInitial.data?.article;
 
-    if (articleProps?.__typename === ContentType.MainArticle) {
+    if (articleProps?.type === ContentType.MainArticle) {
         return articleProps;
     }
 
@@ -84,7 +84,7 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
 
     if (!props) {
         console.error(
-            `Misplaced MainArticle part on content type ${propsInitial.__typename} - ${propsInitial._path} - ${propsInitial._id}`
+            `Misplaced MainArticle part on content type ${propsInitial.type} - ${propsInitial._path} - ${propsInitial._id}`
         );
         return <ErrorPage404 />;
     }

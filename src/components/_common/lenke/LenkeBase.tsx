@@ -62,7 +62,8 @@ export const LenkeBase = ({
     };
 
     const WrapperComponent =
-        pageConfig.editorView && href?.startsWith(adminPreviewUrlPrefix)
+        pageConfig.editorView === 'edit' &&
+        href?.startsWith(adminPreviewUrlPrefix)
             ? BadLinkWarning
             : Fragment;
 

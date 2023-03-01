@@ -36,7 +36,7 @@ const getDescription = (content: ContentProps) => {
 
 const shouldNotIndex = (content: ContentProps) =>
     content.isPagePreview ||
-    content.__typename === ContentType.Error ||
+    content.type === ContentType.Error ||
     content.data?.noindex;
 
 const getCanonicalUrl = (content: ContentProps) => {

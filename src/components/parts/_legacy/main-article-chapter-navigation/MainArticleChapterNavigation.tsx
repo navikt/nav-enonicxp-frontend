@@ -15,16 +15,16 @@ import style from './MainArticleChapterNavigation.module.scss';
 // as a chapter
 const getChapterPath = (chapter: MainArticleChapterNavigationData) =>
     !chapter.data?.article ||
-    chapter.data.article.__typename === ContentType.MainArticle
+    chapter.data.article.type === ContentType.MainArticle
         ? chapter._path
         : chapter.data.article._path;
 
 const getChapters = (contentProps: ContentProps) => {
-    if (contentProps.__typename === ContentType.MainArticle) {
+    if (contentProps.type === ContentType.MainArticle) {
         return contentProps.data?.chapters;
     }
 
-    if (contentProps.__typename === ContentType.MainArticleChapter) {
+    if (contentProps.type === ContentType.MainArticleChapter) {
         return contentProps.parent?.data?.chapters;
     }
 

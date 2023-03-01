@@ -24,7 +24,7 @@ RUN npm run build
 RUN rm -f .sentryclirc
 
 # Multistage build to avoid leaking secrets to the final image
-FROM node:16-bullseye-slim
+FROM node:18-bullseye-slim
 
 WORKDIR /app
 

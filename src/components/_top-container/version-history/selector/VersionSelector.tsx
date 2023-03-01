@@ -4,11 +4,11 @@ import { BodyLong, Heading, Loader, Radio, RadioGroup } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
-import { fetchWithTimeout } from 'utils/fetch/fetch-utils';
+import { fetchWithTimeout, objectToQueryString } from 'utils/fetch/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
+import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 import style from './VersionSelector.module.scss';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 const containerId = 'version-selector';
 
@@ -39,10 +39,12 @@ export const VersionSelector = ({
     const [versionsError, setVersionsError] = useState(null);
 
     useEffect(() => {
-        fetchWithTimeout(
-            `${publishedVersionsServiceUrl}?id=${content._id}`,
-            15000
-        )
+        const params = objectToQueryString({
+            id: content._id,
+            locale: content.layerLocale,
+        });
+
+        fetchWithTimeout(`${publishedVersionsServiceUrl}${params}`, 15000)
             .then((res) => {
                 if (res.ok) {
                     return res.json();

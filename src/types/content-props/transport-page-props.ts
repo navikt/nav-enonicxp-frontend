@@ -7,6 +7,6 @@ export type TransportPageData = Partial<{
 }>;
 
 export interface TransportPageProps extends ContentCommonProps {
-    __typename: ContentType.TransportPage;
+    type: ContentType.TransportPage;
     data: TransportPageData;
 }
