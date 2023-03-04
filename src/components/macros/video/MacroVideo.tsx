@@ -1,74 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import { MacroVideoProps } from 'types/macro-props/video';
+import { MacroVideoProps, VideoMeta } from 'types/macro-props/video';
 import { parse } from 'querystring';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Button, Detail, Label } from '@navikt/ds-react';
 import style from './MacroVideo.module.scss';
+import { getMediaUrl } from 'utils/urls';
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
-    const [isClicked, setIsClicked] = useState(false);
-    const [previewImageUrl, setPreviewImageUrl] = useState('');
-    const [previewVideoLength, setPreviewVideoLength] = useState('');
+    const [isVideoOpen, setIsVideoOpen] = useState(false);
 
     useEffect(() => {
-        const observer = new MutationObserver(() => {
-            const qbrickImageUrl = document
-                .querySelector('.gobrain-poster')
-                ?.getAttribute('style')
-                ?.match(/"([^"]+)"/)[1];
-
-            const qbrickVideoDuration =
-                document.querySelector('.gobrain-duration')?.innerHTML;
-
-            if (qbrickImageUrl) {
-                console.log(document.querySelector('.gobrain-poster'));
-                // document
-                //     .getElementById('tester')
-                //     .appendChild(document.querySelector('.gobrain-poster'));
-                // setPreviewImageUrl(qbrickImageUrl);
-            }
-            if (qbrickVideoDuration) {
-                setPreviewVideoLength(qbrickVideoDuration);
-            }
-            if (qbrickImageUrl && qbrickVideoDuration) {
-                observer.disconnect();
-            }
-        });
-
-        const target = document.getElementById('playerContainer');
-        observer.observe(target, { childList: true, subtree: true });
-    }, []);
-
-    useEffect(() => {
-        if (isClicked) {
-            const qbrickPlayButton = document.querySelector('.gobrain-play');
-            (qbrickPlayButton as HTMLElement)?.click();
+        if (isVideoOpen) {
+            const qbrickPlayButton =
+                document.querySelector<HTMLElement>('.gobrain-play');
+            qbrickPlayButton?.click();
             logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
         }
-    }, [isClicked]);
+    }, [isVideoOpen]);
 
-    if (!config?.video) {
-        return null;
-    }
+    const {
+        video: legacyVideoUrl,
+        title: legacyTitle,
+        targetContent,
+    } = config.video;
 
-    console.log(config);
+    const { accountId, mediaId, duration, title, poster } =
+        targetContent?.data || {};
+    const params = parse(legacyVideoUrl);
 
-    const { video, title } = config.video;
-    const params = parse(video);
-    const mediaId = params?.mediaId;
+    const durationAsString = `${Math.floor(duration / 60)}:${duration % 60}`;
+    const imageUrl = getMediaUrl(poster?.mediaUrl);
 
     return (
         <div suppressHydrationWarning id="tester" className={style.wrapper}>
             <Button
-                className={`${style.button} ${isClicked ? style.hidden : ''}`}
+                className={`${style.button} ${isVideoOpen ? style.hidden : ''}`}
                 variant="tertiary"
-                onClick={() => setIsClicked(true)}
+                onClick={() => setIsVideoOpen(true)}
                 icon={
-                    <div className={style.iconWrapper}>
+                    <div className={style.posterWrapper}>
                         <img
                             className={style.previewImage}
-                            // src={previewImageUrl}
-                            src="https://delicate-sunburst-edd62f.netlify.app/images/forbedre-okonomi.jpg"
+                            src={imageUrl}
                             alt=""
                         />
                         <svg
@@ -85,17 +58,18 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 }
             >
                 <Label as="p" className={style.text}>{`Se video "${
-                    title === 'Video: undefined' ? '' : title
+                    title || legacyTitle
                 }"`}</Label>
-                <Detail className={`${style.text} ${style.videoLength}`}>
-                    {/* {previewVideoLength} */}
-                    Varighet er 02:07
-                </Detail>
+                {duration && (
+                    <Detail className={`${style.text} ${style.videoLength}`}>
+                        Varighet er {durationAsString}
+                    </Detail>
+                )}
             </Button>
             <div id="playerContainer">
                 <div
                     className={`${style.macroVideo} ${
-                        isClicked ? '' : style.hidden
+                        isVideoOpen ? '' : style.hidden
                     }`}
                     title={title}
                     data-gobrain-widgetid="player"
@@ -103,8 +77,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     // data-gobrain-autoplay="true"
                     // data-gobrain-repeat="false"
                     // data-gobrain-modulesettings='{"TopControls":{"download":{"enabled":false},"sharing":{"enabled":true}},"MobileControls":{"download":{"enabled":false},"sharing":{"enabled":true}}}'
-                    data-gobrain-config="https://video.qbrick.com/play2/api/v1/accounts/763558/configurations/qbrick-player"
-                    data-gobrain-data={`https://video.qbrick.com/api/v1/public/accounts/763558/medias/${mediaId}`}
+                    data-gobrain-config={`https://video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`}
+                    data-gobrain-data={`https://video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`}
                 />
                 <script
                     src="https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js"

@@ -88,7 +88,7 @@ const csp = async () => {
         'script-src-elem': [...scriptSrc, ...qbrickHosts],
         'worker-src': internalHosts,
         'style-src': [...internalHosts, UNSAFE_INLINE],
-        'font-src': [...internalHosts, DATA],
+        'font-src': [...internalHosts, DATA, ...qbrickHosts],
         'img-src': [...internalHosts, DATA],
         'media-src': qbrickHosts,
         'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost],
