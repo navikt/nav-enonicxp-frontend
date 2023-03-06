@@ -6,7 +6,7 @@ export type TransportPageData = Partial<{
     items: LinkPanel[];
 }>;
 
-export interface TransportPageProps extends ContentCommonProps {
+export type TransportPageProps = ContentCommonProps & {
     type: ContentType.TransportPage;
     data: TransportPageData;
-}
+};
