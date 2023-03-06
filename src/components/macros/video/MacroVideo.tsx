@@ -1,35 +1,71 @@
 import React, { useEffect, useState } from 'react';
 import { MacroVideoProps, VideoMeta } from 'types/macro-props/video';
-import { parse } from 'querystring';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Button, Detail, Label } from '@navikt/ds-react';
-import style from './MacroVideo.module.scss';
 import { getMediaUrl } from 'utils/urls';
+import {
+    findImageUrlFromVideoMeta,
+    findVideoDurationFromMeta,
+    getTimestampFromDuration,
+    getVideoMeta,
+} from './videoHelpers';
+
+import style from './MacroVideo.module.scss';
+import { useExternalScript } from 'utils/useExternalScript';
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
+    const [videoMeta, setVideoMeta] = useState<VideoMeta>(
+        getVideoMeta(config.video)
+    );
+
+    const scriptState = useExternalScript(
+        '//play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'
+    );
 
     useEffect(() => {
         if (isVideoOpen) {
             const qbrickPlayButton =
                 document.querySelector<HTMLElement>('.gobrain-play');
             qbrickPlayButton?.click();
+
             logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
         }
     }, [isVideoOpen]);
 
-    const {
-        video: legacyVideoUrl,
-        title: legacyTitle,
-        targetContent,
-    } = config.video;
+    useEffect(() => {
+        if (!videoMeta.poster && !videoMeta.duration) {
+            getVideoMetaFromQbrick();
+        }
+    }, [videoMeta.poster, videoMeta.duration]);
 
-    const { accountId, mediaId, duration, title, poster } =
-        targetContent?.data || {};
-    const params = parse(legacyVideoUrl);
+    const getVideoMetaFromQbrick = async () => {
+        const metaUrl = `https://video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`;
 
-    const durationAsString = `${Math.floor(duration / 60)}:${duration % 60}`;
-    const imageUrl = getMediaUrl(poster?.mediaUrl);
+        try {
+            const result = await fetch(metaUrl);
+            const json = await result.json();
+            const image = findImageUrlFromVideoMeta(json);
+            const duration = findVideoDurationFromMeta(json);
+
+            setVideoMeta({ ...videoMeta, poster: image, duration });
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    if (!videoMeta) {
+        return null;
+    }
+    const { accountId, mediaId, title, duration, poster } = videoMeta;
+
+    const durationAsString = getTimestampFromDuration(duration);
+    const imageUrl =
+        poster?.slice(0, 4) === 'http' ? poster : getMediaUrl(poster);
+
+    if (scriptState !== 'ready') {
+        return null;
+    }
 
     return (
         <div suppressHydrationWarning id="tester" className={style.wrapper}>
@@ -57,32 +93,26 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     </div>
                 }
             >
-                <Label as="p" className={style.text}>{`Se video "${
-                    title || legacyTitle
-                }"`}</Label>
+                <Label
+                    as="p"
+                    className={style.text}
+                >{`Se video "${title}"`}</Label>
                 {duration && (
                     <Detail className={`${style.text} ${style.videoLength}`}>
                         Varighet er {durationAsString}
                     </Detail>
                 )}
             </Button>
-            <div id="playerContainer">
+            <div
+                className={`${style.macroVideo} ${
+                    isVideoOpen ? '' : style.hidden
+                }`}
+            >
                 <div
-                    className={`${style.macroVideo} ${
-                        isVideoOpen ? '' : style.hidden
-                    }`}
                     title={title}
                     data-gobrain-widgetid="player"
-                    // data-gobrain-language="en"
-                    // data-gobrain-autoplay="true"
-                    // data-gobrain-repeat="false"
-                    // data-gobrain-modulesettings='{"TopControls":{"download":{"enabled":false},"sharing":{"enabled":true}},"MobileControls":{"download":{"enabled":false},"sharing":{"enabled":true}}}'
-                    data-gobrain-config={`https://video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`}
-                    data-gobrain-data={`https://video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`}
-                />
-                <script
-                    src="https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js"
-                    async
+                    data-gobrain-config={`//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/default`}
+                    data-gobrain-data={`//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`}
                 />
             </div>
         </div>

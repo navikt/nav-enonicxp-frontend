@@ -5,7 +5,7 @@ export interface MacroVideoProps extends MacroPropsCommon {
     name: MacroType.Video;
     config: {
         video: {
-            targetContent: {
+            targetContent?: {
                 data: {
                     accountId: string;
                     title: string;
@@ -14,8 +14,8 @@ export interface MacroVideoProps extends MacroPropsCommon {
                     poster: BitmapImage;
                 };
             };
-            video: string;
-            title: string;
+            video?: string;
+            title?: string;
         };
     };
 }
@@ -23,7 +23,7 @@ export interface MacroVideoProps extends MacroPropsCommon {
 export type VideoMeta = {
     accountId: string;
     mediaId: string;
-    videoUrl: string;
-    videoImage: string;
+    poster: string;
+    title: string;
     duration: number;
 };
