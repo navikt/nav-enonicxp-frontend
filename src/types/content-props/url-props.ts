@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { ContentType, ContentCommonProps } from './_content-common';
 
 export type UrlData = {
