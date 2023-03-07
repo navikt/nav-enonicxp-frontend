@@ -68,7 +68,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     }
 
     return (
-        <div id="tester" className={style.wrapper}>
+        <div className={style.wrapper}>
             <Button
                 className={`${style.button} ${isVideoOpen ? style.hidden : ''}`}
                 variant="tertiary"
