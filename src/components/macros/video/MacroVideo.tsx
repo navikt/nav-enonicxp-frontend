@@ -68,7 +68,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     }
 
     return (
-        <div suppressHydrationWarning id="tester" className={style.wrapper}>
+        <div id="tester" className={style.wrapper}>
             <Button
                 className={`${style.button} ${isVideoOpen ? style.hidden : ''}`}
                 variant="tertiary"
