@@ -33,26 +33,16 @@ export const findImageUrlFromVideoMeta = (qbrickMediaData: QbrickMeta) => {
         return null;
     }
 
-    const firstImageResource = resources?.find(
-        (resource: Resource) => resource.type === 'image'
+    const qBrickPickedThumbnail = (qbrickMediaData as any).thumbnails[0]?.id;
+
+    const image = resources.find(
+        (resource) =>
+            resource.type === 'image' && resource.id === qBrickPickedThumbnail
     );
 
-    if (!firstImageResource) {
-        return null;
-    }
+    const imageLink = image.renditions[0].links[0].href;
 
-    const imageRenditions = firstImageResource.renditions?.sort(
-        (a, b) => a.width - b.width
-    );
-
-    if (imageRenditions.length === 0) {
-        return null;
-    }
-
-    return (
-        imageRenditions[0].links?.find((link) => link.mimeType === 'image/jpg')
-            ?.href || null
-    );
+    return imageLink || null;
 };
 
 export const findVideoDurationFromMeta = (qbrickMediaData: QbrickMeta) => {
