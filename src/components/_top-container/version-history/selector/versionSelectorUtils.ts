@@ -1,20 +1,18 @@
 import { ContentProps } from 'types/content-props/_content-common';
 import { Branch } from 'types/branch';
-import { stripXpPathPrefix, xpDraftPathPrefix } from 'utils/urls';
+import { objectToQueryString } from 'utils/fetch/fetch-utils';
 
 export const getVersionSelectorUrl = (
     content: ContentProps,
     utcDateTime: string,
     branch: Branch
 ) => {
-    const contentPath = stripXpPathPrefix(content._path);
-    if (!contentPath) {
-        return null;
-    }
+    const params = objectToQueryString({
+        time: utcDateTime,
+        id: content._id,
+        branch: branch === 'draft' ? branch : undefined,
+        locale: content.layerLocale,
+    });
 
-    const query = `?time=${utcDateTime}&id=${content._id}${
-        branch === 'draft' ? '&branch=draft' : ''
-    }`;
-
-    return `${xpDraftPathPrefix}${contentPath}${query}`;
+    return `${window.location.origin}${window.location.pathname}${params}`;
 };

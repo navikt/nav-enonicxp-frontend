@@ -36,7 +36,7 @@ export const makeErrorProps = (
     const time = Date.now().toString();
 
     return {
-        __typename: ContentType.Error,
+        type: ContentType.Error,
         _path: idOrPath,
         _id: idOrPath,
         displayName: title,

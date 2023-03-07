@@ -29,16 +29,11 @@ const internalPaths = [
     '$',
     'no(?!\\/rss)', // rss-feed must be a full page load
     'en',
-    'se(?!\\/samegiella\\/bestilling-av-samtale)', // "bestilling-av-samtale" is a separate app
+    'se',
     'nav.no',
     'skjemaer',
     'forsiden',
-    'footer-contactus-no',
-    'footer-contactus-en',
-    'sykepenger-korona',
-    'beskjed',
     'person\\/kontakt-oss(?!(\\/(nb|en))?\\/tilbakemeldinger)', // "tilbakemeldinger" is a separate app
-    'version',
 ];
 
 const relativeAppUrlPattern = '^\\/(?!_\\/)'; // /_/* is used for Enonic XP services and assets

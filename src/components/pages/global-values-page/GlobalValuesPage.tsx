@@ -20,10 +20,7 @@ import style from './GlobalValuesPage.module.scss';
 
 type ListOrder = 'custom' | 'sorted';
 
-const GlobalValuesDisplay = ({
-    displayName,
-    __typename,
-}: GlobalValuesProps) => {
+const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
     const { valueItems } = useGvEditorState();
     const [listOrder, setListOrder] = useState<ListOrder>('custom');
 
@@ -60,7 +57,7 @@ const GlobalValuesDisplay = ({
             </Head>
             <div className={style.headerRow}>
                 <Heading level="1" size="large">
-                    {__typename === ContentType.GlobalCaseTimeSet
+                    {type === ContentType.GlobalCaseTimeSet
                         ? 'Saksbehandlingstider'
                         : 'Globale verdier'}
                 </Heading>
@@ -92,7 +89,7 @@ const GlobalValuesDisplay = ({
                         </Heading>
                         <GVAddItem
                             type={
-                                __typename === ContentType.GlobalCaseTimeSet
+                                type === ContentType.GlobalCaseTimeSet
                                     ? 'caseTime'
                                     : 'numberValue'
                             }

@@ -19,7 +19,7 @@ export type FrontPageData = {
 } & CommonData;
 
 export interface FrontPageProps extends ContentCommonProps {
-    __typename: ContentType.FrontPage;
+    type: ContentType.FrontPage;
     data: FrontPageData;
     page: IndexPageProps;
 }
@@ -31,7 +31,7 @@ export type AreaPageData = {
 } & CommonData;
 
 export interface AreaPageProps extends ContentCommonProps {
-    __typename: ContentType.AreaPage;
+    type: ContentType.AreaPage;
     data: AreaPageData;
     page: IndexPageProps;
 }

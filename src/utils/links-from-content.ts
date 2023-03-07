@@ -29,12 +29,12 @@ export const getUrlFromContent = (content: ContentProps) => {
     if (!content) {
         return '';
     }
-    if (content.__typename === ContentType.InternalLink) {
+    if (content.type === ContentType.InternalLink) {
         return getInternalLinkUrl(content.data);
     }
     if (
-        content.__typename === ContentType.ExternalLink ||
-        content.__typename === ContentType.Url
+        content.type === ContentType.ExternalLink ||
+        content.type === ContentType.Url
     ) {
         return content.data?.url;
     }

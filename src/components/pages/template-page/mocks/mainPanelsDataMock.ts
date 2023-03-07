@@ -4,7 +4,7 @@ import { SectionPageData } from '../../../../types/content-props/section-page-pr
 export const mainPanelDataMock: SectionPageData = {
     tableContents: [
         {
-            __typename: ContentType.TransportPage,
+            type: ContentType.TransportPage,
             _path: '/',
             _id: '',
             createdTime: '',
@@ -16,7 +16,7 @@ export const mainPanelDataMock: SectionPageData = {
             },
         },
         {
-            __typename: ContentType.ExternalLink,
+            type: ContentType.ExternalLink,
             _path: '/',
             _id: '',
             createdTime: '',
@@ -29,7 +29,7 @@ export const mainPanelDataMock: SectionPageData = {
             },
         },
         {
-            __typename: ContentType.ExternalLink,
+            type: ContentType.ExternalLink,
             _path: '/',
             _id: '',
             createdTime: '',

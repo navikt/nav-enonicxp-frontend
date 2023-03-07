@@ -31,6 +31,6 @@ export type MainArticleData = Partial<{
 }>;
 
 export interface MainArticleProps extends ContentCommonProps {
-    __typename: ContentType.MainArticle;
+    type: ContentType.MainArticle;
     data: MainArticleData;
 }

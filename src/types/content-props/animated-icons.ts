@@ -14,6 +14,6 @@ export type AnimatedIconsData = {
 };
 
 export interface AnimatedIconsProps {
-    __typename: ContentType.AnimatedIcons;
+    type: ContentType.AnimatedIcons;
     data: AnimatedIconsData;
 }

@@ -25,7 +25,7 @@ type ParentProps = {
 } & ContentProps;
 
 export interface MainArticleChapterProps extends ContentCommonProps {
-    __typename: ContentType.MainArticleChapter;
+    type: ContentType.MainArticleChapter;
     parent: ParentProps;
     data: MainArticleChapterData;
 }

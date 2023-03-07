@@ -73,14 +73,14 @@ const contentToReactComponent: Partial<{
 };
 
 export const isContentTypeImplemented = (content: ContentProps) =>
-    contentToReactComponent.hasOwnProperty(content.__typename);
+    contentToReactComponent.hasOwnProperty(content.type);
 
 type Props = {
     content: ContentProps;
 };
 
 export const ContentMapper = ({ content }: Props) => {
-    const Component = contentToReactComponent[content.__typename];
+    const Component = contentToReactComponent[content.type];
 
     return Component ? (
         <Component {...content} />

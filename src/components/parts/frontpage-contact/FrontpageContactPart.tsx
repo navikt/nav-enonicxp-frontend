@@ -29,7 +29,7 @@ export const FrontpageContactPart = ({
 
     const contactUsUrl =
         contactUsLink &&
-        (contactUsLink.__typename === ContentType.ExternalLink
+        (contactUsLink.type === ContentType.ExternalLink
             ? contactUsLink.data.url
             : contactUsLink._path);
 

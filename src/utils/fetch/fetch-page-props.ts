@@ -81,7 +81,7 @@ export const fetchPageProps = async ({
         };
     }
 
-    if (content.__typename === ContentType.Error) {
+    if (content.type === ContentType.Error) {
         return errorHandler(content);
     }
 
