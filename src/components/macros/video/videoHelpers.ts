@@ -57,15 +57,15 @@ export const findVideoDurationFromMeta = (qbrickMediaData: QbrickMeta) => {
         return 0;
     }
 
-    const firstRentition = firstVideoResource.renditions?.find(
+    const firstRendition = firstVideoResource.renditions?.find(
         (rendition) => rendition.type === 'video'
     );
 
-    if (!firstRentition) {
+    if (!firstRendition) {
         return 0;
     }
 
-    const firstVideo = firstRentition.videos?.[0];
+    const firstVideo = firstRendition.videos?.[0];
     if (!firstVideo) {
         return 0;
     }
