@@ -111,7 +111,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 <div
                     title={title}
                     data-gobrain-widgetid="player"
-                    data-gobrain-config={`//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/default`}
+                    data-gobrain-config={`//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`}
                     data-gobrain-data={`//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`}
                 />
             </div>
