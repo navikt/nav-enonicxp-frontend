@@ -100,8 +100,8 @@ export const translationsBundleEn: Translations = {
     },
     mainPanels: { label: 'Main panels' },
     publishingCalendar: {
-        publishdate: 'Publiseringsdato',
-        event: 'Kalenderhendelse',
+        publishdate: 'Date',
+        event: 'Publication',
     },
     dateTime: {
         weekDayNames: [
