@@ -33,6 +33,7 @@ export const findImageUrlFromVideoMeta = (qbrickMediaData: QbrickMeta) => {
         return null;
     }
 
+    //TODO fjern as any
     const qBrickPickedThumbnail = (qbrickMediaData as any).thumbnails[0]?.id;
 
     const image = resources.find(
@@ -50,26 +51,11 @@ export const findVideoDurationFromMeta = (qbrickMediaData: QbrickMeta) => {
     if (!resources) {
         return 0;
     }
-    const firstVideoResource = resources?.find(
-        (resource: Resource) => resource.type === 'video'
-    );
-    if (!firstVideoResource) {
-        return 0;
-    }
 
-    const firstRendition = firstVideoResource.renditions?.find(
-        (rendition) => rendition.type === 'video'
-    );
+    const duration = resources.find((resource) => resource.type === 'video')
+        .renditions[0].videos[0].duration;
 
-    if (!firstRendition) {
-        return 0;
-    }
-
-    const firstVideo = firstRendition.videos?.[0];
-    if (!firstVideo) {
-        return 0;
-    }
-    return firstVideo.duration;
+    return duration || 0;
 };
 
 const prefixWithZero = (number: number) => {
