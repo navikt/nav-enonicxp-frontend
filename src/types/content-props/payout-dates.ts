@@ -19,7 +19,7 @@ export type PayoutDatesData = {
     dates: Record<Month, number>;
 };
 
-export interface PayoutDatesProps extends ContentCommonProps {
-    __typename: ContentType.PayoutDates;
+export type PayoutDatesProps = ContentCommonProps & {
+    type: ContentType.PayoutDates;
     data: PayoutDatesData;
-}
+};

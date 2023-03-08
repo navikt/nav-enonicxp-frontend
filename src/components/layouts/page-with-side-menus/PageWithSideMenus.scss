@@ -68,6 +68,10 @@
         }
     }
 
+    .region__intro {
+        margin-bottom: $verticalMargin;
+    }
+
     .region__pageContent,
     .region__topPageContent {
         display: flex;

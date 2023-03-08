@@ -4,7 +4,7 @@ import { SectionPageData } from '../../../../types/content-props/section-page-pr
 export const linkListDataMock: SectionPageData = {
     ntkContents: {
         _id: 'mock-id',
-        __typename: ContentType.ContentList,
+        type: ContentType.ContentList,
         _path: '#',
         createdTime: '2019-10-31T12:51:49Z',
         modifiedTime: '2019-12-12T13:40:51.919815Z',
@@ -13,7 +13,7 @@ export const linkListDataMock: SectionPageData = {
         data: {
             sectionContents: [
                 {
-                    __typename: ContentType.MainArticle,
+                    type: ContentType.MainArticle,
                     _id: 'cd3c1fc5-53e9-4cdd-8287-ef69405832bd',
                     _path: '#',
                     createdTime: '2019-10-31T12:51:49Z',
@@ -26,7 +26,7 @@ export const linkListDataMock: SectionPageData = {
                     data: {},
                 },
                 {
-                    __typename: ContentType.PageList,
+                    type: ContentType.PageList,
                     _id: '5c33bb94-5d8e-4a11-88de-39ff388206b5',
                     _path: '#',
                     createdTime: '2019-10-31T12:51:49Z',
@@ -36,7 +36,7 @@ export const linkListDataMock: SectionPageData = {
                     data: {},
                 },
                 {
-                    __typename: ContentType.MainArticle,
+                    type: ContentType.MainArticle,
                     _id: 'a24afc59-41f2-4c19-b976-1cc722df75b7',
                     _path: '#',
                     createdTime: '2015-02-03T08:33:59Z',
@@ -49,7 +49,7 @@ export const linkListDataMock: SectionPageData = {
                     data: {},
                 },
                 {
-                    __typename: ContentType.MainArticle,
+                    type: ContentType.MainArticle,
                     _id: '74f92237-781a-43bd-94b7-5f91d0335e0f',
                     _path: '#',
                     createdTime: '2019-11-15T07:12:00Z',
@@ -62,7 +62,7 @@ export const linkListDataMock: SectionPageData = {
                     data: {},
                 },
                 {
-                    __typename: ContentType.MainArticle,
+                    type: ContentType.MainArticle,
                     _id: '4c298da7-9d8d-4e25-ab3a-661216c34725',
                     _path: '#',
                     createdTime: '2014-11-10T13:59:33Z',
@@ -75,7 +75,7 @@ export const linkListDataMock: SectionPageData = {
                     data: {},
                 },
                 {
-                    __typename: ContentType.MainArticle,
+                    type: ContentType.MainArticle,
                     _id: 'e8b0e763-84ec-46e3-af12-033ec20f9dd7',
                     _path: '#',
                     createdTime: '2014-11-10T13:59:33Z',
@@ -91,7 +91,7 @@ export const linkListDataMock: SectionPageData = {
         },
     },
     newsContents: {
-        __typename: ContentType.ContentList,
+        type: ContentType.ContentList,
         _id: 'a1ef2199-9e05-40f4-8b6e-13fbef6f05ee',
         _path: '#',
         createdTime: '2016-04-15T08:57:58Z',
@@ -101,7 +101,7 @@ export const linkListDataMock: SectionPageData = {
         data: {
             sectionContents: [
                 {
-                    __typename: ContentType.MainArticle,
+                    type: ContentType.MainArticle,
                     _id: 'b5f5822b-d4a6-4c5c-b67d-44629b4198d6',
                     _path: '#',
                     createdTime: '2019-12-12T12:06:41.407671Z',
@@ -114,7 +114,7 @@ export const linkListDataMock: SectionPageData = {
                     data: {},
                 },
                 {
-                    __typename: ContentType.MainArticle,
+                    type: ContentType.MainArticle,
                     _id: 'e567043e-2ae6-4635-a9d5-fa6338264438',
                     _path: '#',
                     createdTime: '2019-12-13T13:38:07.402648Z',
@@ -127,7 +127,7 @@ export const linkListDataMock: SectionPageData = {
                     data: {},
                 },
                 {
-                    __typename: ContentType.MainArticle,
+                    type: ContentType.MainArticle,
                     _id: 'f3af0498-2822-45c4-8e76-af1815affe20',
                     _path: '#',
                     createdTime: '2019-12-13T08:20:51.220550Z',
@@ -143,7 +143,7 @@ export const linkListDataMock: SectionPageData = {
         },
     },
     scContents: {
-        __typename: ContentType.ContentList,
+        type: ContentType.ContentList,
         _id: '70958273-9c20-41e3-92c2-ff1375e98be6',
         _path: '#',
         createdTime: '2019-10-31T12:51:49Z',
@@ -153,7 +153,7 @@ export const linkListDataMock: SectionPageData = {
         data: {
             sectionContents: [
                 {
-                    __typename: ContentType.MainArticle,
+                    type: ContentType.MainArticle,
                     _id: '5b1dbf9d-9287-4cf8-937b-58dc4ce7f7e0',
                     _path: '#',
                     createdTime: '2019-10-31T12:51:49Z',
@@ -166,7 +166,7 @@ export const linkListDataMock: SectionPageData = {
                     data: {},
                 },
                 {
-                    __typename: ContentType.InternalLink,
+                    type: ContentType.InternalLink,
                     _id: '996c0747-45d3-4b95-90b0-afe96a87ec2b',
                     _path: '#',
                     createdTime: '2019-10-31T12:51:49Z',
@@ -176,7 +176,7 @@ export const linkListDataMock: SectionPageData = {
                     data: { target: { _path: '' } },
                 },
                 {
-                    __typename: ContentType.ExternalLink,
+                    type: ContentType.ExternalLink,
                     _id: 'c049707a-1883-4914-a625-26077995af0d',
                     _path: '#',
                     createdTime: '2019-10-31T12:51:49Z',
@@ -186,7 +186,7 @@ export const linkListDataMock: SectionPageData = {
                     data: { url: '', description: '' },
                 },
                 {
-                    __typename: ContentType.MainArticle,
+                    type: ContentType.MainArticle,
                     _id: '1ded1d83-055b-470f-81dd-f0bdc742482b',
                     _path: '#',
                     createdTime: '2019-10-31T12:51:49Z',
@@ -199,7 +199,7 @@ export const linkListDataMock: SectionPageData = {
                     data: {},
                 },
                 {
-                    __typename: ContentType.ExternalLink,
+                    type: ContentType.ExternalLink,
                     _id: '07f22eb4-fddd-4f22-b48e-b8df23e6634f',
                     _path: '#',
                     createdTime: '2019-10-31T12:51:49Z',

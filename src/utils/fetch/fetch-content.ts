@@ -36,18 +36,21 @@ type FetchSiteContentArgs = {
     time?: string;
     isDraft?: boolean;
     isPreview?: boolean;
+    locale?: string;
 };
 
 const fetchSiteContent = async ({
     idOrPath,
     isDraft = false,
     isPreview = false,
+    locale,
 }: FetchSiteContentArgs) => {
     const params = objectToQueryString({
         id: idOrPath,
         ...(isDraft && { branch: 'draft' }),
         ...(!isDraft && getCacheKey()), // We don't want to use backend-cache for draft content requests
         ...(isPreview && { preview: true }),
+        ...(locale && { locale }),
     });
 
     const url = `${xpServiceUrl}/sitecontent${params}`;
@@ -63,10 +66,12 @@ const fetchSiteContentVersion = async ({
     idOrPath,
     time,
     isDraft = false,
+    locale,
 }: FetchSiteContentArgs) => {
     const params = objectToQueryString({
         id: idOrPath,
         ...(isDraft && { branch: 'draft' }),
+        ...(locale && { locale }),
         time,
     });
 
@@ -173,6 +178,7 @@ type FetchPageArgs = {
     isDraft?: boolean;
     timeRequested?: string;
     isPreview?: boolean;
+    locale?: string;
 };
 
 export const fetchPage = async ({
@@ -180,15 +186,17 @@ export const fetchPage = async ({
     timeRequested,
     isDraft = false,
     isPreview = false,
+    locale,
 }: FetchPageArgs): Promise<XpResponseProps> => {
     const content = await fetchAndHandleErrors({
         idOrPath,
         isDraft,
         isPreview,
         time: timeRequested,
+        locale,
     });
 
-    if (!content?.__typename) {
+    if (!content?.type) {
         const errorId = uuid();
         logPageLoadError(
             errorId,

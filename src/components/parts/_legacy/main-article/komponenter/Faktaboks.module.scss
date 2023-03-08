@@ -33,10 +33,10 @@
 }
 
 .facts_v2 {
-    background: var(--navds-global-color-purple-50);
+    background: var(--a-purple-50);
     padding: 1.5rem;
     margin-top: 2.75rem;
-    border-left: 8px solid var(--navds-global-color-purple-300);
+    border-left: 8px solid var(--a-purple-300);
 
     p {
         margin-bottom: 1rem;
@@ -46,7 +46,7 @@
     }
 
     h3 {
-        color: var(--navds-global-color-purple-500);
+        color: var(--a-purple-500);
     }
 
     .decorated {

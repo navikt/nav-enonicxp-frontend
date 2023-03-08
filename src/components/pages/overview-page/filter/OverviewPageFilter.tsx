@@ -41,10 +41,7 @@ export const OverviewPageFilter = <Type extends FilterOptions>({
             <Heading size={'small'} level={'2'}>
                 {translations['choose']}
             </Heading>
-            <nav
-                role={'navigation'}
-                aria-label={translations['ariaExplanation']}
-            >
+            <nav aria-label={translations['ariaExplanation']}>
                 <ul className={styles.filterWrapper}>
                     {options.map((option) => {
                         const isActive = selected === option;
@@ -56,7 +53,7 @@ export const OverviewPageFilter = <Type extends FilterOptions>({
                                     type={'button'}
                                     onClick={() => selectionCallback(option)}
                                     aria-current={isActive}
-                                    aria-label={`${translations['ariaItemExplanation']} ${optionLabel}}`}
+                                    aria-label={`${translations['ariaItemExplanation']} ${optionLabel}`}
                                     className={classNames(
                                         styles.filterButton,
                                         isActive && styles.activeButton

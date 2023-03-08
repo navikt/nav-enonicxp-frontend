@@ -6,8 +6,8 @@ export const hasWhiteBackground = (content: ContentProps) => {
         ContentType.MainArticle,
     ];
 
-    if (content.__typename === ContentType.MainArticle) {
+    if (content.type === ContentType.MainArticle) {
         return content.data.contentType !== 'lastingContent';
     }
-    return contentTypeWithWhiteBackground.includes(content.__typename);
+    return contentTypeWithWhiteBackground.includes(content.type);
 };

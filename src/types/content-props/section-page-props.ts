@@ -18,7 +18,7 @@ export type SectionPageData = Partial<{
     languages: LanguageProps[];
 }>;
 
-export interface SectionPageProps extends ContentCommonProps {
-    __typename: ContentType.SectionPage;
+export type SectionPageProps = ContentCommonProps & {
+    type: ContentType.SectionPage;
     data: SectionPageData;
-}
+};

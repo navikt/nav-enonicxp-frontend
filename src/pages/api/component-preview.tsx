@@ -15,7 +15,7 @@ import { apiErrorHandler } from '../../utils/api-error-handler';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const dummyPageProps: ContentProps = {
-    __typename: ContentType.DynamicPage,
+    type: ContentType.DynamicPage,
     _id: '',
     _path: '',
     createdTime: '',

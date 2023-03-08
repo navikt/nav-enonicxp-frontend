@@ -25,6 +25,7 @@ import { HeaderPart } from './header/HeaderPart';
 import { LinkListPart } from './link-list/LinkListPart';
 import { NewsListPart } from './news-list/NewsListPart';
 import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar';
+import PublishingCalendarEntry from './_legacy/publishing-calendar/PublishingCalendarEntry';
 import { BEM, classNames } from '../../utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
 import { CalculatorPart } from './calculator/Calculator';
@@ -47,6 +48,8 @@ import { AreaCardPart } from './area-card/AreaCardPart';
 import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
+import { FrontpageSurveyPanel } from './frontpage-survey-panel/FrontpageSurveyPanel';
+import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -66,6 +69,7 @@ const partsWithPageData: {
     [PartType.PageHeading]: PageHeading,
     [PartType.PageList]: PageList,
     [PartType.PublishingCalendar]: PublishingCalendar,
+    [PartType.PublishingCalendarEntry]: PublishingCalendarEntry,
 };
 
 const partsWithOwnData: {
@@ -97,6 +101,8 @@ const partsWithOwnData: {
     [PartType.AreapageSituationCard]: AreapageSituationCardPart,
     [PartType.LoggedinCard]: LoggedinCardPart,
     [PartType.FrontpageContact]: FrontpageContactPart,
+    [PartType.FrontpageSurveyPanel]: FrontpageSurveyPanel,
+    [PartType.UxSignalsWidget]: UxSignalsWidgetPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {

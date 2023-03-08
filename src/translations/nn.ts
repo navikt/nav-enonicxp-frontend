@@ -61,7 +61,6 @@ const areas: { [key in Area]: string } = {
     [Area.MUNICIPALITY]: 'For kommunen',
     [Area.OTHER]: 'Anna',
     [Area.PENSION]: 'Pensjon',
-    [Area.SELF_EMPLOYED]: 'For sjølvstendig næringsdrivande',
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og rettleiing',
     [Area.WORK]: 'Arbeid',
 };
@@ -140,9 +139,12 @@ export const translationsBundleNn: Translations = {
         employer: 'For arbeidsgjevarar',
         provider: 'For samhandlarar',
     },
+    overviews: {
+        any: 'Frå A til Å',
+    },
     publishingCalendar: {
-        event: 'Kalenderhending',
-        publishdate: 'Publiseringsdato',
+        event: 'Hending',
+        publishdate: 'Dato',
     },
     header: {
         copyLink: 'Kopier lenke',
@@ -175,13 +177,26 @@ export const translationsBundleNn: Translations = {
             ariaItemExplanation: 'Vis type',
         },
     },
+    pressLanding: {
+        latestPressNews: 'Siste pressemeldingar og nyheiter',
+        morePressNews: 'Fleire pressemeldingar og nyheiter',
+        pressShortcuts: 'Snarvegar',
+        news: 'Nyheit',
+        press: 'Pressemelding',
+        published: 'Publisert',
+    },
     pagination: {
         goTo: 'Gå til',
         ariaExplanation: 'Navigering av innhaldet med paginering',
     },
     contactPoint: {
         chat: {
-            title: 'Chat med oss',
+            title: 'Du kan chatte med oss',
+            ingress:
+                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00).',
+        },
+        legacyChat: {
+            title: 'Du kan chatte med oss',
             ingress:
                 'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00).',
         },

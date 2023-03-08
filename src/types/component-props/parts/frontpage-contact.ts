@@ -3,12 +3,12 @@ import { PartType } from '../parts';
 import { ContentType } from '../../content-props/_content-common';
 
 type InternalContactUs = {
-    __typename: ContentType.GenericPage;
+    type: ContentType.GenericPage;
     _path: string;
 };
 
 type ExternalContactUs = {
-    __typename: ContentType.ExternalLink;
+    type: ContentType.ExternalLink;
     data: {
         url: string;
     };
@@ -19,8 +19,10 @@ export interface FrontpageContanctPartProps extends PartComponentProps {
     config: {
         title: string;
         chatTitle: string;
+        chatAlertText?: string;
         chatIngress: string;
         contactUsTitle: string;
+        contactUsAlertText?: string;
         contactUsIngress: string;
         contactUsLink: InternalContactUs | ExternalContactUs;
     };

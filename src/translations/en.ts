@@ -46,7 +46,6 @@ const areas: { [key in Area]: string } = {
     [Area.MUNICIPALITY]: 'For government',
     [Area.OTHER]: 'Other',
     [Area.PENSION]: 'Pension',
-    [Area.SELF_EMPLOYED]: 'For the self-employed',
     [Area.SOCIAL_COUNSELLING]: 'Financial social advice and guidance',
     [Area.WORK]: 'Work',
 };
@@ -89,6 +88,14 @@ export const translationsBundleEn: Translations = {
     currentTopic: {
         tag: 'Featured',
     },
+    pressLanding: {
+        latestPressNews: 'Latest press and news',
+        morePressNews: 'More press releases and news',
+        pressShortcuts: 'Shortcuts',
+        news: 'News',
+        press: 'Press release',
+        published: 'Published',
+    },
     mainArticle: {
         facts: 'Facts',
         lastChanged: 'Updated',
@@ -101,8 +108,8 @@ export const translationsBundleEn: Translations = {
     },
     mainPanels: { label: 'Main panels' },
     publishingCalendar: {
-        publishdate: 'Publiseringsdato',
-        event: 'Kalenderhendelse',
+        publishdate: 'Date',
+        event: 'Publication',
     },
     office: {
         youFindUsHere: 'You can find us here',
@@ -128,7 +135,7 @@ export const translationsBundleEn: Translations = {
         ],
         relatives: {
             today: 'today',
-            tomorrow: 'i morgen',
+            tomorrow: 'tomorrow',
         },
         day: 'day',
         date: 'date',
@@ -161,6 +168,9 @@ export const translationsBundleEn: Translations = {
         person: 'How to',
         employer: 'For employers',
         provider: 'For providers',
+    },
+    overviews: {
+        any: 'From A to Z',
     },
     taxonomies,
     areas,
@@ -196,7 +206,7 @@ export const translationsBundleEn: Translations = {
         legacyChat: {
             title: 'You can chat with us',
             ingress:
-                'You will first meet chatbot Frida. You can ask Frida to chat with a counsellor (weekdays 09:00–15:00)',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
         },
         write: {
             title: 'Write to us',

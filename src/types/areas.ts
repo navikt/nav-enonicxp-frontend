@@ -8,5 +8,4 @@ export enum Area {
     ACCESSIBILITY = 'accessibility',
     OTHER = 'other',
     MUNICIPALITY = 'municipality',
-    SELF_EMPLOYED = 'self_employed',
 }

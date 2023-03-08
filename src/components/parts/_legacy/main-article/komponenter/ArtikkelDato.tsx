@@ -32,46 +32,49 @@ const ArtikkelDato = (props: Props) => {
     const hasYear = type === 'newsPress';
 
     const publishedDate = publish?.first ?? createdTime;
-    const publishedString = `${publishLabel} ${formatDate(
-        publishedDate,
+    const publishedString = `${publishLabel} ${formatDate({
+        datetime: publishedDate,
         language,
-        hasMonthName,
-        hasYear
-    )}`;
+        short: hasMonthName,
+        year: hasYear,
+    })}`;
     let modifiedString = '';
     if (new Date(modifiedTime) > new Date(publishedDate)) {
-        modifiedString = ` ${modifiedLabel} ${formatDate(
-            modifiedTime,
+        modifiedString = `${modifiedLabel} ${formatDate({
+            datetime: modifiedTime,
             language,
-            hasMonthName,
-            hasYear
-        )}`;
+            short: hasMonthName,
+            year: hasYear,
+        })}`;
     }
+
+    const publishedAndModifiedString = (
+        <>
+            {publishedString}
+            {modifiedString && (
+                <>
+                    <span aria-hidden="true" className={styles.divider}>
+                        {'|'}
+                    </span>
+                    {modifiedString}
+                </>
+            )}
+        </>
+    );
+
     if (type === 'newsPress') {
         return (
             <Detail
                 className={classNames(styles.artikkelDato, styles.small)}
                 id="main-article-date-anchor"
             >
-                {publishedString}
-                {modifiedString && (
-                    <>
-                        <span aria-hidden="true">{','}</span>
-                        {modifiedString.toLowerCase()}
-                    </>
-                )}
+                {publishedAndModifiedString}
             </Detail>
         );
     }
     return (
         <BodyLong as={'time'} dateTime={publishedDate}>
-            {publishedString}
-            {modifiedString && (
-                <>
-                    <span aria-hidden="true">{' |'}</span>
-                    {modifiedString}
-                </>
-            )}
+            {publishedAndModifiedString}
         </BodyLong>
     );
 };

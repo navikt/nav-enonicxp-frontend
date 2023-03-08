@@ -9,7 +9,7 @@ metadata:
 spec:
   receivers:
     slack:
-      channel: "#navno-alerts"
+      channel: "#team-navno-frontend-alerts"
       prependText: "[nav-enonicxp-frontend] [<!here>] "
   alerts:
     - alert: Appen er nede! (ingen tilgjengelige pods)
@@ -24,16 +24,21 @@ spec:
       action: "Sjekk loggene for å se hvorfor appen returnerer 5xx-feil"
     - alert: Høy andel 4xx-feil (>10%)
       severity: warning
-      expr: (100 * (sum by (service) (rate(nginx_ingress_controller_requests{status=~"^4\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[3m])) / sum by (service) (rate(nginx_ingress_controller_requests{namespace="personbruker", service="nav-enonicxp-frontend"}[3m])))) > 10
+      expr: (sum by (service) (rate(nginx_ingress_controller_requests{status=~"^4\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[3m]))) > 20 AND (100 * (sum by (service) (rate(nginx_ingress_controller_requests{status=~"^4\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[3m])) / sum by (service) (rate(nginx_ingress_controller_requests{namespace="personbruker", service="nav-enonicxp-frontend"}[3m])))) > 10
       for: 3m
       action: "Sjekk loggene for å se hvorfor appen returnerer 4xx-feil"
-    - alert: Treg 99th percentile responsetid (>5 sec)
-      severity: warning
-      expr: histogram_quantile(0.99, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[10m])) by (le)) > 5
-      for: 3m
+    - alert: Treg 99.9th percentile responsetid (>4 sec)
+      severity: danger
+      expr: histogram_quantile(0.999, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[10m])) by (le)) > 4
+      for: 10m
+      action: "Undersøk hvorfor en andel av requestene er veldig trege"
+    - alert: Treg 99th percentile responsetid (>2 sec)
+      severity: danger
+      expr: histogram_quantile(0.99, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[10m])) by (le)) > 2
+      for: 10m
       action: "Undersøk hvorfor en andel av requestene er trege"
-    - alert: Treg median responsetid (>20 ms)
+    - alert: Treg median responsetid (>25 ms) over lang tid (>30 min)
       severity: warning
-      expr: histogram_quantile(0.5, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[10m])) by (le)) > 0.02
-      for: 3m
-      action: "Undersøk hvorfor appen svarer tregt"
+      expr: histogram_quantile(0.5, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[10m])) by (le)) > 0.025
+      for: 30m
+      action: "Undersøk hvorfor appen svarer tregere enn normalt"

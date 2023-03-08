@@ -5,6 +5,14 @@ const { withSentryConfig } = require('@sentry/nextjs');
 const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
 const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
 
+const sentryConfig = {
+    errorHandler: (err, invokeErr, compilation) => {
+        compilation.warnings.push('Sentry CLI Plugin: ' + err.message);
+    },
+    silent: process.env.NODE_ENV === 'development',
+    dryRun: process.env.ENV === 'localhost',
+};
+
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
 const cssModulesNoDashesInClassnames = (config) => {
@@ -52,6 +60,9 @@ const csp = async () => {
     const termerHost = 'termer.no';
     const tiTiHosts = [tingtunHost, termerHost];
 
+    const uxSignalsScriptHost = 'uxsignals-frontend.uxsignals.app.iterate.no';
+    const uxSignalsApiHost = 'api.uxsignals.com';
+
     // Filter duplicates, as some origins may be identical, depending on
     // deployment environment
     const internalHosts = [
@@ -69,19 +80,23 @@ const csp = async () => {
         prod: 'prod',
     };
 
+    const scriptSrc = [...internalHosts, ...tiTiHosts, uxSignalsScriptHost];
+
     const directives = {
         'default-src': internalHosts,
-        'script-src': [...internalHosts, ...tiTiHosts],
+        'script-src-elem': scriptSrc,
+        'script-src': scriptSrc,
         'worker-src': internalHosts,
         'style-src': [...internalHosts, UNSAFE_INLINE],
         'font-src': [...internalHosts, DATA],
         'img-src': [...internalHosts, DATA],
         'frame-src': [qbrickHost],
-        'connect-src': internalHosts,
+        'connect-src': [...internalHosts, uxSignalsApiHost],
     };
 
     if (process.env.NODE_ENV === 'development') {
         directives['default-src'].push('ws:');
+        directives['connect-src'].push('ws:');
         directives['script-src'].push(UNSAFE_INLINE, UNSAFE_EVAL);
     }
 
@@ -168,6 +183,12 @@ const config = {
             destination: '/global-utlogging',
             permanent: true,
         },
+        // Redirects from an old invalid link which must be resolved for the time being
+        {
+            source: '/no/nav-og-samfunn/samarbeid/for-kommunen/digisos/til-kommuner-som-onsker-a-ta-i-bruk-digital-soknad-om-okonomisk-sosialhjelp/_/attachment/download/ec690be3-b949-4945-9e73-e7fd7437fc94(:)91ebdeaf85cd092e2c96f4ecc82d5bf88b1838b3/handbok-for-innforing-av-digital-soknad---oppdatert-25.05.2020.pdf',
+            destination: `${process.env.APP_ORIGIN}/no/nav-og-samfunn/samarbeid/for-kommunen/digisos/til-kommuner-som-onsker-a-ta-i-bruk-digital-soknad-om-okonomisk-sosialhjelp/Håndbok for innføring av digital søknad %2800B%29 12.12.19.pdf`,
+            permanent: false,
+        },
     ],
     rewrites: async () => [
         {
@@ -247,6 +268,10 @@ const config = {
             ],
         },
     ],
+    sentry: {
+        autoInstrumentServerFunctions: false,
+        hideSourceMaps: true,
+    },
 };
 
-module.exports = withSentryConfig(withBundleAnalyzer(config));
+module.exports = withSentryConfig(withBundleAnalyzer(config), sentryConfig);

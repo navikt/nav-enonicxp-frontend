@@ -2,7 +2,7 @@
 
 .pageNavLink {
     display: flex;
-    color: common.$navds-semantic-color-link;
+    color: common.$a-text-action;
     text-decoration: none;
 
     &:hover {
@@ -11,5 +11,5 @@
 }
 
 .linkText {
-    font-weight: common.$navds-font-weight-bold;
+    font-weight: common.$a-font-weight-bold;
 }

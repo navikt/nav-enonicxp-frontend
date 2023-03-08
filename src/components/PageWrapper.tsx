@@ -9,7 +9,6 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { hookAndInterceptInternalLink, prefetchOnMouseover } from 'utils/links';
 import { hasWhiteBackground } from 'utils/appearance';
 import { TopContainer } from './_top-container/TopContainer';
-import { initAmplitude } from 'utils/amplitude';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from 'utils/decorator/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
@@ -84,8 +83,6 @@ export const PageWrapper = (props: Props) => {
         onLanguageSelect((language) =>
             router.push(getInternalRelativePath(language.url, !!editorView))
         );
-
-        initAmplitude();
 
         const linkInterceptor = hookAndInterceptInternalLink(router);
         const linkPrefetcher = !!editorView

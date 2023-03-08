@@ -67,10 +67,10 @@ export const getCardProps = (
         return null;
     }
 
-    const { data, __typename, _path, displayName } = content;
+    const { data, type, _path, displayName } = content;
     const { title, ingress, illustration, externalProductUrl } = data;
 
-    const cardType = cardTypeMap[__typename];
+    const cardType = cardTypeMap[type];
     const cardUrl = externalProductUrl || _path;
     const cardTitle = title || displayName;
 

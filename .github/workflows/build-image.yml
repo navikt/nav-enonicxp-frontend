@@ -68,7 +68,7 @@ jobs:
       - name: Setup node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16.15.0'
+          node-version: '18'
           registry-url: 'https://npm.pkg.github.com'
           cache: 'npm'
       - name: Set app environmment
@@ -100,6 +100,8 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Run server tests
         run: npm run test-server
+      - name: Run client tests
+        run: npm run test-client
       - name: Build application
         run: npm run build
         env:

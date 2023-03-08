@@ -3,9 +3,11 @@ import 'dayjs/locale/nb';
 import 'dayjs/locale/en';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
 dayjs.extend(localizedFormat);
 dayjs.extend(utc);
+dayjs.extend(timezone);
 
 // JS starts week on a Sunday.
 export const days = [
@@ -18,12 +20,19 @@ export const days = [
     'saturday',
 ];
 
-export const formatDate = (
-    datetime: string,
-    language: string = 'nb',
+interface FormatDateProps {
+    datetime: string;
+    language?: string;
+    short?: boolean;
+    year?: boolean;
+}
+
+export const formatDate = ({
+    datetime,
+    language = 'nb',
     short = false,
-    year = false
-) => {
+    year = false,
+}: FormatDateProps) => {
     const currentLocale = language === 'en' ? 'en-gb' : 'nb';
 
     let format: string;

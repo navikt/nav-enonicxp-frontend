@@ -16,7 +16,7 @@ export type PageListData = Partial<{
     menuListItems: MenuListItems;
 }>;
 
-export interface PageListProps extends ContentCommonProps {
-    __typename: ContentType.PageList;
+export type PageListProps = ContentCommonProps & {
+    type: ContentType.PageList;
     data: PageListData;
-}
+};

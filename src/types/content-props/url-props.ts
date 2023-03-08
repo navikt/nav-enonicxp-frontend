@@ -4,7 +4,7 @@ export type UrlData = {
     url: string;
 };
 
-export interface UrlProps extends ContentCommonProps {
-    __typename: ContentType.Url;
+export type UrlProps = ContentCommonProps & {
+    type: ContentType.Url;
     data: UrlData;
-}
+};

@@ -9,7 +9,7 @@ export type InternalLinkData = {
     anchorId?: string;
 };
 
-export interface InternalLinkProps extends ContentCommonProps {
-    __typename: ContentType.InternalLink;
+export type InternalLinkProps = ContentCommonProps & {
+    type: ContentType.InternalLink;
     data: InternalLinkData;
-}
+};

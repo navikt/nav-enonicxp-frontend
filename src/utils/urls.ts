@@ -1,10 +1,10 @@
 import globalState from '../globalState';
-import { ContentProps } from '../types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 
 export const appOriginProd = 'https://www.nav.no';
 export const xpContentPathPrefix = '/www.nav.no';
 export const xpServicePath = '/_/service/no.nav.navno';
-export const xpDraftPathPrefix = '/admin/site/preview/default/draft/www.nav.no';
+export const xpDraftPathPrefix = `/admin/site/preview/default/draft${xpContentPathPrefix}`;
 export const editorPathPrefix =
     '/admin/tool/com.enonic.app.contentstudio/main/default/edit';
 
@@ -14,9 +14,13 @@ export const adminOrigin = process.env.ADMIN_ORIGIN;
 
 export const xpServiceUrl = `${xpOrigin}${xpServicePath}`;
 
-const internalUrlPrefix = `^(${appOrigin}|${appOriginProd}|${adminOrigin})?(${xpContentPathPrefix})?`;
+const internalUrlPrefix = `^(${appOrigin}|${appOriginProd}|${adminOrigin})?(${xpContentPathPrefix}|${xpDraftPathPrefix})?`;
 
 const internalUrlPrefixPattern = new RegExp(internalUrlPrefix, 'i');
+
+const xpPathPrefixPattern = new RegExp(
+    `^((${adminOrigin}${xpDraftPathPrefix})|(${xpContentPathPrefix}))`
+);
 
 // Links to these paths and any sub-paths will use SPA navigation.
 // If any subpaths point to a separate app, insert an appropriate regex to ensure
@@ -25,16 +29,11 @@ const internalPaths = [
     '$',
     'no(?!\\/rss)', // rss-feed must be a full page load
     'en',
-    'se(?!\\/samegiella\\/bestilling-av-samtale)', // "bestilling-av-samtale" is a separate app
+    'se',
     'nav.no',
     'skjemaer',
     'forsiden',
-    'footer-contactus-no',
-    'footer-contactus-en',
-    'sykepenger-korona',
-    'beskjed',
     'person\\/kontakt-oss(?!(\\/(nb|en))?\\/tilbakemeldinger)', // "tilbakemeldinger" is a separate app
-    'version',
 ];
 
 const relativeAppUrlPattern = '^\\/(?!_\\/)'; // /_/* is used for Enonic XP services and assets
@@ -69,9 +68,7 @@ const nofollowPattern = new RegExp(`^(${appOrigin})?(\\/sok($|\\?|\\/))`, 'i');
 export const isNofollowUrl = (url: string) => nofollowPattern.test(url);
 
 export const stripXpPathPrefix = (path: string) =>
-    path?.startsWith(xpContentPathPrefix)
-        ? path.slice(xpContentPathPrefix.length)
-        : path;
+    path?.replace(xpPathPrefixPattern, '');
 
 export const getInternalRelativePath = (
     url: string,

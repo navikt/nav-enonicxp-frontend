@@ -24,6 +24,6 @@
     &:active {
         @include common.panel-focus-mixin();
         background-color: transparent;
-        color: common.$navds-semantic-color-link;
+        color: common.$a-text-action;
     }
 }

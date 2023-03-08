@@ -43,19 +43,13 @@ export const ThemedPageHeader = ({
     contentProps,
     showTimeStamp = true,
 }: Props) => {
-    const {
-        __typename: pageType,
-        displayName,
-        modifiedTime,
-        data,
-    } = contentProps;
+    const { type: pageType, displayName, modifiedTime, data } = contentProps;
 
     const { language } = usePageConfig();
 
     const getProps = () => {
-        if (pageType === ContentType.OfficeEditorialPageProps) {
+        if (pageType === ContentType.OfficeEditorialPage) {
             const title = displayName;
-            console.log(title);
             return { title };
         }
         const {
@@ -80,6 +74,11 @@ export const ThemedPageHeader = ({
         if (pageType === ContentType.GuidePage) {
             const getTaxonomyLabel = translator('guides', language);
             return getTaxonomyLabel(audience);
+        }
+
+        if (pageType === ContentType.Overview) {
+            const getTaxonomyLabel = translator('overviews', language);
+            return getTaxonomyLabel('any');
         }
 
         if (pageType === ContentType.ThemedArticlePage) {
@@ -143,7 +142,12 @@ export const ThemedPageHeader = ({
         showTimeStamp &&
         getDatesLabel('lastChanged') +
             ' ' +
-            formatDate(modifiedTime, language, true, true);
+            formatDate({
+                datetime: modifiedTime,
+                language,
+                short: true,
+                year: true,
+            });
 
     // This is a temporaty fix, especially for "Arbeidsavklaringspenger".
     // Will work with design to find solution for how long titles and illustration can stack better on mobile.
@@ -176,21 +180,13 @@ export const ThemedPageHeader = ({
                             </BodyShort>
                         )}
                         {subTitle && modified && (
-                            <span
-                                aria-hidden="true"
-                                className={classNames(
-                                    'page-modified-info',
-                                    style.divider
-                                )}
-                            >
+                            <span aria-hidden="true" className={style.divider}>
                                 {'|'}
                             </span>
                         )}
                         {modified && (
                             <Detail size="small">
-                                <span className={'page-modified-info'}>
-                                    {modified}
-                                </span>
+                                <span>{modified}</span>
                             </Detail>
                         )}
                     </div>

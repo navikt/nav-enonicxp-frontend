@@ -5,11 +5,19 @@ import express, { ErrorRequestHandler } from 'express';
 import next from 'next';
 import fetch from 'node-fetch';
 import { createHttpTerminator } from 'http-terminator';
-
+import promBundle from 'express-prom-bundle';
 import { initRevalidatorProxyHeartbeat } from './revalidator-proxy-heartbeat';
 import { serverSetupFailover } from './server-setup-failover';
 import { serverSetup } from './server-setup';
 import { getNextServer } from './next-utils';
+
+const promMiddleware = promBundle({
+    metricsPath: '/internal/metrics',
+    customLabels: { hpa: 'rate' },
+    promClient: {
+        collectDefaultMetrics: {},
+    },
+});
 
 const nextApp = next({
     dev: process.env.NODE_ENV !== 'production',
@@ -23,6 +31,13 @@ nextApp.prepare().then(() => {
     const nextServer = getNextServer(nextApp);
 
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
+
+    expressApp.use('*', promMiddleware);
+
+    expressApp.use('/*.(svg|png|ico|webmanifest)', (req, res, next) => {
+        res.setHeader('Cache-Control', 'public,max-age=86400');
+        next();
+    });
 
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);

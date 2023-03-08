@@ -62,7 +62,6 @@ const areas: { [key in Area]: string } = {
     [Area.MUNICIPALITY]: 'For kommunen',
     [Area.OTHER]: 'Annet',
     [Area.PENSION]: 'Pensjon',
-    [Area.SELF_EMPLOYED]: 'For selvstendig næringsdrivende',
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
     [Area.WORK]: 'Arbeid',
 };
@@ -95,6 +94,14 @@ export const translationsBundleNb = {
             'Vi har fjernet innhold som ikke er relevant i situasjonen din.',
         customizeContent: 'Tilpass innhold',
         showingInformationFor: 'Viser informasjon for:',
+    },
+    pressLanding: {
+        latestPressNews: 'Siste pressemeldinger og nyheter',
+        morePressNews: 'Flere pressemeldinger og nyheter',
+        pressShortcuts: 'Snarveier',
+        news: 'Nyhet',
+        press: 'Pressemelding',
+        published: 'Publisert',
     },
     linkLists: {
         news: 'Nyheter',
@@ -154,9 +161,12 @@ export const translationsBundleNb = {
         employer: 'For arbeidsgivere',
         provider: 'For samarbeidspartnere',
     },
+    overviews: {
+        any: 'Fra A til Å',
+    },
     publishingCalendar: {
-        event: 'Kalenderhendelse',
-        publishdate: 'Publiseringsdato',
+        event: 'Hendelse',
+        publishdate: 'Dato',
     },
     header: {
         copyLink: 'Kopier lenke',
@@ -183,14 +193,14 @@ export const translationsBundleNb = {
     },
     contactPoint: {
         chat: {
-            title: 'Chat med oss',
+            title: 'Du kan chatte med oss',
             ingress:
                 'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 09:00-15:00).',
         },
         legacyChat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida. Du kan be Frida om å få chatte med en veileder (hverdager 09:00–15:00)',
+                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 09:00-15:00).',
         },
         write: {
             title: 'Skriv til oss',

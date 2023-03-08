@@ -68,6 +68,7 @@ export const CopyLink = ({ anchor, label, className }: CopyLinkProps) => {
                     showCopyTooltip && style.copyTooltipVisible
                 )}
                 aria-live="assertive"
+                aria-atomic={true}
             >
                 {getLabel('copiedLinkConfirmed')}
             </span>

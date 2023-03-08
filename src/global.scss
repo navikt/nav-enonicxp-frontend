@@ -13,10 +13,17 @@
 @import 'components/pages/office-branch-page/OfficeBranchPage.scss';
 @import 'components/pages/product-page/ProductPage.scss';
 @import 'components/_common/linkpanel/LinkPanelNavno.scss';
+@import 'components/pages/press-landing-page/PressLandingPage.scss';
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
 
 #__next,
 .decorator-utils-container {
-    background-color: common.$navds-semantic-color-canvas-background;
+    background-color: common.$a-bg-subtle;
 }
 
 .decorator-utils-container {
@@ -24,9 +31,9 @@
 }
 
 .app-background {
-    background-color: common.$navds-semantic-color-canvas-background;
+    background-color: common.$a-bg-subtle;
     &.white {
-        background-color: var(--navds-global-color-white);
+        background-color: var(--a-white);
     }
 }
 
@@ -34,8 +41,8 @@
     max-width: common.$desktopMaxWidth;
     min-height: 22.5rem;
     margin: 0 auto;
-    font-size: common.$navds-font-size-large;
-    line-height: common.$navds-font-line-height-xlarge;
+    font-size: common.$a-font-size-large;
+    line-height: common.$a-font-line-height-xlarge;
 
     @media #{common.$mq-screen-mobile} {
         padding: 0 common.$padding-sides-mobile 2rem
@@ -81,6 +88,13 @@
 figure {
     margin-left: 0;
     margin-right: 0;
+}
+
+table {
+    .spacer-row {
+        height: 1rem;
+        background-color: transparent;
+    }
 }
 
 // Catch-all to prevent unnecessary margin-bottom whitespace
