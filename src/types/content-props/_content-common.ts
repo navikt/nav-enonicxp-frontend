@@ -75,8 +75,6 @@ export enum ContentType {
     OfficeEditorialPage = 'no_nav_navno_OfficeEditorialPage',
     OfficeBranchPage = 'no_nav_navno_OfficeBranch',
     GuidePage = 'no.nav.navno:guide-page',
-    OfficeEditorialPage = 'no_nav_navno_OfficeEditorialPage',
-    OfficeBranchPage = 'no_nav_navno_OfficeBranch',
     ThemedArticlePage = 'no.nav.navno:themed-article-page',
     CurrentTopicPage = 'no.nav.navno:current-topic-page',
     SituationPage = 'no.nav.navno:situation-page',
