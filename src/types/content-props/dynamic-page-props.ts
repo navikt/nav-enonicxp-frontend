@@ -82,11 +82,11 @@ export interface SituationPageProps extends ContentCommonProps {
 }
 
 export interface OfficeEditorialPageProps extends ContentCommonProps {
-    __typename: ContentType.OfficeEditorialPage;
+    type: ContentType.OfficeEditorialPage;
     data: OfficeEditorialPageData;
 }
 export interface OfficeBranchPageProps extends ContentCommonProps {
-    __typename: ContentType.OfficeEditorialPage;
+    type: ContentType.OfficeBranchPage;
     data: OfficeDetailsData;
     editorial: OfficeEditorialPageProps;
 }

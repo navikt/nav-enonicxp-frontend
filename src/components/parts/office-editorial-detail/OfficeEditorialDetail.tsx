@@ -55,7 +55,7 @@ export const OfficeEditorialDetail = ({
 
     // If editing the editorial page directy, we can't merge any actual
     // office data into the editorial parts, so just show the placeholder
-    if (pageProps.__typename === ContentType.OfficeEditorialPage) {
+    if (pageProps.type === ContentType.OfficeEditorialPage) {
         if (!detailType) {
             <EditorHelp text="Angi hvilken informasjon fra kontoret som skal vises her ved å velge fra innstillingene til høyre." />;
         }
