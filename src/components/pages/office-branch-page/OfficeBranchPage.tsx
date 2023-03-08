@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentMapper } from '../../ComponentMapper';
 import { OfficeBranchPageProps } from '../../../types/content-props/dynamic-page-props';
-import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
+import { OfficePageHeader } from '../../_common/headers/office-page-header/OfficePageHeader';
 import { OfficeDetails } from 'components/_common/office-details/OfficeDetails';
 
 export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
@@ -9,7 +9,10 @@ export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
 
     return (
         <div className={'officeBranchPage'}>
-            <ThemedPageHeader contentProps={props} showTimeStamp={false} />
+            <OfficePageHeader
+                officeDetails={props.data}
+                showTimeStamp={false}
+            />
             <OfficeDetails officeData={props.data} />
             <div className={'content'}>
                 <ComponentMapper

@@ -44,13 +44,6 @@ export const ThemedPageHeader = ({
     showTimeStamp = true,
 }: Props) => {
     const { type: pageType, displayName, modifiedTime, data } = contentProps;
-    const {
-        title,
-        illustration,
-        taxonomy,
-        audience = Audience.PERSON,
-        customCategory,
-    } = data;
 
     const { language } = usePageConfig();
 

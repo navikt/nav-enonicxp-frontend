@@ -111,6 +111,18 @@ export const translationsBundleEn: Translations = {
         publishdate: 'Date',
         event: 'Publication',
     },
+    office: {
+        youFindUsHere: 'You can find us here',
+        phoneToNav: 'NAV phone number is',
+        officeInformation: 'Office information',
+        closed: 'Closed',
+        openingHoursWithoutAppointment: 'Opening hours without an appointment',
+        appointmentOnly: 'Kun timeavtale',
+        specialOpeningHours: 'Special opening hours',
+        address: 'Address',
+        youCanMakeAppointment:
+            'You can book a meeting with your counsellor outside of these opening hours.',
+    },
     dateTime: {
         weekDayNames: [
             'Monday',

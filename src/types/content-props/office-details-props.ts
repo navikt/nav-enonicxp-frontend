@@ -1,27 +1,15 @@
-import { ContentType, ContentCommonProps } from './_content-common';
-
-export interface BranchOffice {
-    enhetNr: string;
-    navn: string;
-    organisasjonsnummer: string;
-    orgNrTilKommunalNavKontor?: string;
-    sosialeTjenester?: string;
-    spesielleOpplysninger?: string;
-    status: string;
-    underEtableringDato?: string;
-    aktiveringsdato?: string;
-    nedleggesesdato?: string;
-}
+import { ProductDataMixin } from 'types/component-props/_mixins';
+import { DynamicPageData } from './dynamic-page-props';
 
 export interface Address {
     type?: 'stedsadresse' | 'postboksadresse';
     gatenavn?: string;
+    husbokstav?: string;
     husnummer?: string;
-    adresseTilleggsnavn?: string;
+    postboksanlegg?: string;
+    postboksnummer?: string;
     postnummer?: string;
     poststed?: string;
-    postboks?: string;
-    postboksanlegg?: string;
 }
 
 export interface OpeningHours {
@@ -29,8 +17,9 @@ export interface OpeningHours {
     dato?: string;
     fra?: string;
     til?: string;
+    kunTimeavtale?: string;
     kommentar?: string;
-    stengt?: boolean;
+    stengt?: string;
 }
 
 export interface AudienceReception {
@@ -55,7 +44,7 @@ export type Service = {
 };
 
 type AudienceServices = {
-    tjenester: Service[];
+    tjenester?: Service[];
     ytterligereInformasjon?: string;
 };
 
@@ -65,7 +54,7 @@ type DigitalApplication = {
 };
 
 type SocialServices = {
-    digitaleSoeknader: DigitalApplication[];
+    digitaleSoeknader?: DigitalApplication[];
     papirsoeknadInformasjon?: string;
 };
 
@@ -75,7 +64,6 @@ type AudienceContact = {
     epost?: string;
     sortOrder: number;
 };
-
 interface AudienceContactInformation {
     spraakdrakt: 'NN' | 'NB';
     informasjonUtbetalinger?: string;
@@ -85,14 +73,18 @@ interface AudienceContactInformation {
     publikumskanaler: AudienceContact[];
 }
 
-export type OfficeBranchData = {
-    lokalkontor: BranchOffice;
-    beliggenhet: Address;
-    postadresse: Address;
-    brukerkontakt: AudienceContactInformation;
-};
-
-export interface OfficeBranchProps extends ContentCommonProps {
-    __typename: ContentType.OfficeBranchPage;
-    data: OfficeBranchData;
-}
+export type OfficeDetailsData = ProductDataMixin &
+    DynamicPageData & {
+        enhetNr: string;
+        navn: string;
+        organisasjonsnummer: string;
+        sosialeTjenester?: string;
+        spesielleOpplysninger?: string;
+        status: string;
+        underEtableringDato?: string;
+        aktiveringsdato?: string;
+        nedleggesesdato?: string;
+        beliggenhet: Address;
+        postadresse: Address;
+        brukerkontakt: AudienceContactInformation;
+    };

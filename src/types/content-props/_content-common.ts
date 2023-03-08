@@ -72,6 +72,8 @@ export enum ContentType {
     GlobalNumberValuesSet = 'no.nav.navno:global-value-set',
     ProductPage = 'no.nav.navno:content-page-with-sidemenus',
     ProductDetails = 'no.nav.navno:product-details',
+    OfficeEditorialPage = 'no_nav_navno_OfficeEditorialPage',
+    OfficeBranchPage = 'no_nav_navno_OfficeBranch',
     GuidePage = 'no.nav.navno:guide-page',
     OfficeEditorialPage = 'no_nav_navno_OfficeEditorialPage',
     OfficeBranchPage = 'no_nav_navno_OfficeBranch',

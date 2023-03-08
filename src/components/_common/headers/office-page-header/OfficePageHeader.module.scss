@@ -1,0 +1,69 @@
+@use 'src/common' as common;
+// @use '../../../pages/situation-page/SituationPage' as SituationPage;
+// @use '../../../pages/product-page/ProductPage' as ProductPage;
+// @use '../../../pages/guide-page/GuidePage' as GuidePage;
+
+.officePageHeader {
+    justify-content: center;
+    background-color: white;
+    padding-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    align-items: center;
+
+    @include common.full-width-mixin();
+
+    @media #{common.$mq-screen-mobile} {
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        .illustration {
+            display: none;
+        }
+    }
+}
+
+.illustration {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 2rem;
+    pointer-events: none;
+}
+
+.content {
+    width: 100%;
+    max-width: 56.25rem;
+    text-align: center;
+    background-color: white;
+}
+
+.taglineWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    @media #{common.$mq-screen-mobile} {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.taglineLabel {
+    @media #{common.$mq-screen-mobile} {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.divider {
+    padding: 0 1rem;
+
+    @media #{common.$mq-screen-mobile} {
+        display: none;
+    }
+}
+
+.divider,
+.modifiedLabel {
+    color: common.$a-gray-600;
+}

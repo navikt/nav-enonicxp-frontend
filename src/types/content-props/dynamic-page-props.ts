@@ -7,7 +7,7 @@ import {
 } from '../component-props/_mixins';
 import { ProductDetailType as OverviewType } from './product-details';
 import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from '../taxonomies';
-import { OfficeBranchData } from './office-branch-props';
+import { OfficeDetailsData } from './office-details-props';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentListProps } from './content-list-props';
 
@@ -36,7 +36,9 @@ export type OfficeEditorialPageData = {
     title: string;
     ingress?: string;
     externalProductUrl?: string;
-} & DynamicPageData;
+} & ProductDataMixin &
+    DynamicPageData;
+
 export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'> &
     DynamicPageData;
 
@@ -78,15 +80,17 @@ export interface SituationPageProps extends ContentCommonProps {
     type: ContentType.SituationPage;
     data: SituationPageData;
 }
-export type OfficeEditorialPageProps = ContentCommonProps & {
-    __typename: ContentType.OfficeEditorialPage;
+
+export interface OfficeEditorialPageProps extends ContentCommonProps {
+    type: ContentType.OfficeEditorialPage;
     data: OfficeEditorialPageData;
-};
-export type OfficeBranchPageProps = ContentCommonProps & {
-    __typename: ContentType.OfficeEditorialPage;
-    data: OfficeBranchData;
+}
+export interface OfficeBranchPageProps extends ContentCommonProps {
+    type: ContentType.OfficeBranchPage;
+    data: OfficeDetailsData;
     editorial: OfficeEditorialPageProps;
-};
+}
+
 export interface CurrentTopicPageProps extends ContentCommonProps {
     type: ContentType.CurrentTopicPage;
     data: CurrentTopicPageData;

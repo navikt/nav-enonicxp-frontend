@@ -229,6 +229,18 @@ export const translationsBundleNb = {
             seeMoreOptions: 'Se flere telefonnummer og tastevalg',
         },
     },
+    office: {
+        youFindUsHere: 'Du finner oss her',
+        phoneToNav: 'Telefonnummeret til NAV er',
+        officeInformation: 'Kontorinformasjon',
+        closed: 'Stengt',
+        openingHoursWithoutAppointment: 'Åpningstider når du ikke har avtale',
+        appointmentOnly: 'Kun timeavtale',
+        specialOpeningHours: 'Spesielle åpningstider',
+        address: 'Adresse',
+        youCanMakeAppointment:
+            'Du kan avtale møte med veilederen din utenom disse åpningstidene.',
+    },
     dateTime: {
         weekDayNames: [
             'Mandag',

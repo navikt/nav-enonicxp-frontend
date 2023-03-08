@@ -1,5 +1,11 @@
 @use 'src/common' as common;
 
+.officeDetails {
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+
 .wide {
     background-color: white;
     display: flex;
@@ -7,28 +13,32 @@
     @include common.full-width-mixin();
 }
 
-.officeDetails {
-    display: flex;
-    flex-direction: column;
+.placeIcon {
+    background-color: var(--navds-global-color-blue-50);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    border-radius: 1.25rem;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem;
+
+    svg {
+        color: var(--navds-global-color-blue-500);
+        width: 24px;
+        height: 24px;
+    }
 }
 
-.addressPoster,
-.phonePoster {
-    padding: common.$padding-sides-mobile;
-
-    @media #{common.$mq-screen-tablet} {
-        padding: common.$padding-sides-tablet;
-    }
-
-    @media #{common.$mq-screen-desktop} {
-        padding: common.$padding-sides-desktop;
-    }
+.header {
+    display: flex;
+    align-items: center;
 }
 
 .addressPoster {
     background-color: var(--navds-global-color-orange-50);
 }
 
-.phonePoster {
-    background-color: var(--navds-global-color-gray-50);
+.officeInformation {
+    background-color: none;
 }
