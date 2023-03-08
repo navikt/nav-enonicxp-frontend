@@ -18,6 +18,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [videoMeta, setVideoMeta] = useState<VideoMeta>(
         getVideoMeta(config.video)
     );
+    const videoRef = React.useRef(null);
 
     const scriptState = useExternalScript(
         '//play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'
@@ -26,7 +27,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     useEffect(() => {
         if (isVideoOpen) {
             const qbrickPlayButton =
-                document.querySelector<HTMLElement>('.gobrain-play');
+                videoRef.current.querySelector('.gobrain-play');
             qbrickPlayButton?.click();
 
             logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
@@ -109,8 +110,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 }`}
             >
                 <div
+                    ref={videoRef}
                     title={title}
-                    data-gobrain-widgetid="player"
                     data-gobrain-config={`//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`}
                     data-gobrain-data={`//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`}
                 />
