@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Tabs } from '@navikt/ds-react';
 import { normalizeReceptionAsArray } from '../utils';
 import { AudienceReception } from '../../../../types/content-props/office-details-props';

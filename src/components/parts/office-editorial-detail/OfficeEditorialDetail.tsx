@@ -2,7 +2,6 @@
 
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import React from 'react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import {
     DetailType,
     OfficeEditorialDetailProps,
@@ -37,7 +36,6 @@ export const OfficeEditorialDetail = ({
     pageProps,
 }: OfficeEditorialDetailProps) => {
     const { detailType } = config;
-    const { pageConfig } = usePageConfig();
 
     const officeData = pageProps.data as OfficeDetailsData;
 
@@ -57,7 +55,9 @@ export const OfficeEditorialDetail = ({
     // office data into the editorial parts, so just show the placeholder
     if (pageProps.type === ContentType.OfficeEditorialPage) {
         if (!detailType) {
-            <EditorHelp text="Angi hvilken informasjon fra kontoret som skal vises her ved å velge fra innstillingene til høyre." />;
+            return (
+                <EditorHelp text="Angi hvilken informasjon fra kontoret som skal vises her ved å velge fra innstillingene til høyre." />
+            );
         }
         return (
             <PlaceholderIndicator>{`Her plasseres kontor-spesifikk ${editorTranslation[detailType]}`}</PlaceholderIndicator>

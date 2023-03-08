@@ -43,9 +43,10 @@ export const OpeningHours = (props: {
     return (
         <Table>
             <tbody>
-                {openingHours.map((opening, ix) => {
+                {openingHours.map((opening) => {
                     // TODO: check why stengt is a string?
-                    const compKey = `${props.metaKey}-${ix}`;
+                    const id = opening.dag || opening.dato;
+                    const compKey = `${props.metaKey}-${id}`;
 
                     const dayInformation = buildDayInformation(opening);
                     const openingInformation = buildOpeningInformation(opening);

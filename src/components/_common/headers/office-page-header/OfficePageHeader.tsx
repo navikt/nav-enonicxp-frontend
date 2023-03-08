@@ -2,7 +2,6 @@ import React from 'react';
 import { classNames } from '../../../../utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
 import { BodyShort } from '@navikt/ds-react';
-import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import {
     AudienceReception,
@@ -18,7 +17,6 @@ type Props = {
 
 export const OfficePageHeader = ({ officeDetails }: Props) => {
     const { navn, brukerkontakt } = officeDetails;
-    const { language } = usePageConfig();
 
     const getSubtitle = (publikumsmottak: AudienceReception[]) => {
         if (

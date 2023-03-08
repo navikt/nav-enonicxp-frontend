@@ -1,14 +1,14 @@
-import { Accordion } from '@navikt/ds-react';
+import { Accordion, Heading, BodyShort } from '@navikt/ds-react';
 import classNames from 'classnames';
-import { Heading, Link, BodyShort } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { formatAddress, normalizeReceptionAsArray } from './utils';
 import { Reception } from './reception/Reception';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import styles from './OfficeDetails.module.scss';
 import { PhonePoster } from './phonePoster/PhonePoster';
 import { PlaceFilled } from '@navikt/ds-icons';
+
+import styles from './OfficeDetails.module.scss';
 export interface OfficeDetailsProps {
     officeData: OfficeDetailsData;
 }
@@ -16,12 +16,11 @@ export interface OfficeDetailsProps {
 export const OfficeDetails = (props: OfficeDetailsProps) => {
     const { language } = usePageConfig();
 
-    const { navn, postadresse, brukerkontakt, organisasjonsnummer, enhetNr } =
+    const { postadresse, brukerkontakt, organisasjonsnummer, enhetNr } =
         props.officeData;
 
     const getOfficeTranslations = translator('office', language);
 
-    // Todo: Hente besøksadresse fra publikumskanaler
     const visitingAdress = formatAddress(postadresse, true);
     const postalAddress = formatAddress(postadresse, true);
 
