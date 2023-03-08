@@ -1,4 +1,4 @@
-import { ContentType, ContentCommonProps } from './_content-common';
+import { DynamicPageData } from './dynamic-page-props';
 
 export interface Address {
     type?: 'stedsadresse' | 'postboksadresse';
@@ -72,7 +72,7 @@ interface AudienceContactInformation {
     publikumskanaler: AudienceContact[];
 }
 
-export type OfficeDetailsData = {
+export type OfficeDetailsData = DynamicPageData & {
     enhetNr: string;
     navn: string;
     organisasjonsnummer: string;
