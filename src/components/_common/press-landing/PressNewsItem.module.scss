@@ -1,0 +1,31 @@
+@use 'src/common' as common;
+
+.newsItem {
+    margin-bottom: 1.5rem;
+
+    a {
+        text-underline-offset: 2px;
+        text-decoration-thickness: 1px;
+    }
+}
+
+.ingress {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.newsTagline {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.5rem;
+}
+
+.newsType {
+    margin-left: 0.25rem;
+    font-weight: 600;
+}
+
+.publishDate {
+    margin-left: 0.75rem;
+    color: var(--a-gray-800);
+}

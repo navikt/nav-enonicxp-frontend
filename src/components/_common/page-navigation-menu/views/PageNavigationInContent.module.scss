@@ -19,12 +19,12 @@
     margin: 0 -0.5rem;
 
     &:hover {
-        background-color: common.$navds-global-color-blue-100;
-        color: common.$navds-global-color-gray-900;
+        background-color: common.$a-blue-100;
+        color: common.$a-gray-900;
         text-decoration: none;
 
         .decor {
-            background-color: common.$navds-semantic-color-link;
+            background-color: common.$a-text-action;
         }
     }
 

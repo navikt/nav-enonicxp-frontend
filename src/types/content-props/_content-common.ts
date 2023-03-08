@@ -7,7 +7,7 @@ import { ErrorProps } from './error-props';
 import { LargeTableProps } from './large-table-props';
 import { SectionPageProps } from './section-page-props';
 import { TransportPageProps } from './transport-page-props';
-import { Language } from '../../translations';
+import { Language } from 'translations';
 import { LayoutProps } from '../component-props/layouts';
 import { MainArticleChapterProps } from './main-article-chapter-props';
 import { OfficeInformationProps } from './office-information-props';
@@ -18,14 +18,19 @@ import {
     GuidePageProps,
     OfficeBranchPageProps,
     OfficeEditorialPageProps,
+    CurrentTopicPageProps,
     OverviewPageProps,
     ProductDetailsProps,
     ProductPageProps,
     SituationPageProps,
     ThemedArticlePageProps,
     ToolsPageProps,
+    PressLandingPageProps,
 } from './dynamic-page-props';
-import { PublishingCalendarProps } from './publishing-calendar-props';
+import {
+    PublishingCalendarProps,
+    PublishingCalendarEntryProps,
+} from './publishing-calendar-props';
 import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsProps } from './animated-icons';
 import {
@@ -39,49 +44,53 @@ import { LanguageProps } from '../language';
 import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageProps } from './index-pages-props';
 import { Audience } from '../component-props/_mixins';
+import { TemplateProps } from 'types/content-props/template-props';
+import { SiteProps } from 'types/content-props/site-props';
 
 export enum ContentType {
     Error = 'error',
-    Site = 'portal_Site',
-    Fragment = 'portal_Fragment',
-    TemplatePage = 'portal_PageTemplate',
-    InternalLink = 'no_nav_navno_InternalLink',
-    ExternalLink = 'no_nav_navno_ExternalLink',
-    Url = 'no_nav_navno_Url',
-    SectionPage = 'no_nav_navno_SectionPage',
-    TransportPage = 'no_nav_navno_TransportPage',
-    DynamicPage = 'no_nav_navno_DynamicPage',
-    ContentList = 'no_nav_navno_ContentList',
-    ContactInformationPage = 'no_nav_navno_ContactInformation',
-    GenericPage = 'no_nav_navno_GenericPage',
-    PageList = 'no_nav_navno_PageList',
-    MainArticle = 'no_nav_navno_MainArticle',
-    MainArticleChapter = 'no_nav_navno_MainArticleChapter',
-    Melding = 'no_nav_navno_Melding',
-    LargeTable = 'no_nav_navno_LargeTable',
-    OfficeInformation = 'no_nav_navno_OfficeInformation',
-    OfficeEditorialPageProps = 'no_nav_navno_OfficeEditorialPage',
-    PublishingCalendar = 'no_nav_navno_PublishingCalendar',
-    GlobalNumberValuesSet = 'no_nav_navno_GlobalValueSet',
-    ProductPage = 'no_nav_navno_ContentPageWithSidemenus',
-    ProductDetails = 'no_nav_navno_ProductDetails',
-    GuidePage = 'no_nav_navno_GuidePage',
+    Site = 'portal:site',
+    Fragment = 'portal:fragment',
+    TemplatePage = 'portal:page-template',
+    InternalLink = 'no.nav.navno:internal-link',
+    ExternalLink = 'no.nav.navno:external-link',
+    Url = 'no.nav.navno:url',
+    SectionPage = 'no.nav.navno:section-page',
+    TransportPage = 'no.nav.navno:transport-page',
+    DynamicPage = 'no.nav.navno:dynamic-page',
+    ContentList = 'no.nav.navno:content-list',
+    ContactInformationPage = 'no.nav.navno:contact-information',
+    GenericPage = 'no.nav.navno:generic-page',
+    PageList = 'no.nav.navno:page-list',
+    MainArticle = 'no.nav.navno:main-article',
+    MainArticleChapter = 'no.nav.navno:main-article-chapter',
+    Melding = 'no.nav.navno:melding',
+    LargeTable = 'no.nav.navno:large-table',
+    OfficeInformation = 'no.nav.navno:office-information',
+    PublishingCalendar = 'no.nav.navno:publishing-calendar',
+    PublishingCalendarEntry = 'no.nav.navno:publishing-calendar-entry',
+    GlobalNumberValuesSet = 'no.nav.navno:global-value-set',
+    ProductPage = 'no.nav.navno:content-page-with-sidemenus',
+    ProductDetails = 'no.nav.navno:product-details',
+    GuidePage = 'no.nav.navno:guide-page',
     OfficeEditorialPage = 'no_nav_navno_OfficeEditorialPage',
     OfficeBranchPage = 'no_nav_navno_OfficeBranch',
-    ThemedArticlePage = 'no_nav_navno_ThemedArticlePage',
-    SituationPage = 'no_nav_navno_SituationPage',
-    AnimatedIcons = 'no_nav_navno_AnimatedIcons',
-    ToolsPage = 'no_nav_navno_ToolsPage',
-    Calculator = 'no_nav_navno_Calculator',
-    Overview = 'no_nav_navno_Overview',
-    GlobalCaseTimeSet = 'no_nav_navno_GlobalCaseTimeSet',
-    PayoutDates = 'no_nav_navno_PayoutDates',
-    FrontPage = 'no_nav_navno_FrontPage',
-    AreaPage = 'no_nav_navno_AreaPage',
+    ThemedArticlePage = 'no.nav.navno:themed-article-page',
+    CurrentTopicPage = 'no.nav.navno:current-topic-page',
+    SituationPage = 'no.nav.navno:situation-page',
+    AnimatedIcons = 'no.nav.navno:animated-icons',
+    ToolsPage = 'no.nav.navno:tools-page',
+    Calculator = 'no.nav.navno:calculator',
+    Overview = 'no.nav.navno:overview',
+    GlobalCaseTimeSet = 'no.nav.navno:global-case-time-set',
+    PayoutDates = 'no.nav.navno:payout-dates',
+    FrontPage = 'no.nav.navno:front-page',
+    AreaPage = 'no.nav.navno:area-page',
+    PressLandingPage = 'no.nav.navno:press-landing-page',
 }
 
 export type ContentAndMediaCommonProps = {
-    __typename: ContentType | MediaType;
+    type: ContentType | MediaType;
     _id: string;
     _path: string;
     createdTime: string;
@@ -96,6 +105,7 @@ export type ContentAndMediaCommonProps = {
     isDraft?: boolean;
     timeRequested?: string;
     serverEnv?: string;
+    layerLocale?: string;
 };
 
 type ContentCommonData = Partial<{
@@ -111,8 +121,8 @@ type ContentCommonData = Partial<{
 }>;
 
 export type ContentCommonProps = {
-    __typename: ContentType;
-    originalType?: string;
+    type: ContentType;
+    originalType?: ContentType;
     children?: ContentCommonProps[];
     parent?: ContentCommonProps;
     data?: ContentCommonData;
@@ -122,18 +132,8 @@ export type ContentCommonProps = {
     livePath?: string;
     isFailover?: boolean;
     isPagePreview?: boolean;
+    languages?: LanguageProps[];
 } & ContentAndMediaCommonProps;
-
-type SiteProps = {
-    __typename: ContentType.Site;
-} & ContentCommonProps;
-
-type TemplateProps = {
-    __typename: ContentType.TemplatePage;
-    data: {
-        supports?: string | string[];
-    };
-} & ContentCommonProps;
 
 type SpecificContentProps =
     | SiteProps
@@ -151,6 +151,7 @@ type SpecificContentProps =
     | SectionPageProps
     | TransportPageProps
     | PublishingCalendarProps
+    | PublishingCalendarEntryProps
     | ProductPageProps
     | SituationPageProps
     | OfficeEditorialPageProps
@@ -159,6 +160,7 @@ type SpecificContentProps =
     | GlobalValuesProps
     | GlobalCaseTimeSetProps
     | PayoutDatesProps
+    | CurrentTopicPageProps
     | ThemedArticlePageProps
     | GuidePageProps
     | ToolsPageProps
@@ -169,6 +171,7 @@ type SpecificContentProps =
     | ContactInformationProps
     | FrontPageProps
     | AreaPageProps
-    | GenericPageProps;
+    | GenericPageProps
+    | PressLandingPageProps;
 
 export type ContentProps = ContentCommonProps & SpecificContentProps;

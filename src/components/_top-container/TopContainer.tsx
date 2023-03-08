@@ -11,6 +11,7 @@ import style from './TopContainer.module.scss';
 const contentTypesWithWhiteHeader = {
     [ContentType.ProductPage]: true,
     [ContentType.SituationPage]: true,
+    [ContentType.CurrentTopicPage]: true,
     [ContentType.GuidePage]: true,
     [ContentType.GenericPage]: true,
     [ContentType.ThemedArticlePage]: true,
@@ -19,6 +20,7 @@ const contentTypesWithWhiteHeader = {
     [ContentType.OfficeBranchPage]: true,
     [ContentType.FrontPage]: true,
     [ContentType.AreaPage]: true,
+    [ContentType.PressLandingPage]: true,
 };
 
 type Props = {
@@ -26,17 +28,17 @@ type Props = {
 };
 
 export const checkForWhiteHeader = (content: ContentProps) => {
-    const { __typename } = content;
+    const { type } = content;
 
     if (
-        __typename === ContentType.MainArticle &&
-        (content.data.contentType === 'news' ||
-            content.data.contentType === 'pressRelease')
+        type === ContentType.MainArticle &&
+        (content.data?.contentType === 'news' ||
+            content.data?.contentType === 'pressRelease')
     ) {
         return true;
     }
 
-    return contentTypesWithWhiteHeader[__typename];
+    return contentTypesWithWhiteHeader[type];
 };
 
 export const TopContainer = ({ content }: Props) => {

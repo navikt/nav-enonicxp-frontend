@@ -6,10 +6,10 @@ ingresses:
 resources:
   limits:
     cpu: 3000m
-    memory: 4000Mi
+    memory: 5000Mi
   requests:
-    cpu: 1500m
-    memory: 2500Mi
+    cpu: 750m
+    memory: 1000Mi
 replicas:
   min: 2
   max: 2

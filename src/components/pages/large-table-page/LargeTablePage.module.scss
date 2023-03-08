@@ -1,14 +1,14 @@
 @use 'src/common' as common;
 
 .largeTablePage {
-    font-size: common.$navds-font-size-medium;
+    font-size: common.$a-font-size-medium;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     overflow-x: auto;
 
     h1 {
-        font-size: common.$navds-font-size-heading-medium;
+        font-size: common.$a-font-size-heading-medium;
         margin-bottom: 1rem;
         &:not(:first-child) {
             margin-top: 2rem;
@@ -23,27 +23,27 @@
     }
 
     th {
-        font-weight: common.$navds-font-weight-bold;
+        font-weight: common.$a-font-weight-bold;
         padding: 0.5rem 0.25rem;
         text-align: left;
     }
 
     thead {
         tr {
-            border-bottom: 1px common.$navds-global-color-gray-200 solid;
+            border-bottom: 1px common.$a-gray-200 solid;
         }
     }
 
     tbody {
         tr:first-child {
-            font-weight: common.$navds-font-weight-bold;
+            font-weight: common.$a-font-weight-bold;
             td {
                 padding-top: 0.5rem;
             }
         }
 
         tr:nth-of-type(even) {
-            background-color: common.$navds-global-color-blue-100;
+            background-color: common.$a-blue-100;
         }
 
         td {
@@ -63,7 +63,7 @@
     :global(.statGroupRest) {
         padding: 0.125rem 0.5rem;
         &:not(th) {
-            font-weight: common.$navds-font-weight-bold;
+            font-weight: common.$a-font-weight-bold;
         }
     }
 
@@ -75,10 +75,5 @@
 
     :global(.statFoot) {
         margin-top: 0.5rem;
-    }
-
-    :global(.spacer-row) {
-        height: 1rem;
-        background-color: transparent;
     }
 }

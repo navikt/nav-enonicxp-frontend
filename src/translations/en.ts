@@ -1,5 +1,5 @@
 import { Translations } from './default';
-import { MenuListItemKey } from '../types/menu-list-items';
+import { MenuListItemKey } from 'types/menu-list-items';
 import {
     ProductTaxonomy,
     Taxonomy,
@@ -8,7 +8,7 @@ import {
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
 
-const productTaxonomies: {
+const taxonomies: {
     [key in Taxonomy]: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
@@ -46,15 +46,11 @@ const areas: { [key in Area]: string } = {
     [Area.MUNICIPALITY]: 'For government',
     [Area.OTHER]: 'Other',
     [Area.PENSION]: 'Pension',
-    [Area.SELF_EMPLOYED]: 'For the self-employed',
     [Area.SOCIAL_COUNSELLING]: 'Financial social advice and guidance',
     [Area.WORK]: 'Work',
 };
 
 export const translationsBundleEn: Translations = {
-    areaPage: {
-        chooseArea: 'Choose an area',
-    },
     stringParts: {
         conjunction: 'and',
     },
@@ -89,6 +85,17 @@ export const translationsBundleEn: Translations = {
         STARTLAN: 'Startlån',
         STOETTEKONTAKT: 'Støttekontakt',
     },
+    currentTopic: {
+        tag: 'Featured',
+    },
+    pressLanding: {
+        latestPressNews: 'Latest press and news',
+        morePressNews: 'More press releases and news',
+        pressShortcuts: 'Shortcuts',
+        news: 'News',
+        press: 'Press release',
+        published: 'Published',
+    },
     mainArticle: {
         facts: 'Facts',
         lastChanged: 'Updated',
@@ -101,8 +108,8 @@ export const translationsBundleEn: Translations = {
     },
     mainPanels: { label: 'Main panels' },
     publishingCalendar: {
-        publishdate: 'Publiseringsdato',
-        event: 'Kalenderhendelse',
+        publishdate: 'Date',
+        event: 'Publication',
     },
     dateTime: {
         weekDayNames: [
@@ -116,7 +123,7 @@ export const translationsBundleEn: Translations = {
         ],
         relatives: {
             today: 'today',
-            tomorrow: 'i morgen',
+            tomorrow: 'tomorrow',
         },
         day: 'day',
         date: 'date',
@@ -150,7 +157,10 @@ export const translationsBundleEn: Translations = {
         employer: 'For employers',
         provider: 'For providers',
     },
-    productTaxonomies,
+    overviews: {
+        any: 'From A to Z',
+    },
+    taxonomies,
     areas,
     header: {
         copyLink: 'Copy link',
@@ -158,12 +168,18 @@ export const translationsBundleEn: Translations = {
     },
     overview: {
         noProducts: 'No hits',
-        ariaExplanation: 'Filter list by area',
-        ariaItemExplanation: 'Show area',
-        chooseArea: 'Choose area',
-        chooseType: 'Choose type',
         search: 'Search',
         loading: 'Loading content...',
+        areas: {
+            choose: 'Choose area',
+            ariaExplanation: 'Filter list by area',
+            ariaItemExplanation: 'Show area',
+        },
+        taxonomies: {
+            choose: 'Choose type',
+            ariaExplanation: 'Filter list by type',
+            ariaItemExplanation: 'Show type',
+        },
     },
     pagination: {
         goTo: 'Go to',
@@ -178,7 +194,7 @@ export const translationsBundleEn: Translations = {
         legacyChat: {
             title: 'You can chat with us',
             ingress:
-                'You will first meet chatbot Frida. You can ask Frida to chat with a counsellor (weekdays 09:00–15:00)',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
         },
         write: {
             title: 'Write to us',

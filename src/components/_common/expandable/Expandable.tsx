@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Accordion } from '@navikt/ds-react';
-import { analyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
+import { AnalyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
 import { classNames } from '../../../utils/classnames';
 
 import style from './Expandable.module.scss';
@@ -24,13 +24,23 @@ export const Expandable = ({
 
     const toggleExpandCollapse = () => {
         logAmplitudeEvent(
-            isOpen ? analyticsEvents.ACC_COLLAPSE : analyticsEvents.ACC_EXPAND,
+            isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
             {
                 tittel: title,
                 opprinnelse: analyticsOriginTag,
             }
         );
         setIsOpen(!isOpen);
+    };
+
+    const checkAndOpenPanel = () => {
+        if (anchorId && window.location.hash === `#${anchorId}`) {
+            setIsOpen(true);
+        }
+    };
+
+    const hashChangeHandler = () => {
+        checkAndOpenPanel();
     };
 
     useEffect(() => {
@@ -41,13 +51,16 @@ export const Expandable = ({
         };
 
         window.addEventListener('keydown', openOnBrowserSearch);
-        return () => window.removeEventListener('keydown', openOnBrowserSearch);
+        window.addEventListener('hashchange', hashChangeHandler);
+
+        return () => {
+            window.removeEventListener('keydown', openOnBrowserSearch);
+            window.removeEventListener('hashchange', hashChangeHandler);
+        };
     }, []);
 
     useEffect(() => {
-        if (anchorId && window.location.hash === `#${anchorId}`) {
-            setIsOpen(true);
-        }
+        checkAndOpenPanel();
     }, [anchorId]);
 
     return (

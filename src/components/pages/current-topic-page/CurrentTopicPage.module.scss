@@ -1,0 +1,35 @@
+@use 'src/common' as common;
+
+$margin: 2rem;
+
+.currentTopicPage {
+    display: flex;
+    flex-direction: column;
+
+    @media #{common.$mq-screen-mobile} {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+.contentAligner {
+    display: flex;
+    width: 100%;
+    max-width: 63.5rem;
+}
+
+.contentWrapper {
+    display: flex;
+    justify-content: center;
+    @include common.full-width-mixin;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    max-width: 37.5rem;
+
+    & > * {
+        width: 100%;
+    }
+}

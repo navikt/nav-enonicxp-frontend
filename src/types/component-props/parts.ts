@@ -13,6 +13,7 @@ export enum PartType {
     OfficeInformation = 'no.nav.navno:office-information',
     PageList = 'no.nav.navno:page-list',
     PublishingCalendar = 'no.nav.navno:publishing-calendar',
+    PublishingCalendarEntry = 'no.nav.navno:publishing-calendar-entry',
 
     AreaCard = 'no.nav.navno:area-card',
     AlertPanel = 'no.nav.navno:alert-panel',
@@ -40,6 +41,8 @@ export enum PartType {
     FrontpageContact = 'no.nav.navno:frontpage-contact',
     FrontpageCurrentTopics = 'no.nav.navno:frontpage-current-topics',
     FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
+    FrontpageSurveyPanel = 'no.nav.navno:frontpage-survey-panel',
+    UxSignalsWidget = 'no.nav.navno:uxsignals-widget',
 }
 
 export type PartDeprecated =
@@ -57,7 +60,8 @@ export type PartWithPageData =
     | PartType.MenuList
     | PartType.OfficeInformation
     | PartType.PageList
-    | PartType.PublishingCalendar;
+    | PartType.PublishingCalendar
+    | PartType.PublishingCalendarEntry;
 
 export type PartWithOwnData =
     | PartType.LinkPanel
@@ -85,4 +89,6 @@ export type PartWithOwnData =
     | PartType.AreaCard
     | PartType.AreapageSituationCard
     | PartType.LoggedinCard
-    | PartType.FrontpageContact;
+    | PartType.FrontpageContact
+    | PartType.FrontpageSurveyPanel
+    | PartType.UxSignalsWidget;

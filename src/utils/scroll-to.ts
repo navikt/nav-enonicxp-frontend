@@ -4,7 +4,6 @@ const hasScrollOptionsSupport =
 
 const scrollToCurrent = (position: number) => {
     window.scrollTo({
-        behavior: 'smooth',
         top: position,
     });
 };

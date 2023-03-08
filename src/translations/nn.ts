@@ -1,4 +1,4 @@
-import { MenuListItemKey } from '../types/menu-list-items';
+import { MenuListItemKey } from 'types/menu-list-items';
 import {
     ProductTaxonomy,
     Taxonomy,
@@ -6,6 +6,7 @@ import {
     ToolsPageTaxonomy,
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
+import { Translations } from 'translations/default';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.AppealRights]: 'Klagerettar',
@@ -22,7 +23,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.Shortcuts]: 'Snarvegar',
 };
 
-const productTaxonomies: {
+const taxonomies: {
     [key in Taxonomy]: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
@@ -60,15 +61,11 @@ const areas: { [key in Area]: string } = {
     [Area.MUNICIPALITY]: 'For kommunen',
     [Area.OTHER]: 'Anna',
     [Area.PENSION]: 'Pensjon',
-    [Area.SELF_EMPLOYED]: 'For sjølvstendig næringsdrivande',
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og rettleiing',
     [Area.WORK]: 'Arbeid',
 };
 
-export const translationsBundleNn = {
-    areaPage: {
-        chooseArea: 'Velg eit område',
-    },
+export const translationsBundleNn: Translations = {
     stringParts: {
         conjunction: 'og',
     },
@@ -97,6 +94,9 @@ export const translationsBundleNn = {
         shortcuts: 'Snarvegar',
         label: 'Lenker',
     },
+    currentTopic: {
+        tag: 'Aktuelt',
+    },
     mainArticle: {
         facts: 'Fakta',
         lastChanged: 'Sist endra',
@@ -123,6 +123,8 @@ export const translationsBundleNn = {
     },
     relatedContent: relatedContent,
     productTaxonomies,
+    relatedContent,
+    taxonomies,
     areas,
     products: {
         person: 'For privatpersonar',
@@ -139,9 +141,12 @@ export const translationsBundleNn = {
         employer: 'For arbeidsgjevarar',
         provider: 'For samhandlarar',
     },
+    overviews: {
+        any: 'Frå A til Å',
+    },
     publishingCalendar: {
-        event: 'Kalenderhending',
-        publishdate: 'Publiseringsdato',
+        event: 'Hending',
+        publishdate: 'Dato',
     },
     header: {
         copyLink: 'Kopier lenke',
@@ -149,12 +154,26 @@ export const translationsBundleNn = {
     },
     overview: {
         noProducts: 'Ingen treff',
-        ariaExplanation: 'Filtrer lista etter område',
-        ariaItemExplanation: 'Vis område',
-        chooseArea: 'Vel område',
-        chooseType: 'Vel type',
         search: 'Søk',
         loading: 'Laster innhald...',
+        areas: {
+            choose: 'Vel område',
+            ariaExplanation: 'Filtrer lista etter område',
+            ariaItemExplanation: 'Vis område',
+        },
+        taxonomies: {
+            choose: 'Vel type',
+            ariaExplanation: 'Filtrer lista etter type',
+            ariaItemExplanation: 'Vis type',
+        },
+    },
+    pressLanding: {
+        latestPressNews: 'Siste pressemeldingar og nyheiter',
+        morePressNews: 'Fleire pressemeldingar og nyheiter',
+        pressShortcuts: 'Snarvegar',
+        news: 'Nyheit',
+        press: 'Pressemelding',
+        published: 'Publisert',
     },
     pagination: {
         goTo: 'Gå til',
@@ -162,7 +181,12 @@ export const translationsBundleNn = {
     },
     contactPoint: {
         chat: {
-            title: 'Chat med oss',
+            title: 'Du kan chatte med oss',
+            ingress:
+                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00).',
+        },
+        legacyChat: {
+            title: 'Du kan chatte med oss',
             ingress:
                 'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00).',
         },

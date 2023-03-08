@@ -17,20 +17,34 @@ import {
     getIsClosedForToday,
     getIsCurrentlyClosed,
 } from './contactHelpers';
-import { analyticsEvents } from '../../../utils/amplitude';
+import { AnalyticsEvents } from '../../../utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { useLayoutEffectClientSide } from '../../../utils/react';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { useClientSide } from 'utils/useIsClientSide';
 
 import style from './ContactOption.module.scss';
+import { Audience } from 'types/component-props/_mixins';
 
-const contactUrlNO = '/person/kontakt-oss/nb#ring-oss';
-const contactUrlEN = '/person/kontakt-oss/en#ring-oss';
+const contactURLs = {
+    person: {
+        no: '/kontaktoss#ring-oss',
+        en: '/kontaktoss/en#call-us',
+    },
+    employer: {
+        no: '/arbeidsgiver/kontaktoss',
+        en: '/kontaktoss/en#call-us',
+    },
+    provider: {
+        no: '/kontaktoss#ring-oss',
+        en: '/kontaktoss/en#call-us',
+    },
+};
 
 interface CallOptionProps extends TelephoneData {
     _path?: string;
     ingress: string;
+    audience?: Audience;
 }
 
 export const CallOption = (props: CallOptionProps) => {
@@ -42,6 +56,7 @@ export const CallOption = (props: CallOptionProps) => {
         regularOpeningHours,
         specialOpeningHours,
         text,
+        audience = Audience.PERSON,
     } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
@@ -94,7 +109,7 @@ export const CallOption = (props: CallOptionProps) => {
 
         if (daysToNextOpeningHour > 1) {
             return `${opensTemplate
-                .replace('{$1}', formatDate(futureDate, language))
+                .replace('{$1}', formatDate({ datetime: futureDate, language }))
                 .replace('{$2}', futureTime)}`;
         }
         const openingTemplate =
@@ -105,27 +120,36 @@ export const CallOption = (props: CallOptionProps) => {
             .replace('{$2}', futureTime);
     };
 
+    const getContactUrl = () => {
+        const audienceUrls = contactURLs[audience];
+        if (!audienceUrls) {
+            return contactURLs.person.no;
+        }
+        return language === 'no' || language === 'se'
+            ? audienceUrls.no
+            : audienceUrls.en;
+    };
+
     const buildOpenInformationText = (openingHour: OpeningHour) => {
         if (!getDates(openingHour)) {
             return true;
         }
 
         const {
+            norwayEpoch,
             closesEpoch,
-            currentEpoch,
-            endOfToday,
             opensEpoch,
+            endOfToday,
             startOfToday,
         } = getDates(openingHour);
         const { from, to } = openingHour;
 
         // Misc opening / closed states
-        const isOpenNow =
-            currentEpoch > opensEpoch && currentEpoch < closesEpoch;
+        const isOpenNow = norwayEpoch > opensEpoch && norwayEpoch < closesEpoch;
         const isOpeningLaterToday =
-            startOfToday < currentEpoch &&
-            endOfToday > currentEpoch &&
-            currentEpoch < opensEpoch;
+            startOfToday < norwayEpoch &&
+            endOfToday > norwayEpoch &&
+            norwayEpoch < opensEpoch;
         const isClosedForToday = getIsClosedForToday(openingHour);
         const openClosedText = isOpenNow
             ? sharedTranslations['openNow']
@@ -165,7 +189,7 @@ export const CallOption = (props: CallOptionProps) => {
             <LenkeBase
                 href={`tel:${phoneNumber?.replace(/\s/g, '')}`}
                 className={style.link}
-                analyticsEvent={analyticsEvents.CALL}
+                analyticsEvent={AnalyticsEvents.CALL}
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
             >
@@ -177,7 +201,7 @@ export const CallOption = (props: CallOptionProps) => {
                 </div>
             </LenkeBase>
             {alertText && (
-                <Alert variant="warning" inline>
+                <Alert variant="warning" inline className={style.alert}>
                     {alertText}
                 </Alert>
             )}
@@ -197,7 +221,7 @@ export const CallOption = (props: CallOptionProps) => {
             <LenkeBase
                 analyticsLinkGroup={layoutConfig.title}
                 className={style.moreLink}
-                href={language === 'no' ? contactUrlNO : contactUrlEN}
+                href={getContactUrl()}
             >
                 {sharedTranslations['seeMoreOptions']}
             </LenkeBase>

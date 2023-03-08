@@ -66,7 +66,7 @@ export const hookDispatchEventForBatchContentServerEvent = ({
     setExternalContentChange;
     setExternalUpdateEvent;
 }) => {
-    const { _id: contentId, __typename: contentType } = content;
+    const { _id: contentId, type: contentType } = content;
 
     // Some content types use a custom editor. This hack only applies to built-in CS functionality
     if (ignoredContentTypes[contentType]) {

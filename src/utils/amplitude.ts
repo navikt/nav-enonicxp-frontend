@@ -1,6 +1,6 @@
-import amplitude from 'amplitude-js';
+import { logAmplitudeEvent as logAmplitudeEventDecorator } from '@navikt/nav-dekoratoren-moduler';
 
-export enum analyticsEvents {
+export enum AnalyticsEvents {
     NAVIGATION = 'navigere',
     FILTER = 'filtervalg',
     ACC_EXPAND = 'accordion åpnet',
@@ -12,29 +12,13 @@ export enum analyticsEvents {
     CALL = 'ring-oss',
 }
 
-export const initAmplitude = () => {
-    amplitude.getInstance().init('default', '', {
-        apiEndpoint: 'amplitude.nav.no/collect-auto',
-        saveEvents: false,
-        includeUtm: true,
-        includeReferrer: true,
-        platform: window.location.toString(),
-    });
-};
-
 export function logAmplitudeEvent(
-    eventName: analyticsEvents,
-    data?: any
+    eventName: AnalyticsEvents,
+    data?: Record<string, any>
 ): Promise<any> {
-    const platform = window.location.toString();  // Be sure to get url before navigation
-    return new Promise(function (resolve: any) {
-        const eventData = {
-            ...data,
-            app: 'nav-enonicxp-frontend',
-            origin: 'navno-frontend',
-            originVersion: 'unknown',
-            platform,
-        };
-        amplitude.getInstance().logEvent(eventName, eventData, resolve);
+    return logAmplitudeEventDecorator({
+        eventName,
+        origin: 'navno-frontend',
+        eventData: data,
     });
 }

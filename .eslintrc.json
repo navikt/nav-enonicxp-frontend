@@ -1,9 +1,9 @@
 {
-  "plugins": ["css-modules"],
-  "extends": ["next/core-web-vitals", "plugin:css-modules/recommended"],
-  "rules": {
-    "@next/next/no-img-element": 0,
-    "css-modules/no-unused-class": [1, { "camelCase": true }],
-    "css-modules/no-undef-class": [2, { "camelCase": true }]
-  }
+    "plugins": ["css-modules"],
+    "extends": ["next/core-web-vitals", "plugin:css-modules/recommended"],
+    "rules": {
+        "@next/next/no-img-element": 0,
+        "css-modules/no-unused-class": [1, { "camelCase": true }],
+        "css-modules/no-undef-class": [2, { "camelCase": true }]
+    }
 }

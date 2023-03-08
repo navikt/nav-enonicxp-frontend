@@ -1,0 +1,17 @@
+@use 'src/common' as common;
+
+.featuredHeader {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+
+    @include common.full-width-mixin;
+
+    box-shadow: 0 -4px 0 var(--a-gray-400) inset;
+}
+
+.header {
+    margin-bottom: 1rem;
+    max-width: 63.5rem;
+    width: 100%;
+}

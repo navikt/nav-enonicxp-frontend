@@ -8,7 +8,7 @@ import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { classNames } from 'utils/classnames';
-import { analyticsEvents } from 'utils/amplitude';
+import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
@@ -53,7 +53,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
         if (channel === 'call') {
             return {
                 href: 'tel:+4755553333',
-                analyticsEvent: analyticsEvents.CALL,
+                analyticsEvent: AnalyticsEvents.CALL,
             };
         }
 
@@ -64,7 +64,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
                     e.preventDefault();
                     openChatbot();
                 },
-                analyticsEvent: analyticsEvents.CHAT_OPEN,
+                analyticsEvent: AnalyticsEvents.CHAT_OPEN,
             };
         }
         if (channel === 'navoffice') {
@@ -86,7 +86,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
             return {
                 href: url,
                 target: '_blank',
-                analyticsEvent: analyticsEvents.NAVIGATION,
+                analyticsEvent: AnalyticsEvents.NAVIGATION,
             };
         }
 
@@ -118,7 +118,9 @@ export const DefaultOption = (props: DefaultContactProps) => {
                     </Heading>
                 </div>
             </LenkeBase>
-            <BodyLong className={style.text}>{getIngress()}</BodyLong>
+            <BodyLong as="div" className={style.text}>
+                {getIngress()}
+            </BodyLong>
         </div>
     );
 };

@@ -1,16 +1,16 @@
 .chip {
     background-color: var(
-        --navds-semantic-color-component-background-alternate
+        --a-surface-subtle
     );
-    border-radius: var(--navds-border-radius-medium);
-    color: var(--navds-semantic-color-text-muted);
+    border-radius: var(--a-border-radius-medium);
+    color: var(--a-text-subtle);
     display: inline-block;
     padding: 0.125rem 0.5rem;
 }
 
 .selected {
     background-color: var(
-        --navds-semantic-color-interaction-primary-hover-subtle
+        --a-surface-action-subtle-hover
     );
-    color: var(--navds-semantic-color-text);
+    color: var(--a-text-default);
 }

@@ -20,7 +20,7 @@ on:
       REVALIDATOR_PROXY_ORIGIN:
         required: true
         type: string
-      DECORATOR_FALLBACK_URL:
+      DECORATOR_URL:
         required: true
         type: string
       XP_ORIGIN:
@@ -68,7 +68,7 @@ jobs:
       - name: Setup node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16.15.0'
+          node-version: '18'
           registry-url: 'https://npm.pkg.github.com'
           cache: 'npm'
       - name: Set app environmment
@@ -78,7 +78,7 @@ jobs:
           NODE_ENV=production
           ADMIN_ORIGIN=${{ inputs.ADMIN_ORIGIN }}
           APP_ORIGIN=${{ inputs.APP_ORIGIN }}
-          DECORATOR_FALLBACK_URL=${{ inputs.DECORATOR_FALLBACK_URL }}
+          DECORATOR_URL=${{ inputs.DECORATOR_URL }}
           XP_ORIGIN=${{ inputs.XP_ORIGIN }}
           REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
           FAILOVER_ORIGIN=${{ inputs.FAILOVER_ORIGIN }}
@@ -98,6 +98,10 @@ jobs:
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      - name: Run server tests
+        run: npm run test-server
+      - name: Run client tests
+        run: npm run test-client
       - name: Build application
         run: npm run build
         env:

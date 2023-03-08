@@ -21,7 +21,7 @@ export const getTranslatedTaxonomies = (
     if (!Array.isArray(taxonomies)) {
         return [];
     }
-    const getTaxonomyLabel = translator('productTaxonomies', language);
+    const getTaxonomyLabel = translator('taxonomies', language);
     const taxonomyLabels = taxonomies.map((taxonomy) => {
         return getTaxonomyLabel(taxonomy) || '';
     });
@@ -65,3 +65,14 @@ export const capitalize = (str: string) =>
                 .replace(/(^|[\s-])\S/g, (letter) => letter.toUpperCase())}`;
         })
         .join(' ');
+
+export const shortenText = (
+    text: string,
+    maxLength: number,
+    maxOverflowLength: number = 0
+) => {
+    if (!!text && text.length > maxLength + maxOverflowLength) {
+        return text.substring(0, maxLength) + '...';
+    }
+    return text;
+};

@@ -3,7 +3,7 @@ import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
 import { StaticImage } from '../image/StaticImage';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 
 import linkIcon from '/public/gfx/link.svg';
@@ -42,7 +42,7 @@ export const CopyLink = ({ anchor, label, className }: CopyLinkProps) => {
                     linkCopiedDisplayTimeMs
                 );
             }
-            logAmplitudeEvent(analyticsEvents.COPY_LINK, {
+            logAmplitudeEvent(AnalyticsEvents.COPY_LINK, {
                 seksjon: layoutConfig.title,
             });
         }
@@ -68,6 +68,7 @@ export const CopyLink = ({ anchor, label, className }: CopyLinkProps) => {
                     showCopyTooltip && style.copyTooltipVisible
                 )}
                 aria-live="assertive"
+                aria-atomic={true}
             >
                 {getLabel('copiedLinkConfirmed')}
             </span>

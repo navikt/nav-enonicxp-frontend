@@ -1,6 +1,10 @@
 .artikkelDato {
     &.small {
         margin-bottom: 1rem;
-        color: var(--navds-semantic-color-text-muted);
+        color: var(--a-text-subtle);
     }
+}
+
+.divider {
+    padding: 0 0.5rem;
 }

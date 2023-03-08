@@ -1,6 +1,7 @@
-import { ContentType, ContentProps } from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from './urls';
 import { getInternalLinkUrl } from './links-from-content';
+import { ProductDataMixin } from 'types/component-props/_mixins';
 
 const redirectTypes: { [type in ContentType]?: boolean } = {
     [ContentType.InternalLink]: true,
@@ -8,16 +9,23 @@ const redirectTypes: { [type in ContentType]?: boolean } = {
     [ContentType.Url]: true,
 };
 
+type ContentWithExternalProductUrl = ContentProps & {
+    data: Pick<ProductDataMixin, 'externalProductUrl'>;
+};
+
+const hasExternalProductUrl = (
+    content: ContentProps
+): content is ContentWithExternalProductUrl => {
+    return !!(content as ContentWithExternalProductUrl).data
+        ?.externalProductUrl;
+};
+
 const getTargetPath = (contentData: ContentProps) => {
-    switch (contentData?.__typename) {
-        case ContentType.SituationPage:
-        case ContentType.ProductPage:
-        case ContentType.ToolsPage:
-        case ContentType.GuidePage:
-        case ContentType.ThemedArticlePage:
-            return !contentData.isDraft
-                ? contentData.data?.externalProductUrl
-                : null;
+    if (hasExternalProductUrl(contentData)) {
+        return contentData.isDraft ? null : contentData.data.externalProductUrl;
+    }
+
+    switch (contentData?.type) {
         case ContentType.InternalLink:
             return getInternalLinkUrl(contentData.data);
         case ContentType.ExternalLink:
@@ -27,8 +35,7 @@ const getTargetPath = (contentData: ContentProps) => {
             // If the main article chapter content is anything other than a main article
             // we want to redirect to the actual content page. This is provided as a way
             // to gradually migrate individual pages from the chapter structure
-            return contentData.data.article.__typename !==
-                ContentType.MainArticle
+            return contentData.data.article.type !== ContentType.MainArticle
                 ? contentData.data.article._path
                 : null;
         default:
@@ -37,7 +44,7 @@ const getTargetPath = (contentData: ContentProps) => {
 };
 
 export const isRedirectType = (content: ContentProps) =>
-    redirectTypes[content.__typename];
+    redirectTypes[content.type];
 
 export const getTargetIfRedirect = (contentData: ContentProps) => {
     const targetPath = getTargetPath(contentData);
@@ -60,8 +67,8 @@ export const redirectPageProps = (
 
 export const isPermanentRedirect = (content: ContentProps) => {
     if (
-        content.__typename === ContentType.InternalLink ||
-        content.__typename === ContentType.ExternalLink
+        content.type === ContentType.InternalLink ||
+        content.type === ContentType.ExternalLink
     ) {
         return content.data.permanentRedirect;
     }

@@ -3,10 +3,14 @@ import { GetStaticProps } from 'next';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import Config from 'config';
+import { isPropsWithContent } from 'types/_type-guards';
+
+const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
 const isDevBuild =
     process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD &&
-    (process.env.ENV === 'dev1' || process.env.ENV === 'dev2');
+    !isFailover &&
+    process.env.ENV !== 'prod';
 
 // The build workflow on GHA does not have access to our dev-backend, so we just return not found for this page on build
 const getStaticPropsBuildDev: GetStaticProps = async () => {
@@ -21,6 +25,10 @@ const getStaticPropsNormal: GetStaticProps = async () => {
     const pageProps = await fetchPageProps({
         routerQuery: '',
     });
+
+    if (isFailover && isPropsWithContent(pageProps.props)) {
+        pageProps.props.content.isFailover = true;
+    }
 
     return {
         ...pageProps,

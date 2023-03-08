@@ -18,17 +18,17 @@ $illustrationSizeSmall: common.px-to-rem(48);
 
 .title {
     text-decoration: underline;
-    color: var(--navds-global-color-gray-900);
+    color: var(--a-gray-900);
     font-weight: 600;
     margin: 0;
 
     :global(.provider) & {
-        color: var(--navds-semantic-color-link);
+        color: var(--a-text-action);
     }
 }
 
 .header {
-    font-weight: common.$navds-font-weight-bold;
+    font-weight: common.$a-font-weight-bold;
     margin-bottom: 0.5rem;
 }
 

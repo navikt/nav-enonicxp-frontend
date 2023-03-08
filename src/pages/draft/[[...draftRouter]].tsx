@@ -4,36 +4,36 @@ import { PageBase } from 'components/PageBase';
 import { ContentProps } from 'types/content-props/_content-common';
 import { isPropsWithContent } from 'types/_type-guards';
 
-const getDateTime = (dateTime: string | string[]) => {
-    return Array.isArray(dateTime) ? dateTime[0] : dateTime;
+const forceString = (str: string | string[]) => {
+    return Array.isArray(str) ? str[0] : str;
 };
 
-const fetchVersionPageProps = async (
-    context: GetServerSidePropsContext,
-    isDraft = false
-) => {
-    const { time, id } = context.query;
+const fetchVersionPageProps = async (context: GetServerSidePropsContext) => {
+    const { time, id, branch, locale } = context.query;
 
     return fetchPageProps({
         routerQuery: id,
-        isDraft,
+        isDraft: branch === 'draft',
         noRedirect: true,
-        timeRequested: getDateTime(time),
+        timeRequested: forceString(time),
+        locale: forceString(locale),
     });
 };
 
-const getPageProps = async (context) => {
-    const { time, branch } = context.query;
+const getPageProps = async (context: GetServerSidePropsContext) => {
+    const { time, locale } = context.query;
+
     if (time) {
-        return fetchVersionPageProps(context, branch === 'draft');
+        return fetchVersionPageProps(context);
     }
 
     const pathSegments = context?.params?.draftRouter;
 
-    return await fetchPageProps({
+    return fetchPageProps({
         routerQuery: pathSegments,
         isDraft: true,
         noRedirect: true,
+        locale: forceString(locale),
     });
 };
 
@@ -44,11 +44,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         };
     }
 
+    const { locale } = context.query;
+
     const pageProps = await getPageProps(context);
 
     if (isPropsWithContent(pageProps.props)) {
         pageProps.props.content.editorView =
             (context.query.mode as ContentProps['editorView']) || 'preview';
+        pageProps.props.content.layerLocale = forceString(locale);
     }
 
     return pageProps;

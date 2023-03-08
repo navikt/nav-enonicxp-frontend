@@ -7,8 +7,9 @@ import {
 } from '../component-props/_mixins';
 import { ProductDetailType as OverviewType } from './product-details';
 import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from '../taxonomies';
-import { OfficeInformationData } from './office-information-props';
 import { OfficeBranchData } from './office-branch-props';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { ContentListProps } from './content-list-props';
 
 export type DynamicPageData = Partial<{
     languages: LanguageProps[];
@@ -35,56 +36,76 @@ export type OfficeEditorialPageData = {
     ingress?: string;
     externalProductUrl?: string;
 } & DynamicPageData;
+export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'> &
+    DynamicPageData;
+
+export type PressLandingPageData = Partial<{
+    pressCall: ProcessedHtmlProps;
+    pressNews: ContentListProps;
+    shortcuts: ContentListProps;
+    moreNewsUrl: string;
+    maxNewsCount: string;
+    maxShortcutsCount: string;
+}> &
+    DynamicPageData;
 
 export interface DynamicPageProps extends ContentCommonProps {
-    __typename: ContentType.DynamicPage;
+    type: ContentType.DynamicPage;
     data: DynamicPageData;
 }
 
 export interface ProductPageProps extends ContentCommonProps {
-    __typename: ContentType.ProductPage;
+    type: ContentType.ProductPage;
     data: ProductPageData;
 }
 
 export interface ProductDetailsProps extends ContentCommonProps {
-    __typename: ContentType.ProductDetails;
+    type: ContentType.ProductDetails;
     data: ProductDetailsData;
 }
 
 export interface ThemedArticlePageProps extends ContentCommonProps {
-    __typename: ContentType.ThemedArticlePage;
+    type: ContentType.ThemedArticlePage;
     data: ThemedArticlePageData;
 }
 
 export interface GuidePageProps extends ContentCommonProps {
-    __typename: ContentType.GuidePage;
+    type: ContentType.GuidePage;
     data: GuidePageData;
 }
 export interface SituationPageProps extends ContentCommonProps {
-    __typename: ContentType.SituationPage;
+    type: ContentType.SituationPage;
     data: SituationPageData;
 }
 export interface OfficeEditorialPageProps extends ContentCommonProps {
     __typename: ContentType.OfficeEditorialPage;
     data: OfficeEditorialPageData;
 }
-export interface OfficeBranchPageProps extends ContentCommonProps {
+export type OfficeBranchPageProps = ContentCommonProps & {
     __typename: ContentType.OfficeEditorialPage;
     data: OfficeBranchData;
     editorial: OfficeEditorialPageProps;
+};
+export interface CurrentTopicPageProps extends ContentCommonProps {
+    type: ContentType.CurrentTopicPage;
+    data: CurrentTopicPageData;
 }
 
 export interface ToolsPageProps extends ContentCommonProps {
-    __typename: ContentType.ToolsPage;
+    type: ContentType.ToolsPage;
     data: ToolsPageData;
 }
 
 export interface GenericPageProps extends ContentCommonProps {
-    __typename: ContentType.GenericPage;
+    type: ContentType.GenericPage;
     data: GenericPageData;
 }
 
 export interface OverviewPageProps extends ContentCommonProps {
-    __typename: ContentType.Overview;
+    type: ContentType.Overview;
     data: OverviewPageData;
+}
+export interface PressLandingPageProps extends ContentCommonProps {
+    type: ContentType.PressLandingPage;
+    data: PressLandingPageData;
 }

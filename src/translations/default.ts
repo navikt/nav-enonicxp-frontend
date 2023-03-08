@@ -1,5 +1,5 @@
-import { DeepPartial } from '../types/util-types';
-import { MenuListItemKey } from '../types/menu-list-items';
+import { DeepPartial } from 'types/util-types';
+import { MenuListItemKey } from 'types/menu-list-items';
 import {
     ProductTaxonomy,
     Taxonomy,
@@ -7,7 +7,7 @@ import {
     ToolsPageTaxonomy,
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
-import { ProductDetailType } from '../types/content-props/product-details';
+import { ProductDetailType } from 'types/content-props/product-details';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.AppealRights]: 'Klagerettigheter',
@@ -24,7 +24,7 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.Shortcuts]: 'Snarveier',
 };
 
-const productTaxonomies: {
+const taxonomies: {
     [key in Taxonomy]: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
@@ -62,7 +62,6 @@ const areas: { [key in Area]: string } = {
     [Area.MUNICIPALITY]: 'For kommunen',
     [Area.OTHER]: 'Annet',
     [Area.PENSION]: 'Pensjon',
-    [Area.SELF_EMPLOYED]: 'For selvstendig næringsdrivende',
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
     [Area.WORK]: 'Arbeid',
 };
@@ -75,9 +74,6 @@ const productDetailTypes: { [key in ProductDetailType]: string } = {
 };
 
 export const translationsBundleNb = {
-    areaPage: {
-        chooseArea: 'Velg et område',
-    },
     stringParts: {
         conjunction: 'og',
     },
@@ -99,12 +95,23 @@ export const translationsBundleNb = {
         customizeContent: 'Tilpass innhold',
         showingInformationFor: 'Viser informasjon for:',
     },
+    pressLanding: {
+        latestPressNews: 'Siste pressemeldinger og nyheter',
+        morePressNews: 'Flere pressemeldinger og nyheter',
+        pressShortcuts: 'Snarveier',
+        news: 'Nyhet',
+        press: 'Pressemelding',
+        published: 'Publisert',
+    },
     linkLists: {
         news: 'Nyheter',
         moreNews: 'Flere nyheter',
         niceToKnow: 'Nyttig å vite',
         shortcuts: 'Snarveier',
         label: 'Lenker',
+    },
+    currentTopic: {
+        tag: 'Aktuelt',
     },
     mainArticle: {
         facts: 'Fakta',
@@ -137,7 +144,7 @@ export const translationsBundleNb = {
         STOETTEKONTAKT: 'Støttekontakt',
     },
     relatedContent: relatedContent,
-    productTaxonomies,
+    taxonomies,
     areas,
     products: {
         person: 'For privatpersoner',
@@ -154,9 +161,12 @@ export const translationsBundleNb = {
         employer: 'For arbeidsgivere',
         provider: 'For samarbeidspartnere',
     },
+    overviews: {
+        any: 'Fra A til Å',
+    },
     publishingCalendar: {
-        event: 'Kalenderhendelse',
-        publishdate: 'Publiseringsdato',
+        event: 'Hendelse',
+        publishdate: 'Dato',
     },
     header: {
         copyLink: 'Kopier lenke',
@@ -164,12 +174,18 @@ export const translationsBundleNb = {
     },
     overview: {
         noProducts: 'Ingen treff',
-        ariaExplanation: 'Filtrer listen etter område',
-        ariaItemExplanation: 'Vis område',
-        chooseArea: 'Velg område',
-        chooseType: 'Velg type',
         search: 'Søk',
         loading: 'Laster innhold...',
+        areas: {
+            choose: 'Velg område',
+            ariaExplanation: 'Filtrer listen etter område',
+            ariaItemExplanation: 'Vis område',
+        },
+        taxonomies: {
+            choose: 'Velg type',
+            ariaExplanation: 'Filtrer listen etter type',
+            ariaItemExplanation: 'Vis type',
+        },
     },
     pagination: {
         goTo: 'Gå til',
@@ -177,14 +193,14 @@ export const translationsBundleNb = {
     },
     contactPoint: {
         chat: {
-            title: 'Chat med oss',
+            title: 'Du kan chatte med oss',
             ingress:
                 'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 09:00-15:00).',
         },
         legacyChat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida. Du kan be Frida om å få chatte med en veileder (hverdager 09:00–15:00)',
+                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 09:00-15:00).',
         },
         write: {
             title: 'Skriv til oss',
@@ -256,7 +272,7 @@ export const translationsBundleNb = {
             months: 'måneder',
         },
     },
-    productDetailTypes: productDetailTypes,
+    productDetailTypes,
     payoutDates: {
         tableHeaderPrefix: 'Utbetalingsdatoer i',
         tableHeaderPrefixNoYear: 'Utbetalingsdatoer',

@@ -5,7 +5,7 @@ export type LargeTableData = {
     text?: ProcessedHtmlProps;
 };
 
-export interface LargeTableProps extends ContentCommonProps {
-    __typename: ContentType.LargeTable;
+export type LargeTableProps = ContentCommonProps & {
+    type: ContentType.LargeTable;
     data: LargeTableData;
-}
+};

@@ -19,6 +19,7 @@ export enum MacroType {
     ProductCardMicro = 'product-card-micro',
     Quote = 'quote',
     Saksbehandlingstid = 'saksbehandlingstid',
+    Tall = 'tall',
     Tankestrek = 'tankestrek',
     VarselBoks = 'varselBoks',
     Video = 'video',

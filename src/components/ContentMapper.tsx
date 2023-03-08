@@ -23,6 +23,10 @@ import { MainArticleChapterPage } from './pages/main-article-chapter-page/MainAr
 import { PayoutDatesPage } from './pages/payout-dates-page/PayoutDatesPage';
 import { GenericPage } from './pages/generic-page/GenericPage';
 import { OfficeBranchPage } from './pages/office-branch-page/OfficeBranchPage';
+import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
+import { PressLandingPage } from './pages/press-landing-page/PressLandingPage';
+
+import PublishingCalendarEntryPage from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
 
 const contentToReactComponent: Partial<{
     [key in ContentType]: React.FunctionComponent<ContentProps>;
@@ -46,6 +50,8 @@ const contentToReactComponent: Partial<{
     [ContentType.GenericPage]: GenericPage,
     [ContentType.OfficeEditorialPage]: OfficeEditorialPage,
     [ContentType.OfficeBranchPage]: OfficeBranchPage,
+    [ContentType.CurrentTopicPage]: CurrentTopicPage,
+    [ContentType.PressLandingPage]: PressLandingPage,
 
     [ContentType.AreaPage]: DynamicPage,
     [ContentType.FrontPage]: DynamicPage,
@@ -59,6 +65,7 @@ const contentToReactComponent: Partial<{
     [ContentType.SectionPage]: DynamicPage,
     [ContentType.TransportPage]: DynamicPage,
     [ContentType.PublishingCalendar]: DynamicPage,
+    [ContentType.PublishingCalendarEntry]: PublishingCalendarEntryPage,
     [ContentType.Melding]: DynamicPage,
 
     [ContentType.ExternalLink]: RedirectPage,
@@ -70,14 +77,14 @@ const contentToReactComponent: Partial<{
 };
 
 export const isContentTypeImplemented = (content: ContentProps) =>
-    contentToReactComponent.hasOwnProperty(content.__typename);
+    contentToReactComponent.hasOwnProperty(content.type);
 
 type Props = {
     content: ContentProps;
 };
 
 export const ContentMapper = ({ content }: Props) => {
-    const Component = contentToReactComponent[content.__typename];
+    const Component = contentToReactComponent[content.type];
 
     return Component ? (
         <Component {...content} />

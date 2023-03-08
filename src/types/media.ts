@@ -1,34 +1,34 @@
-import { XpResponseProps } from '../utils/fetch/fetch-content';
+import { XpResponseProps } from 'utils/fetch/fetch-content';
 import { ContentAndMediaCommonProps } from './content-props/_content-common';
 
 export enum MediaType {
-    Archive = 'media_Archive',
-    Audio = 'media_Audio',
-    Code = 'media_Code',
-    Data = 'media_Data',
-    Document = 'media_Document',
-    Executable = 'media_Executable',
-    Image = 'media_Image',
-    Presentation = 'media_Presentation',
-    Spreadsheet = 'media_Spreadsheet',
-    Text = 'media_Text',
-    Unknown = 'media_Unknown',
-    Vector = 'media_Vector',
-    Video = 'media_Video',
+    Archive = 'media:archive',
+    Audio = 'media:audio',
+    Code = 'media:code',
+    Data = 'media:data',
+    Document = 'media:document',
+    Executable = 'media:executable',
+    Image = 'media:image',
+    Presentation = 'media:presentation',
+    Spreadsheet = 'media:spreadsheet',
+    Text = 'media:text',
+    Unknown = 'media:unknown',
+    Vector = 'media:vector',
+    Video = 'media:video',
 }
 
 export type MediaProps = {
-    __typename: MediaType;
+    type: MediaType;
     mediaUrl: string;
 } & ContentAndMediaCommonProps;
 
 export type VectorImage = {
-    __typename: MediaType.Vector;
+    type: MediaType.Vector;
     mediaUrl?: string;
 };
 
 export type BitmapImage = {
-    __typename: MediaType.Image;
+    type: MediaType.Image;
     imageUrl?: string;
     mediaUrl?: string;
     imageInfo?: {
@@ -43,4 +43,4 @@ export type XpImageProps = VectorImage | BitmapImage;
 export const isMediaContent = (
     content: XpResponseProps
 ): content is MediaProps =>
-    Object.values(MediaType).includes(content.__typename as MediaType);
+    Object.values(MediaType).includes(content.type as MediaType);

@@ -1,6 +1,7 @@
 import { ContentType, ContentCommonProps } from './_content-common';
 
-export type PublishingCalendarChildren = ContentCommonProps & {
+export type PublishingCalendarEntryProps = ContentCommonProps & {
+    type: ContentType.PublishingCalendarEntry;
     displayName: string;
     data: {
         date: string;
@@ -12,16 +13,8 @@ export type PublishingCalendarData = Partial<{
     ingress: string;
 }>;
 
-export interface PublishingCalendarEntries {
-    displayName: string;
-    period: string;
-    publDate: Date;
-    day: string;
-    month: string;
-}
-
-export interface PublishingCalendarProps extends ContentCommonProps {
-    __typename: ContentType.PublishingCalendar;
-    children: PublishingCalendarChildren[];
+export type PublishingCalendarProps = ContentCommonProps & {
+    type: ContentType.PublishingCalendar;
+    children: PublishingCalendarEntryProps[];
     data: PublishingCalendarData;
-}
+};

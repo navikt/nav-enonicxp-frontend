@@ -4,7 +4,7 @@
     @include common.full-width-mixin();
     padding-top: 2rem;
     padding-bottom: 2rem;
-    background-color: common.$navds-global-color-deepblue-50;
+    background-color: common.$a-deepblue-50;
 
     @media #{common.$mq-screen-tablet} {
         padding-left: 2rem;

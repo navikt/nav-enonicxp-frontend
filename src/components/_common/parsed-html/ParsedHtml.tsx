@@ -1,27 +1,27 @@
 import React, { Fragment } from 'react';
+import { Provider } from 'react-redux';
+import { store } from 'store/store';
+import ReactDOMServer from 'react-dom/server';
+import { isTag, isText } from 'domhandler';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 import { NextImage } from '../image/NextImage';
-import { BodyLong, Heading } from '@navikt/ds-react';
 import htmlReactParser, {
     Element,
     domToReact,
     attributesToProps,
 } from 'html-react-parser';
-import { isTag, isText } from 'domhandler';
-import { LenkeInline } from '../lenke/LenkeInline';
-import { getMediaUrl } from '../../../utils/urls';
+import { getMediaUrl } from 'utils/urls';
 import {
     processedHtmlMacroTag,
     ProcessedHtmlProps,
-} from '../../../types/processed-html-props';
+} from 'types/processed-html-props';
+import { headingToLevel, headingToSize } from 'types/typo-style';
+import { MacroType } from 'types/macro-props/_macros-common';
 import { MacroMapper } from '../../macros/MacroMapper';
-import { headingToLevel, headingToSize } from '../../../types/typo-style';
-import { MacroType } from '../../../types/macro-props/_macros-common';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import ReactDOMServer from 'react-dom/server';
-import { store } from '../../../store/store';
-import { Provider } from 'react-redux';
+import { LenkeInline } from '../lenke/LenkeInline';
 import { Table } from '../table/Table';
+import { BodyLong, Heading } from '@navikt/ds-react';
 
 const blockLevelMacros: { [macroType in MacroType]?: boolean } = {
     [MacroType.AlertBox]: true,
@@ -92,8 +92,13 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
     const parserOptions = {
         replace: (element: Element) => {
-            const { name, attribs, children } = element;
+            const { name } = element;
             const tag = name?.toLowerCase();
+            //Remove all inline styling except in table cells
+            if (tag !== 'td') {
+                delete element?.attribs?.style;
+            }
+            const { attribs, children } = element;
             const props = !!attribs && attributesToProps(attribs);
             const validChildren = getNonEmptyChildren(element);
 
@@ -179,15 +184,10 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             }
 
             // Remove empty lists
-            if (tag === 'ul') {
+            if (tag === 'ul' || tag === 'ol' || tag === 'dl') {
                 if (!validChildren) {
                     return <Fragment />;
                 }
-                return (
-                    <ul {...props}>
-                        {domToReact(validChildren, parserOptions)}
-                    </ul>
-                );
             }
 
             if (tag === 'li') {
@@ -210,7 +210,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
             // Replace empty rows with stylable element
             if (tag === 'tr' && !validChildren) {
-                return <tr {...props} className={'spacer-row'} />;
+                return <tr {...props} role="none" className={'spacer-row'} />;
             }
 
             // Remove empty divs

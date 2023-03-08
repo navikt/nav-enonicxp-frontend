@@ -2,7 +2,7 @@
 
 .lenkepanelNavno {
     &:global(.navds-link-panel) {
-        border: 1px solid common.$navds-semantic-color-link;
+        border: 1px solid common.$a-text-action;
     }
 
     :global {
@@ -12,7 +12,7 @@
 
         .navds-link-panel__title,
         .navds-link-panel__chevron {
-            color: common.$navds-semantic-color-link;
+            color: common.$a-text-action;
         }
     }
 
@@ -47,7 +47,7 @@
 .separator {
     width: 6rem;
     border: none;
-    background-color: common.$navds-global-color-gray-600;
+    background-color: common.$a-gray-600;
     height: 1px;
     margin: 1rem auto;
 }

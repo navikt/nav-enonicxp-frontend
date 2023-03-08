@@ -24,7 +24,7 @@ spec:
     initialDelay: 10
   prometheus:
     enabled: true
-    path: /api/internal/metrics
+    path: /internal/metrics
   ingresses:
   {{#each ingresses as |url|}}
     - {{url}}

@@ -37,10 +37,6 @@
         }
     }
 
-    h3 {
-        margin-top: 2.75rem;
-    }
-
     // pull lists upward to text above if any.
     :global(.navds-body-long + ul),
     :global(.navds-body-long + ol) {

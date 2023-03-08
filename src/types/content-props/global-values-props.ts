@@ -30,12 +30,12 @@ export type GlobalValuesData = {
 };
 
 export type GlobalCaseTimeSetProps = ContentCommonProps & {
-    __typename: ContentType.GlobalCaseTimeSet;
+    type: ContentType.GlobalCaseTimeSet;
     data: GlobalCaseTimeSetData;
 };
 
 export type GlobalNumberValuesSetProps = ContentCommonProps & {
-    __typename: ContentType.GlobalNumberValuesSet;
+    type: ContentType.GlobalNumberValuesSet;
     data: GlobalValuesData;
 };
 

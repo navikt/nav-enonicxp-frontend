@@ -10,6 +10,7 @@ const errorMessageByCode = {
     401: 'Ingen tilgang',
     403: 'Ingen tilgang',
     404: 'Fant ikke siden',
+    405: 'Ugyldig forespørsel',
     408: 'Tidsavbrudd',
 };
 
@@ -35,7 +36,7 @@ export const makeErrorProps = (
     const time = Date.now().toString();
 
     return {
-        __typename: ContentType.Error,
+        type: ContentType.Error,
         _path: idOrPath,
         _id: idOrPath,
         displayName: title,

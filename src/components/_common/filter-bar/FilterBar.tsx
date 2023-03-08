@@ -1,5 +1,5 @@
 import { Heading } from '@navikt/ds-react';
-import { analyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -67,7 +67,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                             key={filter.id}
                             isSelected={isSelected}
                             onToggleFilterHandler={() => {
-                                logAmplitudeEvent(analyticsEvents.FILTER, {
+                                logAmplitudeEvent(AnalyticsEvents.FILTER, {
                                     kategori: filter.categoryName,
                                     filternavn: filter.filterName,
                                     opprinnelse: 'innholdtekst',
