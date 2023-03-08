@@ -22,7 +22,12 @@ export const OpeningHours = ({
     const buildDayLabel = (opening: OpeningHoursProps): string => {
         const { dato, dag } = opening;
         if (dato) {
-            return formatDate(dato, language, true, true);
+            return formatDate({
+                datetime: dato,
+                language,
+                short: true,
+                year: true,
+            });
         }
 
         return dato || dag || ''; // Fallback to empty string to avoid showing "undefined"

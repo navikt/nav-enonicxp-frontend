@@ -41,7 +41,12 @@ const formatAudienceReception = (
         (acc, elem) => {
             if (elem.dato) {
                 const isoDate = elem.dato;
-                const dato = formatDate(elem.dato, language);
+                const dato = formatDate({
+                    datetime: elem.dato,
+                    language,
+                    short: false,
+                    year: false,
+                });
 
                 acc.exceptions.push({
                     ...elem,

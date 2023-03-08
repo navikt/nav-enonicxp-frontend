@@ -1,3 +1,4 @@
+import { ProductDataMixin } from 'types/component-props/_mixins';
 import { DynamicPageData } from './dynamic-page-props';
 
 export interface Address {
@@ -72,17 +73,18 @@ interface AudienceContactInformation {
     publikumskanaler: AudienceContact[];
 }
 
-export type OfficeDetailsData = DynamicPageData & {
-    enhetNr: string;
-    navn: string;
-    organisasjonsnummer: string;
-    sosialeTjenester?: string;
-    spesielleOpplysninger?: string;
-    status: string;
-    underEtableringDato?: string;
-    aktiveringsdato?: string;
-    nedleggesesdato?: string;
-    beliggenhet: Address;
-    postadresse: Address;
-    brukerkontakt: AudienceContactInformation;
-};
+export type OfficeDetailsData = ProductDataMixin &
+    DynamicPageData & {
+        enhetNr: string;
+        navn: string;
+        organisasjonsnummer: string;
+        sosialeTjenester?: string;
+        spesielleOpplysninger?: string;
+        status: string;
+        underEtableringDato?: string;
+        aktiveringsdato?: string;
+        nedleggesesdato?: string;
+        beliggenhet: Address;
+        postadresse: Address;
+        brukerkontakt: AudienceContactInformation;
+    };

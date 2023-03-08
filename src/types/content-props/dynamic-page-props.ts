@@ -36,7 +36,8 @@ export type OfficeEditorialPageData = {
     title: string;
     ingress?: string;
     externalProductUrl?: string;
-} & DynamicPageData;
+} & ProductDataMixin &
+    DynamicPageData;
 
 export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'> &
     DynamicPageData;

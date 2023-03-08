@@ -30,7 +30,7 @@ export type MainArticleData = Partial<{
     chapters: MainArticleChapterNavigationData[];
 }>;
 
-export type MainArticleProps = ContentCommonProps & {
+export type MainArticleProps = {
     type: ContentType.MainArticle;
     data: MainArticleData;
 };

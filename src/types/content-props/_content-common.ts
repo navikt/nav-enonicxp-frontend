@@ -174,4 +174,4 @@ type SpecificContentProps =
     | GenericPageProps
     | PressLandingPageProps;
 
-export type ContentProps = ContentCommonProps & SpecificContentProps;
+export type ContentProps = SpecificContentProps & ContentCommonProps;
