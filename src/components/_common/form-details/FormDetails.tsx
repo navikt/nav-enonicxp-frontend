@@ -1,8 +1,10 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import {
+    FormAddendumTypes,
     FormApplicationTypes,
     FormComplaintTypes,
     FormDetailsData,
+    FormTypes,
     Variation,
 } from 'types/content-props/form-details';
 import { FormDetailsItem } from './FormDetailsItem';
@@ -15,15 +17,14 @@ type FormDetailsProps = {
 
 type AllVariations =
     | Variation<FormApplicationTypes>
-    | Variation<FormComplaintTypes>;
+    | Variation<FormComplaintTypes>
+    | Variation<FormAddendumTypes>;
 
 export const FormDetails = ({ formDetails }: FormDetailsProps) => {
     const { formType } = formDetails;
 
     const variations =
-        formType._selected === 'application'
-            ? formType.application.variations
-            : formType.complaint.variations;
+        formDetails.formType[formType._selected]?.variations || [];
 
     if (variations.length === 0) {
         return null;

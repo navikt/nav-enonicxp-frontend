@@ -1,14 +1,10 @@
 import { ContentCommonProps, ContentType } from './_content-common';
 
-type FormTypes = 'application' | 'complaint';
+export type FormTypes = 'application' | 'complaint' | 'addendum';
 
-export type FormApplicationTypes =
-    | 'digital'
-    | 'paper'
-    | 'addendum_digital'
-    | 'addendum_paper';
-
-export type FormComplaintTypes = 'complaint' | 'appeal' | 'addendum';
+export type FormApplicationTypes = 'digital' | 'paper';
+export type FormComplaintTypes = 'complaint' | 'appeal';
+export type FormAddendumTypes = 'addendum_digital' | 'addendum_paper';
 
 export interface Variation<T = string> {
     type: T;
@@ -27,6 +23,9 @@ export interface FormDetailsData {
         };
         complaint: {
             variations: Variation<FormComplaintTypes>[];
+        };
+        addendum: {
+            variations: Variation<FormAddendumTypes>[];
         };
     };
 }
