@@ -29,7 +29,9 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell scope="col">
-                            {getLabel('publishdate')}
+                            <span className={style.dateHeader}>
+                                {getLabel('publishdate')}
+                            </span>
                         </Table.HeaderCell>
                         <Table.HeaderCell scope="col">
                             {getLabel('event')}

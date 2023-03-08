@@ -55,6 +55,7 @@ export const FilterExplanation = ({
                 showHighlight && style.filterExplanationHighlight
             )}
             aria-live="assertive"
+            aria-atomic={true}
         >
             <div className={style.iconWrapper}>
                 <InformationFilled

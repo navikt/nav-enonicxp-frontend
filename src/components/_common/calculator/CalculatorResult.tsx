@@ -43,10 +43,11 @@ export const CalculatorResult = (props: ResultProps) => {
         <Panel border className={style.summaryText}>
             <div
                 aria-live="assertive"
+                aria-atomic={true}
                 dangerouslySetInnerHTML={{
                     __html: buildSummaryHTML(),
                 }}
-            ></div>
+            />
         </Panel>
     );
 };

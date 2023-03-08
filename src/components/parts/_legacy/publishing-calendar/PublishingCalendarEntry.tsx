@@ -55,10 +55,10 @@ const PublishingCalendarEntry = (props: PublishingCalendarEntryProps) => {
     return (
         <Table.Row>
             <Table.DataCell>
-                <time>
+                <div className={style.dateCell}>
                     <span>{entry.day}</span>
                     <span>{entry.month}</span>
-                </time>
+                </div>
             </Table.DataCell>
             <Table.DataCell>
                 <BodyLong className={style.dateInfo}>{entry.period}</BodyLong>
