@@ -122,8 +122,6 @@ export const translationsBundleNn: Translations = {
         STOETTEKONTAKT: 'Støttekontakt',
     },
     relatedContent: relatedContent,
-    productTaxonomies,
-    relatedContent,
     taxonomies,
     areas,
     products: {
