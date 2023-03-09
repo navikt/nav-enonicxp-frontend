@@ -50,7 +50,7 @@
 
 .posterWrapper {
     position: relative;
-    width: 80px;
+    width: 120px;
 }
 
 .playIcon {
@@ -76,8 +76,7 @@
 }
 
 .previewImage {
-    width: 80px;
-    min-height: 53.33px;
+    min-height: 74px; //golden ratio
     border-radius: 0.125rem;
     object-fit: cover;
 }
