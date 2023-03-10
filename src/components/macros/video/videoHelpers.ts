@@ -26,15 +26,13 @@ export const getVideoMeta = (
     };
 };
 
-// Todo: Skrive om disse to funksjonene for bedre gjenbruk. De er nesten like.
 export const findImageUrlFromVideoMeta = (qbrickMediaData: QbrickMeta) => {
     const resources = qbrickMediaData?.asset?.resources;
     if (!resources) {
         return null;
     }
 
-    //TODO fjern as any
-    const qBrickPickedThumbnail = (qbrickMediaData as any).thumbnails[0]?.id;
+    const qBrickPickedThumbnail = qbrickMediaData.thumbnails[0]?.id;
 
     const image = resources.find(
         (resource) =>
