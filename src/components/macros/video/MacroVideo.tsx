@@ -99,7 +99,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 </Label>
                 {duration && (
                     <Detail className={`${style.text} ${style.videoLength}`}>
-                        Varighet er {durationAsString}
+                        Varighet {durationAsString} minutter
                     </Detail>
                 )}
             </Button>

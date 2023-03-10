@@ -58,13 +58,14 @@ export const findVideoDurationFromMeta = (qbrickMediaData: QbrickMeta) => {
     return duration || 0;
 };
 
-const prefixWithZero = (number: number) => {
-    return number < 10 ? `0${number}` : number;
-};
-
 export const getTimestampFromDuration = (duration: number) => {
-    const minutes = Math.floor((duration % 3600) / 60);
-    const seconds = Math.floor(duration % 60);
-
-    return `${prefixWithZero(minutes)}:${prefixWithZero(seconds)}`;
+    const halfMinute = 30; // seconds in half a minute
+    const roundedSeconds = Math.round(duration / halfMinute) * halfMinute;
+    const minutes = Math.floor(roundedSeconds / 60); // convert to whole minutes
+    if (roundedSeconds % 60 === 0) {
+        return minutes; // return whole number
+    } else {
+        const decimalMinutes = (roundedSeconds % 60) / 60;
+        return (minutes + decimalMinutes).toFixed(1); // round to 1 decimal place
+    }
 };
