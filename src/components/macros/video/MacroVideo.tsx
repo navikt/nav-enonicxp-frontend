@@ -94,10 +94,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     </div>
                 }
             >
-                <Label
-                    as="p"
-                    className={style.text}
-                >{`Se video "${title}"`}</Label>
+                <Label as="p" className={style.text}>
+                    Se film: {title}
+                </Label>
                 {duration && (
                     <Detail className={`${style.text} ${style.videoLength}`}>
                         Varighet er {durationAsString}
