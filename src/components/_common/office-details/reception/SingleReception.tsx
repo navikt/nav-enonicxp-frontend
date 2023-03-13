@@ -1,4 +1,6 @@
+import { ClockFilled, Information, PlaceFilled } from '@navikt/ds-icons';
 import { Alert, BodyShort, Heading } from '@navikt/ds-react';
+import classNames from 'classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import {
@@ -84,15 +86,29 @@ export const SingleReception = (props: AudienceReception) => {
     const getLabel = translator('office', language);
     return (
         <div className={styles.singleReception}>
-            <Heading level="2" size="medium" spacing>
+            <Heading level="2" size="medium" spacing className={styles.heading}>
+                <PlaceFilled
+                    aria-hidden="true"
+                    className={classNames(styles.headingIcon, styles.iconPlace)}
+                />
                 {getLabel('address')}
             </Heading>
             <BodyShort className={styles.address}>{address}</BodyShort>
-
-            {/* opening hours */}
             {openingHours.length > 0 && (
                 <>
-                    <Heading level="3" size="medium" spacing>
+                    <Heading
+                        level="3"
+                        size="medium"
+                        spacing
+                        className={styles.heading}
+                    >
+                        <ClockFilled
+                            aria-hidden="true"
+                            className={classNames(
+                                styles.headingIcon,
+                                styles.iconClock
+                            )}
+                        />
                         {getLabel('openingHoursWithoutAppointment')}
                     </Heading>
                     <OpeningHours
@@ -103,7 +119,6 @@ export const SingleReception = (props: AudienceReception) => {
                     />
                 </>
             )}
-            {/* exceptions in opening hours */}
             {openingHoursExceptions.length > 0 && (
                 <>
                     <Heading level="3" size="medium" spacing>
@@ -117,9 +132,10 @@ export const SingleReception = (props: AudienceReception) => {
                     />
                 </>
             )}
-            <Alert variant="info" className={styles.appointmentBookingInfo}>
+            <div className={styles.appointmentBookingInfo}>
+                <Information className={styles.appointmentIcon} />
                 {getLabel('youCanMakeAppointment')}
-            </Alert>
+            </div>
         </div>
     );
 };

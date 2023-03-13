@@ -1,20 +1,7 @@
 .singleReception {
-    padding: 1.5rem;
+    padding: 2.5rem;
     background-color: var(--a-deepblue-50);
     margin: 1rem 0;
-    .header {
-        margin-bottom: 1rem;
-    }
-
-    .address {
-        margin-bottom: 2rem;
-    }
-
-    .appointmentBookingInfo {
-        border: 0;
-        background-color: transparent;
-        padding: 0;
-    }
 
     table {
         margin-bottom: 1.6rem;
@@ -43,4 +30,40 @@
             }
         }
     }
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+}
+
+.headingIcon {
+    color: var(--a-deepblue-500);
+    margin-right: 0.5rem;
+}
+
+.iconPlace {
+    width: 30px;
+    height: 30px;
+}
+
+.iconClock {
+    width: 22px;
+    height: 22px;
+    margin-left: 0.1rem;
+    margin-right: 0.7rem;
+}
+.address {
+    margin-bottom: 2rem;
+}
+
+.appointmentBookingInfo {
+    display: flex;
+    align-items: center;
+}
+
+.appointmentIcon {
+    margin-right: 0.5rem;
+    width: 20px;
+    height: 20px;
 }

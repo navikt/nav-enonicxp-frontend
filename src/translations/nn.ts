@@ -153,6 +153,7 @@ export const translationsBundleNn: Translations = {
     office: {
         youFindUsHere: 'Du finn oss her',
         phoneToNav: 'Telefonnummeret til NAV er',
+        chooseBetweenOffices: 'Du kan velje eit av disse kontora.',
         officeInformation: 'Kontorinformasjon',
         closed: 'Stengt',
         openingHoursWithoutAppointment: 'Åpningstidar når du ikkje har avtale',

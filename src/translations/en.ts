@@ -114,6 +114,7 @@ export const translationsBundleEn: Translations = {
     office: {
         youFindUsHere: 'You can find us here',
         phoneToNav: 'NAV phone number is',
+        chooseBetweenOffices: 'You can choose one of the following offices.',
         officeInformation: 'Office information',
         closed: 'Closed',
         openingHoursWithoutAppointment: 'Opening hours without an appointment',

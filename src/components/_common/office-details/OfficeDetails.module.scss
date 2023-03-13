@@ -14,20 +14,12 @@
 }
 
 .placeIcon {
-    background-color: var(--a-blue-50);
     width: 2.5rem;
     height: 2.5rem;
     display: inline-flex;
-    border-radius: 1.25rem;
     align-items: center;
     justify-content: center;
     margin-right: 0.5rem;
-
-    svg {
-        color: var(--a-blue-500);
-        width: 24px;
-        height: 24px;
-    }
 }
 
 .header {

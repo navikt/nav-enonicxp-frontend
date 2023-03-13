@@ -39,7 +39,7 @@ export const OfficeDetails = (props: OfficeDetailsProps) => {
                 >
                     <Heading level="2" size="large" className={styles.header}>
                         <div className={styles.placeIcon}>
-                            <PlaceFilled />
+                            <PlaceFilled aria-hidden="true" />
                         </div>
                         {getOfficeTranslations('youFindUsHere')}
                     </Heading>
