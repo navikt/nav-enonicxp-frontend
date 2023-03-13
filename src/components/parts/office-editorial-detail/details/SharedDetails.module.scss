@@ -3,14 +3,14 @@
     padding-left: 1.4rem;
 }
 .anchor {
-    border-bottom: 1px var(--navds-semantic-color-link) solid;
+    border-bottom: 1px var(--a-text-action) solid;
     text-decoration: none;
     transition: border-bottom-color 0.12s ease-out;
 }
 
 .socialHelpLink {
     display: inline-block;
-    margin-bottom: var(--navds-spacing-7);
+    margin-bottom: var(--a-spacing-7);
 
     &:last-of-type {
         margin-bottom: 0;
