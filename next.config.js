@@ -96,8 +96,8 @@ const csp = async () => {
         'worker-src': internalHosts,
         'style-src': [...internalHosts, UNSAFE_INLINE],
         'font-src': [...internalHosts, DATA, ...qbrickHosts],
-        'object-src': [...qbrickHosts],
         'img-src': [...internalHosts, DATA, ...qbrickHosts],
+        'object-src': [...qbrickHosts],
         'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost],
         'media-src': [...qbrickHosts, salesforceVideoHost],
     };
