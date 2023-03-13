@@ -123,6 +123,10 @@ export const translationsBundleEn: Translations = {
         address: 'Address',
         youCanMakeAppointment:
             'You can book a meeting with your counsellor outside of these opening hours.',
+        location: 'Location',
+        postalAddress: 'Postal address',
+        orgNumber: 'Org number',
+        officeNumber: 'Office number',
     },
     dateTime: {
         weekDayNames: [

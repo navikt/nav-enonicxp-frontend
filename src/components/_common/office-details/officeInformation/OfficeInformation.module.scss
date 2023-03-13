@@ -1,0 +1,13 @@
+.officeInformation {
+    background-color: none;
+
+    :global(.navds-accordion__header) {
+        background-color: transparent;
+        border: 0;
+        color: var(--a-text-action);
+    }
+}
+
+.section {
+    margin-bottom: 1.5rem;
+}

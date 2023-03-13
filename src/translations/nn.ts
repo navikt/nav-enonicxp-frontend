@@ -162,6 +162,10 @@ export const translationsBundleNn: Translations = {
         address: 'Adresse',
         youCanMakeAppointment:
             'Du kan avtale møte med veilederen din utenom disse åpningstidene.',
+        location: 'Beliggenhet',
+        postalAddress: 'Postadresse',
+        orgNumber: 'Organisasjonsnummer',
+        officeNumber: 'Kontornummer',
     },
     overview: {
         noProducts: 'Ingen treff',
