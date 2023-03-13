@@ -24,6 +24,7 @@ import { MacroSaksbehandlingstid } from './saksbehandlingstid/MacroSaksbehandlin
 import { MacroPayoutDates } from './payout-dates/MacroPayoutDates';
 import { MacroProductCardMicro } from 'components/macros/product-card-micro/MacroProductCardMicro';
 import { MacroTall } from 'components/macros/tall/MacroTall';
+import { MacroUxSignalsWidget } from 'components/macros/uxsignals-widget/MacroUxSignalsWidget';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
@@ -50,6 +51,7 @@ const macroComponents: {
     [MacroType.Quote]: MacroQuote,
     [MacroType.Tall]: MacroTall,
     [MacroType.Tankestrek]: MacroTankestrek,
+    [MacroType.UxSignalsWidget]: MacroUxSignalsWidget,
     [MacroType.VarselBoks]: MacroVarselBoks,
     [MacroType.Video]: MacroVideo,
 };
