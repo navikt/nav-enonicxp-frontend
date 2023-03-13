@@ -10,8 +10,10 @@ import {
     getVideoMeta,
 } from './videoHelpers';
 
-import style from './MacroVideo.module.scss';
 import { useExternalScript } from 'utils/useExternalScript';
+import { translator } from 'translations';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import style from './MacroVideo.module.scss';
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -19,6 +21,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         getVideoMeta(config.video)
     );
     const videoRef = React.useRef(null);
+
+    const { language } = usePageConfig();
+    const translations = translator('macroVideo', language);
 
     const scriptState = useExternalScript(
         '//play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'
@@ -95,11 +100,11 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 }
             >
                 <Label as="p" className={style.text}>
-                    Se film: {title}
+                    {translations('playMovie')} {title}
                 </Label>
                 {duration && (
                     <Detail className={`${style.text} ${style.videoLength}`}>
-                        {durationAsString} min
+                        {durationAsString} {translations('minutes')}
                     </Detail>
                 )}
             </Button>

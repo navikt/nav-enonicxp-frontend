@@ -266,6 +266,10 @@ export const translationsBundleNb = {
     greetings: {
         hi: 'Hei!',
     },
+    macroVideo: {
+        playMovie: 'Se film:',
+        minutes: 'min',
+    },
 };
 
 export type Translations = DeepPartial<typeof translationsBundleNb>;

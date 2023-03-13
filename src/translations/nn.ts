@@ -251,4 +251,8 @@ export const translationsBundleNn: Translations = {
     greetings: {
         hi: 'Hei!',
     },
+    macroVideo: {
+        playMovie: 'Sjå film:',
+        minutes: 'min',
+    },
 };
