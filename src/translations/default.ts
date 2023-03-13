@@ -151,8 +151,8 @@ export const translationsBundleNb = {
         any: 'Fra A til Å',
     },
     publishingCalendar: {
-        event: 'Kalenderhendelse',
-        publishdate: 'Publiseringsdato',
+        event: 'Hendelse',
+        publishdate: 'Dato',
     },
     header: {
         copyLink: 'Kopier lenke',

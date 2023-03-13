@@ -13,8 +13,8 @@ export type PublishingCalendarData = Partial<{
     ingress: string;
 }>;
 
-export interface PublishingCalendarProps extends ContentCommonProps {
+export type PublishingCalendarProps = ContentCommonProps & {
     type: ContentType.PublishingCalendar;
     children: PublishingCalendarEntryProps[];
     data: PublishingCalendarData;
-}
+};

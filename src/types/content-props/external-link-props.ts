@@ -6,7 +6,7 @@ export type ExternalLinkData = {
     permanentRedirect?: boolean;
 };
 
-export interface ExternalLinkProps extends ContentCommonProps {
+export type ExternalLinkProps = ContentCommonProps & {
     type: ContentType.ExternalLink;
     data: ExternalLinkData;
-}
+};

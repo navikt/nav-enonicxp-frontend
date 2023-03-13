@@ -13,7 +13,7 @@ export interface ContactInformationData {
     };
 }
 
-export interface ContactInformationProps extends ContentCommonProps {
+export type ContactInformationProps = ContentCommonProps & {
     type: ContentType.ContactInformationPage;
     data: ContactInformationData;
-}
+};

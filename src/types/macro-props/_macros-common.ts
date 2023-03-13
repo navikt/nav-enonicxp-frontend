@@ -21,6 +21,7 @@ export enum MacroType {
     Saksbehandlingstid = 'saksbehandlingstid',
     Tall = 'tall',
     Tankestrek = 'tankestrek',
+    UxSignalsWidget = 'uxsignals-widget',
     VarselBoks = 'varselBoks',
     Video = 'video',
 }

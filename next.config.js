@@ -60,6 +60,7 @@ const csp = async () => {
         '*.ip-only.net',
         'blob:',
     ];
+    const salesforceVideoHost = 'ihb.nav.no';
 
     // These are used by a NAV-funded research project for accessibility-related feedback
     const tingtunHost = '*.tingtun.no';
@@ -97,8 +98,8 @@ const csp = async () => {
         'font-src': [...internalHosts, DATA, ...qbrickHosts],
         'object-src': [...qbrickHosts],
         'img-src': [...internalHosts, DATA, ...qbrickHosts],
-        'media-src': qbrickHosts,
         'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost],
+        'media-src': [...qbrickHosts, salesforceVideoHost],
     };
 
     if (process.env.NODE_ENV === 'development') {

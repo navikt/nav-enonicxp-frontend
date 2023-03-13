@@ -1,8 +1,8 @@
 import { ContentType, ContentCommonProps } from './_content-common';
 
-export interface TemplateProps extends ContentCommonProps {
+export type TemplateProps = ContentCommonProps & {
     type: ContentType.TemplatePage;
     data: {
         supports?: ContentType[];
     };
-}
+};
