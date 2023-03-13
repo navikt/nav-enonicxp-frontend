@@ -252,7 +252,7 @@ export const translationsBundleNn: Translations = {
         hi: 'Hei!',
     },
     macroVideo: {
-        playMovie: 'Sjå film:',
+        playMovie: 'Sjå video:',
         minutes: 'min',
     },
 };

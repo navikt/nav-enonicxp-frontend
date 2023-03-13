@@ -267,7 +267,7 @@ export const translationsBundleNb = {
         hi: 'Hei!',
     },
     macroVideo: {
-        playMovie: 'Se film:',
+        playMovie: 'Se video:',
         minutes: 'min',
     },
 };

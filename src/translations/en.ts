@@ -244,4 +244,8 @@ export const translationsBundleEn: Translations = {
     greetings: {
         hi: 'Hi!',
     },
+    macroVideo: {
+        playMovie: 'Watch video:',
+        minutes: 'min',
+    },
 };
