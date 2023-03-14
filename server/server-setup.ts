@@ -1,6 +1,5 @@
 import express, { Express, Request, Response } from 'express';
 import { NextServer } from 'next/dist/server/next';
-import NextNodeServer from 'next/dist/server/next-server';
 import onHeaders from 'on-headers';
 
 import { validateSecret } from './req-handlers/validate-secret';
@@ -13,26 +12,7 @@ import {
 import { handleInvalidatePathsReq } from './req-handlers/invalidate-paths';
 import { setCacheKey } from './req-handlers/set-cache-key';
 import { handleInvalidateAllReq } from './req-handlers/invalidate-all';
-
-// Temporary spammy logging to investigate an occasional hang on cache-response for certain paths
-const logPendingResponses =
-    process.env.ENV !== 'localhost'
-        ? (nextServer: NextNodeServer) => {
-              try {
-                  const pendingResponses =
-                      nextServer['responseCache'].pendingResponses;
-                  if (pendingResponses?.size > 0) {
-                      console.log(
-                          `Pending responses: ${JSON.stringify([
-                              ...pendingResponses.keys(),
-                          ])}`
-                      );
-                  }
-              } catch (e) {
-                  console.error(`Error accessing pendingResponses - ${e}`);
-              }
-          }
-        : () => ({});
+import { handleGetPendingResponses } from './req-handlers/pending-responses';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached
@@ -72,6 +52,12 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
         handleInvalidateAllReq(nextServer)
     );
 
+    expressApp.get(
+        '/api/pending',
+        validateSecretMiddleware,
+        handleGetPendingResponses(nextServer)
+    );
+
     expressApp.get('/_next/data/:buildId/*.json', (req, res) => {
         const { buildId } = req.params;
         if (buildId !== currentBuildId) {
@@ -86,8 +72,6 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
     });
 
     expressApp.all('*', (req, res) => {
-        logPendingResponses(nextServer);
-
         return nextRequestHandler(req, res);
     });
 };

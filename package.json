@@ -16,9 +16,6 @@
         "analyze-bundle": "ANALYZE_BUNDLE=true npm run build-local",
         "typeCheck": "tsc",
         "lint": "eslint src/",
-        "deploy": "npx run-func trigger-workflow.js triggerWorkflow",
-        "deploy-dev1": "npm run deploy -- deploy.dev1.yml",
-        "deploy-dev2": "npm run deploy -- deploy.dev2.yml",
         "test-server": "next build server/__next-test-dummy && jest --testPathPattern=server/",
         "test-client": "jest --testPathPattern=src/",
         "test": "npm run test-server && npm run test-client",
@@ -68,7 +65,6 @@
     "devDependencies": {
         "@next/bundle-analyzer": "12.3.4",
         "@next/eslint-plugin-next": "12.3.1",
-        "@octokit/core": "4.1.0",
         "@types/express": "4.17.14",
         "@types/jest": "29.2.5",
         "@types/mock-fs": "4.13.1",
