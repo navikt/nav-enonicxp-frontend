@@ -113,7 +113,6 @@ export const translationsBundleEn: Translations = {
     },
     office: {
         youFindUsHere: 'You can find us here',
-        phoneToNav: 'NAV phone number is',
         chooseBetweenOffices: 'You can choose one of the following offices.',
         officeInformation: 'Office information',
         closed: 'Closed',
@@ -127,6 +126,9 @@ export const translationsBundleEn: Translations = {
         postalAddress: 'Postal address',
         orgNumber: 'Org number',
         officeNumber: 'Office number',
+        phoneToNav: 'NAV phone number is',
+        phoneInformation:
+            'Open, weekdays at 09:00–15:00. NAV call center will assist you or connect you with your NAV office.',
     },
     dateTime: {
         weekDayNames: [

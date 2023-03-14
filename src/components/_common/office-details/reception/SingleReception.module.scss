@@ -1,7 +1,17 @@
+@use 'src/common' as common;
+
 .singleReception {
-    padding: 2.5rem;
+    padding: common.$padding-sides-mobile;
     background-color: var(--a-deepblue-50);
     margin: 1rem 0;
+
+    @media #{common.$mq-screen-tablet} {
+        padding: common.$padding-sides-tablet;
+    }
+
+    @media #{common.$mq-screen-desktop} {
+        padding: common.$padding-sides-desktop;
+    }
 
     table {
         margin-bottom: 1.6rem;
@@ -50,8 +60,7 @@
 .iconClock {
     width: 22px;
     height: 22px;
-    margin-left: 0.1rem;
-    margin-right: 0.7rem;
+    margin: -2px 0.7rem 0 0.1rem;
 }
 .address {
     margin-bottom: 2rem;

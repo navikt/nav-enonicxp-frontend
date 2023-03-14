@@ -231,7 +231,6 @@ export const translationsBundleNb = {
     },
     office: {
         youFindUsHere: 'Du finner oss her',
-        phoneToNav: 'Telefonnummeret til NAV er',
         chooseBetweenOffices: 'Du kan velge ett av de følgende kontorene.',
         officeInformation: 'Kontorinformasjon',
         closed: 'Stengt',
@@ -245,6 +244,9 @@ export const translationsBundleNb = {
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
         officeNumber: 'Kontornummer',
+        phoneToNav: 'Telefonnummeret til NAV er',
+        phoneInformation:
+            'Åpent, hverdager kl. 09:00–15:00. NAV Kontaktsenter hjelper deg eller setter deg i kontakt med ditt NAV-kontor.',
     },
     dateTime: {
         weekDayNames: [

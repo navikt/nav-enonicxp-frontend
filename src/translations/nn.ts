@@ -152,7 +152,6 @@ export const translationsBundleNn: Translations = {
     },
     office: {
         youFindUsHere: 'Du finn oss her',
-        phoneToNav: 'Telefonnummeret til NAV er',
         chooseBetweenOffices: 'Du kan velje eit av disse kontora.',
         officeInformation: 'Kontorinformasjon',
         closed: 'Stengt',
@@ -166,6 +165,9 @@ export const translationsBundleNn: Translations = {
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
         officeNumber: 'Kontornummer',
+        phoneToNav: 'Telefonnummeret til NAV er',
+        phoneInformation:
+            'Åpent, kvardagar kl. 09:00–15:00. NAV Kontaktsenter hjelper deg eller sett deg i kontakt med ditt NAV-kontor.',
     },
     overview: {
         noProducts: 'Ingen treff',
