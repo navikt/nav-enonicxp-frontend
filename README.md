@@ -27,18 +27,6 @@ Kjør så `npm run start-clean`
 
 ## Deploy til test-miljø
 
--   Generer en personal access token på Github med repo-tilgang (husk SSO)
--   Opprett fila .github-token og legg tokenet inn i denne
--   Push branchen din til Github og kjør en av følgende kommandoer for å deploye:
-
-`npm run deploy-dev1`
-
-`npm run deploy-dev2`
-
-`npm run deploy <workflow-filnavn|workflow-id> <remote branch|tag>`
-
-#### Alternativt:
-
 [Actions](https://github.com/navikt/nav-enonicxp-frontend/actions) -> Velg workflow -> Run workflow -> Velg branch -> Run workflow
 
 ## Prodsetting
