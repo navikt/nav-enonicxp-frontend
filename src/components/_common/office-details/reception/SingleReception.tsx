@@ -18,6 +18,7 @@ interface FormattedAudienceReception {
     place: string;
     openingHoursExceptions: OpeningHoursProps[];
     openingHours: OpeningHoursProps[];
+    adkomstbeskrivelse: string;
 }
 
 const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
@@ -75,13 +76,18 @@ const formatAudienceReception = (
             audienceReception.besoeksadresse.poststed,
         openingHoursExceptions: aapningstider.exceptions,
         openingHours: aapningstider.regular.sort(sortOpeningHours),
+        adkomstbeskrivelse: audienceReception.adkomstbeskrivelse,
     };
 };
 
 export const SingleReception = (props: AudienceReception) => {
     const { language } = usePageConfig();
-    const { address, openingHours, openingHoursExceptions } =
-        formatAudienceReception(props);
+    const {
+        address,
+        openingHours,
+        openingHoursExceptions,
+        adkomstbeskrivelse,
+    } = formatAudienceReception(props);
 
     const getLabel = translator('office', language);
     return (
@@ -93,7 +99,12 @@ export const SingleReception = (props: AudienceReception) => {
                 />
                 {getLabel('address')}
             </Heading>
-            <BodyShort className={styles.address}>{address}</BodyShort>
+            <section className={styles.address}>
+                <BodyShort className={styles.addressLine}>{address}</BodyShort>
+                <BodyShort className={styles.addressLine} size="small">
+                    {adkomstbeskrivelse}
+                </BodyShort>
+            </section>
             {openingHours.length > 0 && (
                 <>
                     <Heading

@@ -26,7 +26,7 @@ export interface AudienceReception {
     stedsbeskrivelse?: string;
     aapningstider: OpeningHours[];
     besoeksadresse?: Address;
-    adkomst?: string;
+    adkomstbeskrivelse?: string;
 }
 
 export type Service = {
