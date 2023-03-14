@@ -4,7 +4,7 @@ import { RequestHandler } from 'express';
 const getPendingResponses = (nextServer: NextNodeServer) => {
     try {
         const pendingResponses = nextServer['responseCache'].pendingResponses;
-        return pendingResponses;
+        return pendingResponses?.size > 0 ? [...pendingResponses.keys()] : [];
     } catch (e) {
         console.error(`Error accessing pendingResponses - ${e}`);
         return null;
