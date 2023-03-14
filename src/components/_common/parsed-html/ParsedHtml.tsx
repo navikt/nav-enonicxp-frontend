@@ -184,15 +184,10 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             }
 
             // Remove empty lists
-            if (tag === 'ul') {
+            if (tag === 'ul' || tag === 'ol' || tag === 'dl') {
                 if (!validChildren) {
                     return <Fragment />;
                 }
-                return (
-                    <ul {...props}>
-                        {domToReact(validChildren, parserOptions)}
-                    </ul>
-                );
             }
 
             if (tag === 'li') {

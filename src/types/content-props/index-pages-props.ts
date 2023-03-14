@@ -18,11 +18,11 @@ export type FrontPageData = {
     areasHeader: string;
 } & CommonData;
 
-export interface FrontPageProps extends ContentCommonProps {
+export type FrontPageProps = ContentCommonProps & {
     type: ContentType.FrontPage;
     data: FrontPageData;
     page: IndexPageProps;
-}
+};
 
 export type AreaPageData = {
     area: Area;
@@ -30,8 +30,8 @@ export type AreaPageData = {
     banner: { link: LinkSelectable; html: ProcessedHtmlProps } & ColorMixin;
 } & CommonData;
 
-export interface AreaPageProps extends ContentCommonProps {
+export type AreaPageProps = ContentCommonProps & {
     type: ContentType.AreaPage;
     data: AreaPageData;
     page: IndexPageProps;
-}
+};

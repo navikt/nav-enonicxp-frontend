@@ -65,7 +65,7 @@ export type OfficeInformationData = {
     kontaktinformasjon: ContactInfo;
 };
 
-export interface OfficeInformationProps extends ContentCommonProps {
+export type OfficeInformationProps = ContentCommonProps & {
     type: ContentType.OfficeInformation;
     data: OfficeInformationData;
-}
+};

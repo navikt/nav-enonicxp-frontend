@@ -10,7 +10,7 @@ export type ContentListData = Partial<{
     sortedBy?: DateTimeKey;
 }>;
 
-export interface ContentListProps extends ContentCommonProps {
+export type ContentListProps = ContentCommonProps & {
     type: ContentType.ContentList;
     data: ContentListData;
-}
+};

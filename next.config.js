@@ -54,6 +54,7 @@ const csp = async () => {
     const xpHost = new URL(process.env.XP_ORIGIN).host;
 
     const qbrickHost = 'video.qbrick.com';
+    const salesforceVideoHost = 'ihb.nav.no';
 
     // These are used by a NAV-funded research project for accessibility-related feedback
     const tingtunHost = '*.tingtun.no';
@@ -92,6 +93,7 @@ const csp = async () => {
         'img-src': [...internalHosts, DATA],
         'frame-src': [qbrickHost],
         'connect-src': [...internalHosts, uxSignalsApiHost],
+        'media-src': [salesforceVideoHost],
     };
 
     if (process.env.NODE_ENV === 'development') {

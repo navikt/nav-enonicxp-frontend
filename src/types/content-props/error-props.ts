@@ -8,7 +8,7 @@ export type ErrorData = {
     feedback?: boolean;
 };
 
-export interface ErrorProps extends ContentCommonProps {
+export type ErrorProps = ContentCommonProps & {
     type: ContentType.Error;
     data: ErrorData;
-}
+};
