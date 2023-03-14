@@ -1,13 +1,15 @@
 import classNames from 'classnames';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { forceArray } from 'utils/arrays';
 import { DetailProps } from '../OfficeEditorialDetail';
 
 /* eslint-disable-next-line */
-import styles from './SharedDetails.module.scss';
+import styles from './SocialHelpLinks.module.scss';
 
 export const SocialHelpLinks = ({ officeData }: DetailProps) => {
-    const socialHelpLinks =
-        officeData.brukerkontakt?.sosialhjelp?.digitaleSoeknader;
+    const socialHelpLinks = forceArray(
+        officeData.brukerkontakt?.sosialhjelp?.digitaleSoeknader
+    );
 
     if (!socialHelpLinks || socialHelpLinks.length === 0) {
         return null;
@@ -19,7 +21,7 @@ export const SocialHelpLinks = ({ officeData }: DetailProps) => {
                 <LenkeBase
                     key={link.lenke}
                     href={link.lenke}
-                    className={classNames(styles.anchor, styles.socialHelpLink)}
+                    className={classNames(styles.singleLink)}
                 >
                     {link.lenketekst}
                 </LenkeBase>
