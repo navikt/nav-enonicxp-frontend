@@ -52,7 +52,11 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
         handleInvalidateAllReq(nextServer)
     );
 
-    expressApp.get('/api/pending', handleGetPendingResponses(nextServer));
+    expressApp.get(
+        '/api/pending',
+        validateSecretMiddleware,
+        handleGetPendingResponses(nextServer)
+    );
 
     expressApp.get('/_next/data/:buildId/*.json', (req, res) => {
         const { buildId } = req.params;
