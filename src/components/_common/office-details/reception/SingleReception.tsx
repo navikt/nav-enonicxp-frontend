@@ -44,17 +44,11 @@ const formatAudienceReception = (
         (acc, elem) => {
             if (elem.dato) {
                 const isoDate = elem.dato;
-                const dato = formatDate({
-                    datetime: elem.dato,
-                    language,
-                    short: false,
-                    year: false,
-                });
 
                 acc.exceptions.push({
                     ...elem,
                     isoDate,
-                    dato,
+                    dato: elem.dato,
                 });
             } else {
                 acc.regular.push({
@@ -68,6 +62,8 @@ const formatAudienceReception = (
             exceptions: [],
         }
     );
+
+    console.log(aapningstider);
 
     return {
         address: formatAddress(audienceReception.besoeksadresse, true),
