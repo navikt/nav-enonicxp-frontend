@@ -33,8 +33,7 @@ const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
 };
 
 const formatAudienceReception = (
-    audienceReception: AudienceReception,
-    language: string = 'no'
+    audienceReception: AudienceReception
 ): FormattedAudienceReception | null => {
     if (!audienceReception) {
         return null;
@@ -62,8 +61,6 @@ const formatAudienceReception = (
             exceptions: [],
         }
     );
-
-    console.log(aapningstider);
 
     return {
         address: formatAddress(audienceReception.besoeksadresse, true),
