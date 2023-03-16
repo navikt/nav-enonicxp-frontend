@@ -19,6 +19,8 @@ import style from './AutoRefreshDisableHack.module.scss';
  * When external changes are detected, we show an alert-box which notifies of changes having occured, and offer a
  * manual reload option instead.
  *
+ * Note: This is very scary and may break things! :D
+ *
  * */
 
 type Props = {
