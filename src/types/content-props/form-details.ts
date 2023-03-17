@@ -1,3 +1,4 @@
+import { OptionSetSingle } from 'types/util-types';
 import { ContentCommonProps, ContentType } from './_content-common';
 
 export type FormTypes = 'application' | 'complaint' | 'addendum';
@@ -16,8 +17,7 @@ export interface FormDetailsData {
     formNumbers: string[];
     title: string;
     ingress: string;
-    formType: {
-        _selected: FormTypes;
+    formType: OptionSetSingle<{
         application: {
             variations: Variation<FormApplicationTypes>[];
         };
@@ -27,7 +27,7 @@ export interface FormDetailsData {
         addendum: {
             variations: Variation<FormAddendumTypes>[];
         };
-    };
+    }>;
 }
 
 export interface FormDetails extends ContentCommonProps {

@@ -1,5 +1,5 @@
 import { Button } from '@navikt/ds-react';
-import { FormDetailsData, Variation } from 'types/content-props/form-details';
+import { Variation } from 'types/content-props/form-details';
 
 import styles from './FormDetailsItem.module.scss';
 
