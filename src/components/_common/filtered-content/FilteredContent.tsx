@@ -20,6 +20,8 @@ export const FilteredContent = ({ filters, children }: Props) => {
         return <>{children}</>;
     }
 
+    // The component has filters set, but no actuals filters are available for the page.
+    // This case is an invalid state, so just show the component.
     if (filters && availableFilters.length === 0) {
         return <>{children}</>;
     }

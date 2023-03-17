@@ -44,11 +44,12 @@ export const useFilterState = (): UseFilterState => {
         selectedFiltersAtPage(state, pageId)
     );
 
-    const setAvailableFilters = (newAvailableFilters: Category[] = []) => {
-        const payload = { pageId, availableFilters: newAvailableFilters };
-        if (newAvailableFilters.length > 0) {
-            dispatch(setAvailableFiltersAction(payload));
+    const setAvailableFilters = (filters: Category[]) => {
+        if (!filters) {
+            return;
         }
+        const payload = { pageId, availableFilters: filters };
+        dispatch(setAvailableFiltersAction(payload));
     };
 
     const toggleFilter = (filterId: string): void => {
