@@ -78,7 +78,12 @@ export const FiltersMenu = ({ config, path, pageProps }: FilterMenuProps) => {
 
     // Will only show if editor didn't add any actual filters in the FiltersMenu part.
     if (!config?.categories) {
-        return <div>{'Det mangler filtre i denne listen.'}</div>;
+        return (
+            <EditorHelp
+                type="error"
+                text="Det er ikke lagt til noen filtere i denne filtermenyen!"
+            />
+        );
     }
 
     const defaultExpandableTitle = getLabel('customizeContent');
