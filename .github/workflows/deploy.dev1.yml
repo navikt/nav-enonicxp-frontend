@@ -16,7 +16,7 @@ jobs:
       XP_ORIGIN: https://www.dev.nav.no
       INNLOGGINGSSTATUS_URL: https://www.dev.nav.no/person/nav-dekoratoren-api/auth
       RELEASE_TAG: dev2-${{ github.sha }}
-      NAVNO_API_URL: https://www.dev.nav.no/person/navno-api
+      NAVNO_API_URL: https://person.ekstern.dev.nav.no/person/navno-api
       FAILOVER_ORIGIN: https://www-failover.dev.nav.no
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}

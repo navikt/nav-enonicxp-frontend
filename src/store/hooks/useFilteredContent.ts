@@ -44,8 +44,11 @@ export const useFilterState = (): UseFilterState => {
         selectedFiltersAtPage(state, pageId)
     );
 
-    const setAvailableFilters = (availableFilters: Category[]) => {
-        const payload = { pageId, availableFilters };
+    const setAvailableFilters = (filters: Category[]) => {
+        if (!filters) {
+            return;
+        }
+        const payload = { pageId, availableFilters: filters };
         dispatch(setAvailableFiltersAction(payload));
     };
 

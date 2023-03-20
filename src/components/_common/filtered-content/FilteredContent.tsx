@@ -20,6 +20,12 @@ export const FilteredContent = ({ filters, children }: Props) => {
         return <>{children}</>;
     }
 
+    // The component has filters set, but no actuals filters are available for the page.
+    // This case is an invalid state, so just show the component.
+    if (availableFilters.length === 0) {
+        return <>{children}</>;
+    }
+
     // If no filters are set for a catetory that this part "belongs to"
     // the part should display as default. To achieve this, we need to find out
     // which categories the part belongs to in the first place.
