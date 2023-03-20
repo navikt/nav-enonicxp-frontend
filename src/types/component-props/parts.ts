@@ -33,6 +33,7 @@ export enum PartType {
     ProductCardMini = 'no.nav.navno:product-card-mini',
     ProductCardMicro = 'no.nav.navno:product-card-micro',
     ProductDetails = 'no.nav.navno:product-details',
+    FormDetails = 'no.nav.navno:form-details',
     ContactOption = 'no.nav.navno:contact-option',
     PayoutDates = 'no.nav.navno:payout-dates',
     AreapageSituationCard = 'no.nav.navno:areapage-situation-card',
@@ -80,6 +81,7 @@ export type PartWithOwnData =
     | PartType.ProductCard
     | PartType.ProductCardMini
     | PartType.ProductCardMicro
+    | PartType.FormDetails
     | PartType.ContactOption
     | PartType.ProductDetails
     | PartType.AlertPanel
