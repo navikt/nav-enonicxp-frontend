@@ -38,7 +38,11 @@ export const Reception = ({ receptions }: LocationsProps) => {
             <div className={styles.chooseBetweenOffices}>
                 {getOfficeTranslations('chooseBetweenOffices')}
             </div>
-            <Tabs value={state} onChange={setState}>
+            <Tabs
+                value={state}
+                onChange={setState}
+                className={styles.officeTabs}
+            >
                 <Tabs.List>
                     {receptions.map((loc: AudienceReception, index) => {
                         const locationLabel = getLocation(loc);
