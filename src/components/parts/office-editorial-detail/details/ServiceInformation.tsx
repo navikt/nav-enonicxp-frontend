@@ -5,12 +5,14 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 
 /* eslint-disable-next-line */
 import styles from './SharedDetails.module.scss';
+import { forceArray } from 'utils/arrays';
 
 export const ServiceInformation = ({ officeData }: DetailProps) => {
     const { language } = usePageConfig();
     const getServiceTranslation = translator('audienceServices', language);
-    const serviceInformation =
-        officeData.brukerkontakt?.brukertjenesteTilbud?.tjenester || [];
+    const serviceInformation = forceArray(
+        officeData.brukerkontakt?.brukertjenesteTilbud?.tjenester
+    );
 
     return (
         <ul className={styles.bulletList}>

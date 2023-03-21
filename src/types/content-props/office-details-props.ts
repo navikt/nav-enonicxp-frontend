@@ -35,12 +35,12 @@ export type Service = {
         | 'TILGANGPC'
         | 'HJELPDIGITALETJENESTER'
         | 'BARNEVERN'
-        | 'KRIMINALOMSORG'
-        | 'FLYKTNING'
-        | 'RUS'
+        | 'FENGSEL_OG_KRIMINALOMSORG'
+        | 'FLYKTNINGSTJENESTE'
+        | 'RUS_OG_PSYKISK_HELSE'
         | 'STARTLAN'
-        | 'STOETTEKONTAKT'
-        | 'SJOFART';
+        | 'SJOFARTSOPPGAVER'
+        | 'STOTTEKONTAKT';
 };
 
 type AudienceServices = {
