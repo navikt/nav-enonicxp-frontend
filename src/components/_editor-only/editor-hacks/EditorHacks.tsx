@@ -1,11 +1,13 @@
-import { ContentProps } from '../../../types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import { AutoReloadDisableHack } from './auto-refresh-disable/AutoReloadDisableHack';
 import {
-    EditorFeatureCookie,
+    EditorFeature,
     isEditorFeatureEnabled,
 } from '../site-info/feature-toggles/utils';
 import { SetSidepanelToggleHack } from './set-sidepanels-defaults/SetSidepanelToggleHack';
 import { CustomSelectorLinkTargetHack } from './custom-selector-link-target/CustomSelectorLinkTargetHack';
+import { editorFeatures } from 'components/_editor-only/site-info/feature-toggles/SiteInfoFeatureToggles';
+import { TogglePublishDependencies } from 'components/_editor-only/editor-hacks/toggle-publish-dependencies/TogglePublishDependencies';
 
 // This implements quality-of-life fixes to improve the experiences for Content Studio users
 
@@ -27,10 +29,14 @@ export const EditorHacks = ({ content }: Props) => {
                     <AutoReloadDisableHack content={content} />
                     <CustomSelectorLinkTargetHack />
                     {isEditorFeatureEnabled(
-                        EditorFeatureCookie.HideLeftPanel
+                        editorFeatures[EditorFeature.HideLeftPanel]
                     ) && <SetSidepanelToggleHack contentId={_id} />}
                 </>
             )}
+            {(editorView === 'edit' || editorView === 'inline') &&
+                isEditorFeatureEnabled(
+                    editorFeatures[EditorFeature.UncheckDependenciesPublish]
+                ) && <TogglePublishDependencies />}
         </>
     );
 };
