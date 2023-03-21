@@ -81,16 +81,10 @@ export const hookDispatchEventForBatchContentServerEvent = ({
 
     const dispatchEvent = parent.window.dispatchEventActual;
 
-    let prevWorkflowState;
     let userId;
-    let skipNextEventIfBatchContentServerEvent = false;
 
     editorFetchAdminUserId().then((id) => {
         userId = id;
-    });
-
-    editorFetchAdminContent(contentId).then((res) => {
-        prevWorkflowState = res?.workflow.state;
     });
 
     parent.window.dispatchEvent = (event: CustomEvent) => {
@@ -100,7 +94,6 @@ export const hookDispatchEventForBatchContentServerEvent = ({
         // We only want to intercept events of the BatchContentServerEvent type, which is what triggers UI updates
         // for content changes on the client. All other events should be dispatched as normal.
         if (eventType !== 'BatchContentServerEvent') {
-            skipNextEventIfBatchContentServerEvent = false;
             return dispatchEvent(event);
         }
 
@@ -119,22 +112,12 @@ export const hookDispatchEventForBatchContentServerEvent = ({
             return false;
         }
 
-        if (skipNextEventIfBatchContentServerEvent) {
-            console.log('Skipping this event as skipNext flag was set');
-            skipNextEventIfBatchContentServerEvent = false;
-            return false;
-        }
-
         // Publish and unpublish events must always be dispatched in order to keep the editor UI consistent
-        // These events are sometimes followed by a BatchContentServerEvent, despite no actual content changes
-        // having occurred (the skipNext flag is used to handle this)
         if (detailType === NodeServerChangeType.PUBLISH) {
             console.log('Content published - dispatching event');
-            skipNextEventIfBatchContentServerEvent = true;
             return dispatchEvent(event);
         } else if (detailType === NodeServerChangeType.DELETE) {
             console.log('Content unpublished - dispatching event');
-            skipNextEventIfBatchContentServerEvent = true;
             return dispatchEvent(event);
         }
 
@@ -150,55 +133,34 @@ export const hookDispatchEventForBatchContentServerEvent = ({
 
         // We use the internal Content Studio content api to check who last modified the content
         editorFetchAdminContent(contentId).then((content) => {
-            if (!content) {
-                // In the unexpected event that this call fails, just dispatch the event as normal to ensure we
-                // don't break anything :)
-                // (this probably indicates that the undocumented api used here has changed)
-                console.error(
-                    'Could not fetch admin content - dispatching event'
-                );
+            // If the content could not be fetched, or if it was modified by the current user, dispatch the event
+            // as normal
+            if (!content || content.modifier === userId) {
                 dispatchEvent(event);
-            } else if (content.modifier === userId) {
-                // If the current user performed the edit which triggered the event, the event should be ignored
-                // if and only if the workflow state was "IN_PROGRESS" (ie "mark as ready") both before and after
-                // the edit. In this case there is no UI-update needed, and we can ignore the event and prevent
-                // an unnecessary UI-refresh
-                const newWorkflowState = content.workflow.state;
-                console.log(
-                    `Edit by current user ${userId} - workflow state before: ${prevWorkflowState} - after: ${newWorkflowState}`
-                );
+                return;
+            }
 
-                if (
-                    newWorkflowState !== 'IN_PROGRESS' ||
-                    prevWorkflowState !== 'IN_PROGRESS'
-                ) {
-                    dispatchEvent(event);
+            // If another user (or service call/scheduled task/script/etc) updated the content, we want to prevent
+            // an immediate UI-refresh, as this may cause the current user to lose their changes. We show a
+            // warning message instead, and give the user an option to dispatch the update event manually
+            console.log(
+                `Content was updated by another user (${userId}) - showing warning`
+            );
+
+            editorFetchUserInfo(content.modifier).then((userInfo) => {
+                if (userInfo) {
+                    setExternalUserName(
+                        getUserNameFromEmail(userInfo.displayName)
+                    );
                 }
 
-                prevWorkflowState = newWorkflowState;
-            } else {
-                // If another user (or service call/scheduled task/script/etc) updated the content, we want to prevent
-                // an immediate UI-refresh, as this may cause the current user to lose their changes. We show a
-                // warning message instead, and give the user an option to dispatch the update event manually
-                console.log(
-                    `Content was updated by another user (${userId}) - showing warning`
-                );
+                setExternalContentChange(true);
 
-                editorFetchUserInfo(content.modifier).then((userInfo) => {
-                    if (userInfo) {
-                        setExternalUserName(
-                            getUserNameFromEmail(userInfo.displayName)
-                        );
-                    }
-
-                    setExternalContentChange(true);
-
-                    // Save the most recent update event for an eventual user-triggered dispatch
-                    if (detailType === NodeServerChangeType.UPDATE) {
-                        setExternalUpdateEvent(event);
-                    }
-                });
-            }
+                // Save the most recent update event for an eventual user-triggered dispatch
+                if (detailType === NodeServerChangeType.UPDATE) {
+                    setExternalUpdateEvent(event);
+                }
+            });
         });
 
         // This event may be dispatched in the previous async statement, however we return immediately to

@@ -1,0 +1,14 @@
+@use 'src/common' as common;
+
+.formDetails {
+    margin-bottom: 1.75rem;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+
+    @media #{common.$mq-screen-mobile} {
+        flex-direction: column;
+    }
+}
