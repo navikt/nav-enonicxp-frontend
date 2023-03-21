@@ -1,11 +1,12 @@
 import React from 'react';
-import {
-    EditorFeature,
-    isEditorFeatureEnabled,
-    setEditorFeatureToggle,
-} from './utils';
+import { isEditorFeatureEnabled, setEditorFeatureToggle } from './utils';
 import { Checkbox } from '@navikt/ds-react';
 import { SiteInfoSubHeader } from '../_common/sub-header/SiteInfoSubHeader';
+
+export enum EditorFeature {
+    HideLeftPanel = 'hide-left-panel',
+    UncheckDependenciesPublish = 'uncheck-dependencies-publish',
+}
 
 export type EditorFeatureProps = {
     cookie: EditorFeature;
@@ -22,7 +23,8 @@ export const editorFeatures: Record<EditorFeature, EditorFeatureProps> = {
     },
     [EditorFeature.UncheckDependenciesPublish]: {
         cookie: EditorFeature.UncheckDependenciesPublish,
-        description: 'Slår av publisering av referanser som standard-valg',
+        description:
+            'Setter standard-valget for publisering av avhengigheter til av',
         defaultValue: true,
     },
 };
@@ -38,7 +40,7 @@ export const SiteInfoFeatureToggles = () => {
                     <Checkbox
                         size={'small'}
                         key={cookie}
-                        defaultChecked={isEditorFeatureEnabled(feature)}
+                        defaultChecked={isEditorFeatureEnabled(cookie)}
                         onClick={(e) => {
                             setEditorFeatureToggle(
                                 cookie,

@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
 
+/*
+ * Sets the default option for publishing dependencies to off/unchecked
+ * */
+
 const DIALOG_CONTAINER_CLASS = 'dialog-container';
 const PUBLISH_DIALOG_ID = 'ContentPublishDialog';
 const DEPENDANTS_CONTROLS_CLASS = 'dependants-controls';
@@ -8,9 +12,14 @@ const DID_TOGGLE_FLAG = 'did-toggle';
 const ALL_DEPENDANTS_CHECKBOX_SELECTOR = `#${PUBLISH_DIALOG_ID} .${DEPENDANTS_CONTROLS_CLASS} input[type="checkbox"]`;
 
 const uncheckPublishAll = () => {
-    const dialogContainer = parent.window.document.querySelector(
-        `.${DIALOG_CONTAINER_CLASS}`
-    );
+    const dialogContainer = parent.window.document.getElementsByClassName(
+        DIALOG_CONTAINER_CLASS
+    )[0];
+
+    if (!dialogContainer) {
+        console.log('No dialog container found!');
+        return;
+    }
 
     const allDependantsCheckbox = parent.window.document.querySelector(
         ALL_DEPENDANTS_CHECKBOX_SELECTOR
@@ -39,7 +48,6 @@ export const TogglePublishDependencies = () => {
                     mutation.target?.id === 'DialogStateBar' &&
                     !mutation.target.classList.contains('checking')
                 ) {
-                    console.log(mutation);
                     uncheckPublishAll();
                 }
                 mutation.addedNodes.forEach((node) => {
@@ -58,8 +66,6 @@ export const TogglePublishDependencies = () => {
             subtree: true,
             attributeFilter: ['class'],
         });
-
-        console.log('Added observer');
 
         return () => observer.disconnect();
     }, []);
