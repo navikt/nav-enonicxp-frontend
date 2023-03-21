@@ -78,12 +78,18 @@ export const translationsBundleEn: Translations = {
         showingInformationFor: 'Showing information for:',
     },
     audienceServices: {
+        NODSITUASJON:
+            'Hjelp i nødsituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
+        TILGANGPC: 'Tilgang til PC',
+        HJELPDIGITALETJENESTER:
+            'Hjelp til å bruke digitale tjenester hvis du trenger det',
         BARNEVERN: 'Barnevern',
-        KRIMINALOMSORG: 'Kriminalomsorg',
-        FLYKTNING: 'Flyktning',
-        RUS: 'Rus',
+        FENGSEL_OG_KRIMINALOMSORG: 'Fengsel- og kriminalomsorg',
+        FLYKTNINGSTJENESTE: 'Flyktningetjeneste',
+        RUS_OG_PSYKISK_HELSE: 'Rus og psykisk helse',
         STARTLAN: 'Startlån',
-        STOETTEKONTAKT: 'Støttekontakt',
+        SJOFARTSOPPGAVER: 'Sjøfartsoppgaver',
+        STOTTEKONTAKT: 'Støttekontakt',
     },
     currentTopic: {
         tag: 'Featured',

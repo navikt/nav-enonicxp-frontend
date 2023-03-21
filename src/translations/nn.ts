@@ -114,12 +114,18 @@ export const translationsBundleNn: Translations = {
         closed: 'Stengt',
     },
     audienceServices: {
+        NODSITUASJON:
+            'Hjelp i nødsituasjonar, til dømes mellombels botilbud eller økonomisk sosialhjelp',
+        TILGANGPC: 'Tilgang til PC',
+        HJELPDIGITALETJENESTER:
+            'Hjelp til å bruke digitale tjenestar hvis du treng det',
         BARNEVERN: 'Barnevern',
-        KRIMINALOMSORG: 'Kriminalomsorg',
-        FLYKTNING: 'Flyktning',
-        RUS: 'Rus',
+        FENGSEL_OG_KRIMINALOMSORG: 'Fengsel- og kriminalomsorg',
+        FLYKTNINGSTJENESTE: 'Flyktningetjeneste',
+        RUS_OG_PSYKISK_HELSE: 'Rus og psykisk helse',
         STARTLAN: 'Startlån',
-        STOETTEKONTAKT: 'Støttekontakt',
+        SJOFARTSOPPGAVER: 'Sjøfartsoppgavar',
+        STOTTEKONTAKT: 'Støttekontakt',
     },
     relatedContent,
     taxonomies,
