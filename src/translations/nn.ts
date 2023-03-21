@@ -167,7 +167,7 @@ export const translationsBundleNn: Translations = {
         officeNumber: 'Kontornummer',
         phoneToNav: 'Telefonnummeret til NAV er',
         phoneInformation:
-            'Åpent, kvardagar kl. 09:00–15:00. NAV Kontaktsenter hjelper deg eller sett deg i kontakt med ditt NAV-kontor.',
+            'Åpent, kvardagar kl. 9-15. NAV Kontaktsenter hjelper deg eller sett deg i kontakt med ditt NAV-kontor.',
     },
     overview: {
         noProducts: 'Ingen treff',
@@ -200,12 +200,12 @@ export const translationsBundleNn: Translations = {
         chat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00).',
+                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 9-15).',
         },
         legacyChat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00).',
+                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 9-15).',
         },
         write: {
             title: 'Skriv til oss',
@@ -224,7 +224,7 @@ export const translationsBundleNn: Translations = {
         call: {
             title: 'Ring oss på 55 55 33 33',
             ingress:
-                'Kvardagar 09:00-15:00. Vi kan ringe deg tilbake viss ventetida er over 5 minutt.',
+                'Kvardagar 9-15. Vi kan ringe deg tilbake viss ventetida er over 5 minutt.',
         },
         shared: {
             closed: 'Stengt',

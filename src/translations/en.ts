@@ -128,7 +128,7 @@ export const translationsBundleEn: Translations = {
         officeNumber: 'Office number',
         phoneToNav: 'NAV phone number is',
         phoneInformation:
-            'Open, weekdays at 09:00–15:00. NAV call center will assist you or connect you with your NAV office.',
+            'Open, weekdays at 9-15. NAV call center will assist you or connect you with your NAV office.',
     },
     dateTime: {
         weekDayNames: [
@@ -208,12 +208,12 @@ export const translationsBundleEn: Translations = {
         chat: {
             title: 'Chat with Frida',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 9-15).',
         },
         legacyChat: {
             title: 'You can chat with us',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 9-15).',
         },
         write: {
             title: 'Write to us',
@@ -232,7 +232,7 @@ export const translationsBundleEn: Translations = {
         call: {
             title: 'Call us at +47 55 55 33 33',
             ingress:
-                'Weekdays 09:00–15:00. We can call you back if the wait time is more than 5 minutes.',
+                'Weekdays 9-15. We can call you back if the wait time is more than 5 minutes.',
         },
         shared: {
             closed: 'Closed',
