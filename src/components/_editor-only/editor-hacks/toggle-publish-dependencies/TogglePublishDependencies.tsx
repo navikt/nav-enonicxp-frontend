@@ -22,9 +22,10 @@ const uncheckPublishAllDependants = () => {
         return;
     }
 
-    const allDependantsCheckbox = parent.window.document.querySelector(
-        ALL_DEPENDANTS_CHECKBOX_SELECTOR
-    ) as HTMLInputElement | null;
+    const allDependantsCheckbox =
+        parent.window.document.querySelector<HTMLInputElement>(
+            ALL_DEPENDANTS_CHECKBOX_SELECTOR
+        );
 
     if (!allDependantsCheckbox) {
         console.log('No dependants checkbox found!');
