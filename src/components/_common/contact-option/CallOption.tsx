@@ -90,9 +90,6 @@ export const CallOption = (props: CallOptionProps) => {
 
     const shortenOpeningTime = (futureTime: string) => {
         const [hours, minutes] = futureTime.split(':');
-        console.log('shortenFutureTime');
-
-        console.log(hours, minutes);
 
         if (minutes !== '00') {
             return `${hours}:${minutes}`;
