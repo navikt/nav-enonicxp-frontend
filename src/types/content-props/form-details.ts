@@ -11,6 +11,8 @@ export interface Variation<T = string> {
     type: T;
     url: string;
     label: string;
+    title?: string;
+    ingress?: string;
 }
 
 export interface FormDetailsData {

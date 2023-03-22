@@ -1,12 +1,21 @@
 @use 'src/common' as common;
 
-.cta {
+.variation {
     display: flex;
-    width: max-content;
+    flex-direction: column;
+}
+
+.horizontal {
+    flex-direction: row;
 
     &:not(:last-child) {
         margin-right: 1rem;
     }
+}
+
+.cta {
+    display: flex;
+    width: max-content;
 
     @media #{common.$mq-screen-mobile} {
         width: 100%;

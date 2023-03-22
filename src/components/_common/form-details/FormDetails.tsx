@@ -1,6 +1,6 @@
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
-import { FormDetailsItem } from './FormDetailsItem';
+import { FormDetailsVariation } from './FormDetailsVariation';
 
 import styles from './FormDetails.module.scss';
 
@@ -26,7 +26,7 @@ export const FormDetails = ({ formDetails }: FormDetailsProps) => {
             <BodyLong spacing>{formDetails.ingress}</BodyLong>
             <div className={styles.buttonContainer}>
                 {variations.map((variation, index: number) => (
-                    <FormDetailsItem
+                    <FormDetailsVariation
                         key={variation.label}
                         variation={variation}
                         index={index}
