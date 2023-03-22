@@ -3,6 +3,7 @@ import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { FormDetailsVariation } from './FormDetailsVariation';
 
 import styles from './FormDetails.module.scss';
+import classNames from 'classnames';
 
 type FormDetailsProps = {
     formDetails: FormDetailsData;
@@ -14,6 +15,11 @@ export const FormDetails = ({ formDetails }: FormDetailsProps) => {
     const variations = (formDetails.formType[formType._selected]?.variations ||
         []) as Variation[];
 
+    const direction =
+        formDetails.formType._selected === 'addendum'
+            ? 'vertical'
+            : 'horizontal';
+
     if (variations.length === 0) {
         return null;
     }
@@ -24,7 +30,12 @@ export const FormDetails = ({ formDetails }: FormDetailsProps) => {
                 {formDetails.title}
             </Heading>
             <BodyLong spacing>{formDetails.ingress}</BodyLong>
-            <div className={styles.buttonContainer}>
+            <div
+                className={classNames(
+                    styles.variationWrapper,
+                    styles[direction]
+                )}
+            >
                 {variations.map((variation, index: number) => (
                     <FormDetailsVariation
                         key={variation.label}

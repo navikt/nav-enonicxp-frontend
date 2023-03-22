@@ -5,6 +5,12 @@
     flex-direction: column;
 }
 
+.vertical {
+    &:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+}
+
 .horizontal {
     flex-direction: row;
 

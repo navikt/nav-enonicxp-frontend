@@ -15,15 +15,10 @@ export const FormDetailsVariation = (props: FormsListItemProps) => {
 
     const variant = index === 0 ? 'primary' : 'secondary';
 
-    const hasIntro = !!(title || ingress);
+    const direction = title || ingress ? 'vertical' : 'horizontal';
 
     return (
-        <div
-            className={classNames(
-                styles.variation,
-                !hasIntro && styles.horizontal
-            )}
-        >
+        <div className={classNames(styles.variation, styles[direction])}>
             {title && (
                 <Heading level="3" size="small">
                     {title}

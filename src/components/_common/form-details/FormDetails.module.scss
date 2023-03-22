@@ -4,11 +4,18 @@
     margin-bottom: 1.75rem;
 }
 
-.buttonContainer {
+.variationWrapper {
     display: flex;
-    flex-direction: row;
 
     @media #{common.$mq-screen-mobile} {
         flex-direction: column;
     }
+}
+
+.horizontal {
+    flex-direction: row;
+}
+
+.vertical {
+    flex-direction: column;
 }
