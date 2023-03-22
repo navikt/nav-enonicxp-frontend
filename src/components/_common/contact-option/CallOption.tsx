@@ -88,6 +88,15 @@ export const CallOption = (props: CallOptionProps) => {
         return null;
     };
 
+    const shortenOpeningTime = (futureTime: string) => {
+        const [hours, minutes] = futureTime.split(':');
+
+        if (minutes !== '00') {
+            return `${hours}:${minutes}`;
+        }
+        return Number.parseInt(hours, 10).toString();
+    };
+
     const buildOpeningLaterTodayString = (time: string) => {
         const closedNowTemplate = sharedTranslations['closedNow'];
         const opensTemplate = sharedTranslations['opensAt'];
@@ -142,7 +151,7 @@ export const CallOption = (props: CallOptionProps) => {
             endOfToday,
             startOfToday,
         } = getDates(openingHour);
-        const { from, to } = openingHour;
+        const { from } = openingHour;
 
         // Misc opening / closed states
         const isOpenNow = norwayEpoch > opensEpoch && norwayEpoch < closesEpoch;
@@ -160,15 +169,17 @@ export const CallOption = (props: CallOptionProps) => {
             if (!nextOpeningHour) {
                 return 'no opening hour found';
             }
+            const openingTime = shortenOpeningTime(nextOpeningHour.from);
             const futureOpeningString = buildFutureOpenString(
                 nextOpeningHour.date,
-                nextOpeningHour.from
+                openingTime
             );
             return `${openClosedText} • ${futureOpeningString.toLowerCase()}`;
         }
 
         if (isOpeningLaterToday) {
-            return buildOpeningLaterTodayString(from);
+            const openingTime = shortenOpeningTime(from);
+            return buildOpeningLaterTodayString(openingTime);
         }
 
         return `${openClosedText}`;

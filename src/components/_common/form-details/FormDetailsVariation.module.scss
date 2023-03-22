@@ -1,0 +1,41 @@
+@use 'src/common' as common;
+
+.variation {
+    display: flex;
+
+    &.vertical {
+        flex-direction: column;
+
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &.horizontal {
+        flex-direction: row;
+        margin-right: 1rem;
+
+        @media #{common.$mq-screen-mobile} {
+            flex-direction: column;
+            margin-right: 0;
+
+            &:not(:last-child) {
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+}
+
+.cta {
+    display: flex;
+    width: max-content;
+
+    @media #{common.$mq-screen-mobile} {
+        width: 100%;
+        margin-right: 0;
+
+        &:not(:last-child) {
+            margin-bottom: 0.5rem;
+        }
+    }
+}

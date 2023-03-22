@@ -1,33 +1,52 @@
 import React from 'react';
 import {
-    EditorFeatureCookie,
     isEditorFeatureEnabled,
     setEditorFeatureToggle,
-} from './utils';
+} from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
 import { Checkbox } from '@navikt/ds-react';
 import { SiteInfoSubHeader } from '../_common/sub-header/SiteInfoSubHeader';
 
-const featureProps = [
-    {
-        cookie: EditorFeatureCookie.HideLeftPanel,
+export enum EditorFeature {
+    HideLeftPanel = 'hide-left-panel',
+    UncheckDependenciesPublish = 'uncheck-dependencies-publish',
+}
+
+export type EditorFeatureProps = {
+    key: EditorFeature;
+    description: string;
+    defaultValue: boolean;
+};
+
+export const editorFeatures: Record<EditorFeature, EditorFeatureProps> = {
+    [EditorFeature.HideLeftPanel]: {
+        key: EditorFeature.HideLeftPanel,
         description:
             'Skjuler venstre-panelet i editoren som standard på komponent-baserte sider',
+        defaultValue: false,
     },
-];
+    [EditorFeature.UncheckDependenciesPublish]: {
+        key: EditorFeature.UncheckDependenciesPublish,
+        description:
+            'Reverserer standard-valget for publisering av avhengigheter (ingen avhengigheter publiseres)',
+        defaultValue: process.env.ENV !== 'prod',
+    },
+};
 
 export const SiteInfoFeatureToggles = () => {
     return (
         <div>
             <SiteInfoSubHeader text={'Eksperimentell funksjonalitet'} />
-            {featureProps.map(({ cookie, description }) => {
+            {Object.values(editorFeatures).map((feature) => {
+                const { description, key } = feature;
+
                 return (
                     <Checkbox
                         size={'small'}
-                        key={cookie}
-                        defaultChecked={isEditorFeatureEnabled(cookie)}
+                        key={key}
+                        defaultChecked={isEditorFeatureEnabled(key)}
                         onClick={(e) => {
                             setEditorFeatureToggle(
-                                cookie,
+                                key,
                                 e.currentTarget.checked
                             );
                         }}
