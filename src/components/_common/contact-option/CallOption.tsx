@@ -88,7 +88,7 @@ export const CallOption = (props: CallOptionProps) => {
         return null;
     };
 
-    const shortenFutureTime = (futureTime: string) => {
+    const shortenOpeningTime = (futureTime: string) => {
         const [hours, minutes] = futureTime.split(':');
         console.log('shortenFutureTime');
 
@@ -172,7 +172,7 @@ export const CallOption = (props: CallOptionProps) => {
             if (!nextOpeningHour) {
                 return 'no opening hour found';
             }
-            const openingTime = shortenFutureTime(nextOpeningHour.from);
+            const openingTime = shortenOpeningTime(nextOpeningHour.from);
             const futureOpeningString = buildFutureOpenString(
                 nextOpeningHour.date,
                 openingTime
@@ -181,7 +181,7 @@ export const CallOption = (props: CallOptionProps) => {
         }
 
         if (isOpeningLaterToday) {
-            const openingTime = shortenFutureTime(from);
+            const openingTime = shortenOpeningTime(from);
             return buildOpeningLaterTodayString(openingTime);
         }
 
