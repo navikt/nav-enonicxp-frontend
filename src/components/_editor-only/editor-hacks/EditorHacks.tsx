@@ -3,7 +3,7 @@ import { AutoReloadDisableHack } from './auto-refresh-disable/AutoReloadDisableH
 import { SetSidepanelToggleHack } from './set-sidepanels-defaults/SetSidepanelToggleHack';
 import { CustomSelectorLinkTargetHack } from './custom-selector-link-target/CustomSelectorLinkTargetHack';
 import { TogglePublishDependencies } from 'components/_editor-only/editor-hacks/toggle-publish-dependencies/TogglePublishDependencies';
-import { isEditorFeatureEnabled } from 'components/_editor-only/site-info/feature-toggles/utils';
+import { isEditorFeatureEnabled } from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
 import { EditorFeature } from 'components/_editor-only/site-info/feature-toggles/SiteInfoFeatureToggles';
 
 // This implements quality-of-life fixes to improve the experiences for Content Studio users

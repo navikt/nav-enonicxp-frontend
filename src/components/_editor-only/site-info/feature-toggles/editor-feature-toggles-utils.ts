@@ -5,9 +5,9 @@ import {
 } from 'components/_editor-only/site-info/feature-toggles/SiteInfoFeatureToggles';
 
 export const isEditorFeatureEnabled = (feature: EditorFeature) => {
-    const { cookie, defaultValue } = editorFeatures[feature];
+    const { key, defaultValue } = editorFeatures[feature];
 
-    const cookieValue = Cookie.get(cookie);
+    const cookieValue = Cookie.get(key);
 
     return cookieValue === undefined ? defaultValue : cookieValue === 'true';
 };
