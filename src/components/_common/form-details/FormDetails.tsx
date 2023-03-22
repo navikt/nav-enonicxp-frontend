@@ -40,6 +40,7 @@ export const FormDetails = ({ formDetails }: FormDetailsProps) => {
                     <FormDetailsVariation
                         key={variation.label}
                         variation={variation}
+                        direction={direction}
                         index={index}
                     />
                 ))}

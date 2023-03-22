@@ -6,14 +6,14 @@
 
 .variationWrapper {
     display: flex;
-
-    @media #{common.$mq-screen-mobile} {
-        flex-direction: column;
-    }
 }
 
 .horizontal {
     flex-direction: row;
+
+    @media #{common.$mq-screen-mobile} {
+        flex-direction: column;
+    }
 }
 
 .vertical {

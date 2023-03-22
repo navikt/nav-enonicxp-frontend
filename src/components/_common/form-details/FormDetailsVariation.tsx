@@ -7,15 +7,14 @@ import styles from './FormDetailsVariation.module.scss';
 type FormsListItemProps = {
     variation: Variation;
     index: number;
+    direction: 'vertical' | 'horizontal';
 };
 
 export const FormDetailsVariation = (props: FormsListItemProps) => {
-    const { variation, index } = props;
+    const { variation, index, direction } = props;
     const { url, label, title, ingress } = variation;
 
     const variant = index === 0 ? 'primary' : 'secondary';
-
-    const direction = title || ingress ? 'vertical' : 'horizontal';
 
     return (
         <div className={classNames(styles.variation, styles[direction])}>

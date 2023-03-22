@@ -2,20 +2,27 @@
 
 .variation {
     display: flex;
-    flex-direction: column;
-}
 
-.vertical {
-    &:not(:last-child) {
-        margin-bottom: 2rem;
+    &.vertical {
+        flex-direction: column;
+
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+        }
     }
-}
 
-.horizontal {
-    flex-direction: row;
-
-    &:not(:last-child) {
+    &.horizontal {
+        flex-direction: row;
         margin-right: 1rem;
+
+        @media #{common.$mq-screen-mobile} {
+            flex-direction: column;
+            margin-right: 0;
+
+            &:not(:last-child) {
+                margin-bottom: 0.5rem;
+            }
+        }
     }
 }
 
