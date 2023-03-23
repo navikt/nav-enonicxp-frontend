@@ -7,6 +7,10 @@ import { OfficeDetails } from 'components/_common/office-details/OfficeDetails';
 export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
     const editorialPage = props.editorial;
 
+    if (!editorialPage) {
+        console.error(`No editorial page found for ${props.displayName}`);
+    }
+
     return (
         <div className={'officeBranchPage'}>
             <OfficePageHeader
@@ -15,10 +19,12 @@ export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
             />
             <OfficeDetails officeData={props.data} />
             <div className={'content'}>
-                <ComponentMapper
-                    componentProps={editorialPage.page}
-                    pageProps={props}
-                />
+                {editorialPage && (
+                    <ComponentMapper
+                        componentProps={editorialPage.page}
+                        pageProps={props}
+                    />
+                )}
             </div>
         </div>
     );
