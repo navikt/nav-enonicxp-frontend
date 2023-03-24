@@ -1,7 +1,7 @@
 import React from 'react';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 import { StaticImage } from '../../_common/image/StaticImage';
-import { classNames } from '../../../utils/classnames';
+import { classNames } from 'utils/classnames';
 import { BodyShort } from '@navikt/ds-react';
 import helpIcon from '/public/gfx/help.svg';
 import errorIcon from '/public/gfx/error.svg';
@@ -30,7 +30,13 @@ export const EditorHelp = ({ text, type = 'help' }: Props) => {
     const { pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
 
-    if (editorView !== 'edit') {
+    if (!editorView) {
+        return null;
+    }
+
+    // Show errors in all editor views. Info/help should only be shown in the edit-view
+    // as we want the other views to be as similar to the public view as possible
+    if (editorView !== 'edit' && type !== 'error') {
         return null;
     }
 
@@ -41,7 +47,11 @@ export const EditorHelp = ({ text, type = 'help' }: Props) => {
                 alt={''}
                 className={classNames(style.icon, style[type])}
             />
-            <BodyShort spacing={false} size="small" className={style.content}>
+            <BodyShort
+                spacing={false}
+                size="small"
+                className={classNames(style.content, style[type])}
+            >
                 {text}
             </BodyShort>
         </div>
