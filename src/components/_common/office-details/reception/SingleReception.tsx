@@ -1,5 +1,5 @@
 import { ClockFilled, Information, PlaceFilled } from '@navikt/ds-icons';
-import { Alert, BodyShort, Heading } from '@navikt/ds-react';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import classNames from 'classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
@@ -7,7 +7,6 @@ import {
     AudienceReception,
     OpeningHours as OpeningHoursProps,
 } from 'types/content-props/office-details-props';
-import { formatDate } from 'utils/datetime';
 import { formatAddress } from '../utils';
 import { OpeningHours } from './OpeningHours';
 
