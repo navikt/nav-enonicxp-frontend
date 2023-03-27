@@ -6,7 +6,6 @@ import {
 import { Language, translator } from 'translations';
 import { formatDate } from 'utils/datetime';
 import {
-    getCurrentOpeningInfo,
     getOpeningInfoForDateTime,
     openingHourTimeFormat,
 } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
@@ -89,20 +88,19 @@ const buildFutureOpenString = (
 
 export const getOpenInformationText = (
     openingHours: OpeningInfoProps[],
+    currentOpeningInfo: OpeningInfoProps,
     language: Language
 ) => {
     const translations = translator('contactPoint', language)('shared');
 
-    const todaysOpeningHour = getCurrentOpeningInfo(openingHours);
-
-    const { status } = todaysOpeningHour;
+    const { status } = currentOpeningInfo;
 
     switch (status) {
         case 'OPEN': {
             return translations['openNow'];
         }
         case 'OPEN_LATER': {
-            return buildOpeningLaterTodayString(todaysOpeningHour, language);
+            return buildOpeningLaterTodayString(currentOpeningInfo, language);
         }
         case 'CLOSED': {
             const nextOpeningHour = getNextOpenOpeningHour(openingHours);

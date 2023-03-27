@@ -1,4 +1,4 @@
-import { processOpeningHours } from 'components/_common/contact-option/opening-info/helpers/processOpeningHours';
+import { processOpeningInfo } from 'components/_common/contact-option/opening-info/helpers/processOpeningInfo';
 import {
     OpeningHourRegularRaw,
     OpeningHourSpecialRaw,
@@ -68,7 +68,7 @@ const specialOpeningHours: OpeningHourSpecialRaw[] = [
 ];
 
 const getOpeningInfo = () => {
-    const openingHours = processOpeningHours(
+    const openingHours = processOpeningInfo(
         regularOpeningHours,
         specialOpeningHours
     );

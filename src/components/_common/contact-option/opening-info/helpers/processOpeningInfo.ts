@@ -73,7 +73,7 @@ const getRegularOpeningHour = (
         (openingHour) => day.day() === dayNameToIndex[openingHour.dayName]
     );
 
-export const processOpeningHours = (
+export const processOpeningInfo = (
     regularOpeningHours: OpeningHourRegularRaw[] = [],
     specialOpeningHours: OpeningHourSpecialRaw[] = []
 ): OpeningInfoProps[] => {

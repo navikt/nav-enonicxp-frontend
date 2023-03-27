@@ -5,7 +5,7 @@ import { getCurrentOpeningInfo } from 'components/_common/contact-option/opening
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { OpeningInfoProps } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
 import { getOpenInformationText } from 'components/_common/contact-option/opening-info/helpers/openingInfoText';
-import { processOpeningHours } from 'components/_common/contact-option/opening-info/helpers/processOpeningHours';
+import { processOpeningInfo } from 'components/_common/contact-option/opening-info/helpers/processOpeningInfo';
 
 import style from './OpeningInfo.module.scss';
 import { Loader } from '@navikt/ds-react';
@@ -25,21 +25,19 @@ export const OpeningInfo = ({
 }: Props) => {
     const { language } = usePageConfig();
 
-    const [openingHour, setOpeningHour] = useState<OpeningInfoProps | null>(
-        null
-    );
+    const [currentOpeningInfo, setCurrentOpeningInfo] =
+        useState<OpeningInfoProps | null>(null);
 
-    const openingHours = processOpeningHours(
+    const allOpeningInfo = processOpeningInfo(
         regularOpeningHours.hours,
         specialOpeningHours.hours
     );
 
     useEffect(() => {
-        const openingHour = getCurrentOpeningInfo(openingHours);
-        setOpeningHour(openingHour);
-    }, [openingHours]);
+        setCurrentOpeningInfo(getCurrentOpeningInfo(allOpeningInfo));
+    }, [allOpeningInfo]);
 
-    if (!openingHour) {
+    if (!currentOpeningInfo) {
         return <Loader size={'xsmall'} />;
     }
 
@@ -47,10 +45,16 @@ export const OpeningInfo = ({
         <Chip
             className={classNames(
                 style.openingStatus,
-                openingHour.status === 'OPEN' ? style.open : style.closed
+                currentOpeningInfo.status === 'OPEN' ? style.open : style.closed
             )}
         >
-            <>{getOpenInformationText(openingHours, language)}</>
+            <>
+                {getOpenInformationText(
+                    allOpeningInfo,
+                    currentOpeningInfo,
+                    language
+                )}
+            </>
         </Chip>
     );
 };
