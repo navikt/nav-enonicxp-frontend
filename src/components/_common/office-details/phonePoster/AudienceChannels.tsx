@@ -7,13 +7,25 @@ type AudienceChannelsProps = {
     publikumskanaler: AudienceContact[];
 };
 
+const splitPhoneNumber = (acc: string[], char: string, index: number) => {
+    return index % 2 === 0 ? [...acc, char] : [...acc, char, ' '];
+};
+
 export const AudienceChannels = ({
     publikumskanaler,
 }: AudienceChannelsProps) => {
     const linkify = (text: string) => {
         const isEmail = text.includes('@');
+        const humanReadablePhoneNumber = text
+            .split('')
+            .reduce(splitPhoneNumber, [])
+            .join('');
         const clickableLink = isEmail ? `mailto:${text}` : `tel:${text}`;
-        return <Link href={clickableLink}>{text}</Link>;
+        return (
+            <Link href={clickableLink}>
+                {isEmail ? text : humanReadablePhoneNumber}
+            </Link>
+        );
     };
 
     if (publikumskanaler.length === 0) {
