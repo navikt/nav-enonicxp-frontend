@@ -174,6 +174,7 @@ export const translationsBundleNn: Translations = {
         phoneToNav: 'Telefonnummeret til NAV er',
         phoneInformation:
             'Åpent, kvardagar kl. 9-15. NAV Kontaktsenter hjelper deg eller sett deg i kontakt med ditt NAV-kontor.',
+        alternativeContacts: 'Andre kontaktopplysningar:',
     },
     overview: {
         noProducts: 'Ingen treff',

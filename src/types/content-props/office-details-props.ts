@@ -58,7 +58,7 @@ type SocialServices = {
     papirsoeknadInformasjon?: string;
 };
 
-type AudienceContact = {
+export type AudienceContact = {
     beskrivelse?: string;
     telefon?: string;
     epost?: string;
@@ -70,7 +70,7 @@ interface AudienceContactInformation {
     brukertjenesteTilbud?: AudienceServices;
     publikumsmottak: AudienceReception[];
     sosialhjelp?: SocialServices;
-    publikumskanaler: AudienceContact[];
+    publikumskanaler: AudienceContact[] | AudienceContact;
 }
 
 export type OfficeDetailsData = ProductDataMixin &
