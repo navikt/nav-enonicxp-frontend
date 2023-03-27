@@ -3,6 +3,10 @@ import { PartType } from '../parts';
 import { Audience, RenderOnAuthStateMixin } from '../_mixins';
 import { OptionSetSingle } from '../../util-types';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
+import {
+    RegularOpeningHours,
+    SpecialOpeningHours,
+} from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
 
 interface LegacyCall {
     phoneNumber?: string;
@@ -25,14 +29,6 @@ interface Options {
 
 export type ChannelType = keyof Options;
 
-export interface OpeningHour {
-    status: 'OPEN' | 'CLOSED';
-    from: string;
-    to: string;
-    dayName?: string;
-    date?: string;
-}
-
 export interface DefaultContactData {
     ingress?: ProcessedHtmlProps;
     title?: string;
@@ -45,16 +41,8 @@ export interface TelephoneData {
     title?: string;
     text?: string;
     alertText?: string;
-    regularOpeningHours?: {
-        hours: OpeningHour[];
-    };
-    specialOpeningHours?: {
-        title?: string;
-        text?: string;
-        validFrom: string;
-        validTo: string;
-        hours: OpeningHour[];
-    };
+    regularOpeningHours?: RegularOpeningHours;
+    specialOpeningHours?: SpecialOpeningHours;
     audience?: Audience;
 }
 export interface WriteData extends DefaultContactData {
