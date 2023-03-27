@@ -3,10 +3,42 @@ import { PartType } from '../parts';
 import { Audience, RenderOnAuthStateMixin } from '../_mixins';
 import { OptionSetSingle } from '../../util-types';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import {
-    RegularOpeningHours,
-    SpecialOpeningHours,
-} from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
+
+export type OpeningHourRegularRaw =
+    | {
+          status: 'CLOSED';
+          dayName: string;
+      }
+    | {
+          status: 'OPEN';
+          dayName: string;
+          from: string;
+          to: string;
+      };
+
+export type OpeningHourSpecialRaw =
+    | {
+          status: 'CLOSED';
+          date: string;
+      }
+    | {
+          status: 'OPEN';
+          from: string;
+          to: string;
+          date: string;
+      };
+
+export type OpeningHourRaw = OpeningHourRegularRaw | OpeningHourSpecialRaw;
+
+export type RegularOpeningHours = {
+    hours: OpeningHourRegularRaw[];
+};
+
+export type SpecialOpeningHours = {
+    validFrom: string;
+    validTo: string;
+    hours?: OpeningHourSpecialRaw[];
+};
 
 interface LegacyCall {
     phoneNumber?: string;

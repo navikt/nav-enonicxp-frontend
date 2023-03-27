@@ -1,50 +1,19 @@
-export type OpeningHourRegular =
-    | {
-          status: 'CLOSED';
-          dayName: string;
-      }
-    | {
-          status: 'OPEN';
-          dayName: string;
-          from: string;
-          to: string;
-      };
-
-export type OpeningHourSpecial =
-    | {
-          status: 'CLOSED';
-          date: string;
-      }
-    | {
-          status: 'OPEN';
-          from: string;
-          to: string;
-          date: string;
-      };
-
-export type RegularOpeningHours = {
-    hours: OpeningHourRegular[];
-};
-
-export type SpecialOpeningHours = {
-    validFrom: string;
-    validTo: string;
-    hours?: OpeningHourSpecial[];
-};
-
-type OpeningHourCommon = {
+type OpeningInfoCommon = {
     dayName: string;
     date: string;
+    status: OpeningInfoStatus;
 };
 
-export type OpeningHourOpen = {
-    status: 'OPEN';
+export type OpeningInfoOpenProps = {
+    status: 'OPEN' | 'OPEN_LATER';
     from: string;
     to: string;
-} & OpeningHourCommon;
+} & OpeningInfoCommon;
 
-export type OpeningHourClosed = {
+export type OpeningInfoClosedProps = {
     status: 'CLOSED';
-} & OpeningHourCommon;
+} & OpeningInfoCommon;
 
-export type OpeningHour = OpeningHourOpen | OpeningHourClosed;
+export type OpeningInfoProps = OpeningInfoOpenProps | OpeningInfoClosedProps;
+
+export type OpeningInfoStatus = 'OPEN' | 'OPEN_LATER' | 'CLOSED';
