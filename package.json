@@ -17,7 +17,7 @@
         "typeCheck": "tsc",
         "lint": "eslint src/",
         "test-server": "next build server/__next-test-dummy && jest --testPathPattern=server/",
-        "test-client": "jest --testPathPattern=src/",
+        "test-client": "TZ=Europe/Oslo jest --testPathPattern=src/",
         "test": "npm run test-server && npm run test-client",
         "prepare": "husky install"
     },

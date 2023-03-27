@@ -26,7 +26,7 @@ interface Options {
 export type ChannelType = keyof Options;
 
 export interface OpeningHour {
-    status: string;
+    status: 'OPEN' | 'CLOSED';
     from: string;
     to: string;
     dayName?: string;
@@ -51,7 +51,6 @@ export interface TelephoneData {
     specialOpeningHours?: {
         title?: string;
         text?: string;
-        footNote?: string;
         validFrom: string;
         validTo: string;
         hours: OpeningHour[];
