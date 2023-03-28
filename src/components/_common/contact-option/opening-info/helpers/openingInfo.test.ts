@@ -4,6 +4,8 @@ import {
     OpeningHourSpecialRaw,
 } from 'types/component-props/parts/contact-option';
 import { getCurrentOpeningInfo } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
+import { getOpeningInfoText } from 'components/_common/contact-option/opening-info/helpers/openingInfoText';
+import { translator } from 'translations';
 
 const regularOpeningHours: OpeningHourRegularRaw[] = [
     {
@@ -163,5 +165,98 @@ describe('Special opening hours', () => {
         const openingInfo = getOpeningInfo();
 
         expect(openingInfo.status).toBe('CLOSED');
+    });
+});
+
+const getInfoText = () => {
+    const allOpeningInfo = processOpeningHours(
+        regularOpeningHours,
+        specialOpeningHours
+    );
+
+    const currentOpeningInfo = getCurrentOpeningInfo(allOpeningInfo);
+
+    return getOpeningInfoText({
+        allOpeningInfo,
+        currentOpeningInfo,
+        language: 'no',
+    });
+};
+
+describe('Opening information text', () => {
+    test('Should show open text when open', () => {
+        jest.useFakeTimers().setSystemTime(new Date('2022-04-12T09:00'));
+
+        const text = getInfoText();
+
+        const expectedText = translator('contactPoint', 'no')('shared')[
+            'openNow'
+        ];
+
+        expect(text).toBe(expectedText);
+    });
+
+    test('Should include closed text when closed for today', () => {
+        jest.useFakeTimers().setSystemTime(new Date('2022-04-12T15:00'));
+
+        const text = getInfoText();
+
+        const expectedText = translator('contactPoint', 'no')('shared')[
+            'closedNow'
+        ];
+
+        expect(text).toContain(expectedText);
+    });
+
+    test('Should include opening later texts when opening later', () => {
+        jest.useFakeTimers().setSystemTime(new Date('2022-04-12T08:00'));
+
+        const text = getInfoText();
+
+        const expectedText1 = translator('contactPoint', 'no')('shared')[
+            'closedNow'
+        ];
+        const expectedText2 = translator('dateTime', 'no')('relatives')[
+            'today'
+        ];
+
+        expect(text).toContain(expectedText1);
+        expect(text).toContain(expectedText2);
+    });
+
+    test('Should include opening tomorrow texts when opening tomorrow', () => {
+        jest.useFakeTimers().setSystemTime(new Date('2022-04-18T08:00'));
+
+        const text = getInfoText();
+
+        const expectedText1 = translator('contactPoint', 'no')('shared')[
+            'closedNow'
+        ];
+        const expectedText2 = translator('dateTime', 'no')('relatives')[
+            'tomorrow'
+        ];
+
+        expect(text).toContain(expectedText1);
+        expect(text).toContain(expectedText2);
+    });
+
+    test('Should include opening at datetime text when opening several days in the future', () => {
+        jest.useFakeTimers().setSystemTime(new Date('2022-04-14T08:00'));
+
+        const text = getInfoText();
+
+        const expectedText1 = translator('contactPoint', 'no')('shared')[
+            'closedNow'
+        ];
+        const expectedText2 = translator('contactPoint', 'no')('shared')
+            ['opensAt'].replace('{$date}', '(.*)')
+            .replace('{$time}', '(.*)');
+
+        const expectedTextPattern = new RegExp(
+            `${expectedText1}(.*)${expectedText2}`,
+            'i'
+        );
+
+        expect(text).toMatch(expectedTextPattern);
     });
 });
