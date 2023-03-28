@@ -17,7 +17,7 @@
         "typeCheck": "tsc",
         "lint": "eslint src/",
         "test-server": "next build server/__next-test-dummy && jest --testPathPattern=server/",
-        "test-client": "jest --testPathPattern=src/",
+        "test-client": "TZ=Europe/Oslo jest --testPathPattern=src/",
         "test": "npm run test-server && npm run test-client",
         "prepare": "husky install"
     },
@@ -88,7 +88,7 @@
         "lint-staged": "13.0.3",
         "mock-fs": "5.2.0",
         "nodemon": "2.0.20",
-        "prettier": "2.8.2",
+        "prettier": "2.8.7",
         "sass": "1.57.1",
         "ts-jest": "29.0.3",
         "typescript": "4.9.5",

@@ -4,6 +4,42 @@ import { Audience, RenderOnAuthStateMixin } from '../_mixins';
 import { OptionSetSingle } from '../../util-types';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
+export type OpeningHourRegularRaw =
+    | {
+          status: 'CLOSED';
+          dayName: string;
+      }
+    | {
+          status: 'OPEN';
+          dayName: string;
+          from: string;
+          to: string;
+      };
+
+export type OpeningHourSpecialRaw =
+    | {
+          status: 'CLOSED';
+          date: string;
+      }
+    | {
+          status: 'OPEN';
+          from: string;
+          to: string;
+          date: string;
+      };
+
+export type OpeningHourRaw = OpeningHourRegularRaw | OpeningHourSpecialRaw;
+
+export type RegularOpeningHours = {
+    hours: OpeningHourRegularRaw[];
+};
+
+export type SpecialOpeningHours = {
+    validFrom: string;
+    validTo: string;
+    hours?: OpeningHourSpecialRaw[];
+};
+
 interface LegacyCall {
     phoneNumber?: string;
 }
@@ -25,14 +61,6 @@ interface Options {
 
 export type ChannelType = keyof Options;
 
-export interface OpeningHour {
-    status: string;
-    from: string;
-    to: string;
-    dayName?: string;
-    date?: string;
-}
-
 export interface DefaultContactData {
     ingress?: ProcessedHtmlProps;
     title?: string;
@@ -45,17 +73,8 @@ export interface TelephoneData {
     title?: string;
     text?: string;
     alertText?: string;
-    regularOpeningHours?: {
-        hours: OpeningHour[];
-    };
-    specialOpeningHours?: {
-        title?: string;
-        text?: string;
-        footNote?: string;
-        validFrom: string;
-        validTo: string;
-        hours: OpeningHour[];
-    };
+    regularOpeningHours?: RegularOpeningHours;
+    specialOpeningHours?: SpecialOpeningHours;
     audience?: Audience;
 }
 export interface WriteData extends DefaultContactData {
