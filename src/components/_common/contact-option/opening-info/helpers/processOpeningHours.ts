@@ -1,4 +1,4 @@
-import { OpeningInfoProps } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
+import { OpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
 import dayjs, { Dayjs } from 'dayjs';
 import { dayNameToIndex, daysNameArray } from 'utils/datetime';
 import {
@@ -20,13 +20,13 @@ dayjs.extend(isSameOrAfter);
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const getOpeningInfo = ({
+const transformOpeningHour = ({
     openingHour,
     day,
 }: {
     openingHour?: OpeningHourRaw;
     day: Dayjs;
-}): OpeningInfoProps => {
+}): OpeningHours => {
     const commonProps = {
         dayName: daysNameArray[day.day()],
         date: day.format(openingHourDateFormat),
@@ -63,12 +63,12 @@ const getRegularOpeningHour = (
 export const processOpeningHours = (
     regularOpeningHours: OpeningHourRegularRaw[] = [],
     specialOpeningHours: OpeningHourSpecialRaw[] = []
-): OpeningInfoProps[] => {
+): OpeningHours[] => {
     const totalDaysToCheck = 7 + specialOpeningHours.length;
 
     const now = dayjs();
 
-    const openingHours: OpeningInfoProps[] = [];
+    const openingHours: OpeningHours[] = [];
 
     for (let i = 0; i < totalDaysToCheck; i++) {
         const dayToCheck = now.add(i, 'day');
@@ -77,7 +77,9 @@ export const processOpeningHours = (
             getSpecialOpeningHour(specialOpeningHours, dayToCheck) ||
             getRegularOpeningHour(regularOpeningHours, dayToCheck);
 
-        openingHours.push(getOpeningInfo({ openingHour, day: dayToCheck }));
+        openingHours.push(
+            transformOpeningHour({ openingHour, day: dayToCheck })
+        );
     }
 
     return openingHours;

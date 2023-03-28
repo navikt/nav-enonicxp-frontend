@@ -3,7 +3,7 @@ import {
     OpeningHourRegularRaw,
     OpeningHourSpecialRaw,
 } from 'types/component-props/parts/contact-option';
-import { getCurrentOpeningInfo } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
+import { getCurrentOpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
 import { getOpeningInfoText } from 'components/_common/contact-option/opening-info/helpers/openingInfoText';
 import { translator } from 'translations';
 
@@ -75,7 +75,22 @@ const getOpeningInfo = () => {
         specialOpeningHours
     );
 
-    return getCurrentOpeningInfo(openingHours);
+    return getCurrentOpeningHours(openingHours);
+};
+
+const getInfoText = () => {
+    const allOpeningInfo = processOpeningHours(
+        regularOpeningHours,
+        specialOpeningHours
+    );
+
+    const currentOpeningInfo = getCurrentOpeningHours(allOpeningInfo);
+
+    return getOpeningInfoText({
+        allOpeningHours: allOpeningInfo,
+        currentOpeningHours: currentOpeningInfo,
+        language: 'no',
+    });
 };
 
 afterEach(() => {
@@ -167,21 +182,6 @@ describe('Special opening hours', () => {
         expect(openingInfo.status).toBe('CLOSED');
     });
 });
-
-const getInfoText = () => {
-    const allOpeningInfo = processOpeningHours(
-        regularOpeningHours,
-        specialOpeningHours
-    );
-
-    const currentOpeningInfo = getCurrentOpeningInfo(allOpeningInfo);
-
-    return getOpeningInfoText({
-        allOpeningInfo,
-        currentOpeningInfo,
-        language: 'no',
-    });
-};
 
 describe('Opening information text', () => {
     test('Should show open text when open', () => {

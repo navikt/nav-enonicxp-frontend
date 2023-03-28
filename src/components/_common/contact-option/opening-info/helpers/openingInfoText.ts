@@ -1,12 +1,12 @@
 import dayjs from 'dayjs';
 import {
-    OpeningInfoProps,
-    OpeningInfoOpenProps,
+    OpeningHours,
+    OpeningHoursOpen,
 } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
 import { Language, translator } from 'translations';
 import { formatDate, norwayTz } from 'utils/datetime';
 import {
-    getOpeningInfoForDateTime,
+    getOpeningHoursForDateTime,
     openingHourDateFormat,
     openingHourTimeFormat,
 } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
@@ -19,12 +19,12 @@ dayjs.extend(timezone);
 const MAX_FUTURE_DAYS_TO_CHECK = 7;
 
 const getNextOpenOpeningHour = (
-    openingHours: OpeningInfoProps[]
-): OpeningInfoOpenProps => {
+    openingHours: OpeningHours[]
+): OpeningHoursOpen => {
     const tomorrow = dayjs().add(1, 'day');
 
     for (let i = 0; i < MAX_FUTURE_DAYS_TO_CHECK; i++) {
-        const found = getOpeningInfoForDateTime(
+        const found = getOpeningHoursForDateTime(
             openingHours,
             tomorrow.add(i, 'day')
         );
@@ -43,7 +43,7 @@ const shortenTime = (time: string) => {
 };
 
 const buildFutureOpenString = (
-    { date, from }: OpeningInfoOpenProps,
+    { date, from }: OpeningHoursOpen,
     language: Language
 ) => {
     const relatives = translator('dateTime', language)('relatives');
@@ -81,27 +81,27 @@ const buildFutureOpenString = (
 };
 
 export const getOpeningInfoText = ({
-    allOpeningInfo,
-    currentOpeningInfo,
+    allOpeningHours,
+    currentOpeningHours,
     language,
 }: {
-    allOpeningInfo: OpeningInfoProps[];
-    currentOpeningInfo: OpeningInfoProps;
+    allOpeningHours: OpeningHours[];
+    currentOpeningHours: OpeningHours;
     language: Language;
 }) => {
     const translations = translator('contactPoint', language)('shared');
 
-    const { status } = currentOpeningInfo;
+    const { status } = currentOpeningHours;
 
     switch (status) {
         case 'OPEN': {
             return translations['openNow'];
         }
         case 'OPEN_LATER': {
-            return buildFutureOpenString(currentOpeningInfo, language);
+            return buildFutureOpenString(currentOpeningHours, language);
         }
         case 'CLOSED': {
-            const nextOpeningHour = getNextOpenOpeningHour(allOpeningInfo);
+            const nextOpeningHour = getNextOpenOpeningHour(allOpeningHours);
 
             if (!nextOpeningHour) {
                 return translations['closedNow'];

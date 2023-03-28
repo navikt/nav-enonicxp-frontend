@@ -1,6 +1,6 @@
 import dayjs, { Dayjs } from 'dayjs';
-import { OpeningInfoProps } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
-import { norwayTz } from 'utils/datetime';
+import { OpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
+import { daysNameArray, norwayTz } from 'utils/datetime';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
@@ -12,13 +12,24 @@ dayjs.extend(isSameOrAfter);
 export const openingHourTimeFormat = 'HH:mm';
 export const openingHourDateFormat = 'YYYY-MM-DD';
 
-const getOpeningInfo = ({
-    openingHour,
-    day,
-}: {
-    openingHour: OpeningInfoProps;
-    day: Dayjs;
-}): OpeningInfoProps => {
+export const getOpeningHoursForDateTime = (
+    openingHours: OpeningHours[],
+    dateTime: Dayjs
+): OpeningHours =>
+    openingHours.find((openingHour) =>
+        dateTime.isSame(openingHour.date, 'day')
+    ) || {
+        status: 'CLOSED',
+        dayName: daysNameArray[dateTime.day()],
+        date: dateTime.format(openingHourDateFormat),
+    };
+
+export const getCurrentOpeningHours = (
+    openingHours: OpeningHours[]
+): OpeningHours => {
+    const now = dayjs();
+    const openingHour = getOpeningHoursForDateTime(openingHours, now);
+
     if (openingHour.status === 'CLOSED') {
         return openingHour;
     }
@@ -26,7 +37,7 @@ const getOpeningInfo = ({
     const { from, to } = openingHour;
 
     const closes = dayjs(to, openingHourTimeFormat).tz(norwayTz, true);
-    if (day.isSameOrAfter(closes)) {
+    if (now.isSameOrAfter(closes)) {
         return {
             ...openingHour,
             status: 'CLOSED',
@@ -34,24 +45,9 @@ const getOpeningInfo = ({
     }
 
     const opens = dayjs(from, openingHourTimeFormat).tz(norwayTz, true);
-    if (day.isBefore(opens)) {
+    if (now.isBefore(opens)) {
         return { ...openingHour, status: 'OPEN_LATER' };
     }
 
     return { ...openingHour, status: 'OPEN' };
-};
-
-export const getOpeningInfoForDateTime = (
-    openingHours: OpeningInfoProps[],
-    dateTime: Dayjs
-) =>
-    openingHours.find((openingHour) =>
-        dateTime.isSame(openingHour.date, 'day')
-    );
-
-export const getCurrentOpeningInfo = (openingHours: OpeningInfoProps[]) => {
-    const now = dayjs();
-    const openingHour = getOpeningInfoForDateTime(openingHours, now);
-
-    return getOpeningInfo({ openingHour, day: now });
 };
