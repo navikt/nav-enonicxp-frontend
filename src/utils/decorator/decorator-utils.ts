@@ -72,10 +72,6 @@ const defaultParams = {
     maskHotjar: false,
 };
 
-const taSurveys = {
-    taSurveys: '',
-};
-
 export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     if (!content || content.type === ContentType.Error) {
         return errorParams(content);
@@ -83,9 +79,10 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 
     const { _path, breadcrumbs, language, data, editorView } = content;
 
-    const rolePath = _path.split('/')[3];
+    const rolePathSegment = _path.split('/')[2];
     const context =
-        audienceToRoleContext[data?.audience] || pathToRoleContext[rolePath];
+        audienceToRoleContext[data?.audience] ||
+        pathToRoleContext[rolePathSegment];
     const decoratorLanguage = getDecoratorLangFromXpLang(language);
     const feedbackEnabled = data?.feedbackToggle;
     const chatbotDisabled =
@@ -110,6 +107,5 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         ...(feedbackEnabled && { feedback: true }),
         chatbot: !chatbotDisabled,
         utilsBackground: checkForWhiteHeader(content) ? 'white' : 'gray',
-        ...taSurveys,
     };
 };

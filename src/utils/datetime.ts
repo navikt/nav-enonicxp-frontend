@@ -9,6 +9,8 @@ dayjs.extend(localizedFormat);
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
+export const norwayTz = 'Europe/Oslo';
+
 // JS starts week on a Sunday
 export const daysNameArray = [
     'sunday',

@@ -1,19 +1,19 @@
-type OpeningInfoCommon = {
+type OpeningHoursCommon = {
     dayName: string;
     date: string;
-    status: OpeningInfoStatus;
+    status: OpeningHoursStatus;
 };
 
-export type OpeningInfoOpenProps = {
+export type OpeningHoursOpen = {
     status: 'OPEN' | 'OPEN_LATER';
     from: string;
     to: string;
-} & OpeningInfoCommon;
+} & OpeningHoursCommon;
 
-export type OpeningInfoClosedProps = {
+export type OpeningHoursClosed = {
     status: 'CLOSED';
-} & OpeningInfoCommon;
+} & OpeningHoursCommon;
 
-export type OpeningInfoProps = OpeningInfoOpenProps | OpeningInfoClosedProps;
+export type OpeningHours = OpeningHoursOpen | OpeningHoursClosed;
 
-export type OpeningInfoStatus = 'OPEN' | 'OPEN_LATER' | 'CLOSED';
+export type OpeningHoursStatus = 'OPEN' | 'OPEN_LATER' | 'CLOSED';
