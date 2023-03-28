@@ -4,8 +4,8 @@ import { classNames } from 'utils/classnames';
 import { getCurrentOpeningInfo } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { OpeningInfoProps } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
-import { getOpenInformationText } from 'components/_common/contact-option/opening-info/helpers/openingInfoText';
-import { processOpeningInfo } from 'components/_common/contact-option/opening-info/helpers/processOpeningInfo';
+import { getOpeningInfoText } from 'components/_common/contact-option/opening-info/helpers/openingInfoText';
+import { processOpeningHours } from 'components/_common/contact-option/opening-info/helpers/processOpeningHours';
 
 import style from './OpeningInfo.module.scss';
 import { Loader } from '@navikt/ds-react';
@@ -31,20 +31,20 @@ export const OpeningInfo = ({
     const [openingInfoText, setOpeningInfoText] = useState('');
 
     useEffect(() => {
-        const allOpeningInfo = processOpeningInfo(
+        const allOpeningInfo = processOpeningHours(
             regularOpeningHours.hours,
             specialOpeningHours.hours
         );
 
-        const currentInfo = getCurrentOpeningInfo(allOpeningInfo);
+        const currentOpeningInfo = getCurrentOpeningInfo(allOpeningInfo);
 
-        const infoText = getOpenInformationText({
+        const infoText = getOpeningInfoText({
             allOpeningInfo,
-            currentOpeningInfo: currentInfo,
+            currentOpeningInfo,
             language,
         });
 
-        setOpeningInfo(currentInfo);
+        setOpeningInfo(currentOpeningInfo);
         setOpeningInfoText(infoText);
     }, [regularOpeningHours.hours, specialOpeningHours.hours, language]);
 

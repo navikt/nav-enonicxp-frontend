@@ -1,7 +1,10 @@
 import { OpeningInfoProps } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
 import dayjs, { Dayjs } from 'dayjs';
 import { dayNameToIndex, daysNameArray } from 'utils/datetime';
-import { openingHourTimeFormat } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
+import {
+    openingHourDateFormat,
+    openingHourTimeFormat,
+} from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import utc from 'dayjs/plugin/utc';
@@ -17,9 +20,6 @@ dayjs.extend(isSameOrAfter);
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const dateFormat = 'YYYY-MM-DD';
-const norwayTz = 'Europe/Oslo';
-
 const getOpeningInfo = ({
     openingHour,
     day,
@@ -29,7 +29,7 @@ const getOpeningInfo = ({
 }): OpeningInfoProps => {
     const commonProps = {
         dayName: daysNameArray[day.day()],
-        date: day.format(dateFormat),
+        date: day.format(openingHourDateFormat),
     };
 
     if (!openingHour || openingHour.status === 'CLOSED') {
@@ -40,19 +40,6 @@ const getOpeningInfo = ({
     }
 
     const { from, to } = openingHour;
-
-    const closes = dayjs(to, openingHourTimeFormat).tz(norwayTz, true);
-    if (day.isSameOrAfter(closes)) {
-        return {
-            ...commonProps,
-            status: 'CLOSED',
-        };
-    }
-
-    const opens = dayjs(from, openingHourTimeFormat).tz(norwayTz, true);
-    if (day.isBefore(opens)) {
-        return { ...commonProps, status: 'OPEN_LATER', from, to };
-    }
 
     return { ...commonProps, status: 'OPEN', from, to };
 };
@@ -73,7 +60,7 @@ const getRegularOpeningHour = (
         (openingHour) => day.day() === dayNameToIndex[openingHour.dayName]
     );
 
-export const processOpeningInfo = (
+export const processOpeningHours = (
     regularOpeningHours: OpeningHourRegularRaw[] = [],
     specialOpeningHours: OpeningHourSpecialRaw[] = []
 ): OpeningInfoProps[] => {
