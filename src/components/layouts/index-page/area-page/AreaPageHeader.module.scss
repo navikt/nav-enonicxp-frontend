@@ -25,7 +25,7 @@
 }
 
 .heading {
-    @media #{common.$mq-screen-mobile-small} {
+    @media #{common.$mq-screen-tablet-and-mobile} {
         padding-left: 0.5rem;
     }
 }
