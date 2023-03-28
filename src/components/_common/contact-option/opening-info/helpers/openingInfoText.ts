@@ -22,7 +22,6 @@ const getNextOpenOpeningHour = (
             openingHours,
             tomorrow.add(i, 'day')
         );
-        console.log(`Found: ${JSON.stringify(found)}`);
 
         if (found?.status !== 'CLOSED') {
             return found;
@@ -86,11 +85,15 @@ const buildFutureOpenString = (
     return `${sharedTranslations['closedNow']} • ${openNext}`;
 };
 
-export const getOpenInformationText = (
-    openingHours: OpeningInfoProps[],
-    currentOpeningInfo: OpeningInfoProps,
-    language: Language
-) => {
+export const getOpenInformationText = ({
+    allOpeningInfo,
+    currentOpeningInfo,
+    language,
+}: {
+    allOpeningInfo: OpeningInfoProps[];
+    currentOpeningInfo: OpeningInfoProps;
+    language: Language;
+}) => {
     const translations = translator('contactPoint', language)('shared');
 
     const { status } = currentOpeningInfo;
@@ -103,7 +106,7 @@ export const getOpenInformationText = (
             return buildOpeningLaterTodayString(currentOpeningInfo, language);
         }
         case 'CLOSED': {
-            const nextOpeningHour = getNextOpenOpeningHour(openingHours);
+            const nextOpeningHour = getNextOpenOpeningHour(allOpeningInfo);
 
             if (!nextOpeningHour) {
                 return translations['closedNow'];

@@ -25,19 +25,30 @@ export const OpeningInfo = ({
 }: Props) => {
     const { language } = usePageConfig();
 
-    const [currentOpeningInfo, setCurrentOpeningInfo] =
-        useState<OpeningInfoProps | null>(null);
-
-    const allOpeningInfo = processOpeningInfo(
-        regularOpeningHours.hours,
-        specialOpeningHours.hours
+    const [openingInfo, setOpeningInfo] = useState<OpeningInfoProps | null>(
+        null
     );
+    const [openingInfoText, setOpeningInfoText] = useState('');
 
     useEffect(() => {
-        setCurrentOpeningInfo(getCurrentOpeningInfo(allOpeningInfo));
-    }, [allOpeningInfo]);
+        const allOpeningInfo = processOpeningInfo(
+            regularOpeningHours.hours,
+            specialOpeningHours.hours
+        );
 
-    if (!currentOpeningInfo) {
+        const currentInfo = getCurrentOpeningInfo(allOpeningInfo);
+
+        const infoText = getOpenInformationText({
+            allOpeningInfo,
+            currentOpeningInfo: currentInfo,
+            language,
+        });
+
+        setOpeningInfo(currentInfo);
+        setOpeningInfoText(infoText);
+    }, [regularOpeningHours.hours, specialOpeningHours.hours, language]);
+
+    if (!openingInfo) {
         return <Loader size={'xsmall'} />;
     }
 
@@ -45,16 +56,10 @@ export const OpeningInfo = ({
         <Chip
             className={classNames(
                 style.openingStatus,
-                currentOpeningInfo.status === 'OPEN' ? style.open : style.closed
+                openingInfo.status === 'OPEN' ? style.open : style.closed
             )}
         >
-            <>
-                {getOpenInformationText(
-                    allOpeningInfo,
-                    currentOpeningInfo,
-                    language
-                )}
-            </>
+            {openingInfoText}
         </Chip>
     );
 };

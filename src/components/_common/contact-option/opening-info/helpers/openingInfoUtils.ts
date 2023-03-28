@@ -8,7 +8,7 @@ export const getOpeningInfoForDateTime = (
     dateTime: Dayjs
 ) =>
     openingHours.find((openingHour) =>
-        dateTime.isSame(dayjs(openingHour.date), 'date')
+        dateTime.isSame(openingHour.date, 'day')
     );
 
 export const getCurrentOpeningInfo = (openingHours: OpeningInfoProps[]) => {

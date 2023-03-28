@@ -76,15 +76,11 @@ const getOpeningInfo = () => {
     return getCurrentOpeningInfo(openingHours);
 };
 
-beforeEach(() => {
+afterEach(() => {
     jest.useRealTimers();
 });
 
 describe('Regular opening hours', () => {
-    beforeEach(() => {
-        jest.useRealTimers();
-    });
-
     test('Should be open at a regular opening minute', () => {
         jest.useFakeTimers().setSystemTime(new Date('2022-04-12T09:00'));
         const openingInfo = getOpeningInfo();
