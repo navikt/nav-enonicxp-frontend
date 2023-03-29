@@ -46,7 +46,7 @@
         "mathjs": "10.6.4",
         "next": "12.3.1",
         "node-cache": "5.1.2",
-        "node-fetch": "3.3.1",
+        "node-fetch": "2.6.7",
         "on-headers": "1.0.2",
         "p-limit": "4.0.0",
         "prom-client": "14.1.1",
