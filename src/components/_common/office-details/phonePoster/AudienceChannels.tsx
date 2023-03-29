@@ -28,7 +28,7 @@ export const AudienceChannels = ({
         );
     };
 
-    if (publikumskanaler.length === 0) {
+    if (publikumskanaler.length === 1) {
         return (
             <>
                 `${publikumskanaler[0].beskrivelse}: $
