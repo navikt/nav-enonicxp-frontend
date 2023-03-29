@@ -1,7 +1,10 @@
-import { OpeningInfoProps } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
+import { OpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
 import dayjs, { Dayjs } from 'dayjs';
 import { dayNameToIndex, daysNameArray } from 'utils/datetime';
-import { openingHourTimeFormat } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
+import {
+    openingHourDateFormat,
+    openingHourTimeFormat,
+} from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import utc from 'dayjs/plugin/utc';
@@ -17,19 +20,16 @@ dayjs.extend(isSameOrAfter);
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const dateFormat = 'YYYY-MM-DD';
-const norwayTz = 'Europe/Oslo';
-
-const getOpeningInfo = ({
+const transformOpeningHour = ({
     openingHour,
     day,
 }: {
     openingHour?: OpeningHourRaw;
     day: Dayjs;
-}): OpeningInfoProps => {
+}): OpeningHours => {
     const commonProps = {
         dayName: daysNameArray[day.day()],
-        date: day.format(dateFormat),
+        date: day.format(openingHourDateFormat),
     };
 
     if (!openingHour || openingHour.status === 'CLOSED') {
@@ -40,19 +40,6 @@ const getOpeningInfo = ({
     }
 
     const { from, to } = openingHour;
-
-    const closes = dayjs(to, openingHourTimeFormat).tz(norwayTz, true);
-    if (day.isSameOrAfter(closes)) {
-        return {
-            ...commonProps,
-            status: 'CLOSED',
-        };
-    }
-
-    const opens = dayjs(from, openingHourTimeFormat).tz(norwayTz, true);
-    if (day.isBefore(opens)) {
-        return { ...commonProps, status: 'OPEN_LATER', from, to };
-    }
 
     return { ...commonProps, status: 'OPEN', from, to };
 };
@@ -73,15 +60,15 @@ const getRegularOpeningHour = (
         (openingHour) => day.day() === dayNameToIndex[openingHour.dayName]
     );
 
-export const processOpeningInfo = (
+export const processOpeningHours = (
     regularOpeningHours: OpeningHourRegularRaw[] = [],
     specialOpeningHours: OpeningHourSpecialRaw[] = []
-): OpeningInfoProps[] => {
+): OpeningHours[] => {
     const totalDaysToCheck = 7 + specialOpeningHours.length;
 
     const now = dayjs();
 
-    const openingHours: OpeningInfoProps[] = [];
+    const openingHours: OpeningHours[] = [];
 
     for (let i = 0; i < totalDaysToCheck; i++) {
         const dayToCheck = now.add(i, 'day');
@@ -90,7 +77,9 @@ export const processOpeningInfo = (
             getSpecialOpeningHour(specialOpeningHours, dayToCheck) ||
             getRegularOpeningHour(regularOpeningHours, dayToCheck);
 
-        openingHours.push(getOpeningInfo({ openingHour, day: dayToCheck }));
+        openingHours.push(
+            transformOpeningHour({ openingHour, day: dayToCheck })
+        );
     }
 
     return openingHours;

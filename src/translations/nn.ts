@@ -202,7 +202,7 @@ export const translationsBundleNn: Translations = {
         shared: {
             closed: 'Stengt',
             openNow: 'Ope no',
-            opensAt: 'Opnar {$1} kl {$2}',
+            opensAt: 'Opnar {$date} kl {$time}',
             closedNow: 'Stengt no',
             seeMoreOptions: 'Sjå fleire telefonnummer og tasteval.',
         },

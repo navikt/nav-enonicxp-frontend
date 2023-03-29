@@ -210,7 +210,7 @@ export const translationsBundleEn: Translations = {
         shared: {
             closed: 'Closed',
             openNow: 'Open',
-            opensAt: 'Opens {$1} at {$2}',
+            opensAt: 'Opens {$date} at {$time}',
             closedNow: 'Closed now',
             seeMoreOptions: 'See more phone numbers and calling options',
         },

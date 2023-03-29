@@ -1,24 +1,30 @@
 import dayjs from 'dayjs';
 import {
-    OpeningInfoProps,
-    OpeningInfoOpenProps,
+    OpeningHours,
+    OpeningHoursOpen,
 } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
 import { Language, translator } from 'translations';
-import { formatDate } from 'utils/datetime';
+import { formatDate, norwayTz } from 'utils/datetime';
 import {
-    getOpeningInfoForDateTime,
+    getOpeningHoursForDateTime,
+    openingHourDateFormat,
     openingHourTimeFormat,
 } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
-const maxCheck = 7;
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+const MAX_FUTURE_DAYS_TO_CHECK = 7;
 
 const getNextOpenOpeningHour = (
-    openingHours: OpeningInfoProps[]
-): OpeningInfoOpenProps => {
+    openingHours: OpeningHours[]
+): OpeningHoursOpen => {
     const tomorrow = dayjs().add(1, 'day');
 
-    for (let i = 0; i < maxCheck; i++) {
-        const found = getOpeningInfoForDateTime(
+    for (let i = 0; i < MAX_FUTURE_DAYS_TO_CHECK; i++) {
+        const found = getOpeningHoursForDateTime(
             openingHours,
             tomorrow.add(i, 'day')
         );
@@ -36,31 +42,10 @@ const shortenTime = (time: string) => {
     return dayjs(time, openingHourTimeFormat).format(format);
 };
 
-const buildOpeningLaterTodayString = (
-    { from }: OpeningInfoOpenProps,
-    language: Language
-) => {
-    const relatives = translator('dateTime', language)('relatives');
-    const sharedTranslations = translator('contactPoint', language)('shared');
-
-    const closedNowTemplate = sharedTranslations['closedNow'];
-    const opensTemplate = sharedTranslations['opensAt'];
-    const todayTemplate = relatives['today'];
-
-    return `${closedNowTemplate} • ${opensTemplate
-        .replace('{$1}', todayTemplate)
-        .replace('{$2}', shortenTime(from))
-        .toLowerCase()}`;
-};
-
 const buildFutureOpenString = (
-    openingHour: OpeningInfoOpenProps,
+    { date, from }: OpeningHoursOpen,
     language: Language
 ) => {
-    const { date, from } = openingHour;
-
-    const daysToNextOpeningHour = dayjs().diff(date, 'day');
-
     const relatives = translator('dateTime', language)('relatives');
     const sharedTranslations = translator('contactPoint', language)('shared');
 
@@ -68,45 +53,55 @@ const buildFutureOpenString = (
     const todayTemplate = relatives['today'];
     const tomorrowTemplate = relatives['tomorrow'];
 
-    if (daysToNextOpeningHour > 1) {
-        return `${opensTemplate
-            .replace('{$1}', formatDate({ datetime: date, language }))
-            .replace('{$2}', date)}`;
+    const openTime = shortenTime(from);
+
+    const opens = dayjs(date, openingHourDateFormat).tz(norwayTz, true);
+    const openingDay = opens.startOf('day');
+
+    const startOfCurrentDay = dayjs().startOf('day').tz('America/Toronto');
+
+    const daysToOpeningDay = openingDay.diff(startOfCurrentDay, 'day');
+
+    if (daysToOpeningDay > 1) {
+        return `${sharedTranslations['closedNow']} • ${opensTemplate
+            .replace('{$date}', formatDate({ datetime: date, language }))
+            .replace('{$time}', openTime)
+            .toLowerCase()}`;
     }
 
     const openingTemplate =
-        daysToNextOpeningHour === 0 ? todayTemplate : tomorrowTemplate;
+        daysToOpeningDay === 0 ? todayTemplate : tomorrowTemplate;
 
     const openNext = opensTemplate
-        .replace('{$1}', openingTemplate)
-        .replace('{$2}', shortenTime(from))
+        .replace('{$date}', openingTemplate)
+        .replace('{$time}', openTime)
         .toLowerCase();
 
     return `${sharedTranslations['closedNow']} • ${openNext}`;
 };
 
-export const getOpenInformationText = ({
-    allOpeningInfo,
-    currentOpeningInfo,
+export const getOpeningInfoText = ({
+    allOpeningHours,
+    currentOpeningHours,
     language,
 }: {
-    allOpeningInfo: OpeningInfoProps[];
-    currentOpeningInfo: OpeningInfoProps;
+    allOpeningHours: OpeningHours[];
+    currentOpeningHours: OpeningHours;
     language: Language;
 }) => {
     const translations = translator('contactPoint', language)('shared');
 
-    const { status } = currentOpeningInfo;
+    const { status } = currentOpeningHours;
 
     switch (status) {
         case 'OPEN': {
             return translations['openNow'];
         }
         case 'OPEN_LATER': {
-            return buildOpeningLaterTodayString(currentOpeningInfo, language);
+            return buildFutureOpenString(currentOpeningHours, language);
         }
         case 'CLOSED': {
-            const nextOpeningHour = getNextOpenOpeningHour(allOpeningInfo);
+            const nextOpeningHour = getNextOpenOpeningHour(allOpeningHours);
 
             if (!nextOpeningHour) {
                 return translations['closedNow'];
