@@ -43,6 +43,9 @@ spec:
     outbound:
       rules:
         - application: {{revalidatorApp}}
+      external:
+        - host: {{xpHost}}
+        - host: {{decoratorHost}}
     inbound:
       rules:
         - application: {{revalidatorApp}}
