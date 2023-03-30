@@ -7,7 +7,7 @@
     justify-content: space-between;
 
     text-decoration: none;
-    color: black;
+    color: var(--a-text-default);
     margin-top: 1rem;
     padding: 1.5rem 1rem;
     background-color: common.$navPink;
@@ -30,7 +30,6 @@
 }
 
 .content {
-    background-color: red;
     display: flex;
     flex-direction: column;
     row-gap: 1.75rem;
