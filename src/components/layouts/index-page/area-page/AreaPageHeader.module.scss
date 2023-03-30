@@ -24,6 +24,12 @@
     }
 }
 
+.heading {
+    @media #{common.$mq-screen-tablet-and-mobile} {
+        padding-left: 0.5rem;
+    }
+}
+
 .gfxContainer {
     display: flex;
     flex-shrink: 3;

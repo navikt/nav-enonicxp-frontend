@@ -1,5 +1,7 @@
 appName: nav-enonicxp-frontend-dev2
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev2
+decoratorHost: dekoratoren.ekstern.dev.nav.no
+xpHost: www-q6.nav.no
 secret: nav-enonicxp-dev2
 ingresses:
   - https://www-2.dev.nav.no
