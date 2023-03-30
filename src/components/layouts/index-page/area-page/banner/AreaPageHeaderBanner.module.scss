@@ -12,16 +12,8 @@
     margin-top: 1rem;
     padding: 2rem 0;
     background-color: common.$navPink;
-    transform: skewX(-20deg);
 
     transition: background-color 200ms ease-out;
-
-    & > * {
-        transform: skewX(20deg);
-        @media #{common.$mq-screen-mobile} {
-            transform: none;
-        }
-    }
 
     &:hover {
         background-color: var(--hover-color);
