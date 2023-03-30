@@ -9,7 +9,7 @@
     text-decoration: none;
     color: black;
     margin-top: 1rem;
-    padding: 2rem 0;
+    padding: 1.5rem 1rem;
     background-color: common.$navPink;
     border-radius: 1rem;
 
@@ -26,7 +26,6 @@
     @media #{common.$mq-screen-mobile} {
         border-radius: 0.5rem;
         transform: none;
-        @include common.full-width-mixin(true, true);
     }
 }
 
@@ -37,22 +36,13 @@
     row-gap: 1.75rem;
     justify-content: center;
     width: 100%;
-    padding-left: 2rem;
 
     > * {
         margin-top: 0 !important;
         margin-bottom: 0 !important;
     }
-
-    @media #{common.$mq-screen-mobile} {
-        padding-left: 1rem;
-    }
 }
 
 .icon {
     align-self: center;
-    margin-right: 2rem;
-    @media #{common.$mq-screen-mobile} {
-        margin-right: 1rem;
-    }
 }
