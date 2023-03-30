@@ -1,7 +1,6 @@
 // Sends periodic heartbeat signals to an internal app which proxies revalidation
 // requests from Enonic XP to all frontend pods
 // See: https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy
-import fetch from 'node-fetch';
 import { networkInterfaces } from 'os';
 
 const {
