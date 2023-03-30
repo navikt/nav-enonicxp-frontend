@@ -14,10 +14,10 @@ import styles from './SingleReception.module.scss';
 
 interface FormattedAudienceReception {
     address: string;
-    place: string;
-    openingHoursExceptions: OpeningHoursProps[];
-    openingHours: OpeningHoursProps[];
     adkomstbeskrivelse: string;
+    openingHours: OpeningHoursProps[];
+    openingHoursExceptions: OpeningHoursProps[];
+    place: string;
 }
 
 const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
@@ -76,9 +76,9 @@ export const SingleReception = (props: AudienceReception) => {
     const { language } = usePageConfig();
     const {
         address,
+        adkomstbeskrivelse,
         openingHours,
         openingHoursExceptions,
-        adkomstbeskrivelse,
     } = formatAudienceReception(props);
 
     const getLabel = translator('office', language);

@@ -25,14 +25,14 @@ import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 import style from './ThemedPageHeader.module.scss';
 
 type ContentProps =
-    | SituationPageProps
-    | ProductPageProps
-    | GuidePageProps
-    | ThemedArticlePageProps
-    | OverviewPageProps
     | GenericPageProps
+    | GuidePageProps
+    | OfficeBranchPageProps
     | OfficeEditorialPageProps
-    | OfficeBranchPageProps;
+    | OverviewPageProps
+    | ProductPageProps
+    | SituationPageProps
+    | ThemedArticlePageProps;
 
 type Props = {
     showTimeStamp?: boolean;

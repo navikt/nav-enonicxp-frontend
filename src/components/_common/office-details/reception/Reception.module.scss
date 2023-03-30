@@ -22,7 +22,7 @@
     }
 
     :global(.navds-tabs__tab[aria-selected='true']:not(:focus)) {
-        box-shadow: none;
         background-color: var(--a-surface-action-subtle);
+        box-shadow: none;
     }
 }

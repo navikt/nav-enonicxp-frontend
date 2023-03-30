@@ -14,16 +14,16 @@ const splitPhoneNumber = (acc: string[], char: string, index: number) => {
 export const AudienceChannels = ({
     publikumskanaler,
 }: AudienceChannelsProps) => {
-    const linkify = (text: string) => {
-        const isEmail = text.includes('@');
-        const humanReadablePhoneNumber = text
+    const createLink = (emailOrPhone: string) => {
+        const isEmail = emailOrPhone.includes('@');
+        const humanReadablePhoneNumber = emailOrPhone
             .split('')
             .reduce(splitPhoneNumber, [])
             .join('');
-        const clickableLink = isEmail ? `mailto:${text}` : `tel:${text}`;
+        const href = isEmail ? `mailto:${emailOrPhone}` : `tel:${emailOrPhone}`;
         return (
-            <Link href={clickableLink}>
-                {isEmail ? text : humanReadablePhoneNumber}
+            <Link href={href}>
+                {isEmail ? emailOrPhone : humanReadablePhoneNumber}
             </Link>
         );
     };
@@ -32,7 +32,7 @@ export const AudienceChannels = ({
         return (
             <>
                 {publikumskanaler[0].beskrivelse}:{' '}
-                {linkify(
+                {createLink(
                     publikumskanaler[0].epost || publikumskanaler[0].telefon
                 )}
             </>
@@ -44,7 +44,7 @@ export const AudienceChannels = ({
             {publikumskanaler.map((kanal) => (
                 <BodyShort key={kanal.sortOrder}>
                     {`${kanal.beskrivelse}: `}
-                    {linkify(kanal.epost || kanal.telefon)}
+                    {createLink(kanal.epost || kanal.telefon)}
                 </BodyShort>
             ))}
         </li>

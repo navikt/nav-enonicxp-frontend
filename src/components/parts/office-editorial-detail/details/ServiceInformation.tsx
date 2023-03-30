@@ -3,6 +3,7 @@ import { DetailProps } from '../OfficeEditorialDetail';
 import { translator } from '../../../../translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
+/* ES lint complains about unused style in a shared styles class: */
 /* eslint-disable-next-line */
 import styles from './SharedDetails.module.scss';
 import { forceArray } from 'utils/arrays';

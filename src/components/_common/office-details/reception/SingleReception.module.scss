@@ -1,9 +1,9 @@
 @use 'src/common' as common;
 
 .singleReception {
-    padding: common.$padding-sides-mobile;
     background-color: var(--a-deepblue-50);
     margin: 1rem 0;
+    padding: common.$padding-sides-mobile;
 
     @media #{common.$mq-screen-tablet} {
         padding: common.$padding-sides-tablet;
@@ -18,11 +18,11 @@
         width: auto;
         th,
         td {
-            vertical-align: top;
-            padding: 0.3rem 1rem 0.3rem 0;
-            font-size: 1.125rem;
             border: none;
+            font-size: 1.125rem;
             padding-right: 2rem;
+            padding: 0.3rem 1rem 0.3rem 0;
+            vertical-align: top;
         }
         td:last-of-type {
             padding-right: 0;
@@ -58,9 +58,9 @@
 }
 
 .iconClock {
-    width: 22px;
     height: 22px;
     margin: -2px 0.7rem 0 0.1rem;
+    width: 22px;
 }
 
 .address {

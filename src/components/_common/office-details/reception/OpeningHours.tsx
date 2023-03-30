@@ -6,17 +6,17 @@ import { Table } from '../../../_common/table/Table';
 import styles from './OpeningHours.module.scss';
 
 type Props = {
-    openingHours: OpeningHoursProps[];
-    closedLabel: string;
     appointmentOnlyLabel: string;
+    closedLabel: string;
     language: string;
+    openingHours: OpeningHoursProps[];
 };
 
 export const OpeningHours = ({
-    openingHours,
-    closedLabel,
     appointmentOnlyLabel,
+    closedLabel,
     language,
+    openingHours,
 }: Props) => {
     // If includes dato, show this rather than day (for special opening hours)
     const buildDayLabel = (opening: OpeningHoursProps): string => {

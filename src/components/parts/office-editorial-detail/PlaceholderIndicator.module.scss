@@ -1,18 +1,18 @@
 .placeholderIndicator {
-    display: block;
     background-color: #dddddd;
-    outline: solid 2px #ffbbbb;
     border-radius: 2px;
+    display: block;
+    outline: solid 2px #ffbbbb;
+    overflow: hidden;
     padding: 2rem 0.5rem 1rem 0.5rem;
     position: relative;
-    overflow: hidden;
 
     &::before {
         content: 'Detaljinformasjon:';
-        position: absolute;
-        top: 0.5rem;
-        left: 0.5rem;
         color: #666666;
         font-weight: bold;
+        left: 0.5rem;
+        position: absolute;
+        top: 0.5rem;
     }
 }

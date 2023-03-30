@@ -23,11 +23,11 @@
 }
 
 .phoneNumber {
-    text-decoration: none;
     color: rgb(0, 0, 0);
     font-size: 1.5rem;
     font-weight: var(--a-font-weight-bold);
     padding-right: 1rem;
+    text-decoration: none;
 
     &:focus {
         background-color: transparent;
@@ -36,10 +36,10 @@
 }
 
 .telephoneIcon {
-    padding: 0.6rem;
     background-color: white;
     border-radius: 2rem;
-    margin-right: 1rem;
-    width: 2.5rem;
     height: 2.5rem;
+    margin-right: 1rem;
+    padding: 0.6rem;
+    width: 2.5rem;
 }

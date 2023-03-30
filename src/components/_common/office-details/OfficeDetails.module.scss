@@ -1,9 +1,9 @@
 @use 'src/common' as common;
 
 .officeDetails {
+    border: none;
     display: flex;
     flex-direction: column;
-    border: none;
 }
 
 .wide {
@@ -14,17 +14,17 @@
 }
 
 .placeIcon {
-    width: 2.5rem;
-    height: 2.5rem;
-    display: inline-flex;
     align-items: center;
+    display: inline-flex;
+    height: 2.5rem;
     justify-content: center;
     margin-right: 0.5rem;
+    width: 2.5rem;
 }
 
 .header {
-    display: flex;
     align-items: center;
+    display: flex;
 }
 
 .addressPoster {

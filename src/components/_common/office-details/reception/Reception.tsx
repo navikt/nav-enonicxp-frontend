@@ -22,7 +22,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
         return reception.stedsbeskrivelse || reception.besoeksadresse.poststed;
     };
 
-    const firstLocation = getLocation(receptionArray[0]) || 'Ukjent sted';
+    const firstLocation = getLocation(receptionArray[0]) || '(Ukjent sted)';
     const [state, setState] = useState(firstLocation);
 
     if (!receptions) {

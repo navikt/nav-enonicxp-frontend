@@ -16,9 +16,7 @@ export interface OfficeDetailsProps {
 
 export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
     const { language } = usePageConfig();
-
     const { brukerkontakt } = officeData;
-
     const getOfficeTranslations = translator('office', language);
 
     const publikumsmottak = normalizeReceptionAsArray(
