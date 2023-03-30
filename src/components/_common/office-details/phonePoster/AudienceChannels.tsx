@@ -31,11 +31,10 @@ export const AudienceChannels = ({
     if (publikumskanaler.length === 1) {
         return (
             <>
-                `${publikumskanaler[0].beskrivelse}: $
+                {publikumskanaler[0].beskrivelse}:{' '}
                 {linkify(
                     publikumskanaler[0].epost || publikumskanaler[0].telefon
                 )}
-                `
             </>
         );
     }
