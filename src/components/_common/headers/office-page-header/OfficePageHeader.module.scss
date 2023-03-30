@@ -1,16 +1,13 @@
 @use 'src/common' as common;
-// @use '../../../pages/situation-page/SituationPage' as SituationPage;
-// @use '../../../pages/product-page/ProductPage' as ProductPage;
-// @use '../../../pages/guide-page/GuidePage' as GuidePage;
 
 .officePageHeader {
-    justify-content: center;
+    align-items: center;
     background-color: white;
-    padding-bottom: 1.5rem;
+    border: none;
     display: flex;
     flex-direction: column;
-    border: none;
-    align-items: center;
+    justify-content: center;
+    padding-bottom: 1.5rem;
 
     @include common.full-width-mixin();
 
@@ -25,23 +22,23 @@
 }
 
 .illustration {
-    width: 5rem;
     height: 5rem;
     margin-right: 2rem;
     pointer-events: none;
+    width: 5rem;
 }
 
 .content {
-    width: 100%;
+    background-color: white;
     max-width: 56.25rem;
     text-align: center;
-    background-color: white;
+    width: 100%;
 }
 
 .taglineWrapper {
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
 
     @media #{common.$mq-screen-mobile} {
         flex-direction: column;
