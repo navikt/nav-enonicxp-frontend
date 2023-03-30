@@ -12,6 +12,7 @@
     margin-top: 1rem;
     padding: 2rem 0;
     background-color: common.$navPink;
+    border-radius: 1rem;
 
     transition: background-color 200ms ease-out;
 
@@ -26,12 +27,14 @@
     @include common.full-width-mixin(true, false);
 
     @media #{common.$mq-screen-mobile} {
+        border-radius: 0.5rem;
         transform: none;
         @include common.full-width-mixin(true, true);
     }
 }
 
 .content {
+    background-color: red;
     display: flex;
     flex-direction: column;
     row-gap: 1.75rem;
