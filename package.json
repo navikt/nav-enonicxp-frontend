@@ -42,7 +42,8 @@
         "jsdom": "^20.0.3",
         "lodash.debounce": "4.0.8",
         "lottie-web": "5.10.2",
-        "lru-cache": "7.13.1",
+        "lru-cache": "8.0.4",
+        "lru-cache-legacy": "npm:lru-cache@7.13.1", // Issues with mismatch in Next vs lru-cache types for v8. So make alias as temp fix.
         "mathjs": "10.6.4",
         "next": "12.3.1",
         "node-cache": "5.1.2",
