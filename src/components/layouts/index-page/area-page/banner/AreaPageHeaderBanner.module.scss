@@ -24,8 +24,6 @@
         @include common.panel-focus-mixin();
     }
 
-    @include common.full-width-mixin(true, false);
-
     @media #{common.$mq-screen-mobile} {
         border-radius: 0.5rem;
         transform: none;
