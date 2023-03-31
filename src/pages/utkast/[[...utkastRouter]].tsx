@@ -6,7 +6,6 @@ import { isPropsWithContent } from '../../types/_type-guards';
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const pageProps = await fetchPageProps({
         routerQuery: context?.params?.utkastRouter,
-        noRedirect: true,
         isPreview: true,
     });
 
