@@ -3,7 +3,7 @@ import style from './TextWithIndicator.module.scss';
 import { classNames } from '../../../utils/classnames';
 
 type Props = {
-    text: string | true;
+    text: string;
     prefix?: string;
     isActive: boolean;
 };
