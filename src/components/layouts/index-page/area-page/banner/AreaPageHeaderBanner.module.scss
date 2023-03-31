@@ -12,7 +12,7 @@
     margin-top: 1rem;
     padding: 1.5rem;
     background-color: common.$navPink;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
 
     transition: background-color 200ms ease-out;
 
@@ -25,7 +25,6 @@
     }
 
     @media #{common.$mq-screen-mobile} {
-        border-radius: 0.5rem;
         padding: 1.5rem 1.25rem;
         transform: none;
     }
