@@ -1,8 +1,8 @@
-import { ContentProps } from '../../types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import { makeErrorProps } from '../make-error-props';
 import { xpServiceUrl } from '../urls';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
-import { MediaProps } from '../../types/media';
+import { MediaProps } from 'types/media';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from '../errors';
 import { stripLineBreaks } from '../string';
@@ -208,7 +208,8 @@ export const fetchPage = async ({
     return {
         ...content,
         isDraft,
-        ...(timeRequested && { timeRequested: timeRequested }),
         serverEnv: process.env.ENV,
+        isPagePreview: isPreview,
+        ...(timeRequested && { timeRequested: timeRequested }),
     };
 };
