@@ -72,7 +72,7 @@ export const ChatOption = (props: ChatData) => {
             <OpeningInfo
                 regularOpeningHours={regularOpeningHours}
                 specialOpeningHours={specialOpeningHours}
-                textPrefix={'Chat med veileder:'}
+                textPrefix={`${getTranslations('chat').chatWithCounsellor}:`}
             />
         </div>
     );
