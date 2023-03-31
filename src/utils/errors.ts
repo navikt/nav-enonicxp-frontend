@@ -9,13 +9,17 @@ export const logPageLoadError = (errorId: string, message: string) =>
 const isEmptyMainArticleChapter = (content: ContentProps) =>
     content.type === ContentType.MainArticleChapter && !content.data?.article;
 
-export const isNotFound = (content: ContentProps) => {
+export const isNotFound = (content: ContentProps, isDraft: boolean) => {
+    if (content.type === ContentType.Error && content.data.errorCode === 404) {
+        return true;
+    }
+
+    if (isDraft) {
+        return false;
+    }
+
     return (
-        (content.type === ContentType.Error &&
-            content.data.errorCode === 404) ||
-        (!content.editorView &&
-            (!isContentTypeImplemented(content) ||
-                isEmptyMainArticleChapter(content)))
+        !isContentTypeImplemented(content) || isEmptyMainArticleChapter(content)
     );
 };
 
