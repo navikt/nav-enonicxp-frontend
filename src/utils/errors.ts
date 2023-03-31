@@ -1,10 +1,7 @@
-import {
-    ContentProps,
-    ContentType,
-} from '../types/content-props/_content-common';
-import { isContentTypeImplemented } from '../components/ContentMapper';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { isContentTypeImplemented } from 'components/ContentMapper';
 import { stripLineBreaks } from './string';
-import { ErrorProps } from '../types/content-props/error-props';
+import { ErrorProps } from 'types/content-props/error-props';
 
 export const logPageLoadError = (errorId: string, message: string) =>
     console.error(`[Page load error] ${errorId} - ${stripLineBreaks(message)}`);
@@ -16,8 +13,9 @@ export const isNotFound = (content: ContentProps) => {
     return (
         (content.type === ContentType.Error &&
             content.data.errorCode === 404) ||
-        !isContentTypeImplemented(content) ||
-        isEmptyMainArticleChapter(content)
+        (!content.editorView &&
+            (!isContentTypeImplemented(content) ||
+                isEmptyMainArticleChapter(content)))
     );
 };
 
