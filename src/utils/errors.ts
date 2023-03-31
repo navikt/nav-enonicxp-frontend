@@ -1,10 +1,7 @@
-import {
-    ContentProps,
-    ContentType,
-} from '../types/content-props/_content-common';
-import { isContentTypeImplemented } from '../components/ContentMapper';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { isContentTypeImplemented } from 'components/ContentMapper';
 import { stripLineBreaks } from './string';
-import { ErrorProps } from '../types/content-props/error-props';
+import { ErrorProps } from 'types/content-props/error-props';
 
 export const logPageLoadError = (errorId: string, message: string) =>
     console.error(`[Page load error] ${errorId} - ${stripLineBreaks(message)}`);
@@ -12,12 +9,17 @@ export const logPageLoadError = (errorId: string, message: string) =>
 const isEmptyMainArticleChapter = (content: ContentProps) =>
     content.type === ContentType.MainArticleChapter && !content.data?.article;
 
-export const isNotFound = (content: ContentProps) => {
+export const isNotFound = (content: ContentProps, isDraft: boolean) => {
+    if (content.type === ContentType.Error && content.data.errorCode === 404) {
+        return true;
+    }
+
+    if (isDraft) {
+        return false;
+    }
+
     return (
-        (content.type === ContentType.Error &&
-            content.data.errorCode === 404) ||
-        !isContentTypeImplemented(content) ||
-        isEmptyMainArticleChapter(content)
+        !isContentTypeImplemented(content) || isEmptyMainArticleChapter(content)
     );
 };
 
