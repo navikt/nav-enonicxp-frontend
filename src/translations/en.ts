@@ -183,6 +183,7 @@ export const translationsBundleEn: Translations = {
             ingress:
                 'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
             chatWithCounsellor: 'Chat with counsellor',
+            alwaysOpen: 'Always open',
         },
         legacyChat: {
             title: 'You can chat with us',

@@ -175,6 +175,7 @@ export const translationsBundleNn: Translations = {
             ingress:
                 'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00).',
             chatWithCounsellor: 'Chat med rettleiar',
+            alwaysOpen: 'Alltid ope',
         },
         legacyChat: {
             title: 'Du kan chatte med oss',

@@ -183,6 +183,7 @@ export const translationsBundleNb = {
             ingress:
                 'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 09:00-15:00).',
             chatWithCounsellor: 'Chat med veileder',
+            alwaysOpen: 'Alltid åpen',
         },
         legacyChat: {
             title: 'Du kan chatte med oss',

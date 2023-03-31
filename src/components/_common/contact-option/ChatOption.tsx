@@ -65,7 +65,7 @@ export const ChatOption = (props: ChatData) => {
                 <ParsedHtml htmlProps={getIngress()} />
             </BodyLong>
             <TextWithIndicator
-                text={'Alltid åpen'}
+                text={`${getTranslations('chat').alwaysOpen}`}
                 prefix={'Chatbot:'}
                 isActive={true}
             />
