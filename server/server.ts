@@ -3,7 +3,6 @@ dotenv.config();
 
 import express, { ErrorRequestHandler } from 'express';
 import next from 'next';
-import fetch from 'node-fetch';
 import { createHttpTerminator } from 'http-terminator';
 import promBundle from 'express-prom-bundle';
 import { initRevalidatorProxyHeartbeat } from './revalidator-proxy-heartbeat';

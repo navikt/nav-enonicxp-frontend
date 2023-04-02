@@ -1,6 +1,6 @@
 import NextNodeServer from 'next/dist/server/next-server';
 import { NextServer } from 'next/dist/server/next';
-import LRUCache from 'lru-cache';
+import LRUCache from 'lru-cache-legacy';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 
 export const setPageCacheDir = (nextServer: NextNodeServer) => {
