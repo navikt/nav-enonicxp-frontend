@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 const defaultTimeout = 15000;
 
 export const fetchWithTimeout = <ResponseType = any>(
