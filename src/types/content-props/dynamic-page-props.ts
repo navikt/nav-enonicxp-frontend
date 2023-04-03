@@ -34,8 +34,6 @@ export type OverviewPageData = Partial<{
 
 export type OfficeEditorialPageData = {
     title: string;
-    ingress?: string;
-    externalProductUrl?: string;
 } & ProductDataMixin &
     DynamicPageData;
 
