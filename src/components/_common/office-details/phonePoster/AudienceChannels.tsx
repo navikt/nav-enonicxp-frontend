@@ -1,6 +1,7 @@
 import { BodyShort } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AudienceContact } from 'types/content-props/office-details-props';
+import { parsePhoneNumber } from '../utils';
 
 import styles from './AudienceChannels.module.scss';
 
@@ -11,19 +12,13 @@ type AudienceChannelsProps = {
 export const AudienceChannels = ({
     publikumskanaler,
 }: AudienceChannelsProps) => {
-    const splitPhoneNumber = (acc: string[], char: string, index: number) => {
-        return index % 2 === 0 ? [...acc, char] : [...acc, char, ' '];
-    };
-
     const buildHrefWithPrefix = (href: string) => {
         const prefix = href.includes('@') ? 'mailto:' : 'tel:';
         return `${prefix}${href}`;
     };
 
     const buildLinkText = (href: string) => {
-        return href.includes('@')
-            ? href
-            : href.split('').reduce(splitPhoneNumber, []).join('');
+        return href.includes('@') ? href : parsePhoneNumber(href);
     };
 
     const createLink = (href: string) => {

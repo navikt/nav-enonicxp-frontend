@@ -1,4 +1,4 @@
-import { BodyLong, BodyShort, Heading, Link } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { OfficeDetailsProps } from '../OfficeDetails';
 import { translator } from 'translations';
 import { parsePhoneNumber } from '../utils';
@@ -9,6 +9,9 @@ import { TelephoneFilled } from '@navikt/ds-icons';
 import { forceArray } from 'utils/arrays';
 import React from 'react';
 import { AudienceChannels } from './AudienceChannels';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+
+const phoneNumber = '55553333';
 
 export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const { language } = usePageConfig();
@@ -17,22 +20,21 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     );
     const getOfficeTranslations = translator('office', language);
 
-    const phoneNumber = '55553333';
     const humanReadablePhoneNumber = parsePhoneNumber(phoneNumber);
 
     return (
         <div className={styles.phonePoster}>
-            <Heading as="div" level="2" size="small" className={styles.heading}>
+            <Heading level="2" size="small" className={styles.heading}>
                 {getOfficeTranslations('phoneToNav')}
             </Heading>
             <BodyShort className={styles.phoneNumberWrapper}>
-                <Link
+                <LenkeBase
                     href={`tel:${phoneNumber}`}
                     className={styles.phoneNumber}
                 >
                     <TelephoneFilled className={styles.telephoneIcon} />
                     {humanReadablePhoneNumber}
-                </Link>
+                </LenkeBase>
             </BodyShort>
             <BodyLong spacing>
                 {getOfficeTranslations('phoneInformation')}

@@ -114,12 +114,7 @@ export const SingleReception = (props: AudienceReception) => {
                         />
                         {getLabel('openingHoursWithoutAppointment')}
                     </Heading>
-                    <OpeningHours
-                        openingHours={openingHours}
-                        closedLabel={getLabel('closed')}
-                        appointmentOnlyLabel={getLabel('appointmentOnly')}
-                        language={language}
-                    />
+                    <OpeningHours openingHours={openingHours} />
                 </>
             )}
             {openingHoursExceptions.length > 0 && (
@@ -127,12 +122,7 @@ export const SingleReception = (props: AudienceReception) => {
                     <Heading level="3" size="medium" spacing>
                         {getLabel('specialOpeningHours')}
                     </Heading>
-                    <OpeningHours
-                        openingHours={openingHoursExceptions}
-                        closedLabel={getLabel('closed')}
-                        appointmentOnlyLabel={getLabel('appointmentOnly')}
-                        language={language}
-                    />
+                    <OpeningHours openingHours={openingHoursExceptions} />
                 </>
             )}
             <div className={styles.appointmentBookingInfo}>

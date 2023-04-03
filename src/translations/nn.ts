@@ -255,6 +255,7 @@ export const translationsBundleNn: Translations = {
             today: 'i dag',
             tomorrow: 'i morgon',
         },
+        time: 'tid',
         day: 'dag',
         date: 'dato',
     },

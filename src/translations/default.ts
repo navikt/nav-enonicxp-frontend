@@ -263,6 +263,7 @@ export const translationsBundleNb = {
             today: 'i dag',
             tomorrow: 'i morgen',
         },
+        time: 'tid',
         day: 'dag',
         date: 'dato',
     },

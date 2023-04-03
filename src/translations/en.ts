@@ -151,6 +151,7 @@ export const translationsBundleEn: Translations = {
             today: 'today',
             tomorrow: 'tomorrow',
         },
+        time: 'time',
         day: 'day',
         date: 'date',
     },
