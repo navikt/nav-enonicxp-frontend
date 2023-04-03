@@ -58,7 +58,7 @@ export const OfficeEditorialDetail = ({
             );
         }
         return (
-            <PlaceholderIndicator>{`Her plasseres kontor-spesifikk ${editorTranslation[detailType]}`}</PlaceholderIndicator>
+            <PlaceholderIndicator>{`Her plasseres både felles tjenester for alle kontorene og kontor-spesifikk ${editorTranslation[detailType]}`}</PlaceholderIndicator>
         );
     }
 
