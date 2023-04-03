@@ -1,4 +1,5 @@
-import { BodyShort, Link } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AudienceContact } from 'types/content-props/office-details-props';
 
 import styles from './AudienceChannels.module.scss';
@@ -7,46 +8,55 @@ type AudienceChannelsProps = {
     publikumskanaler: AudienceContact[];
 };
 
-const splitPhoneNumber = (acc: string[], char: string, index: number) => {
-    return index % 2 === 0 ? [...acc, char] : [...acc, char, ' '];
-};
-
 export const AudienceChannels = ({
     publikumskanaler,
 }: AudienceChannelsProps) => {
-    const createLink = (emailOrPhone: string) => {
-        const isEmail = emailOrPhone.includes('@');
-        const humanReadablePhoneNumber = emailOrPhone
-            .split('')
-            .reduce(splitPhoneNumber, [])
-            .join('');
-        const href = isEmail ? `mailto:${emailOrPhone}` : `tel:${emailOrPhone}`;
+    const splitPhoneNumber = (acc: string[], char: string, index: number) => {
+        return index % 2 === 0 ? [...acc, char] : [...acc, char, ' '];
+    };
+
+    const buildHrefWithPrefix = (href: string) => {
+        const prefix = href.includes('@') ? 'mailto:' : 'tel:';
+        return `${prefix}${href}`;
+    };
+
+    const buildLinkText = (href: string) => {
+        return href.includes('@')
+            ? href
+            : href.split('').reduce(splitPhoneNumber, []).join('');
+    };
+
+    const createLink = (href: string) => {
         return (
-            <Link href={href}>
-                {isEmail ? emailOrPhone : humanReadablePhoneNumber}
-            </Link>
+            <LenkeBase href={buildHrefWithPrefix(href)}>
+                {buildLinkText(href)}
+            </LenkeBase>
+        );
+    };
+
+    const buildChannel = (channel: AudienceContact) => {
+        return (
+            <BodyShort
+                key={channel.sortOrder}
+                className={styles.audienceChannels}
+            >
+                {`${channel.beskrivelse}: `}
+                {createLink(channel.epost || channel.telefon)}
+            </BodyShort>
         );
     };
 
     if (publikumskanaler.length === 1) {
-        return (
-            <>
-                {publikumskanaler[0].beskrivelse}:{' '}
-                {createLink(
-                    publikumskanaler[0].epost || publikumskanaler[0].telefon
-                )}
-            </>
-        );
+        return <>{buildChannel(publikumskanaler[0])}</>;
     }
 
     return (
-        <li className={styles.audienceChannels}>
+        <ul className={styles.audienceChannels}>
             {publikumskanaler.map((kanal) => (
-                <BodyShort key={kanal.sortOrder}>
-                    {`${kanal.beskrivelse}: `}
-                    {createLink(kanal.epost || kanal.telefon)}
-                </BodyShort>
+                <li className={styles.channelItem} key={kanal.sortOrder}>
+                    {buildChannel(kanal)}
+                </li>
             ))}
-        </li>
+        </ul>
     );
 };
