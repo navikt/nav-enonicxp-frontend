@@ -14,9 +14,10 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
     const { language } = usePageConfig();
     const getOfficeTranslations = translator('office', language);
 
-    const { postadresse, organisasjonsnummer, enhetNr } = officeData;
+    const { postadresse, beliggenhet, organisasjonsnummer, enhetNr } =
+        officeData;
 
-    const visitingAdress = formatAddress(postadresse, true);
+    const visitingAddress = formatAddress(beliggenhet, true);
     const postalAddress = formatAddress(postadresse, true);
 
     return (
@@ -33,7 +34,7 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
                         <Heading level="3" size="small" spacing>
                             {getOfficeTranslations('location')}
                         </Heading>
-                        <BodyShort>{visitingAdress}</BodyShort>
+                        <BodyShort>{visitingAddress}</BodyShort>
                     </section>
                     <section className={styles.section}>
                         <Heading level="3" size="small" spacing>
