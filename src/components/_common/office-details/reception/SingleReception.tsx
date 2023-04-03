@@ -49,9 +49,7 @@ const formatAudienceReception = (
                     dato: elem.dato,
                 });
             } else {
-                acc.regular.push({
-                    ...elem,
-                });
+                acc.regular.push(elem);
             }
             return acc;
         },
