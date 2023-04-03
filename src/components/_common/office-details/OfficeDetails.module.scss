@@ -1,9 +1,18 @@
 @use 'src/common' as common;
 
 .officeDetails {
+    align-self: center;
     border: none;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 2rem;
+    max-width: common.$contentMaxWidth;
+    width: 100%;
+
+    & > * {
+        width: 100%;
+    }
 }
 
 .wide {

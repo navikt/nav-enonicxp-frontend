@@ -23,25 +23,23 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
 
     return (
         <div className={styles.wide}>
-            <div className="content">
-                <div
-                    className={classNames(
-                        styles.officeDetails,
-                        'region__pageContent'
-                    )}
-                >
-                    <Heading level="2" size="large" className={styles.header}>
-                        <div className={styles.placeIcon}>
-                            <PlaceFilled aria-hidden="true" />
-                        </div>
-                        {getOfficeTranslations('youFindUsHere')}
-                    </Heading>
-                    {publikumsmottak.length > 0 && (
-                        <Reception receptions={publikumsmottak} />
-                    )}
-                    <PhonePoster officeData={officeData} />
-                    <OfficeInformation officeData={officeData} />
-                </div>
+            <div
+                className={classNames(
+                    styles.officeDetails,
+                    'region__pageContent'
+                )}
+            >
+                <Heading level="2" size="large" className={styles.header}>
+                    <div className={styles.placeIcon}>
+                        <PlaceFilled aria-hidden="true" />
+                    </div>
+                    {getOfficeTranslations('youFindUsHere')}
+                </Heading>
+                {publikumsmottak.length > 0 && (
+                    <Reception receptions={publikumsmottak} />
+                )}
+                <PhonePoster officeData={officeData} />
+                <OfficeInformation officeData={officeData} />
             </div>
         </div>
     );
