@@ -1,6 +1,5 @@
 import {
     Address,
-    AudienceReception,
     OpeningHours,
 } from '../../../types/content-props/office-details-props';
 
