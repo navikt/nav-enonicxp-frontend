@@ -25,7 +25,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
     const firstLocation = getLocation(receptionArray[0]) || '(Ukjent sted)';
     const [state, setState] = useState(firstLocation);
 
-    if (!receptions) {
+    if (!receptions || receptions.length === 0) {
         return null;
     }
 
