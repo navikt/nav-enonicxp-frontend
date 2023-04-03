@@ -15,8 +15,9 @@ export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
 
     /* This to be removed before pilot starts after easter */
     const router = useRouter();
+
     if (!router.route.includes('utkast')) {
-        return <ErrorPage404 />;
+        return <>Finnes ikke</>;
     }
     /* End */
 
