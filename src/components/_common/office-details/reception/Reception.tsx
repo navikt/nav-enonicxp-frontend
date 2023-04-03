@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Tabs } from '@navikt/ds-react';
-import { normalizeReceptionAsArray } from '../utils';
 import { AudienceReception } from '../../../../types/content-props/office-details-props';
 
 import { SingleReception } from './SingleReception';
@@ -8,6 +7,7 @@ import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './Reception.module.scss';
+import { forceArray } from 'utils/arrays';
 
 interface LocationsProps {
     receptions: AudienceReception[];
@@ -15,7 +15,7 @@ interface LocationsProps {
 
 export const Reception = ({ receptions }: LocationsProps) => {
     const { language } = usePageConfig();
-    const receptionArray = normalizeReceptionAsArray(receptions);
+    const receptionArray = forceArray(receptions);
     const getOfficeTranslations = translator('office', language);
 
     const getLocation = (reception: AudienceReception) => {

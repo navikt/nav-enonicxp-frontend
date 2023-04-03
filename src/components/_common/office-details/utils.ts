@@ -91,15 +91,3 @@ export const buildOpeningHoursSpecification = (
         ...part,
     };
 };
-
-/** Reception (publikumsmottak) can come in as an array, object or even undefined.
- * Make sure to normalize all cases into an array.
- */
-export const normalizeReceptionAsArray = (
-    receptions: AudienceReception[] | AudienceReception
-): AudienceReception[] => {
-    if (!receptions) {
-        return [];
-    }
-    return Array.isArray(receptions) ? receptions : [receptions];
-};

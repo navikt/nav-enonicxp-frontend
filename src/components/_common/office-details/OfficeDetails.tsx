@@ -2,7 +2,6 @@ import { Heading } from '@navikt/ds-react';
 import { PlaceFilled } from '@navikt/ds-icons';
 import classNames from 'classnames';
 import { translator } from 'translations';
-import { normalizeReceptionAsArray } from './utils';
 import { Reception } from './reception/Reception';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -10,6 +9,7 @@ import { PhonePoster } from './phonePoster/PhonePoster';
 import { OfficeInformation } from './officeInformation/OfficeInformation';
 
 import styles from './OfficeDetails.module.scss';
+import { forceArray } from 'utils/arrays';
 export interface OfficeDetailsProps {
     officeData: OfficeDetailsData;
 }
@@ -19,9 +19,7 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
     const { brukerkontakt } = officeData;
     const getOfficeTranslations = translator('office', language);
 
-    const publikumsmottak = normalizeReceptionAsArray(
-        brukerkontakt.publikumsmottak
-    );
+    const publikumsmottak = forceArray(brukerkontakt.publikumsmottak);
 
     return (
         <div className={styles.wide}>

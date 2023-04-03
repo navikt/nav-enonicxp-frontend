@@ -44,25 +44,25 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
                             <span>{postalAddress}</span>
                         </BodyShort>
                     </section>
-                    <section className={styles.section}>
-                        {(organisasjonsnummer || enhetNr) && (
+                    {(organisasjonsnummer || enhetNr) && (
+                        <section className={styles.section}>
                             <Heading level="3" size="small" spacing>
                                 {getOfficeTranslations('officeInformation')}
                             </Heading>
-                        )}
-                        {organisasjonsnummer && (
-                            <BodyShort>
-                                {getOfficeTranslations('orgNumber')}:{' '}
-                                {organisasjonsnummer}
-                            </BodyShort>
-                        )}
-                        {enhetNr && (
-                            <BodyShort>
-                                {getOfficeTranslations('officeNumber')}:{' '}
-                                {enhetNr}
-                            </BodyShort>
-                        )}
-                    </section>
+                            {organisasjonsnummer && (
+                                <BodyShort>
+                                    {getOfficeTranslations('orgNumber')}:{' '}
+                                    {organisasjonsnummer}
+                                </BodyShort>
+                            )}
+                            {enhetNr && (
+                                <BodyShort>
+                                    {getOfficeTranslations('officeNumber')}:{' '}
+                                    {enhetNr}
+                                </BodyShort>
+                            )}
+                        </section>
+                    )}
                 </Accordion.Content>
             </Accordion.Item>
         </Accordion>
