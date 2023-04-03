@@ -1,5 +1,7 @@
 @use 'src/common' as common;
 
+$margin: 2rem;
+
 .officeDetails {
     align-self: center;
     border: none;
@@ -12,6 +14,21 @@
 
     & > * {
         width: 100%;
+    }
+}
+
+.pageContent {
+    display: flex;
+    flex-direction: column;
+
+    & > :not(.layout__situation-flex-cols) {
+        margin-bottom: $margin;
+        max-width: common.$sectionMaxWidth;
+    }
+
+    // Prevent margins between adjacent situation-flex-cols layouts
+    .layout__situation-flex-cols + .layout__situation-flex-cols {
+        margin-top: -($margin * 2);
     }
 }
 

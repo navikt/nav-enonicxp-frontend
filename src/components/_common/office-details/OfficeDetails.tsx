@@ -24,10 +24,7 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
     return (
         <div className={styles.wide}>
             <div
-                className={classNames(
-                    styles.officeDetails,
-                    'region__pageContent'
-                )}
+                className={classNames(styles.officeDetails, styles.pageContent)}
             >
                 <Heading level="2" size="large" className={styles.header}>
                     <div className={styles.placeIcon}>

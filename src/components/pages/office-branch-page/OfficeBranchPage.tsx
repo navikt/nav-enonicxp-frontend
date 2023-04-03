@@ -6,6 +6,9 @@ import { OfficeDetails } from 'components/_common/office-details/OfficeDetails';
 import { useRouter } from 'next/router';
 import ErrorPage404 from 'pages/404';
 
+import styles from './OfficeBranchPage.module.scss';
+import classNames from 'classnames';
+
 export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
     const editorialPage = props.editorial;
 
@@ -22,13 +25,13 @@ export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
     /* End */
 
     return (
-        <div className={'officeBranchPage'}>
+        <div className={styles.officeBranchPage}>
             <OfficePageHeader
                 officeDetails={props.data}
                 showTimeStamp={false}
             />
             <OfficeDetails officeData={props.data} />
-            <div className={'content'}>
+            <div className={classNames(styles.content, styles.pageContent)}>
                 {editorialPage && (
                     <ComponentMapper
                         componentProps={editorialPage.page}
