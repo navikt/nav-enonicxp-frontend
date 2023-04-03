@@ -45,6 +45,7 @@ spec:
         - application: {{revalidatorApp}}
       external:
         - host: {{xpHost}}
+        - host: {{dev2Host}}
         - host: {{decoratorHost}}
     inbound:
       rules:
