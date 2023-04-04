@@ -12,23 +12,6 @@ type AudienceChannelsProps = {
 export const AudienceChannels = ({
     publikumskanaler,
 }: AudienceChannelsProps) => {
-    const buildHrefWithPrefix = (href: string) => {
-        const prefix = href.includes('@') ? 'mailto:' : 'tel:';
-        return `${prefix}${href}`;
-    };
-
-    const buildLinkText = (href: string) => {
-        return href.includes('@') ? href : parsePhoneNumber(href);
-    };
-
-    const createLink = (href: string) => {
-        return (
-            <LenkeBase href={buildHrefWithPrefix(href)}>
-                {buildLinkText(href)}
-            </LenkeBase>
-        );
-    };
-
     const buildChannel = (channel: AudienceContact) => {
         return (
             <BodyShort
@@ -36,7 +19,16 @@ export const AudienceChannels = ({
                 className={styles.audienceChannels}
             >
                 {`${channel.beskrivelse}: `}
-                {createLink(channel.epost || channel.telefon)}
+                {channel.epost && (
+                    <LenkeBase href={`mailto:${channel.epost}`}>
+                        {channel.epost}
+                    </LenkeBase>
+                )}
+                {channel.telefon && (
+                    <LenkeBase href={`mailto:${channel.telefon}`}>
+                        {parsePhoneNumber(channel.telefon)}
+                    </LenkeBase>
+                )}
             </BodyShort>
         );
     };
