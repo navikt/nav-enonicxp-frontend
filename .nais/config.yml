@@ -26,9 +26,9 @@ spec:
     enabled: true
     path: /internal/metrics
   ingresses:
-  {{#each ingresses as |url|}}
+    {{#each ingresses as |url|}}
     - {{url}}
-  {{/each}}
+    {{/each}}
   envFrom:
     - secret: {{secret}}
   env:
@@ -44,18 +44,17 @@ spec:
       rules:
         - application: {{revalidatorApp}}
       external:
-        - host: {{xpHost}}
-        - host: {{dev2Host}}
-        - host: {{decoratorHost}}
+        {{#each externalHosts as |host|}}
+        - host: {{host}}
+        {{/each}}
     inbound:
       rules:
         - application: {{revalidatorApp}}
   resources:
   {{#with resources}}
-    limits:
-      cpu: {{limits.cpu}}
-      memory: {{limits.memory}}
     requests:
       cpu: {{requests.cpu}}
       memory: {{requests.memory}}
+    limits:
+      memory: {{limits.memory}}
   {{/with}}
