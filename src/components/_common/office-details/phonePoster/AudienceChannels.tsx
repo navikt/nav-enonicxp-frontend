@@ -25,7 +25,7 @@ export const AudienceChannels = ({
                     </LenkeBase>
                 )}
                 {channel.telefon && (
-                    <LenkeBase href={`mailto:${channel.telefon}`}>
+                    <LenkeBase href={`tel:${channel.telefon}`}>
                         {parsePhoneNumber(channel.telefon)}
                     </LenkeBase>
                 )}
