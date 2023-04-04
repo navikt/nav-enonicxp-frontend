@@ -25,11 +25,6 @@ $margin: 2rem;
         margin-bottom: $margin;
         max-width: common.$sectionMaxWidth;
     }
-
-    // Prevent margins between adjacent situation-flex-cols layouts
-    .layout__situation-flex-cols + .layout__situation-flex-cols {
-        margin-top: -($margin * 2);
-    }
 }
 
 .wide {
