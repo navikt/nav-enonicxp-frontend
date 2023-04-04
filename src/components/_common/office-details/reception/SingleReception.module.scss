@@ -2,7 +2,6 @@
 
 .singleReception {
     background-color: var(--a-deepblue-50);
-    margin: 1rem 0;
     padding: common.$padding-sides-mobile;
 
     @media #{common.$mq-screen-tablet} {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs } from '@navikt/ds-react';
+import { BodyLong, Tabs } from '@navikt/ds-react';
 import { AudienceReception } from '../../../../types/content-props/office-details-props';
 
 import { SingleReception } from './SingleReception';
@@ -35,9 +35,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
 
     return (
         <>
-            <div className={styles.chooseBetweenOffices}>
-                {getOfficeTranslations('chooseBetweenOffices')}
-            </div>
+            <BodyLong>{getOfficeTranslations('chooseBetweenOffices')}</BodyLong>
             <Tabs
                 value={state}
                 onChange={setState}
@@ -58,7 +56,11 @@ export const Reception = ({ receptions }: LocationsProps) => {
                 {receptions.map((loc: AudienceReception, index) => {
                     const locationLabel = getLocation(loc);
                     return (
-                        <Tabs.Panel key={index} value={locationLabel}>
+                        <Tabs.Panel
+                            key={index}
+                            value={locationLabel}
+                            className={styles.singleTab}
+                        >
                             <SingleReception {...loc} />
                         </Tabs.Panel>
                     );
