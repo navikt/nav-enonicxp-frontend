@@ -1,16 +1,16 @@
 appName: nav-enonicxp-frontend-dev1-failover
 frontendApp: nav-enonicxp-frontend-dev1
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev1
+externalHosts:
+  - www.dev.nav.no
+  - dekoratoren.ekstern.dev.nav.no
 secret: nav-enonicxp-dev1
 ingresses:
   - https://www-failover.dev.nav.no
-replicas:
-  min: 1
-  max: 2
 resources:
-  limits:
-    cpu: 1000m
-    memory: 2500Mi
   requests:
     cpu: 100m
     memory: 384Mi
+replicas:
+  min: 1
+  max: 2
