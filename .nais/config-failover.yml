@@ -44,7 +44,7 @@ spec:
       external:
         {{#each externalHosts as |host|}}
         - host: {{host}}
-        {{/with}}
+        {{/each}}
     inbound:
       rules:
         - application: {{frontendApp}}
