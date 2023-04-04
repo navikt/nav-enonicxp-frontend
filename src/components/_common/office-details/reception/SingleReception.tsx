@@ -41,10 +41,7 @@ const formatAudienceReception = (
     const aapningstider = audienceReception.aapningstider.reduce(
         (acc, elem) => {
             if (elem.dato) {
-                acc.exceptions.push({
-                    ...elem,
-                    dato: elem.dato,
-                });
+                acc.exceptions.push(elem);
             } else {
                 acc.regular.push(elem);
             }
