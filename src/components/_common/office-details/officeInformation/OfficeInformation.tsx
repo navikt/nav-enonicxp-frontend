@@ -25,7 +25,6 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
             <Accordion.Item>
                 <Accordion.Header>
                     <Heading level="2" size="medium">
-                        {' '}
                         {getOfficeTranslations('officeInformation')}
                     </Heading>
                 </Accordion.Header>
