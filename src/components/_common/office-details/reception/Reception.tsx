@@ -32,7 +32,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
     const firstLocation = getLocation(receptionArray[0]);
     const [state, setState] = useState(firstLocation);
 
-    if (!receptions || receptions.length === 0) {
+    if (!receptionArray || receptionArray.length === 0) {
         return null;
     }
 
@@ -49,7 +49,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
                 className={styles.officeTabs}
             >
                 <Tabs.List>
-                    {receptions.map((loc: AudienceReception, index) => {
+                    {receptionArray.map((loc: AudienceReception, index) => {
                         const locationLabel = getLocation(loc);
                         return (
                             <Tabs.Tab
@@ -60,7 +60,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
                         );
                     })}
                 </Tabs.List>
-                {receptions.map((loc: AudienceReception, index) => {
+                {receptionArray.map((loc: AudienceReception, index) => {
                     const locationLabel = getLocation(loc);
                     return (
                         <Tabs.Panel
