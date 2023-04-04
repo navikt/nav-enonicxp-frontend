@@ -121,7 +121,10 @@ export const SingleReception = (props: AudienceReception) => {
                 </>
             )}
             <div className={styles.appointmentBookingInfo}>
-                <Information className={styles.appointmentIcon} />
+                <Information
+                    className={styles.appointmentIcon}
+                    aria-hidden="true"
+                />
                 {getLabel('youCanMakeAppointment')}
             </div>
         </div>

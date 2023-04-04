@@ -34,7 +34,7 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
     const subTitle = getSubtitle(brukerkontakt?.publikumsmottak);
 
     return (
-        <header className={classNames(style.officePageHeader)}>
+        <div className={classNames(style.officePageHeader)}>
             <div className={style.content}>
                 <PageHeader justify={'left'}>{navn}</PageHeader>
                 <div className={style.taglineWrapper}>
@@ -56,6 +56,6 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
                     )}
                 </div>
             </div>
-        </header>
+        </div>
     );
 };

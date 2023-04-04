@@ -32,7 +32,10 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
                     href={`tel:${phoneNumber}`}
                     className={styles.phoneNumber}
                 >
-                    <TelephoneFilled className={styles.telephoneIcon} />
+                    <TelephoneFilled
+                        aria-hidden="true"
+                        className={styles.telephoneIcon}
+                    />
                     {humanReadablePhoneNumber}
                 </LenkeBase>
             </BodyShort>
