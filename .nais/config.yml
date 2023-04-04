@@ -52,10 +52,9 @@ spec:
         - application: {{revalidatorApp}}
   resources:
   {{#with resources}}
-    limits:
-      cpu: {{limits.cpu}}
-      memory: {{limits.memory}}
     requests:
       cpu: {{requests.cpu}}
       memory: {{requests.memory}}
+    limits:
+      memory: {{limits.memory}}
   {{/with}}
