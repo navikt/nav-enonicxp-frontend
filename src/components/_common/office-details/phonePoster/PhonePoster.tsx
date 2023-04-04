@@ -12,6 +12,7 @@ import { AudienceChannels } from './AudienceChannels';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 const phoneNumber = '55553333';
+const humanReadablePhoneNumber = parsePhoneNumber(phoneNumber);
 
 export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const { language } = usePageConfig();
@@ -19,8 +20,6 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
         officeData.brukerkontakt.publikumskanaler
     );
     const getOfficeTranslations = translator('office', language);
-
-    const humanReadablePhoneNumber = parsePhoneNumber(phoneNumber);
 
     return (
         <div className={styles.phonePoster}>
