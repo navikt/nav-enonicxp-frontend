@@ -1,16 +1,17 @@
 appName: nav-enonicxp-frontend-failover
 frontendApp: nav-enonicxp-frontend
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy
+externalHosts:
+  - www.nav.no
 secret: nav-enonicxp
 ingresses:
   - https://www-failover.nav.no
+resources:
+  requests:
+    cpu: 500m
+    memory: 750Mi
+  limits:
+    memory: 750Mi
 replicas:
   min: 2
   max: 2
-resources:
-  limits:
-    cpu: 3000m
-    memory: 5000Mi
-  requests:
-    cpu: 500m
-    memory: 500Mi
