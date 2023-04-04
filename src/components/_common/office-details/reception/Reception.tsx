@@ -10,7 +10,7 @@ import styles from './Reception.module.scss';
 import { forceArray } from 'utils/arrays';
 
 interface LocationsProps {
-    receptions: AudienceReception[];
+    receptions: AudienceReception[] | AudienceReception;
 }
 
 export const Reception = ({ receptions }: LocationsProps) => {
