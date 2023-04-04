@@ -21,9 +21,9 @@ $margin: 2rem;
     display: flex;
     flex-direction: column;
 
-    & > :not(.layout__situation-flex-cols) {
-        margin-bottom: $margin;
+    & > * {
         max-width: common.$sectionMaxWidth;
+        margin-bottom: $margin;
     }
 }
 
