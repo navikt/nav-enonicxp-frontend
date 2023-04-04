@@ -19,10 +19,17 @@ export const Reception = ({ receptions }: LocationsProps) => {
     const getOfficeTranslations = translator('office', language);
 
     const getLocation = (reception: AudienceReception) => {
-        return reception.stedsbeskrivelse || reception.besoeksadresse.poststed;
+        if (!reception) {
+            return '(Ukjent sted)';
+        }
+        return (
+            reception.stedsbeskrivelse ||
+            reception.besoeksadresse.poststed ||
+            '(Ukjent sted)'
+        );
     };
 
-    const firstLocation = getLocation(receptionArray[0]) || '(Ukjent sted)';
+    const firstLocation = getLocation(receptionArray[0]);
     const [state, setState] = useState(firstLocation);
 
     if (!receptions || receptions.length === 0) {
