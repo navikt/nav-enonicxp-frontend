@@ -1,0 +1,27 @@
+@use 'src/common' as common;
+
+$margin: 2rem;
+
+.officeEditorialPage {
+    display: flex;
+    flex-direction: column;
+
+    :global {
+        .layout__section-with-header {
+            margin-bottom: $margin;
+        }
+    }
+
+    .content {
+        align-self: center;
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 2rem;
+        max-width: common.$contentMaxWidth;
+        width: 100%;
+
+        & > * {
+            width: 100%;
+        }
+    }
+}

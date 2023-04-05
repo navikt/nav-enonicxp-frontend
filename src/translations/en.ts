@@ -77,6 +77,20 @@ export const translationsBundleEn: Translations = {
         customizeContent: 'Customize content',
         showingInformationFor: 'Showing information for:',
     },
+    audienceServices: {
+        NODSITUASJON:
+            'Hjelp i nødsituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
+        TILGANGPC: 'Tilgang til PC',
+        HJELPDIGITALETJENESTER:
+            'Hjelp til å bruke digitale tjenester hvis du trenger det',
+        BARNEVERN: 'Barnevern',
+        FENGSEL_OG_KRIMINALOMSORG: 'Fengsel- og kriminalomsorg',
+        FLYKTNINGSTJENESTE: 'Flyktningetjeneste',
+        RUS_OG_PSYKISK_HELSE: 'Rus og psykisk helse',
+        STARTLAN: 'Startlån',
+        SJOFARTSOPPGAVER: 'Sjøfartsoppgaver',
+        STOTTEKONTAKT: 'Støttekontakt',
+    },
     currentTopic: {
         tag: 'Featured',
     },
@@ -103,6 +117,26 @@ export const translationsBundleEn: Translations = {
         publishdate: 'Date',
         event: 'Publication',
     },
+    office: {
+        youFindUsHere: 'You can find us here',
+        chooseBetweenOffices: 'You can choose one of the following offices.',
+        officeInformation: 'Office information',
+        closed: 'Closed',
+        openingHoursWithoutAppointment: 'Opening hours without an appointment',
+        appointmentOnly: 'Kun timeavtale',
+        specialOpeningHours: 'Special opening hours',
+        address: 'Address',
+        youCanMakeAppointment:
+            'You can book a meeting with your counsellor outside of these opening hours.',
+        location: 'Location',
+        postalAddress: 'Postal address',
+        orgNumber: 'Org number',
+        officeNumber: 'Office number',
+        phoneToNav: 'NAV phone number is',
+        phoneInformation:
+            'Open, weekdays at 9-15. NAV call center will assist you or connect you with your NAV office.',
+        alternativeContacts: 'Other contact options:',
+    },
     dateTime: {
         weekDayNames: [
             'Monday',
@@ -117,6 +151,7 @@ export const translationsBundleEn: Translations = {
             today: 'today',
             tomorrow: 'tomorrow',
         },
+        time: 'time',
         day: 'day',
         date: 'date',
     },
@@ -181,12 +216,12 @@ export const translationsBundleEn: Translations = {
         chat: {
             title: 'Chat with Frida',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 9-15).',
         },
         legacyChat: {
             title: 'You can chat with us',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 9-15).',
         },
         write: {
             title: 'Write to us',
@@ -205,7 +240,7 @@ export const translationsBundleEn: Translations = {
         call: {
             title: 'Call us at +47 55 55 33 33',
             ingress:
-                'Weekdays 09:00–15:00. We can call you back if the wait time is more than 5 minutes.',
+                'Weekdays 9-15. We can call you back if the wait time is more than 5 minutes.',
         },
         shared: {
             closed: 'Closed',

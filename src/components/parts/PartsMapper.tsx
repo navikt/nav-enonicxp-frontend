@@ -38,6 +38,7 @@ import { FiltersMenu } from './filters-menu/FiltersMenu';
 import { FrontpageCurrentTopics } from './frontpage-current-topics/FrontpageCurrentTopics';
 import { FrontpageShortcuts } from './frontpage-shortcuts/FrontpageShortcuts';
 import { ProductCardPart } from './product-card/ProductCard';
+import { OfficeEditorialDetail } from './office-editorial-detail/OfficeEditorialDetail';
 import { ContactOptionPart } from './contact-option/ContactOptionPart';
 import { ProductCardMicroPart } from './product-card-micro/ProductCardMicro';
 import { editorAuthstateClassname } from '../_common/auth-dependant-render/AuthDependantRender';
@@ -93,6 +94,7 @@ const partsWithOwnData: {
     [PartType.ProductCard]: ProductCardPart,
     [PartType.ProductCardMicro]: ProductCardMicroPart,
     [PartType.ProductCardMini]: ProductCardPart,
+    [PartType.OfficeEditorialDetail]: OfficeEditorialDetail,
     [PartType.ProductDetails]: ProductDetailsPart,
     [PartType.FormDetails]: FormDetailsPart,
     [PartType.ContactOption]: ContactOptionPart,

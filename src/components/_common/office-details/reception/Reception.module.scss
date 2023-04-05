@@ -1,0 +1,31 @@
+.officeTabs {
+    :global(.navds-tabs__tablist-wrapper) {
+        box-shadow: none;
+    }
+
+    :global(.navds-tabs__tab) {
+        background-color: var(--a-surface-subtle);
+        border-radius: var(--a-border-radius-medium);
+        color: var(--a-text-default);
+
+        &:hover {
+            background-color: var(--a-surface-action-subtle-hover);
+            box-shadow: none;
+        }
+        &:not(:last-of-type) {
+            margin-right: 1rem;
+        }
+    }
+
+    :global(.navds-tabs__tab[aria-selected='true']:not(:focus)) {
+        background-color: var(--a-surface-action-subtle);
+        box-shadow: none;
+    }
+}
+
+.singleTab {
+    margin: 1rem 0;
+    &:focus-visible {
+        box-shadow: 0 0 0 2px var(--a-border-focus);
+    }
+}

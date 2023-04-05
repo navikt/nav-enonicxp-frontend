@@ -10,6 +10,8 @@ import { TemplatePage } from './pages/template-page/TemplatePage';
 import { SituationPage } from './pages/situation-page/SituationPage';
 import { GuidePage } from './pages/guide-page/GuidePage';
 import { OverviewPage } from './pages/overview-page/OverviewPage';
+import { OfficeEditorialPage } from './pages/office-editorial-page/OfficeEditorialPage';
+import { OfficeBranchPage } from './pages/office-branch-page/OfficeBranchPage';
 import { ThemedArticlePage } from './pages/themed-article-page/ThemedArticlePage';
 import { ProductPage } from './pages/product-page/ProductPage';
 import { ProductDetailsPage } from './pages/product-details-page/ProductDetailsPage';
@@ -41,6 +43,8 @@ const contentToReactComponent: {
     [ContentType.ThemedArticlePage]: ThemedArticlePage,
     [ContentType.Overview]: OverviewPage,
     [ContentType.GenericPage]: GenericPage,
+    [ContentType.OfficeEditorialPage]: OfficeEditorialPage,
+    [ContentType.OfficeBranchPage]: OfficeBranchPage,
     [ContentType.CurrentTopicPage]: CurrentTopicPage,
     [ContentType.PressLandingPage]: PressLandingPage,
 
