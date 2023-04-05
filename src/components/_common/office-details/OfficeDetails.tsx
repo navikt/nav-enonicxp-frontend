@@ -19,7 +19,7 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
     const { brukerkontakt } = officeData;
     const getOfficeTranslations = translator('office', language);
 
-    const publikumsmottak = forceArray(brukerkontakt.publikumsmottak);
+    const publikumsmottak = forceArray(brukerkontakt?.publikumsmottak);
 
     return (
         <div className={styles.wide}>

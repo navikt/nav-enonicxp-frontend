@@ -17,7 +17,7 @@ const humanReadablePhoneNumber = parsePhoneNumber(phoneNumber);
 export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const { language } = usePageConfig();
     const publikumskanaler = forceArray(
-        officeData.brukerkontakt.publikumskanaler
+        officeData.brukerkontakt?.publikumskanaler
     );
     const getOfficeTranslations = translator('office', language);
 
