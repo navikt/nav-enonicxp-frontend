@@ -1,16 +1,15 @@
 appName: nav-enonicxp-frontend
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy
-decoratorHost: www.nav.no
-xpHost: www.nav.no
+externalHosts:
+  - www.nav.no
 secret: nav-enonicxp
 ingresses:
   - https://www.nav.no
 resources:
-  limits:
-    cpu: 3000m
-    memory: 5000Mi
   requests:
     cpu: 1500m
+    memory: 2500Mi
+  limits:
     memory: 2500Mi
 replicas:
   min: 3

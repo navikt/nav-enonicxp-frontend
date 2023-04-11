@@ -1,0 +1,20 @@
+.officeInformation {
+    background-color: none;
+
+    :global(.navds-accordion__header) {
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1px solid var(--a-gray-900);
+        color: var(--a-text-action);
+    }
+
+    :global(.navds-accordion__item.navds-accordion__item--open) {
+        :global(.navds-accordion__header) {
+            border: 0;
+        }
+    }
+}
+
+.section {
+    margin-bottom: 1.5rem;
+}

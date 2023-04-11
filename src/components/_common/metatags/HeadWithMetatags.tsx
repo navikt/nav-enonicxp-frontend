@@ -37,6 +37,7 @@ const getDescription = (content: ContentProps) => {
 const shouldNotIndex = (content: ContentProps) =>
     content.isPagePreview ||
     content.type === ContentType.Error ||
+    content.type === ContentType.OfficeBranchPage || //Remove at launch
     content.data?.noindex;
 
 const getCanonicalUrl = (content: ContentProps) => {

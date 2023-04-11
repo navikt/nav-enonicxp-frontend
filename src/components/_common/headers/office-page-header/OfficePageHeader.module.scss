@@ -1,0 +1,66 @@
+@use 'src/common' as common;
+
+.officePageHeader {
+    align-items: center;
+    background-color: white;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 1.5rem;
+
+    @include common.full-width-mixin();
+
+    @media #{common.$mq-screen-mobile} {
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        .illustration {
+            display: none;
+        }
+    }
+}
+
+.illustration {
+    height: 5rem;
+    margin-right: 2rem;
+    pointer-events: none;
+    width: 5rem;
+}
+
+.content {
+    background-color: white;
+    max-width: 56.25rem;
+    text-align: center;
+    width: 100%;
+}
+
+.taglineWrapper {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+
+    @media #{common.$mq-screen-mobile} {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.taglineLabel {
+    @media #{common.$mq-screen-mobile} {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.divider {
+    padding: 0 1rem;
+
+    @media #{common.$mq-screen-mobile} {
+        display: none;
+    }
+}
+
+.divider,
+.modifiedLabel {
+    color: common.$a-gray-600;
+}

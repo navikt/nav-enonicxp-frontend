@@ -1,10 +1,10 @@
-import { ContentProps } from '../types/content-props/_content-common';
+import React from 'react';
+import { ContentProps } from 'types/content-props/_content-common';
 import { useRouter } from 'next/router';
 import { FallbackPage } from './pages/fallback-page/FallbackPage';
-import PageWrapper from './PageWrapper';
-import ContentMapper from './ContentMapper';
-import React from 'react';
-import { makeErrorProps } from '../utils/make-error-props';
+import { PageWrapper } from './PageWrapper';
+import { ContentMapper } from './ContentMapper';
+import { makeErrorProps } from 'utils/make-error-props';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import globalState from '../globalState';
 

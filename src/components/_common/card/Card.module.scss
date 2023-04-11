@@ -96,7 +96,7 @@
             min-height: common.px-to-rem(400);
         }
         &:not(:hover):not(:active) {
-            box-shadow: var(--navds-shadow-card);
+            box-shadow: var(--a-shadow-medium);
         }
         &:hover {
             box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),

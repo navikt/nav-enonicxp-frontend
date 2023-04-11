@@ -10,3 +10,11 @@ export const removeDuplicates = <Type>(
               return aIndex === bIndex;
           })
         : array.filter((item, index) => array.indexOf(item) === index);
+
+export const forceArray = <Type>(arrayOrNot?: Type | Type[]) => {
+    if (arrayOrNot === undefined || arrayOrNot === null) {
+        return [];
+    }
+
+    return Array.isArray(arrayOrNot) ? arrayOrNot : [arrayOrNot];
+};

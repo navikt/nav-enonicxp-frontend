@@ -129,6 +129,20 @@ export const translationsBundleNb = {
     officeInformation: {
         closed: 'Stengt',
     },
+    audienceServices: {
+        NODSITUASJON:
+            'Hjelp i nødsituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
+        TILGANGPC: 'Tilgang til PC',
+        HJELPDIGITALETJENESTER:
+            'Hjelp til å bruke digitale tjenester hvis du trenger det',
+        BARNEVERN: 'Barnevern',
+        FENGSEL_OG_KRIMINALOMSORG: 'Fengsel- og kriminalomsorg',
+        FLYKTNINGSTJENESTE: 'Flyktningetjeneste',
+        RUS_OG_PSYKISK_HELSE: 'Rus og psykisk helse',
+        STARTLAN: 'Startlån',
+        SJOFARTSOPPGAVER: 'Sjøfartsoppgaver',
+        STOTTEKONTAKT: 'Støttekontakt',
+    },
     relatedContent: relatedContent,
     taxonomies,
     areas,
@@ -181,14 +195,14 @@ export const translationsBundleNb = {
         chat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 09:00-15:00).',
+                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 9-15).',
             chatWithCounsellor: 'Chat med veileder',
             alwaysOpen: 'Alltid åpen',
         },
         legacyChat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 09:00-15:00).',
+                'Du møter først chatbot Frida som svarer deg. Du kan også be Frida om å få snakke med en veileder (hverdager 9-15).',
         },
         write: {
             title: 'Skriv til oss',
@@ -207,7 +221,7 @@ export const translationsBundleNb = {
         call: {
             title: 'Ring oss på 55 55 33 33',
             ingress:
-                'Hverdager 09:00–15:00. Vi kan ringe deg tilbake hvis ventetiden er over 5 minutter.',
+                'Hverdager 9-15. Vi kan ringe deg tilbake hvis ventetiden er over 5 minutter.',
         },
         shared: {
             closed: 'Stengt',
@@ -216,6 +230,26 @@ export const translationsBundleNb = {
             closedNow: 'Stengt nå',
             seeMoreOptions: 'Se flere telefonnummer og tastevalg',
         },
+    },
+    office: {
+        youFindUsHere: 'Du finner oss her',
+        chooseBetweenOffices: 'Du kan velge ett av de følgende kontorene.',
+        officeInformation: 'Kontorinformasjon',
+        closed: 'Stengt',
+        openingHoursWithoutAppointment: 'Åpningstider når du ikke har avtale',
+        appointmentOnly: 'Kun timeavtale',
+        specialOpeningHours: 'Spesielle åpningstider',
+        address: 'Adresse',
+        youCanMakeAppointment:
+            'Du kan avtale møte med veilederen din utenom disse åpningstidene.',
+        location: 'Beliggenhet',
+        postalAddress: 'Postadresse',
+        orgNumber: 'Organisasjonsnummer',
+        officeNumber: 'Kontornummer',
+        phoneToNav: 'Telefonnummeret til NAV er',
+        phoneInformation:
+            'Åpent, hverdager kl. 9-15. NAV Kontaktsenter hjelper deg eller setter deg i kontakt med ditt NAV-kontor.',
+        alternativeContacts: 'Andre kontaktopplysninger:',
     },
     dateTime: {
         weekDayNames: [
@@ -231,6 +265,7 @@ export const translationsBundleNb = {
             today: 'i dag',
             tomorrow: 'i morgen',
         },
+        time: 'tid',
         day: 'dag',
         date: 'dato',
     },
