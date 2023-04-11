@@ -69,11 +69,15 @@ export const ChatOption = (props: ChatData) => {
                 prefix={'Chatbot:'}
                 isActive={true}
             />
-            <OpeningInfo
-                regularOpeningHours={regularOpeningHours}
-                specialOpeningHours={specialOpeningHours}
-                textPrefix={`${getTranslations('chat').chatWithCounsellor}:`}
-            />
+            {regularOpeningHours && specialOpeningHours && (
+                <OpeningInfo
+                    regularOpeningHours={regularOpeningHours}
+                    specialOpeningHours={specialOpeningHours}
+                    textPrefix={`${
+                        getTranslations('chat').chatWithCounsellor
+                    }:`}
+                />
+            )}
         </div>
     );
 };
