@@ -11,9 +11,17 @@ import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 
 import style from './ContactOption.module.scss';
+import TextWithIndicator from '../text-with-indicator/TextWithIndicator';
+import { OpeningInfo } from './opening-info/OpeningInfo';
 
 export const ChatOption = (props: ChatData) => {
-    const { ingress, title, alertText } = props;
+    const {
+        ingress,
+        title,
+        alertText,
+        regularOpeningHours,
+        specialOpeningHours,
+    } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
     const getTranslations = translator('contactPoint', language);
@@ -56,6 +64,16 @@ export const ChatOption = (props: ChatData) => {
             <BodyLong as="div" className={style.text}>
                 <ParsedHtml htmlProps={getIngress()} />
             </BodyLong>
+            <TextWithIndicator
+                text={`${getTranslations('chat').alwaysOpen}`}
+                prefix={'Chatbot:'}
+                isActive={true}
+            />
+            <OpeningInfo
+                regularOpeningHours={regularOpeningHours}
+                specialOpeningHours={specialOpeningHours}
+                textPrefix={`${getTranslations('chat').chatWithCounsellor}:`}
+            />
         </div>
     );
 };

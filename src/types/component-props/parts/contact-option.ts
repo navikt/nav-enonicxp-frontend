@@ -77,11 +77,15 @@ export interface TelephoneData {
     specialOpeningHours?: SpecialOpeningHours;
     audience?: Audience;
 }
+
 export interface WriteData extends DefaultContactData {
     alertText?: string;
 }
+
 export interface ChatData extends Omit<DefaultContactData, 'url'> {
     alertText?: string;
+    regularOpeningHours?: RegularOpeningHours;
+    specialOpeningHours?: SpecialOpeningHours;
 }
 
 export interface SharedContactInformationData extends DefaultContactData {

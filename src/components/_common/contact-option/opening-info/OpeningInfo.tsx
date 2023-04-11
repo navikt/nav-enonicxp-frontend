@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Chip } from 'components/_common/chip/Chip';
-import { classNames } from 'utils/classnames';
 import { getCurrentOpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoUtils';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { OpeningHours } from 'components/_common/contact-option/opening-info/helpers/openingInfoTypes';
@@ -11,17 +9,18 @@ import {
     RegularOpeningHours,
     SpecialOpeningHours,
 } from 'types/component-props/parts/contact-option';
-
-import style from './OpeningInfo.module.scss';
+import TextWithIndicator from '../../text-with-indicator/TextWithIndicator';
 
 type Props = {
     regularOpeningHours: RegularOpeningHours;
     specialOpeningHours: SpecialOpeningHours;
+    textPrefix?: string;
 };
 
 export const OpeningInfo = ({
     regularOpeningHours,
     specialOpeningHours,
+    textPrefix,
 }: Props) => {
     const { language } = usePageConfig();
 
@@ -52,15 +51,10 @@ export const OpeningInfo = ({
     }
 
     return (
-        <Chip
-            className={classNames(
-                style.openingStatus,
-                currentOpeningHours.status === 'OPEN'
-                    ? style.open
-                    : style.closed
-            )}
-        >
-            {openingInfoText}
-        </Chip>
+        <TextWithIndicator
+            text={openingInfoText}
+            prefix={textPrefix}
+            isActive={currentOpeningHours.status === 'OPEN'}
+        />
     );
 };
