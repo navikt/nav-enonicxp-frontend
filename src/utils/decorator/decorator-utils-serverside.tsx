@@ -1,22 +1,22 @@
 import React from 'react';
 import {
     Components,
-    Props,
+    DecoratorEnvProps,
+    DecoratorFetchProps,
     fetchDecoratorReact,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
-import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { objectToQueryString } from '../fetch/fetch-utils';
 
 const decoratorUrl = process.env.DECORATOR_URL;
-const decoratorLocalPort = process.env.DECORATOR_LOCAL_PORT || 8100;
 
 type AppEnv = typeof process.env.ENV;
-type DecoratorEnv = Props['env'];
+type DecoratorEnv = DecoratorEnvProps['env'];
 
 const envMap: { [Key in AppEnv]: DecoratorEnv } = {
     localhost: 'localhost',
     dev1: 'dev',
-    dev2: 'dev',
+    dev2: 'beta',
     prod: 'prod',
 };
 
@@ -26,9 +26,9 @@ const envProps =
     decoratorEnv === 'localhost'
         ? {
               env: decoratorEnv,
-              port: decoratorLocalPort,
+              localUrl: decoratorUrl,
           }
-        : { env: decoratorEnv };
+        : { env: decoratorEnv, serviceDiscovery: true };
 
 const fetchTimeoutMs = 15000;
 
@@ -61,10 +61,7 @@ export const getDecoratorComponents = async (
 ): Promise<Components> => {
     try {
         const decoratorComponents = await Promise.race([
-            fetchDecoratorReact({
-                ...params,
-                ...envProps,
-            }),
+            fetchDecoratorReact({ ...envProps, params }),
             new Promise((res, rej) =>
                 setTimeout(() => rej('Fetch timeout'), fetchTimeoutMs)
             ),
