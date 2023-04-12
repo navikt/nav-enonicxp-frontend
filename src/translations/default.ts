@@ -131,7 +131,7 @@ export const translationsBundleNb = {
     },
     audienceServices: {
         NODSITUASJON:
-            'Hjelp i nødsituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
+            'Hjelp i nødssituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
         TILGANGPC: 'Tilgang til PC og hjelp til utskrift pä papir',
         HJELPDIGITALETJENESTER:
             'Hjelp til å bruke digitale tjenester hvis du trenger det',
