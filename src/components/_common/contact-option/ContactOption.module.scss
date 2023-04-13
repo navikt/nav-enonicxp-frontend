@@ -4,7 +4,7 @@
     background-color: transparent;
     display: block;
     width: 100%;
-    padding-bottom: 2rem;
+    padding-bottom: var(--a-spacing-8);
 
     .link {
         color: common.$a-text-action;
