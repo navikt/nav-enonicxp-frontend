@@ -4,7 +4,6 @@ import {
     fetchDecoratorReact,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
-import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 
 const { DECORATOR_URL } = process.env;
 
