@@ -6,15 +6,15 @@ import Document, {
     Main,
     NextScript,
 } from 'next/document';
-import { Language } from '../translations';
+import { Language } from 'translations';
 import { DocumentInitialProps } from 'next/dist/pages/_document';
-import { DocumentParameter } from '../components/_common/metatags/DocumentParameterMetatags';
-import { getDecoratorComponents } from '../utils/decorator/decorator-utils-serverside';
-import { Components } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { DocumentParameter } from 'components/_common/metatags/DocumentParameterMetatags';
+import { getDecoratorComponents } from 'utils/decorator/decorator-utils-serverside';
+import { DecoratorComponents } from '@navikt/nav-dekoratoren-moduler/ssr';
 
 type DocumentProps = {
     language: Language;
-    Decorator: Components;
+    Decorator: DecoratorComponents;
 };
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)

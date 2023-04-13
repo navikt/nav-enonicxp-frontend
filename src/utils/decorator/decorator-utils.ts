@@ -1,14 +1,11 @@
-import { Language } from '../../translations';
+import { Language } from 'translations';
 import { getContentLanguages } from '../languages';
-import {
-    ContentProps,
-    ContentType,
-} from '../../types/content-props/_content-common';
-import { LanguageProps } from '../../types/language';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { LanguageProps } from 'types/language';
 import { stripXpPathPrefix } from '../urls';
-import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
-import { checkForWhiteHeader } from '../../components/_top-container/TopContainer';
-import { Audience } from '../../types/component-props/_mixins';
+import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { checkForWhiteHeader } from 'components/_top-container/TopContainer';
+import { Audience } from 'types/component-props/_mixins';
 
 const defaultLanguage: DecoratorParams['language'] = 'nb';
 

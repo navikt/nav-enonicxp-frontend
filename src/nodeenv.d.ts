@@ -8,7 +8,6 @@ declare global {
             BUILD_ID: string;
             RELEASE_TAG: string;
             DECORATOR_URL: string;
-            DECORATOR_LOCAL_PORT: string;
             XP_ORIGIN: string;
             SERVICE_SECRET: string;
             REVALIDATOR_PROXY_ORIGIN: string;
