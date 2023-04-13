@@ -28,10 +28,6 @@ const envProps =
           }
         : {
               env: decoratorEnv,
-              // Service discovery only works when running on k8s
-              // Do not use during CI build
-              serviceDiscovery:
-                  process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD,
           };
 
 export const getDecoratorComponents = async (params?: DecoratorParams) => {
