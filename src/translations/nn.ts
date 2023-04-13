@@ -115,10 +115,10 @@ export const translationsBundleNn: Translations = {
     },
     audienceServices: {
         NODSITUASJON:
-            'Hjelp i nødsituasjonar, til dømes mellombels botilbud eller økonomisk sosialhjelp',
-        TILGANGPC: 'Tilgang til PC',
+            'Hjelp i nødssituasjonar, til dømes mellombels butilbod eller økonomisk sosialhjelp',
+        TILGANGPC: 'Tilgang til PC og hjelp til utskrift på papir',
         HJELPDIGITALETJENESTER:
-            'Hjelp til å bruke digitale tjenestar hvis du treng det',
+            'Hjelp til å bruke digitale tenester viss du treng det',
         BARNEVERN: 'Barnevern',
         FENGSEL_OG_KRIMINALOMSORG: 'Fengsel- og kriminalomsorg',
         FLYKTNINGSTJENESTE: 'Flyktningetjeneste',
