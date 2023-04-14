@@ -43,6 +43,7 @@ spec:
     outbound:
       rules:
         - application: {{revalidatorApp}}
+        - application: {{dekoratorenApp}}
       external:
         {{#each externalHosts as |host|}}
         - host: {{host}}

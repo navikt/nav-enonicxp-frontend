@@ -31,7 +31,7 @@ import {
     PublishingCalendarProps,
     PublishingCalendarEntryProps,
 } from './publishing-calendar-props';
-import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsProps } from './animated-icons';
 import {
     GlobalCaseTimeSetProps,
