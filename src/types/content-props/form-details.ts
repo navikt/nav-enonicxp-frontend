@@ -1,5 +1,9 @@
 import { OptionSetSingle } from 'types/util-types';
-import { ContentAndMediaCommonProps, ContentType } from './_content-common';
+import {
+    ContentAndMediaCommonProps,
+    ContentCommonProps,
+    ContentType,
+} from './_content-common';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 export type FormTypes = 'application' | 'complaint' | 'addendum';
@@ -31,7 +35,7 @@ export interface FormDetailsData {
     }>;
 }
 
-export interface FormDetailsPageProps extends ContentAndMediaCommonProps {
+export interface FormDetailsPageProps extends Omit<ContentCommonProps, 'data'> {
     __typename: ContentType.FormDetails;
     data: FormDetailsData;
 }

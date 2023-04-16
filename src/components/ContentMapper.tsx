@@ -1,5 +1,9 @@
 import React from 'react';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import {
+    ContentProps,
+    ContentType,
+    PreviewContentProps,
+} from 'types/content-props/_content-common';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { DynamicPage } from './pages/dynamic-page/DynamicPage';
 import { FragmentPage } from './pages/fragment-page/FragmentPage';
@@ -26,7 +30,9 @@ import { ContentTypeNotSupportedPage } from 'components/pages/contenttype-not-su
 import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
 
 const contentToReactComponent: {
-    [key in ContentType]?: React.FunctionComponent<ContentProps>;
+    [key in ContentType]?: React.FunctionComponent<
+        ContentProps | PreviewContentProps
+    >;
 } = {
     [ContentType.Error]: ErrorPage,
     [ContentType.LargeTable]: LargeTablePage,
