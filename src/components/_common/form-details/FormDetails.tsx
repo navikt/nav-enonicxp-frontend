@@ -4,6 +4,7 @@ import { FormDetailsVariation } from './FormDetailsVariation';
 
 import styles from './FormDetails.module.scss';
 import classNames from 'classnames';
+import { ParsedHtml } from '../parsed-html/ParsedHtml';
 
 type FormDetailsProps = {
     formDetails: FormDetailsData;
@@ -29,7 +30,9 @@ export const FormDetails = ({ formDetails }: FormDetailsProps) => {
             <Heading size="medium" level="3">
                 {formDetails.title}
             </Heading>
-            <BodyLong spacing>{formDetails.ingress}</BodyLong>
+            <BodyLong spacing>
+                <ParsedHtml htmlProps={formDetails.ingress} />
+            </BodyLong>
             <div
                 className={classNames(
                     styles.variationWrapper,

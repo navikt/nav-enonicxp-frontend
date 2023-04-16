@@ -23,6 +23,7 @@ import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
 import { PressLandingPage } from './pages/press-landing-page/PressLandingPage';
 import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
 import { ContentTypeNotSupportedPage } from 'components/pages/contenttype-not-supported-page/ContentTypeNotSupportedPage';
+import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
 
 const contentToReactComponent: {
     [key in ContentType]?: React.FunctionComponent<ContentProps>;
@@ -47,6 +48,7 @@ const contentToReactComponent: {
     [ContentType.OfficeBranchPage]: OfficeBranchPage,
     [ContentType.CurrentTopicPage]: CurrentTopicPage,
     [ContentType.PressLandingPage]: PressLandingPage,
+    [ContentType.FormDetails]: FormDetailsPreviewPage,
 
     [ContentType.AreaPage]: DynamicPage,
     [ContentType.FrontPage]: DynamicPage,
