@@ -3,6 +3,7 @@ revalidatorApp: nav-enonicxp-frontend-revalidator-proxy
 dekoratorenApp: nav-dekoratoren
 externalHosts:
   - www.nav.no
+  - www-failover.nav.no
 secret: nav-enonicxp
 ingresses:
   - https://www.nav.no
