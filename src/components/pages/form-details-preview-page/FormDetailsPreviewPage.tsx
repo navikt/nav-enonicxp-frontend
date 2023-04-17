@@ -5,13 +5,10 @@ import { FormDetailsPageProps } from 'types/content-props/form-details';
 
 import styles from './FormDetailsPreviewPage.module.scss';
 
-export const FormDetailsPreviewPage = (
-    props: FormDetailsPageProps & ContentCommonProps
-) => {
-    const { data } = props;
-    return (
-        <div className={styles.formDetailsPreviewPage}>
-            <FormDetails formDetails={data} />
-        </div>
-    );
-};
+export const FormDetailsPreviewPage = ({
+    data,
+}: FormDetailsPageProps & ContentCommonProps) => (
+    <div className={styles.formDetailsPreviewPage}>
+        <FormDetails formDetails={data} />
+    </div>
+);
