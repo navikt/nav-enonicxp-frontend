@@ -14,6 +14,12 @@ export const FormDetailsVariation = (props: FormsListItemProps) => {
     const { variation, index, direction } = props;
     const { url, label } = variation;
 
+    if (!url || label) {
+        // url or label is not required in CS as some form details are ment to only contain informational text
+        // via the form details title and ingress.
+        return null;
+    }
+
     const variant = index === 0 ? 'primary' : 'secondary';
 
     return (
