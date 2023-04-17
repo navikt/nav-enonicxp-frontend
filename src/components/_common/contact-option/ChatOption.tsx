@@ -64,12 +64,14 @@ export const ChatOption = (props: ChatData) => {
             <BodyLong as="div" className={style.text}>
                 <ParsedHtml htmlProps={getIngress()} />
             </BodyLong>
-            <TextWithIndicator
-                text={`${getTranslations('chat').alwaysOpen}`}
-                prefix={'Chatbot:'}
-                isActive={true}
-            />
-            {regularOpeningHours && specialOpeningHours && (
+            {!alertText && (
+                <TextWithIndicator
+                    text={`${getTranslations('chat').alwaysOpen}`}
+                    prefix={'Chatbot:'}
+                    isActive={true}
+                />
+            )}
+            {!alertText && regularOpeningHours && specialOpeningHours && (
                 <OpeningInfo
                     regularOpeningHours={regularOpeningHours}
                     specialOpeningHours={specialOpeningHours}

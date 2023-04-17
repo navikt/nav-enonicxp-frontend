@@ -1,6 +1,6 @@
 import React from 'react';
 import { translator } from 'translations';
-import { Heading, BodyLong, Alert } from '@navikt/ds-react';
+import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -86,10 +86,12 @@ export const CallOption = (props: CallOptionProps) => {
             <BodyLong className={style.text}>
                 <ParsedHtml htmlProps={ingress || text} />
             </BodyLong>
-            <OpeningInfo
-                regularOpeningHours={regularOpeningHours}
-                specialOpeningHours={specialOpeningHours}
-            />
+            {!alertText && (
+                <OpeningInfo
+                    regularOpeningHours={regularOpeningHours}
+                    specialOpeningHours={specialOpeningHours}
+                />
+            )}
             <LenkeBase
                 analyticsLinkGroup={layoutConfig.title}
                 className={style.moreLink}
