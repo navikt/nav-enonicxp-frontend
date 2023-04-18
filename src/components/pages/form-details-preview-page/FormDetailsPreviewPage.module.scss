@@ -1,0 +1,8 @@
+@use 'src/common' as common;
+
+.formDetailsPreviewPage {
+    background-color: white;
+    max-width: common.$sectionMaxWidth;
+    padding: 2rem;
+    width: 100%;
+}
