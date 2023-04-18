@@ -1,7 +1,6 @@
 import { OptionSetSingle } from 'types/util-types';
-import { ContentCommonProps, ContentType } from './_content-common';
+import { ContentType } from './_content-common';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
-import { type } from 'os';
 
 export type FormTypes = 'application' | 'complaint' | 'addendum';
 

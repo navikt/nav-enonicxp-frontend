@@ -1,8 +1,4 @@
-import {
-    ContentType,
-    ContentCommonProps,
-    ContentAndMediaCommonProps,
-} from './_content-common';
+import { ContentType, ContentCommonProps } from './_content-common';
 import { LanguageProps } from '../language';
 import {
     ProductDataMixin,
@@ -14,7 +10,6 @@ import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from '../taxonomies';
 import { OfficeDetailsData } from './office-details-props';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentListProps } from './content-list-props';
-import { FormDetailsData } from './form-details';
 
 export type DynamicPageData = Partial<{
     languages: LanguageProps[];
