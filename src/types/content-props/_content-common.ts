@@ -174,7 +174,7 @@ type SpecificContentProps =
     | FrontPageProps
     | AreaPageProps
     | GenericPageProps
-    | PressLandingPageProps;
+    | PressLandingPageProps
+    | FormDetailsPageProps;
 
-export type PreviewContentProps = FormDetailsPageProps;
 export type ContentProps = ContentCommonProps & SpecificContentProps;

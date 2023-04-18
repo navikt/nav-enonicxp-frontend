@@ -1,4 +1,4 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { FormDetailsVariation } from './FormDetailsVariation';
 
@@ -30,9 +30,9 @@ export const FormDetails = ({ formDetails }: FormDetailsProps) => {
             <Heading size="medium" level="3">
                 {formDetails.title}
             </Heading>
-            <BodyLong spacing>
+            <div className={styles.ingressWrapper}>
                 <ParsedHtml htmlProps={formDetails.ingress} />
-            </BodyLong>
+            </div>
             <div
                 className={classNames(
                     styles.variationWrapper,
