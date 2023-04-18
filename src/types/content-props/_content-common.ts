@@ -87,6 +87,7 @@ export enum ContentType {
     FrontPage = 'no.nav.navno:front-page',
     AreaPage = 'no.nav.navno:area-page',
     PressLandingPage = 'no.nav.navno:press-landing-page',
+    FormIntermediateStepPage = 'no.nav.navno:form-intermediate-step',
 }
 
 export type ContentAndMediaCommonProps = {

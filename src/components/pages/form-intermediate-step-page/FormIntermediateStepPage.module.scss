@@ -1,0 +1,16 @@
+@use 'src/common' as common;
+
+$margin: 2rem;
+
+.formIntermediateStepPage {
+    display: flex;
+    flex-direction: column;
+}
+
+.stepOptionsWrapper {
+    display: flex;
+    background-color: white;
+    padding: 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+}
