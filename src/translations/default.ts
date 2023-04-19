@@ -226,7 +226,7 @@ export const translationsBundleNb = {
         shared: {
             closed: 'Stengt',
             openNow: 'Åpent nå',
-            opensAt: 'Åpner {$date} kl {$time}',
+            opensAt: 'Åpner {$date} kl. {$time}',
             closedNow: 'Stengt nå',
             seeMoreOptions: 'Se flere telefonnummer og tastevalg',
         },
