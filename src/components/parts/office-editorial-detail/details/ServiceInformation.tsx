@@ -17,6 +17,7 @@ export const ServiceInformation = ({ officeData }: DetailProps) => {
 
     return (
         <ul className={styles.bulletList}>
+            <li>{getServiceTranslation('HJELP_KOMME_I_JOBB')}</li>
             <li>{getServiceTranslation('NODSITUASJON')}</li>
             <li>{getServiceTranslation('OKONOMI_GJELD')}</li>
             <li>{getServiceTranslation('TILGANGPC')}</li>

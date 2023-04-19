@@ -31,6 +31,7 @@ export interface AudienceReception {
 
 export type Service = {
     type:
+        | 'HJELP_KOMME_I_JOBB'
         | 'NODSITUASJON'
         | 'OKONOMI_GJELD'
         | 'TILGANGPC'

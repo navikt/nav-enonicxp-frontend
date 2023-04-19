@@ -78,6 +78,7 @@ export const translationsBundleEn: Translations = {
         showingInformationFor: 'Showing information for:',
     },
     audienceServices: {
+        HJELP_KOMME_I_JOBB: 'Employment help',
         NODSITUASJON:
             'Help in emergency situations, such as temporary accommodation or financial social assistance',
         OKONOMI_GJELD: 'Financial and debt advice',

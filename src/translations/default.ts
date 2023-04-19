@@ -130,6 +130,7 @@ export const translationsBundleNb = {
         closed: 'Stengt',
     },
     audienceServices: {
+        HJELP_KOMME_I_JOBB: 'Hjelp til å komme i jobb',
         NODSITUASJON:
             'Hjelp i nødsituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
         OKONOMI_GJELD: 'Økonomi- og gjeldsrådgivning',
