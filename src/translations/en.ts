@@ -79,17 +79,19 @@ export const translationsBundleEn: Translations = {
     },
     audienceServices: {
         NODSITUASJON:
-            'Hjelp i nødsituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
-        TILGANGPC: 'Tilgang til PC',
-        HJELPDIGITALETJENESTER:
-            'Hjelp til å bruke digitale tjenester hvis du trenger det',
-        BARNEVERN: 'Barnevern',
-        FENGSEL_OG_KRIMINALOMSORG: 'Fengsel- og kriminalomsorg',
-        FLYKTNINGSTJENESTE: 'Flyktningetjeneste',
-        RUS_OG_PSYKISK_HELSE: 'Rus og psykisk helse',
-        STARTLAN: 'Startlån',
-        SJOFARTSOPPGAVER: 'Sjøfartsoppgaver',
-        STOTTEKONTAKT: 'Støttekontakt',
+            'Help in emergency situations, such as temporary accommodation or financial social assistance',
+        OKONOMI_GJELD: 'Financial and debt advice',
+        TILGANGPC: 'Access to PC',
+        HJELPDIGITALETJENESTER: 'Help using digital services if you need it',
+        BARNEVERNTJENESTE: 'Child protection service',
+        FLYKTNINGTJENESTE: 'Refugee service',
+        FENGSEL_OPPFOLGING: 'Follow-up of people in prison',
+        RUS_OPPFOLGING: 'Follow-up of people with substance abuse problems',
+        PSYKISK_HELSE_OPPFOLGING:
+            'Follow-up of people with mental health problems',
+        STARTLAN: 'Start loan',
+        SJOFARTSOPPGAVER:
+            'Issuance of sjøfartsbok and dissemination of seafarers',
     },
     currentTopic: {
         tag: 'Featured',

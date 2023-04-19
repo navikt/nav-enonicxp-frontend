@@ -18,6 +18,7 @@ export const ServiceInformation = ({ officeData }: DetailProps) => {
     return (
         <ul className={styles.bulletList}>
             <li>{getServiceTranslation('NODSITUASJON')}</li>
+            <li>{getServiceTranslation('OKONOMI_GJELD')}</li>
             <li>{getServiceTranslation('TILGANGPC')}</li>
             <li>{getServiceTranslation('HJELPDIGITALETJENESTER')}</li>
             {serviceInformation.map((service) => (

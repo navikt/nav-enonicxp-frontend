@@ -32,15 +32,16 @@ export interface AudienceReception {
 export type Service = {
     type:
         | 'NODSITUASJON'
+        | 'OKONOMI_GJELD'
         | 'TILGANGPC'
         | 'HJELPDIGITALETJENESTER'
-        | 'BARNEVERN'
-        | 'FENGSEL_OG_KRIMINALOMSORG'
-        | 'FLYKTNINGSTJENESTE'
-        | 'RUS_OG_PSYKISK_HELSE'
+        | 'BARNEVERNTJENESTE'
+        | 'FLYKTNINGTJENESTE'
+        | 'FENGSEL_OPPFOLGING'
+        | 'RUS_OPPFOLGING'
+        | 'PSYKISK_HELSE_OPPFOLGING'
         | 'STARTLAN'
-        | 'SJOFARTSOPPGAVER'
-        | 'STOTTEKONTAKT';
+        | 'SJOFARTSOPPGAVER';
 };
 
 type AudienceServices = {
