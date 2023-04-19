@@ -1,10 +1,10 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
-import { FormDetails } from 'types/content-props/form-details';
+import { FormDetailsPageProps } from 'types/content-props/form-details';
 
 export interface FormDetailsProps extends PartComponentProps {
     descriptor: PartType.FormDetails;
     config: {
-        targetFormDetails: FormDetails;
+        targetFormDetails: FormDetailsPageProps;
     };
 }

@@ -115,17 +115,19 @@ export const translationsBundleNn: Translations = {
     },
     audienceServices: {
         NODSITUASJON:
-            'Hjelp i nødssituasjonar, til dømes mellombels butilbod eller økonomisk sosialhjelp',
-        TILGANGPC: 'Tilgang til PC og hjelp til utskrift på papir',
+            'Hjelp i nødsituasjoner, til dømes mellombels butilbud eller økonomisk sosialhjelp',
+        OKONOMI_GJELD: 'Økonomi- og gjeldsrådgivning',
+        TILGANGPC: 'Tilgang til PC',
         HJELPDIGITALETJENESTER:
-            'Hjelp til å bruke digitale tenester viss du treng det',
-        BARNEVERN: 'Barnevern',
-        FENGSEL_OG_KRIMINALOMSORG: 'Fengsel- og kriminalomsorg',
-        FLYKTNINGSTJENESTE: 'Flyktningetjeneste',
-        RUS_OG_PSYKISK_HELSE: 'Rus og psykisk helse',
+            'Hjelp til å bruke digitale tjenestar hvis du treng det',
+        BARNEVERNTJENESTE: 'Barneverntjeneste',
+        FLYKTNINGTJENESTE: 'Flyktningtjeneste',
+        FENGSEL_OPPFOLGING: 'Oppfølgjing av personar i fengsel',
+        RUS_OPPFOLGING: 'Oppfølgjing av personar med rusproblem',
+        PSYKISK_HELSE_OPPFOLGING:
+            'Oppfølgjing av personar med psykiske helseproblem',
         STARTLAN: 'Startlån',
-        SJOFARTSOPPGAVER: 'Sjøfartsoppgavar',
-        STOTTEKONTAKT: 'Støttekontakt',
+        SJOFARTSOPPGAVER: 'Utstedelse av sjøfartsbok og formidling av sjøfolk',
     },
     relatedContent,
     taxonomies,

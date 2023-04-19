@@ -24,6 +24,7 @@ import { PressLandingPage } from './pages/press-landing-page/PressLandingPage';
 import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
 import { ContentTypeNotSupportedPage } from 'components/pages/contenttype-not-supported-page/ContentTypeNotSupportedPage';
 import { FormIntermediateStepPage } from './pages/form-intermediate-step-page/FormIntermediateStepPage';
+import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
 
 const contentToReactComponent: {
     [key in ContentType]?: React.FunctionComponent<ContentProps>;
@@ -49,6 +50,7 @@ const contentToReactComponent: {
     [ContentType.CurrentTopicPage]: CurrentTopicPage,
     [ContentType.PressLandingPage]: PressLandingPage,
     [ContentType.FormIntermediateStepPage]: FormIntermediateStepPage,
+    [ContentType.FormDetails]: FormDetailsPreviewPage,
 
     [ContentType.AreaPage]: DynamicPage,
     [ContentType.FrontPage]: DynamicPage,
