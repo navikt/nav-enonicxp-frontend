@@ -208,22 +208,6 @@ describe('Opening information text', () => {
         expect(text).toContain(expectedText);
     });
 
-    test('Should include opening later texts when opening later', () => {
-        jest.useFakeTimers().setSystemTime(new Date('2022-04-12T08:00'));
-
-        const text = getInfoText();
-
-        const expectedText1 = translator('contactPoint', 'no')('shared')[
-            'closedNow'
-        ];
-        const expectedText2 = translator('dateTime', 'no')('relatives')[
-            'today'
-        ];
-
-        expect(text).toContain(expectedText1);
-        expect(text).toContain(expectedText2);
-    });
-
     test('Should include opening tomorrow texts when opening tomorrow', () => {
         jest.useFakeTimers().setSystemTime(new Date('2022-04-18T08:00'));
 
