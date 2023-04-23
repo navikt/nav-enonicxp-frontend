@@ -127,8 +127,26 @@ export const translationsBundleNn: Translations = {
         RUS_OPPFOLGING: 'Oppfølgjing av personar med rusproblem',
         PSYKISK_HELSE_OPPFOLGING:
             'Oppfølgjing av personar med psykiske helseproblem',
-        STARTLAN: 'Startlån',
+        STARTLAN: 'Startlån og tilskudd fra kommunen',
         SJOFARTSOPPGAVER: 'Utstedelse av sjøfartsbok og formidling av sjøfolk',
+        AKTIVITETSKORTET: 'Aktivitetskortet for barn og unge',
+        BOSTOTTE_HUSBANKEN: 'Bostøtte fra Husbanken',
+        BOSTOTTE_KOMMUNEN: 'Bostøtte fra kommunen',
+        PRIVATOKONOMI_FORVALTNING:
+            'Frivillig og tvungen forvaltning av privatøkonomi',
+        INTROPROGRAMMET: 'Introduksjonsprogrammet',
+        KOMMUNAL_BOLIG: 'Kommunal bolig',
+        KOMMUNAL_TILLEGGSPENSJON: 'Kommunal tilleggspensjon',
+        KOMMUNALT_FRIKORT_HELSETJENESTER:
+            'Kommunalt frikort for helsetjenestar',
+        LEDSAGERBEVIS: 'Ledsagarbevis',
+        PARKERING_FORFLYTNINGSHEMMEDE:
+            'Parkeringslløyve for forflytningshemmede',
+        REDUSERT_FORELDREBETALING:
+            'Redusert foreldrebetaling i barnehage eller SFO',
+        SKJENKEBEVILLING: 'Skjenkebevilling',
+        STOTTEKONTAKT: 'Støttekontakt',
+        TILRETTELAGT_TRANSPORT: 'Tilrettelagt transport (TT-kort)',
     },
     relatedContent,
     taxonomies,
