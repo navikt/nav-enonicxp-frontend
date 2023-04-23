@@ -47,6 +47,7 @@ import { Audience } from '../component-props/_mixins';
 import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
 import { FormDetailsPageProps } from './form-details';
+import { FormIntermediateStepPageProps } from './form-intermediate-step';
 
 export enum ContentType {
     Error = 'error',
@@ -176,6 +177,7 @@ type SpecificContentProps =
     | AreaPageProps
     | GenericPageProps
     | PressLandingPageProps
-    | FormDetailsPageProps;
+    | FormDetailsPageProps
+    | FormIntermediateStepPageProps;
 
 export type ContentProps = ContentCommonProps & SpecificContentProps;
