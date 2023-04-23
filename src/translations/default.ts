@@ -143,8 +143,26 @@ export const translationsBundleNb = {
         RUS_OPPFOLGING: 'Oppfølging av personer med rusproblemer',
         PSYKISK_HELSE_OPPFOLGING:
             'Oppfølging av personer med psykiske helseproblemer',
-        STARTLAN: 'Startlån',
+        STARTLAN: 'Startlån og tilskudd fra kommunen',
         SJOFARTSOPPGAVER: 'Utstedelse av sjøfartsbok og formidling av sjøfolk',
+        AKTIVITETSKORTET: 'Aktivitetskortet for barn og unge',
+        BOSTOTTE_HUSBANKEN: 'Bostøtte fra Husbanken',
+        BOSTOTTE_KOMMUNEN: 'Bostøtte fra kommunen',
+        PRIVATOKONOMI_FORVALTNING:
+            'Frivillig og tvungen forvaltning av privatøkonomi',
+        INTROPROGRAMMET: 'Introduksjonsprogrammet',
+        KOMMUNAL_BOLIG: 'Kommunal bolig',
+        KOMMUNAL_TILLEGGSPENSJON: 'Kommunal tilleggspensjon',
+        KOMMUNALT_FRIKORT_HELSETJENESTER:
+            'Kommunalt frikort for helsetjenester',
+        LEDSAGERBEVIS: 'Ledsagerbevis',
+        PARKERING_FORFLYTNINGSHEMMEDE:
+            'Parkeringstillatelse for forflytningshemmede',
+        REDUSERT_FORELDREBETALING:
+            'Redusert foreldrebetaling i barnehage eller SFO',
+        SKJENKEBEVILLING: 'Skjenkebevilling',
+        STOTTEKONTAKT: 'Støttekontakt',
+        TILRETTELAGT_TRANSPORT: 'Tilrettelagt transport (TT-kort)',
     },
     relatedContent: relatedContent,
     taxonomies,
@@ -229,7 +247,7 @@ export const translationsBundleNb = {
         shared: {
             closed: 'Stengt',
             openNow: 'Åpent nå',
-            opensAt: 'Åpner {$date} kl {$time}',
+            opensAt: 'Åpner {$date} kl. {$time}',
             closedNow: 'Stengt nå',
             seeMoreOptions: 'Se flere telefonnummer og tastevalg',
         },

@@ -33,6 +33,10 @@ export const AudienceChannels = ({
         );
     };
 
+    if (publikumskanaler.length === 0) {
+        return null;
+    }
+
     if (publikumskanaler.length === 1) {
         return <>{buildChannel(publikumskanaler[0])}</>;
     }

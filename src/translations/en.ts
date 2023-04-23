@@ -90,9 +90,27 @@ export const translationsBundleEn: Translations = {
         RUS_OPPFOLGING: 'Follow-up of people with substance abuse problems',
         PSYKISK_HELSE_OPPFOLGING:
             'Follow-up of people with mental health problems',
-        STARTLAN: 'Start loan',
+        STARTLAN: 'Start-up loans and grants from the municipality',
         SJOFARTSOPPGAVER:
             'Issuance of sjøfartsbok and dissemination of seafarers',
+        AKTIVITETSKORTET: 'Activity card for child and youth',
+        BOSTOTTE_HUSBANKEN: 'Housing benefits from Husbanken',
+        BOSTOTTE_KOMMUNEN: 'Housing benefits from from the municipality',
+        PRIVATOKONOMI_FORVALTNING:
+            'Voluntary and compulsory management of private finances',
+        INTROPROGRAMMET: 'Introductory program',
+        KOMMUNAL_BOLIG: 'Public housing',
+        KOMMUNAL_TILLEGGSPENSJON: 'Public pension supplement',
+        KOMMUNALT_FRIKORT_HELSETJENESTER:
+            'Public health services for hjemmetjenesten',
+        LEDSAGERBEVIS: 'Accompanying person certificate',
+        PARKERING_FORFLYTNINGSHEMMEDE:
+            'Parking permit for people with reduced mobility',
+        REDUSERT_FORELDREBETALING:
+            'Reduced parental contribution for child care',
+        SKJENKEBEVILLING: 'Alcohol permit',
+        STOTTEKONTAKT: 'Støttekontakt',
+        TILRETTELAGT_TRANSPORT: 'Arranged transport (TT card)',
     },
     currentTopic: {
         tag: 'Featured',
