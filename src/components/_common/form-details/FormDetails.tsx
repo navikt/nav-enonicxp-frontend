@@ -22,11 +22,16 @@ export const FormDetails = ({
     formDetails,
     displayConfig,
 }: FormDetailsProps) => {
-    const { formType } = formDetails;
     const { showAddendums, showApplications, showTitle, showIngress } =
         displayConfig;
 
     const variations = forceArray(formDetails.formType).reduce((acc, cur) => {
+        if (
+            (cur._selected === 'addendum' && !showAddendums) ||
+            (cur._selected === 'application' && !showApplications)
+        ) {
+            return acc;
+        }
         const variations = cur[cur._selected].variations || [];
 
         return [...acc, ...variations];
@@ -36,12 +41,16 @@ export const FormDetails = ({
 
     return (
         <div className={styles.formDetails}>
-            <Heading size="medium" level="3">
-                {formDetails.title}
-            </Heading>
-            <div className={styles.ingressWrapper}>
-                <ParsedHtml htmlProps={formDetails.ingress} />
-            </div>
+            {showTitle && (
+                <Heading size="medium" level="3" spacing={!showIngress}>
+                    {formDetails.title}
+                </Heading>
+            )}
+            {showIngress && (
+                <div className={styles.ingressWrapper}>
+                    <ParsedHtml htmlProps={formDetails.ingress} />
+                </div>
+            )}
             <div
                 className={classNames(
                     styles.variationWrapper,

@@ -4,25 +4,12 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { FormDetails } from 'components/_common/form-details/FormDetails';
 
 export const FormDetailsPart = ({ config }: FormDetailsProps) => {
-    const {
-        targetFormDetails,
-        showTitle,
-        showIngress,
-        showAddendums,
-        showApplications,
-    } = config;
+    const { targetFormDetails, ...displayConfig } = config;
 
     if (!targetFormDetails) {
         return <EditorHelp text={'Velg hvilken skjemadetalj som skal vises'} />;
     }
     const formDetails = targetFormDetails.data;
-
-    const displayConfig = {
-        showTitle: showTitle === 'true',
-        showIngress: showIngress === 'true',
-        showAddendums: showAddendums === 'true',
-        showApplications: showApplications === 'true',
-    };
 
     console.log(displayConfig);
 

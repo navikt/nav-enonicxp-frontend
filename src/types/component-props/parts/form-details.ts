@@ -6,9 +6,9 @@ export interface FormDetailsProps extends PartComponentProps {
     descriptor: PartType.FormDetails;
     config: {
         targetFormDetails: FormDetailsPageProps;
-        showTitle: string;
-        showIngress: string;
-        showAddendums: string;
-        showApplications: string;
+        showTitle: boolean;
+        showIngress: boolean;
+        showAddendums: boolean;
+        showApplications: boolean;
     };
 }
