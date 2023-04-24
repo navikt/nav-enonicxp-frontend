@@ -44,7 +44,7 @@ export const FormIntermediateStepPage = (
             return {
                 editorial: stepDetails.next.editorial,
                 stepsHeadline: stepDetails.next.stepsHeadline,
-                steps: stepDetails.next.steps,
+                steps: forceArray(stepDetails.next.steps),
             };
         }
     };
