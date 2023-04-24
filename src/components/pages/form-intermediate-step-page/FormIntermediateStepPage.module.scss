@@ -1,16 +1,42 @@
 @use 'src/common' as common;
 
-$margin: 2rem;
+$padding: 2rem;
 
 .formIntermediateStepPage {
+    background-color: white;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.content {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: center;
+    width: 100%;
+    max-width: common.$contentMaxWidth;
+
+    & > * {
+        width: 100%;
+    }
 }
 
 .stepOptionsWrapper {
     display: flex;
-    background-color: white;
-    padding: 2rem;
     flex-direction: column;
     align-items: flex-start;
+    max-width: common.$sectionMaxWidth;
+}
+
+.buttonGroup {
+    display: flex;
+    flex-direction: row;
+    padding-top: $padding;
+
+    & > :not(:last-child) {
+        margin-right: 1rem;
+    }
 }

@@ -23,6 +23,7 @@ import { Audience } from '../../../../types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 import style from './ThemedPageHeader.module.scss';
+import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 
 type ContentProps =
     | GenericPageProps
@@ -32,7 +33,8 @@ type ContentProps =
     | OverviewPageProps
     | ProductPageProps
     | SituationPageProps
-    | ThemedArticlePageProps;
+    | ThemedArticlePageProps
+    | FormIntermediateStepPageProps;
 
 type Props = {
     showTimeStamp?: boolean;
@@ -81,7 +83,10 @@ export const ThemedPageHeader = ({
             return getTaxonomyLabel('any');
         }
 
-        if (pageType === ContentType.ThemedArticlePage) {
+        if (
+            pageType === ContentType.ThemedArticlePage ||
+            pageType === ContentType.FormIntermediateStepPage
+        ) {
             const taxonomyArray = getTranslatedTaxonomies(taxonomy, language);
             const allCategories = customCategory
                 ? [...taxonomyArray, customCategory]
