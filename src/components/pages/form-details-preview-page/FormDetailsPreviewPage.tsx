@@ -7,8 +7,16 @@ import styles from './FormDetailsPreviewPage.module.scss';
 
 export const FormDetailsPreviewPage = ({
     data,
-}: FormDetailsPageProps & ContentCommonProps) => (
-    <div className={styles.formDetailsPreviewPage}>
-        <FormDetails formDetails={data} />
-    </div>
-);
+}: FormDetailsPageProps & ContentCommonProps) => {
+    const displayConfig = {
+        showTitle: true,
+        showIngress: true,
+        showAddendums: true,
+        showApplications: true,
+    };
+    return (
+        <div className={styles.formDetailsPreviewPage}>
+            <FormDetails formDetails={data} displayConfig={displayConfig} />
+        </div>
+    );
+};
