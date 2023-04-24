@@ -67,6 +67,10 @@ export const FormIntermediateStepPage = (
         }
     };
 
+    const prevPage = () => {
+        setCurrentPage(currentPage - 1);
+    };
+
     const stepsData = getStepsFromNestedDataStructure(currentPage);
     const modifiedProps = {
         ...props,
@@ -100,9 +104,11 @@ export const FormIntermediateStepPage = (
                 </div>
                 <div className={styles.buttonGroup}>
                     <Button onClick={nextPage}>Neste</Button>
-                    <Button onClick={nextPage} variant="secondary">
-                        Tilbake
-                    </Button>
+                    {currentPage > 0 && (
+                        <Button onClick={prevPage} variant="secondary">
+                            Tilbake
+                        </Button>
+                    )}
                 </div>
             </div>
         </div>
