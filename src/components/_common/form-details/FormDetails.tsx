@@ -1,10 +1,10 @@
 import { Heading } from '@navikt/ds-react';
-import { FormDetailsData, Variation } from 'types/content-props/form-details';
-import { FormDetailsVariation } from './FormDetailsVariation';
 import classNames from 'classnames';
 
 import { forceArray } from 'utils/arrays';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import { FormDetailsData, Variation } from 'types/content-props/form-details';
+import { FormDetailsVariation } from './FormDetailsVariation';
 
 import styles from './FormDetails.module.scss';
 
@@ -32,12 +32,10 @@ export const FormDetails = ({
         ) {
             return acc;
         }
-        const variations = cur[cur._selected].variations || [];
+        const variations = forceArray(cur[cur._selected].variations);
 
         return [...acc, ...variations];
     }, []) as Variation[];
-
-    const direction = variations.length === 0 ? 'vertical' : 'horizontal';
 
     return (
         <div className={styles.formDetails}>
@@ -51,17 +49,11 @@ export const FormDetails = ({
                     <ParsedHtml htmlProps={formDetails.ingress} />
                 </div>
             )}
-            <div
-                className={classNames(
-                    styles.variationWrapper,
-                    styles[direction]
-                )}
-            >
+            <div className={classNames(styles.variationWrapper)}>
                 {variations.map((variation, index: number) => (
                     <FormDetailsVariation
                         key={variation.label}
                         variation={variation}
-                        direction={direction}
                         index={index}
                     />
                 ))}
