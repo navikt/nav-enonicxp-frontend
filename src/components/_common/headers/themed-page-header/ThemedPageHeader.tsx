@@ -130,6 +130,10 @@ export const ThemedPageHeader = ({
             return 'tool';
         }
 
+        if (_pageType === ContentType.FormIntermediateStepPage) {
+            return 'intermediateStep';
+        }
+
         if (_pageType === ContentType.Overview) {
             return 'overview';
         }

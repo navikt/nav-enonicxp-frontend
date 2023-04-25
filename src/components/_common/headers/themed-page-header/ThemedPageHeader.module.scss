@@ -28,6 +28,10 @@
         box-shadow: 0 -4px 0 var(--a-deepblue-500) inset;
     }
 
+    &.intermediateStep {
+        box-shadow: 0 -4px 0 var(--a-deepblue-300) inset;
+    }
+
     &.overview {
         box-shadow: 0 -4px 0 var(--a-red-100) inset;
     }
