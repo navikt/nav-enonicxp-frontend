@@ -11,8 +11,6 @@ export const FormDetailsPart = ({ config }: FormDetailsProps) => {
     }
     const formDetails = targetFormDetails.data;
 
-    console.log(displayConfig);
-
     return (
         <FormDetails formDetails={formDetails} displayConfig={displayConfig} />
     );
