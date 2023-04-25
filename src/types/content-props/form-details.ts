@@ -25,7 +25,7 @@ export interface FormDetailsData {
         addendum: {
             variations: Variation[];
         };
-    }>;
+    }>[];
 }
 
 export type FormDetailsPageProps = {
