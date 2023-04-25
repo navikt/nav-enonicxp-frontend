@@ -8,6 +8,7 @@ import {
     Button,
     Detail,
     Heading,
+    LinkPanel,
     Radio,
     RadioGroup,
 } from '@navikt/ds-react';
@@ -49,17 +50,18 @@ export const FormIntermediateStepPage = (
         }
     };
 
-    const onSelectionChange = (val: any) => {
+    const handlePanelClick = (index: number) => {
         const updatedPath = [...selectionPath];
-        updatedPath[currentPage] = parseInt(val, 10);
+        updatedPath[currentPage] = index;
         setSelectionPath([...updatedPath]);
+        activateNextStep(updatedPath);
     };
 
-    const nextPage = () => {
+    const activateNextStep = (updatedPath) => {
         const currentPageStepData =
             getStepsFromNestedDataStructure(currentPage);
         const nextPageToGoTo =
-            currentPageStepData.steps[selectionPath[currentPage]];
+            currentPageStepData.steps[updatedPath[currentPage]];
         if (nextPageToGoTo.externalUrl) {
             router.push(nextPageToGoTo.externalUrl);
         } else {
@@ -86,26 +88,35 @@ export const FormIntermediateStepPage = (
             <div className={styles.content}>
                 <div className={styles.stepOptionsWrapper}>
                     <ParsedHtml htmlProps={stepsData.editorial} />
-                    <RadioGroup
-                        name="stepOptions"
-                        defaultValue={0}
-                        legend={stepsData.stepsHeadline}
-                        onChange={onSelectionChange}
-                    >
+                    {stepsData.stepsHeadline && (
+                        <Heading level="2" size="small" spacing>
+                            {stepsData.stepsHeadline}
+                        </Heading>
+                    )}
+                    <ul className={styles.stepList}>
                         {stepsData.steps.map((step, index) => (
-                            <div key={step.label}>
-                                <Radio value={index}>
-                                    {step.label}
-                                    <Detail>{step.explanation}</Detail>
-                                </Radio>
-                            </div>
+                            <li key={step.label}>
+                                {' '}
+                                <LinkPanel
+                                    value={index}
+                                    as="button"
+                                    onClick={() => handlePanelClick(index)}
+                                    className={styles.stepOption}
+                                >
+                                    <LinkPanel.Title>
+                                        {step.label}
+                                    </LinkPanel.Title>
+                                    <LinkPanel.Description>
+                                        {step.explanation}
+                                    </LinkPanel.Description>
+                                </LinkPanel>
+                            </li>
                         ))}
-                    </RadioGroup>
+                    </ul>
                 </div>
                 <div className={styles.buttonGroup}>
-                    <Button onClick={nextPage}>Neste</Button>
                     {currentPage > 0 && (
-                        <Button onClick={prevPage} variant="secondary">
+                        <Button onClick={prevPage} variant="tertiary">
                             Tilbake
                         </Button>
                     )}
