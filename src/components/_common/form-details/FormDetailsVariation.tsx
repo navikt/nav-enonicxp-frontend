@@ -1,5 +1,4 @@
 import { Button } from '@navikt/ds-react';
-import classNames from 'classnames';
 import { Variation } from 'types/content-props/form-details';
 
 import styles from './FormDetailsVariation.module.scss';
@@ -7,11 +6,10 @@ import styles from './FormDetailsVariation.module.scss';
 type FormsListItemProps = {
     variation: Variation;
     index: number;
-    direction: 'vertical' | 'horizontal';
 };
 
 export const FormDetailsVariation = (props: FormsListItemProps) => {
-    const { variation, index, direction } = props;
+    const { variation, index } = props;
     const { url, label } = variation;
 
     if (!url || !label) {
@@ -23,7 +21,7 @@ export const FormDetailsVariation = (props: FormsListItemProps) => {
     const variant = index === 0 ? 'primary' : 'secondary';
 
     return (
-        <div className={classNames(styles.variation, styles[direction])}>
+        <div className={styles.variation}>
             <Button as="a" className={styles.cta} variant={variant} href={url}>
                 {label}
             </Button>
