@@ -2,12 +2,6 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentCommonProps, ContentType } from './_content-common';
 import { Taxonomy } from 'types/taxonomies';
 
-export type SimpleStep = {
-    label: string;
-    explanation: string;
-    externalUrl: string;
-};
-
 export type StepDetails = {
     label: string;
     explanation: string;

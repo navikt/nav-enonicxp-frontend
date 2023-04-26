@@ -45,5 +45,14 @@ $padding: 2rem;
 
 .buttonGroup {
     display: flex;
-    padding-top: $padding;
+}
+
+.backButton {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    padding: 0;
+
+    &:hover {
+        background-color: transparent;
+    }
 }

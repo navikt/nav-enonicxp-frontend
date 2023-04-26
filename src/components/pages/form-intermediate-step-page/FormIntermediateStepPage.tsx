@@ -1,30 +1,26 @@
 import React from 'react';
-import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
-
-import {
-    FormIntermediateStepPageProps,
-    SimpleStep,
-    StepDetails,
-} from 'types/content-props/form-intermediate-step';
-import { ContentCommonProps } from 'types/content-props/_content-common';
 import { Button, Heading, LinkPanel } from '@navikt/ds-react';
+import { useRouter } from 'next/router';
+import { translator } from 'translations';
+
+import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
+import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
+import { ContentCommonProps } from 'types/content-props/_content-common';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './FormIntermediateStepPage.module.scss';
-import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
-import { useRouter } from 'next/router';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 
 export const FormIntermediateStepPage = (
     props: FormIntermediateStepPageProps & ContentCommonProps
 ) => {
     const { data } = props;
-    const router = useRouter();
 
+    const router = useRouter();
+    const { language } = usePageConfig();
     const [currentPage, setCurrentPage] = React.useState(0);
     const [selectionPath, setSelectionPath] = React.useState<number[]>([0, 0]);
-    const { language } = usePageConfig();
 
     const getTranslations = translator('form', language);
 
@@ -50,35 +46,7 @@ export const FormIntermediateStepPage = (
         }
     };
 
-    const handlePanelClick = (index: number, step: SimpleStep) => {
-        const updatedPath = [...selectionPath];
-        updatedPath[currentPage] = index;
-        setSelectionPath([...updatedPath]);
-        activateNextStep(updatedPath);
-
-        const analyticsData = {
-            komponent: 'mellomsteg',
-            seksjon: 'steg-2',
-            destinasjon: router.asPath,
-            lenketekst: step.label,
-        };
-
-        logAmplitudeEvent(AnalyticsEvents.NAVIGATION, analyticsData);
-    };
-
-    const activateNextStep = (updatedPath) => {
-        const currentPageStepData =
-            buildStepObjectFromNestedStructure(currentPage);
-        const nextPageToGoTo =
-            currentPageStepData.steps[updatedPath[currentPage]];
-        if (nextPageToGoTo.externalUrl) {
-            router.push(nextPageToGoTo.externalUrl);
-        } else {
-            setCurrentPage(currentPage + 1);
-        }
-    };
-
-    const prevPage = () => {
+    const backHandler = () => {
         setCurrentPage(currentPage - 1);
         const analyticsData = {
             komponent: 'mellomsteg',
@@ -90,8 +58,40 @@ export const FormIntermediateStepPage = (
         logAmplitudeEvent(AnalyticsEvents.NAVIGATION, analyticsData);
     };
 
-    const stepsData = buildStepObjectFromNestedStructure(currentPage);
-    const modifiedProps = {
+    const nextHandler = (clickedPanelIndex: number, label: string) => {
+        const newPath = [...selectionPath];
+        newPath[currentPage] = clickedPanelIndex;
+        setSelectionPath([...newPath]);
+        gotoNextPage(newPath);
+
+        const analyticsData = {
+            komponent: 'mellomsteg',
+            seksjon: 'steg-2',
+            destinasjon: router.asPath,
+            lenketekst: label,
+        };
+
+        logAmplitudeEvent(AnalyticsEvents.NAVIGATION, analyticsData);
+    };
+
+    const gotoNextPage = (updatedPath: number[]) => {
+        // Need to drill down to find if the panel should lead
+        // to a new step or an external url
+        const currentPageStepData =
+            buildStepObjectFromNestedStructure(currentPage);
+        const nextPageToGoTo =
+            currentPageStepData.steps[updatedPath[currentPage]];
+
+        if (nextPageToGoTo.externalUrl) {
+            router.push(nextPageToGoTo.externalUrl);
+        } else {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const currentStepData = buildStepObjectFromNestedStructure(currentPage);
+
+    const themedPageHeaderProps = {
         ...props,
         data: {
             ...props.data,
@@ -103,23 +103,23 @@ export const FormIntermediateStepPage = (
     return (
         <div className={styles.formIntermediateStepPage}>
             <ThemedPageHeader
-                contentProps={modifiedProps}
+                contentProps={themedPageHeaderProps}
                 showTimeStamp={false}
             />
             <div className={styles.content}>
                 <div className={styles.stepOptionsWrapper}>
-                    <ParsedHtml htmlProps={stepsData.editorial} />
-                    {stepsData.stepsHeadline && (
-                        <Heading level="2" size="small" spacing>
-                            {stepsData.stepsHeadline}
+                    <ParsedHtml htmlProps={currentStepData.editorial} />
+                    {currentStepData.stepsHeadline && (
+                        <Heading level="3" size="small" spacing>
+                            {currentStepData.stepsHeadline}
                         </Heading>
                     )}
                     <ul className={styles.stepList}>
-                        {stepsData.steps.map((step, index) => {
+                        {currentStepData.steps.map((step, index) => {
                             const isLinkExternal = !!step.externalUrl;
                             const onClick = isLinkExternal
                                 ? null
-                                : () => handlePanelClick(index, step);
+                                : () => nextHandler(index, step.label);
 
                             const href = isLinkExternal
                                 ? step.externalUrl
@@ -128,7 +128,6 @@ export const FormIntermediateStepPage = (
                             return (
                                 <li key={step.label}>
                                     <LinkPanel
-                                        as="a"
                                         href={href}
                                         onClick={onClick}
                                         className={styles.stepOption}
@@ -147,7 +146,13 @@ export const FormIntermediateStepPage = (
                 </div>
                 <div className={styles.buttonGroup}>
                     {currentPage > 0 && (
-                        <Button onClick={prevPage} variant="tertiary">
+                        <Button
+                            onClick={backHandler}
+                            variant="tertiary"
+                            as="a"
+                            href="#"
+                            className={styles.backButton}
+                        >
                             {getTranslations('back')}
                         </Button>
                     )}
