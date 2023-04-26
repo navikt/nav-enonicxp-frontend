@@ -224,6 +224,10 @@ export const translationsBundleNn: Translations = {
         goTo: 'Gå til',
         ariaExplanation: 'Navigering av innhaldet med paginering',
     },
+    form: {
+        application: 'Søknad',
+        back: 'Tilbake',
+    },
     contactPoint: {
         chat: {
             title: 'Du kan chatte med oss',

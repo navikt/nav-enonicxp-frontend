@@ -41,16 +41,6 @@ $padding: 2rem;
     margin-bottom: 1rem;
     width: 100%;
     cursor: pointer;
-
-    :global(.navds-link-panel__content) {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-
-        & > * {
-            text-align: left;
-        }
-    }
 }
 
 .buttonGroup {

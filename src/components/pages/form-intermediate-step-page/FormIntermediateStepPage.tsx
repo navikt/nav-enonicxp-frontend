@@ -13,6 +13,8 @@ import styles from './FormIntermediateStepPage.module.scss';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { useRouter } from 'next/router';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { translator } from 'translations';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 export const FormIntermediateStepPage = (
     props: FormIntermediateStepPageProps & ContentCommonProps
@@ -22,6 +24,9 @@ export const FormIntermediateStepPage = (
 
     const [currentPage, setCurrentPage] = React.useState(0);
     const [selectionPath, setSelectionPath] = React.useState<number[]>([0, 0]);
+    const { language } = usePageConfig();
+
+    const getTranslations = translator('form', language);
 
     const buildStepObjectFromNestedStructure = (_currentPage: number) => {
         if (_currentPage === 0) {
@@ -75,12 +80,24 @@ export const FormIntermediateStepPage = (
 
     const prevPage = () => {
         setCurrentPage(currentPage - 1);
+        const analyticsData = {
+            komponent: 'mellomsteg',
+            seksjon: 'steg-1',
+            destinasjon: router.asPath,
+            lenketekst: 'Tilbake',
+        };
+
+        logAmplitudeEvent(AnalyticsEvents.NAVIGATION, analyticsData);
     };
 
     const stepsData = buildStepObjectFromNestedStructure(currentPage);
     const modifiedProps = {
         ...props,
-        data: { ...props.data, taxonomy: [] },
+        data: {
+            ...props.data,
+            taxonomy: [],
+            customCategory: getTranslations('application'),
+        },
     };
 
     return (
@@ -98,32 +115,40 @@ export const FormIntermediateStepPage = (
                         </Heading>
                     )}
                     <ul className={styles.stepList}>
-                        {stepsData.steps.map((step, index) => (
-                            <li key={step.label}>
-                                {' '}
-                                <LinkPanel
-                                    value={index}
-                                    as="button"
-                                    onClick={() =>
-                                        handlePanelClick(index, step)
-                                    }
-                                    className={styles.stepOption}
-                                >
-                                    <LinkPanel.Title>
-                                        {step.label}
-                                    </LinkPanel.Title>
-                                    <LinkPanel.Description>
-                                        {step.explanation}
-                                    </LinkPanel.Description>
-                                </LinkPanel>
-                            </li>
-                        ))}
+                        {stepsData.steps.map((step, index) => {
+                            const isLinkExternal = !!step.externalUrl;
+                            const onClick = isLinkExternal
+                                ? null
+                                : () => handlePanelClick(index, step);
+
+                            const href = isLinkExternal
+                                ? step.externalUrl
+                                : '#';
+
+                            return (
+                                <li key={step.label}>
+                                    <LinkPanel
+                                        as="a"
+                                        href={href}
+                                        onClick={onClick}
+                                        className={styles.stepOption}
+                                    >
+                                        <LinkPanel.Title>
+                                            {step.label}
+                                        </LinkPanel.Title>
+                                        <LinkPanel.Description>
+                                            {step.explanation}
+                                        </LinkPanel.Description>
+                                    </LinkPanel>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
                 <div className={styles.buttonGroup}>
                     {currentPage > 0 && (
                         <Button onClick={prevPage} variant="tertiary">
-                            Tilbake
+                            {getTranslations('back')}
                         </Button>
                     )}
                 </div>
