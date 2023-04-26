@@ -46,7 +46,8 @@ export const FormIntermediateStepPage = (
         }
     };
 
-    const backHandler = () => {
+    const backHandler = (e: MouseEvent) => {
+        e.preventDefault();
         setCurrentPage(currentPage - 1);
         const analyticsData = {
             komponent: 'mellomsteg',
@@ -58,7 +59,12 @@ export const FormIntermediateStepPage = (
         logAmplitudeEvent(AnalyticsEvents.NAVIGATION, analyticsData);
     };
 
-    const nextHandler = (clickedPanelIndex: number, label: string) => {
+    const nextHandler = (
+        e: MouseEvent,
+        clickedPanelIndex: number,
+        label: string
+    ) => {
+        e.preventDefault();
         const newPath = [...selectionPath];
         newPath[currentPage] = clickedPanelIndex;
         setSelectionPath([...newPath]);
@@ -119,7 +125,7 @@ export const FormIntermediateStepPage = (
                             const isLinkExternal = !!step.externalUrl;
                             const onClick = isLinkExternal
                                 ? null
-                                : () => nextHandler(index, step.label);
+                                : (e) => nextHandler(e, index, step.label);
 
                             const href = isLinkExternal
                                 ? step.externalUrl
