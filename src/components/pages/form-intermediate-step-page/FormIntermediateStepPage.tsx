@@ -46,7 +46,7 @@ export const FormIntermediateStepPage = (
         }
     };
 
-    const backHandler = (e: MouseEvent) => {
+    const backHandler = (e: React.MouseEvent) => {
         e.preventDefault();
         setCurrentPage(currentPage - 1);
         const analyticsData = {
@@ -60,7 +60,7 @@ export const FormIntermediateStepPage = (
     };
 
     const nextHandler = (
-        e: MouseEvent,
+        e: React.MouseEvent,
         clickedPanelIndex: number,
         label: string
     ) => {
@@ -153,7 +153,7 @@ export const FormIntermediateStepPage = (
                 <div className={styles.buttonGroup}>
                     {currentPage > 0 && (
                         <Button
-                            onClick={backHandler}
+                            onClick={(e) => backHandler(e)}
                             variant="tertiary"
                             as="a"
                             href="#"
