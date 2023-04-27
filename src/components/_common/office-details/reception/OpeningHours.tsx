@@ -36,13 +36,22 @@ export const OpeningHours = ({ openingHours }: Props) => {
         return dag || ''; // Fallback to empty string to avoid showing "undefined"
     };
 
+    const normalizeTimeLabel = (time: string): string => {
+        if (!time) {
+            return '';
+        }
+        return time.replace(':', '.');
+    };
+
     const buildOpeningInformation = (opening: OpeningHoursProps): string => {
         if (opening.kunTimeavtale === 'true') {
             return appointmentOnlyLabel;
         }
 
         if (opening.fra && opening.til) {
-            return `${opening.fra} - ${opening.til}`;
+            return `${normalizeTimeLabel(opening.fra)}–${normalizeTimeLabel(
+                opening.til
+            )}`;
         }
 
         return closedLabel;

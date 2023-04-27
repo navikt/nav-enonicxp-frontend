@@ -23,7 +23,6 @@ $margin: 2rem;
 
     & > * {
         max-width: common.$sectionMaxWidth;
-        margin-bottom: $margin;
     }
 }
 
@@ -39,13 +38,17 @@ $margin: 2rem;
     display: inline-flex;
     height: 2.5rem;
     justify-content: center;
-    margin-right: 0.5rem;
-    width: 2.5rem;
+    width: 2rem;
+
+    svg {
+        transform: translateX(-5px);
+    }
 }
 
 .header {
     align-items: center;
     display: flex;
+    margin-bottom: 1.5rem;
 }
 
 .addressPoster {

@@ -2,6 +2,7 @@
 
 .singleReception {
     background-color: var(--a-deepblue-50);
+    border-radius: var(--a-border-radius-small);
     padding: common.$padding-sides-mobile;
 
     @media #{common.$mq-screen-tablet} {
@@ -27,11 +28,16 @@
         }
 
         :global(.dayInformation) {
-            min-width: 5.6rem;
+            min-width: 9rem;
+
+            @media #{common.$mq-screen-mobile} {
+                min-width: auto;
+            }
         }
 
         :global(.openingInformation) {
             min-width: 7.3rem;
+            font-weight: var(--a-font-weight-bold);
 
             &:first-letter {
                 text-transform: capitalize;
@@ -46,13 +52,14 @@
 }
 
 .headingIcon {
-    color: var(--a-deepblue-500);
+    color: var(--a-surface-inverted);
     margin-right: 0.5rem;
 }
 
 .iconPlace {
     width: 30px;
     height: 30px;
+    transform: translateX(-1px);
 }
 
 .iconClock {

@@ -42,7 +42,9 @@ export const Reception = ({ receptions }: LocationsProps) => {
 
     return (
         <>
-            <BodyLong>{getOfficeTranslations('chooseBetweenOffices')}</BodyLong>
+            <BodyLong className={styles.chooseBetweenOffices}>
+                {getOfficeTranslations('chooseBetweenOffices')}
+            </BodyLong>
             <Tabs
                 value={state}
                 onChange={setState}

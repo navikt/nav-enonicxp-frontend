@@ -1,6 +1,10 @@
 .bulletList {
     margin: 0;
     padding-left: 1.4rem;
+
+    li {
+        margin-bottom: 0.5rem;
+    }
 }
 .anchor {
     border-bottom: 1px var(--a-text-action) solid;
