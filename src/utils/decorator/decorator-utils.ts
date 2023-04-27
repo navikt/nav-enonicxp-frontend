@@ -5,7 +5,7 @@ import { LanguageProps } from 'types/language';
 import { stripXpPathPrefix } from '../urls';
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { checkForWhiteHeader } from 'components/_top-container/TopContainer';
-import { Audiences } from 'types/component-props/_mixins';
+import { Audiences, Audience } from 'types/component-props/_mixins';
 
 const defaultLanguage: DecoratorParams['language'] = 'nb';
 
@@ -79,7 +79,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 
     const rolePathSegment = _path.split('/')[2];
     const context =
-        audienceToRoleContext[data?.audience._selected] ||
+        audienceToRoleContext[data.audience?._selected] ||
         pathToRoleContext[rolePathSegment];
     const decoratorLanguage = getDecoratorLangFromXpLang(language);
     const feedbackEnabled = data?.feedbackToggle;
