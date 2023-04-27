@@ -14,11 +14,34 @@ export type HeaderWithAnchorMixin = {
     toggleCopyButton: boolean;
 };
 
-export enum Audience {
+export enum Audiences {
     PERSON = 'person',
     EMPLOYER = 'employer',
     PROVIDER = 'provider',
 }
+
+export enum ProviderAudiences {
+    DOCTOR = 'doctor',
+    DENTIST = 'dentist',
+    OPTICIAN = 'optician',
+    OCCUPATIONAL_THERAPIST = 'occupational_therapist',
+    AID_SUPPLIER = 'aid_supplier',
+    MEASURES_ORGANIZER = 'measures_organizer',
+    ADMINISTRATOR = 'administrator',
+    MUNICIPALITY = 'municipality',
+    OTHER = 'other',
+}
+
+export type Audience = {
+    _selected: Audiences;
+    provider_audience?: ProviderAudiences;
+};
+export const getAudience = (audience: Audience) => {
+    if (audience && audience._selected) {
+        return audience._selected;
+    }
+    return Audiences.PERSON;
+};
 
 export type FilterSelection = string[];
 

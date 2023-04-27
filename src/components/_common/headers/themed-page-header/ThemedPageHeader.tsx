@@ -19,7 +19,10 @@ import {
     OfficeEditorialPageProps,
     OfficeBranchPageProps,
 } from '../../../../types/content-props/dynamic-page-props';
-import { Audience } from '../../../../types/component-props/_mixins';
+import {
+    getAudience,
+    Audiences,
+} from '../../../../types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 import style from './ThemedPageHeader.module.scss';
@@ -52,28 +55,25 @@ export const ThemedPageHeader = ({
             const title = displayName;
             return { title };
         }
-        const {
-            title,
-            illustration,
-            taxonomy,
-            audience = Audience.PERSON,
-            customCategory,
-        } = data;
+        const { title, illustration, taxonomy, audience, customCategory } =
+            data;
         return { title, illustration, taxonomy, audience, customCategory };
     };
 
     const { audience, title, taxonomy, customCategory, illustration } =
         getProps();
 
+    const currentAudience = getAudience(audience);
+
     const getSubtitle = () => {
         if (pageType === ContentType.SituationPage) {
             const getTaxonomyLabel = translator('situations', language);
-            return getTaxonomyLabel(audience);
+            return getTaxonomyLabel(currentAudience);
         }
 
         if (pageType === ContentType.GuidePage) {
             const getTaxonomyLabel = translator('guides', language);
-            return getTaxonomyLabel(audience);
+            return getTaxonomyLabel(currentAudience);
         }
 
         if (pageType === ContentType.Overview) {
@@ -92,10 +92,11 @@ export const ThemedPageHeader = ({
 
         if (
             pageType === ContentType.ProductPage &&
-            (audience === Audience.EMPLOYER || audience === Audience.PROVIDER)
+            (currentAudience === Audiences.EMPLOYER ||
+                currentAudience === Audiences.PROVIDER)
         ) {
             const getTaxonomyLabel = translator('products', language);
-            return getTaxonomyLabel(audience);
+            return getTaxonomyLabel(currentAudience);
         }
 
         const taxonomyArray = getTranslatedTaxonomies(taxonomy, language);

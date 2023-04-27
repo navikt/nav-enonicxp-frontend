@@ -9,7 +9,7 @@ import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { OpeningInfo } from 'components/_common/contact-option/opening-info/OpeningInfo';
-import { Audience } from 'types/component-props/_mixins';
+import { getAudience, Audience } from 'types/component-props/_mixins';
 
 import style from './ContactOption.module.scss';
 
@@ -43,7 +43,7 @@ export const CallOption = (props: CallOptionProps) => {
         regularOpeningHours,
         specialOpeningHours,
         text,
-        audience = Audience.PERSON,
+        audience,
     } = props;
 
     const { language } = usePageConfig();
@@ -53,7 +53,7 @@ export const CallOption = (props: CallOptionProps) => {
     const sharedTranslations = getContactTranslations('shared');
 
     const getContactUrl = () => {
-        const audienceUrls = contactURLs[audience];
+        const audienceUrls = contactURLs[getAudience(audience)];
         if (!audienceUrls) {
             return contactURLs.person.no;
         }
