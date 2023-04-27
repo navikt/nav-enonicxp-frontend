@@ -1,6 +1,5 @@
 import React from 'react';
 import { classNames } from '../../../../utils/classnames';
-import { PageHeader } from '../page-header/PageHeader';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { joinWithConjunction } from '../../../../utils/string';
