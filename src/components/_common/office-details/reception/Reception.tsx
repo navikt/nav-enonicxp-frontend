@@ -29,8 +29,12 @@ export const Reception = ({ receptions }: LocationsProps) => {
         );
     };
 
+    const getIdFromLabel = (label: string) => {
+        return label.replace(/\s/g, '-').toLowerCase();
+    };
+
     const firstLocation = getLocation(receptionArray[0]);
-    const [state, setState] = useState(firstLocation);
+    const [state, setState] = useState(getIdFromLabel(firstLocation));
 
     if (!receptionArray || receptionArray.length === 0) {
         return null;
@@ -60,7 +64,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
                         return (
                             <Tabs.Tab
                                 key={index}
-                                value={locationLabel}
+                                value={getIdFromLabel(locationLabel)}
                                 label={locationLabel}
                             />
                         );
@@ -71,7 +75,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
                     return (
                         <Tabs.Panel
                             key={index}
-                            value={locationLabel}
+                            value={getIdFromLabel(locationLabel)}
                             className={styles.singleTab}
                         >
                             <SingleReception {...loc} />
