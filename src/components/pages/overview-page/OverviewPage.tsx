@@ -114,7 +114,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                                 searchString
                             )}
                             overviewType={overviewType}
-                            key={product._id}
+                            key={`${product._id}-${language}`}
                         />
                     ))}
                 </div>

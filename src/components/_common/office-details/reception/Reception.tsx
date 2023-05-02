@@ -37,12 +37,18 @@ export const Reception = ({ receptions }: LocationsProps) => {
     }
 
     if (receptionArray.length === 1) {
-        return <SingleReception {...receptionArray[0]} />;
+        return (
+            <div className={styles.singleTab}>
+                <SingleReception {...receptionArray[0]} />
+            </div>
+        );
     }
 
     return (
         <>
-            <BodyLong>{getOfficeTranslations('chooseBetweenOffices')}</BodyLong>
+            <BodyLong className={styles.chooseBetweenOffices}>
+                {getOfficeTranslations('chooseBetweenOffices')}
+            </BodyLong>
             <Tabs
                 value={state}
                 onChange={setState}

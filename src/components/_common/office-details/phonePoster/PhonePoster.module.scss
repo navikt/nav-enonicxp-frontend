@@ -3,6 +3,7 @@
 .phonePoster {
     padding: common.$padding-sides-mobile;
     background-color: var(--a-gray-50);
+    border-radius: var(--a-border-radius-small);
 
     @media #{common.$mq-screen-tablet} {
         padding: common.$padding-sides-tablet;
