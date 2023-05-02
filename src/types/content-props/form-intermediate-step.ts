@@ -17,10 +17,9 @@ export type StepDetails = {
             steps: {
                 label: string;
                 explanation: string;
-                nextStep: {
-                    _selected: string;
+                nextStep: OptionSetSingle<{
                     external: ExternalStep;
-                };
+                }>;
             }[];
         };
         external: {
