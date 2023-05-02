@@ -5,7 +5,6 @@ import { translator } from 'translations';
 
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
-import { ContentCommonProps } from 'types/content-props/_content-common';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -13,7 +12,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import styles from './FormIntermediateStepPage.module.scss';
 
 export const FormIntermediateStepPage = (
-    props: FormIntermediateStepPageProps & ContentCommonProps
+    props: FormIntermediateStepPageProps
 ) => {
     const { data } = props;
 
