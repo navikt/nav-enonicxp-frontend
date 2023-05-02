@@ -73,22 +73,16 @@ export const FormIntermediateStepPage = (
             steps: data.steps.map((step) => ({
                 label: step.label,
                 explanation: step.explanation,
-                externalUrl:
-                    step.nextStep._selected === 'external' &&
-                    step.nextStep.external.externalUrl,
+                nextStep: {
+                    _selected: 'external',
+                    external: {
+                        externalUrl:
+                            step.nextStep._selected === 'external' &&
+                            step.nextStep.external.externalUrl,
+                    },
+                },
             })),
         };
-    };
-
-    const currentStepData = getStepData();
-
-    const themedPageHeaderProps = {
-        ...props,
-        data: {
-            ...props.data,
-            taxonomy: [],
-            customCategory: getTranslations('application'),
-        },
     };
 
     const getOnClickFromStep = (step, index: number) => {
@@ -111,6 +105,17 @@ export const FormIntermediateStepPage = (
     const getHrefFromStep = (step) => {
         return step.nextStep?.external?.externalUrl || router.asPath;
     };
+
+    const themedPageHeaderProps = {
+        ...props,
+        data: {
+            ...props.data,
+            taxonomy: [],
+            customCategory: getTranslations('application'),
+        },
+    };
+
+    const currentStepData = getStepData();
 
     return (
         <div className={styles.formIntermediateStepPage}>
