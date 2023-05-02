@@ -29,6 +29,7 @@
 
         :global(.dayInformation) {
             min-width: 9rem;
+            font-weight: normal;
 
             @media #{common.$mq-screen-mobile} {
                 min-width: auto;
