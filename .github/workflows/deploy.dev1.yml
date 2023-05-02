@@ -10,14 +10,14 @@ jobs:
       imagename: dev1-deploy
       ENV: dev1
       ADMIN_ORIGIN: https://portal-admin-dev.oera.no
-      APP_ORIGIN: https://www.dev.nav.no
+      APP_ORIGIN: https://www.intern.dev.nav.no
       REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev1
       DECORATOR_URL: https://dekoratoren.ekstern.dev.nav.no
       XP_ORIGIN: https://www.dev.nav.no
-      INNLOGGINGSSTATUS_URL: https://www.dev.nav.no/person/nav-dekoratoren-api/auth
+      INNLOGGINGSSTATUS_URL: https://person.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
       RELEASE_TAG: dev2-${{ github.sha }}
       NAVNO_API_URL: https://person.ekstern.dev.nav.no/person/navno-api
-      FAILOVER_ORIGIN: https://www-failover.dev.nav.no
+      FAILOVER_ORIGIN: https://www-failover.intern.dev.nav.no
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
