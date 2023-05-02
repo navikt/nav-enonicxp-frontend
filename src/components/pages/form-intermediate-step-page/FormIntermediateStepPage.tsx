@@ -1,101 +1,71 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Heading, LinkPanel } from '@navikt/ds-react';
-import { useRouter } from 'next/router';
 import { translator } from 'translations';
 
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 import { ContentCommonProps } from 'types/content-props/_content-common';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { useRouter } from 'next/router';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 import styles from './FormIntermediateStepPage.module.scss';
+
+const STEP_PARAM = 'steg';
 
 export const FormIntermediateStepPage = (
     props: FormIntermediateStepPageProps & ContentCommonProps
 ) => {
     const { data } = props;
-
     const router = useRouter();
+
     const { language } = usePageConfig();
-    const [currentPage, setCurrentPage] = React.useState(0);
-    const [selectionPath, setSelectionPath] = React.useState<number[]>([0, 0]);
+    const [stepSelection, setStepSelection] = useState<number | null>(null);
 
     const getTranslations = translator('form', language);
 
-    const buildStepObjectFromNestedStructure = (_currentPage: number) => {
-        if (_currentPage === 0) {
-            return {
-                editorial: data.editorial,
-                stepsHeadline: data.stepsHeadline,
-                steps: data.steps.map((step) => ({
-                    label: step.label,
-                    explanation: step.explanation,
-                    externalUrl: step.nextStep.external?.externalUrl,
-                })),
-            };
-        }
-        if (_currentPage === 1) {
-            const stepDetails = data.steps[selectionPath[0]].nextStep;
-            return {
-                editorial: stepDetails.next.editorial,
-                stepsHeadline: stepDetails.next.stepsHeadline,
-                steps: stepDetails.next.steps,
-            };
-        }
-    };
+    useEffect(() => {
+        const handleRouteChange = (url) => {
+            const step = new URL(url, window.location.origin).searchParams.get(
+                STEP_PARAM
+            );
 
-    const backHandler = (e: React.MouseEvent) => {
-        e.preventDefault();
-        setCurrentPage(currentPage - 1);
-        const analyticsData = {
-            komponent: 'mellomsteg',
-            seksjon: 'steg-1',
-            destinasjon: router.asPath,
-            lenketekst: 'Tilbake',
+            if (step) {
+                setStepSelection(Number(step));
+            } else {
+                setStepSelection(null);
+            }
         };
 
-        logAmplitudeEvent(AnalyticsEvents.NAVIGATION, analyticsData);
-    };
-
-    const nextHandler = (
-        e: React.MouseEvent,
-        clickedPanelIndex: number,
-        label: string
-    ) => {
-        e.preventDefault();
-        const newPath = [...selectionPath];
-        newPath[currentPage] = clickedPanelIndex;
-        setSelectionPath([...newPath]);
-        gotoNextPage(newPath);
-
-        const analyticsData = {
-            komponent: 'mellomsteg',
-            seksjon: 'steg-2',
-            destinasjon: router.asPath,
-            lenketekst: label,
+        router.events.on('routeChangeComplete', handleRouteChange);
+        return () => {
+            router.events.off('routeChangeComplete', handleRouteChange);
         };
+    }, [router]);
 
-        logAmplitudeEvent(AnalyticsEvents.NAVIGATION, analyticsData);
-    };
-
-    const gotoNextPage = (updatedPath: number[]) => {
-        // Need to drill down to find if the panel should lead
-        // to a new step or an external url
-        const currentPageStepData =
-            buildStepObjectFromNestedStructure(currentPage);
-        const nextPageToGoTo =
-            currentPageStepData.steps[updatedPath[currentPage]];
-
-        if (nextPageToGoTo.externalUrl) {
-            router.push(nextPageToGoTo.externalUrl);
-        } else {
-            setCurrentPage(currentPage + 1);
+    const getStepData = () => {
+        if (stepSelection !== null) {
+            const stepDetails = data.steps[stepSelection].nextStep;
+            if (stepDetails?._selected === 'next') {
+                return stepDetails.next;
+            }
         }
+
+        return {
+            editorial: data.editorial,
+            stepsHeadline: data.stepsHeadline,
+            steps: data.steps.map((step) => ({
+                label: step.label,
+                explanation: step.explanation,
+                externalUrl:
+                    step.nextStep._selected === 'external' &&
+                    step.nextStep.external.externalUrl,
+            })),
+        };
     };
 
-    const currentStepData = buildStepObjectFromNestedStructure(currentPage);
+    const currentStepData = getStepData();
 
     const themedPageHeaderProps = {
         ...props,
@@ -122,21 +92,30 @@ export const FormIntermediateStepPage = (
                     )}
                     <ul className={styles.stepList}>
                         {currentStepData.steps.map((step, index) => {
-                            const isLinkExternal = !!step.externalUrl;
-                            const onClick = isLinkExternal
-                                ? null
-                                : (e) => nextHandler(e, index, step.label);
-
-                            const href = isLinkExternal
-                                ? step.externalUrl
-                                : '#';
+                            const onClick = step.externalUrl
+                                ? undefined
+                                : (e) => {
+                                      e.preventDefault();
+                                      router.push(
+                                          `${window.location.pathname}?${STEP_PARAM}=${index}`,
+                                          undefined,
+                                          {
+                                              shallow: true,
+                                          }
+                                      );
+                                      setStepSelection(index);
+                                  };
 
                             return (
                                 <li key={step.label}>
                                     <LinkPanel
-                                        href={href}
+                                        href={step.externalUrl || router.asPath}
                                         onClick={onClick}
                                         className={styles.stepOption}
+                                        as={LenkeBase}
+                                        analyticsComponent={'mellomsteg'}
+                                        analyticsLinkGroup={'steg-2'}
+                                        analyticsLabel={step.label}
                                     >
                                         <LinkPanel.Title>
                                             {step.label}
@@ -150,19 +129,31 @@ export const FormIntermediateStepPage = (
                         })}
                     </ul>
                 </div>
-                <div className={styles.buttonGroup}>
-                    {currentPage > 0 && (
+                {stepSelection !== null && (
+                    <div className={styles.buttonGroup}>
                         <Button
-                            onClick={(e) => backHandler(e)}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                router.push(
+                                    window.location.pathname,
+                                    undefined,
+                                    {
+                                        shallow: true,
+                                    }
+                                );
+                            }}
                             variant="tertiary"
-                            as="a"
-                            href="#"
                             className={styles.backButton}
+                            as={LenkeBase}
+                            href={router.asPath}
+                            analyticsComponent={'mellomsteg'}
+                            analyticsLinkGroup={'steg-1'}
+                            analyticsLabel={'Tilbake'}
                         >
                             {getTranslations('back')}
                         </Button>
-                    )}
-                </div>
+                    </div>
+                )}
             </div>
         </div>
     );
