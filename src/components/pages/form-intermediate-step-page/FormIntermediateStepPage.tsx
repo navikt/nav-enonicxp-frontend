@@ -3,15 +3,19 @@ import { Button, Heading, LinkPanel } from '@navikt/ds-react';
 import { translator } from 'translations';
 
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
-import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
+import {
+    FormIntermediateStepPageProps,
+    StepDetails,
+} from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useRouter } from 'next/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 import styles from './FormIntermediateStepPage.module.scss';
+import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 
-const STEP_PARAM = 'steg';
+const STEP_PARAM = 'stegvalg';
 
 export const FormIntermediateStepPage = (
     props: FormIntermediateStepPageProps
@@ -20,32 +24,44 @@ export const FormIntermediateStepPage = (
     const router = useRouter();
 
     const { language } = usePageConfig();
-    const [stepSelection, setStepSelection] = useState<number | null>(null);
+    const [curentPageIndex, setCurrentPageIndex] = useState<number>(0);
+    const [selectedSteps, setSelectedSteps] = useState<number[]>([]);
 
     const getTranslations = translator('form', language);
 
-    useEffect(() => {
-        const handleRouteChange = (url) => {
-            const step = new URL(url, window.location.origin).searchParams.get(
-                STEP_PARAM
-            );
+    const getStateFromQuery = (url: string) => {
+        const stepQuery = new URL(url, window.location.origin).searchParams.get(
+            STEP_PARAM
+        );
 
-            if (step) {
-                setStepSelection(Number(step));
-            } else {
-                setStepSelection(null);
-            }
+        const steps = stepQuery
+            ? stepQuery.split(',').map((step) => Number(step) || 0)
+            : [];
+        return { pageIndex: steps.length, steps };
+    };
+
+    useEffect(() => {
+        const handleRouteChange = (url: string) => {
+            const { pageIndex, steps } = getStateFromQuery(url);
+            setCurrentPageIndex(pageIndex);
+            setSelectedSteps(steps);
         };
 
         router.events.on('routeChangeComplete', handleRouteChange);
         return () => {
             router.events.off('routeChangeComplete', handleRouteChange);
         };
-    }, [router]);
+    }, [router, setSelectedSteps, setCurrentPageIndex]);
+
+    useEffect(() => {
+        const { pageIndex, steps } = getStateFromQuery(router.asPath);
+        setCurrentPageIndex(pageIndex);
+        setSelectedSteps(steps);
+    }, []);
 
     const getStepData = () => {
-        if (stepSelection !== null) {
-            const stepDetails = data.steps[stepSelection].nextStep;
+        if (curentPageIndex === 1) {
+            const stepDetails = data.steps[selectedSteps[0]].nextStep;
             if (stepDetails?._selected === 'next') {
                 return stepDetails.next;
             }
@@ -75,6 +91,27 @@ export const FormIntermediateStepPage = (
         },
     };
 
+    const getOnClickFromStep = (step, index: number) => {
+        return step.nextStep?._selected === 'external'
+            ? undefined
+            : (e: React.MouseEvent) => {
+                  e.preventDefault();
+                  router.push(
+                      `${window.location.pathname}?${STEP_PARAM}=${selectedSteps
+                          .concat(index)
+                          .join(',')}`,
+                      undefined,
+                      {
+                          shallow: true,
+                      }
+                  );
+              };
+    };
+
+    const getHrefFromStep = (step) => {
+        return step.nextStep?.external?.externalUrl || router.asPath;
+    };
+
     return (
         <div className={styles.formIntermediateStepPage}>
             <ThemedPageHeader
@@ -90,45 +127,28 @@ export const FormIntermediateStepPage = (
                         </Heading>
                     )}
                     <ul className={styles.stepList}>
-                        {currentStepData.steps.map((step, index) => {
-                            const onClick = step.externalUrl
-                                ? undefined
-                                : (e) => {
-                                      e.preventDefault();
-                                      router.push(
-                                          `${window.location.pathname}?${STEP_PARAM}=${index}`,
-                                          undefined,
-                                          {
-                                              shallow: true,
-                                          }
-                                      );
-                                      setStepSelection(index);
-                                  };
-
-                            return (
-                                <li key={step.label}>
-                                    <LinkPanel
-                                        href={step.externalUrl || router.asPath}
-                                        onClick={onClick}
-                                        className={styles.stepOption}
-                                        as={LenkeBase}
-                                        analyticsComponent={'mellomsteg'}
-                                        analyticsLinkGroup={'steg-2'}
-                                        analyticsLabel={step.label}
-                                    >
-                                        <LinkPanel.Title>
-                                            {step.label}
-                                        </LinkPanel.Title>
-                                        <LinkPanel.Description>
+                        {currentStepData.steps.map(
+                            (step: any, index: number) => {
+                                return (
+                                    <li key={step.label}>
+                                        <LenkepanelNavNo
+                                            href={getHrefFromStep(step)}
+                                            onClick={getOnClickFromStep(
+                                                step,
+                                                index
+                                            )}
+                                            className={styles.stepOption}
+                                            tittel={step.label}
+                                        >
                                             {step.explanation}
-                                        </LinkPanel.Description>
-                                    </LinkPanel>
-                                </li>
-                            );
-                        })}
+                                        </LenkepanelNavNo>
+                                    </li>
+                                );
+                            }
+                        )}
                     </ul>
                 </div>
-                {stepSelection !== null && (
+                {curentPageIndex !== null && (
                     <div className={styles.buttonGroup}>
                         <Button
                             onClick={(e) => {
