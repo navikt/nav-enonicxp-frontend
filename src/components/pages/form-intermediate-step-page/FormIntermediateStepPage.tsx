@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Heading, LinkPanel } from '@navikt/ds-react';
+import { Button, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
-import {
-    FormIntermediateStepPageProps,
-    StepDetails,
-} from 'types/content-props/form-intermediate-step';
+import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useRouter } from 'next/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 
 import styles from './FormIntermediateStepPage.module.scss';
-import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 
 const STEP_PARAM = 'stegvalg';
 
