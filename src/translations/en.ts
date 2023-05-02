@@ -235,6 +235,7 @@ export const translationsBundleEn: Translations = {
     },
     form: {
         application: 'Application',
+        back: 'Back',
     },
     contactPoint: {
         chat: {
