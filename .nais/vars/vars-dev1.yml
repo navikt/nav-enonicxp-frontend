@@ -3,11 +3,12 @@ revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev1
 dekoratorenApp: nav-dekoratoren
 externalHosts:
   - www.dev.nav.no
+  - www.intern.dev.nav.no
   - dekoratoren.ekstern.dev.nav.no
-  - www-failover.dev.nav.no
+  - www-failover.intern.dev.nav.no
 secret: nav-enonicxp-dev1
 ingresses:
-  - https://www.dev.nav.no
+  - https://www.intern.dev.nav.no
 resources:
   requests:
     cpu: 500m
