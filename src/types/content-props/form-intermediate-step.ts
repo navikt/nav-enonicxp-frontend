@@ -1,6 +1,7 @@
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentCommonProps, ContentType } from './_content-common';
 import { Taxonomy } from 'types/taxonomies';
+import { OptionSetSingle } from 'types/util-types';
 
 type ExternalStep = {
     externalUrl: string;
@@ -9,9 +10,8 @@ type ExternalStep = {
 export type StepDetails = {
     label: string;
     explanation: string;
-    nextStep: {
-        _selected: string;
-        next?: {
+    nextStep: OptionSetSingle<{
+        next: {
             editorial: ProcessedHtmlProps;
             stepsHeadline: string;
             steps: {
@@ -23,8 +23,10 @@ export type StepDetails = {
                 };
             }[];
         };
-        external?: ExternalStep;
-    };
+        external: {
+            externalUrl: string;
+        };
+    }>;
 };
 
 export type FormIntermediateStepPageProps = ContentCommonProps & {
