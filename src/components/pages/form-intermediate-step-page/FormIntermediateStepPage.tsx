@@ -24,8 +24,9 @@ export const FormIntermediateStepPage = (
     const router = useRouter();
 
     const { language } = usePageConfig();
-    const [curentPageIndex, setCurrentPageIndex] = useState<number>(0);
-    const [selectedSteps, setSelectedSteps] = useState<number[]>([]);
+    const [prevSelectedStep, setPrevSelectedStep] = useState<number | null>(
+        null
+    );
 
     const getTranslations = translator('form', language);
 
@@ -34,34 +35,27 @@ export const FormIntermediateStepPage = (
             STEP_PARAM
         );
 
-        const steps = stepQuery
-            ? stepQuery.split(',').map((step) => Number(step) || 0)
-            : [];
-        return { pageIndex: steps.length, steps };
+        return stepQuery ? Number(stepQuery) : null;
     };
 
     useEffect(() => {
         const handleRouteChange = (url: string) => {
-            const { pageIndex, steps } = getStateFromQuery(url);
-            setCurrentPageIndex(pageIndex);
-            setSelectedSteps(steps);
+            setPrevSelectedStep(getStateFromQuery(url));
         };
 
         router.events.on('routeChangeComplete', handleRouteChange);
         return () => {
             router.events.off('routeChangeComplete', handleRouteChange);
         };
-    }, [router, setSelectedSteps, setCurrentPageIndex]);
+    }, [router]);
 
     useEffect(() => {
-        const { pageIndex, steps } = getStateFromQuery(router.asPath);
-        setCurrentPageIndex(pageIndex);
-        setSelectedSteps(steps);
+        setPrevSelectedStep(getStateFromQuery(router.asPath));
     }, []);
 
     const getStepData = () => {
-        if (curentPageIndex === 1) {
-            const stepDetails = data.steps[selectedSteps[0]].nextStep;
+        if (prevSelectedStep !== null) {
+            const stepDetails = data.steps[prevSelectedStep].nextStep;
             if (stepDetails?._selected === 'next') {
                 return stepDetails.next;
             }
@@ -70,18 +64,7 @@ export const FormIntermediateStepPage = (
         return {
             editorial: data.editorial,
             stepsHeadline: data.stepsHeadline,
-            steps: data.steps.map((step) => ({
-                label: step.label,
-                explanation: step.explanation,
-                nextStep: {
-                    _selected: 'external',
-                    external: {
-                        externalUrl:
-                            step.nextStep._selected === 'external' &&
-                            step.nextStep.external.externalUrl,
-                    },
-                },
-            })),
+            steps: data.steps,
         };
     };
 
@@ -91,9 +74,7 @@ export const FormIntermediateStepPage = (
             : (e: React.MouseEvent) => {
                   e.preventDefault();
                   router.push(
-                      `${window.location.pathname}?${STEP_PARAM}=${selectedSteps
-                          .concat(index)
-                          .join(',')}`,
+                      `${window.location.pathname}?${STEP_PARAM}=${index}`,
                       undefined,
                       {
                           shallow: true,
@@ -153,7 +134,7 @@ export const FormIntermediateStepPage = (
                         )}
                     </ul>
                 </div>
-                {curentPageIndex !== null && (
+                {prevSelectedStep !== null && (
                     <div className={styles.buttonGroup}>
                         <Button
                             onClick={(e) => {
