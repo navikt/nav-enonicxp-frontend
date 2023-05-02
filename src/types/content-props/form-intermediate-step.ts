@@ -2,6 +2,10 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentCommonProps, ContentType } from './_content-common';
 import { Taxonomy } from 'types/taxonomies';
 
+type ExternalStep = {
+    externalUrl: string;
+};
+
 export type StepDetails = {
     label: string;
     explanation: string;
@@ -13,12 +17,13 @@ export type StepDetails = {
             steps: {
                 label: string;
                 explanation: string;
-                externalUrl: string;
+                nextStep: {
+                    _selected: string;
+                    external: ExternalStep;
+                };
             }[];
         };
-        external?: {
-            externalUrl: string;
-        };
+        external?: ExternalStep;
     };
 };
 
