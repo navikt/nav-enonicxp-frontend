@@ -47,6 +47,7 @@ import { Audience } from '../component-props/_mixins';
 import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
 import { FormDetailsPageProps } from './form-details';
+import { FormIntermediateStepPageProps } from './form-intermediate-step';
 
 export enum ContentType {
     Error = 'error',
@@ -88,6 +89,7 @@ export enum ContentType {
     FrontPage = 'no.nav.navno:front-page',
     AreaPage = 'no.nav.navno:area-page',
     PressLandingPage = 'no.nav.navno:press-landing-page',
+    FormIntermediateStepPage = 'no.nav.navno:form-intermediate-step',
     FormDetails = 'no.nav.navno:form-details',
 }
 
@@ -175,6 +177,7 @@ type SpecificContentProps =
     | AreaPageProps
     | GenericPageProps
     | PressLandingPageProps
-    | FormDetailsPageProps;
+    | FormDetailsPageProps
+    | FormIntermediateStepPageProps;
 
 export type ContentProps = ContentCommonProps & SpecificContentProps;

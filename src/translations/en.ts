@@ -233,6 +233,10 @@ export const translationsBundleEn: Translations = {
         goTo: 'Go to',
         ariaExplanation: 'Navigate the content by pagination',
     },
+    form: {
+        application: 'Application',
+        back: 'Back',
+    },
     contactPoint: {
         chat: {
             title: 'Chat with Frida',
