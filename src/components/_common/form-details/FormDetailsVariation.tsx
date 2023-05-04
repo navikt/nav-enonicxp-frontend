@@ -1,5 +1,6 @@
 import { Button } from '@navikt/ds-react';
 import { Variation } from 'types/content-props/form-details';
+import { getSelectableLinkProps } from 'utils/links-from-content';
 
 import styles from './FormDetailsVariation.module.scss';
 
@@ -10,15 +11,17 @@ type FormsListItemProps = {
 
 export const FormDetailsVariation = (props: FormsListItemProps) => {
     const { variation, index } = props;
-    const { url, label } = variation;
+    const { link, label } = variation;
 
-    if (!url || !label) {
+    if (!link || !label) {
         // url or label is not required in CS as some form details are ment to only contain informational text
         // via the form details title and ingress.
         return null;
     }
 
     const variant = index === 0 ? 'primary' : 'secondary';
+
+    const { url } = getSelectableLinkProps(link);
 
     return (
         <div className={styles.variation}>
