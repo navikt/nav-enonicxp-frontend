@@ -79,7 +79,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 
     const rolePathSegment = _path.split('/')[2];
     const context =
-        audienceToRoleContext[data.audience?._selected] ||
+        audienceToRoleContext[data?.audience?._selected] ||
         pathToRoleContext[rolePathSegment];
     const decoratorLanguage = getDecoratorLangFromXpLang(language);
     const feedbackEnabled = data?.feedbackToggle;
