@@ -1,13 +1,13 @@
 import { OptionSetSingle } from 'types/util-types';
 import { ContentCommonProps, ContentType } from './_content-common';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { LinkSelectable } from 'types/component-props/_mixins';
 
 export type FormComplaintTypes = 'complaint' | 'appeal';
-export type FormAddendumTypes = 'addendum_digital' | 'addendum_paper';
 
 export interface Variation<T = string> {
     type?: T;
-    url?: string;
+    link?: LinkSelectable;
     label?: string;
 }
 
