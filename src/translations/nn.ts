@@ -116,11 +116,11 @@ export const translationsBundleNn: Translations = {
     audienceServices: {
         HJELP_KOMME_I_JOBB: 'Hjelp til å kome i jobb',
         NODSITUASJON:
-            'Hjelp i nødsituasjoner, til dømes mellombels butilbud eller økonomisk sosialhjelp',
-        OKONOMI_GJELD: 'Økonomi- og gjeldsrådgivning',
+            'Hjelp i nødssituasjonar, til dømes mellombels butilbod eller økonomisk sosialhjelp',
+        OKONOMI_GJELD: 'Økonomi- og gjeldsrådgiving',
         TILGANGPC: 'Tilgang til PC',
         HJELPDIGITALETJENESTER:
-            'Hjelp til å bruke digitale tjenestar hvis du treng det',
+            'Hjelp til å bruke digitale tenester dersom du treng det',
         BARNEVERNTJENESTE: 'Barneverntjeneste',
         FLYKTNINGTJENESTE: 'Flyktningtjeneste',
         FENGSEL_OPPFOLGING: 'Oppfølgjing av personar i fengsel',
@@ -182,19 +182,19 @@ export const translationsBundleNn: Translations = {
         chooseBetweenOffices: 'Du kan velje eit av disse kontora.',
         officeInformation: 'Kontorinformasjon',
         closed: 'Stengt',
-        openingHoursWithoutAppointment: 'Åpningstidar når du ikkje har avtale',
+        openingHoursWithoutAppointment: 'Opningstider når du ikkje har avtale',
         appointmentOnly: 'Kun timeavtale',
         specialOpeningHours: 'Spesielle åpningstider',
         address: 'Adresse',
         youCanMakeAppointment:
-            'Du kan avtale møte med veilederen din utenom disse åpningstidene.',
-        location: 'Beliggenhet',
+            'Du kan avtale møte med rettleiaren din utanom desse opningstidene.',
+        location: 'Plassering',
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
         officeNumber: 'Kontornummer',
         phoneToNav: 'Telefonnummeret til NAV er',
         phoneInformation:
-            'Åpent, kvardagar kl. 9-15. NAV Kontaktsenter hjelper deg eller sett deg i kontakt med ditt NAV-kontor.',
+            'Opent kvardagar kl 9–15. NAV Kontaktsenter hjelper deg, eller sett deg i kontakt med NAV-kontoret ditt.',
         alternativeContacts: 'Andre kontaktopplysningar:',
     },
     overview: {

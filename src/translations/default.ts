@@ -132,7 +132,7 @@ export const translationsBundleNb = {
     audienceServices: {
         HJELP_KOMME_I_JOBB: 'Hjelp til å komme i jobb',
         NODSITUASJON:
-            'Hjelp i nødsituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
+            'Hjelp i nødssituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
         OKONOMI_GJELD: 'Økonomi- og gjeldsrådgivning',
         TILGANGPC: 'Tilgang til PC',
         HJELPDIGITALETJENESTER:
