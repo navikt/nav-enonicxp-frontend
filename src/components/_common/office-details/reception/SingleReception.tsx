@@ -23,30 +23,17 @@ interface FormattedAudienceReception {
 export const SingleReception = (props: AudienceReception) => {
     const { language } = usePageConfig();
 
-    const getDatetimeLabel = translator('dateTime', language);
     const getOfficeLabel = translator('office', language);
 
-    const weekdayNames = getDatetimeLabel('weekDayNames');
-
-    const translateOpeningHours = (
-        openingHours: OpeningHoursProps,
-        dayIndex: number
-    ) => {
-        console.log(openingHours);
-        return {
-            ...openingHours,
-            dag: weekdayNames[dayIndex],
-        };
-    };
+    const dagArr: string[] = [
+        'Mandag',
+        'Tirsdag',
+        'Onsdag',
+        'Torsdag',
+        'Fredag',
+    ];
 
     const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
-        const dagArr: string[] = [
-            'Mandag',
-            'Tirsdag',
-            'Onsdag',
-            'Torsdag',
-            'Fredag',
-        ];
         return dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag);
     };
 
@@ -78,9 +65,7 @@ export const SingleReception = (props: AudienceReception) => {
                 audienceReception.stedsbeskrivelse ||
                 audienceReception.besoeksadresse.poststed,
             openingHoursExceptions: aapningstider.exceptions,
-            openingHours: aapningstider.regular
-                .sort(sortOpeningHours)
-                .map(translateOpeningHours),
+            openingHours: aapningstider.regular.sort(sortOpeningHours),
             adkomstbeskrivelse: audienceReception.adkomstbeskrivelse,
         };
     };
