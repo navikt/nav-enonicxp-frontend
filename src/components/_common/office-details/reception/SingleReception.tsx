@@ -79,7 +79,7 @@ export const SingleReception = (props: AudienceReception) => {
 
     return (
         <div className={styles.singleReception}>
-            <Heading level="2" size="medium" spacing className={styles.heading}>
+            <Heading level="3" size="medium" spacing className={styles.heading}>
                 <PlaceFilled
                     aria-hidden="true"
                     className={classNames(styles.headingIcon, styles.iconPlace)}
