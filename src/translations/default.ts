@@ -273,7 +273,7 @@ export const translationsBundleNb = {
         officeNumber: 'Kontornummer',
         phoneToNav: 'Telefonnummeret til NAV er',
         phoneInformation:
-            'Åpent hverdager kl. 9–15. NAV Kontaktsenter hjelper deg eller setter deg i kontakt med ditt NAV-kontor.',
+            'Åpent hverdager kl. 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
         alternativeContacts: 'Andre kontaktopplysninger:',
     },
     dateTime: {

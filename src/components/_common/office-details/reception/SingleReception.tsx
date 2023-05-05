@@ -20,7 +20,11 @@ interface FormattedAudienceReception {
     place: string;
 }
 
-const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
+export const SingleReception = (props: AudienceReception) => {
+    const { language } = usePageConfig();
+
+    const getLabel = translator('office', language);
+
     const dagArr: string[] = [
         'Mandag',
         'Tirsdag',
@@ -28,44 +32,44 @@ const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
         'Torsdag',
         'Fredag',
     ];
-    return dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag);
-};
 
-const formatAudienceReception = (
-    audienceReception: AudienceReception
-): FormattedAudienceReception | null => {
-    if (!audienceReception) {
-        return null;
-    }
-
-    const aapningstider = audienceReception.aapningstider.reduce(
-        (acc, elem) => {
-            if (elem.dato) {
-                acc.exceptions.push(elem);
-            } else {
-                acc.regular.push(elem);
-            }
-            return acc;
-        },
-        {
-            regular: [],
-            exceptions: [],
-        }
-    );
-
-    return {
-        address: formatAddress(audienceReception.besoeksadresse, true),
-        place:
-            audienceReception.stedsbeskrivelse ||
-            audienceReception.besoeksadresse.poststed,
-        openingHoursExceptions: aapningstider.exceptions,
-        openingHours: aapningstider.regular.sort(sortOpeningHours),
-        adkomstbeskrivelse: audienceReception.adkomstbeskrivelse,
+    const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
+        return dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag);
     };
-};
 
-export const SingleReception = (props: AudienceReception) => {
-    const { language } = usePageConfig();
+    const formatAudienceReception = (
+        audienceReception: AudienceReception
+    ): FormattedAudienceReception | null => {
+        if (!audienceReception) {
+            return null;
+        }
+
+        const aapningstider = audienceReception.aapningstider.reduce(
+            (acc, elem) => {
+                if (elem.dato) {
+                    acc.exceptions.push(elem);
+                } else {
+                    acc.regular.push(elem);
+                }
+                return acc;
+            },
+            {
+                regular: [],
+                exceptions: [],
+            }
+        );
+
+        return {
+            address: formatAddress(audienceReception.besoeksadresse, true),
+            place:
+                audienceReception.stedsbeskrivelse ||
+                audienceReception.besoeksadresse.poststed,
+            openingHoursExceptions: aapningstider.exceptions,
+            openingHours: aapningstider.regular.sort(sortOpeningHours),
+            adkomstbeskrivelse: audienceReception.adkomstbeskrivelse,
+        };
+    };
+
     const {
         address,
         adkomstbeskrivelse,
@@ -73,7 +77,6 @@ export const SingleReception = (props: AudienceReception) => {
         openingHoursExceptions,
     } = formatAudienceReception(props);
 
-    const getLabel = translator('office', language);
     return (
         <div className={styles.singleReception}>
             <Heading level="2" size="medium" spacing className={styles.heading}>
