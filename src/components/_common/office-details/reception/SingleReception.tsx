@@ -20,52 +20,71 @@ interface FormattedAudienceReception {
     place: string;
 }
 
-const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
-    const dagArr: string[] = [
-        'Mandag',
-        'Tirsdag',
-        'Onsdag',
-        'Torsdag',
-        'Fredag',
-    ];
-    return dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag);
-};
-
-const formatAudienceReception = (
-    audienceReception: AudienceReception
-): FormattedAudienceReception | null => {
-    if (!audienceReception) {
-        return null;
-    }
-
-    const aapningstider = audienceReception.aapningstider.reduce(
-        (acc, elem) => {
-            if (elem.dato) {
-                acc.exceptions.push(elem);
-            } else {
-                acc.regular.push(elem);
-            }
-            return acc;
-        },
-        {
-            regular: [],
-            exceptions: [],
-        }
-    );
-
-    return {
-        address: formatAddress(audienceReception.besoeksadresse, true),
-        place:
-            audienceReception.stedsbeskrivelse ||
-            audienceReception.besoeksadresse.poststed,
-        openingHoursExceptions: aapningstider.exceptions,
-        openingHours: aapningstider.regular.sort(sortOpeningHours),
-        adkomstbeskrivelse: audienceReception.adkomstbeskrivelse,
-    };
-};
-
 export const SingleReception = (props: AudienceReception) => {
     const { language } = usePageConfig();
+
+    const getDatetimeLabel = translator('dateTime', language);
+    const getOfficeLabel = translator('office', language);
+
+    const weekdayNames = getDatetimeLabel('weekDayNames');
+
+    const translateOpeningHours = (
+        openingHours: OpeningHoursProps,
+        dayIndex: number
+    ) => {
+        console.log(openingHours);
+        return {
+            ...openingHours,
+            dag: weekdayNames[dayIndex],
+        };
+    };
+
+    const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
+        const dagArr: string[] = [
+            'Mandag',
+            'Tirsdag',
+            'Onsdag',
+            'Torsdag',
+            'Fredag',
+        ];
+        return dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag);
+    };
+
+    const formatAudienceReception = (
+        audienceReception: AudienceReception
+    ): FormattedAudienceReception | null => {
+        if (!audienceReception) {
+            return null;
+        }
+
+        const aapningstider = audienceReception.aapningstider.reduce(
+            (acc, elem) => {
+                if (elem.dato) {
+                    acc.exceptions.push(elem);
+                } else {
+                    acc.regular.push(elem);
+                }
+                return acc;
+            },
+            {
+                regular: [],
+                exceptions: [],
+            }
+        );
+
+        return {
+            address: formatAddress(audienceReception.besoeksadresse, true),
+            place:
+                audienceReception.stedsbeskrivelse ||
+                audienceReception.besoeksadresse.poststed,
+            openingHoursExceptions: aapningstider.exceptions,
+            openingHours: aapningstider.regular
+                .sort(sortOpeningHours)
+                .map(translateOpeningHours),
+            adkomstbeskrivelse: audienceReception.adkomstbeskrivelse,
+        };
+    };
+
     const {
         address,
         adkomstbeskrivelse,
@@ -73,7 +92,6 @@ export const SingleReception = (props: AudienceReception) => {
         openingHoursExceptions,
     } = formatAudienceReception(props);
 
-    const getLabel = translator('office', language);
     return (
         <div className={styles.singleReception}>
             <Heading level="2" size="medium" spacing className={styles.heading}>
@@ -81,7 +99,7 @@ export const SingleReception = (props: AudienceReception) => {
                     aria-hidden="true"
                     className={classNames(styles.headingIcon, styles.iconPlace)}
                 />
-                {getLabel('address')}
+                {getOfficeLabel('address')}
             </Heading>
             <section className={styles.address}>
                 <BodyShort className={styles.addressLine}>{address}</BodyShort>
@@ -104,7 +122,7 @@ export const SingleReception = (props: AudienceReception) => {
                                 styles.iconClock
                             )}
                         />
-                        {getLabel('openingHoursWithoutAppointment')}
+                        {getOfficeLabel('openingHoursWithoutAppointment')}
                     </Heading>
                     <OpeningHours openingHours={openingHours} />
                 </>
@@ -112,7 +130,7 @@ export const SingleReception = (props: AudienceReception) => {
             {openingHoursExceptions.length > 0 && (
                 <>
                     <Heading level="3" size="medium" spacing>
-                        {getLabel('specialOpeningHours')}
+                        {getOfficeLabel('specialOpeningHours')}
                     </Heading>
                     <OpeningHours openingHours={openingHoursExceptions} />
                 </>
@@ -122,7 +140,7 @@ export const SingleReception = (props: AudienceReception) => {
                     className={styles.appointmentIcon}
                     aria-hidden="true"
                 />
-                {getLabel('youCanMakeAppointment')}
+                {getOfficeLabel('youCanMakeAppointment')}
             </div>
         </div>
     );
