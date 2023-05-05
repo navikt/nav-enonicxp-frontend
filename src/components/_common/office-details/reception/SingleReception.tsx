@@ -23,7 +23,7 @@ interface FormattedAudienceReception {
 export const SingleReception = (props: AudienceReception) => {
     const { language } = usePageConfig();
 
-    const getOfficeLabel = translator('office', language);
+    const getLabel = translator('office', language);
 
     const dagArr: string[] = [
         'Mandag',
@@ -84,7 +84,7 @@ export const SingleReception = (props: AudienceReception) => {
                     aria-hidden="true"
                     className={classNames(styles.headingIcon, styles.iconPlace)}
                 />
-                {getOfficeLabel('address')}
+                {getLabel('address')}
             </Heading>
             <section className={styles.address}>
                 <BodyShort className={styles.addressLine}>{address}</BodyShort>
@@ -107,7 +107,7 @@ export const SingleReception = (props: AudienceReception) => {
                                 styles.iconClock
                             )}
                         />
-                        {getOfficeLabel('openingHoursWithoutAppointment')}
+                        {getLabel('openingHoursWithoutAppointment')}
                     </Heading>
                     <OpeningHours openingHours={openingHours} />
                 </>
@@ -115,7 +115,7 @@ export const SingleReception = (props: AudienceReception) => {
             {openingHoursExceptions.length > 0 && (
                 <>
                     <Heading level="3" size="medium" spacing>
-                        {getOfficeLabel('specialOpeningHours')}
+                        {getLabel('specialOpeningHours')}
                     </Heading>
                     <OpeningHours openingHours={openingHoursExceptions} />
                 </>
@@ -125,7 +125,7 @@ export const SingleReception = (props: AudienceReception) => {
                     className={styles.appointmentIcon}
                     aria-hidden="true"
                 />
-                {getOfficeLabel('youCanMakeAppointment')}
+                {getLabel('youCanMakeAppointment')}
             </div>
         </div>
     );
