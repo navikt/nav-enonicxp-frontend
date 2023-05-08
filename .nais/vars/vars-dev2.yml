@@ -4,7 +4,6 @@ dekoratorenApp: nav-dekoratoren-beta
 externalHosts:
   - www-2.intern.dev.nav.no
   - www-q6.nav.no
-  - dekoratoren-beta.dev.nav.no
   - www-2-failover.intern.dev.nav.no
 secret: nav-enonicxp-dev2
 ingresses:

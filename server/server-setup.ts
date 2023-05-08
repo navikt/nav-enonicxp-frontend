@@ -37,7 +37,7 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
     setPageCacheDir(nextServer);
     setImageCacheDir(nextServer);
 
-    if (process.env.IS_EDITOR_ONLY === 'most_certainly') {
+    if (process.env.IS_EDITOR_ONLY === 'true') {
         expressApp.all(
             ['/draft/*', '/_next/*', '/gfx/*', '/api/*'],
             (req, res) => {

@@ -5,25 +5,6 @@ externalHosts:
   - www.dev.nav.no
   - www.intern.dev.nav.no
   - www-failover.intern.dev.nav.no
-env:
-  - name: ENV
-    value: "dev1"
-  - name: ADMIN_ORIGIN
-    value: "https://portal-admin-dev.oera.no"
-  - name: APP_ORIGIN
-    value: "https://www.intern.dev.nav.no"
-  - name: REVALIDATOR_PROXY_ORIGIN
-    value: "http://nav-enonicxp-frontend-revalidator-proxy-dev1"
-  - name: DECORATOR_URL
-    value: "https://dekoratoren.ekstern.dev.nav.no"
-  - name: XP_ORIGIN
-    value: "https://www.dev.nav.no"
-  - name: INNLOGGINGSSTATUS_URL
-    value: "https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth"
-  - name: NAVNO_API_URL
-    value: "https://www.intern.dev.nav.no/person/navno-api"
-  - name: FAILOVER_ORIGIN
-    value: "https://www-failover.intern.dev.nav.no"
 secret: nav-enonicxp-dev1
 ingresses:
   - https://www.intern.dev.nav.no

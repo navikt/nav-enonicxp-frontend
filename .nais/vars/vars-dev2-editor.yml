@@ -3,9 +3,6 @@ revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev2
 dekoratorenApp: nav-dekoratoren
 externalHosts:
   - www-q6.nav.no
-env:
-  - name: IS_EDITOR_ONLY
-    value: "most_certainly"
 secret: nav-enonicxp-dev2
 ingresses:
   - https://www-editor-2.ekstern.dev.nav.no
