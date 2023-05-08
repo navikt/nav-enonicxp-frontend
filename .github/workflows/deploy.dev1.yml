@@ -22,6 +22,26 @@ jobs:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
+  build-editor:
+    uses: ./.github/workflows/build-image.yml
+    with:
+      environment: dev-gcp:dev1-editor
+      imagename: dev1-editor-deploy
+      ENV: dev1
+      IS_EDITOR_ONLY: true
+      ADMIN_ORIGIN: https://portal-admin-dev.oera.no
+      APP_ORIGIN: https://www-editor.ekstern.dev.nav.no
+      REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy-dev1
+      DECORATOR_URL: https://dekoratoren.ekstern.dev.nav.no
+      XP_ORIGIN: https://www.dev.nav.no
+      INNLOGGINGSSTATUS_URL: https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
+      RELEASE_TAG: dev2-${{ github.sha }}
+      NAVNO_API_URL: https://www.intern.dev.nav.no/person/navno-api
+      FAILOVER_ORIGIN: https://www-failover.intern.dev.nav.no
+    secrets:
+      READER_TOKEN: ${{ secrets.READER_TOKEN }}
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
     needs: build
@@ -31,5 +51,15 @@ jobs:
       vars_file: vars-dev1.yml
       config_file: config.yml
       hpa_file: hpa-dev1.yml
+    secrets:
+      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+  deploy-editor:
+    uses: ./.github/workflows/deploy-to-nais.yml
+    needs: build-editor
+    with:
+      image: ${{ needs.build-editor.outputs.image }}
+      cluster: dev-gcp
+      vars_file: vars-dev1-editor.yml
+      config_file: config.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
