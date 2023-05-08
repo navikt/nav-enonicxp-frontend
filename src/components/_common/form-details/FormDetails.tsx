@@ -1,46 +1,58 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
+import classNames from 'classnames';
+
+import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { FormDetailsVariation } from './FormDetailsVariation';
 
 import styles from './FormDetails.module.scss';
-import classNames from 'classnames';
 
 type FormDetailsProps = {
     formDetails: FormDetailsData;
+    displayConfig: {
+        showTitle: boolean;
+        showIngress: boolean;
+        showAddendums: boolean;
+        showApplications: boolean;
+    };
 };
 
-export const FormDetails = ({ formDetails }: FormDetailsProps) => {
-    const { formType } = formDetails;
+export const FormDetails = ({
+    formDetails,
+    displayConfig,
+}: FormDetailsProps) => {
+    const { showAddendums, showApplications, showTitle, showIngress } =
+        displayConfig;
 
-    const variations = (formDetails.formType[formType._selected]?.variations ||
-        []) as Variation[];
+    const variations = formDetails.formType.reduce((acc, cur) => {
+        if (
+            (cur._selected === 'addendum' && !showAddendums) ||
+            (cur._selected === 'application' && !showApplications)
+        ) {
+            return acc;
+        }
+        const variations = cur[cur._selected].variations;
 
-    const direction =
-        formDetails.formType._selected === 'addendum'
-            ? 'vertical'
-            : 'horizontal';
-
-    if (variations.length === 0) {
-        return null;
-    }
+        return [...acc, ...variations];
+    }, []) as Variation[];
 
     return (
         <div className={styles.formDetails}>
-            <Heading size="medium" level="3">
-                {formDetails.title}
-            </Heading>
-            <BodyLong spacing>{formDetails.ingress}</BodyLong>
-            <div
-                className={classNames(
-                    styles.variationWrapper,
-                    styles[direction]
-                )}
-            >
+            {showTitle && (
+                <Heading size="medium" level="3" spacing={!showIngress}>
+                    {formDetails.title}
+                </Heading>
+            )}
+            {showIngress && (
+                <div className={styles.ingressWrapper}>
+                    <ParsedHtml htmlProps={formDetails.ingress} />
+                </div>
+            )}
+            <div className={classNames(styles.variationWrapper)}>
                 {variations.map((variation, index: number) => (
                     <FormDetailsVariation
                         key={variation.label}
                         variation={variation}
-                        direction={direction}
                         index={index}
                     />
                 ))}

@@ -1,19 +1,17 @@
 import React from 'react';
-import {
-    ContentProps,
-    ContentType,
-} from '../types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { ErrorPage } from './pages/error-page/ErrorPage';
 import { DynamicPage } from './pages/dynamic-page/DynamicPage';
 import { FragmentPage } from './pages/fragment-page/FragmentPage';
 import { ContactInformationPage } from './pages/contact-information-page/ContactInformationPage';
-import LargeTablePage from './pages/large-table-page/LargeTablePage';
+import { LargeTablePage } from './pages/large-table-page/LargeTablePage';
 import { RedirectPage } from './pages/redirect-page/RedirectPage';
 import { TemplatePage } from './pages/template-page/TemplatePage';
-import { make404Props } from '../utils/make-error-props';
 import { SituationPage } from './pages/situation-page/SituationPage';
 import { GuidePage } from './pages/guide-page/GuidePage';
 import { OverviewPage } from './pages/overview-page/OverviewPage';
+import { OfficeEditorialPage } from './pages/office-editorial-page/OfficeEditorialPage';
+import { OfficeBranchPage } from './pages/office-branch-page/OfficeBranchPage';
 import { ThemedArticlePage } from './pages/themed-article-page/ThemedArticlePage';
 import { ProductPage } from './pages/product-page/ProductPage';
 import { ProductDetailsPage } from './pages/product-details-page/ProductDetailsPage';
@@ -23,17 +21,18 @@ import { PayoutDatesPage } from './pages/payout-dates-page/PayoutDatesPage';
 import { GenericPage } from './pages/generic-page/GenericPage';
 import { CurrentTopicPage } from './pages/current-topic-page/CurrentTopicPage';
 import { PressLandingPage } from './pages/press-landing-page/PressLandingPage';
+import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
+import { ContentTypeNotSupportedPage } from 'components/pages/contenttype-not-supported-page/ContentTypeNotSupportedPage';
+import { FormIntermediateStepPage } from './pages/form-intermediate-step-page/FormIntermediateStepPage';
+import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
 
-import PublishingCalendarEntryPage from './parts/_legacy/publishing-calendar/PublishingCalendarEntryPage';
-
-const contentToReactComponent: Partial<{
-    [key in ContentType]: React.FunctionComponent<ContentProps>;
-}> = {
+const contentToReactComponent: {
+    [key in ContentType]?: React.FunctionComponent<ContentProps>;
+} = {
     [ContentType.Error]: ErrorPage,
     [ContentType.LargeTable]: LargeTablePage,
     [ContentType.Fragment]: FragmentPage,
     [ContentType.TemplatePage]: TemplatePage,
-    [ContentType.AnimatedIcons]: () => null, // TODO: add a preview-page for editors
     [ContentType.GlobalNumberValuesSet]: GlobalValuesPage,
     [ContentType.GlobalCaseTimeSet]: GlobalValuesPage,
     [ContentType.ProductDetails]: ProductDetailsPage,
@@ -46,8 +45,12 @@ const contentToReactComponent: Partial<{
     [ContentType.ThemedArticlePage]: ThemedArticlePage,
     [ContentType.Overview]: OverviewPage,
     [ContentType.GenericPage]: GenericPage,
+    [ContentType.OfficeEditorialPage]: OfficeEditorialPage,
+    [ContentType.OfficeBranchPage]: OfficeBranchPage,
     [ContentType.CurrentTopicPage]: CurrentTopicPage,
     [ContentType.PressLandingPage]: PressLandingPage,
+    [ContentType.FormIntermediateStepPage]: FormIntermediateStepPage,
+    [ContentType.FormDetails]: FormDetailsPreviewPage,
 
     [ContentType.AreaPage]: DynamicPage,
     [ContentType.FrontPage]: DynamicPage,
@@ -80,13 +83,8 @@ type Props = {
 };
 
 export const ContentMapper = ({ content }: Props) => {
-    const Component = contentToReactComponent[content.type];
+    const Component =
+        contentToReactComponent[content.type] || ContentTypeNotSupportedPage;
 
-    return Component ? (
-        <Component {...content} />
-    ) : (
-        <ErrorPage {...make404Props(content._path)} />
-    );
+    return <Component {...content} />;
 };
-
-export default ContentMapper;

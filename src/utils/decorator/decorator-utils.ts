@@ -1,14 +1,11 @@
-import { Language } from '../../translations';
+import { Language } from 'translations';
 import { getContentLanguages } from '../languages';
-import {
-    ContentProps,
-    ContentType,
-} from '../../types/content-props/_content-common';
-import { LanguageProps } from '../../types/language';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { LanguageProps } from 'types/language';
 import { stripXpPathPrefix } from '../urls';
-import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
-import { checkForWhiteHeader } from '../../components/_top-container/TopContainer';
-import { Audience } from '../../types/component-props/_mixins';
+import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { checkForWhiteHeader } from 'components/_top-container/TopContainer';
+import { Audience } from 'types/component-props/_mixins';
 
 const defaultLanguage: DecoratorParams['language'] = 'nb';
 
@@ -72,10 +69,6 @@ const defaultParams = {
     maskHotjar: false,
 };
 
-const taSurveys = {
-    taSurveys: '',
-};
-
 export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
     if (!content || content.type === ContentType.Error) {
         return errorParams(content);
@@ -83,9 +76,10 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 
     const { _path, breadcrumbs, language, data, editorView } = content;
 
-    const rolePath = _path.split('/')[3];
+    const rolePathSegment = _path.split('/')[2];
     const context =
-        audienceToRoleContext[data?.audience] || pathToRoleContext[rolePath];
+        audienceToRoleContext[data?.audience] ||
+        pathToRoleContext[rolePathSegment];
     const decoratorLanguage = getDecoratorLangFromXpLang(language);
     const feedbackEnabled = data?.feedbackToggle;
     const chatbotDisabled =
@@ -110,6 +104,5 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         ...(feedbackEnabled && { feedback: true }),
         chatbot: !chatbotDisabled,
         utilsBackground: checkForWhiteHeader(content) ? 'white' : 'gray',
-        ...taSurveys,
     };
 };

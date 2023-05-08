@@ -1,29 +1,30 @@
-import { BodyLong, Button, Heading } from '@navikt/ds-react';
-import classNames from 'classnames';
+import { Button } from '@navikt/ds-react';
 import { Variation } from 'types/content-props/form-details';
+import { getSelectableLinkProps } from 'utils/links-from-content';
 
 import styles from './FormDetailsVariation.module.scss';
 
 type FormsListItemProps = {
     variation: Variation;
     index: number;
-    direction: 'vertical' | 'horizontal';
 };
 
 export const FormDetailsVariation = (props: FormsListItemProps) => {
-    const { variation, index, direction } = props;
-    const { url, label, title, ingress } = variation;
+    const { variation, index } = props;
+    const { link, label } = variation;
+
+    if (!link || !label) {
+        // url or label is not required in CS as some form details are ment to only contain informational text
+        // via the form details title and ingress.
+        return null;
+    }
 
     const variant = index === 0 ? 'primary' : 'secondary';
 
+    const { url } = getSelectableLinkProps(link);
+
     return (
-        <div className={classNames(styles.variation, styles[direction])}>
-            {title && (
-                <Heading level="3" size="small">
-                    {title}
-                </Heading>
-            )}
-            {ingress && <BodyLong spacing>{ingress}</BodyLong>}
+        <div className={styles.variation}>
             <Button as="a" className={styles.cta} variant={variant} href={url}>
                 {label}
             </Button>

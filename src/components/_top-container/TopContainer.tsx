@@ -16,9 +16,12 @@ const contentTypesWithWhiteHeader = {
     [ContentType.GenericPage]: true,
     [ContentType.ThemedArticlePage]: true,
     [ContentType.Overview]: true,
+    [ContentType.OfficeEditorialPage]: true,
+    [ContentType.OfficeBranchPage]: true,
     [ContentType.FrontPage]: true,
     [ContentType.AreaPage]: true,
     [ContentType.PressLandingPage]: true,
+    [ContentType.FormIntermediateStepPage]: true,
 };
 
 type Props = {

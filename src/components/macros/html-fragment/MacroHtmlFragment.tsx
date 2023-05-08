@@ -1,12 +1,23 @@
 import React from 'react';
-import { MacroHtmlFragmentProps } from '../../../types/macro-props/html-fragment';
+import { MacroHtmlFragmentProps } from 'types/macro-props/html-fragment';
 import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const MacroHtmlFragment = ({ config }: MacroHtmlFragmentProps) => {
-    const htmlProps = config?.html_fragment?.processedHtml;
+    if (!config?.html_fragment) {
+        return (
+            <EditorHelp type={'error'} text={'Macroen mangler konfigurasjon'} />
+        );
+    }
 
+    const htmlProps = config.html_fragment.processedHtml;
     if (!htmlProps) {
-        return null;
+        return (
+            <EditorHelp
+                type={'error'}
+                text={`Fant ikke innhold for fragmentet "${config.html_fragment.fragmentId}" - Sjekk om det er avpublisert eller arkivert`}
+            />
+        );
     }
 
     return <ParsedHtml htmlProps={htmlProps} />;

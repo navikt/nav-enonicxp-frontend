@@ -16,6 +16,8 @@ import {
     DynamicPageProps,
     GenericPageProps,
     GuidePageProps,
+    OfficeBranchPageProps,
+    OfficeEditorialPageProps,
     CurrentTopicPageProps,
     OverviewPageProps,
     ProductDetailsProps,
@@ -29,7 +31,7 @@ import {
     PublishingCalendarProps,
     PublishingCalendarEntryProps,
 } from './publishing-calendar-props';
-import { Params as DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
+import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { AnimatedIconsProps } from './animated-icons';
 import {
     GlobalCaseTimeSetProps,
@@ -44,6 +46,8 @@ import { AreaPageProps, FrontPageProps } from './index-pages-props';
 import { Audience } from '../component-props/_mixins';
 import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
+import { FormDetailsPageProps } from './form-details';
+import { FormIntermediateStepPageProps } from './form-intermediate-step';
 
 export enum ContentType {
     Error = 'error',
@@ -70,6 +74,8 @@ export enum ContentType {
     GlobalNumberValuesSet = 'no.nav.navno:global-value-set',
     ProductPage = 'no.nav.navno:content-page-with-sidemenus',
     ProductDetails = 'no.nav.navno:product-details',
+    OfficeEditorialPage = 'no.nav.navno:office-editorial-page',
+    OfficeBranchPage = 'no.nav.navno:office-branch',
     GuidePage = 'no.nav.navno:guide-page',
     ThemedArticlePage = 'no.nav.navno:themed-article-page',
     CurrentTopicPage = 'no.nav.navno:current-topic-page',
@@ -83,6 +89,8 @@ export enum ContentType {
     FrontPage = 'no.nav.navno:front-page',
     AreaPage = 'no.nav.navno:area-page',
     PressLandingPage = 'no.nav.navno:press-landing-page',
+    FormIntermediateStepPage = 'no.nav.navno:form-intermediate-step',
+    FormDetails = 'no.nav.navno:form-details',
 }
 
 export type ContentAndMediaCommonProps = {
@@ -150,6 +158,8 @@ type SpecificContentProps =
     | PublishingCalendarEntryProps
     | ProductPageProps
     | SituationPageProps
+    | OfficeEditorialPageProps
+    | OfficeBranchPageProps
     | AnimatedIconsProps
     | GlobalValuesProps
     | GlobalCaseTimeSetProps
@@ -166,6 +176,8 @@ type SpecificContentProps =
     | FrontPageProps
     | AreaPageProps
     | GenericPageProps
-    | PressLandingPageProps;
+    | PressLandingPageProps
+    | FormDetailsPageProps
+    | FormIntermediateStepPageProps;
 
 export type ContentProps = ContentCommonProps & SpecificContentProps;

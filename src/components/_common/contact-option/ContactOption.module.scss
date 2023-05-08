@@ -4,6 +4,7 @@
     background-color: transparent;
     display: block;
     width: 100%;
+    padding-bottom: var(--a-spacing-8);
 
     .link {
         color: common.$a-text-action;
@@ -117,22 +118,6 @@
         display: block;
     }
 
-    .openingStatus {
-        align-items: center;
-        border-radius: var(--a-border-radius-medium);
-        color: var(--navds-global-color-black);
-        display: inline-flex;
-        margin: 0 0 1rem 0;
-        padding: 3px 8px;
-    }
-
-    .open {
-        background-color: var(--a-green-100);
-    }
-
-    .closed {
-        background-color: var(--a-gray-300);
-    }
     .alert {
         margin-bottom: 0.5rem;
     }

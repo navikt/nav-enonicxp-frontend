@@ -77,6 +77,41 @@ export const translationsBundleEn: Translations = {
         customizeContent: 'Customize content',
         showingInformationFor: 'Showing information for:',
     },
+    audienceServices: {
+        HJELP_KOMME_I_JOBB: 'Employment help',
+        NODSITUASJON:
+            'Help in emergency situations, such as temporary accommodation or financial social assistance',
+        OKONOMI_GJELD: 'Financial and debt advice',
+        TILGANGPC: 'Access to PC',
+        HJELPDIGITALETJENESTER: 'Help using digital services if you need it',
+        BARNEVERNTJENESTE: 'Child protection service',
+        FLYKTNINGTJENESTE: 'Refugee service',
+        FENGSEL_OPPFOLGING: 'Follow-up of people in prison',
+        RUS_OPPFOLGING: 'Follow-up of people with substance abuse problems',
+        PSYKISK_HELSE_OPPFOLGING:
+            'Follow-up of people with mental health problems',
+        STARTLAN: 'Start-up loans and grants from the municipality',
+        SJOFARTSOPPGAVER:
+            'Issuance of sjøfartsbok and dissemination of seafarers',
+        AKTIVITETSKORTET: 'Activity card for child and youth',
+        BOSTOTTE_HUSBANKEN: 'Housing benefits from Husbanken',
+        BOSTOTTE_KOMMUNEN: 'Housing benefits from from the municipality',
+        PRIVATOKONOMI_FORVALTNING:
+            'Voluntary and compulsory management of private finances',
+        INTROPROGRAMMET: 'Introductory program',
+        KOMMUNAL_BOLIG: 'Public housing',
+        KOMMUNAL_TILLEGGSPENSJON: 'Public pension supplement',
+        KOMMUNALT_FRIKORT_HELSETJENESTER:
+            'Public health services for hjemmetjenesten',
+        LEDSAGERBEVIS: 'Accompanying person certificate',
+        PARKERING_FORFLYTNINGSHEMMEDE:
+            'Parking permit for people with reduced mobility',
+        REDUSERT_FORELDREBETALING:
+            'Reduced parental contribution for child care',
+        SKJENKEBEVILLING: 'Alcohol permit',
+        STOTTEKONTAKT: 'Støttekontakt',
+        TILRETTELAGT_TRANSPORT: 'Arranged transport (TT card)',
+    },
     currentTopic: {
         tag: 'Featured',
     },
@@ -103,6 +138,26 @@ export const translationsBundleEn: Translations = {
         publishdate: 'Date',
         event: 'Publication',
     },
+    office: {
+        youFindUsHere: 'You can find us here',
+        chooseBetweenOffices: 'You can choose one of the following offices.',
+        officeInformation: 'Office information',
+        closed: 'Closed',
+        openingHoursWithoutAppointment: 'Opening hours without an appointment',
+        appointmentOnly: 'Kun timeavtale',
+        specialOpeningHours: 'Special opening hours',
+        address: 'Address',
+        youCanMakeAppointment:
+            'You can book a meeting with your counsellor outside of these opening hours.',
+        location: 'Location',
+        postalAddress: 'Postal address',
+        orgNumber: 'Org number',
+        officeNumber: 'Office number',
+        phoneToNav: 'NAV phone number is',
+        phoneInformation:
+            'Open, weekdays at 9-15. NAV call center will assist you or connect you with your NAV office.',
+        alternativeContacts: 'Other contact options:',
+    },
     dateTime: {
         weekDayNames: [
             'Monday',
@@ -117,6 +172,7 @@ export const translationsBundleEn: Translations = {
             today: 'today',
             tomorrow: 'tomorrow',
         },
+        time: 'time',
         day: 'day',
         date: 'date',
     },
@@ -177,16 +233,22 @@ export const translationsBundleEn: Translations = {
         goTo: 'Go to',
         ariaExplanation: 'Navigate the content by pagination',
     },
+    form: {
+        application: 'Application',
+        back: 'Back',
+    },
     contactPoint: {
         chat: {
             title: 'Chat with Frida',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 9-15).',
+            chatWithCounsellor: 'Chat with counsellor',
+            alwaysOpen: 'Always open',
         },
         legacyChat: {
             title: 'You can chat with us',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 09:00–15:00).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a counsellor (weekdays 9-15).',
         },
         write: {
             title: 'Write to us',
@@ -205,12 +267,12 @@ export const translationsBundleEn: Translations = {
         call: {
             title: 'Call us at +47 55 55 33 33',
             ingress:
-                'Weekdays 09:00–15:00. We can call you back if the wait time is more than 5 minutes.',
+                'Weekdays 9-15. We can call you back if the wait time is more than 5 minutes.',
         },
         shared: {
             closed: 'Closed',
             openNow: 'Open',
-            opensAt: 'Opens {$1} at {$2}',
+            opensAt: 'Opens {$date} at {$time}',
             closedNow: 'Closed now',
             seeMoreOptions: 'See more phone numbers and calling options',
         },

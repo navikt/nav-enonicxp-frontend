@@ -161,5 +161,3 @@ export const PageWrapper = (props: Props) => {
         </div>
     );
 };
-
-export default PageWrapper;

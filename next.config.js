@@ -83,7 +83,7 @@ const csp = async () => {
     const envMap = {
         localhost: 'localhost',
         dev1: 'dev',
-        dev2: 'dev',
+        dev2: 'beta',
         prod: 'prod',
     };
 
@@ -110,7 +110,7 @@ const csp = async () => {
 
     return buildCspHeader(directives, {
         env: envMap[process.env.ENV],
-        port: process.env.DECORATOR_LOCAL_PORT,
+        localUrl: process.env.DECORATOR_URL,
     });
 };
 

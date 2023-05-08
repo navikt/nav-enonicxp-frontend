@@ -16,21 +16,29 @@ import {
     ThemedArticlePageProps,
     OverviewPageProps,
     GenericPageProps,
+    OfficeEditorialPageProps,
+    OfficeBranchPageProps,
 } from '../../../../types/content-props/dynamic-page-props';
 import { Audience } from '../../../../types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 import style from './ThemedPageHeader.module.scss';
+import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
+
+type ContentProps =
+    | GenericPageProps
+    | GuidePageProps
+    | OfficeBranchPageProps
+    | OfficeEditorialPageProps
+    | OverviewPageProps
+    | ProductPageProps
+    | SituationPageProps
+    | ThemedArticlePageProps
+    | FormIntermediateStepPageProps;
 
 type Props = {
     showTimeStamp?: boolean;
-    contentProps:
-        | SituationPageProps
-        | ProductPageProps
-        | GuidePageProps
-        | ThemedArticlePageProps
-        | OverviewPageProps
-        | GenericPageProps;
+    contentProps: ContentProps;
 };
 
 export const ThemedPageHeader = ({
@@ -38,15 +46,26 @@ export const ThemedPageHeader = ({
     showTimeStamp = true,
 }: Props) => {
     const { type: pageType, displayName, modifiedTime, data } = contentProps;
-    const {
-        title,
-        illustration,
-        taxonomy,
-        audience = Audience.PERSON,
-        customCategory,
-    } = data;
 
     const { language } = usePageConfig();
+
+    const getProps = () => {
+        if (pageType === ContentType.OfficeEditorialPage) {
+            const title = displayName;
+            return { title };
+        }
+        const {
+            title,
+            illustration,
+            taxonomy,
+            audience = Audience.PERSON,
+            customCategory,
+        } = data;
+        return { title, illustration, taxonomy, audience, customCategory };
+    };
+
+    const { audience, title, taxonomy, customCategory, illustration } =
+        getProps();
 
     const getSubtitle = () => {
         if (pageType === ContentType.SituationPage) {
@@ -64,7 +83,10 @@ export const ThemedPageHeader = ({
             return getTaxonomyLabel('any');
         }
 
-        if (pageType === ContentType.ThemedArticlePage) {
+        if (
+            pageType === ContentType.ThemedArticlePage ||
+            pageType === ContentType.FormIntermediateStepPage
+        ) {
             const taxonomyArray = getTranslatedTaxonomies(taxonomy, language);
             const allCategories = customCategory
                 ? [...taxonomyArray, customCategory]
@@ -106,6 +128,10 @@ export const ThemedPageHeader = ({
 
         if (_pageType === ContentType.ToolsPage) {
             return 'tool';
+        }
+
+        if (_pageType === ContentType.FormIntermediateStepPage) {
+            return 'intermediateStep';
         }
 
         if (_pageType === ContentType.Overview) {

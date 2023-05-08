@@ -1,38 +1,34 @@
 import { OptionSetSingle } from 'types/util-types';
 import { ContentCommonProps, ContentType } from './_content-common';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { LinkSelectable } from 'types/component-props/_mixins';
 
-export type FormTypes = 'application' | 'complaint' | 'addendum';
-
-export type FormApplicationTypes = 'digital' | 'paper';
 export type FormComplaintTypes = 'complaint' | 'appeal';
-export type FormAddendumTypes = 'addendum_digital' | 'addendum_paper';
 
 export interface Variation<T = string> {
-    type: T;
-    url: string;
-    label: string;
-    title?: string;
-    ingress?: string;
+    type?: T;
+    link?: LinkSelectable;
+    label?: string;
 }
 
 export interface FormDetailsData {
     formNumbers: string[];
     title: string;
-    ingress: string;
+    ingress: ProcessedHtmlProps;
     formType: OptionSetSingle<{
         application: {
-            variations: Variation<FormApplicationTypes>[];
+            variations: Variation[];
         };
         complaint: {
             variations: Variation<FormComplaintTypes>[];
         };
         addendum: {
-            variations: Variation<FormAddendumTypes>[];
+            variations: Variation[];
         };
-    }>;
+    }>[];
 }
 
-export interface FormDetails extends ContentCommonProps {
-    __typename: ContentType.CurrentTopicPage;
+export type FormDetailsPageProps = {
+    type: ContentType.FormDetails;
     data: FormDetailsData;
-}
+} & ContentCommonProps;

@@ -9,7 +9,9 @@ import { Table } from '@navikt/ds-react';
 import style from './PublishingCalendar.module.scss';
 
 // For preview only - hacks layout from PublishingCalendar
-const PublishingCalendarEntryPage = (props: PublishingCalendarEntryProps) => {
+export const PublishingCalendarEntryPage = (
+    props: PublishingCalendarEntryProps
+) => {
     if (!props.editorView) {
         return <ErrorPage404 />;
     }
@@ -29,4 +31,3 @@ const PublishingCalendarEntryPage = (props: PublishingCalendarEntryProps) => {
         </div>
     );
 };
-export default PublishingCalendarEntryPage;

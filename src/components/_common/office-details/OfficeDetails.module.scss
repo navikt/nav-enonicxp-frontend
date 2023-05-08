@@ -1,0 +1,56 @@
+@use 'src/common' as common;
+
+$margin: 2rem;
+
+.officeDetails {
+    align-self: center;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 2rem;
+    max-width: common.$contentMaxWidth;
+    width: 100%;
+
+    & > * {
+        width: 100%;
+    }
+}
+
+.pageContent {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+        max-width: common.$sectionMaxWidth;
+    }
+}
+
+.wide {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    @include common.full-width-mixin();
+}
+
+.placeIcon {
+    align-items: center;
+    display: inline-flex;
+    height: 2.5rem;
+    justify-content: center;
+    width: 2rem;
+
+    svg {
+        transform: translateX(-5px);
+    }
+}
+
+.header {
+    align-items: center;
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+.addressPoster {
+    background-color: var(--a-orange-50);
+}

@@ -113,6 +113,39 @@ export const translationsBundleNn: Translations = {
     officeInformation: {
         closed: 'Stengt',
     },
+    audienceServices: {
+        HJELP_KOMME_I_JOBB: 'Hjelp til å kome i jobb',
+        NODSITUASJON:
+            'Hjelp i nødssituasjonar, til dømes mellombels butilbod eller økonomisk sosialhjelp',
+        OKONOMI_GJELD: 'Økonomi- og gjeldsrådgiving',
+        TILGANGPC: 'Tilgang til PC',
+        HJELPDIGITALETJENESTER:
+            'Hjelp til å bruke digitale tenester dersom du treng det',
+        BARNEVERNTJENESTE: 'Barnevernteneste',
+        FLYKTNINGTJENESTE: 'Flyktningtenesta',
+        FENGSEL_OPPFOLGING: 'Oppfølging av personar i fengsel',
+        RUS_OPPFOLGING: 'Oppfølging av personar med rusproblem',
+        PSYKISK_HELSE_OPPFOLGING:
+            'Oppfølging av personar med psykiske helseproblem',
+        STARTLAN: 'Startlån og tilskot frå kommunen',
+        SJOFARTSOPPGAVER: 'Utskriving av sjøfartsbok og formidling av sjøfolk',
+        AKTIVITETSKORTET: 'Aktivitetskortet for barn og unge',
+        BOSTOTTE_HUSBANKEN: 'Bustøtte frå Husbanken',
+        BOSTOTTE_KOMMUNEN: 'Bustøtte frå kommunen',
+        PRIVATOKONOMI_FORVALTNING:
+            'Frivillig og tvungen forvaltning av privatøkonomi',
+        INTROPROGRAMMET: 'Introduksjonsprogrammet',
+        KOMMUNAL_BOLIG: 'Kommunal bustad',
+        KOMMUNAL_TILLEGGSPENSJON: 'Kommunal tilleggspensjon',
+        KOMMUNALT_FRIKORT_HELSETJENESTER: 'Kommunalt frikort for helsetenester',
+        LEDSAGERBEVIS: 'Følgjebevis',
+        PARKERING_FORFLYTNINGSHEMMEDE: 'Parkeringsløyve for forflyttingshemma',
+        REDUSERT_FORELDREBETALING:
+            'Redusert foreldrebetaling i barnehage eller SFO',
+        SKJENKEBEVILLING: 'Skjenkeløyve',
+        STOTTEKONTAKT: 'Støttekontakt',
+        TILRETTELAGT_TRANSPORT: 'Tilrettelagt transport (TT-kort)',
+    },
     relatedContent,
     taxonomies,
     areas,
@@ -142,6 +175,26 @@ export const translationsBundleNn: Translations = {
         copyLink: 'Kopier lenke',
         copiedLinkConfirmed: 'Lenka er kopiert',
     },
+    office: {
+        youFindUsHere: 'Du finn oss her',
+        chooseBetweenOffices: 'Du kan velje eit av disse kontora.',
+        officeInformation: 'Kontorinformasjon',
+        closed: 'Stengt',
+        openingHoursWithoutAppointment: 'Opningstider når du ikkje har avtale',
+        appointmentOnly: 'Kun timeavtale',
+        specialOpeningHours: 'Spesielle åpningstider',
+        address: 'Adresse',
+        youCanMakeAppointment:
+            'Du kan avtale møte med rettleiaren din utanom desse opningstidene.',
+        location: 'Plassering',
+        postalAddress: 'Postadresse',
+        orgNumber: 'Organisasjonsnummer',
+        officeNumber: 'Kontornummer',
+        phoneToNav: 'Telefonnummeret til NAV er',
+        phoneInformation:
+            'Opent kvardagar kl 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
+        alternativeContacts: 'Andre kontaktopplysningar:',
+    },
     overview: {
         noProducts: 'Ingen treff',
         search: 'Søk',
@@ -169,16 +222,22 @@ export const translationsBundleNn: Translations = {
         goTo: 'Gå til',
         ariaExplanation: 'Navigering av innhaldet med paginering',
     },
+    form: {
+        application: 'Søknad',
+        back: 'Tilbake',
+    },
     contactPoint: {
         chat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00).',
+                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 9-15).',
+            chatWithCounsellor: 'Chat med rettleiar',
+            alwaysOpen: 'Alltid ope',
         },
         legacyChat: {
             title: 'Du kan chatte med oss',
             ingress:
-                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 09:00-15:00).',
+                'Du møter først chatbot Frida som svarar deg. Du kan òg be om å få snakke med ein rettleiar (kvardagar 9-15).',
         },
         write: {
             title: 'Skriv til oss',
@@ -197,12 +256,12 @@ export const translationsBundleNn: Translations = {
         call: {
             title: 'Ring oss på 55 55 33 33',
             ingress:
-                'Kvardagar 09:00-15:00. Vi kan ringe deg tilbake viss ventetida er over 5 minutt.',
+                'Kvardagar 9-15. Vi kan ringe deg tilbake viss ventetida er over 5 minutt.',
         },
         shared: {
             closed: 'Stengt',
             openNow: 'Ope no',
-            opensAt: 'Opnar {$1} kl {$2}',
+            opensAt: 'Opnar {$date} kl {$time}',
             closedNow: 'Stengt no',
             seeMoreOptions: 'Sjå fleire telefonnummer og tasteval.',
         },
@@ -221,6 +280,7 @@ export const translationsBundleNn: Translations = {
             today: 'i dag',
             tomorrow: 'i morgon',
         },
+        time: 'tid',
         day: 'dag',
         date: 'dato',
     },

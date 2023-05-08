@@ -1,44 +1,80 @@
----
-apiVersion: "nais.io/v1"
-kind: "Alert"
+apiVersion: "monitoring.coreos.com/v1"
+kind: PrometheusRule
 metadata:
-  name: nav-enonicxp-frontend-alert
+  name: nav-enonicxp-frontend-alerts
   namespace: personbruker
   labels:
     team: personbruker
 spec:
-  receivers:
-    slack:
-      channel: "#team-navno-frontend-alerts"
-      prependText: "[nav-enonicxp-frontend] [<!here>] "
-  alerts:
-    - alert: Appen er nede! (ingen tilgjengelige pods)
-      severity: danger
-      expr: kube_deployment_status_replicas_available{deployment="nav-enonicxp-frontend"} == 0
-      for: 2m
-      action: "`kubectl describe pod -l app={{ $labels.app }} -n {{ $labels.namespace }}` for events, og `kubectl logs -l app={{ $labels.app }} -n {{ $labels.namespace }}` for logger"
-    - alert: Høy andel 5xx-feil (>1%)
-      severity: danger
-      expr: (100 * (sum by (service) (rate(nginx_ingress_controller_requests{status=~"^5\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[3m])) / sum by (service) (rate(nginx_ingress_controller_requests{namespace="personbruker", service="nav-enonicxp-frontend"}[3m])))) > 1
-      for: 3m
-      action: "Sjekk loggene for å se hvorfor appen returnerer 5xx-feil"
-    - alert: Høy andel 4xx-feil (>10%)
-      severity: warning
-      expr: (sum by (service) (rate(nginx_ingress_controller_requests{status=~"^4\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[3m]))) > 20 AND (100 * (sum by (service) (rate(nginx_ingress_controller_requests{status=~"^4\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[3m])) / sum by (service) (rate(nginx_ingress_controller_requests{namespace="personbruker", service="nav-enonicxp-frontend"}[3m])))) > 10
-      for: 3m
-      action: "Sjekk loggene for å se hvorfor appen returnerer 4xx-feil"
-    - alert: Treg 99.9th percentile responsetid (>4 sec)
-      severity: danger
-      expr: histogram_quantile(0.999, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[10m])) by (le)) > 4
-      for: 10m
-      action: "Undersøk hvorfor en andel av requestene er veldig trege"
-    - alert: Treg 99th percentile responsetid (>2 sec)
-      severity: danger
-      expr: histogram_quantile(0.99, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[10m])) by (le)) > 2
-      for: 10m
-      action: "Undersøk hvorfor en andel av requestene er trege"
-    - alert: Treg median responsetid (>25 ms) over lang tid (>30 min)
-      severity: warning
-      expr: histogram_quantile(0.5, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[10m])) by (le)) > 0.025
-      for: 30m
-      action: "Undersøk hvorfor appen svarer tregere enn normalt"
+  groups:
+    - name: nav-enonicxp-frontend-alerts
+      rules:
+        - alert: "Appen er nede!"
+          expr: kube_deployment_status_replicas_available{deployment="nav-enonicxp-frontend"} == 0
+          for: 2m
+          annotations:
+            summary: "[nav-enonicxp-frontend] Appen er ikke tilgjengelig! (0 replicas)"
+            action: "[<!here>] Sjekk logger eller kubectl hvorfor appen ikke har noen tilgjengelige pods"
+          labels:
+            severity: "danger"
+            receiver_reference: team-navno-frontend-alerts
+            alert_type: custom
+        - alert: "Høyt antall reqs/sec"
+          expr: round(sum(rate(nginx_ingress_controller_requests{service=~"nav-enonicxp-frontend"}[2m]))) > 1000
+          for: 2m
+          annotations:
+            summary: "[nav-enonicxp-frontend] Uvanlig mange requests ({{ $value }} reqs/sec)"
+          labels:
+            severity: "info"
+            receiver_reference: team-navno-frontend-alerts
+            alert_type: custom
+        - alert: "Høy andel 4xx-feil"
+          expr: round((sum by (service) (rate(nginx_ingress_controller_requests{status=~"^4\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[3m]))) > 15 AND (100 * (sum by (service) (rate(nginx_ingress_controller_requests{status=~"^4\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[3m])) / sum by (service) (rate(nginx_ingress_controller_requests{namespace="personbruker", service="nav-enonicxp-frontend"}[3m]))))) > 10
+          for: 3m
+          annotations:
+            summary: "[nav-enonicxp-frontend] >10% 4xx-feil i over 3 minutter ({{ $value }} feil/sec)"
+            action: "Sjekk loggene for å se hvorfor appen returnerer 4xx-feil"
+          labels:
+            severity: "warning"
+            receiver_reference: team-navno-frontend-alerts
+            alert_type: custom
+        - alert: "Høy andel 5xx-feil"
+          expr: round((100 * (sum by (service) (rate(nginx_ingress_controller_requests{status=~"^5\\d\\d", namespace="personbruker", service="nav-enonicxp-frontend"}[3m])) / sum by (service) (rate(nginx_ingress_controller_requests{namespace="personbruker", service="nav-enonicxp-frontend"}[3m])))), 0.1) > 1
+          for: 3m
+          annotations:
+            summary: "[nav-enonicxp-frontend] >1% 5xx-feil i over 3 minutter ({{ $value }} feil/sec)"
+            action: "[<!here>] Sjekk loggene for å se hvorfor appen returnerer 5xx-feil"
+          labels:
+            severity: "danger"
+            receiver_reference: team-navno-frontend-alerts
+            alert_type: custom
+        - alert: "Treg 99.9th percentile responsetid"
+          expr: round(histogram_quantile(0.999, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[3m])) by (le)), 0.1) > 4
+          for: 5m
+          annotations:
+            summary: "[nav-enonicxp-frontend] >4 sec 99.9th percentile responsetid i over 5 min ({{ $value }} sec)"
+            action: "[<!here>] Undersøk hvorfor en andel av requestene er veldig trege"
+          labels:
+            severity: "danger"
+            receiver_reference: team-navno-frontend-alerts
+            alert_type: custom
+        - alert: "Treg 99th percentile responsetid"
+          expr: round(histogram_quantile(0.99, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[3m])) by (le)), 0.1) > 2
+          for: 5m
+          annotations:
+            summary: "[nav-enonicxp-frontend] >2 sec 99th percentile responsetid i over 5 min ({{ $value }} sec)"
+            action: "[<!here>] Undersøk hvorfor en andel av requestene er trege"
+          labels:
+            severity: "danger"
+            receiver_reference: team-navno-frontend-alerts
+            alert_type: custom
+        - alert: "Treg median responsetid"
+          expr: round(histogram_quantile(0.5, sum(irate(nginx_ingress_controller_request_duration_seconds_bucket{service="nav-enonicxp-frontend"}[3m])) by (le)) * 1000, 0.1) > 25
+          for: 15m
+          annotations:
+            summary: "[nav-enonicxp-frontend] >25 ms median responsetid i over 15 min ({{ $value }} ms)"
+            action: "Undersøk hvorfor appen svarer tregere enn normalt"
+          labels:
+            severity: "warning"
+            receiver_reference: team-navno-frontend-alerts
+            alert_type: custom

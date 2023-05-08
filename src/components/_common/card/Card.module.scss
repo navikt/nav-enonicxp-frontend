@@ -1,8 +1,31 @@
 @use 'src/common' as common;
 
+@mixin highlight {
+    > :global(.situation) {
+        background-color: var(--a-orange-200);
+    }
+    > :global(.product) {
+        background-color: var(--a-green-200);
+    }
+    > :global(.tool) {
+        background-color: var(--a-deepblue-200);
+    }
+    > :global(.themed-article) {
+        background-color: var(--a-limegreen-300);
+    }
+    > :global(.guide) {
+        background-color: var(--a-lightblue-200);
+    }
+    //TODO: Find a better way? (can't specify classes in Card Size modules here or vice versa)
+    * {
+        text-decoration: none;
+        color: var(--a-gray-900) !important;
+    }
+}
+
 .card {
     display: block;
-    margin-bottom: 1.75rem;
+    margin-bottom: var(--a-spacing-7);
     outline: 0;
     text-decoration: none;
     width: 100%;
@@ -23,30 +46,17 @@
 
     &:hover,
     &:focus-within {
-        > :global(.situation) {
-            background-color: var(--a-orange-200);
-        }
-        > :global(.product) {
-            background-color: var(--a-green-200);
-        }
-        > :global(.tool) {
-            background-color: var(--a-deepblue-200);
-        }
-        > :global(.themed-article) {
-            background-color: var(--a-limegreen-300);
-        }
-        > :global(.guide) {
-            background-color: var(--a-lightblue-200);
-        }
-        //TODO: Find a better way? (can't specify classes in Card Size modules here or vice versa)
-        * {
-            text-decoration: none;
-            color: var(--a-gray-900) !important;
+        @media (hover: hover) {
+            @include highlight;
         }
     }
 
     &:focus-within,
     &:active {
+        @media (hover: none) {
+            @include highlight;
+        }
+
         .bed {
             position: relative;
             box-shadow: 0 0 0 3px var(--a-blue-800) !important;
@@ -96,7 +106,7 @@
             min-height: common.px-to-rem(400);
         }
         &:not(:hover):not(:active) {
-            box-shadow: var(--navds-shadow-card);
+            box-shadow: var(--a-shadow-medium);
         }
         &:hover {
             box-shadow: 0 1px 3px rgba(38, 38, 38, 0.2),

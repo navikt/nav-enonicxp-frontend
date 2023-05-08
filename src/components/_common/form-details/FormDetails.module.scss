@@ -6,16 +6,22 @@
 
 .variationWrapper {
     display: flex;
-}
-
-.horizontal {
     flex-direction: row;
+
+    & > :not(:last-child) {
+        margin-right: 1rem;
+    }
 
     @media #{common.$mq-screen-mobile} {
         flex-direction: column;
+
+        & > :not(:last-child) {
+            margin-right: 0;
+            margin-bottom: 1rem;
+        }
     }
 }
 
-.vertical {
-    flex-direction: column;
+.ingressWrapper {
+    margin-bottom: 1.75rem;
 }

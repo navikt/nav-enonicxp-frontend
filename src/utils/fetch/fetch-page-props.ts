@@ -68,7 +68,7 @@ export const fetchPageProps = async ({
         return redirectPageProps(getMediaUrl(content.mediaUrl, isDraft), true);
     }
 
-    if (isNotFound(content)) {
+    if (isNotFound(content, isDraft)) {
         const sanitizedPath = sanitizeLegacyUrl(idOrPath);
 
         if (sanitizedPath !== idOrPath) {

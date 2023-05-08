@@ -1,6 +1,6 @@
 import React from 'react';
-import { LargeTableProps } from '../../../types/content-props/large-table-props';
-import { makeErrorProps } from '../../../utils/make-error-props';
+import { LargeTableProps } from 'types/content-props/large-table-props';
+import { makeErrorProps } from 'utils/make-error-props';
 import { ErrorPage } from '../error-page/ErrorPage';
 import { ParsedHtml } from '../../_common/parsed-html/ParsedHtml';
 
@@ -23,5 +23,3 @@ export const LargeTablePage = (contentData: LargeTableProps) => {
         />
     );
 };
-
-export default LargeTablePage;

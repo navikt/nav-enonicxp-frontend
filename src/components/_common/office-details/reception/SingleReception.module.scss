@@ -1,0 +1,88 @@
+@use 'src/common' as common;
+
+.singleReception {
+    background-color: var(--a-deepblue-50);
+    border-radius: var(--a-border-radius-small);
+    padding: common.$padding-sides-mobile;
+
+    @media #{common.$mq-screen-tablet} {
+        padding: common.$padding-sides-tablet;
+    }
+
+    @media #{common.$mq-screen-desktop} {
+        padding: common.$padding-sides-desktop;
+    }
+
+    table {
+        margin-bottom: 1.6rem;
+        width: auto;
+        th,
+        td {
+            border: none;
+            font-size: 1.125rem;
+            padding: 0.3rem 2rem 0.3rem 0;
+            vertical-align: top;
+        }
+        td:last-of-type {
+            padding-right: 0;
+        }
+
+        :global(.dayInformation) {
+            min-width: 9rem;
+            font-weight: normal;
+
+            @media #{common.$mq-screen-mobile} {
+                min-width: auto;
+            }
+        }
+
+        :global(.openingInformation) {
+            min-width: 7.3rem;
+            font-weight: var(--a-font-weight-bold);
+
+            &:first-letter {
+                text-transform: capitalize;
+            }
+        }
+    }
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+}
+
+.headingIcon {
+    color: var(--a-surface-inverted);
+    margin-right: 0.5rem;
+}
+
+.iconPlace {
+    width: 30px;
+    height: 30px;
+    transform: translateX(-1px);
+}
+
+.iconClock {
+    height: 22px;
+    margin: -2px 0.7rem 0 0.1rem;
+    width: 22px;
+}
+
+.address {
+    margin-bottom: 2rem;
+}
+
+.addressLine {
+    margin-bottom: 1rem;
+}
+
+.appointmentBookingInfo {
+    display: flex;
+}
+
+.appointmentIcon {
+    margin: 0.2rem 0.5rem 0 0;
+    width: 20px;
+    height: 20px;
+}
