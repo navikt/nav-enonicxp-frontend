@@ -5,7 +5,7 @@ externalHosts:
   - www.dev.nav.no
 env:
   - name: IS_EDITOR_ONLY
-    value: true
+    value: "true"
 secret: nav-enonicxp-dev1
 ingresses:
   - https://www-editor.ekstern.dev.nav.no

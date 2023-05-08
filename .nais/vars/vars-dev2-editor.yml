@@ -5,7 +5,7 @@ externalHosts:
   - www-q6.nav.no
 env:
   - name: IS_EDITOR_ONLY
-    value: true
+    value: "true"
 secret: nav-enonicxp-dev2
 ingresses:
   - https://www-editor-2.ekstern.dev.nav.no
