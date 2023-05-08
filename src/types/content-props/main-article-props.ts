@@ -1,7 +1,6 @@
 import { MainArticleChapterNavigationData } from './main-article-chapter-props';
 import { ContentType, ContentCommonProps } from './_content-common';
 import { MenuListItems } from '../menu-list-items';
-import { LanguageProps } from '../language';
 import { XpImageProps } from '../media';
 import { ProcessedHtmlProps } from '../processed-html-props';
 
