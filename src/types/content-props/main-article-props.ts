@@ -17,7 +17,6 @@ export type ArticleContentType = 'news' | 'pressRelease' | 'lastingContent';
 export type ArticleSubContentType = 'statistics' | 'none';
 
 export type MainArticleData = Partial<{
-    languages: LanguageProps[];
     ingress: string;
     text: ProcessedHtmlProps;
     hasTableOfContents: string;

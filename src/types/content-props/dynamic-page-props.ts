@@ -1,5 +1,4 @@
 import { ContentType, ContentCommonProps } from './_content-common';
-import { LanguageProps } from '../language';
 import {
     ProductDataMixin,
     SimplifiedProductData,
@@ -12,7 +11,6 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentListProps } from './content-list-props';
 
 export type DynamicPageData = Partial<{
-    languages: LanguageProps[];
     description: string;
 }>;
 

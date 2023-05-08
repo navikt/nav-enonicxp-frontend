@@ -9,7 +9,6 @@ import { MainArticleProps } from './main-article-props';
 
 export type MainArticleChapterData = Partial<{
     article: MainArticleProps;
-    languages: LanguageProps[];
 }>;
 
 export type MainArticleChapterNavigationData = {

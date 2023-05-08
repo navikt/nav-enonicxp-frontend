@@ -15,7 +15,6 @@ export type SectionPageData = Partial<{
     moreNewsUrl: string;
     ntkContents: ContentListProps;
     scContents: ContentListProps;
-    languages: LanguageProps[];
 }>;
 
 export type SectionPageProps = ContentCommonProps & {
