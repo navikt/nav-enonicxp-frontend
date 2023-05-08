@@ -4,6 +4,8 @@ dekoratorenApp: nav-dekoratoren
 externalHosts:
   - www.dev.nav.no
 env:
+  - name: NODE_ENV
+    value: "production"
   - name: IS_EDITOR_ONLY
     value: "most_certainly"
   - name: ENV
@@ -24,6 +26,12 @@ env:
     value: "https://www.intern.dev.nav.no/person/navno-api"
   - name: FAILOVER_ORIGIN
     value: "https://www-failover.intern.dev.nav.no"
+  - name: PAGE_CACHE_DIR
+    value: "/tmp/pages"
+  - name: IMAGE_CACHE_DIR
+    value: "/tmp/images"
+  - name: SENTRY_DSN
+    value: "https://7d6de132401448989071436f6e54c748@sentry.gc.nav.no/131"
 secret: nav-enonicxp-dev1
 ingresses:
   - https://www-editor.ekstern.dev.nav.no
