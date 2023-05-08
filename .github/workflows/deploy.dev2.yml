@@ -33,3 +33,13 @@ jobs:
       hpa_file: hpa-dev2.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+  deploy-editor:
+    uses: ./.github/workflows/deploy-to-nais.yml
+    needs: build
+    with:
+      image: ${{ needs.build.outputs.image }}
+      cluster: dev-gcp
+      vars_file: vars-dev2-editor.yml
+      config_file: config.yml
+    secrets:
+      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

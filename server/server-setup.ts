@@ -37,6 +37,17 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
     setPageCacheDir(nextServer);
     setImageCacheDir(nextServer);
 
+    if (process.env.IS_EDITOR_ONLY === 'true') {
+        expressApp.get(
+            ['/draft/*', '/_next/*', '/gfx/*', '/api/*'],
+            (req, res) => {
+                return nextRequestHandler(req, res);
+            }
+        );
+
+        return;
+    }
+
     expressApp.post(
         '/invalidate',
         validateSecretMiddleware,

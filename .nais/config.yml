@@ -34,6 +34,10 @@ spec:
   env:
     - name: NPM_CONFIG_CACHE
       value: /tmp/npm-cache
+  {{#each env as |var|}}
+    - name: {{var.name}}
+      value: {{var.value}}
+  {{/each}}
   replicas:
   {{#with replicas}}
     min: {{min}}
