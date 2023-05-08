@@ -41,6 +41,9 @@ on:
       IS_FAILOVER_INSTANCE:
         required: false
         type: boolean
+      IS_EDITOR_ONLY:
+        required: false
+        type: boolean
     secrets:
       READER_TOKEN:
         required: true
