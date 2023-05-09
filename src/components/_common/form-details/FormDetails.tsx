@@ -31,9 +31,9 @@ export const FormDetails = ({
         ) {
             return acc;
         }
-        const variations = cur[cur._selected].variations;
+        const variations = cur[cur._selected]?.variations;
 
-        return [...acc, ...variations];
+        return variations ? [...acc, ...variations] : acc;
     }, []) as Variation[];
 
     return (
