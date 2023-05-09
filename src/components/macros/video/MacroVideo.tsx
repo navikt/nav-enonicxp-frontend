@@ -7,7 +7,7 @@ import {
     findImageUrlFromVideoMeta,
     findVideoDurationFromMeta,
     getTimestampFromDuration,
-    getVideoMeta,
+    buildVideoMeta,
 } from './videoHelpers';
 
 import { useExternalScript } from 'utils/useExternalScript';
@@ -18,7 +18,7 @@ import style from './MacroVideo.module.scss';
 export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
     const [videoMeta, setVideoMeta] = useState<VideoMeta>(
-        getVideoMeta(config.video)
+        buildVideoMeta(config.video)
     );
     const videoRef = React.useRef(null);
 
@@ -40,6 +40,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     }, [isVideoOpen]);
 
     useEffect(() => {
+        // Wether the video is in new content or legacy, attempt
+        // to get the poster and duration if none is given in the content config.
         if (!videoMeta.poster && !videoMeta.duration) {
             getVideoMetaFromQbrick();
         }
@@ -63,6 +65,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     if (!videoMeta) {
         return null;
     }
+
     const { accountId, mediaId, title, duration, poster } = videoMeta;
 
     const durationAsString = getTimestampFromDuration(duration);
