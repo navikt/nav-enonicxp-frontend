@@ -1,6 +1,6 @@
-import { Button } from '@navikt/ds-react';
 import { Variation } from 'types/content-props/form-details';
 import { getSelectableLinkProps } from 'utils/links-from-content';
+import { Button } from '../button/Button';
 
 import styles from './FormDetailsVariation.module.scss';
 
@@ -25,7 +25,7 @@ export const FormDetailsVariation = (props: FormsListItemProps) => {
 
     return (
         <div className={styles.variation}>
-            <Button as="a" className={styles.cta} variant={variant} href={url}>
+            <Button className={styles.cta} variant={variant} href={url}>
                 {label}
             </Button>
         </div>
