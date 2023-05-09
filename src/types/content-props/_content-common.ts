@@ -120,7 +120,6 @@ type ContentCommonData = Partial<{
     noindex: boolean;
     ingress: string;
     description: string;
-    languages: LanguageProps[];
     audience: Audience;
 }>;
 

@@ -41,6 +41,9 @@ on:
       IS_FAILOVER_INSTANCE:
         required: false
         type: boolean
+      IS_EDITOR_ONLY:
+        required: false
+        type: boolean
     secrets:
       READER_TOKEN:
         required: true
@@ -83,6 +86,7 @@ jobs:
           REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
           FAILOVER_ORIGIN=${{ inputs.FAILOVER_ORIGIN }}
           IS_FAILOVER_INSTANCE=${{ inputs.IS_FAILOVER_INSTANCE }}
+          IS_EDITOR_ONLY=${{ inputs.IS_EDITOR_ONLY }}
           INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
           NAVNO_API_URL=${{ inputs.NAVNO_API_URL }}
           PAGE_CACHE_DIR=/tmp/pages
