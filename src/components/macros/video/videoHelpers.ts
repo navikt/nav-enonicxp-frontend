@@ -9,10 +9,10 @@ export const buildVideoMeta = (
     if (!video.targetContent) {
         const query = parse(video?.video?.split('?')[1]);
         return {
-            accountId: query.accountId as string,
+            accountId: query?.accountId as string,
             title: video.title,
             duration: null,
-            mediaId: query.mediaId as string,
+            mediaId: query?.mediaId as string,
             poster: null,
         };
     }
@@ -21,7 +21,7 @@ export const buildVideoMeta = (
         accountId: video.targetContent?.data.accountId,
         mediaId: video.targetContent?.data.mediaId,
         duration: video.targetContent?.data.duration,
-        poster: video.targetContent?.data.poster.mediaUrl,
+        poster: video.targetContent?.data.poster?.mediaUrl,
         title: video.targetContent?.data.title,
     };
 };
