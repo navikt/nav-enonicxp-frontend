@@ -1,5 +1,6 @@
 import NextNodeServer from 'next/dist/server/next-server';
 import { NextServer } from 'next/dist/server/next';
+import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
 
 // Helper functions for accessing private class members (very naughty!)
 //
@@ -19,17 +20,15 @@ export const injectImageResponseCacheCacheDir = (
         nextServer['imageResponseCache']
     );
 
-    nextServer['imageResponseCache'].get = async function (
-        arg1: any,
-        arg2: any,
-        context: any
-    ) {
+    nextServer['imageResponseCache'].get = async function (...args: unknown[]) {
+        const context = args[2] as { incrementalCache: ImageOptimizerCache };
+
         try {
-            context.incrementalCache.cacheDir = cacheDir;
+            context.incrementalCache['cacheDir'] = cacheDir;
         } catch (e) {
             console.error(`Failed to set imageResponseCache cacheDir - ${e}`);
         }
 
-        return imgResCacheGetOriginal(arg1, arg2, context);
+        return imgResCacheGetOriginal(...args);
     };
 };
