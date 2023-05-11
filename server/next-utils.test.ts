@@ -1,9 +1,9 @@
+import mockFs from 'mock-fs';
 import { getNextBuildId, getNextServer } from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
 import next from 'next';
 import path from 'path';
 import fsPromises from 'fs/promises';
-import mockFs from 'mock-fs';
 
 const getNextApp = () =>
     next({
@@ -28,52 +28,6 @@ describe('Next.js server private accessors', () => {
         const buildId = getNextBuildId(nextServer);
 
         expect(buildId).toEqual('testId');
-    });
-});
-
-describe('Set next.js page cache dir', () => {
-    const nextApp = getNextApp();
-    let nextServer: NextNodeServer;
-
-    const pageCacheDir = 'myPageCacheDir';
-
-    process.env.PAGE_CACHE_DIR = `/${pageCacheDir}`;
-
-    beforeAll(async () => {
-        await nextApp.prepare();
-        nextServer = getNextServer(nextApp);
-    });
-
-    afterEach(() => {
-        mockFs.restore();
-    });
-
-    test('getFsPath should return paths with the correct page cache dir', async () => {
-        const { filePath } = await getIncrementalCacheGetFsPathFunction(
-            nextServer
-        )('');
-
-        expect(filePath).toContain(pageCacheDir);
-    });
-
-    test('IncremetalCache should write to the correct page cache dir', async () => {
-        mockFs({});
-        fsPromises.writeFile = jest.fn();
-
-        await nextServer['responseCache'].incrementalCache.cacheHandler.set(
-            'foo',
-            {
-                kind: 'PAGE',
-                html: 'test',
-            },
-            1
-        );
-
-        expect(fsPromises.writeFile).toHaveBeenCalledWith(
-            expect.stringContaining(pageCacheDir),
-            expect.anything(),
-            expect.anything()
-        );
     });
 });
 

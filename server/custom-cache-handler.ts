@@ -24,8 +24,6 @@ type GetFsPathFunction = ({
     isAppPath: boolean;
 }>;
 
-const { PAGE_CACHE_DIR, NODE_ENV } = process.env;
-
 const isrMemoryCache = new LRUCache<string, CacheHandlerValue>({
     max: 1000,
     ttl: 3600 * 24 * 1000,
@@ -35,9 +33,9 @@ export default class CustomFileSystemCache extends FileSystemCache {
     constructor(ctx: FileSystemCacheParams = {}) {
         super({
             ...ctx,
-            serverDistDir: PAGE_CACHE_DIR,
+            serverDistDir: process.env.PAGE_CACHE_DIR,
             fs: ctx.fs || nodeFs,
-            dev: ctx.dev || NODE_ENV === 'development',
+            dev: ctx.dev || process.env.NODE_ENV === 'development',
             _appDir: ctx._appDir || false,
             _requestHeaders: ctx._requestHeaders || {},
             revalidatedTags: ctx.revalidatedTags || [],
