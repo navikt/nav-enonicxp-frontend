@@ -35,8 +35,8 @@ export default class CustomFileSystemCache extends FileSystemCache {
             ...ctx,
             serverDistDir: process.env.PAGE_CACHE_DIR,
             fs: ctx.fs || nodeFs,
-            dev: ctx.dev || process.env.NODE_ENV === 'development',
-            _appDir: ctx._appDir || false,
+            dev: ctx.dev ?? process.env.NODE_ENV === 'development',
+            _appDir: ctx._appDir ?? false,
             _requestHeaders: ctx._requestHeaders || {},
             revalidatedTags: ctx.revalidatedTags || [],
         });

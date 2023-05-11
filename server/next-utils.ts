@@ -24,7 +24,11 @@ export const injectImageResponseCacheCacheDir = (
         arg2: any,
         context: any
     ) {
-        context.incrementalCache.cacheDir = cacheDir;
+        try {
+            context.incrementalCache.cacheDir = cacheDir;
+        } catch (e) {
+            console.error(`Failed to set imageResponseCache cacheDir - ${e}`);
+        }
 
         return imgResCacheGetOriginal(arg1, arg2, context);
     };
