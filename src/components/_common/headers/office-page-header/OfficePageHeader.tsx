@@ -1,7 +1,6 @@
 import React from 'react';
 import { classNames } from '../../../../utils/classnames';
-import { PageHeader } from '../page-header/PageHeader';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { joinWithConjunction } from '../../../../utils/string';
 import {
@@ -36,7 +35,9 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
     return (
         <div className={classNames(style.officePageHeader)}>
             <div className={style.content}>
-                <PageHeader justify={'left'}>{navn}</PageHeader>
+                <Heading level="1" size="xlarge" className={style.heading}>
+                    {navn}
+                </Heading>
                 <div className={style.taglineWrapper}>
                     <BodyShort size="small" className={style.taglineLabel}>
                         {'NAV-KONTOR'}

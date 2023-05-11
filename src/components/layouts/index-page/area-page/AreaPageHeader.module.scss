@@ -3,10 +3,21 @@
 
 .panel {
     display: flex;
-    padding-bottom: 0.5rem;
+    padding-bottom: 1.75rem;
     background-color: common.$a-white;
 
     @include common.full-width-mixin();
+
+    @media #{common.$mq-screen-mobile} {
+        padding-bottom: 0.75rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    @media #{common.$mq-screen-tablet} {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 }
 
 .headerContainer {
@@ -16,17 +27,11 @@
     flex-shrink: 1;
 
     width: 100%;
-    max-width: common.px-to-rem(600px);
+    max-width: common.px-to-rem(624px);
 
     @media #{common.$mq-screen-mobile} {
         min-width: 100%;
         max-width: 100%;
-    }
-}
-
-.heading {
-    @media #{common.$mq-screen-tablet-and-mobile} {
-        padding-left: 0.5rem;
     }
 }
 
@@ -39,7 +44,7 @@
     width: common.px-to-rem(500px);
     max-width: common.px-to-rem(500px);
     height: common.px-to-rem(160px);
-    margin-bottom: -0.5rem;
+    margin-bottom: -1.75rem;
 
     pointer-events: none;
 

@@ -1,0 +1,58 @@
+@use 'src/common' as common;
+
+$padding: 2rem;
+
+.formIntermediateStepPage {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.content {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: center;
+    width: 100%;
+    max-width: common.$contentMaxWidth;
+
+    & > * {
+        width: 100%;
+    }
+}
+
+.stepOptionsWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: common.$sectionMaxWidth;
+}
+
+.stepList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.stepOption {
+    margin-bottom: 1rem;
+    width: 100%;
+    cursor: pointer;
+}
+
+.buttonGroup {
+    display: flex;
+}
+
+.backButton {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    padding: 0;
+
+    &:hover {
+        background-color: transparent;
+    }
+}

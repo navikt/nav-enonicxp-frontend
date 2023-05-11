@@ -78,18 +78,39 @@ export const translationsBundleEn: Translations = {
         showingInformationFor: 'Showing information for:',
     },
     audienceServices: {
+        HJELP_KOMME_I_JOBB: 'Employment help',
         NODSITUASJON:
-            'Hjelp i nødsituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
-        TILGANGPC: 'Tilgang til PC',
-        HJELPDIGITALETJENESTER:
-            'Hjelp til å bruke digitale tjenester hvis du trenger det',
-        BARNEVERN: 'Barnevern',
-        FENGSEL_OG_KRIMINALOMSORG: 'Fengsel- og kriminalomsorg',
-        FLYKTNINGSTJENESTE: 'Flyktningetjeneste',
-        RUS_OG_PSYKISK_HELSE: 'Rus og psykisk helse',
-        STARTLAN: 'Startlån',
-        SJOFARTSOPPGAVER: 'Sjøfartsoppgaver',
+            'Help in emergency situations, such as temporary accommodation or financial social assistance',
+        OKONOMI_GJELD: 'Financial and debt advice',
+        TILGANGPC: 'Access to PC',
+        HJELPDIGITALETJENESTER: 'Help using digital services if you need it',
+        BARNEVERNTJENESTE: 'Child protection service',
+        FLYKTNINGTJENESTE: 'Refugee service',
+        FENGSEL_OPPFOLGING: 'Follow-up of people in prison',
+        RUS_OPPFOLGING: 'Follow-up of people with substance abuse problems',
+        PSYKISK_HELSE_OPPFOLGING:
+            'Follow-up of people with mental health problems',
+        STARTLAN: 'Start-up loans and grants from the municipality',
+        SJOFARTSOPPGAVER:
+            'Issuance of sjøfartsbok and dissemination of seafarers',
+        AKTIVITETSKORTET: 'Activity card for child and youth',
+        BOSTOTTE_HUSBANKEN: 'Housing benefits from Husbanken',
+        BOSTOTTE_KOMMUNEN: 'Housing benefits from from the municipality',
+        PRIVATOKONOMI_FORVALTNING:
+            'Voluntary and compulsory management of private finances',
+        INTROPROGRAMMET: 'Introductory program',
+        KOMMUNAL_BOLIG: 'Public housing',
+        KOMMUNAL_TILLEGGSPENSJON: 'Public pension supplement',
+        KOMMUNALT_FRIKORT_HELSETJENESTER:
+            'Public health services for hjemmetjenesten',
+        LEDSAGERBEVIS: 'Accompanying person certificate',
+        PARKERING_FORFLYTNINGSHEMMEDE:
+            'Parking permit for people with reduced mobility',
+        REDUSERT_FORELDREBETALING:
+            'Reduced parental contribution for child care',
+        SKJENKEBEVILLING: 'Alcohol permit',
         STOTTEKONTAKT: 'Støttekontakt',
+        TILRETTELAGT_TRANSPORT: 'Arranged transport (TT card)',
     },
     currentTopic: {
         tag: 'Featured',
@@ -211,6 +232,10 @@ export const translationsBundleEn: Translations = {
     pagination: {
         goTo: 'Go to',
         ariaExplanation: 'Navigate the content by pagination',
+    },
+    form: {
+        application: 'Application',
+        back: 'Back',
     },
     contactPoint: {
         chat: {

@@ -29,20 +29,30 @@ export const Reception = ({ receptions }: LocationsProps) => {
         );
     };
 
+    const getIdFromLabel = (label: string) => {
+        return label.replace(/\s/g, '-').toLowerCase();
+    };
+
     const firstLocation = getLocation(receptionArray[0]);
-    const [state, setState] = useState(firstLocation);
+    const [state, setState] = useState(getIdFromLabel(firstLocation));
 
     if (!receptionArray || receptionArray.length === 0) {
         return null;
     }
 
     if (receptionArray.length === 1) {
-        return <SingleReception {...receptionArray[0]} />;
+        return (
+            <div className={styles.singleTab}>
+                <SingleReception {...receptionArray[0]} />
+            </div>
+        );
     }
 
     return (
         <>
-            <BodyLong>{getOfficeTranslations('chooseBetweenOffices')}</BodyLong>
+            <BodyLong className={styles.chooseBetweenOffices}>
+                {getOfficeTranslations('chooseBetweenOffices')}
+            </BodyLong>
             <Tabs
                 value={state}
                 onChange={setState}
@@ -54,7 +64,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
                         return (
                             <Tabs.Tab
                                 key={index}
-                                value={locationLabel}
+                                value={getIdFromLabel(locationLabel)}
                                 label={locationLabel}
                             />
                         );
@@ -65,7 +75,7 @@ export const Reception = ({ receptions }: LocationsProps) => {
                     return (
                         <Tabs.Panel
                             key={index}
-                            value={locationLabel}
+                            value={getIdFromLabel(locationLabel)}
                             className={styles.singleTab}
                         >
                             <SingleReception {...loc} />

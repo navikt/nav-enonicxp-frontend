@@ -38,12 +38,14 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
                     {humanReadablePhoneNumber}
                 </LenkeBase>
             </BodyShort>
-            <BodyLong spacing>
+            <BodyLong spacing={publikumskanaler.length > 0}>
                 {getOfficeTranslations('phoneInformation')}
             </BodyLong>
-            <Heading size="small" level="3">
-                {getOfficeTranslations('alternativeContacts')}
-            </Heading>
+            {publikumskanaler.length > 0 && (
+                <Heading size="small" level="3">
+                    {getOfficeTranslations('alternativeContacts')}
+                </Heading>
+            )}
             <AudienceChannels publikumskanaler={publikumskanaler} />
         </div>
     );

@@ -114,18 +114,37 @@ export const translationsBundleNn: Translations = {
         closed: 'Stengt',
     },
     audienceServices: {
+        HJELP_KOMME_I_JOBB: 'Hjelp til å kome i jobb',
         NODSITUASJON:
             'Hjelp i nødssituasjonar, til dømes mellombels butilbod eller økonomisk sosialhjelp',
-        TILGANGPC: 'Tilgang til PC og hjelp til utskrift på papir',
+        OKONOMI_GJELD: 'Økonomi- og gjeldsrådgiving',
+        TILGANGPC: 'Tilgang til PC',
         HJELPDIGITALETJENESTER:
-            'Hjelp til å bruke digitale tenester viss du treng det',
-        BARNEVERN: 'Barnevern',
-        FENGSEL_OG_KRIMINALOMSORG: 'Fengsel- og kriminalomsorg',
-        FLYKTNINGSTJENESTE: 'Flyktningetjeneste',
-        RUS_OG_PSYKISK_HELSE: 'Rus og psykisk helse',
-        STARTLAN: 'Startlån',
-        SJOFARTSOPPGAVER: 'Sjøfartsoppgavar',
+            'Hjelp til å bruke digitale tenester dersom du treng det',
+        BARNEVERNTJENESTE: 'Barnevernteneste',
+        FLYKTNINGTJENESTE: 'Flyktningtenesta',
+        FENGSEL_OPPFOLGING: 'Oppfølging av personar i fengsel',
+        RUS_OPPFOLGING: 'Oppfølging av personar med rusproblem',
+        PSYKISK_HELSE_OPPFOLGING:
+            'Oppfølging av personar med psykiske helseproblem',
+        STARTLAN: 'Startlån og tilskot frå kommunen',
+        SJOFARTSOPPGAVER: 'Utskriving av sjøfartsbok og formidling av sjøfolk',
+        AKTIVITETSKORTET: 'Aktivitetskortet for barn og unge',
+        BOSTOTTE_HUSBANKEN: 'Bustøtte frå Husbanken',
+        BOSTOTTE_KOMMUNEN: 'Bustøtte frå kommunen',
+        PRIVATOKONOMI_FORVALTNING:
+            'Frivillig og tvungen forvaltning av privatøkonomi',
+        INTROPROGRAMMET: 'Introduksjonsprogrammet',
+        KOMMUNAL_BOLIG: 'Kommunal bustad',
+        KOMMUNAL_TILLEGGSPENSJON: 'Kommunal tilleggspensjon',
+        KOMMUNALT_FRIKORT_HELSETJENESTER: 'Kommunalt frikort for helsetenester',
+        LEDSAGERBEVIS: 'Følgjebevis',
+        PARKERING_FORFLYTNINGSHEMMEDE: 'Parkeringsløyve for forflyttingshemma',
+        REDUSERT_FORELDREBETALING:
+            'Redusert foreldrebetaling i barnehage eller SFO',
+        SKJENKEBEVILLING: 'Skjenkeløyve',
         STOTTEKONTAKT: 'Støttekontakt',
+        TILRETTELAGT_TRANSPORT: 'Tilrettelagt transport (TT-kort)',
     },
     relatedContent,
     taxonomies,
@@ -161,19 +180,19 @@ export const translationsBundleNn: Translations = {
         chooseBetweenOffices: 'Du kan velje eit av disse kontora.',
         officeInformation: 'Kontorinformasjon',
         closed: 'Stengt',
-        openingHoursWithoutAppointment: 'Åpningstidar når du ikkje har avtale',
+        openingHoursWithoutAppointment: 'Opningstider når du ikkje har avtale',
         appointmentOnly: 'Kun timeavtale',
         specialOpeningHours: 'Spesielle åpningstider',
         address: 'Adresse',
         youCanMakeAppointment:
-            'Du kan avtale møte med veilederen din utenom disse åpningstidene.',
-        location: 'Beliggenhet',
+            'Du kan avtale møte med rettleiaren din utanom desse opningstidene.',
+        location: 'Plassering',
         postalAddress: 'Postadresse',
         orgNumber: 'Organisasjonsnummer',
         officeNumber: 'Kontornummer',
         phoneToNav: 'Telefonnummeret til NAV er',
         phoneInformation:
-            'Åpent, kvardagar kl. 9-15. NAV Kontaktsenter hjelper deg eller sett deg i kontakt med ditt NAV-kontor.',
+            'Opent kvardagar kl 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
         alternativeContacts: 'Andre kontaktopplysningar:',
     },
     overview: {
@@ -202,6 +221,10 @@ export const translationsBundleNn: Translations = {
     pagination: {
         goTo: 'Gå til',
         ariaExplanation: 'Navigering av innhaldet med paginering',
+    },
+    form: {
+        application: 'Søknad',
+        back: 'Tilbake',
     },
     contactPoint: {
         chat: {

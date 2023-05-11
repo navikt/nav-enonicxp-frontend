@@ -21,6 +21,21 @@ export const OpeningHours = ({ openingHours }: Props) => {
     const dayLabel = getDateTimeTranslations('day');
     const timeLabel = getDateTimeTranslations('time');
 
+    const weekdayNames = getDateTimeTranslations('weekDayNames');
+
+    const dagArr: string[] = [
+        'Mandag',
+        'Tirsdag',
+        'Onsdag',
+        'Torsdag',
+        'Fredag',
+    ];
+
+    const weekDayTranslation = dagArr.reduce((acc, elem, index) => {
+        acc[elem] = weekdayNames[index];
+        return acc;
+    }, {});
+
     // If includes dato, show this rather than day (for special opening hours)
     const buildDayLabel = (opening: OpeningHoursProps): string => {
         const { dato, dag } = opening;
@@ -33,7 +48,14 @@ export const OpeningHours = ({ openingHours }: Props) => {
             });
         }
 
-        return dag || ''; // Fallback to empty string to avoid showing "undefined"
+        return weekDayTranslation[dag] || ''; // Fallback to empty string to avoid showing "undefined"
+    };
+
+    const normalizeTimeLabel = (time: string): string => {
+        if (!time) {
+            return '';
+        }
+        return time.replace(':', '.');
     };
 
     const buildOpeningInformation = (opening: OpeningHoursProps): string => {
@@ -42,7 +64,9 @@ export const OpeningHours = ({ openingHours }: Props) => {
         }
 
         if (opening.fra && opening.til) {
-            return `${opening.fra} - ${opening.til}`;
+            return `${normalizeTimeLabel(opening.fra)}–${normalizeTimeLabel(
+                opening.til
+            )}`;
         }
 
         return closedLabel;
@@ -62,7 +86,9 @@ export const OpeningHours = ({ openingHours }: Props) => {
 
                     return (
                         <tr key={index}>
-                            <td className="dayInformation">{dayInformation}</td>
+                            <th className="dayInformation" role="row">
+                                {dayInformation}
+                            </th>
                             <td className="openingInformation">
                                 {buildOpeningInformation(opening)}
                             </td>

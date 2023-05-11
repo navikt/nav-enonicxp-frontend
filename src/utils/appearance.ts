@@ -4,6 +4,7 @@ export const hasWhiteBackground = (content: ContentProps) => {
     const contentTypeWithWhiteBackground = [
         ContentType.CurrentTopicPage,
         ContentType.MainArticle,
+        ContentType.FormIntermediateStepPage,
     ];
 
     if (content.type === ContentType.MainArticle) {

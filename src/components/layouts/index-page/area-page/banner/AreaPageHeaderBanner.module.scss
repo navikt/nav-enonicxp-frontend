@@ -5,23 +5,16 @@
 .banner {
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
 
     text-decoration: none;
-    color: black;
-    min-height: common.px-to-rem(172px);
+    color: var(--a-text-default);
     margin-top: 1rem;
-    padding: 2rem 0;
+    padding: 1.5rem;
     background-color: common.$navPink;
-    transform: skewX(-20deg);
+    border-radius: 0.5rem;
 
     transition: background-color 200ms ease-out;
-
-    & > * {
-        transform: skewX(20deg);
-        @media #{common.$mq-screen-mobile} {
-            transform: none;
-        }
-    }
 
     &:hover {
         background-color: var(--hover-color);
@@ -31,11 +24,9 @@
         @include common.panel-focus-mixin();
     }
 
-    @include common.full-width-mixin(true, false);
-
     @media #{common.$mq-screen-mobile} {
+        padding: 1.5rem 1.25rem;
         transform: none;
-        @include common.full-width-mixin(true, true);
     }
 }
 
@@ -45,22 +36,13 @@
     row-gap: 1.75rem;
     justify-content: center;
     width: 100%;
-    padding-left: 2rem;
 
     > * {
         margin-top: 0 !important;
         margin-bottom: 0 !important;
     }
-
-    @media #{common.$mq-screen-mobile} {
-        padding-left: 1rem;
-    }
 }
 
 .icon {
     align-self: center;
-    margin-right: 2rem;
-    @media #{common.$mq-screen-mobile} {
-        margin-right: 1rem;
-    }
 }

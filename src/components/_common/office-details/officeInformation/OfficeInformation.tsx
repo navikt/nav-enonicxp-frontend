@@ -23,12 +23,12 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
     return (
         <Accordion className={styles.officeInformation}>
             <Accordion.Item>
-                <Accordion.Header>
-                    <Heading level="2" size="medium">
+                <Accordion.Header className={styles.accordionHeader}>
+                    <Heading level="2" size="small">
                         {getOfficeTranslations('officeInformation')}
                     </Heading>
                 </Accordion.Header>
-                <Accordion.Content className={styles.officeInformation}>
+                <Accordion.Content className={styles.accordionContent}>
                     <section className={styles.section}>
                         <Heading level="3" size="small" spacing>
                             {getOfficeTranslations('location')}

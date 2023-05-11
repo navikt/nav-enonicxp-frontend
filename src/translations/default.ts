@@ -130,18 +130,39 @@ export const translationsBundleNb = {
         closed: 'Stengt',
     },
     audienceServices: {
+        HJELP_KOMME_I_JOBB: 'Hjelp til å komme i jobb',
         NODSITUASJON:
             'Hjelp i nødssituasjoner, for eksempel midlertidig botilbud eller økonomisk sosialhjelp',
-        TILGANGPC: 'Tilgang til PC og hjelp til utskrift på papir',
+        OKONOMI_GJELD: 'Økonomi- og gjeldsrådgivning',
+        TILGANGPC: 'Tilgang til PC',
         HJELPDIGITALETJENESTER:
             'Hjelp til å bruke digitale tjenester hvis du trenger det',
-        BARNEVERN: 'Barnevern',
-        FENGSEL_OG_KRIMINALOMSORG: 'Fengsel- og kriminalomsorg',
-        FLYKTNINGSTJENESTE: 'Flyktningetjeneste',
-        RUS_OG_PSYKISK_HELSE: 'Rus og psykisk helse',
-        STARTLAN: 'Startlån',
-        SJOFARTSOPPGAVER: 'Sjøfartsoppgaver',
+        BARNEVERNTJENESTE: 'Barneverntjeneste',
+        FLYKTNINGTJENESTE: 'Flyktningtjeneste',
+        FENGSEL_OPPFOLGING: 'Oppfølging av personer i fengsel',
+        RUS_OPPFOLGING: 'Oppfølging av personer med rusproblemer',
+        PSYKISK_HELSE_OPPFOLGING:
+            'Oppfølging av personer med psykiske helseproblemer',
+        STARTLAN: 'Startlån og tilskudd fra kommunen',
+        SJOFARTSOPPGAVER: 'Utstedelse av sjøfartsbok og formidling av sjøfolk',
+        AKTIVITETSKORTET: 'Aktivitetskortet for barn og unge',
+        BOSTOTTE_HUSBANKEN: 'Bostøtte fra Husbanken',
+        BOSTOTTE_KOMMUNEN: 'Bostøtte fra kommunen',
+        PRIVATOKONOMI_FORVALTNING:
+            'Frivillig og tvungen forvaltning av privatøkonomi',
+        INTROPROGRAMMET: 'Introduksjonsprogrammet',
+        KOMMUNAL_BOLIG: 'Kommunal bolig',
+        KOMMUNAL_TILLEGGSPENSJON: 'Kommunal tilleggspensjon',
+        KOMMUNALT_FRIKORT_HELSETJENESTER:
+            'Kommunalt frikort for helsetjenester',
+        LEDSAGERBEVIS: 'Ledsagerbevis',
+        PARKERING_FORFLYTNINGSHEMMEDE:
+            'Parkeringstillatelse for forflytningshemmede',
+        REDUSERT_FORELDREBETALING:
+            'Redusert foreldrebetaling i barnehage eller SFO',
+        SKJENKEBEVILLING: 'Skjenkebevilling',
         STOTTEKONTAKT: 'Støttekontakt',
+        TILRETTELAGT_TRANSPORT: 'Tilrettelagt transport (TT-kort)',
     },
     relatedContent: relatedContent,
     taxonomies,
@@ -191,6 +212,10 @@ export const translationsBundleNb = {
         goTo: 'Gå til',
         ariaExplanation: 'Navigering av innholdet via paginering',
     },
+    form: {
+        application: 'Søknad',
+        back: 'Tilbake',
+    },
     contactPoint: {
         chat: {
             title: 'Du kan chatte med oss',
@@ -226,7 +251,7 @@ export const translationsBundleNb = {
         shared: {
             closed: 'Stengt',
             openNow: 'Åpent nå',
-            opensAt: 'Åpner {$date} kl {$time}',
+            opensAt: 'Åpner {$date} kl. {$time}',
             closedNow: 'Stengt nå',
             seeMoreOptions: 'Se flere telefonnummer og tastevalg',
         },
@@ -248,7 +273,7 @@ export const translationsBundleNb = {
         officeNumber: 'Kontornummer',
         phoneToNav: 'Telefonnummeret til NAV er',
         phoneInformation:
-            'Åpent, hverdager kl. 9-15. NAV Kontaktsenter hjelper deg eller setter deg i kontakt med ditt NAV-kontor.',
+            'Åpent hverdager kl. 9–15. NAV Kontaktsenter kan hjelpe deg, eller sette deg i kontakt med NAV-kontoret ditt.',
         alternativeContacts: 'Andre kontaktopplysninger:',
     },
     dateTime: {

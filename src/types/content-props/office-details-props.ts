@@ -31,16 +31,32 @@ export interface AudienceReception {
 
 export type Service = {
     type:
+        | 'HJELP_KOMME_I_JOBB'
         | 'NODSITUASJON'
+        | 'OKONOMI_GJELD'
         | 'TILGANGPC'
         | 'HJELPDIGITALETJENESTER'
-        | 'BARNEVERN'
-        | 'FENGSEL_OG_KRIMINALOMSORG'
-        | 'FLYKTNINGSTJENESTE'
-        | 'RUS_OG_PSYKISK_HELSE'
+        | 'BARNEVERNTJENESTE'
+        | 'FLYKTNINGTJENESTE'
+        | 'FENGSEL_OPPFOLGING'
+        | 'RUS_OPPFOLGING'
+        | 'PSYKISK_HELSE_OPPFOLGING'
         | 'STARTLAN'
         | 'SJOFARTSOPPGAVER'
-        | 'STOTTEKONTAKT';
+        | 'AKTIVITETSKORTET'
+        | 'BOSTOTTE_HUSBANKEN'
+        | 'BOSTOTTE_KOMMUNEN'
+        | 'PRIVATOKONOMI_FORVALTNING'
+        | 'INTROPROGRAMMET'
+        | 'KOMMUNAL_BOLIG'
+        | 'KOMMUNAL_TILLEGGSPENSJON'
+        | 'KOMMUNALT_FRIKORT_HELSETJENESTER'
+        | 'LEDSAGERBEVIS'
+        | 'PARKERING_FORFLYTNINGSHEMMEDE'
+        | 'REDUSERT_FORELDREBETALING'
+        | 'SKJENKEBEVILLING'
+        | 'STOTTEKONTAKT'
+        | 'TILRETTELAGT_TRANSPORT';
 };
 
 type AudienceServices = {
