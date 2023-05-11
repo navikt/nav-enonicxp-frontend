@@ -28,9 +28,7 @@ export const IllustrationAnimated = ({
     const lottieContainer = useRef(null);
     const lottiePlayer = useRef(null);
 
-    // const { data: lottieData } = useSWRImmutable(dataUrl, fetchJsonData, {});
-
-    const lottieData = null;
+    const { data: lottieData } = useSWRImmutable(dataUrl, fetchJsonData);
 
     useEffect(() => {
         const newDirection = isHovering ? 1 : -1;

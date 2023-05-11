@@ -133,6 +133,7 @@ const config = {
             '.serverDist/custom-cache-handler'
         ),
     },
+    transpilePackages: ['swr'],
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: isFailover
