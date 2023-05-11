@@ -31,6 +31,10 @@ const isrMemoryCache = new LRUCache<string, CacheHandlerValue>({
 
 export default class CustomFileSystemCache extends FileSystemCache {
     constructor(ctx: FileSystemCacheParams = {}) {
+        if (!process.env.PAGE_CACHE_DIR) {
+            console.error('PAGE_CACHE_DIR is not defined!');
+        }
+
         super({
             ...ctx,
             serverDistDir: process.env.PAGE_CACHE_DIR,
