@@ -1,40 +1,18 @@
-import fs from 'fs';
-import NextNodeServer from 'next/dist/server/next-server';
 import { RequestHandler } from 'express';
-import { getIncrementalCacheGetFsPathFunction } from '../next-utils';
+import CustomFileSystemCache from '../customCacheHandler';
 
-const wipePageCache = async (nextServer: NextNodeServer) => {
-    try {
-        const getFsPath = getIncrementalCacheGetFsPathFunction(nextServer);
+export const handleInvalidateAllReq: RequestHandler = async (req, res) => {
+    const { eventid } = req.headers;
 
-        const { filePath: pageCacheBasePath } = await getFsPath('', false);
+    const isrCache = new CustomFileSystemCache();
 
-        if (fs.existsSync(pageCacheBasePath)) {
-            fs.rmSync(pageCacheBasePath, { recursive: true });
-        }
+    const success = await isrCache.clearGlobalCache();
 
-        console.log('Wiped all cached pages!');
-        return true;
-    } catch (e) {
-        console.error(`Error occurred while wiping page-cache - ${e}`);
-        return false;
-    }
+    return success
+        ? res
+              .status(200)
+              .send(`Successfully wiped page cache - event id ${eventid}`)
+        : res
+              .status(500)
+              .send(`Failed to wipe page cache! - event id ${eventid}`);
 };
-
-export const handleInvalidateAllReq =
-    (nextServer: NextNodeServer): RequestHandler =>
-    (req, res) => {
-        const { eventid } = req.headers;
-
-        wipePageCache(nextServer).then((success) => {
-            success
-                ? res
-                      .status(200)
-                      .send(
-                          `Successfully wiped page cache - event id ${eventid}`
-                      )
-                : res
-                      .status(500)
-                      .send(`Failed to wipe page cache! - event id ${eventid}`);
-        });
-    };

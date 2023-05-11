@@ -20,6 +20,7 @@ export type GetFsPathFunction = (
     filePath: string;
     isAppPath: boolean;
 }>;
+
 export const getIncrementalCacheGetFsPathFunction = (
     nextServer: NextNodeServer
 ): GetFsPathFunction => {

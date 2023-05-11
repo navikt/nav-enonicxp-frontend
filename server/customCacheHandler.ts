@@ -1,22 +1,31 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 import LRUCache from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
-import Config from '../src/config';
+import fs from 'fs';
+import { nodeFs } from 'next/dist/server/lib/node-fs-methods';
 
-type Args = ConstructorParameters<typeof FileSystemCache>[0];
+type FileSystemCacheParams = Partial<
+    ConstructorParameters<typeof FileSystemCache>[0]
+>;
 
-export const isrMemoryCache = new LRUCache<string, CacheHandlerValue>({
+const { PAGE_CACHE_DIR, NODE_ENV } = process.env;
+
+const isrMemoryCache = new LRUCache<string, CacheHandlerValue>({
     max: 1000,
-    ttl: Config.vars.revalidatePeriod * 1000,
+    ttl: 3600 * 24 * 1000,
 });
 
 export default class CustomFileSystemCache extends FileSystemCache {
-    constructor(ctx: Args) {
-        // console.log('Hello from my shiny new custom cache');
-
-        super(ctx);
-
-        this['serverDistDir'] = process.env.PAGE_CACHE_DIR;
+    constructor(ctx: FileSystemCacheParams = {}) {
+        super({
+            ...ctx,
+            serverDistDir: PAGE_CACHE_DIR,
+            fs: ctx.fs || nodeFs,
+            dev: ctx.dev || NODE_ENV === 'development',
+            _appDir: ctx._appDir || false,
+            _requestHeaders: ctx._requestHeaders || {},
+            revalidatedTags: ctx.revalidatedTags || [],
+        });
     }
 
     public async get(key: string, fetchCache?: boolean) {
@@ -43,4 +52,29 @@ export default class CustomFileSystemCache extends FileSystemCache {
 
         return super.set(key, data);
     }
+
+    public async clearGlobalCache() {
+        isrMemoryCache.clear();
+
+        try {
+            const { filePath } = await this['getFsPath']({
+                pathname: '',
+            });
+
+            if (fs.existsSync(filePath)) {
+                fs.rmSync(filePath, { recursive: true });
+            }
+
+            console.log(`Wiped all cached pages from ${filePath}`);
+
+            return true;
+        } catch (e) {
+            console.error(
+                `Error occurred while wiping page-cache from disk - ${e}`
+            );
+            return false;
+        }
+    }
+
+    public async removeGlobalCacheEntry(path: string) {}
 }

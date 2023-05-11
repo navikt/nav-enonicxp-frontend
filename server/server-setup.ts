@@ -53,7 +53,7 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
         '/invalidate/wipe-all',
         validateSecretMiddleware,
         setCacheKey,
-        handleInvalidateAllReq(nextServer)
+        handleInvalidateAllReq
     );
 
     expressApp.get(
