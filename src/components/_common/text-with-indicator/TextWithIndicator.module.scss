@@ -1,7 +1,7 @@
 @use 'src/common' as common;
 
 .textWithIndicator {
-    display: inline-flex;
+    display: flex;
     margin-bottom: 0.5rem;
     align-items: center;
 }
