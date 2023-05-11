@@ -8,7 +8,7 @@ import promBundle from 'express-prom-bundle';
 import { initRevalidatorProxyHeartbeat } from './revalidator-proxy-heartbeat';
 import { serverSetupFailover } from './server-setup-failover';
 import { serverSetup } from './server-setup';
-import { getNextServer } from './next-utils';
+import { getNextServer, injectImageResponseCacheCacheDir } from './next-utils';
 
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
@@ -29,22 +29,16 @@ nextApp.prepare().then(() => {
 
     const nextServer = getNextServer(nextApp);
 
-    const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
-
-    const imgResCacheGetOriginal = nextServer['imageResponseCache'].get;
-    nextServer['imageResponseCache'].get = async function (
-        arg1: any,
-        arg2: any,
-        context: any
-    ) {
-        context.incrementalCache.cacheDir = process.env.IMAGE_CACHE_DIR;
-
-        return imgResCacheGetOriginal.bind(nextServer['imageResponseCache'])(
-            arg1,
-            arg2,
-            context
+    if (process.env.IMAGE_CACHE_DIR) {
+        injectImageResponseCacheCacheDir(
+            nextServer,
+            process.env.IMAGE_CACHE_DIR
         );
-    };
+    } else {
+        console.error('IMAGE_CACHE_DIR is not defined!');
+    }
+
+    const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
     expressApp.use('*', promMiddleware);
 

@@ -10,3 +10,22 @@ export const getNextServer = (nextApp: NextServer) => {
 export const getNextBuildId = (nextServer: NextNodeServer) => {
     return nextServer['getBuildId']();
 };
+
+export const injectImageResponseCacheCacheDir = (
+    nextServer: NextNodeServer,
+    cacheDir: string
+) => {
+    const imgResCacheGetOriginal = nextServer['imageResponseCache'].get.bind(
+        nextServer['imageResponseCache']
+    );
+
+    nextServer['imageResponseCache'].get = async function (
+        arg1: any,
+        arg2: any,
+        context: any
+    ) {
+        context.incrementalCache.cacheDir = cacheDir;
+
+        return imgResCacheGetOriginal(arg1, arg2, context);
+    };
+};
