@@ -1,11 +1,13 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 import LRUCache from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
+import Config from '../src/config';
 
 type Args = ConstructorParameters<typeof FileSystemCache>[0];
 
 export const isrMemoryCache = new LRUCache<string, CacheHandlerValue>({
     max: 1000,
+    ttl: Config.vars.revalidatePeriod * 1000,
 });
 
 export default class CustomFileSystemCache extends FileSystemCache {
