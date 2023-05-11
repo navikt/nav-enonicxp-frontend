@@ -125,10 +125,12 @@ console.log(
 
 const config = {
     experimental: {
+        // Set this to 0 to disable the next.js built-in memory cache for the ISR page cache
+        // We implement our own in the customCacheHandler to allow us to invalidate the memory cache
         isrMemoryCacheSize: 0,
         incrementalCacheHandlerPath: path.resolve(
             __dirname,
-            '.serverDist/customCacheHandler'
+            '.serverDist/custom-cache-handler'
         ),
     },
     productionBrowserSourceMaps: true,

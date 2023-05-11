@@ -48,26 +48,11 @@ export default class CustomFileSystemCache extends FileSystemCache {
 
     public async get(key: string, fetchCache?: boolean) {
         const data = isrMemoryCache.get(key);
-
-        // console.log(
-        //     `Found data for key ${key} - ${
-        //         data?.value && Object.keys(data.value)
-        //     }`
-        // );
-
         return data || super.get(key, fetchCache);
     }
 
     public async set(key: string, data: CacheHandlerValue['value']) {
-        // console.log(
-        //     `Setting data with key ${key} - ${JSON.stringify(data)?.slice(
-        //         0,
-        //         100
-        //     )}`
-        // );
-
         isrMemoryCache.set(key, { value: data, lastModified: Date.now() });
-
         return super.set(key, data);
     }
 
@@ -96,12 +81,14 @@ export default class CustomFileSystemCache extends FileSystemCache {
         }
     }
 
-    public async removeGlobalCacheEntry(path: string) {
+    public async deleteGlobalCacheEntry(path: string) {
         const pagePath = path === '/' ? '/index' : path;
 
+        isrMemoryCache.delete(path);
+
         return Promise.all([
-            this.removePageCacheFile(`${pagePath}.html`),
-            this.removePageCacheFile(`${pagePath}.json`),
+            this.deletePageCacheFile(`${pagePath}.html`),
+            this.deletePageCacheFile(`${pagePath}.json`),
         ]).catch((e) => {
             console.error(
                 `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
@@ -109,7 +96,7 @@ export default class CustomFileSystemCache extends FileSystemCache {
         });
     }
 
-    private async removePageCacheFile(pathname: string) {
+    private async deletePageCacheFile(pathname: string) {
         return (this['getFsPath'] as GetFsPathFunction)({
             pathname: pathname,
         })
