@@ -133,6 +133,7 @@ const config = {
             '.serverDist/custom-cache-handler'
         ),
     },
+    // SWR crashes during SSR with next 13.4 unless it's transpiled
     transpilePackages: ['swr'],
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
