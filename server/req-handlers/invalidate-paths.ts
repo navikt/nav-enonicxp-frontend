@@ -4,7 +4,6 @@ import { RequestHandler } from 'express';
 import {
     GetFsPathFunction,
     getIncrementalCacheGetFsPathFunction,
-    getIncrementalCacheMemoryCache,
 } from '../next-utils';
 
 const removePageCacheFile = async (
@@ -34,17 +33,11 @@ const invalidateCachedPage = async (
     return Promise.all([
         removePageCacheFile(getFsPath, `${pagePath}.html`),
         removePageCacheFile(getFsPath, `${pagePath}.json`),
-    ])
-        .then(() => {
-            console.log(`Removing page data from memory cache: ${pagePath}`);
-            const cacheHandler = getIncrementalCacheMemoryCache(nextServer);
-            cacheHandler.del(pagePath);
-        })
-        .catch((e) => {
-            console.error(
-                `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
-            );
-        });
+    ]).catch((e) => {
+        console.error(
+            `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
+        );
+    });
 };
 
 export const handleInvalidatePathsReq =

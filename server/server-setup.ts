@@ -3,16 +3,12 @@ import { NextServer } from 'next/dist/server/next';
 import onHeaders from 'on-headers';
 
 import { validateSecret } from './req-handlers/validate-secret';
-import {
-    getNextBuildId,
-    getNextServer,
-    setImageCacheDir,
-    setPageCacheDir,
-} from './next-utils';
+import { getNextBuildId, getNextServer } from './next-utils';
 import { handleInvalidatePathsReq } from './req-handlers/invalidate-paths';
 import { setCacheKey } from './req-handlers/set-cache-key';
 import { handleInvalidateAllReq } from './req-handlers/invalidate-all';
 import { handleGetPendingResponses } from './req-handlers/pending-responses';
+import { getRequestMeta } from 'next/dist/server/request-meta';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached
@@ -33,9 +29,6 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
     const currentBuildId = getNextBuildId(nextServer);
 
     console.log(`Current build id: ${currentBuildId}`);
-
-    setPageCacheDir(nextServer);
-    setImageCacheDir(nextServer);
 
     if (process.env.IS_EDITOR_ONLY === 'true') {
         expressApp.all(

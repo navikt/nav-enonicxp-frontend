@@ -21,7 +21,7 @@ export const gvProcessCaseTimeInput = (input: GlobalCaseTimeSetItem) => {
         errors.value = 'Feltet må fylles inn';
     } else if (isNaN(Number(value))) {
         errors.value = 'Verdien må være et tall';
-    } else if (value < 0) {
+    } else if (Number(value) < 0) {
         errors.value = 'Verdien kan ikke være negativ';
     }
 

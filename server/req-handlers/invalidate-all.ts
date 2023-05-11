@@ -1,10 +1,7 @@
 import fs from 'fs';
 import NextNodeServer from 'next/dist/server/next-server';
 import { RequestHandler } from 'express';
-import {
-    getIncrementalCacheGetFsPathFunction,
-    getIncrementalCacheMemoryCache,
-} from '../next-utils';
+import { getIncrementalCacheGetFsPathFunction } from '../next-utils';
 
 const wipePageCache = async (nextServer: NextNodeServer) => {
     try {
@@ -15,8 +12,6 @@ const wipePageCache = async (nextServer: NextNodeServer) => {
         if (fs.existsSync(pageCacheBasePath)) {
             fs.rmSync(pageCacheBasePath, { recursive: true });
         }
-
-        getIncrementalCacheMemoryCache(nextServer).reset();
 
         console.log('Wiped all cached pages!');
         return true;

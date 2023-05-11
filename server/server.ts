@@ -31,6 +31,21 @@ nextApp.prepare().then(() => {
 
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
+    const imgResCacheGetOriginal = nextServer['imageResponseCache'].get;
+    nextServer['imageResponseCache'].get = async function (
+        arg1: any,
+        arg2: any,
+        context: any
+    ) {
+        context.incrementalCache.cacheDir = process.env.IMAGE_CACHE_DIR;
+
+        return imgResCacheGetOriginal.bind(nextServer['imageResponseCache'])(
+            arg1,
+            arg2,
+            context
+        );
+    };
+
     expressApp.use('*', promMiddleware);
 
     expressApp.use('/*.(svg|png|ico|webmanifest)', (req, res, next) => {

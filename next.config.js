@@ -4,6 +4,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const { withSentryConfig } = require('@sentry/nextjs');
 const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
 const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
+const path = require('path');
 
 const sentryConfig = {
     errorHandler: (err, invokeErr, compilation) => {
@@ -123,6 +124,13 @@ console.log(
 );
 
 const config = {
+    experimental: {
+        isrMemoryCacheSize: 0,
+        incrementalCacheHandlerPath: path.resolve(
+            __dirname,
+            '.serverDist/customCacheHandler'
+        ),
+    },
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: isFailover

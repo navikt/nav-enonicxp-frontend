@@ -1,10 +1,7 @@
 import {
     getIncrementalCacheGetFsPathFunction,
-    getIncrementalCacheMemoryCache,
     getNextBuildId,
     getNextServer,
-    setImageCacheDir,
-    setPageCacheDir,
 } from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
 import next from 'next';
@@ -36,35 +33,6 @@ describe('Next.js server private accessors', () => {
 
         expect(buildId).toEqual('testId');
     });
-
-    test('LRU memory cache should be an instance of LRUCache', () => {
-        const memoryCache = getIncrementalCacheMemoryCache(nextServer);
-
-        expect(memoryCache.constructor.name).toEqual('LRUCache');
-    });
-
-    test('LRU memory cache object should have the expected functions', () => {
-        const memoryCache = getIncrementalCacheMemoryCache(nextServer);
-
-        expect(memoryCache.has).toBeInstanceOf(Function);
-        expect(memoryCache.del).toBeInstanceOf(Function);
-        expect(memoryCache.reset).toBeInstanceOf(Function);
-    });
-
-    test('getFsPath should be a function', () => {
-        const getFsPath = getIncrementalCacheGetFsPathFunction(nextServer);
-
-        expect(getFsPath).toBeInstanceOf(Function);
-    });
-
-    test('getFsPath function should have the expected return value', async () => {
-        const getFsPath = getIncrementalCacheGetFsPathFunction(nextServer);
-
-        const returnValue = await getFsPath('/test', false);
-
-        expect(returnValue.filePath).toMatch(/test$/);
-        expect(returnValue.isAppPath).toBe(false);
-    });
 });
 
 describe('Set next.js page cache dir', () => {
@@ -78,7 +46,6 @@ describe('Set next.js page cache dir', () => {
     beforeAll(async () => {
         await nextApp.prepare();
         nextServer = getNextServer(nextApp);
-        setPageCacheDir(nextServer);
     });
 
     afterEach(() => {
@@ -125,8 +92,6 @@ describe('Set next.js image cache dir', () => {
     beforeAll(async () => {
         await nextApp.prepare();
         nextServer = getNextServer(nextApp);
-
-        setImageCacheDir(nextServer);
     });
 
     afterEach(() => {
