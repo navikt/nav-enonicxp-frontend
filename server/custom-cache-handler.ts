@@ -3,10 +3,26 @@ import LRUCache from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import fs from 'fs';
 import { nodeFs } from 'next/dist/server/lib/node-fs-methods';
+import fsPromises from 'fs/promises';
 
 type FileSystemCacheParams = Partial<
     ConstructorParameters<typeof FileSystemCache>[0]
 >;
+
+// The type for this method is not exported from next.js
+// Be aware it may change when updating the next.js version
+type GetFsPathFunction = ({
+    pathname,
+    appDir,
+    fetchCache,
+}: {
+    pathname: string;
+    appDir?: boolean;
+    fetchCache?: boolean;
+}) => Promise<{
+    filePath: string;
+    isAppPath: boolean;
+}>;
 
 const { PAGE_CACHE_DIR, NODE_ENV } = process.env;
 
@@ -57,9 +73,11 @@ export default class CustomFileSystemCache extends FileSystemCache {
         isrMemoryCache.clear();
 
         try {
-            const { filePath } = await this['getFsPath']({
-                pathname: '',
-            });
+            const { filePath } = await (this['getFsPath'] as GetFsPathFunction)(
+                {
+                    pathname: '',
+                }
+            );
 
             if (fs.existsSync(filePath)) {
                 fs.rmSync(filePath, { recursive: true });
@@ -76,5 +94,31 @@ export default class CustomFileSystemCache extends FileSystemCache {
         }
     }
 
-    public async removeGlobalCacheEntry(path: string) {}
+    public async removeGlobalCacheEntry(path: string) {
+        const pagePath = path === '/' ? '/index' : path;
+
+        return Promise.all([
+            this.removePageCacheFile(`${pagePath}.html`),
+            this.removePageCacheFile(`${pagePath}.json`),
+        ]).catch((e) => {
+            console.error(
+                `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
+            );
+        });
+    }
+
+    private async removePageCacheFile(pathname: string) {
+        return (this['getFsPath'] as GetFsPathFunction)({
+            pathname: pathname,
+        })
+            .then(({ filePath }) => fsPromises.unlink(filePath))
+            .then(() => {
+                console.log(`Removed file from page cache: ${pathname}`);
+            })
+            .catch((e: any) => {
+                console.log(
+                    `Failed to remove file from page cache: ${pathname} - ${e}`
+                );
+            });
+    }
 }

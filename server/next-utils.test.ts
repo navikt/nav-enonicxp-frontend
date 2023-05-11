@@ -1,8 +1,4 @@
-import {
-    getIncrementalCacheGetFsPathFunction,
-    getNextBuildId,
-    getNextServer,
-} from './next-utils';
+import { getNextBuildId, getNextServer } from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
 import next from 'next';
 import path from 'path';

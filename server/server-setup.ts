@@ -8,7 +8,6 @@ import { handleInvalidatePathsReq } from './req-handlers/invalidate-paths';
 import { setCacheKey } from './req-handlers/set-cache-key';
 import { handleInvalidateAllReq } from './req-handlers/invalidate-all';
 import { handleGetPendingResponses } from './req-handlers/pending-responses';
-import { getRequestMeta } from 'next/dist/server/request-meta';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached
@@ -46,7 +45,7 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
         validateSecretMiddleware,
         jsonBodyParser,
         setCacheKey,
-        handleInvalidatePathsReq(nextServer)
+        handleInvalidatePathsReq
     );
 
     expressApp.get(

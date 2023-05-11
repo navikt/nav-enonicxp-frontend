@@ -1,12 +1,12 @@
 import { RequestHandler } from 'express';
-import CustomFileSystemCache from '../customCacheHandler';
+import CustomFileSystemCache from '../custom-cache-handler';
 
 export const handleInvalidateAllReq: RequestHandler = async (req, res) => {
     const { eventid } = req.headers;
 
-    const isrCache = new CustomFileSystemCache();
+    const isrCacheHandler = new CustomFileSystemCache();
 
-    const success = await isrCache.clearGlobalCache();
+    const success = await isrCacheHandler.clearGlobalCache();
 
     return success
         ? res
