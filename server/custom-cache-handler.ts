@@ -24,9 +24,12 @@ type GetFsPathFunction = ({
     isAppPath: boolean;
 }>;
 
+const CACHE_TTL_24_HOURS = 3600 * 24 * 1000;
+
 const isrMemoryCache = new LRUCache<string, CacheHandlerValue>({
     max: 1000,
-    ttl: 3600 * 24 * 1000,
+    ttl: CACHE_TTL_24_HOURS,
+    ttlResolution: 1000,
 });
 
 export default class CustomFileSystemCache extends FileSystemCache {
@@ -47,8 +50,17 @@ export default class CustomFileSystemCache extends FileSystemCache {
     }
 
     public async get(key: string, fetchCache?: boolean) {
-        const data = isrMemoryCache.get(key);
-        return data || super.get(key, fetchCache);
+        const dataFromMemoryCache = isrMemoryCache.get(key);
+        if (dataFromMemoryCache) {
+            return dataFromMemoryCache;
+        }
+
+        const dataFromFileSystemCache = await super.get(key, fetchCache);
+        if (dataFromFileSystemCache) {
+            isrMemoryCache.set(key, dataFromFileSystemCache);
+        }
+
+        return dataFromFileSystemCache;
     }
 
     public async set(key: string, data: CacheHandlerValue['value']) {
