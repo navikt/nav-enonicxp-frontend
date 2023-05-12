@@ -57,7 +57,7 @@ export default class CustomFileSystemCache extends FileSystemCache {
         }
 
         const dataFromFileSystemCache = await super.get(key, fetchCache);
-        if (dataFromFileSystemCache?.lastModified) {
+        if (dataFromFileSystemCache) {
             const ttlRemaining = dataFromFileSystemCache.lastModified
                 ? dataFromFileSystemCache.lastModified +
                   CACHE_TTL_24_HOURS -
