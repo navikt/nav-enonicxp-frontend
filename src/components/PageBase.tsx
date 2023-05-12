@@ -20,17 +20,6 @@ export const PageBase = (props: PageProps) => {
         return <FallbackPage />;
     }
 
-    // A redirect bug in Next will cause "/no/person#" to return 500 when a link tries to redirect to
-    // "/no/person" (without the hash). This will send the data through to BasePage even though
-    // a redirect directive was returned from getStaticProps. Therefore check for the __N_REDIRECT
-    // below and force a push and reload to finally end user up at NAV the redirect location.
-    // This issue does not apply to other URL's ending with a hash as redirecting seems to work properly there.
-    // Todo: Find the underlying problem why the "#" prevents proper redirect and instead passes through to PageBase component.
-    if (!props?.content && props.__N_REDIRECT) {
-        router.reload();
-        return;
-    }
-
     if (!props?.content) {
         return (
             <ErrorPage
