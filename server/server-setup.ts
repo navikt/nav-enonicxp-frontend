@@ -3,12 +3,7 @@ import { NextServer } from 'next/dist/server/next';
 import onHeaders from 'on-headers';
 
 import { validateSecret } from './req-handlers/validate-secret';
-import {
-    getNextBuildId,
-    getNextServer,
-    setImageCacheDir,
-    setPageCacheDir,
-} from './next-utils';
+import { getNextBuildId, getNextServer } from './next-utils';
 import { handleInvalidatePathsReq } from './req-handlers/invalidate-paths';
 import { setCacheKey } from './req-handlers/set-cache-key';
 import { handleInvalidateAllReq } from './req-handlers/invalidate-all';
@@ -34,9 +29,6 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
 
     console.log(`Current build id: ${currentBuildId}`);
 
-    setPageCacheDir(nextServer);
-    setImageCacheDir(nextServer);
-
     if (process.env.IS_EDITOR_ONLY === 'true') {
         expressApp.all(
             ['/draft/*', '/_next/*', '/gfx/*', '/api/*'],
@@ -53,14 +45,14 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
         validateSecretMiddleware,
         jsonBodyParser,
         setCacheKey,
-        handleInvalidatePathsReq(nextServer)
+        handleInvalidatePathsReq
     );
 
     expressApp.get(
         '/invalidate/wipe-all',
         validateSecretMiddleware,
         setCacheKey,
-        handleInvalidateAllReq(nextServer)
+        handleInvalidateAllReq
     );
 
     expressApp.get(

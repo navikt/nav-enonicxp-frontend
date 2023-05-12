@@ -1,68 +1,22 @@
-import fsPromises from 'fs/promises';
-import NextNodeServer from 'next/dist/server/next-server';
 import { RequestHandler } from 'express';
-import {
-    GetFsPathFunction,
-    getIncrementalCacheGetFsPathFunction,
-    getIncrementalCacheMemoryCache,
-} from '../next-utils';
+import CustomFileSystemCache from '../custom-cache-handler';
 
-const removePageCacheFile = async (
-    getFsPath: GetFsPathFunction,
-    pathname: string
-) =>
-    getFsPath(pathname, false)
-        .then(({ filePath }: { filePath: string }) =>
-            fsPromises.unlink(filePath)
-        )
-        .then(() => {
-            console.log(`Removed file from page cache: ${pathname}`);
-        })
-        .catch((e: any) => {
-            console.log(
-                `Failed to remove file from page cache: ${pathname} - ${e}`
-            );
-        });
+export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
+    const { eventid } = req.headers;
+    const { paths } = req.body;
 
-const invalidateCachedPage = async (
-    path: string,
-    nextServer: NextNodeServer
-) => {
-    const pagePath = path === '/' ? '/index' : path;
-    const getFsPath = getIncrementalCacheGetFsPathFunction(nextServer);
+    if (!Array.isArray(paths)) {
+        const msg = `Invalid path array for event ${eventid}`;
+        console.error(msg);
+        return res.status(400).send(msg);
+    }
 
-    return Promise.all([
-        removePageCacheFile(getFsPath, `${pagePath}.html`),
-        removePageCacheFile(getFsPath, `${pagePath}.json`),
-    ])
-        .then(() => {
-            console.log(`Removing page data from memory cache: ${pagePath}`);
-            const cacheHandler = getIncrementalCacheMemoryCache(nextServer);
-            cacheHandler.del(pagePath);
-        })
-        .catch((e) => {
-            console.error(
-                `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
-            );
-        });
+    const isrCacheHandler = new CustomFileSystemCache();
+
+    paths.forEach((path) => isrCacheHandler.deleteGlobalCacheEntry(path));
+
+    const msg = `Received cache invalidation event for ${paths.length} paths - event id ${eventid}`;
+    console.log(msg);
+
+    return res.status(200).send(msg);
 };
-
-export const handleInvalidatePathsReq =
-    (nextServer: NextNodeServer): RequestHandler =>
-    (req, res) => {
-        const { eventid } = req.headers;
-        const { paths } = req.body;
-
-        if (!Array.isArray(paths)) {
-            const msg = `Invalid path array for event ${eventid}`;
-            console.error(msg);
-            return res.status(400).send(msg);
-        }
-
-        paths.forEach((path) => invalidateCachedPage(path, nextServer));
-
-        const msg = `Received cache invalidation event for ${paths.length} paths - event id ${eventid}`;
-        console.log(msg);
-
-        return res.status(200).send(msg);
-    };

@@ -67,32 +67,25 @@ export const LenkeBase = ({
             ? BadLinkWarning
             : Fragment;
 
-    const linkElement = (
-        <a
-            href={url}
-            onClick={(e) => {
-                logAmplitudeEvent(
-                    analyticsEvent || AnalyticsEvents.NAVIGATION,
-                    analyticsData
-                );
-                onClick?.(e);
-            }}
-            rel={isNofollowUrl(url) ? 'nofollow' : undefined}
-            {...rest}
-        >
-            {children}
-        </a>
-    );
+    const LinkComponent = canRouteClientSide ? Link : 'a';
 
     return (
         <WrapperComponent>
-            {canRouteClientSide ? (
-                <Link href={url} passHref={true} prefetch={shouldPrefetch}>
-                    {linkElement}
-                </Link>
-            ) : (
-                linkElement
-            )}
+            <LinkComponent
+                {...rest}
+                href={url}
+                onClick={(e) => {
+                    logAmplitudeEvent(
+                        analyticsEvent || AnalyticsEvents.NAVIGATION,
+                        analyticsData
+                    );
+                    onClick?.(e);
+                }}
+                rel={isNofollowUrl(url) ? 'nofollow' : undefined}
+                prefetch={shouldPrefetch}
+            >
+                {children}
+            </LinkComponent>
         </WrapperComponent>
     );
 };
