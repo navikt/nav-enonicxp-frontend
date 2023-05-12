@@ -1,6 +1,6 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/compat/router';
 import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import { PageWrapper } from './PageWrapper';
 import { ContentMapper } from './ContentMapper';
