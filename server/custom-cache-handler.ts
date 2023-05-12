@@ -84,7 +84,7 @@ export default class CustomFileSystemCache extends FileSystemCache {
     public async deleteGlobalCacheEntry(path: string) {
         const pagePath = path === '/' ? '/index' : path;
 
-        isrMemoryCache.delete(path);
+        isrMemoryCache.delete(pagePath);
 
         return Promise.all([
             this.deletePageCacheFile(`${pagePath}.html`),
