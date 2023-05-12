@@ -80,7 +80,7 @@ export default class CustomFileSystemCache extends FileSystemCache {
     }
 
     public async clearGlobalCache() {
-        isrMemoryCache.clear();
+        let didClearFs;
 
         try {
             const { filePath } = await (this['getFsPath'] as GetFsPathFunction)(
@@ -95,28 +95,32 @@ export default class CustomFileSystemCache extends FileSystemCache {
 
             console.log(`Wiped all cached pages from ${filePath}`);
 
-            return true;
+            didClearFs = true;
         } catch (e) {
             console.error(
                 `Error occurred while wiping page-cache from disk - ${e}`
             );
-            return false;
+            didClearFs = false;
         }
+
+        isrMemoryCache.clear();
+
+        return didClearFs;
     }
 
     public async deleteGlobalCacheEntry(path: string) {
         const pagePath = path === '/' ? '/index' : path;
 
-        isrMemoryCache.delete(pagePath);
-
         return Promise.all([
             this.deletePageCacheFile(`${pagePath}.html`),
             this.deletePageCacheFile(`${pagePath}.json`),
-        ]).catch((e) => {
-            console.error(
-                `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
-            );
-        });
+        ])
+            .catch((e) => {
+                console.error(
+                    `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
+                );
+            })
+            .finally(() => isrMemoryCache.delete(pagePath));
     }
 
     private async deletePageCacheFile(pathname: string) {
