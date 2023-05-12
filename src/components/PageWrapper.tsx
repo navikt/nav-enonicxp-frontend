@@ -32,7 +32,6 @@ export const PageWrapper = (props: Props) => {
     const { content, children } = props;
     const { editorView } = content;
 
-    const [isFirstRender, setIsFirstRender] = useState(true);
     const router = useRouter();
 
     store.dispatch(
@@ -43,23 +42,6 @@ export const PageWrapper = (props: Props) => {
             editorView: content.editorView,
         })
     );
-
-    // Workaround for a next.js bug which breaks back/forwards navigation under certain
-    // circumstances after the user reloads the page. This may happen if either:
-    // 1. next.config.js has any rewrites defined
-    // 2. the url for the initial page or the target page has query parameters
-    //
-    // Ensuring that the shallow option is not set on the initial page fixes the issue.
-    useEffect(() => {
-        if (isFirstRender) {
-            router.replace(router.asPath, router.asPath, {
-                shallow: undefined,
-                locale: router.locale,
-                scroll: false,
-            });
-            setIsFirstRender(false);
-        }
-    }, [isFirstRender, router]);
 
     useEffect(() => {
         // Checking auth status is not supported when viewed via Content Studio
