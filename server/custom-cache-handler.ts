@@ -40,7 +40,8 @@ export default class CustomFileSystemCache extends FileSystemCache {
 
         super({
             ...ctx,
-            serverDistDir: process.env.PAGE_CACHE_DIR,
+            serverDistDir:
+                process.env.PAGE_CACHE_DIR || (ctx.serverDistDir as string),
             fs: ctx.fs || nodeFs,
             dev: ctx.dev ?? process.env.NODE_ENV === 'development',
             _appDir: ctx._appDir ?? false,
