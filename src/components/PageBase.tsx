@@ -1,7 +1,5 @@
 import React from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
-import { useRouter } from 'next/compat/router';
-import { FallbackPage } from './pages/fallback-page/FallbackPage';
 import { PageWrapper } from './PageWrapper';
 import { ContentMapper } from './ContentMapper';
 import { makeErrorProps } from 'utils/make-error-props';
@@ -14,12 +12,6 @@ type PageProps = {
 };
 
 export const PageBase = (props: PageProps) => {
-    const router = useRouter();
-
-    if (router.isFallback) {
-        return <FallbackPage />;
-    }
-
     if (!props?.content) {
         return (
             <ErrorPage
