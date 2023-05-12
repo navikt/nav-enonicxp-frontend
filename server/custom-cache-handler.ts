@@ -57,8 +57,18 @@ export default class CustomFileSystemCache extends FileSystemCache {
         }
 
         const dataFromFileSystemCache = await super.get(key, fetchCache);
-        if (dataFromFileSystemCache) {
-            isrMemoryCache.set(key, dataFromFileSystemCache);
+        if (dataFromFileSystemCache?.lastModified) {
+            const ttlRemaining = dataFromFileSystemCache.lastModified
+                ? dataFromFileSystemCache.lastModified +
+                  CACHE_TTL_24_HOURS -
+                  Date.now()
+                : CACHE_TTL_24_HOURS;
+
+            if (ttlRemaining > 1000) {
+                isrMemoryCache.set(key, dataFromFileSystemCache, {
+                    ttl: ttlRemaining,
+                });
+            }
         }
 
         return dataFromFileSystemCache;
