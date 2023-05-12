@@ -27,7 +27,7 @@ type GetFsPathFunction = ({
 const CACHE_TTL_24_HOURS = 3600 * 24 * 1000;
 
 const isrMemoryCache = new LRUCache<string, CacheHandlerValue>({
-    max: 1000,
+    max: 2000,
     ttl: CACHE_TTL_24_HOURS,
     ttlResolution: 1000,
 });
