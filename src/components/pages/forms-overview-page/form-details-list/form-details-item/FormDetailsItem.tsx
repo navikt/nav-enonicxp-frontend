@@ -13,6 +13,7 @@ import { FormDetailsListItem } from 'types/content-props/forms-overview';
 
 import style from '../../../overview-page/product-elements/ProductDetailsPanel.module.scss';
 import { ContentMapper } from 'components/ContentMapper';
+import { FormDetailsProps } from 'types/component-props/parts/form-details';
 
 type Props = {
     pageProps: ContentProps;
@@ -31,7 +32,9 @@ export const FormDetailsPanel = ({
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [formDetailsPages, setFormDetailsPages] = useState(null);
+    const [formDetailsPages, setFormDetailsPages] = useState<
+        null | ContentProps[]
+    >(null);
 
     const { language } = usePageConfig();
 
@@ -67,18 +70,19 @@ export const FormDetailsPanel = ({
 
         setIsLoading(true);
 
-        fetchPageCacheContent(formDetailsPaths[0])
+        Promise.all(formDetailsPaths.map(fetchPageCacheContent))
             .then((contentFromCache) => {
-                if (
-                    !contentFromCache ||
-                    contentFromCache.type !== ContentType.FormDetails
-                ) {
-                    setError('Teknisk feil: Kunne ikke laste skjemadetalj');
-                    return null;
-                }
+                const validFormDetails = contentFromCache.filter((content) => {
+                    if (!content || content.type !== ContentType.FormDetails) {
+                        setError('Teknisk feil: Kunne ikke laste skjemadetalj');
+                        return false;
+                    }
+
+                    return true;
+                });
 
                 setError(null);
-                setFormDetailsPages(contentFromCache);
+                setFormDetailsPages(validFormDetails);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -116,7 +120,12 @@ export const FormDetailsPanel = ({
                                 <BodyShort>{loadingText}</BodyShort>
                             </div>
                         ) : formDetailsPages ? (
-                            <ContentMapper content={formDetailsPages} />
+                            formDetailsPages.map((formDetail) => (
+                                <ContentMapper
+                                    content={formDetail}
+                                    key={formDetail._id}
+                                />
+                            ))
                         ) : null}
                     </Accordion.Content>
                 </Accordion.Item>
