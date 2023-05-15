@@ -1,4 +1,4 @@
-import { DynamicPageData } from './dynamic-page-props';
+import { DynamicPageData, SituationPageProps } from './dynamic-page-props';
 import { ContentType, ContentCommonProps } from './_content-common';
 import { Area } from '../areas';
 import { ProcessedHtmlProps } from '../processed-html-props';
@@ -15,6 +15,7 @@ type CommonData = {
 
 export type FrontPageData = {
     areasRefs: AreaPageProps[];
+    situationsRefs: SituationPageProps[];
     areasHeader: string;
 } & CommonData;
 

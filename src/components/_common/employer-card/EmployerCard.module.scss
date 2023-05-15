@@ -1,0 +1,21 @@
+.employerCard {
+    :global(.employer-frontpage) {
+        padding: 1.5rem;
+
+        a {
+            font-size: 1.5rem;
+        }
+
+        &:global(.employer-frontpage) {
+            background-color: var(--a-orange-100);
+            border: 0;
+
+            &:not(:hover):not(:active) {
+                box-shadow: 0 0 0;
+            }
+            &:hover {
+                box-shadow: 0 0 0;
+            }
+        }
+    }
+}
