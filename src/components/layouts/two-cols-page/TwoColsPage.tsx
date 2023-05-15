@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const TwoColsPage = ({ pageProps, layoutProps }: Props) => {
-    const { regions } = layoutProps;
+    const { regions, config } = layoutProps;
 
     if (!regions) {
         return null;
@@ -19,7 +19,9 @@ export const TwoColsPage = ({ pageProps, layoutProps }: Props) => {
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             <Region pageProps={pageProps} regionProps={regions.mainCol} />
-            <Region pageProps={pageProps} regionProps={regions.sideCol} />
+            {config.sideColToggle && (
+                <Region pageProps={pageProps} regionProps={regions.sideCol} />
+            )}
         </LayoutContainer>
     );
 };

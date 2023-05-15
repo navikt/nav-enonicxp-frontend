@@ -1,0 +1,17 @@
+.page {
+    display: grid;
+    column-gap: 1.5rem;
+    grid-template-columns: 1fr 5rem;
+    margin-left: 6.5rem;
+}
+
+.leftCol {
+    position: relative;
+}
+
+.illustration {
+    position: absolute;
+    width: 5rem;
+    height: 5rem;
+    left: -6.5rem;
+}
