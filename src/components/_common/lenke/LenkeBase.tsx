@@ -48,10 +48,6 @@ export const LenkeBase = ({
     const { pageConfig } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
 
-    // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
-    const shouldPrefetch =
-        prefetch === false || pageConfig.editorView ? false : undefined;
-
     const { url, canRouteClientSide } = usePublicUrl(href);
     const analyticsData = {
         komponent: analyticsComponent,
@@ -68,6 +64,12 @@ export const LenkeBase = ({
             : Fragment;
 
     const LinkComponent = canRouteClientSide ? Link : 'a';
+
+    // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
+    const shouldPrefetch =
+        canRouteClientSide && (prefetch === false || pageConfig.editorView)
+            ? false
+            : undefined;
 
     return (
         <WrapperComponent>

@@ -14,6 +14,7 @@ import { ProductPageFlexColsLayoutProps } from './layouts/product-flex-cols';
 import { IndexPageProps } from './pages/index-page';
 import { AreapageSituationsProps } from './layouts/areapage-situations';
 import { FrontpageLoggedinSectionLayoutProps } from './layouts/frontpage-loggedin-section';
+import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
 
 export enum LayoutType {
     Fixed1Col = 'no.nav.navno:dynamic-1-col',
@@ -32,6 +33,7 @@ export enum LayoutType {
     IndexPage = 'no.nav.navno:index-page',
     AreapageSituations = 'no.nav.navno:areapage-situations',
     FrontpageLoggedinSection = 'no.nav.navno:frontpage-loggedin-section',
+    TwoColsPage = 'no.nav.navno:two-cols-page',
 }
 
 export type RegionProps<Name = string> = {
@@ -61,4 +63,5 @@ export type LayoutProps =
     | ProductPageFlexColsLayoutProps
     | IndexPageProps
     | AreapageSituationsProps
-    | FrontpageLoggedinSectionLayoutProps;
+    | FrontpageLoggedinSectionLayoutProps
+    | TwoColsPageProps;

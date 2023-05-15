@@ -3,7 +3,7 @@ import { ContentProps } from '../content-props/_content-common';
 import { TypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
 import { Taxonomy } from 'types/taxonomies';
-import { AuthStateType } from '../../store/slices/authState';
+import { AuthStateType } from 'store/slices/authState';
 import { EmptyObject, OptionSetSingle } from '../util-types';
 import { Area } from 'types/areas';
 import { ProductDetailType } from 'types/content-props/product-details';

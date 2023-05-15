@@ -7,14 +7,16 @@ import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 
 export type FormsOverviewFormDetailsList = {};
 
+type AudienceOptions = {
+    person: {};
+    employer: {};
+    provider: {}; // TODO: add sub-categories
+};
+
 export type FormsOverviewData = {
     title: string;
     ingress: string;
-    audience: OptionSetSingle<{
-        privatperson: {};
-        arbeidsgiver: {};
-        samarbeidspartner: {}; // TODO: add sub-categories
-    }>;
+    audience: OptionSetSingle<AudienceOptions>;
     illustration: AnimatedIconsProps;
     showFilter: boolean;
     formDetailsList: FormsOverviewFormDetailsList;

@@ -15,6 +15,7 @@ import { IndexPage } from './index-page/IndexPage';
 import { useLayoutConfig } from './useLayoutConfig';
 import { AreapageSituationsLayout } from './areapage-situations/AreapageSituationsLayout';
 import { FrontpageLoggedinSectionLayout } from './frontpage-loggedin-section/FrontpageLoggedinSectionLayout';
+import { TwoColsPage } from 'components/layouts/two-cols-page/TwoColsPage';
 
 type Props = {
     pageProps: ContentProps;
@@ -40,6 +41,7 @@ const layoutComponents: {
     [LayoutType.IndexPage]: IndexPage,
     [LayoutType.AreapageSituations]: AreapageSituationsLayout,
     [LayoutType.FrontpageLoggedinSection]: FrontpageLoggedinSectionLayout,
+    [LayoutType.TwoColsPage]: TwoColsPage,
 };
 
 export const LayoutMapper = ({ pageProps, layoutProps }: Props) => {
