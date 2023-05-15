@@ -24,8 +24,8 @@ const linkToIconDictionary = {
     pengestotter,
     soknader,
     'min-side-arbeidsgiver': arbeidsgiverMinside,
-    'soeknader/nb/bedrift': arbeidsgiverSoknader,
-    'tjenester/nb/bedrift': arbeidsgiverTjenester,
+    'soknader/nb/bedrift': arbeidsgiverSoknader,
+    tilganger: arbeidsgiverTjenester,
 };
 
 export const FrontpageShortcuts = ({

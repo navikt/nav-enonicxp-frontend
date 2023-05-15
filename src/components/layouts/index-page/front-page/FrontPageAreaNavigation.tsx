@@ -45,7 +45,10 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                                         situationPage.data.illustration
                                     }
                                     path={situationPage._path}
-                                    title={situationPage.data.title}
+                                    title={
+                                        situationPage.data.title ||
+                                        situationPage.displayName
+                                    }
                                 />
                             </li>
                         );
