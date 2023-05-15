@@ -10,10 +10,9 @@ import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { FormDetailsListItem } from 'types/content-props/forms-overview';
+import { ContentMapper } from 'components/ContentMapper';
 
 import style from '../../../overview-page/product-elements/ProductDetailsPanel.module.scss';
-import { ContentMapper } from 'components/ContentMapper';
-import { FormDetailsProps } from 'types/component-props/parts/form-details';
 
 type Props = {
     pageProps: ContentProps;
@@ -74,7 +73,9 @@ export const FormDetailsPanel = ({
             .then((contentFromCache) => {
                 const validFormDetails = contentFromCache.filter((content) => {
                     if (!content || content.type !== ContentType.FormDetails) {
-                        setError('Teknisk feil: Kunne ikke laste skjemadetalj');
+                        setError(
+                            'Teknisk feil: Noen av skjemainngangene kunne ikke lastes'
+                        );
                         return false;
                     }
 
