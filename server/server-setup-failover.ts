@@ -1,16 +1,11 @@
 import { Express } from 'express';
 import { NextServer } from 'next/dist/server/next';
 
-import { getNextServer, setImageCacheDir } from './next-utils';
-
 export const serverSetupFailover = (
     expressApp: Express,
     nextApp: NextServer
 ) => {
     const nextRequestHandler = nextApp.getRequestHandler();
-    const nextServer = getNextServer(nextApp);
-
-    setImageCacheDir(nextServer);
 
     // Assets from /_next and internal apis should be served as normal
     expressApp.get(['/_next/*', '/api/internal/*'], (req, res) => {

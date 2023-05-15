@@ -5,7 +5,7 @@ import { Heading, Loader } from '@navikt/ds-react';
 import { VersionStatus } from './status/VersionStatus';
 import { VersionSelector } from './selector/VersionSelector';
 import { translator } from 'translations';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/compat/router';
 import { Chevron } from '../../_common/chevron/Chevron';
 
 import style from './VersionHistory.module.scss';
@@ -41,10 +41,7 @@ export const VersionHistory = ({ content }: Props) => {
     }, [versionUrlRequested, router]);
 
     return (
-        <nav
-            className={style.versionHistory}
-            aria-label={getLabel('label')}
-        >
+        <nav className={style.versionHistory} aria-label={getLabel('label')}>
             {!versionUrlRequested && timeRequested && (
                 <VersionStatus
                     content={content}
