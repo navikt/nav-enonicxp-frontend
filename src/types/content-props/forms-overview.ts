@@ -5,8 +5,17 @@ import {
 import { OptionSetSingle } from 'types/util-types';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
+import { Area } from 'types/areas';
+import { Taxonomy } from 'types/taxonomies';
 
-export type FormDetailsListProps = {};
+export type FormDetailsListItem = {
+    title: string;
+    anchorId: string;
+    illustration: AnimatedIconsProps;
+    area: Area[];
+    taxonomy: Taxonomy[];
+    formDetailsPaths: string[];
+};
 
 type AudienceOptions = {
     person: {};
@@ -20,7 +29,7 @@ export type FormsOverviewData = {
     audience: OptionSetSingle<AudienceOptions>;
     illustration: AnimatedIconsProps;
     showFilter: boolean;
-    formDetailsList: FormDetailsListProps;
+    formDetailsList: FormDetailsListItem[];
 };
 
 export type FormsOverviewProps = ContentCommonProps & {

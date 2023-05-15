@@ -35,10 +35,14 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
                 />
                 <FormsOverviewHeader {...props} />
                 <FormsOverviewFilters />
-                <FormsOverviewFormDetailsList />
+                <FormsOverviewFormDetailsList {...props} />
             </div>
             {config.sideColToggle && (
-                <Region pageProps={props} regionProps={regions.sideCol} />
+                <Region
+                    pageProps={props}
+                    regionProps={regions.sideCol}
+                    className={style.rightCol}
+                />
             )}
         </div>
     );

@@ -1,12 +1,16 @@
 .page {
     display: grid;
     column-gap: 1.5rem;
-    grid-template-columns: 1fr 5rem;
+    grid-template-columns: 1fr 15rem;
     margin-left: 6.5rem;
 }
 
 .leftCol {
     position: relative;
+}
+
+.rightCol {
+    width: 100%;
 }
 
 .illustration {
