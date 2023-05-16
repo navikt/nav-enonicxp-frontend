@@ -9,7 +9,7 @@
         color: var(--a-text-default);
 
         &:hover {
-            background-color: var(--a-surface-action-subtle-hover);
+            background-color: var(--a-deepblue-100);
             box-shadow: none;
         }
         &:not(:last-of-type) {
@@ -18,7 +18,7 @@
     }
 
     :global(.navds-tabs__tab[aria-selected='true']:not(:focus)) {
-        background-color: var(--a-surface-action-subtle);
+        background-color: var(--a-deepblue-50);
         box-shadow: none;
     }
 }
