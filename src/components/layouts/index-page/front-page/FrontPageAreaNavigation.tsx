@@ -13,7 +13,7 @@ type Props = {
 
 export const FrontPageAreaNavigation = ({ content }: Props) => {
     const { data } = content;
-    const { areasHeader, areasRefs, situationsRefs, audience } = data;
+    const { areasHeader, areasRefs = [], situationsRefs = [], audience } = data;
 
     return (
         <div className={classNames(style.wrapper, style[audience])}>
