@@ -1,4 +1,6 @@
 .employerCard {
+    margin-bottom: 0;
+
     :global(.employer-frontpage) {
         padding: 1.5rem;
 
@@ -7,7 +9,7 @@
         }
 
         &:global(.employer-frontpage) {
-            background-color: var(--a-orange-100);
+            background-color: var(--a-orange-200);
             border: 0;
 
             &:not(:hover):not(:active) {

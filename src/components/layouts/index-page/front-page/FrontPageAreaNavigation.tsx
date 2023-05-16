@@ -42,11 +42,11 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                             <li key={situationPage._id}>
                                 <EmployerCard
                                     illustration={
-                                        situationPage.data.illustration
+                                        situationPage.data?.illustration
                                     }
                                     path={situationPage._path}
                                     title={
-                                        situationPage.data.title ||
+                                        situationPage.data?.title ||
                                         situationPage.displayName
                                     }
                                 />
