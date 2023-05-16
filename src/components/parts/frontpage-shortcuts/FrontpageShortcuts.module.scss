@@ -1,7 +1,7 @@
 @use 'src/common' as common;
 
 .shortcuts {
-    background-color: common.$navPink;
+    background-color: var(--a-red-50);
     padding-top: 2.75rem;
     padding-bottom: 4rem;
 
