@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
-import { SimplifiedProductData } from 'types/component-props/_mixins';
 import { Area } from 'types/areas';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { OverviewPageFilter } from 'components/pages/overview-page/filter/OverviewPageFilter';
 
-interface OverviewFilterProps {
+type Props = {
     filterUpdateCallback: (filters: Area) => void;
-    productList: SimplifiedProductData[];
-}
+    contentList: Array<{ area: Area[] }>;
+};
 
-export const AreaFilter = ({
-    filterUpdateCallback,
-    productList,
-}: OverviewFilterProps) => {
+export const AreaFilter = ({ filterUpdateCallback, contentList }: Props) => {
     const [currentArea, setCurrentArea] = useState<Area>(Area.ALL);
 
     const handleFilterUpdate = (area: Area) => {
@@ -24,8 +20,8 @@ export const AreaFilter = ({
         filterUpdateCallback(area);
     };
 
-    const areasInProductList = Object.values(Area).filter((area) =>
-        productList.some((product) =>
+    const areasInContentList = Object.values(Area).filter((area) =>
+        contentList.some((product) =>
             product.area.some((areaItem) => areaItem === area)
         )
     );
@@ -35,7 +31,7 @@ export const AreaFilter = ({
             type={'areas'}
             selectionCallback={handleFilterUpdate}
             selected={currentArea}
-            options={[Area.ALL, ...areasInProductList]}
+            options={[Area.ALL, ...areasInContentList]}
         />
     );
 };
