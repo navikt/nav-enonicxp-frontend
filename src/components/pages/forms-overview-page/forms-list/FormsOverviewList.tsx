@@ -7,10 +7,12 @@ import { FormDetailsPanel } from 'components/pages/forms-overview-page/forms-lis
 import { FormsOverviewFilters } from 'components/pages/forms-overview-page/filters/FormsOverviewFilters';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
+import { BodyShort } from '@navikt/ds-react';
+
+import style from './FormsOverviewList.module.scss';
 
 export const FormsOverviewList = (props: FormsOverviewProps) => {
-    const { data } = props;
-    const { formDetailsList, showFilter } = data;
+    const { formDetailsList, showFilter } = props.data;
 
     const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
     const [taxonomyFilter, setTaxonomyFilter] = useState<ProductTaxonomy>(
@@ -21,11 +23,17 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
     const isVisiblePredicate = (formDetailsItem: FormDetailsListItem) => {
         const isAreaMatching =
             areaFilter === Area.ALL ||
-            formDetailsItem.area.some((area) => area === areaFilter);
+            formDetailsItem.area.includes(areaFilter);
+        if (!isAreaMatching) {
+            return false;
+        }
 
         const isTaxonomyMatching =
             taxonomyFilter === ProductTaxonomy.ALL ||
             formDetailsItem.taxonomy.includes(taxonomyFilter);
+        if (!isTaxonomyMatching) {
+            return false;
+        }
 
         const isSearchMatching =
             !searchString ||
@@ -33,20 +41,26 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 .toLowerCase()
                 .includes(searchString.toLowerCase());
 
-        return isAreaMatching && isSearchMatching && isTaxonomyMatching;
+        return isSearchMatching;
     };
+
+    const numMatchingFilters =
+        formDetailsList.filter(isVisiblePredicate).length;
 
     return (
         <div>
             <FormsOverviewFilters
-                setTaxonomyFilter={setTaxonomyFilter}
-                setAreaFilter={setAreaFilter}
-                setTextInputFilter={setSearchString}
                 contentList={formDetailsList}
                 showAreaFilter={true}
                 showTaxonomyFilter={true}
                 showTextInputFilter={showFilter}
+                setTaxonomyFilter={setTaxonomyFilter}
+                setAreaFilter={setAreaFilter}
+                setTextInputFilter={setSearchString}
             />
+            <BodyShort className={style.filterSummary}>
+                {`Viser ${numMatchingFilters} av ${formDetailsList.length}`}
+            </BodyShort>
             {formDetailsList.map((formDetail) => (
                 <FormDetailsPanel
                     formDetails={formDetail}

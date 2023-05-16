@@ -2,7 +2,7 @@ import React from 'react';
 import { AreaFilter } from 'components/pages/overview-page/filter/area-filter/AreaFilter';
 import { Area } from 'types/areas';
 import { TaxonomyFilter } from 'components/pages/overview-page/filter/taxonomy-filter/TaxonomyFilter';
-import { ProductTaxonomy, Taxonomy } from 'types/taxonomies';
+import { ProductTaxonomy } from 'types/taxonomies';
 import { OverviewSearch } from 'components/pages/overview-page/overview-search/OverviewSearch';
 import { ContentType } from 'types/content-props/_content-common';
 import { translator } from 'translations';
@@ -17,20 +17,20 @@ type ContentItem = {
 };
 
 type Props = {
+    contentList: ContentItem[];
     showTextInputFilter: boolean;
     showTaxonomyFilter: boolean;
     showAreaFilter: boolean;
-    contentList: ContentItem[];
     setAreaFilter: (area: Area) => void;
     setTaxonomyFilter: (taxonomy: ProductTaxonomy) => void;
     setTextInputFilter: (inputString: string) => void;
 };
 
 export const FormsOverviewFilters = ({
+    contentList,
     showTextInputFilter,
     showAreaFilter,
     showTaxonomyFilter,
-    contentList,
     setTaxonomyFilter,
     setTextInputFilter,
     setAreaFilter,
