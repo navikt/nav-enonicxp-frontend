@@ -1,19 +1,23 @@
 @use 'src/common' as common;
 
+$metadataIndent: 2.375rem;
+
+
 .singleReception {
     background-color: var(--a-deepblue-50);
     border-radius: var(--a-border-radius-small);
-    padding: common.$padding-sides-mobile;
+    padding: common.$sectionPaddingMobile;
 
     @media #{common.$mq-screen-tablet} {
-        padding: common.$padding-sides-tablet;
+        padding: common.$sectionPaddingTablet;
     }
 
     @media #{common.$mq-screen-desktop} {
-        padding: common.$padding-sides-desktop;
+        padding: common.$sectionPaddingDesktop;
     }
 
     table {
+        margin-left: $metadataIndent;
         margin-bottom: 1.6rem;
         width: auto;
         th,
@@ -60,13 +64,13 @@
 .iconPlace {
     width: 30px;
     height: 30px;
-    transform: translateX(-1px);
+    transform: translateX(-2px);
 }
 
 .iconClock {
+    width: 22px;
     height: 22px;
     margin: -2px 0.7rem 0 0.1rem;
-    width: 22px;
 }
 
 .address {
@@ -74,15 +78,18 @@
 }
 
 .addressLine {
+    margin-left: $metadataIndent;
     margin-bottom: 1rem;
 }
 
 .appointmentBookingInfo {
     display: flex;
+    gap: 0.375rem;
 }
 
-.appointmentIcon {
-    margin: 0.2rem 0.5rem 0 0;
-    width: 20px;
-    height: 20px;
+.iconInfo {
+    margin: 2px 0.5rem 0 0;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
 }

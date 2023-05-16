@@ -1,16 +1,16 @@
 @use 'src/common' as common;
 
 .phonePoster {
-    padding: common.$padding-sides-mobile;
     background-color: var(--a-gray-50);
     border-radius: var(--a-border-radius-small);
+    padding: common.$sectionPaddingMobile;
 
     @media #{common.$mq-screen-tablet} {
-        padding: common.$padding-sides-tablet;
+        padding: common.$sectionPaddingTablet;
     }
 
     @media #{common.$mq-screen-desktop} {
-        padding: common.$padding-sides-desktop;
+        padding: common.$sectionPaddingDesktop;
     }
 }
 
