@@ -22,7 +22,7 @@ import style from './FrontpageShortcuts.module.scss';
 const linkToIconDictionary = {
     saksbehandlingstider,
     utbetalingsdatoer,
-    pengestotter,
+    tjenester: pengestotter,
     soknader,
     'min-side-arbeidsgiver': arbeidsgiverMinside,
     'soknader/nb/bedrift': arbeidsgiverSoknader,
