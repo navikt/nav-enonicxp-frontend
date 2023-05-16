@@ -12,7 +12,7 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { FormDetailsListItemProps } from 'types/content-props/forms-overview';
 import { ContentMapper } from 'components/ContentMapper';
 
-import style from 'components/pages/overview-page/product-elements/ProductDetailsPanel.module.scss';
+import style from '../../overview-page/product-elements/ProductDetailsPanel.module.scss';
 
 type Props = {
     formDetails: FormDetailsListItemProps;
