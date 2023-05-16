@@ -3,14 +3,14 @@
 .singleReception {
     background-color: var(--a-deepblue-50);
     border-radius: var(--a-border-radius-small);
-    padding: common.$padding-sides-mobile;
+    padding: common.$sectionPaddingMobile;
 
     @media #{common.$mq-screen-tablet} {
-        padding: common.$padding-sides-tablet;
+        padding: common.$sectionPaddingTablet;
     }
 
     @media #{common.$mq-screen-desktop} {
-        padding: common.$padding-sides-desktop;
+        padding: common.$sectionPaddingDesktop;
     }
 
     table {
