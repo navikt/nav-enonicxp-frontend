@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
-import { FormDetailsListItemProps } from 'types/content-props/forms-overview';
 
 type FiltersState = {
     areaFilter: Area;
+    setAreaFilter: (area: Area) => void;
     taxonomyFilter: ProductTaxonomy;
+    setTaxonomyFilter: (taxonomy: ProductTaxonomy) => void;
     textFilter: string;
+    setTextFilter: (text: string) => void;
 };
 
 type FilterableContent = {
@@ -15,30 +17,28 @@ type FilterableContent = {
     taxonomy: ProductTaxonomy[];
 };
 
-const defaultState = {
+const defaultState: FiltersState = {
     textFilter: '',
     areaFilter: Area.ALL,
     taxonomyFilter: ProductTaxonomy.ALL,
+    setTaxonomyFilter: () => ({}),
+    setAreaFilter: () => ({}),
+    setTextFilter: () => ({}),
 };
 
 const FiltersContext = React.createContext<FiltersState>(defaultState);
 
 export const useOverviewFilters = () => {
-    const filtersState = useContext(FiltersContext);
-
-    const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
-    const [taxonomyFilter, setTaxonomyFilter] = useState<ProductTaxonomy>(
-        ProductTaxonomy.ALL
-    );
-    const [textFilter, setTextFilter] = useState<string>('');
+    const state = useContext(FiltersContext);
+    const [textFilter, setTextFilter] = useState('');
+    const [areaFilter, setAreaFilter] = useState(Area.ALL);
+    const [taxonomyFilter, setTaxonomyFilter] = useState(ProductTaxonomy.ALL);
 
     const resetFilters = () => {
         setTextFilter(defaultState.textFilter);
         setAreaFilter(defaultState.areaFilter);
         setTaxonomyFilter(defaultState.taxonomyFilter);
     };
-
-    console.log(filtersState, areaFilter, taxonomyFilter);
 
     const isMatchingFilters = (filterableContent: FilterableContent) => {
         const isAreaMatching =
@@ -65,19 +65,23 @@ export const useOverviewFilters = () => {
     };
 
     return {
-        setAreaFilter,
-        setTaxonomyFilter,
-        setTextFilter,
+        ...state,
         resetFilters,
         isMatchingFilters,
-        filtersState,
         OverviewFiltersProvider: ({
             children,
         }: {
             children: React.ReactNode;
         }) => (
             <FiltersContext.Provider
-                value={{ textFilter, taxonomyFilter, areaFilter }}
+                value={{
+                    textFilter,
+                    taxonomyFilter,
+                    areaFilter,
+                    setTaxonomyFilter,
+                    setTextFilter,
+                    setAreaFilter,
+                }}
             >
                 {children}
             </FiltersContext.Provider>

@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     FormDetailsListItemProps,
     FormsOverviewProps,
 } from 'types/content-props/forms-overview';
 import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/forms-list/FormsOverviewListPanel';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
-import { Area } from 'types/areas';
-import { ProductTaxonomy } from 'types/taxonomies';
 import { BodyShort } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { useOverviewFilters } from 'components/_common/overview-filters/filter-context/useOverviewFilters';
 
 import style from './FormsOverviewList.module.scss';
-import { useOverviewFilters } from 'components/_common/overview-filters/filter-context/useOverviewFilters';
 
 export const FormsOverviewList = (props: FormsOverviewProps) => {
     const { formDetailsList, showFilter } = props.data;
 
-    const { resetFilters, isMatchingFilters } = useOverviewFilters();
+    const { resetFilters, isMatchingFilters, OverviewFiltersProvider } =
+        useOverviewFilters();
 
     const isVisible = (formDetail: FormDetailsListItemProps) =>
         isMatchingFilters({
@@ -29,12 +28,14 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
 
     return (
         <div>
-            <OverviewFilters
-                contentList={formDetailsList}
-                showAreaFilter={true}
-                showTaxonomyFilter={true}
-                showTextInputFilter={showFilter}
-            />
+            <OverviewFiltersProvider>
+                <OverviewFilters
+                    contentList={formDetailsList}
+                    showAreaFilter={true}
+                    showTaxonomyFilter={true}
+                    showTextInputFilter={showFilter}
+                />
+            </OverviewFiltersProvider>
             <div className={style.filterSummary}>
                 <BodyShort>
                     {`Viser ${numMatchingFilters} av ${formDetailsList.length}`}

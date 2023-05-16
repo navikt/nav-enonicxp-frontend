@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const TaxonomyFilter = ({ contentList }: Props) => {
-    const { setTaxonomyFilter, filtersState } = useOverviewFilters();
+    const { setTaxonomyFilter, taxonomyFilter } = useOverviewFilters();
 
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
@@ -41,7 +41,7 @@ export const TaxonomyFilter = ({ contentList }: Props) => {
         <OverviewPageFilter
             type={'taxonomies'}
             selectionCallback={handleFilterUpdate}
-            selected={filtersState.taxonomyFilter}
+            selected={taxonomyFilter}
             options={[ProductTaxonomy.ALL, ...taxonomiesInProductList]}
         />
     );

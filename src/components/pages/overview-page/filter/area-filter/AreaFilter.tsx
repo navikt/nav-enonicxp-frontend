@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const AreaFilter = ({ contentList }: Props) => {
-    const { setAreaFilter, filtersState } = useOverviewFilters();
+    const { setAreaFilter, areaFilter } = useOverviewFilters();
 
     const handleFilterUpdate = (area: Area) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
@@ -29,7 +29,7 @@ export const AreaFilter = ({ contentList }: Props) => {
         <OverviewPageFilter
             type={'areas'}
             selectionCallback={handleFilterUpdate}
-            selected={filtersState.areaFilter}
+            selected={areaFilter}
             options={[Area.ALL, ...areasInContentList]}
         />
     );

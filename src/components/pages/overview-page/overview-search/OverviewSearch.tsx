@@ -22,7 +22,7 @@ type OverviewSearchProps = {
 };
 
 export const OverviewSearch = ({ label }: OverviewSearchProps) => {
-    const { setTextFilter, filtersState } = useOverviewFilters();
+    const { setTextFilter, textFilter } = useOverviewFilters();
 
     const searchEventHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
@@ -34,7 +34,7 @@ export const OverviewSearch = ({ label }: OverviewSearchProps) => {
         <div className={style.overviewSearch}>
             <TextField
                 label={label}
-                value={filtersState.textFilter}
+                value={textFilter}
                 onChange={searchEventHandler}
             />
         </div>
