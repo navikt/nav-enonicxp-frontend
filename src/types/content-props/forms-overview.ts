@@ -8,7 +8,7 @@ import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
 
-export type FormDetailsListItem = {
+export type FormDetailsListItemProps = {
     title: string;
     anchorId: string;
     illustration: AnimatedIconsProps;
@@ -29,7 +29,7 @@ export type FormsOverviewData = {
     audience: OptionSetSingle<AudienceOptions>;
     illustration: AnimatedIconsProps;
     showFilter: boolean;
-    formDetailsList: FormDetailsListItem[];
+    formDetailsList: FormDetailsListItemProps[];
 };
 
 export type FormsOverviewProps = ContentCommonProps & {

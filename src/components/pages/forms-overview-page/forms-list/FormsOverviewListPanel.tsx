@@ -9,17 +9,17 @@ import { translator } from 'translations';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { FormDetailsListItem } from 'types/content-props/forms-overview';
+import { FormDetailsListItemProps } from 'types/content-props/forms-overview';
 import { ContentMapper } from 'components/ContentMapper';
 
 import style from 'components/pages/overview-page/product-elements/ProductDetailsPanel.module.scss';
 
 type Props = {
-    formDetails: FormDetailsListItem;
+    formDetails: FormDetailsListItemProps;
     visible: boolean;
 };
 
-export const FormDetailsPanel = ({ formDetails, visible }: Props) => {
+export const FormsOverviewListPanel = ({ formDetails, visible }: Props) => {
     const { anchorId, illustration, formDetailsPaths, title, area, taxonomy } =
         formDetails;
 

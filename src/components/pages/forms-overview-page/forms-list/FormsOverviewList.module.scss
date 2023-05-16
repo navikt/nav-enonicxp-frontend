@@ -1,6 +1,8 @@
 @use 'src/common' as common;
 
 .filterSummary {
+    display: flex;
+    justify-content: space-between;
     border-bottom: 1px common.$a-gray-300 solid;
     padding: 0.4rem 0;
 }

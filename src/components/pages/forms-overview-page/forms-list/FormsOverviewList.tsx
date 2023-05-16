@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import {
-    FormDetailsListItem,
+    FormDetailsListItemProps,
     FormsOverviewProps,
 } from 'types/content-props/forms-overview';
-import { FormDetailsPanel } from 'components/pages/forms-overview-page/forms-list/FormDetailsItem';
+import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/forms-list/FormsOverviewListPanel';
 import { FormsOverviewFilters } from 'components/pages/forms-overview-page/filters/FormsOverviewFilters';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { BodyShort } from '@navikt/ds-react';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 import style from './FormsOverviewList.module.scss';
 
@@ -20,7 +21,13 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
     );
     const [searchString, setSearchString] = useState<string>('');
 
-    const isVisiblePredicate = (formDetailsItem: FormDetailsListItem) => {
+    const resetFilters = () => {
+        setSearchString('');
+        setAreaFilter(Area.ALL);
+        setTaxonomyFilter(ProductTaxonomy.ALL);
+    };
+
+    const isVisiblePredicate = (formDetailsItem: FormDetailsListItemProps) => {
         const isAreaMatching =
             areaFilter === Area.ALL ||
             formDetailsItem.area.includes(areaFilter);
@@ -58,11 +65,22 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 setAreaFilter={setAreaFilter}
                 setTextInputFilter={setSearchString}
             />
-            <BodyShort className={style.filterSummary}>
-                {`Viser ${numMatchingFilters} av ${formDetailsList.length}`}
-            </BodyShort>
+            <div className={style.filterSummary}>
+                <BodyShort>
+                    {`Viser ${numMatchingFilters} av ${formDetailsList.length}`}
+                </BodyShort>
+                <LenkeBase
+                    href={'#'}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        resetFilters();
+                    }}
+                >
+                    {'Nullstill'}
+                </LenkeBase>
+            </div>
             {formDetailsList.map((formDetail) => (
-                <FormDetailsPanel
+                <FormsOverviewListPanel
                     formDetails={formDetail}
                     visible={isVisiblePredicate(formDetail)}
                     key={formDetail.anchorId}
