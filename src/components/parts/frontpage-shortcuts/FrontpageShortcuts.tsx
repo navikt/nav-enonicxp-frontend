@@ -23,7 +23,7 @@ const linkToIconDictionary = {
     saksbehandlingstider,
     utbetalingsdatoer,
     tjenester: pengestotter,
-    soknader,
+    'soknader/nb/person': soknader,
     'min-side-arbeidsgiver': arbeidsgiverMinside,
     'soknader/nb/bedrift': arbeidsgiverSoknader,
     tilganger: arbeidsgiverTjenester,
@@ -51,6 +51,7 @@ export const FrontpageShortcuts = ({
 
             return content._path.includes(key);
         });
+        console.log(foundKey);
         return foundKey ? linkToIconDictionary[foundKey] : null;
     };
 
@@ -71,7 +72,6 @@ export const FrontpageShortcuts = ({
             >
                 {links.map((item, index) => {
                     const icon = getIcon(item);
-                    console.log(item);
                     return (
                         <li key={item._id}>
                             <LinkPanelNavnoSimple
