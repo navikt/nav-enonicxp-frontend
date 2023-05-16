@@ -4,66 +4,36 @@ import {
     FormsOverviewProps,
 } from 'types/content-props/forms-overview';
 import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/forms-list/FormsOverviewListPanel';
-import { FormsOverviewFilters } from 'components/pages/forms-overview-page/filters/FormsOverviewFilters';
+import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { BodyShort } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 import style from './FormsOverviewList.module.scss';
+import { useOverviewFilters } from 'components/_common/overview-filters/filter-context/useOverviewFilters';
 
 export const FormsOverviewList = (props: FormsOverviewProps) => {
     const { formDetailsList, showFilter } = props.data;
 
-    const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
-    const [taxonomyFilter, setTaxonomyFilter] = useState<ProductTaxonomy>(
-        ProductTaxonomy.ALL
-    );
-    const [searchString, setSearchString] = useState<string>('');
+    const { resetFilters, isMatchingFilters } = useOverviewFilters();
 
-    const resetFilters = () => {
-        setSearchString('');
-        setAreaFilter(Area.ALL);
-        setTaxonomyFilter(ProductTaxonomy.ALL);
-    };
+    const isVisible = (formDetail: FormDetailsListItemProps) =>
+        isMatchingFilters({
+            text: formDetail.title,
+            area: formDetail.area,
+            taxonomy: formDetail.taxonomy,
+        });
 
-    const isVisiblePredicate = (formDetailsItem: FormDetailsListItemProps) => {
-        const isAreaMatching =
-            areaFilter === Area.ALL ||
-            formDetailsItem.area.includes(areaFilter);
-        if (!isAreaMatching) {
-            return false;
-        }
-
-        const isTaxonomyMatching =
-            taxonomyFilter === ProductTaxonomy.ALL ||
-            formDetailsItem.taxonomy.includes(taxonomyFilter);
-        if (!isTaxonomyMatching) {
-            return false;
-        }
-
-        const isSearchMatching =
-            !searchString ||
-            formDetailsItem.title
-                .toLowerCase()
-                .includes(searchString.toLowerCase());
-
-        return isSearchMatching;
-    };
-
-    const numMatchingFilters =
-        formDetailsList.filter(isVisiblePredicate).length;
+    const numMatchingFilters = formDetailsList.filter(isVisible).length;
 
     return (
         <div>
-            <FormsOverviewFilters
+            <OverviewFilters
                 contentList={formDetailsList}
                 showAreaFilter={true}
                 showTaxonomyFilter={true}
                 showTextInputFilter={showFilter}
-                setTaxonomyFilter={setTaxonomyFilter}
-                setAreaFilter={setAreaFilter}
-                setTextInputFilter={setSearchString}
             />
             <div className={style.filterSummary}>
                 <BodyShort>
@@ -82,7 +52,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
             {formDetailsList.map((formDetail) => (
                 <FormsOverviewListPanel
                     formDetails={formDetail}
-                    visible={isVisiblePredicate(formDetail)}
+                    visible={isVisible(formDetail)}
                     key={formDetail.anchorId}
                 />
             ))}

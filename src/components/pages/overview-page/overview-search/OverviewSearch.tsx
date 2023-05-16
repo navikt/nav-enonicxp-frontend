@@ -1,7 +1,8 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import { TextField } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { useOverviewFilters } from 'components/_common/overview-filters/filter-context/useOverviewFilters';
 
 import style from './OverviewSearch.module.scss';
 
@@ -17,21 +18,15 @@ const analytics = debounce(
 );
 
 type OverviewSearchProps = {
-    searchUpdateCallback: (string) => void;
     label: string;
 };
 
-export const OverviewSearch = ({
-    searchUpdateCallback,
-    label,
-}: OverviewSearchProps) => {
-    const [searchString, setSearchString] = useState<string>('');
+export const OverviewSearch = ({ label }: OverviewSearchProps) => {
+    const { setTextFilter, filtersState } = useOverviewFilters();
 
     const searchEventHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
-        setSearchString(value);
-        searchUpdateCallback(value);
-
+        setTextFilter(value);
         analytics(value);
     };
 
@@ -39,7 +34,7 @@ export const OverviewSearch = ({
         <div className={style.overviewSearch}>
             <TextField
                 label={label}
-                value={searchString}
+                value={filtersState.textFilter}
                 onChange={searchEventHandler}
             />
         </div>

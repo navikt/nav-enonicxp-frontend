@@ -1,29 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ProductTaxonomy, Taxonomy } from 'types/taxonomies';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { OverviewPageFilter } from 'components/pages/overview-page/filter/OverviewPageFilter';
 import { ContentType } from 'types/content-props/_content-common';
+import { useOverviewFilters } from 'components/_common/overview-filters/filter-context/useOverviewFilters';
 
 type Props = {
-    filterUpdateCallback: (filters: ProductTaxonomy) => void;
     contentList: Array<{ taxonomy: Taxonomy[]; type?: ContentType }>;
 };
 
-export const TaxonomyFilter = ({
-    filterUpdateCallback,
-    contentList,
-}: Props) => {
-    const [currentFilter, setCurrentFilter] = useState<ProductTaxonomy>(
-        ProductTaxonomy.ALL
-    );
+export const TaxonomyFilter = ({ contentList }: Props) => {
+    const { setTaxonomyFilter, filtersState } = useOverviewFilters();
 
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             type: taxonomy,
             opprinnelse: 'oversiktsside typer',
         });
-        setCurrentFilter(taxonomy);
-        filterUpdateCallback(taxonomy);
+        setTaxonomyFilter(taxonomy);
     };
 
     const taxonomiesInProductList = Object.values(ProductTaxonomy).filter(
@@ -47,7 +41,7 @@ export const TaxonomyFilter = ({
         <OverviewPageFilter
             type={'taxonomies'}
             selectionCallback={handleFilterUpdate}
-            selected={currentFilter}
+            selected={filtersState.taxonomyFilter}
             options={[ProductTaxonomy.ALL, ...taxonomiesInProductList]}
         />
     );

@@ -9,9 +9,12 @@ import { FormsOverviewList } from 'components/pages/forms-overview-page/forms-li
 import style from './FormsOverviewPage.module.scss';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { useOverviewFilters } from 'components/_common/overview-filters/filter-context/useOverviewFilters';
 
 export const FormsOverviewPage = (props: FormsOverviewProps) => {
     const { page, data, isPagePreview } = props;
+
+    const { OverviewFiltersProvider } = useOverviewFilters();
 
     if (!page) {
         return <EditorHelp text={'Ingen page-komponent er valgt'} />;
@@ -50,7 +53,9 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
                 />
                 <div className={style.leftCol}>
                     <FormsOverviewHeader {...props} />
-                    <FormsOverviewList {...props} />
+                    <OverviewFiltersProvider>
+                        <FormsOverviewList {...props} />
+                    </OverviewFiltersProvider>
                 </div>
                 {config.sideColToggle && (
                     <Region

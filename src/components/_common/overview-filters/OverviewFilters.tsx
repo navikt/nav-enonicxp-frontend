@@ -8,7 +8,7 @@ import { ContentType } from 'types/content-props/_content-common';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import style from './FormsOverviewFilters.module.scss';
+import style from './OverviewFilters.module.scss';
 
 type ContentItem = {
     area: Area[];
@@ -21,46 +21,23 @@ type Props = {
     showTextInputFilter: boolean;
     showTaxonomyFilter: boolean;
     showAreaFilter: boolean;
-    setAreaFilter: (area: Area) => void;
-    setTaxonomyFilter: (taxonomy: ProductTaxonomy) => void;
-    setTextInputFilter: (inputString: string) => void;
 };
 
-export const FormsOverviewFilters = ({
+export const OverviewFilters = ({
     contentList,
     showTextInputFilter,
     showAreaFilter,
     showTaxonomyFilter,
-    setTaxonomyFilter,
-    setTextInputFilter,
-    setAreaFilter,
 }: Props) => {
     const { language } = usePageConfig();
     const getTranslationString = translator('overview', language);
 
     return (
         <div className={style.filters}>
-            {showAreaFilter && (
-                <AreaFilter
-                    filterUpdateCallback={(value: Area) => setAreaFilter(value)}
-                    contentList={contentList}
-                />
-            )}
-            {showTaxonomyFilter && (
-                <TaxonomyFilter
-                    filterUpdateCallback={(value: ProductTaxonomy) =>
-                        setTaxonomyFilter(value)
-                    }
-                    contentList={contentList}
-                />
-            )}
+            {showAreaFilter && <AreaFilter contentList={contentList} />}
+            {showTaxonomyFilter && <TaxonomyFilter contentList={contentList} />}
             {showTextInputFilter && (
-                <OverviewSearch
-                    searchUpdateCallback={(value: string) =>
-                        setTextInputFilter(value)
-                    }
-                    label={getTranslationString('search')}
-                />
+                <OverviewSearch label={getTranslationString('search')} />
             )}
         </div>
     );

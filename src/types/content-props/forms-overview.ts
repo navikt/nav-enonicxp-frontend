@@ -2,7 +2,7 @@ import {
     ContentCommonProps,
     ContentType,
 } from 'types/content-props/_content-common';
-import { OptionSetSingle } from 'types/util-types';
+import { EmptyObject, OptionSetSingle } from 'types/util-types';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
 import { Area } from 'types/areas';
@@ -18,16 +18,31 @@ export type FormDetailsListItemProps = {
 };
 
 type AudienceOptions = {
-    person: {};
-    employer: {};
-    provider: {}; // TODO: add sub-categories
+    person: EmptyObject;
+    employer: EmptyObject;
+    provider: {
+        pageType: OptionSetSingle<{
+            formDetails: {
+                provider_audience: ''; // TODO: add type
+            };
+            audienceLinks: {
+                providerAudienceLinks: {
+                    link: {
+                        _path: string;
+                        title: string;
+                    };
+                };
+            };
+        }>;
+    };
 };
 
 export type FormsOverviewData = {
     title: string;
     ingress: string;
-    audience: OptionSetSingle<AudienceOptions>;
+    overviewType: 'application' | 'complaint' | 'addendum';
     illustration: AnimatedIconsProps;
+    audience: OptionSetSingle<AudienceOptions>;
     showFilter: boolean;
     formDetailsList: FormDetailsListItemProps[];
 };

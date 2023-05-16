@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Area } from 'types/areas';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { OverviewPageFilter } from 'components/pages/overview-page/filter/OverviewPageFilter';
+import { useOverviewFilters } from 'components/_common/overview-filters/filter-context/useOverviewFilters';
 
 type Props = {
-    filterUpdateCallback: (filters: Area) => void;
     contentList: Array<{ area: Area[] }>;
 };
 
-export const AreaFilter = ({ filterUpdateCallback, contentList }: Props) => {
-    const [currentArea, setCurrentArea] = useState<Area>(Area.ALL);
+export const AreaFilter = ({ contentList }: Props) => {
+    const { setAreaFilter, filtersState } = useOverviewFilters();
 
     const handleFilterUpdate = (area: Area) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             omrade: area,
             opprinnelse: 'oversiktsside områder',
         });
-        setCurrentArea(area);
-        filterUpdateCallback(area);
+        setAreaFilter(area);
     };
 
     const areasInContentList = Object.values(Area).filter((area) =>
@@ -30,7 +29,7 @@ export const AreaFilter = ({ filterUpdateCallback, contentList }: Props) => {
         <OverviewPageFilter
             type={'areas'}
             selectionCallback={handleFilterUpdate}
-            selected={currentArea}
+            selected={filtersState.areaFilter}
             options={[Area.ALL, ...areasInContentList]}
         />
     );
