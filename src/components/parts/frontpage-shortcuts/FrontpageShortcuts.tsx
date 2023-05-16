@@ -15,6 +15,7 @@ import soknader from '/public/gfx/front-page-shortcuts/soknader_og_skjema_nav_ik
 import arbeidsgiverMinside from '/public/gfx/front-page-shortcuts/arbeidsgiver_minside.svg';
 import arbeidsgiverSoknader from '/public/gfx/front-page-shortcuts/arbeidsgiver_soknader.svg';
 import arbeidsgiverTjenester from '/public/gfx/front-page-shortcuts/arbeidsgiver_tjenester.svg';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './FrontpageShortcuts.module.scss';
 
@@ -42,10 +43,14 @@ export const FrontpageShortcuts = ({
         return <EditorHelp text={'Velg en innholdsliste'} />;
     }
 
-    const getIcon = (path: string) => {
-        const foundKey = Object.keys(linkToIconDictionary).find((key) =>
-            path.includes(key)
-        );
+    const getIcon = (content: ContentProps) => {
+        const foundKey = Object.keys(linkToIconDictionary).find((key) => {
+            if (content.type === ContentType.ExternalLink) {
+                return content.data.url?.includes(key);
+            }
+
+            return content._path.includes(key);
+        });
         return foundKey ? linkToIconDictionary[foundKey] : null;
     };
 
@@ -65,7 +70,8 @@ export const FrontpageShortcuts = ({
                 className={classNames(style.list, threeCols && style.threeCols)}
             >
                 {links.map((item, index) => {
-                    const icon = getIcon(item._path);
+                    const icon = getIcon(item);
+                    console.log(item);
                     return (
                         <li key={item._id}>
                             <LinkPanelNavnoSimple
