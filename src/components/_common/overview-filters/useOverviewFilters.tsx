@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
+import { ContentType } from 'types/content-props/_content-common';
 
 type FiltersState = {
     areaFilter: Area;
@@ -12,9 +13,10 @@ type FiltersState = {
 };
 
 type FilterableContent = {
-    text: string;
     area: Area[];
     taxonomy: ProductTaxonomy[];
+    text: string;
+    type?: ContentType;
 };
 
 const defaultState: FiltersState = {
@@ -50,7 +52,9 @@ export const useOverviewFilters = () => {
 
         const isTaxonomyMatching =
             taxonomyFilter === ProductTaxonomy.ALL ||
-            filterableContent.taxonomy.includes(taxonomyFilter);
+            filterableContent.taxonomy.includes(taxonomyFilter) ||
+            (taxonomyFilter === ProductTaxonomy.FORMS &&
+                filterableContent.type !== 'no.nav.navno:guide-page');
         if (!isTaxonomyMatching) {
             return false;
         }

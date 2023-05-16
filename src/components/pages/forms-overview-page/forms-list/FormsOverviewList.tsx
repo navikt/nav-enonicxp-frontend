@@ -7,7 +7,7 @@ import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/for
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { BodyShort } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { useOverviewFilters } from 'components/_common/overview-filters/filter-context/useOverviewFilters';
+import { useOverviewFilters } from 'components/_common/overview-filters/useOverviewFilters';
 
 import style from './FormsOverviewList.module.scss';
 

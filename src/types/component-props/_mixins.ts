@@ -2,7 +2,7 @@ import { ContentListProps } from '../content-props/content-list-props';
 import { ContentProps, ContentType } from '../content-props/_content-common';
 import { TypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
-import { Taxonomy } from 'types/taxonomies';
+import { ProductTaxonomy, Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
 import { EmptyObject, OptionSetSingle } from '../util-types';
 import { Area } from 'types/areas';
@@ -22,15 +22,15 @@ export enum Audience {
 
 export type FilterSelection = string[];
 
-export type SimplifiedProductData = Partial<{
+export type SimplifiedProductData = {
     _id: string;
     type: ContentType;
     productDetailsPath: string;
     path: string;
     sortTitle: string;
     anchorId: string;
-}> &
-    ProductDataMixin;
+    taxonomy: ProductTaxonomy[];
+} & Omit<ProductDataMixin, 'taxonomy'>;
 
 export type ProductDataMixin = {
     title: string;

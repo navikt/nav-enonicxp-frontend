@@ -1,15 +1,15 @@
 import React from 'react';
 import { ProductTaxonomy, Taxonomy } from 'types/taxonomies';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { OverviewPageFilter } from 'components/pages/overview-page/filter/OverviewPageFilter';
+import { OverviewFilterBase } from 'components/_common/overview-filters/filter-base/OverviewFilterBase';
 import { ContentType } from 'types/content-props/_content-common';
-import { useOverviewFilters } from 'components/_common/overview-filters/filter-context/useOverviewFilters';
+import { useOverviewFilters } from 'components/_common/overview-filters/useOverviewFilters';
 
 type Props = {
     contentList: Array<{ taxonomy: Taxonomy[]; type?: ContentType }>;
 };
 
-export const TaxonomyFilter = ({ contentList }: Props) => {
+export const OverviewTaxonomyFilter = ({ contentList }: Props) => {
     const { setTaxonomyFilter, taxonomyFilter } = useOverviewFilters();
 
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
@@ -38,7 +38,7 @@ export const TaxonomyFilter = ({ contentList }: Props) => {
     }
 
     return (
-        <OverviewPageFilter
+        <OverviewFilterBase
             type={'taxonomies'}
             selectionCallback={handleFilterUpdate}
             selected={taxonomyFilter}

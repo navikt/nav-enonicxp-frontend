@@ -1,14 +1,10 @@
 import React from 'react';
-import { AreaFilter } from 'components/pages/overview-page/filter/area-filter/AreaFilter';
+import { OverviewAreaFilter } from 'components/_common/overview-filters/area-filter/OverviewAreaFilter';
 import { Area } from 'types/areas';
-import { TaxonomyFilter } from 'components/pages/overview-page/filter/taxonomy-filter/TaxonomyFilter';
+import { OverviewTaxonomyFilter } from 'components/_common/overview-filters/taxonomy-filter/OverviewTaxonomyFilter';
 import { ProductTaxonomy } from 'types/taxonomies';
-import { OverviewSearch } from 'components/pages/overview-page/overview-search/OverviewSearch';
+import { OverviewTextFilter } from 'components/_common/overview-filters/text-filter/OverviewTextFilter';
 import { ContentType } from 'types/content-props/_content-common';
-import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-
-import style from './OverviewFilters.module.scss';
 
 type ContentItem = {
     area: Area[];
@@ -21,24 +17,22 @@ type Props = {
     showTextInputFilter: boolean;
     showTaxonomyFilter: boolean;
     showAreaFilter: boolean;
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export const OverviewFilters = ({
     contentList,
     showTextInputFilter,
     showAreaFilter,
     showTaxonomyFilter,
+    ...divAttribs
 }: Props) => {
-    const { language } = usePageConfig();
-    const getTranslationString = translator('overview', language);
-
     return (
-        <div className={style.filters}>
-            {showAreaFilter && <AreaFilter contentList={contentList} />}
-            {showTaxonomyFilter && <TaxonomyFilter contentList={contentList} />}
-            {showTextInputFilter && (
-                <OverviewSearch label={getTranslationString('search')} />
+        <div {...divAttribs}>
+            {showAreaFilter && <OverviewAreaFilter contentList={contentList} />}
+            {showTaxonomyFilter && (
+                <OverviewTaxonomyFilter contentList={contentList} />
             )}
+            {showTextInputFilter && <OverviewTextFilter />}
         </div>
     );
 };

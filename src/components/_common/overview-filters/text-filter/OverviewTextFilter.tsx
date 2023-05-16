@@ -2,9 +2,11 @@ import React, { ChangeEvent } from 'react';
 import { TextField } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { useOverviewFilters } from 'components/_common/overview-filters/filter-context/useOverviewFilters';
+import { useOverviewFilters } from 'components/_common/overview-filters/useOverviewFilters';
+import { translator } from 'translations';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import style from './OverviewSearch.module.scss';
+import style from './OverviewTextFilter.module.scss';
 
 const analytics = debounce(
     (value: string) => {
@@ -17,12 +19,11 @@ const analytics = debounce(
     { maxWait: 1000 }
 );
 
-type OverviewSearchProps = {
-    label: string;
-};
-
-export const OverviewSearch = ({ label }: OverviewSearchProps) => {
+export const OverviewTextFilter = () => {
     const { setTextFilter, textFilter } = useOverviewFilters();
+    const { language } = usePageConfig();
+
+    const label = translator('overview', language)('search');
 
     const searchEventHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;

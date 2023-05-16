@@ -1,14 +1,14 @@
 import React from 'react';
 import { Area } from 'types/areas';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { OverviewPageFilter } from 'components/pages/overview-page/filter/OverviewPageFilter';
-import { useOverviewFilters } from 'components/_common/overview-filters/filter-context/useOverviewFilters';
+import { OverviewFilterBase } from 'components/_common/overview-filters/filter-base/OverviewFilterBase';
+import { useOverviewFilters } from 'components/_common/overview-filters/useOverviewFilters';
 
 type Props = {
     contentList: Array<{ area: Area[] }>;
 };
 
-export const AreaFilter = ({ contentList }: Props) => {
+export const OverviewAreaFilter = ({ contentList }: Props) => {
     const { setAreaFilter, areaFilter } = useOverviewFilters();
 
     const handleFilterUpdate = (area: Area) => {
@@ -26,7 +26,7 @@ export const AreaFilter = ({ contentList }: Props) => {
     );
 
     return (
-        <OverviewPageFilter
+        <OverviewFilterBase
             type={'areas'}
             selectionCallback={handleFilterUpdate}
             selected={areaFilter}
