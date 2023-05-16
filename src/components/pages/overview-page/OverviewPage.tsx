@@ -76,14 +76,14 @@ export const OverviewPage = (props: OverviewPageProps) => {
             <div className={style.content}>
                 <AreaFilter
                     filterUpdateCallback={(value: Area) => setAreaFilter(value)}
-                    productList={productList}
+                    contentList={productList}
                 />
                 {showTaxonomyFilter && (
                     <TaxonomyFilter
                         filterUpdateCallback={(value: ProductTaxonomy) =>
                             setTaxonomyFilter(value)
                         }
-                        productList={productList}
+                        contentList={productList}
                     />
                 )}
                 {showSearch && (

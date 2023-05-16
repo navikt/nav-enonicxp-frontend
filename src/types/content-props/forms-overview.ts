@@ -6,14 +6,14 @@ import { OptionSetSingle } from 'types/util-types';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
 import { Area } from 'types/areas';
-import { Taxonomy } from 'types/taxonomies';
+import { ProductTaxonomy } from 'types/taxonomies';
 
 export type FormDetailsListItem = {
     title: string;
     anchorId: string;
     illustration: AnimatedIconsProps;
     area: Area[];
-    taxonomy: Taxonomy[];
+    taxonomy: ProductTaxonomy[];
     formDetailsPaths: string[];
 };
 

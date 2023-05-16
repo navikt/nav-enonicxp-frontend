@@ -1,21 +1,18 @@
 .page {
     display: grid;
-    column-gap: 1.5rem;
-    grid-template-columns: 1fr 15rem;
-    margin-left: 6.5rem;
+    column-gap: 2.5rem;
+    grid-template-columns: 6rem 2fr 1fr;
+    max-width: 1272px;
+    margin: 0 auto;
 }
 
 .leftCol {
-    position: relative;
 }
 
 .rightCol {
-    width: 100%;
 }
 
 .illustration {
-    position: absolute;
-    width: 5rem;
-    height: 5rem;
-    left: -6.5rem;
+    width: 6rem;
+    height: 6rem;
 }

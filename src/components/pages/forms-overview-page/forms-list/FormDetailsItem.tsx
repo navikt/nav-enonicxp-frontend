@@ -12,19 +12,14 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { FormDetailsListItem } from 'types/content-props/forms-overview';
 import { ContentMapper } from 'components/ContentMapper';
 
-import style from '../../../overview-page/product-elements/ProductDetailsPanel.module.scss';
+import style from 'components/pages/overview-page/product-elements/ProductDetailsPanel.module.scss';
 
 type Props = {
-    pageProps: ContentProps;
     formDetails: FormDetailsListItem;
     visible: boolean;
 };
 
-export const FormDetailsPanel = ({
-    pageProps,
-    formDetails,
-    visible,
-}: Props) => {
+export const FormDetailsPanel = ({ formDetails, visible }: Props) => {
     const { anchorId, illustration, formDetailsPaths, title, area, taxonomy } =
         formDetails;
 

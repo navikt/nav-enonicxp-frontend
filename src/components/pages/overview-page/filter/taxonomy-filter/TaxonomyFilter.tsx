@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import { SimplifiedProductData } from 'types/component-props/_mixins';
-import { ProductTaxonomy } from 'types/taxonomies';
+import { ProductTaxonomy, Taxonomy } from 'types/taxonomies';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { OverviewPageFilter } from 'components/pages/overview-page/filter/OverviewPageFilter';
 import { ContentType } from 'types/content-props/_content-common';
 
-interface TaxonomyFilterProps {
+type Props = {
     filterUpdateCallback: (filters: ProductTaxonomy) => void;
-    productList: SimplifiedProductData[];
-}
+    contentList: Array<{ taxonomy: Taxonomy[]; type?: ContentType }>;
+};
 
 export const TaxonomyFilter = ({
     filterUpdateCallback,
-    productList,
-}: TaxonomyFilterProps) => {
+    contentList,
+}: Props) => {
     const [currentFilter, setCurrentFilter] = useState<ProductTaxonomy>(
         ProductTaxonomy.ALL
     );
@@ -29,14 +28,14 @@ export const TaxonomyFilter = ({
 
     const taxonomiesInProductList = Object.values(ProductTaxonomy).filter(
         (ProductTaxonomy) =>
-            productList.some((product) =>
+            contentList.some((product) =>
                 product.taxonomy.some(
                     (taxonomyItem) => taxonomyItem === ProductTaxonomy
                 )
             )
     );
 
-    const productListHasGuidePage = productList.some(
+    const productListHasGuidePage = contentList.some(
         (product) => product.type === 'no.nav.navno:guide-page'
     );
 

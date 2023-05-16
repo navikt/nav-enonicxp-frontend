@@ -4,8 +4,7 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { FormsOverviewHeader } from 'components/pages/forms-overview-page/header/FormsOverviewHeader';
 import Region from 'components/layouts/Region';
 import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
-import { FormsOverviewFilters } from 'components/pages/forms-overview-page/filters/FormsOverviewFilters';
-import { FormsOverviewFormDetailsList } from 'components/pages/forms-overview-page/form-details-list/FormsOverviewFormDetailsList';
+import { FormsOverviewList } from 'components/pages/forms-overview-page/forms-list/FormsOverviewList';
 
 import style from './FormsOverviewPage.module.scss';
 
@@ -28,14 +27,13 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
 
     return (
         <div className={style.page}>
+            <IllustrationStatic
+                illustration={data.illustration}
+                className={style.illustration}
+            />
             <div className={style.leftCol}>
-                <IllustrationStatic
-                    illustration={data.illustration}
-                    className={style.illustration}
-                />
                 <FormsOverviewHeader {...props} />
-                <FormsOverviewFilters />
-                <FormsOverviewFormDetailsList {...props} />
+                <FormsOverviewList {...props} />
             </div>
             {config.sideColToggle && (
                 <Region

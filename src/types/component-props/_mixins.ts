@@ -1,5 +1,5 @@
 import { ContentListProps } from '../content-props/content-list-props';
-import { ContentProps } from '../content-props/_content-common';
+import { ContentProps, ContentType } from '../content-props/_content-common';
 import { TypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
 import { Taxonomy } from 'types/taxonomies';
@@ -24,7 +24,7 @@ export type FilterSelection = string[];
 
 export type SimplifiedProductData = Partial<{
     _id: string;
-    type: string;
+    type: ContentType;
     productDetailsPath: string;
     path: string;
     sortTitle: string;
@@ -35,7 +35,7 @@ export type SimplifiedProductData = Partial<{
 export type ProductDataMixin = {
     title: string;
     ingress?: string;
-    taxonomy?: Taxonomy[];
+    taxonomy: Taxonomy[];
     audience?: Audience;
     customCategory?: string;
     illustration: AnimatedIconsProps;
