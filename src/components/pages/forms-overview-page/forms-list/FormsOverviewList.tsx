@@ -41,7 +41,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
     return (
         <div>
             <OverviewFilters
-                contentList={formDetailsList}
+                filterableItems={formDetailsList}
                 showTaxonomyFilter={taxonomyFilterToggle}
                 showAreaFilter={areasFilterToggle}
                 showTextInputFilter={textFilterToggle}

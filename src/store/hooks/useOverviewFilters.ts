@@ -4,7 +4,7 @@ import { ProductTaxonomy } from 'types/taxonomies';
 import { overviewFiltersInitialState } from 'store/slices/overviewFilters';
 import { ContentType } from 'types/content-props/_content-common';
 
-export type OverviewFilterableContent = {
+export type OverviewFilterableItem = {
     area: Area[];
     taxonomy: ProductTaxonomy[];
     text?: string;
@@ -23,7 +23,7 @@ export const useOverviewFiltersState = () => {
         areaFilter === overviewFiltersInitialState.areaFilter &&
         taxonomyFilter === overviewFiltersInitialState.taxonomyFilter;
 
-    const matchFilters = (filterableContent: OverviewFilterableContent) => {
+    const matchFilters = (filterableContent: OverviewFilterableItem) => {
         const isAreaMatching =
             areaFilter === Area.ALL ||
             filterableContent.area.includes(areaFilter);

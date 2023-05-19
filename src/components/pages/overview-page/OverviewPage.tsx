@@ -39,7 +39,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
             </div>
             <div className={style.content}>
                 <OverviewFilters
-                    contentList={productList}
+                    filterableItems={productList}
                     showAreaFilter={true}
                     showTaxonomyFilter={overviewType === 'all_products'}
                     showTextInputFilter={overviewType === 'all_products'}

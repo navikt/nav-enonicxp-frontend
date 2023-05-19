@@ -1,26 +1,18 @@
 import React from 'react';
 import { OverviewAreaFilter } from 'components/_common/overview-filters/area-filter/OverviewAreaFilter';
-import { Area } from 'types/areas';
 import { OverviewTaxonomyFilter } from 'components/_common/overview-filters/taxonomy-filter/OverviewTaxonomyFilter';
-import { ProductTaxonomy } from 'types/taxonomies';
 import { OverviewTextFilter } from 'components/_common/overview-filters/text-filter/OverviewTextFilter';
-import { ContentType } from 'types/content-props/_content-common';
-
-type ContentItem = {
-    area: Area[];
-    taxonomy: ProductTaxonomy[];
-    type?: ContentType;
-};
+import { OverviewFilterableItem } from 'store/hooks/useOverviewFilters';
 
 type Props = {
-    contentList: ContentItem[];
+    filterableItems: OverviewFilterableItem[];
     showTextInputFilter: boolean;
     showTaxonomyFilter: boolean;
     showAreaFilter: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export const OverviewFilters = ({
-    contentList,
+    filterableItems,
     showTextInputFilter,
     showAreaFilter,
     showTaxonomyFilter,
@@ -28,9 +20,9 @@ export const OverviewFilters = ({
 }: Props) => {
     return (
         <div {...divAttribs}>
-            {showAreaFilter && <OverviewAreaFilter contentList={contentList} />}
+            {showAreaFilter && <OverviewAreaFilter items={filterableItems} />}
             {showTaxonomyFilter && (
-                <OverviewTaxonomyFilter contentList={contentList} />
+                <OverviewTaxonomyFilter items={filterableItems} />
             )}
             {showTextInputFilter && <OverviewTextFilter />}
         </div>

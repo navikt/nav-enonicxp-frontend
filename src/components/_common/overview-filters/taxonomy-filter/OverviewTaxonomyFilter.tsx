@@ -2,15 +2,17 @@ import React from 'react';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { OverviewFilterBase } from 'components/_common/overview-filters/filter-base/OverviewFilterBase';
-import { ContentType } from 'types/content-props/_content-common';
-import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
+import {
+    OverviewFilterableItem,
+    useOverviewFiltersState,
+} from 'store/hooks/useOverviewFilters';
 import { setTaxonomyFilterAction } from 'store/slices/overviewFilters';
 
 type Props = {
-    contentList: Array<{ taxonomy: ProductTaxonomy[]; type?: ContentType }>;
+    items: OverviewFilterableItem[];
 };
 
-export const OverviewTaxonomyFilter = ({ contentList }: Props) => {
+export const OverviewTaxonomyFilter = ({ items }: Props) => {
     const { dispatch, taxonomyFilter } = useOverviewFiltersState();
 
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
@@ -22,19 +24,17 @@ export const OverviewTaxonomyFilter = ({ contentList }: Props) => {
     };
 
     const taxonomiesInProductList = Object.values(ProductTaxonomy).filter(
-        (ProductTaxonomy) =>
-            contentList.some((product) =>
-                product.taxonomy.some(
-                    (taxonomyItem) => taxonomyItem === ProductTaxonomy
-                )
+        (taxonomy) =>
+            items.some((item) =>
+                item.taxonomy.some((itemTaxonomy) => itemTaxonomy === taxonomy)
             )
     );
 
-    const productListHasGuidePage = contentList.some(
+    const listHasGuidePage = items.some(
         (product) => product.type === 'no.nav.navno:guide-page'
     );
 
-    if (productListHasGuidePage) {
+    if (listHasGuidePage) {
         taxonomiesInProductList.push(ProductTaxonomy.FORMS);
     }
 
