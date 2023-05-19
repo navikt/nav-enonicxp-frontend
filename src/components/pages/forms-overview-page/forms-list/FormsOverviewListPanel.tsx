@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { BodyShort, Loader } from '@navikt/ds-react';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentType } from 'types/content-props/_content-common';
 import {
