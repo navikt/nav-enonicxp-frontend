@@ -43,7 +43,7 @@ import { PayoutDatesProps } from './payout-dates';
 import { LanguageProps } from '../language';
 import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageProps } from './index-pages-props';
-import { Audience } from '../component-props/_mixins';
+import { AudienceProps } from '../component-props/_mixins';
 import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
 import { FormDetailsPageProps } from './form-details';
@@ -120,7 +120,7 @@ type ContentCommonData = Partial<{
     noindex: boolean;
     ingress: string;
     description: string;
-    audience: Audience;
+    audience: AudienceProps;
 }>;
 
 export type ContentCommonProps = {

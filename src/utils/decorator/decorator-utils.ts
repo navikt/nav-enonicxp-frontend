@@ -5,7 +5,7 @@ import { LanguageProps } from 'types/language';
 import { stripXpPathPrefix } from '../urls';
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { checkForWhiteHeader } from 'components/_top-container/TopContainer';
-import { Audiences } from 'types/component-props/_mixins';
+import { Audience } from 'types/component-props/_mixins';
 
 const defaultLanguage: DecoratorParams['language'] = 'nb';
 
@@ -52,11 +52,11 @@ const pathToRoleContext: { [key: string]: DecoratorParams['context'] } = {
 };
 
 const audienceToRoleContext: {
-    [key in Audiences]: DecoratorParams['context'];
+    [key in Audience]: DecoratorParams['context'];
 } = {
-    [Audiences.PERSON]: 'privatperson',
-    [Audiences.EMPLOYER]: 'arbeidsgiver',
-    [Audiences.PROVIDER]: 'samarbeidspartner',
+    [Audience.PERSON]: 'privatperson',
+    [Audience.EMPLOYER]: 'arbeidsgiver',
+    [Audience.PROVIDER]: 'samarbeidspartner',
 };
 
 const errorParams = (content: ContentProps): DecoratorParams => ({

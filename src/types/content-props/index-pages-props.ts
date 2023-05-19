@@ -4,13 +4,13 @@ import { Area } from '../areas';
 import { ProcessedHtmlProps } from '../processed-html-props';
 import { IndexPageProps } from '../component-props/pages/index-page';
 import {
-    Audience,
+    AudienceProps,
     ColorMixin,
     LinkSelectable,
 } from '../component-props/_mixins';
 
 type CommonData = {
-    audience: Audience;
+    audience: AudienceProps;
 } & DynamicPageData;
 
 export type FrontPageData = {

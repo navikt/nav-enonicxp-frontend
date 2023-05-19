@@ -21,7 +21,7 @@ import {
 } from '../../../../types/content-props/dynamic-page-props';
 import {
     getAudience,
-    Audiences,
+    Audience,
 } from '../../../../types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
@@ -97,8 +97,8 @@ export const ThemedPageHeader = ({
 
         if (
             pageType === ContentType.ProductPage &&
-            (currentAudience === Audiences.EMPLOYER ||
-                currentAudience === Audiences.PROVIDER)
+            (currentAudience === Audience.EMPLOYER ||
+                currentAudience === Audience.PROVIDER)
         ) {
             const getTaxonomyLabel = translator('products', language);
             return getTaxonomyLabel(currentAudience);

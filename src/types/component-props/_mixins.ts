@@ -14,13 +14,15 @@ export type HeaderWithAnchorMixin = {
     toggleCopyButton: boolean;
 };
 
-export enum Audiences {
+
+export enum Audience {
     PERSON = 'person',
     EMPLOYER = 'employer',
     PROVIDER = 'provider',
+    _selected = '_selected'
 }
 
-export enum ProviderAudiences {
+export enum ProviderAudience {
     DOCTOR = 'doctor',
     DENTIST = 'dentist',
     OPTICIAN = 'optician',
@@ -32,15 +34,15 @@ export enum ProviderAudiences {
     OTHER = 'other',
 }
 
-export type Audience = {
-    _selected: Audiences;
-    provider_audience?: ProviderAudiences;
+export type AudienceProps = {
+    _selected: Audience;
+    provider_audience?: ProviderAudience;
 };
-export const getAudience = (audience: Audience) => {
-    if (audience && audience._selected) {
+export const getAudience = (audience: AudienceProps | Audience) => {
+    if (audience && typeof audience !== 'string' && audience._selected) {
         return audience._selected;
     }
-    return Audiences.PERSON;
+    return typeof audience === 'string' ? audience : Audience.PERSON;
 };
 
 export type FilterSelection = string[];
