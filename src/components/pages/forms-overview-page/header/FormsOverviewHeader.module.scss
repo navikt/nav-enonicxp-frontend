@@ -1,3 +1,16 @@
-.header {
+@use 'src/common' as common;
+
+.container {
     width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.header {
+    padding-bottom: 0;
+    margin-bottom: 0.5rem;
+}
+
+.subHeader {
+    margin-bottom: 1.5rem;
+    color: common.$a-gray-600;
 }

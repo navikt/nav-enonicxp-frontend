@@ -216,7 +216,7 @@ export const translationsBundleEn: Translations = {
     },
     overview: {
         noProducts: 'No hits',
-        search: 'Search',
+        search: 'Find a service',
         loading: 'Loading content...',
         areas: {
             choose: 'Choose area',
