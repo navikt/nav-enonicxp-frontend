@@ -25,16 +25,16 @@ type AudienceOptions = {
     employer: EmptyObject;
     provider: {
         pageType: OptionSetSingle<{
-            formDetails: {
+            overview: {
                 provider_audience: ''; // TODO: add type
             };
-            audienceLinks: {
-                providerAudienceLinks: {
-                    link: {
-                        _path: string;
+            links: {
+                links: Array<{
+                    _path: string;
+                    data: {
                         title: string;
                     };
-                };
+                }>;
             };
         }>;
     };

@@ -21,6 +21,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
         taxonomyFilterToggle,
         textFilterToggle,
         overviewType,
+        audience,
     } = props.data;
 
     const { language } = usePageConfig();
