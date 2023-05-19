@@ -1,17 +1,20 @@
 import React from 'react';
-import { ProductTaxonomy, Taxonomy } from 'types/taxonomies';
+import { ProductTaxonomy } from 'types/taxonomies';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { OverviewFilterBase } from 'components/_common/overview-filters/filter-base/OverviewFilterBase';
 import { ContentType } from 'types/content-props/_content-common';
-import { useOverviewFilters } from 'components/_common/overview-filters/useOverviewFilters';
 
 type Props = {
-    contentList: Array<{ taxonomy: Taxonomy[]; type?: ContentType }>;
+    contentList: Array<{ taxonomy: ProductTaxonomy[]; type?: ContentType }>;
+    taxonomyFilter: ProductTaxonomy;
+    setTaxonomyFilter: (taxonomy: ProductTaxonomy) => void;
 };
 
-export const OverviewTaxonomyFilter = ({ contentList }: Props) => {
-    const { setTaxonomyFilter, taxonomyFilter } = useOverviewFilters();
-
+export const OverviewTaxonomyFilter = ({
+    contentList,
+    taxonomyFilter,
+    setTaxonomyFilter,
+}: Props) => {
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             type: taxonomy,

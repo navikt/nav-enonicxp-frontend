@@ -1,8 +1,7 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { TextField } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { useOverviewFilters } from 'components/_common/overview-filters/useOverviewFilters';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
@@ -19,8 +18,12 @@ const analytics = debounce(
     { maxWait: 1000 }
 );
 
-export const OverviewTextFilter = () => {
-    const { setTextFilter, textFilter } = useOverviewFilters();
+type Props = {
+    textFilter: string;
+    setTextFilter: (text: string) => void;
+};
+
+export const OverviewTextFilter = ({ textFilter, setTextFilter }: Props) => {
     const { language } = usePageConfig();
 
     const label = translator('overview', language)('search');
@@ -30,6 +33,8 @@ export const OverviewTextFilter = () => {
         setTextFilter(value);
         analytics(value);
     };
+
+    console.log('rerendering');
 
     return (
         <div className={style.overviewSearch}>

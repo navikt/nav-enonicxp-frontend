@@ -43,7 +43,9 @@ export type FormsOverviewData = {
     overviewType: 'application' | 'complaint' | 'addendum';
     illustration: AnimatedIconsProps;
     audience: OptionSetSingle<AudienceOptions>;
-    showFilter: boolean;
+    areasFilterToggle: boolean;
+    taxonomyFilterToggle: boolean;
+    textFilterToggle: boolean;
     formDetailsList: FormDetailsListItemProps[];
 };
 

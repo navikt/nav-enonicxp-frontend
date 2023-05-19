@@ -197,6 +197,7 @@ export const translationsBundleNb = {
         noProducts: 'Ingen treff',
         search: 'Søk',
         loading: 'Laster innhold...',
+        resetFilters: 'Nullstill',
         areas: {
             choose: 'Velg område',
             ariaExplanation: 'Filtrer listen etter område',

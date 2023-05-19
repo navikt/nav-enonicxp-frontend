@@ -8,7 +8,7 @@ import { SimplifiedProductData } from 'types/component-props/_mixins';
 import { ProductItem } from './product-elements/ProductItem';
 import { classNames } from 'utils/classnames';
 import { ProductDetailType } from 'types/content-props/product-details';
-import { useOverviewFilters } from 'components/_common/overview-filters/useOverviewFilters';
+import { useOverviewFiltersState } from 'components/_common/overview-filters/useOverviewFiltersState';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 
 import style from './OverviewPage.module.scss';
@@ -17,12 +17,12 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
     const { language } = usePageConfig();
 
-    const { OverviewFiltersProvider, isMatchingFilters } = useOverviewFilters();
+    const { matchFilters, dispatch, state } = useOverviewFiltersState();
 
     const getTranslationString = translator('overview', language);
 
     const isVisiblePredicate = (product: SimplifiedProductData) =>
-        isMatchingFilters({ ...product, text: product.title });
+        matchFilters({ ...product, text: product.title });
 
     const hasVisibleProducts = productList.some((product) =>
         isVisiblePredicate(product)
@@ -41,14 +41,14 @@ export const OverviewPage = (props: OverviewPageProps) => {
                 />
             </div>
             <div className={style.content}>
-                <OverviewFiltersProvider>
-                    <OverviewFilters
-                        contentList={productList}
-                        showTextInputFilter={showSearch}
-                        showTaxonomyFilter={showTaxonomyFilter}
-                        showAreaFilter={true}
-                    />
-                </OverviewFiltersProvider>
+                <OverviewFilters
+                    contentList={productList}
+                    dispatch={dispatch}
+                    state={state}
+                    showAreaFilter={true}
+                    showTaxonomyFilter={overviewType === 'all_products'}
+                    showTextInputFilter={overviewType === 'all_products'}
+                />
                 <div
                     className={classNames(
                         style.productListWrapper,
