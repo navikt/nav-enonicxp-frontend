@@ -67,3 +67,14 @@
         margin-bottom: 1rem;
     }
 }
+
+.panelHeader {
+    display: flex;
+    flex-direction: column;
+}
+
+.subHeader {
+    font-size: 1rem;
+    font-weight: normal;
+    color: common.$a-gray-600;
+}

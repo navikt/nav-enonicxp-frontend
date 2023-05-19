@@ -63,7 +63,7 @@ export const ProductDetailsPanel = ({
 
     return (
         <ProductPanelExpandable
-            title={sortTitle}
+            header={sortTitle}
             illustration={illustration}
             visible={visible}
             anchorId={anchorId}

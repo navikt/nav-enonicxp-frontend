@@ -13,6 +13,8 @@ import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
 import { Ingress } from '@navikt/ds-react';
 import { FormsOverviewProductLink } from 'components/pages/forms-overview-page/forms-list/panel/product-link/FormsOverviewProductLink';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { Language, translator } from 'translations';
 
 import style from './FormsOverviewListPanel.module.scss';
 
@@ -28,6 +30,20 @@ const getFormDetailsDisplayOptions = (
         showApplications: overviewType === 'application',
         showComplaints: overviewType === 'complaint',
     };
+};
+
+const buildSubHeader = (
+    taxonomy: FormDetailsListItemProps['taxonomy'],
+    area: FormDetailsListItemProps['area'],
+    language: Language
+) => {
+    const taxonomyTranslations = translator('taxonomies', language);
+    const areaTranslations = translator('areas', language);
+
+    return [
+        ...taxonomy.map(taxonomyTranslations),
+        ...area.map(areaTranslations),
+    ].join(', ');
 };
 
 type Props = {
@@ -49,6 +65,8 @@ export const FormsOverviewListPanel = ({
         url,
         ingress,
         type,
+        taxonomy,
+        area,
     } = formDetails;
 
     const [isLoading, setIsLoading] = useState(false);
@@ -56,6 +74,8 @@ export const FormsOverviewListPanel = ({
     const [formDetailsPages, setFormDetailsPages] = useState<
         null | FormDetailsPageProps[]
     >(null);
+
+    const { language } = usePageConfig();
 
     const isAddendumPage = overviewType === 'addendum';
 
@@ -89,7 +109,8 @@ export const FormsOverviewListPanel = ({
 
     return (
         <ProductPanelExpandable
-            title={title}
+            header={title}
+            subHeader={buildSubHeader(taxonomy, area, language)}
             illustration={illustration}
             visible={visible}
             anchorId={anchorId}

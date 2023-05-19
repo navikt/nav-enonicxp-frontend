@@ -12,7 +12,8 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import style from './ProductPanelExpandable.module.scss';
 
 type Props = {
-    title: string;
+    header: string;
+    subHeader?: string;
     illustration: AnimatedIconsProps;
     visible: boolean;
     anchorId: string;
@@ -24,7 +25,8 @@ type Props = {
 };
 
 export const ProductPanelExpandable = ({
-    title,
+    header,
+    subHeader,
     anchorId,
     illustration,
     visible,
@@ -53,7 +55,7 @@ export const ProductPanelExpandable = ({
         logAmplitudeEvent(
             isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
             {
-                tittel: title,
+                tittel: header,
                 ...analyticsData,
             }
         );
@@ -75,7 +77,14 @@ export const ProductPanelExpandable = ({
                             className={style.illustration}
                             illustration={illustration}
                         />
-                        {title}
+                        <div className={style.panelHeader}>
+                            <span>{header}</span>
+                            {subHeader && (
+                                <span className={style.subHeader}>
+                                    {subHeader}
+                                </span>
+                            )}
+                        </div>
                     </Accordion.Header>
                     <Accordion.Content>
                         <CopyLink
