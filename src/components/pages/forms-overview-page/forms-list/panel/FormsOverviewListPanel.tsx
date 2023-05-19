@@ -9,6 +9,12 @@ import { FormDetails } from 'components/_common/form-details/FormDetails';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
 
+import style from './FormsOverviewListPanel.module.scss';
+import { MicroCard } from 'components/_common/card/MicroCard';
+import { CardType } from 'types/card';
+import { Header } from 'components/_common/headers/Header';
+import { Heading } from '@navikt/ds-react';
+
 type OverviewType = FormsOverviewData['overviewType'];
 
 const getFormDetailsDisplayOptions = (overviewType: OverviewType) => {
@@ -31,7 +37,8 @@ export const FormsOverviewListPanel = ({
     visible,
     overviewType,
 }: Props) => {
-    const { anchorId, illustration, formDetailsPaths, title } = formDetails;
+    const { anchorId, illustration, formDetailsPaths, title, url } =
+        formDetails;
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -84,10 +91,17 @@ export const FormsOverviewListPanel = ({
                 <FormDetails
                     formDetails={formDetail.data}
                     displayConfig={getFormDetailsDisplayOptions(overviewType)}
-                    className={'asdf'}
+                    className={style.formDetails}
                     key={formDetail._id}
                 />
             ))}
+            <Heading level={'3'} size={'small'}>
+                {'Mer om'}
+            </Heading>
+            <MicroCard
+                type={CardType.Product}
+                link={{ url: url, text: title }}
+            />
         </ProductPanelExpandable>
     );
 };

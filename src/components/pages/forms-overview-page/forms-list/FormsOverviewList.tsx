@@ -3,7 +3,7 @@ import {
     FormDetailsListItemProps,
     FormsOverviewProps,
 } from 'types/content-props/forms-overview';
-import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/forms-list/FormsOverviewListPanel';
+import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/forms-list/panel/FormsOverviewListPanel';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { BodyShort } from '@navikt/ds-react';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
