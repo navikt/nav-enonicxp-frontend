@@ -2,24 +2,22 @@ import React from 'react';
 import { Area } from 'types/areas';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { OverviewFilterBase } from 'components/_common/overview-filters/filter-base/OverviewFilterBase';
+import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
+import { setAreaFilterAction } from 'store/slices/overviewFilters';
 
 type Props = {
     contentList: Array<{ area: Area[] }>;
-    areaFilter: Area;
-    setAreaFilter: (area: Area) => void;
 };
 
-export const OverviewAreaFilter = ({
-    contentList,
-    setAreaFilter,
-    areaFilter,
-}: Props) => {
+export const OverviewAreaFilter = ({ contentList }: Props) => {
+    const { dispatch, areaFilter } = useOverviewFiltersState();
+
     const handleFilterUpdate = (area: Area) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             omrade: area,
             opprinnelse: 'oversiktsside områder',
         });
-        setAreaFilter(area);
+        dispatch(setAreaFilterAction({ area }));
     };
 
     const areasInContentList = Object.values(Area).filter((area) =>

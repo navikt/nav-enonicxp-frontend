@@ -3,24 +3,22 @@ import { ProductTaxonomy } from 'types/taxonomies';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { OverviewFilterBase } from 'components/_common/overview-filters/filter-base/OverviewFilterBase';
 import { ContentType } from 'types/content-props/_content-common';
+import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
+import { setTaxonomyFilterAction } from 'store/slices/overviewFilters';
 
 type Props = {
     contentList: Array<{ taxonomy: ProductTaxonomy[]; type?: ContentType }>;
-    taxonomyFilter: ProductTaxonomy;
-    setTaxonomyFilter: (taxonomy: ProductTaxonomy) => void;
 };
 
-export const OverviewTaxonomyFilter = ({
-    contentList,
-    taxonomyFilter,
-    setTaxonomyFilter,
-}: Props) => {
+export const OverviewTaxonomyFilter = ({ contentList }: Props) => {
+    const { dispatch, taxonomyFilter } = useOverviewFiltersState();
+
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             type: taxonomy,
             opprinnelse: 'oversiktsside typer',
         });
-        setTaxonomyFilter(taxonomy);
+        dispatch(setTaxonomyFilterAction({ taxonomy }));
     };
 
     const taxonomiesInProductList = Object.values(ProductTaxonomy).filter(

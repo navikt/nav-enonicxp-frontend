@@ -8,8 +8,8 @@ import { SimplifiedProductData } from 'types/component-props/_mixins';
 import { ProductItem } from './product-elements/ProductItem';
 import { classNames } from 'utils/classnames';
 import { ProductDetailType } from 'types/content-props/product-details';
-import { useOverviewFiltersState } from 'components/_common/overview-filters/useOverviewFiltersState';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
+import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 
 import style from './OverviewPage.module.scss';
 
@@ -17,7 +17,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
     const { language } = usePageConfig();
 
-    const { matchFilters, dispatch, state } = useOverviewFiltersState();
+    const { matchFilters } = useOverviewFiltersState();
 
     const getTranslationString = translator('overview', language);
 
@@ -27,9 +27,6 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const hasVisibleProducts = productList.some((product) =>
         isVisiblePredicate(product)
     );
-
-    const showTaxonomyFilter = overviewType === ProductDetailType.ALL_PRODUCTS;
-    const showSearch = overviewType === ProductDetailType.ALL_PRODUCTS;
 
     return (
         <div className={style.overviewPage}>
@@ -43,8 +40,6 @@ export const OverviewPage = (props: OverviewPageProps) => {
             <div className={style.content}>
                 <OverviewFilters
                     contentList={productList}
-                    dispatch={dispatch}
-                    state={state}
                     showAreaFilter={true}
                     showTaxonomyFilter={overviewType === 'all_products'}
                     showTextInputFilter={overviewType === 'all_products'}
