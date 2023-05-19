@@ -20,24 +20,22 @@ const overviewFiltersSlice = createSlice({
     reducers: {
         setArea: (state, action: PayloadAction<{ area: Area }>) => {
             const { area } = action.payload;
-
-            state.areaFilter = area;
+            return { ...state, areaFilter: area };
         },
         setTaxonomy: (
             state,
             action: PayloadAction<{ taxonomy: ProductTaxonomy }>
         ) => {
             const { taxonomy } = action.payload;
-
-            state.taxonomyFilter = taxonomy;
+            return { ...state, taxonomyFilter: taxonomy };
         },
         setTextFilter: (state, action: PayloadAction<{ text: string }>) => {
             const { text } = action.payload;
-
-            state.textFilter = text;
+            return { ...state, textFilter: text };
         },
-        resetFilters: (state) => {
-            state = overviewFiltersInitialState;
+        resetFilters: () => {
+            window.dispatchEvent(new Event('OverviewFiltersReset'));
+            return overviewFiltersInitialState;
         },
     },
 });

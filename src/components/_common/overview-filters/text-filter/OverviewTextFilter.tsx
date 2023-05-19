@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { TextField } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
@@ -9,35 +9,43 @@ import { setTextFilterAction } from 'store/slices/overviewFilters';
 
 import style from './OverviewTextFilter.module.scss';
 
-const analytics = debounce(
-    (value: string) => {
-        logAmplitudeEvent(AnalyticsEvents.FILTER, {
-            tekst: value,
-            opprinnelse: 'oversiktsside fritekst',
-        });
-    },
-    250,
-    { maxWait: 1000 }
-);
-
 export const OverviewTextFilter = () => {
     const { language } = usePageConfig();
-    const { textFilter, dispatch } = useOverviewFiltersState();
+    const { dispatch } = useOverviewFiltersState();
+    const [textInput, setTextInput] = useState('');
 
     const label = translator('overview', language)('search');
 
     const searchEventHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
-        dispatch(setTextFilterAction({ text: value }));
-        analytics(value);
+        setTextInput(value);
+
+        debounce(
+            () => {
+                dispatch(setTextFilterAction({ text: value }));
+                logAmplitudeEvent(AnalyticsEvents.FILTER, {
+                    tekst: value,
+                    opprinnelse: 'oversiktsside fritekst',
+                });
+            },
+            250,
+            { maxWait: 1000 }
+        )();
     };
+
+    useEffect(() => {
+        const resetHandler = () => setTextInput('');
+        window.addEventListener('OverviewFiltersReset', resetHandler);
+        return () =>
+            window.removeEventListener('OverviewFiltersReset', resetHandler);
+    }, []);
 
     return (
         <div className={style.overviewSearch}>
             <TextField
                 label={label}
-                value={textFilter}
                 onChange={searchEventHandler}
+                value={textInput}
             />
         </div>
     );
