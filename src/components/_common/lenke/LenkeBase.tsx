@@ -48,10 +48,6 @@ export const LenkeBase = ({
     const { pageConfig } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
 
-    // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
-    const shouldPrefetch =
-        prefetch === false || pageConfig.editorView ? false : undefined;
-
     const { url, canRouteClientSide } = usePublicUrl(href);
     const analyticsData = {
         komponent: analyticsComponent,
@@ -67,32 +63,31 @@ export const LenkeBase = ({
             ? BadLinkWarning
             : Fragment;
 
-    const linkElement = (
-        <a
-            href={url}
-            onClick={(e) => {
-                logAmplitudeEvent(
-                    analyticsEvent || AnalyticsEvents.NAVIGATION,
-                    analyticsData
-                );
-                onClick?.(e);
-            }}
-            rel={isNofollowUrl(url) ? 'nofollow' : undefined}
-            {...rest}
-        >
-            {children}
-        </a>
-    );
+    const LinkComponent = canRouteClientSide ? Link : 'a';
+
+    // Setting prefetch=true on next/link is deprecated, hence this strange thing (true is default)
+    const shouldPrefetch =
+        canRouteClientSide && (prefetch === false || pageConfig.editorView)
+            ? false
+            : undefined;
 
     return (
         <WrapperComponent>
-            {canRouteClientSide ? (
-                <Link href={url} passHref={true} prefetch={shouldPrefetch}>
-                    {linkElement}
-                </Link>
-            ) : (
-                linkElement
-            )}
+            <LinkComponent
+                {...rest}
+                href={url}
+                onClick={(e) => {
+                    logAmplitudeEvent(
+                        analyticsEvent || AnalyticsEvents.NAVIGATION,
+                        analyticsData
+                    );
+                    onClick?.(e);
+                }}
+                rel={isNofollowUrl(url) ? 'nofollow' : undefined}
+                prefetch={shouldPrefetch}
+            >
+                {children}
+            </LinkComponent>
         </WrapperComponent>
     );
 };

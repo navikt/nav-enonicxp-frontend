@@ -1,4 +1,4 @@
-import { ClockFilled, Information, PlaceFilled } from '@navikt/ds-icons';
+import { ClockFilled, InformationFilled, PlaceFilled } from '@navikt/ds-icons';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import classNames from 'classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -121,8 +121,8 @@ export const SingleReception = (props: AudienceReception) => {
                 </>
             )}
             <div className={styles.appointmentBookingInfo}>
-                <Information
-                    className={styles.appointmentIcon}
+                <InformationFilled
+                    className={styles.iconInfo}
                     aria-hidden="true"
                 />
                 {getLabel('youCanMakeAppointment')}

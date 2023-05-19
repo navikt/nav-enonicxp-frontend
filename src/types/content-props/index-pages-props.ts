@@ -1,4 +1,3 @@
-import { DynamicPageData } from './dynamic-page-props';
 import { ContentType, ContentCommonProps } from './_content-common';
 import { Area } from '../areas';
 import { ProcessedHtmlProps } from '../processed-html-props';

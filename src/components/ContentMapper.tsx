@@ -25,6 +25,7 @@ import { PublishingCalendarEntryPage } from './parts/_legacy/publishing-calendar
 import { ContentTypeNotSupportedPage } from 'components/pages/contenttype-not-supported-page/ContentTypeNotSupportedPage';
 import { FormIntermediateStepPage } from './pages/form-intermediate-step-page/FormIntermediateStepPage';
 import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
+import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
 
 const contentToReactComponent: {
     [key in ContentType]?: React.FunctionComponent<ContentProps>;
@@ -51,6 +52,7 @@ const contentToReactComponent: {
     [ContentType.PressLandingPage]: PressLandingPage,
     [ContentType.FormIntermediateStepPage]: FormIntermediateStepPage,
     [ContentType.FormDetails]: FormDetailsPreviewPage,
+    [ContentType.FormsOverview]: FormsOverviewPage,
 
     [ContentType.AreaPage]: DynamicPage,
     [ContentType.FrontPage]: DynamicPage,

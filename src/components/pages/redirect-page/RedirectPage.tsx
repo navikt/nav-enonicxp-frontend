@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/compat/router';
 import { getTargetIfRedirect } from 'utils/redirects';
 import { BodyLong, Loader } from '@navikt/ds-react';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
