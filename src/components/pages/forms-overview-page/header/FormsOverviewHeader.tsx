@@ -3,11 +3,14 @@ import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import Region from 'components/layouts/Region';
 import { PageHeader } from 'components/_common/headers/page-header/PageHeader';
 import { BodyShort } from '@navikt/ds-react';
+import { translator } from 'translations';
 
 import style from './FormsOverviewHeader.module.scss';
 
 export const FormsOverviewHeader = (props: FormsOverviewProps) => {
-    const { data, page } = props;
+    const { data, page, language } = props;
+
+    const getTranslationString = translator('overview', language);
 
     return (
         <div className={style.container}>
@@ -18,7 +21,9 @@ export const FormsOverviewHeader = (props: FormsOverviewProps) => {
             >
                 {data.title}
             </PageHeader>
-            <BodyShort className={style.subHeader}>{'FRA A TIL Å'}</BodyShort>
+            <BodyShort className={style.subHeader}>
+                {getTranslationString('any')}
+            </BodyShort>
             <Region pageProps={props} regionProps={page.regions.mainCol} />
         </div>
     );
