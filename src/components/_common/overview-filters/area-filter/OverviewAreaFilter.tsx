@@ -23,7 +23,7 @@ export const OverviewAreaFilter = ({ items }: Props) => {
         dispatch(setAreaFilterAction({ area }));
     };
 
-    const areasInContentList = Object.values(Area).filter((area) =>
+    const areasPresent = Object.values(Area).filter((area) =>
         items.some((item) => item.area.some((itemArea) => itemArea === area))
     );
 
@@ -32,7 +32,7 @@ export const OverviewAreaFilter = ({ items }: Props) => {
             type={'areas'}
             selectionCallback={handleFilterUpdate}
             selected={areaFilter}
-            options={[Area.ALL, ...areasInContentList]}
+            options={[Area.ALL, ...areasPresent]}
         />
     );
 };

@@ -25,6 +25,7 @@ export const OverviewFilters = ({
     const { dispatch } = useOverviewFiltersState();
 
     useEffect(() => {
+        // Reset filters when the component dismounts
         return () => {
             dispatch(resetOverviewFiltersAction());
         };

@@ -35,7 +35,7 @@ export const useOverviewFiltersState = () => {
             taxonomyFilter === ProductTaxonomy.ALL ||
             filterableContent.taxonomy.includes(taxonomyFilter) ||
             (taxonomyFilter === ProductTaxonomy.FORMS &&
-                filterableContent.type !== 'no.nav.navno:guide-page');
+                filterableContent.type === 'no.nav.navno:guide-page');
         if (!isTaxonomyMatching) {
             return false;
         }

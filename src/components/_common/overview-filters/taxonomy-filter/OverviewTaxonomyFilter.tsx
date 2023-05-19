@@ -23,7 +23,7 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
         dispatch(setTaxonomyFilterAction({ taxonomy }));
     };
 
-    const taxonomiesInProductList = Object.values(ProductTaxonomy).filter(
+    const taxonomiesPresent = Object.values(ProductTaxonomy).filter(
         (taxonomy) =>
             items.some((item) =>
                 item.taxonomy.some((itemTaxonomy) => itemTaxonomy === taxonomy)
@@ -35,7 +35,7 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
     );
 
     if (listHasGuidePage) {
-        taxonomiesInProductList.push(ProductTaxonomy.FORMS);
+        taxonomiesPresent.push(ProductTaxonomy.FORMS);
     }
 
     return (
@@ -43,7 +43,7 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
             type={'taxonomies'}
             selectionCallback={handleFilterUpdate}
             selected={taxonomyFilter}
-            options={[ProductTaxonomy.ALL, ...taxonomiesInProductList]}
+            options={[ProductTaxonomy.ALL, ...taxonomiesPresent]}
         />
     );
 };
