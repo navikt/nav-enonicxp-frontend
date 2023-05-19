@@ -6,7 +6,7 @@ import { Taxonomy } from 'types/taxonomies';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
-import styles from './OverviewPageFilter.module.scss';
+import styles from './OverviewFilterBase.module.scss';
 
 type FilterOptions = Area | Taxonomy;
 
@@ -23,7 +23,7 @@ type Props<Type extends FilterOptions> = {
     options: Type[];
 };
 
-export const OverviewPageFilter = <Type extends FilterOptions>({
+export const OverviewFilterBase = <Type extends FilterOptions>({
     type,
     selectionCallback,
     selected,

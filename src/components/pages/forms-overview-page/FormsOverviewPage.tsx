@@ -5,10 +5,10 @@ import { FormsOverviewHeader } from 'components/pages/forms-overview-page/header
 import Region from 'components/layouts/Region';
 import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
 import { FormsOverviewList } from 'components/pages/forms-overview-page/forms-list/FormsOverviewList';
-
-import style from './FormsOverviewPage.module.scss';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+
+import style from './FormsOverviewPage.module.scss';
 
 export const FormsOverviewPage = (props: FormsOverviewProps) => {
     const { page, data, isPagePreview } = props;

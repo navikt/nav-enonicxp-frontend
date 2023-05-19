@@ -1,88 +1,73 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     FormDetailsListItemProps,
     FormsOverviewProps,
 } from 'types/content-props/forms-overview';
 import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/forms-list/FormsOverviewListPanel';
-import { FormsOverviewFilters } from 'components/pages/forms-overview-page/filters/FormsOverviewFilters';
-import { Area } from 'types/areas';
-import { ProductTaxonomy } from 'types/taxonomies';
+import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { BodyShort } from '@navikt/ds-react';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
+import { translator } from 'translations';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { resetOverviewFiltersAction } from 'store/slices/overviewFilters';
 
 import style from './FormsOverviewList.module.scss';
 
 export const FormsOverviewList = (props: FormsOverviewProps) => {
-    const { formDetailsList, showFilter } = props.data;
+    const {
+        formDetailsList,
+        areasFilterToggle,
+        taxonomyFilterToggle,
+        textFilterToggle,
+    } = props.data;
 
-    const [areaFilter, setAreaFilter] = useState<Area>(Area.ALL);
-    const [taxonomyFilter, setTaxonomyFilter] = useState<ProductTaxonomy>(
-        ProductTaxonomy.ALL
-    );
-    const [searchString, setSearchString] = useState<string>('');
+    const { language } = usePageConfig();
 
-    const resetFilters = () => {
-        setSearchString('');
-        setAreaFilter(Area.ALL);
-        setTaxonomyFilter(ProductTaxonomy.ALL);
-    };
+    const getTranslationString = translator('overview', language);
 
-    const isVisiblePredicate = (formDetailsItem: FormDetailsListItemProps) => {
-        const isAreaMatching =
-            areaFilter === Area.ALL ||
-            formDetailsItem.area.includes(areaFilter);
-        if (!isAreaMatching) {
-            return false;
-        }
+    const { matchFilters, hasDefaultFilters, dispatch } =
+        useOverviewFiltersState();
 
-        const isTaxonomyMatching =
-            taxonomyFilter === ProductTaxonomy.ALL ||
-            formDetailsItem.taxonomy.includes(taxonomyFilter);
-        if (!isTaxonomyMatching) {
-            return false;
-        }
+    const isVisible = (formDetail: FormDetailsListItemProps) =>
+        matchFilters({
+            text: formDetail.title,
+            area: formDetail.area,
+            taxonomy: formDetail.taxonomy,
+        });
 
-        const isSearchMatching =
-            !searchString ||
-            formDetailsItem.title
-                .toLowerCase()
-                .includes(searchString.toLowerCase());
-
-        return isSearchMatching;
-    };
-
-    const numMatchingFilters =
-        formDetailsList.filter(isVisiblePredicate).length;
+    const numMatchingFilters = formDetailsList.filter(isVisible).length;
 
     return (
         <div>
-            <FormsOverviewFilters
-                contentList={formDetailsList}
-                showAreaFilter={true}
-                showTaxonomyFilter={true}
-                showTextInputFilter={showFilter}
-                setTaxonomyFilter={setTaxonomyFilter}
-                setAreaFilter={setAreaFilter}
-                setTextInputFilter={setSearchString}
+            <OverviewFilters
+                filterableItems={formDetailsList}
+                showTaxonomyFilter={taxonomyFilterToggle}
+                showAreaFilter={areasFilterToggle}
+                showTextInputFilter={textFilterToggle}
             />
             <div className={style.filterSummary}>
                 <BodyShort>
-                    {`Viser ${numMatchingFilters} av ${formDetailsList.length}`}
+                    {numMatchingFilters > 0
+                        ? `Viser ${numMatchingFilters} av ${formDetailsList.length}`
+                        : getTranslationString('noProducts')}
                 </BodyShort>
-                <LenkeBase
-                    href={'#'}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        resetFilters();
-                    }}
-                >
-                    {'Nullstill'}
-                </LenkeBase>
+                {!hasDefaultFilters && (
+                    <LenkeInline
+                        href={'#'}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            dispatch(resetOverviewFiltersAction());
+                        }}
+                    >
+                        {getTranslationString('resetFilters')}
+                    </LenkeInline>
+                )}
             </div>
             {formDetailsList.map((formDetail) => (
                 <FormsOverviewListPanel
                     formDetails={formDetail}
-                    visible={isVisiblePredicate(formDetail)}
+                    visible={isVisible(formDetail)}
                     key={formDetail.anchorId}
                 />
             ))}
