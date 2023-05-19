@@ -78,7 +78,7 @@ export const ThemedPageHeader = ({
         }
 
         if (pageType === ContentType.Overview) {
-            const getTaxonomyLabel = translator('overviews', language);
+            const getTaxonomyLabel = translator('overview', language);
             return getTaxonomyLabel('any');
         }
 

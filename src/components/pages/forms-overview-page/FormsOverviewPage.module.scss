@@ -1,3 +1,5 @@
+@use 'src/common' as common;
+
 .page {
     display: grid;
     column-gap: 2.5rem;
@@ -10,6 +12,9 @@
 }
 
 .rightCol {
+    & > * {
+        border-radius: common.$border-radius-large;
+    }
 }
 
 .illustration {
