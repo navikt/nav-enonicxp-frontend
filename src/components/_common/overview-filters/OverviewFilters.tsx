@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { OverviewAreaFilter } from 'components/_common/overview-filters/area-filter/OverviewAreaFilter';
 import { OverviewTaxonomyFilter } from 'components/_common/overview-filters/taxonomy-filter/OverviewTaxonomyFilter';
 import { OverviewTextFilter } from 'components/_common/overview-filters/text-filter/OverviewTextFilter';
-import { OverviewFilterableItem } from 'store/hooks/useOverviewFilters';
+import {
+    OverviewFilterableItem,
+    useOverviewFiltersState,
+} from 'store/hooks/useOverviewFilters';
+import { resetOverviewFiltersAction } from 'store/slices/overviewFilters';
 
 type Props = {
     filterableItems: OverviewFilterableItem[];
@@ -18,6 +22,12 @@ export const OverviewFilters = ({
     showTaxonomyFilter,
     ...divAttribs
 }: Props) => {
+    const { dispatch } = useOverviewFiltersState();
+
+    useEffect(() => {
+        dispatch(resetOverviewFiltersAction());
+    }, [dispatch]);
+
     return (
         <div {...divAttribs}>
             {showAreaFilter && <OverviewAreaFilter items={filterableItems} />}
