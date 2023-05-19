@@ -19,7 +19,6 @@ export enum Audience {
     PERSON = 'person',
     EMPLOYER = 'employer',
     PROVIDER = 'provider',
-    _selected = '_selected'
 }
 
 export enum ProviderAudience {
