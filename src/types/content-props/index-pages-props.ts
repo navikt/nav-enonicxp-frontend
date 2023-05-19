@@ -10,7 +10,7 @@ import {
 
 type CommonData = {
     audience: AudienceProps;
-} & DynamicPageData;
+};
 
 export type FrontPageData = {
     areasRefs: AreaPageProps[];
