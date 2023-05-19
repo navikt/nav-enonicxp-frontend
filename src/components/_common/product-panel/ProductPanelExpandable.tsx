@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Accordion } from '@navikt/ds-react';
+import { Accordion, BodyShort, Loader } from '@navikt/ds-react';
 import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
 import { classNames } from 'utils/classnames';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { translator } from 'translations';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './ProductPanelExpandable.module.scss';
 
@@ -16,6 +18,7 @@ type Props = {
     anchorId: string;
     contentLoaderCallback: () => void;
     analyticsData?: Record<string, string>;
+    isLoading?: boolean;
     error?: string;
     children: React.ReactNode;
 };
@@ -27,10 +30,14 @@ export const ProductPanelExpandable = ({
     visible,
     contentLoaderCallback,
     analyticsData,
+    isLoading,
     error,
     children,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const { language } = usePageConfig();
+    const loadingText = translator('overview', language)('loading');
 
     const anchorIdWithHash = `#${anchorId}`;
 
@@ -78,7 +85,14 @@ export const ProductPanelExpandable = ({
                         {error && (
                             <AlertBox variant={'error'}>{error}</AlertBox>
                         )}
-                        {children}
+                        {isLoading ? (
+                            <div className={style.loader}>
+                                <Loader size={'2xlarge'} />
+                                <BodyShort>{loadingText}</BodyShort>
+                            </div>
+                        ) : (
+                            children
+                        )}
                     </Accordion.Content>
                 </Accordion.Item>
             </Accordion>

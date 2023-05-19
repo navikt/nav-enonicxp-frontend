@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BodyShort, Loader } from '@navikt/ds-react';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentType } from 'types/content-props/_content-common';
-import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import {
     FormDetailsListItemProps,
     FormsOverviewData,
@@ -11,8 +9,6 @@ import {
 import { FormDetails } from 'components/_common/form-details/FormDetails';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
-
-import style from '../../overview-page/product-elements/ProductDetailsPanel.module.scss';
 
 type OverviewType = FormsOverviewData['overviewType'];
 
@@ -43,10 +39,6 @@ export const FormsOverviewListPanel = ({
     const [formDetailsPages, setFormDetailsPages] = useState<
         null | FormDetailsPageProps[]
     >(null);
-
-    const { language } = usePageConfig();
-
-    const loadingText = translator('overview', language)('loading');
 
     const handleFormDetailsFetch = () => {
         if (isLoading || formDetailsPages) {
@@ -83,28 +75,20 @@ export const FormsOverviewListPanel = ({
             visible={visible}
             anchorId={anchorId}
             contentLoaderCallback={handleFormDetailsFetch}
+            isLoading={isLoading}
+            error={error}
             analyticsData={{
                 opprinnelse: 'skjemaoversikt accordion',
             }}
-            error={error}
         >
-            {isLoading ? (
-                <div className={style.detailsLoader}>
-                    <Loader size={'2xlarge'} />
-                    <BodyShort>{loadingText}</BodyShort>
-                </div>
-            ) : formDetailsPages ? (
-                formDetailsPages.map((formDetail) => (
-                    <FormDetails
-                        formDetails={formDetail.data}
-                        displayConfig={getFormDetailsDisplayOptions(
-                            overviewType
-                        )}
-                        className={'asdf'}
-                        key={formDetail._id}
-                    />
-                ))
-            ) : null}
+            {formDetailsPages?.map((formDetail) => (
+                <FormDetails
+                    formDetails={formDetail.data}
+                    displayConfig={getFormDetailsDisplayOptions(overviewType)}
+                    className={'asdf'}
+                    key={formDetail._id}
+                />
+            ))}
         </ProductPanelExpandable>
     );
 };

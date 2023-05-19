@@ -1,0 +1,9 @@
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    :global(.navds-loader) {
+        margin-bottom: 1rem;
+    }
+}

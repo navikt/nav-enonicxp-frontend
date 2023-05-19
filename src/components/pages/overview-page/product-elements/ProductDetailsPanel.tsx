@@ -12,8 +12,7 @@ import { ProductDetailType } from 'types/content-props/product-details';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-
-import style from './ProductDetailsPanel.module.scss';
+import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
 
 type Props = {
     detailType: ProductDetailType;
@@ -31,7 +30,6 @@ export const ProductDetailsPanel = ({
     const { productDetailsPath, anchorId, illustration, sortTitle } =
         productDetails;
 
-    const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [productDetailsPage, setProductDetailsPage] = useState(null);
@@ -39,30 +37,6 @@ export const ProductDetailsPanel = ({
     const { language } = usePageConfig();
 
     const detailTypeStrings = translator('productDetailTypes', language);
-    const loadingText = translator('overview', language)('loading');
-
-    const anchorIdWithHash = `#${anchorId}`;
-
-    useEffect(() => {
-        if (window.location.hash === anchorIdWithHash) {
-            handleProductDetailsFetch();
-            setIsOpen(true);
-        }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [anchorIdWithHash]);
-
-    const handleClick = () => {
-        logAmplitudeEvent(
-            isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
-            {
-                tittel: sortTitle,
-                opprinnelse: 'oversiktsside accordion',
-            }
-        );
-        setIsOpen(!isOpen);
-        handleProductDetailsFetch();
-    };
 
     const handleProductDetailsFetch = () => {
         if (isLoading || productDetailsPage) {
@@ -94,46 +68,24 @@ export const ProductDetailsPanel = ({
     };
 
     return (
-        <>
-            <div id={anchorId} />
-            <Accordion className={classNames(!visible && style.hidden)}>
-                <Accordion.Item open={isOpen} className={style.accordionItem}>
-                    <Accordion.Header
-                        onClick={handleClick}
-                        onMouseOver={
-                            productDetailsPage
-                                ? null
-                                : handleProductDetailsFetch
-                        }
-                    >
-                        <IllustrationStatic
-                            className={style.illustration}
-                            illustration={illustration}
-                        />
-                        {sortTitle}
-                    </Accordion.Header>
-                    <Accordion.Content>
-                        {error && (
-                            <AlertBox variant={'error'}>{error}</AlertBox>
-                        )}
-                        <CopyLink
-                            anchor={anchorIdWithHash}
-                            className={style.copyLink}
-                        />
-                        {isLoading ? (
-                            <div className={style.detailsLoader}>
-                                <Loader size={'2xlarge'} />
-                                <BodyShort>{loadingText}</BodyShort>
-                            </div>
-                        ) : productDetailsPage ? (
-                            <ComponentMapper
-                                componentProps={productDetailsPage}
-                                pageProps={pageProps}
-                            />
-                        ) : null}
-                    </Accordion.Content>
-                </Accordion.Item>
-            </Accordion>
-        </>
+        <ProductPanelExpandable
+            title={sortTitle}
+            illustration={illustration}
+            visible={visible}
+            anchorId={anchorId}
+            contentLoaderCallback={handleProductDetailsFetch}
+            error={error}
+            isLoading={isLoading}
+            analyticsData={{
+                opprinnelse: 'oversiktsside accordion',
+            }}
+        >
+            {productDetailsPage ? (
+                <ComponentMapper
+                    componentProps={productDetailsPage}
+                    pageProps={pageProps}
+                />
+            ) : null}
+        </ProductPanelExpandable>
     );
 };
