@@ -1,61 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import { Accordion, BodyShort, Loader } from '@navikt/ds-react';
-import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
+import { BodyShort, Loader } from '@navikt/ds-react';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
-import { classNames } from 'utils/classnames';
+import { ContentType } from 'types/content-props/_content-common';
 import { translator } from 'translations';
-import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { FormDetailsListItemProps } from 'types/content-props/forms-overview';
-import { ContentMapper } from 'components/ContentMapper';
+import {
+    FormDetailsListItemProps,
+    FormsOverviewData,
+} from 'types/content-props/forms-overview';
+import { FormDetails } from 'components/_common/form-details/FormDetails';
+import { FormDetailsPageProps } from 'types/content-props/form-details';
+import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
 
 import style from '../../overview-page/product-elements/ProductDetailsPanel.module.scss';
+
+type OverviewType = FormsOverviewData['overviewType'];
+
+const getFormDetailsDisplayOptions = (overviewType: OverviewType) => {
+    return {
+        showTitle: true,
+        showIngress: overviewType !== 'addendum',
+        showAddendums: true,
+        showApplications: overviewType !== 'addendum',
+    };
+};
 
 type Props = {
     formDetails: FormDetailsListItemProps;
     visible: boolean;
+    overviewType: OverviewType;
 };
 
-export const FormsOverviewListPanel = ({ formDetails, visible }: Props) => {
-    const { anchorId, illustration, formDetailsPaths, title, area, taxonomy } =
-        formDetails;
+export const FormsOverviewListPanel = ({
+    formDetails,
+    visible,
+    overviewType,
+}: Props) => {
+    const { anchorId, illustration, formDetailsPaths, title } = formDetails;
 
-    const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [formDetailsPages, setFormDetailsPages] = useState<
-        null | ContentProps[]
+        null | FormDetailsPageProps[]
     >(null);
 
     const { language } = usePageConfig();
 
     const loadingText = translator('overview', language)('loading');
-
-    const anchorIdWithHash = `#${anchorId}`;
-
-    useEffect(() => {
-        if (window.location.hash === anchorIdWithHash) {
-            handleFormDetailsFetch();
-            setIsOpen(true);
-        }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [anchorIdWithHash]);
-
-    const handleClick = () => {
-        logAmplitudeEvent(
-            isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
-            {
-                tittel: title,
-                opprinnelse: 'skjemaoversikt accordion',
-            }
-        );
-        setIsOpen(!isOpen);
-        handleFormDetailsFetch();
-    };
 
     const handleFormDetailsFetch = () => {
         if (isLoading || formDetailsPages) {
@@ -63,6 +54,7 @@ export const FormsOverviewListPanel = ({ formDetails, visible }: Props) => {
         }
 
         setIsLoading(true);
+        setError(null);
 
         Promise.all(formDetailsPaths.map(fetchPageCacheContent))
             .then((contentFromCache) => {
@@ -75,9 +67,8 @@ export const FormsOverviewListPanel = ({ formDetails, visible }: Props) => {
                     }
 
                     return true;
-                });
+                }) as FormDetailsPageProps[];
 
-                setError(null);
                 setFormDetailsPages(validFormDetails);
             })
             .finally(() => {
@@ -86,46 +77,34 @@ export const FormsOverviewListPanel = ({ formDetails, visible }: Props) => {
     };
 
     return (
-        <>
-            <div id={anchorId} />
-            <Accordion className={classNames(!visible && style.hidden)}>
-                <Accordion.Item open={isOpen} className={style.accordionItem}>
-                    <Accordion.Header
-                        onClick={handleClick}
-                        onMouseOver={
-                            formDetailsPages ? null : handleFormDetailsFetch
-                        }
-                    >
-                        <IllustrationStatic
-                            className={style.illustration}
-                            illustration={illustration}
-                        />
-                        {title}
-                    </Accordion.Header>
-                    <Accordion.Content>
-                        {error && (
-                            <AlertBox variant={'error'}>{error}</AlertBox>
+        <ProductPanelExpandable
+            title={title}
+            illustration={illustration}
+            visible={visible}
+            anchorId={anchorId}
+            contentLoaderCallback={handleFormDetailsFetch}
+            analyticsData={{
+                opprinnelse: 'skjemaoversikt accordion',
+            }}
+            error={error}
+        >
+            {isLoading ? (
+                <div className={style.detailsLoader}>
+                    <Loader size={'2xlarge'} />
+                    <BodyShort>{loadingText}</BodyShort>
+                </div>
+            ) : formDetailsPages ? (
+                formDetailsPages.map((formDetail) => (
+                    <FormDetails
+                        formDetails={formDetail.data}
+                        displayConfig={getFormDetailsDisplayOptions(
+                            overviewType
                         )}
-                        <CopyLink
-                            anchor={anchorIdWithHash}
-                            className={style.copyLink}
-                        />
-                        {isLoading ? (
-                            <div className={style.detailsLoader}>
-                                <Loader size={'2xlarge'} />
-                                <BodyShort>{loadingText}</BodyShort>
-                            </div>
-                        ) : formDetailsPages ? (
-                            formDetailsPages.map((formDetail) => (
-                                <ContentMapper
-                                    content={formDetail}
-                                    key={formDetail._id}
-                                />
-                            ))
-                        ) : null}
-                    </Accordion.Content>
-                </Accordion.Item>
-            </Accordion>
-        </>
+                        className={'asdf'}
+                        key={formDetail._id}
+                    />
+                ))
+            ) : null}
+        </ProductPanelExpandable>
     );
 };

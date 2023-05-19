@@ -20,6 +20,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
         areasFilterToggle,
         taxonomyFilterToggle,
         textFilterToggle,
+        overviewType,
     } = props.data;
 
     const { language } = usePageConfig();
@@ -68,6 +69,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 <FormsOverviewListPanel
                     formDetails={formDetail}
                     visible={isVisible(formDetail)}
+                    overviewType={overviewType}
                     key={formDetail.anchorId}
                 />
             ))}

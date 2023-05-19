@@ -1,0 +1,69 @@
+@use 'src/common' as common;
+
+.detailsLoader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    :global(.navds-loader) {
+        margin-bottom: 1rem;
+    }
+}
+
+.accordionItem {
+    border-bottom: 1px common.$a-border-divider solid;
+
+    :global(.navds-accordion__header),
+    :global(.navds-accordion__content) {
+        border-bottom: 0;
+    }
+
+    :global(.navds-accordion__header) {
+        align-items: center;
+        background-color: white;
+        margin-bottom: 3px;
+        padding-top: var(--a-spacing-4);
+        padding-bottom: var(--a-spacing-4);
+
+        @include common.expandable-panel-mixin();
+        &:focus {
+            @include common.panel-focus-mixin(true);
+        }
+
+        :global(.navds-accordion__header-content) {
+            display: flex;
+            align-items: center;
+            gap: var(--a-spacing-4);
+        }
+    }
+
+    :global(.navds-accordion__content) {
+        padding-top: 0;
+        padding-bottom: 1.75rem;
+    }
+
+    :global(.navds-accordion__expand-icon) {
+        margin-left: auto;
+    }
+
+    :global(.region__intro) {
+        margin-bottom: 1rem;
+    }
+    :global(.region__main) {
+        margin-bottom: 1rem;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.illustration {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+}
+
+.copyLink {
+    margin-bottom: 1rem;
+}
