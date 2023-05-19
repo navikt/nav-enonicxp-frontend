@@ -5,23 +5,28 @@ import {
     FormDetailsListItemProps,
     FormsOverviewData,
 } from 'types/content-props/forms-overview';
-import { FormDetails } from 'components/_common/form-details/FormDetails';
+import {
+    FormDetails,
+    FormDetailsComponentProps,
+} from 'components/_common/form-details/FormDetails';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
-import { MicroCard } from 'components/_common/card/MicroCard';
-import { CardType } from 'types/card';
-import { Heading, Ingress } from '@navikt/ds-react';
+import { Ingress } from '@navikt/ds-react';
+import { FormsOverviewProductLink } from 'components/pages/forms-overview-page/forms-list/panel/product-link/FormsOverviewProductLink';
 
 import style from './FormsOverviewListPanel.module.scss';
 
 type OverviewType = FormsOverviewData['overviewType'];
 
-const getFormDetailsDisplayOptions = (overviewType: OverviewType) => {
+const getFormDetailsDisplayOptions = (
+    overviewType: OverviewType
+): FormDetailsComponentProps['displayConfig'] => {
     return {
         showTitle: true,
         showIngress: overviewType !== 'addendum',
         showAddendums: true,
-        showApplications: overviewType !== 'addendum',
+        showApplications: overviewType === 'application',
+        showComplaints: overviewType === 'complaint',
     };
 };
 
@@ -36,14 +41,23 @@ export const FormsOverviewListPanel = ({
     visible,
     overviewType,
 }: Props) => {
-    const { anchorId, illustration, formDetailsPaths, title, url, ingress } =
-        formDetails;
+    const {
+        anchorId,
+        illustration,
+        formDetailsPaths,
+        title,
+        url,
+        ingress,
+        type,
+    } = formDetails;
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [formDetailsPages, setFormDetailsPages] = useState<
         null | FormDetailsPageProps[]
     >(null);
+
+    const isAddendumPage = overviewType === 'addendum';
 
     const handleFormDetailsFetch = () => {
         if (isLoading || formDetailsPages) {
@@ -86,7 +100,9 @@ export const FormsOverviewListPanel = ({
                 opprinnelse: 'skjemaoversikt accordion',
             }}
         >
-            <Ingress className={style.ingress}>{ingress}</Ingress>
+            {!isAddendumPage && (
+                <Ingress className={style.ingress}>{ingress}</Ingress>
+            )}
             {formDetailsPages?.map((formDetail) => (
                 <FormDetails
                     formDetails={formDetail.data}
@@ -95,13 +111,9 @@ export const FormsOverviewListPanel = ({
                     key={formDetail._id}
                 />
             ))}
-            <Heading level={'3'} size={'small'}>
-                {'Mer om'}
-            </Heading>
-            <MicroCard
-                type={CardType.Product}
-                link={{ url: url, text: title }}
-            />
+            {!isAddendumPage && (
+                <FormsOverviewProductLink type={type} url={url} title={title} />
+            )}
         </ProductPanelExpandable>
     );
 };

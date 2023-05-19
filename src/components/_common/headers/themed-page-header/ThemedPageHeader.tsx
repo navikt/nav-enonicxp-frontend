@@ -1,14 +1,13 @@
 import React from 'react';
-import { classNames } from '../../../../utils/classnames';
+import { classNames } from 'utils/classnames';
 import { PageHeader } from '../page-header/PageHeader';
-import { formatDate } from '../../../../utils/datetime';
-import { ContentType } from '../../../../types/content-props/_content-common';
+import { formatDate } from 'utils/datetime';
+import { ContentType } from 'types/content-props/_content-common';
 import { BodyShort, Detail } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Illustration } from 'components/_common/illustration/Illustration';
 import { IllustrationPlacements } from 'types/illustrationPlacements';
-
 import {
     ProductPageProps,
     SituationPageProps,
@@ -18,12 +17,12 @@ import {
     GenericPageProps,
     OfficeEditorialPageProps,
     OfficeBranchPageProps,
-} from '../../../../types/content-props/dynamic-page-props';
-import { Audience } from '../../../../types/component-props/_mixins';
+} from 'types/content-props/dynamic-page-props';
+import { Audience } from 'types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
+import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 
 import style from './ThemedPageHeader.module.scss';
-import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 
 type ContentProps =
     | GenericPageProps
@@ -157,12 +156,6 @@ export const ThemedPageHeader = ({
                 short: true,
                 year: true,
             });
-
-    // This is a temporaty fix, especially for "Arbeidsavklaringspenger".
-    // Will work with design to find solution for how long titles and illustration can stack better on mobile.
-    const hasRoomForIllustrationOnMobile = pageTitle
-        .split(' ')
-        .every((word) => word.length < 18);
 
     return (
         <header

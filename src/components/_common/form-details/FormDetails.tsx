@@ -7,13 +7,14 @@ import { FormDetailsVariation } from './FormDetailsVariation';
 
 import styles from './FormDetails.module.scss';
 
-type FormDetailsProps = {
+export type FormDetailsComponentProps = {
     formDetails: FormDetailsData;
     displayConfig: {
         showTitle: boolean;
         showIngress: boolean;
-        showAddendums: boolean;
-        showApplications: boolean;
+        showAddendums?: boolean;
+        showApplications?: boolean;
+        showComplaints?: boolean;
     };
     className?: string;
 };
@@ -22,17 +23,24 @@ export const FormDetails = ({
     formDetails,
     displayConfig,
     className,
-}: FormDetailsProps) => {
-    const { showAddendums, showApplications, showTitle, showIngress } =
-        displayConfig;
+}: FormDetailsComponentProps) => {
+    const {
+        showAddendums = true,
+        showApplications = true,
+        showComplaints = true,
+        showTitle,
+        showIngress,
+    } = displayConfig;
 
     const variations = formDetails.formType.reduce((acc, cur) => {
         if (
             (cur._selected === 'addendum' && !showAddendums) ||
-            (cur._selected === 'application' && !showApplications)
+            (cur._selected === 'application' && !showApplications) ||
+            (cur._selected === 'complaint' && !showComplaints)
         ) {
             return acc;
         }
+
         const variations = cur[cur._selected]?.variations;
 
         return variations ? [...acc, ...variations] : acc;

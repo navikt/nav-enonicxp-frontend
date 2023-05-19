@@ -1,6 +1,6 @@
 @use 'src/common' as common;
 
-.formDetails {
+.formDetails:not(:last-child) {
     padding-bottom: 2rem;
     border-bottom: 1px common.$a-blue-100 solid;
 }

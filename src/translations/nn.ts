@@ -197,7 +197,7 @@ export const translationsBundleNn: Translations = {
     },
     overview: {
         noProducts: 'Ingen treff',
-        search: 'Søk',
+        search: 'Finn teneste',
         loading: 'Laster innhald...',
         areas: {
             choose: 'Vel område',

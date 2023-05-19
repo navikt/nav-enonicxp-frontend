@@ -1,23 +1,32 @@
 import React from 'react';
 import { Header } from '../Header';
-import { HeaderCommonConfig } from '../../../../types/component-props/_mixins';
+import { HeaderCommonConfig } from 'types/component-props/_mixins';
 import { Level, Size } from 'types/typo-style';
+import { classNames } from 'utils/classnames';
+
 import style from './PageHeader.module.scss';
 
 type Props = {
     justify?: HeaderCommonConfig['justify'];
     level?: Level;
     size?: Size;
+    className?: string;
     children: string;
 };
 
-export const PageHeader = ({ justify, children, level, size }: Props) => {
+export const PageHeader = ({
+    justify,
+    children,
+    level,
+    size,
+    className,
+}: Props) => {
     return children ? (
         <Header
             level={level || '1'}
             size={size || 'xlarge'}
             justify={justify}
-            className={style.pageHeader}
+            className={classNames(style.pageHeader, className)}
             hideCopyButton
         >
             {children}

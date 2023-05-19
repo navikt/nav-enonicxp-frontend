@@ -12,6 +12,7 @@ export type FormDetailsListItemProps = {
     title: string;
     ingress: string;
     url: string;
+    type: ContentType;
     anchorId: string;
     illustration: AnimatedIconsProps;
     area: Area[];
