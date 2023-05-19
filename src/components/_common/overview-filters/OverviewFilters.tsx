@@ -25,8 +25,11 @@ export const OverviewFilters = ({
     const { dispatch } = useOverviewFiltersState();
 
     useEffect(() => {
-        dispatch(resetOverviewFiltersAction());
-    }, [dispatch]);
+        return () => {
+            dispatch(resetOverviewFiltersAction());
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <div {...divAttribs}>
