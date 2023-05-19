@@ -15,11 +15,13 @@ type FormDetailsProps = {
         showAddendums: boolean;
         showApplications: boolean;
     };
+    className?: string;
 };
 
 export const FormDetails = ({
     formDetails,
     displayConfig,
+    className,
 }: FormDetailsProps) => {
     const { showAddendums, showApplications, showTitle, showIngress } =
         displayConfig;
@@ -37,7 +39,7 @@ export const FormDetails = ({
     }, []) as Variation[];
 
     return (
-        <div className={styles.formDetails}>
+        <div className={classNames(styles.formDetails, className)}>
             {showTitle && (
                 <Heading size="medium" level="3" spacing={!showIngress}>
                     {formDetails.title}

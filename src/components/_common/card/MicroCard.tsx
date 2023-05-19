@@ -13,7 +13,13 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import sharedStyle from './Card.module.scss';
 import style from './MicroCard.module.scss';
 
-const MicroCard = ({ link, type }: { link: LinkProps; type: CardType }) => {
+export const MicroCard = ({
+    link,
+    type,
+}: {
+    link: LinkProps;
+    type: CardType;
+}) => {
     const { analyticsProps } = useCard({ type, size: CardSize.Micro, link });
     return (
         <LenkeBase

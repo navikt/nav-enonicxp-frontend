@@ -1,0 +1,10 @@
+@use 'src/common' as common;
+
+.formDetails {
+    padding-bottom: 2rem;
+    border-bottom: 1px common.$a-blue-100 solid;
+}
+
+.ingress {
+    margin-bottom: 1.5rem;
+}
