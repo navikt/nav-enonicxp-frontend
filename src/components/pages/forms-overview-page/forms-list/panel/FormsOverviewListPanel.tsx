@@ -8,12 +8,11 @@ import {
 import { FormDetails } from 'components/_common/form-details/FormDetails';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
-
-import style from './FormsOverviewListPanel.module.scss';
 import { MicroCard } from 'components/_common/card/MicroCard';
 import { CardType } from 'types/card';
-import { Header } from 'components/_common/headers/Header';
-import { Heading } from '@navikt/ds-react';
+import { Heading, Ingress } from '@navikt/ds-react';
+
+import style from './FormsOverviewListPanel.module.scss';
 
 type OverviewType = FormsOverviewData['overviewType'];
 
@@ -37,7 +36,7 @@ export const FormsOverviewListPanel = ({
     visible,
     overviewType,
 }: Props) => {
-    const { anchorId, illustration, formDetailsPaths, title, url } =
+    const { anchorId, illustration, formDetailsPaths, title, url, ingress } =
         formDetails;
 
     const [isLoading, setIsLoading] = useState(false);
@@ -87,6 +86,7 @@ export const FormsOverviewListPanel = ({
                 opprinnelse: 'skjemaoversikt accordion',
             }}
         >
+            <Ingress className={style.ingress}>{ingress}</Ingress>
             {formDetailsPages?.map((formDetail) => (
                 <FormDetails
                     formDetails={formDetail.data}

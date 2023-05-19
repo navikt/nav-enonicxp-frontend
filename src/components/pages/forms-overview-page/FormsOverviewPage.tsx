@@ -11,7 +11,7 @@ import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import style from './FormsOverviewPage.module.scss';
 
 export const FormsOverviewPage = (props: FormsOverviewProps) => {
-    const { page, data, isPagePreview } = props;
+    const { page, data } = props;
 
     if (!page) {
         return <EditorHelp text={'Ingen page-komponent er valgt'} />;
@@ -29,20 +29,19 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
 
     return (
         <>
-            {!isPagePreview && (
-                <AlertBox variant={'info'} style={{ marginBottom: '4rem' }}>
-                    <>
-                        {
-                            'Hei! Disse sidene er under utvikling og er ikke helt klare til bruk ennå. '
-                        }
-                        <LenkeInline
-                            href={'https://www.nav.no/soknader/nb/person'}
-                        >
-                            {'Gå til dagens skjemaveiviser'}
-                        </LenkeInline>
-                    </>
-                </AlertBox>
-            )}
+            <AlertBox
+                variant={'info'}
+                style={{ marginBottom: '3rem', marginTop: '-2.5rem' }}
+            >
+                <>
+                    {
+                        'Hei! Denne siden er under utvikling og er ikke helt klar til bruk ennå. Innholdet på siden kan være uferdig. '
+                    }
+                    <LenkeInline href={'https://www.nav.no/soknader/nb/person'}>
+                        {'Gå til dagens skjemaveiviser'}
+                    </LenkeInline>
+                </>
+            </AlertBox>
             <div className={style.page}>
                 <IllustrationStatic
                     illustration={data.illustration}

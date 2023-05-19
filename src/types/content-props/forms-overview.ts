@@ -10,6 +10,7 @@ import { ProductTaxonomy } from 'types/taxonomies';
 
 export type FormDetailsListItemProps = {
     title: string;
+    ingress: string;
     url: string;
     anchorId: string;
     illustration: AnimatedIconsProps;
