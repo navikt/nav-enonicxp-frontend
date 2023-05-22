@@ -1,5 +1,8 @@
 import React from 'react';
-import { FormsOverviewProps } from 'types/content-props/forms-overview';
+import {
+    FormsOverviewAudienceOptions,
+    FormsOverviewProps,
+} from 'types/content-props/forms-overview';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { FormsOverviewHeader } from 'components/pages/forms-overview-page/header/FormsOverviewHeader';
 import Region from 'components/layouts/Region';
@@ -7,8 +10,26 @@ import { IllustrationStatic } from 'components/_common/illustration/Illustration
 import { FormsOverviewList } from 'components/pages/forms-overview-page/forms-list/FormsOverviewList';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { FormsOverviewAudienceLinks } from 'components/pages/forms-overview-page/audience-links/FormsOverviewAudienceLinks';
+import { classNames } from 'utils/classnames';
 
 import style from './FormsOverviewPage.module.scss';
+
+const getLinksIfTransportPage = (audience: FormsOverviewAudienceOptions) => {
+    if (audience?._selected !== 'provider') {
+        return null;
+    }
+
+    const { pageType } = audience.provider;
+    if (pageType?._selected !== 'links') {
+        return null;
+    }
+
+    return pageType.links?.links.map((link) => ({
+        url: link.link._path,
+        text: link.text || link.link.data.title,
+    }));
+};
 
 export const FormsOverviewPage = (props: FormsOverviewProps) => {
     const { page, data } = props;
@@ -26,6 +47,9 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
     }
 
     const { config, regions } = page;
+    const { audience, illustration } = data;
+
+    const audienceSubCategoryLinks = getLinksIfTransportPage(audience);
 
     return (
         <>
@@ -42,14 +66,25 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
                     </LenkeInline>
                 </>
             </AlertBox>
-            <div className={style.page}>
+            <div
+                className={classNames(
+                    style.page,
+                    config.sideColToggle && style.withSideCol
+                )}
+            >
                 <IllustrationStatic
-                    illustration={data.illustration}
+                    illustration={illustration}
                     className={style.illustration}
                 />
-                <div className={style.leftCol}>
+                <div>
                     <FormsOverviewHeader {...props} />
-                    <FormsOverviewList {...props} />
+                    {audienceSubCategoryLinks ? (
+                        <FormsOverviewAudienceLinks
+                            links={audienceSubCategoryLinks}
+                        />
+                    ) : (
+                        <FormsOverviewList {...props} />
+                    )}
                 </div>
                 {config.sideColToggle && (
                     <Region
