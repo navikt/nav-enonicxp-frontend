@@ -74,9 +74,9 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
             >
                 <IllustrationStatic
                     illustration={illustration}
-                    className={style.illustration}
+                    className={style.pictogram}
                 />
-                <div>
+                <div className={style.main}>
                     <FormsOverviewHeader {...props} />
                     {audienceSubCategoryLinks ? (
                         <FormsOverviewAudienceLinks
@@ -90,7 +90,7 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
                     <Region
                         pageProps={props}
                         regionProps={regions.sideCol}
-                        className={style.rightCol}
+                        className={style.aside}
                     />
                 )}
             </div>
