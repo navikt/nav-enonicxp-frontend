@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
     AnimatedIcon,
     AnimatedIconsProps,
@@ -27,18 +27,27 @@ const StaticIcon = ({
 }: {
     icon: AnimatedIcon;
     isEditorView: boolean;
-}) => (
-    <span
-        className={styleStatic.icon}
-        style={{
-            backgroundImage: `url(${buildImageCacheUrl({
-                ...nextImageProps,
-                src: getMediaUrl(icon.icon.mediaUrl),
-                isEditorView,
-            })})`,
-        }}
-    />
-);
+}) => {
+    const ref = useRef<HTMLSpanElement>();
+
+    useEffect(() => {
+        const url = buildImageCacheUrl({
+            ...nextImageProps,
+            src: getMediaUrl(icon.icon.mediaUrl),
+            isEditorView,
+        });
+
+        fetch(url)
+            .then((res) => {
+                if (res.ok) {
+                    return res.text();
+                }
+            })
+            .then((text) => (ref.current.innerHTML = text));
+    }, [icon, isEditorView]);
+
+    return <span className={styleStatic.icon} ref={ref} />;
+};
 
 export const IllustrationStatic = ({
     illustration,
@@ -69,7 +78,7 @@ export const IllustrationStatic = ({
     return (
         <span
             className={classNames(styleCommon.image, className)}
-            aria-hidden="true"
+            aria-hidden={'true'}
         >
             {hasIcon1 && (
                 <StaticIcon icon={icon1} isEditorView={isEditorView} />
