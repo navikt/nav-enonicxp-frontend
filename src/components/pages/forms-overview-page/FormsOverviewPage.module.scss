@@ -3,12 +3,13 @@
 .page {
     display: grid;
     column-gap: 2.5rem;
-    grid-template-columns: 6rem 2fr 1fr;
     max-width: 1272px;
     margin: 0 auto;
-}
+    grid-template-columns: 6rem 2fr;
 
-.leftCol {
+    &.withSideCol {
+        grid-template-columns: 6rem 2fr 1fr;
+    }
 }
 
 .rightCol {

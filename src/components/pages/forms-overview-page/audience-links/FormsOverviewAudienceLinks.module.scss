@@ -1,0 +1,16 @@
+@use 'src/common' as common;
+
+.list {
+    @include common.unstyled-list();
+    display: grid;
+    column-gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 2rem;
+}
+
+.item {
+    border-top: 1px solid common.$a-gray-200;
+    border-bottom: 1px solid common.$a-gray-200;
+    padding: 1.5rem 0;
+    margin-bottom: -1px;
+}

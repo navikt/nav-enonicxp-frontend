@@ -20,32 +20,35 @@ export type FormDetailsListItemProps = {
     formDetailsPaths: string[];
 };
 
-type AudienceOptions = {
+export type FormsOverviewAudienceOptions = OptionSetSingle<{
     person: EmptyObject;
     employer: EmptyObject;
     provider: {
         pageType: OptionSetSingle<{
-            formDetails: {
-                provider_audience: ''; // TODO: add type
+            overview: {
+                provider_audience: string[]; // TODO: add union type
             };
-            audienceLinks: {
-                providerAudienceLinks: {
+            links: {
+                links: Array<{
+                    text?: string;
                     link: {
                         _path: string;
-                        title: string;
+                        data: {
+                            title: string;
+                        };
                     };
-                };
+                }>;
             };
         }>;
     };
-};
+}>;
 
 export type FormsOverviewData = {
     title: string;
     ingress: string;
     overviewType: 'application' | 'complaint' | 'addendum';
     illustration: AnimatedIconsProps;
-    audience: OptionSetSingle<AudienceOptions>;
+    audience: FormsOverviewAudienceOptions;
     areasFilterToggle: boolean;
     taxonomyFilterToggle: boolean;
     textFilterToggle: boolean;
