@@ -20,13 +20,17 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import style from './FrontpageShortcuts.module.scss';
 
 const linkToIconDictionary = {
-    saksbehandlingstider,
-    utbetalingsdatoer,
-    tjenester: pengestotter,
-    'soknader/nb/person': soknader,
-    'min-side-arbeidsgiver': arbeidsgiverMinside,
-    'soknader/nb/bedrift': arbeidsgiverSoknader,
-    tilganger: arbeidsgiverTjenester,
+    person: {
+        saksbehandlingstider: saksbehandlingstider,
+        utbetalingsdatoer: utbetalingsdatoer,
+        tjenester: pengestotter,
+        'soknader/nb/person': soknader,
+    },
+    employer: {
+        'min-side-arbeidsgiver': arbeidsgiverMinside,
+        'soknader/nb/bedrift': arbeidsgiverSoknader,
+        tilganger: arbeidsgiverTjenester,
+    },
 };
 
 export const FrontpageShortcuts = ({
@@ -44,15 +48,16 @@ export const FrontpageShortcuts = ({
     }
 
     const getIcon = (content: ContentProps) => {
-        const foundKey = Object.keys(linkToIconDictionary).find((key) => {
+        const dictionary = linkToIconDictionary[audience];
+        console.log('dictionary', dictionary);
+        const foundKey = Object.keys(dictionary).find((key) => {
             if (content.type === ContentType.ExternalLink) {
                 return content.data.url?.includes(key);
             }
 
             return content._path.includes(key);
         });
-        console.log(foundKey);
-        return foundKey ? linkToIconDictionary[foundKey] : null;
+        return foundKey ? dictionary[foundKey] : null;
     };
 
     const threeCols = links.length % 3 === 0;
