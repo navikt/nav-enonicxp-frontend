@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import Script from 'next/script';
 
@@ -10,7 +10,7 @@ type Props = {
 
 export const UxSignalsWidget = ({ embedCode }: Props) => {
     return (
-        <>
+        <Fragment key={embedCode}>
             <Script
                 type={'module'}
                 src={
@@ -26,6 +26,6 @@ export const UxSignalsWidget = ({ embedCode }: Props) => {
                 text={'UX Signals rekrutterings-widget'}
                 type={'info'}
             />
-        </>
+        </Fragment>
     );
 };
