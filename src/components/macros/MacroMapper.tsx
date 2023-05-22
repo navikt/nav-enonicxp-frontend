@@ -6,6 +6,7 @@ import { MacroChevronLinkExternal } from './chevron-link-external/MacroChevronLi
 import { MacroChevronLinkInternal } from './chevron-link-internal/MacroChevronLinkInternal';
 import { MacroChatbotLink } from './chatbot-link/MacroChatbotLink';
 import { MacroFotnote } from './fotnote/MacroFotnote';
+import { MacroFormDetails } from './form-details/MacroFormDetails';
 import { MacroInfoBoks } from './infoboks/MacroInfoBoks';
 import { MacroLenkeFiler } from './lenke-filer/MacroLenkeFiler';
 import { MacroPhoneLink } from './phone-link/MacroPhoneLink';
@@ -37,12 +38,14 @@ const macroComponents: {
     [MacroType.ChevronLinkExternal]: MacroChevronLinkExternal,
     [MacroType.ChevronLinkInternal]: MacroChevronLinkInternal,
     [MacroType.Fotnote]: MacroFotnote,
+    [MacroType.FormDetails]: MacroFormDetails,
     [MacroType.GlobalValue]: MacroGlobalValue,
     [MacroType.GlobalValueWithMath]: MacroGlobalValueWithMath,
     [MacroType.HeaderWithAnchor]: MacroHeaderWithAnchor,
     [MacroType.HtmlFragment]: MacroHtmlFragment,
     [MacroType.InfoBoks]: MacroInfoBoks,
     [MacroType.Ingress]: MacroIngress,
+    [MacroType.LenkeFiler]: MacroLenkeFiler,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
     [MacroType.PayoutDates]: MacroPayoutDates,
     [MacroType.PhoneLink]: MacroPhoneLink,
