@@ -9,15 +9,28 @@
     }
 
     :global(.navds-accordion__header) {
+        @include common.expandable-panel-mixin();
+
         align-items: center;
         background-color: white;
         margin-bottom: 3px;
         padding-top: var(--a-spacing-4);
         padding-bottom: var(--a-spacing-4);
 
-        @include common.expandable-panel-mixin();
         &:focus {
             @include common.panel-focus-mixin(true);
+        }
+
+        &:hover,
+        &:focus {
+            background-color: common.$a-deepblue-100;
+            color: common.$a-text-default;
+
+            .illustration {
+                & > :first-child:not(:last-child) * {
+                    fill: common.$a-white;
+                }
+            }
         }
 
         :global(.navds-accordion__header-content) {
@@ -52,6 +65,10 @@
     width: 56px;
     height: 56px;
     flex-shrink: 0;
+
+    & > :first-child:not(:last-child) * {
+        fill: common.$a-deepblue-100;
+    }
 }
 
 .copyLink {
