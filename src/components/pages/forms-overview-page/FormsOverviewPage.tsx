@@ -53,10 +53,7 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
 
     return (
         <>
-            <AlertBox
-                variant={'info'}
-                style={{ marginBottom: '3rem', marginTop: '-2.5rem' }}
-            >
+            <AlertBox variant={'warning'} style={{ marginBottom: '2.5rem' }}>
                 <>
                     {
                         'Hei! Denne siden er under utvikling og er ikke helt klar til bruk ennå. Innholdet på siden kan være uferdig. '
