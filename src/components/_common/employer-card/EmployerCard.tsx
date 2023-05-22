@@ -21,13 +21,11 @@ export const EmployerCard = ({
         text: title,
     };
     return (
-        <>
-            <MiniCard
-                illustration={illustration}
-                link={link}
-                type={CardType.EmployerFrontpage}
-                className={styles.employerCard}
-            />
-        </>
+        <MiniCard
+            illustration={illustration}
+            link={link}
+            type={CardType.EmployerFrontpage}
+            className={styles.employerCard}
+        />
     );
 };

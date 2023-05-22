@@ -1,7 +1,6 @@
 import { PartType } from '../parts';
 import { PartComponentProps } from '../_component-common';
 import { ContentListData } from '../../content-props/content-list-props';
-import { ColorMixin } from '../_mixins';
 
 export type FrontpageContentListData = {
     data: ContentListData;
