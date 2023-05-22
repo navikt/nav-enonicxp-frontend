@@ -1,4 +1,3 @@
-import { DynamicPageData, SituationPageProps } from './dynamic-page-props';
 import { ContentType, ContentCommonProps } from './_content-common';
 import { Area } from '../areas';
 import { ProcessedHtmlProps } from '../processed-html-props';
@@ -8,10 +7,11 @@ import {
     ColorMixin,
     LinkSelectable,
 } from '../component-props/_mixins';
+import { SituationPageProps } from './dynamic-page-props';
 
 type CommonData = {
     audience: Audience;
-} & DynamicPageData;
+};
 
 export type FrontPageData = {
     areasRefs: AreaPageProps[];

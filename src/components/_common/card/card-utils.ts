@@ -8,8 +8,8 @@ import {
     ProductPageProps,
     SituationPageProps,
     ToolsPageProps,
-} from '../../../types/content-props/dynamic-page-props';
-import { Language } from '../../../translations';
+} from 'types/content-props/dynamic-page-props';
+import { Language } from 'translations';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
@@ -22,7 +22,7 @@ type CardProps = {
     illustration?: AnimatedIconsProps;
 };
 
-const cardTypeMap = {
+export const cardTypeMap = {
     [ContentType.ProductPage]: CardType.Product,
     [ContentType.SituationPage]: CardType.Situation,
     [ContentType.ToolsPage]: CardType.Tool,

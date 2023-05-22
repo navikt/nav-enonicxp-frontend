@@ -27,9 +27,6 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
                 className={classNames(styles.officeDetails, styles.pageContent)}
             >
                 <Heading level="2" size="large" className={styles.header}>
-                    <div className={styles.placeIcon}>
-                        <PlaceFilled aria-hidden="true" />
-                    </div>
                     {getOfficeTranslations('youFindUsHere')}
                 </Heading>
                 {publikumsmottak.length > 0 && (

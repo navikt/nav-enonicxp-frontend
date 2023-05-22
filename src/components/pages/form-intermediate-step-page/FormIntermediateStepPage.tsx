@@ -48,6 +48,7 @@ export const FormIntermediateStepPage = (
 
     useEffect(() => {
         setPrevSelectedStep(getStateFromQuery(router.asPath));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const getStepData = () => {

@@ -57,10 +57,13 @@ export const Expandable = ({
             window.removeEventListener('keydown', openOnBrowserSearch);
             window.removeEventListener('hashchange', hashChangeHandler);
         };
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
         checkAndOpenPanel();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [anchorId]);
 
     return (

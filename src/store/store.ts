@@ -4,6 +4,7 @@ import contentFilters from './slices/filteredContent';
 import pageConfig from './slices/pageConfig';
 import gvEditorState from './slices/gvEditorState';
 import authState from './slices/authState';
+import overviewFilters from 'store/slices/overviewFilters';
 
 const options = {
     reducer: {
@@ -11,6 +12,7 @@ const options = {
         pageConfig,
         gvEditorState,
         authState,
+        overviewFilters,
     },
 };
 
