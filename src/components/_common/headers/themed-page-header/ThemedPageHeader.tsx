@@ -166,7 +166,6 @@ export const ThemedPageHeader = ({
         >
             <Illustration
                 illustration={illustration}
-                placement={IllustrationPlacements.PRODUCT_PAGE_HEADER}
                 className={style.illustration}
             />
             <div className={style.text}>

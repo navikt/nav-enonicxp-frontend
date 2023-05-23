@@ -49,7 +49,6 @@ export const MiniCard = (props: MiniKortProps) => {
                         className={style.illustration}
                         illustration={illustration}
                         isHovering={isHovering}
-                        placement={IllustrationPlacements.SMALL_CARD}
                         preferStaticIllustration={
                             pageConfig.editorView === 'edit'
                         }

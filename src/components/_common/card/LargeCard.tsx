@@ -63,7 +63,6 @@ export const LargeCard = (props: StortKortProps) => {
                     {hasIllustration && (
                         <Illustration
                             illustration={illustration}
-                            placement={IllustrationPlacements.LARGE_CARD}
                             className={style.illustration}
                             isHovering={isHovering}
                             preferStaticIllustration={
