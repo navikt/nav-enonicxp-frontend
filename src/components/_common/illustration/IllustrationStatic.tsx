@@ -8,7 +8,7 @@ import { classNames } from 'utils/classnames';
 import { buildImageCacheUrl, NextImageProps } from '../image/NextImage';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { XpImage } from 'components/_common/image/XpImage';
-import useSWRImmutable from 'swr/immutable';
+import { useSwrImmutableOnScrollIntoView } from 'utils/fetch/useSwrImmutableOnScrollIntoView';
 
 import styleCommon from './Illustration.module.scss';
 import styleStatic from './IllustrationStatic.module.scss';
@@ -36,16 +36,17 @@ const StaticIcon = ({
     // Other formats are treated as a regular img
     const isSvg = icon.icon.mediaUrl.endsWith('svg');
 
-    const { data: svgData } = useSWRImmutable(
-        isSvg
+    const { data: svgData } = useSwrImmutableOnScrollIntoView({
+        url: isSvg
             ? buildImageCacheUrl({
                   ...nextImageProps,
                   src: getMediaUrl(icon.icon.mediaUrl),
                   isEditorView,
               })
             : null,
-        fetchSvgData
-    );
+        fetchFunc: fetchSvgData,
+        elementRef: ref,
+    });
 
     useEffect(() => {
         if (svgData) {
