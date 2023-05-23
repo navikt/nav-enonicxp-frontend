@@ -1,8 +1,17 @@
 @use 'src/common' as common;
 
-.accordionItem {
-    border-bottom: 1px common.$a-deepblue-100 solid;
+$color: common.$a-deepblue-100;
+$separator-attribs: 1px $color solid;
 
+.accordion {
+    border-bottom: $separator-attribs;
+}
+
+:not(.accordion) + .accordion {
+    border-top: $separator-attribs;
+}
+
+.accordionItem {
     :global(.navds-accordion__header),
     :global(.navds-accordion__content) {
         border-bottom: 0;
@@ -22,7 +31,7 @@
 
         &:hover,
         &:focus {
-            background-color: common.$a-deepblue-100;
+            background-color: $color;
             color: common.$a-text-default;
 
             .illustration {
@@ -66,7 +75,7 @@
     flex-shrink: 0;
 
     & > :first-child:not(:last-child) * {
-        fill: common.$a-deepblue-100;
+        fill: $color;
     }
 }
 
