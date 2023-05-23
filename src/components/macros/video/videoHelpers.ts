@@ -27,7 +27,6 @@ export const buildVideoMeta = (
 };
 
 export const findImageUrlFromVideoMeta = (qbrickMediaData: QbrickMeta) => {
-    console.log(qbrickMediaData);
     const resources = qbrickMediaData?.asset?.resources;
     if (!resources) {
         return null;
