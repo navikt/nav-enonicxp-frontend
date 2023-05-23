@@ -33,11 +33,7 @@ const MobileView = ({
         <div className={style.mobile}>
             {showTextInputFilter && (
                 <>
-                    <Heading
-                        level={'2'}
-                        size={'small'}
-                        className={style.mobileTextFilterLabel}
-                    >
+                    <Heading level={'2'} size={'small'}>
                         {searchLabel}
                     </Heading>
                     <div className={style.mobileTextFilter}>
@@ -52,9 +48,7 @@ const MobileView = ({
                         >
                             {'Filter'}
                         </Button>
-                        {showTextInputFilter && (
-                            <OverviewTextFilter hideLabel={true} />
-                        )}
+                        <OverviewTextFilter hideLabel={true} />
                     </div>
                 </>
             )}
@@ -84,8 +78,6 @@ const DesktopView = ({
     showAreaFilter,
     showTaxonomyFilter,
 }: Props) => {
-    const { language } = usePageConfig();
-
     return (
         <div className={style.desktop}>
             {showAreaFilter && <OverviewAreaFilter items={filterableItems} />}
@@ -113,8 +105,7 @@ export const OverviewFilters = (props: Props) => {
         return () => {
             dispatch(resetOverviewFiltersAction());
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [dispatch]);
 
     if (!showAreaFilter && !showTaxonomyFilter && !showTextInputFilter) {
         return null;
