@@ -9,8 +9,9 @@ import { BodyShort } from '@navikt/ds-react';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { resetOverviewFiltersAction } from 'store/slices/overviewFilters';
+import { Close } from '@navikt/ds-icons';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 import style from './FormsOverviewList.module.scss';
 
@@ -50,19 +51,23 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
             <div className={style.filterSummary}>
                 <BodyShort>
                     {numMatchingFilters > 0
-                        ? `Viser ${numMatchingFilters} av ${formDetailsList.length}`
+                        ? getTranslationString('numHits')
+                              .replace('$1', numMatchingFilters.toString())
+                              .replace('$2', formDetailsList.length.toString())
                         : getTranslationString('noProducts')}
                 </BodyShort>
                 {!hasDefaultFilters && (
-                    <LenkeInline
+                    <LenkeBase
                         href={'#'}
                         onClick={(e) => {
                             e.preventDefault();
                             dispatch(resetOverviewFiltersAction());
                         }}
+                        className={style.reset}
                     >
+                        <Close />
                         {getTranslationString('resetFilters')}
-                    </LenkeInline>
+                    </LenkeBase>
                 )}
             </div>
             {formDetailsList.map((formDetail) => (

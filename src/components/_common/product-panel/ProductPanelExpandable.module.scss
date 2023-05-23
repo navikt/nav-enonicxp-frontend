@@ -7,10 +7,6 @@ $separator-attribs: 1px $color solid;
     border-bottom: $separator-attribs;
 }
 
-:not(.accordion) + .accordion {
-    border-top: $separator-attribs;
-}
-
 .accordionItem {
     :global(.navds-accordion__header),
     :global(.navds-accordion__content) {

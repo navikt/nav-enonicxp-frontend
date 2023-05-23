@@ -12,7 +12,7 @@ import { Button } from 'components/_common/button/Button';
 import { Filter2 } from '@navikt/ds-icons';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { Heading, Label } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 
 import style from './OverviewFilters.module.scss';
 
