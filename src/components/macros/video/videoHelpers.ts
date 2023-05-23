@@ -27,17 +27,24 @@ export const buildVideoMeta = (
 };
 
 export const findImageUrlFromVideoMeta = (qbrickMediaData: QbrickMeta) => {
+    console.log(qbrickMediaData);
     const resources = qbrickMediaData?.asset?.resources;
     if (!resources) {
         return null;
     }
 
-    const qBrickPickedThumbnail = qbrickMediaData.thumbnails[0]?.id;
+    const qBrickPickedThumbnail =
+        qbrickMediaData.thumbnails && qbrickMediaData.thumbnails[0]?.id;
 
-    const image = resources.find(
+    let image = resources.find(
         (resource) =>
             resource.type === 'image' && resource.id === qBrickPickedThumbnail
     );
+
+    // No specific thumbnail picked in the Qbrick UI, so use first image
+    if (!image) {
+        image = resources.find((resource) => resource.type === 'image');
+    }
 
     if (!image) {
         return null;
@@ -68,6 +75,6 @@ export const getTimestampFromDuration = (duration: number) => {
         return minutes; // return whole number
     } else {
         const decimalMinutes = (roundedSeconds % 60) / 60;
-        return (minutes + decimalMinutes).toFixed(1); // round to 1 decimal place
+        return (minutes + decimalMinutes).toFixed(1).replace('.', ','); // round to 1 decimal place
     }
 };
