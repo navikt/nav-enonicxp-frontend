@@ -59,6 +59,8 @@
 }
 
 .macroVideo {
+    margin-bottom: 2rem;
+
     :global(.gobrain-poster) {
         //hindrer "flash" av forhåndsvisningsbilde før videoen starter
         display: none;
