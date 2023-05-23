@@ -1,16 +1,14 @@
+import mockFs from 'mock-fs';
 import {
-    getIncrementalCacheGetFsPathFunction,
-    getIncrementalCacheMemoryCache,
     getNextBuildId,
     getNextServer,
-    setImageCacheDir,
-    setPageCacheDir,
+    injectImageResponseCacheCacheDir,
 } from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
 import next from 'next';
 import path from 'path';
-import fsPromises from 'fs/promises';
-import mockFs from 'mock-fs';
+import fs from 'fs';
+import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
 
 const getNextApp = () =>
     next({
@@ -36,82 +34,6 @@ describe('Next.js server private accessors', () => {
 
         expect(buildId).toEqual('testId');
     });
-
-    test('LRU memory cache should be an instance of LRUCache', () => {
-        const memoryCache = getIncrementalCacheMemoryCache(nextServer);
-
-        expect(memoryCache.constructor.name).toEqual('LRUCache');
-    });
-
-    test('LRU memory cache object should have the expected functions', () => {
-        const memoryCache = getIncrementalCacheMemoryCache(nextServer);
-
-        expect(memoryCache.has).toBeInstanceOf(Function);
-        expect(memoryCache.del).toBeInstanceOf(Function);
-        expect(memoryCache.reset).toBeInstanceOf(Function);
-    });
-
-    test('getFsPath should be a function', () => {
-        const getFsPath = getIncrementalCacheGetFsPathFunction(nextServer);
-
-        expect(getFsPath).toBeInstanceOf(Function);
-    });
-
-    test('getFsPath function should have the expected return value', async () => {
-        const getFsPath = getIncrementalCacheGetFsPathFunction(nextServer);
-
-        const returnValue = await getFsPath('/test', false);
-
-        expect(returnValue.filePath).toMatch(/test$/);
-        expect(returnValue.isAppPath).toBe(false);
-    });
-});
-
-describe('Set next.js page cache dir', () => {
-    const nextApp = getNextApp();
-    let nextServer: NextNodeServer;
-
-    const pageCacheDir = 'myPageCacheDir';
-
-    process.env.PAGE_CACHE_DIR = `/${pageCacheDir}`;
-
-    beforeAll(async () => {
-        await nextApp.prepare();
-        nextServer = getNextServer(nextApp);
-        setPageCacheDir(nextServer);
-    });
-
-    afterEach(() => {
-        mockFs.restore();
-    });
-
-    test('getFsPath should return paths with the correct page cache dir', async () => {
-        const { filePath } = await getIncrementalCacheGetFsPathFunction(
-            nextServer
-        )('');
-
-        expect(filePath).toContain(pageCacheDir);
-    });
-
-    test('IncremetalCache should write to the correct page cache dir', async () => {
-        mockFs({});
-        fsPromises.writeFile = jest.fn();
-
-        await nextServer['responseCache'].incrementalCache.cacheHandler.set(
-            'foo',
-            {
-                kind: 'PAGE',
-                html: 'test',
-            },
-            1
-        );
-
-        expect(fsPromises.writeFile).toHaveBeenCalledWith(
-            expect.stringContaining(pageCacheDir),
-            expect.anything(),
-            expect.anything()
-        );
-    });
 });
 
 describe('Set next.js image cache dir', () => {
@@ -125,32 +47,53 @@ describe('Set next.js image cache dir', () => {
     beforeAll(async () => {
         await nextApp.prepare();
         nextServer = getNextServer(nextApp);
-
-        setImageCacheDir(nextServer);
+        injectImageResponseCacheCacheDir(
+            nextServer,
+            process.env.IMAGE_CACHE_DIR
+        );
     });
 
     afterEach(() => {
         mockFs.restore();
     });
 
-    test('IncremetalCache should write to the correct image cache dir', async () => {
-        mockFs({});
-        fsPromises.writeFile = jest.fn();
+    test('IncrementalCache should write to the correct image cache dir', async () => {
+        mockFs();
 
-        await nextServer['imageResponseCache'].incrementalCache.set(
+        // Handles next.js responseCache async fs write operation
+        let resolveOnWriteFile: any = () => {};
+        const promise = new Promise((resolve) => {
+            resolveOnWriteFile = resolve;
+        });
+
+        fs.promises.writeFile = jest.fn(resolveOnWriteFile);
+
+        const imgCache = new ImageOptimizerCache({
+            distDir: 'dummyValueWhichGetsReplaceByInjector',
+            nextConfig: nextServer['nextConfig'],
+        });
+
+        await nextServer['imageResponseCache'].get(
             'foo',
+            async () => ({
+                value: {
+                    kind: 'IMAGE',
+                    buffer: Buffer.from('bar', 'utf-8'),
+                    etag: 'test',
+                    extension: 'png',
+                },
+                revalidate: 1337,
+            }),
             {
-                kind: 'IMAGE',
-                buffer: Buffer.from('bar', 'utf-8'),
-                etag: 'test',
-                extension: 'png',
-            },
-            1
+                incrementalCache: imgCache,
+            }
         );
 
-        expect(fsPromises.writeFile).toHaveBeenCalledWith(
-            expect.stringContaining(imgCacheDir),
-            expect.anything()
+        await Promise.all([promise]).then(() =>
+            expect(fs.promises.writeFile).toHaveBeenCalledWith(
+                expect.stringContaining(imgCacheDir),
+                expect.anything()
+            )
         );
     });
 });

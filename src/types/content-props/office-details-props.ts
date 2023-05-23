@@ -1,5 +1,4 @@
 import { ProductDataMixin } from 'types/component-props/_mixins';
-import { DynamicPageData } from './dynamic-page-props';
 
 export interface Address {
     type?: 'stedsadresse' | 'postboksadresse';
@@ -80,6 +79,7 @@ export type AudienceContact = {
     epost?: string;
     sortOrder: number;
 };
+
 interface AudienceContactInformation {
     spraakdrakt: 'NN' | 'NB';
     informasjonUtbetalinger?: string;
@@ -89,18 +89,17 @@ interface AudienceContactInformation {
     publikumskanaler: AudienceContact[] | AudienceContact;
 }
 
-export type OfficeDetailsData = ProductDataMixin &
-    DynamicPageData & {
-        enhetNr: string;
-        navn: string;
-        organisasjonsnummer: string;
-        sosialeTjenester?: string;
-        spesielleOpplysninger?: string;
-        status: string;
-        underEtableringDato?: string;
-        aktiveringsdato?: string;
-        nedleggesesdato?: string;
-        beliggenhet: Address;
-        postadresse: Address;
-        brukerkontakt: AudienceContactInformation;
-    };
+export type OfficeDetailsData = ProductDataMixin & {
+    enhetNr: string;
+    navn: string;
+    organisasjonsnummer: string;
+    sosialeTjenester?: string;
+    spesielleOpplysninger?: string;
+    status: string;
+    underEtableringDato?: string;
+    aktiveringsdato?: string;
+    nedleggesesdato?: string;
+    beliggenhet: Address;
+    postadresse: Address;
+    brukerkontakt: AudienceContactInformation;
+};

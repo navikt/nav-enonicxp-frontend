@@ -48,6 +48,7 @@ import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
 import { FormDetailsPageProps } from './form-details';
 import { FormIntermediateStepPageProps } from './form-intermediate-step';
+import { FormsOverviewProps } from 'types/content-props/forms-overview';
 
 export enum ContentType {
     Error = 'error',
@@ -91,6 +92,7 @@ export enum ContentType {
     PressLandingPage = 'no.nav.navno:press-landing-page',
     FormIntermediateStepPage = 'no.nav.navno:form-intermediate-step',
     FormDetails = 'no.nav.navno:form-details',
+    FormsOverview = 'no.nav.navno:forms-overview',
 }
 
 export type ContentAndMediaCommonProps = {
@@ -177,6 +179,7 @@ type SpecificContentProps =
     | GenericPageProps
     | PressLandingPageProps
     | FormDetailsPageProps
-    | FormIntermediateStepPageProps;
+    | FormIntermediateStepPageProps
+    | FormsOverviewProps;
 
 export type ContentProps = ContentCommonProps & SpecificContentProps;

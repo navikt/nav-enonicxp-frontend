@@ -164,9 +164,6 @@ export const translationsBundleNn: Translations = {
         employer: 'For arbeidsgjevarar',
         provider: 'For samhandlarar',
     },
-    overviews: {
-        any: 'Frå A til Å',
-    },
     publishingCalendar: {
         event: 'Hending',
         publishdate: 'Dato',
@@ -197,8 +194,9 @@ export const translationsBundleNn: Translations = {
     },
     overview: {
         noProducts: 'Ingen treff',
-        search: 'Søk',
+        search: 'Finn teneste',
         loading: 'Laster innhald...',
+        any: 'Frå A til Å',
         areas: {
             choose: 'Vel område',
             ariaExplanation: 'Filtrer lista etter område',

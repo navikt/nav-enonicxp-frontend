@@ -205,9 +205,6 @@ export const translationsBundleEn: Translations = {
         employer: 'For employers',
         provider: 'For providers',
     },
-    overviews: {
-        any: 'From A to Z',
-    },
     taxonomies,
     areas,
     header: {
@@ -216,8 +213,9 @@ export const translationsBundleEn: Translations = {
     },
     overview: {
         noProducts: 'No hits',
-        search: 'Search',
+        search: 'Find a service',
         loading: 'Loading content...',
+        any: 'From A to Z',
         areas: {
             choose: 'Choose area',
             ariaExplanation: 'Filter list by area',

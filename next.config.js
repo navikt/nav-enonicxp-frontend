@@ -4,6 +4,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const { withSentryConfig } = require('@sentry/nextjs');
 const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
 const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
+const path = require('path');
 
 const sentryConfig = {
     errorHandler: (err, invokeErr, compilation) => {
@@ -129,6 +130,17 @@ console.log(
 );
 
 const config = {
+    experimental: {
+        // Set this to 0 to disable the next.js built-in memory cache for the ISR page cache
+        // We implement our own in the customCacheHandler to allow us to invalidate the memory cache on demand
+        isrMemoryCacheSize: 0,
+        incrementalCacheHandlerPath: path.resolve(
+            __dirname,
+            '.serverDist/custom-cache-handler'
+        ),
+    },
+    // SWR crashes during SSR with next 13.4 unless it's transpiled
+    transpilePackages: ['swr'],
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: isFailover
@@ -149,9 +161,10 @@ const config = {
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
         dangerouslyAllowSVG: true,
-        domains: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map((origin) =>
-            // Domain whitelist must not include protocol prefixes
-            origin?.replace(/^https?:\/\//, '')
+        domains: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map(
+            (origin) =>
+                // Domain whitelist must not include protocol prefixes
+                new URL(origin).host
         ),
         deviceSizes: [480, 768, 1024, 1440],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],

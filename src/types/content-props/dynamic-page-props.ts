@@ -10,33 +10,28 @@ import { OfficeDetailsData } from './office-details-props';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentListProps } from './content-list-props';
 
-export type DynamicPageData = Partial<{
-    description: string;
-}>;
-
-export type ProductPageData = ProductDataMixin & DynamicPageData;
-export type ThemedArticlePageData = Omit<ProductDataMixin, 'taxonomy'> &
-    DynamicPageData & { taxonomy: ThemedArticlePageTaxonomy[] };
-export type GuidePageData = ProductDataMixin & DynamicPageData;
-export type ProductDetailsData = ProductDetailsDataMixin & DynamicPageData;
-export type SituationPageData = ProductDataMixin & DynamicPageData;
-export type ToolsPageData = Omit<ProductDataMixin, 'taxonomy'> &
-    DynamicPageData & { taxonomy: ToolsPageTaxonomy[] };
-export type GenericPageData = ProductDataMixin & DynamicPageData;
+export type ProductPageData = ProductDataMixin;
+export type ThemedArticlePageData = Omit<ProductDataMixin, 'taxonomy'> & {
+    taxonomy: ThemedArticlePageTaxonomy[];
+};
+export type GuidePageData = ProductDataMixin;
+export type ProductDetailsData = ProductDetailsDataMixin;
+export type SituationPageData = ProductDataMixin;
+export type ToolsPageData = Omit<ProductDataMixin, 'taxonomy'> & {
+    taxonomy: ToolsPageTaxonomy[];
+};
+export type GenericPageData = ProductDataMixin;
 export type OverviewPageData = Partial<{
     productList: SimplifiedProductData[];
     overviewType: OverviewType;
 }> &
-    ProductDataMixin &
-    DynamicPageData;
+    ProductDataMixin;
 
 export type OfficeEditorialPageData = {
     title: string;
-} & ProductDataMixin &
-    DynamicPageData;
+} & ProductDataMixin;
 
-export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'> &
-    DynamicPageData;
+export type CurrentTopicPageData = Omit<ProductDataMixin, 'illustration'>;
 
 export type PressLandingPageData = Partial<{
     pressCall: ProcessedHtmlProps;
@@ -45,68 +40,69 @@ export type PressLandingPageData = Partial<{
     moreNewsUrl: string;
     maxNewsCount: string;
     maxShortcutsCount: string;
-}> &
-    DynamicPageData;
+}>;
 
-export interface DynamicPageProps extends ContentCommonProps {
+export type DynamicPageProps = ContentCommonProps & {
     type: ContentType.DynamicPage;
-    data: DynamicPageData;
-}
+};
 
-export interface ProductPageProps extends ContentCommonProps {
+export type ProductPageProps = ContentCommonProps & {
     type: ContentType.ProductPage;
     data: ProductPageData;
-}
+};
 
-export interface ProductDetailsProps extends ContentCommonProps {
+export type ProductDetailsProps = ContentCommonProps & {
     type: ContentType.ProductDetails;
     data: ProductDetailsData;
-}
+};
 
-export interface ThemedArticlePageProps extends ContentCommonProps {
+export type ThemedArticlePageProps = ContentCommonProps & {
     type: ContentType.ThemedArticlePage;
     data: ThemedArticlePageData;
-}
+};
 
-export interface GuidePageProps extends ContentCommonProps {
+export type GuidePageProps = ContentCommonProps & {
     type: ContentType.GuidePage;
     data: GuidePageData;
-}
-export interface SituationPageProps extends ContentCommonProps {
+};
+
+export type SituationPageProps = ContentCommonProps & {
     type: ContentType.SituationPage;
     data: SituationPageData;
-}
+};
 
-export interface OfficeEditorialPageProps extends ContentCommonProps {
+export type OfficeEditorialPageProps = ContentCommonProps & {
     type: ContentType.OfficeEditorialPage;
     data: OfficeEditorialPageData;
-}
-export interface OfficeBranchPageProps extends ContentCommonProps {
+};
+
+export type OfficeBranchPageProps = ContentCommonProps & {
     type: ContentType.OfficeBranchPage;
     data: OfficeDetailsData;
     editorial: OfficeEditorialPageProps;
-}
+};
 
-export interface CurrentTopicPageProps extends ContentCommonProps {
+export type CurrentTopicPageProps = ContentCommonProps & {
     type: ContentType.CurrentTopicPage;
     data: CurrentTopicPageData;
-}
+};
 
-export interface ToolsPageProps extends ContentCommonProps {
+export type ToolsPageProps = ContentCommonProps & {
     type: ContentType.ToolsPage;
     data: ToolsPageData;
-}
+};
 
-export interface GenericPageProps extends ContentCommonProps {
+export type GenericPageProps = ContentCommonProps & {
     type: ContentType.GenericPage;
     data: GenericPageData;
-}
+};
 
-export interface OverviewPageProps extends ContentCommonProps {
+export type OverviewPageProps = ContentCommonProps & {
     type: ContentType.Overview;
     data: OverviewPageData;
-}
-export interface PressLandingPageProps extends ContentCommonProps {
+};
+
+export type PressLandingPageProps = ContentCommonProps & {
     type: ContentType.PressLandingPage;
     data: PressLandingPageData;
-}
+};

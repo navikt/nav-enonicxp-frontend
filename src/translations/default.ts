@@ -182,9 +182,6 @@ export const translationsBundleNb = {
         employer: 'For arbeidsgivere',
         provider: 'For samarbeidspartnere',
     },
-    overviews: {
-        any: 'Fra A til Å',
-    },
     publishingCalendar: {
         event: 'Hendelse',
         publishdate: 'Dato',
@@ -195,8 +192,10 @@ export const translationsBundleNb = {
     },
     overview: {
         noProducts: 'Ingen treff',
-        search: 'Søk',
+        search: 'Finn tjeneste',
         loading: 'Laster innhold...',
+        resetFilters: 'Nullstill',
+        any: 'Fra A til Å',
         areas: {
             choose: 'Velg område',
             ariaExplanation: 'Filtrer listen etter område',

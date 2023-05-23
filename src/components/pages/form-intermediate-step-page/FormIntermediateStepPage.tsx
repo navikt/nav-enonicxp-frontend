@@ -6,7 +6,7 @@ import { ThemedPageHeader } from '../../_common/headers/themed-page-header/Theme
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/compat/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 
@@ -48,6 +48,7 @@ export const FormIntermediateStepPage = (
 
     useEffect(() => {
         setPrevSelectedStep(getStateFromQuery(router.asPath));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const getStepData = () => {
@@ -89,7 +90,6 @@ export const FormIntermediateStepPage = (
         data: {
             ...props.data,
             taxonomy: [],
-            customCategory: getTranslations('application'),
         },
     };
 
