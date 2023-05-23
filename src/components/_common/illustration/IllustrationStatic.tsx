@@ -7,20 +7,21 @@ import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
 import { buildImageCacheUrl, NextImageProps } from '../image/NextImage';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { XpImage } from 'components/_common/image/XpImage';
 import useSWRImmutable from 'swr/immutable';
 
 import styleCommon from './Illustration.module.scss';
 import styleStatic from './IllustrationStatic.module.scss';
 
-interface IllustrationStaticProps {
-    illustration: AnimatedIconsProps;
-    className?: string;
-}
-
 const nextImageProps: NextImageProps = {
     maxWidth: 96,
     quality: 90,
 };
+
+const fetchSvgData = (url: string) =>
+    fetch(url)
+        .then((res) => (res.ok ? res.text() : null))
+        .catch((_) => null);
 
 const StaticIcon = ({
     icon,
@@ -31,29 +32,40 @@ const StaticIcon = ({
 }) => {
     const ref = useRef<HTMLSpanElement>();
 
-    const url = buildImageCacheUrl({
-        ...nextImageProps,
-        src: getMediaUrl(icon.icon.mediaUrl),
-        isEditorView,
-    });
+    // Insert svg data into the html to allow us to easily style it with CSS
+    // Other formats are treated as a regular img
+    const isSvg = icon.icon.mediaUrl.endsWith('svg');
 
-    const { data } = useSWRImmutable(url, () =>
-        fetch(url).then((res) => res.text())
+    const { data: svgData } = useSWRImmutable(
+        isSvg
+            ? buildImageCacheUrl({
+                  ...nextImageProps,
+                  src: getMediaUrl(icon.icon.mediaUrl),
+                  isEditorView,
+              })
+            : null,
+        fetchSvgData
     );
 
     useEffect(() => {
-        if (data) {
-            ref.current.innerHTML = data;
+        if (svgData) {
+            ref.current.innerHTML = svgData;
         }
-    }, [data]);
+    }, [svgData]);
 
-    return <span className={styleStatic.icon} ref={ref} />;
+    return (
+        <span className={styleStatic.icon} ref={ref}>
+            {!isSvg && <XpImage imageProps={icon.icon} alt={''} />}
+        </span>
+    );
 };
 
-export const IllustrationStatic = ({
-    illustration,
-    className,
-}: IllustrationStaticProps) => {
+type Props = {
+    illustration?: AnimatedIconsProps;
+    className?: string;
+};
+
+export const IllustrationStatic = ({ illustration, className }: Props) => {
     const { pageConfig } = usePageConfig();
 
     if (!illustration) {
