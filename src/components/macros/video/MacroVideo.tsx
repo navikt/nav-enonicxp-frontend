@@ -76,8 +76,6 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         return null;
     }
 
-    console.log(duration);
-
     return (
         <div className={style.wrapper}>
             <Button
