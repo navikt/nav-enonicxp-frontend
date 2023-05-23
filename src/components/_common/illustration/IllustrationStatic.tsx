@@ -8,7 +8,7 @@ import { classNames } from 'utils/classnames';
 import { buildImageCacheUrl, NextImageProps } from '../image/NextImage';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { XpImage } from 'components/_common/image/XpImage';
-import { useSwrImmutableOnScrollIntoView } from 'utils/fetch/useSwrImmutableOnScrollIntoView';
+import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
 
 import styleCommon from './Illustration.module.scss';
 import styleStatic from './IllustrationStatic.module.scss';
@@ -36,7 +36,7 @@ const StaticIcon = ({
     // Other formats are treated as a regular img
     const isSvg = icon.icon.mediaUrl.endsWith('svg');
 
-    const { data: svgData } = useSwrImmutableOnScrollIntoView({
+    const { data: svgData } = useSWRImmutableOnScrollIntoView({
         url: isSvg
             ? buildImageCacheUrl({
                   ...nextImageProps,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { classNames } from 'utils/classnames';
 import { fetchJson } from 'utils/fetch/fetch-utils';
-import { useSwrImmutableOnScrollIntoView } from 'utils/fetch/useSwrImmutableOnScrollIntoView';
+import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
 
 import styleCommon from './Illustration.module.scss';
 import styleAnimated from './IllustrationAnimated.module.scss';
@@ -28,7 +28,7 @@ export const IllustrationAnimated = ({
     const lottieContainer = useRef<HTMLDivElement>(null);
     const lottiePlayer = useRef(null);
 
-    const { data: lottieData } = useSwrImmutableOnScrollIntoView({
+    const { data: lottieData } = useSWRImmutableOnScrollIntoView({
         url: dataUrl,
         fetchFunc: fetchJsonData,
         elementRef: lottieContainer,
