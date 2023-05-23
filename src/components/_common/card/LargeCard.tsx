@@ -1,13 +1,11 @@
+import React from 'react';
 import { classNames } from 'utils/classnames';
-
-import { AnimatedIconsProps } from '../../../types/content-props/animated-icons';
+import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { CardSize, CardType } from 'types/card';
 import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
 import { Illustration } from '../illustration/Illustration';
-import { IllustrationPlacements } from 'types/illustrationPlacements';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
-
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useCard } from './useCard';
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import { Chips, Heading, Tag } from '@navikt/ds-react';
 import { Area } from 'types/areas';
 import { Taxonomy } from 'types/taxonomies';
@@ -44,7 +43,6 @@ export const OverviewFilterBase = <Type extends FilterOptions>({
             <nav aria-label={translations['ariaExplanation']}>
                 <Chips className={styles.filterWrapper}>
                     {options.map((option) => {
-                        const isActive = selected === option;
                         const optionLabel = optionsTranslations(option);
 
                         return (
@@ -53,7 +51,7 @@ export const OverviewFilterBase = <Type extends FilterOptions>({
                                 onClick={() => selectionCallback(option)}
                                 aria-label={`${translations['ariaItemExplanation']} ${optionLabel}`}
                                 className={styles.filterButton}
-                                selected={isActive}
+                                selected={selected === option}
                                 key={option}
                             >
                                 {optionLabel}

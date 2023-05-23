@@ -7,7 +7,6 @@ import { BodyShort, Detail } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Illustration } from 'components/_common/illustration/Illustration';
-import { IllustrationPlacements } from 'types/illustrationPlacements';
 import {
     ProductPageProps,
     SituationPageProps,
