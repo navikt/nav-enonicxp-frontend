@@ -76,6 +76,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         return null;
     }
 
+    console.log(duration);
+
     return (
         <div className={style.wrapper}>
             <Button
@@ -105,7 +107,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 <Label as="p" className={style.text}>
                     {translations('playMovie')} {title}
                 </Label>
-                {duration && (
+                {!!duration && (
                     <Detail className={`${style.text} ${style.videoLength}`}>
                         {durationAsString} {translations('minutes')}
                     </Detail>
