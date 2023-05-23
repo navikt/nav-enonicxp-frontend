@@ -49,7 +49,7 @@ export const findImageUrlFromVideoMeta = (qbrickMediaData: QbrickMeta) => {
         return null;
     }
 
-    const imageLink = image.renditions[0].links[0].href;
+    const imageLink = image.renditions[0]?.links[0]?.href;
 
     return imageLink || null;
 };
@@ -60,8 +60,12 @@ export const findVideoDurationFromMeta = (qbrickMediaData: QbrickMeta) => {
         return 0;
     }
 
-    const duration = resources.find((resource) => resource.type === 'video')
-        .renditions[0].videos[0].duration;
+    const firstFoundResource = resources.find(
+        (resource) => resource.type === 'video'
+    );
+    const firstFoundVideo =
+        firstFoundResource && firstFoundResource.renditions[0]?.videos;
+    const duration = firstFoundVideo && firstFoundVideo[0]?.duration;
 
     return duration || 0;
 };
