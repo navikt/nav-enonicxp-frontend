@@ -32,7 +32,7 @@ const StaticIcon = ({
 }) => {
     const ref = useRef<HTMLSpanElement>();
 
-    // Insert svg data into the html to allow us to easily style it with CSS
+    // We inline svg data into the html to allow us to easily style it with CSS
     // Other formats are treated as a regular img
     const isSvg = icon.icon.mediaUrl.endsWith('svg');
 
