@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-import useSWRImmutable from 'swr/immutable';
 import { classNames } from 'utils/classnames';
 import { fetchJson } from 'utils/fetch/fetch-utils';
 import { useSwrImmutableOnScrollIntoView } from 'utils/fetch/useSwrImmutableOnScrollIntoView';
