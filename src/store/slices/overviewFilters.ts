@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
+import { OVERVIEW_FILTERS_TEXT_INPUT_EVENT } from 'components/_common/overview-filters/text-filter/OverviewTextFilter';
 
 export type OverviewFiltersState = {
     areaFilter: Area;
@@ -34,7 +35,11 @@ const overviewFiltersSlice = createSlice({
             return { ...state, textFilter: text };
         },
         resetFilters: () => {
-            window.dispatchEvent(new Event('OverviewFiltersReset'));
+            window.dispatchEvent(
+                new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
+                    detail: '',
+                })
+            );
             return overviewFiltersInitialState;
         },
     },

@@ -9,16 +9,29 @@ import { setTextFilterAction } from 'store/slices/overviewFilters';
 
 import style from './OverviewTextFilter.module.scss';
 
-export const OverviewTextFilter = () => {
-    const { language } = usePageConfig();
+export const OVERVIEW_FILTERS_TEXT_INPUT_EVENT = 'OverviewFiltersTextInput';
+
+type Props = {
+    hideLabel?: boolean;
+};
+
+export const OverviewTextFilter = ({ hideLabel }: Props) => {
     const { dispatch } = useOverviewFiltersState();
     const [textInput, setTextInput] = useState('');
+
+    const { language } = usePageConfig();
 
     const label = translator('overview', language)('search');
 
     const searchEventHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
-        setTextInput(value);
+
+        // Set the input value via events to keep mobile and desktop views in sync
+        window.dispatchEvent(
+            new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
+                detail: value,
+            })
+        );
 
         debounce(
             () => {
@@ -34,18 +47,29 @@ export const OverviewTextFilter = () => {
     };
 
     useEffect(() => {
-        const resetHandler = () => setTextInput('');
-        window.addEventListener('OverviewFiltersReset', resetHandler);
-        return () =>
-            window.removeEventListener('OverviewFiltersReset', resetHandler);
+        const inputHandler = (evt: CustomEvent) => {
+            setTextInput(evt.detail);
+        };
+
+        window.addEventListener(
+            OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
+            inputHandler
+        );
+        return () => {
+            window.removeEventListener(
+                OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
+                inputHandler
+            );
+        };
     }, []);
 
     return (
         <div className={style.overviewSearch}>
             <TextField
-                label={label}
                 onChange={searchEventHandler}
                 value={textInput}
+                label={label}
+                hideLabel={hideLabel}
             />
         </div>
     );

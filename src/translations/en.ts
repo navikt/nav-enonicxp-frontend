@@ -214,6 +214,7 @@ export const translationsBundleEn: Translations = {
     overview: {
         noProducts: 'No hits',
         search: 'Find a service',
+        filterOrSearch: 'Use filters or search',
         loading: 'Loading content...',
         any: 'From A to Z',
         areas: {

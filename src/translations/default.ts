@@ -193,6 +193,7 @@ export const translationsBundleNb = {
     overview: {
         noProducts: 'Ingen treff',
         search: 'Finn tjeneste',
+        filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhold...',
         resetFilters: 'Nullstill',
         any: 'Fra A til Å',

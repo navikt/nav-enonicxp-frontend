@@ -195,6 +195,7 @@ export const translationsBundleNn: Translations = {
     overview: {
         noProducts: 'Ingen treff',
         search: 'Finn teneste',
+        filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhald...',
         any: 'Frå A til Å',
         areas: {

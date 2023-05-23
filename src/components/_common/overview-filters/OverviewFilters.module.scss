@@ -1,0 +1,68 @@
+@use 'src/common' as common;
+
+.mobile {
+    @media #{common.$mq-screen-desktop} {
+        display: none;
+    }
+}
+
+.mobileTextFilter {
+    display: grid;
+    column-gap: 0.75rem;
+    grid-template-columns: 6rem 1fr;
+    height: 3rem;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    & > * {
+        height: 100%;
+    }
+}
+
+.mobileTextFilterLabel {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.mobileFilterButton {
+    background-color: common.$a-deepblue-100;
+    color: common.$a-text-default;
+
+    &:hover {
+        background-color: common.$a-deepblue-500;
+        color: common.$a-white;
+    }
+
+    :global(.navds-label) {
+        font-weight: normal;
+    }
+}
+
+.mobileToggleFilters {
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+    max-height: 0;
+
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+    transition-property: opacity, visibility, max-height;
+
+    &.open {
+        visibility: visible;
+        opacity: 1;
+        max-height: 30rem;
+    }
+}
+
+.desktop {
+    display: none;
+
+    & > * {
+        margin-bottom: 1rem;
+    }
+
+    @media #{common.$mq-screen-desktop} {
+        display: initial;
+    }
+}
