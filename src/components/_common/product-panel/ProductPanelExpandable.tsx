@@ -72,6 +72,7 @@ export const ProductPanelExpandable = ({
                     <Accordion.Header
                         onClick={handleClick}
                         onMouseOver={contentLoaderCallback}
+                        onFocus={contentLoaderCallback}
                     >
                         <IllustrationStatic
                             className={style.illustration}
