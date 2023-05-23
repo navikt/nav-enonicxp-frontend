@@ -9,7 +9,7 @@ import {
 import { resetOverviewFiltersAction } from 'store/slices/overviewFilters';
 import { classNames } from 'utils/classnames';
 import { Button } from 'components/_common/button/Button';
-import { Filter2 } from '@navikt/ds-icons';
+import { Filter2 as FilterIcon } from '@navikt/ds-icons';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Heading } from '@navikt/ds-react';
@@ -38,7 +38,7 @@ const MobileView = ({
                     </Heading>
                     <div className={style.mobileTextFilter}>
                         <Button
-                            dsIcon={<Filter2 />}
+                            dsIcon={<FilterIcon />}
                             onClick={(e) => {
                                 e.preventDefault();
                                 setIsOpen(!isOpen);
