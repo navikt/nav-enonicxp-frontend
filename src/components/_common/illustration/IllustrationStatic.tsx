@@ -7,6 +7,7 @@ import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
 import { buildImageCacheUrl, NextImageProps } from '../image/NextImage';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import useSWRImmutable from 'swr/immutable';
 
 import styleCommon from './Illustration.module.scss';
 import styleStatic from './IllustrationStatic.module.scss';
@@ -30,21 +31,19 @@ const StaticIcon = ({
 }) => {
     const ref = useRef<HTMLSpanElement>();
 
-    useEffect(() => {
-        const url = buildImageCacheUrl({
-            ...nextImageProps,
-            src: getMediaUrl(icon.icon.mediaUrl),
-            isEditorView,
-        });
+    const url = buildImageCacheUrl({
+        ...nextImageProps,
+        src: getMediaUrl(icon.icon.mediaUrl),
+        isEditorView,
+    });
 
-        fetch(url)
-            .then((res) => {
-                if (res.ok) {
-                    return res.text();
-                }
-            })
-            .then((text) => (ref.current.innerHTML = text));
-    }, [icon, isEditorView]);
+    const { data } = useSWRImmutable(url, () =>
+        fetch(url).then((res) => res.text())
+    );
+
+    useEffect(() => {
+        ref.current.innerHTML = data;
+    }, [data]);
 
     return <span className={styleStatic.icon} ref={ref} />;
 };

@@ -26,8 +26,8 @@ const getLinksIfTransportPage = (audience: FormsOverviewAudienceOptions) => {
     }
 
     return pageType.links?.links.map((link) => ({
-        url: link.link._path,
-        text: link.text || link.link.data.title,
+        url: link.link?._path,
+        text: link.text || link.link?.data.title,
     }));
 };
 
