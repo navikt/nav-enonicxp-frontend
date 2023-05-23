@@ -17,8 +17,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
         overviewType,
     } = props.data;
 
-    const { matchFilters, hasDefaultFilters, dispatch } =
-        useOverviewFiltersState();
+    const { matchFilters } = useOverviewFiltersState();
 
     const isVisible = (formDetail: FormDetailsListItemProps) =>
         matchFilters({
