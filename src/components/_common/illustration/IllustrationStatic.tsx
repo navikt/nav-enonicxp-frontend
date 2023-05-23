@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
     AnimatedIcon,
     AnimatedIconsProps,
@@ -7,19 +7,21 @@ import { getMediaUrl } from 'utils/urls';
 import { classNames } from 'utils/classnames';
 import { buildImageCacheUrl, NextImageProps } from '../image/NextImage';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { XpImage } from 'components/_common/image/XpImage';
+import useSWRImmutable from 'swr/immutable';
 
 import styleCommon from './Illustration.module.scss';
 import styleStatic from './IllustrationStatic.module.scss';
-
-interface IllustrationStaticProps {
-    illustration: AnimatedIconsProps;
-    className?: string;
-}
 
 const nextImageProps: NextImageProps = {
     maxWidth: 96,
     quality: 90,
 };
+
+const fetchSvgData = (url: string) =>
+    fetch(url)
+        .then((res) => (res.ok ? res.text() : null))
+        .catch((_) => null);
 
 const StaticIcon = ({
     icon,
@@ -27,24 +29,43 @@ const StaticIcon = ({
 }: {
     icon: AnimatedIcon;
     isEditorView: boolean;
-}) => (
-    <span
-        className={styleStatic.icon}
-        style={{
-            backgroundImage: `url(${buildImageCacheUrl({
-                ...nextImageProps,
-                src: getMediaUrl(icon.icon.mediaUrl),
-                isEditorView,
-            })})`,
-            transform: icon.transformStart || 'none',
-        }}
-    />
-);
+}) => {
+    const ref = useRef<HTMLSpanElement>();
 
-export const IllustrationStatic = ({
-    illustration,
-    className,
-}: IllustrationStaticProps) => {
+    // We inline svg data into the html to allow us to easily style it with CSS
+    // Other formats are treated as a regular img
+    const isSvg = icon.icon.mediaUrl.endsWith('svg');
+
+    const { data: svgData } = useSWRImmutable(
+        isSvg
+            ? buildImageCacheUrl({
+                  ...nextImageProps,
+                  src: getMediaUrl(icon.icon.mediaUrl),
+                  isEditorView,
+              })
+            : null,
+        fetchSvgData
+    );
+
+    useEffect(() => {
+        if (svgData) {
+            ref.current.innerHTML = svgData;
+        }
+    }, [svgData]);
+
+    return (
+        <span className={styleStatic.icon} ref={ref}>
+            {!isSvg && <XpImage imageProps={icon.icon} alt={''} />}
+        </span>
+    );
+};
+
+type Props = {
+    illustration?: AnimatedIconsProps;
+    className?: string;
+};
+
+export const IllustrationStatic = ({ illustration, className }: Props) => {
     const { pageConfig } = usePageConfig();
 
     if (!illustration) {
@@ -70,7 +91,7 @@ export const IllustrationStatic = ({
     return (
         <span
             className={classNames(styleCommon.image, className)}
-            aria-hidden="true"
+            aria-hidden={'true'}
         >
             {hasIcon1 && (
                 <StaticIcon icon={icon1} isEditorView={isEditorView} />

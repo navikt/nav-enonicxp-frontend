@@ -7,7 +7,6 @@ import { BodyShort, Detail } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Illustration } from 'components/_common/illustration/Illustration';
-import { IllustrationPlacements } from 'types/illustrationPlacements';
 import {
     ProductPageProps,
     SituationPageProps,
@@ -166,7 +165,6 @@ export const ThemedPageHeader = ({
         >
             <Illustration
                 illustration={illustration}
-                placement={IllustrationPlacements.PRODUCT_PAGE_HEADER}
                 className={style.illustration}
             />
             <div className={style.text}>
