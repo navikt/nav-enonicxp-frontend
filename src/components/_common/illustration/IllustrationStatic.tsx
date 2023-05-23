@@ -42,7 +42,9 @@ const StaticIcon = ({
     );
 
     useEffect(() => {
-        ref.current.innerHTML = data;
+        if (data) {
+            ref.current.innerHTML = data;
+        }
     }, [data]);
 
     return <span className={styleStatic.icon} ref={ref} />;

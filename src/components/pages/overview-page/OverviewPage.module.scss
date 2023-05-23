@@ -34,7 +34,6 @@
 
 .productListWrapper,
 .filters {
-    background-color: white;
     padding: common.$sectionPaddingDesktop / 2;
     max-width: common.$sectionMaxWidth;
 
@@ -44,6 +43,7 @@
 }
 
 .filters {
-    margin-bottom: 1.5rem;
+    background-color: white;
+    margin-bottom: 1rem;
     padding-bottom: 0;
 }
