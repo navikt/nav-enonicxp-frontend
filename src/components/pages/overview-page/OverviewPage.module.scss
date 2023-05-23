@@ -27,7 +27,13 @@
     }
 }
 
-.productListWrapper {
+.transparent {
+    background-color: transparent;
+    padding: 0;
+}
+
+.productListWrapper,
+.filters {
     background-color: white;
     padding: common.$sectionPaddingDesktop / 2;
     max-width: common.$sectionMaxWidth;
@@ -37,7 +43,7 @@
     }
 }
 
-.transparent {
-    background-color: transparent;
-    padding: 0;
+.filters {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0;
 }
