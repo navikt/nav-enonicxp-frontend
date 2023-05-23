@@ -20,7 +20,7 @@ $separator-attribs: 1px $color solid;
         align-items: center;
         background-color: common.$a-white;
 
-        @media #{common.$mq-screen-desktop} {
+        @media #{common.$mq-screen-tablet-and-desktop} {
             padding: var(--a-spacing-5);
         }
 
