@@ -7,7 +7,7 @@ import {
     pageNavigationAnchorOffsetPx,
     PageNavScrollDirection,
 } from './PageNavigationMenu';
-import { smoothScrollToTarget } from 'utils/scroll';
+import { smoothScrollToTarget } from 'utils/scroll-to';
 
 import style from './PageNavigationLink.module.scss';
 import sidebarStyle from './views/PageNavigationSidebar.module.scss';
