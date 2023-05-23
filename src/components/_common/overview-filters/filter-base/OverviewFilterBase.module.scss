@@ -3,7 +3,6 @@
 .overviewFilter {
     display: flex;
     flex-direction: column;
-    max-width: common.$sectionMaxWidth;
 }
 
 .filterWrapper {
@@ -15,24 +14,21 @@
     padding: 0;
 }
 
-.tag {
-    background-color: white;
-    border: 1px solid var(--a-gray-600);
-    cursor: pointer;
-    white-space: nowrap;
-}
-
 .filterButton {
-    background-color: transparent;
-    border: 0;
-    margin: 0 0.5rem 0.5rem 0;
-    padding: 0;
-}
+    background-color: common.$a-deepblue-50;
+    box-shadow: none;
 
-.activeButton {
-    .tag {
-        background-color: common.$a-blue-100;
-        outline: 2px solid common.$a-blue-500;
-        border-color: transparent;
+    padding-left: common.$a-spacing-3;
+
+    &:hover {
+        background-color: common.$a-deepblue-100;
+    }
+
+    &:hover:not(:focus) {
+        box-shadow: none;
+    }
+
+    svg {
+        display: none;
     }
 }

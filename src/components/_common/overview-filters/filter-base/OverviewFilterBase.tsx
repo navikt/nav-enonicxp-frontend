@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Heading, Tag } from '@navikt/ds-react';
+import { Chips, Heading, Tag } from '@navikt/ds-react';
 import { Area } from 'types/areas';
 import { Taxonomy } from 'types/taxonomies';
 import { translator } from 'translations';
@@ -42,35 +42,28 @@ export const OverviewFilterBase = <Type extends FilterOptions>({
                 {translations['choose']}
             </Heading>
             <nav aria-label={translations['ariaExplanation']}>
-                <ul className={styles.filterWrapper}>
+                <Chips className={styles.filterWrapper}>
                     {options.map((option) => {
                         const isActive = selected === option;
                         const optionLabel = optionsTranslations(option);
 
                         return (
-                            <li key={option}>
-                                <button
-                                    type={'button'}
-                                    onClick={() => selectionCallback(option)}
-                                    aria-current={isActive}
-                                    aria-label={`${translations['ariaItemExplanation']} ${optionLabel}`}
-                                    className={classNames(
-                                        styles.filterButton,
-                                        isActive && styles.activeButton
-                                    )}
-                                >
-                                    <Tag
-                                        variant={'info'}
-                                        className={styles.tag}
-                                        size={'small'}
-                                    >
-                                        {optionLabel}
-                                    </Tag>
-                                </button>
-                            </li>
+                            <Chips.Toggle
+                                type={'button'}
+                                onClick={() => selectionCallback(option)}
+                                aria-label={`${translations['ariaItemExplanation']} ${optionLabel}`}
+                                className={classNames(
+                                    styles.filterButton,
+                                    isActive && styles.activeButton
+                                )}
+                                selected={isActive}
+                                key={option}
+                            >
+                                {optionLabel}
+                            </Chips.Toggle>
                         );
                     })}
-                </ul>
+                </Chips>
             </nav>
         </div>
     );
