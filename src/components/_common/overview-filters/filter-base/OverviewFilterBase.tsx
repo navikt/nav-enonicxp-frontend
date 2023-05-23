@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chips, Heading, Tag } from '@navikt/ds-react';
+import { Chips, Heading } from '@navikt/ds-react';
 import { Area } from 'types/areas';
 import { Taxonomy } from 'types/taxonomies';
 import { translator } from 'translations';
