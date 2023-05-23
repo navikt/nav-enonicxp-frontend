@@ -19,7 +19,10 @@ $separator-attribs: 1px $color solid;
 
         align-items: center;
         background-color: common.$a-white;
-        padding: var(--a-spacing-5);
+
+        @media #{common.$mq-screen-desktop} {
+            padding: var(--a-spacing-5);
+        }
 
         &:focus {
             @include common.panel-focus-mixin(true);

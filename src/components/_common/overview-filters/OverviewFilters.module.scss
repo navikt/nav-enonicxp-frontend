@@ -23,6 +23,10 @@
     background-color: common.$a-deepblue-100;
     color: common.$a-text-default;
 
+    :global(.navds-label) {
+        font-weight: normal;
+    }
+
     &:hover {
         background-color: common.$a-deepblue-500;
         color: common.$a-white;
