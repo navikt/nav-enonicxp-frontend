@@ -107,7 +107,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 </Label>
                 {duration > 0 && (
                     <Detail className={`${style.text} ${style.videoLength}`}>
-                        {durationAsString} {translations('minutes')}
+                        {translations('duration')} {durationAsString}{' '}
+                        {translations('minutes')}
                     </Detail>
                 )}
             </Button>

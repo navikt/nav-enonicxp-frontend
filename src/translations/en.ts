@@ -306,6 +306,7 @@ export const translationsBundleEn: Translations = {
     },
     macroVideo: {
         playMovie: 'Watch video:',
+        duration: 'Duration is',
         minutes: 'min',
     },
 };

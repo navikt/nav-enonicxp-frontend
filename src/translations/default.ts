@@ -329,6 +329,7 @@ export const translationsBundleNb = {
     },
     macroVideo: {
         playMovie: 'Se video:',
+        duration: 'Varighet er',
         minutes: 'min',
     },
 };

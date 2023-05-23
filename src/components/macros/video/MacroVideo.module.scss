@@ -40,7 +40,7 @@
 
 .posterWrapper {
     position: relative;
-    width: 120px;
+    width: 80px;
 }
 
 .playIcon {
@@ -66,7 +66,7 @@
 }
 
 .previewImage {
-    min-height: 74px; //golden ratio :)
+    min-height: 53px; // Keep video height in golden ratio rather than 16:9
     border-radius: 0.125rem;
     object-fit: cover;
 }
