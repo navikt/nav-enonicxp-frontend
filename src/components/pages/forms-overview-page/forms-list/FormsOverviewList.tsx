@@ -22,7 +22,8 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
     const isVisible = (formDetail: FormDetailsListItemProps) =>
         matchFilters({
             ...formDetail,
-            text: formDetail.title,
+            textMatchFunc: (textFilter) =>
+                textFilter === formDetail.title.toLowerCase(),
         });
 
     const numMatchingFilters = formDetailsList.filter(isVisible).length;

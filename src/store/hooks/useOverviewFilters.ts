@@ -7,8 +7,8 @@ import { ContentType } from 'types/content-props/_content-common';
 export type OverviewFilterableItem = {
     area: Area[];
     taxonomy: ProductTaxonomy[];
-    text?: string;
     type?: ContentType;
+    textMatchFunc?: (textFilter: string) => boolean;
 };
 
 export const useOverviewFiltersState = () => {
@@ -42,9 +42,8 @@ export const useOverviewFiltersState = () => {
 
         const isSearchMatching =
             !textFilter ||
-            filterableContent.text
-                .toLowerCase()
-                .includes(textFilter.toLowerCase());
+            !filterableContent.textMatchFunc ||
+            filterableContent.textMatchFunc(textFilter);
 
         return isSearchMatching;
     };
