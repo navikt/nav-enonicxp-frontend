@@ -40,7 +40,7 @@ jobs:
         uses: navikt/frontend/actions/cdn-upload/v1@main
         with:
           cdn-team-name: personbruker
-          source: ./.next/static
+          source: .next/static
           destination: nav-enonicxp-frontend/_next
       - run: echo uploaded file ${{ steps.upload.outputs.uploaded }}
         shell: bash
