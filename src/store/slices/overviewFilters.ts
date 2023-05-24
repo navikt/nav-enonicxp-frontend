@@ -37,7 +37,7 @@ const overviewFiltersSlice = createSlice({
         resetFilters: () => {
             window.dispatchEvent(
                 new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
-                    detail: '',
+                    detail: { value: '' },
                 })
             );
             return overviewFiltersInitialState;

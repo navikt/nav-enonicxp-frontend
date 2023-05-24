@@ -196,7 +196,7 @@ export const translationsBundleNb = {
         search: 'Finn tjeneste',
         filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhold...',
-        resetFilters: 'Nullstill',
+        resetFilters: 'Nullstill valg',
         any: 'Fra A til Å',
         areas: {
             choose: 'Velg område',
