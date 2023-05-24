@@ -90,7 +90,6 @@ export const FormIntermediateStepPage = (
         data: {
             ...props.data,
             taxonomy: [],
-            customCategory: getTranslations('application'),
         },
     };
 

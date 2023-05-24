@@ -38,7 +38,7 @@ const taxonomies: {
     [ProductTaxonomy.FOR_PROVIDERS]: 'For samhandlarar',
     [ProductTaxonomy.MEASURES]: 'Tiltak',
     [ProductTaxonomy.RIGHTS]: 'Rettleiing',
-    [ProductTaxonomy.FORMS]: 'Skjema',
+    [ProductTaxonomy.FORMS]: 'Anna',
     [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Jobbsøkartips',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Hjelp til å kome i jobb',
     [ThemedArticlePageTaxonomy.WHEN_SICK]: 'Når du er sjuk',
@@ -164,9 +164,6 @@ export const translationsBundleNn: Translations = {
         employer: 'For arbeidsgjevarar',
         provider: 'For samhandlarar',
     },
-    overviews: {
-        any: 'Frå A til Å',
-    },
     publishingCalendar: {
         event: 'Hending',
         publishdate: 'Dato',
@@ -197,8 +194,12 @@ export const translationsBundleNn: Translations = {
     },
     overview: {
         noProducts: 'Ingen treff',
-        search: 'Søk',
+        numHits: 'Viser $1 av $2',
+        search: 'Finn teneste',
+        filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhald...',
+        any: 'Frå A til Å',
+        resetFilters: 'Nullstill val',
         areas: {
             choose: 'Vel område',
             ariaExplanation: 'Filtrer lista etter område',

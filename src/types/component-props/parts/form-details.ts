@@ -9,6 +9,7 @@ export interface FormDetailsProps extends PartComponentProps {
         showTitle: boolean;
         showIngress: boolean;
         showAddendums: boolean;
+        showComplaints: boolean;
         showApplications: boolean;
     };
 }

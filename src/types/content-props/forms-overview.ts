@@ -2,7 +2,7 @@ import {
     ContentCommonProps,
     ContentType,
 } from 'types/content-props/_content-common';
-import { OptionSetSingle } from 'types/util-types';
+import { EmptyObject, OptionSetSingle } from 'types/util-types';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
 import { Area } from 'types/areas';
@@ -10,6 +10,10 @@ import { ProductTaxonomy } from 'types/taxonomies';
 
 export type FormDetailsListItemProps = {
     title: string;
+    sortTitle: string;
+    ingress: string;
+    url: string;
+    type: ContentType;
     anchorId: string;
     illustration: AnimatedIconsProps;
     area: Area[];
@@ -17,18 +21,38 @@ export type FormDetailsListItemProps = {
     formDetailsPaths: string[];
 };
 
-type AudienceOptions = {
-    person: {};
-    employer: {};
-    provider: {}; // TODO: add sub-categories
-};
+export type FormsOverviewAudienceOptions = OptionSetSingle<{
+    person: EmptyObject;
+    employer: EmptyObject;
+    provider: {
+        pageType: OptionSetSingle<{
+            overview: {
+                provider_audience: string[]; // TODO: add union type
+            };
+            links: {
+                links: Array<{
+                    text?: string;
+                    link: {
+                        _path: string;
+                        data: {
+                            title: string;
+                        };
+                    };
+                }>;
+            };
+        }>;
+    };
+}>;
 
 export type FormsOverviewData = {
     title: string;
     ingress: string;
-    audience: OptionSetSingle<AudienceOptions>;
+    overviewType: 'application' | 'complaint' | 'addendum';
     illustration: AnimatedIconsProps;
-    showFilter: boolean;
+    audience: FormsOverviewAudienceOptions;
+    areasFilterToggle: boolean;
+    taxonomyFilterToggle: boolean;
+    textFilterToggle: boolean;
     formDetailsList: FormDetailsListItemProps[];
 };
 

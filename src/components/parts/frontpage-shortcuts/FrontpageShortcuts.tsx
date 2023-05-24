@@ -12,11 +12,34 @@ import saksbehandlingstider from '/public/gfx/front-page-shortcuts/saksbehandlin
 import utbetalingsdatoer from '/public/gfx/front-page-shortcuts/utbetalingsdatoer_nav_ikon.svg';
 import pengestotter from '/public/gfx/front-page-shortcuts/pengestotter_og_tjenester_fra_a_til_a_nav_ikon.svg';
 import soknader from '/public/gfx/front-page-shortcuts/soknader_og_skjema_nav_ikon.svg';
+import arbeidsgiverMinside from '/public/gfx/front-page-shortcuts/arbeidsgiver_minside.svg';
+import arbeidsgiverSoknader from '/public/gfx/front-page-shortcuts/arbeidsgiver_soknader.svg';
+import arbeidsgiverTjenester from '/public/gfx/front-page-shortcuts/arbeidsgiver_tjenester.svg';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './FrontpageShortcuts.module.scss';
 
-export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
+const linkToIconDictionary = {
+    person: {
+        saksbehandlingstider: saksbehandlingstider,
+        utbetalingsdatoer: utbetalingsdatoer,
+        tjenester: pengestotter,
+        'soknader/nb/person': soknader,
+    },
+    employer: {
+        'min-side-arbeidsgiver': arbeidsgiverMinside,
+        'soknader/nb/bedrift': arbeidsgiverSoknader,
+        tilganger: arbeidsgiverTjenester,
+    },
+};
+
+export const FrontpageShortcuts = ({
+    config,
+    pageProps,
+}: FrontpageShortcutsProps) => {
     const { contentList, title } = config;
+
+    const audience = pageProps?.data?.audience;
 
     const links = contentList?.data?.sectionContents;
 
@@ -24,17 +47,23 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
         return <EditorHelp text={'Velg en innholdsliste'} />;
     }
 
+    const getIcon = (content: ContentProps) => {
+        const dictionary = linkToIconDictionary[audience];
+        console.log('dictionary', dictionary);
+        const foundKey = Object.keys(dictionary).find((key) => {
+            if (content.type === ContentType.ExternalLink) {
+                return content.data.url?.includes(key);
+            }
+
+            return content._path.includes(key);
+        });
+        return foundKey ? dictionary[foundKey] : null;
+    };
+
     const threeCols = links.length % 3 === 0;
 
-    const icons = [
-        saksbehandlingstider,
-        utbetalingsdatoer,
-        pengestotter,
-        soknader,
-    ];
-
     return (
-        <div className={style.shortcuts}>
+        <div className={classNames(style.shortcuts, style[audience])}>
             <Header
                 size="large"
                 level="2"
@@ -46,26 +75,34 @@ export const FrontpageShortcuts = ({ config }: FrontpageShortcutsProps) => {
             <ul
                 className={classNames(style.list, threeCols && style.threeCols)}
             >
-                {links.map((item, index) => (
-                    <li key={item._id}>
-                        <LinkPanelNavnoSimple
-                            href={getUrlFromContent(item)}
-                            linkUnderline={'none'}
-                            analyticsLinkGroup={title}
-                            icon={
-                                <StaticImage
-                                    imageData={icons[index]}
-                                    width={64}
-                                    height={64}
-                                    alt={''}
-                                />
-                            }
-                            className={classNames(style.item)}
-                        >
-                            {item.displayName}
-                        </LinkPanelNavnoSimple>
-                    </li>
-                ))}
+                {links.map((item, index) => {
+                    const icon = getIcon(item);
+                    return (
+                        <li key={item._id}>
+                            <LinkPanelNavnoSimple
+                                href={getUrlFromContent(item)}
+                                linkUnderline={'none'}
+                                analyticsLinkGroup={title}
+                                icon={
+                                    icon && (
+                                        <StaticImage
+                                            imageData={icon}
+                                            width={64}
+                                            height={64}
+                                            alt={''}
+                                        />
+                                    )
+                                }
+                                className={classNames(
+                                    style.item,
+                                    style[`item_${audience}`]
+                                )}
+                            >
+                                {item.displayName}
+                            </LinkPanelNavnoSimple>
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );

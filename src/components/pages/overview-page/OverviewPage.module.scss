@@ -27,17 +27,26 @@
     }
 }
 
-.productListWrapper {
-    background-color: white;
+.transparent {
+    background-color: transparent;
+    padding: 0;
+}
+
+.productListWrapper,
+.filters {
     padding: common.$sectionPaddingDesktop / 2;
     max-width: common.$sectionMaxWidth;
+    background-color: white;
 
     @media #{common.$mq-screen-mobile} {
         padding: common.$sectionPaddingMobile;
     }
 }
 
-.transparent {
-    background-color: transparent;
-    padding: 0;
+.filters {
+    padding-bottom: 0;
+}
+
+.productListWrapper {
+    padding-top: 0;
 }

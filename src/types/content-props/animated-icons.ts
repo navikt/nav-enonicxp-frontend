@@ -3,9 +3,6 @@ import { XpImageProps } from '../media';
 
 export type AnimatedIcon = {
     icon?: XpImageProps;
-    transformStart?: string;
-    transformEnd?: string;
-    transformOrigin?: string;
 };
 
 export type AnimatedIconsData = {
