@@ -7,6 +7,7 @@ import {
     ColorMixin,
     LinkSelectable,
 } from '../component-props/_mixins';
+import { SituationPageProps } from './dynamic-page-props';
 
 type CommonData = {
     audience: Audience;
@@ -14,6 +15,7 @@ type CommonData = {
 
 export type FrontPageData = {
     areasRefs: AreaPageProps[];
+    situationsRefs: SituationPageProps[];
     areasHeader: string;
 } & CommonData;
 

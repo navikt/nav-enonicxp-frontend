@@ -53,6 +53,10 @@ export const TopContainer = ({ content }: Props) => {
     const showVersionPicker =
         !!content.editorView && content.editorView !== 'edit';
 
+    const shouldCollapse =
+        content.type === ContentType.FrontPage &&
+        content.data.audience === 'employer';
+
     const warningLabels = translator('pageWarnings', language);
 
     return (
@@ -81,7 +85,8 @@ export const TopContainer = ({ content }: Props) => {
                 className={classNames(
                     style.topContainer,
                     hasWhiteHeader && style.white,
-                    hasDecoratorWidgets && style.widgetsOffset
+                    hasDecoratorWidgets && style.widgetsOffset,
+                    shouldCollapse && style.collapse
                 )}
             >
                 {showVersionPicker && <VersionHistory content={content} />}

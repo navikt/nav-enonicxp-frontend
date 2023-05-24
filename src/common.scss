@@ -64,8 +64,6 @@ $editorPaddingVertical: 2rem;
 $editorPaddingHorizontal: $editorPaddingVertical * 1.62;
 $versionSelectorMinHeight: 3rem;
 
-$navPink: #fde6e6;
-
 // Makes the element cover the entire screen-width
 @mixin full-width-mixin($left: true, $right: true) {
     $side-width: calc((100vw - 100%) / 2);
