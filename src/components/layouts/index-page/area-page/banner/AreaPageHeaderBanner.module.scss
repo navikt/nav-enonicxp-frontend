@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     gap: 1rem;
+    width: calc(100% - 0.75rem);
 
     text-decoration: none;
     color: var(--a-text-default);
@@ -27,6 +28,7 @@
     @media #{common.$mq-screen-mobile} {
         padding: 1.5rem 1.25rem;
         transform: none;
+        width: 100%;
     }
 }
 

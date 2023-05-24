@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-shrink: 1;
+    flex: 1;
 
     width: 100%;
     max-width: common.px-to-rem(624px);
@@ -37,12 +37,10 @@
 
 .gfxContainer {
     display: flex;
-    flex-shrink: 3;
     justify-content: flex-end;
     align-self: flex-end;
+    flex: 1;
 
-    width: common.px-to-rem(500px);
-    max-width: common.px-to-rem(500px);
     height: common.px-to-rem(160px);
     margin-bottom: -1.75rem;
 
