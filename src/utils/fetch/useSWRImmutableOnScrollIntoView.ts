@@ -8,8 +8,7 @@ type Props<FetchResponse, ElementType extends HTMLElement = HTMLElement> = {
     elementRef: React.MutableRefObject<ElementType>;
 };
 
-// Start fetching when the element is less than half a viewport away from being visible
-const VIEWPORT_PREFETCH_DISTANCE = 0.5;
+const VIEWPORT_PREFETCH_DISTANCE = 1;
 
 const isNearOrAboveViewport = (element?: HTMLElement) => {
     if (!element) {
@@ -45,8 +44,8 @@ export const useSWRImmutableOnScrollIntoView = <FetchResponse>({
                 window.removeEventListener('scroll', updateElementScrollStatus);
                 return true;
             },
-            15,
-            { maxWait: 30 }
+            50,
+            { maxWait: 100 }
         );
 
         if (updateElementScrollStatus()) {
