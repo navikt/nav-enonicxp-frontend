@@ -193,7 +193,7 @@ export const translationsBundleNn: Translations = {
         alternativeContacts: 'Andre kontaktopplysningar:',
     },
     overview: {
-        noProducts: 'Ingen treff',
+        noHits: 'Ingen treff med dei valde filtera.',
         numHits: 'Viser $1 av $2',
         search: 'Finn teneste',
         filterOrSearch: 'Bruk filter eller søk',

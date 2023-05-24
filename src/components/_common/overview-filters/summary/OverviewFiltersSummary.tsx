@@ -45,7 +45,7 @@ export const OverviewFiltersSummary = ({ numMatches, numTotal }: Props) => {
             </div>
             {numMatches === 0 && (
                 <BodyLong className={style.nohits}>
-                    {'Ingen treff med denne kombinasjonen av filtere.'}
+                    {getTranslationString('noHits')}
                 </BodyLong>
             )}
         </>
