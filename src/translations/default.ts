@@ -191,7 +191,7 @@ export const translationsBundleNb = {
         copiedLinkConfirmed: 'Lenken er kopiert',
     },
     overview: {
-        noProducts: 'Ingen treff',
+        noHits: 'Ingen treff med de valgte filtrene.',
         numHits: 'Viser $1 av $2',
         search: 'Finn tjeneste',
         filterOrSearch: 'Bruk filter eller søk',
