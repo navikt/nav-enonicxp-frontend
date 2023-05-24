@@ -5,14 +5,8 @@ import {
 } from 'types/content-props/forms-overview';
 import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/forms-list/panel/FormsOverviewListPanel';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
-import { BodyShort } from '@navikt/ds-react';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
-import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
-import { LenkeInline } from 'components/_common/lenke/LenkeInline';
-import { resetOverviewFiltersAction } from 'store/slices/overviewFilters';
-
-import style from './FormsOverviewList.module.scss';
+import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
 
 export const FormsOverviewList = (props: FormsOverviewProps) => {
     const {
@@ -23,18 +17,12 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
         overviewType,
     } = props.data;
 
-    const { language } = usePageConfig();
-
-    const getTranslationString = translator('overview', language);
-
-    const { matchFilters, hasDefaultFilters, dispatch } =
-        useOverviewFiltersState();
+    const { matchFilters } = useOverviewFiltersState();
 
     const isVisible = (formDetail: FormDetailsListItemProps) =>
         matchFilters({
+            ...formDetail,
             text: formDetail.title,
-            area: formDetail.area,
-            taxonomy: formDetail.taxonomy,
         });
 
     const numMatchingFilters = formDetailsList.filter(isVisible).length;
@@ -47,24 +35,10 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 showAreaFilter={areasFilterToggle}
                 showTextInputFilter={textFilterToggle}
             />
-            <div className={style.filterSummary}>
-                <BodyShort>
-                    {numMatchingFilters > 0
-                        ? `Viser ${numMatchingFilters} av ${formDetailsList.length}`
-                        : getTranslationString('noProducts')}
-                </BodyShort>
-                {!hasDefaultFilters && (
-                    <LenkeInline
-                        href={'#'}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            dispatch(resetOverviewFiltersAction());
-                        }}
-                    >
-                        {getTranslationString('resetFilters')}
-                    </LenkeInline>
-                )}
-            </div>
+            <OverviewFiltersSummary
+                numMatches={numMatchingFilters}
+                numTotal={formDetailsList.length}
+            />
             {formDetailsList.map((formDetail) => (
                 <FormsOverviewListPanel
                     formDetails={formDetail}
