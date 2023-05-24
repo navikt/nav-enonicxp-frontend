@@ -32,7 +32,7 @@ const overviewFiltersSlice = createSlice({
         },
         setTextFilter: (state, action: PayloadAction<{ text: string }>) => {
             const { text } = action.payload;
-            return { ...state, textFilter: text.toLowerCase() };
+            return { ...state, textFilter: text.toLowerCase().trim() };
         },
         resetFilters: () => {
             window.dispatchEvent(

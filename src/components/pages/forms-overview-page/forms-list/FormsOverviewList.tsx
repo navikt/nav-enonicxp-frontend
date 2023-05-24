@@ -7,6 +7,8 @@ import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/for
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
+import { translator } from 'translations';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 export const FormsOverviewList = (props: FormsOverviewProps) => {
     const {
@@ -17,14 +19,35 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
         overviewType,
     } = props.data;
 
+    const { language } = usePageConfig();
+
     const { matchFilters } = useOverviewFiltersState();
 
-    const isVisible = (formDetail: FormDetailsListItemProps) =>
-        matchFilters({
+    const isVisible = (formDetail: FormDetailsListItemProps) => {
+        const { area, taxonomy, ingress, title, sortTitle } = formDetail;
+
+        const areaTranslations = translator('areas', language);
+        const taxonomyTranslations = translator('taxonomies', language);
+
+        const fieldsToMatch = [
+            ...area.map(areaTranslations),
+            ...taxonomy.map(taxonomyTranslations),
+            ingress,
+            title,
+            sortTitle,
+        ]
+            .filter(Boolean)
+            .map((value) => value.toLowerCase());
+
+        return matchFilters({
             ...formDetail,
-            textMatchFunc: (textFilter) =>
-                formDetail.title.toLowerCase().includes(textFilter),
+            textMatchFunc: (textFilter) => {
+                return fieldsToMatch.some((value) =>
+                    value.includes(textFilter)
+                );
+            },
         });
+    };
 
     const numMatchingFilters = formDetailsList.filter(isVisible).length;
 
