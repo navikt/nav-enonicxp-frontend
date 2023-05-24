@@ -39,7 +39,7 @@ const taxonomies: {
     [ProductTaxonomy.FOR_PROVIDERS]: 'For samarbeidspartnere',
     [ProductTaxonomy.MEASURES]: 'Tiltak',
     [ProductTaxonomy.RIGHTS]: 'Veiledning',
-    [ProductTaxonomy.FORMS]: 'Skjema',
+    [ProductTaxonomy.FORMS]: 'Annet',
     [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Jobbsøkertips',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Hjelp til å komme i jobb',
     [ThemedArticlePageTaxonomy.WHEN_SICK]: 'Når du er syk',
@@ -192,9 +192,11 @@ export const translationsBundleNb = {
     },
     overview: {
         noProducts: 'Ingen treff',
+        numHits: 'Viser $1 av $2',
         search: 'Finn tjeneste',
+        filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhold...',
-        resetFilters: 'Nullstill',
+        resetFilters: 'Nullstill valg',
         any: 'Fra A til Å',
         areas: {
             choose: 'Velg område',

@@ -1,5 +1,4 @@
 import React from 'react';
-import { translator } from 'translations';
 import { OverviewPageProps } from 'types/content-props/dynamic-page-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ComponentMapper } from 'components/ComponentMapper';
@@ -7,9 +6,9 @@ import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/
 import { SimplifiedProductData } from 'types/component-props/_mixins';
 import { ProductItem } from './product-elements/ProductItem';
 import { classNames } from 'utils/classnames';
-import { ProductDetailType } from 'types/content-props/product-details';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
+import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
 
 import style from './OverviewPage.module.scss';
 
@@ -19,14 +18,12 @@ export const OverviewPage = (props: OverviewPageProps) => {
 
     const { matchFilters } = useOverviewFiltersState();
 
-    const getTranslationString = translator('overview', language);
-
     const isVisiblePredicate = (product: SimplifiedProductData) =>
         matchFilters({ ...product, text: product.title });
 
-    const hasVisibleProducts = productList.some((product) =>
-        isVisiblePredicate(product)
-    );
+    const numVisibleProducts = productList.filter(isVisiblePredicate).length;
+
+    const isAllProductsOverview = overviewType === 'all_products';
 
     return (
         <div className={style.overviewPage}>
@@ -38,22 +35,24 @@ export const OverviewPage = (props: OverviewPageProps) => {
                 />
             </div>
             <div className={style.content}>
-                <OverviewFilters
-                    filterableItems={productList}
-                    showAreaFilter={true}
-                    showTaxonomyFilter={overviewType === 'all_products'}
-                    showTextInputFilter={overviewType === 'all_products'}
-                />
+                <div className={style.filters}>
+                    <OverviewFilters
+                        filterableItems={productList}
+                        showAreaFilter={true}
+                        showTaxonomyFilter={isAllProductsOverview}
+                        showTextInputFilter={isAllProductsOverview}
+                    />
+                    <OverviewFiltersSummary
+                        numMatches={numVisibleProducts}
+                        numTotal={productList.length}
+                    />
+                </div>
                 <div
                     className={classNames(
                         style.productListWrapper,
-                        overviewType === ProductDetailType.ALL_PRODUCTS &&
-                            style.transparent
+                        isAllProductsOverview && style.transparent
                     )}
                 >
-                    {!hasVisibleProducts && (
-                        <div>{getTranslationString('noProducts')}</div>
-                    )}
                     {productList.map((product) => (
                         <ProductItem
                             product={product}

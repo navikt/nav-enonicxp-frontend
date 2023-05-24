@@ -11,7 +11,7 @@
     color: var(--a-text-default);
     margin-top: 1rem;
     padding: 1.5rem;
-    background-color: common.$navPink;
+    background-color: var(--a-red-50);
     border-radius: 0.5rem;
 
     transition: background-color 200ms ease-out;

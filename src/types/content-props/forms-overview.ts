@@ -10,6 +10,7 @@ import { ProductTaxonomy } from 'types/taxonomies';
 
 export type FormDetailsListItemProps = {
     title: string;
+    sortTitle: string;
     ingress: string;
     url: string;
     type: ContentType;
