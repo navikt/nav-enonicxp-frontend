@@ -137,9 +137,7 @@ const config = {
     transpilePackages: ['swr'],
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
-    assetPrefix: isFailover
-        ? process.env.FAILOVER_ORIGIN
-        : process.env.ASSET_PREFIX,
+    assetPrefix: process.env.ASSET_PREFIX,
     env: {
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,

@@ -89,6 +89,7 @@ jobs:
           IS_EDITOR_ONLY=${{ inputs.IS_EDITOR_ONLY }}
           INNLOGGINGSSTATUS_URL=${{ inputs.INNLOGGINGSSTATUS_URL }}
           NAVNO_API_URL=${{ inputs.NAVNO_API_URL }}
+          ASSET_PREFIX: https://cdn.nav.no/aap/nav-enonicxp-frontend
           PAGE_CACHE_DIR=/tmp/pages
           IMAGE_CACHE_DIR=/tmp/images
           SENTRY_DSN=https://7d6de132401448989071436f6e54c748@sentry.gc.nav.no/131

@@ -20,7 +20,6 @@ jobs:
       RELEASE_TAG: ${{  github.ref_name }}
       NAVNO_API_URL: https://www.nav.no/person/navno-api
       FAILOVER_ORIGIN: https://www-failover.nav.no
-      ASSET_PREFIX: https://cdn.nav.no/aap/nav-enonicxp-frontend
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
