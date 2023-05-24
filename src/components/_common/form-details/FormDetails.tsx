@@ -58,15 +58,17 @@ export const FormDetails = ({
                     <ParsedHtml htmlProps={formDetails.ingress} />
                 </div>
             )}
-            <div className={classNames(styles.variationWrapper)}>
-                {variations.map((variation, index: number) => (
-                    <FormDetailsButton
-                        key={variation.label}
-                        variation={variation}
-                        index={index}
-                    />
-                ))}
-            </div>
+            {variations.length > 0 && (
+                <div className={classNames(styles.variationWrapper)}>
+                    {variations.map((variation, index: number) => (
+                        <FormDetailsButton
+                            key={variation.label}
+                            variation={variation}
+                            index={index}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
