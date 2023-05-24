@@ -49,7 +49,6 @@ export const FrontpageShortcuts = ({
 
     const getIcon = (content: ContentProps) => {
         const dictionary = linkToIconDictionary[audience];
-        console.log('dictionary', dictionary);
         const foundKey = Object.keys(dictionary).find((key) => {
             if (content.type === ContentType.ExternalLink) {
                 return content.data.url?.includes(key);
