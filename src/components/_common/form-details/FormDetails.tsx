@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
-import { FormDetailsVariation } from './FormDetailsVariation';
+import { FormDetailsButton } from './FormDetailsButton';
 
 import styles from './FormDetails.module.scss';
 
@@ -60,7 +60,7 @@ export const FormDetails = ({
             )}
             <div className={classNames(styles.variationWrapper)}>
                 {variations.map((variation, index: number) => (
-                    <FormDetailsVariation
+                    <FormDetailsButton
                         key={variation.label}
                         variation={variation}
                         index={index}
