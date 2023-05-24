@@ -22,7 +22,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
         matchFilters({
             ...product,
             textMatchFunc: (textFilter) =>
-                textFilter === product.title.toLowerCase(),
+                product.title.toLowerCase().includes(textFilter),
         });
 
     const numVisibleProducts = productList.filter(isVisiblePredicate).length;

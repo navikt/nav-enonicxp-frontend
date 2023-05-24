@@ -40,12 +40,12 @@ export const useOverviewFiltersState = () => {
             return false;
         }
 
-        const isSearchMatching =
+        const isTextFilterMatching =
             !textFilter ||
             !filterableContent.textMatchFunc ||
             filterableContent.textMatchFunc(textFilter);
 
-        return isSearchMatching;
+        return isTextFilterMatching;
     };
 
     return {
