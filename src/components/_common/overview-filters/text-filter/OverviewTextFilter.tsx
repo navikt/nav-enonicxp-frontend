@@ -40,7 +40,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
 
         debounce(() => {
             dispatch(setTextFilterAction({ text: value }));
-        }, 125)();
+        }, 200)();
 
         debounce(() => {
             Sentry.captureMessage(
@@ -51,7 +51,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
             logAmplitudeEvent(AnalyticsEvents.FILTER, {
                 opprinnelse: 'oversiktsside fritekst',
             });
-        }, 500)();
+        }, 1000)();
     };
 
     useEffect(() => {
