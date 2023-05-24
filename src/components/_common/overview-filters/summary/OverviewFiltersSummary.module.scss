@@ -26,3 +26,10 @@
         margin-right: 0.25rem;
     }
 }
+
+.nohits {
+    margin-top: 0.75rem;
+    background-color: common.$a-gray-100;
+    padding: 1.5rem;
+    border-radius: common.$border-radius-large;
+}

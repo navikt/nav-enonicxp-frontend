@@ -4,7 +4,7 @@ import { resetOverviewFiltersAction } from 'store/slices/overviewFilters';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyLong, BodyShort } from '@navikt/ds-react';
 import { Close } from '@navikt/ds-icons';
 
 import style from './OverviewFiltersSummary.module.scss';
@@ -22,27 +22,32 @@ export const OverviewFiltersSummary = ({ numMatches, numTotal }: Props) => {
     const getTranslationString = translator('overview', language);
 
     return (
-        <div className={style.summary}>
-            <BodyShort>
-                {numMatches > 0
-                    ? getTranslationString('numHits')
-                          .replace('$1', numMatches.toString())
-                          .replace('$2', numTotal.toString())
-                    : getTranslationString('noProducts')}
-            </BodyShort>
-            {!hasDefaultFilters && (
-                <LenkeBase
-                    href={'#'}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(resetOverviewFiltersAction());
-                    }}
-                    className={style.reset}
-                >
-                    <Close />
-                    {getTranslationString('resetFilters')}
-                </LenkeBase>
+        <>
+            <div className={style.summary}>
+                <BodyShort>
+                    {getTranslationString('numHits')
+                        .replace('$1', numMatches.toString())
+                        .replace('$2', numTotal.toString())}
+                </BodyShort>
+                {!hasDefaultFilters && (
+                    <LenkeBase
+                        href={'#'}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            dispatch(resetOverviewFiltersAction());
+                        }}
+                        className={style.reset}
+                    >
+                        <Close />
+                        {getTranslationString('resetFilters')}
+                    </LenkeBase>
+                )}
+            </div>
+            {numMatches === 0 && (
+                <BodyLong className={style.nohits}>
+                    {'Ingen treff med denne kombinasjonen av filtere.'}
+                </BodyLong>
             )}
-        </div>
+        </>
     );
 };
