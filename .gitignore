@@ -51,3 +51,6 @@ yarn-error.log*
 /.serverDist/
 /server/tsconfig.tsbuildinfo
 /server/__next-test-dummy/.next/
+
+# VS Code
+.vscode

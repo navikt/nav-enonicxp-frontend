@@ -23,7 +23,7 @@ const taxonomies: {
     [ProductTaxonomy.FOR_PROVIDERS]: 'For providers',
     [ProductTaxonomy.MEASURES]: 'Measures',
     [ProductTaxonomy.RIGHTS]: 'Counselling',
-    [ProductTaxonomy.FORMS]: 'Forms',
+    [ProductTaxonomy.FORMS]: 'Other',
     [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Advice for jobseekers',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Help to get employed',
     [ThemedArticlePageTaxonomy.WHEN_SICK]: 'When you are ill',
@@ -213,9 +213,12 @@ export const translationsBundleEn: Translations = {
     },
     overview: {
         noProducts: 'No hits',
+        numHits: 'Showing $1 out of $2',
         search: 'Find a service',
+        filterOrSearch: 'Use filters or search',
         loading: 'Loading content...',
         any: 'From A to Z',
+        resetFilters: 'Reset choices',
         areas: {
             choose: 'Choose area',
             ariaExplanation: 'Filter list by area',
