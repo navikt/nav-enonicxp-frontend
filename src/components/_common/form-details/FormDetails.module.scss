@@ -10,7 +10,7 @@
     flex-wrap: wrap;
     gap: var(--a-spacing-2);
 
-    @media #{common.$mq-screen-mobile} {
+    @media #{common.$mq-screen-mobile-small} {
         flex-direction: column;
     }
 }

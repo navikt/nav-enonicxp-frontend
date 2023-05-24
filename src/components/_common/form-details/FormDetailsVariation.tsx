@@ -24,7 +24,7 @@ export const FormDetailsVariation = (props: FormsListItemProps) => {
     const { url } = getSelectableLinkProps(link);
 
     return (
-        <Button className={styles.cta} variant={variant} href={url}>
+        <Button className={styles.button} variant={variant} href={url}>
             {label}
         </Button>
     );
