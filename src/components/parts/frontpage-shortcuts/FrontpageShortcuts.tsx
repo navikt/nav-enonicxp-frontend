@@ -39,7 +39,7 @@ export const FrontpageShortcuts = ({
 }: FrontpageShortcutsProps) => {
     const { contentList, title } = config;
 
-    const { audience } = pageProps?.data;
+    const audience = pageProps?.data?.audience;
 
     const links = contentList?.data?.sectionContents;
 
