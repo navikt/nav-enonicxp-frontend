@@ -38,12 +38,14 @@ export const OverviewPage = (props: OverviewPageProps) => {
                 />
             </div>
             <div className={style.content}>
-                <OverviewFilters
-                    filterableItems={productList}
-                    showAreaFilter={true}
-                    showTaxonomyFilter={overviewType === 'all_products'}
-                    showTextInputFilter={overviewType === 'all_products'}
-                />
+                <div className={style.filters}>
+                    <OverviewFilters
+                        filterableItems={productList}
+                        showAreaFilter={true}
+                        showTaxonomyFilter={overviewType === 'all_products'}
+                        showTextInputFilter={overviewType === 'all_products'}
+                    />
+                </div>
                 <div
                     className={classNames(
                         style.productListWrapper,

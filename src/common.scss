@@ -26,6 +26,7 @@ $mobileMaxWidth: 48rem; // 768px
 $tabletMinWidth: $mobileMaxWidth;
 $tabletMaxWidth: 64rem; // 1024px
 $desktopMinWidth: $tabletMaxWidth;
+$desktopSmallMinWidth: 75rem; // 1200px
 $desktopMaxWidth: 90rem; // 1440px
 
 $mq-screen-mobile: 'only screen and (max-width: #{$mobileMaxWidth})';
@@ -33,6 +34,7 @@ $mq-screen-tablet: 'only screen and (min-width: #{$tabletMinWidth}) and (max-wid
 $mq-screen-tablet-and-desktop: 'only screen and (min-width: #{$tabletMinWidth}) ';
 $mq-screen-tablet-and-mobile: 'only screen and (max-width: #{$tabletMaxWidth}) ';
 $mq-screen-desktop: 'only screen and (min-width: #{$desktopMinWidth}) ';
+$mq-screen-desktop-small-up: 'only screen and (min-width: #{$desktopSmallMinWidth}) ';
 $mq-screen-desktop-large: 'only screen and (min-width: #{$desktopMaxWidth}) ';
 
 // Index page breakpoints

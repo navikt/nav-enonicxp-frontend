@@ -11,7 +11,7 @@ import {
 } from 'components/_common/form-details/FormDetails';
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
-import { Ingress } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import { FormsOverviewProductLink } from 'components/pages/forms-overview-page/forms-list/panel/product-link/FormsOverviewProductLink';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language, translator } from 'translations';
@@ -62,6 +62,7 @@ export const FormsOverviewListPanel = ({
         illustration,
         formDetailsPaths,
         title,
+        sortTitle,
         url,
         ingress,
         type,
@@ -109,7 +110,7 @@ export const FormsOverviewListPanel = ({
 
     return (
         <ProductPanelExpandable
-            header={title}
+            header={sortTitle}
             subHeader={buildSubHeader(taxonomy, area, language)}
             illustration={illustration}
             visible={visible}
@@ -122,7 +123,7 @@ export const FormsOverviewListPanel = ({
             }}
         >
             {!isAddendumPage && (
-                <Ingress className={style.ingress}>{ingress}</Ingress>
+                <BodyLong className={style.ingress}>{ingress}</BodyLong>
             )}
             {formDetailsPages?.map((formDetail) => (
                 <FormDetails
