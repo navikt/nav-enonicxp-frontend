@@ -1,0 +1,9 @@
+@use 'src/common' as common;
+
+.button {
+    display: flex;
+
+    @media #{common.$mq-screen-mobile-small} {
+        width: 100%;
+    }
+}
