@@ -35,9 +35,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
             ingress,
             title,
             sortTitle,
-        ]
-            .filter(Boolean)
-            .map((value) => value.toLowerCase());
+        ].map((value) => value?.toLowerCase() || '');
 
         return matchFilters({
             ...formDetail,

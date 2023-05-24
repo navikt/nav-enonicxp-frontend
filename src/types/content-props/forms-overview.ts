@@ -19,6 +19,8 @@ export type FormDetailsListItemProps = {
     area: Area[];
     taxonomy: ProductTaxonomy[];
     formDetailsPaths: string[];
+    formDetailsTitles: string[];
+    formNumbers: string[];
 };
 
 export type FormsOverviewAudienceOptions = OptionSetSingle<{
