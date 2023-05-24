@@ -24,6 +24,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
             text: formDetail.title,
             area: formDetail.area,
             taxonomy: formDetail.taxonomy,
+            type: formDetail.type,
         });
 
     const numMatchingFilters = formDetailsList.filter(isVisible).length;

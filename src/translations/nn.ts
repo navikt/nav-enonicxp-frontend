@@ -38,7 +38,7 @@ const taxonomies: {
     [ProductTaxonomy.FOR_PROVIDERS]: 'For samhandlarar',
     [ProductTaxonomy.MEASURES]: 'Tiltak',
     [ProductTaxonomy.RIGHTS]: 'Rettleiing',
-    [ProductTaxonomy.FORMS]: 'Skjema',
+    [ProductTaxonomy.FORMS]: 'Anna',
     [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Jobbsøkartips',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Hjelp til å kome i jobb',
     [ThemedArticlePageTaxonomy.WHEN_SICK]: 'Når du er sjuk',
