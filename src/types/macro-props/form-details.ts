@@ -4,8 +4,14 @@ import { PayoutDatesData } from '../content-props/payout-dates';
 export interface MacroFormDetailsProps extends MacroPropsCommon {
     name: MacroType.PayoutDates;
     config: {
-        formDetails: {
-            title: string;
+        form_details: {
+            targetFormDetails: {
+                data: any;
+            };
+            showTitle: boolean;
+            showDescription: boolean;
+            showAddendums: boolean;
+            showApplications: boolean;
         };
     };
 }
