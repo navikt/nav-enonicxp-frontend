@@ -22,13 +22,11 @@ export enum Audience {
 
 export enum ProviderAudience {
     DOCTOR = 'doctor',
-    DENTIST = 'dentist',
+    MUNICIPALITY = 'municipality_employed',
     OPTICIAN = 'optician',
-    OCCUPATIONAL_THERAPIST = 'occupational_therapist',
-    AID_SUPPLIER = 'aid_supplier',
-    MEASURES_ORGANIZER = 'measures_organizer',
     ADMINISTRATOR = 'administrator',
-    MUNICIPALITY = 'municipality',
+    MEASURES_ORGANIZER = 'measures_organizer',
+    AID_SUPPLIER = 'aid_supplier',
     OTHER = 'other',
 }
 
