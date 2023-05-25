@@ -32,10 +32,11 @@ export enum ProviderAudience {
     OTHER = 'other',
 }
 
-export type AudienceProps = {
-    _selected: Audience;
-    provider_audience?: ProviderAudience;
-};
+export type AudienceProps = OptionSetSingle<{
+    [Audience.PERSON]: EmptyObject;
+    [Audience.EMPLOYER]: EmptyObject;
+    [Audience.PROVIDER]: { provider_audience?: ProviderAudience };
+}>;
 
 export const getAudience = (audience: AudienceProps | Audience) => {
     return typeof audience === 'string' ? audience : audience?._selected;
