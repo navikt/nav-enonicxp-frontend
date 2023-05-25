@@ -38,11 +38,7 @@ export type AudienceProps = {
 };
 
 export const getAudience = (audience: AudienceProps | Audience) => {
-    if (typeof audience === 'string') {
-        return audience;
-    }
-
-    return audience?._selected || Audience.PERSON;
+    return typeof audience === 'string' ? audience : audience?._selected;
 };
 
 export type FilterSelection = string[];

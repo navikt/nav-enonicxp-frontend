@@ -40,7 +40,7 @@ export const FrontpageShortcuts = ({
 }: FrontpageShortcutsProps) => {
     const { contentList, title } = config;
 
-    const audience = pageProps?.data?.audience;
+    const audience = getAudience(pageProps?.data?.audience);
 
     const links = contentList?.data?.sectionContents;
 
@@ -49,7 +49,7 @@ export const FrontpageShortcuts = ({
     }
 
     const getIcon = (content: ContentProps) => {
-        const dictionary = linkToIconDictionary[getAudience(audience)];
+        const dictionary = linkToIconDictionary[audience];
         const foundKey = Object.keys(dictionary).find((key) => {
             if (content.type === ContentType.ExternalLink) {
                 return content.data.url?.includes(key);
@@ -63,7 +63,7 @@ export const FrontpageShortcuts = ({
     const threeCols = links.length % 3 === 0;
 
     return (
-        <div className={classNames(style.shortcuts, style[getAudience(audience)])}>
+        <div className={classNames(style.shortcuts, style[audience])}>
             <Header
                 size="large"
                 level="2"
