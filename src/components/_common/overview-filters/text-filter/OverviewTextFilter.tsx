@@ -40,14 +40,14 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
         );
     }, 1000);
 
-    const onInputHandler = (inputValue: string) => {
+    const handleUserInput = (inputValue: string) => {
         setTextInput(inputValue);
         dispatchInput(inputValue);
         logInputToSentry(inputValue);
     };
 
     useEffect(() => {
-        const inputHandler = (e: CustomEvent) => {
+        const handleInputFromEvent = (e: CustomEvent) => {
             const { value, id: senderId } = e.detail;
             if (senderId !== inputId) {
                 setTextInput(value);
@@ -56,12 +56,12 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
 
         window.addEventListener(
             OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
-            inputHandler
+            handleInputFromEvent
         );
         return () => {
             window.removeEventListener(
                 OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
-                inputHandler
+                handleInputFromEvent
             );
         };
     }, [inputId]);
@@ -77,7 +77,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
             }}
         >
             <Search
-                onChange={onInputHandler}
+                onChange={handleUserInput}
                 value={textInput}
                 label={translator('overview', language)('search')}
                 hideLabel={hideLabel}
