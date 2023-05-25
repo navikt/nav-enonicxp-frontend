@@ -193,13 +193,13 @@ export const translationsBundleNn: Translations = {
         alternativeContacts: 'Andre kontaktopplysningar:',
     },
     overview: {
-        noProducts: 'Ingen treff',
+        noHits: 'Ingen treff med dei valde filtera.',
         numHits: 'Viser $1 av $2',
         search: 'Finn teneste',
         filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhald...',
         any: 'Frå A til Å',
-        resetFilters: 'Nullstill val',
+        resetFilters: 'Nullstill filter',
         areas: {
             choose: 'Vel område',
             ariaExplanation: 'Filtrer lista etter område',
@@ -311,5 +311,10 @@ export const translationsBundleNn: Translations = {
     },
     greetings: {
         hi: 'Hei!',
+    },
+    macroVideo: {
+        playMovie: 'Sjå video:',
+        duration: 'Varighet er',
+        minutes: 'min',
     },
 };

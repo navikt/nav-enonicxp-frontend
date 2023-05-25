@@ -1,16 +1,89 @@
-.macroVideo {
-    position: relative;
-    padding-bottom: 56.25%;
-    padding-top: 1.5rem;
-    height: 0;
-    overflow: hidden;
-    margin: 1rem 0;
-
-    iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
+.wrapper {
+    margin-bottom: 2rem;
+    //styling fra Qbrick doc: https://video.qbrick.com/docs/api/#examples.play2-script-adaptive
+    div[data-gobrain-widgetid] {
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        position: relative;
         height: 100%;
     }
+
+    div[data-gobrain-widgetid] > div:first-of-type {
+        bottom: 0;
+        left: 0;
+        position: absolute !important;
+        right: 0;
+        top: 0;
+        height: 100% !important;
+        width: 100% !important;
+    }
+}
+
+.button {
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--a-spacing-3);
+    padding: var(--a-spacing-1);
+
+    :global(.navds-button__icon) {
+        margin: 0;
+    }
+
+    &:hover {
+        background-color: #eff6ff;
+
+        .playIcon {
+            transform: scale(0.9);
+            opacity: 1;
+        }
+    }
+}
+
+.posterWrapper {
+    position: relative;
+    width: 80px;
+}
+
+.playIcon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+    transition-property: transform;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    transform: scale(0.75);
+    opacity: 0.8;
+}
+
+.macroVideo {
+    :global(.gobrain-poster) {
+        //hindrer "flash" av forhåndsvisningsbilde før videoen starter
+        display: none;
+    }
+}
+
+.previewImage {
+    min-height: 53px; // Keep video height in golden ratio rather than 16:9
+    border-radius: 0.125rem;
+    object-fit: cover;
+}
+
+.text {
+    color: var(--a-text-default);
+    margin-bottom: 0 !important; //overstyr kanskje litt for generell regel i MainArticlePermanent?
+    text-align: left;
+}
+
+.videoLength {
+    font-weight: 400;
+    color: var(--a-text-subtle);
+    width: fit-content;
+}
+
+.hidden {
+    display: none;
 }

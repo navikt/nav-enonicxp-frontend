@@ -191,12 +191,12 @@ export const translationsBundleNb = {
         copiedLinkConfirmed: 'Lenken er kopiert',
     },
     overview: {
-        noProducts: 'Ingen treff',
+        noHits: 'Ingen treff med de valgte filtrene.',
         numHits: 'Viser $1 av $2',
         search: 'Finn tjeneste',
         filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhold...',
-        resetFilters: 'Nullstill valg',
+        resetFilters: 'Nullstill filter',
         any: 'Fra A til Å',
         areas: {
             choose: 'Velg område',
@@ -328,6 +328,11 @@ export const translationsBundleNb = {
     },
     greetings: {
         hi: 'Hei!',
+    },
+    macroVideo: {
+        playMovie: 'Se video:',
+        duration: 'Varighet er',
+        minutes: 'min',
     },
 };
 

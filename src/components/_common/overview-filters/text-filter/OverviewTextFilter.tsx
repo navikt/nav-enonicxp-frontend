@@ -1,11 +1,12 @@
-import React, { ChangeEvent, useEffect, useId, useState } from 'react';
-import { TextField } from '@navikt/ds-react';
+import React, { useEffect, useId, useState } from 'react';
+import { Search } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { setTextFilterAction } from 'store/slices/overviewFilters';
+import * as Sentry from '@sentry/react';
+import { smoothScrollToTarget } from 'utils/scroll-to';
 
 import style from './OverviewTextFilter.module.scss';
 
@@ -17,63 +18,70 @@ type Props = {
 
 export const OverviewTextFilter = ({ hideLabel }: Props) => {
     const { dispatch } = useOverviewFiltersState();
+    const { language } = usePageConfig();
+    const inputId = useId();
+
     const [textInput, setTextInput] = useState('');
 
-    const id = useId();
-
-    const { language } = usePageConfig();
-
-    const label = translator('overview', language)('search');
-
-    const searchEventHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        const { value } = event.target;
-
-        setTextInput(value);
-
-        // Event to keep mobile and desktop views in sync
+    const dispatchInput = debounce((value: string) => {
+        dispatch(setTextFilterAction({ text: value }));
         window.dispatchEvent(
             new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
-                detail: { value, id },
+                detail: { value, id: inputId },
             })
         );
+    }, 500);
 
-        debounce(() => {
-            dispatch(setTextFilterAction({ text: value }));
-            logAmplitudeEvent(AnalyticsEvents.FILTER, {
-                tekst: value,
-                opprinnelse: 'oversiktsside fritekst',
-            });
-        }, 125)();
+    const logInputToSentry = debounce((value: string) => {
+        Sentry.captureMessage(
+            `Oversiktsside fritekst input: "${value}"`,
+            'info'
+        );
+    }, 3000);
+
+    const handleUserInput = (inputValue: string) => {
+        setTextInput(inputValue);
+        dispatchInput(inputValue);
+        logInputToSentry(inputValue);
     };
 
     useEffect(() => {
-        const inputHandler = (evt: CustomEvent) => {
-            const { value, id: senderId } = evt.detail;
-            if (senderId !== id) {
+        const handleInputFromEvent = (e: CustomEvent) => {
+            const { value, id: senderId } = e.detail;
+            if (senderId !== inputId) {
                 setTextInput(value);
             }
         };
 
         window.addEventListener(
             OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
-            inputHandler
+            handleInputFromEvent
         );
         return () => {
             window.removeEventListener(
                 OVERVIEW_FILTERS_TEXT_INPUT_EVENT,
-                inputHandler
+                handleInputFromEvent
             );
         };
-    }, [id]);
+    }, [inputId]);
 
     return (
-        <div className={style.overviewSearch}>
-            <TextField
-                onChange={searchEventHandler}
+        <form
+            id={inputId}
+            className={style.overviewSearch}
+            onSubmit={(e) => {
+                e.preventDefault();
+                smoothScrollToTarget(inputId, 16);
+            }}
+            tabIndex={-1}
+        >
+            <Search
+                onChange={handleUserInput}
                 value={textInput}
-                label={label}
+                label={translator('overview', language)('search')}
                 hideLabel={hideLabel}
+                variant={'simple'}
             />
-        </div>
+        </form>
     );
 };

@@ -19,13 +19,34 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
 
     const { matchFilters } = useOverviewFiltersState();
 
-    const isVisible = (formDetail: FormDetailsListItemProps) =>
-        matchFilters({
+    const isVisible = (formDetail: FormDetailsListItemProps) => {
+        const { ingress, title, sortTitle, formDetailsTitles, formNumbers } =
+            formDetail;
+
+        const fieldsToMatch = [
+            ...formDetailsTitles,
+            ...formNumbers,
+            ingress,
+            title,
+            sortTitle,
+        ].map((value) => value?.toLowerCase() || '');
+
+        return matchFilters({
             ...formDetail,
-            text: formDetail.title,
+            textMatchFunc: (textFilter) => {
+                return fieldsToMatch.some((value) =>
+                    value.includes(textFilter)
+                );
+            },
         });
+    };
 
     const numMatchingFilters = formDetailsList.filter(isVisible).length;
+
+    const hasMultipleFilterTypes =
+        [areasFilterToggle, taxonomyFilterToggle, textFilterToggle].filter(
+            Boolean
+        ).length > 1;
 
     return (
         <div>
@@ -38,6 +59,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
             <OverviewFiltersSummary
                 numMatches={numMatchingFilters}
                 numTotal={formDetailsList.length}
+                showResetChips={hasMultipleFilterTypes}
             />
             {formDetailsList.map((formDetail) => (
                 <FormsOverviewListPanel
