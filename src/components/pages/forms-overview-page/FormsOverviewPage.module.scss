@@ -1,18 +1,59 @@
+@use 'src/common' as common;
+
 .page {
     display: grid;
-    column-gap: 2.5rem;
-    grid-template-columns: 6rem 2fr 1fr;
+    gap: var(--a-spacing-10);
+    
     max-width: 1272px;
-    margin: 0 auto;
+    margin: 0 auto var(--a-spacing-10);
+    grid-template-areas: 
+      "main"
+      "side";
+
+    @media #{common.$mq-screen-tablet-and-desktop} {
+      grid-template-columns: 6rem 2fr 6rem;
+      grid-template-areas: 
+        "pictogram main ."
+        ". side .";
+      }
+
+    &.withSideCol {
+        @media #{common.$mq-screen-desktop-small-up} {
+          grid-template-areas: "pictogram main side";
+          grid-template-columns: 6rem 2fr 1fr;
+        }
+    }
 }
 
-.leftCol {
+.main {
+    grid-area: main;
 }
 
-.rightCol {
+.aside {
+    grid-area: side;
+
+    & > * {
+        border-radius: common.$border-radius-large;
+    }
 }
 
-.illustration {
-    width: 6rem;
-    height: 6rem;
+.pictogram {
+    display: none;
+    grid-area: pictogram;
+
+    @media #{common.$mq-screen-tablet-and-desktop} {
+        width: 6rem;
+        height: 6rem;
+        display: block;
+    }
+}
+
+
+
+/* Innrykk i ekspanderende paneler */
+
+.main :global(.navds-accordion__content) {
+  @media #{common.$mq-screen-desktop} {
+      padding-left: 84px;
+    }
 }

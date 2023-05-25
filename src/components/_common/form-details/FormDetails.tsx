@@ -3,41 +3,51 @@ import classNames from 'classnames';
 
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
-import { FormDetailsVariation } from './FormDetailsVariation';
+import { FormDetailsButton } from './FormDetailsButton';
 
 import styles from './FormDetails.module.scss';
 
-type FormDetailsProps = {
+export type FormDetailsComponentProps = {
     formDetails: FormDetailsData;
     displayConfig: {
         showTitle: boolean;
         showIngress: boolean;
-        showAddendums: boolean;
-        showApplications: boolean;
+        showAddendums?: boolean;
+        showApplications?: boolean;
+        showComplaints?: boolean;
     };
+    className?: string;
 };
 
 export const FormDetails = ({
     formDetails,
     displayConfig,
-}: FormDetailsProps) => {
-    const { showAddendums, showApplications, showTitle, showIngress } =
-        displayConfig;
+    className,
+}: FormDetailsComponentProps) => {
+    const {
+        showAddendums = true,
+        showApplications = true,
+        showComplaints = true,
+        showTitle,
+        showIngress,
+    } = displayConfig;
 
     const variations = formDetails.formType.reduce((acc, cur) => {
         if (
             (cur._selected === 'addendum' && !showAddendums) ||
-            (cur._selected === 'application' && !showApplications)
+            (cur._selected === 'application' && !showApplications) ||
+            (cur._selected === 'complaint' && !showComplaints)
         ) {
             return acc;
         }
+
         const variations = cur[cur._selected]?.variations;
 
         return variations ? [...acc, ...variations] : acc;
     }, []) as Variation[];
 
     return (
-        <div className={styles.formDetails}>
+        <div className={classNames(styles.formDetails, className)}>
             {showTitle && (
                 <Heading size="medium" level="3" spacing={!showIngress}>
                     {formDetails.title}
@@ -48,15 +58,17 @@ export const FormDetails = ({
                     <ParsedHtml htmlProps={formDetails.ingress} />
                 </div>
             )}
-            <div className={classNames(styles.variationWrapper)}>
-                {variations.map((variation, index: number) => (
-                    <FormDetailsVariation
-                        key={variation.label}
-                        variation={variation}
-                        index={index}
-                    />
-                ))}
-            </div>
+            {variations.length > 0 && (
+                <div className={classNames(styles.variationWrapper)}>
+                    {variations.map((variation, index: number) => (
+                        <FormDetailsButton
+                            key={variation.label}
+                            variation={variation}
+                            index={index}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

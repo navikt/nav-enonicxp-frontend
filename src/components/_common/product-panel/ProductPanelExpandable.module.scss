@@ -1,0 +1,104 @@
+@use 'src/common' as common;
+
+$color: common.$a-deepblue-100;
+$separator-attribs: 1px $color solid;
+
+.accordion {
+    border-bottom: $separator-attribs;
+}
+
+.accordionItem {
+    :global(.navds-accordion__header),
+    :global(.navds-accordion__content) {
+        border-bottom: 0;
+    }
+
+    :global(.navds-accordion__header) {
+        @include common.expandable-panel-mixin();
+        border-radius: common.$border-radius-xlarge;
+
+        align-items: center;
+        background-color: common.$a-white;
+
+        @media #{common.$mq-screen-tablet-and-desktop} {
+            padding: var(--a-spacing-5);
+        }
+
+        &:focus {
+            @include common.panel-focus-mixin(true);
+        }
+
+        &:hover,
+        &:focus {
+            background-color: $color;
+            color: common.$a-text-default;
+
+            .illustration {
+                & > :first-child:not(:last-child) * {
+                    fill: common.$a-white;
+                }
+            }
+        }
+
+        :global(.navds-accordion__header-content) {
+            display: flex;
+            align-items: center;
+            gap: var(--a-spacing-4);
+        }
+    }
+
+    :global(.navds-accordion__content) {
+        padding-top: 0;
+        padding-bottom: 1.75rem;
+    }
+
+    :global(.navds-accordion__expand-icon) {
+        margin-left: auto;
+    }
+
+    :global(.region__intro) {
+        margin-bottom: 1rem;
+    }
+    :global(.region__main) {
+        margin-bottom: 1rem;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.illustration {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+
+    & > :first-child:not(:last-child) * {
+        fill: $color;
+    }
+}
+
+.copyLink {
+    margin-bottom: 1rem;
+}
+
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    :global(.navds-loader) {
+        margin-bottom: 1rem;
+    }
+}
+
+.panelHeader {
+    display: flex;
+    flex-direction: column;
+}
+
+.subHeader {
+    font-size: 1rem;
+    font-weight: normal;
+    color: common.$a-gray-600;
+}

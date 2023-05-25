@@ -4,6 +4,9 @@ import { Header } from 'components/_common/headers/Header';
 import { AreaCard } from 'components/_common/area-card/AreaCard';
 
 import style from './FrontPageAreaNavigation.module.scss';
+import { EmployerCard } from 'components/_common/employer-card/EmployerCard';
+import classNames from 'classnames';
+import { getAudience } from 'types/component-props/_mixins';
 
 type Props = {
     content: FrontPageProps;
@@ -11,10 +14,10 @@ type Props = {
 
 export const FrontPageAreaNavigation = ({ content }: Props) => {
     const { data } = content;
-    const { areasHeader, areasRefs } = data;
+    const { areasHeader, areasRefs = [], situationsRefs = [], audience } = data;
 
     return (
-        <div className={style.wrapper}>
+        <div className={classNames(style.wrapper, style[getAudience(audience)])}>
             <Header
                 level={'2'}
                 justify={'left'}
@@ -35,6 +38,22 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                             />
                         </li>
                     ))}
+                    {situationsRefs.map((situationPage) => {
+                        return (
+                            <li key={situationPage._id}>
+                                <EmployerCard
+                                    illustration={
+                                        situationPage.data?.illustration
+                                    }
+                                    path={situationPage._path}
+                                    title={
+                                        situationPage.data?.title ||
+                                        situationPage.displayName
+                                    }
+                                />
+                            </li>
+                        );
+                    })}
                 </ul>
             </nav>
         </div>

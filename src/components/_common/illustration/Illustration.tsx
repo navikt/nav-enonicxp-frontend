@@ -1,36 +1,24 @@
+import React from 'react';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { IllustrationStatic } from './IllustrationStatic';
 import { IllustrationAnimated } from './IllustrationAnimated';
 
-interface IllustrationProps {
-    illustration: AnimatedIconsProps;
-    placement: string;
-    className: string;
+type Props = {
+    illustration?: AnimatedIconsProps;
     isHovering?: boolean;
     preferStaticIllustration?: boolean;
-}
+    className?: string;
+};
 
 export const Illustration = ({
-    className,
     illustration,
     isHovering,
     preferStaticIllustration,
-}: IllustrationProps) => {
+    className,
+}: Props) => {
     if (!illustration) {
         return null;
     }
-
-    const hasStaticIllustration = () => {
-        const { icons } = illustration.data;
-        if (!icons) {
-            return false;
-        }
-
-        const icon1 = icons[0]?.icon;
-        const icon2 = icons[1]?.icon;
-
-        return !!(icon1 || icon2);
-    };
 
     if (!preferStaticIllustration) {
         const animationDataUrl = illustration.data.lottieHover?.mediaUrl;
@@ -45,14 +33,7 @@ export const Illustration = ({
         }
     }
 
-    if (hasStaticIllustration()) {
-        return (
-            <IllustrationStatic
-                illustration={illustration}
-                className={className}
-            />
-        );
-    }
-
-    return null;
+    return (
+        <IllustrationStatic illustration={illustration} className={className} />
+    );
 };
