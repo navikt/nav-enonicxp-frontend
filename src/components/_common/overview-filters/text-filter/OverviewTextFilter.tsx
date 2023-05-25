@@ -38,7 +38,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
             `Oversiktsside fritekst input: "${value}"`,
             'info'
         );
-    }, 1000);
+    }, 3000);
 
     const handleUserInput = (inputValue: string) => {
         setTextInput(inputValue);
