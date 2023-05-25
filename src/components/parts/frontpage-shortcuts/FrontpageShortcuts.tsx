@@ -6,6 +6,7 @@ import { classNames } from '../../../utils/classnames';
 import { LinkPanelNavnoSimple } from '../../_common/linkpanel/LinkPanelNavnoSimple';
 import { getUrlFromContent } from '../../../utils/links-from-content';
 import { StaticImage } from 'components/_common/image/StaticImage';
+import { getAudience } from 'types/component-props/_mixins';
 
 // kopi av ikoner som ligger under /www.nav.no/nav.no-ressurser/ikoner, som brukes inne på oversiktssidene
 import saksbehandlingstider from '/public/gfx/front-page-shortcuts/saksbehandlingstider_nav_ikon.svg';
@@ -48,7 +49,7 @@ export const FrontpageShortcuts = ({
     }
 
     const getIcon = (content: ContentProps) => {
-        const dictionary = linkToIconDictionary[audience];
+        const dictionary = linkToIconDictionary[getAudience(audience)];
         const foundKey = Object.keys(dictionary).find((key) => {
             if (content.type === ContentType.ExternalLink) {
                 return content.data.url?.includes(key);
@@ -62,7 +63,7 @@ export const FrontpageShortcuts = ({
     const threeCols = links.length % 3 === 0;
 
     return (
-        <div className={classNames(style.shortcuts, style[audience])}>
+        <div className={classNames(style.shortcuts, style[getAudience(audience)])}>
             <Header
                 size="large"
                 level="2"

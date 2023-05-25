@@ -20,6 +20,31 @@ export enum Audience {
     PROVIDER = 'provider',
 }
 
+export enum ProviderAudience {
+    DOCTOR = 'doctor',
+    DENTIST = 'dentist',
+    OPTICIAN = 'optician',
+    OCCUPATIONAL_THERAPIST = 'occupational_therapist',
+    AID_SUPPLIER = 'aid_supplier',
+    MEASURES_ORGANIZER = 'measures_organizer',
+    ADMINISTRATOR = 'administrator',
+    MUNICIPALITY = 'municipality',
+    OTHER = 'other',
+}
+
+export type AudienceProps = {
+    _selected: Audience;
+    provider_audience?: ProviderAudience;
+};
+
+export const getAudience = (audience: AudienceProps | Audience) => {
+    if (typeof audience === 'string') {
+        return audience;
+    }
+
+    return audience?._selected || Audience.PERSON;
+};
+
 export type FilterSelection = string[];
 
 export type SimplifiedProductData = {

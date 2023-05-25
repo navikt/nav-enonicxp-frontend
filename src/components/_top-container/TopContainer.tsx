@@ -5,6 +5,7 @@ import { getContentLanguages } from 'utils/languages';
 import { VersionHistory } from './version-history/VersionHistory';
 import { PageWarning } from './page-warning/PageWarning';
 import { translator } from 'translations';
+import { getAudience } from 'types/component-props/_mixins';
 
 import style from './TopContainer.module.scss';
 
@@ -55,7 +56,7 @@ export const TopContainer = ({ content }: Props) => {
 
     const shouldCollapse =
         content.type === ContentType.FrontPage &&
-        content.data.audience === 'employer';
+        getAudience(content.data.audience) === 'employer';
 
     const warningLabels = translator('pageWarnings', language);
 

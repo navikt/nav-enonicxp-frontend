@@ -6,6 +6,7 @@ import { AreaCard } from 'components/_common/area-card/AreaCard';
 import style from './FrontPageAreaNavigation.module.scss';
 import { EmployerCard } from 'components/_common/employer-card/EmployerCard';
 import classNames from 'classnames';
+import { getAudience } from 'types/component-props/_mixins';
 
 type Props = {
     content: FrontPageProps;
@@ -16,7 +17,7 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
     const { areasHeader, areasRefs = [], situationsRefs = [], audience } = data;
 
     return (
-        <div className={classNames(style.wrapper, style[audience])}>
+        <div className={classNames(style.wrapper, style[getAudience(audience)])}>
             <Header
                 level={'2'}
                 justify={'left'}
