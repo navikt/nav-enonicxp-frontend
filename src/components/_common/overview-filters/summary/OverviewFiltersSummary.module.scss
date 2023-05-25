@@ -2,28 +2,26 @@
 
 .summary {
     display: inline-flex;
+    justify-content: space-between;
     align-items: center;
-    margin: 1rem 0;
+    flex-wrap: wrap-reverse;
+
+    gap: 1rem;
+
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+
     border-bottom: 1px common.$a-gray-300 solid;
     width: 100%;
-    height: 2.75rem;
+    min-height: 4.125rem;
 }
 
-.reset {
-    margin-left: 1rem;
+.chips {
     display: inline-flex;
-    align-items: center;
 
-    text-decoration: none;
-    text-underline-offset: 0.25rem;
-
-    &:hover,
-    &:focus {
-        text-decoration: underline;
-    }
-
-    svg {
-        margin-right: 0.25rem;
+    // The chips component seems to render empty list items for null-children
+    & > :empty {
+        display: none;
     }
 }
 

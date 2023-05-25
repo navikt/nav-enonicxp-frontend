@@ -218,7 +218,7 @@ export const translationsBundleEn: Translations = {
         filterOrSearch: 'Use filters or search',
         loading: 'Loading content...',
         any: 'From A to Z',
-        resetFilters: 'Reset choices',
+        resetFilters: 'Reset filters',
         areas: {
             choose: 'Choose area',
             ariaExplanation: 'Filter list by area',
@@ -306,5 +306,10 @@ export const translationsBundleEn: Translations = {
     },
     greetings: {
         hi: 'Hi!',
+    },
+    macroVideo: {
+        playMovie: 'Watch video:',
+        duration: 'Duration is',
+        minutes: 'min',
     },
 };

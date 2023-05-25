@@ -196,7 +196,7 @@ export const translationsBundleNb = {
         search: 'Finn tjeneste',
         filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhold...',
-        resetFilters: 'Nullstill valg',
+        resetFilters: 'Nullstill filter',
         any: 'Fra A til Å',
         areas: {
             choose: 'Velg område',
@@ -328,6 +328,11 @@ export const translationsBundleNb = {
     },
     greetings: {
         hi: 'Hei!',
+    },
+    macroVideo: {
+        playMovie: 'Se video:',
+        duration: 'Varighet er',
+        minutes: 'min',
     },
 };
 

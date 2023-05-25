@@ -49,6 +49,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                     <OverviewFiltersSummary
                         numMatches={numVisibleProducts}
                         numTotal={productList.length}
+                        showResetChips={isAllProductsOverview}
                     />
                 </div>
                 <div
