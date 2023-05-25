@@ -22,7 +22,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     );
     const videoRef = React.useRef(null);
 
-    const { language } = usePageConfig();
+    const { language, pageConfig } = usePageConfig();
+    const { editorView } = pageConfig;
     const translations = translator('macroVideo', language);
     const { accountId, mediaId, title, duration, poster } = videoMeta;
 
@@ -80,7 +81,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
             <Button
                 className={`${style.button} ${isVideoOpen ? style.hidden : ''}`}
                 variant="tertiary"
-                onClick={() => setIsVideoOpen(true)}
+                onClick={() => editorView !== 'edit' && setIsVideoOpen(true)}
                 icon={
                     <div className={style.posterWrapper}>
                         <img
