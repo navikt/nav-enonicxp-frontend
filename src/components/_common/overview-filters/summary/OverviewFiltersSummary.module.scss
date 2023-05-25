@@ -4,22 +4,16 @@
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
 
-    row-gap: 1rem;
+    gap: 1rem;
 
     padding: 1rem 0;
     margin-bottom: 1rem;
 
     border-bottom: 1px common.$a-gray-300 solid;
     width: 100%;
-    min-height: 3rem;
-}
-
-.nohits {
-    background-color: common.$a-gray-100;
-    padding: 1.5rem;
-    border-radius: common.$border-radius-large;
+    min-height: 4.125rem;
 }
 
 .chips {
@@ -31,6 +25,8 @@
     }
 }
 
-.reset {
-    background-color: common.$a-deepblue-800;
+.nohits {
+    background-color: common.$a-gray-100;
+    padding: 1.5rem;
+    border-radius: common.$border-radius-large;
 }

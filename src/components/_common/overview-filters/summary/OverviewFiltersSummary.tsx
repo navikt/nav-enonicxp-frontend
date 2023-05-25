@@ -68,7 +68,6 @@ export const OverviewFiltersSummary = ({ numMatches, numTotal }: Props) => {
                             onClick={() => {
                                 dispatch(resetOverviewFiltersAction());
                             }}
-                            className={style.reset}
                         >
                             {overviewTranslations('resetFilters')}
                         </Chips.Removable>

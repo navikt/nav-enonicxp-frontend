@@ -19,42 +19,37 @@ type Props = {
 
 export const OverviewTextFilter = ({ hideLabel }: Props) => {
     const { dispatch } = useOverviewFiltersState();
+    const { language } = usePageConfig();
+    const inputId = useId();
+
     const [textInput, setTextInput] = useState('');
 
-    const id = useId();
+    const dispatchInput = debounce((value: string) => {
+        dispatch(setTextFilterAction({ text: value }));
+        window.dispatchEvent(
+            new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
+                detail: { value, id: inputId },
+            })
+        );
+    }, 500);
 
-    const { language } = usePageConfig();
+    const logInputToSentry = debounce((value: string) => {
+        Sentry.captureMessage(
+            `Oversiktsside fritekst input: "${value}"`,
+            'info'
+        );
+    }, 1000);
 
-    const label = translator('overview', language)('search');
-
-    const searchEventHandler = (value: string) => {
-        setTextInput(value);
-
-        debounce(
-            () => {
-                dispatch(setTextFilterAction({ text: value }));
-                window.dispatchEvent(
-                    new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
-                        detail: { value, id },
-                    })
-                );
-            },
-            500,
-            { maxWait: 2000 }
-        )();
-
-        debounce(() => {
-            Sentry.captureMessage(
-                `Oversiktsside fritekst input: "${value}"`,
-                'info'
-            );
-        }, 1000)();
+    const onInputHandler = (inputValue: string) => {
+        setTextInput(inputValue);
+        dispatchInput(inputValue);
+        logInputToSentry(inputValue);
     };
 
     useEffect(() => {
         const inputHandler = (e: CustomEvent) => {
             const { value, id: senderId } = e.detail;
-            if (senderId !== id) {
+            if (senderId !== inputId) {
                 setTextInput(value);
             }
         };
@@ -69,22 +64,22 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 inputHandler
             );
         };
-    }, [id]);
+    }, [inputId]);
 
     return (
         <form
-            id={id}
+            id={inputId}
             className={style.overviewSearch}
             onSubmit={(e) => {
                 e.preventDefault();
-                smoothScrollToTarget(id, 16);
+                smoothScrollToTarget(inputId, 16);
                 (document.activeElement as HTMLElement)?.blur();
             }}
         >
             <Search
-                onChange={searchEventHandler}
+                onChange={onInputHandler}
                 value={textInput}
-                label={label}
+                label={translator('overview', language)('search')}
                 hideLabel={hideLabel}
                 variant={'simple'}
             />

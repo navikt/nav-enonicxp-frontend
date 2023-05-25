@@ -199,7 +199,7 @@ export const translationsBundleNn: Translations = {
         filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhald...',
         any: 'Frå A til Å',
-        resetFilters: 'Nullstill val',
+        resetFilters: 'Nullstill filter',
         areas: {
             choose: 'Vel område',
             ariaExplanation: 'Filtrer lista etter område',
