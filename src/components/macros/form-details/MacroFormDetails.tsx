@@ -2,19 +2,25 @@ import { FormDetails } from 'components/_common/form-details/FormDetails';
 import { MacroFormDetailsProps } from 'types/macro-props/form-details';
 
 export const MacroFormDetails = ({ config }: MacroFormDetailsProps) => {
-    const formDetails = config?.form_details?.targetFormDetails?.data;
-    const displayConfig = {
-        showTitle: config?.form_details?.showTitle,
-        showApplications: config?.form_details?.showApplications,
-        showAddendums: config?.form_details?.showAddendums,
-        showIngress: config?.form_details?.showTitle,
-    };
+    const macroConfig = config?.form_details;
 
-    if (!formDetails) {
+    if (!macroConfig || !macroConfig?.targetFormDetails?.data) {
         return null;
     }
 
+    const formDetailsData = macroConfig?.targetFormDetails?.data;
+
+    const displayConfig = {
+        showTitle: macroConfig.showTitle,
+        showIngress: macroConfig.showTitle,
+        showApplications: macroConfig.showApplications,
+        showAddendums: macroConfig.showAddendums,
+    };
+
     return (
-        <FormDetails formDetails={formDetails} displayConfig={displayConfig} />
+        <FormDetails
+            formDetails={formDetailsData}
+            displayConfig={displayConfig}
+        />
     );
 };
