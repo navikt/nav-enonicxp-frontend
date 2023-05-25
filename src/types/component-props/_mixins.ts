@@ -14,7 +14,6 @@ export type HeaderWithAnchorMixin = {
     toggleCopyButton: boolean;
 };
 
-
 export enum Audience {
     PERSON = 'person',
     EMPLOYER = 'employer',
@@ -37,11 +36,13 @@ export type AudienceProps = {
     _selected: Audience;
     provider_audience?: ProviderAudience;
 };
+
 export const getAudience = (audience: AudienceProps | Audience) => {
-    if (audience && typeof audience !== 'string' && audience._selected) {
-        return audience._selected;
+    if (typeof audience === 'string') {
+        return audience;
     }
-    return typeof audience === 'string' ? audience : Audience.PERSON;
+
+    return audience?._selected || Audience.PERSON;
 };
 
 export type FilterSelection = string[];

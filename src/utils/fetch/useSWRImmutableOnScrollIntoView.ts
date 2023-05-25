@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useSWRImmutable from 'swr/immutable';
+import debounce from 'lodash.debounce';
 
 type Props<FetchResponse, ElementType extends HTMLElement = HTMLElement> = {
     url: string | null;
