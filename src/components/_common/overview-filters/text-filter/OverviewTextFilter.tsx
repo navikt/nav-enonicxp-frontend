@@ -6,6 +6,7 @@ import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { setTextFilterAction } from 'store/slices/overviewFilters';
+import * as Sentry from '@sentry/react';
 
 import style from './OverviewTextFilter.module.scss';
 
@@ -39,11 +40,18 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
 
         debounce(() => {
             dispatch(setTextFilterAction({ text: value }));
+        }, 200)();
+
+        debounce(() => {
+            Sentry.captureMessage(
+                `Oversiktsside fritekst input: "${value}"`,
+                'info'
+            );
+
             logAmplitudeEvent(AnalyticsEvents.FILTER, {
-                tekst: value,
                 opprinnelse: 'oversiktsside fritekst',
             });
-        }, 125)();
+        }, 1000)();
     };
 
     useEffect(() => {

@@ -19,7 +19,11 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const { matchFilters } = useOverviewFiltersState();
 
     const isVisiblePredicate = (product: SimplifiedProductData) =>
-        matchFilters({ ...product, text: product.title });
+        matchFilters({
+            ...product,
+            textMatchFunc: (textFilter) =>
+                product.title.toLowerCase().includes(textFilter),
+        });
 
     const numVisibleProducts = productList.filter(isVisiblePredicate).length;
 

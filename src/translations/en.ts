@@ -212,7 +212,7 @@ export const translationsBundleEn: Translations = {
         copiedLinkConfirmed: 'Link successfully copied',
     },
     overview: {
-        noProducts: 'No hits',
+        noHits: 'No hits with the selected filters.',
         numHits: 'Showing $1 out of $2',
         search: 'Find a service',
         filterOrSearch: 'Use filters or search',

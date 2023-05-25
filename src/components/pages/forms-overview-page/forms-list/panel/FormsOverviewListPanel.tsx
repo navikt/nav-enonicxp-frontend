@@ -91,14 +91,14 @@ export const FormsOverviewListPanel = ({
         Promise.all(formDetailsPaths.map(fetchPageCacheContent))
             .then((contentFromCache) => {
                 const validFormDetails = contentFromCache.filter((content) => {
-                    if (!content || content.type !== ContentType.FormDetails) {
+                    if (!content) {
                         setError(
                             'Teknisk feil: Noen av skjemainngangene kunne ikke lastes'
                         );
                         return false;
                     }
 
-                    return true;
+                    return content.type === ContentType.FormDetails;
                 }) as FormDetailsPageProps[];
 
                 setFormDetailsPages(validFormDetails);
