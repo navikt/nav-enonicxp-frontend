@@ -72,8 +72,8 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
             onSubmit={(e) => {
                 e.preventDefault();
                 smoothScrollToTarget(inputId, 16);
-                (document.activeElement as HTMLElement)?.blur();
             }}
+            tabIndex={-1}
         >
             <Search
                 onChange={handleUserInput}
