@@ -2,33 +2,33 @@
 
 .summary {
     display: inline-flex;
+    justify-content: space-between;
     align-items: center;
-    margin: 1rem 0;
+    flex-wrap: wrap;
+
+    row-gap: 1rem;
+
+    padding: 1rem 0;
     border-bottom: 1px common.$a-gray-300 solid;
     width: 100%;
-    height: 2.75rem;
-}
-
-.reset {
-    margin-left: 1rem;
-    display: inline-flex;
-    align-items: center;
-
-    text-decoration: none;
-    text-underline-offset: 0.25rem;
-
-    &:hover,
-    &:focus {
-        text-decoration: underline;
-    }
-
-    svg {
-        margin-right: 0.25rem;
-    }
+    min-height: 3rem;
 }
 
 .nohits {
     background-color: common.$a-gray-100;
     padding: 1.5rem;
     border-radius: common.$border-radius-large;
+}
+
+.chips {
+    display: inline-flex;
+
+    // The chips component seems to render empty list items for null-children
+    & > :empty {
+        display: none;
+    }
+}
+
+.reset {
+    background-color: common.$a-deepblue-800;
 }

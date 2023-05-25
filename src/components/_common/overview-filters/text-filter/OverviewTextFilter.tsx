@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useEffect, useId, useState } from 'react';
-import { TextField } from '@navikt/ds-react';
+import React, { useEffect, useId, useState } from 'react';
+import { Search } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
@@ -7,6 +7,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { setTextFilterAction } from 'store/slices/overviewFilters';
 import * as Sentry from '@sentry/react';
+import { smoothScrollToTarget } from 'utils/scroll-to';
 
 import style from './OverviewTextFilter.module.scss';
 
@@ -26,9 +27,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
 
     const label = translator('overview', language)('search');
 
-    const searchEventHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        const { value } = event.target;
-
+    const searchEventHandler = (value: string) => {
         setTextInput(value);
 
         // Event to keep mobile and desktop views in sync
@@ -38,9 +37,13 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
             })
         );
 
-        debounce(() => {
-            dispatch(setTextFilterAction({ text: value }));
-        }, 200)();
+        debounce(
+            () => {
+                dispatch(setTextFilterAction({ text: value }));
+            },
+            250,
+            { maxWait: 1000 }
+        )();
 
         debounce(() => {
             Sentry.captureMessage(
@@ -55,8 +58,8 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
     };
 
     useEffect(() => {
-        const inputHandler = (evt: CustomEvent) => {
-            const { value, id: senderId } = evt.detail;
+        const inputHandler = (e: CustomEvent) => {
+            const { value, id: senderId } = e.detail;
             if (senderId !== id) {
                 setTextInput(value);
             }
@@ -75,13 +78,22 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
     }, [id]);
 
     return (
-        <div className={style.overviewSearch}>
-            <TextField
+        <form
+            className={style.overviewSearch}
+            onSubmit={(e) => {
+                e.preventDefault();
+                smoothScrollToTarget(id, 48);
+                (document.activeElement as HTMLElement)?.blur();
+            }}
+        >
+            <Search
                 onChange={searchEventHandler}
                 value={textInput}
                 label={label}
                 hideLabel={hideLabel}
+                variant={'simple'}
+                id={id}
             />
-        </div>
+        </form>
     );
 };
