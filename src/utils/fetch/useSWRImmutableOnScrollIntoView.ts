@@ -5,59 +5,70 @@ import debounce from 'lodash.debounce';
 type Props<FetchResponse, ElementType extends HTMLElement = HTMLElement> = {
     url: string | null;
     fetchFunc: (url: string) => Promise<FetchResponse>;
-    elementRef: React.MutableRefObject<ElementType>;
+    elementId: string;
 };
 
-// Start fetching when the element is less than half a viewport away from being visible
-const VIEWPORT_PREFETCH_DISTANCE = 0.5;
+// Ensures fetch is performed immediately if the element is within one viewport height
+// of the current viewport
+const isNearOrAboveViewport = (elementId: string) => {
+    if (typeof window === 'undefined') {
+        return false;
+    }
 
-const isNearOrAboveViewport = (element?: HTMLElement) => {
+    const element = document.getElementById(elementId);
     if (!element) {
         return false;
     }
 
-    return (
-        element.getBoundingClientRect().y - window.innerHeight <
-        window.innerHeight * VIEWPORT_PREFETCH_DISTANCE
-    );
+    // If the browser does not support IntersectionObserver, ensure we always perform the fetch on load
+    if (typeof IntersectionObserver === 'undefined') {
+        return true;
+    }
+
+    return element.getBoundingClientRect().y < window.innerHeight * 2;
 };
 
 export const useSWRImmutableOnScrollIntoView = <FetchResponse>({
     url,
     fetchFunc,
-    elementRef,
+    elementId,
 }: Props<FetchResponse>) => {
-    const [isScrolledIntoView, setIsScrolledIntoView] = useState(false);
+    const [isScrolledIntoView, setIsScrolledIntoView] = useState(
+        isNearOrAboveViewport(elementId)
+    );
+
     const result = useSWRImmutable(isScrolledIntoView ? url : null, fetchFunc);
 
     useEffect(() => {
-        if (!url) {
+        if (isScrolledIntoView || !url) {
             return;
         }
 
-        const updateElementScrollStatus = debounce(
-            () => {
-                if (!isNearOrAboveViewport(elementRef.current)) {
-                    return false;
-                }
+        const element = document.getElementById(elementId);
+        if (!element) {
+            return;
+        }
 
-                setIsScrolledIntoView(true);
-                window.removeEventListener('scroll', updateElementScrollStatus);
-                return true;
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0]?.isIntersecting) {
+                    setIsScrolledIntoView(true);
+                    observer.disconnect();
+                }
             },
-            15,
-            { maxWait: 30 }
+            {
+                root: null,
+                rootMargin: '100% 0%',
+                threshold: 0,
+            }
         );
 
-        if (updateElementScrollStatus()) {
-            return;
-        }
+        observer.observe(element);
 
-        window.addEventListener('scroll', updateElementScrollStatus);
         return () => {
-            window.removeEventListener('scroll', updateElementScrollStatus);
+            observer.disconnect();
         };
-    }, [elementRef, url]);
+    }, [elementId, url, isScrolledIntoView]);
 
     return result;
 };

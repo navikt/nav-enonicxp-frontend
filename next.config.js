@@ -54,7 +54,13 @@ const csp = async () => {
     const adminHost = new URL(process.env.ADMIN_ORIGIN).host;
     const xpHost = new URL(process.env.XP_ORIGIN).host;
 
-    const qbrickHost = 'video.qbrick.com';
+    const qbrickHosts = [
+        'video.qbrick.com',
+        'play2.qbrick.com',
+        'analytics.qbrick.com',
+        '*.ip-only.net',
+        'blob:',
+    ];
     const salesforceVideoHost = 'ihb.nav.no';
 
     // These are used by a NAV-funded research project for accessibility-related feedback
@@ -86,15 +92,15 @@ const csp = async () => {
 
     const directives = {
         'default-src': internalHosts,
-        'script-src-elem': scriptSrc,
         'script-src': scriptSrc,
+        'script-src-elem': [...scriptSrc, ...qbrickHosts],
         'worker-src': internalHosts,
         'style-src': [...internalHosts, UNSAFE_INLINE],
-        'font-src': [...internalHosts, DATA],
-        'img-src': [...internalHosts, DATA],
-        'frame-src': [qbrickHost],
-        'connect-src': [...internalHosts, uxSignalsApiHost],
-        'media-src': [salesforceVideoHost],
+        'font-src': [...internalHosts, DATA, ...qbrickHosts],
+        'img-src': [...internalHosts, DATA, ...qbrickHosts],
+        'object-src': [...qbrickHosts],
+        'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost],
+        'media-src': [...qbrickHosts, salesforceVideoHost],
     };
 
     if (process.env.NODE_ENV === 'development') {

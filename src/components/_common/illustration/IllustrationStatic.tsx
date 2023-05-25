@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useId, useRef } from 'react';
 import {
     AnimatedIcon,
     AnimatedIconsProps,
@@ -36,6 +36,8 @@ const StaticIcon = ({
     // Other formats are treated as a regular img
     const isSvg = icon.icon.mediaUrl.endsWith('svg');
 
+    const elementId = useId();
+
     const { data: svgData } = useSWRImmutableOnScrollIntoView({
         url: isSvg
             ? buildImageCacheUrl({
@@ -45,7 +47,7 @@ const StaticIcon = ({
               })
             : null,
         fetchFunc: fetchSvgData,
-        elementRef: ref,
+        elementId,
     });
 
     useEffect(() => {
@@ -55,7 +57,7 @@ const StaticIcon = ({
     }, [svgData]);
 
     return (
-        <span className={styleStatic.icon} ref={ref}>
+        <span className={styleStatic.icon} id={elementId} ref={ref}>
             {!isSvg && <XpImage imageProps={icon.icon} alt={''} />}
         </span>
     );

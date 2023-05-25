@@ -6,6 +6,7 @@ import { classNames } from '../../../utils/classnames';
 import { LinkPanelNavnoSimple } from '../../_common/linkpanel/LinkPanelNavnoSimple';
 import { getUrlFromContent } from '../../../utils/links-from-content';
 import { StaticImage } from 'components/_common/image/StaticImage';
+import { getAudience } from 'types/component-props/_mixins';
 
 // kopi av ikoner som ligger under /www.nav.no/nav.no-ressurser/ikoner, som brukes inne på oversiktssidene
 import saksbehandlingstider from '/public/gfx/front-page-shortcuts/saksbehandlingstider_nav_ikon.svg';
@@ -39,7 +40,7 @@ export const FrontpageShortcuts = ({
 }: FrontpageShortcutsProps) => {
     const { contentList, title } = config;
 
-    const audience = pageProps?.data?.audience;
+    const audience = getAudience(pageProps?.data?.audience);
 
     const links = contentList?.data?.sectionContents;
 
@@ -49,7 +50,6 @@ export const FrontpageShortcuts = ({
 
     const getIcon = (content: ContentProps) => {
         const dictionary = linkToIconDictionary[audience];
-        console.log('dictionary', dictionary);
         const foundKey = Object.keys(dictionary).find((key) => {
             if (content.type === ContentType.ExternalLink) {
                 return content.data.url?.includes(key);

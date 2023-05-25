@@ -10,6 +10,8 @@ export enum AnalyticsEvents {
     COPY_LINK = 'kopier-lenke',
     CHAT_OPEN = 'chat-åpnet',
     CALL = 'ring-oss',
+    VIDEO_START = 'video start',
+    VIDEO_STOP = 'video stopp'
 }
 
 export function logAmplitudeEvent(

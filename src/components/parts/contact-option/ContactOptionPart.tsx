@@ -7,6 +7,7 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ChatOption } from 'components/_common/contact-option/ChatOption';
+import { getAudience } from 'types/component-props/_mixins';
 
 const sharedContactChannels = ['call', 'write', 'chat'];
 const editorHelpText = {
@@ -73,7 +74,7 @@ export const ContactOptionPart = ({
             <OptionComponent
                 {...getSharedContactInformation(channel)}
                 _path={sharedContactInformation._path}
-                audience={audience}
+                audience={getAudience(audience)}
                 {...overrideIngress}
             />
         );

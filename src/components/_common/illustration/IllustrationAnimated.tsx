@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useId } from 'react';
 import { classNames } from 'utils/classnames';
 import { fetchJson } from 'utils/fetch/fetch-utils';
 import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
@@ -28,10 +28,12 @@ export const IllustrationAnimated = ({
     const lottieContainer = useRef<HTMLDivElement>(null);
     const lottiePlayer = useRef(null);
 
+    const elementId = useId();
+
     const { data: lottieData } = useSWRImmutableOnScrollIntoView({
         url: dataUrl,
         fetchFunc: fetchJsonData,
-        elementRef: lottieContainer,
+        elementId,
     });
 
     useEffect(() => {
@@ -79,7 +81,8 @@ export const IllustrationAnimated = ({
     return (
         <div
             className={classNames(styleCommon.image, className)}
-            aria-hidden="true"
+            aria-hidden={'true'}
+            id={elementId}
         >
             <div
                 ref={lottieContainer}

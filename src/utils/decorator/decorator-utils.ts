@@ -5,7 +5,7 @@ import { LanguageProps } from 'types/language';
 import { stripXpPathPrefix } from '../urls';
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { checkForWhiteHeader } from 'components/_top-container/TopContainer';
-import { Audience } from 'types/component-props/_mixins';
+import { Audience, getAudience } from 'types/component-props/_mixins';
 
 const defaultLanguage: DecoratorParams['language'] = 'nb';
 
@@ -51,12 +51,13 @@ const pathToRoleContext: { [key: string]: DecoratorParams['context'] } = {
     samarbeidspartner: 'samarbeidspartner',
 };
 
-const audienceToRoleContext: { [key in Audience]: DecoratorParams['context'] } =
-    {
-        [Audience.PERSON]: 'privatperson',
-        [Audience.EMPLOYER]: 'arbeidsgiver',
-        [Audience.PROVIDER]: 'samarbeidspartner',
-    };
+const audienceToRoleContext: {
+    [key in Audience]: DecoratorParams['context'];
+} = {
+    [Audience.PERSON]: 'privatperson',
+    [Audience.EMPLOYER]: 'arbeidsgiver',
+    [Audience.PROVIDER]: 'samarbeidspartner',
+};
 
 const errorParams = (content: ContentProps): DecoratorParams => ({
     feedback: false,
@@ -78,7 +79,7 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
 
     const rolePathSegment = _path.split('/')[2];
     const context =
-        audienceToRoleContext[data?.audience] ||
+        audienceToRoleContext[getAudience(data?.audience)] ||
         pathToRoleContext[rolePathSegment];
     const decoratorLanguage = getDecoratorLangFromXpLang(language);
     const feedbackEnabled = data?.feedbackToggle;

@@ -36,7 +36,8 @@ export const objectToQueryString = (params: object) =>
 export const fetchJson = <ResponseType = any>(
     url: string,
     timeout = defaultTimeout,
-    config?: Record<string, any>
+    config?: Record<string, any>,
+    retries = 0
 ): Promise<ResponseType | null> =>
     fetchWithTimeout(url, timeout, config)
         .then((res) => {
@@ -47,6 +48,11 @@ export const fetchJson = <ResponseType = any>(
             throw new Error(`${res.status} - ${res.statusText}`);
         })
         .catch((e) => {
+            if (retries > 0) {
+                console.log(`Failed to fetch from ${url}, retrying`);
+                return fetchJson(url, timeout, config, retries - 1);
+            }
+
             console.error(`Failed to fetch json from ${url} - ${e}`);
             return null;
         });

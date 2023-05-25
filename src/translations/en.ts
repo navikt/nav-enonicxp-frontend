@@ -212,13 +212,13 @@ export const translationsBundleEn: Translations = {
         copiedLinkConfirmed: 'Link successfully copied',
     },
     overview: {
-        noProducts: 'No hits',
+        noHits: 'No hits with the selected filters.',
         numHits: 'Showing $1 out of $2',
         search: 'Find a service',
         filterOrSearch: 'Use filters or search',
         loading: 'Loading content...',
         any: 'From A to Z',
-        resetFilters: 'Reset choices',
+        resetFilters: 'Reset filters',
         areas: {
             choose: 'Choose area',
             ariaExplanation: 'Filter list by area',
@@ -306,5 +306,10 @@ export const translationsBundleEn: Translations = {
     },
     greetings: {
         hi: 'Hi!',
+    },
+    macroVideo: {
+        playMovie: 'Watch video:',
+        duration: 'Duration is',
+        minutes: 'min',
     },
 };
