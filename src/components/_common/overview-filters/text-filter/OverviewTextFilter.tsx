@@ -1,7 +1,6 @@
 import React, { useEffect, useId, useState } from 'react';
 import { Search } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
-import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
