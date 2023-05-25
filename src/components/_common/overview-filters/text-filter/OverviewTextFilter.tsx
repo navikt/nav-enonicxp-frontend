@@ -30,19 +30,17 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
     const searchEventHandler = (value: string) => {
         setTextInput(value);
 
-        // Event to keep mobile and desktop views in sync
-        window.dispatchEvent(
-            new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
-                detail: { value, id },
-            })
-        );
-
         debounce(
             () => {
                 dispatch(setTextFilterAction({ text: value }));
+                window.dispatchEvent(
+                    new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
+                        detail: { value, id },
+                    })
+                );
             },
-            250,
-            { maxWait: 1000 }
+            500,
+            { maxWait: 2000 }
         )();
 
         debounce(() => {
@@ -50,10 +48,6 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 `Oversiktsside fritekst input: "${value}"`,
                 'info'
             );
-
-            logAmplitudeEvent(AnalyticsEvents.FILTER, {
-                opprinnelse: 'oversiktsside fritekst',
-            });
         }, 1000)();
     };
 
@@ -79,10 +73,11 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
 
     return (
         <form
+            id={id}
             className={style.overviewSearch}
             onSubmit={(e) => {
                 e.preventDefault();
-                smoothScrollToTarget(id, 48);
+                smoothScrollToTarget(id, 16);
                 (document.activeElement as HTMLElement)?.blur();
             }}
         >
@@ -92,7 +87,6 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 label={label}
                 hideLabel={hideLabel}
                 variant={'simple'}
-                id={id}
             />
         </form>
     );
