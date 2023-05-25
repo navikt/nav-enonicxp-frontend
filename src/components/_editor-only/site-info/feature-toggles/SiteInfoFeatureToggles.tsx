@@ -28,7 +28,7 @@ export const editorFeatures: Record<EditorFeature, EditorFeatureProps> = {
         key: EditorFeature.UncheckDependenciesPublish,
         description:
             'Reverserer standard-valget for publisering av avhengigheter (ingen avhengigheter publiseres)',
-        defaultValue: process.env.ENV !== 'prod',
+        defaultValue: true,
     },
 };
 
