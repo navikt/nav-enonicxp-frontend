@@ -16,9 +16,14 @@ import style from './OverviewFiltersSummary.module.scss';
 type Props = {
     numMatches: number;
     numTotal: number;
+    showResetChips: boolean;
 };
 
-export const OverviewFiltersSummary = ({ numMatches, numTotal }: Props) => {
+export const OverviewFiltersSummary = ({
+    numMatches,
+    numTotal,
+    showResetChips,
+}: Props) => {
     const { language } = usePageConfig();
 
     const { hasDefaultFilters, dispatch, areaFilter, taxonomyFilter } =
@@ -36,7 +41,7 @@ export const OverviewFiltersSummary = ({ numMatches, numTotal }: Props) => {
                         .replace('$1', numMatches.toString())
                         .replace('$2', numTotal.toString())}
                 </BodyShort>
-                {!hasDefaultFilters && (
+                {showResetChips && !hasDefaultFilters && (
                     <Chips className={style.chips}>
                         {areaFilter !== Area.ALL && (
                             <Chips.Removable
