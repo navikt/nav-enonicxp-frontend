@@ -5,9 +5,19 @@ import { QbrickMeta } from 'types/qbrickMeta';
 export const buildVideoMeta = (
     video: MacroVideoProps['config']['video']
 ): VideoMeta => {
+    if (!video) {
+        return {
+            accountId: null,
+            mediaId: null,
+            duration: 0,
+            poster: null,
+            title: null,
+        };
+    }
     // For now, support legacy video with only the URL to go after.
     if (!video.targetContent) {
         const query = parse(video?.video?.split('?')[1]);
+        console.log(video);
         return {
             accountId: query?.accountId as string,
             title: video.title,
@@ -40,7 +50,7 @@ export const findImageUrlFromVideoMeta = (qbrickMediaData: QbrickMeta) => {
             resource.type === 'image' && resource.id === qBrickPickedThumbnail
     );
 
-    // No specific thumbnail picked in the Qbrick UI, so use first image
+    // No specific thumbnail picked in the Qbrick UI, so find the first image possible
     if (!image) {
         image = resources.find((resource) => resource.type === 'image');
     }
@@ -71,13 +81,13 @@ export const findVideoDurationFromMeta = (qbrickMediaData: QbrickMeta) => {
 };
 
 export const getTimestampFromDuration = (duration: number) => {
-    const halfMinute = 30; // seconds in half a minute
+    const halfMinute = 30;
     const roundedSeconds = Math.round(duration / halfMinute) * halfMinute;
-    const minutes = Math.floor(roundedSeconds / 60); // convert to whole minutes
+    const minutes = Math.floor(roundedSeconds / 60);
     if (roundedSeconds % 60 === 0) {
-        return minutes; // return whole number
+        return minutes;
     } else {
         const decimalMinutes = (roundedSeconds % 60) / 60;
-        return (minutes + decimalMinutes).toFixed(1).replace('.', ','); // round to 1 decimal place
+        return (minutes + decimalMinutes).toFixed(1).replace('.', ',');
     }
 };

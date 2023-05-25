@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
+type ScriptState = 'idle' | 'loading' | 'ready' | 'error';
+
 export const useExternalScript = (url: string) => {
-    let [state, setState] = useState(url ? 'loading' : 'idle');
+    let [state, setState] = useState<ScriptState>(url ? 'loading' : 'idle');
 
     useEffect(() => {
         if (!url) {

@@ -18,16 +18,32 @@ import style from './MacroVideo.module.scss';
 export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
     const [videoMeta, setVideoMeta] = useState<VideoMeta>(
-        buildVideoMeta(config.video)
+        buildVideoMeta(config?.video)
     );
     const videoRef = React.useRef(null);
 
     const { language } = usePageConfig();
     const translations = translator('macroVideo', language);
+    const { accountId, mediaId, title, duration, poster } = videoMeta;
 
     const scriptState = useExternalScript(
         '//play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'
     );
+
+    const getVideoMetaFromQbrick = async () => {
+        const metaUrl = `https://video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`;
+
+        try {
+            const result = await fetch(metaUrl);
+            const json = await result.json();
+            const image = findImageUrlFromVideoMeta(json);
+            const duration = findVideoDurationFromMeta(json);
+
+            setVideoMeta({ ...videoMeta, poster: image, duration });
+        } catch (e) {
+            console.error(e);
+        }
+    };
 
     useEffect(() => {
         if (isVideoOpen) {
@@ -47,34 +63,17 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         }
     }, [videoMeta.poster, videoMeta.duration]);
 
-    const getVideoMetaFromQbrick = async () => {
-        const metaUrl = `https://video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`;
-
-        try {
-            const result = await fetch(metaUrl);
-            const json = await result.json();
-            const image = findImageUrlFromVideoMeta(json);
-            const duration = findVideoDurationFromMeta(json);
-
-            setVideoMeta({ ...videoMeta, poster: image, duration });
-        } catch (e) {
-            console.error(e);
-        }
-    };
-
-    if (!videoMeta) {
+    if (!accountId) {
         return null;
     }
-
-    const { accountId, mediaId, title, duration, poster } = videoMeta;
-
-    const durationAsString = getTimestampFromDuration(duration);
-    const imageUrl =
-        poster?.slice(0, 4) === 'http' ? poster : getMediaUrl(poster);
 
     if (scriptState !== 'ready') {
         return null;
     }
+
+    const durationAsString = getTimestampFromDuration(duration);
+    const imageUrl =
+        poster?.slice(0, 4) === 'http' ? poster : getMediaUrl(poster);
 
     return (
         <div className={style.wrapper}>
