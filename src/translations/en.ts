@@ -218,7 +218,7 @@ export const translationsBundleEn: Translations = {
         filterOrSearch: 'Use filters or search',
         loading: 'Loading content...',
         any: 'From A to Z',
-        resetFilters: 'Reset choices',
+        resetFilters: 'Reset filters',
         areas: {
             choose: 'Choose area',
             ariaExplanation: 'Filter list by area',

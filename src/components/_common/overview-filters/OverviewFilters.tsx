@@ -84,7 +84,7 @@ const DesktopView = ({
             {showTaxonomyFilter && (
                 <OverviewTaxonomyFilter items={filterableItems} />
             )}
-            {showTextInputFilter && <OverviewTextFilter />}
+            {showTextInputFilter && <OverviewTextFilter hideLabel={false} />}
         </div>
     );
 };
