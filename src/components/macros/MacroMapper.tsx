@@ -46,7 +46,6 @@ const macroComponents: {
     [MacroType.InfoBoks]: MacroInfoBoks,
     [MacroType.Ingress]: MacroIngress,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
-    [MacroType.LenkeFiler]: MacroLenkeFiler,
     [MacroType.PayoutDates]: MacroPayoutDates,
     [MacroType.PhoneLink]: MacroPhoneLink,
     [MacroType.ProductCardMicro]: MacroProductCardMicro,
