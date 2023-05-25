@@ -307,4 +307,9 @@ export const translationsBundleEn: Translations = {
     greetings: {
         hi: 'Hi!',
     },
+    macroVideo: {
+        playMovie: 'Watch video:',
+        duration: 'Duration is',
+        minutes: 'min',
+    },
 };

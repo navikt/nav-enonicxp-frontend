@@ -329,6 +329,11 @@ export const translationsBundleNb = {
     greetings: {
         hi: 'Hei!',
     },
+    macroVideo: {
+        playMovie: 'Se video:',
+        duration: 'Varighet er',
+        minutes: 'min',
+    },
 };
 
 export type Translations = DeepPartial<typeof translationsBundleNb>;
