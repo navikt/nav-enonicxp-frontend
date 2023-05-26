@@ -21,6 +21,10 @@ declare global {
         }
     }
 
+    interface Window {
+        togglePublishDependenciesObserver?: MutationObserver;
+    }
+
     var cacheKey: string | undefined;
 }
 
