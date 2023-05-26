@@ -56,7 +56,7 @@ const removeToggleFlag = (mutation: MutationRecord) => {
 };
 
 const mutationCallback: MutationCallback = (mutations) => {
-    parent.window.console.log('MutationCallback');
+    parent.window.console.log('mutationCallback was called');
 
     mutations.forEach((mutation) => {
         if (isPublishDialogStateResolved(mutation.target as HTMLElement)) {
@@ -68,7 +68,7 @@ const mutationCallback: MutationCallback = (mutations) => {
 };
 
 const enablePublishDialogObserver = () => {
-    console.log('enabling');
+    console.log('Enabling togglePublishDependenciesObserver');
 
     parent.window.togglePublishDependenciesObserver = new MutationObserver(
         mutationCallback
@@ -86,16 +86,19 @@ const enablePublishDialogObserver = () => {
 
 export const TogglePublishDependencies = () => {
     useEffect(() => {
-        if (parent.window.togglePublishDependenciesObserver) {
-            const records =
-                parent.window.togglePublishDependenciesObserver?.takeRecords();
-            if (records) {
-                console.log('Processing records');
-                mutationCallback(
-                    records,
-                    parent.window.togglePublishDependenciesObserver
-                );
-            }
+        // If the observer was previously defined, the callback function will
+        // have gone out of scope and will no longer be active
+        // The observer may still have collected records which has not been processed.
+        // We process them and create a new observer
+
+        const records =
+            parent.window.togglePublishDependenciesObserver?.takeRecords();
+        if (records) {
+            console.log('Processing records');
+            mutationCallback(
+                records,
+                parent.window.togglePublishDependenciesObserver
+            );
         }
 
         enablePublishDialogObserver();
