@@ -2,6 +2,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { AutoReloadDisableHack } from './auto-refresh-disable/AutoReloadDisableHack';
 import { SetSidepanelToggleHack } from './set-sidepanels-defaults/SetSidepanelToggleHack';
 import { CustomSelectorLinkTargetHack } from './custom-selector-link-target/CustomSelectorLinkTargetHack';
+import { TogglePublishDependencies } from 'components/_editor-only/editor-hacks/toggle-publish-dependencies/TogglePublishDependencies';
 import { isEditorFeatureEnabled } from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
 import { EditorFeature } from 'components/_editor-only/site-info/feature-toggles/SiteInfoFeatureToggles';
 
@@ -29,6 +30,8 @@ export const EditorHacks = ({ content }: Props) => {
                     )}
                 </>
             )}
+            {(editorView === 'edit' || editorView === 'inline') &&
+                content.serverEnv === 'prod' && <TogglePublishDependencies />}
         </>
     );
 };
