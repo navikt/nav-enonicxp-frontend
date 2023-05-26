@@ -31,9 +31,7 @@ export const EditorHacks = ({ content }: Props) => {
                 </>
             )}
             {(editorView === 'edit' || editorView === 'inline') &&
-                isEditorFeatureEnabled(
-                    EditorFeature.UncheckDependenciesPublish
-                ) && <TogglePublishDependencies />}
+                content.serverEnv === 'prod' && <TogglePublishDependencies />}
         </>
     );
 };
