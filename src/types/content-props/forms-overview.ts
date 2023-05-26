@@ -7,6 +7,7 @@ import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
+import { ProviderAudience } from 'types/component-props/_mixins';
 
 export type FormDetailsListItemProps = {
     title: string;
@@ -29,7 +30,7 @@ export type FormsOverviewAudienceOptions = OptionSetSingle<{
     provider: {
         pageType: OptionSetSingle<{
             overview: {
-                provider_audience: string[]; // TODO: add union type
+                provider_audience: ProviderAudience;
             };
             links: {
                 links: Array<{

@@ -20,6 +20,26 @@ export enum Audience {
     PROVIDER = 'provider',
 }
 
+export enum ProviderAudience {
+    DOCTOR = 'doctor',
+    MUNICIPALITY = 'municipality_employed',
+    OPTICIAN = 'optician',
+    ADMINISTRATOR = 'administrator',
+    MEASURES_ORGANIZER = 'measures_organizer',
+    AID_SUPPLIER = 'aid_supplier',
+    OTHER = 'other',
+}
+
+export type AudienceProps = OptionSetSingle<{
+    [Audience.PERSON]: EmptyObject;
+    [Audience.EMPLOYER]: EmptyObject;
+    [Audience.PROVIDER]: { provider_audience?: ProviderAudience };
+}>;
+
+export const getAudience = (audience: AudienceProps | Audience) => {
+    return typeof audience === 'string' ? audience : audience?._selected;
+};
+
 export type FilterSelection = string[];
 
 export type SimplifiedProductData = {

@@ -74,6 +74,10 @@ export const TogglePublishDependencies = () => {
             attributeFilter: ['class'],
         });
 
+        // Run the uncheck function on mount, in case the frontend was not loaded
+        // in the editor preview when the publish dialog first appeared
+        uncheckPublishAllDependants();
+
         return () => observer.disconnect();
     }, []);
 
