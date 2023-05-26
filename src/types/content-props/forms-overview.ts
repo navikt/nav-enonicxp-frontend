@@ -30,7 +30,7 @@ export type FormsOverviewAudienceOptions = OptionSetSingle<{
     provider: {
         pageType: OptionSetSingle<{
             overview: {
-                provider_audience: ProviderAudience;
+                provider_audience: ProviderAudience[];
             };
             links: {
                 links: Array<{
