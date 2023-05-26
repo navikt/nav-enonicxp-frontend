@@ -1,4 +1,5 @@
 import { FormDetails } from 'components/_common/form-details/FormDetails';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { MacroFormDetailsProps } from 'types/macro-props/form-details';
 
 export const MacroFormDetails = ({ config }: MacroFormDetailsProps) => {
@@ -6,7 +7,9 @@ export const MacroFormDetails = ({ config }: MacroFormDetailsProps) => {
     const formDetailsData = macroConfig?.targetFormDetails?.data;
 
     if (!macroConfig || !formDetailsData) {
-        return null;
+        return (
+            <EditorHelp text="Mangler referanse til skjemadetalj, eller referansen er feil." />
+        );
     }
 
     const displayConfig = {
