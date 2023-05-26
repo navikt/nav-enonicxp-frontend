@@ -17,7 +17,7 @@ export const buildVideoMeta = (
     // For now, support legacy video with only the URL to go after.
     if (!video.targetContent) {
         const query = parse(video?.video?.split('?')[1]);
-        console.log(video);
+
         return {
             accountId: query?.accountId as string,
             title: video.title,
