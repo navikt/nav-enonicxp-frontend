@@ -12,7 +12,7 @@ export const MacroFormDetails = ({ config }: MacroFormDetailsProps) => {
 
     const displayConfig = {
         showTitle: macroConfig.showTitle,
-        showIngress: macroConfig.showTitle,
+        showIngress: macroConfig.showIngress,
         showApplications: macroConfig.showApplications,
         showAddendums: macroConfig.showAddendums,
     };

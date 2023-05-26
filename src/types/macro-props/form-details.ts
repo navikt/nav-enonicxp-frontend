@@ -9,7 +9,7 @@ export interface MacroFormDetailsProps extends MacroPropsCommon {
                 data: FormDetailsData;
             };
             showTitle: boolean;
-            showDescription: boolean;
+            showIngress: boolean;
             showApplications: boolean;
             showAddendums: boolean;
         };
