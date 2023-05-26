@@ -45,7 +45,7 @@ const uncheckPublishAllDependants = () => {
 const isPublishDialogStateResolved = (element: HTMLElement) =>
     element?.id === 'DialogStateBar' && !element.classList.contains('checking');
 
-const removeToggleFlag = (mutation: MutationRecord) =>
+const removeToggleFlag = (mutation: MutationRecord) => {
     mutation.addedNodes.forEach((node: HTMLElement) => {
         if (node.classList?.contains(DIALOG_CONTAINER_CLASS)) {
             // Ensure our toggle flag is removed from new dialog containers
@@ -53,8 +53,11 @@ const removeToggleFlag = (mutation: MutationRecord) =>
             node.classList.remove(TOGGLE_FLAG);
         }
     });
+};
 
 const mutationCallback: MutationCallback = (mutations) => {
+    parent.window.console.log('MutationCallback');
+
     mutations.forEach((mutation) => {
         if (isPublishDialogStateResolved(mutation.target as HTMLElement)) {
             uncheckPublishAllDependants();
@@ -64,21 +67,42 @@ const mutationCallback: MutationCallback = (mutations) => {
     });
 };
 
-export const TogglePublishDependencies = () => {
-    useEffect(() => {
-        const observer = new MutationObserver(mutationCallback);
+const enablePublishDialogObserver = () => {
+    console.log('enabling');
 
-        observer.observe(parent.window.document.body, {
+    parent.window.togglePublishDependenciesObserver = new MutationObserver(
+        mutationCallback
+    );
+
+    parent.window.togglePublishDependenciesObserver.observe(
+        parent.window.document.body,
+        {
             childList: true,
             subtree: true,
             attributeFilter: ['class'],
-        });
+        }
+    );
+};
+
+export const TogglePublishDependencies = () => {
+    useEffect(() => {
+        if (parent.window.togglePublishDependenciesObserver) {
+            const records =
+                parent.window.togglePublishDependenciesObserver?.takeRecords();
+            if (records) {
+                console.log('Processing records');
+                mutationCallback(
+                    records,
+                    parent.window.togglePublishDependenciesObserver
+                );
+            }
+        }
+
+        enablePublishDialogObserver();
 
         // Run the uncheck function on mount, in case the frontend was not loaded
         // in the editor preview when the publish dialog first appeared
         uncheckPublishAllDependants();
-
-        return () => observer.disconnect();
     }, []);
 
     return null;
