@@ -45,7 +45,7 @@ const uncheckPublishAllDependants = () => {
 const isPublishDialogStateResolved = (element: HTMLElement) =>
     element?.id === 'DialogStateBar' && !element.classList.contains('checking');
 
-const removeToggleFlag = (mutation: MutationRecord) =>
+const removeToggleFlag = (mutation: MutationRecord) => {
     mutation.addedNodes.forEach((node: HTMLElement) => {
         if (node.classList?.contains(DIALOG_CONTAINER_CLASS)) {
             // Ensure our toggle flag is removed from new dialog containers
@@ -53,8 +53,11 @@ const removeToggleFlag = (mutation: MutationRecord) =>
             node.classList.remove(TOGGLE_FLAG);
         }
     });
+};
 
 const mutationCallback: MutationCallback = (mutations) => {
+    parent.window.console.log('mutationCallback was called');
+
     mutations.forEach((mutation) => {
         if (isPublishDialogStateResolved(mutation.target as HTMLElement)) {
             uncheckPublishAllDependants();
@@ -64,17 +67,46 @@ const mutationCallback: MutationCallback = (mutations) => {
     });
 };
 
-export const TogglePublishDependencies = () => {
-    useEffect(() => {
-        const observer = new MutationObserver(mutationCallback);
+const enablePublishDialogObserver = () => {
+    console.log('Enabling togglePublishDependenciesObserver');
 
-        observer.observe(parent.window.document.body, {
+    // If the observer was previously defined, the callback function may have
+    // gone out of scope and will no longer be active
+    // The observer may still have collected records which has not been processed.
+    // We process them and disconnect the old observer
+    if (parent.window.togglePublishDependenciesObserver) {
+        const records =
+            parent.window.togglePublishDependenciesObserver.takeRecords();
+
+        mutationCallback(
+            records,
+            parent.window.togglePublishDependenciesObserver
+        );
+
+        parent.window.togglePublishDependenciesObserver.disconnect();
+    }
+
+    parent.window.togglePublishDependenciesObserver = new MutationObserver(
+        mutationCallback
+    );
+
+    parent.window.togglePublishDependenciesObserver.observe(
+        parent.window.document.body,
+        {
             childList: true,
             subtree: true,
             attributeFilter: ['class'],
-        });
+        }
+    );
+};
 
-        return () => observer.disconnect();
+export const TogglePublishDependencies = () => {
+    useEffect(() => {
+        // Run the uncheck function on mount, in case the frontend was not loaded
+        // in the editor preview when the publish dialog first appeared
+        uncheckPublishAllDependants();
+
+        enablePublishDialogObserver();
     }, []);
 
     return null;

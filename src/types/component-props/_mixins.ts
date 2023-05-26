@@ -22,20 +22,19 @@ export enum Audience {
 
 export enum ProviderAudience {
     DOCTOR = 'doctor',
-    DENTIST = 'dentist',
+    MUNICIPALITY = 'municipality_employed',
     OPTICIAN = 'optician',
-    OCCUPATIONAL_THERAPIST = 'occupational_therapist',
-    AID_SUPPLIER = 'aid_supplier',
-    MEASURES_ORGANIZER = 'measures_organizer',
     ADMINISTRATOR = 'administrator',
-    MUNICIPALITY = 'municipality',
+    MEASURES_ORGANIZER = 'measures_organizer',
+    AID_SUPPLIER = 'aid_supplier',
     OTHER = 'other',
 }
 
-export type AudienceProps = {
-    _selected: Audience;
-    provider_audience?: ProviderAudience;
-};
+export type AudienceProps = OptionSetSingle<{
+    [Audience.PERSON]: EmptyObject;
+    [Audience.EMPLOYER]: EmptyObject;
+    [Audience.PROVIDER]: { provider_audience?: ProviderAudience };
+}>;
 
 export const getAudience = (audience: AudienceProps | Audience) => {
     return typeof audience === 'string' ? audience : audience?._selected;

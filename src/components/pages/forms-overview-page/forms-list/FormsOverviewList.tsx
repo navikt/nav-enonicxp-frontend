@@ -43,10 +43,11 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
 
     const numMatchingFilters = formDetailsList.filter(isVisible).length;
 
-    const hasMultipleFilterTypes =
-        [areasFilterToggle, taxonomyFilterToggle, textFilterToggle].filter(
-            Boolean
-        ).length > 1;
+    const numFilterTypes = [
+        areasFilterToggle,
+        taxonomyFilterToggle,
+        textFilterToggle,
+    ].filter(Boolean).length;
 
     return (
         <div>
@@ -56,11 +57,13 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 showAreaFilter={areasFilterToggle}
                 showTextInputFilter={textFilterToggle}
             />
-            <OverviewFiltersSummary
-                numMatches={numMatchingFilters}
-                numTotal={formDetailsList.length}
-                showResetChips={hasMultipleFilterTypes}
-            />
+            {numFilterTypes > 0 && (
+                <OverviewFiltersSummary
+                    numMatches={numMatchingFilters}
+                    numTotal={formDetailsList.length}
+                    showResetChips={numFilterTypes > 1}
+                />
+            )}
             {formDetailsList.map((formDetail) => (
                 <FormsOverviewListPanel
                     formDetails={formDetail}

@@ -69,7 +69,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     }
 
     if (scriptState !== 'ready') {
-        return null;
+        // Must return empty div rather than null, otherwise the editor will report error and
+        // "empty element warning". Only an issue in editor mode.
+        return <div />;
     }
 
     const durationAsString = getTimestampFromDuration(duration);
