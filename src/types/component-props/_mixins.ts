@@ -33,7 +33,7 @@ export enum ProviderAudience {
 export type AudienceProps = OptionSetSingle<{
     [Audience.PERSON]: EmptyObject;
     [Audience.EMPLOYER]: EmptyObject;
-    [Audience.PROVIDER]: { provider_audience?: ProviderAudience };
+    [Audience.PROVIDER]: { provider_audience?: ProviderAudience[] };
 }>;
 
 export const getAudience = (audience: AudienceProps | Audience) => {
