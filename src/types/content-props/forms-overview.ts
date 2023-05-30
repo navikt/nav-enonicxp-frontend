@@ -30,7 +30,7 @@ export type FormsOverviewAudienceOptions = OptionSetSingle<{
     provider: {
         pageType: OptionSetSingle<{
             overview: {
-                provider_audience: ProviderAudience;
+                provider_audience: ProviderAudience[];
             };
             links: {
                 links: Array<{
@@ -49,6 +49,7 @@ export type FormsOverviewAudienceOptions = OptionSetSingle<{
 
 export type FormsOverviewData = {
     title: string;
+    underTitle: string;
     ingress: string;
     overviewType: 'application' | 'complaint' | 'addendum';
     illustration: AnimatedIconsProps;

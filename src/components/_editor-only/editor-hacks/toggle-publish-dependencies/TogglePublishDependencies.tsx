@@ -43,7 +43,8 @@ const uncheckPublishAllDependants = () => {
 };
 
 const isPublishDialogStateResolved = (element: HTMLElement) =>
-    element?.id === 'DialogStateBar' && !element.classList.contains('checking');
+    element?.id?.startsWith('DialogStateBar') &&
+    !element.classList.contains('checking');
 
 const removeToggleFlag = (mutation: MutationRecord) => {
     mutation.addedNodes.forEach((node: HTMLElement) => {

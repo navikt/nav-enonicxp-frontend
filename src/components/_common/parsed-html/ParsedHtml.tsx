@@ -33,6 +33,7 @@ const blockLevelMacros: { [macroType in MacroType]?: boolean } = {
     [MacroType.Quote]: true,
     [MacroType.VarselBoks]: true,
     [MacroType.Video]: true,
+    [MacroType.FormDetails]: true,
 };
 
 const hasBlockLevelMacroChildren = (element: Element) => {
