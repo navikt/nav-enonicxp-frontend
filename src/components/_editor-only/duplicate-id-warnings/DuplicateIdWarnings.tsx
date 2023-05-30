@@ -23,7 +23,7 @@ export const DuplicateIdWarnings = () => {
             {elements.map((element) => {
                 return createPortal(
                     <EditorHelp
-                        text={`Obs! Elementet ovenfor har en duplikat id: "${element.id}" - id'er må være unike for at anker-lenker skal fungere konsistent!`}
+                        text={`Obs! Elementet ovenfor har en duplikat id: "${element.id}" - id'er må være unike på siden for at anker-lenker skal fungere konsistent!`}
                         type={'error'}
                     />,
                     element
