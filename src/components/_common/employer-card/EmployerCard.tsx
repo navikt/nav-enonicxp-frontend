@@ -26,6 +26,7 @@ export const EmployerCard = ({
             link={link}
             type={CardType.EmployerFrontpage}
             className={styles.employerCard}
+            preferStaticIllustration={true}
         />
     );
 };
