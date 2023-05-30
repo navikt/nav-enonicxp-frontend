@@ -22,9 +22,7 @@ export const getTranslatedTaxonomies = (
         return [];
     }
     const getTaxonomyLabel = translator('taxonomies', language);
-    const taxonomyLabels = taxonomies.map((taxonomy) => {
-        return getTaxonomyLabel(taxonomy) || '';
-    });
+    const taxonomyLabels = taxonomies.map(getTaxonomyLabel).filter(Boolean);
 
     return taxonomyLabels;
 };
