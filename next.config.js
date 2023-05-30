@@ -155,16 +155,11 @@ const config = {
         SENTRY_DSN: process.env.SENTRY_DSN,
         NAVNO_API_URL: process.env.NAVNO_API_URL,
         DECORATOR_URL: process.env.DECORATOR_URL,
-        ASSET_PREFIX: process.env.ASSET_PREFIX,
     },
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
         dangerouslyAllowSVG: true,
-        domains: [
-            process.env.APP_ORIGIN,
-            process.env.XP_ORIGIN,
-            process.env.ASSET_PREFIX,
-        ].map(
+        domains: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map(
             (origin) =>
                 // Domain whitelist must not include protocol prefixes
                 new URL(origin).host
