@@ -159,7 +159,11 @@ const config = {
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
         dangerouslyAllowSVG: true,
-        domains: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map(
+        domains: [
+            process.env.APP_ORIGIN,
+            process.env.XP_ORIGIN,
+            process.env.ASSET_PREFIX,
+        ].map(
             (origin) =>
                 // Domain whitelist must not include protocol prefixes
                 new URL(origin).host
