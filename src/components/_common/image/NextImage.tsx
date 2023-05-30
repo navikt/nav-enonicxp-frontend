@@ -23,7 +23,11 @@ export type ImageProps = {
 const maxWidthDefault: DeviceSize = 1440;
 const qualityDefault = 90;
 
-const origin = typeof process.env !== 'undefined' && process.env.ASSET_PREFIX;
+const origin =
+    typeof process.env !== 'undefined' &&
+    process.env.IS_FAILOVER_INSTANCE === 'true'
+        ? process.env.FAILOVER_ORIGIN
+        : process.env.APP_ORIGIN;
 
 // Get the image from the next.js incremental image cache endpoint
 //
