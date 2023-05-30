@@ -2,14 +2,13 @@ import { CardType } from 'types/card';
 import { LinkProps } from 'types/link-props';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { ContentType } from 'types/content-props/_content-common';
-import {Audience, getAudience} from 'types/component-props/_mixins';
-import { ProductTaxonomy } from 'types/taxonomies';
+import { Audience, getAudience } from 'types/component-props/_mixins';
 import {
     ProductPageProps,
     SituationPageProps,
     ToolsPageProps,
 } from 'types/content-props/dynamic-page-props';
-import { Language } from 'translations';
+import { Language, translator } from 'translations';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
@@ -47,16 +46,14 @@ const getCardCategory = (
         ].filter((category) => !!category);
     }
 
-    if (
-        selectedAudience === Audience.EMPLOYER ||
-        selectedAudience === Audience.PROVIDER
-    ) {
-        return selectedAudience === Audience.EMPLOYER
-            ? getTranslatedTaxonomies([ProductTaxonomy.FOR_EMPLOYERS], language)
-            : getTranslatedTaxonomies(
-                  [ProductTaxonomy.FOR_PROVIDERS],
-                  language
-              );
+    const productAudienceTranslations = translator('products', language);
+
+    if (selectedAudience === Audience.EMPLOYER) {
+        return [productAudienceTranslations('employer')];
+    }
+
+    if (selectedAudience === Audience.PROVIDER) {
+        return [productAudienceTranslations('provider')];
     }
 
     return [];

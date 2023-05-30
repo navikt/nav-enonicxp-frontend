@@ -1,17 +1,15 @@
 export enum ProductTaxonomy {
     ALL = 'all',
+    INSURANCE = 'insurance',
     ASSISTIVE_TOOLS = 'assistive_tools',
     BENEFITS = 'benefits',
-    FOLLOWUP = 'followup',
     MEASURES = 'measures',
     SERVICE = 'service',
     RIGHTS = 'rights',
-    FOR_EMPLOYERS = 'for_employers',
-    FOR_EVENT_ORGANIZERS = 'for_event_organizers',
-    FOR_MUNICIPALITY = 'for_municipality',
-    FOR_HEALTH_SERVICE = 'for_health_service',
-    FOR_PROVIDERS = 'for_providers',
     FORMS = 'forms',
+    EMPLOYEE_BENEFITS = 'employee_benefits',
+    REFUND = 'refund',
+    FOR_PROVIDERS = 'for_providers',
 }
 
 export enum ThemedArticlePageTaxonomy {

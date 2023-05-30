@@ -9,17 +9,12 @@ import {
 import { Area } from 'types/areas';
 
 const taxonomies: {
-    [key in Taxonomy]: string;
+    [key in Taxonomy]?: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
     [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
     [ProductTaxonomy.BENEFITS]: 'Benefits',
-    [ProductTaxonomy.FOLLOWUP]: 'Follow-up',
     [ProductTaxonomy.SERVICE]: 'Service',
-    [ProductTaxonomy.FOR_EMPLOYERS]: 'For employers',
-    [ProductTaxonomy.FOR_EVENT_ORGANIZERS]: 'For schemes organizers',
-    [ProductTaxonomy.FOR_HEALTH_SERVICE]: 'For physicians and other therapists',
-    [ProductTaxonomy.FOR_MUNICIPALITY]: 'For the municipality',
     [ProductTaxonomy.FOR_PROVIDERS]: 'For providers',
     [ProductTaxonomy.MEASURES]: 'Measures',
     [ProductTaxonomy.RIGHTS]: 'Counselling',
@@ -38,12 +33,11 @@ const taxonomies: {
     [ToolsPageTaxonomy.NAVIGATOR]: 'Navigator',
 };
 
-const areas: { [key in Area]: string } = {
+const areas: { [key in Area]?: string } = {
     [Area.ALL]: 'All',
     [Area.ACCESSIBILITY]: 'Aid and accessibility',
     [Area.FAMILY]: 'Family and children',
     [Area.HEALTH]: 'Health',
-    [Area.MUNICIPALITY]: 'For government',
     [Area.OTHER]: 'Other',
     [Area.PENSION]: 'Pension',
     [Area.SOCIAL_COUNSELLING]: 'Financial social advice and guidance',

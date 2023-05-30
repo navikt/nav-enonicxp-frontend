@@ -43,7 +43,9 @@ const buildSubHeader = (
     return [
         ...taxonomy.map(taxonomyTranslations),
         ...area.map(areaTranslations),
-    ].join(', ');
+    ]
+        .filter(Boolean)
+        .join(', ');
 };
 
 type Props = {

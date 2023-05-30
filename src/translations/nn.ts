@@ -24,17 +24,12 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 };
 
 const taxonomies: {
-    [key in Taxonomy]: string;
+    [key in Taxonomy]?: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
     [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
     [ProductTaxonomy.BENEFITS]: 'Pengestønad',
-    [ProductTaxonomy.FOLLOWUP]: 'Oppfylging',
     [ProductTaxonomy.SERVICE]: 'Teneste',
-    [ProductTaxonomy.FOR_EMPLOYERS]: 'For arbeidsgjevarar',
-    [ProductTaxonomy.FOR_EVENT_ORGANIZERS]: 'For tiltaksarrangørar',
-    [ProductTaxonomy.FOR_HEALTH_SERVICE]: 'For leger og andre behandlarar',
-    [ProductTaxonomy.FOR_MUNICIPALITY]: 'For kommunen',
     [ProductTaxonomy.FOR_PROVIDERS]: 'For samhandlarar',
     [ProductTaxonomy.MEASURES]: 'Tiltak',
     [ProductTaxonomy.RIGHTS]: 'Rettleiing',
@@ -53,12 +48,11 @@ const taxonomies: {
     [ToolsPageTaxonomy.NAVIGATOR]: 'Vegvisar',
 };
 
-const areas: { [key in Area]: string } = {
+const areas: { [key in Area]?: string } = {
     [Area.ALL]: 'Alle',
     [Area.ACCESSIBILITY]: 'Hjelpemiddel og tilrettelegging',
     [Area.FAMILY]: 'Familie og barn',
     [Area.HEALTH]: 'Helse og sjukdom',
-    [Area.MUNICIPALITY]: 'For kommunen',
     [Area.OTHER]: 'Anna',
     [Area.PENSION]: 'Pensjon',
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og rettleiing',
