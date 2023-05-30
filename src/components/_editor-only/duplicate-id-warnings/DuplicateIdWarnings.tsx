@@ -6,16 +6,21 @@ export const DuplicateIdWarnings = () => {
     const [elements, setElements] = useState<HTMLElement[]>([]);
 
     useEffect(() => {
-        const elementsWithDuplicateIds = [
-            ...document.querySelectorAll<HTMLElement>('#maincontent [id]'),
-        ].filter((element1, index1, array) =>
-            array.some(
-                (element2, index2) =>
-                    element1.id === element2.id && index1 !== index2
-            )
-        );
+        // Delay the check slightly to avoid certain false positives.
+        // Typically mobile/desktop exclusive elements which may have duplicate
+        // ids in the server html, which are pruned with client-side javascript
+        setTimeout(() => {
+            const elementsWithDuplicateIds = [
+                ...document.querySelectorAll<HTMLElement>('#maincontent [id]'),
+            ].filter((element1, index1, array) =>
+                array.some(
+                    (element2, index2) =>
+                        element1.id === element2.id && index1 !== index2
+                )
+            );
 
-        setElements(elementsWithDuplicateIds);
+            setElements(elementsWithDuplicateIds);
+        }, 1000);
     }, []);
 
     return (
