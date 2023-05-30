@@ -155,7 +155,6 @@ const config = {
         SENTRY_DSN: process.env.SENTRY_DSN,
         NAVNO_API_URL: process.env.NAVNO_API_URL,
         DECORATOR_URL: process.env.DECORATOR_URL,
-        ASSET_PREFIX: process.env.ASSET_PREFIX,
     },
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
