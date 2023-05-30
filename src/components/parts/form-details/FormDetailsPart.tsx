@@ -2,6 +2,7 @@ import React from 'react';
 import { FormDetailsProps } from 'types/component-props/parts/form-details';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { FormDetails } from 'components/_common/form-details/FormDetails';
+import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
 
 export const FormDetailsPart = ({ config }: FormDetailsProps) => {
     const { targetFormDetails, ...displayConfig } = config;
@@ -12,6 +13,11 @@ export const FormDetailsPart = ({ config }: FormDetailsProps) => {
     const formDetails = targetFormDetails.data;
 
     return (
-        <FormDetails formDetails={formDetails} displayConfig={displayConfig} />
+        <FilteredContent {...config}>
+            <FormDetails
+                formDetails={formDetails}
+                displayConfig={displayConfig}
+            />
+        </FilteredContent>
     );
 };
