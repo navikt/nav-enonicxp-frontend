@@ -49,6 +49,7 @@ export type FormsOverviewAudienceOptions = OptionSetSingle<{
 
 export type FormsOverviewData = {
     title: string;
+    underTitle: string;
     ingress: string;
     overviewType: 'application' | 'complaint' | 'addendum';
     illustration: AnimatedIconsProps;

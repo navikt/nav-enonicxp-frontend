@@ -12,9 +12,9 @@ export interface Variation<T = string> {
 }
 
 export interface FormDetailsData {
-    formNumbers: string[];
-    title: string;
-    ingress: ProcessedHtmlProps;
+    formNumbers?: string[];
+    title?: string;
+    ingress?: ProcessedHtmlProps;
     formType: OptionSetSingle<{
         application: {
             variations: Variation[];
