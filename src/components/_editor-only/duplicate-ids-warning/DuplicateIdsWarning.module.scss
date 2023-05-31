@@ -13,6 +13,7 @@
 
     & > * {
         max-width: 600px;
+        width: 100%;
     }
 
     ul {
@@ -23,4 +24,12 @@
     a {
         margin-left: 0.25rem;
     }
+}
+
+.warning {
+    min-width: 400px;
+    background-color: common.$a-white;
+    border: 1px solid common.$a-border-danger;
+    border-radius: common.$a-border-radius-large;
+    padding: 0 0.5rem;
 }

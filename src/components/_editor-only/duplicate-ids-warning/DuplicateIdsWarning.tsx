@@ -90,15 +90,15 @@ export const DuplicateIdsWarning = () => {
             )}
             {elementsWithDupeIds.map((element, index) => {
                 const linkId = getLinkId(index);
+                element.style.overflow = 'visible';
 
                 return createPortal(
-                    <>
-                        <span id={linkId} />
+                    <span className={style.warning} id={linkId}>
                         <EditorHelp
                             text={`Elementet ovenfor har en duplikat id: "${element.id}"`}
                             type={'error'}
                         />
-                    </>,
+                    </span>,
                     element,
                     linkId
                 );

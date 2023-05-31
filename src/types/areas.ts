@@ -1,13 +1,13 @@
 export enum Area {
     ALL = 'all',
     WORK = 'work',
-    FAMILY = 'family',
     HEALTH = 'health',
-    ACCESSIBILITY = 'accessibility',
+    FAMILY = 'family',
     PENSION = 'pension',
     SOCIAL_COUNSELLING = 'social_counselling',
-    OTHER = 'other',
+    ACCESSIBILITY = 'accessibility',
     RECRUITMENT = 'recruitment',
     INCLUSION = 'inclusion',
     DOWNSIZING = 'downsizing',
+    OTHER = 'other',
 }

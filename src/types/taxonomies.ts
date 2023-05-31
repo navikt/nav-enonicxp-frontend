@@ -1,15 +1,14 @@
 export enum ProductTaxonomy {
     ALL = 'all',
-    INSURANCE = 'insurance',
-    ASSISTIVE_TOOLS = 'assistive_tools',
     BENEFITS = 'benefits',
+    INSURANCE = 'insurance',
     MEASURES = 'measures',
     SERVICE = 'service',
-    RIGHTS = 'rights',
-    FORMS = 'forms',
+    COUNSELLING = 'rights',
+    ASSISTIVE_TOOLS = 'assistive_tools',
     EMPLOYEE_BENEFITS = 'employee_benefits',
     REFUND = 'refund',
-    FOR_PROVIDERS = 'for_providers',
+    OTHER = 'forms',
 }
 
 export enum ThemedArticlePageTaxonomy {

@@ -27,13 +27,15 @@ const taxonomies: {
     [key in Taxonomy]?: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
-    [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
     [ProductTaxonomy.BENEFITS]: 'Pengestønad',
-    [ProductTaxonomy.SERVICE]: 'Teneste',
-    [ProductTaxonomy.FOR_PROVIDERS]: 'For samhandlarar',
+    [ProductTaxonomy.INSURANCE]: 'Forsikring',
     [ProductTaxonomy.MEASURES]: 'Tiltak',
-    [ProductTaxonomy.RIGHTS]: 'Rettleiing',
-    [ProductTaxonomy.FORMS]: 'Anna',
+    [ProductTaxonomy.SERVICE]: 'Teneste',
+    [ProductTaxonomy.COUNSELLING]: 'Rettleiing',
+    [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
+    [ProductTaxonomy.EMPLOYEE_BENEFITS]: 'Pengestøtte til ansatt',
+    [ProductTaxonomy.REFUND]: 'Refusjon',
+    [ProductTaxonomy.OTHER]: 'Anna',
     [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Jobbsøkartips',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Hjelp til å kome i jobb',
     [ThemedArticlePageTaxonomy.WHEN_SICK]: 'Når du er sjuk',
@@ -50,13 +52,16 @@ const taxonomies: {
 
 const areas: { [key in Area]?: string } = {
     [Area.ALL]: 'Alle',
-    [Area.ACCESSIBILITY]: 'Hjelpemiddel og tilrettelegging',
-    [Area.FAMILY]: 'Familie og barn',
+    [Area.WORK]: 'Arbeid',
     [Area.HEALTH]: 'Helse og sjukdom',
-    [Area.OTHER]: 'Anna',
+    [Area.FAMILY]: 'Familie og barn',
     [Area.PENSION]: 'Pensjon',
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og rettleiing',
-    [Area.WORK]: 'Arbeid',
+    [Area.ACCESSIBILITY]: 'Hjelpemiddel og tilrettelegging',
+    [Area.RECRUITMENT]: 'Rekruttering',
+    [Area.INCLUSION]: 'Inkludering og tilrettelegging',
+    [Area.DOWNSIZING]: 'Permittering og nedbemanning',
+    [Area.OTHER]: 'På tvers',
 };
 
 export const translationsBundleNn: Translations = {

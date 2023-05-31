@@ -35,7 +35,7 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
     );
 
     if (listHasGuidePage) {
-        taxonomiesPresent.push(ProductTaxonomy.FORMS);
+        taxonomiesPresent.push(ProductTaxonomy.OTHER);
     }
 
     return (

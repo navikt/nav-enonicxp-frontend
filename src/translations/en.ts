@@ -12,13 +12,15 @@ const taxonomies: {
     [key in Taxonomy]?: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
-    [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
     [ProductTaxonomy.BENEFITS]: 'Benefits',
-    [ProductTaxonomy.SERVICE]: 'Service',
-    [ProductTaxonomy.FOR_PROVIDERS]: 'For providers',
+    [ProductTaxonomy.INSURANCE]: 'Insurance',
     [ProductTaxonomy.MEASURES]: 'Measures',
-    [ProductTaxonomy.RIGHTS]: 'Counselling',
-    [ProductTaxonomy.FORMS]: 'Other',
+    [ProductTaxonomy.SERVICE]: 'Service',
+    [ProductTaxonomy.COUNSELLING]: 'Counselling',
+    [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
+    [ProductTaxonomy.EMPLOYEE_BENEFITS]: 'Benefits for employees',
+    [ProductTaxonomy.REFUND]: 'Refund',
+    [ProductTaxonomy.OTHER]: 'Other',
     [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Advice for jobseekers',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Help to get employed',
     [ThemedArticlePageTaxonomy.WHEN_SICK]: 'When you are ill',
@@ -35,13 +37,16 @@ const taxonomies: {
 
 const areas: { [key in Area]?: string } = {
     [Area.ALL]: 'All',
-    [Area.ACCESSIBILITY]: 'Aid and accessibility',
-    [Area.FAMILY]: 'Family and children',
+    [Area.WORK]: 'Work',
     [Area.HEALTH]: 'Health',
-    [Area.OTHER]: 'Other',
+    [Area.FAMILY]: 'Family and children',
     [Area.PENSION]: 'Pension',
     [Area.SOCIAL_COUNSELLING]: 'Financial social advice and guidance',
-    [Area.WORK]: 'Work',
+    [Area.ACCESSIBILITY]: 'Aid and accessibility',
+    [Area.RECRUITMENT]: 'Recruitment',
+    [Area.INCLUSION]: 'Inclusion and facilitation',
+    [Area.DOWNSIZING]: 'Layoffs, furloughs and temporary leave',
+    [Area.OTHER]: 'General',
 };
 
 export const translationsBundleEn: Translations = {
