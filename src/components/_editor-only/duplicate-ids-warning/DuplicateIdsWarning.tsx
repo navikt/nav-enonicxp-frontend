@@ -5,6 +5,7 @@ import { removeDuplicates } from 'utils/arrays';
 import { BodyLong } from '@navikt/ds-react';
 import { Header } from '../../_common/headers/Header';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 
 import style from './DuplicateIdsWarning.module.scss';
 
@@ -13,14 +14,14 @@ export const DuplicateIdsWarning = () => {
         HTMLElement[]
     >([]);
 
-    const idPrefix = useId();
+    const linkIdPrefix = useId();
 
     const uniqueDupeIds = removeDuplicates(
         elementsWithDupeIds,
         (a, b) => a.id === b.id
     ).map((element) => element.id);
 
-    const getLinkId = (index: number) => `${idPrefix}-${index}`;
+    const getLinkId = (index: number) => `${linkIdPrefix}-${index}`;
 
     useEffect(() => {
         // Delay the check slightly to avoid certain false positives.
@@ -56,18 +57,20 @@ export const DuplicateIdsWarning = () => {
                     <ul>
                         {uniqueDupeIds.map((id) => (
                             <li key={id}>
-                                <code>{id}</code>
+                                <code>{`#${id}`}</code>
                                 {elementsWithDupeIds.reduce<React.ReactNode[]>(
                                     (acc, element, index) => {
                                         if (element.id === id) {
                                             acc.push(
-                                                <LenkeInline
-                                                    href={`#${getLinkId(
-                                                        index
-                                                    )}`}
-                                                >
-                                                    {`[${acc.length + 1}]`}
-                                                </LenkeInline>
+                                                <EditorLinkWrapper>
+                                                    <LenkeInline
+                                                        href={`#${getLinkId(
+                                                            index
+                                                        )}`}
+                                                    >
+                                                        {`[${acc.length + 1}]`}
+                                                    </LenkeInline>
+                                                </EditorLinkWrapper>
                                             );
                                         }
 

@@ -128,7 +128,7 @@ export const PageWrapper = (props: Props) => {
         >
             <div className={classNames('app-container')}>
                 <EditorHacks content={content} />
-                {editorView && <DuplicateIdsWarning />}
+                {editorView && <DuplicateIdsWarning key={content._id} />}
                 <DocumentParameterMetatags content={content} />
                 <HeadWithMetatags content={content} />
                 <TopContainer content={content} />
