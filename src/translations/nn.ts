@@ -33,6 +33,9 @@ const taxonomies: {
     [ProductTaxonomy.FOR_PROVIDERS]: 'For samhandlarar',
     [ProductTaxonomy.MEASURES]: 'Tiltak',
     [ProductTaxonomy.RIGHTS]: 'Rettleiing',
+    [ProductTaxonomy.INSURANCE]: 'Forsikring',
+    [ProductTaxonomy.EMPLOYEE_BENEFITS]: 'Pengestøtte til ansatt',
+    [ProductTaxonomy.REFUND]: 'Refusjon',
     [ProductTaxonomy.FORMS]: 'Anna',
     [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Jobbsøkartips',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Hjelp til å kome i jobb',
@@ -50,13 +53,16 @@ const taxonomies: {
 
 const areas: { [key in Area]?: string } = {
     [Area.ALL]: 'Alle',
-    [Area.ACCESSIBILITY]: 'Hjelpemiddel og tilrettelegging',
+    [Area.WORK]: 'Arbeid',
     [Area.FAMILY]: 'Familie og barn',
     [Area.HEALTH]: 'Helse og sjukdom',
-    [Area.OTHER]: 'Anna',
+    [Area.ACCESSIBILITY]: 'Hjelpemiddel og tilrettelegging',
     [Area.PENSION]: 'Pensjon',
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og rettleiing',
-    [Area.WORK]: 'Arbeid',
+    [Area.RECRUITMENT]: 'Rekruttering',
+    [Area.INCLUSION]: 'Inkludering og tilrettelegging',
+    [Area.DOWNSIZING]: 'Permittering og nedbemanning',
+    [Area.OTHER]: 'På tvers',
 };
 
 export const translationsBundleNn: Translations = {

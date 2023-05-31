@@ -6,8 +6,8 @@ export enum Area {
     ACCESSIBILITY = 'accessibility',
     PENSION = 'pension',
     SOCIAL_COUNSELLING = 'social_counselling',
-    OTHER = 'other',
     RECRUITMENT = 'recruitment',
     INCLUSION = 'inclusion',
     DOWNSIZING = 'downsizing',
+    OTHER = 'other',
 }

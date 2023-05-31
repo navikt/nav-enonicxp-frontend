@@ -54,16 +54,16 @@ const taxonomies: {
 
 const areas: { [key in Area]: string } = {
     [Area.ALL]: 'Alle',
-    [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
+    [Area.WORK]: 'Arbeid',
     [Area.FAMILY]: 'Familie og barn',
     [Area.HEALTH]: 'Helse og sykdom',
+    [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
     [Area.PENSION]: 'Pensjon',
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
-    [Area.WORK]: 'Arbeid',
-    [Area.OTHER]: 'Annet',
     [Area.RECRUITMENT]: 'Rekruttering',
     [Area.INCLUSION]: 'Inkludering og tilrettelegging',
     [Area.DOWNSIZING]: 'Permittering og nedbemanning',
+    [Area.OTHER]: 'På tvers',
 };
 
 const productDetailTypes: { [key in ProductDetailType]: string } = {

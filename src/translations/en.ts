@@ -18,6 +18,9 @@ const taxonomies: {
     [ProductTaxonomy.FOR_PROVIDERS]: 'For providers',
     [ProductTaxonomy.MEASURES]: 'Measures',
     [ProductTaxonomy.RIGHTS]: 'Counselling',
+    [ProductTaxonomy.INSURANCE]: 'Insurance',
+    [ProductTaxonomy.EMPLOYEE_BENEFITS]: 'Benefits for employees',
+    [ProductTaxonomy.REFUND]: 'Refund',
     [ProductTaxonomy.FORMS]: 'Other',
     [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Advice for jobseekers',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Help to get employed',
@@ -35,13 +38,16 @@ const taxonomies: {
 
 const areas: { [key in Area]?: string } = {
     [Area.ALL]: 'All',
-    [Area.ACCESSIBILITY]: 'Aid and accessibility',
+    [Area.WORK]: 'Work',
     [Area.FAMILY]: 'Family and children',
     [Area.HEALTH]: 'Health',
-    [Area.OTHER]: 'Other',
+    [Area.ACCESSIBILITY]: 'Aid and accessibility',
     [Area.PENSION]: 'Pension',
     [Area.SOCIAL_COUNSELLING]: 'Financial social advice and guidance',
-    [Area.WORK]: 'Work',
+    [Area.RECRUITMENT]: 'Recruitment',
+    [Area.INCLUSION]: 'Inclusion and facilitation',
+    [Area.DOWNSIZING]: 'Layoffs, furloughs and temporary leave',
+    [Area.OTHER]: 'General',
 };
 
 export const translationsBundleEn: Translations = {
