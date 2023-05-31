@@ -12,7 +12,7 @@
     @include common.full-width-mixin();
 
     & > * {
-        width: 600px;
+        max-width: 600px;
     }
 
     ul {
