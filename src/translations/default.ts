@@ -55,11 +55,11 @@ const taxonomies: {
 const areas: { [key in Area]: string } = {
     [Area.ALL]: 'Alle',
     [Area.WORK]: 'Arbeid',
-    [Area.FAMILY]: 'Familie og barn',
     [Area.HEALTH]: 'Helse og sykdom',
-    [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
+    [Area.FAMILY]: 'Familie og barn',
     [Area.PENSION]: 'Pensjon',
     [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
+    [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
     [Area.RECRUITMENT]: 'Rekruttering',
     [Area.INCLUSION]: 'Inkludering og tilrettelegging',
     [Area.DOWNSIZING]: 'Permittering og nedbemanning',
