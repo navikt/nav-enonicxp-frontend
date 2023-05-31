@@ -1,0 +1,26 @@
+@use 'src/common' as common;
+
+.bigWarning {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+    background-color: common.$a-surface-danger-subtle;
+    border: 2px solid common.$a-border-danger;
+
+    @include common.full-width-mixin();
+
+    & > * {
+        max-width: 600px;
+    }
+
+    ul {
+        @include common.unstyled-list();
+        margin: 1rem 0;
+    }
+
+    a {
+        margin-left: 0.25rem;
+    }
+}

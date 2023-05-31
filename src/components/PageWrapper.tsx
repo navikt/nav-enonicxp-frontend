@@ -22,7 +22,7 @@ import { setAuthStateAction } from 'store/slices/authState';
 import { fetchAndSetMeldekortStatus } from 'utils/fetch/fetch-meldekort-status';
 import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
 import classNames from 'classnames';
-import { DuplicateIdWarnings } from 'components/_editor-only/duplicate-id-warnings/DuplicateIdWarnings';
+import { DuplicateIdsWarning } from 'components/_editor-only/duplicate-ids-warning/DuplicateIdsWarning';
 
 type Props = {
     content: ContentProps;
@@ -128,7 +128,7 @@ export const PageWrapper = (props: Props) => {
         >
             <div className={classNames('app-container')}>
                 <EditorHacks content={content} />
-                {editorView && <DuplicateIdWarnings />}
+                {editorView && <DuplicateIdsWarning key={content._id} />}
                 <DocumentParameterMetatags content={content} />
                 <HeadWithMetatags content={content} />
                 <TopContainer content={content} />
