@@ -20,7 +20,6 @@ const taxonomies: {
     [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
     [ProductTaxonomy.EMPLOYEE_BENEFITS]: 'Benefits for employees',
     [ProductTaxonomy.REFUND]: 'Refund',
-    [ProductTaxonomy.FOR_PROVIDERS]: 'For providers',
     [ProductTaxonomy.OTHER]: 'Other',
     [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Advice for jobseekers',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Help to get employed',

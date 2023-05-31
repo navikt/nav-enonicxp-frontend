@@ -36,7 +36,6 @@ const taxonomies: {
     [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
     [ProductTaxonomy.EMPLOYEE_BENEFITS]: 'Pengestøtte til ansatt',
     [ProductTaxonomy.REFUND]: 'Refusjon',
-    [ProductTaxonomy.FOR_PROVIDERS]: 'For samarbeidspartnere',
     [ProductTaxonomy.OTHER]: 'Annet',
     [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Jobbsøkertips',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Hjelp til å komme i jobb',

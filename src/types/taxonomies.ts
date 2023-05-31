@@ -8,7 +8,6 @@ export enum ProductTaxonomy {
     ASSISTIVE_TOOLS = 'assistive_tools',
     EMPLOYEE_BENEFITS = 'employee_benefits',
     REFUND = 'refund',
-    FOR_PROVIDERS = 'for_providers',
     OTHER = 'forms',
 }
 
