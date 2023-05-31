@@ -18,10 +18,18 @@ export type MiniKortProps = {
     type: CardType;
     header?: string;
     className?: string;
+    preferStaticIllustration?: boolean;
 };
 
 export const MiniCard = (props: MiniKortProps) => {
-    const { link, illustration, type, header, className } = props;
+    const {
+        link,
+        illustration,
+        type,
+        header,
+        className,
+        preferStaticIllustration,
+    } = props;
     const { text } = link;
     const { isHovering, userEventProps, analyticsProps } = useCard({
         type,
@@ -48,6 +56,7 @@ export const MiniCard = (props: MiniKortProps) => {
                         illustration={illustration}
                         isHovering={isHovering}
                         preferStaticIllustration={
+                            preferStaticIllustration ||
                             pageConfig.editorView === 'edit'
                         }
                     />
