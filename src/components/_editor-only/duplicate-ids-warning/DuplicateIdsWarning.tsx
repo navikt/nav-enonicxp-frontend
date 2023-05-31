@@ -93,8 +93,7 @@ export const DuplicateIdsWarning = () => {
                 element.style.overflow = 'visible';
 
                 return createPortal(
-                    <span className={style.warning}>
-                        <span id={linkId} />
+                    <span className={style.warning} id={linkId}>
                         <EditorHelp
                             text={`Elementet ovenfor har en duplikat id: "${element.id}"`}
                             type={'error'}
