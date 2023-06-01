@@ -7,6 +7,20 @@ import {
     useOverviewFiltersState,
 } from 'store/hooks/useOverviewFilters';
 import { setTaxonomyFilterAction } from 'store/slices/overviewFilters';
+import { sortLikeArray } from 'utils/arrays';
+
+const filterOrder: ProductTaxonomy[] = [
+    ProductTaxonomy.ALL,
+    ProductTaxonomy.BENEFITS,
+    ProductTaxonomy.INSURANCE,
+    ProductTaxonomy.MEASURES,
+    ProductTaxonomy.SERVICE,
+    ProductTaxonomy.COUNSELLING,
+    ProductTaxonomy.ASSISTIVE_TOOLS,
+    ProductTaxonomy.EMPLOYEE_BENEFITS,
+    ProductTaxonomy.REFUND,
+    ProductTaxonomy.OTHER,
+];
 
 type Props = {
     items: OverviewFilterableItem[];
@@ -38,12 +52,16 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
         taxonomiesPresent.push(ProductTaxonomy.OTHER);
     }
 
+    const options = [ProductTaxonomy.ALL, ...taxonomiesPresent].sort(
+        sortLikeArray(filterOrder)
+    );
+
     return (
         <OverviewFilterBase
             type={'taxonomies'}
             selectionCallback={handleFilterUpdate}
             selected={taxonomyFilter}
-            options={[ProductTaxonomy.ALL, ...taxonomiesPresent]}
+            options={options}
         />
     );
 };
