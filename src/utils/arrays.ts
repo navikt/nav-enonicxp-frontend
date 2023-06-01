@@ -18,3 +18,8 @@ export const forceArray = <Type>(arrayOrNot?: Type | Type[]) => {
 
     return Array.isArray(arrayOrNot) ? arrayOrNot : [arrayOrNot];
 };
+
+export const sortLikeArray =
+    <Type>(sortedArray: Type[]) =>
+    (a: Type, b: Type) =>
+        sortedArray.indexOf(a) - sortedArray.indexOf(b);

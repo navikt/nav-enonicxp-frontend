@@ -7,6 +7,21 @@ import {
     useOverviewFiltersState,
 } from 'store/hooks/useOverviewFilters';
 import { setAreaFilterAction } from 'store/slices/overviewFilters';
+import { sortLikeArray } from 'utils/arrays';
+
+const filterOrder: Area[] = [
+    Area.ALL,
+    Area.WORK,
+    Area.HEALTH,
+    Area.FAMILY,
+    Area.PENSION,
+    Area.SOCIAL_COUNSELLING,
+    Area.ACCESSIBILITY,
+    Area.INCLUSION,
+    Area.RECRUITMENT,
+    Area.DOWNSIZING,
+    Area.OTHER,
+];
 
 type Props = {
     items: OverviewFilterableItem[];
@@ -27,12 +42,16 @@ export const OverviewAreaFilter = ({ items }: Props) => {
         items.some((item) => item.area.some((itemArea) => itemArea === area))
     );
 
+    const options = [Area.ALL, ...areasPresent].sort(
+        sortLikeArray(filterOrder)
+    );
+
     return (
         <OverviewFilterBase
             type={'areas'}
             selectionCallback={handleFilterUpdate}
             selected={areaFilter}
-            options={[Area.ALL, ...areasPresent]}
+            options={options}
         />
     );
 };
