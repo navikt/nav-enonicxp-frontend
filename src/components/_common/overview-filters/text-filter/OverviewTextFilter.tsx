@@ -33,6 +33,10 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
     }, 500);
 
     const logInputToSentry = debounce((value: string) => {
+        if (value.length < 3) {
+            return;
+        }
+
         Sentry.captureMessage(
             `Oversiktsside fritekst input: "${value}"`,
             'info'
