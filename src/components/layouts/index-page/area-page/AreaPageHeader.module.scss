@@ -5,7 +5,6 @@
     display: flex;
     padding-bottom: 1.75rem;
     background-color: common.$a-white;
-
     @include common.full-width-mixin();
 
     @media #{common.$mq-screen-mobile} {
@@ -35,14 +34,16 @@
 
 .gfxContainer {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-self: flex-end;
     flex: 1;
-
     height: common.px-to-rem(160px);
     margin-bottom: -1.75rem;
-
     pointer-events: none;
+
+    > * {
+        width: 300px;
+    }
 
     @media #{common.$mq-screen-mobile} {
         display: none;
