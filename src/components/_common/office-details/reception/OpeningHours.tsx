@@ -86,9 +86,7 @@ export const OpeningHours = ({ openingHours }: Props) => {
 
                     return (
                         <tr key={index}>
-                            <th className="dayInformation" role="row">
-                                {dayInformation}
-                            </th>
+                            <th className="dayInformation">{dayInformation}</th>
                             <td className="openingInformation">
                                 {buildOpeningInformation(opening)}
                             </td>
