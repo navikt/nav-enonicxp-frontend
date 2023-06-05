@@ -5,7 +5,7 @@ import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { Button } from 'components/_common/button/Button';
 
 type ExtraProps = {
-    variant?: 'primary';
+    variant?: 'secondary';
 };
 
 export const MacroChatbotLink = ({ config }: MacroChatbotLinkProps) => {
@@ -17,7 +17,7 @@ export const MacroChatbotLink = ({ config }: MacroChatbotLinkProps) => {
 
     const Element = presentation === 'link' ? LenkeInline : Button;
     const extraProps: ExtraProps =
-        presentation === 'link' ? {} : { variant: 'primary' };
+        presentation === 'link' ? {} : { variant: 'secondary' };
 
     return (
         <Element
