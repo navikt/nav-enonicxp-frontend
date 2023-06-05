@@ -5,6 +5,7 @@ export interface MacroChatbotLinkProps extends MacroPropsCommon {
     config: {
         chatbot_link: {
             text: string;
+            presentation: 'button' | 'link';
         };
     };
 }
