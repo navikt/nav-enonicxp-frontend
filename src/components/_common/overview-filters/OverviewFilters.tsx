@@ -8,11 +8,10 @@ import {
 } from 'store/hooks/useOverviewFilters';
 import { resetOverviewFiltersAction } from 'store/slices/overviewFilters';
 import { classNames } from 'utils/classnames';
-import { Button } from 'components/_common/button/Button';
 import { Filter2 as FilterIcon } from '@navikt/ds-icons';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { Heading } from '@navikt/ds-react';
+import { Heading, Button } from '@navikt/ds-react';
 
 import style from './OverviewFilters.module.scss';
 
@@ -33,18 +32,18 @@ const MobileView = ({
         <div className={style.mobile}>
             {showTextInputFilter && (
                 <>
-                    <Heading level={'2'} size={'small'}>
+                    <Heading level={'2'} size={'xsmall'}>
                         {searchLabel}
                     </Heading>
                     <div className={style.mobileTextFilter}>
                         <Button
-                            dsIcon={<FilterIcon />}
+                            icon={<FilterIcon />}
                             onClick={(e) => {
                                 e.preventDefault();
                                 setIsOpen(!isOpen);
                             }}
                             className={style.mobileFilterButton}
-                            variant={'primary-neutral'}
+                            variant="primary-neutral"
                         >
                             {'Filter'}
                         </Button>
