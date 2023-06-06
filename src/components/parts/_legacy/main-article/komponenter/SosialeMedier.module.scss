@@ -24,29 +24,29 @@
     }
 
     .twitter {
-        background-image: url('/gfx/twitter-filled.svg');
+        background-image: url('https://www.nav.no/gfx/twitter-filled.svg');
         background-size: 1.1875rem 1rem;
 
         &:hover {
-            background-image: url('/gfx/twitter-inverted.svg');
+            background-image: url('https://www.nav.no/gfx/twitter-inverted.svg');
         }
     }
 
     .facebook {
-        background-image: url('/gfx/facebook-filled.svg');
+        background-image: url('https://www.nav.no/gfx/facebook-filled.svg');
         background-size: 0.5625rem 1.125rem;
 
         &:hover {
-            background-image: url('/gfx/facebook-inverted.svg');
+            background-image: url('https://www.nav.no/gfx/facebook-inverted.svg');
         }
     }
 
     .linkedin {
-        background-image: url('/gfx/linkedin-filled.svg');
+        background-image: url('https://www.nav.no/gfx/linkedin-filled.svg');
         background-size: 1rem 1rem;
 
         &:hover {
-            background-image: url('/gfx/linkedin-inverted.svg');
+            background-image: url('https://www.nav.no/gfx/linkedin-inverted.svg');
         }
     }
 
@@ -69,7 +69,8 @@
         // preload mouseover icons
         position: absolute;
         z-index: -1;
-        content: url('/gfx/twitter-inverted.svg')
-            url('/gfx/facebook-inverted.svg') url('/gfx/linkedin-inverted.svg');
+        content: url('https://www.nav.no/gfx/twitter-inverted.svg')
+            url('https://www.nav.no/gfx/facebook-inverted.svg')
+            url('https://www.nav.no/gfx/linkedin-inverted.svg');
     }
 }
