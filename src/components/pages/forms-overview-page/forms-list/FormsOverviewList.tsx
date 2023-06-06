@@ -64,14 +64,16 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                     showResetChips={numFilterTypes > 1}
                 />
             )}
-            {formDetailsList.map((formDetail) => (
-                <FormsOverviewListPanel
-                    formDetails={formDetail}
-                    visible={isVisible(formDetail)}
-                    overviewType={overviewType}
-                    key={formDetail.anchorId}
-                />
-            ))}
+            <div>
+                {formDetailsList.map((formDetail) => (
+                    <FormsOverviewListPanel
+                        formDetails={formDetail}
+                        visible={isVisible(formDetail)}
+                        overviewType={overviewType}
+                        key={formDetail.anchorId}
+                    />
+                ))}
+            </div>
         </div>
     );
 };
