@@ -30,7 +30,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 detail: { value, id: inputId },
             })
         );
-    }, 1000);
+    }, 500);
 
     const logInputToSentry = debounce((value: string) => {
         if (value.length < 3) {
