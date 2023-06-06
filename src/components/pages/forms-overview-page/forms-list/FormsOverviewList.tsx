@@ -20,18 +20,22 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
 
     const { matchFilters, textFilter } = useOverviewFiltersState();
 
-    const [scoredList, setScoredList] = useState(formDetailsList);
+    const [searchFunc, setSearchFunc] =
+        useState<(text: string) => FormDetailsListItemProps[]>();
+    const [scoredList, setScoredList] =
+        useState<FormDetailsListItemProps[]>(formDetailsList);
 
     const isVisible = (formDetail: FormDetailsListItemProps) => {
         return matchFilters(formDetail);
     };
 
     useEffect(() => {
-        if (!textFilter) {
-            setScoredList(formDetailsList);
-            return;
+        if (searchFunc) {
+            setScoredList(searchFunc(textFilter));
         }
+    }, [textFilter, searchFunc]);
 
+    useEffect(() => {
         getFuseSearchFunc(formDetailsList, {
             keys: [
                 'formDetailsTitles',
@@ -40,8 +44,8 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 { name: 'sortTitle', weight: 10 },
                 { name: 'ingress', weight: 0.5 },
             ],
-        }).then((searchFunc) => setScoredList(searchFunc(textFilter)));
-    }, [formDetailsList, textFilter]);
+        }).then((fuseSearchFunc) => setSearchFunc(fuseSearchFunc));
+    }, [formDetailsList]);
 
     const numFilterTypes = [
         areasFilterToggle,
