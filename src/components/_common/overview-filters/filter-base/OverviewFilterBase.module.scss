@@ -10,18 +10,18 @@
     flex-direction: row;
     flex-wrap: wrap;
     list-style-type: none;
-    margin-top: 1rem;
+    margin-top: var(--a-spacing-2, 0.5rem);
     padding: 0;
 }
 
 .filterButton {
-    background-color: common.$a-deepblue-50;
+    background-color: var(--a-deepblue-50, common.$a-deepblue-50);
     box-shadow: none;
 
-    padding-left: common.$a-spacing-3;
+    padding-left: var(--a-spacing-3, 0.75rem);
 
     &:hover {
-        background-color: common.$a-deepblue-100;
+        background-color: var(--a-deepblue-100, common.$a-deepblue-100);
     }
 
     &:hover:not(:focus) {
