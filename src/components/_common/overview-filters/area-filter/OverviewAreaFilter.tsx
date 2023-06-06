@@ -9,8 +9,7 @@ import {
 import { setAreaFilterAction } from 'store/slices/overviewFilters';
 import { sortLikeArray } from 'utils/arrays';
 
-const filterOrder: Area[] = [
-    Area.ALL,
+const orderedAreas: Area[] = [
     Area.WORK,
     Area.HEALTH,
     Area.FAMILY,
@@ -38,12 +37,8 @@ export const OverviewAreaFilter = ({ items }: Props) => {
         dispatch(setAreaFilterAction({ area }));
     };
 
-    const areasPresent = Object.values(Area).filter((area) =>
+    const areasPresent = orderedAreas.filter((area) =>
         items.some((item) => item.area.some((itemArea) => itemArea === area))
-    );
-
-    const options = [Area.ALL, ...areasPresent].sort(
-        sortLikeArray(filterOrder)
     );
 
     return (
@@ -51,7 +46,7 @@ export const OverviewAreaFilter = ({ items }: Props) => {
             type={'areas'}
             selectionCallback={handleFilterUpdate}
             selected={areaFilter}
-            options={options}
+            options={[Area.ALL, ...areasPresent]}
         />
     );
 };

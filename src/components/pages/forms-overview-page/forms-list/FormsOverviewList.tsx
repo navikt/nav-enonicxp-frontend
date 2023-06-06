@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     FormDetailsListItemProps,
     FormsOverviewProps,
@@ -7,6 +7,7 @@ import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/for
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
+import { getFuseSearchFunc } from 'utils/text-search-utils';
 
 export const FormsOverviewList = (props: FormsOverviewProps) => {
     const {
@@ -17,31 +18,34 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
         overviewType,
     } = props.data;
 
-    const { matchFilters } = useOverviewFiltersState();
+    const { matchFilters, textFilter } = useOverviewFiltersState();
+
+    const [searchFunc, setSearchFunc] =
+        useState<(text: string) => FormDetailsListItemProps[]>();
+    const [scoredList, setScoredList] =
+        useState<FormDetailsListItemProps[]>(formDetailsList);
 
     const isVisible = (formDetail: FormDetailsListItemProps) => {
-        const { ingress, title, sortTitle, formDetailsTitles, formNumbers } =
-            formDetail;
-
-        const fieldsToMatch = [
-            ...formDetailsTitles,
-            ...formNumbers,
-            ingress,
-            title,
-            sortTitle,
-        ].map((value) => value?.toLowerCase() || '');
-
-        return matchFilters({
-            ...formDetail,
-            textMatchFunc: (textFilter) => {
-                return fieldsToMatch.some((value) =>
-                    value.includes(textFilter)
-                );
-            },
-        });
+        return matchFilters(formDetail);
     };
 
-    const numMatchingFilters = formDetailsList.filter(isVisible).length;
+    useEffect(() => {
+        if (searchFunc) {
+            setScoredList(searchFunc(textFilter));
+        }
+    }, [textFilter, searchFunc]);
+
+    useEffect(() => {
+        getFuseSearchFunc(formDetailsList, {
+            keys: [
+                'formDetailsTitles',
+                'formNumbers',
+                'title',
+                { name: 'sortTitle', weight: 10 },
+                { name: 'ingress', weight: 0.5 },
+            ],
+        }).then((fuseSearchFunc) => setSearchFunc(fuseSearchFunc));
+    }, [formDetailsList]);
 
     const numFilterTypes = [
         areasFilterToggle,
@@ -59,12 +63,12 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
             />
             {numFilterTypes > 0 && (
                 <OverviewFiltersSummary
-                    numMatches={numMatchingFilters}
+                    numMatches={scoredList.filter(isVisible).length}
                     numTotal={formDetailsList.length}
                     showResetChips={numFilterTypes > 1}
                 />
             )}
-            {formDetailsList.map((formDetail) => (
+            {scoredList.map((formDetail) => (
                 <FormsOverviewListPanel
                     formDetails={formDetail}
                     visible={isVisible(formDetail)}
