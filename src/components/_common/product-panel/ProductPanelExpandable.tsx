@@ -79,12 +79,12 @@ export const ProductPanelExpandable = ({
                         className={style.illustration}
                         illustration={illustration}
                     />
-                    <div className={style.panelHeader}>
+                    <span className={style.panelHeader}>
                         <span>{header}</span>
                         {subHeader && (
                             <span className={style.subHeader}>{subHeader}</span>
                         )}
-                    </div>
+                    </span>
                 </Accordion.Header>
                 <Accordion.Content>
                     <CopyLink
