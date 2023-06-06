@@ -1,7 +1,6 @@
-import Fuse from 'fuse.js';
-import IFuseOptions = Fuse.IFuseOptions;
+import type Fuse from 'fuse.js';
 
-const defaultOptions: IFuseOptions<unknown> = {
+const defaultOptions: Fuse.IFuseOptions<unknown> = {
     includeScore: true,
     includeMatches: true,
     findAllMatches: true,
@@ -9,10 +8,11 @@ const defaultOptions: IFuseOptions<unknown> = {
     threshold: 0.25,
 };
 
-export const getFuseSearchFunc = <Type>(
+export const getFuseSearchFunc = async <Type>(
     list: Type[],
-    options?: IFuseOptions<Type>
+    options?: Fuse.IFuseOptions<Type>
 ) => {
+    const Fuse = (await import('fuse.js')).default;
     const fuse = new Fuse(list, { ...defaultOptions, ...options });
 
     return (textInput: string) =>

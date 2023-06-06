@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     FormDetailsListItemProps,
     FormsOverviewProps,
@@ -20,23 +20,28 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
 
     const { matchFilters, textFilter } = useOverviewFiltersState();
 
-    const textSearchFunc = getFuseSearchFunc(formDetailsList, {
-        keys: [
-            'formDetailsTitles',
-            'formNumbers',
-            'title',
-            { name: 'sortTitle', weight: 10 },
-            'ingress',
-        ],
-    });
-
-    const listSortedBySearchScore = textSearchFunc(textFilter);
+    const [scoredList, setScoredList] = useState(formDetailsList);
 
     const isVisible = (formDetail: FormDetailsListItemProps) => {
         return matchFilters(formDetail);
     };
 
-    const numMatchingFilters = listSortedBySearchScore.filter(isVisible).length;
+    useEffect(() => {
+        if (!textFilter) {
+            setScoredList(formDetailsList);
+            return;
+        }
+
+        getFuseSearchFunc(formDetailsList, {
+            keys: [
+                'formDetailsTitles',
+                'formNumbers',
+                'title',
+                { name: 'sortTitle', weight: 10 },
+                { name: 'ingress', weight: 0.5 },
+            ],
+        }).then((searchFunc) => setScoredList(searchFunc(textFilter)));
+    }, [formDetailsList, textFilter]);
 
     const numFilterTypes = [
         areasFilterToggle,
@@ -54,12 +59,12 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
             />
             {numFilterTypes > 0 && (
                 <OverviewFiltersSummary
-                    numMatches={numMatchingFilters}
+                    numMatches={scoredList.filter(isVisible).length}
                     numTotal={formDetailsList.length}
                     showResetChips={numFilterTypes > 1}
                 />
             )}
-            {listSortedBySearchScore.map((formDetail) => (
+            {scoredList.map((formDetail) => (
                 <FormsOverviewListPanel
                     formDetails={formDetail}
                     visible={isVisible(formDetail)}
