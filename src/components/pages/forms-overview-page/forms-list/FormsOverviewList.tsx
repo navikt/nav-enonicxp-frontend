@@ -7,6 +7,7 @@ import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/for
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
+import { getFuseSearchFunc } from 'utils/text-search-utils';
 
 export const FormsOverviewList = (props: FormsOverviewProps) => {
     const {
@@ -17,31 +18,25 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
         overviewType,
     } = props.data;
 
-    const { matchFilters } = useOverviewFiltersState();
+    const { matchFilters, textFilter } = useOverviewFiltersState();
+
+    const textSearchFunc = getFuseSearchFunc(formDetailsList, {
+        keys: [
+            'formDetailsTitles',
+            'formNumbers',
+            'title',
+            { name: 'sortTitle', weight: 10 },
+            'ingress',
+        ],
+    });
+
+    const listSortedBySearchScore = textSearchFunc(textFilter);
 
     const isVisible = (formDetail: FormDetailsListItemProps) => {
-        const { ingress, title, sortTitle, formDetailsTitles, formNumbers } =
-            formDetail;
-
-        const fieldsToMatch = [
-            ...formDetailsTitles,
-            ...formNumbers,
-            ingress,
-            title,
-            sortTitle,
-        ].map((value) => value?.toLowerCase() || '');
-
-        return matchFilters({
-            ...formDetail,
-            textMatchFunc: (textFilter) => {
-                return fieldsToMatch.some((value) =>
-                    value.includes(textFilter)
-                );
-            },
-        });
+        return matchFilters(formDetail);
     };
 
-    const numMatchingFilters = formDetailsList.filter(isVisible).length;
+    const numMatchingFilters = listSortedBySearchScore.filter(isVisible).length;
 
     const numFilterTypes = [
         areasFilterToggle,
@@ -64,7 +59,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                     showResetChips={numFilterTypes > 1}
                 />
             )}
-            {formDetailsList.map((formDetail) => (
+            {listSortedBySearchScore.map((formDetail) => (
                 <FormsOverviewListPanel
                     formDetails={formDetail}
                     visible={isVisible(formDetail)}
