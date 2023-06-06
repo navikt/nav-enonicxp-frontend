@@ -77,8 +77,13 @@ const DesktopView = ({
     showAreaFilter,
     showTaxonomyFilter,
 }: Props) => {
+    const { language } = usePageConfig();
+    const searchLabel = translator('overview', language)('filterOrSearch');
     return (
         <div className={style.desktop}>
+            <Heading className="sr-only" level={'2'} size={'xsmall'}>
+                {searchLabel}
+            </Heading>
             {showAreaFilter && <OverviewAreaFilter items={filterableItems} />}
             {showTaxonomyFilter && (
                 <OverviewTaxonomyFilter items={filterableItems} />
