@@ -31,7 +31,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
     // Sets a cookie which will bypass the IP restriction
     expressApp.get('/login', (req, res) => {
         return res
-            .cookie(LOGIN_COOKIE, true, { maxAge: 3600 * 24 })
+            .cookie(LOGIN_COOKIE, true, { maxAge: 1000 * 3600 * 24 })
             .redirect(302, '/');
     });
 
