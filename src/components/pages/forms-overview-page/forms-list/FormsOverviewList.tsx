@@ -8,6 +8,9 @@ import { OverviewFilters } from 'components/_common/overview-filters/OverviewFil
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
 
+
+import style from './FormsOverviewList.module.scss';
+
 export const FormsOverviewList = (props: FormsOverviewProps) => {
     const {
         formDetailsList,
@@ -64,7 +67,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                     showResetChips={numFilterTypes > 1}
                 />
             )}
-            <div>
+            <ul className={style.list}>
                 {formDetailsList.map((formDetail) => (
                     <FormsOverviewListPanel
                         formDetails={formDetail}
@@ -73,7 +76,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                         key={formDetail.anchorId}
                     />
                 ))}
-            </div>
+            </ul>
         </div>
     );
 };
