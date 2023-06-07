@@ -1,10 +1,4 @@
 .productLink {
-    margin-bottom: 1rem;
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-
     :global(.product) {
         background-color: white;
     }

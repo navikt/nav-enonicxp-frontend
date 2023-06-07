@@ -71,12 +71,13 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
             )}
             <ul className={style.list}>
                 {scoredList.map((formDetail) => (
-                    <FormsOverviewListPanel
-                        formDetails={formDetail}
-                        visible={isVisible(formDetail)}
-                        overviewType={overviewType}
-                        key={formDetail.anchorId}
-                    />
+                    <li key={formDetail.anchorId}>
+                        <FormsOverviewListPanel
+                            formDetails={formDetail}
+                            visible={isVisible(formDetail)}
+                            overviewType={overviewType}
+                        />
+                    </li>
                 ))}
             </ul>
         </div>

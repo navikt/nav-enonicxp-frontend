@@ -27,19 +27,14 @@
     }
 }
 
-.transparent {
-    background-color: transparent;
-    padding: 0;
-}
-
 .productListWrapper,
 .filters {
-    padding: common.$sectionPaddingDesktop / 2;
+    padding: 1.25rem;
     max-width: common.$sectionMaxWidth;
     background-color: white;
 
     @media #{common.$mq-screen-mobile} {
-        padding: common.$sectionPaddingMobile;
+        padding: 1rem;
     }
 }
 
@@ -48,5 +43,23 @@
 }
 
 .productListWrapper {
+    list-style: none;
     padding-top: 0;
+    margin: 0;
+}
+
+.allProducts {
+    padding-top: 1rem;
+
+    & > li {
+        margin-bottom: 1rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        & > * {
+            margin: 0;
+        }
+    }
 }

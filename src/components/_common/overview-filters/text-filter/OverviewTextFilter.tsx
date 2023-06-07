@@ -26,7 +26,6 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const dispatchInput = useCallback(
         debounce((value: string) => {
-            console.log(value);
             dispatch(setTextFilterAction({ text: value }));
             window.dispatchEvent(
                 new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
@@ -34,7 +33,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 })
             );
         }, 500),
-        []
+        [dispatch]
     );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
