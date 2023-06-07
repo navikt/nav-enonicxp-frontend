@@ -29,11 +29,7 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
 
     console.log(`Current build id: ${currentBuildId}`);
 
-    if (
-        process.env.ENV === 'dev1' ||
-        process.env.ENV === 'dev2' ||
-        process.env.ENV === 'localhost'
-    ) {
+    if (process.env.ENV === 'dev1' || process.env.ENV === 'dev2') {
         serverSetupDev(expressApp, nextApp);
     }
 
