@@ -7,7 +7,7 @@ import { handleInvalidatePathsReq } from './req-handlers/invalidate-paths';
 import { setCacheKey } from './req-handlers/set-cache-key';
 import { handleInvalidateAllReq } from './req-handlers/invalidate-all';
 import { handleGetPendingResponses } from './req-handlers/pending-responses';
-import cookieParser from 'cookie-parser';
+import { serverSetupDev } from './server-setup-dev';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached
@@ -34,26 +34,7 @@ export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
         process.env.ENV === 'dev2' ||
         process.env.ENV === 'localhost'
     ) {
-        expressApp.all(
-            ['/draft/*', '/_next/*', '/gfx/*', '/api/*'],
-            (req, res) => {
-                return nextRequestHandler(req, res);
-            }
-        );
-
-        expressApp.get('/login', (req, res) => {
-            return res
-                .cookie('dev-login', true, { maxAge: 3600 * 24 * 365 })
-                .redirect(302, '/');
-        });
-
-        expressApp.all('*', cookieParser(), (req, res, next) => {
-            if (req.cookies['dev-login']) {
-                return next();
-            }
-
-            return res.status(401).send('Ingen tilgang');
-        });
+        serverSetupDev(expressApp, nextApp);
     }
 
     expressApp.post(
