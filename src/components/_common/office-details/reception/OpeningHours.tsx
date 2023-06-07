@@ -76,8 +76,8 @@ export const OpeningHours = ({ openingHours }: Props) => {
         <Table zebraStripes={false} className={styles.openingHours}>
             <thead className={styles.srOnly}>
                 <tr>
-                    <th>{dayLabel}</th>
-                    <th>{timeLabel}</th>
+                    <th role="columnheader">{dayLabel}</th>
+                    <th role="columnheader">{timeLabel}</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,9 +86,7 @@ export const OpeningHours = ({ openingHours }: Props) => {
 
                     return (
                         <tr key={index}>
-                            <th className="dayInformation" role="row">
-                                {dayInformation}
-                            </th>
+                            <th className="dayInformation">{dayInformation}</th>
                             <td className="openingInformation">
                                 {buildOpeningInformation(opening)}
                             </td>

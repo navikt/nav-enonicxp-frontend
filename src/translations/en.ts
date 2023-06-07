@@ -9,21 +9,18 @@ import {
 import { Area } from 'types/areas';
 
 const taxonomies: {
-    [key in Taxonomy]: string;
+    [key in Taxonomy]?: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
-    [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
     [ProductTaxonomy.BENEFITS]: 'Benefits',
-    [ProductTaxonomy.FOLLOWUP]: 'Follow-up',
-    [ProductTaxonomy.SERVICE]: 'Service',
-    [ProductTaxonomy.FOR_EMPLOYERS]: 'For employers',
-    [ProductTaxonomy.FOR_EVENT_ORGANIZERS]: 'For schemes organizers',
-    [ProductTaxonomy.FOR_HEALTH_SERVICE]: 'For physicians and other therapists',
-    [ProductTaxonomy.FOR_MUNICIPALITY]: 'For the municipality',
-    [ProductTaxonomy.FOR_PROVIDERS]: 'For providers',
+    [ProductTaxonomy.INSURANCE]: 'Insurance',
     [ProductTaxonomy.MEASURES]: 'Measures',
-    [ProductTaxonomy.RIGHTS]: 'Counselling',
-    [ProductTaxonomy.FORMS]: 'Forms',
+    [ProductTaxonomy.SERVICE]: 'Service',
+    [ProductTaxonomy.COUNSELLING]: 'Counselling',
+    [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Assistive tools',
+    [ProductTaxonomy.EMPLOYEE_BENEFITS]: 'Benefits for employees',
+    [ProductTaxonomy.REFUND]: 'Refund',
+    [ProductTaxonomy.OTHER]: 'Other',
     [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Advice for jobseekers',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Help to get employed',
     [ThemedArticlePageTaxonomy.WHEN_SICK]: 'When you are ill',
@@ -38,16 +35,18 @@ const taxonomies: {
     [ToolsPageTaxonomy.NAVIGATOR]: 'Navigator',
 };
 
-const areas: { [key in Area]: string } = {
+const areas: { [key in Area]?: string } = {
     [Area.ALL]: 'All',
-    [Area.ACCESSIBILITY]: 'Aid and accessibility',
-    [Area.FAMILY]: 'Family and children',
-    [Area.HEALTH]: 'Health',
-    [Area.MUNICIPALITY]: 'For government',
-    [Area.OTHER]: 'Other',
-    [Area.PENSION]: 'Pension',
-    [Area.SOCIAL_COUNSELLING]: 'Financial social advice and guidance',
     [Area.WORK]: 'Work',
+    [Area.HEALTH]: 'Health',
+    [Area.FAMILY]: 'Family and children',
+    [Area.PENSION]: 'Pension',
+    [Area.SOCIAL_COUNSELLING]: 'Social services and guidance',
+    [Area.ACCESSIBILITY]: 'Aid and accessibility',
+    [Area.RECRUITMENT]: 'Recruitment',
+    [Area.INCLUSION]: 'Inclusion and facilitation',
+    [Area.DOWNSIZING]: 'Layoffs, furloughs and temporary leave',
+    [Area.OTHER]: 'General',
 };
 
 export const translationsBundleEn: Translations = {
@@ -205,9 +204,6 @@ export const translationsBundleEn: Translations = {
         employer: 'For employers',
         provider: 'For providers',
     },
-    overviews: {
-        any: 'From A to Z',
-    },
     taxonomies,
     areas,
     header: {
@@ -215,9 +211,13 @@ export const translationsBundleEn: Translations = {
         copiedLinkConfirmed: 'Link successfully copied',
     },
     overview: {
-        noProducts: 'No hits',
-        search: 'Search',
+        noHits: 'No hits with the selected filters.',
+        numHits: 'Showing $1 out of $2',
+        search: 'Find a service',
+        filterOrSearch: 'Use filters or search',
         loading: 'Loading content...',
+        any: 'From A to Z',
+        resetFilters: 'Reset filters',
         areas: {
             choose: 'Choose area',
             ariaExplanation: 'Filter list by area',
@@ -305,5 +305,10 @@ export const translationsBundleEn: Translations = {
     },
     greetings: {
         hi: 'Hi!',
+    },
+    macroVideo: {
+        playMovie: 'Watch video:',
+        duration: 'Duration is',
+        minutes: 'min',
     },
 };

@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
-import useSWRImmutable from 'swr/immutable';
-import { classNames } from '../../../utils/classnames';
-import { fetchJson } from '../../../utils/fetch/fetch-utils';
+import React, { useEffect, useState, useRef, useId } from 'react';
+import { classNames } from 'utils/classnames';
+import { fetchJson } from 'utils/fetch/fetch-utils';
+import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
 
 import styleCommon from './Illustration.module.scss';
 import styleAnimated from './IllustrationAnimated.module.scss';
@@ -25,10 +25,16 @@ export const IllustrationAnimated = ({
     // Need baseClassName to scope this component
     // as it's being used throughout the page.
     const [direction, setDirection] = useState(null);
-    const lottieContainer = useRef(null);
+    const lottieContainer = useRef<HTMLDivElement>(null);
     const lottiePlayer = useRef(null);
 
-    const { data: lottieData } = useSWRImmutable(dataUrl, fetchJsonData);
+    const elementId = useId();
+
+    const { data: lottieData } = useSWRImmutableOnScrollIntoView({
+        url: dataUrl,
+        fetchFunc: fetchJsonData,
+        elementId,
+    });
 
     useEffect(() => {
         const newDirection = isHovering ? 1 : -1;
@@ -75,7 +81,8 @@ export const IllustrationAnimated = ({
     return (
         <div
             className={classNames(styleCommon.image, className)}
-            aria-hidden="true"
+            aria-hidden={'true'}
+            id={elementId}
         >
             <div
                 ref={lottieContainer}

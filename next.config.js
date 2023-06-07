@@ -4,6 +4,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const { withSentryConfig } = require('@sentry/nextjs');
 const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
 const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
+const path = require('path');
 
 const sentryConfig = {
     errorHandler: (err, invokeErr, compilation) => {
@@ -53,7 +54,13 @@ const csp = async () => {
     const adminHost = new URL(process.env.ADMIN_ORIGIN).host;
     const xpHost = new URL(process.env.XP_ORIGIN).host;
 
-    const qbrickHost = 'video.qbrick.com';
+    const qbrickHosts = [
+        'video.qbrick.com',
+        'play2.qbrick.com',
+        'analytics.qbrick.com',
+        '*.ip-only.net',
+        'blob:',
+    ];
     const salesforceVideoHost = 'ihb.nav.no';
 
     // These are used by a NAV-funded research project for accessibility-related feedback
@@ -85,15 +92,15 @@ const csp = async () => {
 
     const directives = {
         'default-src': internalHosts,
-        'script-src-elem': scriptSrc,
         'script-src': scriptSrc,
+        'script-src-elem': [...scriptSrc, ...qbrickHosts],
         'worker-src': internalHosts,
         'style-src': [...internalHosts, UNSAFE_INLINE],
-        'font-src': [...internalHosts, DATA],
-        'img-src': [...internalHosts, DATA],
-        'frame-src': [qbrickHost],
-        'connect-src': [...internalHosts, uxSignalsApiHost],
-        'media-src': [salesforceVideoHost],
+        'font-src': [...internalHosts, DATA, ...qbrickHosts],
+        'img-src': [...internalHosts, DATA, ...qbrickHosts],
+        'object-src': [...qbrickHosts],
+        'connect-src': [...internalHosts, ...qbrickHosts, uxSignalsApiHost],
+        'media-src': [...qbrickHosts, salesforceVideoHost],
     };
 
     if (process.env.NODE_ENV === 'development') {
@@ -123,11 +130,20 @@ console.log(
 );
 
 const config = {
+    experimental: {
+        // Set this to 0 to disable the next.js built-in memory cache for the ISR page cache
+        // We implement our own in the customCacheHandler to allow us to invalidate the memory cache on demand
+        isrMemoryCacheSize: 0,
+        incrementalCacheHandlerPath: path.resolve(
+            __dirname,
+            '.serverDist/custom-cache-handler'
+        ),
+    },
+    // SWR crashes during SSR with next 13.4 unless it's transpiled
+    transpilePackages: ['swr'],
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
-    assetPrefix: isFailover
-        ? process.env.FAILOVER_ORIGIN
-        : process.env.APP_ORIGIN,
+    assetPrefix: process.env.ASSET_PREFIX,
     env: {
         ENV: process.env.ENV,
         APP_ORIGIN: process.env.APP_ORIGIN,
@@ -143,9 +159,10 @@ const config = {
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
         dangerouslyAllowSVG: true,
-        domains: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map((origin) =>
-            // Domain whitelist must not include protocol prefixes
-            origin?.replace(/^https?:\/\//, '')
+        domains: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map(
+            (origin) =>
+                // Domain whitelist must not include protocol prefixes
+                new URL(origin).host
         ),
         deviceSizes: [480, 768, 1024, 1440],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],

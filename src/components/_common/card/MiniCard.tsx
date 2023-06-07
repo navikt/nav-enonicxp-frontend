@@ -4,10 +4,8 @@ import { classNames } from 'utils/classnames';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { CardSize, CardType } from 'types/card';
 import { Illustration } from '../illustration/Illustration';
-import { IllustrationPlacements } from 'types/illustrationPlacements';
 import { LenkeBase } from '../lenke/LenkeBase';
 import { LinkProps } from 'types/link-props';
-
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useCard } from './useCard';
 
@@ -20,10 +18,18 @@ export type MiniKortProps = {
     type: CardType;
     header?: string;
     className?: string;
+    preferStaticIllustration?: boolean;
 };
 
 export const MiniCard = (props: MiniKortProps) => {
-    const { link, illustration, type, header, className } = props;
+    const {
+        link,
+        illustration,
+        type,
+        header,
+        className,
+        preferStaticIllustration,
+    } = props;
     const { text } = link;
     const { isHovering, userEventProps, analyticsProps } = useCard({
         type,
@@ -49,8 +55,8 @@ export const MiniCard = (props: MiniKortProps) => {
                         className={style.illustration}
                         illustration={illustration}
                         isHovering={isHovering}
-                        placement={IllustrationPlacements.SMALL_CARD}
                         preferStaticIllustration={
+                            preferStaticIllustration ||
                             pageConfig.editorView === 'edit'
                         }
                     />

@@ -1,0 +1,32 @@
+@use 'src/common' as common;
+
+.summary {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+
+    gap: 1rem;
+
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+
+    border-bottom: 1px common.$a-gray-300 solid;
+    width: 100%;
+    min-height: 4.125rem;
+}
+
+.chips {
+    display: inline-flex;
+
+    // The chips component seems to render empty list items for null-children
+    & > :empty {
+        display: none;
+    }
+}
+
+.nohits {
+    background-color: common.$a-gray-100;
+    padding: 1.5rem;
+    border-radius: common.$border-radius-large;
+}

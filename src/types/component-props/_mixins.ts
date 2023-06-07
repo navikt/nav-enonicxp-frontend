@@ -1,9 +1,9 @@
 import { ContentListProps } from '../content-props/content-list-props';
-import { ContentProps } from '../content-props/_content-common';
+import { ContentProps, ContentType } from '../content-props/_content-common';
 import { TypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
-import { Taxonomy } from 'types/taxonomies';
-import { AuthStateType } from '../../store/slices/authState';
+import { ProductTaxonomy, Taxonomy } from 'types/taxonomies';
+import { AuthStateType } from 'store/slices/authState';
 import { EmptyObject, OptionSetSingle } from '../util-types';
 import { Area } from 'types/areas';
 import { ProductDetailType } from 'types/content-props/product-details';
@@ -20,22 +20,42 @@ export enum Audience {
     PROVIDER = 'provider',
 }
 
+export enum ProviderAudience {
+    DOCTOR = 'doctor',
+    MUNICIPALITY = 'municipality_employed',
+    OPTICIAN = 'optician',
+    ADMINISTRATOR = 'administrator',
+    MEASURES_ORGANIZER = 'measures_organizer',
+    AID_SUPPLIER = 'aid_supplier',
+    OTHER = 'other',
+}
+
+export type AudienceProps = OptionSetSingle<{
+    [Audience.PERSON]: EmptyObject;
+    [Audience.EMPLOYER]: EmptyObject;
+    [Audience.PROVIDER]: { provider_audience?: ProviderAudience[] };
+}>;
+
+export const getAudience = (audience: AudienceProps | Audience) => {
+    return typeof audience === 'string' ? audience : audience?._selected;
+};
+
 export type FilterSelection = string[];
 
-export type SimplifiedProductData = Partial<{
+export type SimplifiedProductData = {
     _id: string;
-    type: string;
+    type: ContentType;
     productDetailsPath: string;
     path: string;
     sortTitle: string;
     anchorId: string;
-}> &
-    ProductDataMixin;
+    taxonomy: ProductTaxonomy[];
+} & Omit<ProductDataMixin, 'taxonomy'>;
 
 export type ProductDataMixin = {
     title: string;
     ingress?: string;
-    taxonomy?: Taxonomy[];
+    taxonomy: Taxonomy[];
     audience?: Audience;
     customCategory?: string;
     illustration: AnimatedIconsProps;

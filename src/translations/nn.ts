@@ -24,21 +24,18 @@ const relatedContent: { [key in MenuListItemKey]: string } = {
 };
 
 const taxonomies: {
-    [key in Taxonomy]: string;
+    [key in Taxonomy]?: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
-    [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
     [ProductTaxonomy.BENEFITS]: 'Pengestønad',
-    [ProductTaxonomy.FOLLOWUP]: 'Oppfylging',
-    [ProductTaxonomy.SERVICE]: 'Teneste',
-    [ProductTaxonomy.FOR_EMPLOYERS]: 'For arbeidsgjevarar',
-    [ProductTaxonomy.FOR_EVENT_ORGANIZERS]: 'For tiltaksarrangørar',
-    [ProductTaxonomy.FOR_HEALTH_SERVICE]: 'For leger og andre behandlarar',
-    [ProductTaxonomy.FOR_MUNICIPALITY]: 'For kommunen',
-    [ProductTaxonomy.FOR_PROVIDERS]: 'For samhandlarar',
+    [ProductTaxonomy.INSURANCE]: 'Forsikring',
     [ProductTaxonomy.MEASURES]: 'Tiltak',
-    [ProductTaxonomy.RIGHTS]: 'Rettleiing',
-    [ProductTaxonomy.FORMS]: 'Skjema',
+    [ProductTaxonomy.SERVICE]: 'Teneste',
+    [ProductTaxonomy.COUNSELLING]: 'Rettleiing',
+    [ProductTaxonomy.ASSISTIVE_TOOLS]: 'Hjelpemiddel',
+    [ProductTaxonomy.EMPLOYEE_BENEFITS]: 'Pengestøtte til ansatt',
+    [ProductTaxonomy.REFUND]: 'Refusjon',
+    [ProductTaxonomy.OTHER]: 'Anna',
     [ThemedArticlePageTaxonomy.TIPS_JOB]: 'Jobbsøkartips',
     [ThemedArticlePageTaxonomy.HELP_WORK]: 'Hjelp til å kome i jobb',
     [ThemedArticlePageTaxonomy.WHEN_SICK]: 'Når du er sjuk',
@@ -53,16 +50,18 @@ const taxonomies: {
     [ToolsPageTaxonomy.NAVIGATOR]: 'Vegvisar',
 };
 
-const areas: { [key in Area]: string } = {
+const areas: { [key in Area]?: string } = {
     [Area.ALL]: 'Alle',
-    [Area.ACCESSIBILITY]: 'Hjelpemiddel og tilrettelegging',
-    [Area.FAMILY]: 'Familie og barn',
-    [Area.HEALTH]: 'Helse og sjukdom',
-    [Area.MUNICIPALITY]: 'For kommunen',
-    [Area.OTHER]: 'Anna',
-    [Area.PENSION]: 'Pensjon',
-    [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og rettleiing',
     [Area.WORK]: 'Arbeid',
+    [Area.HEALTH]: 'Helse og sjukdom',
+    [Area.FAMILY]: 'Familie og barn',
+    [Area.PENSION]: 'Pensjon',
+    [Area.SOCIAL_COUNSELLING]: 'Sosiale tenester og rettleiing',
+    [Area.ACCESSIBILITY]: 'Hjelpemiddel og tilrettelegging',
+    [Area.RECRUITMENT]: 'Rekruttering',
+    [Area.INCLUSION]: 'Inkludering og tilrettelegging',
+    [Area.DOWNSIZING]: 'Permittering og nedbemanning',
+    [Area.OTHER]: 'På tvers',
 };
 
 export const translationsBundleNn: Translations = {
@@ -164,9 +163,6 @@ export const translationsBundleNn: Translations = {
         employer: 'For arbeidsgjevarar',
         provider: 'For samhandlarar',
     },
-    overviews: {
-        any: 'Frå A til Å',
-    },
     publishingCalendar: {
         event: 'Hending',
         publishdate: 'Dato',
@@ -196,9 +192,13 @@ export const translationsBundleNn: Translations = {
         alternativeContacts: 'Andre kontaktopplysningar:',
     },
     overview: {
-        noProducts: 'Ingen treff',
-        search: 'Søk',
+        noHits: 'Ingen treff med dei valde filtera.',
+        numHits: 'Viser $1 av $2',
+        search: 'Finn teneste',
+        filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhald...',
+        any: 'Frå A til Å',
+        resetFilters: 'Nullstill filter',
         areas: {
             choose: 'Vel område',
             ariaExplanation: 'Filtrer lista etter område',
@@ -310,5 +310,10 @@ export const translationsBundleNn: Translations = {
     },
     greetings: {
         hi: 'Hei!',
+    },
+    macroVideo: {
+        playMovie: 'Sjå video:',
+        duration: 'Varighet er',
+        minutes: 'min',
     },
 };

@@ -1,8 +1,6 @@
 @use 'src/common' as common;
 
 .wrapper {
-    padding-top: 0.5rem;
-    padding-bottom: 2.75rem;
     background-color: common.$a-white;
 
     @include common.full-width-mixin();
@@ -10,6 +8,16 @@
     @media #{common.$mq-screen-mobile-small} {
         padding-bottom: 1.5rem;
     }
+}
+
+.person {
+    padding-top: 0.5rem;
+    padding-bottom: 2.75rem;
+}
+
+.employer {
+    padding-top: 3.5rem;
+    padding-bottom: 4.25rem;
 }
 
 .header {

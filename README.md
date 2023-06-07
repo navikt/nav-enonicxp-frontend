@@ -11,9 +11,9 @@ React/[Next.js](https://nextjs.org/) frontend for åpne sider på nav.no. Benytt
 
 Kjører lokalt på [http://localhost:3000](http://localhost:3000).
 
-Appen er avhengig av en lokalt tilgjengelig instans av [Enonic XP](https://github.com/navikt/nav-enonicxp).
+Appen kjøres som default mot en lokal instans av [Enonic XP](https://github.com/navikt/nav-enonicxp). Øvrige avhengigheter kan startes ved å kjøre `docker compose up`.
 
-Øvrige avhengigheter kan startes ved å kjøre `docker compose up`
+Alternativt kan dev eller prod-instansen av XP benyttes via [nav-enonicxp-dev-proxy](https://github.com/navikt/nav-enonicxp-dev-proxy).
 
 #### Development mode:
 

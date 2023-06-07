@@ -2,14 +2,13 @@ import { CardType } from 'types/card';
 import { LinkProps } from 'types/link-props';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { ContentType } from 'types/content-props/_content-common';
-import { Audience } from 'types/component-props/_mixins';
-import { ProductTaxonomy } from 'types/taxonomies';
+import { Audience, getAudience } from 'types/component-props/_mixins';
 import {
     ProductPageProps,
     SituationPageProps,
     ToolsPageProps,
-} from '../../../types/content-props/dynamic-page-props';
-import { Language } from '../../../translations';
+} from 'types/content-props/dynamic-page-props';
+import { Language, translator } from 'translations';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
@@ -22,7 +21,7 @@ type CardProps = {
     illustration?: AnimatedIconsProps;
 };
 
-const cardTypeMap = {
+export const cardTypeMap = {
     [ContentType.ProductPage]: CardType.Product,
     [ContentType.SituationPage]: CardType.Situation,
     [ContentType.ToolsPage]: CardType.Tool,
@@ -38,6 +37,7 @@ const getCardCategory = (
 ): string[] => {
     const { data } = content;
     const { taxonomy = [], customCategory, audience } = data;
+    const selectedAudience = getAudience(audience);
 
     if (taxonomy.length > 0 || customCategory) {
         return [
@@ -46,13 +46,14 @@ const getCardCategory = (
         ].filter((category) => !!category);
     }
 
-    if (audience === Audience.EMPLOYER || audience === Audience.PROVIDER) {
-        return audience === Audience.EMPLOYER
-            ? getTranslatedTaxonomies([ProductTaxonomy.FOR_EMPLOYERS], language)
-            : getTranslatedTaxonomies(
-                  [ProductTaxonomy.FOR_PROVIDERS],
-                  language
-              );
+    const productAudienceTranslations = translator('products', language);
+
+    if (selectedAudience === Audience.EMPLOYER) {
+        return [productAudienceTranslations('employer')];
+    }
+
+    if (selectedAudience === Audience.PROVIDER) {
+        return [productAudienceTranslations('provider')];
     }
 
     return [];

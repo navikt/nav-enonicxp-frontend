@@ -8,7 +8,6 @@ import { SiteInfoSubHeader } from '../_common/sub-header/SiteInfoSubHeader';
 
 export enum EditorFeature {
     HideLeftPanel = 'hide-left-panel',
-    UncheckDependenciesPublish = 'uncheck-dependencies-publish',
 }
 
 export type EditorFeatureProps = {
@@ -23,12 +22,6 @@ export const editorFeatures: Record<EditorFeature, EditorFeatureProps> = {
         description:
             'Skjuler venstre-panelet i editoren som standard på komponent-baserte sider',
         defaultValue: false,
-    },
-    [EditorFeature.UncheckDependenciesPublish]: {
-        key: EditorFeature.UncheckDependenciesPublish,
-        description:
-            'Reverserer standard-valget for publisering av avhengigheter (ingen avhengigheter publiseres)',
-        defaultValue: process.env.ENV !== 'prod',
     },
 };
 
