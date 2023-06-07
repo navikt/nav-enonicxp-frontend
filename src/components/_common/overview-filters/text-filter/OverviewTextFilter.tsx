@@ -104,7 +104,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 value={textInput}
                 label={translator('overview', language)('search')}
                 hideLabel={hideLabel}
-                variant={'simple'}
+                variant={'secondary'}
             />
         </form>
     );
