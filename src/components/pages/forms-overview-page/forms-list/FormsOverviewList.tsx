@@ -8,7 +8,6 @@ import { OverviewFilters } from 'components/_common/overview-filters/OverviewFil
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
 
-
 import style from './FormsOverviewList.module.scss';
 
 export const FormsOverviewList = (props: FormsOverviewProps) => {
@@ -69,12 +68,13 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
             )}
             <ul className={style.list}>
                 {formDetailsList.map((formDetail) => (
-                    <FormsOverviewListPanel
-                        formDetails={formDetail}
-                        visible={isVisible(formDetail)}
-                        overviewType={overviewType}
-                        key={formDetail.anchorId}
-                    />
+                    <li key={formDetail.anchorId}>
+                        <FormsOverviewListPanel
+                            formDetails={formDetail}
+                            visible={isVisible(formDetail)}
+                            overviewType={overviewType}
+                        />
+                    </li>
                 ))}
             </ul>
         </div>
