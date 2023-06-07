@@ -6,9 +6,13 @@ const LOGIN_COOKIE = 'dev-login';
 
 const isNavIp = (ip: string) => ip.startsWith('155.55');
 
+// Applies certain restrictions for the app in dev environments. This is not meant
+// for security purposes, but rather to ensure (to some degree) that the public does
+// not accidentally end up in our (possibly confusing!) dev environments
 export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
     const nextRequestHandler = nextApp.getRequestHandler();
 
+    // Trust proxy IP headers, to ensure we get the actual req.ip for the client
     expressApp.set('trust proxy', true);
 
     expressApp.all('*', (req, res, next) => {
@@ -16,10 +20,13 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
         next();
     });
 
+    // These paths should always be unrestricted, to ensure the site will always load
+    // when accessed from the Content Studio editor
     expressApp.all(['/draft/*', '/_next/*', '/gfx/*', '/api/*'], (req, res) => {
         return nextRequestHandler(req, res);
     });
 
+    // Sets a cookie which will bypass the IP restriction
     expressApp.get('/login', (req, res) => {
         return res
             .cookie(LOGIN_COOKIE, true, { maxAge: 3600 * 24 })
