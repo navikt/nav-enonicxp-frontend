@@ -4,7 +4,8 @@ import { NextServer } from 'next/dist/server/next';
 
 const LOGIN_COOKIE = 'dev-login';
 
-const isNavIp = (ip: string) => ip.startsWith('155.55');
+const isNavIp = (ip: string) =>
+    ip.startsWith('155.55') || ip.startsWith('10.') || ip.startsWith('127.');
 
 // Applies certain restrictions for the app in dev environments. This is not meant
 // for security purposes, but rather to ensure (to some degree) that the public does
