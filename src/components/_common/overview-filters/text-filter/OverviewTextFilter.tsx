@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useState } from 'react';
+import React, { useCallback, useEffect, useId, useState } from 'react';
 import { Search } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
 import { translator } from 'translations';
@@ -23,25 +23,34 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
 
     const [textInput, setTextInput] = useState('');
 
-    const dispatchInput = debounce((value: string) => {
-        dispatch(setTextFilterAction({ text: value }));
-        window.dispatchEvent(
-            new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
-                detail: { value, id: inputId },
-            })
-        );
-    }, 500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const dispatchInput = useCallback(
+        debounce((value: string) => {
+            console.log(value);
+            dispatch(setTextFilterAction({ text: value }));
+            window.dispatchEvent(
+                new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
+                    detail: { value, id: inputId },
+                })
+            );
+        }, 500),
+        []
+    );
 
-    const logInputToSentry = debounce((value: string) => {
-        if (value.length < 3) {
-            return;
-        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const logInputToSentry = useCallback(
+        debounce((value: string) => {
+            if (value.length < 3) {
+                return;
+            }
 
-        Sentry.captureMessage(
-            `Oversiktsside fritekst input: "${value}"`,
-            'info'
-        );
-    }, 3000);
+            Sentry.captureMessage(
+                `Oversiktsside fritekst input: "${value}"`,
+                'info'
+            );
+        }, 3000),
+        []
+    );
 
     const handleUserInput = (inputValue: string) => {
         setTextInput(inputValue);

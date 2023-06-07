@@ -57,7 +57,7 @@ const areas: { [key in Area]: string } = {
     [Area.HEALTH]: 'Helse og sykdom',
     [Area.FAMILY]: 'Familie og barn',
     [Area.PENSION]: 'Pensjon',
-    [Area.SOCIAL_COUNSELLING]: 'Økonomisk sosialhjelp, råd og veiledning',
+    [Area.SOCIAL_COUNSELLING]: 'Sosiale tjenester og veiledning',
     [Area.ACCESSIBILITY]: 'Hjelpemidler og tilrettelegging',
     [Area.RECRUITMENT]: 'Rekruttering',
     [Area.INCLUSION]: 'Inkludering og tilrettelegging',
