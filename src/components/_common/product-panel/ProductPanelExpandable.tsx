@@ -65,43 +65,46 @@ export const ProductPanelExpandable = ({
     };
 
     return (
-        <Accordion
-            className={classNames(style.accordion, !visible && style.hidden)}
-            id={anchorId}
-        >
-            <Accordion.Item open={isOpen} className={style.accordionItem}>
-                <Accordion.Header
-                    onClick={handleClick}
-                    onMouseOver={contentLoaderCallback}
-                    onFocus={contentLoaderCallback}
-                >
-                    <IllustrationStatic
-                        className={style.illustration}
-                        illustration={illustration}
-                    />
-                    <span className={style.panelHeader}>
-                        <span>{header}</span>
-                        {subHeader && (
-                            <span className={style.subHeader}>{subHeader}</span>
+        <li className={classNames(!visible && style.hidden)} id={anchorId}>
+            <Accordion className={style.accordion}>
+                <Accordion.Item open={isOpen} className={style.accordionItem}>
+                    <Accordion.Header
+                        onClick={handleClick}
+                        onMouseOver={contentLoaderCallback}
+                        onFocus={contentLoaderCallback}
+                    >
+                        <IllustrationStatic
+                            className={style.illustration}
+                            illustration={illustration}
+                        />
+                        <span className={style.panelHeader}>
+                            <span>{header}</span>
+                            {subHeader && (
+                                <span className={style.subHeader}>
+                                    {subHeader}
+                                </span>
+                            )}
+                        </span>
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        <CopyLink
+                            anchor={anchorIdWithHash}
+                            className={style.copyLink}
+                        />
+                        {error && (
+                            <AlertBox variant={'error'}>{error}</AlertBox>
                         )}
-                    </span>
-                </Accordion.Header>
-                <Accordion.Content>
-                    <CopyLink
-                        anchor={anchorIdWithHash}
-                        className={style.copyLink}
-                    />
-                    {error && <AlertBox variant={'error'}>{error}</AlertBox>}
-                    {isLoading ? (
-                        <div className={style.loader}>
-                            <Loader size={'2xlarge'} />
-                            <BodyShort>{loadingText}</BodyShort>
-                        </div>
-                    ) : (
-                        children
-                    )}
-                </Accordion.Content>
-            </Accordion.Item>
-        </Accordion>
+                        {isLoading ? (
+                            <div className={style.loader}>
+                                <Loader size={'2xlarge'} />
+                                <BodyShort>{loadingText}</BodyShort>
+                            </div>
+                        ) : (
+                            children
+                        )}
+                    </Accordion.Content>
+                </Accordion.Item>
+            </Accordion>
+        </li>
     );
 };

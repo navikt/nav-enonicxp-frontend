@@ -111,41 +111,33 @@ export const FormsOverviewListPanel = ({
     };
 
     return (
-        <li>
-            <ProductPanelExpandable
-                header={sortTitle}
-                subHeader={buildSubHeader(taxonomy, area, language)}
-                illustration={illustration}
-                visible={visible}
-                anchorId={anchorId}
-                contentLoaderCallback={handleFormDetailsFetch}
-                isLoading={isLoading}
-                error={error}
-                analyticsData={{
-                    opprinnelse: 'skjemaoversikt accordion',
-                }}
-            >
-                {!isAddendumPage && (
-                    <BodyLong className={style.ingress}>{ingress}</BodyLong>
-                )}
-                {formDetailsPages?.map((formDetail) => (
-                    <FormDetails
-                        formDetails={formDetail.data}
-                        displayConfig={getFormDetailsDisplayOptions(
-                            overviewType
-                        )}
-                        className={style.formDetails}
-                        key={formDetail._id}
-                    />
-                ))}
-                {!isAddendumPage && (
-                    <FormsOverviewProductLink
-                        type={type}
-                        url={url}
-                        title={title}
-                    />
-                )}
-            </ProductPanelExpandable>
-        </li>
+        <ProductPanelExpandable
+            header={sortTitle}
+            subHeader={buildSubHeader(taxonomy, area, language)}
+            illustration={illustration}
+            visible={visible}
+            anchorId={anchorId}
+            contentLoaderCallback={handleFormDetailsFetch}
+            isLoading={isLoading}
+            error={error}
+            analyticsData={{
+                opprinnelse: 'skjemaoversikt accordion',
+            }}
+        >
+            {!isAddendumPage && (
+                <BodyLong className={style.ingress}>{ingress}</BodyLong>
+            )}
+            {formDetailsPages?.map((formDetail) => (
+                <FormDetails
+                    formDetails={formDetail.data}
+                    displayConfig={getFormDetailsDisplayOptions(overviewType)}
+                    className={style.formDetails}
+                    key={formDetail._id}
+                />
+            ))}
+            {!isAddendumPage && (
+                <FormsOverviewProductLink type={type} url={url} title={title} />
+            )}
+        </ProductPanelExpandable>
     );
 };
