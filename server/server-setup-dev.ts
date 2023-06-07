@@ -27,11 +27,13 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
     });
 
     expressApp.all('*', cookieParser(), (req, res, next) => {
-        console.log(`Client ip: ${req.ip} ${JSON.stringify(req.ips)}`);
-
         if (isNavIp(req.ip) || req.cookies[LOGIN_COOKIE]) {
             return next();
         }
+
+        console.log(
+            `Non-authorized client ips: ${req.ip} ${JSON.stringify(req.ips)}`
+        );
 
         return res.status(401).send('Ingen tilgang');
     });
