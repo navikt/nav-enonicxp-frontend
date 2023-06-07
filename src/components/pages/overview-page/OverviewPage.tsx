@@ -52,22 +52,23 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         showResetChips={isAllProductsOverview}
                     />
                 </div>
-                <div
+                <ul
                     className={classNames(
                         style.productListWrapper,
                         isAllProductsOverview && style.transparent
                     )}
                 >
                     {productList.map((product) => (
-                        <ProductItem
-                            product={product}
-                            pageProps={props}
-                            visible={isVisiblePredicate(product)}
-                            overviewType={overviewType}
-                            key={`${product._id}-${language}`}
-                        />
+                        <li key={`${product._id}-${language}`}>
+                            <ProductItem
+                                product={product}
+                                pageProps={props}
+                                visible={isVisiblePredicate(product)}
+                                overviewType={overviewType}
+                            />
+                        </li>
                     ))}
-                </div>
+                </ul>
             </div>
         </div>
     );

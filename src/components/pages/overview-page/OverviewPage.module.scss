@@ -34,19 +34,31 @@
 
 .productListWrapper,
 .filters {
-    padding: common.$sectionPaddingDesktop / 2;
     max-width: common.$sectionMaxWidth;
     background-color: white;
-
-    @media #{common.$mq-screen-mobile} {
-        padding: common.$sectionPaddingMobile;
-    }
 }
 
 .filters {
-    padding-bottom: 0;
+    padding: 1.25rem 1.25rem 0 1.25rem;
+
+    @media #{common.$mq-screen-mobile} {
+        padding: 1rem 1rem 0 1rem;
+    }
 }
 
 .productListWrapper {
-    padding-top: 0;
+    @include common.unstyled-list();
+    padding: 1.25rem;
+
+    @media #{common.$mq-screen-mobile} {
+        padding: 1rem;
+    }
+
+    & > li {
+        margin-bottom: 1rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }

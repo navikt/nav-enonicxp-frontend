@@ -34,7 +34,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 })
             );
         }, 500),
-        []
+        [dispatch]
     );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
