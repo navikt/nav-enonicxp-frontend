@@ -27,32 +27,29 @@
     }
 }
 
-.transparent {
-    background-color: transparent;
-    padding: 0;
-}
-
 .productListWrapper,
 .filters {
+    padding: 1.25rem;
     max-width: common.$sectionMaxWidth;
     background-color: white;
-}
-
-.filters {
-    padding: 1.25rem 1.25rem 0 1.25rem;
-
-    @media #{common.$mq-screen-mobile} {
-        padding: 1rem 1rem 0 1rem;
-    }
-}
-
-.productListWrapper {
-    @include common.unstyled-list();
-    padding: 1.25rem;
 
     @media #{common.$mq-screen-mobile} {
         padding: 1rem;
     }
+}
+
+.filters {
+    padding-bottom: 0;
+}
+
+.productListWrapper {
+    list-style: none;
+    padding-top: 0;
+    margin: 0;
+}
+
+.allProducts {
+    padding-top: 1rem;
 
     & > li {
         margin-bottom: 1rem;

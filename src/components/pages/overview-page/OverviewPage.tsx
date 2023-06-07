@@ -4,11 +4,12 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 import { SimplifiedProductData } from 'types/component-props/_mixins';
-import { ProductItem } from './product-elements/ProductItem';
 import { classNames } from 'utils/classnames';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
+import { ProductLink } from 'components/pages/overview-page/product-elements/ProductLink';
+import { ProductDetailsPanel } from 'components/pages/overview-page/product-elements/ProductDetailsPanel';
 
 import style from './OverviewPage.module.scss';
 
@@ -18,14 +19,14 @@ export const OverviewPage = (props: OverviewPageProps) => {
 
     const { matchFilters } = useOverviewFiltersState();
 
-    const isVisiblePredicate = (product: SimplifiedProductData) =>
+    const isVisible = (product: SimplifiedProductData) =>
         matchFilters({
             ...product,
             textMatchFunc: (textFilter) =>
                 product.title.toLowerCase().includes(textFilter),
         });
 
-    const numVisibleProducts = productList.filter(isVisiblePredicate).length;
+    const numVisibleProducts = productList.filter(isVisible).length;
 
     const isAllProductsOverview = overviewType === 'all_products';
 
@@ -55,19 +56,30 @@ export const OverviewPage = (props: OverviewPageProps) => {
                 <ul
                     className={classNames(
                         style.productListWrapper,
-                        isAllProductsOverview && style.transparent
+                        isAllProductsOverview && style.allProducts
                     )}
                 >
-                    {productList.map((product) => (
-                        <li key={`${product._id}-${language}`}>
-                            <ProductItem
-                                product={product}
-                                pageProps={props}
-                                visible={isVisiblePredicate(product)}
-                                overviewType={overviewType}
-                            />
-                        </li>
-                    ))}
+                    {productList.map((product) => {
+                        const visible = isVisible(product);
+
+                        return (
+                            <li key={`${product._id}-${language}`}>
+                                {isAllProductsOverview ? (
+                                    <ProductLink
+                                        product={product}
+                                        visible={visible}
+                                    />
+                                ) : (
+                                    <ProductDetailsPanel
+                                        productDetails={product}
+                                        pageProps={props}
+                                        visible={visible}
+                                        detailType={overviewType}
+                                    />
+                                )}
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         </div>
