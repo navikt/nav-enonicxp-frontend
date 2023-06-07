@@ -12,6 +12,7 @@ import { Filter2 as FilterIcon } from '@navikt/ds-icons';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Heading, Button } from '@navikt/ds-react';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 
 import style from './OverviewFilters.module.scss';
 
@@ -41,6 +42,9 @@ const MobileView = ({
                             onClick={(e) => {
                                 e.preventDefault();
                                 setIsOpen(!isOpen);
+                                logAmplitudeEvent(AnalyticsEvents.FILTER, {
+                                    opprinnelse: 'oversiktsside filter mobil',
+                                });
                             }}
                             className={style.mobileFilterButton}
                             variant="primary-neutral"
