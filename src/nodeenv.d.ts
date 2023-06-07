@@ -17,7 +17,6 @@ declare global {
             FAILOVER_ORIGIN: string;
             IS_FAILOVER_INSTANCE: string;
             NAVNO_API_URL: string;
-            IS_EDITOR_ONLY?: 'true';
             ASSET_PREFIX: string;
         }
     }
