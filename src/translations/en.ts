@@ -41,7 +41,7 @@ const areas: { [key in Area]?: string } = {
     [Area.HEALTH]: 'Health',
     [Area.FAMILY]: 'Family and children',
     [Area.PENSION]: 'Pension',
-    [Area.SOCIAL_COUNSELLING]: 'Financial social advice and guidance',
+    [Area.SOCIAL_COUNSELLING]: 'Social services and guidance',
     [Area.ACCESSIBILITY]: 'Aid and accessibility',
     [Area.RECRUITMENT]: 'Recruitment',
     [Area.INCLUSION]: 'Inclusion and facilitation',

@@ -7,10 +7,8 @@ import {
     useOverviewFiltersState,
 } from 'store/hooks/useOverviewFilters';
 import { setTaxonomyFilterAction } from 'store/slices/overviewFilters';
-import { sortLikeArray } from 'utils/arrays';
 
-const filterOrder: ProductTaxonomy[] = [
-    ProductTaxonomy.ALL,
+const orderedTaxonomies: ProductTaxonomy[] = [
     ProductTaxonomy.BENEFITS,
     ProductTaxonomy.INSURANCE,
     ProductTaxonomy.MEASURES,
@@ -37,11 +35,10 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
         dispatch(setTaxonomyFilterAction({ taxonomy }));
     };
 
-    const taxonomiesPresent = Object.values(ProductTaxonomy).filter(
-        (taxonomy) =>
-            items.some((item) =>
-                item.taxonomy.some((itemTaxonomy) => itemTaxonomy === taxonomy)
-            )
+    const taxonomiesPresent = orderedTaxonomies.filter((taxonomy) =>
+        items.some((item) =>
+            item.taxonomy.some((itemTaxonomy) => itemTaxonomy === taxonomy)
+        )
     );
 
     const listHasGuidePage = items.some(
@@ -52,16 +49,12 @@ export const OverviewTaxonomyFilter = ({ items }: Props) => {
         taxonomiesPresent.push(ProductTaxonomy.OTHER);
     }
 
-    const options = [ProductTaxonomy.ALL, ...taxonomiesPresent].sort(
-        sortLikeArray(filterOrder)
-    );
-
     return (
         <OverviewFilterBase
             type={'taxonomies'}
             selectionCallback={handleFilterUpdate}
             selected={taxonomyFilter}
-            options={options}
+            options={[ProductTaxonomy.ALL, ...taxonomiesPresent]}
         />
     );
 };
