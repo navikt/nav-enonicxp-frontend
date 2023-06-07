@@ -9,6 +9,8 @@ import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
 import { getFuseSearchFunc } from 'utils/text-search-utils';
 
+import style from './FormsOverviewList.module.scss';
+
 export const FormsOverviewList = (props: FormsOverviewProps) => {
     const {
         formDetailsList,
@@ -67,14 +69,17 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                     showResetChips={numFilterTypes > 1}
                 />
             )}
-            {scoredList.map((formDetail) => (
-                <FormsOverviewListPanel
-                    formDetails={formDetail}
-                    visible={isVisible(formDetail)}
-                    overviewType={overviewType}
-                    key={formDetail.anchorId}
-                />
-            ))}
+            <ul className={style.list}>
+                {scoredList.map((formDetail) => (
+                    <li key={formDetail.anchorId}>
+                        <FormsOverviewListPanel
+                            formDetails={formDetail}
+                            visible={isVisible(formDetail)}
+                            overviewType={overviewType}
+                        />
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };

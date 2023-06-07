@@ -7,7 +7,7 @@ import {
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { BodyLong, BodyShort, Chips } from '@navikt/ds-react';
+import { BodyLong, Heading, Chips } from '@navikt/ds-react';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
 
@@ -36,11 +36,11 @@ export const OverviewFiltersSummary = ({
     return (
         <>
             <div className={style.summary}>
-                <BodyShort>
+                <Heading level={'2'} size={'xsmall'} role="status">
                     {overviewTranslations('numHits')
                         .replace('$1', numMatches.toString())
                         .replace('$2', numTotal.toString())}
-                </BodyShort>
+                </Heading>
                 {showResetChips && !hasDefaultFilters && (
                     <Chips className={style.chips}>
                         {areaFilter !== Area.ALL && (

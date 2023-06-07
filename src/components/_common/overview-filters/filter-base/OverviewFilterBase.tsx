@@ -37,7 +37,7 @@ export const OverviewFilterBase = <Type extends FilterOptions>({
 
     return (
         <div className={styles.overviewFilter}>
-            <Heading size={'small'} level={'2'}>
+            <Heading size={'xsmall'} level={'3'}>
                 {translations['choose']}
             </Heading>
             <nav aria-label={translations['ariaExplanation']}>
