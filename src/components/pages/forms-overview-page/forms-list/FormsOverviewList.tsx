@@ -40,6 +40,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 'formDetailsTitles',
                 'formNumbers',
                 'title',
+                { name: 'keywords', weight: 2 },
                 { name: 'sortTitle', weight: 10 },
                 { name: 'ingress', weight: 0.5 },
             ],
