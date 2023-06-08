@@ -5,7 +5,6 @@
     display: flex;
     padding-bottom: 1.75rem;
     background-color: common.$a-white;
-
     @include common.full-width-mixin();
 
     @media #{common.$mq-screen-mobile} {
@@ -24,10 +23,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-shrink: 1;
-
+    flex: 1;
     width: 100%;
-    max-width: common.px-to-rem(624px);
 
     @media #{common.$mq-screen-mobile} {
         min-width: 100%;
@@ -37,16 +34,16 @@
 
 .gfxContainer {
     display: flex;
-    flex-shrink: 3;
-    justify-content: flex-end;
+    justify-content: center;
     align-self: flex-end;
-
-    width: common.px-to-rem(500px);
-    max-width: common.px-to-rem(500px);
+    flex: 1;
     height: common.px-to-rem(160px);
     margin-bottom: -1.75rem;
-
     pointer-events: none;
+
+    > * {
+        width: 350px;
+    }
 
     @media #{common.$mq-screen-mobile} {
         display: none;
