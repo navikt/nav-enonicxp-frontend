@@ -39,7 +39,7 @@ const shouldNotIndex = (content: ContentProps) =>
     content.type === ContentType.Error ||
     content.data?.noindex;
 
-const sholdNotSnippet = (content: ContentProps) =>
+const shouldNotSnippet = (content: ContentProps) =>
     [ContentType.OfficeBranchPage].includes(content.type);
 
 const getCanonicalUrl = (content: ContentProps) => {
@@ -60,7 +60,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
     const description = getDescription(content).slice(0, descriptionMaxLength);
     const url = getCanonicalUrl(content);
     const noIndex = shouldNotIndex(content);
-    const noSnippet = sholdNotSnippet(content);
+    const noSnippet = shouldNotSnippet(content);
     const imageUrl = `${appOrigin}/gfx/social-share-fallback.png`;
 
     return (
