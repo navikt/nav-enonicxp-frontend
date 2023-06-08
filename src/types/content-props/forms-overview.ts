@@ -13,6 +13,7 @@ export type FormDetailsListItemProps = {
     title: string;
     sortTitle: string;
     ingress: string;
+    keywords: string[];
     url: string;
     type: ContentType;
     anchorId: string;
