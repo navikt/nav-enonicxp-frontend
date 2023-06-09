@@ -48,12 +48,12 @@ export const FormDetails = ({
 
     return (
         <div className={classNames(styles.formDetails, className)}>
-            {showTitle && (
+            {(showTitle && formDetails.title) && (
                 <Heading size="medium" level="3" spacing={!showIngress}>
                     {formDetails.title}
                 </Heading>
             )}
-            {showIngress && (
+            {(showIngress && formDetails.ingress) && (
                 <div className={styles.ingressWrapper}>
                     <ParsedHtml htmlProps={formDetails.ingress} />
                 </div>
