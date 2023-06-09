@@ -45,7 +45,8 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                 { name: 'ingress', weight: 0.5 },
             ],
         }).then((fuseSearchFunc) => {
-            setScoredList(fuseSearchFunc(textFilter));
+            const result = fuseSearchFunc(textFilter);
+            setScoredList(result);
         });
     }, [formDetailsList, textFilter]);
 
