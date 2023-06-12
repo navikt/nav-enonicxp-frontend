@@ -2,11 +2,10 @@ import React from 'react';
 import { Header } from 'components/_common/headers/Header';
 import { FrontpageShortcutsProps } from 'types/component-props/parts/frontpage-shortcuts';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { classNames } from '../../../utils/classnames';
+import { classNames } from 'utils/classnames';
 import { LinkPanelNavnoSimple } from '../../_common/linkpanel/LinkPanelNavnoSimple';
-import { getUrlFromContent } from '../../../utils/links-from-content';
-import { StaticImage } from 'components/_common/image/StaticImage';
 import { getAudience } from 'types/component-props/_mixins';
+import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
 
 // kopi av ikoner som ligger under /www.nav.no/nav.no-ressurser/ikoner, som brukes inne på oversiktssidene
 import saksbehandlingstider from '/public/gfx/front-page-shortcuts/saksbehandlingstider_nav_ikon.svg';
@@ -20,47 +19,19 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './FrontpageShortcuts.module.scss';
 
-const linkToIconDictionary = {
-    person: {
-        saksbehandlingstider: saksbehandlingstider,
-        utbetalingsdatoer: utbetalingsdatoer,
-        tjenester: pengestotter,
-        'soknader/nb/person': soknader,
-    },
-    employer: {
-        'min-side-arbeidsgiver': arbeidsgiverMinside,
-        'soknader/nb/bedrift': arbeidsgiverSoknader,
-        tilganger: arbeidsgiverTjenester,
-    },
-};
-
 export const FrontpageShortcuts = ({
     config,
     pageProps,
 }: FrontpageShortcutsProps) => {
-    const { contentList, title } = config;
+    const { shortcuts, title: sectionTitle } = config;
+
+    if (!shortcuts || shortcuts.length === 0) {
+        return <EditorHelp text={'Velg minst en snarvei'} />;
+    }
 
     const audience = getAudience(pageProps?.data?.audience);
 
-    const links = contentList?.data?.sectionContents;
-
-    if (!links) {
-        return <EditorHelp text={'Velg en innholdsliste'} />;
-    }
-
-    const getIcon = (content: ContentProps) => {
-        const dictionary = linkToIconDictionary[audience];
-        const foundKey = Object.keys(dictionary).find((key) => {
-            if (content.type === ContentType.ExternalLink) {
-                return content.data.url?.includes(key);
-            }
-
-            return content._path.includes(key);
-        });
-        return foundKey ? dictionary[foundKey] : null;
-    };
-
-    const threeCols = links.length % 3 === 0;
+    const threeCols = shortcuts.length % 3 === 0;
 
     return (
         <div className={classNames(style.shortcuts, style[audience])}>
@@ -70,35 +41,34 @@ export const FrontpageShortcuts = ({
                 justify="left"
                 className={style.header}
             >
-                {title}
+                {sectionTitle}
             </Header>
             <ul
                 className={classNames(style.list, threeCols && style.threeCols)}
             >
-                {links.map((item, index) => {
-                    const icon = getIcon(item);
+                {shortcuts.map((item) => {
+                    const { target, illustration, title: shortcutTitle } = item;
+
+                    const href = target.data?.url || target._path;
+                    const title = shortcutTitle || target.displayName;
+
                     return (
-                        <li key={item._id}>
+                        <li key={title}>
                             <LinkPanelNavnoSimple
-                                href={getUrlFromContent(item)}
+                                href={href}
                                 linkUnderline={'none'}
                                 analyticsLinkGroup={title}
                                 icon={
-                                    icon && (
-                                        <StaticImage
-                                            imageData={icon}
-                                            width={64}
-                                            height={64}
-                                            alt={''}
-                                        />
-                                    )
+                                    <IllustrationStatic
+                                        illustration={illustration}
+                                    />
                                 }
                                 className={classNames(
                                     style.item,
                                     style[`item_${audience}`]
                                 )}
                             >
-                                {item.displayName}
+                                {title}
                             </LinkPanelNavnoSimple>
                         </li>
                     );
