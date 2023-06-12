@@ -11,8 +11,8 @@ import style from './MainPanels.module.scss';
 const ingressMaxLength = 140;
 
 type TableData = {
-    url: string;
     tittel: string;
+    url?: string;
     ingress?: string;
 };
 
@@ -27,11 +27,7 @@ const getUrl = (content: ContentProps) => {
     }
 };
 
-const getLinkData = (content: ContentProps | null): TableData | null => {
-    if (!content) {
-        return null;
-    }
-
+const getLinkData = (content: ContentProps): TableData | null => {
     return {
         tittel: content.displayName,
         ingress: content.data?.ingress || content.data?.description,
@@ -51,27 +47,27 @@ export const MainPanels = (props: SectionPageProps) => {
         <section className={style.mainPanels} aria-label={getLabel('label')}>
             {tableContents.map((content) => {
                 const { url, tittel, ingress } = getLinkData(content);
+                if (!url) {
+                    return null;
+                }
 
                 return (
-                    url &&
-                    tittel && (
-                        <LenkepanelNavNo
-                            href={url}
-                            separator={true}
-                            vertikal={true}
-                            tittel={tittel}
-                            key={content._id}
-                            className={style.item}
-                            component={'main-panels'}
-                        >
-                            {ingress && (
-                                <BodyLong>
-                                    {ingress.slice(0, ingressMaxLength)}
-                                    {ingress.length > ingressMaxLength && '...'}
-                                </BodyLong>
-                            )}
-                        </LenkepanelNavNo>
-                    )
+                    <LenkepanelNavNo
+                        href={url}
+                        separator={true}
+                        vertikal={true}
+                        tittel={tittel}
+                        key={content._id}
+                        className={style.item}
+                        component={'main-panels'}
+                    >
+                        {ingress && (
+                            <BodyLong>
+                                {ingress.slice(0, ingressMaxLength)}
+                                {ingress.length > ingressMaxLength && '...'}
+                            </BodyLong>
+                        )}
+                    </LenkepanelNavNo>
                 );
             })}
         </section>
