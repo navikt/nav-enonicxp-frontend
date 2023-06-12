@@ -8,15 +8,17 @@ export type FrontpageContentListData = {
 };
 
 type Shortcut = {
-    title: string;
     target: {
         _path: string;
         displayName: string;
-        data?: {
+        data: {
             url?: string;
+            illustration?: AnimatedIconsProps;
+            title?: string;
         };
     };
-    illustration: AnimatedIconsProps;
+    customTitle: string;
+    customIllustration?: AnimatedIconsProps;
 };
 
 export interface FrontpageShortcutsProps extends PartComponentProps {

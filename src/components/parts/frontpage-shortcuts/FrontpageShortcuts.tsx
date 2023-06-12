@@ -37,10 +37,13 @@ export const FrontpageShortcuts = ({
                 className={classNames(style.list, threeCols && style.threeCols)}
             >
                 {shortcuts.map((item) => {
-                    const { target, illustration, title: shortcutTitle } = item;
+                    const { target, customIllustration, customTitle } = item;
 
-                    const href = target.data?.url || target._path;
-                    const title = shortcutTitle || target.displayName;
+                    const href = target.data.url || target._path;
+                    const title =
+                        customTitle || target.data.title || target.displayName;
+                    const illustration =
+                        customIllustration || target.data.illustration;
 
                     return (
                         <li key={title}>
