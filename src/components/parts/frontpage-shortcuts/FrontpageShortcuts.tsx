@@ -7,16 +7,6 @@ import { LinkPanelNavnoSimple } from '../../_common/linkpanel/LinkPanelNavnoSimp
 import { getAudience } from 'types/component-props/_mixins';
 import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
 
-// kopi av ikoner som ligger under /www.nav.no/nav.no-ressurser/ikoner, som brukes inne på oversiktssidene
-import saksbehandlingstider from '/public/gfx/front-page-shortcuts/saksbehandlingstider_nav_ikon.svg';
-import utbetalingsdatoer from '/public/gfx/front-page-shortcuts/utbetalingsdatoer_nav_ikon.svg';
-import pengestotter from '/public/gfx/front-page-shortcuts/pengestotter_og_tjenester_fra_a_til_a_nav_ikon.svg';
-import soknader from '/public/gfx/front-page-shortcuts/soknader_og_skjema_nav_ikon.svg';
-import arbeidsgiverMinside from '/public/gfx/front-page-shortcuts/arbeidsgiver_minside.svg';
-import arbeidsgiverSoknader from '/public/gfx/front-page-shortcuts/arbeidsgiver_soknader.svg';
-import arbeidsgiverTjenester from '/public/gfx/front-page-shortcuts/arbeidsgiver_tjenester.svg';
-import { ContentProps, ContentType } from 'types/content-props/_content-common';
-
 import style from './FrontpageShortcuts.module.scss';
 
 export const FrontpageShortcuts = ({
