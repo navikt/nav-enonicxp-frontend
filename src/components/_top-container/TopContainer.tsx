@@ -23,6 +23,7 @@ const contentTypesWithWhiteHeader = {
     [ContentType.AreaPage]: true,
     [ContentType.PressLandingPage]: true,
     [ContentType.FormIntermediateStepPage]: true,
+    [ContentType.FormsOverview]: true,
 };
 
 type Props = {
@@ -32,12 +33,9 @@ type Props = {
 export const checkForWhiteHeader = (content: ContentProps) => {
     const { type } = content;
 
-    if (
-        type === ContentType.MainArticle &&
-        (content.data?.contentType === 'news' ||
-            content.data?.contentType === 'pressRelease')
-    ) {
-        return true;
+    if (type === ContentType.MainArticle) {
+        const contentType = content.data?.contentType;
+        return contentType === 'news' || contentType === 'pressRelease';
     }
 
     return contentTypesWithWhiteHeader[type];
