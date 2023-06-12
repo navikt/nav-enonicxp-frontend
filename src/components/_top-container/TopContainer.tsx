@@ -23,6 +23,7 @@ const contentTypesWithWhiteHeader = {
     [ContentType.AreaPage]: true,
     [ContentType.PressLandingPage]: true,
     [ContentType.FormIntermediateStepPage]: true,
+    [ContentType.FormsOverview]: true,
 };
 
 type Props = {
