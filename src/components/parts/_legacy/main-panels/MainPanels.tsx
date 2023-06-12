@@ -2,120 +2,75 @@ import React from 'react';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { BodyLong } from '@navikt/ds-react';
 import LenkepanelNavNo from '../../../_common/lenkepanel-legacy/LenkepanelNavNo';
-import { translator } from '../../../../translations';
-import { SectionPageProps } from '../../../../types/content-props/section-page-props';
-import { getInternalLinkUrl } from '../../../../utils/links-from-content';
+import { translator } from 'translations';
+import { SectionPageProps } from 'types/content-props/section-page-props';
+import { getInternalLinkUrl } from 'utils/links-from-content';
 
 import style from './MainPanels.module.scss';
 
 const ingressMaxLength = 140;
 
 type TableData = {
-    url: string;
     tittel: string;
+    url?: string;
     ingress?: string;
 };
 
-const getLinkData = (content: ContentProps | null): TableData | null => {
-    if (!content) {
-        return null;
-    }
-
+const getUrl = (content: ContentProps) => {
     switch (content.type) {
         case ContentType.InternalLink:
-            return {
-                url: getInternalLinkUrl(content.data),
-                tittel: content.displayName,
-                ingress: content.data?.description,
-            };
+            return getInternalLinkUrl(content.data);
         case ContentType.ExternalLink:
-            return {
-                url: content.data?.url,
-                tittel: content.displayName,
-                ingress: content.data?.description,
-            };
-        case ContentType.TransportPage:
-            return {
-                url: content._path,
-                tittel: content.displayName,
-                ingress: content.data?.ingress,
-            };
-        case ContentType.PageList:
-            return {
-                url: content._path,
-                tittel: content.displayName,
-                ingress: content.data?.ingress,
-            };
-        case ContentType.MainArticle:
-            return {
-                url: content._path,
-                tittel: content.displayName,
-                ingress: content.data?.ingress,
-            };
-        case ContentType.SectionPage:
-            return {
-                url: content._path,
-                tittel: content.displayName,
-                ingress: content.data?.ingress,
-            };
-        case ContentType.DynamicPage:
-        case ContentType.ProductPage:
-        case ContentType.SituationPage:
-        case ContentType.GuidePage:
-        case ContentType.ThemedArticlePage:
-        case ContentType.Overview:
-            return {
-                url: content._path,
-                tittel: content.displayName,
-                ingress: content.data?.ingress || content.data?.description,
-            };
+            return content.data?.url;
         default:
-            return {
-                url: content._path,
-                tittel: content.displayName,
-                ingress: content.data?.description,
-            };
+            return content._path;
     }
+};
+
+const getLinkData = (content: ContentProps): TableData | null => {
+    return {
+        tittel: content.displayName,
+        ingress: content.data?.ingress || content.data?.description,
+        url: getUrl(content),
+    };
 };
 
 export const MainPanels = (props: SectionPageProps) => {
     const tableContents = props.data?.tableContents;
+    if (!tableContents || tableContents.length === 0) {
+        return null;
+    }
+
     const getLabel = translator('mainPanels', props.language);
 
     return (
-        tableContents?.length > 0 && (
-            <section
-                className={style.mainPanels}
-                aria-label={getLabel('label')}
-            >
-                {tableContents.map((content) => {
-                    const { url, tittel, ingress } = getLinkData(content);
+        <section className={style.mainPanels} aria-label={getLabel('label')}>
+            {tableContents.map((content) => {
+                const { url, tittel, ingress } = getLinkData(content);
+                if (!url) {
+                    return null;
+                }
 
-                    return (
-                        url &&
-                        tittel && (
-                            <LenkepanelNavNo
-                                href={url}
-                                separator={true}
-                                vertikal={true}
-                                tittel={tittel}
-                                key={content._id}
-                                className={style.item}
-                                component={'main-panels'}
-                            >
-                                {ingress && (
-                                    <BodyLong>
-                                        {ingress.slice(0, ingressMaxLength)}
-                                        {ingress.length > ingressMaxLength &&
-                                            '...'}
-                                    </BodyLong>
-                                )}
-                            </LenkepanelNavNo>
-                        )
-                    );
-                })}
-            </section>
-        )
+                return (
+                    <LenkepanelNavNo
+                        href={url}
+                        separator={true}
+                        vertikal={true}
+                        tittel={tittel}
+                        key={content._id}
+                        className={style.item}
+                        component={'main-panels'}
+                    >
+                        {ingress && (
+                            <BodyLong>
+                                {ingress.slice(0, ingressMaxLength)}
+                                {ingress.length > ingressMaxLength && '...'}
+                            </BodyLong>
+                        )}
+                    </LenkepanelNavNo>
+                );
+            })}
+        </section>
     );
 };
 
