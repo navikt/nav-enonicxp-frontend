@@ -46,12 +46,15 @@ export const FrontpageShortcuts = ({
             >
                 {shortcuts.map((item) => {
                     const { target, customIllustration, customTitle } = item;
+                    if (!target?.data) {
+                        return null;
+                    }
 
-                    const href = target.data?.url || target._path;
+                    const href = target.data.url || target._path;
                     const title =
-                        customTitle || target.data?.title || target.displayName;
+                        customTitle || target.data.title || target.displayName;
                     const illustration =
-                        customIllustration || target.data?.illustration;
+                        customIllustration || target.data.illustration;
 
                     return (
                         <li key={title}>
