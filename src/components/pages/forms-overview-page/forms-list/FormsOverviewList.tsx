@@ -37,9 +37,9 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
 
         getFuseSearchFunc(formDetailsList, {
             keys: [
-                'formDetailsTitles',
                 'formNumbers',
                 'title',
+                { name: 'formDetailsTitles', weight: 2 },
                 { name: 'keywords', weight: 2 },
                 { name: 'sortTitle', weight: 10 },
                 { name: 'ingress', weight: 0.5 },
