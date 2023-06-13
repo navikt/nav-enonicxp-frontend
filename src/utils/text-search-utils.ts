@@ -4,6 +4,7 @@ const defaultOptions: Fuse.IFuseOptions<unknown> = {
     includeScore: true,
     includeMatches: true,
     findAllMatches: true,
+    ignoreLocation: true,
     distance: 250,
     threshold: 0.15,
 };
