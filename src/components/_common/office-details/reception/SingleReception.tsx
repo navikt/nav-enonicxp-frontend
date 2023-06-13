@@ -70,12 +70,22 @@ export const SingleReception = (props: AudienceReception) => {
         };
     };
 
-    const {
-        address,
-        adkomstbeskrivelse,
-        openingHours,
-        openingHoursExceptions,
-    } = formatAudienceReception(props);
+    const { address, adkomstbeskrivelse, openingHours } =
+        formatAudienceReception(props);
+
+    let { openingHoursExceptions } = formatAudienceReception(props);
+
+    const todaysDate: Date = new Date();
+    openingHoursExceptions = openingHoursExceptions
+        .filter((exception) => {
+            const openingHoursExceptionDate = new Date(exception.dato);
+            return openingHoursExceptionDate >= todaysDate;
+        })
+        .sort((a, b) => {
+            const dateA = new Date(a.dato).getTime();
+            const dateB = new Date(b.dato).getTime();
+            return dateA - dateB;
+        });
 
     return (
         <div className={styles.singleReception}>
@@ -92,6 +102,7 @@ export const SingleReception = (props: AudienceReception) => {
                     {adkomstbeskrivelse}
                 </BodyShort>
             </section>
+
             {openingHours.length > 0 && (
                 <>
                     <Heading
