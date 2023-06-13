@@ -41,7 +41,7 @@ export const ContentList = ({
     const lenkeData: LinkProps[] = sectionContents
         .map((scContent) => ({
             url: getUrlFromContent(scContent),
-            text: scContent.displayName,
+            text: scContent.data?.title || scContent.displayName,
             label: showDateLabel
                 ? formatDate({
                       datetime: getDate(scContent, sortedBy),
