@@ -121,6 +121,7 @@ type ContentCommonData = Partial<{
     canonicalUrl: string;
     noindex: boolean;
     ingress: string;
+    title: string;
     description: string;
     audience: AudienceProps;
 }>;

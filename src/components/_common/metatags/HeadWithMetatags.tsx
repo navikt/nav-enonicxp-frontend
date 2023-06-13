@@ -53,7 +53,7 @@ const getCanonicalUrl = (content: ContentProps) => {
 };
 
 export const getPageTitle = (content: ContentProps) =>
-    `${content.displayName} - nav.no`;
+    `${content.data?.title || content.displayName} - nav.no`;
 
 export const HeadWithMetatags = ({ content, children }: Props) => {
     const title = getPageTitle(content);

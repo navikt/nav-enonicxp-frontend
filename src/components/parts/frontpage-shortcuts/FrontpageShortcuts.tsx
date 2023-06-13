@@ -13,7 +13,7 @@ export const FrontpageShortcuts = ({
     config,
     pageProps,
 }: FrontpageShortcutsProps) => {
-    const { shortcuts, title: sectionTitle } = config;
+    const { shortcuts, title: sectionTitle, bgColor, hoverColor } = config;
 
     if (!shortcuts || shortcuts.length === 0) {
         return <EditorHelp text={'Velg minst en snarvei'} />;
@@ -24,7 +24,15 @@ export const FrontpageShortcuts = ({
     const threeCols = shortcuts.length % 3 === 0;
 
     return (
-        <div className={classNames(style.shortcuts, style[audience])}>
+        <div
+            className={classNames(style.shortcuts, style[audience])}
+            style={
+                {
+                    '--bg-color': bgColor,
+                    '--hover-color': hoverColor,
+                } as React.CSSProperties
+            }
+        >
             <Header
                 size="large"
                 level="2"
@@ -38,6 +46,9 @@ export const FrontpageShortcuts = ({
             >
                 {shortcuts.map((item) => {
                     const { target, customIllustration, customTitle } = item;
+                    if (!target?.data) {
+                        return null;
+                    }
 
                     const href = target.data.url || target._path;
                     const title =
