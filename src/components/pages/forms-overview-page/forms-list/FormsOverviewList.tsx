@@ -37,12 +37,12 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
 
         getFuseSearchFunc(formDetailsList, {
             keys: [
-                'formNumbers',
-                'title',
+                { name: 'sortTitle', weight: 10 },
                 { name: 'formDetailsTitles', weight: 2 },
                 { name: 'keywords', weight: 2 },
-                { name: 'sortTitle', weight: 10 },
-                { name: 'ingress', weight: 0.5 },
+                { name: 'ingress', weight: 1 },
+                { name: 'title', weight: 1 },
+                { name: 'formNumbers', weight: 1 },
             ],
         }).then((fuseSearchFunc) => {
             const result = fuseSearchFunc(textFilter);

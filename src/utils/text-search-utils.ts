@@ -11,7 +11,7 @@ const defaultOptions: Fuse.IFuseOptions<unknown> = {
 export const getFuseSearchFunc = async <Type>(
     list: Type[],
     options?: Fuse.IFuseOptions<Type>,
-    maxScore = 0.025
+    maxScore = 0.35
 ) => {
     const Fuse = (await import('fuse.js')).default;
     const fuse = new Fuse(list, { ...defaultOptions, ...options });
