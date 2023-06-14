@@ -75,10 +75,10 @@ export const SingleReception = (props: AudienceReception) => {
 
     let { openingHoursExceptions } = formatAudienceReception(props);
 
-    const todaysDate: Date = new Date();
-    openingHoursExceptions = openingHoursExceptions
+    const todaysDate: string = new Date().toISOString().slice(0, 10);
+    const futureOpeningHoursExceptions = openingHoursExceptions
         .filter((exception) => {
-            const openingHoursExceptionDate = new Date(exception.dato);
+            const openingHoursExceptionDate: string = exception.dato;
             return openingHoursExceptionDate >= todaysDate;
         })
         .sort((a, b) => {
@@ -123,12 +123,12 @@ export const SingleReception = (props: AudienceReception) => {
                     <OpeningHours openingHours={openingHours} />
                 </>
             )}
-            {openingHoursExceptions.length > 0 && (
+            {futureOpeningHoursExceptions.length > 0 && (
                 <>
                     <Heading level="3" size="medium" spacing>
                         {getLabel('specialOpeningHours')}
                     </Heading>
-                    <OpeningHours openingHours={openingHoursExceptions} />
+                    <OpeningHours openingHours={futureOpeningHoursExceptions} />
                 </>
             )}
             <div className={styles.appointmentBookingInfo}>
