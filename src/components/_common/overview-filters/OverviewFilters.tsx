@@ -41,7 +41,12 @@ const MobileView = ({
                     <Heading level={'2'} size={'xsmall'}>
                         {searchLabel}
                     </Heading>
-                    <div className={style.mobileTextFilter}>
+                    <div
+                        className={classNames(
+                            style.mobileFilters,
+                            hasToggleFilters && style.withToggleFilters
+                        )}
+                    >
                         {hasToggleFilters && (
                             <Button
                                 icon={<FilterIcon />}
