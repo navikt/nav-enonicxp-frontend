@@ -27,7 +27,12 @@ const MobileView = ({
     const [isOpen, setIsOpen] = useState(false);
     const filtersRef = useRef();
 
-    const searchLabel = translator('overview', language)('filterOrSearch');
+    const hasToggleFilters = showAreaFilter || showTaxonomyFilter;
+
+    const searchLabel = translator(
+        'overview',
+        language
+    )(hasToggleFilters ? 'filterOrSearch' : 'search');
 
     return (
         <div className={style.mobile}>
@@ -37,25 +42,28 @@ const MobileView = ({
                         {searchLabel}
                     </Heading>
                     <div className={style.mobileTextFilter}>
-                        <Button
-                            icon={<FilterIcon />}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setIsOpen(!isOpen);
-                                logAmplitudeEvent(AnalyticsEvents.FILTER, {
-                                    opprinnelse: 'oversiktsside filter mobil',
-                                });
-                            }}
-                            className={style.mobileFilterButton}
-                            variant="primary-neutral"
-                        >
-                            {'Filter'}
-                        </Button>
+                        {hasToggleFilters && (
+                            <Button
+                                icon={<FilterIcon />}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setIsOpen(!isOpen);
+                                    logAmplitudeEvent(AnalyticsEvents.FILTER, {
+                                        opprinnelse:
+                                            'oversiktsside filter mobil',
+                                    });
+                                }}
+                                className={style.mobileFilterButton}
+                                variant="primary-neutral"
+                            >
+                                {'Filter'}
+                            </Button>
+                        )}
                         <OverviewTextFilter hideLabel={true} />
                     </div>
                 </>
             )}
-            {(showAreaFilter || showTaxonomyFilter) && (
+            {hasToggleFilters && (
                 <div
                     className={classNames(
                         style.mobileToggleFilters,
