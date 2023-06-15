@@ -194,7 +194,7 @@ export const translationsBundleNn: Translations = {
     overview: {
         noHits: 'Ingen treff med dei valde filtera.',
         numHits: 'Viser $1 av $2',
-        search: 'Finn teneste',
+        search: 'Søk',
         filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhald...',
         any: 'Frå A til Å',

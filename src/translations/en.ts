@@ -213,7 +213,7 @@ export const translationsBundleEn: Translations = {
     overview: {
         noHits: 'No hits with the selected filters.',
         numHits: 'Showing $1 out of $2',
-        search: 'Find a service',
+        search: 'Search',
         filterOrSearch: 'Use filters or search',
         loading: 'Loading content...',
         any: 'From A to Z',
