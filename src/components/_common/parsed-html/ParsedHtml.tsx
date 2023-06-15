@@ -137,6 +137,11 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 const level = headingToLevel[tag] || 2; //Level 1 reserved for page heading
                 const size = headingToSize[tag];
 
+                // Ignore heading-tag if it contains a macro
+                if (hasBlockLevelMacroChildren(element)) {
+                    return <>{domToReact(children, parserOptions)}</>;
+                }
+
                 return (
                     // H1 tags should only be used for the page heading
                     <Heading {...props} size={size} level={level} spacing>
@@ -158,6 +163,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 );
             }
 
+            // Remove underline
             if (tag === 'u') {
                 if (!children) {
                     return <Fragment />;
@@ -184,13 +190,20 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 );
             }
 
-            // Remove empty lists
-            if (tag === 'ul' || tag === 'ol' || tag === 'dl') {
-                if (!validChildren) {
-                    return <Fragment />;
-                }
+            // Remove empty lists and other tags that should not be empty
+            switch (tag) {
+                case 'ul':
+                case 'ol':
+                case 'dl':
+                case 'div':
+                case 'thead':
+                    if (!validChildren) {
+                        return <Fragment />;
+                    }
+                    break;
             }
 
+            // Handle li - remove if empty
             if (tag === 'li') {
                 if (!validChildren) {
                     return <Fragment />;
@@ -212,11 +225,6 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             // Replace empty rows with stylable element
             if (tag === 'tr' && !validChildren) {
                 return <tr {...props} role="none" className={'spacer-row'} />;
-            }
-
-            // Remove empty divs
-            if (tag === 'div' && !validChildren) {
-                return <Fragment />;
             }
         },
     };
