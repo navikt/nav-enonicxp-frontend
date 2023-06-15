@@ -2,13 +2,13 @@ import React from 'react';
 import { ProductDetailsProps } from 'types/component-props/parts/product-details';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
+import { ProductDetailType } from 'types/content-props/product-details';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { translator } from '../../../translations';
 import { Provider } from 'react-redux';
 import { setPageConfigAction } from '../../../store/slices/pageConfig';
 import { createNewStore } from '../../../store/store';
-import { ProductDetailType } from 'types/content-props/product-details';
 
 export const ProductDetailsPart = ({
     config,

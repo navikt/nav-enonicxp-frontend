@@ -3,10 +3,10 @@ import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
 import { LegacyLayoutProps } from '../../../types/component-props/layouts/legacy-layout';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-
-import style from './ProductDetailsLayout.module.scss';
 import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
 import { ProductDetailType } from 'types/content-props/product-details';
+
+import style from './ProductDetailsLayout.module.scss';
 
 type Props = {
     pageProps: ProductDetailsProps;
@@ -15,7 +15,6 @@ type Props = {
 
 export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions } = layoutProps;
-
     const { detailType } = pageProps.data;
 
     if (!regions) {
@@ -40,7 +39,7 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
             {Object.keys(regions).map((key, index) => {
                 const regionProps = regions[key];
 
-                // The complaint section of product detail is only applicable
+                // The 'main_complaint' section in product details is only applicable
                 // for product detail types === 'processing_times'
                 if (
                     key === 'main_complaint' &&
