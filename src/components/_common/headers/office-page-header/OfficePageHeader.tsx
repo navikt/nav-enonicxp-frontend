@@ -44,12 +44,9 @@ export const OfficePageHeader = ({ officeDetails }: Props) => {
                     </BodyShort>
                     {subTitle && (
                         <>
-                            <span aria-hidden="true" className={style.divider}>
-                                {'|'}
-                            </span>
                             <BodyShort
                                 size="small"
-                                className={style.taglineLabel}
+                                className={style.branchNamesLabel}
                             >
                                 {subTitle}
                             </BodyShort>
