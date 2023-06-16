@@ -33,8 +33,6 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
         'Oppsummering: Vises kun på oversiktssiden',
     ];
 
-    console.log(pageProps);
-
     return (
         <LayoutContainer
             pageProps={pageProps}
