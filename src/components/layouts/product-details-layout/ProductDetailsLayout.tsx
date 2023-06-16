@@ -15,7 +15,10 @@ type Props = {
 
 export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions } = layoutProps;
-    const { detailType } = pageProps.data;
+
+    // As the layout is shared between product listing and isolated product details,
+    // we need to determine the detailType by checking both detailType and overviewType (for product overview)
+    const detailType = pageProps.data.detailType || pageProps.data.overviewType;
 
     if (!regions) {
         return null;
@@ -29,6 +32,8 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
         'Hovedinnhold, klage: Vises på oversiktssiden og på produktsiden.',
         'Oppsummering: Vises kun på oversiktssiden',
     ];
+
+    console.log(pageProps);
 
     return (
         <LayoutContainer
