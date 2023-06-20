@@ -11,18 +11,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         };
     }
 
-    const locale = getFirstElementIfArray(context.query.locale);
+    const locale = getFirstElementIfArray(context.query.locale) || 'no';
 
     const pageProps = await fetchPageProps({
-        locale: getFirstElementIfArray(locale),
+        locale,
         routerQuery: context.params?.archiveRouter,
         isArchived: true,
     });
 
     if (isPropsWithContent(pageProps.props)) {
         pageProps.props.content.editorView = 'archive';
-        pageProps.props.content.layerLocale =
-            getFirstElementIfArray(locale) || 'no';
+        pageProps.props.content.layerLocale = locale;
     }
 
     return pageProps;
