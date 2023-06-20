@@ -40,19 +40,20 @@ type FetchSiteContentArgs = {
     isArchived?: boolean;
 };
 
-const getFetchFunc = ({ isArchived, time }: FetchSiteContentArgs) => {
+const fetchSiteContent = async (props: FetchSiteContentArgs) => {
+    const { isArchived, time } = props;
     if (isArchived) {
-        return fetchSiteContentArchive;
+        return fetchSiteContentArchive(props);
     }
 
     if (time) {
-        return fetchSiteContentVersion;
+        return fetchSiteContentVersion(props);
     }
 
-    return fetchSiteContent;
+    return fetchSiteContentStandard(props);
 };
 
-const fetchSiteContent = async ({
+const fetchSiteContentStandard = async ({
     idOrPath,
     isDraft = false,
     isPreview = false,
@@ -125,7 +126,7 @@ const fetchAndHandleErrorsBuildtime = async (
 ) => {
     const { idOrPath, retries = 5 } = props;
 
-    return fetchSiteContent({ idOrPath }).then((res) => {
+    return fetchSiteContentStandard({ idOrPath }).then((res) => {
         if (res?.ok) {
             return res.json();
         }
@@ -147,9 +148,7 @@ const fetchAndHandleErrorsBuildtime = async (
 const fetchAndHandleErrorsRuntime = async (
     props: FetchSiteContentArgs
 ): Promise<XpResponseProps> => {
-    const fetchFunc = getFetchFunc(props);
-
-    const res = await fetchFunc(props);
+    const res = await fetchSiteContent(props);
 
     const { idOrPath } = props;
     const errorId = uuid();
