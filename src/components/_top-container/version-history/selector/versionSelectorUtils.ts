@@ -4,11 +4,11 @@ import { objectToQueryString } from 'utils/fetch/fetch-utils';
 
 export const getVersionSelectorUrl = (
     content: ContentProps,
-    utcDateTime: string,
-    branch: Branch
+    utcDateTime?: string,
+    branch?: Branch
 ) => {
     const params = objectToQueryString({
-        time: utcDateTime,
+        ...(utcDateTime && { time: utcDateTime }),
         id: content._id,
         branch: branch === 'draft' ? branch : undefined,
         locale: content.layerLocale,

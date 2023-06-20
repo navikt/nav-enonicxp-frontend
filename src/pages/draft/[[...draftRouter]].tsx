@@ -3,10 +3,7 @@ import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import { PageBase } from 'components/PageBase';
 import { ContentProps } from 'types/content-props/_content-common';
 import { isPropsWithContent } from 'types/_type-guards';
-
-const forceString = (str: string | string[]) => {
-    return Array.isArray(str) ? str[0] : str;
-};
+import { getFirstElementIfArray } from 'utils/arrays';
 
 const fetchVersionPageProps = async (context: GetServerSidePropsContext) => {
     const { time, id, branch, locale } = context.query;
@@ -15,8 +12,8 @@ const fetchVersionPageProps = async (context: GetServerSidePropsContext) => {
         routerQuery: id,
         isDraft: branch === 'draft',
         noRedirect: true,
-        timeRequested: forceString(time),
-        locale: forceString(locale),
+        timeRequested: getFirstElementIfArray(time),
+        locale: getFirstElementIfArray(locale),
     });
 };
 
@@ -33,7 +30,7 @@ const getPageProps = async (context: GetServerSidePropsContext) => {
         routerQuery: pathSegments,
         isDraft: true,
         noRedirect: true,
-        locale: forceString(locale),
+        locale: getFirstElementIfArray(locale),
     });
 };
 
@@ -51,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     if (isPropsWithContent(pageProps.props)) {
         pageProps.props.content.editorView =
             (context.query.mode as ContentProps['editorView']) || 'preview';
-        pageProps.props.content.layerLocale = forceString(locale);
+        pageProps.props.content.layerLocale = getFirstElementIfArray(locale);
     }
 
     return pageProps;
