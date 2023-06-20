@@ -40,24 +40,16 @@ type FetchSiteContentArgs = {
     isArchived?: boolean;
 };
 
-const fetchSiteContentArchive = async ({
-    idOrPath,
-    locale,
-    time,
-}: FetchSiteContentArgs) => {
-    const params = objectToQueryString({
-        id: idOrPath,
-        ...(locale && { locale }),
-        ...(time && { time }),
-    });
+const getFetchFunc = ({ isArchived, time }: FetchSiteContentArgs) => {
+    if (isArchived) {
+        return fetchSiteContentArchive;
+    }
 
-    const url = `${xpServiceUrl}/sitecontentArchive${params}`;
-    console.log(`Fetching archived content from ${url}`);
+    if (time) {
+        return fetchSiteContentVersion;
+    }
 
-    return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
-        console.log(`Sitecontent archive fetch error: ${e}`);
-        return null;
-    });
+    return fetchSiteContent;
 };
 
 const fetchSiteContent = async ({
@@ -106,6 +98,26 @@ const fetchSiteContentVersion = async ({
     });
 };
 
+const fetchSiteContentArchive = async ({
+    idOrPath,
+    locale,
+    time,
+}: FetchSiteContentArgs) => {
+    const params = objectToQueryString({
+        id: idOrPath,
+        ...(locale && { locale }),
+        ...(time && { time }),
+    });
+
+    const url = `${xpServiceUrl}/sitecontentArchive${params}`;
+    console.log(`Fetching archived content from ${url}`);
+
+    return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
+        console.log(`Sitecontent archive fetch error: ${e}`);
+        return null;
+    });
+};
+
 // For pages generated at build-time, any errors thrown will abort the build process.
 // Retry a few times, and just throw a generic server error if anything fails.
 const fetchAndHandleErrorsBuildtime = async (
@@ -135,11 +147,7 @@ const fetchAndHandleErrorsBuildtime = async (
 const fetchAndHandleErrorsRuntime = async (
     props: FetchSiteContentArgs
 ): Promise<XpResponseProps> => {
-    const fetchFunc = props.isArchived
-        ? fetchSiteContentArchive
-        : props.time
-        ? fetchSiteContentVersion
-        : fetchSiteContent;
+    const fetchFunc = getFetchFunc(props);
 
     const res = await fetchFunc(props);
 
