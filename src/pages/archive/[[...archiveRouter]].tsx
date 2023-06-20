@@ -18,6 +18,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         routerQuery: context.params?.archiveRouter,
         isArchived: true,
         timeRequested: getFirstElementIfArray(context.query.time),
+        noRedirect: true,
+        isDraft: true,
     });
 
     if (isPropsWithContent(pageProps.props)) {
