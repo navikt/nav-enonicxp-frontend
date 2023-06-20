@@ -154,7 +154,7 @@ export const translationsBundleEn: Translations = {
         officeNumber: 'Office number',
         phoneToNav: 'NAV phone number is',
         phoneInformation:
-            'Open, weekdays at 9-15. NAV call center will assist you or connect you with your NAV office.',
+            'Phone hours, weekdays at 9-15. NAV call center will assist you or connect you with your NAV office.',
         alternativeContacts: 'Other contact options:',
     },
     dateTime: {
