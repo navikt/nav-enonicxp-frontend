@@ -46,6 +46,7 @@ export const VersionHistory = ({ content }: Props) => {
                 <VersionStatus
                     content={content}
                     requestedDateTime={timeRequested}
+                    submitVersionUrl={setVersionUrlRequested}
                 />
             )}
             <LenkeStandalone
