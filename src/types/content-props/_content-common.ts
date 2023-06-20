@@ -133,7 +133,7 @@ export type ContentCommonProps = {
     parent?: ContentCommonProps;
     data?: ContentCommonData;
     page?: LayoutProps;
-    editorView?: 'inline' | 'preview' | 'edit';
+    editorView?: 'inline' | 'preview' | 'edit' | 'archive';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     livePath?: string;
     isFailover?: boolean;
