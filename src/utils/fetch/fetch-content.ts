@@ -43,10 +43,12 @@ type FetchSiteContentArgs = {
 const fetchSiteContentArchive = async ({
     idOrPath,
     locale,
+    time,
 }: FetchSiteContentArgs) => {
     const params = objectToQueryString({
         id: idOrPath,
         ...(locale && { locale }),
+        ...(time && { time }),
     });
 
     const url = `${xpServiceUrl}/sitecontentArchive${params}`;
