@@ -37,6 +37,25 @@ type FetchSiteContentArgs = {
     isDraft?: boolean;
     isPreview?: boolean;
     locale?: string;
+    isArchived?: boolean;
+};
+
+const fetchSiteContentArchive = async ({
+    idOrPath,
+    locale,
+}: FetchSiteContentArgs) => {
+    const params = objectToQueryString({
+        id: idOrPath,
+        ...(locale && { locale }),
+    });
+
+    const url = `${xpServiceUrl}/sitecontentArchive${params}`;
+    console.log(`Fetching archived content from ${url}`);
+
+    return fetchWithTimeout(url, fetchTimeoutMs, fetchConfig).catch((e) => {
+        console.log(`Sitecontent archive fetch error: ${e}`);
+        return null;
+    });
 };
 
 const fetchSiteContent = async ({
@@ -114,9 +133,13 @@ const fetchAndHandleErrorsBuildtime = async (
 const fetchAndHandleErrorsRuntime = async (
     props: FetchSiteContentArgs
 ): Promise<XpResponseProps> => {
-    const res = props.time
-        ? await fetchSiteContentVersion(props)
-        : await fetchSiteContent(props);
+    const fetchFunc = props.isArchived
+        ? fetchSiteContentArchive
+        : props.time
+        ? fetchSiteContentVersion
+        : fetchSiteContent;
+
+    const res = await fetchFunc(props);
 
     const { idOrPath } = props;
     const errorId = uuid();
@@ -179,6 +202,7 @@ type FetchPageArgs = {
     timeRequested?: string;
     isPreview?: boolean;
     locale?: string;
+    isArchived?: boolean;
 };
 
 export const fetchPage = async ({
@@ -187,6 +211,7 @@ export const fetchPage = async ({
     isDraft = false,
     isPreview = false,
     locale,
+    isArchived,
 }: FetchPageArgs): Promise<XpResponseProps> => {
     const content = await fetchAndHandleErrors({
         idOrPath,
@@ -194,6 +219,7 @@ export const fetchPage = async ({
         isPreview,
         time: timeRequested,
         locale,
+        isArchived,
     });
 
     if (!content?.type) {
