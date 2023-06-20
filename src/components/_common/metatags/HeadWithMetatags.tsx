@@ -39,9 +39,6 @@ const shouldNotIndex = (content: ContentProps) =>
     content.type === ContentType.Error ||
     content.data?.noindex;
 
-const shouldNotSnippet = (content: ContentProps) =>
-    [ContentType.OfficeBranchPage].includes(content.type);
-
 const getCanonicalUrl = (content: ContentProps) => {
     if (hasCanonicalUrl(content)) {
         return content.data.canonicalUrl;
@@ -60,7 +57,6 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
     const description = getDescription(content).slice(0, descriptionMaxLength);
     const url = getCanonicalUrl(content);
     const noIndex = shouldNotIndex(content);
-    const noSnippet = shouldNotSnippet(content);
     const imageUrl = `${appOrigin}/gfx/social-share-fallback.png`;
 
     return (
@@ -71,7 +67,6 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
             ) : (
                 <link rel={'canonical'} href={url} />
             )}
-            {noSnippet && <meta name={'robots'} content={'nosnippet'} />}
             <meta property={'og:title'} content={title} />
             <meta property={'og:site_name'} content={'nav.no'} />
             <meta property={'og:url'} content={url} />
