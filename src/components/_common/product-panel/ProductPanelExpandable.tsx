@@ -51,6 +51,14 @@ export const ProductPanelExpandable = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [anchorIdWithHash]);
 
+    useEffect(() => {
+        window.addEventListener('hashchange', () => setIsOpen(true));
+
+        return () => {
+            window.removeEventListener('hashchange', () => setIsOpen(true));
+        };
+    }, []);
+
     const handleClick = () => {
         logAmplitudeEvent(
             isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
