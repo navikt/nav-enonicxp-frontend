@@ -2,6 +2,7 @@ import React from 'react';
 import { ProductDetailsProps } from 'types/component-props/parts/product-details';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
+import { ProductDetailType } from 'types/content-props/product-details';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { translator } from '../../../translations';
@@ -25,11 +26,16 @@ export const ProductDetailsPart = ({
 
     const { components } = config;
     if (!components || components.length === 0) {
+        const processingTimeHelptext =
+            'Hvis du har angitt å vise kun klage, pass på at det ligger tekst i layout-seksjonen for klage i produktdetaljen.';
         return (
             <EditorHelp
                 text={`Fant ingen produktdetaljer for ${detailTypeStrings(
                     config.detailType
-                )} på denne siden. Velg produktdetaljer fra venstre-panelet i editoren (produktdetaljene må være publisert for å kunne velges).`}
+                )} på denne siden. Pass på at du har valgt produktdetaljer fra venstre-panelet i editoren (produktdetaljene må være publisert for å kunne velges). ${
+                    config.detailType === ProductDetailType.PROCESSING_TIMES &&
+                    processingTimeHelptext
+                }`}
                 type={'error'}
             />
         );

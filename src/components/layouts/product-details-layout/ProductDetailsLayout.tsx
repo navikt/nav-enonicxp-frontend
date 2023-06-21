@@ -1,19 +1,24 @@
 import React, { Fragment } from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
 import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
 import { LegacyLayoutProps } from '../../../types/component-props/layouts/legacy-layout';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
+import { ProductDetailType } from 'types/content-props/product-details';
 
 import style from './ProductDetailsLayout.module.scss';
 
 type Props = {
-    pageProps: ContentProps;
+    pageProps: ProductDetailsProps;
     layoutProps?: LegacyLayoutProps;
 };
 
 export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions } = layoutProps;
+
+    // As the layout is shared between product listing and isolated product details,
+    // we need to determine the detailType by checking both detailType and overviewType (for product overview)
+    const detailType = pageProps.data.detailType || pageProps.data.overviewType;
 
     if (!regions) {
         return null;
@@ -21,7 +26,10 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
 
     const regionHelpText = [
         'Introduksjon: Vises kun på oversiktssiden',
-        'Hovedinnhold: Vises på oversiktssiden og på produktsiden',
+        detailType === ProductDetailType.PROCESSING_TIMES
+            ? 'Hovedinnhold, søknad: Vises på oversiktssiden og på produktsiden'
+            : 'Hovedinnhold: Vises på oversiktssiden og på produktsiden.',
+        'Hovedinnhold, klage: Vises på oversiktssiden og på produktsiden.',
         'Oppsummering: Vises kun på oversiktssiden',
     ];
 
@@ -31,7 +39,17 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
             className={style.productDetails}
         >
-            {Object.values(regions).map((regionProps, index) => {
+            {Object.keys(regions).map((key, index) => {
+                const regionProps = regions[key];
+
+                // The 'main_complaint' section in product details is only applicable
+                // for product detail types === 'processing_times'
+                if (
+                    key === 'main_complaint' &&
+                    detailType !== 'processing_times'
+                ) {
+                    return null;
+                }
                 return (
                     <Fragment key={index}>
                         <EditorHelp

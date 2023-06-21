@@ -64,7 +64,8 @@ export type ProductDataMixin = {
 };
 
 export type ProductDetailsDataMixin = {
-    detailType: ProductDetailType;
+    detailType?: ProductDetailType;
+    overviewType?: ProductDetailType;
     pageUsageReference?: string;
 };
 
