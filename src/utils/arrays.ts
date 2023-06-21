@@ -23,3 +23,7 @@ export const sortLikeArray =
     <Type>(sortedArray: Type[]) =>
     (a: Type, b: Type) =>
         sortedArray.indexOf(a) - sortedArray.indexOf(b);
+
+export const getFirstElementIfArray = <Type>(maybeArray: Type | Type[]) => {
+    return Array.isArray(maybeArray) ? maybeArray[0] : maybeArray;
+};

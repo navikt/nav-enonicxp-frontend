@@ -13,9 +13,9 @@ export type XpResponseProps = ContentProps | MediaProps;
 // This message is returned from the sitecontent-service if the requested content
 // was not found. Used to distinquish between content not found and the service
 // itself not being found (ie if something is wrong with the nav.no app)
-const contentNotFoundMessage = 'Site path not found';
+const NOT_FOUND_MSG_PREFIX = 'Site path not found';
 
-const fetchTimeoutMs = 60000;
+const FETCH_TIMEOUT_MS = 60000;
 
 const getCacheKey =
     process.env.NODE_ENV !== 'development'
@@ -37,9 +37,23 @@ type FetchSiteContentArgs = {
     isDraft?: boolean;
     isPreview?: boolean;
     locale?: string;
+    isArchived?: boolean;
 };
 
-const fetchSiteContent = async ({
+const fetchSiteContent = async (props: FetchSiteContentArgs) => {
+    const { isArchived, time } = props;
+    if (isArchived) {
+        return fetchSiteContentArchive(props);
+    }
+
+    if (time) {
+        return fetchSiteContentVersion(props);
+    }
+
+    return fetchSiteContentStandard(props);
+};
+
+const fetchSiteContentStandard = async ({
     idOrPath,
     isDraft = false,
     isPreview = false,
@@ -56,7 +70,7 @@ const fetchSiteContent = async ({
     const url = `${xpServiceUrl}/sitecontent${params}`;
     console.log(`Fetching content from ${url}`);
 
-    return fetchWithTimeout(url, fetchTimeoutMs, fetchConfig).catch((e) => {
+    return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
         console.log(`Sitecontent fetch error: ${e}`);
         return null;
     });
@@ -79,8 +93,28 @@ const fetchSiteContentVersion = async ({
 
     console.log(`Fetching version history content from ${url}`);
 
-    return fetchWithTimeout(url, fetchTimeoutMs, fetchConfig).catch((e) => {
+    return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
         console.log(`Sitecontent version fetch error: ${e}`);
+        return null;
+    });
+};
+
+const fetchSiteContentArchive = async ({
+    idOrPath,
+    locale,
+    time,
+}: FetchSiteContentArgs) => {
+    const params = objectToQueryString({
+        id: idOrPath,
+        ...(locale && { locale }),
+        ...(time && { time }),
+    });
+
+    const url = `${xpServiceUrl}/sitecontentArchive${params}`;
+    console.log(`Fetching archived content from ${url}`);
+
+    return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
+        console.log(`Sitecontent archive fetch error: ${e}`);
         return null;
     });
 };
@@ -92,7 +126,7 @@ const fetchAndHandleErrorsBuildtime = async (
 ) => {
     const { idOrPath, retries = 5 } = props;
 
-    return fetchSiteContent({ idOrPath }).then((res) => {
+    return fetchSiteContentStandard({ idOrPath }).then((res) => {
         if (res?.ok) {
             return res.json();
         }
@@ -114,9 +148,7 @@ const fetchAndHandleErrorsBuildtime = async (
 const fetchAndHandleErrorsRuntime = async (
     props: FetchSiteContentArgs
 ): Promise<XpResponseProps> => {
-    const res = props.time
-        ? await fetchSiteContentVersion(props)
-        : await fetchSiteContent(props);
+    const res = await fetchSiteContent(props);
 
     const { idOrPath } = props;
     const errorId = uuid();
@@ -148,7 +180,7 @@ const fetchAndHandleErrorsRuntime = async (
     if (res.status === 404) {
         // If we get an unexpected 404-error from the sitecontent-service (meaning the service itself
         // was not found), treat the error as a server error in order to prevent cache-invalidation
-        if (errorMsg !== contentNotFoundMessage) {
+        if (!errorMsg.startsWith(NOT_FOUND_MSG_PREFIX)) {
             logPageLoadError(
                 errorId,
                 `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath} - unexpected 404-response from sitecontent service: ${errorMsg}`
@@ -179,6 +211,7 @@ type FetchPageArgs = {
     timeRequested?: string;
     isPreview?: boolean;
     locale?: string;
+    isArchived?: boolean;
 };
 
 export const fetchPage = async ({
@@ -187,6 +220,7 @@ export const fetchPage = async ({
     isDraft = false,
     isPreview = false,
     locale,
+    isArchived,
 }: FetchPageArgs): Promise<XpResponseProps> => {
     const content = await fetchAndHandleErrors({
         idOrPath,
@@ -194,6 +228,7 @@ export const fetchPage = async ({
         isPreview,
         time: timeRequested,
         locale,
+        isArchived,
     });
 
     if (!content?.type) {

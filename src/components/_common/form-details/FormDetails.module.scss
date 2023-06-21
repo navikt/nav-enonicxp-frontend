@@ -2,6 +2,33 @@
 
 .formDetails {
     margin-bottom: 1.75rem;
+
+    ul {
+        list-style: disc;
+        margin-bottom: 1.75rem;
+    }
+
+    li {
+        margin-bottom: 0.25rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        & > * {
+            margin: 0;
+        }
+    }
+
+    h3 {
+        margin-bottom: 1rem;
+    }
+
+    // pull lists upward to text above if any.
+    :global(.navds-body-long + ul),
+    :global(.navds-body-long + ol) {
+        margin-top: -1rem;
+    }
 }
 
 .variationWrapper {

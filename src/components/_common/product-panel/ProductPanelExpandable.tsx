@@ -43,13 +43,25 @@ export const ProductPanelExpandable = ({
 
     const anchorIdWithHash = `#${anchorId}`;
 
-    useEffect(() => {
+    const checkHashAndExpandPanel = () => {
         if (window.location.hash === anchorIdWithHash) {
             contentLoaderCallback();
             setIsOpen(true);
         }
+    };
+
+    useEffect(() => {
+        checkHashAndExpandPanel();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [anchorIdWithHash]);
+
+    useEffect(() => {
+        window.addEventListener('hashchange', checkHashAndExpandPanel);
+
+        return () => {
+            window.removeEventListener('hashchange', checkHashAndExpandPanel);
+        };
+    }, []);
 
     const handleClick = () => {
         logAmplitudeEvent(
