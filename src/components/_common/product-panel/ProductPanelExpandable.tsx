@@ -44,7 +44,6 @@ export const ProductPanelExpandable = ({
     const anchorIdWithHash = `#${anchorId}`;
 
     const checkHashAndExpandPanel = () => {
-        console.log(window.location.hash, anchorIdWithHash);
         if (window.location.hash === anchorIdWithHash) {
             contentLoaderCallback();
             setIsOpen(true);
