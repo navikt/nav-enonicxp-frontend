@@ -21,8 +21,14 @@ export const SituationPageFlexColsLayout = ({
     }
 
     const { config } = layoutProps;
-    const { title, numCols, justifyContent, anchorId, toggleCopyButton } =
-        config;
+    const {
+        title,
+        numCols,
+        justifyContent,
+        anchorId,
+        toggleCopyButton,
+        shelf,
+    } = config;
 
     const regionStyle = {
         ...(justifyContent && { justifyContent }),
@@ -35,8 +41,20 @@ export const SituationPageFlexColsLayout = ({
     const colCount =
         typeof numCols === 'number' ? numCols : calculateColCount();
 
+    const getModifiers = () => {
+        if (!shelf?._selected) {
+            return [];
+        }
+
+        return [shelf._selected];
+    };
+
     return (
-        <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+        <LayoutContainer
+            pageProps={pageProps}
+            layoutProps={layoutProps}
+            modifiers={getModifiers()}
+        >
             {title && (
                 <Header
                     level="2"
