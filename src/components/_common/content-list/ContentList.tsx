@@ -2,7 +2,7 @@ import React from 'react';
 import { ContentListProps } from 'types/content-props/content-list-props';
 import { LinkProps } from 'types/link-props';
 import { Lenkeliste } from '../lenkeliste/Lenkeliste';
-import { formatDate } from 'utils/datetime';
+import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import { getUrlFromContent } from 'utils/links-from-content';
 import { DateTimeKey } from 'types/datetime';
 import { ContentProps } from 'types/content-props/_content-common';
@@ -11,9 +11,7 @@ import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 const getDate = (content: ContentProps, dateLabelKey: DateTimeKey) =>
     getNestedValueFromKeyString(content, dateLabelKey) ||
-    content.publish?.from ||
-    content.publish?.first ||
-    content.createdTime;
+    getPublishedDateTime(content);
 
 type Props = {
     content: ContentListProps;
