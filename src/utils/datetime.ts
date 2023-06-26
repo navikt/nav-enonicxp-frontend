@@ -4,6 +4,7 @@ import 'dayjs/locale/en';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import { ContentProps } from 'types/content-props/_content-common';
 
 dayjs.extend(localizedFormat);
 dayjs.extend(utc);
@@ -83,3 +84,7 @@ export const getCurrentISODate = (): string => {
 export const getUtcTimeFromLocal = (datetime: string) => {
     return dayjs(datetime).utc().format();
 };
+
+export const getPublishedDateTime = (
+    content: Pick<ContentProps, 'publish' | 'createdTime'>
+) => content.publish?.from || content.publish?.first || content.createdTime;
