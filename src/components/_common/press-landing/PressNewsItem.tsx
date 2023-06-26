@@ -6,8 +6,8 @@ import { shortenText } from 'utils/string';
 import { StaticImage } from '../image/StaticImage';
 import { getPublicPathname } from 'utils/urls';
 import { formatDate } from 'utils/datetime';
-
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
+
 import styles from './PressNewsItem.module.scss';
 
 type PressNewsItemProps = {
@@ -50,7 +50,7 @@ export const PressNewsItem = ({ newsItem }: PressNewsItemProps) => {
                 <Detail className={styles.publishDate}>
                     {getTranslations('published')}{' '}
                     {formatDate({
-                        datetime: newsItem.publish.first,
+                        datetime: newsItem.publish.from,
                         language,
                         short: true,
                         year: true,
