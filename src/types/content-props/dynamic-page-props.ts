@@ -38,8 +38,6 @@ export type PressLandingPageData = Partial<{
     pressNews: ContentListProps;
     shortcuts: ContentListProps;
     moreNewsUrl: string;
-    maxNewsCount: string;
-    maxShortcutsCount: string;
 }>;
 
 export type DynamicPageProps = ContentCommonProps & {

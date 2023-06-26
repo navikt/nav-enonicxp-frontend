@@ -5,7 +5,6 @@ import { Next } from '@navikt/ds-icons';
 import { PressNewsItem } from './PressNewsItem';
 
 import styles from './PressNews.module.scss';
-import { MainArticleProps } from 'types/content-props/main-article-props';
 
 type PressNewsProps = {
     page: PressLandingPageProps;
@@ -13,7 +12,7 @@ type PressNewsProps = {
 
 export const PressNews = (props: PressNewsProps) => {
     const { language } = props.page;
-    const { pressNews, moreNewsUrl, maxNewsCount } = props.page?.data;
+    const { pressNews, moreNewsUrl } = props.page?.data;
 
     const getTranslations = translator('pressLanding', language);
 
@@ -24,16 +23,6 @@ export const PressNews = (props: PressNewsProps) => {
         return null;
     }
 
-    const pressNewsItems = pressNews.data.sectionContents
-        .sort((a: MainArticleProps, b: MainArticleProps) => {
-            if (!a?.publish?.first || !b?.publish?.first) {
-                return 0;
-            }
-
-            return a.publish.first < b.publish.first ? 1 : -1;
-        })
-        .slice(0, parseInt(maxNewsCount, 10) || 5);
-
     return (
         <div className={styles.pressNews}>
             <div className={styles.content}>
@@ -41,7 +30,7 @@ export const PressNews = (props: PressNewsProps) => {
                     {getTranslations('latestPressNews')}
                 </Heading>
                 <ul className={styles.newsList}>
-                    {pressNewsItems.map((newsItem) => (
+                    {pressNews.data.sectionContents.map((newsItem) => (
                         <PressNewsItem
                             newsItem={newsItem}
                             key={newsItem._path}
