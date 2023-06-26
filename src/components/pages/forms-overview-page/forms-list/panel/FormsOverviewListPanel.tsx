@@ -135,7 +135,7 @@ export const FormsOverviewListPanel = ({
                     key={formDetail._id}
                 />
             ))}
-            {!isAddendumPage && (
+            {!isAddendumPage && url && (
                 <FormsOverviewProductLink type={type} url={url} title={title} />
             )}
         </ProductPanelExpandable>
