@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import classNames from 'classnames';
 import { translator } from 'translations';
 import { Ingress } from '@navikt/ds-react';
 import Innholdsfortegnelse from './komponenter/Innholdsfortegnelse';
@@ -72,7 +71,7 @@ export const MainArticleNewsPress = (props: MainArticleProps) => {
     }, []);
 
     return (
-        <article className={classNames(style.newsPressArticle)}>
+        <article className={style.newsPressArticle}>
             <header className={headerClassName} id="main-article-header-anchor">
                 <NewsPressHeader
                     type={data.contentType}
