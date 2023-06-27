@@ -55,7 +55,7 @@ export const MainArticle = (propsInitial: Props) => {
         innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
 
     return (
-        <article className={style.mainArticle}>
+        <article className={style.article}>
             <header className={headerClassName}>
                 <ArtikkelDato
                     publish={publish}

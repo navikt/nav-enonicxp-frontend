@@ -11,6 +11,19 @@ type Props = {
     layoutProps?: LegacyLayoutProps;
 };
 
+const getNewsArticleProps = (pageProps: ContentProps) => {
+    const props =
+        pageProps.type === ContentType.MainArticleChapter
+            ? pageProps.data.article
+            : pageProps;
+
+    return props.type === ContentType.MainArticle &&
+        (props.data.contentType === 'news' ||
+            props.data.contentType === 'pressRelease')
+        ? props
+        : null;
+};
+
 export const LegacyLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions } = layoutProps;
 
@@ -18,18 +31,16 @@ export const LegacyLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
-    const isNewsArticle =
-        pageProps.type === ContentType.MainArticle &&
-        (pageProps.data.contentType === 'news' ||
-            pageProps.data.contentType === 'pressRelease');
+    const newsArticleProps = getNewsArticleProps(pageProps);
 
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
-            {isNewsArticle && layoutProps.type === ComponentType.Page && (
+            {/* Insert the news article header here, as we want it to render above both article region columns */}
+            {layoutProps.type === ComponentType.Page && newsArticleProps && (
                 <NewsPressHeader
-                    type={pageProps.data.contentType}
-                    title={pageProps.displayName}
-                    language={pageProps.language}
+                    type={newsArticleProps.data.contentType}
+                    title={newsArticleProps.displayName}
+                    language={newsArticleProps.language}
                 />
             )}
             {Object.values(regions).map((regionProps, index) => {
