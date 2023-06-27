@@ -63,18 +63,17 @@ const ArtikkelDato = (props: Props) => {
 
     if (type === 'newsPress') {
         return (
-            <Detail
-                className={classNames(styles.artikkelDato, styles.small)}
-                id="main-article-date-anchor"
-            >
+            <Detail className={classNames(styles.artikkelDato, styles.small)}>
                 {publishedAndModifiedString}
             </Detail>
         );
     }
+
     return (
         <BodyLong as={'time'} dateTime={publishedDate}>
             {publishedAndModifiedString}
         </BodyLong>
     );
 };
+
 export default ArtikkelDato;
