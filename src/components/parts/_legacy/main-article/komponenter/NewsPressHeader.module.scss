@@ -3,9 +3,8 @@
 .newsPressHeader {
     display: block;
     padding-bottom: 0.75rem;
-    margin-bottom: 2rem;
-
-    @include common.full-width-mixin();
+    margin: 0 auto 2rem auto;
+    max-width: 63.5rem;
 }
 
 .newsPressLine {

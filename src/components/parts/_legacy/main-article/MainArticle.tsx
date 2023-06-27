@@ -11,7 +11,6 @@ import { SosialeMedier } from 'components/parts/_legacy/main-article/komponenter
 import { Bilde } from 'components/parts/_legacy/main-article/komponenter/Bilde';
 import { translator } from 'translations';
 import { parseInnholdsfortegnelse } from 'components/parts/_legacy/main-article/komponenter/parseInnholdsfortegnelse';
-import { NewsPressHeader } from 'components/parts/_legacy/main-article/komponenter/NewsPressHeader';
 
 import stylePermanent from './MainArticlePermanent.module.scss';
 import styleNews from './MainArticleNewsPress.module.scss';
@@ -58,13 +57,6 @@ export const MainArticle = (propsInitial: Props) => {
     return (
         <article className={style.mainArticle}>
             <header className={headerClassName}>
-                {isNewsArticle && (
-                    <NewsPressHeader
-                        type={data.contentType}
-                        title={displayName}
-                        language={language}
-                    />
-                )}
                 <ArtikkelDato
                     publish={publish}
                     createdTime={createdTime}
