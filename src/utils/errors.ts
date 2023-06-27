@@ -9,6 +9,8 @@ export const logPageLoadError = (errorId: string, message: string) =>
 const isEmptyMainArticleChapter = (content: ContentProps) =>
     content.type === ContentType.MainArticleChapter && !content.data?.article;
 
+const isPreviewOnly = new Set<ContentType>([]);
+
 export const isNotFound = (content: ContentProps, isDraft: boolean) => {
     if (content.type === ContentType.Error && content.data.errorCode === 404) {
         return true;
