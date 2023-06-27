@@ -9,86 +9,47 @@ import { Faktaboks } from './komponenter/Faktaboks';
 import { Bilde } from './komponenter/Bilde';
 import MainArticleText from './komponenter/MainArticleText';
 import { parseInnholdsfortegnelse } from './komponenter/parseInnholdsfortegnelse';
-import { ContentType } from '../../../../types/content-props/_content-common';
-import { MainArticleProps } from '../../../../types/content-props/main-article-props';
-import { MainArticleChapterProps } from '../../../../types/content-props/main-article-chapter-props';
-import ErrorPage404 from '../../../../pages/404';
+import { MainArticleProps } from 'types/content-props/main-article-props';
 import { NewsPressHeader } from './komponenter/NewsPressHeader';
 
 import style from './MainArticleNewsPress.module.scss';
 
-type Props = MainArticleProps | MainArticleChapterProps;
+const updateMenuOffset = () => {
+    const header = document.getElementById('main-article-header-anchor');
+    const dateAnchor = document.getElementById('main-article-date-anchor');
 
-// Get props from the chapter article if the content is a chapter
-const getPropsToRender = (propsInitial: Props) => {
-    if (propsInitial.type !== ContentType.MainArticleChapter) {
-        return propsInitial;
-    }
+    if (dateAnchor && header) {
+        const headerTop = header.getBoundingClientRect().top;
+        const dateAnchorTop = dateAnchor.getBoundingClientRect().top;
 
-    const articleProps = propsInitial.data?.article;
+        const menuOffsetTop =
+            window.innerWidth > 768 ? dateAnchorTop - headerTop : 0;
 
-    if (articleProps?.type === ContentType.MainArticle) {
-        return articleProps;
-    }
+        const chapterContainer = document.getElementById('chapter-container');
+        const linkListContainer = document.getElementById(
+            'link-list-container'
+        );
 
-    // Any other article type than main-article should have resulted in a redirect
-    // This branch should never happen (famous last words :)
-    return null;
-};
+        const isMobile = window.innerWidth < 768;
 
-export const MainArticleNewsPress = (propsInitial: Props) => {
-    const props = getPropsToRender(propsInitial);
-
-    const updateMenuOffset = () => {
-        const header = document.getElementById('main-article-header-anchor');
-        const dateAnchor = document.getElementById('main-article-date-anchor');
-
-        if (dateAnchor && header) {
-            const headerTop = header.getBoundingClientRect().top;
-            const dateAnchorTop = dateAnchor.getBoundingClientRect().top;
-
-            const menuOffsetTop =
-                window.innerWidth > 768 ? dateAnchorTop - headerTop : 0;
-
-            const chapterContainer =
-                document.getElementById('chapter-container');
-            const linkListContainer = document.getElementById(
-                'link-list-container'
-            );
-
-            const isMobile = window.innerWidth < 768;
-
-            if (chapterContainer && !isMobile) {
-                chapterContainer.style.marginTop = `${menuOffsetTop - 32}px`;
-            } else if (linkListContainer && !isMobile) {
-                linkListContainer.style.marginTop = `${menuOffsetTop}px`;
-            } else {
-                if (chapterContainer) {
-                    chapterContainer.style.marginTop = '0';
-                }
-                if (linkListContainer) {
-                    linkListContainer.style.marginTop = '0';
-                }
+        if (chapterContainer && !isMobile) {
+            chapterContainer.style.marginTop = `${menuOffsetTop - 32}px`;
+        } else if (linkListContainer && !isMobile) {
+            linkListContainer.style.marginTop = `${menuOffsetTop}px`;
+        } else {
+            if (chapterContainer) {
+                chapterContainer.style.marginTop = '0';
+            }
+            if (linkListContainer) {
+                linkListContainer.style.marginTop = '0';
             }
         }
-    };
-
-    useEffect(() => {
-        updateMenuOffset();
-        window.addEventListener('resize', updateMenuOffset);
-
-        return () => {
-            window.removeEventListener('resize', updateMenuOffset);
-        };
-    }, []);
-
-    if (!props) {
-        console.error(
-            `Misplaced MainArticle part on content type ${propsInitial.type} - ${propsInitial._path} - ${propsInitial._id}`
-        );
-        return <ErrorPage404 />;
     }
+};
+
+export const MainArticleNewsPress = (props: MainArticleProps) => {
     const { data } = props;
+
     const getLabel = translator('mainArticle', props.language);
     const hasTableOfContest =
         data?.hasTableOfContents && data?.hasTableOfContents !== 'none';
@@ -100,6 +61,15 @@ export const MainArticleNewsPress = (propsInitial: Props) => {
 
     const headerClassName =
         innholdsfortegnelse.length === 0 ? style.header : style.headerWithToc;
+
+    useEffect(() => {
+        updateMenuOffset();
+        window.addEventListener('resize', updateMenuOffset);
+
+        return () => {
+            window.removeEventListener('resize', updateMenuOffset);
+        };
+    }, []);
 
     return (
         <article className={classNames(style.newsPressArticle)}>

@@ -6,9 +6,6 @@ import { ErrorProps } from 'types/content-props/error-props';
 export const logPageLoadError = (errorId: string, message: string) =>
     console.error(`[Page load error] ${errorId} - ${stripLineBreaks(message)}`);
 
-const isEmptyMainArticleChapter = (content: ContentProps) =>
-    content.type === ContentType.MainArticleChapter && !content.data?.article;
-
 const isPreviewOnly = new Set<ContentType>([
     ContentType.ContactInformationPage,
     ContentType.FormDetails,
@@ -21,6 +18,20 @@ const isPreviewOnly = new Set<ContentType>([
     ContentType.PublishingCalendarEntry,
 ]);
 
+const isValidContent = (content: ContentProps) => {
+    switch (content.type) {
+        case ContentType.MainArticleChapter: {
+            return content.data?.article?.type === ContentType.MainArticle;
+        }
+        case ContentType.LargeTable: {
+            return !!content.data?.text;
+        }
+        default: {
+            return true;
+        }
+    }
+};
+
 export const isNotFound = (content: ContentProps, isDraft: boolean) => {
     if (content.type === ContentType.Error && content.data.errorCode === 404) {
         return true;
@@ -31,9 +42,9 @@ export const isNotFound = (content: ContentProps, isDraft: boolean) => {
     }
 
     return (
-        isPreviewOnly.has(content.type) ||
         !isContentTypeImplemented(content) ||
-        isEmptyMainArticleChapter(content)
+        !isValidContent(content) ||
+        isPreviewOnly.has(content.type)
     );
 };
 
