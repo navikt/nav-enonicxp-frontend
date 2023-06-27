@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { GlobalValuesProps } from '../../../types/content-props/global-values-props';
+import { GlobalValuesProps } from 'types/content-props/global-values-props';
 import { Select, Heading } from '@navikt/ds-react';
 import { GVMessages } from './components/messages/GVMessages';
-import ErrorPage404 from '../../../pages/404';
 import { GVAddItem } from './components/values/add-item/GVAddItem';
 import {
     setContentIdAction,
     setValueItemsAction,
-} from '../../../store/slices/gvEditorState';
-import { store } from '../../../store/store';
+} from 'store/slices/gvEditorState';
+import { store } from 'store/store';
 import { GVItemsCustomOrder } from './components/values/GVItemsCustomOrder';
 import { GVItemsSorted } from './components/values/GVItemsSorted';
-import { useGvEditorState } from '../../../store/hooks/useGvEditorState';
-import { ContentType } from '../../../types/content-props/_content-common';
+import { useGvEditorState } from 'store/hooks/useGvEditorState';
+import { ContentType } from 'types/content-props/_content-common';
 import Head from 'next/head';
 import { DocumentParameter } from '../../_common/metatags/DocumentParameterMetatags';
 
@@ -107,12 +106,7 @@ const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
     );
 };
 
-// This is a page for editors only and should return 404 publically
 export const GlobalValuesPage = (props: GlobalValuesProps) => {
-    if (!props.editorView) {
-        return <ErrorPage404 />;
-    }
-
     store.dispatch(setContentIdAction({ contentId: props._id }));
     store.dispatch(
         setValueItemsAction({ valueItems: props.data?.valueItems || [] })

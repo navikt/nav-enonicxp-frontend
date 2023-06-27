@@ -1,8 +1,6 @@
 import React from 'react';
 import { Alert } from '@navikt/ds-react';
-import { ContactInformationProps } from '../../../types/content-props/contact-information-props';
-import ErrorPage404 from 'pages/404';
-
+import { ContactInformationProps } from 'types/content-props/contact-information-props';
 import { CallOption } from 'components/_common/contact-option/CallOption';
 import { WriteOption } from 'components/_common/contact-option/WriteOption';
 import { ChatOption } from 'components/_common/contact-option/ChatOption';
@@ -10,10 +8,6 @@ import { ChatOption } from 'components/_common/contact-option/ChatOption';
 import style from './ContactInformationPage.module.scss';
 
 export const ContactInformationPage = (props: ContactInformationProps) => {
-    if (!props.editorView) {
-        return <ErrorPage404 />;
-    }
-
     const { data } = props;
     const { contactType } = data;
 

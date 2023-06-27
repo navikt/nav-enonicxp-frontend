@@ -9,7 +9,17 @@ export const logPageLoadError = (errorId: string, message: string) =>
 const isEmptyMainArticleChapter = (content: ContentProps) =>
     content.type === ContentType.MainArticleChapter && !content.data?.article;
 
-const isPreviewOnly = new Set<ContentType>([]);
+const isPreviewOnly = new Set<ContentType>([
+    ContentType.ContactInformationPage,
+    ContentType.FormDetails,
+    ContentType.Fragment,
+    ContentType.GlobalNumberValuesSet,
+    ContentType.GlobalCaseTimeSet,
+    ContentType.PayoutDates,
+    ContentType.ProductDetails,
+    ContentType.TemplatePage,
+    ContentType.PublishingCalendarEntry,
+]);
 
 export const isNotFound = (content: ContentProps, isDraft: boolean) => {
     if (content.type === ContentType.Error && content.data.errorCode === 404) {
@@ -21,7 +31,9 @@ export const isNotFound = (content: ContentProps, isDraft: boolean) => {
     }
 
     return (
-        !isContentTypeImplemented(content) || isEmptyMainArticleChapter(content)
+        isPreviewOnly.has(content.type) ||
+        !isContentTypeImplemented(content) ||
+        isEmptyMainArticleChapter(content)
     );
 };
 
