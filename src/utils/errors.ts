@@ -8,12 +8,10 @@ export const logPageLoadError = (errorId: string, message: string) =>
 
 const isPreviewOnly = new Set<ContentType>([
     ContentType.ContactInformationPage,
-    ContentType.FormDetails,
     ContentType.Fragment,
     ContentType.GlobalNumberValuesSet,
     ContentType.GlobalCaseTimeSet,
     ContentType.PayoutDates,
-    ContentType.ProductDetails,
     ContentType.TemplatePage,
     ContentType.PublishingCalendarEntry,
 ]);
