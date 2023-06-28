@@ -53,6 +53,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                           { name: 'formDetailsTitles', weight: 2 },
                           { name: 'keywords', weight: 2 },
                           { name: 'ingress', weight: 1 },
+                          { name: 'formDetailsIngresses', weight: 1 },
                           { name: 'title', weight: 1 },
                           { name: 'formNumbers', weight: 1 },
                       ],

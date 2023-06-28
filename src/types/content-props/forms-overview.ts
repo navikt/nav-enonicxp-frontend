@@ -22,6 +22,7 @@ export type FormDetailsListItemProps = {
     taxonomy: ProductTaxonomy[];
     formDetailsPaths: string[];
     formDetailsTitles: string[];
+    formDetailsIngresses: string[];
     formNumbers: string[];
 };
 
