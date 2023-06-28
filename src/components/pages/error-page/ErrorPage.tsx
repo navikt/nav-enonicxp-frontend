@@ -2,7 +2,6 @@ import React from 'react';
 import Head from 'next/head';
 import { ErrorProps } from 'types/content-props/error-props';
 import { ErrorContent404 } from './errorcode-content/ErrorContent404';
-import { ErrorContent1337 } from './errorcode-content/ErrorContent1337';
 import { ErrorContentDefault } from './errorcode-content/ErrorContentDefault';
 import { ErrorContent408 } from './errorcode-content/ErrorContent408';
 import { ErrorContent400 } from './errorcode-content/ErrorContent400';
@@ -16,7 +15,6 @@ const errorContentByCode: {
     400: ErrorContent400,
     404: ErrorContent404,
     408: ErrorContent408,
-    1337: ErrorContent1337,
 };
 
 export const ErrorPage = (props: ErrorProps) => {
@@ -38,9 +36,7 @@ export const ErrorPage = (props: ErrorProps) => {
                 <Heading level="1" size="large" className={style.headerMsg}>
                     {errorMessage}
                 </Heading>
-                <Ingress>
-                    {`Statuskode ${errorCode}`}
-                </Ingress>
+                <Ingress>{`Statuskode ${errorCode}`}</Ingress>
             </div>
             <div className={style.content}>
                 <ErrorContent {...props} />

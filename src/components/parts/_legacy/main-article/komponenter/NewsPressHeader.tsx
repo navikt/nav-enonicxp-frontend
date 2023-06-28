@@ -1,12 +1,12 @@
 import { Detail, Heading } from '@navikt/ds-react';
 import { ArticleContentType } from 'types/content-props/main-article-props';
+import { Language, translator } from 'translations';
+import { StaticImage } from 'components/_common/image/StaticImage';
 
 import newsPaper from '/public/gfx/news-paper-icon.svg';
 import pressSpeaker from '/public/gfx/press-speaker-icon.svg';
-import { StaticImage } from 'components/_common/image/StaticImage';
 
 import styles from './NewsPressHeader.module.scss';
-import { Language, translator } from 'translations';
 
 type NewsPressHeaderProps = {
     language: Language;
@@ -25,7 +25,7 @@ export const NewsPressHeader = ({
     const tagLocaleId = type === 'news' ? 'news' : 'pressRelease';
 
     return (
-        <div className={styles.newsPressHeader}>
+        <header className={styles.newsPressHeader}>
             <div className={styles.tagWrapper}>
                 <StaticImage
                     imageData={icon}
@@ -40,6 +40,6 @@ export const NewsPressHeader = ({
                 {title}
             </Heading>
             <div className={styles.newsPressLine} />
-        </div>
+        </header>
     );
 };
