@@ -12,6 +12,7 @@ export type FormDetailsComponentProps = {
     displayConfig: {
         showTitle: boolean;
         showIngress: boolean;
+        showFormNumbers?: boolean;
         showAddendums?: boolean;
         showApplications?: boolean;
         showComplaints?: boolean;
@@ -32,42 +33,49 @@ export const FormDetails = ({
         showComplaints = true,
         showIngress,
         showTitle,
+        showFormNumbers,
     } = displayConfig;
 
     const { formNumbers, formType, ingress, title } = formDetails;
 
     const variations = formType.reduce((acc, cur) => {
+        const { _selected } = cur;
+
         if (
-            (cur._selected === 'addendum' && !showAddendums) ||
-            (cur._selected === 'application' && !showApplications) ||
-            (cur._selected === 'complaint' && !showComplaints)
+            (_selected === 'addendum' && !showAddendums) ||
+            (_selected === 'application' && !showApplications) ||
+            (_selected === 'complaint' && !showComplaints)
         ) {
             return acc;
         }
 
-        const variations = cur[cur._selected]?.variations;
+        const variations = cur[_selected]?.variations;
 
         return variations ? [...acc, ...variations] : acc;
     }, []) as Variation[];
 
-    const formNumberToShow =
+    const formNumberToHighlight =
         formNumberSelected &&
         formNumbers.find((formNumber) =>
             formNumber.toLowerCase().endsWith(formNumberSelected)
         );
 
+    const hasVisibleTitle = showTitle && title;
+    const hasVisibleIngress = showIngress && ingress;
+    const hasVisibleFormNumbers = formNumbers && showFormNumbers;
+
     return (
         <div className={classNames(style.formDetails, className)}>
-            {showTitle && title && (
+            {hasVisibleTitle && (
                 <Heading
                     size="medium"
                     level="3"
-                    spacing={(!showIngress || !ingress) && !formNumbers}
+                    spacing={!hasVisibleIngress && !hasVisibleFormNumbers}
                 >
                     {title}
                 </Heading>
             )}
-            {formNumbers && (
+            {hasVisibleFormNumbers && (
                 <Detail className={style.formNumbers}>
                     {formNumbers.map((formNumber, index) => (
                         <Fragment key={formNumber}>
@@ -81,7 +89,7 @@ export const FormDetails = ({
                             )}
                             <span
                                 className={
-                                    formNumber === formNumberToShow
+                                    formNumber === formNumberToHighlight
                                         ? style.highlight
                                         : undefined
                                 }
@@ -93,14 +101,14 @@ export const FormDetails = ({
                     ))}
                 </Detail>
             )}
-            {showIngress && ingress && (
-                <div className={style.ingressWrapper}>
+            {hasVisibleIngress && (
+                <div className={style.ingress}>
                     <ParsedHtml htmlProps={ingress} />
                 </div>
             )}
             {variations.length > 0 && (
-                <div className={classNames(style.variationWrapper)}>
-                    {variations.map((variation, index: number) => (
+                <div className={classNames(style.variation)}>
+                    {variations.map((variation, index) => (
                         <FormDetailsButton
                             key={variation.label}
                             variation={variation}

@@ -29,6 +29,7 @@ const getFormDetailsDisplayOptions = (
         showAddendums: true,
         showApplications: overviewType === 'application',
         showComplaints: overviewType === 'complaint',
+        showFormNumbers: true,
     };
 };
 
