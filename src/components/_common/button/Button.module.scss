@@ -4,7 +4,7 @@
     white-space: break-spaces;
 
     &:global(.buttonPart) {
-        margin-bottom: 1rem;
+        margin-bottom: var(--a-spacing-7);
     }
     &__icon {
         height: 1.5rem;
