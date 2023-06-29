@@ -56,7 +56,7 @@ export const FormDetails = ({
 
     const formNumberToHighlight =
         formNumberSelected &&
-        formNumbers.find((formNumber) =>
+        formNumbers?.find((formNumber) =>
             formNumber.toLowerCase().endsWith(formNumberSelected)
         );
 
