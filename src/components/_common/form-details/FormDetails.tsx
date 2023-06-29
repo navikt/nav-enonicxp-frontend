@@ -68,7 +68,7 @@ export const FormDetails = ({
                 </Heading>
             )}
             {formNumbers && (
-                <Detail className={style.formNumberContainer}>
+                <Detail className={style.formNumbers}>
                     {formNumbers.map((formNumber, index) => (
                         <Fragment key={formNumber}>
                             {index > 0 && (
