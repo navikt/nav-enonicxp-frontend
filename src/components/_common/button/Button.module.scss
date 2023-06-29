@@ -3,14 +3,15 @@
 .button {
     white-space: break-spaces;
 
+    &:global(.buttonPart) {
+        margin-bottom: 1rem;
+    }
     &__icon {
         height: 1.5rem;
     }
-
     &--fullWidth {
         width: 100%;
     }
-
     :global(.navds-label) {
         text-align: center;
     }
