@@ -2,7 +2,7 @@ appName: nav-enonicxp-frontend-dev1
 revalidatorApp: nav-enonicxp-frontend-revalidator-proxy-dev1
 dekoratorenApp: nav-dekoratoren
 externalHosts:
-  - www.dev.nav.no
+  - portal-admin-dev.oera.no
   - www.ekstern.dev.nav.no
   - www-failover.intern.dev.nav.no
 secret: nav-enonicxp-dev1
