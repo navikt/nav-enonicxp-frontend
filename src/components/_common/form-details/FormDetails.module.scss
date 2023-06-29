@@ -72,3 +72,9 @@
 .highlight {
     background-color: var(--a-deepblue-100);
 }
+
+.separator {
+    @media #{common.$mq-screen-mobile} {
+        display: none;
+    }
+}

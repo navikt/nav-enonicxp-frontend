@@ -59,7 +59,11 @@ export const FormDetails = ({
     return (
         <div className={classNames(style.formDetails, className)}>
             {showTitle && title && (
-                <Heading size="medium" level="3" spacing={!showIngress}>
+                <Heading
+                    size="medium"
+                    level="3"
+                    spacing={(!showIngress || !ingress) && !formNumbers}
+                >
                     {title}
                 </Heading>
             )}
@@ -67,7 +71,14 @@ export const FormDetails = ({
                 <Detail className={style.formNumberContainer}>
                     {formNumbers.map((formNumber, index) => (
                         <Fragment key={formNumber}>
-                            {index > 0 && '|'}
+                            {index > 0 && (
+                                <span
+                                    aria-hidden={true}
+                                    className={style.separator}
+                                >
+                                    {'|'}
+                                </span>
+                            )}
                             <span
                                 className={
                                     formNumber === formNumberToShow
