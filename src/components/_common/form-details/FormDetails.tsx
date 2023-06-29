@@ -107,7 +107,7 @@ export const FormDetails = ({
                 </div>
             )}
             {variations.length > 0 && (
-                <div className={classNames(style.variation)}>
+                <div className={style.variation}>
                     {variations.map((variation, index) => (
                         <FormDetailsButton
                             key={variation.label}
