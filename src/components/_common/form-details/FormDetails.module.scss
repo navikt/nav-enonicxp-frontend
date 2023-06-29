@@ -21,7 +21,7 @@
     }
 
     h3 {
-        margin-bottom: 1rem;
+        margin-bottom: 0.25rem;
     }
 
     // pull lists upward to text above if any.
@@ -50,4 +50,25 @@
     &:not(:last-child) {
         margin-bottom: 1.75rem;
     }
+}
+
+.formNumberContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.125rem;
+    margin-bottom: 0.75rem;
+
+    & > * {
+        padding: 0.25rem;
+        white-space: nowrap;
+
+        &:first-child:not(.highlight) {
+            padding-left: 0;
+        }
+    }
+}
+
+.highlight {
+    background-color: var(--a-deepblue-100);
 }

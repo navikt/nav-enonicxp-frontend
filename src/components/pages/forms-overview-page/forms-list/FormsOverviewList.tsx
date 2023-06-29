@@ -95,6 +95,11 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                             formDetails={formDetail}
                             visible={isVisible(formDetail)}
                             overviewType={overviewType}
+                            formNumberSelected={
+                                isFormNumber(textFilter)
+                                    ? textFilter
+                                    : undefined
+                            }
                         />
                     </li>
                 ))}

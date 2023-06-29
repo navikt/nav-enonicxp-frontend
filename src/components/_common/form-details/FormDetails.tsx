@@ -1,11 +1,11 @@
-import { Heading } from '@navikt/ds-react';
+import React, { Fragment } from 'react';
+import { Detail, Heading } from '@navikt/ds-react';
 import classNames from 'classnames';
-
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { FormDetailsButton } from './FormDetailsButton';
 
-import styles from './FormDetails.module.scss';
+import style from './FormDetails.module.scss';
 
 export type FormDetailsComponentProps = {
     formDetails: FormDetailsData;
@@ -17,22 +17,26 @@ export type FormDetailsComponentProps = {
         showComplaints?: boolean;
     };
     className?: string;
+    formNumberSelected?: string;
 };
 
 export const FormDetails = ({
     formDetails,
     displayConfig,
     className,
+    formNumberSelected,
 }: FormDetailsComponentProps) => {
     const {
         showAddendums = true,
         showApplications = true,
         showComplaints = true,
-        showTitle,
         showIngress,
+        showTitle,
     } = displayConfig;
 
-    const variations = formDetails.formType.reduce((acc, cur) => {
+    const { formNumbers, formType, ingress, title } = formDetails;
+
+    const variations = formType.reduce((acc, cur) => {
         if (
             (cur._selected === 'addendum' && !showAddendums) ||
             (cur._selected === 'application' && !showApplications) ||
@@ -46,20 +50,45 @@ export const FormDetails = ({
         return variations ? [...acc, ...variations] : acc;
     }, []) as Variation[];
 
+    const formNumberToShow =
+        formNumberSelected &&
+        formNumbers.find((formNumber) =>
+            formNumber.toLowerCase().endsWith(formNumberSelected)
+        );
+
     return (
-        <div className={classNames(styles.formDetails, className)}>
-            {(showTitle && formDetails.title) && (
+        <div className={classNames(style.formDetails, className)}>
+            {showTitle && title && (
                 <Heading size="medium" level="3" spacing={!showIngress}>
-                    {formDetails.title}
+                    {title}
                 </Heading>
             )}
-            {(showIngress && formDetails.ingress) && (
-                <div className={styles.ingressWrapper}>
-                    <ParsedHtml htmlProps={formDetails.ingress} />
+            {formNumbers && (
+                <Detail className={style.formNumberContainer}>
+                    {formNumbers.map((formNumber, index) => (
+                        <Fragment key={formNumber}>
+                            {index > 0 && '|'}
+                            <span
+                                className={
+                                    formNumber === formNumberToShow
+                                        ? style.highlight
+                                        : undefined
+                                }
+                                key={formNumber}
+                            >
+                                {formNumber}
+                            </span>
+                        </Fragment>
+                    ))}
+                </Detail>
+            )}
+            {showIngress && ingress && (
+                <div className={style.ingressWrapper}>
+                    <ParsedHtml htmlProps={ingress} />
                 </div>
             )}
             {variations.length > 0 && (
-                <div className={classNames(styles.variationWrapper)}>
+                <div className={classNames(style.variationWrapper)}>
                     {variations.map((variation, index: number) => (
                         <FormDetailsButton
                             key={variation.label}

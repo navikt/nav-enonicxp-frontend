@@ -52,12 +52,14 @@ type Props = {
     formDetails: FormDetailsListItemProps;
     visible: boolean;
     overviewType: OverviewType;
+    formNumberSelected?: string;
 };
 
 export const FormsOverviewListPanel = ({
     formDetails,
     visible,
     overviewType,
+    formNumberSelected,
 }: Props) => {
     const {
         anchorId,
@@ -132,6 +134,7 @@ export const FormsOverviewListPanel = ({
                     formDetails={formDetail.data}
                     displayConfig={getFormDetailsDisplayOptions(overviewType)}
                     className={style.formDetails}
+                    formNumberSelected={formNumberSelected}
                     key={formDetail._id}
                 />
             ))}
