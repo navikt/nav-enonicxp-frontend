@@ -28,12 +28,12 @@ export const FormDetails = ({
     formNumberSelected,
 }: FormDetailsComponentProps) => {
     const {
+        showTitle,
+        showIngress,
+        showFormNumbers,
         showAddendums = true,
         showApplications = true,
         showComplaints = true,
-        showIngress,
-        showTitle,
-        showFormNumbers,
     } = displayConfig;
 
     const { formNumbers, formType, ingress, title } = formDetails;
