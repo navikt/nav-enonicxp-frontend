@@ -10,12 +10,13 @@ import {
     buildVideoMeta,
     getValidSubtitleLanguage,
 } from './videoHelpers';
-import { useExternalScript } from 'utils/useExternalScript';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { fetchJson } from 'utils/fetch/fetch-utils';
 
 import style from './MacroVideo.module.scss';
+import Script from 'next/script';
+import { classNames } from 'utils/classnames';
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -28,10 +29,6 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const { editorView } = pageConfig;
     const translations = translator('macroVideo', language);
     const { accountId, mediaId, title, duration, poster } = videoMeta;
-
-    const scriptState = useExternalScript(
-        '//play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'
-    );
 
     const getVideoMetaFromQbrick = async () => {
         const metaUrl = `https://video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`;
@@ -73,21 +70,25 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         return null;
     }
 
-    if (scriptState !== 'ready') {
-        // Must return empty div rather than null, otherwise the editor will report error and
-        // "empty element warning". Only an issue in editor mode.
-        return <div />;
-    }
-
     const durationAsString = getTimestampFromDuration(duration);
     const imageUrl =
         poster?.slice(0, 4) === 'http' ? poster : getMediaUrl(poster);
 
     return (
         <div className={style.wrapper}>
+            <Script
+                type={'module'}
+                src={
+                    'https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'
+                }
+                async={true}
+            />
             <Button
-                className={`${style.button} ${isVideoOpen ? style.hidden : ''}`}
-                variant="tertiary"
+                className={classNames(
+                    style.button,
+                    isVideoOpen && style.hidden
+                )}
+                variant={'tertiary'}
                 onClick={() => editorView !== 'edit' && setIsVideoOpen(true)}
                 icon={
                     <div className={style.posterWrapper}>
@@ -113,7 +114,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     {translations('playMovie')} {title}
                 </Label>
                 {duration > 0 && (
-                    <Detail className={`${style.text} ${style.videoLength}`}>
+                    <Detail
+                        className={classNames(style.text, style.videoLength)}
+                    >
                         {translations('duration')} {durationAsString}{' '}
                         {translations('minutes')}
                     </Detail>
