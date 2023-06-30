@@ -55,30 +55,26 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
 
     const pollPlayerState = (timeLeft = PLAYER_TIMEOUT_MS) => {
         if (isPlayerLoaded) {
-            console.log('Player is loaded');
             return;
         }
 
         if (window.GoBrain) {
-            console.log('Found player');
             window.GoBrain.create(videoRef.current, {
                 config: `//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`,
                 data: `//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`,
                 language: getValidSubtitleLanguage(language, config.video),
                 widgetId: style.widgetId,
             }).on('ready', () => {
-                console.log('Player loaded');
                 setIsPlayerLoaded(true);
             });
             return;
         }
 
         if (timeLeft <= 0) {
-            console.error('Failed to load QBrick player!');
+            console.error('Failed to load QBrick player - Timed out');
             return;
         }
 
-        console.log('Retrying');
         setTimeout(
             () => pollPlayerState(timeLeft - PLAYER_POLLING_RATE_MS),
             PLAYER_POLLING_RATE_MS
@@ -96,7 +92,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     }, [isVideoOpen]);
 
     useEffect(() => {
-        // Wether the video is in new content or legacy, attempt
+        // Whether the video is in new content or legacy, attempt
         // to get the poster and duration if none is given in the content config.
         if (!videoMeta.poster && !videoMeta.duration) {
             getVideoMetaFromQbrick();
@@ -108,8 +104,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     }
 
     const durationAsString = getTimestampFromDuration(duration);
-    const imageUrl =
-        poster?.slice(0, 4) === 'http' ? poster : getMediaUrl(poster);
+    const imageUrl = poster?.startsWith('http') ? poster : getMediaUrl(poster);
 
     return (
         <div className={style.wrapper}>
