@@ -60,7 +60,7 @@
     margin-bottom: 0.75rem;
 
     & > * {
-        padding: 0.125rem 0.3125rem;
+        padding: 0.0625rem 0.3125rem;
         white-space: nowrap;
         color: var(--a-gray-600);
 
@@ -73,7 +73,7 @@
 .highlight {
     background-color: var(--a-lightblue-200);
     color: var(--a-gray-800);
-    border-radius: var(--a-border-radius-small);
+    border-radius: var(--a-border-radius-medium);
 }
 
 .separator {
