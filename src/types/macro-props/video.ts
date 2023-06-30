@@ -12,10 +12,12 @@ export interface MacroVideoProps extends MacroPropsCommon {
                     duration: number;
                     mediaId: string;
                     poster: BitmapImage;
+                    subtitles?: string[];
                 };
             };
             video?: string;
             title?: string;
+            language?: string;
         };
     };
 }

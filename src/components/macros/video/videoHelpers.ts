@@ -91,3 +91,21 @@ export const getTimestampFromDuration = (duration: number) => {
         return (minutes + decimalMinutes).toFixed(1).replace('.', ',');
     }
 };
+
+export const getValidSubtitleLanguage = (
+    contentLanguage: string,
+    macroVideoConfig: MacroVideoProps['config']['video']
+) => {
+    const { language, targetContent } = macroVideoConfig;
+    const subtitles = targetContent?.data?.subtitles;
+
+    if (!subtitles) {
+        return undefined;
+    }
+
+    // Qbrick uses 'nb' for norwegian (bokmål), while we usually use 'no' for XP content
+    const selectedLanguage =
+        language || (contentLanguage === 'no' ? 'nb' : contentLanguage);
+
+    return subtitles.find((language) => language === selectedLanguage);
+};

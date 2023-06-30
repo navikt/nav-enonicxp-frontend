@@ -8,11 +8,13 @@ import {
     findVideoDurationFromMeta,
     getTimestampFromDuration,
     buildVideoMeta,
+    getValidSubtitleLanguage,
 } from './videoHelpers';
-
 import { useExternalScript } from 'utils/useExternalScript';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { fetchJson } from 'utils/fetch/fetch-utils';
+
 import style from './MacroVideo.module.scss';
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
@@ -35,10 +37,13 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         const metaUrl = `https://video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`;
 
         try {
-            const result = await fetch(metaUrl);
-            const json = await result.json();
-            const image = findImageUrlFromVideoMeta(json);
-            const duration = findVideoDurationFromMeta(json);
+            const result = await fetchJson(metaUrl);
+            if (!result) {
+                return;
+            }
+
+            const image = findImageUrlFromVideoMeta(result);
+            const duration = findVideoDurationFromMeta(result);
 
             setVideoMeta({ ...videoMeta, poster: image, duration });
         } catch (e) {
@@ -124,6 +129,10 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     title={title}
                     data-gobrain-config={`//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`}
                     data-gobrain-data={`//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`}
+                    data-gobrain-language={getValidSubtitleLanguage(
+                        language,
+                        config.video
+                    )}
                 />
             </div>
         </div>
