@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MacroVideoProps, VideoMeta } from 'types/macro-props/video';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { Button, Detail, Label } from '@navikt/ds-react';
+import { Button, Detail, Label, Loader } from '@navikt/ds-react';
 import { getMediaUrl } from 'utils/urls';
 import {
     findImageUrlFromVideoMeta,
@@ -10,28 +10,30 @@ import {
     buildVideoMeta,
     getValidSubtitleLanguage,
 } from './videoHelpers';
-import { useExternalScript } from 'utils/useExternalScript';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { fetchJson } from 'utils/fetch/fetch-utils';
+import Script from 'next/script';
+import { classNames } from 'utils/classnames';
 
 import style from './MacroVideo.module.scss';
+
+const PLAYER_TIMEOUT_MS = 5000;
+const PLAYER_POLLING_RATE_MS = 50;
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
     const [videoMeta, setVideoMeta] = useState<VideoMeta>(
         buildVideoMeta(config?.video)
     );
+    const [isPlayerLoaded, setIsPlayerLoaded] = useState(false);
+
     const videoRef = React.useRef(null);
 
     const { language, pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
     const translations = translator('macroVideo', language);
     const { accountId, mediaId, title, duration, poster } = videoMeta;
-
-    const scriptState = useExternalScript(
-        '//play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'
-    );
 
     const getVideoMetaFromQbrick = async () => {
         const metaUrl = `https://video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`;
@@ -51,6 +53,34 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         }
     };
 
+    const pollPlayerState = (timeLeft = PLAYER_TIMEOUT_MS) => {
+        if (isPlayerLoaded) {
+            return;
+        }
+
+        if (window.GoBrain) {
+            window.GoBrain.create(videoRef.current, {
+                config: `//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`,
+                data: `//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`,
+                language: getValidSubtitleLanguage(language, config.video),
+                widgetId: style.widgetId,
+            }).on('ready', () => {
+                setIsPlayerLoaded(true);
+            });
+            return;
+        }
+
+        if (timeLeft <= 0) {
+            console.error('Failed to load QBrick player - Timed out');
+            return;
+        }
+
+        setTimeout(
+            () => pollPlayerState(timeLeft - PLAYER_POLLING_RATE_MS),
+            PLAYER_POLLING_RATE_MS
+        );
+    };
+
     useEffect(() => {
         if (isVideoOpen) {
             const qbrickPlayButton =
@@ -62,7 +92,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     }, [isVideoOpen]);
 
     useEffect(() => {
-        // Wether the video is in new content or legacy, attempt
+        // Whether the video is in new content or legacy, attempt
         // to get the poster and duration if none is given in the content config.
         if (!videoMeta.poster && !videoMeta.duration) {
             getVideoMetaFromQbrick();
@@ -73,67 +103,65 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         return null;
     }
 
-    if (scriptState !== 'ready') {
-        // Must return empty div rather than null, otherwise the editor will report error and
-        // "empty element warning". Only an issue in editor mode.
-        return <div />;
-    }
-
     const durationAsString = getTimestampFromDuration(duration);
-    const imageUrl =
-        poster?.slice(0, 4) === 'http' ? poster : getMediaUrl(poster);
+    const imageUrl = poster?.startsWith('http') ? poster : getMediaUrl(poster);
 
     return (
         <div className={style.wrapper}>
+            <Script
+                src={
+                    'https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'
+                }
+                async={true}
+                onReady={pollPlayerState}
+            />
+            {!isPlayerLoaded && <Loader />}
             <Button
-                className={`${style.button} ${isVideoOpen ? style.hidden : ''}`}
-                variant="tertiary"
+                className={classNames(
+                    style.button,
+                    (!isPlayerLoaded || isVideoOpen) && style.hidden
+                )}
+                variant={'tertiary'}
                 onClick={() => editorView !== 'edit' && setIsVideoOpen(true)}
                 icon={
                     <div className={style.posterWrapper}>
                         <img
                             className={style.previewImage}
                             src={imageUrl}
-                            alt=""
+                            alt={''}
                         />
                         <svg
                             className={style.playIcon}
-                            focusable="false"
-                            aria-hidden="true"
-                            width="22"
-                            height="26"
-                            viewBox="0 0 22 26"
+                            focusable={'false'}
+                            aria-hidden={'true'}
+                            width={'22'}
+                            height={'26'}
+                            viewBox={'0 0 22 26'}
                         >
-                            <path fill="#fff" d="M22 13 0 26V0Z" />
+                            <path fill={'#fff'} d={'M22 13 0 26V0Z'} />
                         </svg>
                     </div>
                 }
             >
-                <Label as="p" className={style.text}>
+                <Label as={'p'} className={style.text}>
                     {translations('playMovie')} {title}
                 </Label>
                 {duration > 0 && (
-                    <Detail className={`${style.text} ${style.videoLength}`}>
-                        {translations('duration')} {durationAsString}{' '}
-                        {translations('minutes')}
+                    <Detail
+                        className={classNames(style.text, style.videoLength)}
+                    >
+                        {translations('duration')}
+                        {durationAsString} {translations('minutes')}
                     </Detail>
                 )}
             </Button>
             <div
-                className={`${style.macroVideo} ${
-                    isVideoOpen ? '' : style.hidden
-                }`}
+                className={classNames(
+                    style.macroVideo,
+                    (!isPlayerLoaded || !isVideoOpen) && style.hidden
+                )}
             >
-                <div
-                    ref={videoRef}
-                    title={title}
-                    data-gobrain-config={`//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`}
-                    data-gobrain-data={`//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`}
-                    data-gobrain-language={getValidSubtitleLanguage(
-                        language,
-                        config.video
-                    )}
-                />
+                <div ref={videoRef} title={title} />
             </div>
         </div>
     );
