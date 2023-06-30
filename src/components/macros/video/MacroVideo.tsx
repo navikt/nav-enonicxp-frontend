@@ -158,7 +158,12 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                             </Detail>
                         )}
                     </Button>
-                    <div className={classNames(style.macroVideo, style.hidden)}>
+                    <div
+                        className={classNames(
+                            style.macroVideo,
+                            !isVideoOpen && style.hidden
+                        )}
+                    >
                         <div
                             ref={videoRef}
                             title={title}
