@@ -22,7 +22,9 @@ declare global {
     }
 
     interface Window {
-        GoBrain?: unknown;
+        GoBrain?: {
+            create: any;
+        };
     }
 
     var cacheKey: string | undefined;
