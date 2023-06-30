@@ -62,7 +62,7 @@ export const FormDetails = ({
 
     const hasVisibleTitle = showTitle && title;
     const hasVisibleIngress = showIngress && ingress;
-    const hasVisibleFormNumbers = formNumbers && showFormNumbers;
+    const hasVisibleFormNumbers = showFormNumbers && formNumbers;
 
     return (
         <div className={classNames(style.formDetails, className)}>
