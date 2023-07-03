@@ -1,9 +1,9 @@
 import { PressLandingPageProps } from 'types/content-props/dynamic-page-props';
 import { translator } from 'translations';
-
-import styles from './PressShortcuts.module.scss';
 import { Heading, LinkPanel } from '@navikt/ds-react';
 import { getPublicPathname } from 'utils/urls';
+
+import styles from './PressShortcuts.module.scss';
 
 type PressShortcutsProps = {
     page: PressLandingPageProps;
@@ -11,22 +11,16 @@ type PressShortcutsProps = {
 
 export const PressShortcuts = (props: PressShortcutsProps) => {
     const { language } = props.page;
-    const { maxShortcutsCount } = props.page?.data;
     const getTranslations = translator('pressLanding', language);
 
     const shortcuts = props.page.data?.shortcuts;
 
     if (
         !shortcuts?.data?.sectionContents ||
-        shortcuts?.data?.sectionContents?.length === 0
+        shortcuts.data.sectionContents.length === 0
     ) {
         return null;
     }
-
-    const shortcutItems = shortcuts.data.sectionContents.slice(
-        0,
-        parseInt(maxShortcutsCount, 10) || 5
-    );
 
     return (
         <div className={styles.pressShortcuts}>
@@ -35,7 +29,7 @@ export const PressShortcuts = (props: PressShortcutsProps) => {
                     {getTranslations('pressShortcuts')}
                 </Heading>
                 <ul className={styles.shortcutList}>
-                    {shortcutItems.map((shortcut) => {
+                    {shortcuts.data.sectionContents.map((shortcut) => {
                         return (
                             <li key={shortcut._path}>
                                 <LinkPanel

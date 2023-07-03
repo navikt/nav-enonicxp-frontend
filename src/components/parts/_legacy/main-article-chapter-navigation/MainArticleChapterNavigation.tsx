@@ -47,10 +47,7 @@ export const MainArticleChapterNavigation = (props: ContentProps) => {
     const parentSelected = parentPath === currentPath;
 
     return (
-        <nav
-            className={style.mainArticleChapterNavigation}
-            id="chapter-container"
-        >
+        <nav className={style.mainArticleChapterNavigation}>
             <Heading level="2" size="medium" className={style.title}>
                 {getLabel('contents')}
             </Heading>

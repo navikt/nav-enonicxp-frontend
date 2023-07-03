@@ -14,7 +14,7 @@ export type FormDetailsListItemProps = {
     sortTitle: string;
     ingress: string;
     keywords: string[];
-    url: string;
+    url?: string;
     type: ContentType;
     anchorId: string;
     illustration: AnimatedIconsProps;
@@ -22,6 +22,7 @@ export type FormDetailsListItemProps = {
     taxonomy: ProductTaxonomy[];
     formDetailsPaths: string[];
     formDetailsTitles: string[];
+    formDetailsIngresses: string[];
     formNumbers: string[];
 };
 

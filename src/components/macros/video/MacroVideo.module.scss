@@ -1,13 +1,15 @@
 .wrapper {
     margin-bottom: 2rem;
-    //styling fra Qbrick doc: https://video.qbrick.com/docs/api/#examples.play2-script-adaptive
-    div[data-gobrain-widgetid] {
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        position: relative;
-        height: 100%;
-    }
+}
 
-    div[data-gobrain-widgetid] > div:first-of-type {
+.widgetId {
+    //styling fra Qbrick doc: https://video.qbrick.com/docs/api/#examples.play2-script-adaptive
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative !important;
+    height: 100% !important;
+    width: 100% !important;
+
+    & > div:first-of-type {
         bottom: 0;
         left: 0;
         position: absolute !important;

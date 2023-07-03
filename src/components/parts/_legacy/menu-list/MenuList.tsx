@@ -31,7 +31,7 @@ export const MenuList = (
 
     return (
         validItemKeys.length > 0 && (
-            <div className={style.menuList} id="link-list-container">
+            <div className={style.menuList}>
                 {validItemKeys.map((key) => {
                     const { links } = menuListItems[key];
                     const isOpen =

@@ -1,27 +1,26 @@
 import * as React from 'react';
-import { formatDate } from '../../../../../utils/datetime';
+import { formatDate, getPublishedDateTime } from 'utils/datetime';
 import classNames from 'classnames';
 import { BodyLong, Detail } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './ArtikkelDato.module.scss';
 
-interface Props {
+type Props = {
     publish?: {
         first?: string;
+        from?: string;
     };
     createdTime: string;
     modifiedTime: string;
     publishLabel: string;
     modifiedLabel: string;
     type?: 'normal' | 'newsPress';
-}
+};
 
 const ArtikkelDato = (props: Props) => {
     const { language } = usePageConfig();
     const {
-        publish,
-        createdTime,
         modifiedTime,
         publishLabel,
         modifiedLabel,
@@ -31,7 +30,7 @@ const ArtikkelDato = (props: Props) => {
     const hasMonthName = type === 'newsPress';
     const hasYear = type === 'newsPress';
 
-    const publishedDate = publish?.first ?? createdTime;
+    const publishedDate = getPublishedDateTime(props);
     const publishedString = `${publishLabel} ${formatDate({
         datetime: publishedDate,
         language,
@@ -64,18 +63,17 @@ const ArtikkelDato = (props: Props) => {
 
     if (type === 'newsPress') {
         return (
-            <Detail
-                className={classNames(styles.artikkelDato, styles.small)}
-                id="main-article-date-anchor"
-            >
+            <Detail className={classNames(styles.artikkelDato, styles.small)}>
                 {publishedAndModifiedString}
             </Detail>
         );
     }
+
     return (
         <BodyLong as={'time'} dateTime={publishedDate}>
             {publishedAndModifiedString}
         </BodyLong>
     );
 };
+
 export default ArtikkelDato;

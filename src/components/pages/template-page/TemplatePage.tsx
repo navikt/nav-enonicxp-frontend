@@ -6,7 +6,6 @@ import { mainArticleDataMock } from './mocks/mainArticleDataMock';
 import { mainPanelDataMock } from './mocks/mainPanelsDataMock';
 import { officeInformationMock } from './mocks/officeInformationMock';
 import { ContentType } from 'types/content-props/_content-common';
-import ErrorPage404 from '../../../pages/404';
 import { TemplateProps } from 'types/content-props/template-props';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
@@ -30,10 +29,6 @@ const legacyTemplateTypes = {
 };
 
 export const TemplatePage = (props: TemplateProps) => {
-    if (!props.editorView) {
-        return <ErrorPage404 />;
-    }
-
     const templateSupportsType = props.data.supports?.[0];
 
     if (!templateSupportsType) {

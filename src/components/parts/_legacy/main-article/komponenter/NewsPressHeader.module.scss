@@ -1,11 +1,21 @@
 @use 'src/common' as common;
 
 .newsPressHeader {
-    display: block;
     padding-bottom: 0.75rem;
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem auto;
+    max-width: 63.5rem;
 
-    @include common.full-width-mixin();
+    @media #{common.$mq-screen-desktop} {
+        padding: 0 2.8rem 0.75rem 2.8rem;
+    }
+
+    @media #{common.$mq-screen-tablet} {
+        padding: 0 1.5rem 0.75rem 1.5rem;
+    }
+
+    @media #{common.$mq-screen-mobile} {
+        padding: 0 0.5rem 0.5rem 0.5rem;
+    }
 }
 
 .newsPressLine {

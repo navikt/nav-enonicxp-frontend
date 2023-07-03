@@ -1,12 +1,27 @@
 import React from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
-import { LegacyLayoutProps } from '../../../types/component-props/layouts/legacy-layout';
+import { LegacyLayoutProps } from 'types/component-props/layouts/legacy-layout';
+import { NewsPressHeader } from 'components/parts/_legacy/main-article/komponenter/NewsPressHeader';
+import { ComponentType } from 'types/component-props/_component-common';
 
 type Props = {
     pageProps: ContentProps;
     layoutProps?: LegacyLayoutProps;
+};
+
+const getNewsArticleProps = (pageProps: ContentProps) => {
+    const props =
+        pageProps.type === ContentType.MainArticleChapter
+            ? pageProps.data.article
+            : pageProps;
+
+    return props.type === ContentType.MainArticle &&
+        (props.data.contentType === 'news' ||
+            props.data.contentType === 'pressRelease')
+        ? props
+        : null;
 };
 
 export const LegacyLayout = ({ pageProps, layoutProps }: Props) => {
@@ -16,8 +31,18 @@ export const LegacyLayout = ({ pageProps, layoutProps }: Props) => {
         return null;
     }
 
+    const newsArticleProps = getNewsArticleProps(pageProps);
+
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
+            {/* Insert the news article header here, as we want it to render above both article region columns */}
+            {layoutProps.type === ComponentType.Page && newsArticleProps && (
+                <NewsPressHeader
+                    type={newsArticleProps.data.contentType}
+                    title={newsArticleProps.displayName}
+                    language={newsArticleProps.language}
+                />
+            )}
             {Object.values(regions).map((regionProps, index) => {
                 return (
                     <Region

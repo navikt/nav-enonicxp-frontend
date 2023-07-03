@@ -1,12 +1,12 @@
 import React from 'react';
 import { ComponentMapper } from '../../ComponentMapper';
-import { ProductDetailsProps } from '../../../types/content-props/dynamic-page-props';
-import ErrorPage404 from 'pages/404';
+import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
 import { ProductDetailsUsageCheck } from './product-details-usage-check/ProductDetailsUsageCheck';
+import { RedirectTo404 } from 'components/_common/redirect-to-404/RedirectTo404';
 
 export const ProductDetailsPage = (props: ProductDetailsProps) => {
     if (!props.editorView) {
-        return <ErrorPage404 />;
+        return <RedirectTo404 />;
     }
 
     return (
