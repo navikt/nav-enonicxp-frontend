@@ -35,6 +35,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const translations = translator('macroVideo', language);
     const { accountId, mediaId, title, duration, poster } = videoMeta;
 
+    console.log(accountId, mediaId, isPlayerLoaded);
+
     const getVideoMetaFromQbrick = async () => {
         const metaUrl = `https://video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`;
 
@@ -54,6 +56,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     };
 
     const pollPlayerState = (timeLeft = PLAYER_TIMEOUT_MS) => {
+        // console.log(mediaId, isPlayerLoaded);
         if (isPlayerLoaded) {
             return;
         }
@@ -63,9 +66,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 config: `//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`,
                 data: `//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`,
                 language: getValidSubtitleLanguage(language, config.video),
-                widgetId: style.widgetId,
             }).on('ready', () => {
                 setIsPlayerLoaded(true);
+                console.log('Loaded', mediaId);
             });
             return;
         }
@@ -113,7 +116,13 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     'https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'
                 }
                 async={true}
-                onReady={pollPlayerState}
+                onReady={() => {
+                    console.log('Ready', mediaId);
+                    pollPlayerState();
+                }}
+                onError={(e) => {
+                    console.log('error', mediaId, e);
+                }}
             />
             {!isPlayerLoaded && <Loader />}
             <Button
@@ -160,9 +169,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     style.macroVideo,
                     (!isPlayerLoaded || !isVideoOpen) && style.hidden
                 )}
-            >
-                <div ref={videoRef} title={title} />
-            </div>
+                ref={videoRef}
+                title={title}
+            />
         </div>
     );
 };

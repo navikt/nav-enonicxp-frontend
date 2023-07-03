@@ -2,24 +2,6 @@
     margin-bottom: 2rem;
 }
 
-.widgetId {
-    //styling fra Qbrick doc: https://video.qbrick.com/docs/api/#examples.play2-script-adaptive
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    position: relative !important;
-    height: 100% !important;
-    width: 100% !important;
-
-    & > div:first-of-type {
-        bottom: 0;
-        left: 0;
-        position: absolute !important;
-        right: 0;
-        top: 0;
-        height: 100% !important;
-        width: 100% !important;
-    }
-}
-
 .button {
     width: 100%;
     justify-content: flex-start;
@@ -65,6 +47,24 @@
     :global(.gobrain-poster) {
         //hindrer "flash" av forhåndsvisningsbilde før videoen starter
         display: none;
+    }
+
+    & > div {
+        //styling fra Qbrick doc: https://video.qbrick.com/docs/api/#examples.play2-script-adaptive
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        position: relative !important;
+        height: 100% !important;
+        width: 100% !important;
+
+        & > div:first-of-type {
+            bottom: 0;
+            left: 0;
+            position: absolute !important;
+            right: 0;
+            top: 0;
+            height: 100% !important;
+            width: 100% !important;
+        }
     }
 }
 
