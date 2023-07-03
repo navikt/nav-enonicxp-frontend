@@ -123,6 +123,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 onReady={() => {
                     pollPlayerState();
                 }}
+                // TODO: The onLoad handler should not be necessary, as onReady should always execute (according to next docs).
+                // However this does not always seem to happen...
                 onLoad={() => {
                     pollPlayerState();
                 }}
