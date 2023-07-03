@@ -15,6 +15,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { fetchJson } from 'utils/fetch/fetch-utils';
 import Script from 'next/script';
 import { classNames } from 'utils/classnames';
+import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 import style from './MacroVideo.module.scss';
 
@@ -26,7 +27,10 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const [videoMeta, setVideoMeta] = useState<VideoMeta>(
         buildVideoMeta(config?.video)
     );
-    const [isPlayerLoaded, setIsPlayerLoaded] = useState(false);
+
+    const [isStartedLoading, setIsStartedLoading] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoadingError, setIsLoadingError] = useState(false);
 
     const videoRef = React.useRef(null);
 
@@ -34,8 +38,6 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const { editorView } = pageConfig;
     const translations = translator('macroVideo', language);
     const { accountId, mediaId, title, duration, poster } = videoMeta;
-
-    console.log(accountId, mediaId, isPlayerLoaded);
 
     const getVideoMetaFromQbrick = async () => {
         const metaUrl = `https://video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`;
@@ -52,14 +54,16 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
             setVideoMeta({ ...videoMeta, poster: image, duration });
         } catch (e) {
             console.error(e);
+            setIsLoadingError(true);
         }
     };
 
     const pollPlayerState = (timeLeft = PLAYER_TIMEOUT_MS) => {
-        // console.log(mediaId, isPlayerLoaded);
-        if (isPlayerLoaded) {
+        if (isStartedLoading) {
             return;
         }
+
+        setIsStartedLoading(true);
 
         if (window.GoBrain) {
             window.GoBrain.create(videoRef.current, {
@@ -67,14 +71,14 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 data: `//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`,
                 language: getValidSubtitleLanguage(language, config.video),
             }).on('ready', () => {
-                setIsPlayerLoaded(true);
-                console.log('Loaded', mediaId);
+                setIsLoaded(true);
             });
             return;
         }
 
         if (timeLeft <= 0) {
             console.error('Failed to load QBrick player - Timed out');
+            setIsLoadingError(true);
             return;
         }
 
@@ -117,18 +121,20 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 }
                 async={true}
                 onReady={() => {
-                    console.log('Ready', mediaId);
                     pollPlayerState();
                 }}
-                onError={(e) => {
-                    console.log('error', mediaId, e);
+                onLoad={() => {
+                    pollPlayerState();
+                }}
+                onError={() => {
+                    setIsLoadingError(true);
                 }}
             />
-            {!isPlayerLoaded && <Loader />}
+            {!isLoaded && <Loader />}
             <Button
                 className={classNames(
                     style.button,
-                    (!isPlayerLoaded || isVideoOpen) && style.hidden
+                    (!isLoaded || isVideoOpen) && style.hidden
                 )}
                 variant={'tertiary'}
                 onClick={() => editorView !== 'edit' && setIsVideoOpen(true)}
@@ -164,10 +170,13 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     </Detail>
                 )}
             </Button>
+            {isLoadingError && (
+                <AlertBox variant={'error'}>{translations('error')}</AlertBox>
+            )}
             <div
                 className={classNames(
                     style.macroVideo,
-                    (!isPlayerLoaded || !isVideoOpen) && style.hidden
+                    (!isLoaded || !isVideoOpen) && style.hidden
                 )}
                 ref={videoRef}
                 title={title}

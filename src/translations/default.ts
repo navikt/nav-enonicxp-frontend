@@ -332,6 +332,7 @@ export const translationsBundleNb = {
         playMovie: 'Se video:',
         duration: 'Varighet er',
         minutes: 'min',
+        error: 'Det oppsto en feil under lasting av video',
     },
 };
 

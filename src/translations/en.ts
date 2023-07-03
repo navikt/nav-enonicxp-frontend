@@ -310,5 +310,6 @@ export const translationsBundleEn: Translations = {
         playMovie: 'Watch video:',
         duration: 'Duration is',
         minutes: 'min',
+        error: 'An error occurred while loading the video',
     },
 };
