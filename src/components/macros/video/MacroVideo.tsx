@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import { MacroVideoProps, VideoMeta } from 'types/macro-props/video';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Button, Detail, Label, Loader } from '@navikt/ds-react';
@@ -28,11 +28,12 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         buildVideoMeta(config?.video)
     );
 
-    const [isStartedLoading, setIsStartedLoading] = useState(false);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [isLoadingError, setIsLoadingError] = useState(false);
+    const [isPlayerReady, setIsPlayerReady] = useState(false);
+    const [isPlayerError, setIsPlayerError] = useState(false);
 
     const videoRef = React.useRef(null);
+
+    const widgetId = useId();
 
     const { language, pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
@@ -54,38 +55,43 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
             setVideoMeta({ ...videoMeta, poster: image, duration });
         } catch (e) {
             console.error(e);
-            setIsLoadingError(true);
+            setIsPlayerError(true);
         }
     };
 
-    const pollPlayerState = (timeLeft = PLAYER_TIMEOUT_MS) => {
-        if (isStartedLoading) {
-            return;
-        }
-
-        setIsStartedLoading(true);
-
-        if (window.GoBrain) {
-            window.GoBrain.create(videoRef.current, {
-                config: `//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`,
-                data: `//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`,
-                language: getValidSubtitleLanguage(language, config.video),
-            }).on('ready', () => {
-                setIsLoaded(true);
-            });
-            return;
-        }
-
+    const createPlayerWidget = (timeLeft = PLAYER_TIMEOUT_MS) => {
         if (timeLeft <= 0) {
             console.error('Failed to load QBrick player - Timed out');
-            setIsLoadingError(true);
+            setIsPlayerError(true);
             return;
         }
 
-        setTimeout(
-            () => pollPlayerState(timeLeft - PLAYER_POLLING_RATE_MS),
-            PLAYER_POLLING_RATE_MS
-        );
+        // Should be defined when the GoBrain init script has finished executing
+        // There doesn't seem to be an elegant way to consistently determine when
+        // this has happened, so we do some polling...
+        if (!window.GoBrain) {
+            setTimeout(
+                () => createPlayerWidget(timeLeft - PLAYER_POLLING_RATE_MS),
+                PLAYER_POLLING_RATE_MS
+            );
+            return;
+        }
+
+        // Prevent duplicate player widgets from being created, which may otherwise happen due to
+        // double event handlers on the next/script loader
+        const widgetExists = !!window.GoBrain.widgets(widgetId);
+        if (widgetExists) {
+            return;
+        }
+
+        window.GoBrain.create(videoRef.current, {
+            config: `//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`,
+            data: `//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`,
+            language: getValidSubtitleLanguage(language, config.video),
+            widgetId,
+        }).on('ready', () => {
+            setIsPlayerReady(true);
+        });
     };
 
     useEffect(() => {
@@ -120,23 +126,19 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     'https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'
                 }
                 async={true}
-                onReady={() => {
-                    pollPlayerState();
-                }}
-                // TODO: The onLoad handler should not be necessary, as onReady should always execute (according to next docs).
-                // However this does not always seem to happen...
-                onLoad={() => {
-                    pollPlayerState();
-                }}
+                // TODO: The onLoad handler should not be necessary, as onReady should always execute (according to next docs)
+                // However this does not always seem to be the case (bug?)
+                onReady={createPlayerWidget}
+                onLoad={createPlayerWidget}
                 onError={() => {
-                    setIsLoadingError(true);
+                    setIsPlayerError(true);
                 }}
             />
-            {!isLoaded && <Loader />}
+            {!isPlayerReady && <Loader />}
             <Button
                 className={classNames(
                     style.button,
-                    (!isLoaded || isVideoOpen) && style.hidden
+                    (!isPlayerReady || isVideoOpen) && style.hidden
                 )}
                 variant={'tertiary'}
                 onClick={() => editorView !== 'edit' && setIsVideoOpen(true)}
@@ -172,13 +174,13 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     </Detail>
                 )}
             </Button>
-            {isLoadingError && (
+            {isPlayerError && (
                 <AlertBox variant={'error'}>{translations('error')}</AlertBox>
             )}
             <div
                 className={classNames(
                     style.macroVideo,
-                    (!isLoaded || !isVideoOpen) && style.hidden
+                    (!isPlayerReady || !isVideoOpen) && style.hidden
                 )}
                 ref={videoRef}
                 title={title}

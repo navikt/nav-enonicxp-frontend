@@ -23,7 +23,11 @@ declare global {
 
     interface Window {
         GoBrain?: {
-            create: any;
+            create: (
+                element: HTMLElement,
+                config: Record<string, string>
+            ) => any;
+            widgets: (widgetId: string) => any;
         };
     }
 
