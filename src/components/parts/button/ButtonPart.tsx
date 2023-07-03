@@ -33,6 +33,7 @@ export const ButtonPart = ({ config }: ButtonPartProps) => {
 
     return (
         <Button
+            className="buttonPart"
             href={linkProps.url}
             variant={typePropToVariant[type]}
             xpIcon={icon}
