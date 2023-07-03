@@ -41,7 +41,7 @@ export const SituationPageFlexColsLayout = ({
     const colCount =
         typeof numCols === 'number' ? numCols : calculateColCount();
 
-    const getModifiers = () => {
+    const buildModifiers = () => {
         if (!shelf?._selected) {
             return [];
         }
@@ -53,7 +53,7 @@ export const SituationPageFlexColsLayout = ({
         <LayoutContainer
             pageProps={pageProps}
             layoutProps={layoutProps}
-            modifiers={getModifiers()}
+            modifiers={buildModifiers()}
         >
             {title && (
                 <Header
