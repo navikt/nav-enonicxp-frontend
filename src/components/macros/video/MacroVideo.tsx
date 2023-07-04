@@ -111,11 +111,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         setIsPlayerError(false);
 
         if (window.GoBrain) {
-            try {
-                window.GoBrain.destroy(widgetId, true);
-            } catch (e) {
-                console.error('Oh noes', e);
-            }
+            window.GoBrain.destroy(widgetId, true);
         }
     }, [widgetId]);
 
