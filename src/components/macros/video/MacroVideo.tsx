@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useState } from 'react';
+import React, { useCallback, useEffect, useId, useState } from 'react';
 import { MacroVideoProps, VideoMeta } from 'types/macro-props/video';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { Button, Detail, Label, Loader } from '@navikt/ds-react';
@@ -36,11 +36,11 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const widgetId = useId();
 
     const { language, pageConfig } = usePageConfig();
-    const { editorView } = pageConfig;
+    const { editorView, pageId } = pageConfig;
     const translations = translator('macroVideo', language);
     const { accountId, mediaId, title, duration, poster } = videoMeta;
 
-    const getVideoMetaFromQbrick = async () => {
+    const getVideoMetaFromQbrick = useCallback(async () => {
         const metaUrl = `https://video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`;
 
         try {
@@ -57,42 +57,54 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
             console.error(e);
             setIsPlayerError(true);
         }
-    };
+    }, [accountId, mediaId, videoMeta]);
 
-    const createPlayerWidget = (timeLeft = PLAYER_TIMEOUT_MS) => {
-        if (timeLeft <= 0) {
-            console.error('Failed to load QBrick player - Timed out');
-            setIsPlayerError(true);
-            return;
+    const createPlayerWidget = useCallback(
+        (timeLeft = PLAYER_TIMEOUT_MS) => {
+            if (timeLeft <= 0) {
+                console.error('Failed to load QBrick player - Timed out');
+                setIsPlayerError(true);
+                return;
+            }
+
+            // Should be defined when the GoBrain init script has finished executing
+            // There doesn't seem to be an elegant way to consistently determine when
+            // this has happened, so we do some polling...
+            if (!window.GoBrain) {
+                setTimeout(
+                    () => createPlayerWidget(timeLeft - PLAYER_POLLING_RATE_MS),
+                    PLAYER_POLLING_RATE_MS
+                );
+                return;
+            }
+
+            // Prevent duplicate player widgets from being created
+            const widgetExists = !!window.GoBrain.widgets(widgetId);
+            if (widgetExists) {
+                return;
+            }
+
+            window.GoBrain.create(videoRef.current, {
+                config: `//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`,
+                data: `//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`,
+                language: getValidSubtitleLanguage(language, config.video),
+                widgetId,
+            }).on('ready', () => {
+                setIsPlayerReady(true);
+            });
+        },
+        [widgetId, language, accountId, mediaId, config.video]
+    );
+
+    const resetPlayerState = useCallback(() => {
+        setIsPlayerReady(false);
+        setIsPlayerError(false);
+        setIsVideoOpen(false);
+
+        if (window.GoBrain) {
+            window.GoBrain.destroy(widgetId, true);
         }
-
-        // Should be defined when the GoBrain init script has finished executing
-        // There doesn't seem to be an elegant way to consistently determine when
-        // this has happened, so we do some polling...
-        if (!window.GoBrain) {
-            setTimeout(
-                () => createPlayerWidget(timeLeft - PLAYER_POLLING_RATE_MS),
-                PLAYER_POLLING_RATE_MS
-            );
-            return;
-        }
-
-        // Prevent duplicate player widgets from being created, which may otherwise happen due to
-        // double event handlers on the next/script loader
-        const widgetExists = !!window.GoBrain.widgets(widgetId);
-        if (widgetExists) {
-            return;
-        }
-
-        window.GoBrain.create(videoRef.current, {
-            config: `//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`,
-            data: `//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`,
-            language: getValidSubtitleLanguage(language, config.video),
-            widgetId,
-        }).on('ready', () => {
-            setIsPlayerReady(true);
-        });
-    };
+    }, [widgetId]);
 
     useEffect(() => {
         if (isVideoOpen) {
@@ -110,7 +122,13 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         if (!videoMeta.poster && !videoMeta.duration) {
             getVideoMetaFromQbrick();
         }
-    }, [videoMeta.poster, videoMeta.duration]);
+    }, [videoMeta.poster, videoMeta.duration, getVideoMetaFromQbrick]);
+
+    useEffect(() => {
+        createPlayerWidget();
+
+        return resetPlayerState;
+    }, [pageId, resetPlayerState, createPlayerWidget]);
 
     if (!accountId) {
         return null;
@@ -126,10 +144,6 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     'https://play2.qbrick.com/qbrick-player/framework/GoBrain.min.js'
                 }
                 async={true}
-                // TODO: The onLoad handler should not be necessary, as onReady should always execute (according to next docs)
-                // However this does not always seem to be the case (bug?)
-                onReady={createPlayerWidget}
-                onLoad={createPlayerWidget}
                 onError={() => {
                     setIsPlayerError(true);
                 }}

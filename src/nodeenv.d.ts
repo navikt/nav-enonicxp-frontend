@@ -27,6 +27,7 @@ declare global {
                 element: HTMLElement,
                 config: Record<string, string>
             ) => any;
+            destroy: (widgetId: string, deleteElement?: boolean) => any;
             widgets: (widgetId: string) => any;
         };
     }
