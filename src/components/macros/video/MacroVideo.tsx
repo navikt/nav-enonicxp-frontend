@@ -130,8 +130,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     }, [videoMeta.poster, videoMeta.duration, getVideoMetaFromQbrick]);
 
     useEffect(() => {
-        createPlayerWidget();
         setVideoMeta(buildVideoMeta(config?.video, contentLanguage));
+        createPlayerWidget();
 
         return resetPlayerState;
     }, [pageId, resetPlayerState, createPlayerWidget, config, contentLanguage]);
