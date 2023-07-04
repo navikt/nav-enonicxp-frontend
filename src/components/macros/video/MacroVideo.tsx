@@ -8,7 +8,6 @@ import {
     findVideoDurationFromMeta,
     getTimestampFromDuration,
     buildVideoMeta,
-    getValidSubtitleLanguage,
 } from './videoHelpers';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -23,11 +22,14 @@ const PLAYER_TIMEOUT_MS = 5000;
 const PLAYER_POLLING_RATE_MS = 50;
 
 export const MacroVideo = ({ config }: MacroVideoProps) => {
+    const { language: contentLanguage, pageConfig } = usePageConfig();
+    const { editorView, pageId } = pageConfig;
+    const translations = translator('macroVideo', contentLanguage);
+
     const [isVideoOpen, setIsVideoOpen] = useState(false);
     const [videoMeta, setVideoMeta] = useState<VideoMeta>(
-        buildVideoMeta(config?.video)
+        buildVideoMeta(config?.video, contentLanguage)
     );
-
     const [isPlayerReady, setIsPlayerReady] = useState(false);
     const [isPlayerError, setIsPlayerError] = useState(false);
 
@@ -35,10 +37,14 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
 
     const widgetId = useId();
 
-    const { language, pageConfig } = usePageConfig();
-    const { editorView, pageId } = pageConfig;
-    const translations = translator('macroVideo', language);
-    const { accountId, mediaId, title, duration, poster } = videoMeta;
+    const {
+        accountId,
+        mediaId,
+        title,
+        duration,
+        poster,
+        language: videoLanguage,
+    } = videoMeta;
 
     const getVideoMetaFromQbrick = useCallback(async () => {
         const metaUrl = `https://video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`;
@@ -78,7 +84,6 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 return;
             }
 
-            // Prevent duplicate player widgets from being created
             const widgetExists = !!window.GoBrain.widgets(widgetId);
             if (widgetExists) {
                 return;
@@ -87,13 +92,13 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
             window.GoBrain.create(videoRef.current, {
                 config: `//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`,
                 data: `//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`,
-                language: getValidSubtitleLanguage(language, config.video),
+                language: videoLanguage,
                 widgetId,
             }).on('ready', () => {
                 setIsPlayerReady(true);
             });
         },
-        [widgetId, language, accountId, mediaId, config.video]
+        [widgetId, accountId, mediaId, videoLanguage]
     );
 
     const resetPlayerState = useCallback(() => {
@@ -126,9 +131,10 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
 
     useEffect(() => {
         createPlayerWidget();
+        setVideoMeta(buildVideoMeta(config?.video, contentLanguage));
 
         return resetPlayerState;
-    }, [pageId, resetPlayerState, createPlayerWidget]);
+    }, [pageId, resetPlayerState, createPlayerWidget, config, contentLanguage]);
 
     if (!accountId) {
         return null;

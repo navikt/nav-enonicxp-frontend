@@ -4,7 +4,10 @@ import { QbrickMeta } from 'types/qbrickMeta';
 
 type VideoConfig = MacroVideoProps['config']['video'];
 
-export const buildVideoMeta = (video: VideoConfig): VideoMeta => {
+export const buildVideoMeta = (
+    video: VideoConfig,
+    contentLanguage: string
+): VideoMeta => {
     if (!video) {
         return {
             accountId: null,
@@ -24,6 +27,7 @@ export const buildVideoMeta = (video: VideoConfig): VideoMeta => {
             duration: null,
             mediaId: query?.mediaId as string,
             poster: null,
+            language: query?.language as string,
         };
     }
 
@@ -33,6 +37,7 @@ export const buildVideoMeta = (video: VideoConfig): VideoMeta => {
         duration: video.targetContent.data.duration,
         poster: video.targetContent.data.poster?.mediaUrl,
         title: video.targetContent.data.title,
+        language: getValidSubtitleLanguage(contentLanguage, video),
     };
 };
 
@@ -96,7 +101,7 @@ export const getTimestampFromDuration = (duration: number) => {
 const transformLanguage = (language: string) =>
     language === 'no' ? 'nb' : language;
 
-export const getValidSubtitleLanguage = (
+const getValidSubtitleLanguage = (
     contentLanguage: string,
     video: VideoConfig
 ) => {
