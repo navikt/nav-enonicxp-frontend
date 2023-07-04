@@ -26,10 +26,11 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const { editorView, pageId } = pageConfig;
     const translations = translator('macroVideo', contentLanguage);
 
-    const [isVideoOpen, setIsVideoOpen] = useState(false);
     const [videoMeta, setVideoMeta] = useState<VideoMeta>(
         buildVideoMeta(config?.video, contentLanguage)
     );
+
+    const [isPlayerLoading, setIsPlayerLoading] = useState(false);
     const [isPlayerReady, setIsPlayerReady] = useState(false);
     const [isPlayerError, setIsPlayerError] = useState(false);
 
@@ -65,7 +66,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
         }
     }, [accountId, mediaId, videoMeta]);
 
-    const createPlayerWidget = useCallback(
+    const createAndStartPlayer = useCallback(
         (timeLeft = PLAYER_TIMEOUT_MS) => {
             if (timeLeft <= 0) {
                 console.error('Failed to load QBrick player - Timed out');
@@ -78,7 +79,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
             // this has happened, so we do some polling...
             if (!window.GoBrain) {
                 setTimeout(
-                    () => createPlayerWidget(timeLeft - PLAYER_POLLING_RATE_MS),
+                    () =>
+                        createAndStartPlayer(timeLeft - PLAYER_POLLING_RATE_MS),
                     PLAYER_POLLING_RATE_MS
                 );
                 return;
@@ -93,9 +95,12 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 config: `//video.qbrick.com/play2/api/v1/accounts/${accountId}/configurations/qbrick-player`,
                 data: `//video.qbrick.com/api/v1/public/accounts/${accountId}/medias/${mediaId}`,
                 language: videoLanguage,
+                autoplay: true,
                 widgetId,
             }).on('ready', () => {
                 setIsPlayerReady(true);
+                setIsPlayerLoading(false);
+                logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
             });
         },
         [widgetId, accountId, mediaId, videoLanguage]
@@ -104,22 +109,15 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const resetPlayerState = useCallback(() => {
         setIsPlayerReady(false);
         setIsPlayerError(false);
-        setIsVideoOpen(false);
 
         if (window.GoBrain) {
-            window.GoBrain.destroy(widgetId, true);
+            try {
+                window.GoBrain.destroy(widgetId, true);
+            } catch (e) {
+                console.error('Oh noes', e);
+            }
         }
     }, [widgetId]);
-
-    useEffect(() => {
-        if (isVideoOpen) {
-            const qbrickPlayButton =
-                videoRef.current.querySelector('.gobrain-play');
-            qbrickPlayButton?.click();
-
-            logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
-        }
-    }, [isVideoOpen]);
 
     useEffect(() => {
         // Whether the video is in new content or legacy, attempt
@@ -131,10 +129,8 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
 
     useEffect(() => {
         setVideoMeta(buildVideoMeta(config?.video, contentLanguage));
-        createPlayerWidget();
-
         return resetPlayerState;
-    }, [pageId, resetPlayerState, createPlayerWidget, config, contentLanguage]);
+    }, [pageId, resetPlayerState, config, contentLanguage]);
 
     if (!accountId) {
         return null;
@@ -154,14 +150,18 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                     setIsPlayerError(true);
                 }}
             />
-            {!isPlayerReady && <Loader />}
             <Button
                 className={classNames(
                     style.button,
-                    (!isPlayerReady || isVideoOpen) && style.hidden
+                    isPlayerReady && style.hidden
                 )}
                 variant={'tertiary'}
-                onClick={() => editorView !== 'edit' && setIsVideoOpen(true)}
+                onClick={() => {
+                    if (editorView !== 'edit' && !isPlayerLoading) {
+                        setIsPlayerLoading(true);
+                        createAndStartPlayer();
+                    }
+                }}
                 icon={
                     <div className={style.posterWrapper}>
                         <img
@@ -169,16 +169,20 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                             src={imageUrl}
                             alt={''}
                         />
-                        <svg
-                            className={style.playIcon}
-                            focusable={'false'}
-                            aria-hidden={'true'}
-                            width={'22'}
-                            height={'26'}
-                            viewBox={'0 0 22 26'}
-                        >
-                            <path fill={'#fff'} d={'M22 13 0 26V0Z'} />
-                        </svg>
+                        {isPlayerLoading ? (
+                            <Loader className={style.icon} />
+                        ) : (
+                            <svg
+                                className={style.icon}
+                                focusable={'false'}
+                                aria-hidden={'true'}
+                                width={'22'}
+                                height={'26'}
+                                viewBox={'0 0 22 26'}
+                            >
+                                <path fill={'#fff'} d={'M22 13 0 26V0Z'} />
+                            </svg>
+                        )}
                     </div>
                 }
             >
@@ -201,7 +205,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
             <div
                 className={classNames(
                     style.macroVideo,
-                    (!isPlayerReady || !isVideoOpen) && style.hidden
+                    !isPlayerReady && style.hidden
                 )}
                 ref={videoRef}
                 title={title}

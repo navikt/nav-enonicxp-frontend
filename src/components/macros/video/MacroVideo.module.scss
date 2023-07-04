@@ -16,7 +16,7 @@
     &:hover {
         background-color: #eff6ff;
 
-        .playIcon {
+        .icon {
             transform: scale(0.9);
             opacity: 1;
         }
@@ -28,7 +28,7 @@
     width: 80px;
 }
 
-.playIcon {
+.icon {
     position: absolute;
     left: 0;
     right: 0;
