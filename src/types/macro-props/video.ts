@@ -28,4 +28,5 @@ export type VideoMeta = {
     poster: string;
     title: string;
     duration: number;
+    language?: string;
 };

@@ -12,9 +12,16 @@ import type Fuse from 'fuse.js';
 
 import style from './FormsOverviewList.module.scss';
 
+// Matches on form number-like queries and returns the full valid form number if match found
 // Form numbers are formatted like "NAV 01-23.45"
-const isFormNumber = (term: string) =>
-    /^(nav )?\d{2}-\d{2}\.\d{2}$/i.test(term);
+const getExactFormNumberIfFormSearch = (term: string) => {
+    const match = /^(nav.?)?([0-9]{2}).?([0-9]{2}).?([0-9]{2})$/.exec(term);
+    if (!match) {
+        return undefined;
+    }
+
+    return `nav ${match[2]}-${match[3]}.${match[4]}`;
+};
 
 export const FormsOverviewList = (props: FormsOverviewProps) => {
     const {
@@ -26,6 +33,8 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
     } = props.data;
 
     const { matchFilters, textFilter } = useOverviewFiltersState();
+
+    const formNumberFromSearch = getExactFormNumberIfFormSearch(textFilter);
 
     const [scoredList, setScoredList] =
         useState<FormDetailsListItemProps[]>(formDetailsList);
@@ -42,7 +51,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
 
         // Form number search should only return exact matches
         const fuseOptions: Fuse.IFuseOptions<FormDetailsListItemProps> =
-            isFormNumber(textFilter)
+            formNumberFromSearch
                 ? {
                       keys: ['formNumbers'],
                       threshold: 0,
@@ -61,7 +70,9 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
 
         getFuseSearchFunc(formDetailsList, fuseOptions).then(
             (fuseSearchFunc) => {
-                const result = fuseSearchFunc(textFilter);
+                const result = fuseSearchFunc(
+                    formNumberFromSearch || textFilter
+                );
                 setScoredList(result);
             }
         );
@@ -95,11 +106,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                             formDetails={formDetail}
                             visible={isVisible(formDetail)}
                             overviewType={overviewType}
-                            formNumberSelected={
-                                isFormNumber(textFilter)
-                                    ? textFilter
-                                    : undefined
-                            }
+                            formNumberSelected={formNumberFromSearch}
                         />
                     </li>
                 ))}

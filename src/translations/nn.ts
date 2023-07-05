@@ -315,5 +315,6 @@ export const translationsBundleNn: Translations = {
         playMovie: 'Sjå video:',
         duration: 'Varighet er',
         minutes: 'min',
+        error: 'Det oppsto en feil under lasting av video',
     },
 };
