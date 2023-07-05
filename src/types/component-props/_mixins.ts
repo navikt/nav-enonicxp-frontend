@@ -1,6 +1,6 @@
 import { ContentListProps } from '../content-props/content-list-props';
 import { ContentProps, ContentType } from '../content-props/_content-common';
-import { TypoStyle } from '../typo-style';
+import { HeaderTypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
 import { ProductTaxonomy, Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
@@ -140,7 +140,7 @@ export type HeaderCommonConfig = {
     typo: OptionSetSingle<{
         default: EmptyObject;
         custom: {
-            typo: TypoStyle;
+            typo: HeaderTypoStyle;
         };
     }>;
 };

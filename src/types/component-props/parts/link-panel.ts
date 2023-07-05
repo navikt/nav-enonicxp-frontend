@@ -9,9 +9,9 @@ import { XpImageProps } from '../../media';
 import { EmptyObject, OptionSetSingle } from '../../util-types';
 
 type LinkPanelConfig = {
-    background: XpImageProps;
-    icon: XpImageProps;
-    variant: OptionSetSingle<{
+    background?: XpImageProps;
+    icon?: XpImageProps;
+    variant?: OptionSetSingle<{
         vertical: EmptyObject;
         verticalWithBgColor: {
             iconBg: ColorMixin;
@@ -23,5 +23,5 @@ type LinkPanelConfig = {
 
 export interface LinkPanelPartProps extends PartComponentProps {
     descriptor: PartType.LinkPanel;
-    config: Partial<LinkPanelConfig>;
+    config: LinkPanelConfig;
 }

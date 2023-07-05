@@ -23,22 +23,21 @@ export const getInternalLinkUrl = (content: InternalLinkData) => {
 };
 
 export const getUrlFromContent = (content: ContentProps) => {
-    if (!content) {
-        return '';
+    switch (content.type) {
+        case ContentType.InternalLink: {
+            return getInternalLinkUrl(content.data);
+        }
+        case ContentType.ExternalLink:
+        case ContentType.Url: {
+            return content.data?.url;
+        }
+        default: {
+            return content._path;
+        }
     }
-    if (content.type === ContentType.InternalLink) {
-        return getInternalLinkUrl(content.data);
-    }
-    if (
-        content.type === ContentType.ExternalLink ||
-        content.type === ContentType.Url
-    ) {
-        return content.data?.url;
-    }
-    return content._path;
 };
 
-export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
+export const getSelectableLinkProps = (link?: LinkSelectable): LinkProps => {
     if (!link) {
         return invalidLinkProps;
     }

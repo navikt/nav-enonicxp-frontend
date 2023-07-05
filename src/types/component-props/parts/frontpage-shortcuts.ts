@@ -1,11 +1,7 @@
 import { PartType } from '../parts';
 import { PartComponentProps } from '../_component-common';
-import { ContentListData } from '../../content-props/content-list-props';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
-
-export type FrontpageContentListData = {
-    data: ContentListData;
-};
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 type Shortcut = {
     target: {
@@ -23,6 +19,7 @@ type Shortcut = {
 
 export interface FrontpageShortcutsProps extends PartComponentProps {
     descriptor: PartType.FrontpageShortcuts;
+    pageProps: ContentProps<ContentType.FrontPage>;
     config: {
         title: string;
         bgColor?: string;
