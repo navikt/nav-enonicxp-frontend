@@ -127,8 +127,8 @@ type ContentCommonData = Partial<{
     audience: AudienceProps;
 }>;
 
-export type ContentCommonProps = {
-    type: ContentType;
+export type ContentCommonProps<Type extends ContentType = ContentType> = {
+    type: Type;
     originalType?: ContentType;
     children?: ContentCommonProps[];
     parent?: ContentCommonProps;
@@ -183,4 +183,5 @@ type SpecificContentProps =
     | FormIntermediateStepPageProps
     | FormsOverviewProps;
 
-export type ContentProps = ContentCommonProps & SpecificContentProps;
+export type ContentProps<Type extends ContentType = ContentType> =
+    ContentCommonProps<Type> & SpecificContentProps;

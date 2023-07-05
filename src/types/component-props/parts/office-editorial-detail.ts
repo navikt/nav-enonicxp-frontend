@@ -1,5 +1,9 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
+import {
+    OfficeBranchPageProps,
+    OfficeEditorialPageProps,
+} from 'types/content-props/dynamic-page-props';
 
 export enum DetailType {
     SERVICE_INFORMATION = 'serviceInformation',
@@ -10,7 +14,8 @@ export enum DetailType {
 
 export interface OfficeEditorialDetailProps extends PartComponentProps {
     descriptor: PartType.OfficeEditorialDetail;
-    config: Partial<{
+    pageProps: OfficeEditorialPageProps | OfficeBranchPageProps;
+    config: {
         detailType?: DetailType;
-    }>;
+    };
 }

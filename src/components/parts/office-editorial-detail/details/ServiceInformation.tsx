@@ -1,13 +1,12 @@
 import { DetailProps } from '../OfficeEditorialDetail';
-
-import { translator } from '../../../../translations';
+import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { forceArray } from 'utils/arrays';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 /* ES lint complains about unused style in a shared styles class: */
 /* eslint-disable-next-line */
 import styles from './SharedDetails.module.scss';
-import { forceArray } from 'utils/arrays';
-import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 export const ServiceInformation = ({ officeData }: DetailProps) => {
     const { language } = usePageConfig();

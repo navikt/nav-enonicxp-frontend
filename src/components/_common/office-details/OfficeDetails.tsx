@@ -10,6 +10,7 @@ import { OfficeInformation } from './officeInformation/OfficeInformation';
 
 import styles from './OfficeDetails.module.scss';
 import { forceArray } from 'utils/arrays';
+
 export interface OfficeDetailsProps {
     officeData: OfficeDetailsData;
 }
