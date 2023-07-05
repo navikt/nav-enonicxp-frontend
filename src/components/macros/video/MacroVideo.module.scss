@@ -12,23 +12,32 @@
     :global(.navds-button__icon) {
         margin: 0;
     }
-
-    &:hover {
-        background-color: #eff6ff;
-
-        .icon {
-            transform: scale(0.9);
-            opacity: 1;
-        }
-    }
 }
 
 .posterWrapper {
     position: relative;
-    width: 80px;
+    width: 124px;
 }
 
-.icon {
+.playBadge {
+    /* Set up the circle background */
+    background-color: var(--a-surface-action);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+
+    /* Add some basic centering and positioning */
+    display: block;
+}
+
+.playLoader {
     position: absolute;
     left: 0;
     right: 0;
@@ -36,11 +45,20 @@
     bottom: 0;
     margin: auto;
 
-    transition-property: transform;
-    transition-duration: 300ms;
-    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    transform: scale(0.75);
-    opacity: 0.8;
+    :global(.navds-loader__background) {
+        stroke: white !important;
+    }
+}
+
+.playArrow {
+    position: absolute;
+    left: 4px;
+    right: 0;
+    top: 0;
+    width: 14px;
+    height: 18px;
+    bottom: 0;
+    margin: auto;
 }
 
 .macroVideo {
@@ -69,8 +87,8 @@
 }
 
 .previewImage {
-    min-height: 53px; // Keep video height in golden ratio rather than 16:9
-    border-radius: 0.125rem;
+    min-height: 74px; // Keep video height in golden ratio rather than 16:9
+    border-radius: var(--a-border-radius-small);
     object-fit: cover;
 }
 
