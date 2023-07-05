@@ -1,10 +1,7 @@
-import {
-    ContentProps,
-    ContentType,
-} from '../types/content-props/_content-common';
-import { LinkSelectable } from '../types/component-props/_mixins';
-import { LinkProps } from '../types/link-props';
-import { InternalLinkData } from '../types/content-props/internal-link-props';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { LinkSelectable } from 'types/component-props/_mixins';
+import { LinkProps } from 'types/link-props';
+import { InternalLinkData } from 'types/content-props/internal-link-props';
 
 const invalidLinkProps = {
     url: '/',
@@ -54,8 +51,13 @@ export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
             return invalidLinkProps;
         }
 
+        const url = getInternalLinkUrl(internal);
+        if (!url) {
+            return invalidLinkProps;
+        }
+
         return {
-            url: getInternalLinkUrl(internal),
+            url,
             text: internal.text || internal.target.displayName,
         };
     }

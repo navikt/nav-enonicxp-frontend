@@ -79,14 +79,14 @@ export type ContentListMixin = {
 };
 
 export type InternalLinkMixin = {
-    target: Pick<ContentProps, '_path'> & Partial<ContentProps>;
+    target: Pick<ContentProps, '_path' | 'displayName'> & Partial<ContentProps>;
     anchorId?: string;
     text?: string;
 };
 
 export type ExternalLinkMixin = {
     url: string;
-    text?: string;
+    text: string;
 };
 
 export type LinkWithIngressMixin = {

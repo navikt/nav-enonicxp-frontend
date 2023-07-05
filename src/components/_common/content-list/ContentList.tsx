@@ -9,9 +9,14 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { getNestedValueFromKeyString } from 'utils/objects';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
-const getDate = (content: ContentProps, dateLabelKey: DateTimeKey) =>
-    getNestedValueFromKeyString(content, dateLabelKey) ||
-    getPublishedDateTime(content);
+const getDate = (content: ContentProps, dateLabelKey?: DateTimeKey): string => {
+    const dateLabel =
+        dateLabelKey && getNestedValueFromKeyString(content, dateLabelKey);
+
+    return typeof dateLabel === 'string'
+        ? dateLabel
+        : getPublishedDateTime(content);
+};
 
 type Props = {
     content: ContentListProps;
@@ -36,24 +41,31 @@ export const ContentList = ({
 
     const { sectionContents, sortedBy } = content.data;
 
-    const lenkeData: LinkProps[] = sectionContents
-        .map((scContent) => ({
-            url: getUrlFromContent(scContent),
-            text: scContent.data?.title || scContent.displayName,
-            label: showDateLabel
-                ? formatDate({
-                      datetime: getDate(scContent, sortedBy),
-                      short: true,
-                      year: true,
-                  })
-                : undefined,
-        }))
-        .filter(({ url, text }) => url && text);
+    const lenkeData = sectionContents.reduce<LinkProps[]>((acc, scContent) => {
+        const url = getUrlFromContent(scContent);
+        const text = scContent.data?.title || scContent.displayName;
+
+        if (url && text) {
+            acc.push({
+                url,
+                text,
+                label: showDateLabel
+                    ? formatDate({
+                          datetime: getDate(scContent, sortedBy),
+                          short: true,
+                          year: true,
+                      })
+                    : undefined,
+            });
+        }
+
+        return acc;
+    }, []);
 
     return (
         <Lenkeliste
             lenker={lenkeData}
-            tittel={!hideTitle && (title || content.displayName)}
+            tittel={hideTitle ? undefined : title || content.displayName}
             withChevron={withChevron}
             className={className}
         />

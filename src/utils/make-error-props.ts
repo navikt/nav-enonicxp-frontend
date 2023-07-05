@@ -5,7 +5,7 @@ const errorMessageDefault = 'Ukjent feil';
 export const errorMessageURIError = 'URIError';
 export const errorMessageURIErrorPublic = 'Ugyldig adresseformat';
 
-const errorMessageByCode = {
+const errorMessageByCode: Record<number, string> = {
     400: 'Ugyldig forespørsel',
     401: 'Ingen tilgang',
     403: 'Ingen tilgang',
