@@ -59,6 +59,11 @@
     }
 }
 
-.layout__situation-flex-cols {
-    background-color: common.$a-green-100;
+.layout__situation-flex-cols,
+.layout__situation-flex-cols--products {
+    background-color: var(--a-green-100);
+}
+
+.layout__situation-flex-cols--providers {
+    background-color: var(--a-green-200);
 }
