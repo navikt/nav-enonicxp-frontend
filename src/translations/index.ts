@@ -2,11 +2,15 @@ import { translationsBundleSe as se } from './se';
 import { translationsBundleEn as en } from './en';
 import { translationsBundlePl as pl } from './pl';
 import { translationsBundleNn as nn } from './nn';
-import { translationsBundleNb as defaultPack, Translations } from './default';
+import {
+    translationsBundleNb as defaultPack,
+    Translations,
+    PartialTranslations,
+} from './default';
 
 export type Language = 'no' | 'nn' | 'en' | 'se' | 'pl' | 'uk' | 'ru';
 
-const supportedLanguages: { [key in Language]: Translations } = {
+const supportedLanguages: { [key in Language]: PartialTranslations } = {
     en: en,
     se: se,
     pl: pl,
@@ -28,3 +32,9 @@ export const translator = <Module extends keyof Translations>(
 
     return <Key extends keyof Translations[Module]>(key: Key) => pack[key];
 };
+
+const test = translator('versionHistory', 'no');
+
+type VersionHistory = Translations['versionHistory'];
+
+type Test = keyof VersionHistory;

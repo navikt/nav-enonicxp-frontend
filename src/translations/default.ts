@@ -336,4 +336,5 @@ export const translationsBundleNb = {
     },
 };
 
-export type Translations = DeepPartial<typeof translationsBundleNb>;
+export type Translations = typeof translationsBundleNb;
+export type PartialTranslations = DeepPartial<Translations>;

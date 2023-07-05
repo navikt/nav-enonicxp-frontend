@@ -1,7 +1,7 @@
-import { Translations } from './default';
-import { MenuListItemKey } from '../types/menu-list-items';
+import { PartialTranslations } from './default';
+import { MenuListItemKey } from 'types/menu-list-items';
 
-export const translationsBundleSe: Translations = {
+export const translationsBundleSe: PartialTranslations = {
     relatedContent: {
         [MenuListItemKey.AppealRights]: 'Váidinvuoigatvuođat',
         [MenuListItemKey.FormAndApplication]: 'Skovit',

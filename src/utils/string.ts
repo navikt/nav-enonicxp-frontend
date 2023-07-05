@@ -51,7 +51,12 @@ export const insertHTMLBreaks = (value: string) => {
 export const stripLineBreaks = (str: string) =>
     str.replace(
         /\r?\n|\r/g,
-        (value) => ({ '\n': '\\n', '\r': '\\r', '\r\n': '\\r\\n' }[value])
+        (value) =>
+            ({
+                '\n': '\\n',
+                '\r': '\\r',
+                '\r\n': '\\r\\n',
+            }[value] || '')
     );
 
 export const capitalize = (str: string) =>
