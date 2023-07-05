@@ -79,8 +79,12 @@
     }
 }
 
+// Override aksel styling
 .navds-heading {
     word-break: break-word;
+}
+.navds-ingress, .navds-body-long, .navds-body-short {
+    line-height: 1.5;
 }
 
 figure {
