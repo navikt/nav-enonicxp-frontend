@@ -165,19 +165,20 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                             src={imageUrl}
                             alt={''}
                         />
-                        {isPlayerLoading ? (
-                            <Loader className={style.icon} />
-                        ) : (
-                            <div className={style.playIcon}>
+                        <div className={style.playBadge}>
+                            {isPlayerLoading ? (
+                                <Loader className={style.playLoader} />
+                            ) : (
                                 <svg
+                                    className={style.playArrow}
                                     focusable={'false'}
                                     aria-hidden={'true'}
                                     viewBox={'0 0 22 26'}
                                 >
                                     <path fill={'#fff'} d={'M22 13 0 26V0Z'} />
                                 </svg>
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 }
             >

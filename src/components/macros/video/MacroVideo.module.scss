@@ -28,22 +28,7 @@
     width: 120px;
 }
 
-.icon {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-
-    transition-property: transform;
-    transition-duration: 300ms;
-    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    transform: scale(0.75);
-    opacity: 0.8;
-}
-
-.playIcon {
+.playBadge {
     /* Set up the circle background */
     background-color: var(--a-surface-action);
     border-radius: 50%;
@@ -59,17 +44,30 @@
 
     /* Add some basic centering and positioning */
     display: block;
+}
 
-    svg {
-        position: absolute;
-        left: 4px;
-        right: 0;
-        top: 0;
-        width: 14px;
-        height: 18px;
-        bottom: 0;
-        margin: auto;
+.playLoader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+    :global(.navds-loader__background) {
+        stroke: white !important;
     }
+}
+
+.playArrow {
+    position: absolute;
+    left: 4px;
+    right: 0;
+    top: 0;
+    width: 14px;
+    height: 18px;
+    bottom: 0;
+    margin: auto;
 }
 
 .macroVideo {
