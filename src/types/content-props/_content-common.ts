@@ -112,6 +112,7 @@ export type ContentAndMediaCommonProps = {
     timeRequested?: string;
     serverEnv?: string;
     layerLocale?: string;
+    isPagePreview?: boolean;
 };
 
 type ContentCommonData = Partial<{
@@ -137,7 +138,6 @@ export type ContentCommonProps = {
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     livePath?: string;
     isFailover?: boolean;
-    isPagePreview?: boolean;
     languages?: LanguageProps[];
 } & ContentAndMediaCommonProps;
 

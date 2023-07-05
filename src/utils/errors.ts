@@ -46,12 +46,6 @@ export const isNotFound = (content: ContentProps, isDraft: boolean) => {
     );
 };
 
-// These status codes may indicate that the requested page has been intentionally
-// made unavailable.  We want to perform cache revalidation in these cases.
-const revalidateOnErrorCode = {
-    404: true, // not found
-};
-
 const appError = (content: ContentProps) => ({
     content,
 });
@@ -59,9 +53,11 @@ const appError = (content: ContentProps) => ({
 export const errorHandler = (content: ErrorProps) => {
     const { errorCode } = content.data;
 
-    if (revalidateOnErrorCode[errorCode]) {
+    if (errorCode === 404) {
         return { props: { content } };
     }
 
+    // For other errors than 404 we throw an error, which prevents cache
+    // invalidation
     throw appError(content);
 };

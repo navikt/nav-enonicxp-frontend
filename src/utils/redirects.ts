@@ -73,7 +73,7 @@ export const isPermanentRedirect = (content: ContentProps) => {
         content.type === ContentType.InternalLink ||
         content.type === ContentType.ExternalLink
     ) {
-        return content.data.permanentRedirect;
+        return !!content.data.permanentRedirect;
     }
 
     return false;
