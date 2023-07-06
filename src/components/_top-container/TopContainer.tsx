@@ -9,7 +9,7 @@ import { getAudience } from 'types/component-props/_mixins';
 
 import style from './TopContainer.module.scss';
 
-const contentTypesWithWhiteHeader = new Set([
+const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
     ContentType.ProductPage,
     ContentType.SituationPage,
     ContentType.CurrentTopicPage,

@@ -6,7 +6,7 @@ import { ErrorProps } from 'types/content-props/error-props';
 export const logPageLoadError = (errorId: string, message: string) =>
     console.error(`[Page load error] ${errorId} - ${stripLineBreaks(message)}`);
 
-const isPreviewOnly = new Set<ContentType>([
+const isPreviewOnly: ReadonlySet<ContentType> = new Set([
     ContentType.ContactInformationPage,
     ContentType.Fragment,
     ContentType.GlobalNumberValuesSet,
