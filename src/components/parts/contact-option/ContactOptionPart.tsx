@@ -39,19 +39,21 @@ export const ContactOptionPart = ({
         return <EditorHelp text={'Velg kontaktkanal fra listen til høyre'} />;
     }
 
-    const isEditView = pageConfig.editorView === 'edit';
-
     const { audience } = pageProps.data;
 
     const channelData = config.contactOptions[channel];
 
+    if (!isChannelWithSharedInfo(channel)) {
+        return <DefaultOption {...channelData} channel={channel} />;
+    }
+
     const { sharedContactInformation, ingress } = channelData;
 
-    if (isChannelWithSharedInfo(channel) && !sharedContactInformation) {
-        return !isEditView ? (
-            <DefaultOption {...channelData} channel={channel} />
-        ) : (
+    if (!sharedContactInformation) {
+        return pageConfig.editorView === 'edit' ? (
             <EditorHelp text={editorHelpText[channel]} />
+        ) : (
+            <DefaultOption {...channelData} channel={channel} />
         );
     }
 
@@ -80,9 +82,6 @@ export const ContactOptionPart = ({
                     {...sharedContactInformation.data.contactType.telephone}
                 />
             );
-        }
-        default: {
-            return <DefaultOption {...channelData} channel={channel} />;
         }
     }
 };

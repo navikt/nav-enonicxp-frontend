@@ -4,22 +4,20 @@ import {
     ButtonPartSizeProp,
     ButtonPartSizePropLegacy,
     ButtonPartTypeProp,
-} from '../../../types/component-props/parts/button';
-import { getSelectableLinkProps } from '../../../utils/links-from-content';
+} from 'types/component-props/parts/button';
+import { getSelectableLinkProps } from 'utils/links-from-content';
 import { Button } from '../../_common/button/Button';
 import { ButtonProps } from '@navikt/ds-react';
 
-const legacySizeToSize: {
-    [size in ButtonPartSizePropLegacy]: ButtonPartSizeProp;
-} = {
+import style from './ButtonPart.module.scss';
+
+const legacySizeToSize: Record<ButtonPartSizePropLegacy, ButtonPartSizeProp> = {
     kompakt: 'small',
     mini: 'small',
     normal: 'medium',
 };
 
-const typePropToVariant: {
-    [type in ButtonPartTypeProp]: ButtonProps['variant'];
-} = {
+const typePropToVariant: Record<ButtonPartTypeProp, ButtonProps['variant']> = {
     hoved: 'primary',
     standard: 'secondary',
     flat: 'tertiary',
@@ -33,11 +31,11 @@ export const ButtonPart = ({ config }: ButtonPartProps) => {
 
     return (
         <Button
-            className="buttonPart"
+            className={style.button}
             href={linkProps.url}
             variant={typePropToVariant[type]}
             xpIcon={icon}
-            size={legacySizeToSize[size] || size}
+            size={legacySizeToSize[size as ButtonPartSizePropLegacy] || size}
             fullWidth={fullwidth}
         >
             {linkProps.text}
