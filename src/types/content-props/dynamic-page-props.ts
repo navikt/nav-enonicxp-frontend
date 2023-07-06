@@ -24,11 +24,10 @@ export type ToolsPageData = Omit<ProductDataMixin, 'taxonomy'> & {
     taxonomy: ToolsPageTaxonomy[];
 };
 export type GenericPageData = ProductDataMixin;
-export type OverviewPageData = Partial<{
+export type OverviewPageData = {
     productList: SimplifiedProductData[];
     overviewType: OverviewType;
-}> &
-    ProductDataMixin;
+} & ProductDataMixin;
 
 export type OfficeEditorialPageData = {
     title: string;
@@ -108,6 +107,7 @@ export type GenericPageProps = ContentCommonProps & {
 export type OverviewPageProps = ContentCommonProps & {
     type: ContentType.Overview;
     data: OverviewPageData;
+    page: LayoutProps;
 };
 
 export type PressLandingPageProps = ContentCommonProps & {

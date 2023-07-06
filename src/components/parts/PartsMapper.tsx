@@ -1,4 +1,5 @@
-//@ts-nocheck
+// @ts-nocheck
+// Refactor the part types before fixing the type errors in this file
 import React from 'react';
 import {
     PartDeprecated,
