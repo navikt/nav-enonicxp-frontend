@@ -20,7 +20,7 @@ type Props = {
     contentLoaderCallback: () => void;
     analyticsData?: Record<string, string>;
     isLoading?: boolean;
-    error?: string;
+    error?: string | null;
     children: React.ReactNode;
 };
 

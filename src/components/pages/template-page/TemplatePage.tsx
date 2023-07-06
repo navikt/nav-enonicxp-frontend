@@ -17,16 +17,16 @@ const legacyMockData = {
     ...officeInformationMock,
 };
 
-const legacyTemplateTypes = {
-    [ContentType.MainArticle]: true,
-    [ContentType.MainArticleChapter]: true,
-    [ContentType.OfficeInformation]: true,
-    [ContentType.SectionPage]: true,
-    [ContentType.PageList]: true,
-    [ContentType.TransportPage]: true,
-    [ContentType.Melding]: true,
-    [ContentType.PublishingCalendar]: true,
-};
+const legacyTemplateTypes: ReadonlySet<ContentType> = new Set([
+    ContentType.MainArticle,
+    ContentType.MainArticleChapter,
+    ContentType.OfficeInformation,
+    ContentType.SectionPage,
+    ContentType.PageList,
+    ContentType.TransportPage,
+    ContentType.Melding,
+    ContentType.PublishingCalendar,
+]);
 
 export const TemplatePage = (props: TemplateProps) => {
     const templateSupportsType = props.data.supports?.[0];
@@ -35,13 +35,12 @@ export const TemplatePage = (props: TemplateProps) => {
         return <EditorHelp text={'Template må støtte minst en innholdstype'} />;
     }
 
-    if (legacyTemplateTypes[templateSupportsType]) {
+    if (legacyTemplateTypes.has(templateSupportsType)) {
         const propsWithMocks = {
             ...props,
             data: { ...legacyMockData, ...props?.data },
         };
 
-        // @ts-ignore (templates for these old types will never ever be changed)
         return <DynamicPage {...propsWithMocks} />;
     }
 

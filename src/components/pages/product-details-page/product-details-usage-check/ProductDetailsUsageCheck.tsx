@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { fetchJson } from '../../../../utils/fetch/fetch-utils';
-import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
+import { fetchJson } from 'utils/fetch/fetch-utils';
+import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 import { Heading } from '@navikt/ds-react';
 import { Button } from '../../../_common/button/Button';
 import { EditorLinkWrapper } from '../../../_editor-only/editor-link-wrapper/EditorLinkWrapper';
@@ -17,8 +17,8 @@ type ProductDetailsUsage = {
     usage: CustomSelectorUsageData[];
 };
 
-const fetchProductDetailsUsage = (id: string): Promise<ProductDetailsUsage> =>
-    fetchJson(`${serviceUrl}?id=${id}`, 5000);
+const fetchProductDetailsUsage = (id: string) =>
+    fetchJson<ProductDetailsUsage>(`${serviceUrl}?id=${id}`, 5000);
 
 type Props = {
     id: string;
@@ -32,7 +32,7 @@ export const ProductDetailsUsageCheck = ({ id }: Props) => {
 
     useEffect(() => {
         fetchProductDetailsUsage(id).then((response) => {
-            if (!response.usage) {
+            if (!response?.usage) {
                 console.error('Invalid usage-check fetch response');
                 return;
             }

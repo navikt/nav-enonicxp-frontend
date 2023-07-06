@@ -56,6 +56,7 @@ export type ProductPageProps = ContentCommonProps & {
 export type ProductDetailsProps = ContentCommonProps & {
     type: ContentType.ProductDetails;
     data: ProductDetailsData;
+    page: LayoutProps;
 };
 
 export type ThemedArticlePageProps = ContentCommonProps & {
