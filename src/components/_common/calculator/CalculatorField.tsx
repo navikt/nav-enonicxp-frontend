@@ -1,21 +1,21 @@
+import React from 'react';
 import { Select, TextField } from '@navikt/ds-react';
-
 import {
-    CalculatorField,
+    CalculatorFieldData,
     FieldType,
 } from 'types/component-props/parts/calculator';
 
 import style from './Field.module.scss';
 
 interface FieldProps {
-    field: CalculatorField;
+    field: CalculatorFieldData;
     onChange: (variableName: string, value: string) => void;
     fieldType: FieldType;
     value: number;
     autoComplete: boolean;
 }
 
-export const Field = (props: FieldProps) => {
+export const CalculatorField = (props: FieldProps) => {
     const { field, onChange, fieldType, value, autoComplete } = props;
     const { inputField, dropdownField } = field;
 

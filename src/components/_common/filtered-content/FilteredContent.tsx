@@ -1,9 +1,9 @@
 import React from 'react';
 import { FilterSelection } from 'types/component-props/_mixins';
-import { useFilterState } from '../../../store/hooks/useFilteredContent';
+import { useFilterState } from 'store/hooks/useFilteredContent';
 
 type Props = {
-    filters: string[];
+    filters?: string[];
     children: React.ReactNode;
 };
 

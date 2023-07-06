@@ -27,14 +27,14 @@ interface DropdownFields {
     optionItems: OptionItem[];
 }
 
-export interface CalculatorField {
+export interface CalculatorFieldData {
     inputField?: BaseInputFields;
     dropdownField?: BaseInputFields & DropdownFields;
     globalValue?: GlobalValue;
 }
 
 export interface CalculatorData {
-    fields: CalculatorField[];
+    fields: CalculatorFieldData[];
     calculationScript: string;
     useThousandSeparator: boolean;
     summaryText: string;
