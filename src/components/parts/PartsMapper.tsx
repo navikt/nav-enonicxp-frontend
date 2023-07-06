@@ -7,7 +7,7 @@ import {
     PartWithPageData,
 } from 'types/component-props/parts';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
-import MainPanels from './_legacy/main-panels/MainPanels';
+import { MainPanels } from './_legacy/main-panels/MainPanels';
 import { MenuList } from './_legacy/menu-list/MenuList';
 import PageHeading from './_legacy/page-heading/PageHeading';
 import { PageList } from './_legacy/page-list/PageList';

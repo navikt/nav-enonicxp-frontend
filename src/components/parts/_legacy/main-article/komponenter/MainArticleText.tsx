@@ -1,51 +1,34 @@
-import * as React from 'react';
-import { ParsedHtml } from '../../../../_common/parsed-html/ParsedHtml';
-import { ProcessedHtmlProps } from '../../../../../types/processed-html-props';
+import React from 'react';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 
-const modifyHtml = (htmlText: string, hasTableOfContent: boolean) => {
-    if (!htmlText) {
-        return '';
-    }
+const injectTableOfContentsIds = (htmlText: string) => {
+    let index = 1;
 
-    // Fjern tomme headings og br-tagger fra HTML
-    let tmp = htmlText;
-    tmp = tmp?.replace(/<h\d>\s*<\/h\d>/g, '');
-    tmp = tmp?.replace(/<h\d>&nbsp;<\/h\d>/g, '');
-    tmp = tmp?.replace(/<br \/>/g, '');
-
-    // legg på id'er for innholdsfortegnelse
-    if (hasTableOfContent) {
-        let index = 1;
-        tmp = tmp?.replace(/<h3>/g, () => {
-            return `<h3 id="chapter-${index++}" class="chapter-header">`;
-        });
-    }
-
-    return tmp;
+    return htmlText.replace(
+        /<h3>/g,
+        () => `<h3 id="chapter-${index++}" class="chapter-header">`
+    );
 };
 
-interface Props {
+type Props = {
     htmlProps: ProcessedHtmlProps;
     className: string;
-    hasTableOfContents: boolean;
-}
+    hasTableOfContents?: boolean;
+};
 
-const MainArticleText = ({
+export const MainArticleText = ({
     htmlProps,
     className,
     hasTableOfContents,
 }: Props) => {
-    const modifiedHtml = modifyHtml(
-        htmlProps?.processedHtml,
-        hasTableOfContents
-    );
+    const html = hasTableOfContents
+        ? injectTableOfContentsIds(htmlProps.processedHtml)
+        : htmlProps.processedHtml;
 
     return (
         <div className={className}>
-            <ParsedHtml
-                htmlProps={{ ...htmlProps, processedHtml: modifiedHtml }}
-            />
+            <ParsedHtml htmlProps={{ ...htmlProps, processedHtml: html }} />
         </div>
     );
 };
-export default MainArticleText;

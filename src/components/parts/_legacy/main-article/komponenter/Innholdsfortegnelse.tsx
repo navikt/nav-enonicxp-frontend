@@ -1,22 +1,22 @@
 import React from 'react';
-import { LenkeBase } from '../../../../_common/lenke/LenkeBase';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 
 import style from './Innholdsfortegnelse.module.scss';
 
-interface Props {
+type Props = {
     label: string;
     innholdsfortegnelse: string[];
-}
+};
 
-const Innholdsfortegnelse = (props: Props) => {
-    if (props.innholdsfortegnelse.length === 0) {
+export const Innholdsfortegnelse = ({ label, innholdsfortegnelse }: Props) => {
+    if (innholdsfortegnelse.length === 0) {
         return null;
     }
 
     return (
-        <nav className={style.tableOfContents} aria-label={props.label}>
+        <nav className={style.tableOfContents} aria-label={label}>
             <ol>
-                {props.innholdsfortegnelse.map((item, index) => (
+                {innholdsfortegnelse.map((item, index) => (
                     <li key={index}>
                         <LenkeBase href={`#chapter-${index + 1}`}>
                             {item}
@@ -27,4 +27,3 @@ const Innholdsfortegnelse = (props: Props) => {
         </nav>
     );
 };
-export default Innholdsfortegnelse;

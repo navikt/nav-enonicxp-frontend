@@ -1,6 +1,6 @@
 import React from 'react';
 import { translator } from 'translations';
-import { MenuListItemKey } from 'types/menu-list-items';
+import { LinkItem, MenuListItemKey } from 'types/menu-list-items';
 import { ContentType } from 'types/content-props/_content-common';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { Accordion } from '@navikt/ds-react';
@@ -33,7 +33,8 @@ export const MenuList = (
         validItemKeys.length > 0 && (
             <div className={style.menuList}>
                 {validItemKeys.map((key) => {
-                    const { links } = menuListItems[key];
+                    // We asserted previously that links are defined for items mapped from validItemKeys
+                    const { links } = menuListItems[key] as Required<LinkItem>;
                     const isOpen =
                         key === MenuListItemKey.Shortcuts &&
                         type === ContentType.PageList;

@@ -1,5 +1,8 @@
-export const parseInnholdsfortegnelse = (htmlText: string, hasTableOfContents: boolean) => {
-    if (!hasTableOfContents) {
+export const parseInnholdsfortegnelse = (
+    htmlText?: string,
+    hasTableOfContents?: boolean
+) => {
+    if (!hasTableOfContents || !htmlText) {
         return [];
     }
 
@@ -13,6 +16,5 @@ export const parseInnholdsfortegnelse = (htmlText: string, hasTableOfContents: b
                 .replace(/&nbsp;/gi, ' ') // Replace &nbsp;
     );
 
-
     return innholdsfortegnelse;
-}
+};

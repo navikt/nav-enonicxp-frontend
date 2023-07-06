@@ -8,7 +8,7 @@ import { getInternalLinkUrl } from 'utils/links-from-content';
 
 import style from './MainPanels.module.scss';
 
-const ingressMaxLength = 140;
+const INGRESS_MAX_LENGTH = 140;
 
 type TableData = {
     tittel: string;
@@ -27,7 +27,7 @@ const getUrl = (content: ContentProps) => {
     }
 };
 
-const getLinkData = (content: ContentProps): TableData | null => {
+const getLinkData = (content: ContentProps): TableData => {
     return {
         tittel: content.data?.title || content.displayName,
         ingress: content.data?.ingress || content.data?.description,
@@ -63,8 +63,8 @@ export const MainPanels = (props: SectionPageProps) => {
                     >
                         {ingress && (
                             <BodyLong>
-                                {ingress.slice(0, ingressMaxLength)}
-                                {ingress.length > ingressMaxLength && '...'}
+                                {ingress.slice(0, INGRESS_MAX_LENGTH)}
+                                {ingress.length > INGRESS_MAX_LENGTH && '...'}
                             </BodyLong>
                         )}
                     </LenkepanelNavNo>
@@ -73,5 +73,3 @@ export const MainPanels = (props: SectionPageProps) => {
         </section>
     );
 };
-
-export default MainPanels;
