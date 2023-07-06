@@ -9,10 +9,10 @@ import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
-
-import style from './ContactOption.module.scss';
 import TextWithIndicator from '../text-with-indicator/TextWithIndicator';
 import { OpeningInfo } from './opening-info/OpeningInfo';
+
+import style from './ContactOption.module.scss';
 
 export const ChatOption = (props: ChatData) => {
     const {

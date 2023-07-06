@@ -24,7 +24,7 @@ const getDocumentParameter = (
     initialProps: DocumentInitialProps,
     name: DocumentParameter
 ) => {
-    return initialProps.head?.find((element) => element.props?.name === name)
+    return initialProps.head?.find((element) => element?.props?.name === name)
         ?.props?.content;
 };
 

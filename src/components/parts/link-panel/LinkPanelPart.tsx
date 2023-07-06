@@ -2,15 +2,15 @@ import React from 'react';
 import { LinkPanelPartProps } from 'types/component-props/parts/link-panel';
 import { Heading, Panel } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
-import { getSelectableLinkProps } from '../../../utils/links-from-content';
+import { getSelectableLinkProps } from 'utils/links-from-content';
 import { LenkeBase } from '../../_common/lenke/LenkeBase';
 import { XpImage } from '../../_common/image/XpImage';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { getMediaUrl } from '../../../utils/urls';
+import { getMediaUrl } from 'utils/urls';
 import { buildImageCacheUrl } from '../../_common/image/NextImage';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './LinkPanelPart.module.scss';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
 
 export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
     const { pageConfig } = usePageConfig();
@@ -22,10 +22,12 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
     const { link, ingress, background, icon, variant } = config;
 
     const linkProps = getSelectableLinkProps(link);
-    const bgUrl = getMediaUrl(background?.mediaUrl);
+
+    const bgUrl = background?.mediaUrl && getMediaUrl(background.mediaUrl);
 
     const selectedVariant = variant?._selected;
     const variantConfig = selectedVariant && variant[selectedVariant];
+
     const isVerticalLayout =
         selectedVariant === 'vertical' ||
         selectedVariant === 'verticalWithBgColor';
@@ -42,14 +44,16 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
             )}
             border={true}
             style={
-                bgUrl && {
-                    backgroundImage: `url(${buildImageCacheUrl({
-                        src: bgUrl,
-                        isEditorView: !!pageConfig.editorView,
-                        maxWidth: 480,
-                        quality: 90,
-                    })})`,
-                }
+                bgUrl
+                    ? {
+                          backgroundImage: `url(${buildImageCacheUrl({
+                              src: bgUrl,
+                              isEditorView: !!pageConfig.editorView,
+                              maxWidth: 480,
+                              quality: 90,
+                          })})`,
+                      }
+                    : undefined
             }
             as={(props) => (
                 <LenkeBase
@@ -76,8 +80,8 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                                 ...(selectedVariant ===
                                     'verticalWithBgColor' && {
                                     backgroundColor:
-                                        variantConfig.iconBg?.color,
-                                    alignItems: variantConfig.iconJustify,
+                                        variantConfig?.iconBg?.color,
+                                    alignItems: variantConfig?.iconJustify,
                                 }),
                             }}
                         >

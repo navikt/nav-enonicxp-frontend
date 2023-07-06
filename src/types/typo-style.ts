@@ -10,21 +10,7 @@ export enum HeaderTypoStyle {
     Element = 'element',
 }
 
-export enum TypoStyle {
-    Sidetittel = 'sidetittel',
-    Innholdstittel = 'innholdstittel',
-    Systemtittel = 'systemtittel',
-    Undertittel = 'undertittel',
-    Ingress = 'ingress',
-    Element = 'element',
-    Feilmelding = 'feilmelding',
-    Normaltekst = 'normaltekst',
-    Undertekst = 'undertekst',
-}
-
-export const headingToLevel: {
-    [key in HeadingTag]: Level;
-} = {
+export const headingToLevel: Record<HeadingTag, Level> = {
     h1: '1',
     h2: '2',
     h3: '3',
@@ -33,9 +19,7 @@ export const headingToLevel: {
     h6: '6', // The new design system only allows for 5 levels.
 };
 
-export const headingToSize: {
-    [key in HeadingTag]: Size;
-} = {
+export const headingToSize: Record<HeadingTag, Size> = {
     h1: 'xlarge',
     h2: 'large',
     h3: 'medium',
@@ -46,9 +30,7 @@ export const headingToSize: {
 
 // Used if no size is set, so we need to check level and determine
 // the size from there.
-export const levelToSize: {
-    [key in Level]: Size;
-} = {
+export const levelToSize: Record<Level, Size> = {
     1: 'xlarge',
     2: 'large',
     3: 'medium',
@@ -57,9 +39,7 @@ export const levelToSize: {
     6: 'xsmall',
 };
 
-export const typoToSize: {
-    [key in HeaderTypoStyle]: Size;
-} = {
+export const typoToSize: Record<HeaderTypoStyle, Size> = {
     [HeaderTypoStyle.Sidetittel]: 'xlarge',
     [HeaderTypoStyle.Innholdstittel]: 'large',
     [HeaderTypoStyle.Systemtittel]: 'medium',

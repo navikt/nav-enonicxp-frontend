@@ -6,7 +6,7 @@ import {
     ToolsPageTaxonomy,
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
-import { Translations } from 'translations/default';
+import { PartialTranslations } from 'translations/default';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.AppealRights]: 'Klagerettar',
@@ -64,7 +64,7 @@ const areas: { [key in Area]?: string } = {
     [Area.OTHER]: 'På tvers',
 };
 
-export const translationsBundleNn: Translations = {
+export const translationsBundleNn: PartialTranslations = {
     stringParts: {
         conjunction: 'og',
     },

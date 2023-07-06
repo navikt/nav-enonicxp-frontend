@@ -9,22 +9,22 @@ import { getAudience } from 'types/component-props/_mixins';
 
 import style from './TopContainer.module.scss';
 
-const contentTypesWithWhiteHeader = {
-    [ContentType.ProductPage]: true,
-    [ContentType.SituationPage]: true,
-    [ContentType.CurrentTopicPage]: true,
-    [ContentType.GuidePage]: true,
-    [ContentType.GenericPage]: true,
-    [ContentType.ThemedArticlePage]: true,
-    [ContentType.Overview]: true,
-    [ContentType.OfficeEditorialPage]: true,
-    [ContentType.OfficeBranchPage]: true,
-    [ContentType.FrontPage]: true,
-    [ContentType.AreaPage]: true,
-    [ContentType.PressLandingPage]: true,
-    [ContentType.FormIntermediateStepPage]: true,
-    [ContentType.FormsOverview]: true,
-};
+const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
+    ContentType.ProductPage,
+    ContentType.SituationPage,
+    ContentType.CurrentTopicPage,
+    ContentType.GuidePage,
+    ContentType.GenericPage,
+    ContentType.ThemedArticlePage,
+    ContentType.Overview,
+    ContentType.OfficeEditorialPage,
+    ContentType.OfficeBranchPage,
+    ContentType.FrontPage,
+    ContentType.AreaPage,
+    ContentType.PressLandingPage,
+    ContentType.FormIntermediateStepPage,
+    ContentType.FormsOverview,
+]);
 
 type Props = {
     content: ContentProps;
@@ -38,14 +38,15 @@ export const checkForWhiteHeader = (content: ContentProps) => {
         return contentType === 'news' || contentType === 'pressRelease';
     }
 
-    return contentTypesWithWhiteHeader[type];
+    return contentTypesWithWhiteHeader.has(type);
 };
 
 export const TopContainer = ({ content }: Props) => {
     const { breadcrumbs, isFailover, isPagePreview, originalType, language } =
         content;
     const hasDecoratorWidgets =
-        breadcrumbs?.length > 0 || getContentLanguages(content)?.length > 0;
+        (breadcrumbs && breadcrumbs.length > 0) ||
+        getContentLanguages(content).length > 0;
     const hasWhiteHeader = checkForWhiteHeader(content);
 
     // Should be shown in Content Studio only (except the edit view)

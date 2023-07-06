@@ -6,9 +6,10 @@ import {
     currentLanguage,
     currentEditorView,
     isPagePreview,
+    CurrentPageIdPayload,
 } from '../slices/pageConfig';
 import { Language } from 'translations';
-import { ContentProps } from '../../types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -21,7 +22,7 @@ type PageConfig = {
 
 type UsePageConfig = {
     pageConfig: PageConfig;
-    setPageConfig: (payload: any) => void;
+    setPageConfig: (payload: CurrentPageIdPayload) => void;
     language: Language;
 };
 
@@ -35,7 +36,7 @@ export const usePageConfig = (): UsePageConfig => {
     const editorView = useAppSelector((state) => currentEditorView(state));
     const isPreview = useAppSelector((state) => isPagePreview(state));
 
-    const setPageConfig = (payload) => {
+    const setPageConfig = (payload: CurrentPageIdPayload) => {
         dispatch(setPageConfigAction(payload));
     };
 

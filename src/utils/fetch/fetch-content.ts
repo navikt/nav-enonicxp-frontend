@@ -123,7 +123,7 @@ const fetchSiteContentArchive = async ({
 // Retry a few times, and just throw a generic server error if anything fails.
 const fetchAndHandleErrorsBuildtime = async (
     props: FetchSiteContentArgs & { retries?: number }
-) => {
+): Promise<ContentProps> => {
     const { idOrPath, retries = 5 } = props;
 
     return fetchSiteContentStandard({ idOrPath }).then((res) => {

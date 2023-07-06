@@ -4,6 +4,8 @@ import { AudienceProps, RenderOnAuthStateMixin } from '../_mixins';
 import { OptionSetSingle } from '../../util-types';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
+// TODO: Rewrite this for easier type narrowing
+
 export type OpeningHourRegularRaw =
     | {
           status: 'CLOSED';
@@ -52,11 +54,11 @@ interface LegacyWrite {
 
 interface Options {
     chat: DefaultContactData;
-    write: SharedContactInformationData & LegacyWrite;
+    write: DefaultContactData & LegacyWrite;
     navoffice: DefaultContactData;
     aidcentral: DefaultContactData;
     custom: DefaultContactData;
-    call: SharedContactInformationData & LegacyCall;
+    call: DefaultContactData & LegacyCall;
 }
 
 export type ChannelType = keyof Options;
@@ -65,7 +67,17 @@ export interface DefaultContactData {
     ingress?: ProcessedHtmlProps;
     title?: string;
     url?: string;
-    icon?: string;
+    icon?: 'facebook' | 'linkedin';
+    sharedContactInformation?: {
+        _path: string;
+        data: {
+            contactType: {
+                telephone?: TelephoneData;
+                write?: WriteData;
+                chat?: ChatData;
+            };
+        };
+    };
 }
 
 export interface TelephoneData {
@@ -86,18 +98,6 @@ export interface ChatData extends Omit<DefaultContactData, 'url'> {
     alertText?: string;
     regularOpeningHours?: RegularOpeningHours;
     specialOpeningHours?: SpecialOpeningHours;
-}
-
-export interface SharedContactInformationData extends DefaultContactData {
-    sharedContactInformation: {
-        _path: string;
-        data: {
-            contactType: {
-                telephone?: TelephoneData;
-                write?: WriteData;
-            };
-        };
-    };
 }
 
 export interface WriteData {

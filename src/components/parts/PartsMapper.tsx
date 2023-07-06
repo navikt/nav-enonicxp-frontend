@@ -18,15 +18,15 @@ import { MainArticle } from './_legacy/main-article/MainArticle';
 import {
     ComponentType,
     PartComponentProps,
-} from '../../types/component-props/_component-common';
-import { ContentProps } from '../../types/content-props/_content-common';
+} from 'types/component-props/_component-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import { OfficeInformation } from './_legacy/office-information/OfficeInformation';
 import { HeaderPart } from './header/HeaderPart';
 import { LinkListPart } from './link-list/LinkListPart';
 import { NewsListPart } from './news-list/NewsListPart';
 import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar';
 import PublishingCalendarEntry from './_legacy/publishing-calendar/PublishingCalendarEntry';
-import { BEM, classNames } from '../../utils/classnames';
+import { BEM, classNames } from 'utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
 import { CalculatorPart } from './calculator/Calculator';
 import { ProductDetailsPart } from './product-details/ProductDetailsPart';

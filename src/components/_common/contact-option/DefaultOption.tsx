@@ -12,47 +12,36 @@ import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import Config from 'config';
 
 import style from './ContactOption.module.scss';
 
-interface DefaultContactProps extends DefaultContactData {
-    channel: ChannelType;
-}
+type NotCustom = Exclude<ChannelType, 'custom'>;
 
-export const DefaultOption = (props: DefaultContactProps) => {
+type Props = DefaultContactData & {
+    channel: ChannelType;
+};
+
+export const DefaultOption = (props: Props) => {
     const { ingress, channel, title, url, icon } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
     const getTranslations = translator('contactPoint', language);
 
-    const getTitle = () => {
-        if (channel === 'custom' || title) {
-            return title;
-        }
-
-        return getTranslations(channel).title;
-    };
-
-    const getIngress = () => {
-        if (channel === 'custom' || ingress) {
-            return <ParsedHtml htmlProps={ingress} />;
-        }
-
-        return <ParsedHtml htmlProps={getTranslations(channel).ingress} />;
-    };
-
     // In order to open chatbot, onClick is needed instead of href. Therefore
     // return an object which is destructed into Lenkebase with the proper props (href | onClick)
-    const getUrlOrClickHandler = (channel: ChannelType) => {
+    const getUrlOrClickHandler = (
+        channel: ChannelType
+    ): Partial<React.ComponentProps<typeof LenkeBase>> & { href: string } => {
         if (channel === 'write') {
             return {
-                href: url || '/person/kontakt-oss/nb/skriv-til-oss',
+                href: url || Config.urls.skrivTilOss,
             };
         }
 
         if (channel === 'call') {
             return {
-                href: 'tel:+4755553333',
+                href: Config.urls.hovedNummerTlf,
                 analyticsEvent: AnalyticsEvents.CALL,
             };
         }
@@ -67,38 +56,33 @@ export const DefaultOption = (props: DefaultContactProps) => {
                 analyticsEvent: AnalyticsEvents.CHAT_OPEN,
             };
         }
+
         if (channel === 'navoffice') {
             return {
                 href:
                     language === 'no' || language === 'nn' || language === 'se'
-                        ? 'https://www.nav.no/sok-nav-kontor'
-                        : 'https://www.nav.no/sok-nav-kontor/en',
+                        ? Config.urls.sokNavKontor
+                        : Config.urls.sokNavKontorEn,
                 target: '_blank',
             };
         }
+
         if (channel === 'aidcentral') {
             return {
-                href: 'https://www.nav.no/no/person/hjelpemidler/hjelpemidler-og-tilrettelegging/kontakt-nav-hjelpemiddelsentral',
+                href: Config.urls.kontaktHjelpemiddelSentral,
                 target: '_blank',
             };
         }
+
         if (channel === 'custom') {
             return {
-                href: url,
+                href: url || '#',
                 target: '_blank',
                 analyticsEvent: AnalyticsEvents.NAVIGATION,
             };
         }
 
         return { href: '#' };
-    };
-
-    const getIconName = () => {
-        if (channel === 'custom') {
-            return icon;
-        }
-
-        return channel;
     };
 
     return (
@@ -111,15 +95,24 @@ export const DefaultOption = (props: DefaultContactProps) => {
             >
                 <div className={style.linkContent}>
                     <div
-                        className={classNames(style.icon, style[getIconName()])}
+                        className={classNames(
+                            style.icon,
+                            style[icon || channel]
+                        )}
                     />
                     <Heading level="3" size="small">
-                        {getTitle()}
+                        {/* title is always defined for custom channel */}
+                        {title || getTranslations(channel as NotCustom).title}
                     </Heading>
                 </div>
             </LenkeBase>
             <BodyLong as="div" className={style.text}>
-                {getIngress()}
+                {/* ingress is always defined for custom channel */}
+                {ingress ? (
+                    <ParsedHtml htmlProps={ingress} />
+                ) : (
+                    getTranslations(channel as NotCustom).ingress
+                )}
             </BodyLong>
         </div>
     );

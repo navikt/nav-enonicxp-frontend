@@ -3,9 +3,9 @@ import { Header } from 'components/_common/headers/Header';
 import { FrontpageCurrentTopicsProps } from 'types/component-props/parts/frontpage-current-topics';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { LinkPanelNavno } from '../../_common/linkpanel/LinkPanelNavno';
-import { formatDate } from '../../../utils/datetime';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import { getUrlFromContent } from '../../../utils/links-from-content';
+import { formatDate } from 'utils/datetime';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { getUrlFromContent } from 'utils/links-from-content';
 
 import style from './FrontpageCurrentTopics.module.scss';
 
@@ -15,7 +15,7 @@ export const FrontpageCurrentTopics = ({
     const { language } = usePageConfig();
     const { contentList, title } = config;
 
-    if (!contentList) {
+    if (!contentList?.data.sectionContents) {
         return <EditorHelp text={'Velg en innholdsliste'} />;
     }
 
@@ -30,27 +30,34 @@ export const FrontpageCurrentTopics = ({
                 {title}
             </Header>
             <ul className={style.list}>
-                {contentList.data.sectionContents.map((item) => (
-                    <li key={item._id}>
-                        <LinkPanelNavno
-                            analyticsLinkGroup={title}
-                            linkText={item.displayName}
-                            linkTextSize={'medium'}
-                            linkColor={'black'}
-                            href={getUrlFromContent(item)}
-                            className={style.item}
-                        >
-                            <span className={style.date}>
-                                {formatDate({
-                                    datetime: item.modifiedTime,
-                                    language: language,
-                                    short: true,
-                                    year: true,
-                                })}
-                            </span>
-                        </LinkPanelNavno>
-                    </li>
-                ))}
+                {contentList.data.sectionContents.map((item) => {
+                    const url = getUrlFromContent(item);
+                    if (!url) {
+                        return null;
+                    }
+
+                    return (
+                        <li key={item._id}>
+                            <LinkPanelNavno
+                                analyticsLinkGroup={title}
+                                linkText={item.displayName}
+                                linkTextSize={'medium'}
+                                linkColor={'black'}
+                                href={url}
+                                className={style.item}
+                            >
+                                <span className={style.date}>
+                                    {formatDate({
+                                        datetime: item.modifiedTime,
+                                        language: language,
+                                        short: true,
+                                        year: true,
+                                    })}
+                                </span>
+                            </LinkPanelNavno>
+                        </li>
+                    );
+                })}
             </ul>
         </div>
     );

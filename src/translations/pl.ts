@@ -1,7 +1,7 @@
-import { Translations } from './default';
-import { MenuListItemKey } from '../types/menu-list-items';
+import { PartialTranslations } from './default';
+import { MenuListItemKey } from 'types/menu-list-items';
 
-export const translationsBundlePl: Translations = {
+export const translationsBundlePl: PartialTranslations = {
     relatedContent: {
         [MenuListItemKey.AppealRights]: 'Prawo do złożenia odwołania',
         [MenuListItemKey.FormAndApplication]: 'Formularze i wnioski',

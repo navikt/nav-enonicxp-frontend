@@ -4,7 +4,7 @@ import { PartComponentProps } from 'types/component-props/_component-common';
 
 interface Props {
     path: string;
-    page: LayoutProps;
+    page?: LayoutProps;
 }
 
 export const checkIfFilterFirstInPage = ({ path, page }: Props) => {

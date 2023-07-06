@@ -5,12 +5,13 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from 'utils/errors';
 import { fetchWithTimeout } from 'utils/fetch/fetch-utils';
+import { NextApiResponse, NextPageContext } from 'next';
 
 const isFailoverInstance = process.env.IS_FAILOVER_INSTANCE === 'true';
 
 // Workaround for next.js bug which fail to propagate error props from the server for client-side rendering
 // See related issue: https://github.com/vercel/next.js/issues/39616
-const getClientsideProps = (path: string) => {
+const getClientsideProps = (path?: string) => {
     if (typeof document === undefined) {
         console.error(
             `document was unexpectedly not defined in client-side error controller on ${path}`
@@ -41,7 +42,7 @@ const getClientsideProps = (path: string) => {
     }
 };
 
-const fetchFailoverHtml = async (path: string) => {
+const fetchFailoverHtml = async (path: string): Promise<string | null> => {
     const url = `${process.env.FAILOVER_ORIGIN}${path}`;
     console.log(`Fetching failover html from ${url}`);
 
@@ -64,7 +65,11 @@ const fetchFailoverHtml = async (path: string) => {
         });
 };
 
-const parseErrorContent = (err: any, asPath: string) => {
+const parseErrorContent = (err?: Error | null, asPath?: string) => {
+    if (!err) {
+        return null;
+    }
+
     try {
         return JSON.parse(err.toString().replace('Error: ', '')).content as
             | ContentProps
@@ -75,21 +80,12 @@ const parseErrorContent = (err: any, asPath: string) => {
     }
 };
 
-const withFileExtensionPattern = /\.[a-zA-Z0-9]+$/;
-
-const isFileRequest = (req) => {
-    const pathname = req?._parsedUrl?.pathname;
-    if (!pathname) {
-        return false;
-    }
-
-    return withFileExtensionPattern.test(pathname);
-};
+const hasFileExtensionPattern = /\.[a-zA-Z0-9]+($|\?|#)/;
 
 // The failover app should not fetch from itself, and we only want to fetch html-documents
 // Ignore requests for json-files, images, etc
-const shouldFetchFromFailoverApp = (req) =>
-    !isFailoverInstance && !isFileRequest(req);
+const shouldFetchFromFailoverApp = (path: string) =>
+    !isFailoverInstance && hasFileExtensionPattern.test(path);
 
 const Error = (props: ContentProps) => <PageBase content={props} />;
 
@@ -98,14 +94,16 @@ Error.getInitialProps = async ({
     res,
     err,
     asPath,
-}): Promise<ContentProps> => {
-    // the res object is undefined on the client-side
-    if (!res) {
+}: Omit<NextPageContext, 'res'> & {
+    res: NextApiResponse;
+}): Promise<ContentProps | void> => {
+    // the req/res objects are undefined on the client-side
+    if (!res || !req) {
         const pageProps = getClientsideProps(asPath);
         return pageProps || makeErrorProps(asPath, 'Unknown client-side error');
     }
 
-    if (shouldFetchFromFailoverApp(req)) {
+    if (asPath && shouldFetchFromFailoverApp(asPath)) {
         const failoverHtml = await fetchFailoverHtml(asPath);
         if (failoverHtml) {
             return res.status(200).send(failoverHtml);
@@ -116,7 +114,7 @@ Error.getInitialProps = async ({
     const errorContent = parseErrorContent(err, asPath);
 
     if (errorContent?.type === ContentType.Error) {
-        res.statusCode = errorContent.data.errorCode;
+        res.statusCode = errorContent.data.errorCode || 500;
         logPageLoadError(
             errorId,
             `Error on path ${asPath} - ${errorContent.data.errorCode} ${errorContent.data.errorMessageInternal}`

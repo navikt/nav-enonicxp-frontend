@@ -18,7 +18,7 @@ import {
 import { errorMessageURIError, makeErrorProps } from 'utils/make-error-props';
 
 type FetchPagePropsArgs = {
-    routerQuery: string | string[];
+    routerQuery?: string | string[];
     isDraft?: boolean;
     isPreview?: boolean;
     noRedirect?: boolean;

@@ -28,7 +28,7 @@ import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-pa
 import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
 
 const contentToReactComponent: {
-    [key in ContentType]?: React.FunctionComponent<ContentProps>;
+    [key in ContentType]?: React.FunctionComponent<ContentProps<key>>;
 } = {
     [ContentType.Error]: ErrorPage,
     [ContentType.LargeTable]: LargeTablePage,
@@ -73,8 +73,6 @@ const contentToReactComponent: {
     [ContentType.InternalLink]: RedirectPage,
     [ContentType.Site]: RedirectPage,
     [ContentType.Url]: RedirectPage,
-
-    [ContentType.ToolsPage]: ProductPage,
 };
 
 export const isContentTypeImplemented = (content: ContentProps) =>
@@ -88,5 +86,6 @@ export const ContentMapper = ({ content }: Props) => {
     const Component =
         contentToReactComponent[content.type] || ContentTypeNotSupportedPage;
 
+    // @ts-ignore
     return <Component {...content} />;
 };

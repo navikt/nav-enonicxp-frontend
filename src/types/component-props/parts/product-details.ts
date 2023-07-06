@@ -6,7 +6,7 @@ import {
     RenderOnAuthStateMixin,
 } from '../_mixins';
 import { ProductDetailType } from '../../content-props/product-details';
-import { Language } from '../../../translations';
+import { Language } from 'translations';
 
 export interface ProductDetailsProps extends PartComponentProps {
     descriptor: PartType.ProductDetails;

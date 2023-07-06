@@ -4,7 +4,10 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
 import { useFilterState } from 'store/hooks/useFilteredContent';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { FilterMenuProps } from 'types/component-props/parts/filter-menu';
+import {
+    Category,
+    FilterMenuProps,
+} from 'types/component-props/parts/filter-menu';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { FilterExplanation } from '../../_common/filter-bar/FilterExplanation';
 import { FilterCheckbox } from './FilterCheckbox';
@@ -54,7 +57,7 @@ export const FiltersMenu = ({ config, path, pageProps }: FilterMenuProps) => {
 
     const getLabel = translator('filteredContent', language);
 
-    const onToggleFilterHandler = (filter: Filter, category) => {
+    const onToggleFilterHandler = (filter: Filter, category: Category) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             kategori: category.categoryName,
             filternavn: filter.filterName,
