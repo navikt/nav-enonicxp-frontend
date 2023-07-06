@@ -20,7 +20,7 @@ export type ComponentCommonProps = {
 export type PartComponentProps = ComponentCommonProps & {
     type: ComponentType.Part;
     descriptor: PartType;
-    pageProps?: ContentProps;
+    pageProps: ContentProps;
 };
 
 export interface TextComponentProps extends ComponentCommonProps {

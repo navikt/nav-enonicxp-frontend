@@ -11,7 +11,6 @@ import { ContentProps } from 'types/content-props/_content-common';
 
 export interface ProductDetailsProps extends PartComponentProps {
     descriptor: PartType.ProductDetails;
-    pageProps: ContentProps;
     config: {
         detailType: ProductDetailType;
         // Note: these two fields are defined as a special case on the backend

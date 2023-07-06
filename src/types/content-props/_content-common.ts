@@ -129,10 +129,10 @@ type ContentCommonData = Partial<{
 
 export type ContentCommonProps<Type extends ContentType = ContentType> = {
     type: Type;
+    data: ContentCommonData;
     originalType?: ContentType;
     children?: ContentCommonProps[];
     parent?: ContentCommonProps;
-    data?: ContentCommonData;
     page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit' | 'archive';
     breadcrumbs?: DecoratorParams['breadcrumbs'];

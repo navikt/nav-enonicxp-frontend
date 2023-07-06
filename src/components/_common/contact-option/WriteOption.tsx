@@ -12,8 +12,6 @@ import style from './ContactOption.module.scss';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 interface WriteOptionProps extends WriteData {
-    _path?: string;
-    ingress: ProcessedHtmlProps;
     alertText?: string;
 }
 

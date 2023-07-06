@@ -15,9 +15,9 @@ import { ParsedHtml } from '../parsed-html/ParsedHtml';
 
 import style from './ContactOption.module.scss';
 
-interface DefaultContactProps extends DefaultContactData {
+type DefaultContactProps = DefaultContactData & {
     channel: ChannelType;
-}
+};
 
 export const DefaultOption = (props: DefaultContactProps) => {
     const { ingress, channel, title, url, icon } = props;
@@ -34,8 +34,8 @@ export const DefaultOption = (props: DefaultContactProps) => {
     };
 
     const getIngress = () => {
-        if (channel === 'custom' || ingress) {
-            return <ParsedHtml htmlProps={ingress} />;
+        if (channel === 'custom') {
+            return ingress ? <ParsedHtml htmlProps={ingress} /> : null;
         }
 
         return <ParsedHtml htmlProps={getTranslations(channel).ingress} />;
@@ -43,7 +43,9 @@ export const DefaultOption = (props: DefaultContactProps) => {
 
     // In order to open chatbot, onClick is needed instead of href. Therefore
     // return an object which is destructed into Lenkebase with the proper props (href | onClick)
-    const getUrlOrClickHandler = (channel: ChannelType) => {
+    const getUrlOrClickHandler = (
+        channel: ChannelType
+    ): Partial<React.ComponentProps<typeof LenkeBase>> & { href: string } => {
         if (channel === 'write') {
             return {
                 href: url || '/person/kontakt-oss/nb/skriv-til-oss',
@@ -67,6 +69,7 @@ export const DefaultOption = (props: DefaultContactProps) => {
                 analyticsEvent: AnalyticsEvents.CHAT_OPEN,
             };
         }
+
         if (channel === 'navoffice') {
             return {
                 href:
@@ -76,29 +79,23 @@ export const DefaultOption = (props: DefaultContactProps) => {
                 target: '_blank',
             };
         }
+
         if (channel === 'aidcentral') {
             return {
                 href: 'https://www.nav.no/no/person/hjelpemidler/hjelpemidler-og-tilrettelegging/kontakt-nav-hjelpemiddelsentral',
                 target: '_blank',
             };
         }
+
         if (channel === 'custom') {
             return {
-                href: url,
+                href: url || '#',
                 target: '_blank',
                 analyticsEvent: AnalyticsEvents.NAVIGATION,
             };
         }
 
         return { href: '#' };
-    };
-
-    const getIconName = () => {
-        if (channel === 'custom') {
-            return icon;
-        }
-
-        return channel;
     };
 
     return (
@@ -111,7 +108,10 @@ export const DefaultOption = (props: DefaultContactProps) => {
             >
                 <div className={style.linkContent}>
                     <div
-                        className={classNames(style.icon, style[getIconName()])}
+                        className={classNames(
+                            style.icon,
+                            style[icon || channel]
+                        )}
                     />
                     <Heading level="3" size="small">
                         {getTitle()}

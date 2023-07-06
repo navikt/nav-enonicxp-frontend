@@ -52,11 +52,11 @@ interface LegacyWrite {
 
 interface Options {
     chat: DefaultContactData;
-    write: SharedContactInformationData & LegacyWrite;
+    write: DefaultContactData & LegacyWrite;
     navoffice: DefaultContactData;
     aidcentral: DefaultContactData;
     custom: DefaultContactData;
-    call: SharedContactInformationData & LegacyCall;
+    call: DefaultContactData & LegacyCall;
 }
 
 export type ChannelType = keyof Options;
@@ -65,7 +65,17 @@ export interface DefaultContactData {
     ingress?: ProcessedHtmlProps;
     title?: string;
     url?: string;
-    icon?: string;
+    icon?: 'facebook' | 'linkedin';
+    sharedContactInformation?: {
+        _path: string;
+        data: {
+            contactType: {
+                telephone?: TelephoneData;
+                write?: WriteData;
+                chat?: ChatData;
+            };
+        };
+    };
 }
 
 export interface TelephoneData {
@@ -86,18 +96,6 @@ export interface ChatData extends Omit<DefaultContactData, 'url'> {
     alertText?: string;
     regularOpeningHours?: RegularOpeningHours;
     specialOpeningHours?: SpecialOpeningHours;
-}
-
-export interface SharedContactInformationData extends DefaultContactData {
-    sharedContactInformation: {
-        _path: string;
-        data: {
-            contactType: {
-                telephone?: TelephoneData;
-                write?: WriteData;
-            };
-        };
-    };
 }
 
 export interface WriteData {

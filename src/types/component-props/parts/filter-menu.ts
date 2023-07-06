@@ -1,6 +1,7 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 import { ExpandableMixin } from '../_mixins';
+import { ContentProps } from 'types/content-props/_content-common';
 
 export type Filter = {
     filterName: string;

@@ -9,11 +9,12 @@ import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { OpeningInfo } from 'components/_common/contact-option/opening-info/OpeningInfo';
-import { getAudience, AudienceProps } from 'types/component-props/_mixins';
+import { Audience, getAudience } from 'types/component-props/_mixins';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 import style from './ContactOption.module.scss';
 
-const contactURLs = {
+const contactURLs: { [key in Audience]: any } = {
     person: {
         no: '/kontaktoss#ring-oss',
         en: '/kontaktoss/en#call-us',
@@ -29,9 +30,7 @@ const contactURLs = {
 };
 
 type CallOptionProps = {
-    _path?: string;
-    ingress: string;
-    audience?: AudienceProps;
+    ingress?: ProcessedHtmlProps;
 } & TelephoneData;
 
 export const CallOption = (props: CallOptionProps) => {
@@ -52,11 +51,16 @@ export const CallOption = (props: CallOptionProps) => {
     const getContactTranslations = translator('contactPoint', language);
     const sharedTranslations = getContactTranslations('shared');
 
+    const ingressHtml = ingress || text;
+
     const getContactUrl = () => {
-        const audienceUrls = contactURLs[getAudience(audience)];
+        const audienceUrls = audience
+            ? contactURLs[getAudience(audience)]
+            : null;
         if (!audienceUrls) {
             return contactURLs.person.no;
         }
+
         return language === 'no' || language === 'se'
             ? audienceUrls.no
             : audienceUrls.en;
@@ -83,10 +87,12 @@ export const CallOption = (props: CallOptionProps) => {
                     {alertText}
                 </Alert>
             )}
-            <BodyLong className={style.text}>
-                <ParsedHtml htmlProps={ingress || text} />
-            </BodyLong>
-            {!alertText && (
+            {ingressHtml && (
+                <BodyLong className={style.text}>
+                    <ParsedHtml htmlProps={ingressHtml} />
+                </BodyLong>
+            )}
+            {!alertText && regularOpeningHours && specialOpeningHours && (
                 <OpeningInfo
                     regularOpeningHours={regularOpeningHours}
                     specialOpeningHours={specialOpeningHours}
