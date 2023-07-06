@@ -14,7 +14,6 @@ import { getDecoratorParams } from 'utils/decorator/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getInternalRelativePath } from 'utils/urls';
 import { EditorHacks } from './_editor-only/editor-hacks/EditorHacks';
-
 import { store } from 'store/store';
 import { setPageConfigAction } from 'store/slices/pageConfig';
 import { fetchAndSetInnloggingsstatus } from 'utils/fetch/fetch-innloggingsstatus';
@@ -60,17 +59,20 @@ export const PageWrapper = (props: Props) => {
             });
         }
 
+        if (!router || editorView) {
+            return;
+        }
+
         onBreadcrumbClick((breadcrumb) =>
-            router.push(getInternalRelativePath(breadcrumb.url, !!editorView))
+            router.push(getInternalRelativePath(breadcrumb.url))
         );
         onLanguageSelect((language) =>
-            router.push(getInternalRelativePath(language.url, !!editorView))
+            router.push(getInternalRelativePath(language.url as string))
         );
 
         const linkInterceptor = hookAndInterceptInternalLink(router);
-        const linkPrefetcher = !!editorView
-            ? undefined
-            : prefetchOnMouseover(router);
+        const linkPrefetcher = prefetchOnMouseover(router);
+
         const headerElement = document.getElementById('decorator-header');
         const footerElement = document.getElementById('decorator-footer');
 
@@ -95,7 +97,7 @@ export const PageWrapper = (props: Props) => {
                 footerElement.removeEventListener('mouseover', linkPrefetcher);
             }
         };
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [editorView, router]);
 
     useEffect(() => {
         if (!content) {
@@ -110,9 +112,9 @@ export const PageWrapper = (props: Props) => {
         const decoratorParams = getDecoratorParams(content);
         setParams(decoratorParams);
 
-        if (decoratorParams.availableLanguages) {
+        if (decoratorParams.availableLanguages && router) {
             decoratorParams.availableLanguages.forEach((language) =>
-                router.prefetch(language.url)
+                router.prefetch(language.url as string)
             );
         }
 

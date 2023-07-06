@@ -9,14 +9,14 @@ interface PageConfigState {
     pageId: string;
     language: Language;
     editorView?: EditorView;
-    isPagePreview: boolean;
+    isPagePreview?: boolean;
 }
 
 export interface CurrentPageIdPayload {
     pageId: string;
     language: Language;
     editorView?: EditorView;
-    isPagePreview: boolean;
+    isPagePreview?: boolean;
 }
 
 const initialState: PageConfigState = {
@@ -52,7 +52,9 @@ export const currentEditorView = (state: RootState): EditorView => {
     return state.pageConfig.editorView;
 };
 
-export const isPagePreview = (state: RootState): boolean => {
+export const isPagePreview = (
+    state: RootState
+): PageConfigState['isPagePreview'] => {
     return state.pageConfig.isPagePreview;
 };
 
