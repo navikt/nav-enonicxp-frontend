@@ -10,7 +10,7 @@ import {
 
 export type Language = 'no' | 'nn' | 'en' | 'se' | 'pl' | 'uk' | 'ru';
 
-const supportedLanguages: { [key in Language]: PartialTranslations } = {
+const supportedLanguages: Record<Language, PartialTranslations> = {
     en: en,
     se: se,
     pl: pl,
@@ -32,9 +32,3 @@ export const translator = <Module extends keyof Translations>(
 
     return <Key extends keyof Translations[Module]>(key: Key) => pack[key];
 };
-
-const test = translator('versionHistory', 'no');
-
-type VersionHistory = Translations['versionHistory'];
-
-type Test = keyof VersionHistory;

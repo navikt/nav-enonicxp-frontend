@@ -15,7 +15,7 @@ const urls = {
     sokNavKontor: 'https://www.nav.no/sok-nav-kontor',
     sokNavKontorEn: 'https://www.nav.no/sok-nav-kontor/en',
     kontaktHjelpemiddelSentral:
-        'https://www.nav.no/no/person/hjelpemidler/hjelpemidler-og-tilrettelegging/kontakt-nav-hjelpemiddelsentral',
+        '/no/person/hjelpemidler/hjelpemidler-og-tilrettelegging/kontakt-nav-hjelpemiddelsentral',
     hovedNummerTlf: `tel:+47${vars.hovedNummer}`,
 };
 
