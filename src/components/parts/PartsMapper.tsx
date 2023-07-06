@@ -10,7 +10,7 @@ import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-nav
 import MainPanels from './_legacy/main-panels/MainPanels';
 import { MenuList } from './_legacy/menu-list/MenuList';
 import PageHeading from './_legacy/page-heading/PageHeading';
-import PageList from './_legacy/page-list/PageList';
+import { PageList } from './_legacy/page-list/PageList';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './link-panel/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';

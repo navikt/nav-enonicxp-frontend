@@ -1,44 +1,45 @@
 import React from 'react';
-import { formatAddress, normalizeReceptionAsArray } from '../utils';
 import { formatDate } from 'utils/datetime';
 import { translator, Language } from 'translations';
 import {
-    AudienceReception,
-    OpeningHoursProps,
+    LegacyOfficeAudienceReception,
+    LegacyOfficeOpeningHoursProps,
 } from 'types/content-props/office-information-props';
 import { Heading, BodyShort } from '@navikt/ds-react';
 import { OpeningHours } from './OpeningHours';
+import { forceArray } from 'utils/arrays';
+import { formatAddress } from 'components/_common/office-details/utils';
 
 import style from './Reception.module.scss';
 
-interface FormattedOpeningHours extends OpeningHoursProps {
-    meta: string;
-}
-
-interface FormattedAudienceReception {
+type FormattedAudienceReception = {
     address: string;
     place: string;
-    openingHoursExceptions: FormattedOpeningHours[];
-    openingHours: FormattedOpeningHours[];
-}
+    openingHoursExceptions: LegacyOfficeOpeningHoursProps[];
+    openingHours: LegacyOfficeOpeningHoursProps[];
+};
 
-const sortOpeningHours = (a: OpeningHoursProps, b: OpeningHoursProps) => {
-    const dagArr: string[] = [
-        'Mandag',
-        'Tirsdag',
-        'Onsdag',
-        'Torsdag',
-        'Fredag',
-    ];
-    return dagArr.indexOf(a.dag) - dagArr.indexOf(b.dag);
+const dagArr: string[] = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag'];
+
+const sortOpeningHours = (
+    a: LegacyOfficeOpeningHoursProps,
+    b: LegacyOfficeOpeningHoursProps
+) => {
+    return (
+        (a.dag ? dagArr.indexOf(a.dag) : -1) -
+        (b.dag ? dagArr.indexOf(b.dag) : -1)
+    );
 };
 
 const formatAudienceReception = (
-    audienceReception: AudienceReception,
+    audienceReception: LegacyOfficeAudienceReception,
     language: string = 'no'
 ): FormattedAudienceReception => {
     // filter regular and exceptions for opening hour then introduce formatting for display
-    const aapningstider = audienceReception.aapningstider.reduce(
+    const aapningstider = audienceReception.aapningstider.reduce<{
+        regular: LegacyOfficeOpeningHoursProps[];
+        exceptions: LegacyOfficeOpeningHoursProps[];
+    }>(
         (acc, elem) => {
             if (elem.dato) {
                 const isoDate = elem.dato;
@@ -52,6 +53,7 @@ const formatAudienceReception = (
             } else {
                 acc.regular.push(elem);
             }
+
             return acc;
         },
         {
@@ -70,12 +72,15 @@ const formatAudienceReception = (
     };
 };
 
-type ReceptionType = AudienceReception[] | AudienceReception | undefined;
+type ReceptionType =
+    | LegacyOfficeAudienceReception[]
+    | LegacyOfficeAudienceReception
+    | undefined;
 
-interface Props {
+type Props = {
     receptions: ReceptionType;
     language: Language;
-}
+};
 
 export const Reception = (props: Props) => {
     if (!props.receptions) {
@@ -83,14 +88,14 @@ export const Reception = (props: Props) => {
     }
 
     const getLabel = translator('officeInformation', props.language);
-    const receptionArray = normalizeReceptionAsArray(props.receptions);
+    const receptionArray = forceArray(props.receptions);
 
     return (
         <div className={style.publikumsmottak}>
             <Heading level="2" size="medium" className={style.header}>
                 Publikumsmottak
             </Heading>
-            {receptionArray.map((rec: AudienceReception) => {
+            {receptionArray.map((rec: LegacyOfficeAudienceReception) => {
                 const reception = formatAudienceReception(rec);
                 return (
                     <div key={rec.id}>
@@ -98,7 +103,6 @@ export const Reception = (props: Props) => {
                             {reception.place}
                         </Heading>
                         <BodyShort>{reception.address}</BodyShort>
-                        {/* exceptions in opening hours */}
                         {reception.openingHoursExceptions.length > 0 && (
                             <>
                                 <Heading level="4" size="small">
@@ -113,8 +117,6 @@ export const Reception = (props: Props) => {
                                 />
                             </>
                         )}
-
-                        {/* opening hours */}
                         {reception.openingHours.length > 0 && (
                             <>
                                 <Heading level="4" size="small">

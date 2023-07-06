@@ -1,6 +1,6 @@
 import { ContentType, ContentCommonProps } from './_content-common';
 
-export interface Office {
+type Office = {
     enhetId: number;
     navn: string;
     enhetNr: string;
@@ -9,15 +9,15 @@ export interface Office {
     orgNivaa: string;
     type: string;
     organisasjonsnummer: string;
-}
+};
 
-export interface EMail {
+export type LegacyOfficeEMail = {
     adresse: string;
     kommentar: string;
     kunIntern: string;
-}
+};
 
-export interface Address {
+export type LegacyOfficeAddress = {
     gatenavn: string;
     husbokstav?: string;
     husnummer: string;
@@ -26,38 +26,41 @@ export interface Address {
     postnummer: string;
     poststed: string;
     type: string;
-}
+};
 
-export interface OpeningHoursProps {
+export type LegacyOfficeOpeningHoursProps = {
     id: number;
-    dag?: string;
+    dag?: 'Mandag' | 'Tirsdag' | 'Onsdag' | 'Torsdag' | 'Fredag';
     dato?: string;
     fra?: string;
     til?: string;
     kommentar?: string;
     stengt?: string;
     isoDate?: string;
-}
+};
 
-export interface AudienceReception {
+export type LegacyOfficeAudienceReception = {
     id: number;
-    besoeksadresse: Address;
-    aapningstider: OpeningHoursProps[];
+    besoeksadresse: LegacyOfficeAddress;
+    aapningstider: LegacyOfficeOpeningHoursProps[];
     stedsbeskrivelse?: string;
-}
+};
 
-interface ContactInfo {
+type ContactInfo = {
     id: number;
     enhetNr: string;
     telefonnummer: string;
     telefonnummerKommentar?: string;
     faksnummer?: string;
-    epost?: EMail;
-    postadresse: Address;
-    besoeksadresse: Address;
+    epost?: LegacyOfficeEMail;
+    postadresse: LegacyOfficeAddress;
+    besoeksadresse: LegacyOfficeAddress;
     spesielleOpplysninger: string;
-    publikumsmottak: AudienceReception[] | AudienceReception | undefined;
-}
+    publikumsmottak:
+        | LegacyOfficeAudienceReception[]
+        | LegacyOfficeAudienceReception
+        | undefined;
+};
 
 export type OfficeInformationData = {
     enhet: Office;

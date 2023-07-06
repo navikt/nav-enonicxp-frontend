@@ -16,7 +16,7 @@ type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
 type CardProps = {
     type: CardType;
     link: LinkProps;
-    description: string;
+    description?: string;
     category: string;
     illustration?: AnimatedIconsProps;
 };
@@ -37,13 +37,15 @@ const getCardCategory = (
 ): string[] => {
     const { data } = content;
     const { taxonomy = [], customCategory, audience } = data;
-    const selectedAudience = getAudience(audience);
+    const selectedAudience = audience && getAudience(audience);
 
     if (taxonomy.length > 0 || customCategory) {
-        return [
-            ...getTranslatedTaxonomies(taxonomy, language),
-            customCategory,
-        ].filter((category) => !!category);
+        const taxonomyStrings = getTranslatedTaxonomies(taxonomy, language);
+        if (customCategory) {
+            taxonomyStrings.push(customCategory);
+        }
+
+        return taxonomyStrings;
     }
 
     const productAudienceTranslations = translator('products', language);
@@ -63,11 +65,7 @@ export const getCardProps = (
     content: CardTargetProps,
     language: Language,
     ingressOverride?: string
-): CardProps | null => {
-    if (!content?.data) {
-        return null;
-    }
-
+): CardProps => {
     const { data, type, _path, displayName } = content;
     const { title, ingress, illustration, externalProductUrl } = data;
 

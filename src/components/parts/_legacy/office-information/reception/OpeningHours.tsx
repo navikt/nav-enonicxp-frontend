@@ -1,16 +1,18 @@
 import React from 'react';
-import { OpeningHoursProps } from 'types/content-props/office-information-props';
+import { LegacyOfficeOpeningHoursProps } from 'types/content-props/office-information-props';
 import { Table } from 'components/_common/table/Table';
 
 export const OpeningHours = (props: {
-    openingHours: OpeningHoursProps[];
+    openingHours: LegacyOfficeOpeningHoursProps[];
     closedLabel: string;
     metaKey: string;
 }) => {
     const { openingHours } = props;
 
     // Handle cases where one openinghour may include both day and date.
-    const buildDayInformation = (opening: OpeningHoursProps): string => {
+    const buildDayInformation = (
+        opening: LegacyOfficeOpeningHoursProps
+    ): string => {
         const { dato, dag } = opening;
         if (dato && dag) {
             return `${dag}, ${dato}`;
@@ -20,7 +22,9 @@ export const OpeningHours = (props: {
     };
 
     // Handle cases where openinghour may include different parts depending on day.
-    const buildOpeningInformation = (opening: OpeningHoursProps): string => {
+    const buildOpeningInformation = (
+        opening: LegacyOfficeOpeningHoursProps
+    ): string => {
         let tempString = '';
         if (opening.fra && opening.til) {
             tempString = `${opening.fra} - ${opening.til}`;

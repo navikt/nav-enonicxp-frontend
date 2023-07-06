@@ -1,21 +1,34 @@
 import React from 'react';
 import { Heading, BodyShort } from '@navikt/ds-react';
-import { EMail } from 'types/content-props/office-information-props';
+import { LegacyOfficeEMail } from 'types/content-props/office-information-props';
 
-interface Props {
-    email: EMail;
+const includedUnitTypes: ReadonlySet<string> = new Set([
+    'HMS',
+    'ALS',
+    'TILTAK',
+]);
+
+type Props = {
+    email?: LegacyOfficeEMail;
     unitType: string;
-}
+};
 
-export const Email = (props: Props) => {
-    return ['HMS', 'ALS', 'TILTAK'].includes(props.unitType) &&
-        props.email?.adresse &&
-        props.email?.kunIntern !== 'true' ? (
+export const Email = ({ email, unitType }: Props) => {
+    if (
+        !email ||
+        !email.adresse ||
+        email.kunIntern === 'true' ||
+        !includedUnitTypes.has(unitType)
+    ) {
+        return null;
+    }
+
+    return (
         <div>
-            <Heading level="2" size="medium">
-                Epost
+            <Heading level={'2'} size={'medium'}>
+                {'Epost'}
             </Heading>
-            <BodyShort>{props.email.adresse}</BodyShort>
+            <BodyShort>{email.adresse}</BodyShort>
         </div>
-    ) : null;
+    );
 };
