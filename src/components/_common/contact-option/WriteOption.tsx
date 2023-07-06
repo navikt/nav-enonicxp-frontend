@@ -9,21 +9,16 @@ import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 
 import style from './ContactOption.module.scss';
-import { ProcessedHtmlProps } from 'types/processed-html-props';
 
-interface WriteOptionProps extends WriteData {
+type Props = WriteData & {
     alertText?: string;
-}
+};
 
-export const WriteOption = (props: WriteOptionProps) => {
-    const { ingress, title, url, alertText } = props;
+export const WriteOption = (props: Props) => {
+    const { ingress, url, alertText, title } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
     const getTranslations = translator('contactPoint', language);
-
-    const getTitle = () => {
-        return title || getTranslations('write').title;
-    };
 
     return (
         <div className={style.contactOption}>
@@ -36,7 +31,7 @@ export const WriteOption = (props: WriteOptionProps) => {
                 <div className={style.linkContent}>
                     <div className={classNames(style.icon, style['write'])} />
                     <Heading level="3" size="small">
-                        {getTitle()}
+                        {title || getTranslations('write').title}
                     </Heading>
                 </div>
             </LenkeBase>
@@ -46,9 +41,11 @@ export const WriteOption = (props: WriteOptionProps) => {
                 </Alert>
             )}
             <BodyLong as="div" className={style.text}>
-                <ParsedHtml
-                    htmlProps={ingress || getTranslations('write').ingress}
-                />
+                {ingress ? (
+                    <ParsedHtml htmlProps={ingress} />
+                ) : (
+                    getTranslations('write').ingress
+                )}
             </BodyLong>
         </div>
     );

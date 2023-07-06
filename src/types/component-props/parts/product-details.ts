@@ -7,7 +7,6 @@ import {
 } from '../_mixins';
 import { ProductDetailType } from '../../content-props/product-details';
 import { Language } from 'translations';
-import { ContentProps } from 'types/content-props/_content-common';
 
 export interface ProductDetailsProps extends PartComponentProps {
     descriptor: PartType.ProductDetails;

@@ -32,58 +32,57 @@ export const ContactOptionPart = ({
 
     const { sharedContactInformation, ingress } = channelData;
 
-    switch (channel) {
-        case 'write': {
-            if (!sharedContactInformation) {
-                return !isEditView ? (
-                    <DefaultOption {...channelData} channel={'write'} />
-                ) : (
-                    <EditorHelp text={editorHelpText.write} />
-                );
-            }
-
-            return (
-                <WriteOption
-                    ingress={ingress}
-                    {...sharedContactInformation.data.contactType.write}
-                />
+    if (channel === 'write') {
+        if (!sharedContactInformation) {
+            return !isEditView ? (
+                <DefaultOption {...channelData} channel={'write'} />
+            ) : (
+                <EditorHelp text={editorHelpText.write} />
             );
         }
-        case 'chat': {
-            if (!sharedContactInformation) {
-                return !isEditView ? (
-                    <DefaultOption {...channelData} channel={'write'} />
-                ) : (
-                    <EditorHelp text={editorHelpText.chat} />
-                );
-            }
 
-            return (
-                <ChatOption
-                    ingress={ingress}
-                    {...sharedContactInformation.data.contactType.chat}
-                />
-            );
-        }
-        case 'call': {
-            if (!sharedContactInformation) {
-                return config.contactOptions.call.phoneNumber && !isEditView ? (
-                    <DefaultOption {...channelData} channel={'call'} />
-                ) : (
-                    <EditorHelp text={editorHelpText.call} />
-                );
-            }
-
-            return (
-                <CallOption
-                    ingress={ingress}
-                    audience={audience}
-                    {...sharedContactInformation.data.contactType.telephone}
-                />
-            );
-        }
-        default: {
-            return <DefaultOption ingress={ingress} channel={channel} />;
-        }
+        return (
+            <WriteOption
+                ingress={ingress}
+                {...sharedContactInformation.data.contactType.write}
+            />
+        );
     }
+
+    if (channel === 'call') {
+        if (!sharedContactInformation) {
+            return config.contactOptions.call.phoneNumber && !isEditView ? (
+                <DefaultOption {...channelData} channel={'call'} />
+            ) : (
+                <EditorHelp text={editorHelpText.call} />
+            );
+        }
+
+        return (
+            <CallOption
+                ingress={ingress}
+                audience={audience}
+                {...sharedContactInformation.data.contactType.telephone}
+            />
+        );
+    }
+
+    if (channel === 'chat') {
+        if (!sharedContactInformation) {
+            return !isEditView ? (
+                <DefaultOption {...channelData} channel={'write'} />
+            ) : (
+                <EditorHelp text={editorHelpText.chat} />
+            );
+        }
+
+        return (
+            <ChatOption
+                ingress={ingress}
+                {...sharedContactInformation.data.contactType.chat}
+            />
+        );
+    }
+
+    return <DefaultOption ingress={ingress} channel={channel} />;
 };
