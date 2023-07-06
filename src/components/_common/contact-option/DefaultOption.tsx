@@ -12,34 +12,21 @@ import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import Config from 'config';
 
 import style from './ContactOption.module.scss';
 
-type DefaultContactProps = DefaultContactData & {
+type NotCustom = Exclude<ChannelType, 'custom'>;
+
+type Props = DefaultContactData & {
     channel: ChannelType;
 };
 
-export const DefaultOption = (props: DefaultContactProps) => {
+export const DefaultOption = (props: Props) => {
     const { ingress, channel, title, url, icon } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
     const getTranslations = translator('contactPoint', language);
-
-    const getTitle = () => {
-        if (channel === 'custom' || title) {
-            return title;
-        }
-
-        return getTranslations(channel).title;
-    };
-
-    const getIngress = () => {
-        if (channel === 'custom') {
-            return ingress ? <ParsedHtml htmlProps={ingress} /> : null;
-        }
-
-        return <ParsedHtml htmlProps={getTranslations(channel).ingress} />;
-    };
 
     // In order to open chatbot, onClick is needed instead of href. Therefore
     // return an object which is destructed into Lenkebase with the proper props (href | onClick)
@@ -48,13 +35,13 @@ export const DefaultOption = (props: DefaultContactProps) => {
     ): Partial<React.ComponentProps<typeof LenkeBase>> & { href: string } => {
         if (channel === 'write') {
             return {
-                href: url || '/person/kontakt-oss/nb/skriv-til-oss',
+                href: url || Config.urls.skrivTilOss,
             };
         }
 
         if (channel === 'call') {
             return {
-                href: 'tel:+4755553333',
+                href: Config.urls.hovedNummerTlf,
                 analyticsEvent: AnalyticsEvents.CALL,
             };
         }
@@ -74,15 +61,15 @@ export const DefaultOption = (props: DefaultContactProps) => {
             return {
                 href:
                     language === 'no' || language === 'nn' || language === 'se'
-                        ? 'https://www.nav.no/sok-nav-kontor'
-                        : 'https://www.nav.no/sok-nav-kontor/en',
+                        ? Config.urls.sokNavKontor
+                        : Config.urls.sokNavKontorEn,
                 target: '_blank',
             };
         }
 
         if (channel === 'aidcentral') {
             return {
-                href: 'https://www.nav.no/no/person/hjelpemidler/hjelpemidler-og-tilrettelegging/kontakt-nav-hjelpemiddelsentral',
+                href: Config.urls.kontaktHjelpemiddelSentral,
                 target: '_blank',
             };
         }
@@ -114,12 +101,18 @@ export const DefaultOption = (props: DefaultContactProps) => {
                         )}
                     />
                     <Heading level="3" size="small">
-                        {getTitle()}
+                        {/* title is always defined for custom channel */}
+                        {title || getTranslations(channel as NotCustom).title}
                     </Heading>
                 </div>
             </LenkeBase>
             <BodyLong as="div" className={style.text}>
-                {getIngress()}
+                {/* ingress is always defined for custom channel */}
+                {ingress ? (
+                    <ParsedHtml htmlProps={ingress} />
+                ) : (
+                    getTranslations(channel as NotCustom).ingress
+                )}
             </BodyLong>
         </div>
     );

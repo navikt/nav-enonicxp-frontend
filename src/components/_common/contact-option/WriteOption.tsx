@@ -7,6 +7,7 @@ import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { classNames } from 'utils/classnames';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
+import Config from 'config';
 
 import style from './ContactOption.module.scss';
 
@@ -23,7 +24,7 @@ export const WriteOption = (props: Props) => {
     return (
         <div className={style.contactOption}>
             <LenkeBase
-                href={url || '/person/kontakt-oss/nb/skriv-til-oss'}
+                href={url || Config.urls.skrivTilOss}
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}

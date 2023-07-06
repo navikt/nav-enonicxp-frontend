@@ -4,6 +4,8 @@ import { AudienceProps, RenderOnAuthStateMixin } from '../_mixins';
 import { OptionSetSingle } from '../../util-types';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 
+// TODO: Rewrite this for easier type narrowing
+
 export type OpeningHourRegularRaw =
     | {
           status: 'CLOSED';
