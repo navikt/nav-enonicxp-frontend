@@ -74,9 +74,7 @@ const partsWithPageData: {
 };
 
 const partsWithOwnData: {
-    [key in PartWithOwnData]: React.FunctionComponent<
-        PartComponentProps & { descriptor: key }
-    >;
+    [key in PartWithOwnData]: React.FunctionComponent<PartComponentProps>;
 } = {
     [PartType.AlertPanel]: AlertPanelPart,
     [PartType.AlertBox]: AlertBoxPart,
