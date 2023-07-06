@@ -1,7 +1,7 @@
 import { fetchJson } from './fetch-utils';
 import { xpServiceUrl } from '../urls';
 
-const excludedPaths = new Set([
+const excludedPaths: ReadonlySet<string> = new Set([
     '/', // This is already rendered by /index.tsx
 ]);
 
