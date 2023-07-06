@@ -11,11 +11,12 @@ import { ButtonProps } from '@navikt/ds-react';
 
 import style from './ButtonPart.module.scss';
 
-const legacySizeToSize: Record<ButtonPartSizePropLegacy, ButtonPartSizeProp> = {
-    kompakt: 'small',
-    mini: 'small',
-    normal: 'medium',
-};
+const legacySizeToSize: Record<ButtonPartSizePropLegacy, ButtonProps['size']> =
+    {
+        kompakt: 'small',
+        mini: 'small',
+        normal: 'medium',
+    };
 
 const typePropToVariant: Record<ButtonPartTypeProp, ButtonProps['variant']> = {
     hoved: 'primary',
@@ -23,6 +24,10 @@ const typePropToVariant: Record<ButtonPartTypeProp, ButtonProps['variant']> = {
     flat: 'tertiary',
     fare: 'danger',
 };
+
+const getButtonSize = (
+    size: ButtonPartSizePropLegacy | ButtonPartSizeProp
+): ButtonProps['size'] => legacySizeToSize[size] || size;
 
 export const ButtonPart = ({ config }: ButtonPartProps) => {
     const { icon, link, size, type, fullwidth } = config;
@@ -35,7 +40,7 @@ export const ButtonPart = ({ config }: ButtonPartProps) => {
             href={linkProps.url}
             variant={typePropToVariant[type]}
             xpIcon={icon}
-            size={legacySizeToSize[size as ButtonPartSizePropLegacy] || size}
+            size={getButtonSize(size)}
             fullWidth={fullwidth}
         >
             {linkProps.text}
