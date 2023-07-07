@@ -49,9 +49,9 @@ export const CallOption = (props: CallOptionProps) => {
     const { layoutConfig } = useLayoutConfig();
 
     const getContactTranslations = translator('contactPoint', language);
-    const sharedTranslations = getContactTranslations('shared');
 
-    const ingressHtml = ingress || text;
+    const callTranslations = getContactTranslations('call');
+    const sharedTranslations = getContactTranslations('shared');
 
     const getContactUrl = () => {
         const audienceUrls = audience
@@ -61,7 +61,7 @@ export const CallOption = (props: CallOptionProps) => {
             return contactURLs.person.no;
         }
 
-        return language === 'no' || language === 'se'
+        return language === 'no' || language === 'nn' || language === 'se'
             ? audienceUrls.no
             : audienceUrls.en;
     };
@@ -78,7 +78,7 @@ export const CallOption = (props: CallOptionProps) => {
                 <div className={style.linkContent}>
                     <div className={classNames(style.icon, style.call)} />
                     <Heading level="3" size="small" className={style.link}>
-                        {title}
+                        {title || callTranslations.title}
                     </Heading>
                 </div>
             </LenkeBase>
@@ -87,11 +87,11 @@ export const CallOption = (props: CallOptionProps) => {
                     {alertText}
                 </Alert>
             )}
-            {ingressHtml && (
-                <BodyLong className={style.text}>
-                    <ParsedHtml htmlProps={ingressHtml} />
-                </BodyLong>
-            )}
+            <BodyLong className={style.text}>
+                <ParsedHtml
+                    htmlProps={ingress || text || callTranslations.ingress}
+                />
+            </BodyLong>
             {!alertText && regularOpeningHours && specialOpeningHours && (
                 <OpeningInfo
                     regularOpeningHours={regularOpeningHours}
@@ -103,7 +103,7 @@ export const CallOption = (props: CallOptionProps) => {
                 className={style.moreLink}
                 href={getContactUrl()}
             >
-                {sharedTranslations['seeMoreOptions']}
+                {sharedTranslations.seeMoreOptions}
             </LenkeBase>
         </div>
     );
