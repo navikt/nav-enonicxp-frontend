@@ -30,7 +30,7 @@ import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar
 import PublishingCalendarEntry from './_legacy/publishing-calendar/PublishingCalendarEntry';
 import { BEM, classNames } from 'utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
-import { CalculatorPart } from './calculator/Calculator';
+import { CalculatorPart } from 'components/parts/calculator/CalculatorPart';
 import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';

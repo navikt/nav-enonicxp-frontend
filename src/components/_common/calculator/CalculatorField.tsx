@@ -1,32 +1,39 @@
 import React from 'react';
 import { Select, TextField } from '@navikt/ds-react';
-import {
-    CalculatorFieldData,
-    FieldType,
-} from 'types/component-props/parts/calculator';
+import { CalculatorFieldData } from 'types/component-props/parts/calculator';
 
 import style from './Field.module.scss';
 
-interface FieldProps {
+const isInputField = (
+    field: CalculatorFieldData
+): field is {
+    inputField: NonNullable<Required<CalculatorFieldData['inputField']>>;
+} => !!field.inputField;
+
+const isDowndownField = (
+    field: CalculatorFieldData
+): field is {
+    dropdownField: NonNullable<Required<CalculatorFieldData['dropdownField']>>;
+} => !!field.dropdownField;
+
+type Props = {
     field: CalculatorFieldData;
     onChange: (variableName: string, value: string) => void;
-    fieldType: FieldType;
-    value: number;
+    value: number | null;
     autoComplete: boolean;
-}
+};
 
-export const CalculatorField = (props: FieldProps) => {
-    const { field, onChange, fieldType, value, autoComplete } = props;
-    const { inputField, dropdownField } = field;
+export const CalculatorField = (props: Props) => {
+    const { field, onChange, value, autoComplete } = props;
 
     return (
         <div className={style.calculatorField}>
-            {fieldType === FieldType.INPUT && (
+            {isInputField(field) && (
                 <TextField
-                    name={inputField.variableName}
-                    label={inputField.label}
+                    name={field.inputField.variableName}
+                    label={field.inputField.label}
                     type="number"
-                    value={value.toString()}
+                    value={value?.toString() || ''}
                     onChange={(e) =>
                         onChange(
                             field.inputField.variableName,
@@ -36,22 +43,22 @@ export const CalculatorField = (props: FieldProps) => {
                     autoComplete={autoComplete ? 'on' : 'off'}
                 />
             )}
-            {fieldType === FieldType.DROPDOWN && (
+            {isDowndownField(field) && (
                 <Select
-                    label={dropdownField.label}
-                    name={dropdownField.variableName}
+                    label={field.dropdownField.label}
+                    name={field.dropdownField.variableName}
                     onChange={(e) =>
                         onChange(
                             field.dropdownField.variableName,
                             e.currentTarget.value
                         )
                     }
-                    value={value}
+                    value={value || ''}
                     autoComplete={autoComplete ? 'on' : 'off'}
                 >
-                    {dropdownField.optionItems.map((option, index) => (
+                    {field.dropdownField.optionItems.map((option, index) => (
                         <option
-                            key={`${dropdownField.variableName}-${index}`}
+                            key={field.dropdownField.variableName}
                             value={option.value}
                         >
                             {option.label}
