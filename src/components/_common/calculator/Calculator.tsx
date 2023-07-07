@@ -145,7 +145,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
             <form onSubmit={handleDefaultFormSubmit}>
                 <div>
                     {fields
-                        .filter((field) => !!field.globalValue)
+                        .filter((field) => !field.globalValue)
                         .map((field) => {
                             const fieldKey = (field.dropdownField
                                 ?.variableName ||

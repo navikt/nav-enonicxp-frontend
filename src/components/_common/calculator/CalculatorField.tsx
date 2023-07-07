@@ -57,10 +57,7 @@ export const CalculatorField = (props: Props) => {
                     autoComplete={autoComplete ? 'on' : 'off'}
                 >
                     {field.dropdownField.optionItems.map((option, index) => (
-                        <option
-                            key={field.dropdownField.variableName}
-                            value={option.value}
-                        >
+                        <option key={option.label} value={option.value}>
                             {option.label}
                         </option>
                     ))}

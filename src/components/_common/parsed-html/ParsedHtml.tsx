@@ -23,25 +23,26 @@ import { LenkeInline } from '../lenke/LenkeInline';
 import { Table } from '../table/Table';
 import { BodyLong, Heading } from '@navikt/ds-react';
 
-const blockLevelMacros: { [macroType in MacroType]?: boolean } = {
-    [MacroType.AlertBox]: true,
-    [MacroType.HeaderWithAnchor]: true,
-    [MacroType.HtmlFragment]: true,
-    [MacroType.InfoBoks]: true,
-    [MacroType.Ingress]: true,
-    [MacroType.ProductCardMini]: true,
-    [MacroType.Quote]: true,
-    [MacroType.VarselBoks]: true,
-    [MacroType.Video]: true,
-    [MacroType.FormDetails]: true,
-};
+const blockLevelMacros: ReadonlySet<string> = new Set([
+    MacroType.AlertBox,
+    MacroType.HeaderWithAnchor,
+    MacroType.HtmlFragment,
+    MacroType.InfoBoks,
+    MacroType.Ingress,
+    MacroType.ProductCardMini,
+    MacroType.ProductCardMicro,
+    MacroType.Quote,
+    MacroType.VarselBoks,
+    MacroType.Video,
+    MacroType.FormDetails,
+]);
 
 const hasBlockLevelMacroChildren = (element: Element) => {
     return element.children?.some(
         (child) =>
             isTag(child) &&
             child.name === processedHtmlMacroTag &&
-            blockLevelMacros[child.attribs?.['data-macro-name']]
+            blockLevelMacros.has(child.attribs?.['data-macro-name'])
     );
 };
 
