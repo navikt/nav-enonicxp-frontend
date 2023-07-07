@@ -7,6 +7,7 @@ import { translator } from 'translations';
 import { ProductDetailType } from 'types/content-props/product-details';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
+import { LayoutProps } from 'types/component-props/layouts';
 
 type Props = {
     detailType: ProductDetailType;
@@ -25,8 +26,9 @@ export const ProductDetailsPanel = ({
         productDetails;
 
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [productDetailsPage, setProductDetailsPage] = useState(null);
+    const [error, setError] = useState<string | null>(null);
+    const [productDetailsPage, setProductDetailsPage] =
+        useState<LayoutProps | null>(null);
 
     const { language } = usePageConfig();
 
@@ -41,10 +43,7 @@ export const ProductDetailsPanel = ({
 
         fetchPageCacheContent(productDetailsPath)
             .then((contentFromCache) => {
-                if (
-                    !contentFromCache ||
-                    contentFromCache.type !== ContentType.ProductDetails
-                ) {
+                if (contentFromCache?.type !== ContentType.ProductDetails) {
                     setError(
                         `Teknisk feil: Kunne ikke laste ${detailTypeStrings(
                             detailType

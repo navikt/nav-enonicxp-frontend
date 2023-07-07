@@ -1,13 +1,10 @@
 import React from 'react';
-import { GlobalValueItem } from '../../../types/content-props/global-values-props';
+import { GlobalValueItem } from 'types/content-props/global-values-props';
 import { GVMessageProps } from './components/messages/GVMessages';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
-import {
-    adminOrigin,
-    editorPathPrefix,
-    xpDraftPathPrefix,
-} from '../../../utils/urls';
+import { adminOrigin, editorPathPrefix, xpDraftPathPrefix } from 'utils/urls';
 import { EditorLinkWrapper } from '../../_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { UsageContentInfo } from 'components/pages/global-values-page/api/services/usage';
 
 export const gvNameExists = (
     itemName: string,
@@ -18,7 +15,7 @@ export const gvNameExists = (
         (item) => item.itemName === itemName && (!key || item.key !== key)
     );
 
-const getUsageMessages = (usage) => {
+const getUsageMessages = (usage: UsageContentInfo[]) => {
     if (!usage || usage.length === 0) {
         return [];
     }
@@ -62,7 +59,10 @@ const getUsageMessages = (usage) => {
     );
 };
 
-export const generateGvUsageMessages = (usage, itemName): GVMessageProps[] => {
+export const generateGvUsageMessages = (
+    usage: UsageContentInfo[],
+    itemName: string
+): GVMessageProps[] => {
     if (!usage) {
         return [
             {
@@ -89,7 +89,7 @@ export const generateGvUsageMessages = (usage, itemName): GVMessageProps[] => {
     }
 
     return [
-        usageMessages.length > 0 && {
+        {
             message: `Verdien "${itemName}" er i bruk på følgende sider:`,
             level: 'info',
         },

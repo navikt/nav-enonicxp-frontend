@@ -6,7 +6,7 @@ type ServiceResponse = GVMessageProps;
 export const gvServiceReorderItems = (
     orderedKeys: string[],
     contentId: string
-): Promise<ServiceResponse> =>
+) =>
     globalValuesServiceFetch<ServiceResponse>('reorder', {
         orderedKeys,
         contentId,

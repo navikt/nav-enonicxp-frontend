@@ -24,17 +24,8 @@ export const ChatOption = (props: ChatData) => {
     } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
-    const getTranslations = translator('contactPoint', language);
 
-    const getTitle = () => {
-        const dictionaryTitle = getTranslations('chat').title;
-        return title || dictionaryTitle;
-    };
-
-    const getIngress = () => {
-        const dictionaryIngress = getTranslations('chat').ingress;
-        return ingress || dictionaryIngress;
-    };
+    const translations = translator('contactPoint', language)('chat');
 
     return (
         <div className={style.contactOption}>
@@ -52,7 +43,7 @@ export const ChatOption = (props: ChatData) => {
                 <div className={style.linkContent}>
                     <div className={classNames(style.icon, style.chat)} />
                     <Heading level="3" size="small">
-                        {getTitle()}
+                        {title || translations.title}
                     </Heading>
                 </div>
             </LenkeBase>
@@ -62,11 +53,11 @@ export const ChatOption = (props: ChatData) => {
                 </Alert>
             )}
             <BodyLong as="div" className={style.text}>
-                <ParsedHtml htmlProps={getIngress()} />
+                <ParsedHtml htmlProps={ingress || translations.ingress} />
             </BodyLong>
             {!alertText && (
                 <TextWithIndicator
-                    text={`${getTranslations('chat').alwaysOpen}`}
+                    text={translations.alwaysOpen}
                     prefix={'Chatbot:'}
                     isActive={true}
                 />
@@ -75,9 +66,7 @@ export const ChatOption = (props: ChatData) => {
                 <OpeningInfo
                     regularOpeningHours={regularOpeningHours}
                     specialOpeningHours={specialOpeningHours}
-                    textPrefix={`${
-                        getTranslations('chat').chatWithCounsellor
-                    }:`}
+                    textPrefix={`${translations.chatWithCounsellor}:`}
                 />
             )}
         </div>

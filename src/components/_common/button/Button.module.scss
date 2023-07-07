@@ -3,9 +3,6 @@
 .button {
     white-space: break-spaces;
 
-    &:global(.buttonPart) {
-        margin-bottom: var(--a-spacing-7);
-    }
     &__icon {
         height: 1.5rem;
     }

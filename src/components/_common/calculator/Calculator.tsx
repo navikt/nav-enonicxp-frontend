@@ -3,94 +3,86 @@ import { Heading } from '@navikt/ds-react';
 import { Button } from '../button/Button';
 import { Calculator as CalculatorIcon } from '@navikt/ds-icons';
 import { translator } from 'translations';
-import classNames from 'classnames';
-import style from './Calculator.module.scss';
-
-import { usePageConfig } from 'store/hooks/usePageConfig';
-
-import { Field } from './Field';
+import { CalculatorField } from 'components/_common/calculator/CalculatorField';
 import { CalculatorResult } from './CalculatorResult';
-
+import { usePageConfig } from 'store/hooks/usePageConfig';
 import {
     CalculatorData,
-    CalculatorField,
-    FieldType,
+    CalculatorFieldData,
 } from 'types/component-props/parts/calculator';
 
-export const Calculator = ({
-    header,
-    calculatorData,
-}: {
-    header: string;
+// TODO: Add better data validation and enforce input on the backend
+// for fields which should not be optional
+
+import style from './Calculator.module.scss';
+
+type FieldRecord = Record<string, number | null>;
+
+/** Fields with global values are not user accessible, but has to be
+ * made available to the calculator.
+ */
+const getGlobalValues = (fields: CalculatorFieldData[]) => {
+    return fields.reduce<Record<string, number>>((collection, field) => {
+        const variableKey = field.globalValue?.variableName;
+        const variableValue = field.globalValue?.value;
+
+        if (variableKey && variableValue !== undefined) {
+            collection[variableKey] = variableValue;
+        }
+
+        return collection;
+    }, {});
+};
+
+/** The fields are controlled, so need to create an initial object which will inserted
+ * info state useState at startup. Note that global values are not mutable by user, so we
+ * can set this as default immediately.
+ */
+const populateDefaultValues = (fields: CalculatorFieldData[]) => {
+    return fields.reduce<FieldRecord>((collection, field) => {
+        // Only the actively selected input type at CS will contain a variableName
+        // which is why we can do a short circuit eval.
+
+        const { inputField, dropdownField, globalValue } = field;
+
+        if (globalValue) {
+            const { value, variableName } = globalValue;
+            if (variableName && value !== undefined) {
+                collection[variableName] = value;
+            }
+            return collection;
+        }
+
+        const fieldWithUserInput = inputField || dropdownField;
+
+        if (fieldWithUserInput) {
+            const { variableName } = fieldWithUserInput;
+            if (variableName) {
+                collection[variableName] = null;
+            }
+        }
+
+        return collection;
+    }, {});
+};
+
+type Props = {
+    header?: string;
     calculatorData: CalculatorData;
-}) => {
+};
+
+export const Calculator = ({ header, calculatorData }: Props) => {
     const { fields, useThousandSeparator } = calculatorData;
 
     const { language } = usePageConfig();
 
-    const getLabel = translator('calculator', language);
-
-    /** Determine field type by looking at which of the field objects (inputField, dropdownField or globalValues)
-     * that have variableName.
-     */
-    const getFieldType = (field: CalculatorField): FieldType => {
-        const { inputField, dropdownField } = field;
-
-        if (inputField && inputField.variableName) {
-            return FieldType.INPUT;
-        }
-
-        if (dropdownField && dropdownField.variableName) {
-            return FieldType.DROPDOWN;
-        }
-
-        return FieldType.GLOBAL_VALUE;
-    };
-
-    /** The fields are controlled, so need to create an initial object which will inserted
-     * info state useState at startup. Note that global values are not mutable by user, so we
-     * can set this as default immediately.
-     */
-    const populateDefaultValues = () => {
-        return fields.reduce((collection, field) => {
-            // Only the actively selected input type at CS will contain a variableName
-            // which is why we can do a short circuit eval.
-            const variableName =
-                field.inputField?.variableName ||
-                field.dropdownField?.variableName ||
-                field.globalValue?.variableName;
-
-            return {
-                ...collection,
-                [variableName]:
-                    getFieldType(field) === FieldType.GLOBAL_VALUE
-                        ? field.globalValue.value
-                        : '',
-            };
-        }, {});
-    };
-
-    const [fieldValues, setFieldValues] = useState<any>(
-        populateDefaultValues()
+    const [fieldValues, setFieldValues] = useState<FieldRecord>(
+        populateDefaultValues(fields)
     );
     const [calculatedValue, setCalculatedValue] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
 
-    /** Fields with global values are not user accessible, but has to be
-     * made available to the calculator.
-     */
-    const getGlobalValues = () => {
-        return fields.reduce((collection, field) => {
-            if (getFieldType(field) === FieldType.GLOBAL_VALUE) {
-                return {
-                    ...collection,
-                    [field.globalValue.variableName]: field.globalValue.value,
-                };
-            }
-
-            return { ...collection };
-        }, {});
-    };
+    const getLabel = translator('calculator', language);
 
     /* For future reference: Discussed the use of new Function in team:
      * - Looking to get Content Studio validation to avoid use of global objects and methods.
@@ -101,11 +93,11 @@ export const Calculator = ({
     const calculationFactory = (variableNames: string[]) => {
         const { calculationScript } = calculatorData;
         try {
-            /* eslint-disable-next-line */
             const fn = new Function(...variableNames, calculationScript);
             return fn;
-        } catch (error) {
+        } catch (error: any) {
             setErrorMessage(`${error.name}: ${error.message}`);
+
             return () => {
                 return null;
             };
@@ -113,7 +105,7 @@ export const Calculator = ({
     };
 
     const handleCalculateButtonClick = () => {
-        const globalValues = getGlobalValues();
+        const globalValues = getGlobalValues(fields);
         const allValues = { ...globalValues, ...fieldValues };
 
         // Separate names and values for injection into calculator function.
@@ -121,12 +113,12 @@ export const Calculator = ({
         const variableValues = Object.values(allValues);
 
         // Make sure that calculator script from Enonic only returns numbers.
-        let calculated: number | null;
         try {
-            calculated = calculationFactory(variableNames)(...variableValues);
+            const calculated = calculationFactory(variableNames)(
+                ...variableValues
+            );
             setCalculatedValue(calculated);
-            //setErrorMessage(null);
-        } catch (error) {
+        } catch (error: any) {
             setErrorMessage(`${error.name}: ${error.message}`);
             setCalculatedValue(null);
         }
@@ -134,7 +126,7 @@ export const Calculator = ({
 
     const handleInputChange = (fieldName: string, value: string) => {
         const parsedValue = parseInt(value, 10);
-        const numericValue = Number.isNaN(parsedValue) ? '' : parsedValue;
+        const numericValue = Number.isNaN(parsedValue) ? null : parsedValue;
         setFieldValues({ ...fieldValues, [fieldName]: numericValue });
     };
 
@@ -144,32 +136,27 @@ export const Calculator = ({
     };
 
     return (
-        <div className={classNames(style.calculator, 'calculatorProductMixin')}>
+        <div className={style.calculator}>
             {header && (
                 <Heading level="4" size="medium" className={style.title}>
                     {header}
                 </Heading>
             )}
             <form onSubmit={handleDefaultFormSubmit}>
-                <div className="calculatorFields">
+                <div>
                     {fields
-                        .filter(
-                            (field) =>
-                                // Don't display global values as an input field.
-                                getFieldType(field) !== FieldType.GLOBAL_VALUE
-                        )
+                        .filter((field) => !field.globalValue)
                         .map((field) => {
-                            const fieldKey =
-                                field.dropdownField?.variableName ||
-                                field.inputField?.variableName;
+                            const fieldKey = (field.dropdownField
+                                ?.variableName ||
+                                field.inputField?.variableName) as string;
 
                             return (
-                                <Field
+                                <CalculatorField
                                     key={fieldKey}
                                     field={field}
                                     onChange={handleInputChange}
                                     value={fieldValues[fieldKey]}
-                                    fieldType={getFieldType(field)}
                                     autoComplete={false}
                                 />
                             );

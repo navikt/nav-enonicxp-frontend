@@ -1,6 +1,9 @@
 import React from 'react';
 import { MicroCards } from 'components/_common/card/MicroCard';
-import { ProductCardMicroProps } from 'types/component-props/parts/product-card';
+import {
+    ProductCardMicroProps,
+    TargetPage,
+} from 'types/component-props/parts/product-card';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {
@@ -14,10 +17,13 @@ export const ProductCardMicroPart = ({ config }: ProductCardMicroProps) => {
 
     const { card_list, header } = config;
 
-    return (
-        <MicroCards
-            card_list={card_list.map((card) => card.targetPage)}
-            header={header}
-        />
-    );
+    const targetPages = card_list.reduce<TargetPage[]>((acc, card) => {
+        if (card.targetPage) {
+            acc.push(card.targetPage);
+        }
+
+        return acc;
+    }, []);
+
+    return <MicroCards card_list={targetPages} header={header} />;
 };

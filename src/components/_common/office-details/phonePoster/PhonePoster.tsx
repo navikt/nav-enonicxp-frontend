@@ -2,7 +2,7 @@ import React from 'react';
 import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { OfficeDetailsProps } from '../OfficeDetails';
 import { translator } from 'translations';
-import { parsePhoneNumber } from '../utils';
+import { formatPhoneNumber } from '../utils';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { TelephoneFilled } from '@navikt/ds-icons';
 import { forceArray } from 'utils/arrays';
@@ -12,7 +12,7 @@ import Config from 'config';
 
 import styles from './PhonePoster.module.scss';
 
-const humanReadablePhoneNumber = parsePhoneNumber(Config.vars.hovedNummer);
+const humanReadablePhoneNumber = formatPhoneNumber(Config.vars.hovedNummer);
 
 export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const { language } = usePageConfig();

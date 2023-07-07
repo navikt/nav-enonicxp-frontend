@@ -19,7 +19,8 @@ export const WriteOption = (props: Props) => {
     const { ingress, url, alertText, title } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
-    const getTranslations = translator('contactPoint', language);
+
+    const translations = translator('contactPoint', language)('write');
 
     return (
         <div className={style.contactOption}>
@@ -32,7 +33,7 @@ export const WriteOption = (props: Props) => {
                 <div className={style.linkContent}>
                     <div className={classNames(style.icon, style['write'])} />
                     <Heading level="3" size="small">
-                        {title || getTranslations('write').title}
+                        {title || translations.title}
                     </Heading>
                 </div>
             </LenkeBase>
@@ -42,11 +43,7 @@ export const WriteOption = (props: Props) => {
                 </Alert>
             )}
             <BodyLong as="div" className={style.text}>
-                {ingress ? (
-                    <ParsedHtml htmlProps={ingress} />
-                ) : (
-                    getTranslations('write').ingress
-                )}
+                <ParsedHtml htmlProps={ingress || translations.ingress} />
             </BodyLong>
         </div>
     );

@@ -1,7 +1,7 @@
 import { BodyShort } from '@navikt/ds-react';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AudienceContact } from 'types/content-props/office-details-props';
-import { parsePhoneNumber } from '../utils';
+import { formatPhoneNumber } from '../utils';
 
 import styles from './AudienceChannels.module.scss';
 
@@ -26,7 +26,7 @@ export const AudienceChannels = ({
                 )}
                 {channel.telefon && (
                     <LenkeBase href={`tel:${channel.telefon}`}>
-                        {parsePhoneNumber(channel.telefon)}
+                        {formatPhoneNumber(channel.telefon)}
                     </LenkeBase>
                 )}
             </BodyShort>

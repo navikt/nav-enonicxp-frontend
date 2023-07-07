@@ -1,10 +1,7 @@
-import {
-    fetchWithTimeout,
-    objectToQueryString,
-} from '../../../../utils/fetch/fetch-utils';
-import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
+import { fetchJson, objectToQueryString } from 'utils/fetch/fetch-utils';
+import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 
-const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/globalValues`;
+const SERVICE_URL = `${xpDraftPathPrefix}${xpServicePath}/globalValues`;
 
 type GVRequestTypes =
     | 'usage'
@@ -17,11 +14,9 @@ type GVRequestTypes =
 export const globalValuesServiceFetch = <ResponseType>(
     requestType: GVRequestTypes,
     params: object
-): Promise<ResponseType> => {
+) => {
     const query = objectToQueryString(params);
-    const url = `${serviceUrl}/${requestType}${query}`;
+    const url = `${SERVICE_URL}/${requestType}${query}`;
 
-    return fetchWithTimeout(url, 5000).then((res) => {
-        return res.json();
-    });
+    return fetchJson<ResponseType>(url, 5000);
 };

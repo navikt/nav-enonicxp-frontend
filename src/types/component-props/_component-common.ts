@@ -14,7 +14,7 @@ export enum ComponentType {
 export type ComponentCommonProps = {
     type: ComponentType;
     path: string;
-    config?: any;
+    config?: unknown;
 };
 
 export type PartComponentProps = ComponentCommonProps & {

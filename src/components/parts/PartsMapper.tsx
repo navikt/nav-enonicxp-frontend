@@ -1,3 +1,5 @@
+// @ts-nocheck
+// Refactor the part types before fixing the type errors in this file
 import React from 'react';
 import {
     PartDeprecated,
@@ -6,10 +8,10 @@ import {
     PartWithPageData,
 } from 'types/component-props/parts';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
-import MainPanels from './_legacy/main-panels/MainPanels';
+import { MainPanels } from './_legacy/main-panels/MainPanels';
 import { MenuList } from './_legacy/menu-list/MenuList';
 import PageHeading from './_legacy/page-heading/PageHeading';
-import PageList from './_legacy/page-list/PageList';
+import { PageList } from './_legacy/page-list/PageList';
 import { AlertBoxPart } from './alert-box/AlertBoxPart';
 import { LinkPanelPart } from './link-panel/LinkPanelPart';
 import { LinkPanelsLegacyPart } from './_legacy/link-panels/LinkPanelsLegacyPart';
@@ -28,7 +30,7 @@ import PublishingCalendar from './_legacy/publishing-calendar/PublishingCalendar
 import PublishingCalendarEntry from './_legacy/publishing-calendar/PublishingCalendarEntry';
 import { BEM, classNames } from 'utils/classnames';
 import { HtmlArea } from './html-area/HtmlArea';
-import { CalculatorPart } from './calculator/Calculator';
+import { CalculatorPart } from 'components/parts/calculator/CalculatorPart';
 import { ProductDetailsPart } from './product-details/ProductDetailsPart';
 import { PageHeaderPart } from './page-header/PageHeaderPart';
 import { ButtonPart } from './button/ButtonPart';

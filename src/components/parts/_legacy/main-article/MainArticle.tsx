@@ -4,8 +4,8 @@ import { MainArticleProps } from 'types/content-props/main-article-props';
 import { MainArticleChapterProps } from 'types/content-props/main-article-chapter-props';
 import ArtikkelDato from 'components/parts/_legacy/main-article/komponenter/ArtikkelDato';
 import { Heading, Ingress } from '@navikt/ds-react';
-import Innholdsfortegnelse from 'components/parts/_legacy/main-article/komponenter/Innholdsfortegnelse';
-import MainArticleText from 'components/parts/_legacy/main-article/komponenter/MainArticleText';
+import { Innholdsfortegnelse } from 'components/parts/_legacy/main-article/komponenter/Innholdsfortegnelse';
+import { MainArticleText } from 'components/parts/_legacy/main-article/komponenter/MainArticleText';
 import { Faktaboks } from 'components/parts/_legacy/main-article/komponenter/Faktaboks';
 import { SosialeMedier } from 'components/parts/_legacy/main-article/komponenter/SosialeMedier';
 import { Bilde } from 'components/parts/_legacy/main-article/komponenter/Bilde';
@@ -25,6 +25,9 @@ const getPropsToRender = (propsInitial: Props) =>
 
 export const MainArticle = (propsInitial: Props) => {
     const props = getPropsToRender(propsInitial);
+    if (!props) {
+        return null;
+    }
 
     const {
         data,
@@ -43,12 +46,14 @@ export const MainArticle = (propsInitial: Props) => {
     const style = isNewsArticle ? styleNews : stylePermanent;
 
     const getLabel = translator('mainArticle', language);
-    const hasTableOfContest =
-        data?.hasTableOfContents && data?.hasTableOfContents !== 'none';
+
+    const hasTableOfContents = !!(
+        data?.hasTableOfContents && data?.hasTableOfContents !== 'none'
+    );
 
     const innholdsfortegnelse = parseInnholdsfortegnelse(
         data.text?.processedHtml,
-        hasTableOfContest
+        hasTableOfContents
     );
 
     const headerClassName =
@@ -81,21 +86,27 @@ export const MainArticle = (propsInitial: Props) => {
                     label={getLabel('tableOfContents')}
                 />
             </header>
-            <MainArticleText
-                htmlProps={data.text}
-                className={style.text}
-                hasTableOfContents={hasTableOfContest}
-            />
-            <Faktaboks
-                fakta={data.fact}
-                label={getLabel('facts')}
-                version={isNewsArticle ? '2' : '1'}
-            />
-            <SosialeMedier
-                social={data.social}
-                displayName={displayName}
-                contentPath={_path}
-            />
+            {data.text && (
+                <MainArticleText
+                    htmlProps={data.text}
+                    className={style.text}
+                    hasTableOfContents={hasTableOfContents}
+                />
+            )}
+            {data.fact && (
+                <Faktaboks
+                    fakta={data.fact}
+                    label={getLabel('facts')}
+                    version={isNewsArticle ? '2' : '1'}
+                />
+            )}
+            {data.social && (
+                <SosialeMedier
+                    social={data.social}
+                    displayName={displayName}
+                    contentPath={_path}
+                />
+            )}
             <Bilde picture={data.picture} />
         </article>
     );

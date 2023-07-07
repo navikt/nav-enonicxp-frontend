@@ -7,27 +7,30 @@ import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 
 import style from './PageList.module.scss';
 
-const PageList = (props: PageListProps) => {
+export const PageList = (props: PageListProps) => {
     const { publish, modifiedTime, createdTime, language, data } = props;
+
     const getDateLabel = translator('mainArticle', language);
     const publishLabel = getDateLabel('published');
     const modifiedLabel = getDateLabel('lastChanged');
-    const hideDatesOnPage = data?.hide_date;
-    const hideDatesInList = data?.hideSectionContentsDate;
-    const orderListByPublishedDate = data?.orderSectionContentsByPublished;
-    const sectionContents = (data?.sectionContents || [])
+    const hideDatesOnPage = data.hide_date;
+    const hideDatesInList = data.hideSectionContentsDate;
+    const orderListByPublishedDate = data.orderSectionContentsByPublished;
+
+    const sectionContents = (data.sectionContents || [])
         .filter((section) => props._id !== section._id)
-        .sort((a, b) =>
+        .sort(
             orderListByPublishedDate
-                ? new Date(b.createdTime).getTime() -
-                  new Date(a.createdTime).getTime()
+                ? (a, b) =>
+                      new Date(b.createdTime).getTime() -
+                      new Date(a.createdTime).getTime()
                 : undefined
         );
 
     return (
         <div className={style.pageList}>
             <header>
-                <Heading level="1" size="xlarge">
+                <Heading level={'1'} size={'xlarge'}>
                     {props.displayName}
                 </Heading>
                 <div className={style.ingress}>
@@ -55,7 +58,9 @@ const PageList = (props: PageListProps) => {
                         createdTime,
                         data,
                     } = section;
-                    const ingress = data?.ingress || data?.description;
+
+                    const ingress = data.ingress || data.description;
+
                     return (
                         <article key={_path} className={style.row}>
                             <BodyLong>
@@ -86,5 +91,3 @@ const PageList = (props: PageListProps) => {
         </div>
     );
 };
-
-export default PageList;

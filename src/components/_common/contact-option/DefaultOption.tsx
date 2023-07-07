@@ -108,11 +108,11 @@ export const DefaultOption = (props: Props) => {
             </LenkeBase>
             <BodyLong as="div" className={style.text}>
                 {/* ingress is always defined for custom channel */}
-                {ingress ? (
-                    <ParsedHtml htmlProps={ingress} />
-                ) : (
-                    getTranslations(channel as NotCustom).ingress
-                )}
+                <ParsedHtml
+                    htmlProps={
+                        ingress || getTranslations(channel as NotCustom).ingress
+                    }
+                />
             </BodyLong>
         </div>
     );

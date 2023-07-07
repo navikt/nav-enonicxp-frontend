@@ -1,6 +1,6 @@
 import React from 'react';
-import { classNames } from '../../../../../utils/classnames';
-import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
+import { classNames } from 'utils/classnames';
+import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { GVButton } from '../button/GVButton';
 
 import style from './GVMessages.module.scss';
@@ -31,8 +31,7 @@ export const GVMessages = () => {
             ))}
             <GVButton
                 className={style.close}
-                onClick={(e) => {
-                    e.preventDefault();
+                onClick={() => {
                     setMessages([]);
                 }}
             >
