@@ -59,16 +59,22 @@ export const PageWrapper = (props: Props) => {
             });
         }
 
-        if (!router || editorView) {
+        if (!router) {
             return;
         }
 
         onBreadcrumbClick((breadcrumb) =>
-            router.push(getInternalRelativePath(breadcrumb.url))
+            router.push(getInternalRelativePath(breadcrumb.url, !!editorView))
         );
         onLanguageSelect((language) =>
-            router.push(getInternalRelativePath(language.url as string))
+            router.push(
+                getInternalRelativePath(language.url as string, !!editorView)
+            )
         );
+
+        if (!editorView) {
+            return;
+        }
 
         const linkInterceptor = hookAndInterceptInternalLink(router);
         const linkPrefetcher = prefetchOnMouseover(router);
