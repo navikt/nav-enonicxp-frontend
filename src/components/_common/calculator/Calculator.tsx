@@ -11,7 +11,7 @@ import {
     CalculatorFieldData,
 } from 'types/component-props/parts/calculator';
 
-// TODO: Add better data validation and enforce field definitions on the backend
+// TODO: Add better data validation and enforce input on the backend
 // for fields which should not be optional
 
 import style from './Calculator.module.scss';
