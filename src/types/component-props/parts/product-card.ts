@@ -14,20 +14,20 @@ export type ProductTarget = {
     ingressOverride?: string;
 };
 
-export interface ProductCardProps extends PartComponentProps {
+export type ProductCardProps = PartComponentProps & {
     descriptor: PartType.ProductCard;
     config: ProductTarget;
-}
+};
 
-export interface ProductCardMiniProps extends PartComponentProps {
+export type ProductCardMiniProps = PartComponentProps & {
     descriptor: PartType.ProductCardMini;
     config: ProductTarget;
-}
+};
 
-export interface ProductCardMicroProps extends PartComponentProps {
+export type ProductCardMicroProps = PartComponentProps & {
     descriptor: PartType.ProductCardMicro;
     config: {
         header?: string;
-        card_list: { targetPage: TargetPage }[];
+        card_list: Array<{ targetPage?: TargetPage }>;
     };
-}
+};

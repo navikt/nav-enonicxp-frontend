@@ -13,7 +13,7 @@ import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 
 type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
 
-type CardProps = {
+export type CardProps = {
     type: CardType;
     link: LinkProps;
     description?: string;
@@ -62,10 +62,14 @@ const getCardCategory = (
 };
 
 export const getCardProps = (
-    content: CardTargetProps,
+    content: CardTargetProps | undefined,
     language: Language,
     ingressOverride?: string
-): CardProps => {
+): CardProps | null => {
+    if (!content) {
+        return null;
+    }
+
     const { data, type, _path, displayName } = content;
     const { title, ingress, illustration, externalProductUrl } = data;
 

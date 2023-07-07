@@ -5,7 +5,7 @@ import { LenkeBase } from '../lenke/LenkeBase';
 import { useCard } from './useCard';
 import { classNames } from 'utils/classnames';
 import { TargetPage } from 'types/component-props/parts/product-card';
-import { getCardProps } from 'components/_common/card/card-utils';
+import { CardProps, getCardProps } from 'components/_common/card/card-utils';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { BodyShort } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
@@ -42,9 +42,13 @@ type Props = {
 export const MicroCards = ({ header, card_list }: Props) => {
     const { language } = usePageConfig();
 
-    const cardProps = card_list.reduce((acc, card) => {
+    const cardProps = card_list.reduce<CardProps[]>((acc, card) => {
         const props = getCardProps(card, language);
-        return props ? [...acc, props] : acc;
+        if (props) {
+            acc.push(props);
+        }
+
+        return acc;
     }, []);
 
     if (cardProps.length === 0) {
