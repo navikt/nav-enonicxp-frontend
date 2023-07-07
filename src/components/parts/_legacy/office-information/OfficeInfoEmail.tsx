@@ -13,7 +13,7 @@ type Props = {
     unitType: string;
 };
 
-export const Email = ({ email, unitType }: Props) => {
+export const OfficeInfoEmail = ({ email, unitType }: Props) => {
     if (
         !email ||
         !email.adresse ||

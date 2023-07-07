@@ -6,7 +6,7 @@ import {
     formatAddress,
     formatPhoneNumber,
 } from 'components/_common/office-details/utils';
-import { Email } from './Email';
+import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/komponenter/ArtikkelDato';
 import { Heading, BodyLong, BodyShort } from '@navikt/ds-react';
@@ -123,7 +123,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                         <BodyShort>{location}</BodyShort>
                     </div>
                 )}
-                <Email email={contact.epost} unitType={unit.type} />
+                <OfficeInfoEmail email={contact.epost} unitType={unit.type} />
                 {contact?.telefonnummer && (
                     <div>
                         <Heading level="2" size="small">

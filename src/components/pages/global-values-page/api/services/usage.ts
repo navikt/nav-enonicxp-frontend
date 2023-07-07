@@ -19,7 +19,5 @@ export const gvServiceGetUsage = (key: string, contentId: string) =>
             return res;
         }
 
-        throw new Error(
-            `Invalid response from key usage service for key ${key}`
-        );
+        return null;
     });
