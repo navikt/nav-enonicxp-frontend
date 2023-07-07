@@ -10,7 +10,7 @@ const isInputField = (
     inputField: NonNullable<Required<CalculatorFieldData['inputField']>>;
 } => !!field.inputField;
 
-const isDowndownField = (
+const isDropdownField = (
     field: CalculatorFieldData
 ): field is {
     dropdownField: NonNullable<Required<CalculatorFieldData['dropdownField']>>;
@@ -43,7 +43,7 @@ export const CalculatorField = (props: Props) => {
                     autoComplete={autoComplete ? 'on' : 'off'}
                 />
             )}
-            {isDowndownField(field) && (
+            {isDropdownField(field) && (
                 <Select
                     label={field.dropdownField.label}
                     name={field.dropdownField.variableName}
