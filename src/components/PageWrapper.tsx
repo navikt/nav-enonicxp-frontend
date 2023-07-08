@@ -72,7 +72,7 @@ export const PageWrapper = (props: Props) => {
             )
         );
 
-        if (!editorView) {
+        if (!!editorView) {
             return;
         }
 
