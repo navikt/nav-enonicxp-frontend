@@ -1,12 +1,11 @@
 import React from 'react';
 import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
-
-import { AreapageSituationCardPartProps } from '../../../types/component-props/parts/areapage-situation-card';
+import { AreapageSituationCardPartProps } from 'types/component-props/parts/areapage-situation-card';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { getCardProps } from '../../_common/card/card-utils';
 import { LargeCard } from '../../_common/card/LargeCard';
-import { usePageConfig } from '../../../store/hooks/usePageConfig';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './AreapageSituationCardPart.module.scss';
 
@@ -26,6 +25,7 @@ export const AreapageSituationCardPart = ({
     const { target, disabled } = config;
 
     const props = getCardProps(target, language);
+
     const getSituationLabel = translator('situations', language);
 
     return (

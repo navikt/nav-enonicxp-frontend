@@ -1,13 +1,14 @@
-import { fetchAndSetCacheKey } from '../../../utils/fetch/fetch-cache-key';
+import { fetchAndSetCacheKey } from 'utils/fetch/fetch-cache-key';
 import {
     clearImageManifest,
     processImageManifest,
-} from '../../../utils/fetch/fetch-images';
+} from 'utils/fetch/fetch-images';
+import { NextApiHandler } from 'next';
 
 let ready = false;
 let waiting = false;
 
-const isReady = (req, res) => {
+const isReady: NextApiHandler = (req, res) => {
     if (ready) {
         return res.status(200).json({ message: 'Ok!' });
     } else {

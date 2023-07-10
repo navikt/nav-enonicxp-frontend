@@ -20,25 +20,26 @@ const hasExternalProductUrl = (
         ?.externalProductUrl;
 };
 
-const getTargetPath = (contentData: ContentProps) => {
-    if (hasExternalProductUrl(contentData)) {
-        return contentData.isDraft || contentData.isPagePreview
+const getTargetPath = (content: ContentProps) => {
+    if (hasExternalProductUrl(content)) {
+        return content.isDraft || content.isPagePreview
             ? null
-            : contentData.data.externalProductUrl;
+            : content.data.externalProductUrl;
     }
 
-    switch (contentData?.type) {
+    switch (content.type) {
         case ContentType.InternalLink:
-            return getInternalLinkUrl(contentData.data);
+            return getInternalLinkUrl(content.data);
         case ContentType.ExternalLink:
         case ContentType.Url:
-            return contentData.data?.url;
+            return content.data?.url;
         case ContentType.MainArticleChapter:
             // If the main article chapter content is anything other than a main article
             // we want to redirect to the actual content page. This is provided as a way
             // to gradually migrate individual pages from the chapter structure
-            return contentData.data.article.type !== ContentType.MainArticle
-                ? contentData.data.article._path
+            const { article } = content.data;
+            return article && article.type !== ContentType.MainArticle
+                ? article._path
                 : null;
         default:
             return null;
@@ -72,7 +73,7 @@ export const isPermanentRedirect = (content: ContentProps) => {
         content.type === ContentType.InternalLink ||
         content.type === ContentType.ExternalLink
     ) {
-        return content.data.permanentRedirect;
+        return !!content.data.permanentRedirect;
     }
 
     return false;

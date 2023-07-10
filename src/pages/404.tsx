@@ -16,6 +16,10 @@ export const ErrorPage404 = () => {
         // links to external apps, so we do a full reload to ensure such links will resolve
         // anyway.
 
+        if (!router) {
+            return;
+        }
+
         if (
             router.pathname !== '/404' &&
             !window.location.search.includes(loopDetectionParam)
@@ -28,8 +32,7 @@ export const ErrorPage404 = () => {
                 `${window.location.origin}${window.location.pathname}?${loopDetectionParam}`
             );
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [router]);
 
     return <PageBase content={props} />;
 };

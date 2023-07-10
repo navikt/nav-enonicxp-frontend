@@ -2,7 +2,7 @@ import React from 'react';
 import { LinkPanel } from 'types/link-panel';
 import { BodyLong, Heading, Ingress } from '@navikt/ds-react';
 import LenkepanelNavNo from '../lenkepanel-legacy/LenkepanelNavNo';
-import { getUrlFromContent } from '../../../utils/links-from-content';
+import { getUrlFromContent } from 'utils/links-from-content';
 
 import style from './LenkepanelListe.module.scss';
 
@@ -27,10 +27,14 @@ export const LenkepanelListe = ({ title, ingress, items }: Props) => {
             {items && (
                 <div className={style.items}>
                     {items.map((item) => {
-                        const url =
-                            getUrlFromContent(item.url?.ref) ||
-                            item.url?.text ||
-                            '';
+                        const url = item.url?.ref
+                            ? getUrlFromContent(item.url.ref)
+                            : item.url?.text;
+
+                        if (!url) {
+                            return null;
+                        }
+
                         return (
                             <LenkepanelNavNo
                                 href={url}

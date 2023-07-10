@@ -2,14 +2,14 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { fetchJson } from 'utils/fetch/fetch-utils';
 import Cache from 'node-cache';
 import RSS from 'rss';
-import { apiErrorHandler } from '../../utils/api-error-handler';
+import { apiErrorHandler } from 'utils/api-error-handler';
 
-interface FeedItem {
+type FeedItem = {
     title: string;
     url: string;
-    pubDate?: string;
-    description?: string;
-}
+    date: string;
+    description: string;
+};
 
 // Misc config settings
 // ----------------------------------------
@@ -48,7 +48,7 @@ const fetchRSSFeedAndUpdateCache = async (url: string) => {
         feed_url: 'https://www.nav.no/no/rss',
         site_url: 'https://www.nav.no',
         language: 'no',
-        pubDate: Date.now(),
+        pubDate: Date.now().toString(),
     });
     jsonFeed.forEach((item) => {
         rssFeed.item(item);

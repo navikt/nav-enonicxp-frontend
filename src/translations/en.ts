@@ -1,4 +1,4 @@
-import { Translations } from './default';
+import { PartialTranslations } from './default';
 import { MenuListItemKey } from 'types/menu-list-items';
 import {
     ProductTaxonomy,
@@ -49,7 +49,7 @@ const areas: { [key in Area]?: string } = {
     [Area.OTHER]: 'General',
 };
 
-export const translationsBundleEn: Translations = {
+export const translationsBundleEn: PartialTranslations = {
     stringParts: {
         conjunction: 'and',
     },

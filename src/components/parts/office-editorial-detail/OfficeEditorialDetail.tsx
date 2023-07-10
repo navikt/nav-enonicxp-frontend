@@ -12,7 +12,9 @@ import { SocialHelpPayoutInformation } from './details/SocialHelpPayoutInformati
 import { SocialHelpPostalInformation } from './details/SocialHelpPostalInformation';
 import { PlaceholderIndicator } from './PlaceholderIndicator';
 
-const getDetailComponent = (type: DetailType) => {
+const getDetailComponent = (
+    type: DetailType
+): React.FunctionComponent<DetailProps> => {
     const detailComponents = {
         [DetailType.SERVICE_INFORMATION]: ServiceInformation,
         [DetailType.SOCIAL_HELP_LINKS]: SocialHelpLinks,
@@ -22,7 +24,7 @@ const getDetailComponent = (type: DetailType) => {
             SocialHelpPostalInformation,
     };
 
-    return detailComponents[type] || null;
+    return detailComponents[type];
 };
 
 export type DetailProps = {
@@ -35,7 +37,11 @@ export const OfficeEditorialDetail = ({
 }: OfficeEditorialDetailProps) => {
     const { detailType } = config;
 
-    const officeData = pageProps.data as OfficeDetailsData;
+    if (!detailType) {
+        return (
+            <EditorHelp text="Angi hvilken informasjon fra kontoret som skal vises her ved å velge fra innstillingene til høyre." />
+        );
+    }
 
     // Note these texts are presented to editors only to give an idea
     // of what information the placeholder represent.
@@ -52,17 +58,17 @@ export const OfficeEditorialDetail = ({
     // If editing the editorial page directy, we can't merge any actual
     // office data into the editorial parts, so just show the placeholder
     if (pageProps.type === ContentType.OfficeEditorialPage) {
-        if (!detailType) {
-            return (
-                <EditorHelp text="Angi hvilken informasjon fra kontoret som skal vises her ved å velge fra innstillingene til høyre." />
-            );
-        }
         return (
-            <PlaceholderIndicator>{`Her plasseres både felles tjenester for alle kontorene og kontor-spesifikk ${editorTranslation[detailType]}`}</PlaceholderIndicator>
+            <PlaceholderIndicator>
+                {`Her plasseres både felles tjenester for alle kontorene og kontor-spesifikk ${editorTranslation[detailType]}`}
+            </PlaceholderIndicator>
         );
     }
 
     const DetailComponent = getDetailComponent(detailType);
+    if (!DetailComponent) {
+        return null;
+    }
 
-    return <DetailComponent officeData={officeData} />;
+    return <DetailComponent officeData={pageProps.data} />;
 };

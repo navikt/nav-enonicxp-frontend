@@ -1,8 +1,8 @@
 import React from 'react';
-import { DynamicLinkListProps } from '../../../types/component-props/parts/link-list';
+import { DynamicLinkListProps } from 'types/component-props/parts/link-list';
 import { Lenkeliste } from '../../_common/lenkeliste/Lenkeliste';
 import { ContentList } from '../../_common/content-list/ContentList';
-import { getSelectableLinkProps } from '../../../utils/links-from-content';
+import { getSelectableLinkProps } from 'utils/links-from-content';
 import { ExpandableComponentWrapper } from '../../_common/expandable/ExpandableComponentWrapper';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
@@ -29,7 +29,7 @@ const getListComponent = (config: DynamicLinkListProps['config']) => {
         const links = linkList?.links?.map(getSelectableLinkProps);
         return (
             <Lenkeliste
-                tittel={!hideTitle && title}
+                tittel={!hideTitle ? title : undefined}
                 lenker={links}
                 withChevron={chevron}
             />

@@ -9,6 +9,9 @@ import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from '../taxonomies';
 import { OfficeDetailsData } from './office-details-props';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentListProps } from './content-list-props';
+import { PageWithSideMenusProps } from 'types/component-props/pages/page-with-side-menus';
+import { SingleColPageProps } from 'types/component-props/pages/single-col-page';
+import { LayoutProps } from 'types/component-props/layouts';
 
 export type ProductPageData = ProductDataMixin;
 export type ThemedArticlePageData = Omit<ProductDataMixin, 'taxonomy'> & {
@@ -21,11 +24,10 @@ export type ToolsPageData = Omit<ProductDataMixin, 'taxonomy'> & {
     taxonomy: ToolsPageTaxonomy[];
 };
 export type GenericPageData = ProductDataMixin;
-export type OverviewPageData = Partial<{
+export type OverviewPageData = {
     productList: SimplifiedProductData[];
     overviewType: OverviewType;
-}> &
-    ProductDataMixin;
+} & ProductDataMixin;
 
 export type OfficeEditorialPageData = {
     title: string;
@@ -47,31 +49,37 @@ export type DynamicPageProps = ContentCommonProps & {
 export type ProductPageProps = ContentCommonProps & {
     type: ContentType.ProductPage;
     data: ProductPageData;
+    page: PageWithSideMenusProps;
 };
 
 export type ProductDetailsProps = ContentCommonProps & {
     type: ContentType.ProductDetails;
     data: ProductDetailsData;
+    page: LayoutProps;
 };
 
 export type ThemedArticlePageProps = ContentCommonProps & {
     type: ContentType.ThemedArticlePage;
     data: ThemedArticlePageData;
+    page: PageWithSideMenusProps;
 };
 
 export type GuidePageProps = ContentCommonProps & {
     type: ContentType.GuidePage;
     data: GuidePageData;
+    page: PageWithSideMenusProps;
 };
 
 export type SituationPageProps = ContentCommonProps & {
     type: ContentType.SituationPage;
     data: SituationPageData;
+    page: SingleColPageProps;
 };
 
 export type OfficeEditorialPageProps = ContentCommonProps & {
     type: ContentType.OfficeEditorialPage;
     data: OfficeEditorialPageData;
+    page: LayoutProps;
 };
 
 export type OfficeBranchPageProps = ContentCommonProps & {
@@ -93,11 +101,13 @@ export type ToolsPageProps = ContentCommonProps & {
 export type GenericPageProps = ContentCommonProps & {
     type: ContentType.GenericPage;
     data: GenericPageData;
+    page: PageWithSideMenusProps;
 };
 
 export type OverviewPageProps = ContentCommonProps & {
     type: ContentType.Overview;
     data: OverviewPageData;
+    page: LayoutProps;
 };
 
 export type PressLandingPageProps = ContentCommonProps & {

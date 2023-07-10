@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { ParsedHtml } from '../../../../_common/parsed-html/ParsedHtml';
-import { StaticImage } from '../../../../_common/image/StaticImage';
-import { ProcessedHtmlProps } from '../../../../../types/processed-html-props';
+import React from 'react';
+import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
+import { StaticImage } from 'components/_common/image/StaticImage';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { Heading } from '@navikt/ds-react';
 
 import style from './Faktaboks.module.scss';
@@ -15,13 +15,12 @@ type Props = {
 };
 
 export const Faktaboks = ({ label, fakta, version = '1' }: Props) => {
-    if (!fakta?.processedHtml) {
+    if (!fakta.processedHtml) {
         return null;
     }
 
-    const baseClassName = version === '1' ? style.facts_v1 : style.facts_v2;
     return (
-        <div className={baseClassName}>
+        <div className={version === '1' ? style.facts_v1 : style.facts_v2}>
             {version === '1' && (
                 <StaticImage
                     imageData={icon}

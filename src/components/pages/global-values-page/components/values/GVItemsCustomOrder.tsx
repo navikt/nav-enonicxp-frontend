@@ -1,10 +1,11 @@
 import React from 'react';
 import { List, arrayMove } from 'react-movable';
 import { GVItem } from './item/GVItem';
-import { classNames } from '../../../../../utils/classnames';
-import { useGvEditorState } from '../../../../../store/hooks/useGvEditorState';
+import { classNames } from 'utils/classnames';
+import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { Up, Down } from '@navikt/ds-icons';
 import { gvServiceReorderItems } from '../../api/services/reorder';
+import { OnChangeMeta } from 'react-movable/lib/types';
 
 import styleCommon from './GVItems.module.scss';
 import styleCustomOrder from './GVItemsCustomOrder.module.scss';
@@ -13,7 +14,7 @@ export const GVItemsCustomOrder = () => {
     const { valueItems, setValueItems, contentId, setMessages } =
         useGvEditorState();
 
-    const reorderItems = ({ oldIndex, newIndex }) => {
+    const reorderItems = ({ oldIndex, newIndex }: OnChangeMeta) => {
         const newSortedItems = arrayMove(valueItems, oldIndex, newIndex);
 
         setValueItems(newSortedItems);
@@ -21,23 +22,21 @@ export const GVItemsCustomOrder = () => {
         gvServiceReorderItems(
             newSortedItems.map((item) => item.key),
             contentId
-        )
-            .then((res) => {
-                if (res.level === 'error') {
-                    throw new Error(res.message.toString());
-                }
-            })
-            .catch((e) => {
+        ).then((res) => {
+            if (!res || res.level === 'error') {
+                const msg = res?.message?.toString() || 'Ukjent feil';
+
                 console.error(
-                    `Error from reorder request on ${contentId} - ${e}`
+                    `Error from reorder request on ${contentId} - ${msg}`
                 );
                 setMessages([
                     {
-                        message: `Feil ved omsortering av verdier: ${e}`,
+                        message: `Feil ved omsortering av verdier: ${msg}`,
                         level: 'error',
                     },
                 ]);
-            });
+            }
+        });
     };
 
     return (

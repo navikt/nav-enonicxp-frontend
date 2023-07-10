@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { GVButton } from '../../button/GVButton';
-import { GlobalValueItem } from '../../../../../../types/content-props/global-values-props';
+import { GlobalValueItem } from 'types/content-props/global-values-props';
 import { generateGvUsageMessages, gvNameExists } from '../../../utils';
 import { gvServiceAddItem } from '../../../api/services/add';
 import { gvServiceModifyItem } from '../../../api/services/modify';
 import { gvServiceRemoveItem } from '../../../api/services/remove';
-import { useGvEditorState } from '../../../../../../store/hooks/useGvEditorState';
+import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { gvServiceGetValueSet } from '../../../api/services/getValueSet';
 import { gvServiceGetUsage } from '../../../api/services/usage';
 import { BodyShort } from '@navikt/ds-react';
@@ -50,8 +50,8 @@ const defaultInputState: { [key in GlobalValueItem['type']]: GlobalValueItem } =
     };
 
 export const GVItemEditor = ({ item, newType, onClose }: Props) => {
-    const [inputState, setInputState] = useState<GlobalValueItem>(
-        item || (newType ? defaultInputState[newType] : undefined)
+    const [inputState, setInputState] = useState<GlobalValueItem | null>(
+        item || (newType ? defaultInputState[newType] : null)
     );
     const [errors, setErrors] = useState<Errors>({});
     const [awaitDeleteConfirm, setAwaitDeleteConfirm] = useState(false);
@@ -65,53 +65,73 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
     const { valueItems, contentId, setValueItems, setMessages } =
         useGvEditorState();
 
-    const onFetchError = (e) => {
+    const onFetchError = (e: any) => {
         setMessages([{ message: `Server-feil: ${e}`, level: 'error' }]);
     };
+
     const onFetchSuccess = (msg?: GVMessageProps | void) => {
         if (msg && msg.level !== 'info') {
             setMessages([msg]);
         }
     };
+
     const updateAndClose = () => {
         onClose?.();
         gvServiceGetValueSet(contentId).then(
             (res) => res?.items && setValueItems(res.items)
         );
     };
+
     const deleteItem = async () => {
-        await gvServiceGetUsage(item.key, contentId)
-            .then((res) => {
-                const usage = res?.usage;
-                if (!usage || usage.length > 0) {
-                    setMessages(generateGvUsageMessages(usage, item.itemName));
-                    setTimeout(() => setAwaitDeleteConfirm(true), 1000);
-                } else {
-                    deleteConfirm();
-                }
-            })
-            .catch((e) =>
+        if (!item) {
+            return;
+        }
+
+        await gvServiceGetUsage(item.key, contentId).then((res) => {
+            const usage = res?.usage;
+            if (!usage) {
                 setMessages([
                     {
-                        message: `Server-feil : ${e}`,
+                        message: 'Server-feil ved uthenting av verdier',
                         level: 'error',
                     },
-                ])
-            );
+                ]);
+                return;
+            }
+
+            if (usage.length > 0) {
+                setMessages(generateGvUsageMessages(usage, item.itemName));
+                setTimeout(() => setAwaitDeleteConfirm(true), 1000);
+            } else {
+                deleteConfirm();
+            }
+        });
     };
+
     const deleteConfirm = () => {
+        if (!item) {
+            return;
+        }
+
         setAwaitDeleteConfirm(false);
-        gvServiceRemoveItem(item, contentId)
-            .then((res) => {
-                onFetchSuccess(res);
-                updateAndClose();
-            })
-            .catch(onFetchError);
+        gvServiceRemoveItem(item, contentId).then((res) => {
+            if (!res) {
+                return onFetchError('Ukjent server-feil');
+            }
+            onFetchSuccess(res);
+            updateAndClose();
+        });
     };
+
     const deleteCancel = () => {
         setAwaitDeleteConfirm(false);
     };
+
     const validateAndSubmitItem = () => {
+        if (!inputState) {
+            return;
+        }
+
         const commonProcessedInput = {
             ...inputState,
             itemName: inputState.itemName?.trim(),
@@ -140,33 +160,35 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
         const finalInput = { ...commonProcessedInput, ...processedInput };
 
         if (newType) {
-            gvServiceAddItem(finalInput, contentId)
-                .then((msg) => {
-                    onFetchSuccess(msg);
-                    updateAndClose();
-                })
-                .catch(onFetchError);
+            gvServiceAddItem(finalInput, contentId).then((msg) => {
+                if (!msg) {
+                    return onFetchError('Ukjent server-feil');
+                }
+                onFetchSuccess(msg);
+                updateAndClose();
+            });
         } else {
-            gvServiceModifyItem(finalInput, contentId)
-                .then((msg) => {
-                    onFetchSuccess(msg);
-                    updateAndClose();
-                })
-                .catch(onFetchError);
+            gvServiceModifyItem(finalInput, contentId).then((msg) => {
+                if (!msg) {
+                    return onFetchError('Ukjent server-feil');
+                }
+                onFetchSuccess(msg);
+                updateAndClose();
+            });
         }
     };
 
     return (
         <div className={style.gvItemEditor}>
             <form className={style.form}>
-                {inputState.type === 'numberValue' && (
+                {inputState?.type === 'numberValue' && (
                     <GVItemEditorInputNumberValue
                         inputState={inputState}
                         errors={errors}
                         setInputState={setInputState}
                     />
                 )}
-                {inputState.type === 'caseTime' && (
+                {inputState?.type === 'caseTime' && (
                     <GVItemEditorInputCaseTime
                         inputState={inputState}
                         errors={errors}
@@ -198,17 +220,11 @@ export const GVItemEditor = ({ item, newType, onClose }: Props) => {
                         <>
                             <GVButton
                                 variant={'primary'}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    validateAndSubmitItem();
-                                }}
+                                onClick={validateAndSubmitItem}
                             >
                                 {'Lagre verdi'}
                             </GVButton>
-                            <GVButton
-                                variant={'primary'}
-                                onClick={() => onClose()}
-                            >
+                            <GVButton variant={'primary'} onClick={onClose}>
                                 {'Avbryt'}
                             </GVButton>
                             {!newType && (

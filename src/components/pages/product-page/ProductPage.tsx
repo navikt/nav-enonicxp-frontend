@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentMapper } from '../../ComponentMapper';
-import { ProductPageProps } from '../../../types/content-props/dynamic-page-props';
+import { ProductPageProps } from 'types/content-props/dynamic-page-props';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 
 export const ProductPage = (props: ProductPageProps) => {

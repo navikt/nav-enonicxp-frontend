@@ -5,10 +5,10 @@ import {
 } from './_content-common';
 import { DateTimeKey } from '../datetime';
 
-export type ContentListData = Partial<{
-    sectionContents: ContentProps[];
+export type ContentListData = {
+    sectionContents?: ContentProps[];
     sortedBy?: DateTimeKey;
-}>;
+};
 
 export type ContentListProps = ContentCommonProps & {
     type: ContentType.ContentList;

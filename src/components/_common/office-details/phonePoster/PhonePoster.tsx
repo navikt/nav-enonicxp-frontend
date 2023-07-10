@@ -1,18 +1,18 @@
+import React from 'react';
 import { BodyLong, BodyShort, Heading } from '@navikt/ds-react';
 import { OfficeDetailsProps } from '../OfficeDetails';
 import { translator } from 'translations';
-import { parsePhoneNumber } from '../utils';
-
-import styles from './PhonePoster.module.scss';
+import { formatPhoneNumber } from '../utils';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { TelephoneFilled } from '@navikt/ds-icons';
 import { forceArray } from 'utils/arrays';
-import React from 'react';
 import { AudienceChannels } from './AudienceChannels';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import Config from 'config';
 
-const phoneNumber = '55553333';
-const humanReadablePhoneNumber = parsePhoneNumber(phoneNumber);
+import styles from './PhonePoster.module.scss';
+
+const humanReadablePhoneNumber = formatPhoneNumber(Config.vars.hovedNummer);
 
 export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
     const { language } = usePageConfig();
@@ -28,7 +28,7 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
             </Heading>
             <BodyShort className={styles.phoneNumberWrapper}>
                 <LenkeBase
-                    href={`tel:${phoneNumber}`}
+                    href={Config.urls.hovedNummerTlf}
                     className={styles.phoneNumber}
                 >
                     <TelephoneFilled

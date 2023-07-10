@@ -47,7 +47,7 @@ export const ContactInformationPage = (props: ContactInformationProps) => {
                 <CallOption
                     title={telephone.title}
                     alertText={telephone.alertText}
-                    ingress={telephone.text}
+                    text={telephone.text}
                     phoneNumber={telephone.phoneNumber}
                     regularOpeningHours={telephone.regularOpeningHours}
                     specialOpeningHours={telephone.specialOpeningHours}

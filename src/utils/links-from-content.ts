@@ -1,10 +1,7 @@
-import {
-    ContentProps,
-    ContentType,
-} from '../types/content-props/_content-common';
-import { LinkSelectable } from '../types/component-props/_mixins';
-import { LinkProps } from '../types/link-props';
-import { InternalLinkData } from '../types/content-props/internal-link-props';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { LinkSelectable } from 'types/component-props/_mixins';
+import { LinkProps } from 'types/link-props';
+import { InternalLinkData } from 'types/content-props/internal-link-props';
 
 const invalidLinkProps = {
     url: '/',
@@ -26,22 +23,21 @@ export const getInternalLinkUrl = (content: InternalLinkData) => {
 };
 
 export const getUrlFromContent = (content: ContentProps) => {
-    if (!content) {
-        return '';
+    switch (content.type) {
+        case ContentType.InternalLink: {
+            return getInternalLinkUrl(content.data);
+        }
+        case ContentType.ExternalLink:
+        case ContentType.Url: {
+            return content.data?.url;
+        }
+        default: {
+            return content._path;
+        }
     }
-    if (content.type === ContentType.InternalLink) {
-        return getInternalLinkUrl(content.data);
-    }
-    if (
-        content.type === ContentType.ExternalLink ||
-        content.type === ContentType.Url
-    ) {
-        return content.data?.url;
-    }
-    return content._path;
 };
 
-export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
+export const getSelectableLinkProps = (link?: LinkSelectable): LinkProps => {
     if (!link) {
         return invalidLinkProps;
     }
@@ -54,8 +50,13 @@ export const getSelectableLinkProps = (link: LinkSelectable): LinkProps => {
             return invalidLinkProps;
         }
 
+        const url = getInternalLinkUrl(internal);
+        if (!url) {
+            return invalidLinkProps;
+        }
+
         return {
-            url: getInternalLinkUrl(internal),
+            url,
             text: internal.text || internal.target.displayName,
         };
     }

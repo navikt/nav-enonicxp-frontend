@@ -19,23 +19,26 @@ import style from './GlobalValuesPage.module.scss';
 
 type ListOrder = 'custom' | 'sorted';
 
+const isElement = (node: Node): node is Element & ElementCSSInlineStyle =>
+    node.nodeType === node.ELEMENT_NODE;
+
 const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
     const { valueItems } = useGvEditorState();
     const [listOrder, setListOrder] = useState<ListOrder>('custom');
 
     useEffect(() => {
         // Hide overlay elements in the editor-view, which prevents interaction
-        const callback = (mutations) => {
+        const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (
+                    isElement(mutation.target) &&
                     mutation.target.classList.contains('xp-page-editor-shader')
                 ) {
                     mutation.target.style.display = 'none';
                 }
             });
-        };
+        });
 
-        const observer = new MutationObserver(callback);
         const config = {
             childList: true,
             subtree: true,

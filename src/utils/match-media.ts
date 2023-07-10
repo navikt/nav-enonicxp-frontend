@@ -8,10 +8,13 @@ const matchMediaLegacy = (mql: MediaQueryList) => {
         return noMatchMediaSupportFallback;
     }
 
+    // @ts-ignore
     mql.addEventListener = (
         _: string,
         callback: (e: MediaQueryListEvent) => void
     ) => mql.addListener(callback);
+
+    // @ts-ignore
     mql.removeEventListener = (
         _: string,
         callback: (e: MediaQueryListEvent) => void

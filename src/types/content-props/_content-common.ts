@@ -112,6 +112,7 @@ export type ContentAndMediaCommonProps = {
     timeRequested?: string;
     serverEnv?: string;
     layerLocale?: string;
+    isPagePreview?: boolean;
 };
 
 type ContentCommonData = Partial<{
@@ -126,18 +127,17 @@ type ContentCommonData = Partial<{
     audience: AudienceProps;
 }>;
 
-export type ContentCommonProps = {
-    type: ContentType;
+export type ContentCommonProps<Type extends ContentType = ContentType> = {
+    type: Type;
+    data: ContentCommonData;
     originalType?: ContentType;
     children?: ContentCommonProps[];
     parent?: ContentCommonProps;
-    data?: ContentCommonData;
     page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit' | 'archive';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     livePath?: string;
     isFailover?: boolean;
-    isPagePreview?: boolean;
     languages?: LanguageProps[];
 } & ContentAndMediaCommonProps;
 
@@ -183,4 +183,5 @@ type SpecificContentProps =
     | FormIntermediateStepPageProps
     | FormsOverviewProps;
 
-export type ContentProps = ContentCommonProps & SpecificContentProps;
+export type ContentProps<Type extends ContentType = ContentType> =
+    ContentCommonProps<Type> & SpecificContentProps;

@@ -9,11 +9,12 @@ import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { OpeningInfo } from 'components/_common/contact-option/opening-info/OpeningInfo';
-import { getAudience, AudienceProps } from 'types/component-props/_mixins';
+import { Audience, getAudience } from 'types/component-props/_mixins';
+import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 import style from './ContactOption.module.scss';
 
-const contactURLs = {
+const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
     person: {
         no: '/kontaktoss#ring-oss',
         en: '/kontaktoss/en#call-us',
@@ -29,9 +30,7 @@ const contactURLs = {
 };
 
 type CallOptionProps = {
-    _path?: string;
-    ingress: string;
-    audience?: AudienceProps;
+    ingress?: ProcessedHtmlProps;
 } & TelephoneData;
 
 export const CallOption = (props: CallOptionProps) => {
@@ -50,14 +49,19 @@ export const CallOption = (props: CallOptionProps) => {
     const { layoutConfig } = useLayoutConfig();
 
     const getContactTranslations = translator('contactPoint', language);
+
+    const callTranslations = getContactTranslations('call');
     const sharedTranslations = getContactTranslations('shared');
 
     const getContactUrl = () => {
-        const audienceUrls = contactURLs[getAudience(audience)];
+        const audienceUrls = audience
+            ? contactURLs[getAudience(audience)]
+            : null;
         if (!audienceUrls) {
             return contactURLs.person.no;
         }
-        return language === 'no' || language === 'se'
+
+        return language === 'no' || language === 'nn' || language === 'se'
             ? audienceUrls.no
             : audienceUrls.en;
     };
@@ -74,7 +78,7 @@ export const CallOption = (props: CallOptionProps) => {
                 <div className={style.linkContent}>
                     <div className={classNames(style.icon, style.call)} />
                     <Heading level="3" size="small" className={style.link}>
-                        {title}
+                        {title || callTranslations.title}
                     </Heading>
                 </div>
             </LenkeBase>
@@ -84,9 +88,11 @@ export const CallOption = (props: CallOptionProps) => {
                 </Alert>
             )}
             <BodyLong className={style.text}>
-                <ParsedHtml htmlProps={ingress || text} />
+                <ParsedHtml
+                    htmlProps={ingress || text || callTranslations.ingress}
+                />
             </BodyLong>
-            {!alertText && (
+            {!alertText && regularOpeningHours && specialOpeningHours && (
                 <OpeningInfo
                     regularOpeningHours={regularOpeningHours}
                     specialOpeningHours={specialOpeningHours}
@@ -97,7 +103,7 @@ export const CallOption = (props: CallOptionProps) => {
                 className={style.moreLink}
                 href={getContactUrl()}
             >
-                {sharedTranslations['seeMoreOptions']}
+                {sharedTranslations.seeMoreOptions}
             </LenkeBase>
         </div>
     );

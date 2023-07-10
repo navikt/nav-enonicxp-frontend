@@ -6,11 +6,11 @@ import { CardSize, CardType } from 'types/card';
 import { Interaction } from 'types/interaction';
 import { LinkProps } from 'types/link-props';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
-import { usePublicUrl } from '../../../utils/usePublicUrl';
+import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 type AnalyticsProps = {
-    analyticsLinkGroup: string;
+    analyticsLinkGroup?: string;
     analyticsLabel: string;
     analyticsComponent: string;
 };
@@ -111,7 +111,7 @@ export const useCard = ({
         if (type === Interaction.touch || type === Interaction.click) {
             // User should be able to select text for text-to-speech, so abort all
             // routing if clicking is captured while text is selected.
-            const isTextSelected = !!window.getSelection().toString();
+            const isTextSelected = !!window.getSelection()?.toString();
             if (isTextSelected) {
                 return;
             }
@@ -124,7 +124,7 @@ export const useCard = ({
                 return;
             }
 
-            if (canRouteClientSide) {
+            if (canRouteClientSide && router) {
                 router.push(url);
             } else {
                 window.location.assign(url);

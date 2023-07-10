@@ -1,11 +1,7 @@
 import React from 'react';
-import { HeaderProps } from '../../../types/component-props/parts/header';
+import { HeaderProps } from 'types/component-props/parts/header';
 import { Header } from '../../_common/headers/Header';
-import {
-    headingToLevel,
-    headingToSize,
-    typoToSize,
-} from '../../../types/typo-style';
+import { headingToLevel, headingToSize, typoToSize } from 'types/typo-style';
 
 import style from './HeaderPart.module.scss';
 
@@ -24,7 +20,7 @@ export const HeaderPart = ({ config }: HeaderProps) => {
     const level = headingToLevel[_tag];
 
     const sizeFromTypo =
-        typo?._selected === 'custom' ? typoToSize[typo?.custom?.typo] : null;
+        typo?._selected === 'custom' ? typoToSize[typo.custom.typo] : null;
     const size = sizeFromTypo || headingToSize[_tag];
 
     return (

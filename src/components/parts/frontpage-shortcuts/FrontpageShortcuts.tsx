@@ -19,7 +19,7 @@ export const FrontpageShortcuts = ({
         return <EditorHelp text={'Velg minst en snarvei'} />;
     }
 
-    const audience = getAudience(pageProps?.data?.audience);
+    const audience = getAudience(pageProps.data.audience);
 
     const threeCols = shortcuts.length % 3 === 0;
 

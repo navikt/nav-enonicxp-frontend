@@ -1,26 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Language } from 'translations';
 import type { RootState } from '../store';
-import { ContentProps } from '../../types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 
 type EditorView = ContentProps['editorView'];
 
 interface PageConfigState {
-    pageId: string | null;
-    language: Language;
-    editorView?: EditorView;
-    isPagePreview: boolean;
-}
-
-interface CurrentPageIdPayload {
     pageId: string;
     language: Language;
     editorView?: EditorView;
-    isPagePreview: boolean;
+    isPagePreview?: boolean;
+}
+
+export interface CurrentPageIdPayload {
+    pageId: string;
+    language: Language;
+    editorView?: EditorView;
+    isPagePreview?: boolean;
 }
 
 const initialState: PageConfigState = {
-    pageId: null,
+    pageId: '',
     language: 'no',
     isPagePreview: false,
 };
@@ -52,7 +52,9 @@ export const currentEditorView = (state: RootState): EditorView => {
     return state.pageConfig.editorView;
 };
 
-export const isPagePreview = (state: RootState): boolean => {
+export const isPagePreview = (
+    state: RootState
+): PageConfigState['isPagePreview'] => {
     return state.pageConfig.isPagePreview;
 };
 

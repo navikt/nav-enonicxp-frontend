@@ -1,13 +1,19 @@
 import React from 'react';
-import { getInternalAbsoluteUrl } from '../../../../../utils/urls';
-import { LenkeBase } from '../../../../_common/lenke/LenkeBase';
-import { classNames } from '../../../../../utils/classnames';
+import { getInternalAbsoluteUrl } from 'utils/urls';
+import { LenkeBase } from 'components/_common/lenke/LenkeBase';
+import { classNames } from 'utils/classnames';
+import { SocialMedia } from 'types/content-props/main-article-props';
 
-// eslint does not understand bracket notation
-// eslint-disable-next-line css-modules/no-unused-class
 import style from './SosialeMedier.module.scss';
 
-import { SocialMedia } from '../../../../../types/content-props/main-article-props';
+type LinkData = { type: string; text: string; href: string };
+
+const sosialMediaName = {
+    linkedin: 'LinkedIn',
+    facebook: 'Facebook',
+    twitter: 'Twitter',
+};
+
 const getSocialmediaShareUrl = (
     socialMediaType: SocialMedia,
     displayName: string,
@@ -33,30 +39,32 @@ type Props = {
 };
 
 export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
-    if (!social || social.length === 0) {
+    if (social.length === 0) {
         return null;
     }
 
-    const sosialMediaName = {
-        linkedin: 'LinkedIn',
-        facebook: 'Facebook',
-        twitter: 'Twitter',
-    };
-
-    const socialMedia = social?.map((socialMediaType) => ({
-        type: socialMediaType,
-        text: `Del på ${sosialMediaName[socialMediaType]}`,
-        href: getSocialmediaShareUrl(
+    const linksData = social.reduce<LinkData[]>((acc, socialMediaType) => {
+        const url = getSocialmediaShareUrl(
             socialMediaType,
             displayName,
             getInternalAbsoluteUrl(contentPath)
-        ),
-    }));
+        );
+
+        if (url) {
+            acc.push({
+                type: socialMediaType,
+                text: `Del på ${sosialMediaName[socialMediaType]}`,
+                href: url,
+            });
+        }
+
+        return acc;
+    }, []);
 
     return (
         <div className={style.socialMedia}>
             <ul>
-                {socialMedia.map((item) => (
+                {linksData.map((item) => (
                     <li key={item.type}>
                         <LenkeBase href={item.href} analyticsLabel={item.text}>
                             <span

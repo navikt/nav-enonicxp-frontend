@@ -24,7 +24,7 @@ export const getFuseSearchFunc = async <Type>(
         const results = fuse.search(textInput);
 
         return results.reduce<Type[]>((acc, result) => {
-            if (result.score < maxScore) {
+            if (result.score !== undefined && result.score < maxScore) {
                 acc.push(result.item);
             }
 

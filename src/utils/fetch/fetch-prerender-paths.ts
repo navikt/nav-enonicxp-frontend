@@ -1,12 +1,14 @@
 import { fetchJson } from './fetch-utils';
 import { xpServiceUrl } from '../urls';
 
-const excludedPaths = {
-    '/': true, // This is already rendered by /index.tsx
-};
+const excludedPaths: ReadonlySet<string> = new Set([
+    '/', // This is already rendered by /index.tsx
+]);
 
-export const fetchPrerenderPaths = async (retries = 3) =>
-    fetchJson(`${xpServiceUrl}/sitecontentPaths`, 60000, {
+export const fetchPrerenderPaths = async (
+    retries = 3
+): Promise<string[] | null> =>
+    fetchJson<string[]>(`${xpServiceUrl}/sitecontentPaths`, 60000, {
         headers: {
             secret: process.env.SERVICE_SECRET,
         },
@@ -38,5 +40,5 @@ export const fetchPrerenderPaths = async (retries = 3) =>
                 return paths;
             }
 
-            return paths.filter((path) => !excludedPaths[path]);
+            return paths.filter((path) => !excludedPaths.has(path));
         });

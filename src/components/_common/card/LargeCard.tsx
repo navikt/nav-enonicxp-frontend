@@ -18,8 +18,8 @@ enum LayoutVariation {
 }
 
 export type StortKortProps = {
-    category: string;
-    description: string;
+    category?: string;
+    description?: string;
     illustration?: AnimatedIconsProps;
     link: LinkProps;
     type: CardType;

@@ -14,14 +14,14 @@ export enum ComponentType {
 export type ComponentCommonProps = {
     type: ComponentType;
     path: string;
-    config?: any;
+    config?: unknown;
 };
 
-export interface PartComponentProps extends ComponentCommonProps {
+export type PartComponentProps = ComponentCommonProps & {
     type: ComponentType.Part;
     descriptor: PartType;
-    pageProps?: ContentProps;
-}
+    pageProps: ContentProps;
+};
 
 export interface TextComponentProps extends ComponentCommonProps {
     type: ComponentType.Text;

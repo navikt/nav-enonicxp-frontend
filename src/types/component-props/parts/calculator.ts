@@ -1,52 +1,46 @@
 import { PartComponentProps } from '../_component-common';
 import { PartType } from '../parts';
 
-export enum FieldType {
-    INPUT,
-    DROPDOWN,
-    GLOBAL_VALUE,
-}
+type BaseInputFields = {
+    explanation?: string;
+    label?: string;
+    variableName?: string;
+};
 
-interface BaseInputFields {
-    explanation: string;
-    label: string;
-    variableName: string;
-}
+type GlobalValue = {
+    variableName?: string;
+    value?: number;
+};
 
-interface GlobalValue {
-    variableName: string;
-    value: number;
-}
+type OptionItem = {
+    label?: string;
+    value?: number;
+};
 
-interface OptionItem {
-    label: string;
-    value: number;
-}
-
-interface DropdownFields {
+type DropdownFields = {
     optionItems: OptionItem[];
-}
+};
 
-export interface CalculatorField {
+export type CalculatorFieldData = {
     inputField?: BaseInputFields;
     dropdownField?: BaseInputFields & DropdownFields;
     globalValue?: GlobalValue;
-}
+};
 
-export interface CalculatorData {
-    fields: CalculatorField[];
+export type CalculatorData = {
+    fields: CalculatorFieldData[];
     calculationScript: string;
     useThousandSeparator: boolean;
     summaryText: string;
-}
+};
 
-export interface CalculatorProps extends PartComponentProps {
+export type CalculatorProps = PartComponentProps & {
     descriptor: PartType.Calculator;
-    config: Partial<{
+    config: {
         header?: string;
-        targetCalculator: {
+        targetCalculator?: {
             data: CalculatorData;
         };
-        filters: string[];
-    }>;
-}
+        filters?: string[];
+    };
+};

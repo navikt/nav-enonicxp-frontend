@@ -1,11 +1,11 @@
 import { OptionSetMulti } from './util-types';
 
-export interface LinkItem {
-    links?: {
+export type LinkItem = {
+    links?: Array<{
         text: string;
         url: string;
-    }[];
-}
+    }>;
+};
 
 export enum MenuListItemKey {
     Selfservice = 'selfservice',
