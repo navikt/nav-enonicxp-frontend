@@ -100,5 +100,5 @@ $separator-attribs: 1px $color solid;
 .subHeader {
     font-size: 1rem;
     font-weight: normal;
-    color: common.$a-gray-600;
+    color: var(--a-gray-700);
 }
