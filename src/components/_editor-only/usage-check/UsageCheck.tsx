@@ -2,36 +2,50 @@ import React, { useEffect, useState } from 'react';
 import { fetchJson } from 'utils/fetch/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 import { Heading } from '@navikt/ds-react';
-import { Button } from '../../../_common/button/Button';
-import { EditorLinkWrapper } from '../../../_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { Button } from '../../_common/button/Button';
+import { EditorLinkWrapper } from '../editor-link-wrapper/EditorLinkWrapper';
 import {
     CustomSelectorUsageLink,
     CustomSelectorUsageData,
-} from '../../../_editor-only/custom-selector-usage-link/CustomSelectorUsageLink';
+} from '../custom-selector-usage-link/CustomSelectorUsageLink';
 
-import style from './ProductDetailsUsageCheck.module.scss';
+import style from './UsageCheck.module.scss';
+import { ContentType } from 'types/content-props/_content-common';
 
-const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/productDetailsSelector/usage`;
+const serviceUrl = {
+    [ContentType.ProductDetails]: `${xpDraftPathPrefix}${xpServicePath}/productDetailsSelector/usage`,
+    [ContentType.Video]: `${xpDraftPathPrefix}${xpServicePath}/video/usage`,
+};
+
+const usageNaming = {
+    [ContentType.ProductDetails]: 'Produktdetaljene',
+    [ContentType.Video]: 'Videoen',
+};
 
 type ProductDetailsUsage = {
     usage: CustomSelectorUsageData[];
 };
 
-const fetchProductDetailsUsage = (id: string) =>
-    fetchJson<ProductDetailsUsage>(`${serviceUrl}?id=${id}`, 5000);
-
 type Props = {
     id: string;
+    type: ContentType;
 };
 
-export const ProductDetailsUsageCheck = ({ id }: Props) => {
+const fetchUsageFromService = (id: string, type: ContentType) => {
+    return fetchJson<ProductDetailsUsage>(`${serviceUrl[type]}?id=${id}`, 5000);
+};
+
+export const UsageCheck = ({ id, type }: Props) => {
     const [usages, setUsages] = useState<CustomSelectorUsageData[] | null>(
         null
     );
     const [showUsage, setShowUsage] = useState(false);
 
     useEffect(() => {
-        fetchProductDetailsUsage(id).then((response) => {
+        if (!id || !type) {
+            return;
+        }
+        fetchUsageFromService(id, type).then((response) => {
             if (!response?.usage) {
                 console.error('Invalid usage-check fetch response');
                 return;
@@ -39,7 +53,7 @@ export const ProductDetailsUsageCheck = ({ id }: Props) => {
 
             setUsages(response.usage);
         });
-    }, [id]);
+    }, [id, type]);
 
     if (!usages) {
         return null;
@@ -53,7 +67,9 @@ export const ProductDetailsUsageCheck = ({ id }: Props) => {
                 {usagesLength > 0 ? (
                     <>
                         <Heading level="3" size="medium">
-                            {`Produktdetaljene er i bruk på ${usagesLength} publisert${
+                            {`${
+                                usageNaming[type]
+                            } er i bruk på ${usagesLength} publisert${
                                 usagesLength === 1 ? '' : 'e'
                             } side${usagesLength === 1 ? '' : 'r'}`}
                         </Heading>
@@ -70,7 +86,7 @@ export const ProductDetailsUsageCheck = ({ id }: Props) => {
                     </>
                 ) : (
                     <Heading level="3" size="small">
-                        {`Produktdetaljene er ikke i bruk på publiserte sider`}
+                        {`${usageNaming[type]}  er ikke i bruk på publiserte sider`}
                     </Heading>
                 )}
             </div>

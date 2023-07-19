@@ -1,8 +1,9 @@
 import React from 'react';
 import { ComponentMapper } from '../../ComponentMapper';
 import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
-import { ProductDetailsUsageCheck } from './product-details-usage-check/ProductDetailsUsageCheck';
 import { RedirectTo404 } from 'components/_common/redirect-to-404/RedirectTo404';
+import { UsageCheck } from 'components/_editor-only/usage-check/UsageCheck';
+import { ContentType } from 'types/content-props/_content-common';
 
 export const ProductDetailsPage = (props: ProductDetailsProps) => {
     if (!props.editorView) {
@@ -12,7 +13,7 @@ export const ProductDetailsPage = (props: ProductDetailsProps) => {
     return (
         // Samme styling som ProductPage
         <div className={'productPage'}>
-            <ProductDetailsUsageCheck id={props._id} />
+            <UsageCheck id={props._id} type={ContentType.ProductDetails} />
             <div className={'content'}>
                 <ComponentMapper
                     componentProps={props.page}

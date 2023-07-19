@@ -93,6 +93,7 @@ export enum ContentType {
     FormIntermediateStepPage = 'no.nav.navno:form-intermediate-step',
     FormDetails = 'no.nav.navno:form-details',
     FormsOverview = 'no.nav.navno:forms-overview',
+    Video = 'no.nav.navno:video',
 }
 
 export type ContentAndMediaCommonProps = {
