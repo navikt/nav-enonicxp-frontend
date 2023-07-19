@@ -26,6 +26,7 @@ import { ContentTypeNotSupportedPage } from 'components/pages/contenttype-not-su
 import { FormIntermediateStepPage } from './pages/form-intermediate-step-page/FormIntermediateStepPage';
 import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
 import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
+import { VideoPage } from './pages/video-page/VideoPage';
 
 const contentToReactComponent: {
     [key in ContentType]?: React.FunctionComponent<ContentProps<key>>;
@@ -37,6 +38,7 @@ const contentToReactComponent: {
     [ContentType.GlobalNumberValuesSet]: GlobalValuesPage,
     [ContentType.GlobalCaseTimeSet]: GlobalValuesPage,
     [ContentType.ProductDetails]: ProductDetailsPage,
+    [ContentType.Video]: VideoPage,
     [ContentType.ContactInformationPage]: ContactInformationPage,
     [ContentType.PayoutDates]: PayoutDatesPage,
 
