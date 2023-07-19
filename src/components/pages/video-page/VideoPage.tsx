@@ -2,10 +2,13 @@ import React from 'react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { UsageCheck } from 'components/_editor-only/usage-check/UsageCheck';
 import { ContentType } from 'types/content-props/_content-common';
+import { VideoPageProps } from 'types/content-props/video';
 
-export const VideoPage = () => {
-    const { language: contentLanguage, pageConfig } = usePageConfig();
-    const { editorView, pageId } = pageConfig;
+export const VideoPage = (props: VideoPageProps) => {
+    const { pageConfig } = usePageConfig();
+    const { editorView } = pageConfig;
+
+    const { _id } = props;
 
     if (!editorView) {
         return null;
@@ -13,12 +16,7 @@ export const VideoPage = () => {
 
     return (
         <div>
-            <UsageCheck
-                id={'bc48eb74-074a-4656-8cc6-96fdc8089efb'}
-                type={ContentType.Video}
-            />
+            <UsageCheck id={_id} type={ContentType.Video} />
         </div>
     );
-
-    // return <Video {...props} />;
 };

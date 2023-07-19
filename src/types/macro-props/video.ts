@@ -1,19 +1,12 @@
-import { BitmapImage } from 'types/media';
 import { MacroPropsCommon, MacroType } from './_macros-common';
+import { VideoData } from 'types/content-props/video';
 
 export interface MacroVideoProps extends MacroPropsCommon {
     name: MacroType.Video;
     config: {
         video: {
             targetContent?: {
-                data: {
-                    accountId: string;
-                    title: string;
-                    duration: number;
-                    mediaId: string;
-                    poster: BitmapImage;
-                    subtitles?: string[];
-                };
+                data: VideoData;
             };
             video?: string;
             title?: string;
