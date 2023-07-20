@@ -27,6 +27,7 @@ import { FormIntermediateStepPage } from './pages/form-intermediate-step-page/Fo
 import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-page/FormDetailsPreviewPage';
 import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
 import { VideoPage } from './pages/video-page/VideoPage';
+import { CalculatorPage } from './pages/calculator-page/CalculatorPage';
 
 const contentToReactComponent: {
     [key in ContentType]?: React.FunctionComponent<ContentProps<key>>;
@@ -55,6 +56,7 @@ const contentToReactComponent: {
     [ContentType.FormIntermediateStepPage]: FormIntermediateStepPage,
     [ContentType.FormDetails]: FormDetailsPreviewPage,
     [ContentType.FormsOverview]: FormsOverviewPage,
+    [ContentType.Calculator]: CalculatorPage,
 
     [ContentType.AreaPage]: DynamicPage,
     [ContentType.FrontPage]: DynamicPage,
