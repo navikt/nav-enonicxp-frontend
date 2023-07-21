@@ -13,6 +13,12 @@
         .navds-link-panel__title,
         .navds-link-panel__chevron {
             color: common.$a-text-action;
+            text-decoration-thickness: 0.05em;
+            text-underline-offset: 0.1em;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 

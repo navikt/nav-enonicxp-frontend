@@ -27,7 +27,7 @@
 
 .lenketekst {
     display: inline;
-    @include common.link-border-bottom-mixin;
+    @include common.link-underline-mixin;
 }
 
 .label {

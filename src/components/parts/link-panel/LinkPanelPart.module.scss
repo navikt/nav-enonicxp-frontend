@@ -22,6 +22,8 @@ $iconSize: 2.1875rem;
         box-shadow: 0 2px 1px 0 #a0a0a0;
 
         .title {
+            text-decoration-thickness: 0.05em;
+            text-underline-offset: 0.1em;
             text-decoration: underline;
         }
     }

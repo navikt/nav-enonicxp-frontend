@@ -18,6 +18,8 @@ $illustrationSizeSmall: common.px-to-rem(48);
 
 .title {
     text-decoration: underline;
+    text-decoration-thickness: 0.05em;
+    text-underline-offset: 0.1em;
     color: var(--a-gray-900);
     font-weight: 600;
     margin: 0;
