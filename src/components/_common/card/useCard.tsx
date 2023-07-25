@@ -8,6 +8,7 @@ import { LinkProps } from 'types/link-props';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import { hasTouch } from 'utils/navigator';
 
 type AnalyticsProps = {
     analyticsLinkGroup?: string;
@@ -89,7 +90,7 @@ export const useCard = ({
             type === Interaction.mouseenter ||
             type === Interaction.mouseleave
         ) {
-            setIsHovering(type === Interaction.mouseenter);
+            setIsHovering(type === Interaction.mouseenter && !hasTouch());
         }
 
         if (type === Interaction.mouseleave) {
