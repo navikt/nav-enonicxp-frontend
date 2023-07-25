@@ -8,7 +8,7 @@ import { LinkProps } from 'types/link-props';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { usePublicUrl } from 'utils/usePublicUrl';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { hasTouch } from 'utils/navigator';
+import { useClient } from 'utils/useClient';
 
 type AnalyticsProps = {
     analyticsLinkGroup?: string;
@@ -51,6 +51,7 @@ export const useCard = ({
     const [isPressed, setIsPressed] = useState(false);
     const router = useRouter();
     const { pageConfig } = usePageConfig();
+    const { hasTouch, hasMouse } = useClient();
 
     const { layoutConfig } = useLayoutConfig();
 
@@ -86,11 +87,15 @@ export const useCard = ({
 
         e.stopPropagation();
 
+        const isDeviceTouchOnly = hasTouch && !hasMouse;
+
         if (
             type === Interaction.mouseenter ||
             type === Interaction.mouseleave
         ) {
-            setIsHovering(type === Interaction.mouseenter && !hasTouch());
+            setIsHovering(
+                type === Interaction.mouseenter && !isDeviceTouchOnly
+            );
         }
 
         if (type === Interaction.mouseleave) {
