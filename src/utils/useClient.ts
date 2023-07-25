@@ -19,7 +19,6 @@ export const useClient = () => {
 
     useEffect(() => {
         if (isClientSide) {
-            console.log('addingAgain');
             document.addEventListener('pointermove', detectMouse);
         }
         /* eslint-disable-next-line  */
