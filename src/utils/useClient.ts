@@ -1,16 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useClientSide } from './useIsClientSide';
 
 export const useClient = () => {
     const [hasMouse, setHasMouse] = React.useState(false);
-    const hasTouch = () => {
-        if (typeof window === 'undefined') return false;
-        return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    };
-
     const isClientSide = useClientSide();
-
-    if (!isClientSide) return { hasTouch: false, hasMouse: false };
 
     const detectMouse = (event: PointerEvent) => {
         if (event && event.pointerType === 'mouse') {
@@ -19,7 +12,18 @@ export const useClient = () => {
         }
     };
 
-    document.addEventListener('pointermove', detectMouse);
+    const hasTouch = () => {
+        if (typeof window === 'undefined') return false;
+        return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    };
+
+    useEffect(() => {
+        if (isClientSide) {
+            console.log('addingAgain');
+            document.addEventListener('pointermove', detectMouse);
+        }
+        /* eslint-disable-next-line  */
+    }, [isClientSide]);
 
     return {
         hasTouch: hasTouch(),
