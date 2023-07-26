@@ -21,6 +21,11 @@ export const useClient = () => {
         if (isClientSide) {
             document.addEventListener('pointermove', detectMouse);
         }
+        return () => {
+            if (isClientSide) {
+                document.removeEventListener('pointermove', detectMouse);
+            }
+        };
         /* eslint-disable-next-line  */
     }, [isClientSide]);
 
