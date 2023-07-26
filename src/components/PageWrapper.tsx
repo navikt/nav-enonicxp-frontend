@@ -40,7 +40,7 @@ export const PageWrapper = (props: Props) => {
             language: content.language,
             isPagePreview: content.isPagePreview,
             editorView: content.editorView,
-            audience: content.data.audience._selected,
+            audience: content.data?.audience?._selected,
         })
     );
 
