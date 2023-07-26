@@ -72,7 +72,7 @@ export const getCardProps = (
     }
 
     const { data, type, _path, displayName } = content;
-    const { title, ingress, illustration, externalProductUrl, audience } = data;
+    const { title, ingress, illustration, externalProductUrl } = data;
 
     const cardType = cardTypeMap[type];
     const cardUrl = externalProductUrl || _path;
@@ -93,6 +93,5 @@ export const getCardProps = (
         description,
         category: categoryString,
         illustration,
-        preferStaticIllustration: audience === Audience.EMPLOYER,
     };
 };

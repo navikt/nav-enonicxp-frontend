@@ -6,10 +6,12 @@ import {
     currentLanguage,
     currentEditorView,
     isPagePreview,
+    pageAudience,
     CurrentPageIdPayload,
 } from '../slices/pageConfig';
 import { Language } from 'translations';
 import { ContentProps } from 'types/content-props/_content-common';
+import { Audience } from 'types/component-props/_mixins';
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -24,6 +26,7 @@ type UsePageConfig = {
     pageConfig: PageConfig;
     setPageConfig: (payload: CurrentPageIdPayload) => void;
     language: Language;
+    audience: Audience;
 };
 
 export const usePageConfig = (): UsePageConfig => {
@@ -35,6 +38,7 @@ export const usePageConfig = (): UsePageConfig => {
     );
     const editorView = useAppSelector((state) => currentEditorView(state));
     const isPreview = useAppSelector((state) => isPagePreview(state));
+    const audience = useAppSelector((state) => pageAudience(state));
 
     const setPageConfig = (payload: CurrentPageIdPayload) => {
         dispatch(setPageConfigAction(payload));
@@ -46,5 +50,5 @@ export const usePageConfig = (): UsePageConfig => {
         isPagePreview: isPreview,
     };
 
-    return { pageConfig, setPageConfig, language };
+    return { pageConfig, setPageConfig, language, audience };
 };

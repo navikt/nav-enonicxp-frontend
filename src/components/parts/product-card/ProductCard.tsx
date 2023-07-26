@@ -9,12 +9,14 @@ import { getCardProps } from '../../_common/card/card-utils';
 import { MiniCard } from '../../_common/card/MiniCard';
 import { LargeCard } from '../../_common/card/LargeCard';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { Audience } from 'types/component-props/_mixins';
 
 export const ProductCardPart = ({
     config,
     descriptor,
 }: ProductCardProps | ProductCardMiniProps) => {
-    const { language } = usePageConfig();
+    const { language, audience } = usePageConfig();
+    console.log(audience);
 
     if (!config?.targetPage) {
         return (
@@ -35,11 +37,22 @@ export const ProductCardPart = ({
     }
 
     if (descriptor === PartType.ProductCard) {
-        return <LargeCard {...props} />;
+        return (
+            <LargeCard
+                {...props}
+                preferStaticIllustration={audience === Audience.EMPLOYER}
+            />
+        );
     }
 
     if (descriptor === PartType.ProductCardMini) {
-        return <MiniCard {...props} header={header} />;
+        return (
+            <MiniCard
+                {...props}
+                header={header}
+                preferStaticIllustration={audience === Audience.EMPLOYER}
+            />
+        );
     }
 
     return <EditorHelp type={'error'} text={'Kortet har ugyldig type'} />;

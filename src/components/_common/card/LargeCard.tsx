@@ -23,10 +23,18 @@ export type StortKortProps = {
     illustration?: AnimatedIconsProps;
     link: LinkProps;
     type: CardType;
+    preferStaticIllustration?: boolean;
 };
 
 export const LargeCard = (props: StortKortProps) => {
-    const { link, description, type, category, illustration } = props;
+    const {
+        link,
+        description,
+        type,
+        category,
+        illustration,
+        preferStaticIllustration,
+    } = props;
     const { text } = link;
 
     const hasIllustration =
@@ -64,7 +72,8 @@ export const LargeCard = (props: StortKortProps) => {
                             className={style.illustration}
                             isHovering={isHovering}
                             preferStaticIllustration={
-                                pageConfig.editorView === 'edit'
+                                pageConfig.editorView === 'edit' ||
+                                preferStaticIllustration
                             }
                         />
                     )}
