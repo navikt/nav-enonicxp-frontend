@@ -39,7 +39,7 @@ $blackLinkColor: common.$a-text-default;
 
 .linkPanelNavnoLink {
     color: $blueLinkColor;
-    text-decoration: underline;
+    text-decoration-line: underline;
     text-decoration-thickness: 0.05em;
     text-underline-offset: 0.1em;
 
@@ -49,7 +49,7 @@ $blackLinkColor: common.$a-text-default;
     }
 
     &.underline {
-        text-decoration: underline;
+        text-decoration-line: underline;
     }
 
     &:focus {
