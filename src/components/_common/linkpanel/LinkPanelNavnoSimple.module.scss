@@ -6,7 +6,7 @@ $blackLinkColor: common.$a-text-default;
     display: flex;
     padding: 1.5rem;
     border-radius: common.$border-radius-xlarge;
-    text-decoration: underline;
+    text-decoration-line: underline;
     text-decoration-color: common.$a-text-default !important;
     text-decoration-thickness: 0.05em;
     text-underline-offset: 0.1em;
@@ -20,7 +20,7 @@ $blackLinkColor: common.$a-text-default;
     }
 
     &:hover {
-        text-decoration: none;
+        text-decoration-line: none;
     }
 
     &:focus {

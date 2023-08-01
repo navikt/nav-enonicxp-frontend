@@ -15,7 +15,7 @@ $iconSize: 2.1875rem;
         background-color: white;
         border: 1px solid var(--a-text-action);
         box-sizing: border-box;
-        text-decoration: none;
+        text-decoration-line: none;
         color: black;
     }
     &:hover {
@@ -24,7 +24,7 @@ $iconSize: 2.1875rem;
         .title {
             text-decoration-thickness: 0.05em;
             text-underline-offset: 0.1em;
-            text-decoration: underline;
+            text-decoration-line: underline;
         }
     }
     &:focus,

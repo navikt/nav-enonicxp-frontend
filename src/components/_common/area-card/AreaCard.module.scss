@@ -41,7 +41,7 @@ $size-small: 0.5;
     }
 
     :global(.navds-link-panel__title) {
-        text-decoration: underline;
+        text-decoration-line: underline;
         text-decoration-thickness: 0.05em;
         text-underline-offset: 0.1em;
     }
@@ -56,7 +56,7 @@ $size-small: 0.5;
         }
 
         :global(.navds-link-panel__title) {
-            text-decoration: none;
+            text-decoration-line: none;
         }
 
         @media (hover) {

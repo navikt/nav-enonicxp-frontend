@@ -178,17 +178,17 @@ $versionSelectorMinHeight: 3rem;
     text-underline-offset: 0.1em;
 
     @if $underlineDefault {
-        text-decoration: underline;
+        text-decoration-line: underline;
     } @else {
-        text-decoration: none;
+        text-decoration-line: none;
     }
 
     &:hover,
     &:focus {
         @if $underlineDefault {
-            text-decoration: none;
+            text-decoration-line: none;
         } @else {
-            text-decoration: underline;
+            text-decoration-line: underline;
         }
     }
 }
