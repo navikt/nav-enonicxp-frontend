@@ -3,10 +3,12 @@
 .pageNavLink {
     display: flex;
     color: common.$a-text-action;
-    text-decoration: none;
+    text-decoration-line: none;
+    text-decoration-thickness: 0.05em;
+    text-underline-offset: 0.1em;
 
     &:hover {
-        text-decoration: underline;
+        text-decoration-line: underline;
     }
 }
 

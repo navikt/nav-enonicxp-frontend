@@ -4,8 +4,9 @@
     margin-bottom: 1.5rem;
 
     a {
-        text-underline-offset: 2px;
-        text-decoration-thickness: 1px;
+        text-decoration-thickness: 0.05em;
+        text-underline-offset: 0.1em;
+        text-decoration-line: underline;
     }
 }
 

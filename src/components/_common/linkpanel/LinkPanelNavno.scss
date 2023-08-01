@@ -22,11 +22,11 @@ $blackLinkColor: common.$a-text-default;
 
     &:hover {
         .linkPanelNavnoLink {
-            border-bottom-color: transparent;
+            text-decoration: none;
             color: $blueLinkColor;
 
             &.underline {
-                border-bottom-color: $blueLinkColor;
+                text-decoration: none;
             }
         }
     }
@@ -38,20 +38,18 @@ $blackLinkColor: common.$a-text-default;
 }
 
 .linkPanelNavnoLink {
-    text-decoration: none;
     color: $blueLinkColor;
-    border-bottom: 1px $blueLinkColor solid;
-    transition-property: border-bottom-color, color;
-    transition-duration: 0.15s;
-    transition-timing-function: ease-out;
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.05em;
+    text-underline-offset: 0.1em;
 
     &.linkBlack {
         color: $blackLinkColor;
-        border-bottom-color: $blackLinkColor;
+        text-decoration-color: $blackLinkColor;
     }
 
     &.underline {
-        border-bottom-color: transparent;
+        text-decoration-line: underline;
     }
 
     &:focus {

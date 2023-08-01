@@ -173,22 +173,22 @@ $versionSelectorMinHeight: 3rem;
     }
 }
 
-@mixin link-border-bottom-mixin($underlineDefault: true) {
-    @if $underlineDefault {
-        border-bottom: 1px $a-text-action solid;
-    } @else {
-        border-bottom-color: transparent;
-    }
+@mixin link-underline-mixin($underlineDefault: true) {
+    text-decoration-thickness: 0.05em;
+    text-underline-offset: 0.1em;
 
-    text-decoration: none;
-    transition: border-bottom-color 0.12s ease-out;
+    @if $underlineDefault {
+        text-decoration-line: underline;
+    } @else {
+        text-decoration-line: none;
+    }
 
     &:hover,
     &:focus {
         @if $underlineDefault {
-            border-bottom-color: transparent;
+            text-decoration-line: none;
         } @else {
-            border-bottom: 1px $a-text-action solid;
+            text-decoration-line: underline;
         }
     }
 }

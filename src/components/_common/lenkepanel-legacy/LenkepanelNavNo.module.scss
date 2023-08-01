@@ -16,6 +16,14 @@
         }
     }
 
+    &:hover {
+        :global(.navds-link-panel__title) {
+            text-decoration-line: underline;
+            text-decoration-thickness: 0.05em;
+            text-underline-offset: 0.1em;
+        }
+    }
+
     @media #{common.$mq-screen-mobile} {
         padding: 0.75rem 1rem;
     }

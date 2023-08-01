@@ -1,9 +1,9 @@
 @use 'src/common' as common;
 
 .liveLink {
-    @include common.link-border-bottom-mixin;
+    @include common.link-underline-mixin;
 }
 
 .editorLink {
-    @include common.link-border-bottom-mixin(false);
+    @include common.link-underline-mixin(false);
 }
