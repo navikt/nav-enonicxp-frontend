@@ -16,12 +16,10 @@ RUN rm -f .npmrc
 COPY public /app/public/
 COPY server /app/server/
 COPY src /app/src/
-COPY next.config.js tsconfig.json .eslintrc.json sentry.client.config.js sentry.server.config.js sentry.properties .sentryclirc /app/
+COPY next.config.js tsconfig.json .eslintrc.json /app/
 COPY "/failover/$ENV_FILE" /app/.env
 
 RUN npm run build
-
-RUN rm -f .sentryclirc
 
 # Multistage build to avoid leaking secrets to the final image
 FROM node:18-bullseye-slim

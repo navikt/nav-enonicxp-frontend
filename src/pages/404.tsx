@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { make404Props } from 'utils/make-error-props';
 import { PageBase } from 'components/PageBase';
 import { useRouter } from 'next/compat/router';
-import * as Sentry from '@sentry/react';
 
 const loopDetectionParam = 'error';
 
@@ -24,10 +23,6 @@ export const ErrorPage404 = () => {
             router.pathname !== '/404' &&
             !window.location.search.includes(loopDetectionParam)
         ) {
-            Sentry.captureMessage(
-                `Client-side 404 error on path: ${router.asPath}`,
-                'error'
-            );
             window.location.replace(
                 `${window.location.origin}${window.location.pathname}?${loopDetectionParam}`
             );

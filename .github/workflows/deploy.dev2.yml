@@ -20,7 +20,6 @@ jobs:
       FAILOVER_ORIGIN: https://www-2-failover.intern.dev.nav.no
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
-      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml

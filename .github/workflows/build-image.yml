@@ -44,8 +44,6 @@ on:
     secrets:
       READER_TOKEN:
         required: true
-      SENTRY_AUTH_TOKEN:
-        required: true
       SERVICE_SECRET:
         required: false
     outputs:
@@ -92,7 +90,6 @@ jobs:
           ASSET_PREFIX=https://cdn.nav.no/personbruker/nav-enonicxp-frontend
           PAGE_CACHE_DIR=/tmp/pages
           IMAGE_CACHE_DIR=/tmp/images
-          SENTRY_DSN=https://7d6de132401448989071436f6e54c748@sentry.gc.nav.no/131
           EOF
       - name: Nextjs cache
         uses: actions/cache@v3
@@ -111,7 +108,6 @@ jobs:
         run: npm run build
         env:
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       - name: Upload static files to NAV CDN
         uses: navikt/frontend/actions/cdn-upload/v1@main
         with:
