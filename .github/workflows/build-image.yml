@@ -26,6 +26,9 @@ on:
       XP_ORIGIN:
         required: true
         type: string
+      TELEMETRY_URL:
+        required: true
+        type: string
       INNLOGGINGSSTATUS_URL:
         required: true
         type: string
