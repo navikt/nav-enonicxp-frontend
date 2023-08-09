@@ -7,7 +7,7 @@ import { store } from '../store/store';
 import 'global.scss';
 
 initializeFaro({
-    url: process.env.REACT_APP_TELEMETRY_URL,
+    url: process.env.TELEMETRY_URL,
     app: {
         name: 'nav-enonicxp-frontend',
         version: process.env.RELEASE_TAG,
