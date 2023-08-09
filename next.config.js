@@ -145,6 +145,7 @@ const config = {
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
         NAVNO_API_URL: process.env.NAVNO_API_URL,
         DECORATOR_URL: process.env.DECORATOR_URL,
+        TELEMETRY_URL: process.env.TELEMETRY_URL,
     },
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
