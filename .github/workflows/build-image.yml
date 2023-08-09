@@ -82,6 +82,7 @@ jobs:
           APP_ORIGIN=${{ inputs.APP_ORIGIN }}
           DECORATOR_URL=${{ inputs.DECORATOR_URL }}
           XP_ORIGIN=${{ inputs.XP_ORIGIN }}
+          TELEMETRY_URL=${{ inputs.TELEMETRY_URL }}
           REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
           FAILOVER_ORIGIN=${{ inputs.FAILOVER_ORIGIN }}
           IS_FAILOVER_INSTANCE=${{ inputs.IS_FAILOVER_INSTANCE }}
