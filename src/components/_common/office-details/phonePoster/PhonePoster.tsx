@@ -4,7 +4,7 @@ import { OfficeDetailsProps } from '../OfficeDetails';
 import { translator } from 'translations';
 import { formatPhoneNumber } from '../utils';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { TelephoneFilled } from '@navikt/ds-icons';
+import { PhoneFillIcon } from '@navikt/aksel-icons';
 import { forceArray } from 'utils/arrays';
 import { AudienceChannels } from './AudienceChannels';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
@@ -31,7 +31,7 @@ export const PhonePoster = ({ officeData }: OfficeDetailsProps) => {
                     href={Config.urls.hovedNummerTlf}
                     className={styles.phoneNumber}
                 >
-                    <TelephoneFilled
+                    <PhoneFillIcon
                         aria-hidden="true"
                         className={styles.telephoneIcon}
                     />

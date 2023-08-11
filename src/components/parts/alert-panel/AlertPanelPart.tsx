@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkPanel } from '@navikt/ds-react';
-import { Information } from '@navikt/ds-icons';
+import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { AlertPanelPartProps } from '../../../types/component-props/parts/alert-panel';
 import { getSelectableLinkProps } from '../../../utils/links-from-content';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
@@ -30,7 +30,7 @@ export const AlertPanelPart = ({ config }: AlertPanelPartProps) => {
                 </LenkeBase>
             )}
         >
-            <Information className={style.informationIcon} />
+            <InformationSquareIcon className={style.informationIcon} />
             <div className={ingress ? '' : style.noIngress}>
                 <LinkPanel.Title>{linkProps.text}</LinkPanel.Title>
                 {ingress && (
