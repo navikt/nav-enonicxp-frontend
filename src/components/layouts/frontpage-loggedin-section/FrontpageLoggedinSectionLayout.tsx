@@ -13,7 +13,7 @@ import { useAuthState } from '../../../store/hooks/useAuthState';
 import { capitalize } from '../../../utils/string';
 import { translator } from '../../../translations';
 import { usePageConfig } from '../../../store/hooks/usePageConfig';
-import { Right } from '@navikt/ds-icons';
+import { ArrowRightIcon } from '@navikt/aksel-icons';
 
 import style from './FrontpageLoggedinSectionLayout.module.scss';
 
@@ -26,7 +26,7 @@ const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
 
     return (
         <LenkeStandalone href={url} className={style.myPage}>
-            <Right className={style.arrow} />
+            <ArrowRightIcon aria-hidden={true} className={style.arrow} />
             {text}
         </LenkeStandalone>
     );

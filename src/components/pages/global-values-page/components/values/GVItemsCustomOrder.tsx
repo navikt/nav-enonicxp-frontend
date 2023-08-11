@@ -3,7 +3,7 @@ import { List, arrayMove } from 'react-movable';
 import { GVItem } from './item/GVItem';
 import { classNames } from 'utils/classnames';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
-import { Up, Down } from '@navikt/ds-icons';
+import { ChevronUpIcon, ChevronDownIcon } from '@navikt/aksel-icons';
 import { gvServiceReorderItems } from '../../api/services/reorder';
 import { OnChangeMeta } from 'react-movable/lib/types';
 
@@ -61,8 +61,8 @@ export const GVItemsCustomOrder = () => {
                             data-movable-handle={true}
                             className={styleCustomOrder.itemDragHandle}
                         >
-                            <Up />
-                            <Down />
+                            <ChevronUpIcon />
+                            <ChevronDownIcon />
                         </span>
                         <GVItem item={value} />
                     </div>
