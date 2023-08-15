@@ -1,7 +1,6 @@
 @use 'src/common' as common;
 
-$metadataIndent: 2.375rem;
-
+$metadataIndent: 34px;
 
 .singleReception {
     background-color: var(--a-deepblue-50);
@@ -18,7 +17,7 @@ $metadataIndent: 2.375rem;
 
     table {
         margin-left: $metadataIndent;
-        margin-bottom: 1.6rem;
+        margin-bottom: var(--a-spacing-3);
         width: auto;
         th,
         td {
@@ -53,7 +52,7 @@ $metadataIndent: 2.375rem;
 
 .heading {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .headingIcon {
@@ -62,26 +61,24 @@ $metadataIndent: 2.375rem;
 }
 
 .iconPlace {
-    width: 27px;
-    height: 27px;
-    transform: translateY(-4px);
+    transform: translateY(1px) translateX(1px);
+    flex-shrink: 0;
 }
 
 .iconClock {
-    width: 27px;
-    height: 27px;
-    transform: translateY(-4px);
+    transform: translateY(1px) translateX(1px);
+    flex-shrink: 0;
 }
 
 .iconInfo {
     width: 27px;
     height: 27px;
-    margin: -1px 5px 0 0;
+    transform: translateY(-1px);
     flex-shrink: 0;
 }
 
 .address {
-    margin-bottom: 2rem;
+    margin-bottom: var(--a-spacing-6);
 }
 
 .addressLine {
