@@ -61,7 +61,7 @@ export const VersionHistory = ({ content }: Props) => {
                 }}
             >
                 {getLabel('title')}
-                <Chevron direction={selectorIsOpen ? 'up' : 'down'} />
+                <Chevron direction={selectorIsOpen ? 'Up' : 'Down'} />
             </LenkeStandalone>
             <VersionSelector
                 content={content}

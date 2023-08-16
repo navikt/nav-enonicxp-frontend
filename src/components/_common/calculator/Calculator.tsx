@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import { Heading } from '@navikt/ds-react';
 import { Button } from '../button/Button';
-import { Calculator as CalculatorIcon } from '@navikt/ds-icons';
+import { CalculatorIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { CalculatorField } from 'components/_common/calculator/CalculatorField';
 import { CalculatorResult } from './CalculatorResult';
@@ -93,8 +93,7 @@ export const Calculator = ({ header, calculatorData }: Props) => {
     const calculationFactory = (variableNames: string[]) => {
         const { calculationScript } = calculatorData;
         try {
-            const fn = new Function(...variableNames, calculationScript);
-            return fn;
+            return new Function(...variableNames, calculationScript);
         } catch (error: any) {
             setErrorMessage(`${error.name}: ${error.message}`);
 

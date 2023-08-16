@@ -1,5 +1,5 @@
-import { ClockFilled, InformationFilled, PlaceFilled } from '@navikt/ds-icons';
 import { BodyShort, Heading } from '@navikt/ds-react';
+import { ClockFillIcon, InformationSquareFillIcon, HouseFillIcon } from '@navikt/aksel-icons';
 import classNames from 'classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
@@ -90,7 +90,7 @@ export const SingleReception = (props: AudienceReception) => {
     return (
         <div className={styles.singleReception}>
             <Heading level="3" size="medium" spacing className={styles.heading}>
-                <PlaceFilled
+                <HouseFillIcon
                     aria-hidden="true"
                     className={classNames(styles.headingIcon, styles.iconPlace)}
                 />
@@ -111,7 +111,7 @@ export const SingleReception = (props: AudienceReception) => {
                         spacing
                         className={styles.heading}
                     >
-                        <ClockFilled
+                        <ClockFillIcon
                             aria-hidden="true"
                             className={classNames(
                                 styles.headingIcon,
@@ -132,7 +132,7 @@ export const SingleReception = (props: AudienceReception) => {
                 </>
             )}
             <div className={styles.appointmentBookingInfo}>
-                <InformationFilled
+                <InformationSquareFillIcon
                     className={styles.iconInfo}
                     aria-hidden="true"
                 />

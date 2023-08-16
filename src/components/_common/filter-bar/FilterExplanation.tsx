@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useId } from 'react';
 import { classNames } from '../../../utils/classnames';
-import { Information, InformationFilled } from '@navikt/ds-icons';
+import { InformationSquareIcon, InformationSquareFillIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
@@ -58,7 +58,7 @@ export const FilterExplanation = ({
             aria-atomic={true}
         >
             <div className={style.iconWrapper}>
-                <InformationFilled
+                <InformationSquareFillIcon
                     className={classNames(
                         style.icon,
                         style.highlighted,
@@ -66,7 +66,7 @@ export const FilterExplanation = ({
                     )}
                     aria-labelledby={explanationId}
                 />
-                <Information
+                <InformationSquareIcon
                     className={classNames(
                         style.icon,
                         showHighlight ? style.iconHidden : style.iconVisible
