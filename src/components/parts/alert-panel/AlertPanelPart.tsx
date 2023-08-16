@@ -30,7 +30,7 @@ export const AlertPanelPart = ({ config }: AlertPanelPartProps) => {
                 </LenkeBase>
             )}
         >
-            <InformationSquareIcon className={style.informationIcon} />
+            <InformationSquareIcon className={style.informationIcon} aria-hidden={true} />
             <div className={ingress ? '' : style.noIngress}>
                 <LinkPanel.Title>{linkProps.text}</LinkPanel.Title>
                 {ingress && (
