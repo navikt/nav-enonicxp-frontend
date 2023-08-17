@@ -1,6 +1,6 @@
 import React from 'react';
 import { BodyLong } from '@navikt/ds-react';
-import { Warning } from '@navikt/ds-icons';
+import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 
 import style from './FrontpageContactAlert.module.scss';
 
@@ -15,7 +15,7 @@ export const FrontpageContactAlert = ({ alertText, yellow = false }: Props) => {
         <div
             className={`${style.alert} ${yellow ? style.yellow : style.white}`}
         >
-            <Warning title="Advarsel" className={style.alertIcon} />
+            <ExclamationmarkTriangleIcon title="Advarsel" className={style.alertIcon} aria-hidden={true} />
             <BodyLong as="div">{alertText}</BodyLong>
         </div>
     );

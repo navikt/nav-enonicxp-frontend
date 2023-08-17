@@ -1,5 +1,4 @@
 import { Heading } from '@navikt/ds-react';
-import { PlaceFilled } from '@navikt/ds-icons';
 import classNames from 'classnames';
 import { translator } from 'translations';
 import { Reception } from './reception/Reception';

@@ -8,7 +8,7 @@ import {
 } from 'store/hooks/useOverviewFilters';
 import { resetOverviewFiltersAction } from 'store/slices/overviewFilters';
 import { classNames } from 'utils/classnames';
-import { Filter2 as FilterIcon } from '@navikt/ds-icons';
+import { FunnelIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Heading, Button } from '@navikt/ds-react';
@@ -49,7 +49,7 @@ const MobileView = ({
                     >
                         {hasToggleFilters && (
                             <Button
-                                icon={<FilterIcon />}
+                                icon={<FunnelIcon aria-hidden={true} />}
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setIsOpen(!isOpen);
