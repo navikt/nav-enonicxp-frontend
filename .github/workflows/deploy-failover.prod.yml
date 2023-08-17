@@ -16,6 +16,7 @@ jobs:
       REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy/revalidator-proxy
       DECORATOR_URL: https://www.nav.no/dekoratoren
       XP_ORIGIN: https://www.nav.no
+      TELEMETRY_URL: https://telemetry.nav.no/collect
       INNLOGGINGSSTATUS_URL: https://www.nav.no/person/nav-dekoratoren-api/auth
       NAVNO_API_URL: https://www.nav.no/person/navno-api
       FAILOVER_ORIGIN: https://www-failover.nav.no
