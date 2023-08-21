@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { OverviewPageProps } from 'types/content-props/dynamic-page-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ComponentMapper } from 'components/ComponentMapper';
@@ -10,6 +10,7 @@ import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
 import { ProductLink } from 'components/pages/overview-page/product-elements/ProductLink';
 import { ProductDetailsPanel } from 'components/pages/overview-page/product-elements/ProductDetailsPanel';
+import { getFuseSearchFunc } from 'utils/text-search-utils';
 
 import style from './OverviewPage.module.scss';
 
@@ -17,18 +18,35 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
     const { language } = usePageConfig();
 
-    const { matchFilters } = useOverviewFiltersState();
+    const { matchFilters, textFilter } = useOverviewFiltersState();
 
-    const isVisible = (product: SimplifiedProductData) =>
-        matchFilters({
-            ...product,
-            textMatchFunc: (textFilter) =>
-                product.title.toLowerCase().includes(textFilter),
-        });
+    const [scoredList, setScoredList] =
+        useState<SimplifiedProductData[]>(productList);
+
+    const isVisible = (product: SimplifiedProductData) => matchFilters(product);
 
     const numVisibleProducts = productList.filter(isVisible).length;
 
     const isAllProductsOverview = overviewType === 'all_products';
+
+    useEffect(() => {
+        if (!textFilter) {
+            setScoredList(productList);
+            return;
+        }
+
+        getFuseSearchFunc(productList, {
+            keys: [
+                { name: 'sortTitle', weight: 10 },
+                { name: 'keywords', weight: 2 },
+                { name: 'ingress', weight: 1 },
+                { name: 'title', weight: 1 },
+            ],
+        }).then((fuseSearchFunc) => {
+            const result = fuseSearchFunc(textFilter);
+            setScoredList(result);
+        });
+    }, [productList, textFilter]);
 
     return (
         <div className={style.overviewPage}>
@@ -45,7 +63,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         filterableItems={productList}
                         showAreaFilter={true}
                         showTaxonomyFilter={isAllProductsOverview}
-                        showTextInputFilter={isAllProductsOverview}
+                        showTextInputFilter={true}
                     />
                     <OverviewFiltersSummary
                         numMatches={numVisibleProducts}
@@ -59,7 +77,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         isAllProductsOverview && style.allProducts
                     )}
                 >
-                    {productList.map((product) => {
+                    {scoredList.map((product) => {
                         const visible = isVisible(product);
 
                         return (
