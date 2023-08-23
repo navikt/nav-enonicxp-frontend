@@ -6,8 +6,6 @@ import {
     OverviewFilterableItem,
     useOverviewFilters,
 } from 'store/hooks/useOverviewFilters';
-import { setAreaFilterAction } from 'store/slices/overviewFilters';
-import { sortLikeArray } from 'utils/arrays';
 
 const orderedAreas: Area[] = [
     Area.WORK,
@@ -27,14 +25,14 @@ type Props = {
 };
 
 export const OverviewAreaFilter = ({ items }: Props) => {
-    const { dispatch, areaFilter } = useOverviewFilters();
+    const { areaFilter, setAreaFilter } = useOverviewFilters();
 
     const handleFilterUpdate = (area: Area) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             omrade: area,
             opprinnelse: 'oversiktsside områder',
         });
-        dispatch(setAreaFilterAction({ area }));
+        setAreaFilter(area);
     };
 
     const areasPresent = orderedAreas.filter((area) =>

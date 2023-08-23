@@ -6,7 +6,6 @@ import {
     OverviewFilterableItem,
     useOverviewFilters,
 } from 'store/hooks/useOverviewFilters';
-import { setTaxonomyFilterAction } from 'store/slices/overviewFilters';
 
 const orderedTaxonomies: ProductTaxonomy[] = [
     ProductTaxonomy.BENEFITS,
@@ -25,14 +24,14 @@ type Props = {
 };
 
 export const OverviewTaxonomyFilter = ({ items }: Props) => {
-    const { dispatch, taxonomyFilter } = useOverviewFilters();
+    const { taxonomyFilter, setTaxonomyFilter } = useOverviewFilters();
 
     const handleFilterUpdate = (taxonomy: ProductTaxonomy) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
             type: taxonomy,
             opprinnelse: 'oversiktsside typer',
         });
-        dispatch(setTaxonomyFilterAction({ taxonomy }));
+        setTaxonomyFilter(taxonomy);
     };
 
     const taxonomiesPresent = orderedTaxonomies.filter((taxonomy) =>

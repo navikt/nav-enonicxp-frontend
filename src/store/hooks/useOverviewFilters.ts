@@ -5,6 +5,10 @@ import { ProductTaxonomy } from 'types/taxonomies';
 import {
     overviewFiltersInitialState,
     OverviewFiltersState,
+    resetOverviewFiltersAction,
+    setAreaFilterAction,
+    setTaxonomyFilterAction,
+    setTextFilterAction,
 } from 'store/slices/overviewFilters';
 import { ContentType } from 'types/content-props/_content-common';
 import { getFuseSearchFunc } from 'utils/text-search-utils';
@@ -75,12 +79,36 @@ export const useOverviewFilters = () => {
         [filtersState]
     );
 
+    const setAreaFilter = useCallback(
+        (area: Area) => dispatch(setAreaFilterAction({ area })),
+        [dispatch]
+    );
+
+    const setTaxonomyFilter = useCallback(
+        (taxonomy: ProductTaxonomy) =>
+            dispatch(setTaxonomyFilterAction({ taxonomy })),
+        [dispatch]
+    );
+
+    const setTextFilter = useCallback(
+        (value: string) => dispatch(setTextFilterAction({ text: value })),
+        [dispatch]
+    );
+
+    const resetFilters = useCallback(
+        () => dispatch(resetOverviewFiltersAction()),
+        [dispatch]
+    );
+
     return {
         hasDefaultFilters,
-        dispatch,
         areaFilter,
         taxonomyFilter,
         textFilter,
         getFilteredList,
+        setAreaFilter,
+        setTaxonomyFilter,
+        setTextFilter,
+        resetFilters,
     };
 };

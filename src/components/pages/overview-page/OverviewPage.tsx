@@ -28,7 +28,6 @@ export const OverviewPage = (props: OverviewPageProps) => {
             fuseOptions: {
                 keys: [
                     { name: 'sortTitle', weight: 10 },
-                    { name: 'keywords', weight: 2 },
                     { name: 'ingress', weight: 1 },
                     { name: 'title', weight: 1 },
                 ],

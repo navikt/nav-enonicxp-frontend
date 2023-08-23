@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-    resetOverviewFiltersAction,
-    setAreaFilterAction,
-    setTaxonomyFilterAction,
-} from 'store/slices/overviewFilters';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { BodyLong, Heading, Chips } from '@navikt/ds-react';
+import { BodyLong, Chips, Heading } from '@navikt/ds-react';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
 
@@ -26,8 +21,14 @@ export const OverviewFiltersSummary = ({
 }: Props) => {
     const { language } = usePageConfig();
 
-    const { hasDefaultFilters, dispatch, areaFilter, taxonomyFilter } =
-        useOverviewFilters();
+    const {
+        hasDefaultFilters,
+        areaFilter,
+        taxonomyFilter,
+        setAreaFilter,
+        setTaxonomyFilter,
+        resetFilters,
+    } = useOverviewFilters();
 
     const overviewTranslations = translator('overview', language);
     const taxonomyTranslations = translator('taxonomies', language);
@@ -45,13 +46,7 @@ export const OverviewFiltersSummary = ({
                     <Chips className={style.chips}>
                         {areaFilter !== Area.ALL && (
                             <Chips.Removable
-                                onClick={() =>
-                                    dispatch(
-                                        setAreaFilterAction({
-                                            area: Area.ALL,
-                                        })
-                                    )
-                                }
+                                onClick={() => setAreaFilter(Area.ALL)}
                             >
                                 {areaTranslations(areaFilter)}
                             </Chips.Removable>
@@ -59,11 +54,7 @@ export const OverviewFiltersSummary = ({
                         {taxonomyFilter !== ProductTaxonomy.ALL && (
                             <Chips.Removable
                                 onClick={() =>
-                                    dispatch(
-                                        setTaxonomyFilterAction({
-                                            taxonomy: ProductTaxonomy.ALL,
-                                        })
-                                    )
+                                    setTaxonomyFilter(ProductTaxonomy.ALL)
                                 }
                             >
                                 {taxonomyTranslations(taxonomyFilter)}
@@ -71,7 +62,7 @@ export const OverviewFiltersSummary = ({
                         )}
                         <Chips.Removable
                             onClick={() => {
-                                dispatch(resetOverviewFiltersAction());
+                                resetFilters();
                             }}
                         >
                             {overviewTranslations('resetFilters')}
