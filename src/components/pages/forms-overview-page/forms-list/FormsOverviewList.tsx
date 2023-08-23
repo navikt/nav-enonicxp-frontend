@@ -83,7 +83,6 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                     <li key={formDetail.anchorId}>
                         <FormsOverviewListPanel
                             formDetails={formDetail}
-                            visible={true}
                             overviewType={overviewType}
                             formNumberSelected={formNumberFromSearch}
                         />

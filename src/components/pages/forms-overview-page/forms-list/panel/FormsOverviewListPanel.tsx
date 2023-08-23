@@ -51,14 +51,12 @@ const buildSubHeader = (
 
 type Props = {
     formDetails: FormDetailsListItemProps;
-    visible: boolean;
     overviewType: OverviewType;
     formNumberSelected?: string;
 };
 
 export const FormsOverviewListPanel = ({
     formDetails,
-    visible,
     overviewType,
     formNumberSelected,
 }: Props) => {
@@ -118,7 +116,6 @@ export const FormsOverviewListPanel = ({
             header={sortTitle}
             subHeader={buildSubHeader(taxonomy, area, language)}
             illustration={illustration}
-            visible={visible}
             anchorId={anchorId}
             contentLoaderCallback={handleFormDetailsFetch}
             isLoading={isLoading}
