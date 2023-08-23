@@ -25,7 +25,11 @@ const MyPageLink = ({ link }: { link?: LinkSelectable }) => {
     const { text, url } = getSelectableLinkProps(link);
 
     return (
-        <LenkeStandalone href={url} className={style.myPage}>
+        <LenkeStandalone
+            href={url}
+            className={style.myPage}
+            withChevron={false}
+        >
             <ArrowRightIcon aria-hidden={true} className={style.arrow} />
             {text}
         </LenkeStandalone>
