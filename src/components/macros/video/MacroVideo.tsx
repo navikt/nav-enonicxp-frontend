@@ -100,10 +100,14 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
             }).on('ready', () => {
                 setIsPlayerReady(true);
                 setIsPlayerLoading(false);
-                logAmplitudeEvent(AnalyticsEvents.VIDEO_START);
+                logAmplitudeEvent(AnalyticsEvents.VIDEO_START, {
+                    'tittel': title,
+                    'varighet': duration,
+                    'språk': videoLanguage,
+                });
             });
         },
-        [widgetId, accountId, mediaId, videoLanguage]
+        [widgetId, accountId, mediaId, title, duration, videoLanguage]
     );
 
     const resetPlayerState = useCallback(() => {
