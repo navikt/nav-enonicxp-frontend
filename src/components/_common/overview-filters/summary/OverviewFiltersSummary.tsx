@@ -4,7 +4,7 @@ import {
     setAreaFilterAction,
     setTaxonomyFilterAction,
 } from 'store/slices/overviewFilters';
-import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
+import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { BodyLong, Heading, Chips } from '@navikt/ds-react';
@@ -27,7 +27,7 @@ export const OverviewFiltersSummary = ({
     const { language } = usePageConfig();
 
     const { hasDefaultFilters, dispatch, areaFilter, taxonomyFilter } =
-        useOverviewFiltersState();
+        useOverviewFilters();
 
     const overviewTranslations = translator('overview', language);
     const taxonomyTranslations = translator('taxonomies', language);

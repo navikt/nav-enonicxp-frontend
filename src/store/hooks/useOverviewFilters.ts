@@ -21,7 +21,7 @@ type FilteredListProps<ItemType extends OverviewFilterableItem> = {
     fuseOptions?: Fuse.IFuseOptions<ItemType>;
 };
 
-const getFilterListFunc = async <ItemType extends OverviewFilterableItem>({
+const _getFilteredList = async <ItemType extends OverviewFilterableItem>({
     filterableItems,
     filters,
     fuseOptions,
@@ -54,7 +54,7 @@ const getFilterListFunc = async <ItemType extends OverviewFilterableItem>({
     );
 };
 
-export const useOverviewFiltersState = () => {
+export const useOverviewFilters = () => {
     const dispatch = useAppDispatch();
 
     const filtersState = useAppSelector((state) => state.overviewFilters);
@@ -67,8 +67,10 @@ export const useOverviewFiltersState = () => {
         taxonomyFilter === overviewFiltersInitialState.taxonomyFilter;
 
     const getFilteredList = useCallback(
-        (props: FilteredListProps<any>) => {
-            return getFilterListFunc({ ...props, filters: filtersState });
+        <ItemType extends OverviewFilterableItem>(
+            props: FilteredListProps<ItemType>
+        ) => {
+            return _getFilteredList({ ...props, filters: filtersState });
         },
         [filtersState]
     );

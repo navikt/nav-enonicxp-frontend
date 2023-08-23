@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/forms-list/panel/FormsOverviewListPanel';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
-import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
+import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
 
 import style from './FormsOverviewList.module.scss';
@@ -29,7 +29,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
 
     const [filteredList, setFilteredList] = useState(formDetailsList);
 
-    const { textFilter, getFilteredList } = useOverviewFiltersState();
+    const { textFilter, getFilteredList } = useOverviewFilters();
 
     const formNumberFromSearch = getExactFormNumberIfFormSearch(textFilter);
 
@@ -61,12 +61,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
         }).then((result) => {
             setFilteredList(result);
         });
-    }, [
-        getFilteredList,
-        formDetailsList,
-        getFilteredList,
-        formNumberFromSearch,
-    ]);
+    }, [getFilteredList, formDetailsList, formNumberFromSearch]);
 
     return (
         <div>

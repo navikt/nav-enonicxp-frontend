@@ -4,7 +4,7 @@ import { OverviewTaxonomyFilter } from 'components/_common/overview-filters/taxo
 import { OverviewTextFilter } from 'components/_common/overview-filters/text-filter/OverviewTextFilter';
 import {
     OverviewFilterableItem,
-    useOverviewFiltersState,
+    useOverviewFilters,
 } from 'store/hooks/useOverviewFilters';
 import { resetOverviewFiltersAction } from 'store/slices/overviewFilters';
 import { classNames } from 'utils/classnames';
@@ -119,7 +119,7 @@ type Props = {
 
 export const OverviewFilters = (props: Props) => {
     const { showTextInputFilter, showAreaFilter, showTaxonomyFilter } = props;
-    const { dispatch } = useOverviewFiltersState();
+    const { dispatch } = useOverviewFilters();
 
     useEffect(() => {
         // Reset filters when the component dismounts

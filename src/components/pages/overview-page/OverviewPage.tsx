@@ -8,7 +8,7 @@ import { OverviewFilters } from 'components/_common/overview-filters/OverviewFil
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
 import { ProductLink } from 'components/pages/overview-page/product-elements/ProductLink';
 import { ProductDetailsPanel } from 'components/pages/overview-page/product-elements/ProductDetailsPanel';
-import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
+import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 
 import style from './OverviewPage.module.scss';
 
@@ -20,7 +20,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
 
     console.log('overview render');
 
-    const { getFilteredList } = useOverviewFiltersState();
+    const { getFilteredList } = useOverviewFilters();
 
     const isAllProductsOverview = overviewType === 'all_products';
 
@@ -69,25 +69,20 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         isAllProductsOverview && style.allProducts
                     )}
                 >
-                    {filteredList.map((product) => {
-                        return (
-                            <li key={`${product._id}-${language}`}>
-                                {isAllProductsOverview ? (
-                                    <ProductLink
-                                        product={product}
-                                        visible={true}
-                                    />
-                                ) : (
-                                    <ProductDetailsPanel
-                                        productDetails={product}
-                                        pageProps={props}
-                                        visible={true}
-                                        detailType={overviewType}
-                                    />
-                                )}
-                            </li>
-                        );
-                    })}
+                    {filteredList.map((product) => (
+                        <li key={`${product._id}-${language}`}>
+                            {isAllProductsOverview ? (
+                                <ProductLink product={product} visible={true} />
+                            ) : (
+                                <ProductDetailsPanel
+                                    productDetails={product}
+                                    pageProps={props}
+                                    visible={true}
+                                    detailType={overviewType}
+                                />
+                            )}
+                        </li>
+                    ))}
                 </ul>
             </div>
         </div>

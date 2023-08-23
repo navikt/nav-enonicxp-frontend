@@ -3,7 +3,7 @@ import { Search } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
+import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { setTextFilterAction } from 'store/slices/overviewFilters';
 import * as Sentry from '@sentry/react';
 import { windowScrollTo } from 'utils/scroll-to';
@@ -17,7 +17,7 @@ type Props = {
 };
 
 export const OverviewTextFilter = ({ hideLabel }: Props) => {
-    const { dispatch } = useOverviewFiltersState();
+    const { dispatch } = useOverviewFilters();
     const { language } = usePageConfig();
     const inputId = useId();
 

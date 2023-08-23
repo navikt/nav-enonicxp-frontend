@@ -4,7 +4,7 @@ import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { OverviewFilterBase } from 'components/_common/overview-filters/filter-base/OverviewFilterBase';
 import {
     OverviewFilterableItem,
-    useOverviewFiltersState,
+    useOverviewFilters,
 } from 'store/hooks/useOverviewFilters';
 import { setAreaFilterAction } from 'store/slices/overviewFilters';
 import { sortLikeArray } from 'utils/arrays';
@@ -27,7 +27,7 @@ type Props = {
 };
 
 export const OverviewAreaFilter = ({ items }: Props) => {
-    const { dispatch, areaFilter } = useOverviewFiltersState();
+    const { dispatch, areaFilter } = useOverviewFilters();
 
     const handleFilterUpdate = (area: Area) => {
         logAmplitudeEvent(AnalyticsEvents.FILTER, {
