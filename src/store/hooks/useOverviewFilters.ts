@@ -43,15 +43,15 @@ const _getFilteredList = async <ItemType extends OverviewFilterableItem>({
         (taxonomyFilter === ProductTaxonomy.OTHER &&
             item.type === 'no.nav.navno:guide-page');
 
-    const itemsMatchingTagFilters = filterableItems.filter(
+    const itemsMatchingToggleFilters = filterableItems.filter(
         (item: ItemType) => isAreaMatching(item) && isTaxonomyMatching(item)
     );
 
     if (!textFilter || !fuseOptions) {
-        return itemsMatchingTagFilters;
+        return itemsMatchingToggleFilters;
     }
 
-    return getFuseSearchFunc(itemsMatchingTagFilters, fuseOptions).then(
+    return getFuseSearchFunc(itemsMatchingToggleFilters, fuseOptions).then(
         (fuseSearchFunc) => {
             return fuseSearchFunc(textFilter);
         }
