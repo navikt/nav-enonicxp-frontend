@@ -3,14 +3,12 @@ import { OverviewPageProps } from 'types/content-props/dynamic-page-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
-import { SimplifiedProductData } from 'types/component-props/_mixins';
 import { classNames } from 'utils/classnames';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
-import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
 import { ProductLink } from 'components/pages/overview-page/product-elements/ProductLink';
 import { ProductDetailsPanel } from 'components/pages/overview-page/product-elements/ProductDetailsPanel';
-import { getFuseSearchFunc } from 'utils/text-search-utils';
+import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 
 import style from './OverviewPage.module.scss';
 
@@ -18,35 +16,29 @@ export const OverviewPage = (props: OverviewPageProps) => {
     const { productList, overviewType } = props.data;
     const { language } = usePageConfig();
 
-    const { matchFilters, textFilter } = useOverviewFiltersState();
+    const [filteredList, setFilteredList] = useState(productList);
 
-    const [scoredList, setScoredList] =
-        useState<SimplifiedProductData[]>(productList);
+    console.log('overview render');
 
-    const isVisible = (product: SimplifiedProductData) => matchFilters(product);
-
-    const numVisibleProducts = productList.filter(isVisible).length;
+    const { getFilteredList } = useOverviewFiltersState();
 
     const isAllProductsOverview = overviewType === 'all_products';
 
     useEffect(() => {
-        if (!textFilter) {
-            setScoredList(productList);
-            return;
-        }
-
-        getFuseSearchFunc(productList, {
-            keys: [
-                { name: 'sortTitle', weight: 10 },
-                { name: 'keywords', weight: 2 },
-                { name: 'ingress', weight: 1 },
-                { name: 'title', weight: 1 },
-            ],
-        }).then((fuseSearchFunc) => {
-            const result = fuseSearchFunc(textFilter);
-            setScoredList(result);
+        getFilteredList({
+            filterableItems: productList,
+            fuseOptions: {
+                keys: [
+                    { name: 'sortTitle', weight: 10 },
+                    { name: 'keywords', weight: 2 },
+                    { name: 'ingress', weight: 1 },
+                    { name: 'title', weight: 1 },
+                ],
+            },
+        }).then((result) => {
+            setFilteredList(result);
         });
-    }, [productList, textFilter]);
+    }, [getFilteredList, productList]);
 
     return (
         <div className={style.overviewPage}>
@@ -66,9 +58,9 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         showTextInputFilter={true}
                     />
                     <OverviewFiltersSummary
-                        numMatches={numVisibleProducts}
+                        numMatches={filteredList.length}
                         numTotal={productList.length}
-                        showResetChips={isAllProductsOverview}
+                        showResetChips={true}
                     />
                 </div>
                 <ul
@@ -77,21 +69,19 @@ export const OverviewPage = (props: OverviewPageProps) => {
                         isAllProductsOverview && style.allProducts
                     )}
                 >
-                    {scoredList.map((product) => {
-                        const visible = isVisible(product);
-
+                    {filteredList.map((product) => {
                         return (
                             <li key={`${product._id}-${language}`}>
                                 {isAllProductsOverview ? (
                                     <ProductLink
                                         product={product}
-                                        visible={visible}
+                                        visible={true}
                                     />
                                 ) : (
                                     <ProductDetailsPanel
                                         productDetails={product}
                                         pageProps={props}
-                                        visible={visible}
+                                        visible={true}
                                         detailType={overviewType}
                                     />
                                 )}

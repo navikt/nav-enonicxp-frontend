@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {
-    FormDetailsListItemProps,
-    FormsOverviewProps,
-} from 'types/content-props/forms-overview';
+import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import { FormsOverviewListPanel } from 'components/pages/forms-overview-page/forms-list/panel/FormsOverviewListPanel';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
-import { getFuseSearchFunc } from 'utils/text-search-utils';
-import type Fuse from 'fuse.js';
 
 import style from './FormsOverviewList.module.scss';
 
@@ -32,26 +27,22 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
         overviewType,
     } = props.data;
 
-    const { matchFilters, textFilter } = useOverviewFiltersState();
+    const [filteredList, setFilteredList] = useState(formDetailsList);
+
+    const { textFilter, getFilteredList } = useOverviewFiltersState();
 
     const formNumberFromSearch = getExactFormNumberIfFormSearch(textFilter);
 
-    const [scoredList, setScoredList] =
-        useState<FormDetailsListItemProps[]>(formDetailsList);
-
-    const isVisible = (formDetail: FormDetailsListItemProps) => {
-        return matchFilters(formDetail);
-    };
+    const numFilterTypes = [
+        areasFilterToggle,
+        taxonomyFilterToggle,
+        textFilterToggle,
+    ].filter(Boolean).length;
 
     useEffect(() => {
-        if (!textFilter) {
-            setScoredList(formDetailsList);
-            return;
-        }
-
-        // Form number search should only return exact matches
-        const fuseOptions: Fuse.IFuseOptions<FormDetailsListItemProps> =
-            formNumberFromSearch
+        getFilteredList({
+            filterableItems: formDetailsList,
+            fuseOptions: formNumberFromSearch
                 ? {
                       keys: ['formNumbers'],
                       threshold: 0,
@@ -66,23 +57,16 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                           { name: 'title', weight: 1 },
                           { name: 'formNumbers', weight: 1 },
                       ],
-                  };
-
-        getFuseSearchFunc(formDetailsList, fuseOptions).then(
-            (fuseSearchFunc) => {
-                const result = fuseSearchFunc(
-                    formNumberFromSearch || textFilter
-                );
-                setScoredList(result);
-            }
-        );
-    }, [formDetailsList, textFilter]);
-
-    const numFilterTypes = [
-        areasFilterToggle,
-        taxonomyFilterToggle,
-        textFilterToggle,
-    ].filter(Boolean).length;
+                  },
+        }).then((result) => {
+            setFilteredList(result);
+        });
+    }, [
+        getFilteredList,
+        formDetailsList,
+        getFilteredList,
+        formNumberFromSearch,
+    ]);
 
     return (
         <div>
@@ -94,17 +78,17 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
             />
             {numFilterTypes > 0 && (
                 <OverviewFiltersSummary
-                    numMatches={scoredList.filter(isVisible).length}
+                    numMatches={filteredList.length}
                     numTotal={formDetailsList.length}
                     showResetChips={numFilterTypes > 1}
                 />
             )}
             <ul className={style.list}>
-                {scoredList.map((formDetail) => (
+                {filteredList.map((formDetail) => (
                     <li key={formDetail.anchorId}>
                         <FormsOverviewListPanel
                             formDetails={formDetail}
-                            visible={isVisible(formDetail)}
+                            visible={true}
                             overviewType={overviewType}
                             formNumberSelected={formNumberFromSearch}
                         />
