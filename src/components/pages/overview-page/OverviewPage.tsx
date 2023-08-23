@@ -18,8 +18,6 @@ export const OverviewPage = (props: OverviewPageProps) => {
 
     const [filteredList, setFilteredList] = useState(productList);
 
-    console.log('overview render');
-
     const { getFilteredList } = useOverviewFilters();
 
     const isAllProductsOverview = overviewType === 'all_products';

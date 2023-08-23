@@ -39,17 +39,17 @@ const _getFilteredList = async <ItemType extends OverviewFilterableItem>({
         (taxonomyFilter === ProductTaxonomy.OTHER &&
             item.type === 'no.nav.navno:guide-page');
 
-    const matchFilters = (item: ItemType) =>
-        isAreaMatching(item) && isTaxonomyMatching(item);
+    const itemsMatchingTagFilters = filterableItems.filter(
+        (item: ItemType) => isAreaMatching(item) && isTaxonomyMatching(item)
+    );
 
     if (!textFilter || !fuseOptions) {
-        return filterableItems.filter(matchFilters);
+        return itemsMatchingTagFilters;
     }
 
-    return getFuseSearchFunc(filterableItems, fuseOptions).then(
+    return getFuseSearchFunc(itemsMatchingTagFilters, fuseOptions).then(
         (fuseSearchFunc) => {
-            const result = fuseSearchFunc(textFilter);
-            return result.filter(matchFilters);
+            return fuseSearchFunc(textFilter);
         }
     );
 };
