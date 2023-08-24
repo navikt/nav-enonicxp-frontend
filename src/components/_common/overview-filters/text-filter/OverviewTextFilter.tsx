@@ -3,8 +3,7 @@ import { Search } from '@navikt/ds-react';
 import debounce from 'lodash.debounce';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { useOverviewFiltersState } from 'store/hooks/useOverviewFilters';
-import { setTextFilterAction } from 'store/slices/overviewFilters';
+import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import * as Sentry from '@sentry/react';
 import { windowScrollTo } from 'utils/scroll-to';
 
@@ -17,7 +16,7 @@ type Props = {
 };
 
 export const OverviewTextFilter = ({ hideLabel }: Props) => {
-    const { dispatch } = useOverviewFiltersState();
+    const { setTextFilter } = useOverviewFilters();
     const { language } = usePageConfig();
     const inputId = useId();
 
@@ -26,14 +25,14 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const dispatchInput = useCallback(
         debounce((value: string) => {
-            dispatch(setTextFilterAction({ text: value }));
+            setTextFilter(value);
             window.dispatchEvent(
                 new CustomEvent(OVERVIEW_FILTERS_TEXT_INPUT_EVENT, {
                     detail: { value, id: inputId },
                 })
             );
         }, 500),
-        [dispatch]
+        [setTextFilter]
     );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

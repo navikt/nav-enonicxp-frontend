@@ -4,9 +4,8 @@ import { OverviewTaxonomyFilter } from 'components/_common/overview-filters/taxo
 import { OverviewTextFilter } from 'components/_common/overview-filters/text-filter/OverviewTextFilter';
 import {
     OverviewFilterableItem,
-    useOverviewFiltersState,
+    useOverviewFilters,
 } from 'store/hooks/useOverviewFilters';
-import { resetOverviewFiltersAction } from 'store/slices/overviewFilters';
 import { classNames } from 'utils/classnames';
 import { FunnelIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
@@ -119,14 +118,14 @@ type Props = {
 
 export const OverviewFilters = (props: Props) => {
     const { showTextInputFilter, showAreaFilter, showTaxonomyFilter } = props;
-    const { dispatch } = useOverviewFiltersState();
+    const { resetFilters } = useOverviewFilters();
 
     useEffect(() => {
         // Reset filters when the component dismounts
         return () => {
-            dispatch(resetOverviewFiltersAction());
+            resetFilters();
         };
-    }, [dispatch]);
+    }, [resetFilters]);
 
     if (!showAreaFilter && !showTaxonomyFilter && !showTextInputFilter) {
         return null;
