@@ -22,17 +22,21 @@ export type OverviewFilterableItem = {
 
 type FilteredListProps<ItemType extends OverviewFilterableItem> = {
     filterableItems: ItemType[];
+    textFilterOverride?: string;
     fuseOptions?: Fuse.IFuseOptions<ItemType>;
 };
 
 const _getFilteredList = async <ItemType extends OverviewFilterableItem>({
     filterableItems,
-    filters,
+    textFilterOverride,
     fuseOptions,
+    filters,
 }: FilteredListProps<ItemType> & {
     filters: OverviewFiltersState;
 }) => {
     const { textFilter, areaFilter, taxonomyFilter } = filters;
+
+    const textFilterActual = textFilterOverride || textFilter;
 
     const isAreaMatching = (item: ItemType) =>
         areaFilter === Area.ALL || item.area.includes(areaFilter);
@@ -47,13 +51,13 @@ const _getFilteredList = async <ItemType extends OverviewFilterableItem>({
         (item: ItemType) => isAreaMatching(item) && isTaxonomyMatching(item)
     );
 
-    if (!textFilter || !fuseOptions) {
+    if (!textFilterActual || !fuseOptions) {
         return itemsMatchingToggleFilters;
     }
 
     return getFuseSearchFunc(itemsMatchingToggleFilters, fuseOptions).then(
         (fuseSearchFunc) => {
-            return fuseSearchFunc(textFilter);
+            return fuseSearchFunc(textFilterActual);
         }
     );
 };

@@ -42,6 +42,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
     useEffect(() => {
         getFilteredList({
             filterableItems: formDetailsList,
+            textFilterOverride: formNumberFromSearch,
             fuseOptions: formNumberFromSearch
                 ? {
                       keys: ['formNumbers'],
