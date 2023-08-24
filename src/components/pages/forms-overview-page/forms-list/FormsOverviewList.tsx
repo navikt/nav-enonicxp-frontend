@@ -42,9 +42,9 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
     useEffect(() => {
         getFilteredList({
             filterableItems: formDetailsList,
-            textFilterOverride: formNumberFromSearch,
             // If the text filter input was formatted like a form number
             // we only want to search for this exact form number
+            textFilterOverride: formNumberFromSearch,
             fuseOptions: formNumberFromSearch
                 ? {
                       keys: ['formNumbers'],
