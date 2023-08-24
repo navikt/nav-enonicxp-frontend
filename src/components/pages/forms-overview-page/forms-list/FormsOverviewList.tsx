@@ -65,7 +65,7 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
     }, [getFilteredList, formDetailsList, formNumberFromSearch]);
 
     return (
-        <div>
+        <>
             <OverviewFilters
                 filterableItems={formDetailsList}
                 showTaxonomyFilter={taxonomyFilterToggle}
@@ -90,6 +90,6 @@ export const FormsOverviewList = (props: FormsOverviewProps) => {
                     </li>
                 ))}
             </ul>
-        </div>
+        </>
     );
 };
