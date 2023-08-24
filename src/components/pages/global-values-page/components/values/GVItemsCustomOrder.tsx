@@ -11,7 +11,7 @@ import styleCommon from './GVItems.module.scss';
 import styleCustomOrder from './GVItemsCustomOrder.module.scss';
 
 export const GVItemsCustomOrder = () => {
-    const { valueItems, setValueItems, contentId, setMessages } =
+    const { valueItems, setValueItems, contentId, setMessages, editorEnabled } =
         useGvEditorState();
 
     const reorderItems = ({ oldIndex, newIndex }: OnChangeMeta) => {
@@ -59,7 +59,10 @@ export const GVItemsCustomOrder = () => {
                     >
                         <span
                             data-movable-handle={true}
-                            className={styleCustomOrder.itemDragHandle}
+                            className={classNames(
+                                styleCustomOrder.itemDragHandle,
+                                !editorEnabled && styleCustomOrder.hidden
+                            )}
                         >
                             <ChevronUpIcon />
                             <ChevronDownIcon />

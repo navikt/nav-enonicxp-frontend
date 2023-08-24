@@ -5,6 +5,7 @@ import { GVMessages } from './components/messages/GVMessages';
 import { GVAddItem } from './components/values/add-item/GVAddItem';
 import {
     setContentIdAction,
+    setEditorEnabledAction,
     setValueItemsAction,
 } from 'store/slices/gvEditorState';
 import { store } from 'store/store';
@@ -24,7 +25,7 @@ const isElement = (node: Node): node is Element & ElementCSSInlineStyle =>
     node.nodeType === node.ELEMENT_NODE;
 
 const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
-    const { valueItems } = useGvEditorState();
+    const { valueItems, editorEnabled } = useGvEditorState();
     const [listOrder, setListOrder] = useState<ListOrder>('custom');
 
     useEffect(() => {
@@ -59,7 +60,7 @@ const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
                 />
             </Head>
             <div className={style.headerRow}>
-                <Heading level="1" size="large">
+                <Heading level={'1'} size={'large'}>
                     {type === ContentType.GlobalCaseTimeSet
                         ? 'Saksbehandlingstider'
                         : 'Globale verdier'}
@@ -84,19 +85,28 @@ const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
                     <option value={'sorted'}>{'Alfabetisk'}</option>
                 </Select>
             </div>
+            {!editorEnabled && (
+                <Heading level={'2'} size={'medium'}>
+                    {
+                        'Kan bare redigeres i default-layeret - skal ikke lokaliseres!'
+                    }
+                </Heading>
+            )}
             <div className={style.content}>
                 <div className={style.leftCol}>
                     <div className={style.subHeaderRow}>
                         <Heading level="2" size="medium">
                             {displayName}
                         </Heading>
-                        <GVAddItem
-                            type={
-                                type === ContentType.GlobalCaseTimeSet
-                                    ? 'caseTime'
-                                    : 'numberValue'
-                            }
-                        />
+                        {editorEnabled && (
+                            <GVAddItem
+                                type={
+                                    type === ContentType.GlobalCaseTimeSet
+                                        ? 'caseTime'
+                                        : 'numberValue'
+                                }
+                            />
+                        )}
                     </div>
                     {listOrder === 'sorted' || valueItems.length < 2 ? (
                         <GVItemsSorted />
@@ -111,33 +121,12 @@ const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
 };
 
 export const GlobalValuesPage = (props: GlobalValuesProps) => {
-    const { layerLocale, type } = props;
-    const { defaultLocale } = Config.vars;
-
-    if (layerLocale !== defaultLocale) {
-        return (
-            <div className={style.globalValuesPage}>
-                <Head>
-                    <meta
-                        name={DocumentParameter.DecoratorDisabled}
-                        content={'true'}
-                    />
-                </Head>
-                <div className={style.headerRow}>
-                    <Heading level="1" size="large">
-                        {type === ContentType.GlobalCaseTimeSet
-                            ? 'Saksbehandlingstider'
-                            : 'Globale verdier'}
-                        {' kan bare redigeres i default layeret'}
-                    </Heading>
-                </div>
-            </div>
-        );
-    }
-
     store.dispatch(setContentIdAction({ contentId: props._id }));
     store.dispatch(
         setValueItemsAction({ valueItems: props.data?.valueItems || [] })
+    );
+    store.dispatch(
+        setEditorEnabledAction(props.layerLocale === Config.vars.defaultLocale)
     );
 
     return <GlobalValuesDisplay {...props} />;
