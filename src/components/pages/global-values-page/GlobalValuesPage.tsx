@@ -88,7 +88,7 @@ const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
             {!editorEnabled && (
                 <Heading level={'2'} size={'medium'}>
                     {
-                        'Kan bare redigeres i default-layeret - skal ikke lokaliseres!'
+                        'Kan bare redigeres i "topp-laget" - skal ikke lokaliseres!'
                     }
                 </Heading>
             )}
