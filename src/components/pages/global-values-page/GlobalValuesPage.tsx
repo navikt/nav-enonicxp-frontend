@@ -14,6 +14,7 @@ import { useGvEditorState } from 'store/hooks/useGvEditorState';
 import { ContentType } from 'types/content-props/_content-common';
 import Head from 'next/head';
 import { DocumentParameter } from '../../_common/metatags/DocumentParameterMetatags';
+import Config from 'config';
 
 import style from './GlobalValuesPage.module.scss';
 
@@ -110,6 +111,30 @@ const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
 };
 
 export const GlobalValuesPage = (props: GlobalValuesProps) => {
+    const { layerLocale, type } = props;
+    const { defaultLocale } = Config.vars;
+
+    if (layerLocale !== defaultLocale) {
+        return (
+            <div className={style.globalValuesPage}>
+                <Head>
+                    <meta
+                        name={DocumentParameter.DecoratorDisabled}
+                        content={'true'}
+                    />
+                </Head>
+                <div className={style.headerRow}>
+                    <Heading level="1" size="large">
+                        {type === ContentType.GlobalCaseTimeSet
+                            ? 'Saksbehandlingstider'
+                            : 'Globale verdier'}
+                        {' kan bare redigeres i default layeret'}
+                    </Heading>
+                </div>
+            </div>
+        );
+    }
+
     store.dispatch(setContentIdAction({ contentId: props._id }));
     store.dispatch(
         setValueItemsAction({ valueItems: props.data?.valueItems || [] })
