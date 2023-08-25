@@ -10,7 +10,7 @@ const isNavIp = (ip: string) => /^(::ffff:)?(155\.55\.|10\.|127\.)/.test(ip);
 
 // Applies certain restrictions for the app in dev environments. This is not intended
 // as a security measure, but rather to ensure (to some degree) that the public does
-// not accidentally end up in our (possibly confusing!) dev environments
+// not accidentally end up in our dev environments
 export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
     const nextRequestHandler = nextApp.getRequestHandler();
 
@@ -47,8 +47,10 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
         return res
             .status(401)
             .send(
-                'Hei! Dette er et internt testmiljø som benyttes for å teste ny funksjonalitet for NAVs nettsider. Besøk www.nav.no for å komme til NAVs offentlige nettsider.\n\n' +
-                    'Dersom du ønsker tilgang til testmiljøet, besøk www.ekstern.dev.nav.no/login for å få tilgang i 24 timer. Obs: Sidene i testmiljøet kan være uferdige eller inneholde feil!'
+                'Hei! Dette er et internt testmiljø som benyttes for å teste ny funksjonalitet for NAVs nettsider. ' +
+                    'Besøk <a href="https://www.nav.no">www.nav.no</a> for å komme til NAVs offentlige nettsted.<br/><br/>' +
+                    'Dersom du ønsker tilgang til testmiljøet, besøk www.ekstern.dev.nav.no/login for å få tilgang i 24 timer. ' +
+                    'Obs: Sidene i testmiljøet kan være uferdige eller inneholde feil!'
             );
     });
 };
