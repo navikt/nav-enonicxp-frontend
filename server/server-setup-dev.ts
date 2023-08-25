@@ -44,6 +44,11 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
             `Non-authorized client ips: ${req.ip} ${JSON.stringify(req.ips)}`
         );
 
-        return res.status(401).send('Ingen tilgang');
+        return res
+            .status(401)
+            .send(
+                'Hei! Dette er et internt testmiljø som benyttes for å teste ny funksjonalitet for NAVs nettsider. Besøk www.nav.no for å komme til NAVs offentlige nettsider.\n\n' +
+                    'Dersom du ønsker tilgang til testmiljøet, besøk www.ekstern.dev.nav.no/login for å få tilgang i 24 timer. Obs: Sidene i testmiljøet kan være uferdige eller inneholde feil!'
+            );
     });
 };
