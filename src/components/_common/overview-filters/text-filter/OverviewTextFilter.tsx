@@ -34,9 +34,22 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
         [setTextFilter]
     );
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const logInputToFaro = useCallback(
+        debounce((value: string) => {
+            if (value.length < 3) {
+                return;
+            }
+
+            console.info(`Oversiktsside fritekst input: "${value}"`);
+        }, 3000),
+        []
+    );
+
     const handleUserInput = (inputValue: string) => {
         setTextInput(inputValue);
         dispatchInput(inputValue);
+        logInputToFaro(inputValue);
     };
 
     useEffect(() => {
