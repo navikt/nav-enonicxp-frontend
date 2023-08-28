@@ -4,7 +4,8 @@ const vars = {
     mobileBreakpointPx: 768,
     dekoratorenHeight: 104,
     hovedNummer: '55553333',
-};
+    defaultLocale: 'no',
+} as const;
 
 const urls = {
     prodOrigin: 'https://www.nav.no',
@@ -17,11 +18,11 @@ const urls = {
     kontaktHjelpemiddelSentral:
         '/no/person/hjelpemidler/hjelpemidler-og-tilrettelegging/kontakt-nav-hjelpemiddelsentral',
     hovedNummerTlf: `tel:+47${vars.hovedNummer}`,
-};
+} as const;
 
 const Config = {
     vars,
     urls,
-};
+} as const;
 
 export default Config;

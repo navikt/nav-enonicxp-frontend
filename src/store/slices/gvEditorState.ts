@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { GlobalValueItem } from '../../types/content-props/global-values-props';
-import { GVMessageProps } from '../../components/pages/global-values-page/components/messages/GVMessages';
+import { GlobalValueItem } from 'types/content-props/global-values-props';
+import { GVMessageProps } from 'components/pages/global-values-page/components/messages/GVMessages';
 
 export type GvEditorState = {
     contentId: string;
     valueItems: GlobalValueItem[];
     messages: GVMessageProps[];
     itemsEditState: { [key: string]: boolean };
+    editorEnabled: boolean;
 };
 
 export type GvItemsPayload = Pick<GvEditorState, 'valueItems'>;
@@ -22,6 +23,7 @@ const initialState: GvEditorState = {
     valueItems: [],
     messages: [],
     itemsEditState: {},
+    editorEnabled: true,
 };
 
 export const gvEditorStateSlice = createSlice({
@@ -44,6 +46,9 @@ export const gvEditorStateSlice = createSlice({
             state.itemsEditState[action.payload.key] =
                 action.payload.isEditMode;
         },
+        setEditorEnabled: (state, action: PayloadAction<boolean>) => {
+            state.editorEnabled = action.payload;
+        },
     },
 });
 
@@ -52,6 +57,7 @@ export const {
     setContentId: setContentIdAction,
     setMessages: setMessagesAction,
     setItemEditState: setItemEditStateAction,
+    setEditorEnabled: setEditorEnabledAction,
 } = gvEditorStateSlice.actions;
 
 export default gvEditorStateSlice.reducer;

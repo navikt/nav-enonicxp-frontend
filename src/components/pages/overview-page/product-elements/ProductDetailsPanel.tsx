@@ -13,14 +13,12 @@ type Props = {
     detailType: ProductDetailType;
     pageProps: ContentProps;
     productDetails: SimplifiedProductData;
-    visible: boolean;
 };
 
 export const ProductDetailsPanel = ({
     detailType,
     pageProps,
     productDetails,
-    visible,
 }: Props) => {
     const { productDetailsPath, anchorId, illustration, sortTitle } =
         productDetails;
@@ -64,7 +62,6 @@ export const ProductDetailsPanel = ({
         <ProductPanelExpandable
             header={sortTitle}
             illustration={illustration}
-            visible={visible}
             anchorId={anchorId}
             contentLoaderCallback={handleProductDetailsFetch}
             error={error}
