@@ -31,7 +31,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 })
             );
         }, 500),
-        [dispatch]
+        [setTextFilter]
     );
 
     const handleUserInput = (inputValue: string) => {
