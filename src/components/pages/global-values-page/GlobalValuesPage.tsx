@@ -16,6 +16,7 @@ import { ContentType } from 'types/content-props/_content-common';
 import Head from 'next/head';
 import { DocumentParameter } from '../../_common/metatags/DocumentParameterMetatags';
 import Config from 'config';
+import { LayersEditorWarning } from 'components/_editor-only/layers-editor-warning/LayersEditorWarning';
 
 import style from './GlobalValuesPage.module.scss';
 
@@ -85,13 +86,7 @@ const GlobalValuesDisplay = ({ displayName, type }: GlobalValuesProps) => {
                     <option value={'sorted'}>{'Alfabetisk'}</option>
                 </Select>
             </div>
-            {!editorEnabled && (
-                <Heading level={'2'} size={'medium'}>
-                    {
-                        'Kan bare redigeres i "topp-laget" - skal ikke lokaliseres!'
-                    }
-                </Heading>
-            )}
+            {!editorEnabled && <LayersEditorWarning />}
             <div className={style.content}>
                 <div className={style.leftCol}>
                     <div className={style.subHeaderRow}>
