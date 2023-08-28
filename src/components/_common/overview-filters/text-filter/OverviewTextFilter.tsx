@@ -5,6 +5,7 @@ import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { windowScrollTo } from 'utils/scroll-to';
+import { faro } from '@grafana/faro-web-sdk';
 
 import style from './OverviewTextFilter.module.scss';
 
@@ -40,8 +41,11 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
             if (value.length < 3) {
                 return;
             }
-
-            console.info(`Oversiktsside fritekst input: "${value}"`);
+            faro.api.pushEvent(
+                'user searched overview-page',
+                { search: value },
+                'overview-page'
+            );
         }, 3000),
         []
     );
