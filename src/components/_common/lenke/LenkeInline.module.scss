@@ -1,5 +1,5 @@
 @use 'src/common' as common;
 
 .lenkeInline {
-    @include common.link-border-bottom-mixin();
+    @include common.link-underline-mixin();
 }

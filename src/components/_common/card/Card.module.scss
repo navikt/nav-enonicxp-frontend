@@ -18,7 +18,7 @@
     }
     //TODO: Find a better way? (can't specify classes in Card Size modules here or vice versa)
     * {
-        text-decoration: none;
+        text-decoration-line: none;
         color: var(--a-gray-900) !important;
     }
 }
@@ -27,7 +27,7 @@
     display: block;
     margin-bottom: var(--a-spacing-7);
     outline: 0;
-    text-decoration: none;
+    text-decoration-line: none;
     width: 100%;
     cursor: pointer;
 
@@ -36,7 +36,7 @@
         width: auto;
         padding: 0.4025rem 0;
         margin: 0;
-        text-decoration: none;
+        text-decoration-line: none;
     }
 
     .bed {

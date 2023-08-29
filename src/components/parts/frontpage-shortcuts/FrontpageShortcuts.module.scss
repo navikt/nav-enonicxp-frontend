@@ -2,24 +2,28 @@
 
 .shortcuts {
     @include common.full-width-mixin();
-
-    @media #{common.$mq-screen-mobile} {
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
-    }
 }
 
 .person {
     padding-top: 2.75rem;
-    padding-bottom: 4rem;
+    padding-bottom: 2.75rem;
     background-color: var(--bg-color, var(--a-red-50));
 }
 
 .employer {
     padding-top: 2.75rem;
-    padding-bottom: 2rem;
+    padding-bottom: 2.75rem;
     margin-bottom: -2rem !important; // Can't find a way to override the margin-bottom from the parent
     background-color: var(--bg-color, var(--a-deepblue-100));
+}
+
+@media #{common.$mq-screen-mobile} {
+    .shortcuts,
+    .person,
+    .employer {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
 }
 
 .header {

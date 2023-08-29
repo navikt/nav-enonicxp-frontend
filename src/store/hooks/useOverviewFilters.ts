@@ -1,59 +1,118 @@
+import { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../store';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
-import { overviewFiltersInitialState } from 'store/slices/overviewFilters';
+import {
+    overviewFiltersInitialState,
+    OverviewFiltersState,
+    resetOverviewFiltersAction,
+    setAreaFilterAction,
+    setTaxonomyFilterAction,
+    setTextFilterAction,
+} from 'store/slices/overviewFilters';
 import { ContentType } from 'types/content-props/_content-common';
+import { getFuseSearchFunc } from 'utils/text-search-utils';
+import type Fuse from 'fuse.js';
 
 export type OverviewFilterableItem = {
     area: Area[];
     taxonomy: ProductTaxonomy[];
     type?: ContentType;
-    textMatchFunc?: (textFilter: string) => boolean;
 };
 
-export const useOverviewFiltersState = () => {
+type FilteredListProps<ItemType extends OverviewFilterableItem> = {
+    filterableItems: ItemType[];
+    textFilterOverride?: string;
+    fuseOptions?: Fuse.IFuseOptions<ItemType>;
+};
+
+const _getFilteredList = async <ItemType extends OverviewFilterableItem>({
+    filterableItems,
+    textFilterOverride,
+    fuseOptions,
+    filters,
+}: FilteredListProps<ItemType> & {
+    filters: OverviewFiltersState;
+}) => {
+    const { textFilter, areaFilter, taxonomyFilter } = filters;
+
+    const textFilterActual = textFilterOverride || textFilter;
+
+    const isAreaMatching = (item: ItemType) =>
+        areaFilter === Area.ALL || item.area.includes(areaFilter);
+
+    const isTaxonomyMatching = (item: ItemType) =>
+        taxonomyFilter === ProductTaxonomy.ALL ||
+        item.taxonomy.includes(taxonomyFilter) ||
+        (taxonomyFilter === ProductTaxonomy.OTHER &&
+            item.type === 'no.nav.navno:guide-page');
+
+    const itemsMatchingToggleFilters = filterableItems.filter(
+        (item: ItemType) => isAreaMatching(item) && isTaxonomyMatching(item)
+    );
+
+    if (!textFilterActual || !fuseOptions) {
+        return itemsMatchingToggleFilters;
+    }
+
+    return getFuseSearchFunc(itemsMatchingToggleFilters, fuseOptions).then(
+        (fuseSearchFunc) => {
+            return fuseSearchFunc(textFilterActual);
+        }
+    );
+};
+
+export const useOverviewFilters = () => {
     const dispatch = useAppDispatch();
 
-    const { textFilter, areaFilter, taxonomyFilter } = useAppSelector(
-        (state) => state.overviewFilters
-    );
+    const filtersState = useAppSelector((state) => state.overviewFilters);
+
+    const { textFilter, areaFilter, taxonomyFilter } = filtersState;
 
     const hasDefaultFilters =
         textFilter === overviewFiltersInitialState.textFilter &&
         areaFilter === overviewFiltersInitialState.areaFilter &&
         taxonomyFilter === overviewFiltersInitialState.taxonomyFilter;
 
-    const matchFilters = (filterableContent: OverviewFilterableItem) => {
-        const isAreaMatching =
-            areaFilter === Area.ALL ||
-            filterableContent.area.includes(areaFilter);
-        if (!isAreaMatching) {
-            return false;
-        }
+    const getFilteredList = useCallback(
+        <ItemType extends OverviewFilterableItem>(
+            props: FilteredListProps<ItemType>
+        ) => {
+            return _getFilteredList({ ...props, filters: filtersState });
+        },
+        [filtersState]
+    );
 
-        const isTaxonomyMatching =
-            taxonomyFilter === ProductTaxonomy.ALL ||
-            filterableContent.taxonomy.includes(taxonomyFilter) ||
-            (taxonomyFilter === ProductTaxonomy.OTHER &&
-                filterableContent.type === 'no.nav.navno:guide-page');
-        if (!isTaxonomyMatching) {
-            return false;
-        }
+    const setAreaFilter = useCallback(
+        (area: Area) => dispatch(setAreaFilterAction({ area })),
+        [dispatch]
+    );
 
-        const isTextFilterMatching =
-            !textFilter ||
-            !filterableContent.textMatchFunc ||
-            filterableContent.textMatchFunc(textFilter);
+    const setTaxonomyFilter = useCallback(
+        (taxonomy: ProductTaxonomy) =>
+            dispatch(setTaxonomyFilterAction({ taxonomy })),
+        [dispatch]
+    );
 
-        return isTextFilterMatching;
-    };
+    const setTextFilter = useCallback(
+        (value: string) => dispatch(setTextFilterAction({ text: value })),
+        [dispatch]
+    );
+
+    const resetFilters = useCallback(
+        () => dispatch(resetOverviewFiltersAction()),
+        [dispatch]
+    );
 
     return {
         hasDefaultFilters,
-        matchFilters,
-        dispatch,
         areaFilter,
         taxonomyFilter,
         textFilter,
+        getFilteredList,
+        setAreaFilter,
+        setTaxonomyFilter,
+        setTextFilter,
+        resetFilters,
     };
 };

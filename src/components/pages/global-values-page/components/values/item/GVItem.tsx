@@ -42,8 +42,13 @@ const ItemView = ({ item }: Props) => {
 };
 
 export const GVItem = (props: Props) => {
-    const { setMessages, contentId, itemsEditState, setItemEditState } =
-        useGvEditorState();
+    const {
+        setMessages,
+        contentId,
+        itemsEditState,
+        setItemEditState,
+        editorEnabled,
+    } = useGvEditorState();
     const { item } = props;
     const { key } = item;
     const editMode = itemsEditState[key];
@@ -59,7 +64,7 @@ export const GVItem = (props: Props) => {
                 <ItemView item={item} />
             )}
             <div className={style.rightButtons}>
-                {!editMode && (
+                {!editMode && editorEnabled && (
                     <GVButton
                         onClick={() => {
                             setItemEditState(key, !editMode);

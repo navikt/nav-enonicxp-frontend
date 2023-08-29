@@ -1,7 +1,7 @@
 import { PressLandingPageProps } from 'types/content-props/dynamic-page-props';
 import { translator } from 'translations';
 import { Heading, Link } from '@navikt/ds-react';
-import { Next } from '@navikt/ds-icons';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
 import { PressNewsItem } from './PressNewsItem';
 
 import styles from './PressNews.module.scss';
@@ -39,7 +39,7 @@ export const PressNews = (props: PressNewsProps) => {
                 </ul>
                 {moreNewsUrl && (
                     <Link href={moreNewsUrl}>
-                        <Next aria-hidden={true} />
+                        <ChevronRightIcon aria-hidden={true} />
                         {getTranslations('morePressNews')}
                     </Link>
                 )}

@@ -4,11 +4,10 @@ import { OverviewTaxonomyFilter } from 'components/_common/overview-filters/taxo
 import { OverviewTextFilter } from 'components/_common/overview-filters/text-filter/OverviewTextFilter';
 import {
     OverviewFilterableItem,
-    useOverviewFiltersState,
+    useOverviewFilters,
 } from 'store/hooks/useOverviewFilters';
-import { resetOverviewFiltersAction } from 'store/slices/overviewFilters';
 import { classNames } from 'utils/classnames';
-import { Filter2 as FilterIcon } from '@navikt/ds-icons';
+import { FunnelIcon } from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Heading, Button } from '@navikt/ds-react';
@@ -49,7 +48,7 @@ const MobileView = ({
                     >
                         {hasToggleFilters && (
                             <Button
-                                icon={<FilterIcon />}
+                                icon={<FunnelIcon aria-hidden={true} />}
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setIsOpen(!isOpen);
@@ -119,14 +118,14 @@ type Props = {
 
 export const OverviewFilters = (props: Props) => {
     const { showTextInputFilter, showAreaFilter, showTaxonomyFilter } = props;
-    const { dispatch } = useOverviewFiltersState();
+    const { resetFilters } = useOverviewFilters();
 
     useEffect(() => {
         // Reset filters when the component dismounts
         return () => {
-            dispatch(resetOverviewFiltersAction());
+            resetFilters();
         };
-    }, [dispatch]);
+    }, [resetFilters]);
 
     if (!showAreaFilter && !showTaxonomyFilter && !showTextInputFilter) {
         return null;

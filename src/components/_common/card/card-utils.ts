@@ -3,6 +3,7 @@ import { LinkProps } from 'types/link-props';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { ContentType } from 'types/content-props/_content-common';
 import { Audience, getAudience } from 'types/component-props/_mixins';
+
 import {
     ProductPageProps,
     SituationPageProps,
@@ -72,6 +73,9 @@ export const getCardProps = (
     }
 
     const { data, type, _path, displayName } = content;
+    if (!data) {
+        return null;
+    }
     const { title, ingress, illustration, externalProductUrl } = data;
 
     const cardType = cardTypeMap[type];

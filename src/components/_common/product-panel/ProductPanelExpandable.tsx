@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Accordion, BodyShort, Loader } from '@navikt/ds-react';
 import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
-import { classNames } from 'utils/classnames';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
@@ -15,7 +14,6 @@ type Props = {
     header: string;
     subHeader?: string;
     illustration: AnimatedIconsProps;
-    visible: boolean;
     anchorId: string;
     contentLoaderCallback: () => void;
     analyticsData?: Record<string, string>;
@@ -29,7 +27,6 @@ export const ProductPanelExpandable = ({
     subHeader,
     anchorId,
     illustration,
-    visible,
     contentLoaderCallback,
     analyticsData,
     isLoading,
@@ -77,10 +74,7 @@ export const ProductPanelExpandable = ({
     };
 
     return (
-        <Accordion
-            className={classNames(style.accordion, !visible && style.hidden)}
-            id={anchorId}
-        >
+        <Accordion className={style.accordion} id={anchorId}>
             <Accordion.Item open={isOpen} className={style.accordionItem}>
                 <Accordion.Header
                     onClick={handleClick}

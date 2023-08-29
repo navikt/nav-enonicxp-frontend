@@ -1,10 +1,10 @@
 import React from 'react';
-import { SiteInfoContentProps } from '../../types';
-import { BodyShort, Heading } from '@navikt/ds-react';
-import { stripXpPathPrefix } from '../../../../../utils/urls';
 import dayjs from 'dayjs';
-import { formatDateTime } from '../../../../../utils/datetime';
-import { WarningFilled } from '@navikt/ds-icons';
+import { BodyShort, Heading } from '@navikt/ds-react';
+import { ExclamationmarkTriangleFillIcon } from '@navikt/aksel-icons';
+import { SiteInfoContentProps } from '../../types';
+import { stripXpPathPrefix } from 'utils/urls';
+import { formatDateTime } from 'utils/datetime';
 import { SiteInfoLink } from '../../_common/links/SiteInfoLink';
 
 import style from './SiteInfoPublishInfoItem.module.scss';
@@ -51,7 +51,7 @@ export const SiteInfoPublishInfoItem = ({
             {((isPrepublish && !publish.scheduledFrom) ||
                 (publish.to && !publish.scheduledTo)) && (
                 <BodyShort className={style.warning} size={'small'}>
-                    <WarningFilled />
+                    <ExclamationmarkTriangleFillIcon />
                     {'Schedule for publisering mangler!'}
                 </BodyShort>
             )}

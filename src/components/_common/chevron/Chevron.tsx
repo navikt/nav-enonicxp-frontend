@@ -1,25 +1,20 @@
 import React from 'react';
-import { Next } from '@navikt/ds-icons';
-import { classNames } from '../../../utils/classnames';
-
-// eslint does not understand bracket notation
-// eslint-disable-next-line css-modules/no-unused-class
-import style from './Chevron.module.scss';
+import { ChevronRightIcon, ChevronDownIcon, ChevronLeftIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
 type Props = {
-    direction?: 'up' | 'right' | 'down' | 'left';
+    direction?: 'Up' | 'Right' | 'Down' | 'Left';
     className?: string;
 };
+const ChevronIcon = {
+    Up: ChevronUpIcon,
+    Right: ChevronRightIcon,
+    Down: ChevronDownIcon,
+    Left: ChevronLeftIcon,
+};
 
-export const Chevron = ({ direction = 'right', className }: Props) => {
+export const Chevron = ({ direction = 'Right', className }: Props) => {
+    const Icon = ChevronIcon[direction];
     return (
-        <Next
-            className={classNames(
-                'chevron',
-                direction && style[direction],
-                className
-            )}
-            aria-hidden="true"
-        />
+        <Icon className={className}  aria-hidden="true" />
     );
 };

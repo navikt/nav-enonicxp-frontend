@@ -10,7 +10,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 1rem;
     }
 
     .sortSelector {
@@ -21,6 +20,7 @@
     .content {
         display: flex;
         width: 100%;
+        margin-top: 1rem;
 
         @media #{common.$mq-screen-mobile} {
             flex-direction: column;

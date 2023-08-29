@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "@navikt/ds-css": "2.8.11",
-        "@navikt/ds-icons": "2.8.11",
+        "@navikt/aksel-icons": "4.10.2",
         "@navikt/ds-react": "2.8.11",
         "@navikt/ds-tokens": "2.8.11",
         "@navikt/nav-dekoratoren-moduler": "2.0.1",

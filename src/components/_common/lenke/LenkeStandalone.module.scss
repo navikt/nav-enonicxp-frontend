@@ -11,7 +11,6 @@
 
     .lenketekst {
         display: inline-flex;
-        border-bottom: none;
     }
 
     &:hover {
@@ -20,14 +19,14 @@
         }
 
         .lenketekst {
-            text-decoration: underline;
+            text-decoration-line: underline;
         }
     }
 }
 
 .lenketekst {
     display: inline;
-    @include common.link-border-bottom-mixin;
+    @include common.link-underline-mixin(false);
 }
 
 .label {

@@ -3,7 +3,7 @@ import { List, arrayMove } from 'react-movable';
 import { GVItem } from './item/GVItem';
 import { classNames } from 'utils/classnames';
 import { useGvEditorState } from 'store/hooks/useGvEditorState';
-import { Up, Down } from '@navikt/ds-icons';
+import { ChevronUpIcon, ChevronDownIcon } from '@navikt/aksel-icons';
 import { gvServiceReorderItems } from '../../api/services/reorder';
 import { OnChangeMeta } from 'react-movable/lib/types';
 
@@ -11,7 +11,7 @@ import styleCommon from './GVItems.module.scss';
 import styleCustomOrder from './GVItemsCustomOrder.module.scss';
 
 export const GVItemsCustomOrder = () => {
-    const { valueItems, setValueItems, contentId, setMessages } =
+    const { valueItems, setValueItems, contentId, setMessages, editorEnabled } =
         useGvEditorState();
 
     const reorderItems = ({ oldIndex, newIndex }: OnChangeMeta) => {
@@ -59,10 +59,13 @@ export const GVItemsCustomOrder = () => {
                     >
                         <span
                             data-movable-handle={true}
-                            className={styleCustomOrder.itemDragHandle}
+                            className={classNames(
+                                styleCustomOrder.itemDragHandle,
+                                !editorEnabled && styleCustomOrder.hidden
+                            )}
                         >
-                            <Up />
-                            <Down />
+                            <ChevronUpIcon />
+                            <ChevronDownIcon />
                         </span>
                         <GVItem item={value} />
                     </div>

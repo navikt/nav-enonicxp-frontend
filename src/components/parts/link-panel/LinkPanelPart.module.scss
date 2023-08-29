@@ -15,14 +15,16 @@ $iconSize: 2.1875rem;
         background-color: white;
         border: 1px solid var(--a-text-action);
         box-sizing: border-box;
-        text-decoration: none;
+        text-decoration-line: none;
         color: black;
     }
     &:hover {
         box-shadow: 0 2px 1px 0 #a0a0a0;
 
         .title {
-            text-decoration: underline;
+            text-decoration-thickness: 0.05em;
+            text-underline-offset: 0.1em;
+            text-decoration-line: underline;
         }
     }
     &:focus,
