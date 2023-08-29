@@ -16,7 +16,6 @@ export const ProductCardPart = ({
     descriptor,
 }: ProductCardProps | ProductCardMiniProps) => {
     const { language, audience } = usePageConfig();
-    console.log(audience);
 
     if (!config?.targetPage) {
         return (
