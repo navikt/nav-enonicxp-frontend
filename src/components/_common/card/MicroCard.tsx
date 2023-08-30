@@ -40,10 +40,10 @@ type Props = {
 };
 
 export const MicroCards = ({ header, card_list }: Props) => {
-    const { language } = usePageConfig();
+    const pageConfig = usePageConfig();
 
     const cardProps = card_list.reduce<CardProps[]>((acc, card) => {
-        const props = getCardProps(card, language);
+        const props = getCardProps(card, pageConfig);
         if (props) {
             acc.push(props);
         }

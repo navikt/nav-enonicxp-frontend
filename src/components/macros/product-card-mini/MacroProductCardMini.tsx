@@ -6,7 +6,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const MacroProductCardMini = ({ config }: MacroProductCardMiniProps) => {
-    const { language } = usePageConfig();
+    const pageConfig = usePageConfig();
 
     if (!config?.product_card_mini) {
         return <EditorHelp text={'Macroen mangler konfigurasjon'} />;
@@ -14,7 +14,7 @@ export const MacroProductCardMini = ({ config }: MacroProductCardMiniProps) => {
 
     const { targetPage } = config.product_card_mini;
 
-    const props = getCardProps(targetPage, language);
+    const props = getCardProps(targetPage, pageConfig);
 
     return props && <MiniCard {...props} />;
 };

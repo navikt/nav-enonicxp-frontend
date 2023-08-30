@@ -22,7 +22,7 @@ type PageConfig = {
     isPagePreview: boolean;
 };
 
-type UsePageConfig = {
+export type UsePageConfig = {
     pageConfig: PageConfig;
     setPageConfig: (payload: CurrentPageIdPayload) => void;
     language: Language;

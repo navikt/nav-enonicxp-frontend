@@ -15,7 +15,7 @@ export const ProductCardPart = ({
     config,
     descriptor,
 }: ProductCardProps | ProductCardMiniProps) => {
-    const { language, audience } = usePageConfig();
+    const pageConfig = usePageConfig();
 
     if (!config?.targetPage) {
         return (
@@ -29,29 +29,18 @@ export const ProductCardPart = ({
 
     const { targetPage, header, ingressOverride } = config;
 
-    const props = getCardProps(targetPage, language, ingressOverride);
+    const props = getCardProps(targetPage, pageConfig, ingressOverride);
 
     if (!props) {
         return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;
     }
 
     if (descriptor === PartType.ProductCard) {
-        return (
-            <LargeCard
-                {...props}
-                preferStaticIllustration={audience === Audience.EMPLOYER}
-            />
-        );
+        return <LargeCard {...props} />;
     }
 
     if (descriptor === PartType.ProductCardMini) {
-        return (
-            <MiniCard
-                {...props}
-                header={header}
-                preferStaticIllustration={audience === Audience.EMPLOYER}
-            />
-        );
+        return <MiniCard {...props} header={header} />;
     }
 
     return <EditorHelp type={'error'} text={'Kortet har ugyldig type'} />;
