@@ -9,7 +9,6 @@ import { getCardProps } from '../../_common/card/card-utils';
 import { MiniCard } from '../../_common/card/MiniCard';
 import { LargeCard } from '../../_common/card/LargeCard';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
-import { Audience } from 'types/component-props/_mixins';
 
 export const ProductCardPart = ({
     config,
