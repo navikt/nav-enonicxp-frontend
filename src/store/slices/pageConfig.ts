@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Language } from 'translations';
 import type { RootState } from '../store';
 import { ContentProps } from 'types/content-props/_content-common';
+import { Audience } from 'types/component-props/_mixins';
 
 type EditorView = ContentProps['editorView'];
 
@@ -10,6 +11,7 @@ interface PageConfigState {
     language: Language;
     editorView?: EditorView;
     isPagePreview?: boolean;
+    audience?: Audience;
 }
 
 export interface CurrentPageIdPayload {
@@ -17,12 +19,14 @@ export interface CurrentPageIdPayload {
     language: Language;
     editorView?: EditorView;
     isPagePreview?: boolean;
+    audience?: Audience;
 }
 
 const initialState: PageConfigState = {
     pageId: '',
     language: 'no',
     isPagePreview: false,
+    audience: null,
 };
 
 export const pageConfigSlice = createSlice({
@@ -34,6 +38,7 @@ export const pageConfigSlice = createSlice({
             state.language = action.payload.language;
             state.editorView = action.payload.editorView;
             state.isPagePreview = action.payload.isPagePreview;
+            state.audience = action.payload.audience;
         },
     },
 });
@@ -56,6 +61,10 @@ export const isPagePreview = (
     state: RootState
 ): PageConfigState['isPagePreview'] => {
     return state.pageConfig.isPagePreview;
+};
+
+export const pageAudience = (state: RootState): Audience => {
+    return state.pageConfig.audience;
 };
 
 export default pageConfigSlice.reducer;
