@@ -7,6 +7,9 @@ jobs:
   build:
     if: github.event.release.target_commitish == 'master'
     uses: ./.github/workflows/build-image.yml
+    permissions:
+      contents: "read"
+      id-token: "write"
     with:
       environment: prod-gcp
       imagename: release-${{ github.ref_name }}
@@ -24,6 +27,7 @@ jobs:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
+      NAIS_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
     needs: build
