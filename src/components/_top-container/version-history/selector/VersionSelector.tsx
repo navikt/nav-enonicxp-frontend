@@ -6,7 +6,6 @@ import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDate
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
 import { fetchJson, objectToQueryString } from 'utils/fetch/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 import style from './VersionSelector.module.scss';
 
