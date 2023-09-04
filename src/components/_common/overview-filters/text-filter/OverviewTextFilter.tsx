@@ -4,7 +4,6 @@ import debounce from 'lodash.debounce';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
-import * as Sentry from '@sentry/react';
 import { windowScrollTo } from 'utils/scroll-to';
 
 import style from './OverviewTextFilter.module.scss';
@@ -35,25 +34,9 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
         [setTextFilter]
     );
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const logInputToSentry = useCallback(
-        debounce((value: string) => {
-            if (value.length < 3) {
-                return;
-            }
-
-            Sentry.captureMessage(
-                `Oversiktsside fritekst input: "${value}"`,
-                'info'
-            );
-        }, 3000),
-        []
-    );
-
     const handleUserInput = (inputValue: string) => {
         setTextInput(inputValue);
         dispatchInput(inputValue);
-        logInputToSentry(inputValue);
     };
 
     useEffect(() => {

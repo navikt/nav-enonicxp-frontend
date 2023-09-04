@@ -37,8 +37,6 @@ Kjør så `npm run start-clean`
 
 ## Logger og metrikker
 
-[Sentry](https://sentry.gc.nav.no/organizations/nav/projects/pb-nav-enonicxp-frontend/?project=131)
-
 [Kibana](https://logs.adeo.no/app/discover#/view/952d2110-d396-11eb-af21-ffc7c2f0592f)
 
 [Grafana](https://grafana.nais.io/d/mUGKZWtMz/personbruker-app-metrikker?orgId=1&var-datasource=prod-gcp&var-app=nav-enonicxp-frontend)

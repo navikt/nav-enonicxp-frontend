@@ -45,9 +45,6 @@ yarn-error.log*
 /image-manifest
 /benchmark.mjs
 
-# Sentry
-.sentryclirc
-
 /.serverDist/
 /server/tsconfig.tsbuildinfo
 /server/__next-test-dummy/.next/

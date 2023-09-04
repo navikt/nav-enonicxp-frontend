@@ -1,18 +1,9 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE_BUNDLE === 'true',
 });
-const { withSentryConfig } = require('@sentry/nextjs');
 const { buildCspHeader } = require('@navikt/nav-dekoratoren-moduler/ssr');
 const { DATA, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header');
 const path = require('path');
-
-const sentryConfig = {
-    errorHandler: (err, invokeErr, compilation) => {
-        compilation.warnings.push('Sentry CLI Plugin: ' + err.message);
-    },
-    silent: process.env.NODE_ENV === 'development',
-    dryRun: process.env.ENV === 'localhost',
-};
 
 // Remove dashes from js variable names for classnames generated from CSS-modules
 // Enables all CSS-classes to be accessed from javascript with dot-notation
@@ -152,9 +143,9 @@ const config = {
         FAILOVER_ORIGIN: process.env.FAILOVER_ORIGIN,
         IS_FAILOVER_INSTANCE: process.env.IS_FAILOVER_INSTANCE,
         INNLOGGINGSSTATUS_URL: process.env.INNLOGGINGSSTATUS_URL,
-        SENTRY_DSN: process.env.SENTRY_DSN,
         NAVNO_API_URL: process.env.NAVNO_API_URL,
         DECORATOR_URL: process.env.DECORATOR_URL,
+        TELEMETRY_URL: process.env.TELEMETRY_URL,
     },
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
@@ -287,10 +278,6 @@ const config = {
             ],
         },
     ],
-    sentry: {
-        autoInstrumentServerFunctions: false,
-        hideSourceMaps: true,
-    },
 };
 
-module.exports = withSentryConfig(withBundleAnalyzer(config), sentryConfig);
+module.exports = withBundleAnalyzer(config);

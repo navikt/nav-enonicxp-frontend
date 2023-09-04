@@ -26,6 +26,9 @@ on:
       XP_ORIGIN:
         required: true
         type: string
+      TELEMETRY_URL:
+        required: true
+        type: string
       INNLOGGINGSSTATUS_URL:
         required: true
         type: string
@@ -43,8 +46,6 @@ on:
         type: boolean
     secrets:
       READER_TOKEN:
-        required: true
-      SENTRY_AUTH_TOKEN:
         required: true
       SERVICE_SECRET:
         required: false
@@ -84,6 +85,7 @@ jobs:
           APP_ORIGIN=${{ inputs.APP_ORIGIN }}
           DECORATOR_URL=${{ inputs.DECORATOR_URL }}
           XP_ORIGIN=${{ inputs.XP_ORIGIN }}
+          TELEMETRY_URL=${{ inputs.TELEMETRY_URL }}
           REVALIDATOR_PROXY_ORIGIN=${{ inputs.REVALIDATOR_PROXY_ORIGIN }}
           FAILOVER_ORIGIN=${{ inputs.FAILOVER_ORIGIN }}
           IS_FAILOVER_INSTANCE=${{ inputs.IS_FAILOVER_INSTANCE }}
@@ -92,7 +94,6 @@ jobs:
           ASSET_PREFIX=https://cdn.nav.no/personbruker/nav-enonicxp-frontend
           PAGE_CACHE_DIR=/tmp/pages
           IMAGE_CACHE_DIR=/tmp/images
-          SENTRY_DSN=https://7d6de132401448989071436f6e54c748@sentry.gc.nav.no/131
           EOF
       - name: Nextjs cache
         uses: actions/cache@v3
@@ -111,7 +112,6 @@ jobs:
         run: npm run build
         env:
           SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
       - name: Upload static files to NAV CDN
         uses: navikt/frontend/actions/cdn-upload/v1@main
         with:
