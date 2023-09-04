@@ -4,7 +4,7 @@ import { BodyLong, Heading, Loader, Radio, RadioGroup } from '@navikt/ds-react';
 import { ContentProps } from 'types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
-import { fetchWithTimeout, objectToQueryString } from 'utils/fetch/fetch-utils';
+import { fetchJson, objectToQueryString } from 'utils/fetch/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
@@ -40,22 +40,16 @@ export const VersionSelector = ({
 
     useEffect(() => {
         const params = objectToQueryString({
-            id: content._id,
-            locale: content.layerLocale,
+            id: content.liveId || content._id,
+            locale: content.liveLocale || content.layerLocale,
         });
 
-        fetchWithTimeout(`${publishedVersionsServiceUrl}${params}`, 15000)
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-
-                throw new Error(
-                    `Kunne ikke hente publiseringstidspunkter - forsøk å laste editoren på nytt (F5) [${res.status} - ${res.statusText}]`
-                );
-            })
-            .then((versions) => {
+        fetchJson(`${publishedVersionsServiceUrl}${params}`, 15000).then(
+            (versions) => {
                 if (!versions) {
+                    setVersionsError(
+                        'Kunne ikke hente publiseringstidspunkter - forsøk å laste editoren på nytt (F5)'
+                    );
                     setPublishedVersions([]);
                     return;
                 }
@@ -74,11 +68,8 @@ export const VersionSelector = ({
 
                 setSelectedPublishedVersion(selectedVersion);
                 setSelectorType('published');
-            })
-            .catch((e) => {
-                setVersionsError(e.toString());
-                setPublishedVersions([]);
-            });
+            }
+        );
     }, [content]);
 
     useEffect(() => {
