@@ -128,6 +128,12 @@ type ContentCommonData = Partial<{
     audience: AudienceProps;
 }>;
 
+// These fields are returned only when using the version selector
+type VersionSelectorProps = {
+    liveId?: string;
+    liveLocale?: string;
+};
+
 export type ContentCommonProps<Type extends ContentType = ContentType> = {
     type: Type;
     data: ContentCommonData;
@@ -137,10 +143,10 @@ export type ContentCommonProps<Type extends ContentType = ContentType> = {
     page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit' | 'archive';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
-    livePath?: string;
     isFailover?: boolean;
     languages?: LanguageProps[];
-} & ContentAndMediaCommonProps;
+} & ContentAndMediaCommonProps &
+    VersionSelectorProps;
 
 type SpecificContentProps =
     | SiteProps
