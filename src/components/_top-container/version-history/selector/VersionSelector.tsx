@@ -6,6 +6,7 @@ import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDate
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
 import { fetchJson, objectToQueryString } from 'utils/fetch/fetch-utils';
 import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
+import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 import style from './VersionSelector.module.scss';
 
@@ -35,6 +36,7 @@ export const VersionSelector = ({
         string | null
     >(null);
     const [selectorType, setSelectorType] = useState<SelectorType>('datetime');
+    const [versionsError, setVersionsError] = useState(null);
 
     useEffect(() => {
         const params = objectToQueryString({
@@ -45,6 +47,9 @@ export const VersionSelector = ({
         fetchJson(`${publishedVersionsServiceUrl}${params}`, 15000).then(
             (versions) => {
                 if (!versions) {
+                    setVersionsError(
+                        'Kunne ikke hente publiseringstidspunkter - forsøk å laste editoren på nytt (F5)'
+                    );
                     setPublishedVersions([]);
                     return;
                 }
@@ -135,6 +140,16 @@ export const VersionSelector = ({
                     )}
                 </div>
                 <div>
+                    {versionsError && (
+                        <AlertBox
+                            variant={'error'}
+                            size={'small'}
+                            inline={true}
+                            className={style.error}
+                        >
+                            {versionsError}
+                        </AlertBox>
+                    )}
                     <hr />
                     <BodyLong size="small">
                         {
