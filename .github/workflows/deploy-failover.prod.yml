@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/build-image.yml
+    permissions:
+      contents: "read"
+      id-token: "write"
     with:
       environment: prod-gcp:failover
       imagename: failover-prod
