@@ -14,7 +14,7 @@ export const ProductCardPart = ({
     config,
     descriptor,
 }: ProductCardProps | ProductCardMiniProps) => {
-    const { language } = usePageConfig();
+    const pageConfig = usePageConfig();
 
     if (!config?.targetPage) {
         return (
@@ -28,7 +28,7 @@ export const ProductCardPart = ({
 
     const { targetPage, header, ingressOverride } = config;
 
-    const props = getCardProps(targetPage, language, ingressOverride);
+    const props = getCardProps(targetPage, pageConfig, ingressOverride);
 
     if (!props) {
         return <EditorHelp type={'error'} text={'Kortet mangler innhold'} />;

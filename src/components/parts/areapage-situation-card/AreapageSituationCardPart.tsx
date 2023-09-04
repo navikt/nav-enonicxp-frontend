@@ -12,7 +12,7 @@ import style from './AreapageSituationCardPart.module.scss';
 export const AreapageSituationCardPart = ({
     config,
 }: AreapageSituationCardPartProps) => {
-    const { language } = usePageConfig();
+    const pageConfig = usePageConfig();
     if (!config?.target?._id) {
         return (
             <EditorHelp
@@ -24,9 +24,9 @@ export const AreapageSituationCardPart = ({
 
     const { target, disabled } = config;
 
-    const props = getCardProps(target, language);
+    const props = getCardProps(target, pageConfig);
 
-    const getSituationLabel = translator('situations', language);
+    const getSituationLabel = translator('situations', pageConfig.language);
 
     return (
         <div className={classNames(style.card, disabled && style.disabled)}>

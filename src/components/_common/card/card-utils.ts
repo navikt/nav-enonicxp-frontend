@@ -11,6 +11,7 @@ import {
 } from 'types/content-props/dynamic-page-props';
 import { Language, translator } from 'translations';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
+import { UsePageConfig } from 'store/hooks/usePageConfig';
 
 type CardTargetProps = ProductPageProps | SituationPageProps | ToolsPageProps;
 
@@ -20,6 +21,7 @@ export type CardProps = {
     description?: string;
     category: string;
     illustration?: AnimatedIconsProps;
+    preferStaticIllustration?: boolean;
 };
 
 export const cardTypeMap = {
@@ -63,15 +65,16 @@ const getCardCategory = (
 };
 
 export const getCardProps = (
-    content: CardTargetProps | undefined,
-    language: Language,
+    targetContent: CardTargetProps | undefined,
+    pageConfig: UsePageConfig,
     ingressOverride?: string
 ): CardProps | null => {
-    if (!content) {
+    if (!targetContent) {
         return null;
     }
 
-    const { data, type, _path, displayName } = content;
+    const { data, type, _path, displayName } = targetContent;
+    const { language, audience } = pageConfig;
     if (!data) {
         return null;
     }
@@ -86,9 +89,10 @@ export const getCardProps = (
         text: cardTitle,
     };
 
-    const categories = getCardCategory(content, language);
+    const categories = getCardCategory(targetContent, language);
     const categoryString = joinWithConjunction(categories, language);
     const description = ingressOverride || ingress;
+    const preferStaticIllustration = audience === Audience.EMPLOYER;
 
     return {
         type: cardType,
@@ -96,5 +100,6 @@ export const getCardProps = (
         description,
         category: categoryString,
         illustration,
+        preferStaticIllustration,
     };
 };

@@ -49,6 +49,8 @@ on:
         required: true
       SERVICE_SECRET:
         required: false
+      NAIS_WORKLOAD_IDENTITY_PROVIDER:
+        required: true
     outputs:
       image:
         description: "Url to docker image"
@@ -63,10 +65,8 @@ jobs:
       id-token: "write"
       packages: "write"
     environment: ${{ inputs.environment }}
-    env:
-      image: ghcr.io/${{ github.repository }}:${{ inputs.imagename }}-${{ github.sha }}
     outputs:
-      image: ${{ env.image }}
+      image: ${{ steps.docker-push.outputs.image }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -118,13 +118,11 @@ jobs:
           cdn-team-name: personbruker
           source: ./.next/static
           destination: nav-enonicxp-frontend/_next
-      - name: Login to Docker registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push docker image
-        run: |
-          docker build -t ${{ env.image }} .
-          docker push ${{ env.image }}
+        uses: nais/docker-build-push@v0
+        id: docker-push
+        with:
+          team: personbruker
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          image_suffix: ${{ inputs.imagename }}

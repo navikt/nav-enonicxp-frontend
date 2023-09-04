@@ -2,6 +2,10 @@ import { PartialTranslations } from './default';
 import { MenuListItemKey } from 'types/menu-list-items';
 
 export const translationsBundleSe: PartialTranslations = {
+    header: {
+        copyLink: 'Kopiere liŋkka',
+        copiedLinkConfirmed: 'Liŋka lea kopierejuvvon',
+    },
     relatedContent: {
         [MenuListItemKey.AppealRights]: 'Váidinvuoigatvuođat',
         [MenuListItemKey.FormAndApplication]: 'Skovit',
