@@ -5,7 +5,6 @@ import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
 import { windowScrollTo } from 'utils/scroll-to';
-import { faro } from '@grafana/faro-web-sdk';
 
 import style from './OverviewTextFilter.module.scss';
 
