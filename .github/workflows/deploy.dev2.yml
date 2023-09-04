@@ -8,6 +8,7 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
+      packages: "write"
     with:
       environment: dev-gcp:dev2
       imagename: dev2-deploy

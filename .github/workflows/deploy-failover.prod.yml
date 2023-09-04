@@ -10,6 +10,7 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
+      packages: "write"
     with:
       environment: prod-gcp:failover
       imagename: failover-prod
