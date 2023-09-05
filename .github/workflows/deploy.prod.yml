@@ -10,7 +10,6 @@ jobs:
     permissions:
       contents: "read"
       id-token: "write"
-      packages: "write"
     with:
       environment: prod-gcp
       imagename: release-${{ github.ref_name }}
