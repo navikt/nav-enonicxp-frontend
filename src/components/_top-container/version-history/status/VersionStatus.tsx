@@ -42,6 +42,7 @@ export const VersionStatus = ({
                     withChevron={false}
                     href={'#'}
                     onClick={(e) => {
+                        e.stopPropagation();
                         e.preventDefault();
                         submitVersionUrl(getVersionSelectorUrl(content));
                     }}
