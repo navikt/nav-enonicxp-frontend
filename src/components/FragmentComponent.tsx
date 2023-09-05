@@ -16,9 +16,8 @@ const _FragmentComponent = ({ componentProps, pageProps }: Props) => {
     if (!componentProps.fragment?.type) {
         return (
             <EditorHelp
-                text={
-                    'Fragmentet kunne ikke lastes - det kan være arkivert, eller referansen kan være ugyldig'
-                }
+                text={'Feil på fragmentet - forsøk å sette det inn på nytt'}
+                globalText={'Feil på fragment'}
                 type={'error'}
             />
         );

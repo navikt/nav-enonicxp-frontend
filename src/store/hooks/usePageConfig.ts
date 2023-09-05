@@ -1,5 +1,4 @@
-import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import {
     setPageConfigAction,
     currentPageId,
@@ -12,9 +11,6 @@ import {
 import { Language } from 'translations';
 import { ContentProps } from 'types/content-props/_content-common';
 import { Audience } from 'types/component-props/_mixins';
-
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 type PageConfig = {
     pageId: string;
