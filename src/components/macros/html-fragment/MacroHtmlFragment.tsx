@@ -16,6 +16,7 @@ export const MacroHtmlFragment = ({ config }: MacroHtmlFragmentProps) => {
             <EditorHelp
                 type={'error'}
                 text={`Fant ikke innhold for fragmentet "${config.html_fragment.fragmentId}" - Sjekk om det er avpublisert eller arkivert`}
+                globalWarningText={'Fragment-macro mangler innhold'}
             />
         );
     }

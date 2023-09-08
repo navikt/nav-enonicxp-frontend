@@ -36,6 +36,9 @@ export const ProductDetailsPart = ({
                     config.detailType === ProductDetailType.PROCESSING_TIMES &&
                     processingTimeHelptext
                 }`}
+                globalWarningText={
+                    'Komponent for produktdetaljer mangler innhold'
+                }
                 type={'error'}
             />
         );

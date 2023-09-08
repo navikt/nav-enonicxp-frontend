@@ -1,9 +1,7 @@
-import classNames from 'classnames';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { forceArray } from 'utils/arrays';
 import { DetailProps } from '../OfficeEditorialDetail';
 
-/* eslint-disable-next-line */
 import styles from './SocialHelpLinks.module.scss';
 
 export const SocialHelpLinks = ({ officeData }: DetailProps) => {
@@ -21,7 +19,7 @@ export const SocialHelpLinks = ({ officeData }: DetailProps) => {
                 <LenkeBase
                     key={link.lenke}
                     href={link.lenke}
-                    className={classNames(styles.singleLink)}
+                    className={styles.singleLink}
                 >
                     {link.lenketekst}
                 </LenkeBase>

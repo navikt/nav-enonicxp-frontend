@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Detail, Heading } from '@navikt/ds-react';
-import classNames from 'classnames';
+import { classNames } from 'utils/classnames';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { FormDetailsButton } from './FormDetailsButton';

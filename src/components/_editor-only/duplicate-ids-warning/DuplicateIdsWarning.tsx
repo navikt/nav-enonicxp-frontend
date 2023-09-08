@@ -48,7 +48,7 @@ export const DuplicateIdsWarning = () => {
     return (
         <>
             {uniqueDupeIds.length > 0 && (
-                <div className={style.bigWarning}>
+                <div>
                     <Header level={'2'}>{`Obs! Denne siden har ${
                         uniqueDupeIds.length
                     } id${

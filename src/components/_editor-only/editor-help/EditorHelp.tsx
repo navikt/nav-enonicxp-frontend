@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { StaticImage } from '../../_common/image/StaticImage';
 import { classNames } from 'utils/classnames';
 import { BodyShort } from '@navikt/ds-react';
+import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { renderEditorGlobalWarning } from 'components/_editor-only/global-warnings/EditorGlobalWarnings';
+
 import helpIcon from '/public/gfx/help.svg';
 import errorIcon from '/public/gfx/error.svg';
 import lightBulb from '/public/gfx/lightbulb.svg';
@@ -23,12 +27,19 @@ const imagePath = {
 
 type Props = {
     text: string;
+    globalWarningText?: string;
     type?: 'info' | 'error' | 'help' | 'arrowUp' | 'arrowDown';
 };
 
-export const EditorHelp = ({ text, type = 'help' }: Props) => {
+export const EditorHelp = ({
+    text,
+    globalWarningText,
+    type = 'help',
+}: Props) => {
     const { pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
+
+    const id = useId();
 
     if (!editorView) {
         return null;
@@ -41,7 +52,7 @@ export const EditorHelp = ({ text, type = 'help' }: Props) => {
     }
 
     return (
-        <div className={style.editorHelp}>
+        <div className={style.editorHelp} id={id}>
             <StaticImage
                 imageData={imagePath[type]}
                 alt={''}
@@ -49,11 +60,22 @@ export const EditorHelp = ({ text, type = 'help' }: Props) => {
             />
             <BodyShort
                 spacing={false}
-                size="small"
+                size={'small'}
                 className={classNames(style.content, style[type])}
             >
                 {text}
             </BodyShort>
+            {globalWarningText &&
+                renderEditorGlobalWarning(
+                    <>
+                        <span>{globalWarningText}</span>
+                        <EditorLinkWrapper>
+                            <LenkeInline href={`#${id}`}>
+                                {'[Til feilen]'}
+                            </LenkeInline>
+                        </EditorLinkWrapper>
+                    </>
+                )}
         </div>
     );
 };
