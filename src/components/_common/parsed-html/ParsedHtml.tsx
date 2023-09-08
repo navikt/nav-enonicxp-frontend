@@ -243,6 +243,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             return (
                 <EditorHelp
                     text={"HTML'en er tom eller inneholder feil."}
+                    globalWarningText={'Feil på riktekst/HTML-komponent'}
                     type={'error'}
                 />
             );

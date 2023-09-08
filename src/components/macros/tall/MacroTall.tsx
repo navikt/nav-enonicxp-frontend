@@ -19,7 +19,8 @@ export const MacroTall = ({ config }: MacroTallProps) => {
     if (verdi === undefined) {
         return (
             <EditorHelp
-                text={'Teknisk feil: verdien er ikke definert'}
+                text={'Verdien er ikke definert'}
+                globalWarningText={'Macro for tall mangler gyldig verdi'}
                 type={'error'}
             />
         );
@@ -30,6 +31,7 @@ export const MacroTall = ({ config }: MacroTallProps) => {
         return (
             <EditorHelp
                 text={'Teknisk feil: verdien er ikke et gyldig tall'}
+                globalWarningText={'Macro for tall mangler gyldig verdi'}
                 type={'error'}
             />
         );

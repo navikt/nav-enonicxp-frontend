@@ -39,6 +39,7 @@ export const MacroSaksbehandlingstid = ({
         return (
             <EditorHelp
                 text={'Teknisk feil: verdien er ikke definert'}
+                globalWarningText={'Macro for saksbehandlingstid mangler verdi'}
                 type={'error'}
             />
         );

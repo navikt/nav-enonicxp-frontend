@@ -8,7 +8,11 @@ export const MacroFormDetails = ({ config }: MacroFormDetailsProps) => {
 
     if (!macroConfig || !formDetailsData) {
         return (
-            <EditorHelp text="Mangler referanse til skjemadetalj, eller referansen er feil." />
+            <EditorHelp
+                text="Mangler referanse til skjemadetalj, eller referansen er feil."
+                globalWarningText={'Feil på skjemadetalj'}
+                type={'error'}
+            />
         );
     }
 

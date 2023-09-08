@@ -21,6 +21,7 @@ export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
         return (
             <EditorHelp
                 text={'Teknisk feil: verdien er ikke definert'}
+                globalWarningText={'Macro for global verdi mangler verdi'}
                 type={'error'}
             />
         );
