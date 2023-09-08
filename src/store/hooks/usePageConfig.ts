@@ -15,14 +15,14 @@ import { Audience } from 'types/component-props/_mixins';
 type PageConfig = {
     pageId: string;
     editorView: ContentProps['editorView'];
-    isPagePreview: boolean;
+    isPagePreview?: boolean;
 };
 
 export type UsePageConfig = {
     pageConfig: PageConfig;
     setPageConfig: (payload: CurrentPageIdPayload) => void;
     language: Language;
-    audience: Audience;
+    audience?: Audience;
 };
 
 export const usePageConfig = (): UsePageConfig => {

@@ -25,6 +25,9 @@ export const AreapageSituationCardPart = ({
     const { target, disabled } = config;
 
     const props = getCardProps(target, pageConfig);
+    if (!props) {
+        return null;
+    }
 
     const getSituationLabel = translator('situations', pageConfig.language);
 

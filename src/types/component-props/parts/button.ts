@@ -3,9 +3,13 @@ import { PartType } from '../parts';
 import { LinkSelectable, RenderOnAuthStateMixin } from '../_mixins';
 import { XpImageProps } from '../../media';
 
-export type ButtonPartSizePropLegacy = 'normal' | 'kompakt' | 'mini';
+type ButtonPartSizePropLegacy = 'normal' | 'kompakt' | 'mini';
 
-export type ButtonPartSizeProp = 'medium' | 'small';
+type ButtonPartSizePropNew = 'medium' | 'small';
+
+export type ButtonPartSizeProp =
+    | ButtonPartSizePropLegacy
+    | ButtonPartSizePropNew;
 
 export type ButtonPartTypeProp = 'standard' | 'hoved' | 'fare' | 'flat';
 
@@ -14,7 +18,7 @@ export interface ButtonPartProps extends PartComponentProps {
     config: {
         link: LinkSelectable;
         type: ButtonPartTypeProp;
-        size: ButtonPartSizePropLegacy | ButtonPartSizeProp;
+        size: ButtonPartSizeProp;
         icon?: XpImageProps;
         fullwidth: boolean;
     } & RenderOnAuthStateMixin;

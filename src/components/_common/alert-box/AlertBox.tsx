@@ -1,6 +1,7 @@
 import React from 'react';
 import { Alert, AlertProps } from '@navikt/ds-react';
-import { classNames } from '../../../utils/classnames';
+import { classNames } from 'utils/classnames';
+
 import style from './AlertBox.module.scss';
 
 type Props = {
