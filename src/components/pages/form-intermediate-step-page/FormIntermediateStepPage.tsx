@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
-
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
-import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
+import {
+    FormIntermediateStepPageProps,
+    StepDetails,
+} from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { useRouter } from 'next/compat/router';
+import { useRouter } from 'next/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 
 import styles from './FormIntermediateStepPage.module.scss';
 
 const STEP_PARAM = 'stegvalg';
+
+const getStateFromQuery = (url: string) => {
+    const stepQuery = new URL(url, window.location.origin).searchParams.get(
+        STEP_PARAM
+    );
+
+    return stepQuery ? Number(stepQuery) : null;
+};
 
 export const FormIntermediateStepPage = (
     props: FormIntermediateStepPageProps
@@ -27,18 +37,12 @@ export const FormIntermediateStepPage = (
 
     const getTranslations = translator('form', language);
 
-    const getStateFromQuery = (url: string) => {
-        const stepQuery = new URL(url, window.location.origin).searchParams.get(
-            STEP_PARAM
-        );
-
-        return stepQuery ? Number(stepQuery) : null;
-    };
-
     useEffect(() => {
         const handleRouteChange = (url: string) => {
             setPrevSelectedStep(getStateFromQuery(url));
         };
+
+        handleRouteChange(router.asPath);
 
         router.events.on('routeChangeComplete', handleRouteChange);
         return () => {
@@ -46,14 +50,10 @@ export const FormIntermediateStepPage = (
         };
     }, [router]);
 
-    useEffect(() => {
-        setPrevSelectedStep(getStateFromQuery(router.asPath));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     const getStepData = () => {
         if (prevSelectedStep !== null) {
             const stepDetails = data.steps[prevSelectedStep].nextStep;
+
             if (stepDetails?._selected === 'next') {
                 return stepDetails.next;
             }
@@ -66,7 +66,7 @@ export const FormIntermediateStepPage = (
         };
     };
 
-    const getOnClickFromStep = (step, index: number) => {
+    const getOnClickFromStep = (step: StepDetails, index: number) => {
         return step.nextStep?._selected === 'external'
             ? undefined
             : (e: React.MouseEvent) => {
@@ -81,7 +81,7 @@ export const FormIntermediateStepPage = (
               };
     };
 
-    const getHrefFromStep = (step) => {
+    const getHrefFromStep = (step: StepDetails) => {
         return step.nextStep?.external?.externalUrl || router.asPath;
     };
 
@@ -110,25 +110,23 @@ export const FormIntermediateStepPage = (
                         </Heading>
                     )}
                     <ul className={styles.stepList}>
-                        {currentStepData.steps.map(
-                            (step: any, index: number) => {
-                                return (
-                                    <li key={step.label}>
-                                        <LenkepanelNavNo
-                                            href={getHrefFromStep(step)}
-                                            onClick={getOnClickFromStep(
-                                                step,
-                                                index
-                                            )}
-                                            className={styles.stepOption}
-                                            tittel={step.label}
-                                        >
-                                            {step.explanation}
-                                        </LenkepanelNavNo>
-                                    </li>
-                                );
-                            }
-                        )}
+                        {currentStepData.steps.map((step, index) => {
+                            return (
+                                <li key={step.label}>
+                                    <LenkepanelNavNo
+                                        href={getHrefFromStep(step)}
+                                        onClick={getOnClickFromStep(
+                                            step,
+                                            index
+                                        )}
+                                        className={styles.stepOption}
+                                        tittel={step.label}
+                                    >
+                                        {step.explanation}
+                                    </LenkepanelNavNo>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
                 {prevSelectedStep !== null && (

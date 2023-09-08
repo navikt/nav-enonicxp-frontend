@@ -1,9 +1,10 @@
 import { ContentType } from 'types/content-props/_content-common';
 import { ErrorProps } from 'types/content-props/error-props';
 
-const errorMessageDefault = 'Ukjent feil';
-export const errorMessageURIError = 'URIError';
-export const errorMessageURIErrorPublic = 'Ugyldig adresseformat';
+const ERROR_MSG_DEFAULT = 'Ukjent feil';
+
+export const ERROR_MSG_URI_ERROR = 'URIError';
+export const ERROR_MSG_URI_ERROR_PUBLIC = 'Ugyldig adresseformat';
 
 const errorMessageByCode: Record<number, string> = {
     400: 'Ugyldig forespørsel',
@@ -15,8 +16,8 @@ const errorMessageByCode: Record<number, string> = {
 };
 
 const errorMessageByMessage = (message?: string) => {
-    if (message?.startsWith(errorMessageURIError)) {
-        return errorMessageURIErrorPublic;
+    if (message?.startsWith(ERROR_MSG_URI_ERROR)) {
+        return ERROR_MSG_URI_ERROR_PUBLIC;
     }
 
     return null;
@@ -24,14 +25,14 @@ const errorMessageByMessage = (message?: string) => {
 
 export const makeErrorProps = (
     idOrPath = '/',
-    errorMessage?: string,
-    errorCode = 500,
+    errorMessage: string,
+    errorCode: number,
     errorId?: string
 ): ErrorProps => {
     const publicMessage =
         errorMessageByMessage(errorMessage) ||
         errorMessageByCode[errorCode] ||
-        errorMessageDefault;
+        ERROR_MSG_DEFAULT;
     const title = `Feil: ${publicMessage}`;
     const time = Date.now().toString();
 
@@ -44,7 +45,6 @@ export const makeErrorProps = (
         modifiedTime: time,
         language: 'no',
         data: {
-            feedback: false,
             errorMessage: publicMessage,
             errorMessageInternal: errorMessage,
             errorCode: errorCode,

@@ -5,10 +5,10 @@ import { ErrorFeedbackLink } from './feedback-link/ErrorFeedbackLink';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import Config from '../../../../config';
 import { appOrigin } from 'utils/urls';
-import { errorMessageURIErrorPublic } from 'utils/make-error-props';
+import { ERROR_MSG_URI_ERROR_PUBLIC } from 'utils/make-error-props';
 
 export const ErrorContent400 = (props: ErrorProps) => {
-    if (props.data.errorMessage === errorMessageURIErrorPublic) {
+    if (props.data.errorMessage === ERROR_MSG_URI_ERROR_PUBLIC) {
         return (
             <>
                 <BodyLong>{'Den forespurte adressen er ikke gyldig:'}</BodyLong>

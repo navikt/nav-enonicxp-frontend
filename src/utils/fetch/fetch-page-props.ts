@@ -15,7 +15,7 @@ import {
     isRedirectType,
     redirectPageProps,
 } from '../redirects';
-import { errorMessageURIError, makeErrorProps } from 'utils/make-error-props';
+import { ERROR_MSG_URI_ERROR, makeErrorProps } from 'utils/make-error-props';
 
 type FetchPagePropsArgs = {
     routerQuery?: string | string[];
@@ -51,7 +51,7 @@ export const fetchPageProps = async ({
         return errorHandler(
             makeErrorProps(
                 stripXpPathPrefix(idOrPath),
-                errorMessageURIError,
+                ERROR_MSG_URI_ERROR,
                 400
             )
         );

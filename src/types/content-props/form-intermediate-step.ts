@@ -2,6 +2,7 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { ContentCommonProps, ContentType } from './_content-common';
 import { Taxonomy } from 'types/taxonomies';
 import { OptionSetSingle } from 'types/util-types';
+import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 
 type ExternalStep = {
     externalUrl: string;
@@ -32,7 +33,7 @@ export type FormIntermediateStepPageProps = ContentCommonProps & {
     type: ContentType.FormIntermediateStepPage;
     data: {
         title: string;
-        illustration: any;
+        illustration: AnimatedIconsProps;
         taxonomy?: Taxonomy[];
         customCategory: string;
         editorial: ProcessedHtmlProps;
