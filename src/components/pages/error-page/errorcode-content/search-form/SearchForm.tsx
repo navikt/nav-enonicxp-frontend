@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
 import { Heading, TextField } from '@navikt/ds-react';
 import { ClearIcon } from '../clear-icon/ClearIcon';
-import { Button } from '../../../../_common/button/Button';
+import { Button } from 'components/_common/button/Button';
 
 import style from './SearchForm.module.scss';
 
-const origin = process.env.APP_ORIGIN;
-const maxSearchLength = 200;
+const MAX_INPUT_LENGTH = 200;
 
 // Replace the localhost port number to support local integration with the search-app
-const searchHref = `${origin.replace('3000', '3001')}/sok`;
+const SEARCH_URL = `${process.env.APP_ORIGIN.replace('3000', '3001')}/sok?ord=`;
 
-const label = 'Hva leter du etter?';
+const LABEL = 'Hva leter du etter?';
 
 export const SearchForm = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const onSearchSubmit = (e: React.FormEvent) => {
+    const onSearchSubmit = (e: React.FormEvent | React.MouseEvent) => {
         e.preventDefault();
-        window.location.assign(`${searchHref}?ord=${searchTerm}`);
+        window.location.assign(`${SEARCH_URL}${searchTerm}`);
     };
 
     return (
@@ -28,18 +27,18 @@ export const SearchForm = () => {
                 className={style.header}
                 id={'search-header'}
             >
-                {label}
+                {LABEL}
             </Heading>
             <form onSubmit={onSearchSubmit} className={style.form}>
                 <TextField
                     aria-labelledby={'search-header'}
                     className={style.input}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    maxLength={maxSearchLength}
+                    maxLength={MAX_INPUT_LENGTH}
                     placeholder={'Søk på nav.no'}
                     value={searchTerm}
                     id={'search-input'}
-                    label={label}
+                    label={LABEL}
                     hideLabel={true}
                 />
                 <div className={style.buttonsContainer}>
