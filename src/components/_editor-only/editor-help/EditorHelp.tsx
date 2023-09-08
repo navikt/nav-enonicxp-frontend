@@ -3,10 +3,9 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { StaticImage } from '../../_common/image/StaticImage';
 import { classNames } from 'utils/classnames';
 import { BodyShort } from '@navikt/ds-react';
-import { createPortal } from 'react-dom';
-import { EDITOR_GLOBAL_WARNINGS_CONTAINER_ID } from 'components/_editor-only/global-warnings/EditorGlobalWarnings';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
+import { renderEditorGlobalWarning } from 'components/_editor-only/global-warnings/EditorGlobalWarnings';
 
 import helpIcon from '/public/gfx/help.svg';
 import errorIcon from '/public/gfx/error.svg';
@@ -28,11 +27,15 @@ const imagePath = {
 
 type Props = {
     text: string;
-    globalText?: string;
+    globalWarningText?: string;
     type?: 'info' | 'error' | 'help' | 'arrowUp' | 'arrowDown';
 };
 
-export const EditorHelp = ({ text, globalText, type = 'help' }: Props) => {
+export const EditorHelp = ({
+    text,
+    globalWarningText,
+    type = 'help',
+}: Props) => {
     const { pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
 
@@ -62,18 +65,16 @@ export const EditorHelp = ({ text, globalText, type = 'help' }: Props) => {
             >
                 {text}
             </BodyShort>
-            {globalText &&
-                typeof document !== 'undefined' &&
-                createPortal(
-                    <div>
-                        <span>{globalText}</span>
+            {globalWarningText &&
+                renderEditorGlobalWarning(
+                    <>
+                        <span>{globalWarningText}</span>
                         <EditorLinkWrapper>
                             <LenkeInline href={`#${id}`}>
                                 {'[Til feilen]'}
                             </LenkeInline>
                         </EditorLinkWrapper>
-                    </div>,
-                    document.getElementById(EDITOR_GLOBAL_WARNINGS_CONTAINER_ID)
+                    </>
                 )}
         </div>
     );

@@ -17,7 +17,7 @@ const _FragmentComponent = ({ componentProps, pageProps }: Props) => {
         return (
             <EditorHelp
                 text={'Feil på fragmentet - forsøk å sette det inn på nytt'}
-                globalText={'Feil på fragment'}
+                globalWarningText={'Feil på fragment'}
                 type={'error'}
             />
         );
