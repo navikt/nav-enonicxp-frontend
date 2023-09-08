@@ -1,7 +1,7 @@
 import React from 'react';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
-import classNames from 'classnames';
+import { classNames } from 'utils/classnames';
 import { ContentType, ContentProps } from 'types/content-props/_content-common';
 import { stripXpPathPrefix } from 'utils/urls';
 import { MainArticleChapterNavigationData } from 'types/content-props/main-article-chapter-props';

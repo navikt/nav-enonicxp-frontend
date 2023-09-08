@@ -1,6 +1,10 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { ClockFillIcon, InformationSquareFillIcon, HouseFillIcon } from '@navikt/aksel-icons';
-import classNames from 'classnames';
+import {
+    ClockFillIcon,
+    InformationSquareFillIcon,
+    HouseFillIcon,
+} from '@navikt/aksel-icons';
+import { classNames } from 'utils/classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import {

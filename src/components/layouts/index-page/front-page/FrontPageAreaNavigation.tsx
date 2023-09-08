@@ -3,7 +3,7 @@ import { FrontPageProps } from 'types/content-props/index-pages-props';
 import { Header } from 'components/_common/headers/Header';
 import { AreaCard } from 'components/_common/area-card/AreaCard';
 import { EmployerCard } from 'components/_common/employer-card/EmployerCard';
-import classNames from 'classnames';
+import { classNames } from 'utils/classnames';
 import { getAudience } from 'types/component-props/_mixins';
 
 import style from './FrontPageAreaNavigation.module.scss';

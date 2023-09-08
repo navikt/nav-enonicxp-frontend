@@ -1,14 +1,14 @@
 import { Heading } from '@navikt/ds-react';
-import classNames from 'classnames';
+import { classNames } from 'utils/classnames';
 import { translator } from 'translations';
 import { Reception } from './reception/Reception';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { PhonePoster } from './phonePoster/PhonePoster';
 import { OfficeInformation } from './officeInformation/OfficeInformation';
+import { forceArray } from 'utils/arrays';
 
 import styles from './OfficeDetails.module.scss';
-import { forceArray } from 'utils/arrays';
 
 export interface OfficeDetailsProps {
     officeData: OfficeDetailsData;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { formatDate, getPublishedDateTime } from 'utils/datetime';
-import classNames from 'classnames';
+import { classNames } from 'utils/classnames';
 import { BodyLong, Detail } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
