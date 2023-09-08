@@ -1,5 +1,4 @@
 import React from 'react';
-import { AreaCardGraphicsType } from '../../../../types/component-props/parts/area-card';
 import { CasesAnimation } from './logged-in/cases/CasesAnimation';
 import { EmploymentStatusFormAnimation } from './logged-in/employment-status-form/EmploymentStatusFormAnimation';
 import { PaymentsAnimation } from './logged-in/payments/PaymentsAnimation';
@@ -9,15 +8,11 @@ import { HealthAnimation } from './open-pages/health/HealthAnimation';
 import { PensionAnimation } from './open-pages/pension/PensionAnimation';
 import { SocialCounsellingAnimation } from './open-pages/social-counselling/SocialCounsellingAnimation';
 import { WorkAnimation } from './open-pages/work/WorkAnimation';
-import { classNames } from '../../../../utils/classnames';
+import { classNames } from 'utils/classnames';
 
 import style from './AreaCardGraphics.module.scss';
 
-const areaTypeComponentMap: {
-    [key in AreaCardGraphicsType]: React.FunctionComponent<{
-        expanded: boolean;
-    }>;
-} = {
+const areaTypeComponentMap: Record<string, React.FunctionComponent> = {
     cases: CasesAnimation,
     'employment-status-form': EmploymentStatusFormAnimation,
     payments: PaymentsAnimation,

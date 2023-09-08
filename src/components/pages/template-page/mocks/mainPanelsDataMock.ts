@@ -1,5 +1,5 @@
 import { ContentType } from 'types/content-props/_content-common';
-import { SectionPageData } from '../../../../types/content-props/section-page-props';
+import { SectionPageData } from 'types/content-props/section-page-props';
 
 export const mainPanelDataMock: SectionPageData = {
     tableContents: [
@@ -14,6 +14,7 @@ export const mainPanelDataMock: SectionPageData = {
             data: {
                 ingress: 'Din ingress',
             },
+            page: {},
         },
         {
             type: ContentType.ExternalLink,
@@ -27,6 +28,7 @@ export const mainPanelDataMock: SectionPageData = {
                 description: 'Din ingress',
                 url: '/',
             },
+            page: {},
         },
         {
             type: ContentType.ExternalLink,
@@ -40,6 +42,7 @@ export const mainPanelDataMock: SectionPageData = {
                 description: 'Din ingress',
                 url: '/',
             },
+            page: {},
         },
     ],
 };

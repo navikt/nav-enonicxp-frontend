@@ -49,6 +49,7 @@ import { SiteProps } from 'types/content-props/site-props';
 import { FormDetailsPageProps } from './form-details';
 import { FormIntermediateStepPageProps } from './form-intermediate-step';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
+import { EmptyObject } from 'types/util-types';
 
 export enum ContentType {
     Error = 'error',
@@ -137,10 +138,10 @@ type VersionSelectorProps = {
 export type ContentCommonProps<Type extends ContentType = ContentType> = {
     type: Type;
     data: ContentCommonData;
+    page: LayoutProps | EmptyObject;
     originalType?: ContentType;
     children?: ContentCommonProps[];
     parent?: ContentCommonProps;
-    page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit' | 'archive';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     isFailover?: boolean;

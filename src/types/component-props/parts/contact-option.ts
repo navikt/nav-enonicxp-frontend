@@ -3,17 +3,18 @@ import { PartType } from '../parts';
 import { AudienceProps, RenderOnAuthStateMixin } from '../_mixins';
 import { OptionSetSingle } from '../../util-types';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
+import { DayName } from 'utils/datetime';
 
 // TODO: Rewrite this for easier type narrowing
 
 export type OpeningHourRegularRaw =
     | {
           status: 'CLOSED';
-          dayName: string;
+          dayName: DayName;
       }
     | {
           status: 'OPEN';
-          dayName: string;
+          dayName: DayName;
           from: string;
           to: string;
       };

@@ -13,7 +13,11 @@ type PageProps = {
 export const PageBase = (props: PageProps) => {
     const content =
         props?.content ||
-        makeErrorProps('www.nav.no', 'Ukjent feil - kunne ikke laste innhold');
+        makeErrorProps(
+            'www.nav.no',
+            500,
+            'Ukjent feil - kunne ikke laste innhold'
+        );
 
     globalState.isEditorView = !!content.editorView;
 

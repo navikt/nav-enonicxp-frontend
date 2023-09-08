@@ -1,27 +1,30 @@
-import { useState, useEffect, useRef, useId } from 'react';
-import { classNames } from '../../../utils/classnames';
-import { InformationSquareIcon, InformationSquareFillIcon } from '@navikt/aksel-icons';
+import React, { useState, useEffect, useRef, useId } from 'react';
+import { classNames } from 'utils/classnames';
+import {
+    InformationSquareIcon,
+    InformationSquareFillIcon,
+} from '@navikt/aksel-icons';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './FilterExplanation.module.scss';
 
-interface FilterExplanationProps {
+type Props = {
     selectedFilters: string[];
     availableFilters: string[];
-}
+};
 
 export const FilterExplanation = ({
     selectedFilters,
     availableFilters,
-}: FilterExplanationProps) => {
+}: Props) => {
     const explanationId = useId();
     const [selectCount, setSelectCount] = useState(0);
     const [showHighlight, setShowHighlight] = useState(false);
 
     const { language } = usePageConfig();
 
-    const highlightTimeoutRef = useRef(null);
+    const highlightTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const relevantSelectedFilters = selectedFilters.filter((filterId) =>
         availableFilters.includes(filterId)
     );

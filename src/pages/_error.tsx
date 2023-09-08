@@ -100,7 +100,10 @@ Error.getInitialProps = async ({
     // the req/res objects are undefined on the client-side
     if (!res || !req) {
         const pageProps = getClientsideProps(asPath);
-        return pageProps || makeErrorProps(asPath, 'Unknown client-side error');
+        return (
+            pageProps ||
+            makeErrorProps(asPath, 500, 'Unknown client-side error')
+        );
     }
 
     if (asPath && shouldFetchFromFailoverApp(asPath)) {
@@ -129,7 +132,7 @@ Error.getInitialProps = async ({
         `Unhandled error on path ${asPath} - ${res.statusCode} [${req.method}] ${errorMsg}`
     );
 
-    return makeErrorProps(asPath, errorMsg, res.statusCode, errorId);
+    return makeErrorProps(asPath, res.statusCode, errorMsg, errorId);
 };
 
 export default Error;

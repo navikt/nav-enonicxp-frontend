@@ -20,7 +20,7 @@ const MAX_FUTURE_DAYS_TO_CHECK = 7;
 
 const getNextOpenOpeningHour = (
     openingHours: OpeningHours[]
-): OpeningHoursOpen => {
+): OpeningHoursOpen | null => {
     const tomorrow = dayjs().add(1, 'day');
 
     for (let i = 0; i < MAX_FUTURE_DAYS_TO_CHECK; i++) {

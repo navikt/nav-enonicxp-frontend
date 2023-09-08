@@ -21,7 +21,10 @@ export const daysNameArray = [
     'thursday',
     'friday',
     'saturday',
-];
+] as const;
+
+export type DayName = (typeof daysNameArray)[number];
+
 export const dayNameToIndex = {
     sunday: 0,
     monday: 1,
@@ -32,12 +35,12 @@ export const dayNameToIndex = {
     saturday: 6,
 };
 
-interface FormatDateProps {
+type FormatDateProps = {
     datetime: string;
     language?: string;
     short?: boolean;
     year?: boolean;
-}
+};
 
 export const formatDate = ({
     datetime,

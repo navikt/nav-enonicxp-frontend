@@ -51,8 +51,8 @@ export const fetchPageProps = async ({
         return errorHandler(
             makeErrorProps(
                 stripXpPathPrefix(idOrPath),
-                ERROR_MSG_URI_ERROR,
-                400
+                400,
+                ERROR_MSG_URI_ERROR
             )
         );
     }

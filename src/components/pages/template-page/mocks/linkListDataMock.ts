@@ -1,5 +1,5 @@
-import { ContentType } from '../../../../types/content-props/_content-common';
-import { SectionPageData } from '../../../../types/content-props/section-page-props';
+import { ContentType } from 'types/content-props/_content-common';
+import { SectionPageData } from 'types/content-props/section-page-props';
 
 export const linkListDataMock: SectionPageData = {
     ntkContents: {
@@ -10,6 +10,7 @@ export const linkListDataMock: SectionPageData = {
         modifiedTime: '2019-12-12T13:40:51.919815Z',
         displayName: 'Nyttig å vite',
         language: 'no',
+        page: {},
         data: {
             sectionContents: [
                 {
@@ -24,6 +25,7 @@ export const linkListDataMock: SectionPageData = {
                         from: '',
                     },
                     data: {},
+                    page: {},
                 },
                 {
                     type: ContentType.PageList,
@@ -34,6 +36,7 @@ export const linkListDataMock: SectionPageData = {
                     displayName: 'Artikkel 2',
                     language: 'no',
                     data: {},
+                    page: {},
                 },
                 {
                     type: ContentType.MainArticle,
@@ -47,6 +50,7 @@ export const linkListDataMock: SectionPageData = {
                         from: '',
                     },
                     data: {},
+                    page: {},
                 },
                 {
                     type: ContentType.MainArticle,
@@ -60,6 +64,7 @@ export const linkListDataMock: SectionPageData = {
                         from: '',
                     },
                     data: {},
+                    page: {},
                 },
                 {
                     type: ContentType.MainArticle,
@@ -73,6 +78,7 @@ export const linkListDataMock: SectionPageData = {
                         from: '',
                     },
                     data: {},
+                    page: {},
                 },
                 {
                     type: ContentType.MainArticle,
@@ -86,6 +92,7 @@ export const linkListDataMock: SectionPageData = {
                         from: '',
                     },
                     data: {},
+                    page: {},
                 },
             ],
         },
@@ -98,6 +105,7 @@ export const linkListDataMock: SectionPageData = {
         modifiedTime: '2019-12-13T13:58:35.807991Z',
         displayName: 'Nyheter',
         language: 'no',
+        page: {},
         data: {
             sectionContents: [
                 {
@@ -112,6 +120,7 @@ export const linkListDataMock: SectionPageData = {
                         from: '',
                     },
                     data: {},
+                    page: {},
                 },
                 {
                     type: ContentType.MainArticle,
@@ -125,6 +134,7 @@ export const linkListDataMock: SectionPageData = {
                         from: '',
                     },
                     data: {},
+                    page: {},
                 },
                 {
                     type: ContentType.MainArticle,
@@ -138,6 +148,7 @@ export const linkListDataMock: SectionPageData = {
                         from: '',
                     },
                     data: {},
+                    page: {},
                 },
             ],
         },
@@ -150,6 +161,7 @@ export const linkListDataMock: SectionPageData = {
         modifiedTime: '2019-12-12T13:40:51.919815Z',
         displayName: 'Snarveier',
         language: 'no',
+        page: {},
         data: {
             sectionContents: [
                 {
@@ -164,6 +176,7 @@ export const linkListDataMock: SectionPageData = {
                         from: '',
                     },
                     data: {},
+                    page: {},
                 },
                 {
                     type: ContentType.InternalLink,
@@ -174,6 +187,7 @@ export const linkListDataMock: SectionPageData = {
                     displayName: 'Snarevei 2',
                     language: 'no',
                     data: { target: { _path: '' } },
+                    page: {},
                 },
                 {
                     type: ContentType.ExternalLink,
@@ -184,6 +198,7 @@ export const linkListDataMock: SectionPageData = {
                     displayName: 'Snarevei 3',
                     language: 'no',
                     data: { url: '', description: '' },
+                    page: {},
                 },
                 {
                     type: ContentType.MainArticle,
@@ -197,6 +212,7 @@ export const linkListDataMock: SectionPageData = {
                         from: '',
                     },
                     data: {},
+                    page: {},
                 },
                 {
                     type: ContentType.ExternalLink,
@@ -207,6 +223,7 @@ export const linkListDataMock: SectionPageData = {
                     displayName: 'Snarevei 4',
                     language: 'no',
                     data: { url: '', description: '' },
+                    page: {},
                 },
             ],
         },

@@ -1,11 +1,11 @@
-import { LayoutProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
 import { PartComponentProps } from 'types/component-props/_component-common';
+import { ContentProps } from 'types/content-props/_content-common';
 
-interface Props {
+type Props = {
     path: string;
-    page?: LayoutProps;
-}
+    page?: ContentProps['page'];
+};
 
 export const checkIfFilterFirstInPage = ({ path, page }: Props) => {
     const regions = page?.regions;
@@ -34,7 +34,7 @@ export const checkIfFilterFirstInPage = ({ path, page }: Props) => {
         return false;
     }
 
-    // Make a not of the very first FiltersMenu in order to
+    // Make a note of the very first FiltersMenu in order to
     // check for path later.
     const firstFilterMenu = allFilterMenus[0];
 

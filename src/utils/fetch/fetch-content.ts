@@ -140,6 +140,7 @@ const fetchAndHandleErrorsBuildtime = async (
 
         return makeErrorProps(
             idOrPath,
+            res.status,
             `Build-time fetch error: ${res.status} - ${res.statusText}`
         );
     });
@@ -154,7 +155,7 @@ const fetchAndHandleErrorsRuntime = async (
     const errorId = uuid();
 
     if (!res) {
-        return makeErrorProps(idOrPath, undefined, 500, errorId);
+        return makeErrorProps(idOrPath, 500, undefined, errorId);
     }
 
     const isJson = res.headers
@@ -170,7 +171,7 @@ const fetchAndHandleErrorsRuntime = async (
             errorId,
             `Fetch error: Received an ok-response for ${idOrPath}, but did not receive JSON content`
         );
-        return makeErrorProps(idOrPath, undefined, 500, errorId);
+        return makeErrorProps(idOrPath, 500, undefined, errorId);
     }
 
     const errorMsg = isJson
@@ -185,19 +186,19 @@ const fetchAndHandleErrorsRuntime = async (
                 errorId,
                 `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath} - unexpected 404-response from sitecontent service: ${errorMsg}`
             );
-            return makeErrorProps(idOrPath, undefined, 503, errorId);
+            return makeErrorProps(idOrPath, 503, undefined, errorId);
         }
 
         // Regular 404 should not be logged as errors
         console.log(`Content not found ${stripLineBreaks(idOrPath)}`);
-        return makeErrorProps(idOrPath, undefined, 404, errorId);
+        return makeErrorProps(idOrPath, 404, undefined, errorId);
     }
 
     logPageLoadError(
         errorId,
         `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath}: ${errorMsg}`
     );
-    return makeErrorProps(idOrPath, undefined, res.status, errorId);
+    return makeErrorProps(idOrPath, res.status, undefined, errorId);
 };
 
 const fetchAndHandleErrors =
@@ -237,7 +238,7 @@ export const fetchPage = async ({
             errorId,
             `Fetch error: Unknown error for ${idOrPath} - no valid content received`
         );
-        return makeErrorProps(idOrPath, undefined, 500, errorId);
+        return makeErrorProps(idOrPath, 500, undefined, errorId);
     }
 
     return {

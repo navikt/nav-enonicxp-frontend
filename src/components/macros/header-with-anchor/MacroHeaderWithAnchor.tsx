@@ -1,6 +1,6 @@
 import React from 'react';
 import { headingToLevel, headingToSize } from 'types/typo-style';
-import { MacroHeaderWithAnchorProps } from '../../../types/macro-props/header-with-anchor';
+import { MacroHeaderWithAnchorProps } from 'types/macro-props/header-with-anchor';
 import { Header } from '../../_common/headers/Header';
 
 import style from './MacroheaderWithAnchor.module.scss';

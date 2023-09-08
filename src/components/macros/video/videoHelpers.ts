@@ -17,6 +17,7 @@ export const buildVideoMeta = (
             title: null,
         };
     }
+
     // For now, support legacy video with only the URL to go after.
     if (!video.targetContent) {
         const query = parse(video?.video?.split('?')[1]);

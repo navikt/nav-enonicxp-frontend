@@ -25,8 +25,8 @@ const errorMessageByMessage = (message?: string) => {
 
 export const makeErrorProps = (
     idOrPath = '/',
-    errorMessage: string,
     errorCode: number,
+    errorMessage?: string,
     errorId?: string
 ): ErrorProps => {
     const publicMessage =
@@ -52,8 +52,9 @@ export const makeErrorProps = (
         },
         breadcrumbs: [{ title: title, url: '/' }],
         serverEnv: process.env.ENV,
+        page: {},
     };
 };
 
 export const make404Props = (idOrPath = '') =>
-    makeErrorProps(idOrPath, 'Fant ikke siden', 404);
+    makeErrorProps(idOrPath, 404, 'Fant ikke siden');

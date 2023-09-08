@@ -13,7 +13,7 @@ import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependa
 import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
 
 type Props = {
-    componentProps: ComponentProps;
+    componentProps?: ComponentProps;
     pageProps: ContentProps;
 };
 

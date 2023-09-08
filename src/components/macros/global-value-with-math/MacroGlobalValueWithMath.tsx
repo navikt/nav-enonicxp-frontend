@@ -1,5 +1,5 @@
 import React from 'react';
-import { MacroGlobalValueWithMathProps } from '../../../types/macro-props/global-value-with-math';
+import { MacroGlobalValueWithMathProps } from 'types/macro-props/global-value-with-math';
 import {
     create,
     evaluateDependencies,
@@ -7,12 +7,12 @@ import {
     subtractDependencies,
     multiplyDependencies,
     divideDependencies,
-} from 'mathjs/lib/esm/number';
+} from 'mathjs';
 import globalState from '../../../globalState';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language } from 'translations';
 
-import { formatNumber } from '../../../utils/math';
+import { formatNumber } from 'utils/math';
 
 const math = create({
     evaluateDependencies,
