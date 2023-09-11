@@ -10,7 +10,7 @@ jobs:
       id-token: "write"
     with:
       environment: dev-gcp:dev1
-      imagename: dev1-deploy
+      imagename: decorator-next-deploy
       ENV: dev1
       ADMIN_ORIGIN: https://portal-admin-dev.oera.no
       APP_ORIGIN: https://www.ekstern.dev.nav.no
@@ -19,7 +19,7 @@ jobs:
       XP_ORIGIN: https://portal-admin-dev.oera.no
       TELEMETRY_URL: https://telemetry.ekstern.dev.nav.no/collect
       INNLOGGINGSSTATUS_URL: https://www.ekstern.dev.nav.no/person/nav-dekoratoren-api/auth
-      RELEASE_TAG: dev1-${{ github.sha }}
+      RELEASE_TAG: decorator-next-${{ github.sha }}
       NAVNO_API_URL: https://www.intern.dev.nav.no/person/navno-api
       FAILOVER_ORIGIN: https://www-failover.intern.dev.nav.no
     secrets:
@@ -34,6 +34,6 @@ jobs:
       cluster: dev-gcp
       vars_file: vars-decorator-next.yml
       config_file: config.yml
-      hpa_file: hpa-dev1.yml
+      hpa_file: hpa-decorator-next.yml
     secrets:
       NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
