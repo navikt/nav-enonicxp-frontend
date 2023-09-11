@@ -11,10 +11,10 @@ ingresses:
   - https://www-decorator-next.ekstern.dev.nav.no
 resources:
   requests:
-    cpu: 500m
-    memory: 1000Mi
+    cpu: 250m
+    memory: 500Mi
   limits:
-    memory: 1000Mi
+    memory: 500Mi
 replicas:
-  min: 2
+  min: 1
   max: 2
