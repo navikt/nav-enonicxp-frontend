@@ -11,9 +11,10 @@ import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
 import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependantRender';
 import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
+import { EmptyObject } from 'types/util-types';
 
 type Props = {
-    componentProps?: ComponentProps;
+    componentProps?: ComponentProps | EmptyObject;
     pageProps: ContentProps;
 };
 
