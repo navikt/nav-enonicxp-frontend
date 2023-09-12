@@ -20,6 +20,7 @@ const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
     ContentType.OfficeEditorialPage,
     ContentType.OfficeBranchPage,
     ContentType.FrontPage,
+    ContentType.FrontPageNested,
     ContentType.AreaPage,
     ContentType.PressLandingPage,
     ContentType.FormIntermediateStepPage,

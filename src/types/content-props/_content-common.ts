@@ -88,6 +88,7 @@ export enum ContentType {
     GlobalCaseTimeSet = 'no.nav.navno:global-case-time-set',
     PayoutDates = 'no.nav.navno:payout-dates',
     FrontPage = 'no.nav.navno:front-page',
+    FrontPageNested = 'no.nav.navno:front-page-nested',
     AreaPage = 'no.nav.navno:area-page',
     PressLandingPage = 'no.nav.navno:press-landing-page',
     FormIntermediateStepPage = 'no.nav.navno:form-intermediate-step',

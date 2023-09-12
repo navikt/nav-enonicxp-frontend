@@ -15,6 +15,7 @@ const contentTypeSpecificComponent: {
     [key in ContentType]?: React.FunctionComponent<{ content: ContentProps }>;
 } = {
     [ContentType.FrontPage]: FrontPageAreaNavigation,
+    [ContentType.FrontPageNested]: FrontPageAreaNavigation,
     [ContentType.AreaPage]: AreaPageHeader,
 };
 
