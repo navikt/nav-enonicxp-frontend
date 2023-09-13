@@ -5,9 +5,9 @@ import { AreaCard } from 'components/_common/area-card/AreaCard';
 import { FrontPageCard } from 'components/_common/frontpage-card/FrontPageCard';
 import { classNames } from 'utils/classnames';
 import { getAudience } from 'types/component-props/_mixins';
+import { CardType } from 'types/card';
 
 import style from './FrontPageAreaNavigation.module.scss';
-import { CardType } from 'types/card';
 
 type Props = {
     content: FrontPageProps;
