@@ -8,6 +8,7 @@ import { translator } from 'translations';
 import { getAudience } from 'types/component-props/_mixins';
 
 import style from './TopContainer.module.scss';
+import { get } from 'http';
 
 const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
     ContentType.ProductPage,
@@ -34,7 +35,8 @@ type Props = {
 const checkNoGap = (content: ContentProps) => {
     if (
         content.type === ContentType.FrontPage &&
-        getAudience(content.data.audience) === 'employer'
+        (getAudience(content.data.audience) === 'employer' ||
+            getAudience(content.data.audience) === 'provider')
     ) {
         return true;
     }

@@ -14,7 +14,13 @@ type Props = {
 
 export const FrontPageAreaNavigation = ({ content }: Props) => {
     const { data } = content;
-    const { areasHeader, areasRefs = [], situationsRefs = [], audience } = data;
+    const {
+        areasHeader,
+        areasRefs = [],
+        situationsRefs = [],
+        frontPageNestedRefs = [],
+        audience,
+    } = data;
 
     return (
         <div
@@ -37,6 +43,17 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                                 title={areaContent.data.header}
                                 area={areaContent.data.area}
                                 linkGroup={areasHeader}
+                            />
+                        </li>
+                    ))}
+                    {frontPageNestedRefs.map((content) => (
+                        <li key={content._id}>
+                            <EmployerCard
+                                illustration={content.data?.illustration}
+                                path={content._path}
+                                title={
+                                    content.data?.title || content.displayName
+                                }
                             />
                         </li>
                     ))}
