@@ -42,6 +42,7 @@ export enum PartType {
     FrontpageContact = 'no.nav.navno:frontpage-contact',
     FrontpageCurrentTopics = 'no.nav.navno:frontpage-current-topics',
     FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
+    FrontpageHeader = 'no.nav.navno:frontpage-header',
     FrontpageSurveyPanel = 'no.nav.navno:frontpage-survey-panel',
     UxSignalsWidget = 'no.nav.navno:uxsignals-widget',
 }
