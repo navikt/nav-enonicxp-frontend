@@ -3,29 +3,32 @@ import { MiniCard } from '../card/MiniCard';
 import { LinkProps } from 'types/link-props';
 import { CardType } from 'types/card';
 
-import styles from './EmployerCard.module.scss';
+import styles from './FrontPageCard.module.scss';
 
-type EmployerCardProps = {
+type FrontPageCardProps = {
     illustration?: AnimatedIconsProps;
     path: string;
     title: string;
+    type: CardType;
 };
 
-export const EmployerCard = ({
+export const FrontPageCard = ({
     illustration,
     path,
     title,
-}: EmployerCardProps) => {
+    type,
+}: FrontPageCardProps) => {
     const link: LinkProps = {
         url: path,
         text: title,
     };
+
     return (
         <MiniCard
             illustration={illustration}
             link={link}
-            type={CardType.EmployerFrontpage}
-            className={styles.employerCard}
+            type={type}
+            className={styles.frontpageCard}
             preferStaticIllustration={true}
         />
     );

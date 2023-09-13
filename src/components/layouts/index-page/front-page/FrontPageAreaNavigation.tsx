@@ -2,11 +2,12 @@ import React from 'react';
 import { FrontPageProps } from 'types/content-props/index-pages-props';
 import { Header } from 'components/_common/headers/Header';
 import { AreaCard } from 'components/_common/area-card/AreaCard';
-import { EmployerCard } from 'components/_common/employer-card/EmployerCard';
+import { FrontPageCard } from 'components/_common/frontpage-card/FrontPageCard';
 import { classNames } from 'utils/classnames';
 import { getAudience } from 'types/component-props/_mixins';
 
 import style from './FrontPageAreaNavigation.module.scss';
+import { CardType } from 'types/card';
 
 type Props = {
     content: FrontPageProps;
@@ -48,19 +49,20 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                     ))}
                     {frontPageNestedRefs.map((content) => (
                         <li key={content._id}>
-                            <EmployerCard
+                            <FrontPageCard
                                 illustration={content.data?.illustration}
                                 path={content._path}
                                 title={
                                     content.data?.title || content.displayName
                                 }
+                                type={CardType.ProviderFrontpage}
                             />
                         </li>
                     ))}
                     {situationsRefs.map((situationPage) => {
                         return (
                             <li key={situationPage._id}>
-                                <EmployerCard
+                                <FrontPageCard
                                     illustration={
                                         situationPage.data?.illustration
                                     }
@@ -69,6 +71,7 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                                         situationPage.data?.title ||
                                         situationPage.displayName
                                     }
+                                    type={CardType.EmployerFrontpage}
                                 />
                             </li>
                         );
