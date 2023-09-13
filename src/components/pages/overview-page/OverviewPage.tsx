@@ -38,7 +38,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
     }, [getFilteredList, productList]);
 
     return (
-        <div className={style.overviewPage}>
+        <article className={style.overviewPage}>
             <ThemedPageHeader contentProps={props} showTimeStamp={false} />
             <div className={style.content}>
                 <ComponentMapper
@@ -81,6 +81,6 @@ export const OverviewPage = (props: OverviewPageProps) => {
                     ))}
                 </ul>
             </div>
-        </div>
+        </article>
     );
 };
