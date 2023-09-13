@@ -21,7 +21,7 @@
     padding-top: 2.75rem;
     padding-bottom: 2.75rem;
     margin-bottom: -2rem !important; // Can't find a way to override the margin-bottom from the parent
-    background-color: var(--bg-color, var(--a-deepblue-100));
+    background-color: var(--bg-color, var(--a-white));
 }
 
 @media #{common.$mq-screen-mobile} {
@@ -63,6 +63,7 @@
 }
 
 .item_person {
+    background-color: var(--item-color, var(--a-white));
     &:hover,
     &:focus-within {
         background-color: var(--hover-color, var(--a-red-100));
@@ -70,8 +71,18 @@
 }
 
 .item_employer {
+    background-color: var(--item-color, var(--a-white));
     &:hover,
     &:focus-within {
         background-color: var(--hover-color, var(--a-deepblue-50));
+    }
+}
+
+.item_provider {
+    background-color: var(--item-color, var(--a-white));
+
+    &:hover,
+    &:focus-within {
+        background-color: var(--hover-color, var(--a-red-100));
     }
 }

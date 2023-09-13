@@ -19,9 +19,19 @@ export type FrontPageData = {
     areasHeader: string;
 } & CommonData;
 
+export type FrontPageNestedData = {
+    areasHeader: string;
+} & CommonData;
+
 export type FrontPageProps = ContentCommonProps & {
     type: ContentType.FrontPage;
     data: FrontPageData;
+    page: IndexPageProps;
+};
+
+export type FrontPageNestedProps = ContentCommonProps & {
+    type: ContentType.FrontPageNested;
+    data: FrontPageNestedData;
     page: IndexPageProps;
 };
 

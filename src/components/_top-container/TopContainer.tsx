@@ -31,6 +31,23 @@ type Props = {
     content: ContentProps;
 };
 
+const checkNoGap = (content: ContentProps) => {
+    if (
+        content.type === ContentType.FrontPage &&
+        getAudience(content.data.audience) === 'employer'
+    ) {
+        return true;
+    }
+    if (
+        content.type === ContentType.FrontPageNested &&
+        getAudience(content.data.audience) === 'provider'
+    ) {
+        return true;
+    }
+
+    return false;
+};
+
 export const checkForWhiteHeader = (content: ContentProps) => {
     const { type } = content;
 
@@ -54,9 +71,7 @@ export const TopContainer = ({ content }: Props) => {
     const showVersionPicker =
         !!content.editorView && content.editorView !== 'edit';
 
-    const shouldCollapse =
-        content.type === ContentType.FrontPage &&
-        getAudience(content.data.audience) === 'employer';
+    const shouldCollapse = checkNoGap(content);
 
     const warningLabels = translator('pageWarnings', language);
 

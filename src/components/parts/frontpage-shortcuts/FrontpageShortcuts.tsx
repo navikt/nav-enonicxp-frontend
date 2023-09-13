@@ -13,7 +13,13 @@ export const FrontpageShortcuts = ({
     config,
     pageProps,
 }: FrontpageShortcutsProps) => {
-    const { shortcuts, title: sectionTitle, bgColor, hoverColor } = config;
+    const {
+        shortcuts,
+        title: sectionTitle,
+        bgColor,
+        itemColor,
+        hoverColor,
+    } = config;
 
     if (!shortcuts || shortcuts.length === 0) {
         return <EditorHelp text={'Velg minst en snarvei'} />;
@@ -29,6 +35,7 @@ export const FrontpageShortcuts = ({
             style={
                 {
                     '--bg-color': bgColor,
+                    '--item-color': itemColor,
                     '--hover-color': hoverColor,
                 } as React.CSSProperties
             }

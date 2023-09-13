@@ -42,7 +42,11 @@ import { MediaType } from '../media';
 import { PayoutDatesProps } from './payout-dates';
 import { LanguageProps } from '../language';
 import { FragmentPageProps } from './fragment-page-props';
-import { AreaPageProps, FrontPageProps } from './index-pages-props';
+import {
+    AreaPageProps,
+    FrontPageNestedProps,
+    FrontPageProps,
+} from './index-pages-props';
 import { AudienceProps } from '../component-props/_mixins';
 import { TemplateProps } from 'types/content-props/template-props';
 import { SiteProps } from 'types/content-props/site-props';
@@ -184,6 +188,7 @@ type SpecificContentProps =
     | FragmentPageProps
     | ContactInformationProps
     | FrontPageProps
+    | FrontPageNestedProps
     | AreaPageProps
     | GenericPageProps
     | PressLandingPageProps
