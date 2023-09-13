@@ -6,7 +6,7 @@ import style from './EditorGlobalWarnings.module.scss';
 
 const EDITOR_GLOBAL_WARNINGS_CONTAINER_ID = 'global-warnings';
 
-export const RenderAsGlobalWarning = ({
+export const RenderToEditorGlobalWarnings = ({
     children,
 }: {
     children: React.ReactNode;
