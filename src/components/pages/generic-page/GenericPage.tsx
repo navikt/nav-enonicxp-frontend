@@ -1,14 +1,11 @@
 import React from 'react';
-import { ComponentMapper } from '../../ComponentMapper';
-import {
-    GenericPageProps,
-    ProductPageProps,
-} from '../../../types/content-props/dynamic-page-props';
-import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
+import { GenericPageProps} from 'types/content-props/dynamic-page-props';
+import { ComponentMapper } from 'components/ComponentMapper';
+import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 
 export const GenericPage = (props: GenericPageProps) => {
     return (
-        <div className={'genericPage'}>
+        <article className={'genericPage'}>
             <ThemedPageHeader contentProps={props} />
             <div className={'content'}>
                 <ComponentMapper
@@ -16,6 +13,6 @@ export const GenericPage = (props: GenericPageProps) => {
                     pageProps={props}
                 />
             </div>
-        </div>
+        </article>
     );
 };

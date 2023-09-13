@@ -1,11 +1,11 @@
 import React from 'react';
-import { ComponentMapper } from '../../ComponentMapper';
 import { ProductPageProps } from 'types/content-props/dynamic-page-props';
-import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
+import { ComponentMapper } from 'components/ComponentMapper';
+import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 
 export const ProductPage = (props: ProductPageProps) => {
     return (
-        <div className={'productPage'}>
+        <article className={'productPage'}>
             <ThemedPageHeader contentProps={props} />
             <div className={'content'}>
                 <ComponentMapper
@@ -13,6 +13,6 @@ export const ProductPage = (props: ProductPageProps) => {
                     pageProps={props}
                 />
             </div>
-        </div>
+        </article>
     );
 };
