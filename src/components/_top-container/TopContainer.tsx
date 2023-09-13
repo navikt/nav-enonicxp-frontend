@@ -8,7 +8,6 @@ import { translator } from 'translations';
 import { getAudience } from 'types/component-props/_mixins';
 
 import style from './TopContainer.module.scss';
-import { get } from 'http';
 
 const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
     ContentType.ProductPage,
@@ -32,7 +31,7 @@ type Props = {
     content: ContentProps;
 };
 
-const checkNoGap = (content: ContentProps) => {
+const checkForNoGap = (content: ContentProps) => {
     if (
         content.type === ContentType.FrontPage &&
         (getAudience(content.data.audience) === 'employer' ||
@@ -73,7 +72,7 @@ export const TopContainer = ({ content }: Props) => {
     const showVersionPicker =
         !!content.editorView && content.editorView !== 'edit';
 
-    const shouldCollapse = checkNoGap(content);
+    const shouldCollapse = checkForNoGap(content);
 
     const warningLabels = translator('pageWarnings', language);
 
