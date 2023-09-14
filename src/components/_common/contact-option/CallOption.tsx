@@ -76,7 +76,7 @@ export const CallOption = (props: CallOptionProps) => {
                 analyticsComponent={'Kontakt-oss kanal'}
             >
                 <div className={style.linkContent}>
-                    <div className={classNames(style.icon, style.call)} />
+                    <img alt="" className={classNames(style.icon, style.call)} />
                     <Heading level="3" size="small" className={style.link}>
                         {title || callTranslations.title}
                     </Heading>
