@@ -39,6 +39,7 @@ export const FilterCheckbox = ({
                     isSelected && style.selected
                 )}
             >
+                <img alt="" className={isSelected && style.selected} />
                 {filter.filterName}
             </label>
         </div>

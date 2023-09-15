@@ -8,7 +8,7 @@
     display: flex;
     justify-items: center;
     margin: 0.3rem 0.6rem 0.3rem 0;
-    padding: 0.3rem 0.6rem 0.3rem 0.3rem;
+    padding: 0.4rem;
 
     &:focus-within {
         box-shadow: common.$a-border-focus inset 0 0 0 3px;
@@ -18,7 +18,7 @@
         .label {
             color: common.$a-text-action;
 
-            &:before {
+            img {
                 background-color: common.$a-surface-action;
                 box-shadow: 0 0 0;
             }
@@ -30,11 +30,11 @@
 
         &:hover {
             background-color: common.$a-text-action;
+
             .label {
                 color: white;
 
-                &:before {
-                    box-shadow: 0 0 0;
+                img {
                     background-color: transparent;
                     filter: invert(98%) sepia(3%) saturate(538%)
                         hue-rotate(223deg) brightness(119%) contrast(100%);
@@ -58,24 +58,17 @@
         position: relative;
         user-select: none;
 
-        &:before {
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 1rem;
-            border-radius: 2px;
-            border: 0;
-            box-shadow: common.$a-gray-600 inset 0 0 0 1px;
-            content: '';
-            display: inline-flex;
+        img {
             height: 1rem;
-            margin-right: 0.3em;
             width: 1rem;
-        }
+            margin-right: 0.4rem;
 
-        &.selected {
-            &:before {
-                background-image: url('https://www.nav.no/gfx/success-stroke.svg');
-                box-shadow: 0 0 0;
+            &:not(.selected) {
+                border-radius: 2px;
+                box-shadow: common.$a-gray-600 inset 0 0 0 2px;
+            }
+            &.selected {
+                content: url('https://www.nav.no/gfx/success-stroke.svg');
             }
         }
     }
