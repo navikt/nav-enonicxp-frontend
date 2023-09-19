@@ -10,39 +10,6 @@
     margin: 0.3rem 0.6rem 0.3rem 0;
     padding: 0.4rem;
 
-    &:focus-within {
-        box-shadow: common.$a-border-focus inset 0 0 0 3px;
-    }
-
-    &:hover {
-        .label {
-            color: common.$a-text-action;
-
-            img {
-                background-color: common.$a-surface-action;
-                box-shadow: 0 0 0;
-            }
-        }
-    }
-
-    &.selected {
-        background-color: common.$a-surface-selected;
-
-        &:hover {
-            background-color: common.$a-text-action;
-
-            .label {
-                color: white;
-
-                img {
-                    background-color: transparent;
-                    filter: invert(98%) sepia(3%) saturate(538%)
-                        hue-rotate(223deg) brightness(119%) contrast(100%);
-                }
-            }
-        }
-    }
-
     .checkbox {
         appearance: none;
         opacity: 0;
@@ -62,13 +29,38 @@
             height: 1rem;
             width: 1rem;
             margin-right: 0.4rem;
+        }
+    }
 
-            &:not(.selected) {
-                border-radius: 2px;
-                box-shadow: common.$a-gray-600 inset 0 0 0 2px;
+    &:focus-within {
+        box-shadow: common.$a-border-focus inset 0 0 0 3px;
+    }
+
+    &:hover {
+        background-color: common.$a-surface-selected;
+        .label {
+            color: common.$a-text-action;
+
+            img {
+                background-color: common.$a-surface-action;
             }
-            &.selected {
-                content: url('https://www.nav.no/gfx/success-stroke.svg');
+        }
+    }
+
+    &.selected {
+        background-color: common.$a-surface-selected;
+
+        &:hover {
+            background-color: common.$a-text-action;
+
+            .label {
+                color: white;
+
+                img {
+                    background-color: transparent;
+                    filter: invert(98%) sepia(3%) saturate(538%)
+                            hue-rotate(223deg) brightness(119%) contrast(100%);
+                }
             }
         }
     }

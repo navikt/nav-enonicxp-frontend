@@ -2,7 +2,10 @@ import { Filter } from 'types/store/filter-menu';
 import { classNames } from '../../../utils/classnames';
 import { useId } from 'react';
 
+import checkboxIcon from './checkbox.svg';
+import checkedIcon from './checked.svg';
 import style from './FilterCheckbox.module.scss';
+import {StaticImage} from "../../_common/image/StaticImage";
 
 type FilterCheckboxProps = {
     isSelected: boolean;
@@ -39,7 +42,8 @@ export const FilterCheckbox = ({
                     isSelected && style.selected
                 )}
             >
-                <img alt="" className={isSelected && style.selected} />
+                {!isSelected && <StaticImage imageData={checkboxIcon} alt="" />}
+                {isSelected && <StaticImage imageData={checkedIcon} alt="" className={style.selected} />}
                 {filter.filterName}
             </label>
         </div>
