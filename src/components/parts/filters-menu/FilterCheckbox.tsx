@@ -1,11 +1,11 @@
-import { Filter } from 'types/store/filter-menu';
-import { classNames } from '../../../utils/classnames';
 import { useId } from 'react';
+import { Filter } from 'types/store/filter-menu';
+import { classNames } from 'utils/classnames';
+import { StaticImage } from "components/_common/image/StaticImage";
 
 import checkboxIcon from './checkbox.svg';
 import checkedIcon from './checked.svg';
 import style from './FilterCheckbox.module.scss';
-import {StaticImage} from "../../_common/image/StaticImage";
 
 type FilterCheckboxProps = {
     isSelected: boolean;
