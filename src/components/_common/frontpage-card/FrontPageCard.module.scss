@@ -26,5 +26,9 @@
     }
     :global(.provider-frontpage) {
         background-color: var(--a-red-50);
+
+        &:hover {
+            background-color: var(--a-red-100);
+        }
     }
 }
