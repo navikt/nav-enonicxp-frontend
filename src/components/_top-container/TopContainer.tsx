@@ -48,7 +48,7 @@ export const TopContainer = ({ content }: Props) => {
         isPagePreview,
         originalType,
         language,
-        redirectToLocale,
+        redirectToLayer,
     } = content;
     const hasDecoratorWidgets =
         (breadcrumbs && breadcrumbs.length > 0) ||
@@ -87,9 +87,9 @@ export const TopContainer = ({ content }: Props) => {
                     'contentTypeChangedWarningPost'
                 )}`}</PageWarning>
             )}
-            {redirectToLocale && !!content.editorView && (
+            {redirectToLayer && !!content.editorView && (
                 <PageWarning whiteBg={hasWhiteHeader}>
-                    {`Obs! Denne siden er satt som redirect til språkversjonen for "${redirectToLocale}". Husk å velge riktig språkversjon hvis du skal redigere.`}
+                    {`Obs! Denne siden er satt som redirect til språkversjonen for "${redirectToLayer}". Husk å velge riktig språkversjon hvis du skal redigere.`}
                 </PageWarning>
             )}
             <div

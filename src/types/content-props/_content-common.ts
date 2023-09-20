@@ -145,7 +145,8 @@ export type ContentCommonProps<Type extends ContentType = ContentType> = {
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     isFailover?: boolean;
     languages?: LanguageProps[];
-    redirectToLocale?: string;
+    contentLayer?: string;
+    redirectToLayer?: string;
 } & ContentAndMediaCommonProps &
     VersionSelectorProps;
 
