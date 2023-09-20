@@ -42,8 +42,14 @@ export const checkForWhiteHeader = (content: ContentProps) => {
 };
 
 export const TopContainer = ({ content }: Props) => {
-    const { breadcrumbs, isFailover, isPagePreview, originalType, language } =
-        content;
+    const {
+        breadcrumbs,
+        isFailover,
+        isPagePreview,
+        originalType,
+        language,
+        redirectToLocale,
+    } = content;
     const hasDecoratorWidgets =
         (breadcrumbs && breadcrumbs.length > 0) ||
         getContentLanguages(content).length > 0;
@@ -80,6 +86,11 @@ export const TopContainer = ({ content }: Props) => {
                 )}"${originalType}"${warningLabels(
                     'contentTypeChangedWarningPost'
                 )}`}</PageWarning>
+            )}
+            {redirectToLocale && !!content.editorView && (
+                <PageWarning whiteBg={hasWhiteHeader}>
+                    {`Obs! Denne siden er satt som redirect til språkversjonen for "${redirectToLocale}". Husk å velge riktig språkversjon hvis du skal redigere.`}
+                </PageWarning>
             )}
             <div
                 className={classNames(
