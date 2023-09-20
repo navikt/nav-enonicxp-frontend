@@ -40,7 +40,7 @@ import {
 import { ContactInformationProps } from './contact-information-props';
 import { MediaType } from '../media';
 import { PayoutDatesProps } from './payout-dates';
-import { LanguageProps } from '../language';
+import { LanguageProps, LayerLocale } from '../language';
 import { FragmentPageProps } from './fragment-page-props';
 import { AreaPageProps, FrontPageProps } from './index-pages-props';
 import { AudienceProps } from '../component-props/_mixins';
@@ -145,6 +145,8 @@ export type ContentCommonProps<Type extends ContentType = ContentType> = {
     breadcrumbs?: DecoratorParams['breadcrumbs'];
     isFailover?: boolean;
     languages?: LanguageProps[];
+    contentLayer?: string;
+    redirectToLayer?: LayerLocale;
 } & ContentAndMediaCommonProps &
     VersionSelectorProps;
 

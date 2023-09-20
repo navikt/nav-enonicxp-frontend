@@ -73,6 +73,12 @@ const productDetailTypes: { [key in ProductDetailType]: string } = {
 };
 
 export const translationsBundleNb = {
+    locale: {
+        no: 'norsk (bokmål)',
+        nn: 'nynorsk',
+        en: 'engelsk',
+        se: 'samisk',
+    },
     stringParts: {
         conjunction: 'og',
     },
@@ -303,10 +309,10 @@ export const translationsBundleNb = {
         draftWarning: 'Utkast - siden er under arbeid',
         failoverWarning:
             'Vi har for tiden tekniske problemer på nav.no. Du kan oppleve noe treghet eller at innhold mangler. Du kan prøve å laste inn siden på nytt.',
-        contentTypeChangedWarningPre:
-            'Obs! Denne siden var opprinnelig av typen ',
-        contentTypeChangedWarningPost:
-            '. Den inneholder versjonshistorikk og skal derfor ikke slettes. Innholdet bør endres tilbake til opprinnelig innholdstype før arkivering.',
+        contentTypeChangedWarning: (type: string) =>
+            `Obs! Denne siden var opprinnelig av typen "${type}". Den inneholder versjonshistorikk og skal derfor ikke slettes. Innholdet bør endres tilbake til opprinnelig innholdstype før arkivering.`,
+        layerRedirectWarning: (layer: string) =>
+            `Obs! Denne siden er satt som redirect til språkversjonen for "${layer}". Husk å velge riktig språkversjon hvis du skal redigere.`,
     },
     caseTimeUnit: {
         single: {
