@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Accordion } from '@navikt/ds-react';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
+import { smoothScrollToTarget } from 'utils/scroll-to';
 
 import style from './Expandable.module.scss';
-import { smoothScrollToTarget } from 'utils/scroll-to';
 
 type Props = {
     title: string;
