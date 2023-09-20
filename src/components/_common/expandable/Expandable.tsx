@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Accordion } from '@navikt/ds-react';
-import { AnalyticsEvents, logAmplitudeEvent } from '../../../utils/amplitude';
-import { classNames } from '../../../utils/classnames';
+import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+import { classNames } from 'utils/classnames';
+import { smoothScrollToTarget } from 'utils/scroll-to';
 
 import style from './Expandable.module.scss';
 
@@ -21,6 +22,7 @@ export const Expandable = ({
     className,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
+    const accordionRef = useRef<HTMLDivElement | null>(null);
 
     const toggleExpandCollapse = () => {
         logAmplitudeEvent(
@@ -34,8 +36,24 @@ export const Expandable = ({
     };
 
     const checkAndOpenPanel = () => {
-        if (anchorId && window.location.hash === `#${anchorId}`) {
+        if (isOpen) {
+            return;
+        }
+
+        const targetId = window.location.hash.replace('#', '');
+        if (!targetId) {
+            return;
+        }
+
+        if (targetId === anchorId) {
             setIsOpen(true);
+            return;
+        }
+
+        const elementWithId = document.getElementById(targetId);
+        if (accordionRef.current?.contains(elementWithId)) {
+            setIsOpen(true);
+            setTimeout(() => smoothScrollToTarget(targetId), 500);
         }
     };
 
@@ -70,6 +88,7 @@ export const Expandable = ({
         <Accordion
             id={anchorId}
             className={classNames(className, style.expandableWrapper)}
+            ref={accordionRef}
         >
             <Accordion.Item open={isOpen} className={style.expandable}>
                 <Accordion.Header onClick={toggleExpandCollapse}>

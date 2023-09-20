@@ -61,20 +61,29 @@ export const checkForWhiteHeader = (content: ContentProps) => {
 };
 
 export const TopContainer = ({ content }: Props) => {
-    const { breadcrumbs, isFailover, isPagePreview, originalType, language } =
-        content;
+    const {
+        breadcrumbs,
+        isFailover,
+        isPagePreview,
+        originalType,
+        language,
+        redirectToLayer,
+    } = content;
+
     const hasDecoratorWidgets =
         (breadcrumbs && breadcrumbs.length > 0) ||
         getContentLanguages(content).length > 0;
     const hasWhiteHeader = checkForWhiteHeader(content);
 
+    const isEditorView = !!content.editorView;
+
     // Should be shown in Content Studio only (except the edit view)
-    const showVersionPicker =
-        !!content.editorView && content.editorView !== 'edit';
+    const showVersionPicker = isEditorView && content.editorView !== 'edit';
 
     const shouldCollapse = checkForNoGap(content);
 
     const warningLabels = translator('pageWarnings', language);
+    const localeLabels = translator('locale', language);
 
     return (
         <>
@@ -88,15 +97,17 @@ export const TopContainer = ({ content }: Props) => {
                     {warningLabels('failoverWarning')}
                 </PageWarning>
             )}
-            {originalType && content.editorView && (
-                <PageWarning
-                    whiteBg={hasWhiteHeader}
-                    size={'medium'}
-                >{`${warningLabels(
-                    'contentTypeChangedWarningPre'
-                )}"${originalType}"${warningLabels(
-                    'contentTypeChangedWarningPost'
-                )}`}</PageWarning>
+            {originalType && isEditorView && (
+                <PageWarning whiteBg={hasWhiteHeader} size={'medium'}>
+                    {warningLabels('contentTypeChangedWarning')(originalType)}
+                </PageWarning>
+            )}
+            {redirectToLayer && isEditorView && (
+                <PageWarning whiteBg={hasWhiteHeader} size={'medium'}>
+                    {warningLabels('layerRedirectWarning')(
+                        localeLabels(redirectToLayer)
+                    )}
+                </PageWarning>
             )}
             <div
                 className={classNames(

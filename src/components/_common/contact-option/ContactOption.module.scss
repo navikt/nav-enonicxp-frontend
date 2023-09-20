@@ -17,35 +17,30 @@
                 @include common.panel-focus-mixin();
             }
         }
-
         &:hover,
         &:focus {
             text-decoration-line: none;
 
             .icon {
                 &.chat {
-                    background-image: url('https://www.nav.no/gfx/chat-filled.svg');
+                    content: url('https://www.nav.no/gfx/chat-filled.svg');
                 }
-
                 &.write {
-                    background-image: url('https://www.nav.no/gfx/message-filled.svg');
+                    content: url('https://www.nav.no/gfx/message-filled.svg');
                 }
 
                 &.call {
-                    background-image: url('https://www.nav.no/gfx/phone-filled.svg');
+                    content: url('https://www.nav.no/gfx/phone-filled.svg');
                 }
-
                 &.navoffice,
                 &.aidcentral {
-                    background-image: url('https://www.nav.no/gfx/place-filled.svg');
+                    content: url('https://www.nav.no/gfx/place-filled.svg');
                 }
-
                 &.facebook {
-                    background-image: url('https://www.nav.no/gfx/facebook-filled.svg');
+                    content: url('https://www.nav.no/gfx/facebook-filled.svg');
                 }
-
                 &.linkedin {
-                    background-image: url('https://www.nav.no/gfx/linkedin-filled.svg');
+                    content: url('https://www.nav.no/gfx/linkedin-filled.svg');
                 }
             }
         }
@@ -74,45 +69,35 @@
 
         &.chat {
             margin-right: 0.7rem;
-            background-image: url('https://www.nav.no/gfx/chat.svg');
+            content: url('https://www.nav.no/gfx/chat.svg');
         }
-
         &.write {
-            background-image: url('https://www.nav.no/gfx/message.svg');
+            content: url('https://www.nav.no/gfx/message.svg');
         }
-
         &.call {
             margin-right: 0.5rem;
-            background-image: url('https://www.nav.no/gfx/phone.svg');
+            content: url('https://www.nav.no/gfx/phone.svg');
         }
-
         &.facebook {
-            background-image: url('https://www.nav.no/gfx/facebook.svg');
+            content: url('https://www.nav.no/gfx/facebook.svg');
         }
-
         &.navoffice,
         &.aidcentral {
-            background-image: url('https://www.nav.no/gfx/place.svg');
+            content: url('https://www.nav.no/gfx/place.svg');
         }
-
         &.linkedin {
-            background-image: url('https://www.nav.no/gfx/linkedin.svg');
+            content: url('https://www.nav.no/gfx/linkedin.svg');
         }
-
         &:after {
             // preload mouseover icons
             position: absolute;
             z-index: -1;
-            content: url('https://www.nav.no/gfx/chat-filled.svg')
+            content:
+                url('https://www.nav.no/gfx/chat-filled.svg')
                 url('https://www.nav.no/gfx/message-filled.svg')
                 url('https://www.nav.no/gfx/phone-filled.svg')
                 url('https://www.nav.no/gfx/facebook-filled.svg')
                 url('https://www.nav.no/gfx/linkedin-filled.svg')
-                url('https://www.nav.no/gfx/chat.svg')
-                url('https://www.nav.no/gfx/message.svg')
-                url('https://www.nav.no/gfx/phone.svg')
-                url('https://www.nav.no/gfx/facebook.svg')
-                url('https://www.nav.no/gfx/linkedin.svg');
         }
     }
 

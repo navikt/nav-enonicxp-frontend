@@ -1,7 +1,6 @@
 import React from 'react';
 import { getInternalAbsoluteUrl } from 'utils/urls';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { classNames } from 'utils/classnames';
 import { SocialMedia } from 'types/content-props/main-article-props';
 
 import style from './SosialeMedier.module.scss';
@@ -62,23 +61,18 @@ export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
     }, []);
 
     return (
-        <div className={style.socialMedia}>
+        <section className={style.socialMedia}>
             <ul>
                 {linksData.map((item) => (
                     <li key={item.type}>
                         <LenkeBase href={item.href} analyticsLabel={item.text}>
-                            <span
-                                className={classNames(
-                                    style.shareSocial,
-                                    style[item.type]
-                                )}
-                            >
-                                {item.text}
+                            <span className={style.ikon}>
+                                <img alt={item.text} className={style[item.type]} />
                             </span>
                         </LenkeBase>
                     </li>
                 ))}
             </ul>
-        </div>
+        </section>
     );
 };

@@ -41,7 +41,7 @@ export const ChatOption = (props: ChatData) => {
                 className={style.link}
             >
                 <div className={style.linkContent}>
-                    <div className={classNames(style.icon, style.chat)} />
+                    <img alt="" className={classNames(style.icon, style.chat)} />
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>

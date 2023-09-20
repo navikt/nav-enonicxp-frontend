@@ -31,7 +31,7 @@ export const WriteOption = (props: Props) => {
                 className={style.link}
             >
                 <div className={style.linkContent}>
-                    <div className={classNames(style.icon, style['write'])} />
+                    <img alt="" className={classNames(style.icon, style['write'])} />
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>

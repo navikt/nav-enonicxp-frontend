@@ -64,14 +64,14 @@ export const FilterExplanation = ({
                         style.highlighted,
                         showHighlight ? style.iconVisible : style.iconHidden
                     )}
-                    aria-labelledby={explanationId}
+                    aria-hidden={true}
                 />
                 <InformationSquareIcon
                     className={classNames(
                         style.icon,
                         showHighlight ? style.iconHidden : style.iconVisible
                     )}
-                    aria-labelledby={explanationId}
+                    aria-hidden={true}
                 />
             </div>
             <div className="text" id={explanationId}>

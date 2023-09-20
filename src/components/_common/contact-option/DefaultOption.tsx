@@ -94,7 +94,8 @@ export const DefaultOption = (props: Props) => {
                 className={style.link}
             >
                 <div className={style.linkContent}>
-                    <div
+                    <img
+                        alt=""
                         className={classNames(
                             style.icon,
                             style[icon || channel]
