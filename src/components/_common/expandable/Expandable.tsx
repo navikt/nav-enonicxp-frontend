@@ -36,12 +36,15 @@ export const Expandable = ({
     };
 
     const checkAndOpenPanel = () => {
-        const { hash } = window.location;
-        if (!hash) {
+        if (isOpen) {
             return;
         }
 
-        const targetId = hash.replace('#', '');
+        const targetId = window.location.hash.replace('#', '');
+        if (!targetId) {
+            return;
+        }
+
         if (targetId === anchorId) {
             setIsOpen(true);
             return;
