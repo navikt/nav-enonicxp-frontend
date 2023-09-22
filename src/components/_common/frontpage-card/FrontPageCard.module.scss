@@ -12,7 +12,10 @@
         }
 
         border: 0;
+    }
 
+    :global(.employer-frontpage) {
+        background-color: var(--a-orange-200);
         &:not(:hover):not(:active) {
             box-shadow: 0 0 0;
         }
@@ -20,12 +23,9 @@
             box-shadow: 0 0 0;
         }
     }
-
-    :global(.employer-frontpage) {
-        background-color: var(--a-orange-200);
-    }
-    :global(.provider-frontpage) {
+    :global([class*='MiniCard'].provider-frontpage) {
         background-color: var(--a-red-50);
+        box-shadow: var(--a-shadow-xsmall);
 
         &:hover {
             background-color: var(--a-red-100);
