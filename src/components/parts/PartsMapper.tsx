@@ -53,7 +53,6 @@ import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 import { FrontpageSurveyPanel } from './frontpage-survey-panel/FrontpageSurveyPanel';
 import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
-import { FrontpageHeader } from './frontpage-header/FrontpageHeader';
 
 type Props = {
     partProps: PartComponentProps;
@@ -94,7 +93,6 @@ const partsWithOwnData: {
     [PartType.FiltersMenu]: FiltersMenu,
     [PartType.FrontpageCurrentTopics]: FrontpageCurrentTopics,
     [PartType.FrontpageShortcuts]: FrontpageShortcuts,
-    [PartType.FrontpageHeader]: FrontpageHeader,
     [PartType.ProductCard]: ProductCardPart,
     [PartType.ProductCardMicro]: ProductCardMicroPart,
     [PartType.ProductCardMini]: ProductCardPart,
