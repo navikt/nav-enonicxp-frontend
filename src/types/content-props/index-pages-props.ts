@@ -8,6 +8,7 @@ import {
     LinkSelectable,
 } from '../component-props/_mixins';
 import { SituationPageProps } from './dynamic-page-props';
+import { AnimatedIconsProps } from './animated-icons';
 
 type CommonData = {
     audience: AudienceProps;
@@ -15,13 +16,25 @@ type CommonData = {
 
 export type FrontPageData = {
     areasRefs: AreaPageProps[];
+    frontPageNestedRefs: FrontPageNestedProps[];
     situationsRefs: SituationPageProps[];
     areasHeader: string;
+} & CommonData;
+
+export type FrontPageNestedData = {
+    areasHeader: string;
+    illustration: AnimatedIconsProps;
 } & CommonData;
 
 export type FrontPageProps = ContentCommonProps & {
     type: ContentType.FrontPage;
     data: FrontPageData;
+    page: IndexPageProps;
+};
+
+export type FrontPageNestedProps = ContentCommonProps & {
+    type: ContentType.FrontPageNested;
+    data: FrontPageNestedData;
     page: IndexPageProps;
 };
 

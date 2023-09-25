@@ -60,6 +60,7 @@ const contentToReactComponent: {
 
     [ContentType.AreaPage]: DynamicPage,
     [ContentType.FrontPage]: DynamicPage,
+    [ContentType.FrontPageNested]: DynamicPage,
 
     [ContentType.DynamicPage]: DynamicPage,
 

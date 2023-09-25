@@ -1,0 +1,19 @@
+@use 'src/common' as common;
+
+.wrapper {
+    @include common.full-width-mixin();
+    padding-top: 2.75rem;
+    margin-bottom: -2rem !important; // Can't find a way to override the margin-bottom from the parent
+}
+
+.pageHeader {
+    align-items: flex-start;
+
+    @media #{common.$mq-screen-mobile} {
+        margin-bottom: 0rem;
+    }
+}
+
+.providerSubPage {
+    background-color: var(--a-purple-100);
+}

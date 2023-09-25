@@ -20,6 +20,7 @@ const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
     ContentType.OfficeEditorialPage,
     ContentType.OfficeBranchPage,
     ContentType.FrontPage,
+    ContentType.FrontPageNested,
     ContentType.AreaPage,
     ContentType.PressLandingPage,
     ContentType.FormIntermediateStepPage,
@@ -28,6 +29,24 @@ const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
 
 type Props = {
     content: ContentProps;
+};
+
+const checkForNoGap = (content: ContentProps) => {
+    if (
+        content.type === ContentType.FrontPage &&
+        (getAudience(content.data.audience) === 'employer' ||
+            getAudience(content.data.audience) === 'provider')
+    ) {
+        return true;
+    }
+    if (
+        content.type === ContentType.FrontPageNested &&
+        getAudience(content.data.audience) === 'provider'
+    ) {
+        return true;
+    }
+
+    return false;
 };
 
 export const checkForWhiteHeader = (content: ContentProps) => {
@@ -61,9 +80,7 @@ export const TopContainer = ({ content }: Props) => {
     // Should be shown in Content Studio only (except the edit view)
     const showVersionPicker = isEditorView && content.editorView !== 'edit';
 
-    const shouldCollapse =
-        content.type === ContentType.FrontPage &&
-        getAudience(content.data.audience) === 'employer';
+    const shouldCollapse = checkForNoGap(content);
 
     const warningLabels = translator('pageWarnings', language);
     const localeLabels = translator('locale', language);

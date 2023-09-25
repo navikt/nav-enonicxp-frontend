@@ -23,6 +23,7 @@ export interface FrontpageShortcutsProps extends PartComponentProps {
     config: {
         title: string;
         bgColor?: string;
+        itemColor?: string;
         hoverColor?: string;
         shortcuts: Shortcut[];
     };
