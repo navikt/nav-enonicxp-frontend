@@ -77,8 +77,26 @@
 }
 
 .item_provider {
+    :global(.back) {
+        svg {
+            path,
+            rect,
+            circle {
+                fill: var(--a-red-100);
+            }
+        }
+    }
     &:hover,
     &:focus-within {
         background-color: var(--hover-color, var(--a-red-100));
+        :global(.back) {
+            svg {
+                path,
+                rect,
+                circle {
+                    fill: var(--a-white);
+                }
+            }
+        }
     }
 }

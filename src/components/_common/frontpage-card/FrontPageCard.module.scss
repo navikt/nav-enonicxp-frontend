@@ -27,8 +27,27 @@
         background-color: var(--a-red-50);
         box-shadow: var(--a-shadow-xsmall);
 
+        :global(.back) {
+            svg {
+                path,
+                rect,
+                circle {
+                    fill: var(--a-red-100);
+                }
+            }
+        }
+
         &:hover {
             background-color: var(--a-red-100);
+            :global(.back) {
+                svg {
+                    path,
+                    rect,
+                    circle {
+                        fill: var(--a-white);
+                    }
+                }
+            }
         }
     }
 }
