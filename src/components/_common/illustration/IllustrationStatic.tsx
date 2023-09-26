@@ -26,9 +26,11 @@ const fetchSvgData = (url: string) =>
 const StaticIcon = ({
     icon,
     isEditorView,
+    className,
 }: {
     icon: AnimatedIcon;
     isEditorView: boolean;
+    className?: string;
 }) => {
     const ref = useRef<HTMLSpanElement>();
 
@@ -57,7 +59,11 @@ const StaticIcon = ({
     }, [svgData]);
 
     return (
-        <span className={styleStatic.icon} id={elementId} ref={ref}>
+        <span
+            className={classNames(styleStatic.icon, className)}
+            id={elementId}
+            ref={ref}
+        >
             {!isSvg && <XpImage imageProps={icon.icon} alt={''} />}
         </span>
     );
@@ -97,10 +103,18 @@ export const IllustrationStatic = ({ illustration, className }: Props) => {
             aria-hidden={'true'}
         >
             {hasIcon1 && (
-                <StaticIcon icon={icon1} isEditorView={isEditorView} />
+                <StaticIcon
+                    icon={icon1}
+                    isEditorView={isEditorView}
+                    className={'back'}
+                />
             )}
             {hasIcon2 && (
-                <StaticIcon icon={icon2} isEditorView={isEditorView} />
+                <StaticIcon
+                    icon={icon2}
+                    isEditorView={isEditorView}
+                    className={'front'}
+                />
             )}
         </span>
     );
