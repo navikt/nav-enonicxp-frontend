@@ -80,7 +80,8 @@
     :global(.back) {
         svg {
             path,
-            rect {
+            rect,
+            circle {
                 fill: var(--a-red-100);
             }
         }
@@ -91,7 +92,8 @@
         :global(.back) {
             svg {
                 path,
-                rect {
+                rect,
+                circle {
                     fill: var(--a-white);
                 }
             }
