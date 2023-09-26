@@ -2,12 +2,14 @@ import { AlertBox } from '../../../_common/alert-box/AlertBox';
 import { EditorLinkWrapper } from '../../editor-link-wrapper/EditorLinkWrapper';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { BodyLong } from '@navikt/ds-react';
-import { ContentProps } from '../../../../types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import { useEffect, useState } from 'react';
 import {
     hookDispatchEventForBatchContentServerEvent,
     unhookDispatchEventForBatchContentServerEvent,
 } from './dispatch-event-hook';
+import { isEditorFeatureEnabled } from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
+import { EditorFeature } from 'components/_editor-only/site-info/feature-toggles/SiteInfoFeatureToggles';
 
 import style from './AutoRefreshDisableHack.module.scss';
 
@@ -47,7 +49,8 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
         return unhookDispatchEventForBatchContentServerEvent;
     }, [content]);
 
-    return externalContentChange ? (
+    return isEditorFeatureEnabled(EditorFeature.ContentModifiedWarning) &&
+        externalContentChange ? (
         <div className={style.warningWrapper}>
             <AlertBox variant={'warning'} size={'small'}>
                 <BodyLong>

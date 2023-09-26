@@ -3,11 +3,10 @@ import {
     editorFetchAdminUserId,
     editorFetchUserInfo,
 } from '../editor-fetch-utils';
-import {
-    ContentProps,
-    ContentType,
-} from '../../../../types/content-props/_content-common';
-import { Branch } from '../../../../types/branch';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
+import { Branch } from 'types/branch';
+import { isEditorFeatureEnabled } from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
+import { EditorFeature } from 'components/_editor-only/site-info/feature-toggles/SiteInfoFeatureToggles';
 
 // From lib-admin-ui
 export enum NodeServerChangeType {
@@ -110,6 +109,12 @@ export const hookDispatchEventForBatchContentServerEvent = ({
                 'Skipping this event as current content was not updated'
             );
             return false;
+        }
+
+        // If the feature is disabled, we always dispatch the event when the current content was updated
+        // (we still want to bypass the event for other content, see above!)
+        if (!isEditorFeatureEnabled(EditorFeature.EditorReloadBlocker)) {
+            return dispatchEvent(event);
         }
 
         // Publish and unpublish events must always be dispatched in order to keep the editor UI consistent
