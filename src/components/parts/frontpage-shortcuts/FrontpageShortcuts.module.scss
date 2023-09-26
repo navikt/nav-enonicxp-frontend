@@ -80,7 +80,7 @@
     :global(.back) {
         svg {
             path {
-                fill: white;
+                fill: var(--a-white);
             }
         }
     }
