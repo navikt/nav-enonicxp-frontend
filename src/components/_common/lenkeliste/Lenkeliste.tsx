@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useId} from 'react';
 import { Heading } from '@navikt/ds-react';
 import { LinkProps } from 'types/link-props';
 import { LenkeStandalone } from '../lenke/LenkeStandalone';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { classNames } from 'utils/classnames';
+
 import style from './Lenkeliste.module.scss';
-import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 type Props = {
     lenker: LinkProps[];
@@ -18,34 +20,34 @@ export const Lenkeliste = ({
     withChevron = false,
     className,
 }: Props) => {
+    const headingId = `heading-linklist-${useId()}`;
+
     if (!lenker || lenker.length === 0) {
         return <EditorHelp text={'Tom lenkeliste'} />;
     }
 
     return (
-        <section className={className} aria-label={tittel}>
+        <nav className={classNames(className, style.lenker)}
+             aria-labelledby={headingId}
+        >
             {tittel && (
-                <div className={style.tittel}>
-                    <Heading size="small" level="2">
-                        {tittel}
-                    </Heading>
-                </div>
+                <Heading className={style.tittel} id={headingId} size="small" level="2">
+                    {tittel}
+                </Heading>
             )}
-            <nav className={style.lenker}>
-                {lenker.map((lenke, index) => (
-                    <LenkeStandalone
-                        href={lenke.url}
-                        label={lenke.label}
-                        key={index}
-                        className={style.lenke}
-                        component={'link-list'}
-                        linkGroup={tittel}
-                        withChevron={withChevron}
-                    >
-                        {lenke.text}
-                    </LenkeStandalone>
-                ))}
-            </nav>
-        </section>
+            {lenker.map((lenke, index) => (
+                <LenkeStandalone
+                    href={lenke.url}
+                    label={lenke.label}
+                    key={index}
+                    className={style.lenke}
+                    component={'link-list'}
+                    linkGroup={tittel}
+                    withChevron={withChevron}
+                >
+                    {lenke.text}
+                </LenkeStandalone>
+            ))}
+        </nav>
     );
 };
