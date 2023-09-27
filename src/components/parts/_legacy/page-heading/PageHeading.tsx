@@ -10,7 +10,7 @@ const PageHeading = (props: ContentProps) => {
         props.type !== ContentType.SectionPage && props.data?.ingress;
 
     return (
-        <header className={style.pageHeading}>
+        <section className={style.pageHeading}>
             <Heading level="1" size="xlarge">
                 {displayName || 'Tittel'}
             </Heading>
@@ -19,7 +19,7 @@ const PageHeading = (props: ContentProps) => {
                     <Ingress>{ingress}</Ingress>
                 </div>
             )}
-        </header>
+        </section>
     );
 };
 
