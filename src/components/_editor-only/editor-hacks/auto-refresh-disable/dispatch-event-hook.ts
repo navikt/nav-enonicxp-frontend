@@ -2,7 +2,7 @@ import {
     editorFetchAdminContent,
     editorFetchAdminUserId,
     editorFetchUserInfo,
-} from '../editor-fetch-utils';
+} from 'components/_editor-only/utils/editor-fetch';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Branch } from 'types/branch';
 import { isEditorFeatureEnabled } from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';

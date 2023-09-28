@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchJson } from 'utils/fetch/fetch-utils';
-import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
+import { xpServicePath } from 'utils/urls';
+import { xpPreviewBasePathDefault } from 'components/_editor-only/utils/editor-urls';
 import { BodyLong, BodyShort, Heading, Loader } from '@navikt/ds-react';
 import { CustomSelectorUsageData } from '../../../_editor-only/custom-selector-usage-link/CustomSelectorUsageLink';
 import { FragmentUsageDisplay } from 'components/pages/fragment-page/fragment-usage-check/fragment-usage-display/FragmentUsageDisplay';
@@ -8,7 +9,7 @@ import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 import style from './FragmentUsageCheck.module.scss';
 
-const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/htmlFragmentSelector/fragmentUsage`;
+const serviceUrl = `${xpPreviewBasePathDefault}${xpServicePath}/htmlFragmentSelector/fragmentUsage`;
 
 export type FragmentUsage = {
     macroUsage: CustomSelectorUsageData[];

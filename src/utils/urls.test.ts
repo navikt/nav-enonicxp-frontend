@@ -1,9 +1,8 @@
+import { adminOrigin, stripXpPathPrefix } from 'utils/urls';
 import {
-    adminOrigin,
-    stripXpPathPrefix,
     xpContentPathPrefix,
-    xpDraftPathPrefix,
-} from 'utils/urls';
+    xpPreviewBasePathDefault,
+} from 'components/_editor-only/utils/editor-urls';
 
 describe('stripXpPathPrefix', () => {
     test('Should strip content path prefix', () => {
@@ -17,7 +16,7 @@ describe('stripXpPathPrefix', () => {
         const desiredUrl = '/foo/bar';
 
         const url = stripXpPathPrefix(
-            `${adminOrigin}${xpDraftPathPrefix}${desiredUrl}`
+            `${adminOrigin}${xpPreviewBasePathDefault}${desiredUrl}`
         );
         expect(url).toEqual(desiredUrl);
     });

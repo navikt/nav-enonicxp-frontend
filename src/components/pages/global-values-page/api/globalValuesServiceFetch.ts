@@ -1,7 +1,8 @@
 import { fetchJson, objectToQueryString } from 'utils/fetch/fetch-utils';
-import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
+import { xpServicePath } from 'utils/urls';
+import { xpPreviewBasePathDefault } from 'components/_editor-only/utils/editor-urls';
 
-const SERVICE_URL = `${xpDraftPathPrefix}${xpServicePath}/globalValues`;
+const SERVICE_URL = `${xpPreviewBasePathDefault}${xpServicePath}/globalValues`;
 
 type GVRequestTypes =
     | 'usage'

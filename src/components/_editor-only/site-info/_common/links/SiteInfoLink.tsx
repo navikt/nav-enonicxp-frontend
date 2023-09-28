@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-    adminOrigin,
-    appOrigin,
-    editorPathPrefix,
-    stripXpPathPrefix,
-} from '../../../../../utils/urls';
+import { adminOrigin, appOrigin, stripXpPathPrefix } from 'utils/urls';
+import { xpEditorBasePathDefault } from 'components/_editor-only/utils/editor-urls';
 
 import style from './SiteInfoLink.module.scss';
 
-const editorUrlPrefix = `${adminOrigin}${editorPathPrefix}`;
+const editorUrlPrefix = `${adminOrigin}${xpEditorBasePathDefault}`;
 const liveUrlPrefix = appOrigin;
 
 type Props =
