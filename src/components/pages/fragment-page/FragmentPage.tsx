@@ -8,7 +8,7 @@ import style from './FragmentPage.module.scss';
 export const FragmentPage = (props: FragmentPageProps) => {
     return (
         <div className={style.fragmentPage}>
-            <FragmentUsageCheck id={props._id} />
+            <FragmentUsageCheck id={props._id} locale={props.contentLayer} />
             <div className={style.components}>
                 <ComponentMapper
                     componentProps={props.fragment}

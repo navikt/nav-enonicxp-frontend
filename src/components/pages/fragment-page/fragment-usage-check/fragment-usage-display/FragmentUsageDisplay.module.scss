@@ -1,0 +1,14 @@
+@use 'src/common' as common;
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.button {
+    margin-left: 1rem;
+}
+
+.usageHeader {
+    margin-top: 1rem;
+}

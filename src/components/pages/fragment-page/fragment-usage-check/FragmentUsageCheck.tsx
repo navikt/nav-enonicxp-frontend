@@ -1,134 +1,66 @@
 import React, { useEffect, useState } from 'react';
-import { fetchWithTimeout } from '../../../../utils/fetch/fetch-utils';
-import { xpDraftPathPrefix, xpServicePath } from '../../../../utils/urls';
-import { Heading } from '@navikt/ds-react';
-import { Button } from '../../../_common/button/Button';
-import { EditorLinkWrapper } from '../../../_editor-only/editor-link-wrapper/EditorLinkWrapper';
+import { fetchJson } from 'utils/fetch/fetch-utils';
+import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
+import { BodyLong, BodyShort, Heading, Loader } from '@navikt/ds-react';
+import { CustomSelectorUsageData } from '../../../_editor-only/custom-selector-usage-link/CustomSelectorUsageLink';
+import { FragmentUsageDisplay } from 'components/pages/fragment-page/fragment-usage-check/fragment-usage-display/FragmentUsageDisplay';
+import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 import style from './FragmentUsageCheck.module.scss';
-import {
-    CustomSelectorUsageData,
-    CustomSelectorUsageLink,
-} from '../../../_editor-only/custom-selector-usage-link/CustomSelectorUsageLink';
 
 const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/htmlFragmentSelector/fragmentUsage`;
 
-type FragmentUsage = {
+export type FragmentUsage = {
     macroUsage: CustomSelectorUsageData[];
     componentUsage: CustomSelectorUsageData[];
 };
 
-const fetchFragmentUsage = (id: string): Promise<FragmentUsage> =>
-    fetchWithTimeout(`${serviceUrl}?fragmentId=${id}`, 5000).then((res) => {
-        if (res.ok) {
-            return res.json();
-        }
-        throw new Error('Could not fetch fragment usage');
-    });
-
-const getNumUniqueUsages = ({ macroUsage, componentUsage }: FragmentUsage) => {
-    return [...macroUsage, ...componentUsage].filter((item1, index1, array) => {
-        const index2 = array.findIndex((item2) => item2.id === item1.id);
-        return index1 === index2;
-    }).length;
-};
+const fetchFragmentUsage = (
+    id: string,
+    locale: string
+): Promise<FragmentUsage> =>
+    fetchJson(`${serviceUrl}?fragmentId=${id}&locale=${locale}`, 5000);
 
 type Props = {
     id: string;
+    locale: string;
 };
 
-export const FragmentUsageCheck = ({ id }: Props) => {
+export const FragmentUsageCheck = ({ id, locale }: Props) => {
     const [usages, setUsages] = useState<FragmentUsage | null>(null);
-    const [showUsage, setShowUsage] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     useEffect(() => {
-        fetchFragmentUsage(id)
-            .then((usageResponse) => {
-                if (
-                    !usageResponse.macroUsage ||
-                    !usageResponse.componentUsage
-                ) {
-                    throw new Error('Invalid fragment usage fetch response');
-                }
-                setUsages(usageResponse);
-            })
-            .catch((e) => {
-                console.error(
-                    `Failed to load macro usage for fragment ${id} - ${e}`
-                );
-            });
-    }, [id]);
+        fetchFragmentUsage(id, locale).then((usageResponse) => {
+            if (!usageResponse) {
+                setIsError(true);
+                return;
+            }
 
-    if (!usages) {
-        return null;
-    }
-
-    const { componentUsage, macroUsage } = usages;
-    const numUniqueUsages = getNumUniqueUsages(usages);
+            setUsages(usageResponse);
+            setIsError(false);
+        });
+    }, [id, locale]);
 
     return (
         <div className={style.fragmentUsage}>
-            <div className={style.header}>
-                {numUniqueUsages > 0 ? (
-                    <>
-                        <Heading level="3" size="medium">
-                            {`Fragmentet er i bruk på ${numUniqueUsages} publisert${
-                                numUniqueUsages === 1 ? '' : 'e'
-                            } side${numUniqueUsages === 1 ? '' : 'r'}`}
-                        </Heading>
-                        <EditorLinkWrapper>
-                            <Button
-                                variant={'tertiary'}
-                                size={'small'}
-                                className={style.button}
-                                onClick={() => setShowUsage(!showUsage)}
-                            >
-                                {showUsage ? 'Skjul' : 'Vis'}
-                            </Button>
-                        </EditorLinkWrapper>
-                    </>
-                ) : (
-                    <Heading level="3" size="small">
-                        {`Fragmentet er ikke i bruk på publiserte sider`}
+            {isError ? (
+                <AlertBox variant={'error'} inline={true}>
+                    <Heading level={'3'} size={'small'}>
+                        {
+                            'Obs: lasting av fragment-referanser feilet! Dette fragmentet kan være i bruk.'
+                        }
                     </Heading>
-                )}
-            </div>
-            {showUsage && (
-                <div>
-                    {componentUsage.length > 0 && (
-                        <>
-                            <Heading
-                                level="3"
-                                size="small"
-                                className={style.usageHeader}
-                            >
-                                {'I bruk som komponent:'}
-                            </Heading>
-                            {componentUsage.map((content, index) => (
-                                <CustomSelectorUsageLink
-                                    {...content}
-                                    key={index}
-                                />
-                            ))}
-                        </>
-                    )}
-                    {macroUsage.length > 0 && (
-                        <>
-                            <Heading
-                                level="3"
-                                size="small"
-                                className={style.usageHeader}
-                            >
-                                {'I bruk som macro:'}
-                            </Heading>
-                            {macroUsage.map((content, index) => (
-                                <CustomSelectorUsageLink
-                                    {...content}
-                                    key={index}
-                                />
-                            ))}
-                        </>
-                    )}
+                    <BodyLong>
+                        {'Forsøk å laste inn editoren på nytt.'}
+                    </BodyLong>
+                </AlertBox>
+            ) : usages ? (
+                <FragmentUsageDisplay usages={usages} />
+            ) : (
+                <div className={style.loader}>
+                    <Loader size={'xlarge'} />
+                    <BodyShort>{'Laster fragment-referanser...'}</BodyShort>
                 </div>
             )}
         </div>
