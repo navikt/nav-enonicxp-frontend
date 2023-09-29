@@ -82,7 +82,7 @@
             path,
             rect,
             circle {
-                fill: var(--bg-color);
+                fill: var(--bg-color, var(--a-white));
             }
         }
     }
@@ -94,7 +94,7 @@
                 path,
                 rect,
                 circle {
-                    fill: var(--bg-color);
+                    fill: var(--bg-color, var(--a-white));
                 }
             }
         }
