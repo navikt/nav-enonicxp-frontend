@@ -5,25 +5,25 @@ import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/E
 import { DependencyData } from 'components/_editor-only/dependencies-info/types';
 import { Heading } from '@navikt/ds-react';
 
-import style from './DependencyLink.module.scss';
+import style from 'components/_editor-only/dependencies-info/result/link/DependenciesLinks.module.scss';
 
 type Props = {
     dependenciesData: DependencyData[];
     headerText: string;
 };
 
-export const DependencyLinks = ({ dependenciesData, headerText }: Props) => {
+export const DependenciesLinks = ({ dependenciesData, headerText }: Props) => {
     return (
         <>
-            <Heading level={'3'} size={'small'} className={style.usageHeader}>
+            <Heading level={'3'} size={'small'} className={style.header}>
                 {headerText}
             </Heading>
             {dependenciesData.map((dependency) => {
                 const { id, name, path, editorPath } = dependency;
 
                 return (
-                    <div className={style.usageLink} key={id}>
-                        {`${name} - `}
+                    <div className={style.link} key={id}>
+                        {`${name}: `}
                         <EditorLinkWrapper>
                             <LenkeInline
                                 href={

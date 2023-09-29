@@ -34,7 +34,10 @@ export const DependenciesInfo = ({ contentId, contentLayer, type }: Props) => {
                     </BodyLong>
                 </AlertBox>
             ) : dependencies ? (
-                <DependenciesInfoResult dependencies={dependencies} />
+                <DependenciesInfoResult
+                    dependencies={dependencies}
+                    type={type}
+                />
             ) : (
                 <div className={style.loader}>
                     <Loader size={'xlarge'} />

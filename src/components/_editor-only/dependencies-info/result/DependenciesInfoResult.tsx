@@ -2,11 +2,21 @@ import React, { useState } from 'react';
 import { Heading } from '@navikt/ds-react';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { Button } from 'components/_common/button/Button';
-import { DependencyLinks } from 'components/_editor-only/dependencies-info/result/link/DependencyLinks';
+import { DependenciesLinks } from 'components/_editor-only/dependencies-info/result/link/DependenciesLinks';
 import { removeDuplicates } from 'utils/arrays';
-import { DependenciesData } from 'components/_editor-only/dependencies-info/types';
+import {
+    DependenciesData,
+    DependenciesInfoSupportedContentType,
+} from 'components/_editor-only/dependencies-info/types';
+import { ContentType } from 'types/content-props/_content-common';
 
 import style from 'components/_editor-only/dependencies-info/result/DependenciesInfoResult.module.scss';
+
+const contentName: Record<DependenciesInfoSupportedContentType, string> = {
+    [ContentType.ProductDetails]: 'Produktdetaljene',
+    [ContentType.Video]: 'Videoen',
+    [ContentType.Fragment]: 'Fragmentet',
+};
 
 const getNumUniqueRefs = (refsData: DependenciesData) => {
     return removeDuplicates(
@@ -17,9 +27,10 @@ const getNumUniqueRefs = (refsData: DependenciesData) => {
 
 type Props = {
     dependencies: DependenciesData;
+    type: DependenciesInfoSupportedContentType;
 };
 
-export const DependenciesInfoResult = ({ dependencies }: Props) => {
+export const DependenciesInfoResult = ({ dependencies, type }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const { general, macros, components } = dependencies;
@@ -32,7 +43,9 @@ export const DependenciesInfoResult = ({ dependencies }: Props) => {
                 {numUniqueRefs > 0 ? (
                     <>
                         <Heading level={'3'} size={'medium'}>
-                            {`Fragmentet er i bruk på ${numUniqueRefs} publisert${
+                            {`${
+                                contentName[type]
+                            } er i bruk på ${numUniqueRefs} publisert${
                                 numUniqueRefs === 1 ? '' : 'e'
                             } side${numUniqueRefs === 1 ? '' : 'r'}`}
                         </Heading>
@@ -56,19 +69,19 @@ export const DependenciesInfoResult = ({ dependencies }: Props) => {
             {isOpen && (
                 <>
                     {general?.length > 0 && (
-                        <DependencyLinks
+                        <DependenciesLinks
                             headerText={'I bruk på følgende sider:'}
                             dependenciesData={general}
                         />
                     )}
                     {components?.length > 0 && (
-                        <DependencyLinks
+                        <DependenciesLinks
                             headerText={'I bruk som komponent:'}
                             dependenciesData={components}
                         />
                     )}
                     {macros?.length > 0 && (
-                        <DependencyLinks
+                        <DependenciesLinks
                             headerText={'I bruk som macro:'}
                             dependenciesData={macros}
                         />

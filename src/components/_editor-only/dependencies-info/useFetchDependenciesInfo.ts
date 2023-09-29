@@ -24,7 +24,7 @@ export const useFetchDependenciesInfo = (
 
     useEffect(() => {
         fetchJson<DependenciesData>(
-            `${serviceUrls[type]}?id=${contentId}&layer=${contentLayer}`,
+            `${serviceUrls[type]}?contentId=${contentId}&locale=${contentLayer}`,
             10000
         ).then((usageResponse) => {
             if (!usageResponse) {
