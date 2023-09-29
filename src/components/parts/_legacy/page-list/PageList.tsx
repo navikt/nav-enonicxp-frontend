@@ -29,25 +29,23 @@ export const PageList = (props: PageListProps) => {
 
     return (
         <div className={style.pageList}>
-            <header>
-                <Heading level={'1'} size={'xlarge'}>
-                    {props.displayName}
-                </Heading>
-                <div className={style.ingress}>
-                    <Ingress>{data.ingress}</Ingress>
+            <Heading level={'1'} size={'xlarge'}>
+                {props.displayName}
+            </Heading>
+            <div className={style.ingress}>
+                <Ingress>{data.ingress}</Ingress>
+            </div>
+            {!hideDatesOnPage && (
+                <div className={style.date}>
+                    <ArtikkelDato
+                        publish={publish}
+                        createdTime={createdTime}
+                        modifiedTime={modifiedTime}
+                        publishLabel={publishLabel}
+                        modifiedLabel={modifiedLabel}
+                    />
                 </div>
-                {!hideDatesOnPage && (
-                    <div className={style.date}>
-                        <ArtikkelDato
-                            publish={publish}
-                            createdTime={createdTime}
-                            modifiedTime={modifiedTime}
-                            publishLabel={publishLabel}
-                            modifiedLabel={modifiedLabel}
-                        />
-                    </div>
-                )}
-            </header>
+            )}
             <div className={style.list}>
                 {sectionContents.map((section) => {
                     const {

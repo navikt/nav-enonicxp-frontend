@@ -33,22 +33,20 @@ const getChapters = (contentProps: ContentProps) => {
 
 export const MainArticleChapterNavigation = (props: ContentProps) => {
     const { language } = usePageConfig();
-
     const chapters = getChapters(props);
     if (!chapters || chapters.length === 0) {
         return null;
     }
-
     const getLabel = translator('mainArticle', language);
-
     const currentPath = stripXpPathPrefix(props._path);
     const parentPath = stripXpPathPrefix(props.parent?._path || props._path);
     const parentTitle = props.parent?.displayName || props.displayName;
     const parentSelected = parentPath === currentPath;
+    const headingId = `heading-chapter-navigation`;
 
     return (
-        <nav className={style.mainArticleChapterNavigation}>
-            <Heading level="2" size="medium" className={style.title}>
+        <nav className={style.mainArticleChapterNavigation} aria-labelledby={headingId}>
+            <Heading id={headingId} level="2" size="medium" className={style.title}>
                 {getLabel('contents')}
             </Heading>
             <ul>

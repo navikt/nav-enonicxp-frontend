@@ -7,7 +7,7 @@ import styles from './CurrentTopicPage.module.scss';
 
 export const CurrentTopicPage = (props: CurrentTopicPageProps) => {
     return (
-        <div className={styles.currentTopicPage}>
+        <article className={styles.currentTopicPage}>
             <NewsHeader contentProps={props} />
             <div className={styles.contentWrapper}>
                 <div className={styles.contentAligner}>
@@ -19,6 +19,6 @@ export const CurrentTopicPage = (props: CurrentTopicPageProps) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </article>
     );
 };

@@ -25,7 +25,7 @@ export const NewsPressHeader = ({
     const tagLocaleId = type === 'news' ? 'news' : 'pressRelease';
 
     return (
-        <header className={styles.newsPressHeader}>
+        <section className={styles.newsPressHeader}>
             <div className={styles.tagWrapper}>
                 <StaticImage
                     imageData={icon}
@@ -40,6 +40,6 @@ export const NewsPressHeader = ({
                 {title}
             </Heading>
             <div className={styles.newsPressLine} />
-        </header>
+        </section>
     );
 };
