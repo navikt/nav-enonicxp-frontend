@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchJson } from 'utils/fetch/fetch-utils';
-import { xpServicePath } from 'utils/urls';
-import { xpPreviewBasePathDefault } from 'components/_editor-only/utils/editor-urls';
+import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 import { Heading } from '@navikt/ds-react';
 import { Button } from '../../_common/button/Button';
 import { EditorLinkWrapper } from '../editor-link-wrapper/EditorLinkWrapper';
@@ -9,13 +8,13 @@ import {
     CustomSelectorUsageLink,
     CustomSelectorUsageData,
 } from '../custom-selector-usage-link/CustomSelectorUsageLink';
-import { ContentType } from 'types/content-props/_content-common';
 
 import style from './UsageCheck.module.scss';
+import { ContentType } from 'types/content-props/_content-common';
 
 const serviceUrl = {
-    [ContentType.ProductDetails]: `${xpPreviewBasePathDefault}${xpServicePath}/productDetailsSelector/usage`,
-    [ContentType.Video]: `${xpPreviewBasePathDefault}${xpServicePath}/video/usage`,
+    [ContentType.ProductDetails]: `${xpDraftPathPrefix}${xpServicePath}/productDetailsSelector/usage`,
+    [ContentType.Video]: `${xpDraftPathPrefix}${xpServicePath}/video/usage`,
 };
 
 const usageNaming = {

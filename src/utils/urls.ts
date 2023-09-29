@@ -1,12 +1,12 @@
 import globalState from '../globalState';
 import { ContentProps } from 'types/content-props/_content-common';
-import {
-    xpContentPathPrefix,
-    xpPreviewBasePathDefault,
-} from 'components/_editor-only/utils/editor-urls';
 
 export const appOriginProd = 'https://www.nav.no';
+export const xpContentPathPrefix = '/www.nav.no';
 export const xpServicePath = '/_/service/no.nav.navno';
+export const xpDraftPathPrefix = `/admin/site/preview/default/draft${xpContentPathPrefix}`;
+export const editorPathPrefix =
+    '/admin/tool/com.enonic.app.contentstudio/main/default/edit';
 
 export const xpOrigin = process.env.XP_ORIGIN;
 export const appOrigin = process.env.APP_ORIGIN;
@@ -14,12 +14,12 @@ export const adminOrigin = process.env.ADMIN_ORIGIN;
 
 export const xpServiceUrl = `${xpOrigin}${xpServicePath}`;
 
-const internalUrlPrefix = `^(${appOrigin}|${appOriginProd}|${adminOrigin})?(${xpContentPathPrefix}|${xpPreviewBasePathDefault})?`;
+const internalUrlPrefix = `^(${appOrigin}|${appOriginProd}|${adminOrigin})?(${xpContentPathPrefix}|${xpDraftPathPrefix})?`;
 
 const internalUrlPrefixPattern = new RegExp(internalUrlPrefix, 'i');
 
 const xpPathPrefixPattern = new RegExp(
-    `^((${adminOrigin}${xpPreviewBasePathDefault})|(${xpContentPathPrefix}))`
+    `^((${adminOrigin}${xpDraftPathPrefix})|(${xpContentPathPrefix}))`
 );
 
 // Links to these paths and any sub-paths will use SPA navigation.
@@ -77,7 +77,7 @@ export const getInternalRelativePath = (
     const relativePath = url.replace(internalUrlPrefixPattern, '');
 
     if (isEditorView) {
-        return `${xpPreviewBasePathDefault}${relativePath}`;
+        return `${xpDraftPathPrefix}${relativePath}`;
     }
 
     return relativePath || '/';
@@ -115,7 +115,7 @@ export const getMediaUrl = (
 ) => {
     return url?.replace(
         internalUrlPrefixPattern,
-        isEditorView ? `${adminOrigin}${xpPreviewBasePathDefault}` : xpOrigin
+        isEditorView ? `${adminOrigin}${xpDraftPathPrefix}` : xpOrigin
     );
 };
 

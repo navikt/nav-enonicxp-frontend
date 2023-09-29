@@ -1,10 +1,15 @@
 import { adminOrigin } from 'utils/urls';
 import { fetchJson } from 'utils/fetch/fetch-utils';
 import { ContentProps } from 'types/content-props/_content-common';
-import { getProjectIdFromCurrentContentStudioUrl } from 'components/_editor-only/utils/editor-urls';
 
 const adminAuthUrl = `${adminOrigin}/admin/rest/auth/authenticated`;
 const userInfoUrl = `${adminOrigin}/admin/rest-v2/cs/security/principals/user:`;
+
+// The pathname in the editor view looks like this:
+// /admin/tool/com.enonic.app.contentstudio/main/<project id>/edit/<content id>
+const getProjectIdFromCurrentEditorUrl = () =>
+    typeof window !== 'undefined' &&
+    parent.window.location.pathname.split('/')[5];
 
 const getContentServiceUrl = (projectId: string) =>
     `${adminOrigin}/admin/rest-v2/cs/cms/${projectId}/content/content`;
@@ -32,7 +37,7 @@ export const editorFetchAdminUserId = () =>
     });
 
 export const editorFetchAdminContent = async (contentId: string) => {
-    const projectId = getProjectIdFromCurrentContentStudioUrl();
+    const projectId = getProjectIdFromCurrentEditorUrl();
 
     return fetchJson<AdminContentResponse>(
         `${getContentServiceUrl(projectId)}?id=${contentId}`,

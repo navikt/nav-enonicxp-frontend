@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import Link from 'next/link';
-import { adminOrigin, isNofollowUrl } from 'utils/urls';
-import { xpPreviewBasePathDefault } from 'components/_editor-only/utils/editor-urls';
+import { adminOrigin, isNofollowUrl, xpDraftPathPrefix } from 'utils/urls';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { onlyText } from 'utils/react-children';
 import { useLayoutConfig } from 'components/layouts/useLayoutConfig';
@@ -10,7 +9,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './LenkeBase.module.scss';
 
-const adminPreviewUrlPrefix = `${adminOrigin}${xpPreviewBasePathDefault}`;
+const adminPreviewUrlPrefix = `${adminOrigin}${xpDraftPathPrefix}`;
 
 const BadLinkWarning = ({ children }: { children: React.ReactNode }) => (
     <span className={style.badLinkWarning}>

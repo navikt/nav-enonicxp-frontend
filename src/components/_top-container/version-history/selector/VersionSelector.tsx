@@ -5,15 +5,14 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { VersionSelectorDateTime } from './selected-datetime/VersionSelectorDateTime';
 import { VersionSelectorPublished } from './published-datetime/VersionSelectorPublished';
 import { fetchJson, objectToQueryString } from 'utils/fetch/fetch-utils';
-import { xpServicePath } from 'utils/urls';
-import { xpPreviewBasePathDefault } from 'components/_editor-only/utils/editor-urls';
+import { xpDraftPathPrefix, xpServicePath } from 'utils/urls';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 import style from './VersionSelector.module.scss';
 
 const containerId = 'version-selector';
 
-const publishedVersionsServiceUrl = `${xpPreviewBasePathDefault}${xpServicePath}/sitecontentVersions/publishedVersions`;
+const publishedVersionsServiceUrl = `${xpDraftPathPrefix}${xpServicePath}/sitecontentVersions/publishedVersions`;
 
 type SelectorType = 'datetime' | 'published';
 
