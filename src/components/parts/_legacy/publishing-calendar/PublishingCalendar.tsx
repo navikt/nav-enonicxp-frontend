@@ -15,16 +15,14 @@ const PublishingCalendar = (props: PublishingCalendarProps) => {
 
     return (
         <div className={style.publishingCalendar}>
-            <header>
-                <Heading level="1" size="large">
-                    {props.displayName}
-                </Heading>
-                {props.data.ingress && (
-                    <Ingress className={style.ingress}>
-                        {props.data.ingress}
-                    </Ingress>
-                )}
-            </header>
+            <Heading level="1" size="large">
+                {props.displayName}
+            </Heading>
+            {props.data.ingress && (
+                <Ingress className={style.ingress}>
+                    {props.data.ingress}
+                </Ingress>
+            )}
             <Table zebraStripes>
                 <Table.Header>
                     <Table.Row>
