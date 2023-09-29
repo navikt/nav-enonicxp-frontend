@@ -5,7 +5,7 @@ import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/E
 import { DependencyData } from 'components/_editor-only/dependencies-info/types';
 import { Heading } from '@navikt/ds-react';
 
-import style from 'components/_editor-only/dependencies-info/result/link/DependenciesLinks.module.scss';
+import style from './DependenciesLinks.module.scss';
 
 type Props = {
     dependenciesData: DependencyData[];

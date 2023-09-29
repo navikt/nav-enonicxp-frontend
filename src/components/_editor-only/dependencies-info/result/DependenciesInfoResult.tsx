@@ -10,7 +10,7 @@ import {
 } from 'components/_editor-only/dependencies-info/types';
 import { ContentType } from 'types/content-props/_content-common';
 
-import style from 'components/_editor-only/dependencies-info/result/DependenciesInfoResult.module.scss';
+import style from './DependenciesInfoResult.module.scss';
 
 const contentName: Record<DependenciesInfoSupportedContentType, string> = {
     [ContentType.ProductDetails]: 'Produktdetaljene',
