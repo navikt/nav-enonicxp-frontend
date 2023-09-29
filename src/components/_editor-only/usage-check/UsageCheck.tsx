@@ -5,9 +5,9 @@ import { Heading } from '@navikt/ds-react';
 import { Button } from '../../_common/button/Button';
 import { EditorLinkWrapper } from '../editor-link-wrapper/EditorLinkWrapper';
 import {
-    CustomSelectorUsageLink,
+    DependencyLinks,
     CustomSelectorUsageData,
-} from '../custom-selector-usage-link/CustomSelectorUsageLink';
+} from 'components/_editor-only/dependencies-info/result/link/DependencyLinks';
 
 import style from './UsageCheck.module.scss';
 import { ContentType } from 'types/content-props/_content-common';
@@ -100,7 +100,7 @@ export const UsageCheck = ({ id, type }: Props) => {
                         {'I bruk på følgende sider:'}
                     </Heading>
                     {usages.map((content, index) => (
-                        <CustomSelectorUsageLink {...content} key={index} />
+                        <DependencyLinks {...content} key={index} />
                     ))}
                 </div>
             )}
