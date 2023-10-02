@@ -6,6 +6,7 @@ import { Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 
 import style from './ReferencesLinks.module.scss';
+import { adminOrigin } from 'utils/urls';
 
 type Props = {
     references: ReferenceItem[];
@@ -40,7 +41,10 @@ export const ReferencesLinks = ({
                         )}
                         {`${name}: `}
                         <EditorLinkWrapper>
-                            <LenkeInline href={editorPath} target={'_blank'}>
+                            <LenkeInline
+                                href={`${adminOrigin}${editorPath}`}
+                                target={'_blank'}
+                            >
                                 {path}
                             </LenkeInline>
                         </EditorLinkWrapper>
