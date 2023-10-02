@@ -61,7 +61,7 @@ export const ReferencesInfoResult = ({ references, content }: Props) => {
                     </>
                 ) : (
                     <Heading level={'3'} size={'small'}>
-                        {`Fragmentet er ikke i bruk på publiserte sider`}
+                        {`${contentTypeName} er ikke i bruk på publiserte sider`}
                     </Heading>
                 )}
             </div>
