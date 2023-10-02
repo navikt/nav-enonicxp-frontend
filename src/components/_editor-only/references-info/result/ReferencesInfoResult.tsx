@@ -5,7 +5,7 @@ import { Button } from 'components/_common/button/Button';
 import { ReferencesLinks } from 'components/_editor-only/references-info/result/link/ReferencesLinks';
 import { removeDuplicates } from 'utils/arrays';
 import { ReferencesDataByType } from 'components/_editor-only/references-info/types';
-import { ContentType } from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 
 import style from './ReferencesInfoResult.module.scss';
 
@@ -24,11 +24,13 @@ const getNumUniqueRefs = (refsData: ReferencesDataByType) => {
 
 type Props = {
     references: ReferencesDataByType;
-    type: ContentType;
+    content: ContentProps;
 };
 
-export const ReferencesInfoResult = ({ references, type }: Props) => {
+export const ReferencesInfoResult = ({ references, content }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const { type, contentLayer } = content;
 
     const { general, macros, components } = references;
 
@@ -69,18 +71,21 @@ export const ReferencesInfoResult = ({ references, type }: Props) => {
                         <ReferencesLinks
                             headerText={'I bruk på følgende sider:'}
                             references={general}
+                            contentLayer={contentLayer}
                         />
                     )}
                     {components?.length > 0 && (
                         <ReferencesLinks
                             headerText={'I bruk som komponent:'}
                             references={components}
+                            contentLayer={contentLayer}
                         />
                     )}
                     {macros?.length > 0 && (
                         <ReferencesLinks
                             headerText={'I bruk som macro:'}
                             references={macros}
+                            contentLayer={contentLayer}
                         />
                     )}
                 </>

@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const ReferencesInfo = ({ content }: Props) => {
-    const { _id: contentId, contentLayer, type } = content;
+    const { _id: contentId, contentLayer } = content;
 
     const { references, isError, isLoaded } = useFetchReferencesInfo(
         contentId,
@@ -38,7 +38,10 @@ export const ReferencesInfo = ({ content }: Props) => {
                     </BodyLong>
                 </AlertBox>
             ) : (
-                <ReferencesInfoResult references={references} type={type} />
+                <ReferencesInfoResult
+                    references={references}
+                    content={content}
+                />
             )}
         </div>
     );

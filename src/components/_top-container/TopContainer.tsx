@@ -81,7 +81,7 @@ export const TopContainer = ({ content }: Props) => {
     const shouldCollapse = checkForNoGap(content);
 
     const warningLabels = translator('pageWarnings', language);
-    const localeLabels = translator('locale', language);
+    const localeLabels = translator('localeNames', language);
 
     return (
         <>
