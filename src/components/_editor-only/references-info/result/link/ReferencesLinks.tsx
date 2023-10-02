@@ -4,9 +4,10 @@ import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/E
 import { ReferenceItem } from 'components/_editor-only/references-info/types';
 import { Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
+import { adminOrigin } from 'utils/urls';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './ReferencesLinks.module.scss';
-import { adminOrigin } from 'utils/urls';
 
 type Props = {
     references: ReferenceItem[];
@@ -19,6 +20,8 @@ export const ReferencesLinks = ({
     headerText,
     contentLayer,
 }: Props) => {
+    const { pageConfig } = usePageConfig();
+
     const languageNames = translator('localeNames', 'no');
 
     return (
@@ -34,6 +37,8 @@ export const ReferencesLinks = ({
                         ? `[Layer: ${languageNames(layer)}] `
                         : null;
 
+                const href = `${adminOrigin}${editorPath}`;
+
                 return (
                     <div className={style.link} key={id}>
                         {layersIndicatorText && (
@@ -42,8 +47,19 @@ export const ReferencesLinks = ({
                         {`${name}: `}
                         <EditorLinkWrapper>
                             <LenkeInline
-                                href={`${adminOrigin}${editorPath}`}
+                                href={href}
                                 target={'_blank'}
+                                onClick={
+                                    // Need some special handling to allow target _blank from
+                                    // the inline preview iframe
+                                    pageConfig.editorView === 'inline'
+                                        ? (e) => {
+                                              e.preventDefault();
+                                              e.stopPropagation();
+                                              window.open(href, '_blank');
+                                          }
+                                        : undefined
+                                }
                             >
                                 {path}
                             </LenkeInline>
