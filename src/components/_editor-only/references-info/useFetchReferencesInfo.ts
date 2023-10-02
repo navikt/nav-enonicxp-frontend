@@ -22,31 +22,30 @@ export const useFetchReferencesInfo = (
     contentId: string,
     contentLayer: string
 ) => {
-    const [references, setReferences] = useState<ReferencesDataByType>({});
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [references, setReferences] = useState<ReferencesDataByType | null>(
+        null
+    );
     const [isError, setIsError] = useState(false);
 
     useEffect(() => {
-        setIsLoaded(false);
-
         fetchJson<ServiceResponse>(
             `${serviceUrl}?contentId=${contentId}&locale=${contentLayer}`,
             10000
         ).then((usageResponse) => {
-            setIsLoaded(true);
-
-            if (!usageResponse) {
+            if (!usageResponse || usageResponse.result === 'error') {
                 setIsError(true);
                 return;
             }
 
             if (usageResponse.result === 'success') {
                 setReferences(usageResponse.references);
+            } else if (usageResponse.result === 'notimpl') {
+                setReferences(null);
             }
 
             setIsError(false);
         });
     }, [contentId, contentLayer]);
 
-    return { references, isError, isLoaded };
+    return { references, isError };
 };

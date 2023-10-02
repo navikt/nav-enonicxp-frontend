@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyLong, BodyShort, Heading, Loader } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import { ReferencesInfoResult } from 'components/_editor-only/references-info/result/ReferencesInfoResult';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 import { useFetchReferencesInfo } from 'components/_editor-only/references-info/useFetchReferencesInfo';
@@ -14,19 +14,18 @@ type Props = {
 export const ReferencesInfo = ({ content }: Props) => {
     const { _id: contentId, contentLayer } = content;
 
-    const { references, isError, isLoaded } = useFetchReferencesInfo(
+    const { references, isError } = useFetchReferencesInfo(
         contentId,
         contentLayer
     );
 
+    if (!references) {
+        return null;
+    }
+
     return (
         <div className={style.container}>
-            {!isLoaded ? (
-                <div className={style.loader}>
-                    <Loader size={'xlarge'} />
-                    <BodyShort>{'Laster avhengigheter...'}</BodyShort>
-                </div>
-            ) : isError ? (
+            {isError ? (
                 <AlertBox variant={'error'} inline={true}>
                     <Heading level={'3'} size={'small'}>
                         {

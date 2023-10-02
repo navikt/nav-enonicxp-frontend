@@ -6,7 +6,7 @@ import { ReferenceItem } from 'components/_editor-only/references-info/types';
 import { Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
 
-import style from 'components/_editor-only/references-info/result/link/ReferencesLinks.module.scss';
+import style from './ReferencesLinks.module.scss';
 
 type Props = {
     references: ReferenceItem[];
