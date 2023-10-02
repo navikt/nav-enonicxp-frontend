@@ -11,6 +11,9 @@ type Props = {
     content: ContentProps;
 };
 
+// Shows outbound references for the content when viewed in the editor. This is a more thorough
+// alternative to the builtin dependencies widget in content studio, which does not account for
+// various types of custom references that we have implemented.
 export const ReferencesInfo = ({ content }: Props) => {
     const { _id: contentId, contentLayer } = content;
 
