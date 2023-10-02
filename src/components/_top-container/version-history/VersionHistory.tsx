@@ -23,7 +23,7 @@ export const VersionHistory = ({ content }: Props) => {
     >();
 
     const router = useRouter();
-    const getLabel = translator('versionHistory', language);
+    const getLabel = translator('versionHistory', 'no');
 
     useEffect(() => {
         setVersionUrlRequested(null);

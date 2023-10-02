@@ -2,23 +2,20 @@ import React, { useState } from 'react';
 import { Heading } from '@navikt/ds-react';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { Button } from 'components/_common/button/Button';
-import { DependenciesLinks } from 'components/_editor-only/dependencies-info/result/link/DependenciesLinks';
+import { ReferencesLinks } from 'components/_editor-only/references-info/result/link/ReferencesLinks';
 import { removeDuplicates } from 'utils/arrays';
-import {
-    DependenciesData,
-    DependenciesInfoSupportedContentType,
-} from 'components/_editor-only/dependencies-info/types';
+import { ReferencesDataByType } from 'components/_editor-only/references-info/types';
 import { ContentType } from 'types/content-props/_content-common';
 
-import style from './DependenciesInfoResult.module.scss';
+import style from './ReferencesInfoResult.module.scss';
 
-const contentName: Record<DependenciesInfoSupportedContentType, string> = {
+const contentTypeNameMap: { [key in ContentType]?: string } = {
     [ContentType.ProductDetails]: 'Produktdetaljene',
     [ContentType.Video]: 'Videoen',
     [ContentType.Fragment]: 'Fragmentet',
-};
+} as const;
 
-const getNumUniqueRefs = (refsData: DependenciesData) => {
+const getNumUniqueRefs = (refsData: ReferencesDataByType) => {
     return removeDuplicates(
         Object.values(refsData).flat(),
         (a, b) => a.id === b.id
@@ -26,16 +23,18 @@ const getNumUniqueRefs = (refsData: DependenciesData) => {
 };
 
 type Props = {
-    dependencies: DependenciesData;
-    type: DependenciesInfoSupportedContentType;
+    references: ReferencesDataByType;
+    type: ContentType;
 };
 
-export const DependenciesInfoResult = ({ dependencies, type }: Props) => {
+export const ReferencesInfoResult = ({ references, type }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const { general, macros, components } = dependencies;
+    const { general, macros, components } = references;
 
-    const numUniqueRefs = getNumUniqueRefs(dependencies);
+    const numUniqueRefs = getNumUniqueRefs(references);
+
+    const contentTypeName = contentTypeNameMap[type] || 'Innholdet';
 
     return (
         <>
@@ -43,9 +42,7 @@ export const DependenciesInfoResult = ({ dependencies, type }: Props) => {
                 {numUniqueRefs > 0 ? (
                     <>
                         <Heading level={'3'} size={'medium'}>
-                            {`${
-                                contentName[type]
-                            } er i bruk på ${numUniqueRefs} publisert${
+                            {`${contentTypeName} er i bruk på ${numUniqueRefs} publisert${
                                 numUniqueRefs === 1 ? '' : 'e'
                             } side${numUniqueRefs === 1 ? '' : 'r'}`}
                         </Heading>
@@ -69,21 +66,21 @@ export const DependenciesInfoResult = ({ dependencies, type }: Props) => {
             {isOpen && (
                 <>
                     {general?.length > 0 && (
-                        <DependenciesLinks
+                        <ReferencesLinks
                             headerText={'I bruk på følgende sider:'}
-                            dependenciesData={general}
+                            references={general}
                         />
                     )}
                     {components?.length > 0 && (
-                        <DependenciesLinks
+                        <ReferencesLinks
                             headerText={'I bruk som komponent:'}
-                            dependenciesData={components}
+                            references={components}
                         />
                     )}
                     {macros?.length > 0 && (
-                        <DependenciesLinks
+                        <ReferencesLinks
                             headerText={'I bruk som macro:'}
-                            dependenciesData={macros}
+                            references={macros}
                         />
                     )}
                 </>

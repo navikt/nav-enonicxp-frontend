@@ -13,15 +13,14 @@ import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from 'utils/decorator/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
 import { getInternalRelativePath } from 'utils/urls';
-import { EditorHacks } from './_editor-only/editor-hacks/EditorHacks';
 import { store } from 'store/store';
 import { setPageConfigAction } from 'store/slices/pageConfig';
 import { fetchAndSetInnloggingsstatus } from 'utils/fetch/fetch-innloggingsstatus';
 import { setAuthStateAction } from 'store/slices/authState';
 import { fetchAndSetMeldekortStatus } from 'utils/fetch/fetch-meldekort-status';
 import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
-import { EditorGlobalWarnings } from 'components/_editor-only/global-warnings/EditorGlobalWarnings';
 import { classNames } from 'utils/classnames';
+import { EditorWidgets } from 'components/_editor-only/EditorWidgets';
 
 type Props = {
     content: ContentProps;
@@ -136,10 +135,9 @@ export const PageWrapper = (props: Props) => {
             )}
         >
             <div className={classNames('app-container')}>
-                <EditorHacks content={content} />
-                {editorView && <EditorGlobalWarnings key={content._id} />}
                 <DocumentParameterMetatags content={content} />
                 <HeadWithMetatags content={content} />
+                <EditorWidgets content={content} />
                 <TopContainer content={content} />
                 <div
                     role={'main'}

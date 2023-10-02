@@ -2,24 +2,24 @@ import React from 'react';
 import { adminOrigin, editorPathPrefix } from 'utils/urls';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
-import { DependencyData } from 'components/_editor-only/dependencies-info/types';
+import { ReferenceItem } from 'components/_editor-only/references-info/types';
 import { Heading } from '@navikt/ds-react';
 
-import style from './DependenciesLinks.module.scss';
+import style from 'components/_editor-only/references-info/result/link/ReferencesLinks.module.scss';
 
 type Props = {
-    dependenciesData: DependencyData[];
+    references: ReferenceItem[];
     headerText: string;
 };
 
-export const DependenciesLinks = ({ dependenciesData, headerText }: Props) => {
+export const ReferencesLinks = ({ references, headerText }: Props) => {
     return (
         <>
             <Heading level={'3'} size={'small'} className={style.header}>
                 {headerText}
             </Heading>
-            {dependenciesData.map((dependency) => {
-                const { id, name, path, editorPath } = dependency;
+            {references.map((reference) => {
+                const { id, name, path, editorPath } = reference;
 
                 return (
                     <div className={style.link} key={id}>
