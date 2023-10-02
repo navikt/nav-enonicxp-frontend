@@ -20,7 +20,6 @@ import { setAuthStateAction } from 'store/slices/authState';
 import { fetchAndSetMeldekortStatus } from 'utils/fetch/fetch-meldekort-status';
 import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
 import { classNames } from 'utils/classnames';
-import { EditorWidgets } from 'components/_editor-only/EditorWidgets';
 
 type Props = {
     content: ContentProps;
@@ -137,7 +136,6 @@ export const PageWrapper = (props: Props) => {
             <div className={classNames('app-container')}>
                 <DocumentParameterMetatags content={content} />
                 <HeadWithMetatags content={content} />
-                <EditorWidgets content={content} />
                 <TopContainer content={content} />
                 <div
                     role={'main'}

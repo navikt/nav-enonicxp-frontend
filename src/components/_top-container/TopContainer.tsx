@@ -5,6 +5,7 @@ import { getContentLanguages } from 'utils/languages';
 import { PageWarning } from './page-warning/PageWarning';
 import { translator } from 'translations';
 import { getAudience } from 'types/component-props/_mixins';
+import { EditorWidgets } from 'components/_editor-only/EditorWidgets';
 
 import style from './TopContainer.module.scss';
 
@@ -114,7 +115,9 @@ export const TopContainer = ({ content }: Props) => {
                     hasDecoratorWidgets && style.widgetsOffset,
                     shouldCollapse && style.collapse
                 )}
-            />
+            >
+                <EditorWidgets content={content} />
+            </div>
         </>
     );
 };

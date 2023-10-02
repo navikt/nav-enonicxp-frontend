@@ -21,7 +21,9 @@ export const EditorWidgets = ({ content }: Props) => {
     return (
         <div className={style.editorWidgets}>
             <EditorHacks content={content} />
-            {editorView !== 'preview' && <ReferencesInfo content={content} />}
+            {(editorView === 'inline' || editorView === 'edit') && (
+                <ReferencesInfo content={content} />
+            )}
             <EditorGlobalWarnings key={content._id} />
             {editorView !== 'edit' && <VersionHistory content={content} />}
         </div>
