@@ -1,22 +1,20 @@
 @use 'src/common' as common;
 
-.fragmentUsage {
+.container {
+    display: flex;
+    flex-direction: column;
     padding: 1rem 2rem;
     background-color: white;
     margin-bottom: 1rem;
     border: 2px solid common.$a-green-200;
     border-radius: common.$border-radius-large;
+}
 
-    .header {
-        display: flex;
-        align-items: center;
-    }
-
-    .button {
-        margin-left: 1rem;
-    }
-
-    .usageHeader {
-        margin-top: 1rem;
+.loader {
+    display: inline-flex;
+    align-self: center;
+    align-items: center;
+    & > :first-child {
+        margin-right: 1rem;
     }
 }

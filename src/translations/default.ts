@@ -73,7 +73,7 @@ const productDetailTypes: { [key in ProductDetailType]: string } = {
 };
 
 export const translationsBundleNb = {
-    locale: {
+    localeNames: {
         no: 'norsk (bokmål)',
         nn: 'nynorsk',
         en: 'engelsk',

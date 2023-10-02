@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import { LenkeStandalone } from '../../_common/lenke/LenkeStandalone';
 import { Heading, Loader } from '@navikt/ds-react';
 import { VersionStatus } from './status/VersionStatus';
