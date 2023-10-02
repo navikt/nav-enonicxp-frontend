@@ -31,7 +31,6 @@ export const ReferencesInfoResult = ({ references, content }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const { type, contentLayer } = content;
-
     const { general, macros, components } = references;
 
     const numUniqueRefs = getNumUniqueRefs(references);

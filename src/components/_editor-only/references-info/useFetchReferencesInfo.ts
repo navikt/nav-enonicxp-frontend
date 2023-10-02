@@ -16,7 +16,7 @@ type ServiceResponse =
           result: 'notimpl';
       };
 
-const serviceUrl = `${xpDraftPathPrefix}${xpServicePath}/references`;
+const SERVICE_URL = `${xpDraftPathPrefix}${xpServicePath}/references`;
 
 export const useFetchReferencesInfo = (
     contentId: string,
@@ -29,21 +29,22 @@ export const useFetchReferencesInfo = (
 
     useEffect(() => {
         fetchJson<ServiceResponse>(
-            `${serviceUrl}?contentId=${contentId}&locale=${contentLayer}`,
+            `${SERVICE_URL}?contentId=${contentId}&locale=${contentLayer}`,
             10000
         ).then((usageResponse) => {
             if (!usageResponse || usageResponse.result === 'error') {
                 setIsError(true);
+                setReferences({});
                 return;
             }
+
+            setIsError(false);
 
             if (usageResponse.result === 'success') {
                 setReferences(usageResponse.references);
             } else if (usageResponse.result === 'notimpl') {
                 setReferences(null);
             }
-
-            setIsError(false);
         });
     }, [contentId, contentLayer]);
 

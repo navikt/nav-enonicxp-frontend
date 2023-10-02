@@ -1,5 +1,4 @@
 import React from 'react';
-import { adminOrigin, editorPathPrefix } from 'utils/urls';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
 import { EditorLinkWrapper } from 'components/_editor-only/editor-link-wrapper/EditorLinkWrapper';
 import { ReferenceItem } from 'components/_editor-only/references-info/types';
@@ -29,21 +28,19 @@ export const ReferencesLinks = ({
             {references.map((reference) => {
                 const { id, name, path, editorPath, layer } = reference;
 
-                const href =
-                    editorPath || `${adminOrigin}${editorPathPrefix}/${id}`;
+                const layersIndicatorText =
+                    layer !== contentLayer
+                        ? `[Layer: ${languageNames(layer)}] `
+                        : null;
 
                 return (
                     <div className={style.link} key={id}>
-                        {layer !== contentLayer ? (
-                            <strong>{`[Layer: ${languageNames(
-                                layer
-                            )}] `}</strong>
-                        ) : (
-                            ''
+                        {layersIndicatorText && (
+                            <strong>{layersIndicatorText}</strong>
                         )}
                         {`${name}: `}
                         <EditorLinkWrapper>
-                            <LenkeInline href={href} target={'_blank'}>
+                            <LenkeInline href={editorPath} target={'_blank'}>
                                 {path}
                             </LenkeInline>
                         </EditorLinkWrapper>
