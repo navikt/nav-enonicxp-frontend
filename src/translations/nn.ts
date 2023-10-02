@@ -284,11 +284,6 @@ export const translationsBundleNn: PartialTranslations = {
         day: 'dag',
         date: 'dato',
     },
-    versionHistory: {
-        label: 'Versjonshistorikk',
-        title: 'Vis historisk innhald',
-        loading: 'Laster historisk innhald...',
-    },
     pageWarnings: {
         draftWarning: 'Utkast - sida er under arbeid',
     },
