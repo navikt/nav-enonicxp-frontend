@@ -26,12 +26,17 @@ export const useFetchReferencesInfo = (
         null
     );
     const [isError, setIsError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
+
         fetchJson<ServiceResponse>(
             `${SERVICE_URL}?contentId=${contentId}&locale=${contentLayer}`,
             10000
         ).then((usageResponse) => {
+            setIsLoading(false);
+
             if (!usageResponse || usageResponse.result === 'error') {
                 setIsError(true);
                 setReferences({});
@@ -48,5 +53,5 @@ export const useFetchReferencesInfo = (
         });
     }, [contentId, contentLayer]);
 
-    return { references, isError };
+    return { references, isError, isLoading };
 };
