@@ -7,5 +7,6 @@ export const VideoPage = (props: VideoPageProps) => {
         return <RedirectTo404 />;
     }
 
+    // TODO: add a video preview here
     return null;
 };
