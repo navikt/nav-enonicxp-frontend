@@ -18,7 +18,7 @@ const contentTypeNameMap: { [key in ContentType]?: string } = {
 const getNumUniqueRefs = (refsData: ReferencesDataByType) => {
     return removeDuplicates(
         Object.values(refsData).flat(),
-        (a, b) => a.id === b.id
+        (a, b) => a.id === b.id && a.layer === b.layer
     ).length;
 };
 
