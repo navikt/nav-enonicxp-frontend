@@ -39,7 +39,7 @@ export const useFetchReferencesInfo = (
 
             if (!usageResponse || usageResponse.result === 'error') {
                 setIsError(true);
-                setReferences({});
+                setReferences(null);
                 return;
             }
 

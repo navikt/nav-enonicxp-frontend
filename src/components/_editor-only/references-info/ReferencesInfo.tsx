@@ -17,12 +17,12 @@ type Props = {
 export const ReferencesInfo = ({ content }: Props) => {
     const { _id: contentId, contentLayer } = content;
 
-    const { references, isError, isLoading } = useFetchReferencesInfo(
+    const { references, isLoading, isError } = useFetchReferencesInfo(
         contentId,
         contentLayer
     );
 
-    if (!references && !isLoading) {
+    if (!references && !isLoading && !isError) {
         return null;
     }
 
