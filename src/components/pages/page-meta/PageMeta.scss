@@ -1,0 +1,6 @@
+@use 'src/common' as common;
+
+.pageMetaData {
+    display: flex;
+    flex-direction: column;
+}
