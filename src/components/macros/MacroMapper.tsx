@@ -10,7 +10,7 @@ import { MacroChatbotLink } from './chatbot-link/MacroChatbotLink';
 import { MacroFotnote } from './fotnote/MacroFotnote';
 import { MacroFormDetails } from './form-details/MacroFormDetails';
 import { MacroInfoBoks } from './infoboks/MacroInfoBoks';
-import { MacroLenkeFiler } from './lenke-filer/MacroLenkeFiler';
+import { MacroLenkeFiler } from 'components/macros/lenke-filer/MacroLenkeFiler';
 import { MacroPhoneLink } from './phone-link/MacroPhoneLink';
 import { MacroQuote } from './quote/MacroQuote';
 import { MacroTankestrek } from './tankestrek/MacroTankestrek';
@@ -28,6 +28,7 @@ import { MacroPayoutDates } from './payout-dates/MacroPayoutDates';
 import { MacroProductCardMicro } from 'components/macros/product-card-micro/MacroProductCardMicro';
 import { MacroTall } from 'components/macros/tall/MacroTall';
 import { MacroUxSignalsWidget } from 'components/macros/uxsignals-widget/MacroUxSignalsWidget';
+import { MacroLinkToLayer } from 'components/macros/link-to-layer/MacroLinkToLayer';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
@@ -48,6 +49,7 @@ const macroComponents: {
     [MacroType.InfoBoks]: MacroInfoBoks,
     [MacroType.Ingress]: MacroIngress,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
+    [MacroType.LinkToLayer]: MacroLinkToLayer,
     [MacroType.PayoutDates]: MacroPayoutDates,
     [MacroType.PhoneLink]: MacroPhoneLink,
     [MacroType.ProductCardMicro]: MacroProductCardMicro,
