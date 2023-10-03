@@ -10,7 +10,7 @@ import { MacroChatbotLink } from './chatbot-link/MacroChatbotLink';
 import { MacroFotnote } from './fotnote/MacroFotnote';
 import { MacroFormDetails } from './form-details/MacroFormDetails';
 import { MacroInfoBoks } from './infoboks/MacroInfoBoks';
-import { MacroLenkeFiler } from 'components/macros/lenke-filer/MacroLenkeFiler';
+import { MacroLenkeFiler } from './lenke-filer/MacroLenkeFiler';
 import { MacroPhoneLink } from './phone-link/MacroPhoneLink';
 import { MacroQuote } from './quote/MacroQuote';
 import { MacroTankestrek } from './tankestrek/MacroTankestrek';
