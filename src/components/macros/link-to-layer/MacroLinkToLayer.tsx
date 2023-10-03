@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { LenkeInline } from '../../_common/lenke/LenkeInline';
 import { MacroLinkToLayerProps } from 'types/macro-props/link-to-layer';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
