@@ -45,7 +45,7 @@
         "lottie-web": "5.10.2",
         "lru-cache": "8.0.4",
         "mathjs": "10.6.4",
-        "next": "13.4.1",
+        "next": "13.5.4",
         "node-cache": "5.1.2",
         "on-headers": "1.0.2",
         "p-limit": "4.0.0",
