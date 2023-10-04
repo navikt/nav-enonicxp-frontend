@@ -50,7 +50,7 @@ export const PageMeta = (props: PageMetaProps) => {
             }[value._selected];
         }
         if (key === 'taxonomy') {
-            return translationsBundleNb.taxonomies[value._selected];
+            return translationsBundleNb.taxonomies[value];
         }
         if (key === 'area') {
             const area = value || [];
