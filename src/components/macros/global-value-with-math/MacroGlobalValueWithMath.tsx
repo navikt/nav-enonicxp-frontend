@@ -9,7 +9,7 @@ import { formatNumber } from '../../../utils/math';
 type ExpressionProps =
     MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 
-export const evaluateExpression = (
+const evaluateExpression = (
     { expression, decimals, variables }: ExpressionProps,
     language: Language
 ) => {
@@ -19,13 +19,13 @@ export const evaluateExpression = (
                 /\$(\d+)/g,
                 (_, idx) => variables[parseInt(idx) - 1]
             );
-        } //Eks: "$1 + $2 * 5", [50, 100] -> "50 + 100 * 5"
+        } // Eks: "$1 + $2 * 5", [50, 100] -> "50 + 100 * 5"
         const expressionSubstituted = substituteExpression(
             expression,
             variables
         );
 
-        // Mathjs only accepts . as decimal separator
+        // jsep only accepts . as decimal separator
         const expressionWithDotSeparators = expressionSubstituted.replace(
             ',',
             '.'
