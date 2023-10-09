@@ -14,6 +14,7 @@ export enum MacroType {
     InfoBoks = 'infoBoks',
     Ingress = 'ingress',
     LenkeFiler = 'lenkeFiler',
+    LinkToLayer = 'link-to-layer',
     PayoutDates = 'payout-dates',
     PhoneLink = 'phone-link',
     ProductCardMini = 'product-card-mini',

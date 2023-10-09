@@ -277,11 +277,6 @@ export const translationsBundleEn: PartialTranslations = {
             seeMoreOptions: 'See more phone numbers and calling options',
         },
     },
-    versionHistory: {
-        label: 'Version history',
-        title: 'Historic versions',
-        loading: 'Loading historic version...',
-    },
     pageWarnings: {
         draftWarning: 'Draft - this page is still in progress',
         failoverWarning:

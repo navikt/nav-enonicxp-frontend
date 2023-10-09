@@ -2,10 +2,10 @@ import React from 'react';
 import { classNames } from 'utils/classnames';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { getContentLanguages } from 'utils/languages';
-import { VersionHistory } from './version-history/VersionHistory';
 import { PageWarning } from './page-warning/PageWarning';
 import { translator } from 'translations';
 import { getAudience } from 'types/component-props/_mixins';
+import { EditorWidgets } from 'components/_editor-only/EditorWidgets';
 
 import style from './TopContainer.module.scss';
 
@@ -60,6 +60,8 @@ export const checkForWhiteHeader = (content: ContentProps) => {
     return contentTypesWithWhiteHeader.has(type);
 };
 
+// For legacy reasons, this component is presently used for adjusting padding/margins at the top of
+// the app container.
 export const TopContainer = ({ content }: Props) => {
     const {
         breadcrumbs,
@@ -77,13 +79,10 @@ export const TopContainer = ({ content }: Props) => {
 
     const isEditorView = !!content.editorView;
 
-    // Should be shown in Content Studio only (except the edit view)
-    const showVersionPicker = isEditorView && content.editorView !== 'edit';
-
     const shouldCollapse = checkForNoGap(content);
 
     const warningLabels = translator('pageWarnings', language);
-    const localeLabels = translator('locale', language);
+    const localeLabels = translator('localeNames', language);
 
     return (
         <>
@@ -117,7 +116,7 @@ export const TopContainer = ({ content }: Props) => {
                     shouldCollapse && style.collapse
                 )}
             >
-                {showVersionPicker && <VersionHistory content={content} />}
+                <EditorWidgets content={content} />
             </div>
         </>
     );

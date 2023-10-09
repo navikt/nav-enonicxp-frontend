@@ -28,6 +28,7 @@ import { MacroPayoutDates } from './payout-dates/MacroPayoutDates';
 import { MacroProductCardMicro } from 'components/macros/product-card-micro/MacroProductCardMicro';
 import { MacroTall } from 'components/macros/tall/MacroTall';
 import { MacroUxSignalsWidget } from 'components/macros/uxsignals-widget/MacroUxSignalsWidget';
+import { MacroLinkToLayer } from 'components/macros/link-to-layer/MacroLinkToLayer';
 
 const macroComponents: {
     [key in MacroType]: React.FunctionComponent<MacroPropsCommon>;
@@ -48,6 +49,7 @@ const macroComponents: {
     [MacroType.InfoBoks]: MacroInfoBoks,
     [MacroType.Ingress]: MacroIngress,
     [MacroType.LenkeFiler]: MacroLenkeFiler,
+    [MacroType.LinkToLayer]: MacroLinkToLayer,
     [MacroType.PayoutDates]: MacroPayoutDates,
     [MacroType.PhoneLink]: MacroPhoneLink,
     [MacroType.ProductCardMicro]: MacroProductCardMicro,
