@@ -9,17 +9,18 @@ import { formatNumber } from '../../../utils/math';
 type ExpressionProps =
     MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 
+function substituteExpression(expression, variables) {
+    return expression.replace(
+        /\$(\d+)/g,
+        (_, idx) => variables[parseInt(idx) - 1]
+    );
+} // Eks: "$1 + $2 * 5", [50, 100] -> "50 + 100 * 5"
+
 const evaluateExpression = (
     { expression, decimals, variables }: ExpressionProps,
     language: Language
 ) => {
     try {
-        function substituteExpression(expression, variables) {
-            return expression.replace(
-                /\$(\d+)/g,
-                (_, idx) => variables[parseInt(idx) - 1]
-            );
-        } // Eks: "$1 + $2 * 5", [50, 100] -> "50 + 100 * 5"
         const expressionSubstituted = substituteExpression(
             expression,
             variables
