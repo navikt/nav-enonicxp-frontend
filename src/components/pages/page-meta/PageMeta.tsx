@@ -1,13 +1,9 @@
 import { BodyShort, Heading } from '@navikt/ds-react';
-import { RedirectTo404 } from 'components/_common/redirect-to-404/RedirectTo404';
 import React from 'react';
 import { translationsBundleNb } from 'translations/default';
 import { PageMetaProps } from 'types/content-props/page-meta-props';
 
 export const PageMeta = (props: PageMetaProps) => {
-    if (!props.editorView) {
-        return <RedirectTo404 />;
-    }
     const data = props.data.contentType[props.data.contentType._selected];
 
     const filterUndisplayableFields = (key: string) => {
