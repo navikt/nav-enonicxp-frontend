@@ -5,8 +5,6 @@ import { PageMetaProps } from 'types/content-props/page-meta-props';
 
 import styles from './PageMeta.module.scss';
 
-console.log(styles);
-
 export const PageMeta = (props: PageMetaProps) => {
     const data = props.data.contentType[props.data.contentType._selected];
 
