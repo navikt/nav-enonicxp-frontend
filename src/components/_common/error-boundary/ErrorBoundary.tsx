@@ -1,8 +1,7 @@
 import React, { Suspense } from 'react';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 type Props = {
-    errorMsg: string;
+    fallback: React.ReactNode;
     children: React.ReactNode;
 };
 
@@ -25,18 +24,8 @@ export class ErrorBoundary extends React.Component<Props, State> {
     }
 
     render() {
-        const { children, errorMsg } = this.props;
+        const { children, fallback } = this.props;
 
-        return (
-            <Suspense>
-                {this.state.hasError ? (
-                    <AlertBox variant={'error'} inline={true}>
-                        {errorMsg}
-                    </AlertBox>
-                ) : (
-                    children
-                )}
-            </Suspense>
-        );
+        return <Suspense>{this.state.hasError ? fallback : children}</Suspense>;
     }
 }
