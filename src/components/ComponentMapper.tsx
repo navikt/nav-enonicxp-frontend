@@ -12,6 +12,7 @@ import { FragmentComponent } from './FragmentComponent';
 import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependantRender';
 import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
 import { ErrorBoundary } from 'components/_common/error-boundary/ErrorBoundary';
+import { translator } from 'translations';
 
 type Props = {
     componentProps: ComponentProps;
@@ -74,8 +75,10 @@ export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
 };
 
 export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
+    const errorMsg = translator('errors', pageProps.language)('componentError');
+
     return (
-        <ErrorBoundary type={'component'} language={pageProps.language}>
+        <ErrorBoundary errorMsg={errorMsg}>
             <AuthDependantRender
                 renderOn={componentProps?.config?.renderOnAuthState}
             >

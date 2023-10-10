@@ -1,12 +1,8 @@
 import React, { Suspense } from 'react';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
-import { Language, translator } from 'translations';
-
-export type ErrorBoundaryType = 'component';
 
 type Props = {
-    type: ErrorBoundaryType;
-    language: Language;
+    errorMsg: string;
     children: React.ReactNode;
 };
 
@@ -29,13 +25,13 @@ export class ErrorBoundary extends React.Component<Props, State> {
     }
 
     render() {
-        const { type, children, language } = this.props;
+        const { children, errorMsg } = this.props;
 
         return (
             <Suspense>
                 {this.state.hasError ? (
                     <AlertBox variant={'error'} inline={true}>
-                        {translator('errors', language)(type)}
+                        {errorMsg}
                     </AlertBox>
                 ) : (
                     children
