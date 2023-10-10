@@ -8,6 +8,7 @@ import {
 } from 'types/taxonomies';
 import { Area } from 'types/areas';
 import { ProductDetailType } from 'types/content-props/product-details';
+import { ErrorBoundaryType } from 'components/_common/error-boundary/ErrorBoundary';
 
 const relatedContent: { [key in MenuListItemKey]: string } = {
     [MenuListItemKey.AppealRights]: 'Klagerettigheter',
@@ -72,7 +73,12 @@ const productDetailTypes: { [key in ProductDetailType]: string } = {
     [ProductDetailType.ALL_PRODUCTS]: 'alle',
 };
 
+const errorBoundaryMsgs: Record<ErrorBoundaryType, string> = {
+    component: 'Det oppsto en feil ved lasting av dette innholdselementet',
+};
+
 export const translationsBundleNb = {
+    errors: errorBoundaryMsgs,
     localeNames: {
         no: 'norsk (bokmål)',
         nn: 'nynorsk',

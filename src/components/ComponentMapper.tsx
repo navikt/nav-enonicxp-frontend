@@ -2,15 +2,16 @@ import React from 'react';
 import {
     ComponentProps,
     ComponentType,
-} from '../types/component-props/_component-common';
+} from 'types/component-props/_component-common';
 import { TextComponentXp } from './parts/_text/TextComponentXp';
 import { ImageComponentXp } from './parts/_image/ImageComponent';
 import { PartsMapper } from './parts/PartsMapper';
-import { ContentProps } from '../types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
 import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependantRender';
 import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
+import { ErrorBoundary } from 'components/_common/error-boundary/ErrorBoundary';
 
 type Props = {
     componentProps: ComponentProps;
@@ -74,13 +75,15 @@ export const ComponentToRender = ({ componentProps, pageProps }: Props) => {
 
 export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
     return (
-        <AuthDependantRender
-            renderOn={componentProps?.config?.renderOnAuthState}
-        >
-            <ComponentToRender
-                componentProps={componentProps}
-                pageProps={pageProps}
-            />
-        </AuthDependantRender>
+        <ErrorBoundary type={'component'} language={pageProps.language}>
+            <AuthDependantRender
+                renderOn={componentProps?.config?.renderOnAuthState}
+            >
+                <ComponentToRender
+                    componentProps={componentProps}
+                    pageProps={pageProps}
+                />
+            </AuthDependantRender>
+        </ErrorBoundary>
     );
 };
