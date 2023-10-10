@@ -78,7 +78,7 @@ export type PageMetaProps = ContentCommonProps & {
     type: ContentType.PageMeta;
     data: {
         contentType: OptionSetSingle<{
-            content_page_with_sidemenus: ProductPageMetaData;
+            product_page: ProductPageMetaData;
             situation_page: SituationPageMetaData;
             tools_page: ToolsPageMetaData;
             generic_page: GenericPageMetaData;
