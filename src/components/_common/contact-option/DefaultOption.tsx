@@ -112,7 +112,7 @@ export const DefaultOption = (props: Props) => {
                             {titleActual}
                         </Heading>
                     ) : (
-                        <EditorHelp text={'Tittel mangler!'} />
+                        <EditorHelp text={'Tittel mangler!'} type={'error'} />
                     )}
                 </div>
             </LenkeBase>
@@ -121,7 +121,7 @@ export const DefaultOption = (props: Props) => {
                     <ParsedHtml htmlProps={ingressActual} />
                 </BodyLong>
             ) : (
-                <EditorHelp text={'Ingress mangler!'} />
+                <EditorHelp text={'Ingress mangler!'} type={'error'} />
             )}
         </div>
     );
