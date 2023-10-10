@@ -3,6 +3,10 @@ import React from 'react';
 import { translationsBundleNb } from 'translations/default';
 import { PageMetaProps } from 'types/content-props/page-meta-props';
 
+import styles from './PageMeta.module.scss';
+
+console.log(styles);
+
 export const PageMeta = (props: PageMetaProps) => {
     const data = props.data.contentType[props.data.contentType._selected];
 
@@ -59,16 +63,16 @@ export const PageMeta = (props: PageMetaProps) => {
     };
 
     return (
-        <article className={'pageMetaData'}>
+        <article className={styles.pageMetaData}>
             <BodyShort>Metadata for</BodyShort>
             <Heading level={'1'} size={'large'}>
                 {props.displayName}
             </Heading>
-            <dl className="definition">
+            <dl className={styles.definition}>
                 {Object.keys(data)
                     .filter(filterUndisplayableFields)
                     .map((key) => (
-                        <div key={key} className="row">
+                        <div key={key} className={styles.row}>
                             <dt>{getTerm(key)}</dt>
                             <dd>{getDefinition(key, data[key])}</dd>
                         </div>
