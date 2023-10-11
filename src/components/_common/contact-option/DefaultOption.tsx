@@ -13,10 +13,9 @@ import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import Config from 'config';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 import style from './ContactOption.module.scss';
-
-type NotCustom = Exclude<ChannelType, 'custom'>;
 
 type Props = DefaultContactData & {
     channel: ChannelType;
@@ -85,6 +84,13 @@ export const DefaultOption = (props: Props) => {
         return { href: '#' };
     };
 
+    const titleActual =
+        title || (channel !== 'custom' ? getTranslations(channel).title : null);
+
+    const ingressActual =
+        ingress ||
+        (channel !== 'custom' ? getTranslations(channel).ingress : null);
+
     return (
         <div className={style.contactOption}>
             <LenkeBase
@@ -95,26 +101,28 @@ export const DefaultOption = (props: Props) => {
             >
                 <div className={style.linkContent}>
                     <img
-                        alt=""
+                        alt={''}
                         className={classNames(
                             style.icon,
                             style[icon || channel]
                         )}
                     />
-                    <Heading level="3" size="small">
-                        {/* title is always defined for custom channel */}
-                        {title || getTranslations(channel as NotCustom).title}
-                    </Heading>
+                    {titleActual ? (
+                        <Heading level={'3'} size={'small'}>
+                            {titleActual}
+                        </Heading>
+                    ) : (
+                        <EditorHelp text={'Tittel mangler!'} type={'error'} />
+                    )}
                 </div>
             </LenkeBase>
-            <BodyLong as="div" className={style.text}>
-                {/* ingress is always defined for custom channel */}
-                <ParsedHtml
-                    htmlProps={
-                        ingress || getTranslations(channel as NotCustom).ingress
-                    }
-                />
-            </BodyLong>
+            {ingressActual ? (
+                <BodyLong as="div" className={style.text}>
+                    <ParsedHtml htmlProps={ingressActual} />
+                </BodyLong>
+            ) : (
+                <EditorHelp text={'Ingress mangler!'} type={'error'} />
+            )}
         </div>
     );
 };

@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const EditorWidgets = ({ content }: Props) => {
-    const { editorView } = content;
+    const { editorView, liveId } = content;
 
     if (!editorView) {
         return null;
@@ -21,7 +21,7 @@ export const EditorWidgets = ({ content }: Props) => {
     return (
         <div className={style.editorWidgets}>
             <EditorHacks content={content} />
-            {(editorView === 'inline' || editorView === 'edit') && (
+            {!liveId && (editorView === 'inline' || editorView === 'edit') && (
                 <ReferencesInfo content={content} />
             )}
             <EditorGlobalWarnings key={content._id} />
