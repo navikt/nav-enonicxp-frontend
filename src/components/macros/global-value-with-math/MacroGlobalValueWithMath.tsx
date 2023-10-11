@@ -9,39 +9,12 @@ import { formatNumber } from '../../../utils/math';
 type ExpressionProps =
     MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 
-function substituteExpression(expression, variables) {
+export function substituteExpression(expression, variables) {
     return expression.replace(
         /\$(\d+)/g,
         (_, idx) => variables[parseInt(idx) - 1]
     );
 } // Eks: "$1 + $2 * 5", [50, 100] -> "50 + 100 * 5"
-
-const evaluateExpression = (
-    { expression, decimals, variables }: ExpressionProps,
-    language: Language
-) => {
-    try {
-        const expressionSubstituted = substituteExpression(
-            expression,
-            variables
-        );
-
-        // jsep only accepts . as decimal separator
-        const expressionWithDotSeparators = expressionSubstituted.replace(
-            ',',
-            '.'
-        );
-
-        const parsedExpression = jsep(expressionWithDotSeparators);
-        const result = evaluateExpressionJSEP(parsedExpression);
-        return formatNumber(result, decimals, language);
-    } catch (e) {
-        if (globalState.isEditorView) {
-            return `[feil ved evaluering av uttrykk: ${e}]`;
-        }
-        console.error(`Global values calculation error: ${e}`);
-    }
-};
 
 // This approach uses jsep to parse the input into an AST (Abstract Syntax Tree) and then recursively evaluates the tree for basic arithmetic operations.
 // It's lightweight and doesn't rely on eval(), but it's also limited to the basics.
@@ -78,6 +51,33 @@ function evaluateExpressionJSEP(node) {
             throw new Error(`Unsupported type: ${node.type}`);
     }
 }
+
+export const evaluateExpression = (
+    { expression, decimals, variables }: ExpressionProps,
+    language: Language
+) => {
+    try {
+        const expressionSubstituted = substituteExpression(
+            expression,
+            variables
+        );
+
+        // jsep only accepts . as decimal separator
+        const expressionWithDotSeparators = expressionSubstituted.replace(
+            ',',
+            '.'
+        );
+
+        const parsedExpression = jsep(expressionWithDotSeparators);
+        const result = evaluateExpressionJSEP(parsedExpression);
+        return formatNumber(result, decimals, language);
+    } catch (e) {
+        if (globalState.isEditorView) {
+            return `[feil ved evaluering av uttrykk: ${e}]`;
+        }
+        console.error(`Global values calculation error: ${e}`);
+    }
+};
 
 export const MacroGlobalValueWithMath = ({
     config,
