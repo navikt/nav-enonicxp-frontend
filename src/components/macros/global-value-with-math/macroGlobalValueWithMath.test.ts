@@ -1,5 +1,7 @@
-import { evaluateExpression } from './MacroGlobalValueWithMath';
-import { substituteExpression } from './MacroGlobalValueWithMath';
+import {
+    substituteExpression,
+    evaluateExpression,
+} from './MacroGlobalValueWithMath';
 import { Language } from 'translations';
 
 test('substitution', () => {
