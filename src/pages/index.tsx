@@ -28,6 +28,7 @@ const getStaticPropsNormal: GetStaticProps = async () => {
 
     if (isFailover && isPropsWithContent(pageProps.props)) {
         pageProps.props.content.isFailover = true;
+        return pageProps;
     }
 
     return {
