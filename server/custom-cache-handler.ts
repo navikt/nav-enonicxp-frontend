@@ -38,10 +38,15 @@ export default class CustomFileSystemCache extends FileSystemCache {
             console.error('PAGE_CACHE_DIR is not defined!');
         }
 
+        const serverDistDir =
+            process.env.PAGE_CACHE_DIR &&
+            process.env.IS_FAILOVER_INSTANCE !== 'true'
+                ? process.env.PAGE_CACHE_DIR
+                : (ctx.serverDistDir as string);
+
         super({
             ...ctx,
-            serverDistDir:
-                process.env.PAGE_CACHE_DIR || (ctx.serverDistDir as string),
+            serverDistDir,
             fs: ctx.fs || nodeFs,
             dev: ctx.dev ?? process.env.NODE_ENV === 'development',
             _appDir: ctx._appDir ?? false,

@@ -1,3 +1,4 @@
+---
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
@@ -41,6 +42,7 @@ spec:
     outbound:
       rules:
         - application: {{revalidatorApp}}
+        - application: {{dekoratorenApp}}
       external:
         {{#each externalHosts as |host|}}
         - host: {{host}}

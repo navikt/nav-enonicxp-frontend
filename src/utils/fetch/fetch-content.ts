@@ -71,7 +71,7 @@ const fetchSiteContentStandard = async ({
     console.log(`Fetching content from ${url}`);
 
     return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
-        console.log(`Sitecontent fetch error: ${e}`);
+        console.log(`Sitecontent fetch error for ${url}: ${e}`);
         return null;
     });
 };

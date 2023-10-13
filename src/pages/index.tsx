@@ -3,7 +3,6 @@ import { GetStaticProps } from 'next';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import Config from 'config';
-import { isPropsWithContent } from 'types/_type-guards';
 
 const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
 
@@ -26,8 +25,9 @@ const getStaticPropsNormal: GetStaticProps = async () => {
         routerQuery: '',
     });
 
-    if (isFailover && isPropsWithContent(pageProps.props)) {
-        pageProps.props.content.isFailover = true;
+    if (isFailover) {
+        (pageProps.props as any).content.isFailover = true;
+        return pageProps;
     }
 
     return {
