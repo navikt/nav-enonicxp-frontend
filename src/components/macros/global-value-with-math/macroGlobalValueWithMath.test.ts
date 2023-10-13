@@ -40,16 +40,16 @@ test('kompleks matte', () => {
 
 test('kompleks matte med paranteser', () => {
     const expression = '$1 * 6 / (2.545 + 85.744)';
-    const decimals = 3;
-    const variables = [118620];
-    const language: Language = 'no';
+    const decimals = 1;
+    const variables = [1186201];
+    const language: Language = 'nn';
 
     const result = evaluateExpression(
         { expression, decimals, variables },
         language
     );
 
-    expect(result).toBe('8\xa0061,253');
+    expect(result).toBe('80\xa0612,6');
 });
 
 test('should evaluate a simple expression', () => {
