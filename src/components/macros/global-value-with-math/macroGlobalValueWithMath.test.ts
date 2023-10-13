@@ -8,32 +8,44 @@ test('substitution', () => {
     );
 });
 
-describe('evaluateExpression', () => {
-    test('should evaluate a simple expression', () => {
-        const expression = '2 + 2';
-        const decimals = 0;
-        const variables = [];
-        const language: Language = 'no';
+test('dagpenger', () => {
+    const expression = '$1 * 6';
+    const decimals = 0;
+    const variables = [118620];
+    const language: Language = 'no';
 
-        const result = evaluateExpression(
-            { expression, decimals, variables },
-            language
-        );
+    const result = evaluateExpression(
+        { expression, decimals, variables },
+        language
+    );
 
-        expect(result).toEqual('4');
-    });
+    expect(result).toBe('711\xa0720');
+});
 
-    test('should evaluate an expression with variables', () => {
-        const expression = '$1 + $2';
-        const decimals = 2;
-        const variables = [1.23, 4.56];
-        const language: Language = 'no';
+test('should evaluate a simple expression', () => {
+    const expression = '2 + 2';
+    const decimals = 0;
+    const variables = [];
+    const language: Language = 'no';
 
-        const result = evaluateExpression(
-            { expression, decimals, variables },
-            language
-        );
+    const result = evaluateExpression(
+        { expression, decimals, variables },
+        language
+    );
 
-        expect(result).toEqual('5,79');
-    });
+    expect(result).toEqual('4');
+});
+
+test('should evaluate an expression with variables', () => {
+    const expression = '$1 + $2';
+    const decimals = 2;
+    const variables = [1.23, 4.56];
+    const language: Language = 'no';
+
+    const result = evaluateExpression(
+        { expression, decimals, variables },
+        language
+    );
+
+    expect(result).toEqual('5,79');
 });
