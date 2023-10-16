@@ -73,6 +73,10 @@ const productDetailTypes: { [key in ProductDetailType]: string } = {
 };
 
 export const translationsBundleNb = {
+    errors: {
+        componentError:
+            'Det oppsto en feil ved lasting av dette innholdselementet',
+    },
     localeNames: {
         no: 'norsk (bokmål)',
         nn: 'nynorsk',

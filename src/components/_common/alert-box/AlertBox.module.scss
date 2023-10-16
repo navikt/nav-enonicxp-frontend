@@ -1,4 +1,6 @@
 .alertBox {
+    align-items: flex-start;
+
     &:not(:last-child) {
         margin-bottom: 1.5rem;
     }

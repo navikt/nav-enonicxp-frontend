@@ -85,7 +85,7 @@ const hasFileExtensionPattern = /\.[a-zA-Z0-9]+($|\?|#)/;
 // The failover app should not fetch from itself, and we only want to fetch html-documents
 // Ignore requests for json-files, images, etc
 const shouldFetchFromFailoverApp = (path: string) =>
-    !isFailoverInstance && hasFileExtensionPattern.test(path);
+    !isFailoverInstance && !hasFileExtensionPattern.test(path);
 
 const Error = (props: ContentProps) => <PageBase content={props} />;
 

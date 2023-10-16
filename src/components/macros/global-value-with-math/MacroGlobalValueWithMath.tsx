@@ -1,45 +1,75 @@
 import React from 'react';
-import { MacroGlobalValueWithMathProps } from '../../../types/macro-props/global-value-with-math';
-import {
-    create,
-    evaluateDependencies,
-    addDependencies,
-    subtractDependencies,
-    multiplyDependencies,
-    divideDependencies,
-} from 'mathjs/lib/esm/number';
-import globalState from '../../../globalState';
+import { MacroGlobalValueWithMathProps } from 'types/macro-props/global-value-with-math';
+import jsep from 'jsep';
+import globalState from 'globalState';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language } from 'translations';
-
-import { formatNumber } from '../../../utils/math';
-
-const math = create({
-    evaluateDependencies,
-    addDependencies,
-    subtractDependencies,
-    multiplyDependencies,
-    divideDependencies,
-});
+import { formatNumber } from 'utils/math';
 
 type ExpressionProps =
     MacroGlobalValueWithMathProps['config']['global_value_with_math'];
 
-const evaluateExpression = (
+export function substituteExpression(expression, variables) {
+    return expression.replace(
+        /\$(\d+)/g,
+        (_, idx) => variables[parseInt(idx) - 1]
+    );
+} // Eks: "$1 + $2 * 5", [50, 100] -> "50 + 100 * 5"
+
+// This approach uses jsep to parse the input into an AST (Abstract Syntax Tree) and then recursively evaluates the tree for basic arithmetic operations.
+// It's lightweight and doesn't rely on eval(), but it's also limited to the basics.
+function evaluateExpressionJSEP(node) {
+    switch (node.type) {
+        case 'BinaryExpression':
+            switch (node.operator) {
+                case '+':
+                    return (
+                        evaluateExpressionJSEP(node.left) +
+                        evaluateExpressionJSEP(node.right)
+                    );
+                case '-':
+                    return (
+                        evaluateExpressionJSEP(node.left) -
+                        evaluateExpressionJSEP(node.right)
+                    );
+                case '*':
+                    return (
+                        evaluateExpressionJSEP(node.left) *
+                        evaluateExpressionJSEP(node.right)
+                    );
+                case '/':
+                    return (
+                        evaluateExpressionJSEP(node.left) /
+                        evaluateExpressionJSEP(node.right)
+                    );
+                default:
+                    throw new Error(`Unsupported operator: ${node.operator}`);
+            }
+        case 'Literal':
+            return node.value;
+        default:
+            throw new Error(`Unsupported type: ${node.type}`);
+    }
+}
+
+export const evaluateExpression = (
     { expression, decimals, variables }: ExpressionProps,
     language: Language
 ) => {
     try {
-        // Map variable values to placeholder names used in the expression ($1, $2, etc...)
-        const scope = variables.reduce(
-            (acc, variable, index) => ({ ...acc, [`$${index + 1}`]: variable }),
-            {}
+        const expressionSubstituted = substituteExpression(
+            expression,
+            variables
         );
 
-        // Mathjs only accepts . as decimal separator
-        const expressionWithDotSeparators = expression.replace(',', '.');
+        // jsep only accepts . as decimal separator
+        const expressionWithDotSeparators = expressionSubstituted.replace(
+            ',',
+            '.'
+        );
 
-        const result = math.evaluate(expressionWithDotSeparators, scope);
+        const parsedExpression = jsep(expressionWithDotSeparators);
+        const result = evaluateExpressionJSEP(parsedExpression);
         return formatNumber(result, decimals, language);
     } catch (e) {
         if (globalState.isEditorView) {
