@@ -146,8 +146,8 @@ $versionSelectorMinHeight: 3rem;
 }
 
 @mixin expandable-panel-mixin() {
-    $focusPadding: 1.5rem;
-
+    $focusPadding: 1rem;
+    box-shadow: none;
     border-bottom: 0;
     padding-left: $focusPadding;
     padding-right: $focusPadding;

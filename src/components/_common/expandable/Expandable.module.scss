@@ -3,16 +3,16 @@
 .expandable {
     border-bottom: 1px solid var(--ac-accordion-header-border,var(--a-border-divider));
 
+    &:hover {
+        border-bottom-color: transparent;
+    }
+
     &:global(.navds-accordion__item--open) {
-        :global(.navds-accordion__content) {
-            visibility: visible;
-        }
+        border-bottom: 1px solid var(--ac-accordion-header-border,var(--a-border-divider));
     }
 
     :global(.navds-accordion__header) {
         color: common.$a-text-action;
-        box-shadow: none;
-
         @include common.expandable-panel-mixin();
         &:focus {
             @include common.panel-focus-mixin(false);
@@ -20,8 +20,6 @@
     }
 
     :global(.navds-accordion__content) {
-        visibility: hidden;
-        transition: visibility 250ms;
         padding: 1rem 0 0.5rem 0;
 
         & > :first-child {
