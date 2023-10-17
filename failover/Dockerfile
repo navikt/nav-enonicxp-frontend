@@ -1,4 +1,4 @@
-FROM node:18-bullseye-slim
+FROM node:20-bullseye-slim
 
 RUN apt-get update
 RUN apt-get --assume-yes install ca-certificates
@@ -22,7 +22,7 @@ COPY "/failover/$ENV_FILE" /app/.env
 RUN npm run build
 
 # Multistage build to avoid leaking secrets to the final image
-FROM node:18-bullseye-slim
+FROM node:20-bullseye-slim
 
 WORKDIR /app
 
