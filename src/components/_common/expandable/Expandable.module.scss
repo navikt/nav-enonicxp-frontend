@@ -1,9 +1,7 @@
 @use 'src/common' as common;
 
 .expandable {
-    &:global(.navds-accordion__item) {
-        border-bottom: 1px common.$a-border-divider solid;
-    }
+    border-bottom: 1px solid var(--ac-accordion-header-border,var(--a-border-divider));
 
     &:global(.navds-accordion__item--open) {
         :global(.navds-accordion__content) {
@@ -13,6 +11,7 @@
 
     :global(.navds-accordion__header) {
         color: common.$a-text-action;
+        box-shadow: none;
 
         @include common.expandable-panel-mixin();
         &:focus {
@@ -37,5 +36,6 @@
 :global(:not(:last-child)) {
     & > .expandableWrapper {
         margin-bottom: 1.75rem;
+        --__ac-accordion-header-shadow-color: none;
     }
 }
