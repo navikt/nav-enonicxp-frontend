@@ -9,12 +9,6 @@ type FileSystemCacheParams = Partial<
     ConstructorParameters<typeof FileSystemCache>[0]
 >;
 
-type CacheGetOptions = {
-    tags?: string[];
-    softTags?: string[];
-    fetchCache?: boolean;
-}
-
 // The type for this method is not exported from next.js
 // Be aware it may change when updating the next.js version
 type GetFsPathFunction = ({
@@ -61,13 +55,13 @@ export default class CustomFileSystemCache extends FileSystemCache {
         });
     }
 
-    public async get(key: string, options: CacheGetOptions) {
+    public async get(key: string, fetchCache?: boolean) {
         const dataFromMemoryCache = isrMemoryCache.get(key);
         if (dataFromMemoryCache) {
             return dataFromMemoryCache;
         }
 
-        const dataFromFileSystemCache = await super.get(key, options);
+        const dataFromFileSystemCache = await super.get(key, fetchCache);
         if (dataFromFileSystemCache) {
             const ttlRemaining = dataFromFileSystemCache.lastModified
                 ? dataFromFileSystemCache.lastModified +
@@ -87,7 +81,7 @@ export default class CustomFileSystemCache extends FileSystemCache {
 
     public async set(key: string, data: CacheHandlerValue['value']) {
         isrMemoryCache.set(key, { value: data, lastModified: Date.now() });
-        return super.set(key, data, {});
+        return super.set(key, data);
     }
 
     public async clearGlobalCache() {
