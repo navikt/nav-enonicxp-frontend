@@ -10,7 +10,9 @@ export const InfoBox = ({ children }: InfoBoxProps) => {
     return (
         <div className={styles.infoBox}>
             <InformationSquareIcon />
-            <BodyShort size="small">{children}</BodyShort>
+            <BodyShort size="small" className={styles.text}>
+                {children}
+            </BodyShort>
         </div>
     );
 };
