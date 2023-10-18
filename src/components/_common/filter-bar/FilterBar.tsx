@@ -28,7 +28,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const { selectedFilters, availableFilters, toggleFilter } =
         useFilterState();
 
-    const { saveScrollPosition, scrollToElement } = useScrollPosition(
+    const { saveScrollPosition, scrollBackToElement } = useScrollPosition(
         filterBarRef?.current
     );
 
@@ -81,7 +81,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                                 });
                                 saveScrollPosition();
                                 toggleFilter(filter.id);
-                                setTimeout(() => scrollToElement(), 0);
+                                setTimeout(() => scrollBackToElement(), 0);
                             }}
                             filter={filter}
                         />

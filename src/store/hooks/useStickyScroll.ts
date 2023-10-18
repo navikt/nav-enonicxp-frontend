@@ -10,7 +10,7 @@ export const useScrollPosition = (element: HTMLElement) => {
         }
     };
 
-    const scrollToElement = () => {
+    const scrollBackToElement = () => {
         if (element) {
             const targetScrollPosition =
                 element.getBoundingClientRect().top +
@@ -25,5 +25,5 @@ export const useScrollPosition = (element: HTMLElement) => {
         }
     };
 
-    return { saveScrollPosition, scrollToElement };
+    return { saveScrollPosition, scrollBackToElement };
 };
