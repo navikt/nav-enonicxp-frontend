@@ -16,6 +16,7 @@ type FilterBarProps = {
 };
 
 export const FilterBar = ({ layoutProps }: FilterBarProps) => {
+    const filterBarRef = useRef(null);
     const { content, intro } = layoutProps.regions;
     const components = [
         ...(content ? content.components : []),
@@ -23,7 +24,6 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     ];
     const { language } = usePageConfig();
     const getLabel = translator('filteredContent', language);
-    const filterBarRef = useRef(null);
 
     const { selectedFilters, availableFilters, toggleFilter } =
         useFilterState();
@@ -31,10 +31,6 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     const { saveScrollPosition, scrollToElement } = useScrollPosition(
         filterBarRef?.current
     );
-
-    useEffect(() => {
-        console.log('Filter changed');
-    }, [selectedFilters]);
 
     // Create a flat array of all ids that any
     // underlying part that has filter ids attached.

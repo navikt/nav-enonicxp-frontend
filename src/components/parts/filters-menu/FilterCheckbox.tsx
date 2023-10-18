@@ -10,7 +10,7 @@ import style from './FilterCheckbox.module.scss';
 type FilterCheckboxProps = {
     isSelected: boolean;
     filter: Filter;
-    onToggleFilterHandler: (e?: ChangeEvent) => void;
+    onToggleFilterHandler: () => void;
 };
 
 export const FilterCheckbox = ({
@@ -29,7 +29,7 @@ export const FilterCheckbox = ({
         >
             <input
                 type="checkbox"
-                onChange={(e) => onToggleFilterHandler(e)}
+                onChange={onToggleFilterHandler}
                 checked={isSelected}
                 value={filter.id}
                 id={id}
