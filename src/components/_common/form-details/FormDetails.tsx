@@ -4,9 +4,9 @@ import { classNames } from 'utils/classnames';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { FormDetailsButton } from './FormDetailsButton';
+import { InfoBox } from '../info-box/InfoBox';
 
 import style from './FormDetails.module.scss';
-import { InfoBox } from '../info-box/InfoBox';
 
 export type FormDetailsComponentProps = {
     formDetails: FormDetailsData;
