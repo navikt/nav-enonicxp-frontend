@@ -11,6 +11,7 @@ import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 
 import styles from './FormIntermediateStepPage.module.scss';
+import { InfoBox } from 'components/_common/info-box/InfoBox';
 
 const STEP_PARAM = 'stegvalg';
 
@@ -113,14 +114,22 @@ export const FormIntermediateStepPage = (
                         {currentStepData.steps.map(
                             (step: any, index: number) => {
                                 return (
-                                    <li key={step.label}>
+                                    <li
+                                        key={step.label}
+                                        className={styles.stepItem}
+                                    >
+                                        {step.languageDisclaimer && (
+                                            <InfoBox>
+                                                {step.languageDisclaimer}
+                                            </InfoBox>
+                                        )}
                                         <LenkepanelNavNo
                                             href={getHrefFromStep(step)}
                                             onClick={getOnClickFromStep(
                                                 step,
                                                 index
                                             )}
-                                            className={styles.stepOption}
+                                            className={styles.stepAction}
                                             tittel={step.label}
                                         >
                                             {step.explanation}

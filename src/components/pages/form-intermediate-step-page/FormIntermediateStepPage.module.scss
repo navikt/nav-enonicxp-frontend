@@ -37,7 +37,11 @@ $padding: 2rem;
     padding: 0;
 }
 
-.stepOption {
+.stepItem:not(:last-child) {
+    margin-bottom: var(--a-spacing-7);
+}
+
+.stepAction {
     margin-bottom: 1rem;
     width: 100%;
     cursor: pointer;
