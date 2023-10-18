@@ -17,6 +17,7 @@ export type StepDetails = {
             steps: {
                 label: string;
                 explanation: string;
+                languageDisclaimer: string;
                 nextStep: OptionSetSingle<{
                     external: ExternalStep;
                 }>;
