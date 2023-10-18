@@ -8,6 +8,8 @@ import { SectionWithHeaderProps } from 'types/component-props/layouts/section-wi
 import { FilterExplanation } from './FilterExplanation';
 
 import style from './FilterBar.module.scss';
+import { useEffect, useRef } from 'react';
+import { useScrollPosition } from 'store/hooks/useStickyScroll';
 
 type FilterBarProps = {
     layoutProps: SectionWithHeaderProps;
@@ -21,9 +23,18 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
     ];
     const { language } = usePageConfig();
     const getLabel = translator('filteredContent', language);
+    const filterBarRef = useRef(null);
 
     const { selectedFilters, availableFilters, toggleFilter } =
         useFilterState();
+
+    const { saveScrollPosition, scrollToElement } = useScrollPosition(
+        filterBarRef?.current
+    );
+
+    useEffect(() => {
+        console.log('Filter changed');
+    }, [selectedFilters]);
 
     // Create a flat array of all ids that any
     // underlying part that has filter ids attached.
@@ -59,7 +70,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
             <Heading level="3" size="small" className={style.header}>
                 {getLabel('showingInformationFor')}
             </Heading>
-            <div className={style.container}>
+            <div className={style.container} ref={filterBarRef}>
                 {filtersToDisplay.map((filter) => {
                     const isSelected = selectedFilters.includes(filter.id);
                     return (
@@ -72,7 +83,9 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
                                     filternavn: filter.filterName,
                                     opprinnelse: 'innholdtekst',
                                 });
+                                saveScrollPosition();
                                 toggleFilter(filter.id);
+                                setTimeout(() => scrollToElement(), 0);
                             }}
                             filter={filter}
                         />

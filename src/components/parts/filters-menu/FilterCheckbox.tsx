@@ -1,7 +1,7 @@
-import { useId } from 'react';
+import { ChangeEvent, useId } from 'react';
 import { Filter } from 'types/store/filter-menu';
 import { classNames } from 'utils/classnames';
-import { StaticImage } from "components/_common/image/StaticImage";
+import { StaticImage } from 'components/_common/image/StaticImage';
 
 import checkboxIcon from './checkbox.svg';
 import checkedIcon from './checked.svg';
@@ -10,7 +10,7 @@ import style from './FilterCheckbox.module.scss';
 type FilterCheckboxProps = {
     isSelected: boolean;
     filter: Filter;
-    onToggleFilterHandler: () => void;
+    onToggleFilterHandler: (e?: ChangeEvent) => void;
 };
 
 export const FilterCheckbox = ({
@@ -29,7 +29,7 @@ export const FilterCheckbox = ({
         >
             <input
                 type="checkbox"
-                onChange={onToggleFilterHandler}
+                onChange={(e) => onToggleFilterHandler(e)}
                 checked={isSelected}
                 value={filter.id}
                 id={id}
@@ -43,7 +43,13 @@ export const FilterCheckbox = ({
                 )}
             >
                 {!isSelected && <StaticImage imageData={checkboxIcon} alt="" />}
-                {isSelected && <StaticImage imageData={checkedIcon} alt="" className={style.selected} />}
+                {isSelected && (
+                    <StaticImage
+                        imageData={checkedIcon}
+                        alt=""
+                        className={style.selected}
+                    />
+                )}
                 {filter.filterName}
             </label>
         </div>
