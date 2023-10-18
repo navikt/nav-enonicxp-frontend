@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { BodyLong, Detail, Heading } from '@navikt/ds-react';
+import { Detail, Heading } from '@navikt/ds-react';
 import { classNames } from 'utils/classnames';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
