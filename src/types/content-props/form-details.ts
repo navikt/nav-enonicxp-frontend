@@ -15,6 +15,7 @@ export interface FormDetailsData {
     formNumbers?: string[];
     title?: string;
     ingress?: ProcessedHtmlProps;
+    languageDisclaimer?: string;
     formType: OptionSetSingle<{
         application: {
             variations: Variation[];
