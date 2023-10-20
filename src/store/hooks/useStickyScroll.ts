@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 export const useScrollPosition = (element: HTMLElement) => {
     const scrollPositionRef = useRef(0);

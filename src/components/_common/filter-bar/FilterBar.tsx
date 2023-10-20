@@ -8,7 +8,7 @@ import { SectionWithHeaderProps } from 'types/component-props/layouts/section-wi
 import { FilterExplanation } from './FilterExplanation';
 
 import style from './FilterBar.module.scss';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useScrollPosition } from 'store/hooks/useStickyScroll';
 
 type FilterBarProps = {

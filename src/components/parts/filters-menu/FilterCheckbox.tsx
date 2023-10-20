@@ -1,4 +1,4 @@
-import { ChangeEvent, useId } from 'react';
+import { useId } from 'react';
 import { Filter } from 'types/store/filter-menu';
 import { classNames } from 'utils/classnames';
 import { StaticImage } from 'components/_common/image/StaticImage';
