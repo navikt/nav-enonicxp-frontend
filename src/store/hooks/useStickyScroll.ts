@@ -6,7 +6,6 @@ export const useScrollPosition = (element: HTMLElement) => {
     const saveScrollPosition = () => {
         if (element) {
             scrollPositionRef.current = element.getBoundingClientRect().top;
-            console.log(scrollPositionRef.current);
         }
     };
 
