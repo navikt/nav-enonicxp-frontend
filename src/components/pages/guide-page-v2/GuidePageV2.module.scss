@@ -1,0 +1,23 @@
+@use 'src/common' as common;
+
+.guidePage {
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        align-self: center;
+        width: 100%;
+
+        // Break out of the global app padding for better screen-width usage
+        // on narrower screens
+        @media #{common.$mq-screen-tablet-and-desktop} {
+            margin-left: -(common.$padding-sides-tablet);
+            margin-right: -(common.$padding-sides-tablet);
+        }
+
+        @media #{common.$mq-screen-desktop} {
+            margin-left: -(common.$padding-sides-desktop);
+            margin-right: -(common.$padding-sides-desktop);
+        }
+    }
+}

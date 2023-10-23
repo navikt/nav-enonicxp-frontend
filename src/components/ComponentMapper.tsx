@@ -11,7 +11,6 @@ import { LayoutMapper } from './layouts/LayoutMapper';
 import { FragmentComponent } from './FragmentComponent';
 import { AuthDependantRender } from './_common/auth-dependant-render/AuthDependantRender';
 import { EditorHelp } from './_editor-only/editor-help/EditorHelp';
-import { ErrorBoundary } from 'components/_common/error-boundary/ErrorBoundary';
 import { translator } from 'translations';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
 

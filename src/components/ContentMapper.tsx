@@ -29,6 +29,11 @@ import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOve
 import { VideoPage } from './pages/video-page/VideoPage';
 import { CalculatorPage } from './pages/calculator-page/CalculatorPage';
 import { PageMeta } from './pages/page-meta/PageMeta';
+import { ProductPageV2 } from './pages/product-page-v2/ProductPageV2';
+import { CurrentTopicPageV2 } from './pages/current-topic-page-v2/CurrentTopicPageV2';
+import { GenericPageV2 } from './pages/generic-page-v2/GenericPageV2';
+import { ThemedArticlePageV2 } from './pages/themed-article-page-v2/ThemedArticlePageV2';
+import { SituationPageV2 } from './pages/situation-page-v2/SituationPageV2';
 
 const contentToReactComponent: {
     [key in ContentType]?: React.FunctionComponent<ContentProps<key>>;
@@ -46,20 +51,25 @@ const contentToReactComponent: {
 
     [ContentType.PageMeta]: PageMeta,
 
-    [ContentType.SituationPage]: SituationPage,
-    [ContentType.ProductPage]: ProductPage,
-    [ContentType.GuidePage]: GuidePage,
-    [ContentType.ThemedArticlePage]: ThemedArticlePage,
-    [ContentType.Overview]: OverviewPage,
-    [ContentType.GenericPage]: GenericPage,
-    [ContentType.OfficeEditorialPage]: OfficeEditorialPage,
-    [ContentType.OfficeBranchPage]: OfficeBranchPage,
-    [ContentType.CurrentTopicPage]: CurrentTopicPage,
-    [ContentType.PressLandingPage]: PressLandingPage,
-    [ContentType.FormIntermediateStepPage]: FormIntermediateStepPage,
-    [ContentType.FormDetails]: FormDetailsPreviewPage,
-    [ContentType.FormsOverview]: FormsOverviewPage,
     [ContentType.Calculator]: CalculatorPage,
+    [ContentType.CurrentTopicPage]: CurrentTopicPage,
+    [ContentType.CurrentTopicPageV2]: CurrentTopicPageV2,
+    [ContentType.FormDetails]: FormDetailsPreviewPage,
+    [ContentType.FormIntermediateStepPage]: FormIntermediateStepPage,
+    [ContentType.FormsOverview]: FormsOverviewPage,
+    [ContentType.GenericPage]: GenericPage,
+    [ContentType.GenericPageV2]: GenericPageV2,
+    [ContentType.GuidePage]: GuidePage,
+    [ContentType.OfficeBranchPage]: OfficeBranchPage,
+    [ContentType.OfficeEditorialPage]: OfficeEditorialPage,
+    [ContentType.Overview]: OverviewPage,
+    [ContentType.PressLandingPage]: PressLandingPage,
+    [ContentType.ProductPage]: ProductPage,
+    [ContentType.ProductPageV2]: ProductPageV2,
+    [ContentType.SituationPage]: SituationPage,
+    [ContentType.SituationPageV2]: SituationPageV2,
+    [ContentType.ThemedArticlePage]: ThemedArticlePage,
+    [ContentType.ThemedArticlePageV2]: ThemedArticlePageV2,
 
     [ContentType.AreaPage]: DynamicPage,
     [ContentType.FrontPage]: DynamicPage,
