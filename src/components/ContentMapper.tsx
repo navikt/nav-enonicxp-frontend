@@ -34,6 +34,7 @@ import { CurrentTopicPageV2 } from './pages/current-topic-page-v2/CurrentTopicPa
 import { GenericPageV2 } from './pages/generic-page-v2/GenericPageV2';
 import { ThemedArticlePageV2 } from './pages/themed-article-page-v2/ThemedArticlePageV2';
 import { SituationPageV2 } from './pages/situation-page-v2/SituationPageV2';
+import { GuidePageV2 } from './pages/guide-page-v2/GuidePageV2';
 
 const contentToReactComponent: {
     [key in ContentType]?: React.FunctionComponent<ContentProps<key>>;
@@ -60,6 +61,7 @@ const contentToReactComponent: {
     [ContentType.GenericPage]: GenericPage,
     [ContentType.GenericPageV2]: GenericPageV2,
     [ContentType.GuidePage]: GuidePage,
+    [ContentType.GuidePageV2]: GuidePageV2,
     [ContentType.OfficeBranchPage]: OfficeBranchPage,
     [ContentType.OfficeEditorialPage]: OfficeEditorialPage,
     [ContentType.Overview]: OverviewPage,
