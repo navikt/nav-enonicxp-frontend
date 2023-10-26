@@ -11,11 +11,17 @@ import style from './TopContainer.module.scss';
 
 const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
     ContentType.ProductPage,
+    ContentType.ProductPageV2,
     ContentType.SituationPage,
+    ContentType.SituationPageV2,
     ContentType.CurrentTopicPage,
+    ContentType.CurrentTopicPageV2,
     ContentType.GuidePage,
+    ContentType.GuidePageV2,
     ContentType.GenericPage,
+    ContentType.GenericPageV2,
     ContentType.ThemedArticlePage,
+    ContentType.ThemedArticlePageV2,
     ContentType.Overview,
     ContentType.OfficeEditorialPage,
     ContentType.OfficeBranchPage,

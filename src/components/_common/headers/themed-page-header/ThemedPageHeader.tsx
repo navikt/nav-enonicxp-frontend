@@ -17,10 +17,7 @@ import {
     OfficeEditorialPageProps,
     OfficeBranchPageProps,
 } from 'types/content-props/dynamic-page-props';
-import {
-    getAudience,
-    Audience,
-} from 'types/component-props/_mixins';
+import { getAudience, Audience } from 'types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 
@@ -109,23 +106,38 @@ export const ThemedPageHeader = ({
     const getDatesLabel = translator('dates', language);
 
     const getPageTypeClass = (_pageType: ContentType) => {
-        if (_pageType === ContentType.SituationPage) {
+        if (
+            _pageType === ContentType.SituationPage ||
+            _pageType === ContentType.SituationPageV2
+        ) {
             return 'situation';
         }
 
-        if (_pageType === ContentType.ProductPage) {
+        if (
+            _pageType === ContentType.ProductPage ||
+            _pageType === ContentType.ProductPageV2
+        ) {
             return 'product';
         }
 
-        if (_pageType === ContentType.GuidePage) {
+        if (
+            _pageType === ContentType.GuidePage ||
+            _pageType === ContentType.GuidePageV2
+        ) {
             return 'guide';
         }
 
-        if (_pageType === ContentType.ThemedArticlePage) {
+        if (
+            _pageType === ContentType.ThemedArticlePage ||
+            _pageType === ContentType.ThemedArticlePageV2
+        ) {
             return 'themedpage';
         }
 
-        if (_pageType === ContentType.ToolsPage) {
+        if (
+            _pageType === ContentType.ToolsPage ||
+            _pageType === ContentType.ToolsPageV2
+        ) {
             return 'tool';
         }
 
@@ -137,7 +149,10 @@ export const ThemedPageHeader = ({
             return 'overview';
         }
 
-        if (_pageType === ContentType.GenericPage) {
+        if (
+            _pageType === ContentType.GenericPage ||
+            _pageType === ContentType.GenericPageV2
+        ) {
             return 'generic';
         }
 

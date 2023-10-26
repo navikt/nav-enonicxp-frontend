@@ -103,6 +103,7 @@ export enum ContentType {
     ThemedArticlePage = 'no.nav.navno:themed-article-page',
     ThemedArticlePageV2 = 'no.nav.navno:themed-article-page-v2',
     ToolsPage = 'no.nav.navno:tools-page',
+    ToolsPageV2 = 'no.nav.navno:tools-page-v2',
     TransportPage = 'no.nav.navno:transport-page',
     Url = 'no.nav.navno:url',
     Video = 'no.nav.navno:video',
