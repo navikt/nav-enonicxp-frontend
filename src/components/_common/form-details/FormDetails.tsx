@@ -4,6 +4,7 @@ import { classNames } from 'utils/classnames';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { FormDetailsButton } from './FormDetailsButton';
+import { InfoBox } from '../info-box/InfoBox';
 
 import style from './FormDetails.module.scss';
 
@@ -36,7 +37,8 @@ export const FormDetails = ({
         showComplaints = true,
     } = displayConfig;
 
-    const { formNumbers, formType, ingress, title } = formDetails;
+    const { formNumbers, formType, languageDisclaimer, ingress, title } =
+        formDetails;
 
     const variations = formType.reduce((acc, cur) => {
         const { _selected } = cur;
@@ -106,6 +108,7 @@ export const FormDetails = ({
                     <ParsedHtml htmlProps={ingress} />
                 </div>
             )}
+            {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
             {variations.length > 0 && (
                 <div className={style.variation}>
                     {variations.map((variation, index) => (

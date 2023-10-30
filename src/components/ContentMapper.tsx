@@ -28,6 +28,7 @@ import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-pa
 import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
 import { VideoPage } from './pages/video-page/VideoPage';
 import { CalculatorPage } from './pages/calculator-page/CalculatorPage';
+import { PageMeta } from './pages/page-meta/PageMeta';
 
 const contentToReactComponent: {
     [key in ContentType]?: React.FunctionComponent<ContentProps<key>>;
@@ -42,6 +43,8 @@ const contentToReactComponent: {
     [ContentType.Video]: VideoPage,
     [ContentType.ContactInformationPage]: ContactInformationPage,
     [ContentType.PayoutDates]: PayoutDatesPage,
+
+    [ContentType.PageMeta]: PageMeta,
 
     [ContentType.SituationPage]: SituationPage,
     [ContentType.ProductPage]: ProductPage,
