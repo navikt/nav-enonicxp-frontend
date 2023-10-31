@@ -1,18 +1,21 @@
 @use 'src/common' as common;
 
 .expandable {
-    border-bottom: 1px solid var(--ac-accordion-header-border,var(--a-border-divider));
-
-    &:hover {
-        border-bottom-color: transparent;
-    }
+    border-bottom: 1px solid
+        var(--ac-accordion-header-border, var(--a-border-divider));
 
     &:global(.navds-accordion__item--open) {
-        border-bottom: 1px solid var(--ac-accordion-header-border,var(--a-border-divider));
+        border-bottom: 1px solid
+            var(--ac-accordion-header-border, var(--a-border-divider));
+        padding-bottom: var(--a-spacing-4);
     }
 
     :global(.navds-accordion__header) {
-        color: common.$a-text-action;
+        color: var(--a-surface-action);
+        padding-left: 0;
+        padding-right: 0;
+        margin: 0;
+        border-bottom: 0;
         @include common.expandable-panel-mixin();
         &:focus {
             @include common.panel-focus-mixin(false);
@@ -20,7 +23,9 @@
     }
 
     :global(.navds-accordion__content) {
-        padding: 1rem 0 0.5rem 0;
+        transition: visibility 0.25s;
+        padding: 1rem 0 0.5rem;
+        border-bottom: 0;
 
         & > :first-child {
             margin-top: 0;
@@ -31,9 +36,17 @@
     }
 }
 
+:global(.part__html-area):has(.expandableWrapper) {
+    margin-bottom: 0;
+}
+
+:global(.part__html-area):has(.expandableWrapper)
+    + :global(.part__html-area):not(:has(.expandableWrapper)) {
+    margin-top: var(--a-spacing-7);
+}
+
 :global(:not(:last-child)) {
     & > .expandableWrapper {
-        margin-bottom: 1.75rem;
         --__ac-accordion-header-shadow-color: none;
     }
 }
