@@ -11,11 +11,11 @@
     }
 
     :global(.navds-accordion__header) {
+        border-bottom: 0;
         color: var(--a-surface-action);
+        margin: 0;
         padding-left: 0;
         padding-right: 0;
-        margin: 0;
-        border-bottom: 0;
         @include common.expandable-panel-mixin();
         &:focus {
             @include common.panel-focus-mixin(false);
@@ -33,6 +33,12 @@
                 margin-top: 0;
             }
         }
+    }
+}
+
+.expandableWrapper {
+    &.hasFirefoxHack {
+        margin-bottom: 1rem;
     }
 }
 
