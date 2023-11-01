@@ -244,14 +244,14 @@ export const translationsBundleEn: PartialTranslations = {
         chat: {
             title: 'Chat with Frida',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a advisor (weekdays 9-15).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to an advisor (weekdays 9-15).',
             chatWithCounsellor: 'Chat with advisor',
             alwaysOpen: 'Always open',
         },
         legacyChat: {
             title: 'You can chat with us',
             ingress:
-                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to a advisor (weekdays 9-15).',
+                'You will first be met by chatbot Frida who will answer you. You can also ask Frida to talk to an advisor (weekdays 9-15).',
         },
         write: {
             title: 'Write to us',
