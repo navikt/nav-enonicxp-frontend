@@ -43,6 +43,7 @@
 
 :global(:not(:last-child)) {
     & > .expandableWrapper {
+        --__ac-accordion-header-shadow-color: none;
         margin-bottom: var(--a-spacing-7);
     }
 }
