@@ -24,7 +24,7 @@
 
     :global(.navds-accordion__content) {
         transition: visibility 0.25s;
-        padding: 1rem 0 0.5rem;
+        padding: 1rem 0 0.5rem 0;
         border-bottom: 0;
 
         & > :first-child {
@@ -36,23 +36,13 @@
     }
 }
 
-.expandableWrapper {
-    &.hasFirefoxHack {
-        margin-bottom: 1rem;
-    }
-}
-
-:global(.part__html-area):has(.expandableWrapper) {
-    margin-bottom: 0;
-}
-
 :global(.part__html-area):has(.expandableWrapper)
-    + :global(.part__html-area):not(:has(.expandableWrapper)) {
-    margin-top: var(--a-spacing-7);
+    + :global(.part__html-area):has(.expandableWrapper) {
+    margin-top: calc(var(--a-spacing-7) * -1);
 }
 
 :global(:not(:last-child)) {
     & > .expandableWrapper {
-        --__ac-accordion-header-shadow-color: none;
+        margin-bottom: var(--a-spacing-7);
     }
 }

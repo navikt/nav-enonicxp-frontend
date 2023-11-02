@@ -22,7 +22,6 @@ export const Expandable = ({
     className,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isHasSupported, setIsHasSupported] = useState(null);
     const accordionRef = useRef<HTMLDivElement | null>(null);
 
     const toggleExpandCollapse = () => {
@@ -62,24 +61,7 @@ export const Expandable = ({
         checkAndOpenPanel();
     };
 
-    // Firefox does not support :has() selector until v121.
-    // Then market penetration is high enough (mid january 2024?), the following hack
-    // might safely be removed.
-    const checkPsudoHasSupport = () => {
-        let userAgent = navigator.userAgent;
-        let regex = /Firefox\/(\d+)/;
-        let firefox = userAgent.match(regex);
-
-        if (!firefox) {
-            // All other major browsers support :has, so assume true
-            return true;
-        }
-        return parseInt(firefox[1], 10) >= 121;
-    };
-
     useEffect(() => {
-        setIsHasSupported(checkPsudoHasSupport());
-
         const openOnBrowserSearch = (e: KeyboardEvent) => {
             if (e.ctrlKey && e.code === 'KeyF') {
                 setIsOpen(true);
@@ -105,11 +87,7 @@ export const Expandable = ({
     return (
         <Accordion
             id={anchorId}
-            className={classNames(
-                className,
-                style.expandableWrapper,
-                !isHasSupported && style.hasFirefoxHack
-            )}
+            className={classNames(className, style.expandableWrapper)}
             ref={accordionRef}
         >
             <Accordion.Item open={isOpen} className={style.expandable}>
