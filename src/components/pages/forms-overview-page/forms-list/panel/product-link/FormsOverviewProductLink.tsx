@@ -29,9 +29,8 @@ export const FormsOverviewProductLink = ({
     return (
         <>
             <Heading level={'3'} size={'small'}>
-                {showWarningForNorwegianLink
-                    ? `${headingText} (in Norwegian)`
-                    : headingText}
+                {headingText}
+                {showWarningForNorwegianLink && ' (in Norwegian)'}
             </Heading>
             <MicroCard
                 type={cardTypeMap[type]}
