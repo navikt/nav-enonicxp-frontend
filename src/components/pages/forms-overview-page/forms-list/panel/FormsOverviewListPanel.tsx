@@ -71,6 +71,7 @@ export const FormsOverviewListPanel = ({
         type,
         taxonomy,
         area,
+        targetLanguage,
     } = formDetails;
 
     const [isLoading, setIsLoading] = useState(false);
@@ -137,7 +138,12 @@ export const FormsOverviewListPanel = ({
                 />
             ))}
             {!isAddendumPage && url && (
-                <FormsOverviewProductLink type={type} url={url} title={title} />
+                <FormsOverviewProductLink
+                    type={type}
+                    url={url}
+                    title={title}
+                    targetLanguage={targetLanguage}
+                />
             )}
         </ProductPanelExpandable>
     );

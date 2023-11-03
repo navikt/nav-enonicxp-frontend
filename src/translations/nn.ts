@@ -198,6 +198,7 @@ export const translationsBundleNn: PartialTranslations = {
         filterOrSearch: 'Bruk filter eller søk',
         loading: 'Laster innhald...',
         any: 'Frå A til Å',
+        more: 'Meir om',
         resetFilters: 'Nullstill filter',
         areas: {
             choose: 'Vel område',

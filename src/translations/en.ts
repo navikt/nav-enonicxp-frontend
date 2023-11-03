@@ -221,6 +221,7 @@ export const translationsBundleEn: PartialTranslations = {
         loading: 'Loading content...',
         any: 'From A to Z',
         resetFilters: 'Reset filters',
+        more: 'More about',
         areas: {
             choose: 'Choose area',
             ariaExplanation: 'Filter list by area',
