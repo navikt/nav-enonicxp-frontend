@@ -11,20 +11,20 @@ type Props = {
     type: ContentType;
     url: string;
     title: string;
-    productLanguage: string;
+    targetLanguage: string;
 };
 
 export const FormsOverviewProductLink = ({
     url,
     type,
     title,
-    productLanguage,
+    targetLanguage,
 }: Props) => {
-    const { language: pageLanguage } = usePageConfig();
-    const headingText = translator('overview', pageLanguage)('more');
+    const { language: overviewLanguage } = usePageConfig();
+    const headingText = translator('overview', overviewLanguage)('more');
 
     const showWarningForNorwegianLink =
-        pageLanguage === 'en' && isNorwegianLanguage(productLanguage);
+        overviewLanguage === 'en' && isNorwegianLanguage(targetLanguage);
 
     return (
         <>

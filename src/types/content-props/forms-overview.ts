@@ -16,7 +16,7 @@ export type FormDetailsListItemProps = {
     keywords: string[];
     url?: string;
     type: ContentType;
-    language: string;
+    targetLanguage: string;
     anchorId: string;
     illustration: AnimatedIconsProps;
     area: Area[];

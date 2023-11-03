@@ -71,7 +71,7 @@ export const FormsOverviewListPanel = ({
         type,
         taxonomy,
         area,
-        language: productLanguage,
+        targetLanguage,
     } = formDetails;
 
     const [isLoading, setIsLoading] = useState(false);
@@ -142,7 +142,7 @@ export const FormsOverviewListPanel = ({
                     type={type}
                     url={url}
                     title={title}
-                    productLanguage={productLanguage}
+                    targetLanguage={targetLanguage}
                 />
             )}
         </ProductPanelExpandable>
