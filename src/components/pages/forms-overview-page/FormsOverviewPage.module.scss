@@ -50,8 +50,8 @@
 
 /* Innrykk i ekspanderende paneler */
 
-.main :global(.navds-accordion__content) {
+.main :global(.navds-expansioncard__content) {
     @media #{common.$mq-screen-desktop} {
-        padding-left: 108px;
+        padding-left: 82px;
     }
 }
