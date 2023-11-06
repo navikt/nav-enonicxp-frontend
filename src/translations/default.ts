@@ -207,6 +207,7 @@ export const translationsBundleNb = {
         loading: 'Laster innhold...',
         resetFilters: 'Nullstill filter',
         any: 'Fra A til Å',
+        more: 'Mer om',
         areas: {
             choose: 'Velg område',
             ariaExplanation: 'Filtrer listen etter område',
