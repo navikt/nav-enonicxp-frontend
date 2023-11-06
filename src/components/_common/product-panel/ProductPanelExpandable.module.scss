@@ -44,6 +44,10 @@ $separator-attribs: 1px $color solid;
         align-items: center;
         gap: var(--a-spacing-4);
     }
+
+    :global(.navds-expansioncard__header-button) {
+        align-self: center;
+    }
 }
 
 .expandableContent {
