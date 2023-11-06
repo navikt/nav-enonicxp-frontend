@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Accordion, BodyShort, Loader } from '@navikt/ds-react';
+import { BodyShort, ExpansionCard, Loader } from '@navikt/ds-react';
 import { IllustrationStatic } from 'components/_common/illustration/IllustrationStatic';
 import { CopyLink } from 'components/_common/copyLink/copyLink';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
@@ -74,40 +74,44 @@ export const ProductPanelExpandable = ({
     };
 
     return (
-        <Accordion className={style.accordion} id={anchorId}>
-            <Accordion.Item open={isOpen} className={style.accordionItem}>
-                <Accordion.Header
-                    onClick={handleClick}
-                    onMouseOver={contentLoaderCallback}
-                    onFocus={contentLoaderCallback}
-                >
-                    <IllustrationStatic
-                        className={style.illustration}
-                        illustration={illustration}
-                    />
-                    <span className={style.panelHeader}>
-                        <span>{header}</span>
-                        {subHeader && (
-                            <span className={style.subHeader}>{subHeader}</span>
-                        )}
-                    </span>
-                </Accordion.Header>
-                <Accordion.Content>
-                    <CopyLink
-                        anchor={anchorIdWithHash}
-                        className={style.copyLink}
-                    />
-                    {error && <AlertBox variant={'error'}>{error}</AlertBox>}
-                    {isLoading ? (
-                        <div className={style.loader}>
-                            <Loader size={'2xlarge'} />
-                            <BodyShort>{loadingText}</BodyShort>
-                        </div>
-                    ) : (
-                        children
+        <ExpansionCard
+            open={isOpen}
+            className={style.expandable}
+            id={anchorId}
+            aria-labelledby=""
+        >
+            <ExpansionCard.Header
+                onClick={handleClick}
+                onMouseOver={contentLoaderCallback}
+                onFocus={contentLoaderCallback}
+                className={style.expandableHeader}
+            >
+                <IllustrationStatic
+                    className={style.illustration}
+                    illustration={illustration}
+                />
+                <span className={style.panelHeader}>
+                    <span>{header}</span>
+                    {subHeader && (
+                        <span className={style.subHeader}>{subHeader}</span>
                     )}
-                </Accordion.Content>
-            </Accordion.Item>
-        </Accordion>
+                </span>
+            </ExpansionCard.Header>
+            <ExpansionCard.Content className={style.expandableContent}>
+                <CopyLink
+                    anchor={anchorIdWithHash}
+                    className={style.copyLink}
+                />
+                {error && <AlertBox variant={'error'}>{error}</AlertBox>}
+                {isLoading ? (
+                    <div className={style.loader}>
+                        <Loader size={'2xlarge'} />
+                        <BodyShort>{loadingText}</BodyShort>
+                    </div>
+                ) : (
+                    children
+                )}
+            </ExpansionCard.Content>
+        </ExpansionCard>
     );
 };

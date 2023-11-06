@@ -3,65 +3,55 @@
 $color: common.$a-deepblue-100;
 $separator-attribs: 1px $color solid;
 
-.accordion {
+.expandable {
     border-bottom: $separator-attribs;
+    border-radius: 0;
+    --__ac-expansioncard-border-width: 0;
+
+    &:global(.navds-expansioncard--open) {
+        :global(.navds-expansioncard__header) {
+            border-radius: common.$border-radius-xlarge;
+        }
+    }
 }
 
-.accordionItem {
-    :global(.navds-accordion__header),
-    :global(.navds-accordion__content) {
-        border-bottom: 0;
-    }
+.expandableHeader {
+    padding: var(--a-spacing-5);
+    margin: 0 -0.5rem -1px -0.5rem;
+    width: calc(100% + 1rem);
+    border-radius: common.$border-radius-xlarge;
 
-    :global(.navds-accordion__header) {
-        @include common.expandable-panel-mixin();
-        border-radius: common.$border-radius-xlarge;
+    &:hover,
+    &:focus {
+        background-color: var(--a-deepblue-100);
+        color: common.$a-text-default;
+        box-shadow: 0 0 0 0;
 
-        align-items: center;
-        background-color: common.$a-white;
-
-        @media #{common.$mq-screen-tablet-and-desktop} {
-            padding: var(--a-spacing-5);
+        & + :global(.navds-expansioncard__content) {
+            box-shadow: 0 0 0 0;
         }
 
-        &:focus {
-            @include common.panel-focus-mixin(true);
-        }
-
-        &:hover,
-        &:focus {
-            background-color: $color;
-            color: common.$a-text-default;
-
-            .illustration {
-                & > :first-child:not(:last-child) * {
-                    fill: common.$a-white;
-                }
+        .illustration {
+            & > :first-child:not(:last-child) * {
+                fill: common.$a-white;
             }
         }
-
-        :global(.navds-accordion__header-content) {
-            display: flex;
-            align-items: center;
-            gap: var(--a-spacing-4);
-        }
     }
 
-    :global(.navds-accordion__content) {
-        padding-top: 0;
-        padding-bottom: 1.75rem;
+    :global(.navds-expansioncard__header-content) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--a-spacing-4);
     }
 
-    :global(.navds-accordion__expand-icon) {
-        margin-left: auto;
+    :global(.navds-expansioncard__header-button) {
+        align-self: center;
     }
+}
 
-    :global(.region__intro) {
-        margin-bottom: 1rem;
-    }
-    :global(.region__main) {
-        margin-bottom: 1rem;
-    }
+.expandableContent {
+    padding: var(--a-spacing-3) var(--a-spacing-3) var(--a-spacing-7);
 }
 
 .illustration {
@@ -91,6 +81,8 @@ $separator-attribs: 1px $color solid;
 .panelHeader {
     display: flex;
     flex-direction: column;
+    font-weight: var(--a-font-weight-bold);
+    font-size: var(--a-font-size-heading-small);
 }
 
 .subHeader {

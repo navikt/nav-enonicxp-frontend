@@ -1,6 +1,6 @@
 import React from 'react';
-import { StaticImageData } from 'next/dist/client/image';
 import { NextImage } from './NextImage';
+import { StaticImageData } from 'next/image';
 
 type Props = {
     imageData: StaticImageData;
