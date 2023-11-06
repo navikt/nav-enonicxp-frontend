@@ -4,6 +4,9 @@
     border-bottom: 1px solid
         var(--ac-accordion-header-border, var(--a-border-divider));
 
+    margin: 0 -1rem;
+    padding: 0 1rem;
+
     &:global(.navds-accordion__item--open) {
         border-bottom: 1px solid
             var(--ac-accordion-header-border, var(--a-border-divider));
