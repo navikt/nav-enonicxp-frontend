@@ -10,7 +10,7 @@ ARG SERVICE_SECRET
 ARG ENV_FILE
 
 COPY package*.json /failover/.npmrc /app/
-RUN npm ci --force
+RUN npm ci --force --ignore-scripts
 RUN rm -f .npmrc
 
 COPY public /app/public/
