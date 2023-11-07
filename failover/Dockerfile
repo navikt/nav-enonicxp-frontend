@@ -1,7 +1,7 @@
 FROM node:20-bullseye-slim
 
 RUN apt-get update
-RUN apt-get --assume-yes install ca-certificates
+RUN apt-get --assume-yes --no-install-recommends install ca-certificates
 
 WORKDIR /app
 
