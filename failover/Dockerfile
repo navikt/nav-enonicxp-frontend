@@ -4,8 +4,7 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 RUN apt-get update
-RUN apt-get --assume-yes --no-install-recommends install ca-certificates
-RUN apt-get clean
+RUN apt-get --assume-yes --no-install-recommends install ca-certificates && apt-get clean
 
 WORKDIR /app
 
