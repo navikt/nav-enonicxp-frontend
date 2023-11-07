@@ -11,7 +11,7 @@ COPY node_modules /app/node_modules/
 COPY .next /app/.next/
 COPY public /app/public/
 
-COPY next.config.js .env image-manifest /app/
+COPY next.config.js .env /app/
 COPY .serverDist /app/.serverDist/
 
 USER nextjs
