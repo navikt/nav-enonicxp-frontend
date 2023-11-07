@@ -1,5 +1,8 @@
 FROM node:20-bullseye-slim
 
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
 WORKDIR /app
 
 COPY package*.json /app/
@@ -10,6 +13,8 @@ COPY public /app/public/
 
 COPY next.config.js .env image-manifest /app/
 COPY .serverDist /app/.serverDist/
+
+USER nextjs
 
 EXPOSE 3000
 CMD ["npm", "run", "start"]
