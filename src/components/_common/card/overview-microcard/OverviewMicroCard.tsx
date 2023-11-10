@@ -12,13 +12,15 @@ type Props = {
     url: string;
     title: string;
     targetLanguage: string;
+    className?: string;
 };
 
-export const FormsOverviewProductLink = ({
+export const OverviewMicroCard = ({
     url,
     type,
     title,
     targetLanguage,
+    className,
 }: Props) => {
     const { language: overviewLanguage } = usePageConfig();
     const headingText = translator('overview', overviewLanguage)('more');
@@ -27,7 +29,7 @@ export const FormsOverviewProductLink = ({
         overviewLanguage === 'en' && isNorwegianLanguage(targetLanguage);
 
     return (
-        <>
+        <div className={className}>
             <Heading level={'3'} size={'small'}>
                 {headingText}
                 {showWarningForNorwegianLink && ' (in Norwegian)'}
@@ -36,6 +38,6 @@ export const FormsOverviewProductLink = ({
                 type={cardTypeMap[type]}
                 link={{ url: url, text: title }}
             />
-        </>
+        </div>
     );
 };

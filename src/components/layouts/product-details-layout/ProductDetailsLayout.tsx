@@ -1,28 +1,60 @@
 import React, { Fragment } from 'react';
 import Region from '../Region';
 import { LayoutContainer } from '../LayoutContainer';
-import { LegacyLayoutProps } from '../../../types/component-props/layouts/legacy-layout';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ProductDetailsProps } from 'types/content-props/dynamic-page-props';
 import { ProductDetailType } from 'types/content-props/product-details';
+import {
+    ProductDetailsPageProps,
+    ProductDetailsPageRegionName,
+} from 'types/component-props/pages/product-details-layout';
 
 import style from './ProductDetailsLayout.module.scss';
+import { RegionProps } from 'types/component-props/layouts';
+
+type ProductDetailsRegions =
+    ProductDetailsPageProps['regions'][ProductDetailsPageRegionName];
+
+const processRegionProps = (
+    name: ProductDetailsPageRegionName,
+    regionProps: ProductDetailsRegions,
+    isEditView: boolean
+): RegionProps => {
+    if (name !== 'outro' || isEditView) {
+        return regionProps;
+    }
+
+    // Micro-card links in this region were previously added manually as components,
+    // but are now generated automatically
+    // Filter out any micro-card components as a workaround for now
+    // Can be removed once these components have been removed from all product details
+    return {
+        ...regionProps,
+        components: regionProps?.components?.filter(
+            (component) =>
+                !(
+                    component.type === 'part' &&
+                    component.descriptor === 'no.nav.navno:product-card-micro'
+                )
+        ),
+    };
+};
 
 type Props = {
     pageProps: ProductDetailsProps;
-    layoutProps?: LegacyLayoutProps;
+    layoutProps?: ProductDetailsPageProps;
 };
 
 export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
     const { regions } = layoutProps;
 
-    // As the layout is shared between product listing and isolated product details,
-    // we need to determine the detailType by checking both detailType and overviewType (for product overview)
-    const detailType = pageProps.data.detailType || pageProps.data.overviewType;
-
     if (!regions) {
         return null;
     }
+
+    // As the layout is shared between product listing and isolated product details,
+    // we need to determine the detailType by checking both detailType and overviewType (for product overview)
+    const detailType = pageProps.data.detailType || pageProps.data.overviewType;
 
     const regionHelpText = [
         'Introduksjon: Vises kun på oversiktssiden',
@@ -39,26 +71,31 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
             className={style.productDetails}
         >
-            {Object.keys(regions).map((key, index) => {
-                const regionProps = regions[key];
-
+            {Object.entries(regions).map(([regionName, regionProps], index) => {
                 // The 'main_complaint' section in product details is only applicable
                 // for product detail types === 'processing_times'
                 if (
-                    key === 'main_complaint' &&
+                    regionName === 'main_complaint' &&
                     detailType !== 'processing_times'
                 ) {
                     return null;
                 }
+
+                const processedRegionProps = processRegionProps(
+                    regionName as ProductDetailsPageRegionName,
+                    regionProps,
+                    !!pageProps.editorView
+                );
+
                 return (
-                    <Fragment key={index}>
+                    <Fragment key={regionName}>
                         <EditorHelp
                             text={regionHelpText[index]}
                             type="arrowDown"
                         />
                         <Region
                             pageProps={pageProps}
-                            regionProps={regionProps}
+                            regionProps={processedRegionProps}
                         />
                     </Fragment>
                 );

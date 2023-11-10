@@ -50,6 +50,7 @@ export type SimplifiedProductData = {
     sortTitle: string;
     anchorId: string;
     taxonomy: ProductTaxonomy[];
+    language: string;
 } & Omit<ProductDataMixin, 'taxonomy'>;
 
 export type ProductDataMixin = {

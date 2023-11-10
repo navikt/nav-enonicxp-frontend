@@ -8,6 +8,7 @@ import { ProductDetailType } from 'types/content-props/product-details';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
 import { LayoutProps } from 'types/component-props/layouts';
+import { OverviewMicroCard } from 'components/_common/card/overview-microcard/OverviewMicroCard';
 
 type Props = {
     detailType: ProductDetailType;
@@ -20,8 +21,16 @@ export const ProductDetailsPanel = ({
     pageProps,
     productDetails,
 }: Props) => {
-    const { productDetailsPath, anchorId, illustration, sortTitle } =
-        productDetails;
+    const {
+        productDetailsPath,
+        anchorId,
+        illustration,
+        sortTitle,
+        title,
+        type,
+        path,
+        language: targetPageLanguage,
+    } = productDetails;
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -76,6 +85,12 @@ export const ProductDetailsPanel = ({
                     pageProps={pageProps}
                 />
             ) : null}
+            <OverviewMicroCard
+                type={type}
+                url={path}
+                title={title}
+                targetLanguage={targetPageLanguage}
+            />
         </ProductPanelExpandable>
     );
 };
