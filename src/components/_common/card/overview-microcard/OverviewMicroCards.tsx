@@ -58,6 +58,7 @@ const CardsList = ({ cardPropsList }: { cardPropsList: CardProps[] }) =>
         <MicroCard
             type={cardTypeMap[cardProps.type]}
             link={{ url: cardProps.url, text: cardProps.title }}
+            key={cardProps.url}
         />
     ));
 
