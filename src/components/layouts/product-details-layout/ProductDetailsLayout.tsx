@@ -8,9 +8,9 @@ import {
     ProductDetailsPageProps,
     ProductDetailsPageRegionName,
 } from 'types/component-props/pages/product-details-layout';
+import { RegionProps } from 'types/component-props/layouts';
 
 import style from './ProductDetailsLayout.module.scss';
-import { RegionProps } from 'types/component-props/layouts';
 
 type ProductDetailsRegions =
     ProductDetailsPageProps['regions'][ProductDetailsPageRegionName];
@@ -24,9 +24,9 @@ const processRegionProps = (
         return regionProps;
     }
 
-    // Micro-card links in this region were previously added manually as components,
+    // Microcard links in this region were previously added manually as components,
     // but are now generated automatically
-    // Filter out any micro-card components as a workaround for now
+    // Filter out any manually added microcard components as a workaround for now
     // Can be removed once these components have been removed from all product details
     return {
         ...regionProps,
@@ -39,6 +39,19 @@ const processRegionProps = (
         ),
     };
 };
+
+const getRegionHelpTexts = (
+    detailType: ProductDetailType
+): Record<ProductDetailsPageRegionName, string> => ({
+    intro: 'Introduksjon: Vises kun på oversiktssiden.',
+    main:
+        detailType === ProductDetailType.PROCESSING_TIMES
+            ? 'Hovedinnhold, søknad: Vises på oversiktssiden og på produktsiden.'
+            : 'Hovedinnhold: Vises på oversiktssiden og på produktsiden.',
+    main_complaint:
+        'Hovedinnhold, klage: Vises på oversiktssiden og på produktsiden.',
+    outro: 'Oppsummering: Vises kun på oversiktssiden.',
+});
 
 type Props = {
     pageProps: ProductDetailsProps;
@@ -56,14 +69,7 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
     // we need to determine the detailType by checking both detailType and overviewType (for product overview)
     const detailType = pageProps.data.detailType || pageProps.data.overviewType;
 
-    const regionHelpText = [
-        'Introduksjon: Vises kun på oversiktssiden',
-        detailType === ProductDetailType.PROCESSING_TIMES
-            ? 'Hovedinnhold, søknad: Vises på oversiktssiden og på produktsiden'
-            : 'Hovedinnhold: Vises på oversiktssiden og på produktsiden.',
-        'Hovedinnhold, klage: Vises på oversiktssiden og på produktsiden.',
-        'Oppsummering: Vises kun på oversiktssiden',
-    ];
+    const regionHelpTexts = getRegionHelpTexts(detailType);
 
     return (
         <LayoutContainer
@@ -71,7 +77,7 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
             layoutProps={layoutProps}
             className={style.productDetails}
         >
-            {Object.entries(regions).map(([regionName, regionProps], index) => {
+            {Object.entries(regions).map(([regionName, regionProps]) => {
                 // The 'main_complaint' section in product details is only applicable
                 // for product detail types === 'processing_times'
                 if (
@@ -90,7 +96,7 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
                 return (
                     <Fragment key={regionName}>
                         <EditorHelp
-                            text={regionHelpText[index]}
+                            text={regionHelpTexts[regionName]}
                             type="arrowDown"
                         />
                         <Region
