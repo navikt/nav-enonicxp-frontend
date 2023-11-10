@@ -59,9 +59,21 @@
 }
 
 .content-wrapper {
+    display: inline;
     &:focus {
         outline: none;
         box-shadow: none;
+    }
+
+    &:before {
+        content: '';
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        background-color: white;
+
+        @include common.full-width-mixin();
     }
 }
 
