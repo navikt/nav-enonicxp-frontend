@@ -8,6 +8,7 @@ import style from './ProductLink.module.scss';
 type ProductLinkProps = {
     product: SimplifiedProductData;
 };
+
 export const ProductLink = ({ product }: ProductLinkProps) => {
     const link: LinkProps = {
         url: product.path,

@@ -10,6 +10,8 @@ import { ProductPanelExpandable } from 'components/_common/product-panel/Product
 import { LayoutProps } from 'types/component-props/layouts';
 import { OverviewMicroCard } from 'components/_common/card/overview-microcard/OverviewMicroCard';
 
+import style from './ProductDetailsPanel.module.scss';
+
 type Props = {
     detailType: ProductDetailType;
     pageProps: ContentProps;
@@ -90,6 +92,7 @@ export const ProductDetailsPanel = ({
                 url={path}
                 title={title}
                 targetLanguage={targetPageLanguage}
+                className={style.microCard}
             />
         </ProductPanelExpandable>
     );
