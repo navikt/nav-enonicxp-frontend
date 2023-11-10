@@ -19,11 +19,6 @@ type CardPropsSplit = {
     withEnglishWarningReadMore: CardProps[];
 };
 
-type Props = {
-    cardPropsList: CardProps[];
-    className?: string;
-};
-
 const splitByHeaderType = (
     cardPropsList: CardProps[],
     pageLanguage: Language
@@ -52,6 +47,25 @@ const splitByHeaderType = (
     );
 };
 
+const CardsHeader = ({ text }: { text: string }) => (
+    <Heading level={'3'} size={'small'}>
+        {text}
+    </Heading>
+);
+
+const CardsList = ({ cardPropsList }: { cardPropsList: CardProps[] }) =>
+    cardPropsList.map((cardProps) => (
+        <MicroCard
+            type={cardTypeMap[cardProps.type]}
+            link={{ url: cardProps.url, text: cardProps.title }}
+        />
+    ));
+
+type Props = {
+    cardPropsList: CardProps[];
+    className?: string;
+};
+
 export const OverviewMicroCards = ({ cardPropsList, className }: Props) => {
     const { language: pageLanguage } = usePageConfig();
 
@@ -64,28 +78,14 @@ export const OverviewMicroCards = ({ cardPropsList, className }: Props) => {
         <div className={className}>
             {withStandardReadMore.length > 0 && (
                 <>
-                    <Heading level={'3'} size={'small'}>
-                        {headingText}
-                    </Heading>
-                    {withStandardReadMore.map((card) => (
-                        <MicroCard
-                            type={cardTypeMap[card.type]}
-                            link={{ url: card.url, text: card.title }}
-                        />
-                    ))}
+                    <CardsHeader text={headingText} />
+                    <CardsList cardPropsList={withStandardReadMore} />
                 </>
             )}
             {withEnglishWarningReadMore.length > 0 && (
                 <>
-                    <Heading level={'3'} size={'small'}>
-                        {`${headingText} (in Norwegian)`}
-                    </Heading>
-                    {withEnglishWarningReadMore.map((card) => (
-                        <MicroCard
-                            type={cardTypeMap[card.type]}
-                            link={{ url: card.url, text: card.title }}
-                        />
-                    ))}
+                    <CardsHeader text={`${headingText} (in Norwegian)`} />
+                    <CardsList cardPropsList={withEnglishWarningReadMore} />
                 </>
             )}
         </div>
