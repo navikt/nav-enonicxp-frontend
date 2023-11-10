@@ -12,7 +12,7 @@ import {
 import { FormDetailsPageProps } from 'types/content-props/form-details';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
 import { BodyLong } from '@navikt/ds-react';
-import { OverviewMicroCard } from 'components/_common/card/overview-microcard/OverviewMicroCard';
+import { OverviewMicroCards } from 'components/_common/card/overview-microcard/OverviewMicroCards';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language, translator } from 'translations';
 
@@ -138,11 +138,15 @@ export const FormsOverviewListPanel = ({
                 />
             ))}
             {!isAddendumPage && url && (
-                <OverviewMicroCard
-                    type={type}
-                    url={url}
-                    title={title}
-                    targetLanguage={targetLanguage}
+                <OverviewMicroCards
+                    cardPropsList={[
+                        {
+                            type,
+                            url,
+                            title,
+                            targetLanguage,
+                        },
+                    ]}
                 />
             )}
         </ProductPanelExpandable>

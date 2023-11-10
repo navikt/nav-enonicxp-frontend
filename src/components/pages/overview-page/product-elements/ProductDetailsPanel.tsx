@@ -8,7 +8,7 @@ import { ProductDetailType } from 'types/content-props/product-details';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
 import { LayoutProps } from 'types/component-props/layouts';
-import { OverviewMicroCard } from 'components/_common/card/overview-microcard/OverviewMicroCard';
+import { OverviewMicroCards } from 'components/_common/card/overview-microcard/OverviewMicroCards';
 
 import style from './ProductDetailsPanel.module.scss';
 
@@ -87,11 +87,15 @@ export const ProductDetailsPanel = ({
                     pageProps={pageProps}
                 />
             ) : null}
-            <OverviewMicroCard
-                type={type}
-                url={path}
-                title={title}
-                targetLanguage={targetPageLanguage}
+            <OverviewMicroCards
+                cardPropsList={[
+                    {
+                        type,
+                        url: path,
+                        title,
+                        targetLanguage: targetPageLanguage,
+                    },
+                ]}
                 className={style.microCard}
             />
         </ProductPanelExpandable>
