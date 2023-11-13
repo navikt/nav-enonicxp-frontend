@@ -47,15 +47,15 @@ const CardsHeader = ({ text }: { text: string }) => (
 );
 
 const CardsList = ({
-    cardPropsList,
+    productLinks,
 }: {
-    cardPropsList: OverviewPageProductLink[];
+    productLinks: OverviewPageProductLink[];
 }) =>
-    cardPropsList.map((cardProps) => (
+    productLinks.map((productLink) => (
         <MicroCard
-            type={cardTypeMap[cardProps.type]}
-            link={{ url: cardProps.url, text: cardProps.title }}
-            key={cardProps.url}
+            type={cardTypeMap[productLink.type]}
+            link={{ url: productLink.url, text: productLink.title }}
+            key={productLink.url}
         />
     ));
 
@@ -81,13 +81,13 @@ export const OverviewMicroCards = ({ productLinks, className }: Props) => {
             {withStandardReadMore.length > 0 && (
                 <>
                     <CardsHeader text={headingText} />
-                    <CardsList cardPropsList={withStandardReadMore} />
+                    <CardsList productLinks={withStandardReadMore} />
                 </>
             )}
             {withEnglishWarningReadMore.length > 0 && (
                 <>
                     <CardsHeader text={`${headingText} (in Norwegian)`} />
-                    <CardsList cardPropsList={withEnglishWarningReadMore} />
+                    <CardsList productLinks={withEnglishWarningReadMore} />
                 </>
             )}
         </div>
