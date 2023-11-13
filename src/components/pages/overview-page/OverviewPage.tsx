@@ -29,6 +29,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                 keys: [
                     { name: 'title', weight: 10 },
                     { name: 'ingress', weight: 1 },
+                    { name: 'productLinks.title', weight: 1 },
                 ],
             },
         }).then((result) => {
