@@ -1,8 +1,8 @@
 import { ContentListProps } from '../content-props/content-list-props';
-import { ContentProps, ContentType } from '../content-props/_content-common';
+import { ContentProps } from '../content-props/_content-common';
 import { HeaderTypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
-import { ProductTaxonomy, Taxonomy } from 'types/taxonomies';
+import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
 import { EmptyObject, OptionSetSingle } from '../util-types';
 import { Area } from 'types/areas';
@@ -41,17 +41,6 @@ export const getAudience = (audience: AudienceProps | Audience) => {
 };
 
 export type FilterSelection = string[];
-
-export type SimplifiedProductData = {
-    _id: string;
-    type: ContentType;
-    productDetailsPath: string;
-    path: string;
-    sortTitle: string;
-    anchorId: string;
-    taxonomy: ProductTaxonomy[];
-    language: string;
-} & Omit<ProductDataMixin, 'taxonomy'>;
 
 export type ProductDataMixin = {
     title: string;

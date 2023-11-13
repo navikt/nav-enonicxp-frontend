@@ -27,7 +27,7 @@ const processRegionProps = (
     // Microcard links in this region were previously added manually as components,
     // but are now generated automatically
     // Filter out any manually added microcard components as a workaround for now
-    // Can be removed once these components have been removed from all product details
+    // TODO: Can be removed once these components have been removed from all product details
     return {
         ...regionProps,
         components: regionProps?.components?.filter(

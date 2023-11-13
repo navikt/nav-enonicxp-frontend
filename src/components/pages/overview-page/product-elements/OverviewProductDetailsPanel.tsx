@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ComponentMapper } from 'components/ComponentMapper';
-import { SimplifiedProductData } from 'types/component-props/_mixins';
 import { fetchPageCacheContent } from 'utils/fetch/fetch-cache-content';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { translator } from 'translations';
@@ -9,30 +8,23 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ProductPanelExpandable } from 'components/_common/product-panel/ProductPanelExpandable';
 import { LayoutProps } from 'types/component-props/layouts';
 import { OverviewMicroCards } from 'components/_common/card/overview-microcard/OverviewMicroCards';
+import { OverviewPageProductItem } from 'types/content-props/overview-props';
 
 import style from './ProductDetailsPanel.module.scss';
 
 type Props = {
     detailType: ProductDetailType;
     pageProps: ContentProps;
-    productDetails: SimplifiedProductData;
+    productDetails: OverviewPageProductItem;
 };
 
-export const ProductDetailsPanel = ({
+export const OverviewProductDetailsPanel = ({
     detailType,
     pageProps,
     productDetails,
 }: Props) => {
-    const {
-        productDetailsPath,
-        anchorId,
-        illustration,
-        sortTitle,
-        title,
-        type,
-        path,
-        language: targetPageLanguage,
-    } = productDetails;
+    const { productDetailsPath, anchorId, illustration, title, productLinks } =
+        productDetails;
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -71,7 +63,7 @@ export const ProductDetailsPanel = ({
 
     return (
         <ProductPanelExpandable
-            header={sortTitle}
+            header={title}
             illustration={illustration}
             anchorId={anchorId}
             contentLoaderCallback={handleProductDetailsFetch}
@@ -88,14 +80,7 @@ export const ProductDetailsPanel = ({
                 />
             ) : null}
             <OverviewMicroCards
-                cardPropsList={[
-                    {
-                        type,
-                        url: path,
-                        title,
-                        targetLanguage: targetPageLanguage,
-                    },
-                ]}
+                productLinks={productLinks}
                 className={style.microCard}
             />
         </ProductPanelExpandable>

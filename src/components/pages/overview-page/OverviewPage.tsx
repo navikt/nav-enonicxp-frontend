@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { OverviewPageProps } from 'types/content-props/dynamic-page-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { ComponentMapper } from 'components/ComponentMapper';
 import { ThemedPageHeader } from 'components/_common/headers/themed-page-header/ThemedPageHeader';
 import { classNames } from 'utils/classnames';
 import { OverviewFilters } from 'components/_common/overview-filters/OverviewFilters';
 import { OverviewFiltersSummary } from 'components/_common/overview-filters/summary/OverviewFiltersSummary';
-import { ProductLink } from 'components/pages/overview-page/product-elements/ProductLink';
-import { ProductDetailsPanel } from 'components/pages/overview-page/product-elements/ProductDetailsPanel';
+import { OverviewLinkPanel } from 'components/pages/overview-page/product-elements/OverviewLinkPanel';
+import { OverviewProductDetailsPanel } from 'components/pages/overview-page/product-elements/OverviewProductDetailsPanel';
 import { useOverviewFilters } from 'store/hooks/useOverviewFilters';
+import { OverviewPageProps } from 'types/content-props/overview-props';
 
 import style from './OverviewPage.module.scss';
 
@@ -27,9 +27,8 @@ export const OverviewPage = (props: OverviewPageProps) => {
             filterableItems: productList,
             fuseOptions: {
                 keys: [
-                    { name: 'sortTitle', weight: 10 },
+                    { name: 'title', weight: 10 },
                     { name: 'ingress', weight: 1 },
-                    { name: 'title', weight: 1 },
                 ],
             },
         }).then((result) => {
@@ -67,11 +66,14 @@ export const OverviewPage = (props: OverviewPageProps) => {
                     )}
                 >
                     {filteredList.map((product) => (
-                        <li key={`${product._id}-${language}`}>
+                        <li key={`${product.anchorId}-${language}`}>
                             {isAllProductsOverview ? (
-                                <ProductLink product={product} />
+                                <OverviewLinkPanel
+                                    product={product.productLinks[0]}
+                                    illustration={product.illustration}
+                                />
                             ) : (
-                                <ProductDetailsPanel
+                                <OverviewProductDetailsPanel
                                     productDetails={product}
                                     pageProps={props}
                                     detailType={overviewType}

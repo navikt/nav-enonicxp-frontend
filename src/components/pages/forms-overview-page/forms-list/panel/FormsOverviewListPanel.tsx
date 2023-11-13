@@ -139,12 +139,12 @@ export const FormsOverviewListPanel = ({
             ))}
             {!isAddendumPage && url && (
                 <OverviewMicroCards
-                    cardPropsList={[
+                    productLinks={[
                         {
                             type,
                             url,
                             title,
-                            targetLanguage,
+                            language: targetLanguage,
                         },
                     ]}
                 />

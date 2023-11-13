@@ -1,41 +1,34 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { MicroCard } from 'components/_common/card/MicroCard';
-import { ContentType } from 'types/content-props/_content-common';
 import { cardTypeMap } from 'components/_common/card/card-utils';
 import { Language, translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { isNorwegianLanguage } from 'utils/languages';
+import { OverviewPageProductLink } from 'types/content-props/overview-props';
 
-type CardProps = {
-    type: ContentType;
-    url: string;
-    title: string;
-    targetLanguage: string;
-};
-
-type CardPropsSplit = {
-    withStandardReadMore: CardProps[];
-    withEnglishWarningReadMore: CardProps[];
+type ProductLinksSplit = {
+    withStandardReadMore: OverviewPageProductLink[];
+    withEnglishWarningReadMore: OverviewPageProductLink[];
 };
 
 const splitByHeaderType = (
-    cardPropsList: CardProps[],
+    productLinks: OverviewPageProductLink[],
     pageLanguage: Language
-): CardPropsSplit => {
+): ProductLinksSplit => {
     if (pageLanguage !== 'en') {
         return {
-            withStandardReadMore: cardPropsList,
+            withStandardReadMore: productLinks,
             withEnglishWarningReadMore: [],
         };
     }
 
-    return cardPropsList.reduce<CardPropsSplit>(
-        (acc, cardProps) => {
-            if (isNorwegianLanguage(cardProps.targetLanguage)) {
-                acc.withEnglishWarningReadMore.push(cardProps);
+    return productLinks.reduce<ProductLinksSplit>(
+        (acc, productLink) => {
+            if (isNorwegianLanguage(productLink.language)) {
+                acc.withEnglishWarningReadMore.push(productLink);
             } else {
-                acc.withStandardReadMore.push(cardProps);
+                acc.withStandardReadMore.push(productLink);
             }
 
             return acc;
@@ -53,7 +46,11 @@ const CardsHeader = ({ text }: { text: string }) => (
     </Heading>
 );
 
-const CardsList = ({ cardPropsList }: { cardPropsList: CardProps[] }) =>
+const CardsList = ({
+    cardPropsList,
+}: {
+    cardPropsList: OverviewPageProductLink[];
+}) =>
     cardPropsList.map((cardProps) => (
         <MicroCard
             type={cardTypeMap[cardProps.type]}
@@ -63,17 +60,17 @@ const CardsList = ({ cardPropsList }: { cardPropsList: CardProps[] }) =>
     ));
 
 type Props = {
-    cardPropsList: CardProps[];
+    productLinks: OverviewPageProductLink[];
     className?: string;
 };
 
-export const OverviewMicroCards = ({ cardPropsList, className }: Props) => {
+export const OverviewMicroCards = ({ productLinks, className }: Props) => {
     const { language: pageLanguage } = usePageConfig();
 
     const headingText = translator('overview', pageLanguage)('more');
 
     const { withStandardReadMore, withEnglishWarningReadMore } =
-        splitByHeaderType(cardPropsList, pageLanguage);
+        splitByHeaderType(productLinks, pageLanguage);
 
     return (
         <div className={className}>
