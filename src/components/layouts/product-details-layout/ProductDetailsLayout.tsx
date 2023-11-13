@@ -12,15 +12,14 @@ import { RegionProps } from 'types/component-props/layouts';
 
 import style from './ProductDetailsLayout.module.scss';
 
-type ProductDetailsRegions =
+type ProductDetailsRegionProps =
     ProductDetailsPageProps['regions'][ProductDetailsPageRegionName];
 
 const processRegionProps = (
-    name: ProductDetailsPageRegionName,
-    regionProps: ProductDetailsRegions,
+    regionProps: ProductDetailsRegionProps,
     isEditView: boolean
 ): RegionProps => {
-    if (name !== 'outro' || isEditView) {
+    if (regionProps.name !== 'outro' || isEditView) {
         return regionProps;
     }
 
@@ -88,7 +87,6 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
                 }
 
                 const processedRegionProps = processRegionProps(
-                    regionName as ProductDetailsPageRegionName,
                     regionProps,
                     !!pageProps.editorView
                 );
