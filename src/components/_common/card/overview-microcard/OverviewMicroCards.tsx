@@ -67,6 +67,10 @@ type Props = {
 export const OverviewMicroCards = ({ productLinks, className }: Props) => {
     const { language: pageLanguage } = usePageConfig();
 
+    if (productLinks.length === 0) {
+        return null;
+    }
+
     const headingText = translator('overview', pageLanguage)('more');
 
     const { withStandardReadMore, withEnglishWarningReadMore } =
