@@ -4,8 +4,8 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { LanguageProps } from 'types/language';
 import { stripXpPathPrefix } from '../urls';
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
-import { checkForWhiteHeader } from 'components/_top-container/TopContainer';
 import { Audience, getAudience } from 'types/component-props/_mixins';
+import { checkForWhiteHeader } from 'utils/appearance';
 
 const defaultLanguage: DecoratorParams['language'] = 'nb';
 

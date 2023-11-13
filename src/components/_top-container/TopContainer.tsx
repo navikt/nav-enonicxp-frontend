@@ -65,8 +65,7 @@ export const TopContainer = ({ content }: Props) => {
                 className={classNames(
                     style.topContainer,
                     hasWhiteHeader && style.white,
-                    hasDecoratorWidgets && style.widgetsOffset,
-                    shouldCollapse && style.collapse
+                    hasDecoratorWidgets && style.widgetsOffset
                 )}
             >
                 <EditorWidgets content={content} />
