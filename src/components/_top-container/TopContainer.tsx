@@ -23,7 +23,7 @@ export const TopContainer = ({ content }: Props) => {
         redirectToLayer,
     } = content;
 
-    const isBackgroundWhite = hasWhiteHeader(content);
+    const whiteBg = hasWhiteHeader(content);
 
     const isEditorView = !!content.editorView;
 
@@ -33,22 +33,22 @@ export const TopContainer = ({ content }: Props) => {
     return (
         <>
             {isPagePreview && (
-                <PageWarning whiteBg={isBackgroundWhite}>
+                <PageWarning whiteBg={whiteBg}>
                     {warningLabels('draftWarning')}
                 </PageWarning>
             )}
             {isFailover && (
-                <PageWarning whiteBg={isBackgroundWhite}>
+                <PageWarning whiteBg={whiteBg}>
                     {warningLabels('failoverWarning')}
                 </PageWarning>
             )}
             {originalType && isEditorView && (
-                <PageWarning whiteBg={isBackgroundWhite} size={'medium'}>
+                <PageWarning whiteBg={whiteBg} size={'medium'}>
                     {warningLabels('contentTypeChangedWarning')(originalType)}
                 </PageWarning>
             )}
             {redirectToLayer && isEditorView && (
-                <PageWarning whiteBg={isBackgroundWhite} size={'medium'}>
+                <PageWarning whiteBg={whiteBg} size={'medium'}>
                     {warningLabels('layerRedirectWarning')(
                         localeLabels(redirectToLayer)
                     )}
@@ -57,7 +57,7 @@ export const TopContainer = ({ content }: Props) => {
             <div
                 className={classNames(
                     style.topContainer,
-                    isBackgroundWhite && style.whiteBackground
+                    whiteBg && style.whiteBackground
                 )}
             >
                 <EditorWidgets content={content} />

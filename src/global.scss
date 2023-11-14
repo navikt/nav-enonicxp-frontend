@@ -65,8 +65,12 @@
         box-shadow: none;
     }
 
-    // Create a separator to give some space before content
-    // For historical reference: Previously done by TopContainer.
+    // Depending on the content type and whether the above Decorator has
+    // breadcrumbs or language selector (språkvelger), the
+    // content beneath has to be adjusted for spacing in order to
+    // give a balanced look & feel. (Ie. "some white space, but not too much").
+    // The following :before element will ajust according to which
+    // classes is set in PageWrapper.
     &:before {
         content: '';
         display: flex;
@@ -78,13 +82,16 @@
         @include common.full-width-mixin();
     }
 
+    // Variations, depending on the spacing need set for this
+    // particular page.
     &.white:before {
-        background-color: white;
+        background-color: var(--a-bg-default);
     }
 
     &.no-gap::before {
         content: none;
     }
+
     &.decorator-offset:before {
         margin-top: -0.75rem;
     }
