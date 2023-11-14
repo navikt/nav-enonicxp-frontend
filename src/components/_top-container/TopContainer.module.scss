@@ -4,16 +4,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // padding: 1rem 0;
 
     @include common.full-width-mixin();
 
-    &.white {
+    &.whiteBackground {
         background-color: var(--a-bg-default);
-    }
-
-    &.widgetsOffset {
-        margin-top: -0.75rem;
     }
 
     &:empty {

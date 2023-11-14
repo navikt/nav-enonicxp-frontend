@@ -65,15 +65,28 @@
         box-shadow: none;
     }
 
+    // Create a separator to give some space before content
+    // For historical reference: Previously done by TopContainer.
     &:before {
         content: '';
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 1rem 0;
-        background-color: white;
+        padding: var(--a-spacing-4) 0;
+        background-color: transparent;
 
         @include common.full-width-mixin();
+    }
+
+    &.white:before {
+        background-color: white;
+    }
+
+    &.no-gap::before {
+        content: none;
+    }
+    &.decorator-offset:before {
+        margin-top: -0.75rem;
     }
 }
 

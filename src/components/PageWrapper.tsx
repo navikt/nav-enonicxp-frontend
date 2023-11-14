@@ -7,7 +7,12 @@ import {
 } from '@navikt/nav-dekoratoren-moduler';
 import { ContentProps } from 'types/content-props/_content-common';
 import { hookAndInterceptInternalLink, prefetchOnMouseover } from 'utils/links';
-import { hasWhiteBackground } from 'utils/appearance';
+import {
+    hasWhiteHeader,
+    hasWhiteBackground,
+    hasNoTopGap,
+    shouldPushUpwards,
+} from 'utils/appearance';
 import { TopContainer } from './_top-container/TopContainer';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from 'utils/decorator/decorator-utils';
@@ -139,7 +144,14 @@ export const PageWrapper = (props: Props) => {
                 <TopContainer content={content} />
                 <div
                     role={'main'}
-                    className={'content-wrapper'}
+                    className={classNames(
+                        'content-wrapper',
+                        (hasWhiteBackground(content) ||
+                            hasWhiteHeader(content)) &&
+                            'white',
+                        hasNoTopGap(content) && 'no-gap',
+                        shouldPushUpwards(content) && 'decorator-offset'
+                    )}
                     id={'maincontent'}
                     tabIndex={-1}
                 >

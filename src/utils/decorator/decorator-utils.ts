@@ -5,7 +5,7 @@ import { LanguageProps } from 'types/language';
 import { stripXpPathPrefix } from '../urls';
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
 import { Audience, getAudience } from 'types/component-props/_mixins';
-import { checkForWhiteHeader } from 'utils/appearance';
+import { hasWhiteHeader } from 'utils/appearance';
 
 const defaultLanguage: DecoratorParams['language'] = 'nb';
 
@@ -106,6 +106,6 @@ export const getDecoratorParams = (content: ContentProps): DecoratorParams => {
         ),
         ...(feedbackEnabled && { feedback: true }),
         chatbot: !chatbotDisabled,
-        utilsBackground: checkForWhiteHeader(content) ? 'white' : 'gray',
+        utilsBackground: hasWhiteHeader(content) ? 'white' : 'gray',
     };
 };
