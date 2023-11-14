@@ -13,6 +13,10 @@
 .person {
     padding-top: 0.5rem;
     padding-bottom: 2.75rem;
+
+    @media #{common.$mq-screen-mobile} {
+        padding-top: 0;
+    }
 }
 
 .employer {
@@ -20,7 +24,7 @@
     padding-bottom: 4.25rem;
 
     @media #{common.$mq-screen-mobile} {
-        padding-top: 2.25rem;
+        padding-top: 2rem;
         padding-bottom: 2.25rem;
     }
 }
