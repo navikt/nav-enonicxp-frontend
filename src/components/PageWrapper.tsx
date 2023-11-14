@@ -9,7 +9,7 @@ import { ContentProps } from 'types/content-props/_content-common';
 import { hookAndInterceptInternalLink, prefetchOnMouseover } from 'utils/links';
 import {
     hasWhiteHeader,
-    hasWhiteBackground,
+    hasWhitePage,
     hasNoTopGap,
     shouldPushUpwards,
 } from 'utils/appearance';
@@ -135,7 +135,7 @@ export const PageWrapper = (props: Props) => {
         <div
             className={classNames(
                 'app-background',
-                hasWhiteBackground(content) && 'white'
+                hasWhitePage(content) && 'white'
             )}
         >
             <div className={classNames('app-container')}>
@@ -146,8 +146,7 @@ export const PageWrapper = (props: Props) => {
                     role={'main'}
                     className={classNames(
                         'content-wrapper',
-                        (hasWhiteBackground(content) ||
-                            hasWhiteHeader(content)) &&
+                        (hasWhitePage(content) || hasWhiteHeader(content)) &&
                             'white',
                         hasNoTopGap(content) && 'no-gap',
                         shouldPushUpwards(content) && 'decorator-offset'

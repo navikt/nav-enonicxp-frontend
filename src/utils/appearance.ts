@@ -52,7 +52,7 @@ export const hasWhiteHeader = (content: ContentProps) => {
     return contentTypesWithWhiteHeader.has(type);
 };
 
-export const hasWhiteBackground = (content: ContentProps) => {
+export const hasWhitePage = (content: ContentProps) => {
     if (content.type === ContentType.MainArticle) {
         return content.data.contentType !== 'lastingContent';
     }
