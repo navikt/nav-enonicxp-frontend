@@ -111,7 +111,7 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
                         <Region
                             pageProps={pageProps}
                             regionProps={
-                                isOutroWithMicroCards && !!pageProps.editorView
+                                isOutroWithMicroCards && !pageProps.editorView
                                     ? removeMicroCardParts(regionProps)
                                     : regionProps
                             }
