@@ -103,7 +103,7 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
                         {isOutroWithMicroCards && (
                             <EditorHelp
                                 text={
-                                    'Lenker til produktsider legges nå inn automatisk på oversikter. Lenkene under kan fjernes.'
+                                    'Lenker til produktsider legges nå inn automatisk på oversiktssider. Lenkene under bør derfor fjernes.'
                                 }
                                 type={'info'}
                             />
