@@ -9,27 +9,24 @@ import {
     ProductDetailsPageRegionName,
 } from 'types/component-props/pages/product-details-layout';
 import { RegionProps } from 'types/component-props/layouts';
+import { ComponentProps } from 'types/component-props/_component-common';
+import { PartType } from 'types/component-props/parts';
 
 import style from './ProductDetailsLayout.module.scss';
 
 type ProductDetailsRegionProps =
     ProductDetailsPageProps['regions'][ProductDetailsPageRegionName];
 
-const processRegionProps = (
-    regionProps: ProductDetailsRegionProps,
-    isEditView: boolean
+// Microcard links in this region were previously added manually as components,
+// but are now generated automatically
+// Filter out any manually added microcard components as a workaround for now
+// TODO: Can be removed once these components have been removed from all product details
+const removeMicroCardParts = (
+    regionProps: ProductDetailsRegionProps
 ): RegionProps => {
-    if (regionProps.name !== 'outro' || isEditView) {
-        return regionProps;
-    }
-
-    // Microcard links in this region were previously added manually as components,
-    // but are now generated automatically
-    // Filter out any manually added microcard components as a workaround for now
-    // TODO: Can be removed once these components have been removed from all product details
     return {
         ...regionProps,
-        components: regionProps?.components?.filter(
+        components: regionProps.components?.filter(
             (component) =>
                 !(
                     component.type === 'part' &&
@@ -38,6 +35,13 @@ const processRegionProps = (
         ),
     };
 };
+
+const hasMicroCardParts = (components?: ComponentProps[]) =>
+    components?.some(
+        (component) =>
+            component.type === 'part' &&
+            component.descriptor === PartType.ProductCardMicro
+    );
 
 const getRegionHelpTexts = (
     detailType: ProductDetailType
@@ -86,10 +90,9 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
                     return null;
                 }
 
-                const processedRegionProps = processRegionProps(
-                    regionProps,
-                    !!pageProps.editorView
-                );
+                const isOutroWithMicroCards =
+                    regionName === 'outro' &&
+                    hasMicroCardParts(regionProps.components);
 
                 return (
                     <Fragment key={regionName}>
@@ -97,9 +100,21 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
                             text={regionHelpTexts[regionName]}
                             type="arrowDown"
                         />
+                        {isOutroWithMicroCards && (
+                            <EditorHelp
+                                text={
+                                    'Lenker til produktsider legges nå inn automatisk på oversiktssider. Lenkene under bør derfor fjernes.'
+                                }
+                                type={'error'}
+                            />
+                        )}
                         <Region
                             pageProps={pageProps}
-                            regionProps={processedRegionProps}
+                            regionProps={
+                                isOutroWithMicroCards && !pageProps.editorView
+                                    ? removeMicroCardParts(regionProps)
+                                    : regionProps
+                            }
                         />
                     </Fragment>
                 );
