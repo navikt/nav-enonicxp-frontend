@@ -58,6 +58,7 @@ export const ProductPanelExpandable = ({
         return () => {
             window.removeEventListener('hashchange', checkHashAndExpandPanel);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleClick = () => {

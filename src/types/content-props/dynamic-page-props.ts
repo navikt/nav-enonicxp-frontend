@@ -1,10 +1,8 @@
-import { ContentType, ContentCommonProps } from './_content-common';
+import { ContentCommonProps, ContentType } from './_content-common';
 import {
     ProductDataMixin,
-    SimplifiedProductData,
     ProductDetailsDataMixin,
 } from '../component-props/_mixins';
-import { ProductDetailType as OverviewType } from './product-details';
 import { ThemedArticlePageTaxonomy, ToolsPageTaxonomy } from '../taxonomies';
 import { OfficeDetailsData } from './office-details-props';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
@@ -24,10 +22,6 @@ export type ToolsPageData = Omit<ProductDataMixin, 'taxonomy'> & {
     taxonomy: ToolsPageTaxonomy[];
 };
 export type GenericPageData = ProductDataMixin;
-export type OverviewPageData = {
-    productList: SimplifiedProductData[];
-    overviewType: OverviewType;
-} & ProductDataMixin;
 
 export type OfficeEditorialPageData = {
     title: string;
@@ -102,12 +96,6 @@ export type GenericPageProps = ContentCommonProps & {
     type: ContentType.GenericPage;
     data: GenericPageData;
     page: PageWithSideMenusProps;
-};
-
-export type OverviewPageProps = ContentCommonProps & {
-    type: ContentType.Overview;
-    data: OverviewPageData;
-    page: LayoutProps;
 };
 
 export type PressLandingPageProps = ContentCommonProps & {

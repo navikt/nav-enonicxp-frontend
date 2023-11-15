@@ -15,6 +15,7 @@ import { IndexPageProps } from './pages/index-page';
 import { AreapageSituationsProps } from './layouts/areapage-situations';
 import { FrontpageLoggedinSectionLayoutProps } from './layouts/frontpage-loggedin-section';
 import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
+import { ProductDetailsPageProps } from 'types/component-props/pages/product-details-layout';
 
 export enum LayoutType {
     Fixed1Col = 'no.nav.navno:dynamic-1-col',
@@ -64,4 +65,5 @@ export type LayoutProps =
     | IndexPageProps
     | AreapageSituationsProps
     | FrontpageLoggedinSectionLayoutProps
-    | TwoColsPageProps;
+    | TwoColsPageProps
+    | ProductDetailsPageProps;
