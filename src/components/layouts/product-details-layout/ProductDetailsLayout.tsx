@@ -105,7 +105,7 @@ export const ProductDetailsLayout = ({ pageProps, layoutProps }: Props) => {
                                 text={
                                     'Lenker til produktsider legges nå inn automatisk på oversiktssider. Lenkene under bør derfor fjernes.'
                                 }
-                                type={'info'}
+                                type={'error'}
                             />
                         )}
                         <Region
