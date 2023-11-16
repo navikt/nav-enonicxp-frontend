@@ -1,3 +1,8 @@
 .tableWrapper {
     overflow-x: auto;
+
+    // Content Studio tends to insert p-tags everywhere, which adds unwanted margins in table cells
+    p:last-child {
+        margin-bottom: 0;
+    }
 }
