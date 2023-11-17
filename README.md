@@ -41,6 +41,19 @@ Kjør så `npm run start-clean`
 
 [Grafana](https://grafana.nais.io/d/mUGKZWtMz/personbruker-app-metrikker?orgId=1&var-datasource=prod-gcp&var-app=nav-enonicxp-frontend)
 
+## Failover
+
+I tillegg til den ordinære instansen av appen på nav.no, deployes også daglig et statisk bygg av appen til www-failover.nav.no.
+Ved server-feil på en side i den ordinære app-instansen, vil error-page'en forsøke å hente html for tilsvarende side fra failover-appen,
+og servere denne som en fallback.
+
+Failover deployes ikke automatisk til dev-miljøer. For å bygge og deploye til et dev-miljø, gjør følgende:
+
+-   Legg inn relevante secrets lokalt som spesifisert i kommentarer i `/failover/build-dev-failover-image.sh`
+-   Kjør `/failover/build-dev-failover-image.sh <dev1|dev2> <image-navn>`
+-   Vent på at imaget bygges (det tar normalt 15-20 min)
+-   Kjør Github workflow'en `deploy-failover.dev` med dev-miljøet og image-navnet du valgte som input
+
 ## Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot https://github.com/orgs/navikt/teams/personbruker
