@@ -54,6 +54,9 @@ Failover deployes ikke automatisk til dev-miljøer. For å bygge og deploye til 
 -   Vent på at imaget bygges (det tar normalt 15-20 min)
 -   Kjør Github workflow'en `deploy-failover.dev` med dev-miljøet og image-navnet du valgte som input
 
+Failover-appen kan ikke navigeres direkte, kun via den ordinære appen. For å teste en deployet failover-instans kan du f.eks. slå av
+nav.no-appen i XP og så slette frontend-cachen (helst ikke i prod :).
+
 ## Henvendelser
 
 Spørsmål knyttet til koden eller prosjektet kan rettes mot https://github.com/orgs/navikt/teams/personbruker
