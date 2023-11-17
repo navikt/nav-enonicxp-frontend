@@ -43,7 +43,7 @@ Kjør så `npm run start-clean`
 
 ## Failover
 
-I tillegg til den ordinære instansen av appen på nav.no, deployes også daglig et statisk bygg av appen til www-failover.nav.no.
+I tillegg til den ordinære instansen av appen på www.nav.no, deployes også daglig et statisk bygg av appen til www-failover.nav.no.
 Ved server-feil ved rendring av en side i den ordinære app-instansen, vil error-page'en forsøke å hente html for tilsvarende side fra failover-appen,
 og servere denne som en fallback.
 
