@@ -1,12 +1,8 @@
 import React from 'react';
 import { translator } from 'translations';
-import { classNames } from 'utils/classnames';
 import { ContentProps } from 'types/content-props/_content-common';
 import { PageWarning } from './page-warning/PageWarning';
-import { EditorWidgets } from 'components/_editor-only/EditorWidgets';
 import { hasWhiteHeader } from 'utils/appearance';
-
-import style from './TopContainer.module.scss';
 
 type Props = {
     content: ContentProps;
@@ -54,14 +50,6 @@ export const TopContainer = ({ content }: Props) => {
                     )}
                 </PageWarning>
             )}
-            <div
-                className={classNames(
-                    style.topContainer,
-                    whiteBg && style.whiteBackground
-                )}
-            >
-                <EditorWidgets content={content} />
-            </div>
         </>
     );
 };
