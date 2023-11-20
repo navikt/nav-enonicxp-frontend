@@ -8,9 +8,7 @@ type Props = {
     content: ContentProps;
 };
 
-// For legacy reasons, this component is presently used for adjusting padding/margins at the top of
-// the app container.
-export const TopContainer = ({ content }: Props) => {
+export const PageWarnings = ({ content }: Props) => {
     const {
         isFailover,
         isPagePreview,

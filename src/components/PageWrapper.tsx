@@ -13,7 +13,7 @@ import {
     hasNoTopGap,
     shouldPushUpwards,
 } from 'utils/appearance';
-import { TopContainer } from './_top-container/TopContainer';
+import { PageWarnings } from './_page-warnings/PageWarnings';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from 'utils/decorator/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
@@ -142,7 +142,7 @@ export const PageWrapper = (props: Props) => {
             <div className={classNames('app-container')}>
                 <DocumentParameterMetatags content={content} />
                 <HeadWithMetatags content={content} />
-                <TopContainer content={content} />
+                <PageWarnings content={content} />
                 <EditorWidgets content={content} />
                 <div
                     role={'main'}
