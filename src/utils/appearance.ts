@@ -2,12 +2,12 @@ import { getAudience } from 'types/component-props/_mixins';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { getContentLanguages } from './languages';
 
-const contentTypeWithWhiteBackground = [
+const contentTypeWithWhiteBackground: ReadonlySet<ContentType> = new Set([
     ContentType.CurrentTopicPage,
     ContentType.FormIntermediateStepPage,
     ContentType.FormsOverview,
     ContentType.MainArticle,
-];
+]);
 
 const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
     ContentType.AreaPage,
@@ -49,7 +49,7 @@ export const hasWhitePage = (content: ContentProps) => {
         return contentType === 'news' || contentType === 'pressRelease';
     }
 
-    return contentTypeWithWhiteBackground.includes(content.type);
+    return contentTypeWithWhiteBackground.has(content.type);
 };
 
 export const hasWhiteHeader = (content: ContentProps) => {
