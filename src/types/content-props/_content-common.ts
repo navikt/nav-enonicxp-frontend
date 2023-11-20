@@ -19,7 +19,6 @@ import {
     OfficeBranchPageProps,
     OfficeEditorialPageProps,
     CurrentTopicPageProps,
-    OverviewPageProps,
     ProductDetailsProps,
     ProductPageProps,
     SituationPageProps,
@@ -53,6 +52,7 @@ import { SiteProps } from 'types/content-props/site-props';
 import { FormDetailsPageProps } from './form-details';
 import { FormIntermediateStepPageProps } from './form-intermediate-step';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
+import { OverviewPageProps } from 'types/content-props/overview-props';
 
 export enum ContentType {
     Error = 'error',

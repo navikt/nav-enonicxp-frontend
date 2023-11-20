@@ -12,15 +12,12 @@ import {
     SituationPageProps,
     GuidePageProps,
     ThemedArticlePageProps,
-    OverviewPageProps,
     GenericPageProps,
     OfficeEditorialPageProps,
     OfficeBranchPageProps,
 } from 'types/content-props/dynamic-page-props';
-import {
-    getAudience,
-    Audience,
-} from 'types/component-props/_mixins';
+import { OverviewPageProps } from 'types/content-props/overview-props';
+import { getAudience, Audience } from 'types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 
