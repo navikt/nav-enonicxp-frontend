@@ -27,20 +27,6 @@ const contentTypesWithWhiteHeader: ReadonlySet<ContentType> = new Set([
     ContentType.ThemedArticlePage,
 ]);
 
-export const hasNoTopGap = (content: ContentProps) => {
-    if (
-        content.type === ContentType.FrontPage ||
-        content.type === ContentType.FrontPageNested
-    ) {
-        return (
-            getAudience(content.data.audience) === 'employer' ||
-            getAudience(content.data.audience) === 'provider'
-        );
-    }
-
-    return false;
-};
-
 export const hasWhitePage = (content: ContentProps) => {
     const { type } = content;
 
