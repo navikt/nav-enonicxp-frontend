@@ -27,6 +27,8 @@ import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
 import { classNames } from 'utils/classnames';
 import { EditorWidgets } from './_editor-only/EditorWidgets';
 
+import styles from './PageWrapper.module.scss';
+
 type Props = {
     content: ContentProps;
     children: React.ReactNode;
@@ -134,12 +136,13 @@ export const PageWrapper = (props: Props) => {
 
     return (
         <div
-            className={classNames(
-                'app-background',
-                hasWhitePage(content) && 'white'
-            )}
+            className={
+                hasWhitePage(content)
+                    ? styles.whiteBackground
+                    : styles.defaultBackground
+            }
         >
-            <div className={classNames('app-container')}>
+            <div className={classNames(styles.appContainer)}>
                 <DocumentParameterMetatags content={content} />
                 <HeadWithMetatags content={content} />
                 <PageWarnings content={content} />
@@ -147,11 +150,11 @@ export const PageWrapper = (props: Props) => {
                 <div
                     role={'main'}
                     className={classNames(
-                        'content-wrapper',
+                        styles.contentWrapper,
                         (hasWhitePage(content) || hasWhiteHeader(content)) &&
-                            'white',
-                        hasNoTopGap(content) && 'no-gap',
-                        shouldPushUpwards(content) && 'decorator-offset'
+                            styles.whiteBackground,
+                        hasNoTopGap(content) && styles.noGap,
+                        shouldPushUpwards(content) && styles.decoratorOffset
                     )}
                     id={'maincontent'}
                     tabIndex={-1}
