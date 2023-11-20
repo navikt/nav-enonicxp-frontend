@@ -10,7 +10,6 @@ import { hookAndInterceptInternalLink, prefetchOnMouseover } from 'utils/links';
 import {
     hasWhiteHeader,
     hasWhitePage,
-    hasNoTopGap,
     shouldPushUpwards,
 } from 'utils/appearance';
 import { PageWarnings } from './_page-warnings/PageWarnings';
@@ -153,7 +152,6 @@ export const PageWrapper = (props: Props) => {
                         styles.contentWrapper,
                         (hasWhitePage(content) || hasWhiteHeader(content)) &&
                             styles.whiteBackground,
-                        hasNoTopGap(content) && styles.noGap,
                         shouldPushUpwards(content) && styles.decoratorOffset
                     )}
                     id={'maincontent'}

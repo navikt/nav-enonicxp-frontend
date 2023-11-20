@@ -60,10 +60,6 @@
         background-color: var(--a-bg-default);
     }
 
-    &.noGap::before {
-        content: none;
-    }
-
     &.decoratorOffset:before {
         margin-top: -0.75rem;
     }
