@@ -41,7 +41,7 @@ export const hasNoTopGap = (content: ContentProps) => {
     return false;
 };
 
-export const hasWhiteHeader = (content: ContentProps) => {
+export const hasWhitePage = (content: ContentProps) => {
     const { type } = content;
 
     if (type === ContentType.MainArticle) {
@@ -49,15 +49,17 @@ export const hasWhiteHeader = (content: ContentProps) => {
         return contentType === 'news' || contentType === 'pressRelease';
     }
 
-    return contentTypesWithWhiteHeader.has(type);
+    return contentTypeWithWhiteBackground.includes(content.type);
 };
 
-export const hasWhitePage = (content: ContentProps) => {
-    if (content.type === ContentType.MainArticle) {
-        return content.data.contentType !== 'lastingContent';
+export const hasWhiteHeader = (content: ContentProps) => {
+    const { type } = content;
+
+    if (hasWhitePage(content)) {
+        return true;
     }
 
-    return contentTypeWithWhiteBackground.includes(content.type);
+    return contentTypesWithWhiteHeader.has(type);
 };
 
 export const shouldPushUpwards = (content: ContentProps) => {
