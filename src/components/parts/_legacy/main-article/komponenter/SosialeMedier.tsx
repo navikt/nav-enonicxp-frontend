@@ -65,10 +65,8 @@ export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
             <ul>
                 {linksData.map((item) => (
                     <li key={item.type}>
-                        <LenkeBase href={item.href} analyticsLabel={item.text}>
-                            <span className={style.ikon}>
-                                <img alt={item.text} className={style[item.type]} />
-                            </span>
+                        <LenkeBase href={item.href} analyticsLabel={item.text} className={style.ikon}>
+                            <img alt={item.text} className={style[item.type]} />
                         </LenkeBase>
                     </li>
                 ))}
