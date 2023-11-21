@@ -7,8 +7,12 @@ import {
 } from '@navikt/nav-dekoratoren-moduler';
 import { ContentProps } from 'types/content-props/_content-common';
 import { hookAndInterceptInternalLink, prefetchOnMouseover } from 'utils/links';
-import { hasWhiteBackground } from 'utils/appearance';
-import { TopContainer } from './_top-container/TopContainer';
+import {
+    hasWhiteHeader,
+    hasWhitePage,
+    shouldPushUpwards,
+} from 'utils/appearance';
+import { PageWarnings } from './_page-warnings/PageWarnings';
 import { HeadWithMetatags } from './_common/metatags/HeadWithMetatags';
 import { getDecoratorParams } from 'utils/decorator/decorator-utils';
 import { DocumentParameterMetatags } from './_common/metatags/DocumentParameterMetatags';
@@ -20,6 +24,9 @@ import { setAuthStateAction } from 'store/slices/authState';
 import { fetchAndSetMeldekortStatus } from 'utils/fetch/fetch-meldekort-status';
 import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
 import { classNames } from 'utils/classnames';
+import { EditorWidgets } from './_editor-only/EditorWidgets';
+
+import styles from './PageWrapper.module.scss';
 
 type Props = {
     content: ContentProps;
@@ -128,18 +135,25 @@ export const PageWrapper = (props: Props) => {
 
     return (
         <div
-            className={classNames(
-                'app-background',
-                hasWhiteBackground(content) && 'white'
-            )}
+            className={
+                hasWhitePage(content)
+                    ? styles.whiteBackground
+                    : styles.defaultBackground
+            }
         >
-            <div className={classNames('app-container')}>
+            <div className={classNames(styles.appContainer)}>
                 <DocumentParameterMetatags content={content} />
                 <HeadWithMetatags content={content} />
-                <TopContainer content={content} />
+                <PageWarnings content={content} />
+                <EditorWidgets content={content} />
                 <div
                     role={'main'}
-                    className={'content-wrapper'}
+                    className={classNames(
+                        styles.contentWrapper,
+                        (hasWhitePage(content) || hasWhiteHeader(content)) &&
+                            styles.whiteBackground,
+                        shouldPushUpwards(content) && styles.decoratorOffset
+                    )}
                     id={'maincontent'}
                     tabIndex={-1}
                 >

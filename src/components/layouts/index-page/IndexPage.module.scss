@@ -15,10 +15,12 @@ $maxWidth: 1272px;
             }
         }
     }
+}
 
-    @media #{common.$mq-screen-mobile} {
-        margin-top: -0.5rem; //kompenser for TopContainer
-    }
+// PageWrapper will create a gap beneath the decorator, but some front pages
+// should have background color seamless with the page header, so offset this.
+.noTopGap {
+    margin-top: calc(var(--a-spacing-8) * -1);
 }
 
 .contentBottom {

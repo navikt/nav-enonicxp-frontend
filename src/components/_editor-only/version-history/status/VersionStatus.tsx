@@ -4,7 +4,7 @@ import { LenkeStandalone } from '../../../_common/lenke/LenkeStandalone';
 import { formatDateTime } from 'utils/datetime';
 import { ContentProps } from 'types/content-props/_content-common';
 import dayjs from 'dayjs';
-import { getVersionSelectorUrl } from 'components/_top-container/version-history/selector/versionSelectorUtils';
+import { getVersionSelectorUrl } from 'components/_editor-only/version-history/selector/versionSelectorUtils';
 
 import style from './VersionStatus.module.scss';
 

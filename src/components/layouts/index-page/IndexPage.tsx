@@ -10,6 +10,8 @@ import { IndexPageProps } from '../../../types/component-props/pages/index-page'
 import { AreaPageHeader } from './area-page/AreaPageHeader';
 
 import style from './IndexPage.module.scss';
+import { getAudience } from 'types/component-props/_mixins';
+import { classNames } from 'utils/classnames';
 
 const contentTypeSpecificComponent: {
     [key in ContentType]?: React.FunctionComponent<{ content: ContentProps }>;
@@ -29,11 +31,18 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
 
     const MiddleComponent = contentTypeSpecificComponent[type];
 
+    const hasNoTopGap =
+        getAudience(pageProps.data.audience) === 'employer' ||
+        getAudience(pageProps.data.audience) === 'provider';
+
     return (
         <LayoutContainer
             pageProps={pageProps}
             layoutProps={layoutProps}
-            className={style.indexPage}
+            className={classNames(
+                style.indexPage,
+                hasNoTopGap && style.noTopGap
+            )}
         >
             <>
                 {/* We don't use this region on the AreaPage atm */}
