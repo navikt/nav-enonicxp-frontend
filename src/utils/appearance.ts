@@ -1,4 +1,3 @@
-import { getAudience } from 'types/component-props/_mixins';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { getContentLanguages } from './languages';
 
