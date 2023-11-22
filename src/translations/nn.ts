@@ -27,7 +27,7 @@ const taxonomies: {
     [key in Taxonomy]?: string;
 } = {
     [ProductTaxonomy.ALL]: 'Alle',
-    [ProductTaxonomy.BENEFITS]: 'Pengestønad',
+    [ProductTaxonomy.BENEFITS]: 'Pengestøtte',
     [ProductTaxonomy.INSURANCE]: 'Forsikring',
     [ProductTaxonomy.MEASURES]: 'Tiltak',
     [ProductTaxonomy.SERVICE]: 'Teneste',
