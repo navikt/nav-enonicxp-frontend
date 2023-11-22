@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Heading } from '@navikt/ds-react';
 import { translator } from 'translations';
-
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
@@ -9,9 +8,9 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useRouter } from 'next/compat/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
+import { AlertBox } from "components/_common/alert-box/AlertBox";
 
 import styles from './FormIntermediateStepPage.module.scss';
-import { InfoBox } from 'components/_common/info-box/InfoBox';
 
 const STEP_PARAM = 'stegvalg';
 
@@ -119,9 +118,9 @@ export const FormIntermediateStepPage = (
                                         className={styles.stepItem}
                                     >
                                         {step.languageDisclaimer && (
-                                            <InfoBox>
+                                            <AlertBox variant="info" size="small" inline={true} className="infoBoks">
                                                 {step.languageDisclaimer}
-                                            </InfoBox>
+                                            </AlertBox>
                                         )}
                                         <LenkepanelNavNo
                                             href={getHrefFromStep(step)}

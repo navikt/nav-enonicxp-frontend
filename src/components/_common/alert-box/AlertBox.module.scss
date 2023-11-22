@@ -16,4 +16,16 @@
     &:global(.navds-alert--small > .navds-alert__icon) {
         align-self: center;
     }
+
+    &:global(.infoBoks) {
+        display: flex;
+        flex-direction: row;
+        background-color: var(--a-surface-subtle);
+        padding: 0.5rem;
+        border-radius: var(--a-border-radius-medium);
+        gap: 0.5rem;
+        margin-bottom: var(--a-spacing-3);
+    }
 }
+
+
