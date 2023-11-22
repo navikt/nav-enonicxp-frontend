@@ -96,9 +96,11 @@
     color: var(--a-text-default);
     margin-bottom: 0 !important; //overstyr kanskje litt for generell regel i MainArticlePermanent?
     text-align: left;
+    line-height: 1.5;
 }
 
 .videoLength {
+    padding-top: 0.25rem;
     font-weight: 400;
     color: var(--a-text-subtle);
     width: fit-content;
