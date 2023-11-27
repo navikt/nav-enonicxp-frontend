@@ -10,6 +10,7 @@ export enum EditorFeature {
     HideLeftPanel = 'hide-left-panel',
     EditorReloadBlocker = 'editor-reload-blocker',
     ContentModifiedWarning = 'content-modified-warning',
+    AutoReloadDisabled = 'auto-reload-disable',
 }
 
 export type EditorFeatureProps = {
@@ -36,6 +37,12 @@ export const editorFeatures: Record<EditorFeature, EditorFeatureProps> = {
         description:
             'Viser advarsel når noen andre gjør endringer på innholdet du jobber med. Obs: Denne krever at funksjonaliteten over også er slått på!',
         defaultValue: false,
+    },
+    [EditorFeature.AutoReloadDisabled]: {
+        key: EditorFeature.AutoReloadDisabled,
+        description:
+            'Hindrer editoren fra å reloades automatisk når andre gjør endringer',
+        defaultValue: true,
     },
 };
 
