@@ -6,7 +6,8 @@ const LOGIN_COOKIE = 'dev-login';
 
 // 155.55.* is NAVs public IP range. Also includes the private IP range used by our
 // internal network (10.*), and localhost. Takes the IPv6 prefix ::ffff: into account.
-const isNavIp = (ip: string) => /^(::ffff:)?(155\.55\.|10\.|127\.)/.test(ip);
+const isNavIp = (ip?: string) =>
+    ip && /^(::ffff:)?(155\.55\.|10\.|127\.)/.test(ip);
 
 // Applies certain restrictions for the app in dev environments. This is not intended
 // as a security measure, but rather to ensure (to some degree) that the public does
