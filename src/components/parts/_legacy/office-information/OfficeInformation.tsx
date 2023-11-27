@@ -73,7 +73,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
 
     const jsonSchema: (GovernmentOfficeSchema | SpecialAnnouncementSchema)[] = [
         {
-            '@context': 'http://schema.org',
+            '@context': 'https://schema.org',
             '@type': 'GovernmentOffice',
             '@id': mainOfficeId,
             name: unit.navn,

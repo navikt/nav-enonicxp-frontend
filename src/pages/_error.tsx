@@ -87,9 +87,9 @@ const hasFileExtensionPattern = /\.[a-zA-Z0-9]+($|\?|#)/;
 const shouldFetchFromFailoverApp = (path: string) =>
     !isFailoverInstance && !hasFileExtensionPattern.test(path);
 
-const Error = (props: ContentProps) => <PageBase content={props} />;
+const ErrorComponent = (props: ContentProps) => <PageBase content={props} />;
 
-Error.getInitialProps = async ({
+ErrorComponent.getInitialProps = async ({
     req,
     res,
     err,
@@ -132,4 +132,4 @@ Error.getInitialProps = async ({
     return makeErrorProps(asPath, errorMsg, res.statusCode, errorId);
 };
 
-export default Error;
+export default ErrorComponent;
