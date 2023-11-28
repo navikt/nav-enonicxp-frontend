@@ -11,6 +11,10 @@ const getProjectIdFromCurrentEditorUrl = () =>
     typeof window !== 'undefined' &&
     parent.window.location.pathname.split('/')[5];
 
+// Content repo-ids look like this: com.enonic.cms.<project-id>
+const getProjectIdFromRepoId = (repoId: string) =>
+    repoId.split('.').slice(-1)[0];
+
 const getContentServiceUrl = (projectId: string) =>
     `${adminOrigin}/admin/rest-v2/cs/cms/${projectId}/content/content`;
 
@@ -36,8 +40,13 @@ export const editorFetchAdminUserId = () =>
         return res?.user?.key;
     });
 
-export const editorFetchAdminContent = async (contentId: string) => {
-    const projectId = getProjectIdFromCurrentEditorUrl();
+export const editorFetchAdminContent = async (
+    contentId: string,
+    repoId?: string
+) => {
+    const projectId = repoId
+        ? getProjectIdFromRepoId(repoId)
+        : getProjectIdFromCurrentEditorUrl();
 
     return fetchJson<AdminContentResponse>(
         `${getContentServiceUrl(projectId)}?id=${contentId}`,
@@ -47,3 +56,6 @@ export const editorFetchAdminContent = async (contentId: string) => {
 
 export const editorFetchUserInfo = async (userId: string) =>
     fetchJson<UserInfo>(`${userInfoUrl}${userId}?memberships=false`, 5000);
+
+export const isCurrentEditorRepo = (repoId: string) =>
+    getProjectIdFromRepoId(repoId) === getProjectIdFromCurrentEditorUrl();

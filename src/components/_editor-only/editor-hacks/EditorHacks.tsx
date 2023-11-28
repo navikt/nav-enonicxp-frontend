@@ -22,7 +22,9 @@ export const EditorHacks = ({ content }: Props) => {
         <>
             {editorView === 'edit' && (
                 <>
-                    <AutoReloadDisableHack content={content} />
+                    {isEditorFeatureEnabled(
+                        EditorFeature.EditorReloadBlocker
+                    ) && <AutoReloadDisableHack content={content} />}
                     <CustomSelectorLinkTargetHack />
                     {isEditorFeatureEnabled(EditorFeature.HideLeftPanel) && (
                         <SetSidepanelToggleHack contentId={_id} />

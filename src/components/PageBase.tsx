@@ -5,7 +5,7 @@ import { ContentMapper } from './ContentMapper';
 import { makeErrorProps } from 'utils/make-error-props';
 import globalState from '../globalState';
 
-type PageProps = {
+export type PageProps = {
     content: ContentProps;
     __N_REDIRECT?: string;
 };

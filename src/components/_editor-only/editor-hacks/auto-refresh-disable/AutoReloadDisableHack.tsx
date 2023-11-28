@@ -49,8 +49,14 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
         return unhookDispatchEventForBatchContentServerEvent;
     }, [content]);
 
-    return isEditorFeatureEnabled(EditorFeature.ContentModifiedWarning) &&
-        externalContentChange ? (
+    if (
+        !externalContentChange ||
+        !isEditorFeatureEnabled(EditorFeature.ContentModifiedWarning)
+    ) {
+        return null;
+    }
+
+    return (
         <div className={style.warningWrapper}>
             <AlertBox variant={'warning'} size={'small'}>
                 <BodyLong>
@@ -79,5 +85,5 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
                 </BodyLong>
             </AlertBox>
         </div>
-    ) : null;
+    );
 };
