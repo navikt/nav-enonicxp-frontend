@@ -96,6 +96,8 @@ export const hookDispatchEventForBatchContentServerEvent = ({
             return dispatchEvent(event);
         }
 
+        console.log(`Detail: ${JSON.stringify(detail)}`);
+
         // User-triggered events should always be dispatched
         if (detail.userTriggered) {
             console.log('User-triggered event - dispatching event');
@@ -104,12 +106,12 @@ export const hookDispatchEventForBatchContentServerEvent = ({
 
         // Changes to other content may trigger an unnecessary UI-reload if it references the current content
         // Ignore events for other content to prevent this
-        if (!currentContentDidUpdate(detail, contentId)) {
-            console.log(
-                'Skipping this event as current content was not updated'
-            );
-            return false;
-        }
+        // if (!currentContentDidUpdate(detail, contentId)) {
+        //     console.log(
+        //         'Skipping this event as current content was not updated'
+        //     );
+        //     return false;
+        // }
 
         // If the feature is disabled, we always dispatch the event when the current content was updated
         // (we still want to bypass the event for other content, see above!)
@@ -136,35 +138,47 @@ export const hookDispatchEventForBatchContentServerEvent = ({
             return dispatchEvent(event);
         }
 
+        if (!detail.items) {
+            return dispatchEvent(event);
+        }
+
         // We use the internal Content Studio content api to check who last modified the content
-        editorFetchAdminContent(contentId).then((content) => {
-            // If the content could not be fetched, or if it was modified by the current user, dispatch the event
-            // as normal
-            if (!content || content.modifier === userId) {
-                dispatchEvent(event);
-                return;
-            }
+        detail.items.forEach((item) => {
+            const { id, repo } = item;
 
-            // If another user (or service call/scheduled task/script/etc) updated the content, we want to prevent
-            // an immediate UI-refresh, as this may cause the current user to lose their changes. We show a
-            // warning message instead, and give the user an option to dispatch the update event manually
-            console.log(
-                `Content was updated by another user (${userId}) - showing warning`
-            );
-
-            editorFetchUserInfo(content.modifier).then((userInfo) => {
-                if (userInfo) {
-                    setExternalUserName(
-                        getUserNameFromEmail(userInfo.displayName)
-                    );
+            editorFetchAdminContent(id, repo).then((content) => {
+                // If the content could not be fetched, or if it was modified by the current user, dispatch the event
+                // as normal
+                if (!content || content.modifier === userId) {
+                    dispatchEvent(event);
+                    return;
                 }
 
-                setExternalContentChange(true);
-
-                // Save the most recent update event for an eventual user-triggered dispatch
-                if (detailType === NodeServerChangeType.UPDATE) {
-                    setExternalUpdateEvent(event);
+                if (id !== contentId) {
+                    return;
                 }
+
+                // If another user (or service call/scheduled task/script/etc) updated the content, we want to prevent
+                // an immediate UI-refresh, as this may cause the current user to lose their changes. We show a
+                // warning message instead, and give the user an option to dispatch the update event manually
+                console.log(
+                    `Content was updated by another user (${content.modifier}) - showing warning`
+                );
+
+                editorFetchUserInfo(content.modifier).then((userInfo) => {
+                    if (userInfo) {
+                        setExternalUserName(
+                            getUserNameFromEmail(userInfo.displayName)
+                        );
+                    }
+
+                    setExternalContentChange(true);
+
+                    // Save the most recent update event for an eventual user-triggered dispatch
+                    if (detailType === NodeServerChangeType.UPDATE) {
+                        setExternalUpdateEvent(event);
+                    }
+                });
             });
         });
 

@@ -11,6 +11,9 @@ const getProjectIdFromCurrentEditorUrl = () =>
     typeof window !== 'undefined' &&
     parent.window.location.pathname.split('/')[5];
 
+const getProjectIdFromRepoId = (repoId: string) =>
+    repoId.split('.').slice(-1)[0];
+
 const getContentServiceUrl = (projectId: string) =>
     `${adminOrigin}/admin/rest-v2/cs/cms/${projectId}/content/content`;
 
@@ -36,8 +39,13 @@ export const editorFetchAdminUserId = () =>
         return res?.user?.key;
     });
 
-export const editorFetchAdminContent = async (contentId: string) => {
-    const projectId = getProjectIdFromCurrentEditorUrl();
+export const editorFetchAdminContent = async (
+    contentId: string,
+    repoId?: string
+) => {
+    const projectId = repoId
+        ? getProjectIdFromRepoId(repoId)
+        : getProjectIdFromCurrentEditorUrl();
 
     return fetchJson<AdminContentResponse>(
         `${getContentServiceUrl(projectId)}?id=${contentId}`,

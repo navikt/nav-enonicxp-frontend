@@ -2,12 +2,17 @@ import React, { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { initializeFaro } from '@grafana/faro-web-sdk';
 import { Provider } from 'react-redux';
-import { store } from '../store/store';
+import { store } from 'store/store';
+import { PageProps } from 'components/PageBase';
 
 import 'global.scss';
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps }: AppProps<PageProps>) => {
     useEffect(() => {
+        if (!!pageProps?.content?.editorView) {
+            return;
+        }
+
         initializeFaro({
             url: process.env.TELEMETRY_URL,
             app: {
@@ -16,6 +21,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             },
         });
     }, []);
+
     return (
         <Provider store={store}>
             <Component {...pageProps} />
