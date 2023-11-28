@@ -11,6 +11,7 @@ const getProjectIdFromCurrentEditorUrl = () =>
     typeof window !== 'undefined' &&
     parent.window.location.pathname.split('/')[5];
 
+// Content repo-ids look like this: com.enonic.cms.<project-id>
 const getProjectIdFromRepoId = (repoId: string) =>
     repoId.split('.').slice(-1)[0];
 
