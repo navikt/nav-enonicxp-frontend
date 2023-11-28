@@ -6,8 +6,6 @@ import {
 } from 'components/_editor-only/editor-hacks/editor-hacks-utils';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Branch } from 'types/branch';
-import { isEditorFeatureEnabled } from 'components/_editor-only/site-info/feature-toggles/editor-feature-toggles-utils';
-import { EditorFeature } from 'components/_editor-only/site-info/feature-toggles/SiteInfoFeatureToggles';
 
 // From lib-admin-ui
 export enum NodeServerChangeType {
@@ -95,12 +93,6 @@ export const hookDispatchEventForBatchContentServerEvent = ({
         // User-triggered events should always be dispatched
         if (detail.userTriggered) {
             console.log('User-triggered event - dispatching event');
-            return dispatchEvent(event);
-        }
-
-        // If the feature is disabled, we always dispatch the event when the current content was updated
-        // (we still want to bypass the event for other content, see above!)
-        if (!isEditorFeatureEnabled(EditorFeature.EditorReloadBlocker)) {
             return dispatchEvent(event);
         }
 
