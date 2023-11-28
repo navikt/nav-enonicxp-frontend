@@ -53,6 +53,7 @@ import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 import { FrontpageSurveyPanel } from './frontpage-survey-panel/FrontpageSurveyPanel';
 import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
+import { TestRecruiterPart } from 'components/parts/test-recruiter/TestRecruiterPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -107,6 +108,7 @@ const partsWithOwnData: {
     [PartType.FrontpageContact]: FrontpageContactPart,
     [PartType.FrontpageSurveyPanel]: FrontpageSurveyPanel,
     [PartType.UxSignalsWidget]: UxSignalsWidgetPart,
+    [PartType.TestRecruiter]: TestRecruiterPart,
 };
 
 const partsDeprecated: { [key in PartDeprecated] } = {
