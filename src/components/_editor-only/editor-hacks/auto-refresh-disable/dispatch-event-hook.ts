@@ -2,6 +2,7 @@ import {
     editorFetchAdminContent,
     editorFetchAdminUserId,
     editorFetchUserInfo,
+    isContentRepo,
     isCurrentEditorRepo,
 } from 'components/_editor-only/editor-hacks/editor-hacks-utils';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
@@ -121,6 +122,10 @@ export const hookDispatchEventForBatchContentServerEvent = ({
 
         detail.items.forEach((item) => {
             const { id, repo } = item;
+
+            if (!isContentRepo(repo)) {
+                return;
+            }
 
             editorFetchAdminContent(id, repo).then((content) => {
                 // If the content could not be fetched, or if it was modified by the current user, dispatch the event
