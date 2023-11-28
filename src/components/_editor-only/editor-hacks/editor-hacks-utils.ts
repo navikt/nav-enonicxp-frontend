@@ -55,3 +55,6 @@ export const editorFetchAdminContent = async (
 
 export const editorFetchUserInfo = async (userId: string) =>
     fetchJson<UserInfo>(`${userInfoUrl}${userId}?memberships=false`, 5000);
+
+export const isCurrentEditorRepo = (repoId: string) =>
+    getProjectIdFromRepoId(repoId) === getProjectIdFromCurrentEditorUrl();

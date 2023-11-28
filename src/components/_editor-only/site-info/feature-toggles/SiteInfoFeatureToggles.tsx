@@ -36,7 +36,7 @@ export const editorFeatures: Record<EditorFeature, EditorFeatureProps> = {
         key: EditorFeature.ContentModifiedWarning,
         description:
             'Viser advarsel når noen andre gjør endringer på innholdet du jobber med. Obs: Denne krever at funksjonaliteten over også er slått på!',
-        defaultValue: false,
+        defaultValue: true,
     },
     [EditorFeature.AutoReloadDisabled]: {
         key: EditorFeature.AutoReloadDisabled,
