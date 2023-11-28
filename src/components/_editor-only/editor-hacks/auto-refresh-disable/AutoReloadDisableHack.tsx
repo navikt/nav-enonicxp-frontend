@@ -49,40 +49,41 @@ export const AutoReloadDisableHack = ({ content }: Props) => {
         return unhookDispatchEventForBatchContentServerEvent;
     }, [content]);
 
-    if (!externalContentChange) {
+    if (
+        !externalContentChange ||
+        !isEditorFeatureEnabled(EditorFeature.ContentModifiedWarning)
+    ) {
         return null;
     }
 
     return (
-        isEditorFeatureEnabled(EditorFeature.ContentModifiedWarning) && (
-            <div className={style.warningWrapper}>
-                <AlertBox variant={'warning'} size={'small'}>
-                    <BodyLong>
-                        {`OBS! ${
-                            externalUserName || 'Noen andre'
-                        } redigerte denne siden nå. Hvis du gjør endringer, vil du overskrive det som allerede er gjort. `}
-                        <EditorLinkWrapper>
-                            <LenkeInline
-                                href={'#'}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setExternalContentChange(false);
-                                    if (externalUpdateEvent) {
-                                        externalUpdateEvent.detail.userTriggered =
-                                            true;
-                                        parent.window.dispatchEvent(
-                                            externalUpdateEvent
-                                        );
-                                    }
-                                }}
-                            >
-                                {'Last inn på nytt'}
-                            </LenkeInline>
-                        </EditorLinkWrapper>
-                        {' for å se endringer.'}
-                    </BodyLong>
-                </AlertBox>
-            </div>
-        )
+        <div className={style.warningWrapper}>
+            <AlertBox variant={'warning'} size={'small'}>
+                <BodyLong>
+                    {`OBS! ${
+                        externalUserName || 'Noen andre'
+                    } redigerte denne siden nå. Hvis du gjør endringer, vil du overskrive det som allerede er gjort. `}
+                    <EditorLinkWrapper>
+                        <LenkeInline
+                            href={'#'}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setExternalContentChange(false);
+                                if (externalUpdateEvent) {
+                                    externalUpdateEvent.detail.userTriggered =
+                                        true;
+                                    parent.window.dispatchEvent(
+                                        externalUpdateEvent
+                                    );
+                                }
+                            }}
+                        >
+                            {'Last inn på nytt'}
+                        </LenkeInline>
+                    </EditorLinkWrapper>
+                    {' for å se endringer.'}
+                </BodyLong>
+            </AlertBox>
+        </div>
     );
 };
