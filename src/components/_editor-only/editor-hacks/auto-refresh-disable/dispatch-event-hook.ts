@@ -49,7 +49,7 @@ const ignoredContentTypes = {
 
 // Hook the dispatchEvent function on the content studio parent window
 // in order to prevent certain events from propagating
-export const hookDispatchEventForBatchContentServerEvent = ({
+export const hookDispatchEventForBatchContentServerEvent = async ({
     content,
     setExternalContentChange,
     setExternalUpdateEvent,
@@ -75,34 +75,24 @@ export const hookDispatchEventForBatchContentServerEvent = ({
 
     const dispatchEvent = parent.window.dispatchEventActual;
 
-    let userId;
-
-    editorFetchAdminUserId().then((id) => {
-        userId = id;
-    });
+    const userId = await editorFetchAdminUserId();
 
     parent.window.dispatchEvent = (event: CustomEvent) => {
         const { type: eventType, detail } = event;
         const detailType = detail?.type;
 
-        // We only want to intercept events of the BatchContentServerEvent type, which is what triggers UI updates
+        // We only want to intercept update events of the BatchContentServerEvent type, which is what triggers UI updates
         // for content changes on the client. All other events should be dispatched as normal.
-        if (eventType !== 'BatchContentServerEvent') {
+        if (
+            eventType !== 'BatchContentServerEvent' ||
+            detailType !== NodeServerChangeType.UPDATE
+        ) {
             return dispatchEvent(event);
         }
 
         // User-triggered events should always be dispatched
         if (detail.userTriggered) {
             console.log('User-triggered event - dispatching event');
-            return dispatchEvent(event);
-        }
-
-        // Publish and unpublish events must always be dispatched in order to keep the editor UI consistent
-        if (detailType === NodeServerChangeType.PUBLISH) {
-            console.log('Content published - dispatching event');
-            return dispatchEvent(event);
-        } else if (detailType === NodeServerChangeType.DELETE) {
-            console.log('Content unpublished - dispatching event');
             return dispatchEvent(event);
         }
 
