@@ -5,6 +5,8 @@ import { ContentProps } from 'types/content-props/_content-common';
 const adminAuthUrl = `${adminOrigin}/admin/rest/auth/authenticated`;
 const userInfoUrl = `${adminOrigin}/admin/rest-v2/cs/security/principals/user:`;
 
+const CONTENT_REPO_PREFIX = 'com.enonic.cms.';
+
 // The pathname in the editor view looks like this:
 // /admin/tool/com.enonic.app.contentstudio/main/<project id>/edit/<content id>
 const getProjectIdFromCurrentEditorUrl = () =>
@@ -13,7 +15,7 @@ const getProjectIdFromCurrentEditorUrl = () =>
 
 // Content repo-ids look like this: com.enonic.cms.<project-id>
 const getProjectIdFromRepoId = (repoId: string) =>
-    repoId.split('.').slice(-1)[0];
+    repoId.replace(CONTENT_REPO_PREFIX, '');
 
 const getContentServiceUrl = (projectId: string) =>
     `${adminOrigin}/admin/rest-v2/cs/cms/${projectId}/content/content`;
@@ -59,3 +61,6 @@ export const editorFetchUserInfo = async (userId: string) =>
 
 export const isCurrentEditorRepo = (repoId: string) =>
     getProjectIdFromRepoId(repoId) === getProjectIdFromCurrentEditorUrl();
+
+export const isContentRepo = (repoId?: string) =>
+    repoId?.startsWith(CONTENT_REPO_PREFIX);
