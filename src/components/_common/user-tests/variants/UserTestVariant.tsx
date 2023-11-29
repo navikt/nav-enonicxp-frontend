@@ -1,7 +1,6 @@
 import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
-import Cookie from 'js-cookie';
 import {
     UserTestsData,
     UserTestVariantProps,
