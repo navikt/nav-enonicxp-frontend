@@ -1,29 +1,81 @@
 import React from 'react';
 import { isDateTimeInRange } from 'utils/datetime';
-import Cookie from 'js-cookie';
 import { useIsClientSide } from 'utils/useIsClientSide';
 import {
     UserTestsProps,
     UserTestVariantProps,
 } from 'components/_common/user-tests/UserTests';
 import { UserTestVariant } from 'components/_common/user-tests/variants/UserTestVariant';
+import {
+    userTestDidUserParticipate,
+    userTestGetSelectedVariantId,
+    userTestSetParticipation,
+    userTestSetSelection,
+} from 'components/_common/user-tests/user-tests-utils';
+
+const sumPercentages = (variants: UserTestVariantProps[]) =>
+    variants.reduce((acc, variant) => acc + variant.percentage, 0);
+
+const getUpperBound = (
+    allVariants: UserTestVariantProps[],
+    selectedVariants: UserTestVariantProps[]
+) => {
+    const percentageTotal = sumPercentages(allVariants);
+
+    const maxValue = Math.max(percentageTotal, 100);
+
+    if (allVariants.length === selectedVariants.length) {
+        return maxValue;
+    }
+
+    // If only a subset of variants has been selected, we want the relative chance to select a test
+    // to be the same as if all variants were included in the selection
+    const selectionTotal = sumPercentages(selectedVariants);
+
+    return maxValue * (selectionTotal / percentageTotal);
+};
+
+const selectRandomVariant = (
+    allVariants: UserTestVariantProps[],
+    selectedVariants: UserTestVariantProps[]
+): UserTestVariantProps | null => {
+    const upperBound = getUpperBound(allVariants, selectedVariants);
+    const selectedValue = Math.random() * upperBound;
+
+    console.log(`Selected ${selectedValue} / ${upperBound}`);
+
+    let lowerBound = 0;
+
+    return selectedVariants.find((variant) => {
+        lowerBound += variant.percentage;
+        return lowerBound > selectedValue;
+    });
+};
 
 const pickApplicableVariant = ({
     tests,
     selectedTestIds,
 }: UserTestsProps): UserTestVariantProps | null => {
-    const { variants } = tests.data;
+    const { variants, cookieId } = tests.data;
 
-    const selectableVariants =
-        selectedTestIds.length > 0
-            ? variants.filter((item) => selectedTestIds.includes(item.id))
-            : variants;
+    const hasSelection = selectedTestIds.length > 0;
+
+    const selectableVariants = hasSelection
+        ? variants.filter((item) => selectedTestIds.includes(item.id))
+        : variants;
 
     if (selectableVariants.length === 0) {
         return null;
     }
 
-    return selectableVariants[0];
+    const previouslySelectedVariantId = userTestGetSelectedVariantId(cookieId);
+    if (previouslySelectedVariantId) {
+        return selectableVariants.find(
+            (variant) => variant.id === previouslySelectedVariantId
+        );
+    }
+
+    return selectRandomVariant(variants, selectableVariants);
 };
 
 const validateTimeRange = ({ tests }: UserTestsProps) => {
@@ -37,10 +89,12 @@ export const UserTestsPublicView = (props: UserTestsProps) => {
         return null;
     }
 
-    const testsData = props.tests.data;
+    const { data } = props.tests;
 
-    if (Cookie.get(testsData.cookieId)) {
-        console.log(`User already has cookie for ${testsData.cookieId}`);
+    const { cookieId } = data;
+
+    if (userTestDidUserParticipate(cookieId)) {
+        console.log(`User already participated in ${cookieId}`);
         return null;
     }
 
@@ -52,14 +106,17 @@ export const UserTestsPublicView = (props: UserTestsProps) => {
     const variant = pickApplicableVariant(props);
     if (!variant) {
         console.log('No variant found');
+        userTestSetParticipation(cookieId);
         return null;
     }
 
+    userTestSetSelection(cookieId, variant.id);
+
     return (
         <UserTestVariant
-            testsData={testsData}
+            testsData={data}
             variant={variant}
-            persistOnClick={true}
+            persistParticipation={true}
         />
     );
 };

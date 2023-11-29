@@ -7,20 +7,21 @@ import {
     UserTestVariantProps,
 } from 'components/_common/user-tests/UserTests';
 import { classNames } from 'utils/classnames';
+import { userTestSetParticipation } from 'components/_common/user-tests/user-tests-utils';
 
 import style from './UserTestVariant.module.scss';
 
 type Props = {
     testsData: UserTestsData;
     variant: UserTestVariantProps;
-    persistOnClick?: boolean;
+    persistParticipation?: boolean;
     className?: string;
 };
 
 export const UserTestVariant = ({
     testsData,
     variant,
-    persistOnClick,
+    persistParticipation,
     className,
 }: Props) => {
     const { title, ingress, cookieId } = testsData;
@@ -43,8 +44,8 @@ export const UserTestVariant = ({
             <LenkeInline
                 href={url}
                 onClick={
-                    persistOnClick
-                        ? () => Cookie.set(cookieId, true)
+                    persistParticipation
+                        ? () => userTestSetParticipation(cookieId)
                         : undefined
                 }
             >
