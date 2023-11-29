@@ -1,24 +1,29 @@
 import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
-import {
-    TestRecruiterProps,
-    TestVariantProps,
-} from 'components/_common/test-recruiter/TestRecruiter';
 import Cookie from 'js-cookie';
+import {
+    UserTestsData,
+    UserTestVariantProps,
+} from 'components/_common/user-tests/UserTests';
+import { classNames } from 'utils/classnames';
 
-import style from './TestVariant.module.scss';
-
-type TestsData = TestRecruiterProps['tests']['data'];
+import style from './UserTestVariant.module.scss';
 
 type Props = {
-    testsData: TestsData;
-    variant: TestVariantProps;
+    testsData: UserTestsData;
+    variant: UserTestVariantProps;
     persistOnClick?: boolean;
+    className?: string;
 };
 
-export const TestVariant = ({ testsData, variant, persistOnClick }: Props) => {
-    const { title, ingress, groupId } = testsData;
+export const UserTestVariant = ({
+    testsData,
+    variant,
+    persistOnClick,
+    className,
+}: Props) => {
+    const { title, ingress, cookieId } = testsData;
 
     const {
         title: variantTitle,
@@ -28,7 +33,7 @@ export const TestVariant = ({ testsData, variant, persistOnClick }: Props) => {
     } = variant;
 
     return (
-        <div className={style.testRecruiter}>
+        <div className={classNames(style.userTests, className)}>
             <Heading className={style.header} size={'medium'}>
                 {variantTitle || title}
             </Heading>
@@ -38,7 +43,9 @@ export const TestVariant = ({ testsData, variant, persistOnClick }: Props) => {
             <LenkeInline
                 href={url}
                 onClick={
-                    persistOnClick ? () => Cookie.set(groupId, true) : undefined
+                    persistOnClick
+                        ? () => Cookie.set(cookieId, true)
+                        : undefined
                 }
             >
                 {linkText}

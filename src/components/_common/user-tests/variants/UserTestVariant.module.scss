@@ -1,7 +1,8 @@
 @use 'src/common' as common;
 
-.testRecruiter {
+.userTests {
     background-color: common.$a-green-200;
+    padding: 1rem;
 }
 
 .header {

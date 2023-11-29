@@ -1,0 +1,67 @@
+import React from 'react';
+import { UserTestsProps } from 'components/_common/user-tests/UserTests';
+import { UserTestVariant } from 'components/_common/user-tests/variants/UserTestVariant';
+import { formatDateTime, isDateTimeInRange } from 'utils/datetime';
+import { BodyLong, Detail } from '@navikt/ds-react';
+
+import style from './UserTestsEditorView.module.scss';
+
+export const UserTestsEditorView = ({
+    tests,
+    selectedTestIds,
+}: UserTestsProps) => {
+    const { data } = tests;
+
+    const { variants, startTime, endTime } = data;
+
+    const fromString = startTime
+        ? ` fra ${formatDateTime(startTime, 'nb', true)}`
+        : '';
+    const toString = startTime
+        ? ` til ${formatDateTime(endTime, 'nb', true)}`
+        : '';
+
+    const hasDateTimeRange = fromString || toString;
+
+    const isActive = isDateTimeInRange(startTime, endTime);
+
+    return (
+        <div className={style.userTestsEditor}>
+            <div className={style.header}>
+                <BodyLong>
+                    {'Denne brukertesten er '}
+                    <strong>{isActive ? 'aktiv' : 'ikke aktiv'}</strong>
+                </BodyLong>
+                <Detail>
+                    {hasDateTimeRange
+                        ? `Aktivert${fromString}${toString}`
+                        : 'Ingen tidsbegrensing'}
+                </Detail>
+            </div>
+            {variants.map((variant) => {
+                const { id, percentage } = variant;
+                const isSelected =
+                    selectedTestIds.length === 0 ||
+                    selectedTestIds.includes(id);
+
+                return (
+                    <div key={id} className={style.variant}>
+                        <Detail>
+                            {'Variant id: '}
+                            <strong>{id}</strong>
+                            {' - Andel: '}
+                            <strong>{`${percentage}%`}</strong>
+                            {!isSelected &&
+                                ' (ikke aktivert i denne komponenten)'}
+                        </Detail>
+                        <UserTestVariant
+                            testsData={data}
+                            variant={variant}
+                            className={!isSelected && style.disabled}
+                        />
+                    </div>
+                );
+            })}
+        </div>
+    );
+};

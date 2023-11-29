@@ -1,15 +1,15 @@
 import React from 'react';
-import { TestRecruiterPartProps } from 'types/component-props/parts/test-recruiter';
+import { UserTestsPartProps } from 'types/component-props/parts/user-tests';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-import { TestRecruiter } from 'components/_common/test-recruiter/TestRecruiter';
+import { UserTests } from 'components/_common/user-tests/UserTests';
 
-export const TestRecruiterPart = ({ config }: TestRecruiterPartProps) => {
+export const UserTestsPart = ({ config }: UserTestsPartProps) => {
     if (!config?.tests?.data) {
         return <EditorHelp text={'Velg en test-gruppering'} type={'error'} />;
     }
 
     return (
-        <TestRecruiter
+        <UserTests
             tests={config.tests}
             selectedTestIds={config.selectedTestIds}
         />

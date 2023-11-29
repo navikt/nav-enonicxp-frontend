@@ -1,37 +1,37 @@
-import { isDateTimeInRange } from 'utils/datetime';
 import React from 'react';
-import {
-    TestRecruiterProps,
-    TestVariantProps,
-} from 'components/_common/test-recruiter/TestRecruiter';
+import { isDateTimeInRange } from 'utils/datetime';
 import Cookie from 'js-cookie';
-import { TestVariant } from 'components/_common/test-recruiter/test-variant/TestVariant';
 import { useIsClientSide } from 'utils/useIsClientSide';
+import {
+    UserTestsProps,
+    UserTestVariantProps,
+} from 'components/_common/user-tests/UserTests';
+import { UserTestVariant } from 'components/_common/user-tests/variants/UserTestVariant';
 
 const pickApplicableVariant = ({
     tests,
     selectedTestIds,
-}: TestRecruiterProps): TestVariantProps | null => {
+}: UserTestsProps): UserTestVariantProps | null => {
     const { variants } = tests.data;
 
-    const possibleVariants =
+    const selectableVariants =
         selectedTestIds.length > 0
             ? variants.filter((item) => selectedTestIds.includes(item.id))
             : variants;
 
-    if (possibleVariants.length === 0) {
+    if (selectableVariants.length === 0) {
         return null;
     }
 
-    return possibleVariants[0];
+    return selectableVariants[0];
 };
 
-const validateTimeRange = ({ tests }: TestRecruiterProps) => {
+const validateTimeRange = ({ tests }: UserTestsProps) => {
     const { startTime, endTime } = tests.data;
     return isDateTimeInRange(startTime, endTime);
 };
 
-export const TestRecruiterPublicView = (props: TestRecruiterProps) => {
+export const UserTestsPublicView = (props: UserTestsProps) => {
     const isClientSide = useIsClientSide();
     if (!isClientSide) {
         return null;
@@ -39,8 +39,8 @@ export const TestRecruiterPublicView = (props: TestRecruiterProps) => {
 
     const testsData = props.tests.data;
 
-    if (Cookie.get(testsData.groupId)) {
-        console.log(`User already has cookie for ${testsData.groupId}`);
+    if (Cookie.get(testsData.cookieId)) {
+        console.log(`User already has cookie for ${testsData.cookieId}`);
         return null;
     }
 
@@ -56,7 +56,7 @@ export const TestRecruiterPublicView = (props: TestRecruiterProps) => {
     }
 
     return (
-        <TestVariant
+        <UserTestVariant
             testsData={testsData}
             variant={variant}
             persistOnClick={true}
