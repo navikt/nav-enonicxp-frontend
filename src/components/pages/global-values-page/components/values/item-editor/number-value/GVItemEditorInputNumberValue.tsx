@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextField } from '@navikt/ds-react';
-import { GlobalNumberValueItem } from '../../../../../../../types/content-props/global-values-props';
+import { GlobalNumberValueItem } from 'types/content-props/global-values-props';
 
 type Errors = { [key in keyof GlobalNumberValueItem]?: string };
 
@@ -8,7 +8,7 @@ export const gvProcessNumberValueInput = (input: GlobalNumberValueItem) => {
     const processedInput = {
         numberValue:
             typeof input.numberValue === 'string'
-                ? input.numberValue.trim()
+                ? Number(input.numberValue)
                 : input.numberValue,
     };
 
@@ -18,7 +18,7 @@ export const gvProcessNumberValueInput = (input: GlobalNumberValueItem) => {
 
     if (numberValue === undefined) {
         errors.numberValue = 'Feltet må fylles inn';
-    } else if (isNaN(Number(numberValue))) {
+    } else if (isNaN(numberValue)) {
         errors.numberValue = 'Verdien må være et tall';
     }
 
@@ -60,7 +60,7 @@ export const GVItemEditorInputNumberValue = ({
                 onChange={(e) => {
                     setInputState({
                         ...inputState,
-                        numberValue: Number(e.target.value),
+                        numberValue: e.target.value,
                     });
                 }}
                 error={errors.numberValue}
