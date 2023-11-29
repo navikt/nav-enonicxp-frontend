@@ -89,7 +89,7 @@ export const getPublishedDateTime = (
     content: Pick<ContentProps, 'publish' | 'createdTime'>
 ) => content.publish?.from || content.publish?.first || content.createdTime;
 
-export const isDateTimeInRange = (start?: string, end?: string) => {
+export const isCurrentTimeInRange = (start?: string, end?: string) => {
     const now = dayjs();
 
     return (!start || now.isAfter(start)) && (!end || now.isBefore(end));

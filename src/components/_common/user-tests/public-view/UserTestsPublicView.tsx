@@ -1,5 +1,5 @@
 import React from 'react';
-import { isDateTimeInRange } from 'utils/datetime';
+import { isCurrentTimeInRange } from 'utils/datetime';
 import { useIsClientSide } from 'utils/useIsClientSide';
 import {
     UserTestsProps,
@@ -80,7 +80,7 @@ const pickApplicableVariant = ({
 
 const validateTimeRange = ({ tests }: UserTestsProps) => {
     const { startTime, endTime } = tests.data;
-    return isDateTimeInRange(startTime, endTime);
+    return isCurrentTimeInRange(startTime, endTime);
 };
 
 export const UserTestsPublicView = (props: UserTestsProps) => {

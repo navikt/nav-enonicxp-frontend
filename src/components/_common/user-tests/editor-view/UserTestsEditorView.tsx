@@ -1,7 +1,7 @@
 import React from 'react';
 import { UserTestsProps } from 'components/_common/user-tests/UserTests';
 import { UserTestVariant } from 'components/_common/user-tests/variants/UserTestVariant';
-import { formatDateTime, isDateTimeInRange } from 'utils/datetime';
+import { formatDateTime, isCurrentTimeInRange } from 'utils/datetime';
 import { BodyLong, Detail } from '@navikt/ds-react';
 
 import style from './UserTestsEditorView.module.scss';
@@ -23,7 +23,7 @@ export const UserTestsEditorView = ({
 
     const hasDateTimeRange = fromString || toString;
 
-    const isActive = isDateTimeInRange(startTime, endTime);
+    const isActive = isCurrentTimeInRange(startTime, endTime);
 
     return (
         <div className={style.userTestsEditor}>
