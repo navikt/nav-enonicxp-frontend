@@ -11,7 +11,7 @@ import {
     userTestGetSelectedVariantId,
     userTestSetParticipation,
     userTestSetSelection,
-} from 'components/_common/user-tests/user-tests-utils';
+} from 'components/_common/user-tests/user-tests-cookies';
 
 const sumPercentages = (variants: UserTestVariantProps[]) =>
     variants.reduce((acc, variant) => acc + variant.percentage, 0);
@@ -94,18 +94,15 @@ export const UserTestsPublicView = (props: UserTestsProps) => {
     const { cookieId } = data;
 
     if (userTestDidUserParticipate(cookieId)) {
-        console.log(`User already participated in ${cookieId}`);
         return null;
     }
 
     if (!validateTimeRange(props)) {
-        console.log('Not in valid time range');
         return null;
     }
 
     const variant = pickApplicableVariant(props);
     if (!variant) {
-        console.log('No variant found');
         userTestSetParticipation(cookieId);
         return null;
     }

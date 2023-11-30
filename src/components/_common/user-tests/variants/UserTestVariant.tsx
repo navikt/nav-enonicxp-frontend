@@ -6,7 +6,7 @@ import {
     UserTestVariantProps,
 } from 'components/_common/user-tests/UserTests';
 import { classNames } from 'utils/classnames';
-import { userTestSetParticipation } from 'components/_common/user-tests/user-tests-utils';
+import { userTestSetParticipation } from 'components/_common/user-tests/user-tests-cookies';
 
 import style from './UserTestVariant.module.scss';
 
