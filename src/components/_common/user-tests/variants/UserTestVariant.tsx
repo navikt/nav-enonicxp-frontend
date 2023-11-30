@@ -33,7 +33,7 @@ export const UserTestVariant = ({
     } = variant;
 
     return (
-        <div className={classNames(style.userTests, className)}>
+        <div className={classNames(style.testVariant, className)}>
             <Heading className={style.header} size={'medium'}>
                 {variantTitle || title}
             </Heading>

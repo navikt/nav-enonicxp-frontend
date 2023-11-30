@@ -42,13 +42,11 @@ const selectRandomVariant = (
     const upperBound = getUpperBound(allVariants, selectedVariants);
     const selectedValue = Math.random() * upperBound;
 
-    console.log(`Selected ${selectedValue} / ${upperBound}`);
-
     let lowerBound = 0;
 
     return selectedVariants.find((variant) => {
         lowerBound += variant.percentage;
-        return lowerBound > selectedValue;
+        return lowerBound >= selectedValue;
     });
 };
 
