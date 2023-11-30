@@ -1,6 +1,7 @@
 import { parse } from 'querystring';
 import { MacroVideoProps, VideoMeta } from 'types/macro-props/video';
 import { QbrickMeta } from 'types/qbrickMeta';
+import { forceArray } from 'utils/arrays';
 
 type VideoConfig = MacroVideoProps['config']['video'];
 
@@ -106,7 +107,7 @@ const getValidSubtitleLanguage = (
     video: VideoConfig
 ) => {
     const { language: macroLanguage, targetContent } = video;
-    const subtitles = targetContent?.data?.subtitles;
+    const subtitles = forceArray(targetContent?.data?.subtitles);
 
     if (!subtitles) {
         return undefined;
