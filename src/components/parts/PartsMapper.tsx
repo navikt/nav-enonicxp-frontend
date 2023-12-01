@@ -51,13 +51,12 @@ import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 import { FrontpageSurveyPanel } from './frontpage-survey-panel/FrontpageSurveyPanel';
 import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 type Props = {
     partProps: PartComponentProps;
     pageProps: ContentProps;
 };
-
-const bem = BEM(ComponentType.Part);
 
 const partsWithPageData: Record<
     PartLegacyType,
@@ -117,6 +116,13 @@ const partsDeprecated: ReadonlySet<PartType> = new Set([
     PartType.PageCrumbs,
 ]) satisfies ReadonlySet<PartDeprecatedType>;
 
+const bem = BEM(ComponentType.Part);
+
+const buildEditorProps = (componentPath: String) => ({
+    'data-portal-component-type': ComponentType.Part,
+    'data-portal-component': componentPath,
+});
+
 const PartComponent = ({ partProps, pageProps }: Props) => {
     const { descriptor } = partProps;
 
@@ -130,27 +136,30 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
         return <PartWithOwnData {...partProps} pageProps={pageProps} />;
     }
 
-    return <div>{`Unimplemented part: ${descriptor}`}</div>;
+    return (
+        <EditorHelp
+            text={`Part-komponenten er ikke implementert: "${descriptor}"`}
+            type={'info'}
+        />
+    );
 };
 
 export const PartsMapper = ({ pageProps, partProps }: Props) => {
     const { path, descriptor, config } = partProps;
 
-    if (!descriptor || partsDeprecated.has(descriptor)) {
+    if (!descriptor) {
         return null;
     }
 
     const isEditView = pageProps.editorView === 'edit';
+    const editorProps = isEditView ? buildEditorProps(path) : undefined;
+
+    if (partsDeprecated.has(descriptor)) {
+        return isEditView ? <div {...editorProps} /> : null;
+    }
+
     const partName = descriptor.split(':')[1];
     const renderOnAuthState = config?.renderOnAuthState;
-
-    const editorProps =
-        isEditView && !partsWithPageData[descriptor]
-            ? {
-                  'data-portal-component-type': ComponentType.Part,
-                  'data-portal-component': path,
-              }
-            : undefined;
 
     return (
         <div
