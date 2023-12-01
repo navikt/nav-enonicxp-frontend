@@ -69,7 +69,9 @@
 // never want to customize
 .legacyType {
     //  Prevent drag/drop interaction with components
-    pointer-events: none;
+    :global(.xp-page-editor-region-view) {
+        pointer-events: none !important;
+    }
 
     // Hide region dropzones and component-selectors
     :global(.xp-page-editor-item-placeholder) {
