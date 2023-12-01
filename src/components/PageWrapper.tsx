@@ -25,6 +25,7 @@ import { fetchAndSetMeldekortStatus } from 'utils/fetch/fetch-meldekort-status';
 import { LegacyPageChatbot } from './_common/chatbot/LegacyPageChatbot';
 import { classNames } from 'utils/classnames';
 import { EditorWidgets } from './_editor-only/EditorWidgets';
+import { isLegacyContentType } from 'utils/content-types';
 
 import styles from './PageWrapper.module.scss';
 
@@ -141,7 +142,12 @@ export const PageWrapper = (props: Props) => {
                     : styles.defaultBackground
             }
         >
-            <div className={classNames(styles.appContainer)}>
+            <div
+                className={classNames(
+                    styles.appContainer,
+                    isLegacyContentType(content.type) && styles.legacyType
+                )}
+            >
                 <DocumentParameterMetatags content={content} />
                 <HeadWithMetatags content={content} />
                 <PageWarnings content={content} />

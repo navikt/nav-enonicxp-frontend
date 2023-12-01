@@ -142,7 +142,7 @@ export const PartsMapper = ({ pageProps, partProps }: Props) => {
 
     const isEditView = pageProps.editorView === 'edit';
     const partName = descriptor.split(':')[1];
-    const renderOnAuthState = (config as any)?.renderOnAuthState;
+    const renderOnAuthState = config?.renderOnAuthState;
 
     const editorProps =
         isEditView && !partsWithPageData[descriptor]

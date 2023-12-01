@@ -1,6 +1,7 @@
 import { PartType } from './parts';
 import { LayoutProps } from './layouts';
 import { ContentProps } from '../content-props/_content-common';
+import { RenderOnAuthStateMixin } from 'types/component-props/_mixins';
 
 export enum ComponentType {
     Page = 'page',
@@ -14,7 +15,7 @@ export enum ComponentType {
 export type ComponentCommonProps = {
     type: ComponentType;
     path: string;
-    config?: unknown;
+    config?: Record<string, unknown> & RenderOnAuthStateMixin;
 };
 
 export type PartComponentProps = ComponentCommonProps & {

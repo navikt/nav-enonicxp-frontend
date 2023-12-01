@@ -64,3 +64,10 @@
         margin-top: -0.75rem;
     }
 }
+
+.legacyType {
+    :global(.xp-page-editor-item-placeholder),
+    :global(.item-view-context-menu) {
+        display: none !important;
+    }
+}
