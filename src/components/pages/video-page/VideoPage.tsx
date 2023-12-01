@@ -6,6 +6,7 @@ import { MacroVideoProps } from 'types/macro-props/video';
 import { MacroType } from 'types/macro-props/_macros-common';
 
 import styles from './VideoPage.module.scss';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 export const VideoPage = (props: VideoPageProps) => {
     if (!props.editorView) {
@@ -22,6 +23,12 @@ export const VideoPage = (props: VideoPageProps) => {
             },
         },
     };
+
+    if (!props.data.title || !props.data.mediaId) {
+        return (
+            <EditorHelp text="Sett inn tittel og media-id i kolonnen til venstre for å forhåndsvise videoen her." />
+        );
+    }
 
     return (
         <div className={styles.videoPage}>
