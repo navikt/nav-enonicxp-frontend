@@ -48,10 +48,11 @@ class MyDocument extends Document<DocumentProps> {
             DocumentParameter.DecoratorDisabled
         );
 
-        const isLegacyContentType = !!getDocumentParameter(
-            initialProps,
-            DocumentParameter.LegacyContentType
-        );
+        const isLegacyContentType =
+            getDocumentParameter(
+                initialProps,
+                DocumentParameter.LegacyContentType
+            ) === 'true';
 
         const Decorator =
             !decoratorDisabled &&

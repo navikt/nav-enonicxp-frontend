@@ -40,7 +40,7 @@ export const DocumentParameterMetatags = ({ content }: Props) => {
             {editorView === 'edit' && isLegacyContentType(type) && (
                 <meta
                     name={DocumentParameter.LegacyContentType}
-                    content={true}
+                    content={'true'}
                 />
             )}
         </Head>
