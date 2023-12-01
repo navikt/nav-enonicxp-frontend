@@ -1,8 +1,9 @@
 export enum PartType {
+    // Deprecated, should never render to anything, only included for compatibility
     Notifications = 'no.nav.navno:notifications',
     BreakingNews = 'no.nav.navno:breaking-news',
     PageCrumbs = 'no.nav.navno:page-crumbs',
-
+    // Legacy, only used in templates for old content types
     LinkPanels = 'no.nav.navno:link-panels',
     LinkLists = 'no.nav.navno:link-lists',
     PageHeading = 'no.nav.navno:page-heading',
@@ -14,7 +15,7 @@ export enum PartType {
     PageList = 'no.nav.navno:page-list',
     PublishingCalendar = 'no.nav.navno:publishing-calendar',
     PublishingCalendarEntry = 'no.nav.navno:publishing-calendar-entry',
-
+    // Parts currently available for active use
     AreaCard = 'no.nav.navno:area-card',
     AlertPanel = 'no.nav.navno:alert-panel',
     LinkPanel = 'no.nav.navno:dynamic-link-panel',
@@ -47,12 +48,12 @@ export enum PartType {
     UserTests = 'no.nav.navno:user-tests',
 }
 
-export type PartDeprecated =
+export type PartDeprecatedType =
     | PartType.Notifications
     | PartType.BreakingNews
     | PartType.PageCrumbs;
 
-export type PartWithPageData =
+export type PartLegacyType =
     | PartType.LinkPanels
     | PartType.LinkLists
     | PartType.PageHeading
@@ -65,34 +66,7 @@ export type PartWithPageData =
     | PartType.PublishingCalendar
     | PartType.PublishingCalendarEntry;
 
-export type PartWithOwnData =
-    | PartType.LinkPanel
-    | PartType.AlertBox
-    | PartType.Header
-    | PartType.LinkList
-    | PartType.NewsList
-    | PartType.HtmlArea
-    | PartType.OfficeEditorialDetail
-    | PartType.Calculator
-    | PartType.PageHeader
-    | PartType.Button
-    | PartType.ProviderCard
-    | PartType.PageNavigationMenu
-    | PartType.FiltersMenu
-    | PartType.FrontpageCurrentTopics
-    | PartType.FrontpageShortcuts
-    | PartType.ProductCard
-    | PartType.ProductCardMini
-    | PartType.ProductCardMicro
-    | PartType.FormDetails
-    | PartType.ContactOption
-    | PartType.ProductDetails
-    | PartType.AlertPanel
-    | PartType.PayoutDates
-    | PartType.AreaCard
-    | PartType.AreapageSituationCard
-    | PartType.LoggedinCard
-    | PartType.FrontpageContact
-    | PartType.FrontpageSurveyPanel
-    | PartType.UxSignalsWidget
-    | PartType.UserTests;
+export type PartCurrentType = Exclude<
+    PartType,
+    PartLegacyType | PartDeprecatedType
+>;

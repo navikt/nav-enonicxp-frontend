@@ -1,18 +1,19 @@
 @use 'src/common' as common;
 
-.editorWidgets {
+.outer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     padding-top: 1rem;
-
     @include common.full-width-mixin();
+}
 
-    &.whiteBackground {
-        background-color: var(--a-bg-default);
-    }
+.inner {
+    width: 100%;
 
     &:empty {
         display: none;
     }
+}
+
+.whiteBackground {
+    background-color: var(--a-bg-default);
 }

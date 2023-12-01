@@ -71,3 +71,12 @@ table {
         margin-bottom: 0;
     }
 }
+
+// Prevent the "Customize page" dialog from appearing in the editor
+// on content types which we never want to have customized
+body.legacyContentType {
+    .item-view-context-menu,
+    .xp-page-editor-shader {
+        display: none !important;
+    }
+}
