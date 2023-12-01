@@ -142,12 +142,7 @@ export const PageWrapper = (props: Props) => {
                     : styles.defaultBackground
             }
         >
-            <div
-                className={classNames(
-                    styles.appContainer,
-                    isLegacyContentType(content.type) && styles.legacyType
-                )}
-            >
+            <div className={styles.appContainer}>
                 <DocumentParameterMetatags content={content} />
                 <HeadWithMetatags content={content} />
                 <PageWarnings content={content} />
@@ -156,9 +151,9 @@ export const PageWrapper = (props: Props) => {
                     role={'main'}
                     className={classNames(
                         styles.contentWrapper,
-                        (hasWhitePage(content) || hasWhiteHeader(content)) &&
-                            styles.whiteBackground,
-                        shouldPushUpwards(content) && styles.decoratorOffset
+                        hasWhiteHeader(content) && styles.whiteBackground,
+                        shouldPushUpwards(content) && styles.decoratorOffset,
+                        isLegacyContentType(content.type) && styles.legacyType
                     )}
                     id={'maincontent'}
                     tabIndex={-1}

@@ -65,9 +65,14 @@
     }
 }
 
+// Prevent accidental page customizations on legacy types which we genereally
+// never want to customize
 .legacyType {
-    :global(.xp-page-editor-item-placeholder),
-    :global(.item-view-context-menu) {
+    //  Prevent drag/drop interaction with components
+    pointer-events: none;
+
+    // Hide region dropzones and component-selectors
+    :global(.xp-page-editor-item-placeholder) {
         display: none !important;
     }
 }

@@ -1,7 +1,8 @@
 import React from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import { ContentProps } from 'types/content-props/_content-common';
 import Head from 'next/head';
-import { getDecoratorParams } from '../../../utils/decorator/decorator-utils';
+import { getDecoratorParams } from 'utils/decorator/decorator-utils';
+import { isLegacyContentType } from 'utils/content-types';
 
 type Props = {
     content: ContentProps;
@@ -11,6 +12,7 @@ export enum DocumentParameter {
     DecoratorParams = '_decoratorParams',
     HtmlLang = '_htmlLang',
     DecoratorDisabled = 'decoratorDisabled',
+    LegacyContentType = 'legacy',
 }
 
 const isServerSide = typeof window === 'undefined';
@@ -20,6 +22,8 @@ export const DocumentParameterMetatags = ({ content }: Props) => {
     if (!isServerSide) {
         return null;
     }
+
+    const { type, editorView } = content;
 
     const decoratorParams = JSON.stringify(getDecoratorParams(content));
 
@@ -33,6 +37,12 @@ export const DocumentParameterMetatags = ({ content }: Props) => {
                 name={DocumentParameter.HtmlLang}
                 content={content.language}
             />
+            {editorView === 'edit' && isLegacyContentType(type) && (
+                <meta
+                    name={DocumentParameter.LegacyContentType}
+                    content={true}
+                />
+            )}
         </Head>
     );
 };
