@@ -1,9 +1,12 @@
 .videoPage {
+    background-color: white;
     display: block;
     max-width: 37.5rem;
-    background-color: white;
     padding: 2.5rem;
 
+    // VidePage is used for previewing only,
+    // so we need to do a bit of overriding the
+    // actual components
     & > div {
         margin: 0;
     }
