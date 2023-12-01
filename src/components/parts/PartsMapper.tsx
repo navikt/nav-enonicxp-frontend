@@ -118,7 +118,7 @@ const partsDeprecated: ReadonlySet<PartType> = new Set([
 
 const bem = BEM(ComponentType.Part);
 
-const buildEditorProps = (componentPath: String) => ({
+const buildEditorProps = (componentPath: string) => ({
     'data-portal-component-type': ComponentType.Part,
     'data-portal-component': componentPath,
 });
