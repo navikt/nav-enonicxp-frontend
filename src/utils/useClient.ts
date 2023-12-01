@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useClientSide } from './useIsClientSide';
+import { useIsClientSide } from './useIsClientSide';
 
 export const useClient = () => {
     const [hasMouse, setHasMouse] = React.useState(false);
-    const isClientSide = useClientSide();
+    const isClientSide = useIsClientSide();
 
     const detectMouse = (event: PointerEvent) => {
         if (event && event.pointerType === 'mouse') {

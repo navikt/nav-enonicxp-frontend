@@ -52,6 +52,7 @@ import { FrontpageSurveyPanel } from './frontpage-survey-panel/FrontpageSurveyPa
 import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -108,6 +109,7 @@ const partsWithOwnData: Record<
     [PartType.FrontpageContact]: FrontpageContactPart,
     [PartType.FrontpageSurveyPanel]: FrontpageSurveyPanel,
     [PartType.UxSignalsWidget]: UxSignalsWidgetPart,
+    [PartType.UserTests]: UserTestsPart,
 };
 
 const partsDeprecated: ReadonlySet<PartType> = new Set([

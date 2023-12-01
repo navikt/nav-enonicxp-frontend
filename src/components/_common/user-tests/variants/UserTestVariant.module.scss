@@ -1,0 +1,10 @@
+@use 'src/common' as common;
+
+.testVariant {
+    background-color: common.$a-green-100;
+    padding: 1rem;
+
+    & > :not(:last-child) {
+        margin-bottom: 0.75rem;
+    }
+}
