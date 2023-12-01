@@ -33,6 +33,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             />
         );
     }
+
     const { title, anchorId, icon, border, toggleCopyButton } = config;
     const isEditorView = pageProps.editorView === 'edit';
 
