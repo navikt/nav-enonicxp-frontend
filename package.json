@@ -45,7 +45,7 @@
         "lodash.debounce": "4.0.8",
         "lottie-web": "5.12.2",
         "lru-cache": "8.0.4",
-        "next": "13.4.2",
+        "next": "13.5.1",
         "node-cache": "5.1.2",
         "on-headers": "1.0.2",
         "p-limit": "4.0.0",
