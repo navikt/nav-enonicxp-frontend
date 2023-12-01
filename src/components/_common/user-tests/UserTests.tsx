@@ -3,6 +3,8 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { UserTestsEditorView } from 'components/_common/user-tests/editor-view/UserTestsEditorView';
 import { UserTestsPublicView } from 'components/_common/user-tests/public-view/UserTestsPublicView';
 
+import style from './UserTests.module.scss';
+
 export type UserTestVariantProps = {
     id: string;
     url: string;
@@ -31,9 +33,13 @@ export type UserTestsProps = {
 export const UserTests = (props: UserTestsProps) => {
     const { pageConfig } = usePageConfig();
 
-    return pageConfig.editorView ? (
-        <UserTestsEditorView {...props} />
-    ) : (
-        <UserTestsPublicView {...props} />
+    return (
+        <div className={style.wrapper}>
+            {pageConfig.editorView ? (
+                <UserTestsEditorView {...props} />
+            ) : (
+                <UserTestsPublicView {...props} />
+            )}
+        </div>
     );
 };

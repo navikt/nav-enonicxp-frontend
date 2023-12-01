@@ -1,15 +1,10 @@
 @use 'src/common' as common;
 
 .testVariant {
-    background-color: common.$a-green-200;
+    background-color: common.$a-green-100;
     padding: 1rem;
-}
 
-.header {
-}
-
-.ingress {
-}
-
-.link {
+    & > :not(:last-child) {
+        margin-bottom: 0.75rem;
+    }
 }

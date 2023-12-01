@@ -34,12 +34,8 @@ export const UserTestVariant = ({
 
     return (
         <div className={classNames(style.testVariant, className)}>
-            <Heading className={style.header} size={'medium'}>
-                {variantTitle || title}
-            </Heading>
-            <BodyLong className={style.ingress}>
-                {variantIngress || ingress}
-            </BodyLong>
+            <Heading size={'medium'}>{variantTitle || title}</Heading>
+            <BodyLong>{variantIngress || ingress}</BodyLong>
             <LenkeInline
                 href={url}
                 onClick={

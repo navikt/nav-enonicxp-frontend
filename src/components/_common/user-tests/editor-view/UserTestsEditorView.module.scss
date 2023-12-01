@@ -10,9 +10,7 @@
     border: 2px black solid;
     border-left-width: 0;
     border-right-width: 0;
-
     padding: 0.5rem 0;
-    margin: -0.5rem 0;
 }
 
 .variant {
@@ -21,4 +19,5 @@
 
 .disabled {
     filter: grayscale(100%) blur(3px);
+    pointer-events: none;
 }
