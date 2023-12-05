@@ -9,6 +9,7 @@ import htmlReactParser, {
     Element,
     domToReact,
     attributesToProps,
+    DOMNode,
 } from 'html-react-parser';
 import { getMediaUrl } from 'utils/urls';
 import {
@@ -101,6 +102,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                 delete element?.attribs?.style;
             }
             const { attribs, children } = element;
+            const domNodes = children as DOMNode[];
             const props = !!attribs && attributesToProps(attribs);
             const validChildren = getNonEmptyChildren(element);
 
@@ -140,7 +142,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
 
                 // Ignore heading-tag if it contains a macro
                 if (hasBlockLevelMacroChildren(element)) {
-                    return <>{domToReact(children, parserOptions)}</>;
+                    return <>{domToReact(domNodes, parserOptions)}</>;
                 }
 
                 return (
@@ -155,11 +157,11 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
             if (tag === 'p' && children) {
                 // Block level elements should not be nested under inline elements
                 if (hasBlockLevelMacroChildren(element)) {
-                    return <>{domToReact(children, parserOptions)}</>;
+                    return <>{domToReact(domNodes, parserOptions)}</>;
                 }
                 return (
                     <BodyLong spacing {...props} className={undefined}>
-                        {domToReact(children, parserOptions)}
+                        {domToReact(domNodes, parserOptions)}
                     </BodyLong>
                 );
             }
@@ -170,12 +172,12 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     return <Fragment />;
                 }
 
-                return <>{domToReact(children, parserOptions)}</>;
+                return <>{domToReact(domNodes, parserOptions)}</>;
             }
 
             // Handle links
             if (tag === 'a') {
-                if (!validChildren) {
+                if (!validChildren || typeof props.href !== 'string') {
                     return <Fragment />;
                 }
 

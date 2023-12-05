@@ -1,5 +1,5 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
-import LRUCache from 'lru-cache';
+import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import fs from 'fs';
 import { nodeFs } from 'next/dist/server/lib/node-fs-methods';
