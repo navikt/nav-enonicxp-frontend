@@ -18,17 +18,11 @@
     background-color: var(--a-deepblue-50, common.$a-deepblue-50);
     box-shadow: none;
 
-    padding-left: var(--a-spacing-3, 0.75rem);
-
     &:hover {
         background-color: var(--a-deepblue-100, common.$a-deepblue-100);
     }
 
     &:hover:not(:focus) {
         box-shadow: none;
-    }
-
-    svg {
-        display: none;
     }
 }
