@@ -74,7 +74,11 @@ class MyDocument extends Document<DocumentProps> {
         return (
             <Html lang={language || 'no'}>
                 <Head>{Decorator && <Decorator.Styles />}</Head>
-                <body className={isLegacyContentType && 'legacyContentType'}>
+                <body
+                    className={
+                        isLegacyContentType ? 'legacyContentType' : undefined
+                    }
+                >
                     {Decorator && <Decorator.Header />}
                     <Main />
                     {Decorator && <Decorator.Footer />}
