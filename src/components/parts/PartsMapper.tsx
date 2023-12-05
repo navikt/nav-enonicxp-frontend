@@ -1,11 +1,9 @@
-// @ts-nocheck
-// Refactor the part types before fixing the type errors in this file
 import React from 'react';
 import {
-    PartDeprecated,
+    PartCurrentType,
+    PartDeprecatedType,
+    PartLegacyType,
     PartType,
-    PartWithOwnData,
-    PartWithPageData,
 } from 'types/component-props/parts';
 import { MainArticleChapterNavigation } from './_legacy/main-article-chapter-navigation/MainArticleChapterNavigation';
 import { MainPanels } from './_legacy/main-panels/MainPanels';
@@ -53,15 +51,18 @@ import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
 import { FrontpageSurveyPanel } from './frontpage-survey-panel/FrontpageSurveyPanel';
 import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
 
 type Props = {
     partProps: PartComponentProps;
     pageProps: ContentProps;
 };
 
-const partsWithPageData: {
-    [key in PartWithPageData]: React.FunctionComponent<ContentProps>;
-} = {
+const partsWithPageData: Record<
+    PartLegacyType,
+    React.FunctionComponent<ContentProps>
+> = {
     [PartType.LinkLists]: LinkLists,
     [PartType.LinkPanels]: LinkPanelsLegacyPart,
     [PartType.MainArticle]: MainArticle,
@@ -75,9 +76,10 @@ const partsWithPageData: {
     [PartType.PublishingCalendarEntry]: PublishingCalendarEntry,
 };
 
-const partsWithOwnData: {
-    [key in PartWithOwnData]: React.FunctionComponent<PartComponentProps>;
-} = {
+const partsWithOwnData: Record<
+    PartCurrentType,
+    React.FunctionComponent<PartComponentProps>
+> = {
     [PartType.AlertPanel]: AlertPanelPart,
     [PartType.AlertBox]: AlertBoxPart,
     [PartType.Header]: HeaderPart,
@@ -107,50 +109,59 @@ const partsWithOwnData: {
     [PartType.FrontpageContact]: FrontpageContactPart,
     [PartType.FrontpageSurveyPanel]: FrontpageSurveyPanel,
     [PartType.UxSignalsWidget]: UxSignalsWidgetPart,
+    [PartType.UserTests]: UserTestsPart,
 };
 
-const partsDeprecated: { [key in PartDeprecated] } = {
-    [PartType.Notifications]: true,
-    [PartType.BreakingNews]: true,
-    [PartType.PageCrumbs]: true,
-};
+const partsDeprecated: ReadonlySet<PartType> = new Set([
+    PartType.Notifications,
+    PartType.BreakingNews,
+    PartType.PageCrumbs,
+]) satisfies ReadonlySet<PartDeprecatedType>;
+
+const bem = BEM(ComponentType.Part);
+
+const buildEditorProps = (componentPath: string) => ({
+    'data-portal-component-type': ComponentType.Part,
+    'data-portal-component': componentPath,
+});
 
 const PartComponent = ({ partProps, pageProps }: Props) => {
     const { descriptor } = partProps;
 
-    const PartWithGlobalData = partsWithPageData[descriptor];
-    if (PartWithGlobalData) {
-        return <PartWithGlobalData {...pageProps} />;
-    }
-
-    const PartWithPageData = partsWithOwnData[descriptor];
-
+    const PartWithPageData = partsWithPageData[descriptor];
     if (PartWithPageData) {
-        return <PartWithPageData {...partProps} pageProps={pageProps} />;
+        return <PartWithPageData {...pageProps} />;
     }
 
-    return <div>{`Unimplemented part: ${descriptor}`}</div>;
+    const PartWithOwnData = partsWithOwnData[descriptor];
+    if (PartWithOwnData) {
+        return <PartWithOwnData {...partProps} pageProps={pageProps} />;
+    }
+
+    return (
+        <EditorHelp
+            text={`Part-komponenten er ikke implementert: "${descriptor}"`}
+            type={'info'}
+        />
+    );
 };
 
 export const PartsMapper = ({ pageProps, partProps }: Props) => {
     const { path, descriptor, config } = partProps;
+
+    if (!descriptor) {
+        return null;
+    }
+
     const isEditView = pageProps.editorView === 'edit';
-    const renderOnAuthState = config?.renderOnAuthState;
+    const editorProps = isEditView ? buildEditorProps(path) : undefined;
 
-    const editorProps = isEditView
-        ? {
-              'data-portal-component-type': ComponentType.Part,
-              'data-portal-component': path,
-          }
-        : undefined;
-
-    if (!descriptor || partsDeprecated[descriptor]) {
-        // Prevents content-studio editor crash due to missing component props
+    if (partsDeprecated.has(descriptor)) {
         return isEditView ? <div {...editorProps} /> : null;
     }
 
-    const bem = BEM(ComponentType.Part);
     const partName = descriptor.split(':')[1];
+    const renderOnAuthState = config?.renderOnAuthState;
 
     return (
         <div

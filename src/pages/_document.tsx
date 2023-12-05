@@ -15,6 +15,7 @@ import { DecoratorComponents } from '@navikt/nav-dekoratoren-moduler/ssr';
 type DocumentProps = {
     language: Language;
     Decorator: DecoratorComponents;
+    isLegacyContentType: boolean;
 };
 
 // The 'head'-field of the document initialProps contains data from <head> (meta-tags etc)
@@ -47,6 +48,12 @@ class MyDocument extends Document<DocumentProps> {
             DocumentParameter.DecoratorDisabled
         );
 
+        const isLegacyContentType =
+            getDocumentParameter(
+                initialProps,
+                DocumentParameter.LegacyContentType
+            ) === 'true';
+
         const Decorator =
             !decoratorDisabled &&
             (await getDecoratorComponents(
@@ -57,16 +64,21 @@ class MyDocument extends Document<DocumentProps> {
             ...initialProps,
             Decorator,
             language,
+            isLegacyContentType,
         };
     }
 
     render() {
-        const { Decorator, language } = this.props;
+        const { Decorator, language, isLegacyContentType } = this.props;
 
         return (
             <Html lang={language || 'no'}>
                 <Head>{Decorator && <Decorator.Styles />}</Head>
-                <body>
+                <body
+                    className={
+                        isLegacyContentType ? 'legacyContentType' : undefined
+                    }
+                >
                     {Decorator && <Decorator.Header />}
                     <Main />
                     {Decorator && <Decorator.Footer />}
