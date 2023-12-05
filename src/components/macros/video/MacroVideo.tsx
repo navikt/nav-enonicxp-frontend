@@ -21,7 +21,7 @@ import style from './MacroVideo.module.scss';
 const PLAYER_TIMEOUT_MS = 5000;
 const PLAYER_POLLING_RATE_MS = 50;
 
-export const MacroVideo = ({ config, ...rest }: MacroVideoProps) => {
+export const MacroVideo = ({ config }: MacroVideoProps) => {
     const { language: contentLanguage, pageConfig } = usePageConfig();
     const { editorView, pageId } = pageConfig;
     const translations = translator('macroVideo', contentLanguage);
