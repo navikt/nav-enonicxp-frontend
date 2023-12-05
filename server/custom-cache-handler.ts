@@ -24,6 +24,12 @@ type GetFsPathFunction = ({
     isAppPath: boolean;
 }>;
 
+type GetConfig = {
+    tags: any;
+    softTags: any;
+    fetchCache: boolean;
+};
+
 const CACHE_TTL_24_HOURS = 3600 * 24 * 1000;
 
 const isrMemoryCache = new LRUCache<string, CacheHandlerValue>({
@@ -55,13 +61,13 @@ export default class CustomFileSystemCache extends FileSystemCache {
         });
     }
 
-    public async get(key: string, fetchCache?: boolean) {
+    public async get(key: string, config: GetConfig) {
         const dataFromMemoryCache = isrMemoryCache.get(key);
         if (dataFromMemoryCache) {
             return dataFromMemoryCache;
         }
 
-        const dataFromFileSystemCache = await super.get(key, fetchCache);
+        const dataFromFileSystemCache = await super.get(key, config);
         if (dataFromFileSystemCache) {
             const ttlRemaining = dataFromFileSystemCache.lastModified
                 ? dataFromFileSystemCache.lastModified +
@@ -81,7 +87,7 @@ export default class CustomFileSystemCache extends FileSystemCache {
 
     public async set(key: string, data: CacheHandlerValue['value']) {
         isrMemoryCache.set(key, { value: data, lastModified: Date.now() });
-        return super.set(key, data);
+        return super.set(key, data, {});
     }
 
     public async clearGlobalCache() {
