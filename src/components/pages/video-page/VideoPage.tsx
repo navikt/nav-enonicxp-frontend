@@ -10,6 +10,7 @@ import styles from './VideoPage.module.scss';
 export const VideoPage = (props: VideoPageProps) => {
     const macroVideoProps: MacroVideoProps = {
         name: MacroType.Video,
+        ref: null,
         config: {
             video: {
                 targetContent: {
