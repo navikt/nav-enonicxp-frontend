@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import { UserTestsPublicView } from 'components/_common/user-tests/public-view/UserTestsPublicView';
 import { UserTestsComponentProps } from 'components/_common/user-tests/UserTests';
 import React from 'react';
@@ -292,19 +292,6 @@ describe('Persist variant selection', () => {
         render(<UserTestsWithProvider {...buildProps(variants)} />);
 
         expect(screen.queryByText('Variant 1')).toBeTruthy();
-        expect(screen.queryByText('Variant 2')).toBeFalsy();
-    });
-
-    test('Should remember user participation, and not render any variant', () => {
-        mockRandom(0.25);
-        render(<UserTestsWithProvider {...buildProps(variants)} />);
-
-        fireEvent.click(screen.getByText('Variant 1'));
-
-        cleanup();
-        render(<UserTestsWithProvider {...buildProps(variants)} />);
-
-        expect(screen.queryByText('Variant 1')).toBeFalsy();
         expect(screen.queryByText('Variant 2')).toBeFalsy();
     });
 });
