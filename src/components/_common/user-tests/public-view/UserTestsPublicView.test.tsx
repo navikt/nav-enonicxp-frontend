@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { UserTestsPublicView } from 'components/_common/user-tests/public-view/UserTestsPublicView';
 import { UserTestsComponentProps } from 'components/_common/user-tests/UserTests';
 import React from 'react';
@@ -44,7 +44,7 @@ const mockRandom = (num: number) =>
 
 beforeEach(() => {
     jest.spyOn(Math, 'random').mockClear();
-    Cookie.remove(cookieId);
+    Cookie.remove(`usertest-${cookieId}`);
     cleanup();
 });
 
@@ -265,4 +265,46 @@ describe('Multiple variants with limited selection', () => {
             expect(screen.queryByText('Variant 4')).toBeTruthy();
         }
     );
+});
+
+describe('Persist variant selection', () => {
+    const variants = [
+        {
+            id: 'variant-1',
+            percentage: 50,
+            url: 'https://www.nav.no',
+            linkText: 'Variant 1',
+        },
+        {
+            id: 'variant-2',
+            percentage: 50,
+            url: 'https://www.nav.no',
+            linkText: 'Variant 2',
+        },
+    ];
+
+    test('Should remember the initial selection', () => {
+        mockRandom(0.25);
+        render(<UserTestsWithProvider {...buildProps(variants)} />);
+
+        mockRandom(0.75);
+        cleanup();
+        render(<UserTestsWithProvider {...buildProps(variants)} />);
+
+        expect(screen.queryByText('Variant 1')).toBeTruthy();
+        expect(screen.queryByText('Variant 2')).toBeFalsy();
+    });
+
+    test('Should remember user participation, and not render any variant', () => {
+        mockRandom(0.25);
+        render(<UserTestsWithProvider {...buildProps(variants)} />);
+
+        fireEvent.click(screen.getByText('Variant 1'));
+
+        cleanup();
+        render(<UserTestsWithProvider {...buildProps(variants)} />);
+
+        expect(screen.queryByText('Variant 1')).toBeFalsy();
+        expect(screen.queryByText('Variant 2')).toBeFalsy();
+    });
 });
