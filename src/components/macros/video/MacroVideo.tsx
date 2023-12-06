@@ -101,9 +101,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
                 setIsPlayerReady(true);
                 setIsPlayerLoading(false);
                 logAmplitudeEvent(AnalyticsEvents.VIDEO_START, {
-                    'tittel': title,
-                    'varighet': duration,
-                    'språk': videoLanguage,
+                    tittel: title,
+                    varighet: duration,
+                    språk: videoLanguage,
                 });
             });
         },

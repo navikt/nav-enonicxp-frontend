@@ -13,6 +13,7 @@ const isPreviewOnly: ReadonlySet<ContentType> = new Set([
     ContentType.GlobalCaseTimeSet,
     ContentType.PayoutDates,
     ContentType.TemplatePage,
+    ContentType.Video,
     ContentType.PublishingCalendarEntry,
     ContentType.UserTestsConfig,
 ]);
