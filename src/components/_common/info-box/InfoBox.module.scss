@@ -1,4 +1,5 @@
 .infoBox {
-    margin-top: var(--a-spacing-2);
-    margin-bottom: var(--a-spacing-3);
+    //InfoBox skal ALLTID ha mindre spacing (må bruke omportant, ellers vil den kunne overstyres av AlertBox)
+    margin-top: var(--a-spacing-3) !important;
+    margin-bottom: var(--a-spacing-3) !important;
 }

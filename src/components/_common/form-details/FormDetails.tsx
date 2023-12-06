@@ -108,6 +108,7 @@ export const FormDetails = ({
                     <ParsedHtml htmlProps={ingress} />
                 </div>
             )}
+            {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
             {variations.length > 0 && (
                 <div className={style.variation}>
                     {variations.map((variation, index) => (
@@ -119,10 +120,6 @@ export const FormDetails = ({
                     ))}
                 </div>
             )}
-            {languageDisclaimer &&
-                <InfoBox>
-                    {languageDisclaimer}
-                </InfoBox>}
         </div>
     );
 };
