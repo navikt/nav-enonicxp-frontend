@@ -1,10 +1,7 @@
 import React from 'react';
 import { isCurrentTimeInRange } from 'utils/datetime';
 import { useIsClientSide } from 'utils/useIsClientSide';
-import {
-    UserTestsProps,
-    UserTestVariantProps,
-} from 'components/_common/user-tests/UserTests';
+import { UserTestsComponentProps } from 'components/_common/user-tests/UserTests';
 import { UserTestVariant } from 'components/_common/user-tests/variants/UserTestVariant';
 import {
     userTestDidUserParticipate,
@@ -12,6 +9,7 @@ import {
     userTestSetParticipation,
     userTestSetSelection,
 } from 'components/_common/user-tests/user-tests-cookies';
+import { UserTestVariantProps } from 'types/content-props/user-tests-config';
 
 const sumPercentages = (variants: UserTestVariantProps[]) =>
     variants.reduce((acc, variant) => acc + variant.percentage, 0);
@@ -53,7 +51,7 @@ const selectRandomVariant = (
 const pickApplicableVariant = ({
     tests,
     selectedTestIds,
-}: UserTestsProps): UserTestVariantProps | null => {
+}: UserTestsComponentProps): UserTestVariantProps | null => {
     const { variants, cookieId } = tests.data;
 
     const hasSelection = selectedTestIds.length > 0;
@@ -76,12 +74,12 @@ const pickApplicableVariant = ({
     return selectRandomVariant(variants, selectableVariants);
 };
 
-const validateTimeRange = ({ tests }: UserTestsProps) => {
+const validateTimeRange = ({ tests }: UserTestsComponentProps) => {
     const { startTime, endTime } = tests.data;
     return isCurrentTimeInRange(startTime, endTime);
 };
 
-export const UserTestsPublicView = (props: UserTestsProps) => {
+export const UserTestsPublicView = (props: UserTestsComponentProps) => {
     const isClientSide = useIsClientSide();
     if (!isClientSide) {
         return null;

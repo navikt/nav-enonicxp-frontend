@@ -2,35 +2,18 @@ import React from 'react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { UserTestsEditorView } from 'components/_common/user-tests/editor-view/UserTestsEditorView';
 import { UserTestsPublicView } from 'components/_common/user-tests/public-view/UserTestsPublicView';
+import { UserTestsConfigData } from 'types/content-props/user-tests-config';
 
 import style from './UserTests.module.scss';
 
-export type UserTestVariantProps = {
-    id: string;
-    url: string;
-    linkText: string;
-    percentage: number;
-    title?: string;
-    ingress?: string;
-};
-
-export type UserTestsData = {
-    title: string;
-    ingress: string;
-    cookieId: string;
-    startTime?: string;
-    endTime?: string;
-    variants: UserTestVariantProps[];
-};
-
-export type UserTestsProps = {
+export type UserTestsComponentProps = {
     tests: {
-        data: UserTestsData;
+        data: UserTestsConfigData;
     };
     selectedTestIds: string[];
 };
 
-export const UserTests = (props: UserTestsProps) => {
+export const UserTests = (props: UserTestsComponentProps) => {
     const { pageConfig } = usePageConfig();
 
     return (

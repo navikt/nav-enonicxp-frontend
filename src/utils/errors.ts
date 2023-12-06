@@ -14,6 +14,7 @@ const isPreviewOnly: ReadonlySet<ContentType> = new Set([
     ContentType.PayoutDates,
     ContentType.TemplatePage,
     ContentType.PublishingCalendarEntry,
+    ContentType.UserTestsConfig,
 ]);
 
 const isValidContent = (content: ContentProps) => {

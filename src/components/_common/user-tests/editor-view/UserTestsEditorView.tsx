@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserTestsProps } from 'components/_common/user-tests/UserTests';
+import { UserTestsComponentProps } from 'components/_common/user-tests/UserTests';
 import { UserTestVariant } from 'components/_common/user-tests/variants/UserTestVariant';
 import { formatDateTime, isCurrentTimeInRange } from 'utils/datetime';
 import { BodyLong, Detail } from '@navikt/ds-react';
@@ -9,7 +9,7 @@ import style from './UserTestsEditorView.module.scss';
 export const UserTestsEditorView = ({
     tests,
     selectedTestIds,
-}: UserTestsProps) => {
+}: UserTestsComponentProps) => {
     const { data } = tests;
 
     const { variants, startTime, endTime } = data;

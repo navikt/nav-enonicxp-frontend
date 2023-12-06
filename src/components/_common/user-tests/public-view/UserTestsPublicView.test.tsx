@@ -1,18 +1,16 @@
 import '@testing-library/jest-dom';
 import { cleanup, render, screen } from '@testing-library/react';
 import { UserTestsPublicView } from 'components/_common/user-tests/public-view/UserTestsPublicView';
-import {
-    UserTestsProps,
-    UserTestVariantProps,
-} from 'components/_common/user-tests/UserTests';
+import { UserTestsComponentProps } from 'components/_common/user-tests/UserTests';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { mockStore } from 'store/store';
 import Cookie from 'js-cookie';
+import { UserTestVariantProps } from 'types/content-props/user-tests-config';
 
 const cookieId = 'cookie-1234';
 
-const baseProps: UserTestsProps = {
+const baseProps: UserTestsComponentProps = {
     selectedTestIds: [],
     tests: {
         data: {
@@ -35,7 +33,7 @@ const buildProps = (
     return props;
 };
 
-const UserTestsWithProvider = (props: UserTestsProps) => (
+const UserTestsWithProvider = (props: UserTestsComponentProps) => (
     <Provider store={mockStore}>
         <UserTestsPublicView {...props} />
     </Provider>
