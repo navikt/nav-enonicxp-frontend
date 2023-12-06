@@ -28,6 +28,7 @@ import { FormDetailsPreviewPage } from 'components/pages/form-details-preview-pa
 import { FormsOverviewPage } from 'components/pages/forms-overview-page/FormsOverviewPage';
 import { VideoPage } from './pages/video-page/VideoPage';
 import { CalculatorPage } from './pages/calculator-page/CalculatorPage';
+import { UserTestsConfigPreviewPage } from 'components/pages/user-tests-config-preview-page/UserTestsConfigPreviewPage';
 
 const contentToReactComponent: {
     [key in ContentType]?: React.FunctionComponent<ContentProps<key>>;
@@ -57,6 +58,7 @@ const contentToReactComponent: {
     [ContentType.FormDetails]: FormDetailsPreviewPage,
     [ContentType.FormsOverview]: FormsOverviewPage,
     [ContentType.Calculator]: CalculatorPage,
+    [ContentType.UserTestsConfig]: UserTestsConfigPreviewPage,
 
     [ContentType.AreaPage]: DynamicPage,
     [ContentType.FrontPage]: DynamicPage,

@@ -1,17 +1,17 @@
 import React from 'react';
 import { BodyLong, Heading } from '@navikt/ds-react';
 import { LenkeInline } from 'components/_common/lenke/LenkeInline';
-import {
-    UserTestsData,
-    UserTestVariantProps,
-} from 'components/_common/user-tests/UserTests';
 import { classNames } from 'utils/classnames';
 import { userTestSetParticipation } from 'components/_common/user-tests/user-tests-cookies';
 
 import style from './UserTestVariant.module.scss';
+import {
+    UserTestsConfigData,
+    UserTestVariantProps,
+} from 'types/content-props/user-tests-config';
 
 type Props = {
-    testsData: UserTestsData;
+    testsData: UserTestsConfigData;
     variant: UserTestVariantProps;
     persistParticipation?: boolean;
     className?: string;

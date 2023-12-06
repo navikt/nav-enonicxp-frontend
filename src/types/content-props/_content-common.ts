@@ -98,6 +98,7 @@ export enum ContentType {
     FormIntermediateStepPage = 'no.nav.navno:form-intermediate-step',
     FormDetails = 'no.nav.navno:form-details',
     FormsOverview = 'no.nav.navno:forms-overview',
+    UserTestsConfig = 'no.nav.navno:user-tests-config',
     Video = 'no.nav.navno:video',
 }
 
