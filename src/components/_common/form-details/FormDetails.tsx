@@ -4,7 +4,7 @@ import { classNames } from 'utils/classnames';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { FormDetailsButton } from './FormDetailsButton';
-import { AlertBox } from "../alert-box/AlertBox";
+import { InfoBox } from '../info-box/InfoBox';
 
 import style from './FormDetails.module.scss';
 
@@ -108,10 +108,6 @@ export const FormDetails = ({
                     <ParsedHtml htmlProps={ingress} />
                 </div>
             )}
-            {languageDisclaimer &&
-                <AlertBox variant="info" size="small" inline={true} className="infoBoks">
-                    {languageDisclaimer}
-                </AlertBox>}
             {variations.length > 0 && (
                 <div className={style.variation}>
                     {variations.map((variation, index) => (
@@ -123,6 +119,10 @@ export const FormDetails = ({
                     ))}
                 </div>
             )}
+            {languageDisclaimer &&
+                <InfoBox>
+                    {languageDisclaimer}
+                </InfoBox>}
         </div>
     );
 };

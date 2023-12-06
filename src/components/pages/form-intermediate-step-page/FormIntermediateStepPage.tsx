@@ -8,7 +8,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useRouter } from 'next/compat/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
-import { AlertBox } from "components/_common/alert-box/AlertBox";
+import { InfoBox } from 'components/_common/info-box/InfoBox';
 
 import styles from './FormIntermediateStepPage.module.scss';
 
@@ -118,9 +118,9 @@ export const FormIntermediateStepPage = (
                                         className={styles.stepItem}
                                     >
                                         {step.languageDisclaimer && (
-                                            <AlertBox variant="info" size="small" inline={true} className="infoBoks">
+                                            <InfoBox>
                                                 {step.languageDisclaimer}
-                                            </AlertBox>
+                                            </InfoBox>
                                         )}
                                         <LenkepanelNavNo
                                             href={getHrefFromStep(step)}
