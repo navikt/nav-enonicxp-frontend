@@ -4,9 +4,7 @@ import { useIsClientSide } from 'utils/useIsClientSide';
 import { UserTestsComponentProps } from 'components/_common/user-tests/UserTests';
 import { UserTestVariant } from 'components/_common/user-tests/variants/UserTestVariant';
 import {
-    userTestDidUserParticipate,
     userTestGetSelectedVariantId,
-    userTestSetParticipation,
     userTestSetSelection,
 } from 'components/_common/user-tests/user-tests-cookies';
 import { UserTestVariantProps } from 'types/content-props/user-tests-config';
@@ -89,27 +87,16 @@ export const UserTestsPublicView = (props: UserTestsComponentProps) => {
 
     const { cookieId } = data;
 
-    if (userTestDidUserParticipate(cookieId)) {
-        return null;
-    }
-
     if (!validateTimeRange(props)) {
         return null;
     }
 
     const variant = pickApplicableVariant(props);
     if (!variant) {
-        userTestSetParticipation(cookieId);
         return null;
     }
 
     userTestSetSelection(cookieId, variant.id);
 
-    return (
-        <UserTestVariant
-            testsData={data}
-            variant={variant}
-            persistParticipation={true}
-        />
-    );
+    return <UserTestVariant testsData={data} variant={variant} />;
 };
