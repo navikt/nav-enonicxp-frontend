@@ -11,6 +11,13 @@ type Props = {
     children: React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>;
 
+const role = {
+    success: 'status',
+    warning: 'status',
+    info: undefined,
+    error: 'alert'
+};
+
 export const AlertBox = ({
     variant,
     size,
@@ -22,6 +29,7 @@ export const AlertBox = ({
     return (
         <Alert
             {...rest}
+            role={role[variant]}
             variant={variant}
             size={size}
             inline={inline}

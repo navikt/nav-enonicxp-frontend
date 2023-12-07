@@ -1,6 +1,5 @@
-import { InformationSquareIcon } from '@navikt/aksel-icons';
+import { AlertBox } from '../alert-box/AlertBox';
 import styles from './InfoBox.module.scss';
-import { BodyShort } from '@navikt/ds-react';
 
 type InfoBoxProps = {
     children: React.ReactNode;
@@ -8,11 +7,8 @@ type InfoBoxProps = {
 
 export const InfoBox = ({ children }: InfoBoxProps) => {
     return (
-        <div className={styles.infoBox}>
-            <InformationSquareIcon />
-            <BodyShort as="span" size="small">
-                {children}
-            </BodyShort>
-        </div>
+        <AlertBox variant="info" size="small" inline={true} className={styles.infoBox}>
+            {children}
+        </AlertBox>
     );
 };

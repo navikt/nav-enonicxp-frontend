@@ -1,8 +1,6 @@
 .alertBox {
-    align-items: flex-start;
-
     &:not(:last-child) {
-        margin-bottom: 1.5rem;
+        margin-bottom: var(--a-spacing-6);
     }
 
     * > :first-child {
@@ -11,9 +9,5 @@
 
     * > p:last-child {
         margin-bottom: 0;
-    }
-
-    &:global(.navds-alert--small > .navds-alert__icon) {
-        align-self: center;
     }
 }
