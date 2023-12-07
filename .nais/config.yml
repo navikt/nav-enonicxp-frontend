@@ -17,11 +17,12 @@ spec:
   port: 3000
   liveness:
     path: /api/internal/isAlive
-    initialDelay: 10
-    timeout: 5
+    initialDelay: 5
+    timeout: 10
   readiness:
     path: /api/internal/isReady
-    initialDelay: 10
+    initialDelay: 20
+    timeout: 10
   prometheus:
     enabled: true
     path: /internal/metrics
