@@ -37,6 +37,7 @@ export type RegularOpeningHours = {
 };
 
 export type SpecialOpeningHours = {
+    overrideText?: string;
     validFrom: string;
     validTo: string;
     hours?: OpeningHourSpecialRaw[];
