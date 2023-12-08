@@ -22,7 +22,7 @@ export const ChatOption = (props: ChatData) => {
         regularOpeningHours,
         specialOpeningHours,
     } = props;
-    const { overrideText } = specialOpeningHours;
+    const overrideText = specialOpeningHours?.overrideText;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
 
