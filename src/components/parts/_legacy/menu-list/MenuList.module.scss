@@ -5,6 +5,10 @@
     flex-direction: column;
     width: 100%;
 
+    :global(.navds-accordion) {
+        --__ac-accordion-header-shadow-color: none;
+    }
+
     .panel {
         margin-bottom: 0.5rem;
         background-color: common.$a-white;
@@ -12,6 +16,14 @@
 
         :global(.navds-accordion__header) {
             border-radius: common.$border-radius-base;
+
+            &:not(:focus-visible) {
+                box-shadow: 0 0 0;
+            }
+
+            &:hover {
+                background-color: common.$a-white;
+            }
         }
 
         &:global(.navds-accordion__item--open) {
