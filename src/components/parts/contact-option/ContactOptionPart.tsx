@@ -61,25 +61,25 @@ export const ContactOptionPart = ({
         case 'write': {
             return (
                 <WriteOption
-                    ingress={ingress}
                     {...sharedContactInformation.data.contactType.write}
+                    ingress={ingress}
                 />
             );
         }
         case 'chat': {
             return (
                 <ChatOption
-                    ingress={ingress}
                     {...sharedContactInformation.data.contactType.chat}
+                    ingress={ingress}
                 />
             );
         }
         case 'call': {
             return (
                 <CallOption
+                    {...sharedContactInformation.data.contactType.telephone}
                     ingress={ingress}
                     audience={audience}
-                    {...sharedContactInformation.data.contactType.telephone}
                 />
             );
         }

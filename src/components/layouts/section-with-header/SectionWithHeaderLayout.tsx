@@ -35,6 +35,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     }
 
     const { title, anchorId, icon, border, toggleCopyButton } = config;
+    const isEditorView = pageProps.editorView === 'edit';
 
     const iconImgProps = icon?.icon;
 
@@ -45,7 +46,8 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     // Also make sure not to hide region if there are already components in it.
     const shouldShowIntroRegion =
-        shouldShowFilterBar || regions.intro?.components?.length > 0;
+        regions.intro?.components?.length > 0 ||
+        (shouldShowFilterBar && isEditorView);
 
     return (
         <LayoutContainer
