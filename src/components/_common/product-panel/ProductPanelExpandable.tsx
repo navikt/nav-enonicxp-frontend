@@ -79,7 +79,7 @@ export const ProductPanelExpandable = ({
             open={isOpen}
             className={style.expandable}
             id={anchorId}
-            aria-labelledby=""
+            aria-label={header}
         >
             <ExpansionCard.Header
                 onClick={handleClick}

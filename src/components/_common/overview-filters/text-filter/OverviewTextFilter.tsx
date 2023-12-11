@@ -87,6 +87,7 @@ export const OverviewTextFilter = ({ hideLabel }: Props) => {
                 label={translator('overview', language)('search')}
                 hideLabel={hideLabel}
                 variant={'secondary'}
+                autoComplete="off"
             />
         </form>
     );
