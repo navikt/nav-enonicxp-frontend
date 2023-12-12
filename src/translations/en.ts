@@ -211,6 +211,7 @@ export const translationsBundleEn: PartialTranslations = {
     areas,
     header: {
         copyLink: 'Copy link',
+        copyLinkTo: 'Copy link to',
         copiedLinkConfirmed: 'Link successfully copied',
     },
     overview: {
