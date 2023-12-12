@@ -41,6 +41,7 @@ export const SearchForm = () => {
                     id={'search-input'}
                     label={label}
                     hideLabel={true}
+                    autoComplete="off"
                 />
                 <div className={style.buttonsContainer}>
                     {searchTerm && (

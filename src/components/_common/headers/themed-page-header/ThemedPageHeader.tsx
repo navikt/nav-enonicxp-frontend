@@ -155,7 +155,7 @@ export const ThemedPageHeader = ({
             });
 
     return (
-        <header
+        <div
             className={classNames(
                 style.themedPageHeader,
                 style[getPageTypeClass(pageType)]
@@ -183,13 +183,13 @@ export const ThemedPageHeader = ({
                             </span>
                         )}
                         {modified && (
-                            <Detail size="small">
-                                <span>{modified}</span>
+                            <Detail>
+                                {modified}
                             </Detail>
                         )}
                     </div>
                 )}
             </div>
-        </header>
+        </div>
     );
 };
