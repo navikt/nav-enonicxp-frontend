@@ -40,6 +40,7 @@ export const CopyLink = ({ anchor, heading, label, className }: CopyLinkProps) =
     return (
         <CopyButton
             className={classNames(className, style.copyLink)}
+            variant="action"
             size="small"
             text={label || getLabel('copyLink')}
             aria-label={`${getLabel('copyLinkTo')}: "${heading}"`}
