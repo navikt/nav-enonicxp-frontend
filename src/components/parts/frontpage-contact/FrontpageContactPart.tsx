@@ -18,13 +18,11 @@ export const FrontpageContactPart = ({
 
     const {
         title,
-        chatTitle,
-        chatAlertText,
-        chatIngress,
         contactUsTitle,
         contactUsAlertText,
         contactUsIngress,
         contactUsLink,
+        sharedContactInformation,
     } = config;
 
     const contactUsUrl =
@@ -32,6 +30,26 @@ export const FrontpageContactPart = ({
         (contactUsLink.type === ContentType.ExternalLink
             ? contactUsLink.data.url
             : contactUsLink._path);
+
+    const getChatIngress = () => {
+        const sharedContact =
+            sharedContactInformation[0]?.data?.contactType?.chat;
+        const specialOpeningHours = sharedContact?.specialOpeningHours;
+
+        const chatTitle = config.chatTitle || sharedContact?.title || '';
+        const chatIngress =
+            config.chatIngress ||
+            specialOpeningHours?.overrideText ||
+            sharedContact?.ingress?.processedHtml ||
+            '';
+
+        const chatAlertText =
+            config.chatAlertText || sharedContact?.alertText || '';
+
+        return { chatTitle, chatIngress, chatAlertText };
+    };
+
+    const { chatTitle, chatIngress, chatAlertText } = getChatIngress();
 
     return (
         <div className={style.container}>
