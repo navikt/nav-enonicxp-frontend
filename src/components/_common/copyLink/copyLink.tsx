@@ -42,7 +42,7 @@ export const CopyLink = ({ anchor, heading, label, className }: CopyLinkProps) =
             className={classNames(className, style.copyLink)}
             size="small"
             text={label || getLabel('copyLink')}
-            aria-label={`${getLabel('copyLinkTo')} ${heading}`}
+            aria-label={`${getLabel('copyLinkTo')}: "${heading}"`}
             activeText={getLabel('copiedLinkConfirmed')}
             copyText={linkToCopy}
             onActiveChange={onActiveChange}
