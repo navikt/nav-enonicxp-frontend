@@ -5,6 +5,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { CopyButton } from "@navikt/ds-react";
+import { LinkIcon } from "@navikt/aksel-icons";
 
 import style from './copyLink.module.scss';
 
@@ -42,6 +43,7 @@ export const CopyLink = ({ anchor, heading, label, className }: CopyLinkProps) =
             className={classNames(className, style.copyLink)}
             variant="action"
             size="small"
+            icon={<LinkIcon aria-hidden />}
             text={label || getLabel('copyLink')}
             aria-label={`${getLabel('copyLinkTo')}: "${heading}"`}
             activeText={getLabel('copiedLinkConfirmed')}
