@@ -23,7 +23,12 @@ export const CopyLink = ({ anchor, heading, label, className }: CopyLinkProps) =
     const getLabel = translator('header', language);
 
     useEffect(() => {
-        setLinkToCopy(() => `${window.location.href}${anchor}`);
+        setLinkToCopy(() => {
+            const baseUrl = window.location.href.split(
+                '#'
+            )[0];
+            return `${baseUrl}${anchor}`;
+        });
     }, [anchor]);
 
     if (!anchor) {
