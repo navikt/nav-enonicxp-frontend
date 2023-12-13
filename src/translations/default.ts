@@ -197,6 +197,7 @@ export const translationsBundleNb = {
     },
     header: {
         copyLink: 'Kopier lenke',
+        copyLinkTo: 'Kopier lenke til',
         copiedLinkConfirmed: 'Lenken er kopiert',
     },
     overview: {

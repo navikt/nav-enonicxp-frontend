@@ -101,6 +101,7 @@ export const ProductPanelExpandable = ({
             <ExpansionCard.Content className={style.expandableContent}>
                 <CopyLink
                     anchor={anchorIdWithHash}
+                    heading={header}
                     className={style.copyLink}
                 />
                 {error && <AlertBox variant={'error'}>{error}</AlertBox>}

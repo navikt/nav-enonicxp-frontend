@@ -1,10 +1,9 @@
 import React from 'react';
 import { Heading } from '@navikt/ds-react';
-
-import { classNames } from '../../../utils/classnames';
-
-import { Level, levelToSize, Size } from '../../../types/typo-style';
-import { HeaderCommonConfig } from '../../../types/component-props/_mixins';
+import { onlyText } from 'utils/react-children';
+import { classNames } from 'utils/classnames';
+import { Level, levelToSize, Size } from 'types/typo-style';
+import { HeaderCommonConfig } from 'types/component-props/_mixins';
 import { CopyLink } from '../copyLink/copyLink';
 
 // eslint does not understand bracket notation
@@ -54,7 +53,7 @@ export const Header = ({
                 {children}
             </Heading>
 
-            {anchor && !hideCopyButton && <CopyLink anchor={anchor} />}
+            {anchor && !hideCopyButton && <CopyLink heading={onlyText(children)} anchor={anchor} />}
         </div>
     );
 };
