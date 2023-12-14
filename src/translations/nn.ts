@@ -169,6 +169,7 @@ export const translationsBundleNn: PartialTranslations = {
     },
     header: {
         copyLink: 'Kopier lenke',
+        copyLinkTo: 'Kopier lenke til',
         copiedLinkConfirmed: 'Lenka er kopiert',
     },
     office: {
