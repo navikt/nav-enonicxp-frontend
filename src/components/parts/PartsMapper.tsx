@@ -48,7 +48,6 @@ import { AreaCardPart } from './area-card/AreaCardPart';
 import { AreapageSituationCardPart } from './areapage-situation-card/AreapageSituationCardPart';
 import { LoggedinCardPart } from './loggedin-card/LoggedinCardPart';
 import { FrontpageContactPart } from './frontpage-contact/FrontpageContactPart';
-import { FrontpageSurveyPanel } from './frontpage-survey-panel/FrontpageSurveyPanel';
 import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignalsWidgetPart';
 import { FormDetailsPart } from './form-details/FormDetailsPart';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
@@ -107,7 +106,6 @@ const partsWithOwnData: Record<
     [PartType.AreapageSituationCard]: AreapageSituationCardPart,
     [PartType.LoggedinCard]: LoggedinCardPart,
     [PartType.FrontpageContact]: FrontpageContactPart,
-    [PartType.FrontpageSurveyPanel]: FrontpageSurveyPanel,
     [PartType.UxSignalsWidget]: UxSignalsWidgetPart,
     [PartType.UserTests]: UserTestsPart,
 };
