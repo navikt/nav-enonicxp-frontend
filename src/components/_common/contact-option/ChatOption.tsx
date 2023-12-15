@@ -22,6 +22,8 @@ export const ChatOption = (props: ChatData) => {
         regularOpeningHours,
         specialOpeningHours,
     } = props;
+    const overrideText = specialOpeningHours?.overrideText;
+
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
 
@@ -41,7 +43,10 @@ export const ChatOption = (props: ChatData) => {
                 className={style.link}
             >
                 <div className={style.linkContent}>
-                    <img alt="" className={classNames(style.icon, style.chat)} />
+                    <img
+                        alt=""
+                        className={classNames(style.icon, style.chat)}
+                    />
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>
@@ -53,7 +58,9 @@ export const ChatOption = (props: ChatData) => {
                 </Alert>
             )}
             <BodyLong as="div" className={style.text}>
-                <ParsedHtml htmlProps={ingress || translations.ingress} />
+                <ParsedHtml
+                    htmlProps={overrideText || ingress || translations.ingress}
+                />
             </BodyLong>
             {!alertText && (
                 <TextWithIndicator

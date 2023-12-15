@@ -2,6 +2,7 @@ import React from 'react';
 import { LinkPanelNavno } from '../linkpanel/LinkPanelNavno';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { FrontpageContactAlert } from 'components/parts/frontpage-contact/FrontpageContactAlert';
+import { ParsedHtml } from '../parsed-html/ParsedHtml';
 
 import style from './ChatbotLinkPanel.module.scss';
 
@@ -30,7 +31,7 @@ export const ChatbotLinkPanel = ({
             }}
         >
             {alertText && <FrontpageContactAlert alertText={alertText} />}
-            {ingress}
+            <ParsedHtml htmlProps={ingress} />
         </LinkPanelNavno>
     );
 };
