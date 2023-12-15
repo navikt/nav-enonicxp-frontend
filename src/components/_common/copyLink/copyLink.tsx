@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { translator } from 'translations';
 import { classNames } from 'utils/classnames';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
-import { CopyButton } from "@navikt/ds-react";
 import { LinkIcon } from "@navikt/aksel-icons";
 
 import style from './copyLink.module.scss';
@@ -16,44 +15,60 @@ type CopyLinkProps = {
     label?: string;
 };
 
+const linkCopiedDisplayTimeMs = 2500;
+
 export const CopyLink = ({ anchor, heading, label, className }: CopyLinkProps) => {
-    const [linkToCopy, setLinkToCopy] = useState<string>('');
+    const [showCopyTooltip, setShowCopyTooltip] = useState(false);
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
     const getLabel = translator('header', language);
-
-    useEffect(() => {
-        setLinkToCopy(() => {
-            const baseUrl = window.location.href.split(
-                '#'
-            )[0];
-            return `${baseUrl}${anchor}`;
-        });
-    }, [anchor]);
 
     if (!anchor) {
         return null;
     }
 
-    const onActiveChange = (state:boolean) => {
-        if (state) {
+    const copyLinkToClipboard = (e: React.MouseEvent) => {
+        e.preventDefault();
+
+        if (navigator?.clipboard?.writeText) {
+            const baseUrl = (e.target as HTMLAnchorElement)?.baseURI?.split(
+                '#'
+            )[0];
+            if (baseUrl) {
+                navigator?.clipboard?.writeText(`${baseUrl}${anchor}`);
+                setShowCopyTooltip(true);
+                setTimeout(
+                    () => setShowCopyTooltip(false),
+                    linkCopiedDisplayTimeMs
+                );
+            }
             logAmplitudeEvent(AnalyticsEvents.COPY_LINK, {
                 seksjon: layoutConfig.title,
             });
         }
-    }
+    };
 
     return (
-        <CopyButton
-            className={classNames(className, style.copyLink)}
-            variant="action"
-            size="small"
-            icon={<LinkIcon aria-hidden />}
-            text={label || getLabel('copyLink')}
-            aria-label={`${getLabel('copyLinkTo')}: "${heading}"`}
-            activeText={getLabel('copiedLinkConfirmed')}
-            copyText={linkToCopy}
-            onActiveChange={onActiveChange}
-        />
+        <span className={classNames(style.copyLinkContainer, className)}>
+            <a
+                href={anchor}
+                onClick={copyLinkToClipboard}
+                className={style.copyLink}
+                aria-label={`${getLabel('copyLinkTo')}: "${heading}"`}
+            >
+                <LinkIcon className={style.anchorIcon} aria-hidden />
+                {label || getLabel('copyLink')}
+            </a>
+            <span
+                className={classNames(
+                    style.copyTooltip,
+                    showCopyTooltip && style.copyTooltipVisible
+                )}
+                aria-live="assertive"
+                aria-atomic={true}
+            >
+                {getLabel('copiedLinkConfirmed')}
+            </span>
+        </span>
     );
 };
