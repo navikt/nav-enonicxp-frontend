@@ -1,3 +1,54 @@
-.copyLink {
-    margin: 0.5rem 0;
+@use 'src/common' as common;
+
+.copyLinkContainer {
+    display: flex;
+    align-self: flex-start;
 }
+
+.copyLink {
+    align-items: center;
+    display: flex;
+    font-size: 0.875rem;
+    padding: 0.8rem 0.8rem 0.8rem 0;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+        font-weight: 600;
+        .anchorIcon {
+            transform: scale(1.2);
+        }
+    }
+}
+
+.anchorIcon {
+    height: 1rem;
+    margin-right: 0.5rem;
+    transition-duration: 0.1s;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+    width: 1rem;
+}
+
+.copyTooltip {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    visibility: hidden;
+    background-color:var(--a-green-100);
+    color: black;
+    padding: 0.5rem 0.75rem;
+    border: 1px var(--a-green-500) solid;
+    border-radius: common.$border-radius-small;
+    pointer-events: none;
+    opacity: 0;
+    transition-property: visibility, opacity;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in;
+    transform: translateY(2px);
+}
+
+.copyTooltipVisible {
+    visibility: visible;
+    opacity: 0.75;
+}	
