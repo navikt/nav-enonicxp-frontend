@@ -14,7 +14,7 @@ describe('Custom cache handler for ISR page cache', () => {
     test('getFsPath should return paths with the correct page cache dir', async () => {
         const cacheHandler = new CustomFileSystemCache();
 
-        const { filePath } = await cacheHandler['getFsPath']({ pathname: '' });
+        const filePath = cacheHandler.getFilePathPublic('', 'pages');
 
         expect(filePath).toContain(pageCacheDir);
     });
@@ -23,13 +23,22 @@ describe('Custom cache handler for ISR page cache', () => {
         mockFs({});
         fsPromises.writeFile = jest.fn();
 
-        const cacheHandler = new CustomFileSystemCache({ flushToDisk: true });
-
-        await cacheHandler.set('foo', {
-            kind: 'PAGE',
-            html: 'test',
-            pageData: {},
+        const cacheHandler = new CustomFileSystemCache({
+            flushToDisk: true,
         });
+
+        await cacheHandler.set(
+            'foo',
+            {
+                kind: 'PAGE',
+                html: 'test',
+                pageData: {},
+                postponed: undefined,
+                headers: undefined,
+                status: undefined,
+            },
+            {}
+        );
 
         expect(fsPromises.writeFile).toHaveBeenCalledWith(
             expect.stringContaining(pageCacheDir),
