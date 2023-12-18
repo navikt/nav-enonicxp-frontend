@@ -23,11 +23,11 @@ const nextApp = next({
     quiet: process.env.ENV === 'prod',
 });
 
-nextApp.prepare().then(() => {
+nextApp.prepare().then(async () => {
     const expressApp = express();
     const port = process.env.PORT || 3000;
 
-    const nextServer = getNextServer(nextApp);
+    const nextServer = await getNextServer(nextApp);
 
     if (process.env.IMAGE_CACHE_DIR) {
         injectImageResponseCacheCacheDir(
@@ -50,10 +50,10 @@ nextApp.prepare().then(() => {
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);
     } else {
-        serverSetup(expressApp, nextApp);
+        await serverSetup(expressApp, nextApp);
     }
 
-    const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+    const errorHandler: ErrorRequestHandler = (err, req, res, _) => {
         const { path } = req;
         const { status, stack } = err;
         const msg = stack?.split('\n')[0];

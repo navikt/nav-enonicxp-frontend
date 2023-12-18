@@ -4,8 +4,10 @@ import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
 
 // Helper functions for accessing private class members (very naughty!)
 //
-export const getNextServer = (nextApp: NextServer) => {
-    return nextApp['server'] as NextNodeServer;
+export const getNextServer = async (
+    nextApp: NextServer
+): Promise<NextNodeServer> => {
+    return nextApp['getServer']();
 };
 
 export const getNextBuildId = (nextServer: NextNodeServer) => {

@@ -22,7 +22,7 @@ describe('Next.js server private accessors', () => {
 
     beforeAll(async () => {
         await nextApp.prepare();
-        nextServer = getNextServer(nextApp);
+        nextServer = await getNextServer(nextApp);
     });
 
     test('Should get a NextNodeServer', () => {
@@ -46,7 +46,7 @@ describe('Set next.js image cache dir', () => {
 
     beforeAll(async () => {
         await nextApp.prepare();
-        nextServer = getNextServer(nextApp);
+        nextServer = await getNextServer(nextApp);
         injectImageResponseCacheCacheDir(
             nextServer,
             process.env.IMAGE_CACHE_DIR
