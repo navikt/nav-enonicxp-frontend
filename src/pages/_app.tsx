@@ -9,7 +9,7 @@ import 'global.scss';
 
 const App = ({ Component, pageProps }: AppProps<PageProps>) => {
     useEffect(() => {
-        if (pageProps?.content?.editorView) {
+        if (pageProps?.content?.editorView || process.env.ENV === 'localhost') {
             return;
         }
 
