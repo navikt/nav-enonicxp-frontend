@@ -15,6 +15,8 @@ type GetFilePathFunction = (
 
 type FileSystemCacheContext = ConstructorParameters<typeof FileSystemCache>[0];
 
+const CACHE_FILE_EXTENSIONS = ['html', 'json', 'meta'] as const;
+
 const CACHE_TTL_24_HOURS = 3600 * 24 * 1000;
 
 const isrMemoryCache = new LRUCache<string, CacheHandlerValue>({
@@ -111,11 +113,11 @@ export default class CustomFileSystemCache extends FileSystemCache {
     public async deleteGlobalCacheEntry(path: string) {
         const pagePath = path === '/' ? '/index' : path;
 
-        return Promise.all([
-            this.deletePageCacheFile(`${pagePath}.html`),
-            this.deletePageCacheFile(`${pagePath}.json`),
-            this.deletePageCacheFile(`${pagePath}.meta`),
-        ])
+        return Promise.all(
+            CACHE_FILE_EXTENSIONS.map((ext) =>
+                this.deletePageCacheFile(`${pagePath}.${ext}`)
+            )
+        )
             .catch((e) => {
                 console.error(
                     `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
