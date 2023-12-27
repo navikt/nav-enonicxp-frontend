@@ -2,7 +2,7 @@ import mockFs from 'mock-fs';
 import {
     getNextBuildId,
     getNextServer,
-    injectImageResponseCacheCacheDir,
+    injectNextImageCacheDir,
 } from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
 import next from 'next';
@@ -47,10 +47,7 @@ describe('Set next.js image cache dir', () => {
     beforeAll(async () => {
         await nextApp.prepare();
         nextServer = await getNextServer(nextApp);
-        injectImageResponseCacheCacheDir(
-            nextServer,
-            process.env.IMAGE_CACHE_DIR
-        );
+        await injectNextImageCacheDir(nextServer, process.env.IMAGE_CACHE_DIR);
     });
 
     afterEach(() => {

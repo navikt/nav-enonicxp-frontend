@@ -8,7 +8,7 @@ import promBundle from 'express-prom-bundle';
 import { initRevalidatorProxyHeartbeat } from './revalidator-proxy-heartbeat';
 import { serverSetupFailover } from './server-setup-failover';
 import { serverSetup } from './server-setup';
-import { getNextServer, injectImageResponseCacheCacheDir } from './next-utils';
+import { getNextServer, injectNextImageCacheDir } from './next-utils';
 
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
@@ -30,10 +30,7 @@ nextApp.prepare().then(async () => {
     const nextServer = await getNextServer(nextApp);
 
     if (process.env.IMAGE_CACHE_DIR) {
-        injectImageResponseCacheCacheDir(
-            nextServer,
-            process.env.IMAGE_CACHE_DIR
-        );
+        await injectNextImageCacheDir(nextServer, process.env.IMAGE_CACHE_DIR);
     } else {
         console.error('IMAGE_CACHE_DIR is not defined!');
     }
@@ -61,6 +58,7 @@ nextApp.prepare().then(async () => {
         console.log(`Express error on path ${path}: ${status} ${msg}`);
 
         res.status(status || 500);
+
         return nextServer.renderError(msg, req, res, path);
     };
 

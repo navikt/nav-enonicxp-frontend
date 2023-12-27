@@ -114,6 +114,7 @@ export default class CustomFileSystemCache extends FileSystemCache {
         return Promise.all([
             this.deletePageCacheFile(`${pagePath}.html`),
             this.deletePageCacheFile(`${pagePath}.json`),
+            this.deletePageCacheFile(`${pagePath}.meta`),
         ])
             .catch((e) => {
                 console.error(
