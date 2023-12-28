@@ -4,6 +4,7 @@ import {
     isInternalUrl,
     stripXpPathPrefix,
 } from './urls';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 type ReturnValue = {
     url: string;
@@ -11,8 +12,13 @@ type ReturnValue = {
 };
 
 export const usePublicUrl = (href: string): ReturnValue => {
+    const { pageConfig } = usePageConfig();
+
     if (isInternalUrl(href)) {
-        const internalPath = getInternalRelativePath(href);
+        const internalPath = getInternalRelativePath(
+            href,
+            !!pageConfig.editorView
+        );
         return {
             url: internalPath,
             canRouteClientSide: isAppUrl(internalPath),

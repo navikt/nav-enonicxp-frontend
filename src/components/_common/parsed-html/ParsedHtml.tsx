@@ -125,7 +125,7 @@ export const ParsedHtml = ({ htmlProps }: Props) => {
                     <NextImage
                         {...props}
                         alt={attribs.alt || ''}
-                        src={getMediaUrl(attribs.src)}
+                        src={getMediaUrl(attribs.src, !!editorView)}
                     />
                 );
             }

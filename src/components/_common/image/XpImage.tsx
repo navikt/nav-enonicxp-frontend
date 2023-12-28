@@ -1,7 +1,8 @@
 import React from 'react';
-import { XpImageProps } from '../../../types/media';
-import { getMediaUrl } from '../../../utils/urls';
+import { XpImageProps } from 'types/media';
+import { getMediaUrl } from 'utils/urls';
 import { NextImage, NextImageProps } from './NextImage';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 type Props = {
     imageProps: XpImageProps;
@@ -10,7 +11,9 @@ type Props = {
     NextImageProps;
 
 export const XpImage = ({ imageProps, alt, ...rest }: Props) => {
-    const imageUrl = getMediaUrl(imageProps.mediaUrl);
+    const { pageConfig } = usePageConfig();
+
+    const imageUrl = getMediaUrl(imageProps.mediaUrl, !!pageConfig.editorView);
     if (!imageUrl) {
         return null;
     }

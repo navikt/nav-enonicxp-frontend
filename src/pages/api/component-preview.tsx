@@ -8,7 +8,6 @@ import {
     ContentProps,
     ContentType,
 } from '../../types/content-props/_content-common';
-import globalState from '../../globalState';
 
 import { setPageConfigAction } from '../../store/slices/pageConfig';
 import { apiErrorHandler } from '../../utils/api-error-handler';
@@ -43,8 +42,6 @@ const postHandler = async (req: NextApiRequest, res: NextApiResponse) =>
 
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/html');
-
-        globalState.isEditorView = true;
 
         const props = req.body.props as PartComponentProps;
 

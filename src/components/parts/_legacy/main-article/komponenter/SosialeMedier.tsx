@@ -2,6 +2,7 @@ import React from 'react';
 import { getInternalAbsoluteUrl } from 'utils/urls';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { SocialMedia } from 'types/content-props/main-article-props';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './SosialeMedier.module.scss';
 
@@ -38,6 +39,8 @@ type Props = {
 };
 
 export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
+    const { pageConfig } = usePageConfig();
+
     if (social.length === 0) {
         return null;
     }
@@ -46,7 +49,7 @@ export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
         const url = getSocialmediaShareUrl(
             socialMediaType,
             displayName,
-            getInternalAbsoluteUrl(contentPath)
+            getInternalAbsoluteUrl(contentPath, !!pageConfig.editorView)
         );
 
         if (url) {
@@ -65,7 +68,11 @@ export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
             <ul>
                 {linksData.map((item) => (
                     <li key={item.type}>
-                        <LenkeBase href={item.href} analyticsLabel={item.text} className={style.ikon}>
+                        <LenkeBase
+                            href={item.href}
+                            analyticsLabel={item.text}
+                            className={style.ikon}
+                        >
                             <img alt={item.text} className={style[item.type]} />
                         </LenkeBase>
                     </li>

@@ -1,4 +1,3 @@
-import globalState from '../globalState';
 import { ContentProps } from 'types/content-props/_content-common';
 
 export const appOriginProd = 'https://www.nav.no';
@@ -70,10 +69,7 @@ export const isNofollowUrl = (url: string) => nofollowPattern.test(url);
 export const stripXpPathPrefix = (path: string) =>
     path?.replace(xpPathPrefixPattern, '');
 
-export const getInternalRelativePath = (
-    url: string,
-    isEditorView = globalState.isEditorView
-) => {
+export const getInternalRelativePath = (url: string, isEditorView: boolean) => {
     const relativePath = url.replace(internalUrlPrefixPattern, '');
 
     if (isEditorView) {
@@ -85,7 +81,7 @@ export const getInternalRelativePath = (
 
 export const getRelativePathIfInternal = (
     url: string,
-    isEditorView = globalState.isEditorView
+    isEditorView: boolean
 ) => {
     if (!isInternalUrl(url)) {
         return url;
@@ -94,10 +90,7 @@ export const getRelativePathIfInternal = (
     return getInternalRelativePath(url, isEditorView);
 };
 
-export const getInternalAbsoluteUrl = (
-    url: string,
-    isEditorView = globalState.isEditorView
-) => {
+export const getInternalAbsoluteUrl = (url: string, isEditorView: boolean) => {
     if (!isInternalUrl(url)) {
         console.log(`Warning: ${url} is not an internal url`);
         return url;
@@ -109,10 +102,7 @@ export const getInternalAbsoluteUrl = (
 };
 
 // Media url must always be absolute, to prevent internal nextjs routing loopbacks on redirects
-export const getMediaUrl = (
-    url: string,
-    isEditorView = globalState.isEditorView
-) => {
+export const getMediaUrl = (url: string, isEditorView: boolean) => {
     return url?.replace(
         internalUrlPrefixPattern,
         isEditorView ? `${adminOrigin}${xpDraftPathPrefix}` : xpOrigin

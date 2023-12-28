@@ -19,11 +19,14 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
         return <EditorHelp text={'Tomt lenkepanel'} />;
     }
 
+    const isEditorView = !!pageConfig.editorView;
+
     const { link, ingress, background, icon, variant } = config;
 
     const linkProps = getSelectableLinkProps(link);
 
-    const bgUrl = background?.mediaUrl && getMediaUrl(background.mediaUrl);
+    const bgUrl =
+        background?.mediaUrl && getMediaUrl(background.mediaUrl, isEditorView);
 
     const selectedVariant = variant?._selected;
     const variantConfig = selectedVariant && variant[selectedVariant];
@@ -48,7 +51,7 @@ export const LinkPanelPart = ({ config }: LinkPanelPartProps) => {
                     ? {
                           backgroundImage: `url(${buildImageCacheUrl({
                               src: bgUrl,
-                              isEditorView: !!pageConfig.editorView,
+                              isEditorView,
                               maxWidth: 480,
                               quality: 90,
                           })})`,
