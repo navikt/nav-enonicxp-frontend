@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
-RUN chown -R nodejs:nextjs /app
+RUN chown -R nextjs:nodejs /app
 RUN chmod 755 /app
 
 COPY package*.json /app/
