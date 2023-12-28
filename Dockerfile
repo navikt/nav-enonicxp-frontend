@@ -1,9 +1,11 @@
 FROM node:20-bullseye-slim
 
+WORKDIR /app
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
-
-WORKDIR /app
+RUN chown -R nodejs:nextjs /app
+RUN chmod 755 /app
 
 COPY package*.json /app/
 COPY node_modules /app/node_modules/

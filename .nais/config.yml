@@ -11,6 +11,7 @@ metadata:
     config.linkerd.io/proxy-cpu-request: 500m
     config.linkerd.io/proxy-memory-limit: 2Gi
     config.linkerd.io/proxy-memory-request: 1Gi
+    nais.io/read-only-file-system: "false"
 spec:
   image: {{image}}
   port: 3000
