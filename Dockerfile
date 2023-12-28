@@ -14,6 +14,7 @@ COPY src /app/src/
 
 COPY next.config.js .env /app/
 COPY .serverDist /app/.serverDist/
+COPY tsconfig.json next-env.d.ts /app/
 
 USER nextjs
 
