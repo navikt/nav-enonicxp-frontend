@@ -19,16 +19,15 @@ const envMap: Record<AppEnv, DecoratorEnv> = {
 
 const decoratorEnv = envMap[process.env.ENV] || 'prod';
 
-const envProps = (
+const envProps =
     decoratorEnv === 'localhost'
-        ? {
+        ? ({
               env: decoratorEnv,
               localUrl: DECORATOR_URL,
-          }
-        : {
+          } as const)
+        : ({
               env: decoratorEnv,
-          }
-) as const;
+          } as const);
 
 export const getDecoratorComponents = async (params?: DecoratorParams) => {
     const decoratorComponents = fetchDecoratorReact({ ...envProps, params });
