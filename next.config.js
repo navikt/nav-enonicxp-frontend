@@ -130,8 +130,6 @@ const config = {
             '.serverDist/custom-cache-handler'
         ),
     },
-    // SWR crashes during SSR with next 13.4 unless it's transpiled
-    transpilePackages: ['swr'],
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: process.env.ASSET_PREFIX,
@@ -220,7 +218,6 @@ const config = {
             destination: '/api/rss',
         },
         // Send some very common invalid requests directly to 404
-        // to prevent unnecessary spam in our error logs
         {
             source: '/autodiscover/autodiscover.xml',
             destination: '/404',
