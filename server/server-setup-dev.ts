@@ -4,6 +4,8 @@ import { NextServer } from 'next/dist/server/next';
 
 const LOGIN_COOKIE = 'dev-login';
 
+const LEGACY_DEV_HOSTNAME = 'www.intern.dev.nav.no';
+
 // 155.55.* is NAVs public IP range. Also includes the private IP range used by our
 // internal network (10.*), and localhost. Takes the IPv6 prefix ::ffff: into account.
 const isNavIp = (ip?: string) =>
@@ -27,6 +29,14 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
     // when accessed from the Content Studio editor
     expressApp.all(['/draft/*', '/_next/*', '/gfx/*', '/api/*'], (req, res) => {
         return nextRequestHandler(req, res);
+    });
+
+    expressApp.all('*', (req, res, next) => {
+        if (req.hostname === LEGACY_DEV_HOSTNAME) {
+            return res.redirect(302, `${process.env.APP_ORIGIN}${req.path}`);
+        }
+
+        next();
     });
 
     // Sets a cookie which will bypass the IP restriction
