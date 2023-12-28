@@ -29,7 +29,7 @@ spec:
             receiver_reference: team-navno-frontend-alerts
             alert_type: custom
         - alert: "Høy andel 4xx-feil"
-          expr: round((sum by (app) (rate(http_request_duration_seconds_count{status=~"^4\\d\\d", namespace="personbruker", app="nav-enonicxp-frontend"}[3m]))) > 15 AND (100 * (sum by (app) (rate(http_request_duration_seconds_count{status=~"^4\\d\\d", namespace="personbruker", app="nav-enonicxp-frontend"}[3m])) / sum by (app) (rate(http_request_duration_seconds_count{namespace="personbruker", app="nav-enonicxp-frontend"}[3m]))))) > 10
+          expr: round((sum by (app) (rate(http_request_duration_seconds_count{status_code=~"^4\\d\\d", namespace="personbruker", app="nav-enonicxp-frontend"}[3m]))) > 15 AND (100 * (sum by (app) (rate(http_request_duration_seconds_count{status_code=~"^4\\d\\d", namespace="personbruker", app="nav-enonicxp-frontend"}[3m])) / sum by (app) (rate(http_request_duration_seconds_count{namespace="personbruker", app="nav-enonicxp-frontend"}[3m]))))) > 10
           for: 3m
           annotations:
             summary: "[nav-enonicxp-frontend] >10% 4xx-feil i over 3 minutter ({{ $value }} feil/sec)"
@@ -39,7 +39,7 @@ spec:
             receiver_reference: team-navno-frontend-alerts
             alert_type: custom
         - alert: "Høy andel 5xx-feil"
-          expr: round((100 * (sum by (app) (rate(http_request_duration_seconds_count{status=~"^5\\d\\d", namespace="personbruker", app="nav-enonicxp-frontend"}[3m])) / sum by (app) (rate(http_request_duration_seconds_count{namespace="personbruker", app="nav-enonicxp-frontend"}[3m])))), 0.1) > 1
+          expr: round((100 * (sum by (app) (rate(http_request_duration_seconds_count{status_code=~"^5\\d\\d", namespace="personbruker", app="nav-enonicxp-frontend"}[3m])) / sum by (app) (rate(http_request_duration_seconds_count{namespace="personbruker", app="nav-enonicxp-frontend"}[3m])))), 0.1) > 1
           for: 3m
           annotations:
             summary: "[nav-enonicxp-frontend] >1% 5xx-feil i over 3 minutter ({{ $value }} feil/sec)"
