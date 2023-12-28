@@ -82,7 +82,7 @@ jobs:
         run: |
           cat > .env <<EOF
           ENV=${{ inputs.ENV }}
-          NODE_ENV=development
+          NODE_ENV=${{ inputs.NODE_ENV }}
           ADMIN_ORIGIN=${{ inputs.ADMIN_ORIGIN }}
           APP_ORIGIN=${{ inputs.APP_ORIGIN }}
           DECORATOR_URL=${{ inputs.DECORATOR_URL }}
