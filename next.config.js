@@ -148,16 +148,19 @@ const config = {
     images: {
         minimumCacheTTL: isFailover ? 3600 * 24 * 365 : 3600 * 24,
         dangerouslyAllowSVG: true,
-        remotePatterns: [process.env.APP_ORIGIN, process.env.XP_ORIGIN].map(
-            (origin) => {
-                const url = new URL(origin);
-                return {
-                    protocol: url.protocol.replace(':', ''),
-                    hostname: url.hostname,
-                    port: url.port,
-                };
-            }
-        ),
+        remotePatterns: [
+            process.env.APP_ORIGIN,
+            process.env.XP_ORIGIN,
+            process.env.ADMIN_ORIGIN,
+            process.env.FAILOVER_ORIGIN,
+        ].map((origin) => {
+            const url = new URL(origin);
+            return {
+                protocol: url.protocol.replace(':', ''),
+                hostname: url.hostname,
+                port: url.port,
+            };
+        }),
         deviceSizes: [480, 768, 1024, 1440],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     },
