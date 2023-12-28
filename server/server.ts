@@ -8,7 +8,7 @@ import promBundle from 'express-prom-bundle';
 import { initRevalidatorProxyHeartbeat } from './revalidator-proxy-heartbeat';
 import { serverSetupFailover } from './server-setup-failover';
 import { serverSetup } from './server-setup';
-import { getNextServer, injectImageResponseCacheCacheDir } from './next-utils';
+import { getNextServer, injectNextImageCacheDir } from './next-utils';
 
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
@@ -23,17 +23,14 @@ const nextApp = next({
     quiet: process.env.ENV === 'prod',
 });
 
-nextApp.prepare().then(() => {
+nextApp.prepare().then(async () => {
     const expressApp = express();
     const port = process.env.PORT || 3000;
 
-    const nextServer = getNextServer(nextApp);
+    const nextServer = await getNextServer(nextApp);
 
     if (process.env.IMAGE_CACHE_DIR) {
-        injectImageResponseCacheCacheDir(
-            nextServer,
-            process.env.IMAGE_CACHE_DIR
-        );
+        await injectNextImageCacheDir(nextServer, process.env.IMAGE_CACHE_DIR);
     } else {
         console.error('IMAGE_CACHE_DIR is not defined!');
     }
@@ -50,10 +47,10 @@ nextApp.prepare().then(() => {
     if (isFailover) {
         serverSetupFailover(expressApp, nextApp);
     } else {
-        serverSetup(expressApp, nextApp);
+        await serverSetup(expressApp, nextApp);
     }
 
-    const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+    const errorHandler: ErrorRequestHandler = (err, req, res, _) => {
         const { path } = req;
         const { status, stack } = err;
         const msg = stack?.split('\n')[0];
@@ -61,6 +58,7 @@ nextApp.prepare().then(() => {
         console.log(`Express error on path ${path}: ${status} ${msg}`);
 
         res.status(status || 500);
+
         return nextServer.renderError(msg, req, res, path);
     };
 

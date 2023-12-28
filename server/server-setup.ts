@@ -18,13 +18,13 @@ const setJsonCacheHeaders = (req: Request, res: Response) => {
     });
 };
 
-export const serverSetup = (expressApp: Express, nextApp: NextServer) => {
+export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
     const jsonBodyParser = express.json();
 
     const validateSecretMiddleware = validateSecret(nextApp);
 
     const nextRequestHandler = nextApp.getRequestHandler();
-    const nextServer = getNextServer(nextApp);
+    const nextServer = await getNextServer(nextApp);
     const currentBuildId = getNextBuildId(nextServer);
 
     console.log(`Current build id: ${currentBuildId}`);

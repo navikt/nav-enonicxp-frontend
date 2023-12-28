@@ -2,27 +2,20 @@ import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import fs from 'fs';
-import { nodeFs } from 'next/dist/server/lib/node-fs-methods';
 import fsPromises from 'fs/promises';
-
-type FileSystemCacheParams = Partial<
-    ConstructorParameters<typeof FileSystemCache>[0]
->;
+import { IncrementalCacheKindHint } from 'next/dist/server/response-cache';
+import { nodeFs } from 'next/dist/server/lib/node-fs-methods';
 
 // The type for this method is not exported from next.js
 // Be aware it may change when updating the next.js version
-type GetFsPathFunction = ({
-    pathname,
-    appDir,
-    fetchCache,
-}: {
-    pathname: string;
-    appDir?: boolean;
-    fetchCache?: boolean;
-}) => Promise<{
-    filePath: string;
-    isAppPath: boolean;
-}>;
+type GetFilePathFunction = (
+    pathname: string,
+    kind: IncrementalCacheKindHint
+) => string;
+
+type FileSystemCacheContext = ConstructorParameters<typeof FileSystemCache>[0];
+
+const CACHE_FILE_EXTENSIONS = ['html', 'json', 'meta'] as const;
 
 const CACHE_TTL_24_HOURS = 3600 * 24 * 1000;
 
@@ -32,36 +25,37 @@ const isrMemoryCache = new LRUCache<string, CacheHandlerValue>({
     ttlResolution: 1000,
 });
 
+const fileSystemCacheContextDefault: FileSystemCacheContext = {
+    fs: nodeFs,
+    serverDistDir: '.',
+    experimental: { ppr: false },
+    revalidatedTags: [],
+    _appDir: false,
+    _pagesDir: true,
+    _requestHeaders: {},
+} as const;
+
+const customPageCacheDir =
+    process.env.IS_FAILOVER_INSTANCE !== 'true' && process.env.PAGE_CACHE_DIR;
+
 export default class CustomFileSystemCache extends FileSystemCache {
-    constructor(ctx: FileSystemCacheParams = {}) {
-        if (!process.env.PAGE_CACHE_DIR) {
-            console.error('PAGE_CACHE_DIR is not defined!');
-        }
+    constructor(ctx?: Partial<FileSystemCacheContext>) {
+        const context = { ...fileSystemCacheContextDefault, ...ctx };
 
-        const serverDistDir =
-            process.env.PAGE_CACHE_DIR &&
-            process.env.IS_FAILOVER_INSTANCE !== 'true'
-                ? process.env.PAGE_CACHE_DIR
-                : (ctx.serverDistDir as string);
+        context.serverDistDir = customPageCacheDir || context.serverDistDir;
 
-        super({
-            ...ctx,
-            serverDistDir,
-            fs: ctx.fs || nodeFs,
-            dev: ctx.dev ?? process.env.NODE_ENV === 'development',
-            _appDir: ctx._appDir ?? false,
-            _requestHeaders: ctx._requestHeaders || {},
-            revalidatedTags: ctx.revalidatedTags || [],
-        });
+        super(context);
     }
 
-    public async get(key: string, fetchCache?: boolean) {
+    public async get(...args: Parameters<FileSystemCache['get']>) {
+        const [key] = args;
+
         const dataFromMemoryCache = isrMemoryCache.get(key);
         if (dataFromMemoryCache) {
             return dataFromMemoryCache;
         }
 
-        const dataFromFileSystemCache = await super.get(key, fetchCache);
+        const dataFromFileSystemCache = await super.get(...args);
         if (dataFromFileSystemCache) {
             const ttlRemaining = dataFromFileSystemCache.lastModified
                 ? dataFromFileSystemCache.lastModified +
@@ -79,20 +73,18 @@ export default class CustomFileSystemCache extends FileSystemCache {
         return dataFromFileSystemCache;
     }
 
-    public async set(key: string, data: CacheHandlerValue['value']) {
+    public async set(...args: Parameters<FileSystemCache['set']>) {
+        const [key, data] = args;
+
         isrMemoryCache.set(key, { value: data, lastModified: Date.now() });
-        return super.set(key, data);
+        return super.set(...args);
     }
 
     public async clearGlobalCache() {
         let didClearFs;
 
         try {
-            const { filePath } = await (this['getFsPath'] as GetFsPathFunction)(
-                {
-                    pathname: '',
-                }
-            );
+            const filePath = this.getFilePathPublic('', 'pages');
 
             if (fs.existsSync(filePath)) {
                 fs.rmSync(filePath, { recursive: true });
@@ -116,10 +108,11 @@ export default class CustomFileSystemCache extends FileSystemCache {
     public async deleteGlobalCacheEntry(path: string) {
         const pagePath = path === '/' ? '/index' : path;
 
-        return Promise.all([
-            this.deletePageCacheFile(`${pagePath}.html`),
-            this.deletePageCacheFile(`${pagePath}.json`),
-        ])
+        return Promise.all(
+            CACHE_FILE_EXTENSIONS.map((ext) =>
+                this.deletePageCacheFile(`${pagePath}.${ext}`)
+            )
+        )
             .catch((e) => {
                 console.error(
                     `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
@@ -129,10 +122,10 @@ export default class CustomFileSystemCache extends FileSystemCache {
     }
 
     private async deletePageCacheFile(pathname: string) {
-        return (this['getFsPath'] as GetFsPathFunction)({
-            pathname: pathname,
-        })
-            .then(({ filePath }) => fsPromises.unlink(filePath))
+        const filePath = this.getFilePathPublic(pathname, 'pages');
+
+        return fsPromises
+            .unlink(filePath)
             .then(() => {
                 console.log(`Removed file from page cache: ${pathname}`);
             })
@@ -141,5 +134,9 @@ export default class CustomFileSystemCache extends FileSystemCache {
                     `Failed to remove file from page cache: ${pathname} - ${e}`
                 );
             });
+    }
+
+    public getFilePathPublic(pathname: string, kind: IncrementalCacheKindHint) {
+        return (this['getFilePath'] as GetFilePathFunction)(pathname, kind);
     }
 }

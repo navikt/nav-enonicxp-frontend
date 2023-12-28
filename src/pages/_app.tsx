@@ -7,20 +7,26 @@ import { PageProps } from 'components/PageBase';
 
 import 'global.scss';
 
-const App = ({ Component, pageProps }: AppProps<PageProps>) => {
-    useEffect(() => {
-        if (pageProps?.content?.editorView) {
-            return;
-        }
+const initFaro =
+    process.env.ENV === 'localhost'
+        ? () => {}
+        : () =>
+              initializeFaro({
+                  url: process.env.TELEMETRY_URL,
+                  app: {
+                      name: 'nav-enonicxp-frontend',
+                      version: process.env.RELEASE_TAG,
+                  },
+              });
 
-        initializeFaro({
-            url: process.env.TELEMETRY_URL,
-            app: {
-                name: 'nav-enonicxp-frontend',
-                version: process.env.RELEASE_TAG,
-            },
-        });
-    }, []);
+const App = ({ Component, pageProps }: AppProps<PageProps>) => {
+    const isEditorView = !!pageProps?.content?.editorView;
+
+    useEffect(() => {
+        if (!isEditorView) {
+            initFaro();
+        }
+    }, [isEditorView]);
 
     return (
         <Provider store={store}>
