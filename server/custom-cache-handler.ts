@@ -35,20 +35,14 @@ const fileSystemCacheContextDefault: FileSystemCacheContext = {
     _requestHeaders: {},
 } as const;
 
+const customPageCacheDir =
+    process.env.IS_FAILOVER_INSTANCE !== 'true' && process.env.PAGE_CACHE_DIR;
+
 export default class CustomFileSystemCache extends FileSystemCache {
     constructor(ctx?: Partial<FileSystemCacheContext>) {
         const context = { ...fileSystemCacheContextDefault, ...ctx };
 
-        const { PAGE_CACHE_DIR, IS_FAILOVER_INSTANCE } = process.env;
-
-        if (!PAGE_CACHE_DIR) {
-            console.error('PAGE_CACHE_DIR is not defined!');
-        }
-
-        context.serverDistDir =
-            PAGE_CACHE_DIR && IS_FAILOVER_INSTANCE !== 'true'
-                ? PAGE_CACHE_DIR
-                : context.serverDistDir;
+        context.serverDistDir = customPageCacheDir || context.serverDistDir;
 
         super(context);
     }
