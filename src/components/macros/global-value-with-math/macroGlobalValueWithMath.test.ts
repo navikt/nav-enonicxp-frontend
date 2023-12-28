@@ -18,7 +18,8 @@ test('dagpenger', () => {
 
     const result = evaluateExpression(
         { expression, decimals, variables },
-        language
+        language,
+        true
     );
 
     expect(result).toBe('711\xa0720');
@@ -32,7 +33,8 @@ test('kompleks matte', () => {
 
     const result = evaluateExpression(
         { expression, decimals, variables },
-        language
+        language,
+        true
     );
 
     expect(result).toBe('279\xa0639,968');
@@ -46,7 +48,8 @@ test('kompleks matte med paranteser', () => {
 
     const result = evaluateExpression(
         { expression, decimals, variables },
-        language
+        language,
+        true
     );
 
     expect(result).toBe('80\xa0612,6');
@@ -60,7 +63,8 @@ test('should evaluate a simple expression', () => {
 
     const result = evaluateExpression(
         { expression, decimals, variables },
-        language
+        language,
+        true
     );
 
     expect(result).toEqual('4');
@@ -74,7 +78,8 @@ test('should evaluate an expression with variables', () => {
 
     const result = evaluateExpression(
         { expression, decimals, variables },
-        language
+        language,
+        true
     );
 
     expect(result).toEqual('5,79');
