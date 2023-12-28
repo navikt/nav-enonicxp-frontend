@@ -1,22 +1,20 @@
 FROM node:20-bullseye-slim
 
-WORKDIR /app
+WORKDIR /tmp
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
-RUN chown -R nextjs:nodejs /app
-RUN chmod 755 /app
 
-COPY package*.json /app/
-COPY node_modules /app/node_modules/
+COPY package*.json /tmp/
+COPY node_modules /tmp/node_modules/
 
-COPY .next /app/.next/
-COPY public /app/public/
-COPY src /app/src/
+COPY .next /tmp/.next/
+COPY public /tmp/public/
+COPY src /tmp/src/
 
-COPY next.config.js .env /app/
-COPY .serverDist /app/.serverDist/
-COPY tsconfig.json next-env.d.ts /app/
+COPY next.config.js .env /tmp/
+COPY .serverDist /tmp/.serverDist/
+COPY tsconfig.json next-env.d.ts /tmp/
 
 USER nextjs
 

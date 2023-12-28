@@ -11,7 +11,6 @@ metadata:
     config.linkerd.io/proxy-cpu-request: 500m
     config.linkerd.io/proxy-memory-limit: 2Gi
     config.linkerd.io/proxy-memory-request: 1Gi
-    nais.io/read-only-file-system: "false"
     nais.io/run-as-user: "1001"
     nais.io/run-as-group: "1001"
 spec:
