@@ -1,5 +1,4 @@
 import mockFs from 'mock-fs';
-import CustomFileSystemCache from './custom-cache-handler';
 import fsPromises from 'fs/promises';
 
 describe('Custom cache handler for ISR page cache', () => {
@@ -7,11 +6,18 @@ describe('Custom cache handler for ISR page cache', () => {
 
     process.env.PAGE_CACHE_DIR = `/${pageCacheDir}`;
 
+    beforeEach(() => {
+        jest.resetModules();
+    });
+
     afterEach(() => {
         mockFs.restore();
     });
 
     test('getFsPath should return paths with the correct page cache dir', async () => {
+        const CustomFileSystemCache = (await import('./custom-cache-handler'))
+            .default;
+
         const cacheHandler = new CustomFileSystemCache();
 
         const filePath = cacheHandler.getFilePathPublic('', 'pages');
@@ -20,12 +26,15 @@ describe('Custom cache handler for ISR page cache', () => {
     });
 
     test('IncrementalCache should write to the correct page cache dir', async () => {
-        mockFs({});
-        fsPromises.writeFile = jest.fn();
+        const CustomFileSystemCache = (await import('./custom-cache-handler'))
+            .default;
 
         const cacheHandler = new CustomFileSystemCache({
             flushToDisk: true,
         });
+
+        mockFs({});
+        fsPromises.writeFile = jest.fn();
 
         await cacheHandler.set(
             'foo',
