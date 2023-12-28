@@ -1,6 +1,8 @@
 import React, { Suspense } from 'react';
+import { ContentProps } from 'types/content-props/_content-common';
 
 type Props = {
+    editorView: ContentProps['editorView'];
     fallback: React.ReactNode;
     children: React.ReactNode;
 };
@@ -24,8 +26,16 @@ export class ErrorBoundary extends React.Component<Props, State> {
     }
 
     render() {
-        const { children, fallback } = this.props;
+        const { children, fallback, editorView } = this.props;
 
-        return <Suspense>{this.state.hasError ? fallback : children}</Suspense>;
+        const componentToRender = this.state.hasError ? fallback : children;
+
+        // The content studio component editor does not play nice with suspense boundaries
+        // Suspense causes components to sometimes become unselectable for some reason...
+        if (editorView === 'edit') {
+            return componentToRender;
+        }
+
+        return <Suspense>{componentToRender}</Suspense>;
     }
 }

@@ -106,6 +106,7 @@ export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
                     pageProps={pageProps}
                 />
             }
+            editorView={pageProps.editorView}
         >
             <AuthDependantRender
                 renderOn={componentProps?.config?.renderOnAuthState}
