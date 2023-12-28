@@ -99,13 +99,22 @@ const ErrorFallback = ({ componentProps, pageProps }: Props) => {
 
 export const ComponentMapper = ({ componentProps, pageProps }: Props) => {
     return (
-        <AuthDependantRender
-            renderOn={componentProps?.config?.renderOnAuthState}
+        <ErrorBoundary
+            fallback={
+                <ErrorFallback
+                    componentProps={componentProps}
+                    pageProps={pageProps}
+                />
+            }
         >
-            <ComponentToRender
-                componentProps={componentProps}
-                pageProps={pageProps}
-            />
-        </AuthDependantRender>
+            <AuthDependantRender
+                renderOn={componentProps?.config?.renderOnAuthState}
+            >
+                <ComponentToRender
+                    componentProps={componentProps}
+                    pageProps={pageProps}
+                />
+            </AuthDependantRender>
+        </ErrorBoundary>
     );
 };
