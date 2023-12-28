@@ -10,6 +10,7 @@ COPY node_modules /app/node_modules/
 
 COPY .next /app/.next/
 COPY public /app/public/
+COPY src /app/src/
 
 COPY next.config.js .env /app/
 COPY .serverDist /app/.serverDist/
