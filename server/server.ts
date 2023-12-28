@@ -19,9 +19,7 @@ const promMiddleware = promBundle({
 });
 
 const nextApp = next({
-    dev:
-        process.env.NODE_ENV === 'development' &&
-        process.env.ENV === 'localhost',
+    dev: process.env.NODE_ENV === 'development',
     quiet: process.env.ENV === 'prod',
 });
 
