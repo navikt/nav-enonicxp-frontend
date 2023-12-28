@@ -1,6 +1,15 @@
 name: Deploy to dev2
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      NODE_ENV:
+        description: 'Node environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - development
 
 jobs:
   build:
@@ -22,6 +31,7 @@ jobs:
       RELEASE_TAG: dev2-${{ github.sha }}
       NAVNO_API_URL: https://www.intern.dev.nav.no/person/navno-api
       FAILOVER_ORIGIN: https://www-2-failover.intern.dev.nav.no
+      NODE_ENV: ${{ inputs.NODE_ENV }}
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}
