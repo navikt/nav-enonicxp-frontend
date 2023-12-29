@@ -20,4 +20,4 @@ replicas:
   max: 2
 redisPlan: startup-4
 redisProject: nav-dev
-redisInstance: pagecacheDev1
+redisInstance: pagecache-dev1
