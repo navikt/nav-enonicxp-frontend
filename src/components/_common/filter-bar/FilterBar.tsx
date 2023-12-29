@@ -65,7 +65,7 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
             .flat();
 
         setFiltersToDisplay(_filtersToDisplay);
-    }, []);
+    }, [availableFilters, filterIds]);
 
     // None of the parts are attached to filters, so don't show the FilterBar.
     if (filterIds.length === 0) {

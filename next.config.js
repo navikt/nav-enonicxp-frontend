@@ -176,8 +176,6 @@ const config = {
             })
         );
 
-        config.optimization.minimize = false;
-
         return config;
     },
     redirects: async () => [
