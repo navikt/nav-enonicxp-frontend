@@ -127,7 +127,7 @@ const config = {
         isrMemoryCacheSize: 0,
         incrementalCacheHandlerPath: path.resolve(
             __dirname,
-            '.serverDist/custom-cache-handler'
+            '.serverDist/cache/custom-cache-handler'
         ),
     },
     productionBrowserSourceMaps: true,
