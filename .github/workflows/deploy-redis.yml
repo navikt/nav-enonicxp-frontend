@@ -1,0 +1,27 @@
+name: Deploy redis
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'Instance'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - prod
+
+jobs:
+  deploy_redis:
+    name: Deploy redis instance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Deploy to nais
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          CLUSTER: dev-gcp
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          RESOURCE: .nais/redis.yml
+          VARS: .nais/vars/vars-dev1.yml

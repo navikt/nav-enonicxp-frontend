@@ -27,6 +27,9 @@ spec:
   prometheus:
     enabled: true
     path: /internal/metrics
+#  redis:
+#    - instance: {{ redisInstance }}
+#      access: readwrite
   ingresses:
     {{#each ingresses as |url|}}
     - {{url}}

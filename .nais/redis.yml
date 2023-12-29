@@ -1,0 +1,11 @@
+apiVersion: aiven.io/v1alpha1
+kind: Redis
+metadata:
+  labels:
+    app: nav-enonicxp-frontend
+    team: personbruker
+  name: redis-personbruker-{{ redisInstance }}
+  namespace: personbruker
+spec:
+  plan: {{ redisPlan }}
+  project: {{ redisProject }}
