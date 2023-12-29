@@ -13,7 +13,7 @@ type DecoratorEnv = DecoratorEnvProps['env'];
 const envMap: Record<AppEnv, DecoratorEnv> = {
     localhost: 'localhost',
     dev1: 'dev',
-    dev2: 'devNext',
+    dev2: 'beta',
     prod: 'prod',
 } as const;
 
