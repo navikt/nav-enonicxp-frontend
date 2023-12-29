@@ -15,9 +15,8 @@ describe('Custom cache handler for ISR page cache', () => {
     });
 
     test('getFsPath should return paths with the correct page cache dir', async () => {
-        const CustomFileSystemCache = (
-            await import('cache/custom-cache-handler')
-        ).default;
+        const CustomFileSystemCache = (await import('./custom-cache-handler'))
+            .default;
 
         const cacheHandler = new CustomFileSystemCache();
 
@@ -27,9 +26,8 @@ describe('Custom cache handler for ISR page cache', () => {
     });
 
     test('IncrementalCache should write to the correct page cache dir', async () => {
-        const CustomFileSystemCache = (
-            await import('cache/custom-cache-handler')
-        ).default;
+        const CustomFileSystemCache = (await import('./custom-cache-handler'))
+            .default;
 
         const cacheHandler = new CustomFileSystemCache({
             flushToDisk: true,
