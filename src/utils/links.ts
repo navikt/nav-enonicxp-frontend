@@ -17,11 +17,11 @@ const getLinkHref = (element: HTMLElement | null): string | null => {
 };
 
 export const hookAndInterceptInternalLink =
-    (router: NextRouter) => (e: MouseEvent) => {
+    (router: NextRouter, isEditorView: boolean) => (e: MouseEvent) => {
         const href = getLinkHref(e.target as HTMLElement);
         if (href && isAppUrl(href)) {
             e.preventDefault();
-            const path = getInternalRelativePath(href);
+            const path = getInternalRelativePath(href, isEditorView);
             router.push(path);
         }
     };

@@ -1,7 +1,6 @@
 import React from 'react';
 import { MacroGlobalValueWithMathProps } from 'types/macro-props/global-value-with-math';
 import jsep from 'jsep';
-import globalState from 'globalState';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language } from 'translations';
 import { formatNumber } from 'utils/math';
@@ -54,7 +53,8 @@ function evaluateExpressionJSEP(node) {
 
 export const evaluateExpression = (
     { expression, decimals, variables }: ExpressionProps,
-    language: Language
+    language: Language,
+    isEditorView: boolean
 ) => {
     try {
         const expressionSubstituted = substituteExpression(
@@ -72,7 +72,7 @@ export const evaluateExpression = (
         const result = evaluateExpressionJSEP(parsedExpression);
         return formatNumber(result, decimals, language);
     } catch (e) {
-        if (globalState.isEditorView) {
+        if (isEditorView) {
             return `[feil ved evaluering av uttrykk: ${e}]`;
         }
         console.error(`Global values calculation error: ${e}`);
@@ -83,13 +83,19 @@ export const evaluateExpression = (
 export const MacroGlobalValueWithMath = ({
     config,
 }: MacroGlobalValueWithMathProps) => {
-    const { language } = usePageConfig();
+    const { language, pageConfig } = usePageConfig();
 
     if (!config?.global_value_with_math) {
         return null;
     }
 
-    const value = evaluateExpression(config.global_value_with_math, language);
+    const { editorView } = pageConfig;
+
+    const value = evaluateExpression(
+        config.global_value_with_math,
+        language,
+        !!editorView
+    );
 
     return <>{value}</>;
 };

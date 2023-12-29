@@ -32,6 +32,8 @@ const StaticIcon = ({
     isEditorView: boolean;
     className?: string;
 }) => {
+    const { pageConfig } = usePageConfig();
+
     const ref = useRef<HTMLSpanElement>();
 
     // We inline svg data into the html to allow us to easily style it with CSS
@@ -44,7 +46,7 @@ const StaticIcon = ({
         url: isSvg
             ? buildImageCacheUrl({
                   ...nextImageProps,
-                  src: getMediaUrl(icon.icon.mediaUrl),
+                  src: getMediaUrl(icon.icon.mediaUrl, !!pageConfig.editorView),
                   isEditorView,
               })
             : null,

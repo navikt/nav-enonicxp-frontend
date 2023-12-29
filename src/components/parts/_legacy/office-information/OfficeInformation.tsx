@@ -21,10 +21,13 @@ import {
 } from 'types/structuredData';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
+import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './OfficeInformation.module.scss';
 
 export const OfficeInformation = (props: OfficeInformationProps) => {
+    const { pageConfig } = usePageConfig();
+
     const unit = props.data.enhet;
     const contact = props.data.kontaktinformasjon;
     const getLabelMain = translator('mainArticle', props.language);
@@ -35,19 +38,19 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
 
     const publikumsmottak = forceArray(contact.publikumsmottak);
 
-    // Id in format of a URL required by Google for search.
-    const mainOfficeId = getInternalAbsoluteUrl(props._path);
+    const pageUrl = getInternalAbsoluteUrl(
+        props._path,
+        !!pageConfig.editorView
+    );
 
     const createDepartmentSchema = (mottak: LegacyOfficeAudienceReception) => {
         const fullOfficeName = mottak.stedsbeskrivelse
             ? `${unit.navn}, ${mottak.stedsbeskrivelse}`
             : `${unit.navn}`;
 
-        // Globally unique Id in format of a URL required by Google for search. Not required to
+        // Globally unique id in format of a URL required by Google for search. Not required to
         // be a functioning URL
-        const departmentId = `${getInternalAbsoluteUrl(props._path)}/${
-            mottak.id
-        }`;
+        const departmentId = `${pageUrl}/${mottak.id}`;
 
         return {
             '@type': 'GovernmentOffice',
@@ -56,7 +59,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
             location: mottak.stedsbeskrivelse || '',
             image: 'https://www.nav.no/gfx/google-search-nav-logo.png',
             telephone,
-            url: getInternalAbsoluteUrl(props._path),
+            url: pageUrl,
             address: {
                 '@type': 'PostalAddress',
                 streetAddress: formatAddress(mottak.besoeksadresse, false),
@@ -75,7 +78,8 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
         {
             '@context': 'https://schema.org',
             '@type': 'GovernmentOffice',
-            '@id': mainOfficeId,
+            // Id in format of a URL required by Google for search.
+            '@id': pageUrl,
             name: unit.navn,
             image: 'https://www.nav.no/gfx/google-search-nav-logo.png',
             telephone,
@@ -87,7 +91,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                 postalCode: contact.postadresse.postnummer,
                 addressCountry: 'NO',
             },
-            url: getInternalAbsoluteUrl(props._path),
+            url: pageUrl,
             vatID: unit.organisasjonsnummer,
             department: publikumsmottak.map(createDepartmentSchema),
         },

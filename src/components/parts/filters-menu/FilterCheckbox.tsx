@@ -42,13 +42,14 @@ export const FilterCheckbox = ({
                     isSelected && style.selected
                 )}
             >
-                {!isSelected && <StaticImage imageData={checkboxIcon} alt="" />}
-                {isSelected && (
+                {isSelected ? (
                     <StaticImage
                         imageData={checkedIcon}
                         alt=""
                         className={style.selected}
                     />
+                ) : (
+                    <StaticImage imageData={checkboxIcon} alt="" />
                 )}
                 {filter.filterName}
             </label>

@@ -24,6 +24,7 @@ jobs:
       NAVNO_API_URL: https://www.nav.no/person/navno-api
       FAILOVER_ORIGIN: https://www-failover.nav.no
       IS_FAILOVER_INSTANCE: true
+      NODE_ENV: production
     secrets:
       READER_TOKEN: ${{ secrets.READER_TOKEN }}
       SERVICE_SECRET: ${{ secrets.SERVICE_SECRET }}

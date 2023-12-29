@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from 'react';
 import { Heading } from '@navikt/ds-react';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { translator } from 'translations';
@@ -6,10 +7,12 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { FilterCheckbox } from 'components/parts/filters-menu/FilterCheckbox';
 import { SectionWithHeaderProps } from 'types/component-props/layouts/section-with-header';
 import { FilterExplanation } from './FilterExplanation';
+import { useScrollPosition } from 'store/hooks/useStickyScroll';
+import { Category, Filter } from 'types/component-props/parts/filter-menu';
 
 import style from './FilterBar.module.scss';
-import { useRef } from 'react';
-import { useScrollPosition } from 'store/hooks/useStickyScroll';
+
+type FilterWithCategory = Filter & Pick<Category, 'categoryName'>;
 
 type FilterBarProps = {
     layoutProps: SectionWithHeaderProps;
@@ -32,6 +35,10 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         filterBarRef?.current
     );
 
+    const [filtersToDisplay, setFiltersToDisplay] = useState<
+        FilterWithCategory[]
+    >([]);
+
     // Create a flat array of all ids that any
     // underlying part that has filter ids attached.
     // We don't care about duplicate ids in the final array at the moment.
@@ -43,23 +50,27 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         return acc;
     }, []);
 
+    useEffect(() => {
+        // As the previous array is a string[], we need to create a list of the
+        // actual filter objects to be able to display filterName later on.
+        const _filtersToDisplay = availableFilters
+            .map((category) => {
+                return category.filters
+                    .filter((filter) => filterIds.includes(filter.id))
+                    .map((filter) => ({
+                        ...filter,
+                        categoryName: category.categoryName, // Needed when reporting category back to Amplitude
+                    }));
+            })
+            .flat();
+
+        setFiltersToDisplay(_filtersToDisplay);
+    }, [availableFilters, filterIds]);
+
     // None of the parts are attached to filters, so don't show the FilterBar.
     if (filterIds.length === 0) {
         return null;
     }
-
-    // As the previous array is a string[], we need to create a list of the
-    // actual filter objects to be able to display filterName later on.
-    const filtersToDisplay = availableFilters
-        .map((category) => {
-            return category.filters
-                .filter((filter) => filterIds.includes(filter.id))
-                .map((filter) => ({
-                    ...filter,
-                    categoryName: category.categoryName, // Needed when reporting category back to Amplitude
-                }));
-        })
-        .flat();
 
     return (
         <div className={style.wrapper}>

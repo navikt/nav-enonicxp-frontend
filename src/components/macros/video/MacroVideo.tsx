@@ -137,7 +137,9 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     }
 
     const durationAsString = getTimestampFromDuration(duration);
-    const imageUrl = poster?.startsWith('http') ? poster : getMediaUrl(poster);
+    const imageUrl = poster?.startsWith('http')
+        ? poster
+        : getMediaUrl(poster, !!editorView);
 
     return (
         <div className={style.wrapper}>

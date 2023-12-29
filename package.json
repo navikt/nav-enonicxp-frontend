@@ -29,7 +29,7 @@
         "@navikt/ds-css": "5.11.3",
         "@navikt/ds-react": "5.11.3",
         "@navikt/ds-tokens": "5.11.3",
-        "@navikt/nav-dekoratoren-moduler": "2.1.4",
+        "@navikt/nav-dekoratoren-moduler": "2.1.5",
         "@reduxjs/toolkit": "1.9.7",
         "cookie-parser": "1.4.6",
         "csp-header": "5.2.1",

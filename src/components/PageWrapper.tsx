@@ -36,7 +36,8 @@ type Props = {
 
 export const PageWrapper = (props: Props) => {
     const { content, children } = props;
-    const { editorView } = content;
+
+    const isEditorView = !!content.editorView;
 
     const router = useRouter();
 
@@ -52,7 +53,7 @@ export const PageWrapper = (props: Props) => {
 
     useEffect(() => {
         // Checking auth status is not supported when viewed via Content Studio
-        if (editorView) {
+        if (isEditorView) {
             store.dispatch(
                 setAuthStateAction({
                     authState: 'loggedOut',
@@ -71,19 +72,22 @@ export const PageWrapper = (props: Props) => {
         }
 
         onBreadcrumbClick((breadcrumb) =>
-            router.push(getInternalRelativePath(breadcrumb.url, !!editorView))
+            router.push(getInternalRelativePath(breadcrumb.url, isEditorView))
         );
         onLanguageSelect((language) =>
             router.push(
-                getInternalRelativePath(language.url as string, !!editorView)
+                getInternalRelativePath(language.url as string, isEditorView)
             )
         );
 
-        if (!!editorView) {
+        if (isEditorView) {
             return;
         }
 
-        const linkInterceptor = hookAndInterceptInternalLink(router);
+        const linkInterceptor = hookAndInterceptInternalLink(
+            router,
+            isEditorView
+        );
         const linkPrefetcher = prefetchOnMouseover(router);
 
         const headerElement = document.getElementById('decorator-header');
@@ -110,7 +114,7 @@ export const PageWrapper = (props: Props) => {
                 footerElement.removeEventListener('mouseover', linkPrefetcher);
             }
         };
-    }, [editorView, router]);
+    }, [isEditorView, router]);
 
     useEffect(() => {
         if (!content) {
