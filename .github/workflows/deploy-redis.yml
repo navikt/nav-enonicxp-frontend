@@ -1,18 +1,18 @@
 name: Deploy redis
 on:
   workflow_dispatch:
-#    inputs:
-#      env:
-#        description: 'Instance'
-#        required: true
-#        default: 'dev'
-#        type: choice
-#        options:
-#          - dev
-#          - prod
+    inputs:
+      env:
+        description: 'Instance'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - prod
 
 jobs:
-  deploy_alerts:
+  deploy_redis:
     name: Deploy redis instance
     runs-on: ubuntu-latest
     steps:
