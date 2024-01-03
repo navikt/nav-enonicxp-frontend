@@ -18,7 +18,6 @@ export enum Audience {
     PERSON = 'person',
     EMPLOYER = 'employer',
     PROVIDER = 'provider',
-    OTHER = 'other',
 }
 
 export enum ProviderAudience {

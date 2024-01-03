@@ -14,9 +14,7 @@ import { ProcessedHtmlProps } from 'types/processed-html-props';
 
 import style from './ContactOption.module.scss';
 
-type CallAudience = Exclude<Audience, Audience.OTHER>;
-
-const contactURLs: Record<CallAudience, Record<'no' | 'en', string>> = {
+const contactURLs: Record<Audience, Record<'no' | 'en', string>> = {
     person: {
         no: '/kontaktoss#ring-oss',
         en: '/kontaktoss/en#call-us',
