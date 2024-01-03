@@ -70,7 +70,12 @@ export const evaluateExpression = (
 
         const parsedExpression = jsep(expressionWithDotSeparators);
         const result = evaluateExpressionJSEP(parsedExpression);
-        return formatNumber(result, decimals, language);
+        return formatNumber({
+            num: result,
+            minDecimals: decimals,
+            maxDecimals: decimals,
+            language,
+        });
     } catch (e) {
         if (isEditorView) {
             return `[feil ved evaluering av uttrykk: ${e}]`;

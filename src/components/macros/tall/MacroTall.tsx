@@ -37,5 +37,5 @@ export const MacroTall = ({ config }: MacroTallProps) => {
         );
     }
 
-    return <>{formatNumber(number, 2, language)}</>;
+    return <>{formatNumber({ num: number, maxDecimals: 2, language })}</>;
 };
