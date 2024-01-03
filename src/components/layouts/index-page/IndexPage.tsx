@@ -33,7 +33,8 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
 
     const hasNoTopGap =
         getAudience(pageProps.data.audience) === 'employer' ||
-        getAudience(pageProps.data.audience) === 'provider';
+        getAudience(pageProps.data.audience) === 'provider' ||
+        getAudience(pageProps.data.audience) === 'other';
 
     return (
         <LayoutContainer
