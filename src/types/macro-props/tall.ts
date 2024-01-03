@@ -5,6 +5,7 @@ export interface MacroTallProps extends MacroPropsCommon {
     config: {
         tall: {
             verdi: number;
+            decimals?: number;
         };
     };
 }

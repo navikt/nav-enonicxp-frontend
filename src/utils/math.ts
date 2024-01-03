@@ -2,8 +2,8 @@ import { Language } from 'translations';
 
 export const formatNumber = ({
     num,
-    minDecimals = 0,
-    maxDecimals = 0,
+    minDecimals,
+    maxDecimals = 2,
     language = 'no',
 }: {
     num: number;
@@ -14,8 +14,9 @@ export const formatNumber = ({
     // Not all browsers process the "nn" locale correctly. Formatting is identical
     // to "no", so we just use that
     return num.toLocaleString(language === 'nn' ? 'no' : language, {
-        minimumFractionDigits: minDecimals,
-        maximumFractionDigits: maxDecimals,
+        // Ensure null-values are not used, as this is the equivalent of 0-values
+        minimumFractionDigits: minDecimals ?? undefined,
+        maximumFractionDigits: maxDecimals ?? undefined,
     });
 };
 

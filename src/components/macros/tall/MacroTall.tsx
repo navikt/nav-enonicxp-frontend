@@ -15,7 +15,8 @@ export const MacroTall = ({ config }: MacroTallProps) => {
         );
     }
 
-    const { verdi } = config.tall;
+    const { verdi, decimals } = config.tall;
+
     if (verdi === undefined) {
         return (
             <EditorHelp
@@ -37,5 +38,14 @@ export const MacroTall = ({ config }: MacroTallProps) => {
         );
     }
 
-    return <>{formatNumber({ num: number, maxDecimals: 2, language })}</>;
+    return (
+        <>
+            {formatNumber({
+                num: number,
+                minDecimals: decimals,
+                maxDecimals: decimals,
+                language,
+            })}
+        </>
+    );
 };

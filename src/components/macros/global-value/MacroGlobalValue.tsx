@@ -32,13 +32,12 @@ export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
         return <>{value}</>;
     }
 
-    const number = parseFloat(value);
     return (
         <>
             {formatNumber({
-                num: number,
+                num: parseFloat(value),
                 minDecimals: decimals,
-                maxDecimals: 2,
+                maxDecimals: decimals,
                 language,
             })}
         </>
