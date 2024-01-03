@@ -3,7 +3,7 @@ import { Language } from 'translations';
 export const formatNumber = ({
     num,
     minDecimals,
-    maxDecimals = 2,
+    maxDecimals,
     language = 'no',
 }: {
     num: number;
@@ -16,7 +16,7 @@ export const formatNumber = ({
     return num.toLocaleString(language === 'nn' ? 'no' : language, {
         // Ensure null-values are not used, as this is the equivalent of 0-values
         minimumFractionDigits: minDecimals ?? undefined,
-        maximumFractionDigits: maxDecimals ?? undefined,
+        maximumFractionDigits: maxDecimals ?? 2,
     });
 };
 
