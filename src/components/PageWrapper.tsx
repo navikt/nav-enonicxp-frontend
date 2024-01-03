@@ -84,36 +84,36 @@ export const PageWrapper = (props: Props) => {
             return;
         }
 
-        // const linkInterceptor = hookAndInterceptInternalLink(
-        //     router,
-        //     isEditorView
-        // );
-        // const linkPrefetcher = prefetchOnMouseover(router);
-        //
-        // const headerElement = document.getElementById('decorator-header');
-        // const footerElement = document.getElementById('decorator-footer');
-        //
-        // if (headerElement) {
-        //     headerElement.addEventListener('click', linkInterceptor);
-        //     headerElement.addEventListener('mouseover', linkPrefetcher);
-        // }
-        //
-        // if (footerElement) {
-        //     footerElement.addEventListener('click', linkInterceptor);
-        //     footerElement.addEventListener('mouseover', linkPrefetcher);
-        // }
-        //
-        // return () => {
-        //     if (headerElement) {
-        //         headerElement.removeEventListener('click', linkInterceptor);
-        //         headerElement.removeEventListener('mouseover', linkPrefetcher);
-        //     }
-        //
-        //     if (footerElement) {
-        //         footerElement.removeEventListener('click', linkInterceptor);
-        //         footerElement.removeEventListener('mouseover', linkPrefetcher);
-        //     }
-        // };
+        const linkInterceptor = hookAndInterceptInternalLink(
+            router,
+            isEditorView
+        );
+        const linkPrefetcher = prefetchOnMouseover(router);
+
+        const headerElement = document.getElementById('decorator-header');
+        const footerElement = document.getElementById('decorator-footer');
+
+        if (headerElement) {
+            headerElement.addEventListener('click', linkInterceptor);
+            headerElement.addEventListener('mouseover', linkPrefetcher);
+        }
+
+        if (footerElement) {
+            footerElement.addEventListener('click', linkInterceptor);
+            footerElement.addEventListener('mouseover', linkPrefetcher);
+        }
+
+        return () => {
+            if (headerElement) {
+                headerElement.removeEventListener('click', linkInterceptor);
+                headerElement.removeEventListener('mouseover', linkPrefetcher);
+            }
+
+            if (footerElement) {
+                footerElement.removeEventListener('click', linkInterceptor);
+                footerElement.removeEventListener('mouseover', linkPrefetcher);
+            }
+        };
     }, [isEditorView, router]);
 
     useEffect(() => {
