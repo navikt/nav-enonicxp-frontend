@@ -17,9 +17,6 @@ on:
       hpa_file:
         required: false
         type: string
-    secrets:
-      NAIS_DEPLOY_APIKEY:
-        required: true
 
 jobs:
   deploy:
@@ -33,10 +30,9 @@ jobs:
         run: |
           echo "HPA_RESOURCE=,.nais/hpa/${{inputs.hpa_file}}" >> $GITHUB_ENV
       - name: Deploy to nais
-        uses: nais/deploy/actions/deploy@v1
+        uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: ${{ inputs.cluster }}
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/${{ inputs.config_file }}${{env.HPA_RESOURCE}}
           VAR: image=${{ inputs.image }}
           VARS: .nais/vars/${{ inputs.vars_file }}

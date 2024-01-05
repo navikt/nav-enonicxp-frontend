@@ -38,5 +38,3 @@ jobs:
       vars_file: vars-prod-failover.yml
       config_file: config-failover.yml
       hpa_file: hpa-prod-failover.yml
-    secrets:
-      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

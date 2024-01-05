@@ -23,5 +23,3 @@ jobs:
       cluster: dev-gcp
       vars_file: vars-${{ github.event.inputs.app_env }}-failover.yml
       config_file: config-failover.yml
-    secrets:
-      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

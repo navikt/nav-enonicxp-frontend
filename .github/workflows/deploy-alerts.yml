@@ -14,8 +14,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: Deploy to nais
-        uses: nais/deploy/actions/deploy@v1
+        uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: prod-gcp
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/alerts.yml

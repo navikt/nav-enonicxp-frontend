@@ -45,5 +45,3 @@ jobs:
       vars_file: vars-dev1.yml
       config_file: config.yml
       hpa_file: hpa-dev1.yml
-    secrets:
-      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
