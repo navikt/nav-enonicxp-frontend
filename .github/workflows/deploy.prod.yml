@@ -32,11 +32,11 @@ jobs:
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
     needs: build
+    permissions:
+      id-token: "write"
     with:
       image: ${{ needs.build.outputs.image }}
       cluster: prod-gcp
       vars_file: vars-prod.yml
       config_file: config.yml
       hpa_file: hpa-prod.yml
-    secrets:
-      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
