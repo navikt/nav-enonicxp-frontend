@@ -20,8 +20,6 @@ export const WriteOption = (props: Props) => {
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
 
-    console.log(props);
-
     const translations = translator('contactPoint', language)('write');
 
     return (
