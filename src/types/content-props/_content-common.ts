@@ -128,6 +128,7 @@ type ContentCommonData = Partial<{
     metaDescription: string;
     canonicalUrl: string;
     noindex: boolean;
+    nosnippet: boolean;
     ingress: string;
     title: string;
     description: string;
