@@ -39,11 +39,11 @@ const shouldNotIndex = (content: ContentProps) =>
     content.type === ContentType.Error ||
     content.data?.noindex;
 
-const shouldNoSnippet = (content: ContentProps) => content.data.nosnippet;
+const shouldNotSnippet = (content: ContentProps) => content.data.nosnippet;
 
 const buildRobotsMeta = (content: ContentProps) => {
     const noIndex = shouldNotIndex(content);
-    const noSnippet = shouldNoSnippet(content);
+    const noSnippet = shouldNotSnippet(content);
 
     if (noIndex) {
         return 'noindex, nofollow';
@@ -74,7 +74,7 @@ export const HeadWithMetatags = ({ content, children }: Props) => {
     const description = getDescription(content).slice(0, descriptionMaxLength);
     const url = getCanonicalUrl(content);
     const noIndex = shouldNotIndex(content);
-    const noSnippet = shouldNoSnippet(content);
+    const noSnippet = shouldNotSnippet(content);
     const robotsMeta = buildRobotsMeta(content);
     const imageUrl = `${appOrigin}/gfx/social-share-fallback.png`;
 
