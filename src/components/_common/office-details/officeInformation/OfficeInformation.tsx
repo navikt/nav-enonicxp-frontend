@@ -1,4 +1,4 @@
-import { Accordion, BodyShort, Heading } from '@navikt/ds-react';
+import { ExpansionCard, BodyShort, Heading } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
@@ -14,6 +14,7 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
     const { language } = usePageConfig();
     const getOfficeTranslations = translator('office', language);
 
+    const title = getOfficeTranslations('officeInformation');
     const { postadresse, beliggenhet, organisasjonsnummer, enhetNr } =
         officeData;
 
@@ -21,49 +22,51 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
     const postalAddress = formatAddress(postadresse, true);
 
     return (
-        <Accordion className={styles.officeInformation}>
-            <Accordion.Item>
-                <Accordion.Header className={styles.accordionHeader}>
-                    <Heading level="2" size="small">
-                        {getOfficeTranslations('officeInformation')}
+        <ExpansionCard
+            aria-label={title}
+            className={styles.officeInformation}
+            size="small"
+        >
+            <ExpansionCard.Header className={styles.accordionHeader}>
+                <ExpansionCard.Title as="h2" size="small">
+                    {title}
+                </ExpansionCard.Title>
+            </ExpansionCard.Header>
+            <ExpansionCard.Content className={styles.accordionContent}>
+                <section className={styles.section}>
+                    <Heading level="3" size="small" spacing>
+                        {getOfficeTranslations('location')}
                     </Heading>
-                </Accordion.Header>
-                <Accordion.Content className={styles.accordionContent}>
+                    <BodyShort>{visitingAddress}</BodyShort>
+                </section>
+                <section className={styles.section}>
+                    <Heading level="3" size="small" spacing>
+                        {getOfficeTranslations('postalAddress')}
+                    </Heading>
+                    <BodyShort>
+                        <span>{postalAddress}</span>
+                    </BodyShort>
+                </section>
+                {(organisasjonsnummer || enhetNr) && (
                     <section className={styles.section}>
                         <Heading level="3" size="small" spacing>
-                            {getOfficeTranslations('location')}
+                            {getOfficeTranslations('officeInformation')}
                         </Heading>
-                        <BodyShort>{visitingAddress}</BodyShort>
+                        {organisasjonsnummer && (
+                            <BodyShort>
+                                {getOfficeTranslations('orgNumber')}:{' '}
+                                {organisasjonsnummer}
+                            </BodyShort>
+                        )}
+                        {enhetNr && (
+                            <BodyShort>
+                                {getOfficeTranslations('officeNumber')}:{' '}
+                                {enhetNr}
+                            </BodyShort>
+                        )}
                     </section>
-                    <section className={styles.section}>
-                        <Heading level="3" size="small" spacing>
-                            {getOfficeTranslations('postalAddress')}
-                        </Heading>
-                        <BodyShort>
-                            <span>{postalAddress}</span>
-                        </BodyShort>
-                    </section>
-                    {(organisasjonsnummer || enhetNr) && (
-                        <section className={styles.section}>
-                            <Heading level="3" size="small" spacing>
-                                {getOfficeTranslations('officeInformation')}
-                            </Heading>
-                            {organisasjonsnummer && (
-                                <BodyShort>
-                                    {getOfficeTranslations('orgNumber')}:{' '}
-                                    {organisasjonsnummer}
-                                </BodyShort>
-                            )}
-                            {enhetNr && (
-                                <BodyShort>
-                                    {getOfficeTranslations('officeNumber')}:{' '}
-                                    {enhetNr}
-                                </BodyShort>
-                            )}
-                        </section>
-                    )}
-                </Accordion.Content>
-            </Accordion.Item>
-        </Accordion>
+                )}
+            </ExpansionCard.Content>
+        </ExpansionCard>
     );
 };
