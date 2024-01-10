@@ -2,11 +2,11 @@
     margin: 2.5rem 0 4rem;
 }
 
-.accordionHeader {
+.expansionCardHeader {
     color: var(--a-text-action);
 }
 
-.accordionContent {
+.expansionCardContent {
     :global(.navds-expansioncard__content-inner) {
         display: flex;
         flex-direction: column;

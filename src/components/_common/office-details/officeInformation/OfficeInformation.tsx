@@ -27,12 +27,12 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
             className={styles.officeInformation}
             size="small"
         >
-            <ExpansionCard.Header className={styles.accordionHeader}>
+            <ExpansionCard.Header className={styles.expansionCardHeader}>
                 <ExpansionCard.Title as="h2" size="small">
                     {title}
                 </ExpansionCard.Title>
             </ExpansionCard.Header>
-            <ExpansionCard.Content className={styles.accordionContent}>
+            <ExpansionCard.Content className={styles.expansionCardContent}>
                 <section>
                     <Heading level="3" size="small" spacing>
                         {getOfficeTranslations('location')}
