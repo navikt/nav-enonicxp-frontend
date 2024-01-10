@@ -33,13 +33,13 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
                 </ExpansionCard.Title>
             </ExpansionCard.Header>
             <ExpansionCard.Content className={styles.accordionContent}>
-                <section className={styles.section}>
+                <section>
                     <Heading level="3" size="small" spacing>
                         {getOfficeTranslations('location')}
                     </Heading>
                     <BodyShort>{visitingAddress}</BodyShort>
                 </section>
-                <section className={styles.section}>
+                <section>
                     <Heading level="3" size="small" spacing>
                         {getOfficeTranslations('postalAddress')}
                     </Heading>
@@ -48,7 +48,7 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
                     </BodyShort>
                 </section>
                 {(organisasjonsnummer || enhetNr) && (
-                    <section className={styles.section}>
+                    <section>
                         <Heading level="3" size="small" spacing>
                             {getOfficeTranslations('officeInformation')}
                         </Heading>

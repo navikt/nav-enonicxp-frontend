@@ -6,6 +6,10 @@
     color: var(--a-text-action);
 }
 
-.section {
-    margin-bottom: 1.5rem;
+.accordionContent {
+    :global(.navds-expansioncard__content-inner) {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
 }
