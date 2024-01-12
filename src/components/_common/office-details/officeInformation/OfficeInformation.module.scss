@@ -1,25 +1,13 @@
 .officeInformation {
-    background-color: none;
     margin: 2.5rem 0 4rem;
-
-    :global(.navds-accordion__item.navds-accordion__item--open) {
-        :global(.navds-accordion__header) {
-            border: 0;
-        }
-    }
 }
 
-.accordionHeader {
-    background-color: transparent;
-    border: 0;
-    border-bottom: 1px solid var(--a-gray-900);
+.expansionCardHeader {
     color: var(--a-text-action);
 }
 
-.accordionContent {
-    background-color: none;
-}
-
-.section {
-    margin-bottom: 1.5rem;
+.expansionCardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }

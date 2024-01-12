@@ -4,6 +4,7 @@ import style from './Table.module.scss';
 
 type Props = {
     children: React.ReactNode;
+    shadeOnHover?: boolean;
 } & TableProps;
 
 const getTableComponent = (type: string) => {
@@ -24,7 +25,13 @@ const getTableComponent = (type: string) => {
 };
 
 // Recursively transforms table element children to matching ds-react components
-const TableElement = ({ element }: { element?: React.ReactNode }) => {
+const TableElement = ({
+    element,
+    shadeOnHover,
+}: {
+    element?: React.ReactNode;
+    shadeOnHover: boolean;
+}) => {
     const children = React.Children.map(element, (child) => {
         const { type, props } = child as ReactElement;
 
@@ -32,8 +39,11 @@ const TableElement = ({ element }: { element?: React.ReactNode }) => {
 
         if (TableComponent) {
             return (
-                <TableComponent {...props}>
-                    <TableElement element={props.children} />
+                <TableComponent {...props} shadeOnHover={shadeOnHover}>
+                    <TableElement
+                        element={props.children}
+                        shadeOnHover={shadeOnHover}
+                    />
                 </TableComponent>
             );
         }
@@ -44,11 +54,16 @@ const TableElement = ({ element }: { element?: React.ReactNode }) => {
     return <>{children}</>;
 };
 
-export const Table = ({ children, zebraStripes = true, ...rest }: Props) => {
+export const Table = ({
+    children,
+    zebraStripes = true,
+    shadeOnHover = true,
+    ...rest
+}: Props) => {
     return (
         <div className={style.tableWrapper}>
             <DsTable {...rest} zebraStripes={zebraStripes}>
-                <TableElement element={children} />
+                <TableElement element={children} shadeOnHover={shadeOnHover} />
             </DsTable>
         </div>
     );

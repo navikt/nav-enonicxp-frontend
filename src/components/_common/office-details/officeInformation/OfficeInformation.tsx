@@ -1,4 +1,4 @@
-import { Accordion, BodyShort, Heading } from '@navikt/ds-react';
+import { ExpansionCard, BodyShort, Heading } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
@@ -14,6 +14,7 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
     const { language } = usePageConfig();
     const getOfficeTranslations = translator('office', language);
 
+    const title = getOfficeTranslations('officeInformation');
     const { postadresse, beliggenhet, organisasjonsnummer, enhetNr } =
         officeData;
 
@@ -21,21 +22,25 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
     const postalAddress = formatAddress(postadresse, true);
 
     return (
-        <Accordion className={styles.officeInformation}>
-            <Accordion.Item>
-                <Accordion.Header className={styles.accordionHeader}>
-                    <Heading level="2" size="small">
-                        {getOfficeTranslations('officeInformation')}
-                    </Heading>
-                </Accordion.Header>
-                <Accordion.Content className={styles.accordionContent}>
-                    <section className={styles.section}>
+        <ExpansionCard
+            aria-label={title}
+            className={styles.officeInformation}
+            size="small"
+        >
+            <ExpansionCard.Header className={styles.expansionCardHeader}>
+                <ExpansionCard.Title as="h2" size="small">
+                    {title}
+                </ExpansionCard.Title>
+            </ExpansionCard.Header>
+            <ExpansionCard.Content>
+                <div className={styles.expansionCardContent}>
+                    <section>
                         <Heading level="3" size="small" spacing>
                             {getOfficeTranslations('location')}
                         </Heading>
                         <BodyShort>{visitingAddress}</BodyShort>
                     </section>
-                    <section className={styles.section}>
+                    <section>
                         <Heading level="3" size="small" spacing>
                             {getOfficeTranslations('postalAddress')}
                         </Heading>
@@ -44,7 +49,7 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
                         </BodyShort>
                     </section>
                     {(organisasjonsnummer || enhetNr) && (
-                        <section className={styles.section}>
+                        <section>
                             <Heading level="3" size="small" spacing>
                                 {getOfficeTranslations('officeInformation')}
                             </Heading>
@@ -62,8 +67,8 @@ export const OfficeInformation = ({ officeData }: OfficeInformationProps) => {
                             )}
                         </section>
                     )}
-                </Accordion.Content>
-            </Accordion.Item>
-        </Accordion>
+                </div>
+            </ExpansionCard.Content>
+        </ExpansionCard>
     );
 };
