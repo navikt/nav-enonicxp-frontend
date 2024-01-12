@@ -73,7 +73,7 @@ export const OpeningHours = ({ openingHours }: Props) => {
     };
 
     return (
-        <Table zebraStripes={false} className={styles.openingHours}>
+        <Table zebraStripes={false} shadeOnHover={false}>
             <thead className={styles.srOnly}>
                 <tr>
                     <th role="columnheader">{dayLabel}</th>
