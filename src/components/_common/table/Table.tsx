@@ -32,7 +32,6 @@ const TableElement = ({
     element?: React.ReactNode;
     shadeOnHover: boolean;
 }) => {
-    console.log(shadeOnHover);
     const children = React.Children.map(element, (child) => {
         const { type, props } = child as ReactElement;
 
