@@ -91,6 +91,7 @@ interface AudienceContactInformation {
 
 export type OfficeDetailsData = ProductDataMixin & {
     enhetNr: string;
+    type: string;
     navn: string;
     organisasjonsnummer: string;
     sosialeTjenester?: string;
