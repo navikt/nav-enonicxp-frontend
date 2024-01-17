@@ -13,7 +13,6 @@ metadata:
     config.linkerd.io/proxy-memory-request: 1Gi
 spec:
   image: {{image}}
-  team: personbruker
   port: 3000
   liveness:
     path: /api/internal/isAlive
