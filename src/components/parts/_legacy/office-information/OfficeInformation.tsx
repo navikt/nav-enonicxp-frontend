@@ -97,6 +97,8 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
         },
     ];
 
+    console.log('publikumsmottak', publikumsmottak);
+
     return (
         <>
             <script
@@ -208,7 +210,7 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                         <BodyShort>{unit.enhetNr}</BodyShort>
                     </div>
                 )}
-                {unit.type !== 'ALS' && (
+                {publikumsmottak.length > 0 && (
                     <Reception
                         receptions={publikumsmottak}
                         language={props.language}
