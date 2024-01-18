@@ -147,14 +147,30 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                     <Heading level="2" size="small">
                         Innsending av skjemaer
                     </Heading>
-                    <BodyLong>
-                        Skal du sende søknader og skjemaer, må du bruke{' '}
-                        <LenkeInline href="https://www.nav.no/soknader/nb/person">
-                            NAVs skjemaveileder.
-                        </LenkeInline>{' '}
-                        Skjemaveilederen gir deg hjelp til å velge rett skjema
-                        og rett adresse det skal sendes til.
-                    </BodyLong>
+                    {unit.type === 'ALS' ? (
+                        <BodyLong>
+                            Du kan skrive til oss hvis du ønsker hjelp til å
+                            rekruttere, inkludere arbeidstakere og forebygge
+                            sykefravær, se{' '}
+                            <LenkeInline href="https://kontaktskjema.arbeidsgiver.nav.no/s/">
+                                kontaktskjema for arbeidsgivere
+                            </LenkeInline>
+                            . Skal du sende søknader eller skjemaer, må du bruke{' '}
+                            <LenkeInline href="https://www.nav.no/arbeidsgiver/soknader">
+                                skjemaoversikten for arbeidsgivere
+                            </LenkeInline>
+                            .
+                        </BodyLong>
+                    ) : (
+                        <BodyLong>
+                            Skal du sende søknader og skjemaer, må du bruke{' '}
+                            <LenkeInline href="https://www.nav.no/soknader/nb/person">
+                                NAVs skjemaveileder.
+                            </LenkeInline>{' '}
+                            Skjemaveilederen gir deg hjelp til å velge rett
+                            skjema og rett adresse det skal sendes til.
+                        </BodyLong>
+                    )}
                 </div>
                 <SpecialInformation info={contact.spesielleOpplysninger} />
                 <div>
