@@ -97,8 +97,6 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
         },
     ];
 
-    console.log('publikumsmottak', publikumsmottak);
-
     return (
         <>
             <script
