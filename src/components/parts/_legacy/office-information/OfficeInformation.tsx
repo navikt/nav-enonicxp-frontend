@@ -192,10 +192,12 @@ export const OfficeInformation = (props: OfficeInformationProps) => {
                         <BodyShort>{unit.enhetNr}</BodyShort>
                     </div>
                 )}
-                <Reception
-                    receptions={publikumsmottak}
-                    language={props.language}
-                />
+                {unit.type !== 'ALS' && (
+                    <Reception
+                        receptions={publikumsmottak}
+                        language={props.language}
+                    />
+                )}
             </article>
         </>
     );
