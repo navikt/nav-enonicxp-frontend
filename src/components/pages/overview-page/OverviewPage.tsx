@@ -30,6 +30,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                     { name: 'title', weight: 10 },
                     { name: 'ingress', weight: 1 },
                     { name: 'productLinks.title', weight: 1 },
+                    { name: 'keywords', weight: 2 },
                 ],
             },
         }).then((result) => {
