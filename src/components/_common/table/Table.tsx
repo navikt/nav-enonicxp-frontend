@@ -1,11 +1,16 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext } from 'react';
 import { Table as DsTable, TableProps } from '@navikt/ds-react';
+
 import style from './Table.module.scss';
+
+type TableContextProps = { shadeOnHover?: boolean };
 
 type Props = {
     children: React.ReactNode;
-    shadeOnHover?: boolean;
-} & TableProps;
+} & TableProps &
+    TableContextProps;
+
+const TableContext = React.createContext<TableContextProps>({});
 
 const getTableComponent = (type: string) => {
     switch (type) {
@@ -25,30 +30,26 @@ const getTableComponent = (type: string) => {
 };
 
 // Recursively transforms table element children to matching ds-react components
-const TableElement = ({
-    element,
-    shadeOnHover,
-}: {
-    element?: React.ReactNode;
-    shadeOnHover: boolean;
-}) => {
+const TableElement = ({ element }: { element?: React.ReactNode }) => {
+    const { shadeOnHover } = useContext(TableContext);
+
     const children = React.Children.map(element, (child) => {
         const { type, props } = child as ReactElement;
 
         const TableComponent = getTableComponent(type?.toString());
 
-        if (TableComponent) {
-            return (
-                <TableComponent {...props} shadeOnHover={shadeOnHover}>
-                    <TableElement
-                        element={props.children}
-                        shadeOnHover={shadeOnHover}
-                    />
-                </TableComponent>
-            );
+        if (!TableComponent) {
+            return child;
         }
 
-        return child;
+        return (
+            <TableComponent
+                {...props}
+                shadeOnHover={type === 'tr' ? shadeOnHover : undefined}
+            >
+                <TableElement element={props.children} />
+            </TableComponent>
+        );
     });
 
     return <>{children}</>;
@@ -62,9 +63,11 @@ export const Table = ({
 }: Props) => {
     return (
         <div className={style.tableWrapper}>
-            <DsTable {...rest} zebraStripes={zebraStripes}>
-                <TableElement element={children} shadeOnHover={shadeOnHover} />
-            </DsTable>
+            <TableContext.Provider value={{ shadeOnHover }}>
+                <DsTable {...rest} zebraStripes={zebraStripes}>
+                    <TableElement element={children} />
+                </DsTable>
+            </TableContext.Provider>
         </div>
     );
 };
