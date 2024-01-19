@@ -12,44 +12,47 @@ type Props = {
 
 const TableContext = React.createContext<TableContextProps>({});
 
-const getTableComponent = (type: string) => {
-    switch (type) {
-        case 'thead':
-            return DsTable.Header;
-        case 'tbody':
-            return DsTable.Body;
-        case 'th':
-            return DsTable.HeaderCell;
-        case 'tr':
-            return DsTable.Row;
-        case 'td':
-            return DsTable.DataCell;
-        default:
-            return null;
-    }
-};
-
 // Recursively transforms table element children to matching ds-react components
-const TableElement = ({ element }: { element?: React.ReactNode }) => {
+const TableComponent = ({ element }: { element?: React.ReactNode }) => {
     const { shadeOnHover } = useContext(TableContext);
 
-    const children = React.Children.map(element, (child) => {
-        const { type, props } = child as ReactElement;
+    const children = React.Children.map(element, (child: ReactElement) => {
+        const { type, props } = child;
 
-        const TableComponent = getTableComponent(type?.toString());
-
-        if (!TableComponent) {
-            return child;
+        switch (type) {
+            case 'thead':
+                return (
+                    <DsTable.Header {...props}>
+                        <TableComponent element={props.children} />
+                    </DsTable.Header>
+                );
+            case 'tbody':
+                return (
+                    <DsTable.Body {...props}>
+                        <TableComponent element={props.children} />
+                    </DsTable.Body>
+                );
+            case 'th':
+                return (
+                    <DsTable.HeaderCell {...props}>
+                        <TableComponent element={props.children} />
+                    </DsTable.HeaderCell>
+                );
+            case 'tr':
+                return (
+                    <DsTable.Row {...props} shadeOnHover={shadeOnHover}>
+                        <TableComponent element={props.children} />
+                    </DsTable.Row>
+                );
+            case 'td':
+                return (
+                    <DsTable.DataCell {...props}>
+                        <TableComponent element={props.children} />
+                    </DsTable.DataCell>
+                );
+            default:
+                return child;
         }
-
-        return (
-            <TableComponent
-                {...props}
-                shadeOnHover={type === 'tr' ? shadeOnHover : undefined}
-            >
-                <TableElement element={props.children} />
-            </TableComponent>
-        );
     });
 
     return <>{children}</>;
@@ -72,7 +75,7 @@ export const Table = ({
         <div className={style.tableWrapper}>
             <TableContext.Provider value={context}>
                 <DsTable {...rest} zebraStripes={zebraStripes}>
-                    <TableElement element={children} />
+                    <TableComponent element={children} />
                 </DsTable>
             </TableContext.Provider>
         </div>
