@@ -13,41 +13,41 @@ type Props = {
 const TableContext = React.createContext<TableContextProps>({});
 
 // Recursively transforms table element children to matching ds-react components
-const TableComponent = ({ element }: { element?: React.ReactNode }) => {
+const TableComponent = ({ children }: Props) => {
     const { shadeOnHover } = useContext(TableContext);
 
-    const children = React.Children.map(element, (child: ReactElement) => {
+    const elements = React.Children.map(children, (child: ReactElement) => {
         const { type, props } = child;
 
         switch (type) {
             case 'thead':
                 return (
                     <DsTable.Header {...props}>
-                        <TableComponent element={props.children} />
+                        <TableComponent>{props.children}</TableComponent>
                     </DsTable.Header>
                 );
             case 'tbody':
                 return (
                     <DsTable.Body {...props}>
-                        <TableComponent element={props.children} />
+                        <TableComponent>{props.children}</TableComponent>
                     </DsTable.Body>
                 );
             case 'th':
                 return (
                     <DsTable.HeaderCell {...props}>
-                        <TableComponent element={props.children} />
+                        <TableComponent>{props.children}</TableComponent>
                     </DsTable.HeaderCell>
                 );
             case 'tr':
                 return (
                     <DsTable.Row {...props} shadeOnHover={shadeOnHover}>
-                        <TableComponent element={props.children} />
+                        <TableComponent>{props.children}</TableComponent>
                     </DsTable.Row>
                 );
             case 'td':
                 return (
                     <DsTable.DataCell {...props}>
-                        <TableComponent element={props.children} />
+                        <TableComponent>{props.children}</TableComponent>
                     </DsTable.DataCell>
                 );
             default:
@@ -55,7 +55,7 @@ const TableComponent = ({ element }: { element?: React.ReactNode }) => {
         }
     });
 
-    return <>{children}</>;
+    return <>{elements}</>;
 };
 
 export const Table = ({
@@ -75,7 +75,7 @@ export const Table = ({
         <div className={style.tableWrapper}>
             <TableContext.Provider value={context}>
                 <DsTable {...rest} zebraStripes={zebraStripes}>
-                    <TableComponent element={children} />
+                    <TableComponent>{children}</TableComponent>
                 </DsTable>
             </TableContext.Provider>
         </div>
