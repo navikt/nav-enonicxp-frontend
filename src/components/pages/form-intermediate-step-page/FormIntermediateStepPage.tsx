@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Heading } from '@navikt/ds-react';
+import { BodyLong, Button, Heading, LinkPanel } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
@@ -7,7 +7,6 @@ import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { useRouter } from 'next/compat/router';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import LenkepanelNavNo from 'components/_common/lenkepanel-legacy/LenkepanelNavNo';
 import { InfoBox } from 'components/_common/info-box/InfoBox';
 
 import styles from './FormIntermediateStepPage.module.scss';
@@ -122,17 +121,37 @@ export const FormIntermediateStepPage = (
                                                 {step.languageDisclaimer}
                                             </InfoBox>
                                         )}
-                                        <LenkepanelNavNo
+                                        <LinkPanel
                                             href={getHrefFromStep(step)}
                                             onClick={getOnClickFromStep(
                                                 step,
                                                 index
                                             )}
                                             className={styles.stepAction}
-                                            tittel={step.label}
+                                            as={(props) => (
+                                                <LenkeBase
+                                                    analyticsComponent="mellomsteg"
+                                                    analyticsLinkGroup={currentStepData.stepsHeadline}
+                                                    analyticsLabel={step.label}
+                                                    {...props}
+                                                >
+                                                    <div className={styles.innhold}>
+                                                        <Heading
+                                                            as = "span"
+                                                            level="2"
+                                                            size="small"
+                                                            className="navds-link-panel__title"
+                                                        >
+                                                            {step.label}
+                                                        </Heading>
+                                                        <BodyLong>
+                                                            {step.explanation}
+                                                        </BodyLong>
+                                                    </div>
+                                                </LenkeBase>
+                                            )}
                                         >
-                                            {step.explanation}
-                                        </LenkepanelNavNo>
+                                        </LinkPanel>
                                     </li>
                                 );
                             }
@@ -157,7 +176,7 @@ export const FormIntermediateStepPage = (
                             as={LenkeBase}
                             href={router.asPath}
                             analyticsComponent={'mellomsteg'}
-                            analyticsLinkGroup={'steg-1'}
+                            analyticsLinkGroup={currentStepData.stepsHeadline}
                             analyticsLabel={'Tilbake'}
                         >
                             {getTranslations('back')}
