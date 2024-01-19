@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext } from 'react';
+import React, { ReactElement, useContext, useMemo } from 'react';
 import { Table as DsTable, TableProps } from '@navikt/ds-react';
 
 import style from './Table.module.scss';
@@ -61,9 +61,16 @@ export const Table = ({
     shadeOnHover = true,
     ...rest
 }: Props) => {
+    const context = useMemo<TableContextProps>(
+        () => ({
+            shadeOnHover,
+        }),
+        [shadeOnHover]
+    );
+
     return (
         <div className={style.tableWrapper}>
-            <TableContext.Provider value={{ shadeOnHover }}>
+            <TableContext.Provider value={context}>
                 <DsTable {...rest} zebraStripes={zebraStripes}>
                     <TableElement element={children} />
                 </DsTable>
