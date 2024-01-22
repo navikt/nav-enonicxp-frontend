@@ -42,20 +42,17 @@ $padding: 2rem;
 }
 
 .stepAction {
-    margin-bottom: 1rem;
-    width: 100%;
-    cursor: pointer;
     &:global(.navds-link-panel) {
-        border: 1px solid common.$a-text-action;
+        border-color: var(--a-text-action);
     }
     & :global {
         .navds-link-panel__title,
         .navds-link-panel__chevron {
-            color: common.$a-text-action;
+            color: var(--a-text-action);
         }
     }
     @media #{common.$mq-screen-mobile} {
-        padding: 0.75rem 1rem;
+        padding: 0.75rem;
     }
 }
 

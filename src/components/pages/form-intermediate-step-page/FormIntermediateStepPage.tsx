@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BodyLong, Button, Heading, LinkPanel } from '@navikt/ds-react';
+import { Button, Heading, LinkPanel } from '@navikt/ds-react';
 import { translator } from 'translations';
 import { ThemedPageHeader } from '../../_common/headers/themed-page-header/ThemedPageHeader';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
@@ -104,7 +104,7 @@ export const FormIntermediateStepPage = (
                 <div className={styles.stepOptionsWrapper}>
                     <ParsedHtml htmlProps={currentStepData.editorial} />
                     {currentStepData.stepsHeadline && (
-                        <Heading level="3" size="small" spacing>
+                        <Heading level="2" size="medium" spacing>
                             {currentStepData.stepsHeadline}
                         </Heading>
                     )}
@@ -139,19 +139,12 @@ export const FormIntermediateStepPage = (
                                                 </LenkeBase>
                                             )}
                                         >
-                                            <div className={styles.innhold}>
-                                                <Heading
-                                                    as = "span"
-                                                    level="2"
-                                                    size="small"
-                                                    className="navds-link-panel__title"
-                                                >
-                                                    {step.label}
-                                                </Heading>
-                                                <BodyLong>
-                                                    {step.explanation}
-                                                </BodyLong>
-                                            </div>
+                                            <LinkPanel.Title>
+                                                {step.label}
+                                            </LinkPanel.Title>
+                                            <LinkPanel.Description>
+                                                {step.explanation}
+                                            </LinkPanel.Description>
                                         </LinkPanel>
                                     </li>
                                 );
