@@ -135,22 +135,23 @@ export const FormIntermediateStepPage = (
                                                     analyticsLabel={step.label}
                                                     {...props}
                                                 >
-                                                    <div className={styles.innhold}>
-                                                        <Heading
-                                                            as = "span"
-                                                            level="2"
-                                                            size="small"
-                                                            className="navds-link-panel__title"
-                                                        >
-                                                            {step.label}
-                                                        </Heading>
-                                                        <BodyLong>
-                                                            {step.explanation}
-                                                        </BodyLong>
-                                                    </div>
+                                                    {props.children}
                                                 </LenkeBase>
                                             )}
                                         >
+                                            <div className={styles.innhold}>
+                                                <Heading
+                                                    as = "span"
+                                                    level="2"
+                                                    size="small"
+                                                    className="navds-link-panel__title"
+                                                >
+                                                    {step.label}
+                                                </Heading>
+                                                <BodyLong>
+                                                    {step.explanation}
+                                                </BodyLong>
+                                            </div>
                                         </LinkPanel>
                                     </li>
                                 );
