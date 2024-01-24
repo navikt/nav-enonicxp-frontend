@@ -12,6 +12,7 @@ import {
 import styles from './PageNavigationCollapsable.module.scss';
 import { classNames } from 'utils/classnames';
 import { Button } from '@navikt/ds-react';
+import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
 type CollapsableItemProps = {
     anchorLink: AnchorLink;
@@ -30,19 +31,27 @@ export const CollapsableItem = ({
 
     // Todo: Kun bruke ul/li hvis mer enn én sublink
 
+    const chevron = isOpen ? (
+        <ChevronUpIcon aria-hidden />
+    ) : (
+        <ChevronDownIcon aria-hidden />
+    );
+
     return (
-        <li>
+        <>
             <Button
                 onClick={() => setOpen(!isOpen)}
                 variant="tertiary"
                 className={classNames(
-                    styles.collapsableItem,
+                    styles.toggleCollapse,
                     isOpen && styles.open
                 )}
+                iconPosition="right"
+                icon={chevron}
             >
                 {anchorLink.linkText}
             </Button>
-            <ul>
+            <ul className={classNames(styles.list, isOpen && styles.open)}>
                 {anchorLink.subLinks.map((subLink, index) => (
                     <li key={subLink.anchorId}>
                         <PageNavigationLink
@@ -59,6 +68,6 @@ export const CollapsableItem = ({
                     </li>
                 ))}
             </ul>
-        </li>
+        </>
     );
 };
