@@ -10,6 +10,8 @@ import { ProcessedHtmlProps } from '../../processed-html-props';
 export interface HtmlAreaProps extends PartComponentProps {
     descriptor: PartType.HtmlArea;
     config: {
+        header: string;
+        anchorId: string;
         html: ProcessedHtmlProps;
     } & ExpandableMixin &
         FiltersMixin &
