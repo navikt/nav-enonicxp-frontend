@@ -57,7 +57,9 @@ export const PageList = (props: PageListProps) => {
                         data,
                     } = section;
 
-                    const ingress = data.ingress || data.description;
+                    const ingress = data
+                        ? data.ingress || data.description
+                        : undefined;
 
                     return (
                         <article key={_path} className={style.row}>
