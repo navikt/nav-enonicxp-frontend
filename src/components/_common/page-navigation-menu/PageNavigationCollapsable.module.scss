@@ -1,15 +1,28 @@
 .toggleCollapse {
     padding: 0.75rem 1rem 0.75rem 0.5rem;
     margin: 0 0.5rem;
-    width: 100%;
+    width: calc(100% - 1rem);
     justify-content: flex-start;
     border-radius: 0;
 }
 
 .list {
+    position: relative;
     display: none;
     list-style: none;
     padding: 0 0 0 0.5rem;
+    flex-direction: column;
+    background-color: var(--a-surface-selected);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0.25rem;
+        height: 100%;
+        background-color: var(--a-surface-action-subtle-hover);
+    }
 
     &.open {
         display: flex;

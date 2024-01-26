@@ -13,6 +13,7 @@ type Props = {
     internalLinks: AnchorLink[];
     menuHeader: string;
     sticky?: boolean;
+    showSubMenu?: boolean;
     topRegionProps: RegionProps;
     mainRegionProps: RegionProps;
     pageProps: ContentProps;
@@ -24,6 +25,7 @@ export const LeftMenuSection = ({
     sticky,
     topRegionProps,
     mainRegionProps,
+    showSubMenu,
     pageProps,
 }: Props) => {
     return (
@@ -31,6 +33,7 @@ export const LeftMenuSection = ({
             <PageNavigationMenu
                 title={menuHeader}
                 anchorLinks={internalLinks}
+                showSubMenu={showSubMenu}
                 viewStyle={'sidebar'}
             />
             <Region pageProps={pageProps} regionProps={topRegionProps} />

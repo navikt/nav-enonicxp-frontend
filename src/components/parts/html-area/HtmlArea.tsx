@@ -15,19 +15,35 @@ export const HtmlArea = ({ config }: HtmlAreaProps) => {
         );
     }
 
+    const getAnchor = (config: HtmlAreaProps['config']) => {
+        const selected = config.anchoring?._selected;
+        if (!selected) {
+            return {};
+        }
+        const header = config.anchoring[selected].header;
+        const anchorId = config.anchoring[selected].anchorId;
+
+        return {
+            header,
+            anchorId,
+        };
+    };
+
+    const { header, anchorId } = getAnchor(config);
+
     return (
         <FilteredContent {...config}>
             <ExpandableComponentWrapper {...config}>
                 <div className={style.htmlArea}>
-                    {config.header && (
+                    {header && (
                         <Header
                             level="3"
                             size="medium"
-                            anchorId={config.anchorId}
+                            anchorId={anchorId}
                             justify="left"
                             hideCopyButton={true}
                         >
-                            {config.header}
+                            {header}
                         </Header>
                     )}
                     <ParsedHtml htmlProps={config.html} />

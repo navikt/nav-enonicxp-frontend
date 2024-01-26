@@ -16,6 +16,7 @@ type Props = {
     links: AnchorLink[];
     dupes: AnchorLink[];
     currentIndex: number;
+    showSubMenu?: boolean;
     scrollDirection: PageNavScrollDirection;
 };
 
@@ -24,6 +25,7 @@ export const PageNavigationSidebar = ({
     links,
     dupes,
     currentIndex,
+    showSubMenu,
     scrollDirection,
 }: Props) => {
     return (
@@ -37,10 +39,11 @@ export const PageNavigationSidebar = ({
             <nav aria-label={'Innhold'}>
                 <ul className={style.list}>
                     {links.map((anchorLink, index) => {
-                        const hasSubLinks = anchorLink.subLinks?.length > 0;
+                        const showSublinks =
+                            showSubMenu && anchorLink.subLinks?.length > 0;
                         return (
                             <li key={anchorLink.anchorId}>
-                                {hasSubLinks && (
+                                {showSublinks && (
                                     <CollapsableItem
                                         anchorLink={anchorLink}
                                         scrollDirection={scrollDirection}
@@ -48,7 +51,7 @@ export const PageNavigationSidebar = ({
                                         viewStyle={'sidebar'}
                                     />
                                 )}
-                                {!hasSubLinks && (
+                                {!showSublinks && (
                                     <PageNavigationLink
                                         targetId={anchorLink.anchorId}
                                         linkId={getPageNavigationLinkId(

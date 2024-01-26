@@ -71,6 +71,7 @@ const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
 type Props = {
     anchorLinks: AnchorLink[];
     title?: string;
+    showSubMenu?: boolean;
     currentLinkCallback?: (args: PageNavCallbackArgs) => void;
     viewStyle: PageNavViewStyle;
 };
@@ -105,6 +106,7 @@ export const PageNavigationMenu = ({
     anchorLinks,
     title,
     currentLinkCallback,
+    showSubMenu,
     viewStyle,
 }: Props) => {
     const [currentIndex, setCurrentIndex] = useState(-1);
@@ -171,6 +173,7 @@ export const PageNavigationMenu = ({
         title: title,
         links: links,
         scrollDirection: scrollDir.current,
+        showSubMenu: showSubMenu,
         dupes: flattenAnchorLinks(anchorLinks).filter((link) => link.isDupe),
     };
 

@@ -55,15 +55,14 @@ export const CollapsableItem = ({
                 {anchorLink.subLinks.map((subLink, index) => (
                     <li key={subLink.anchorId}>
                         <PageNavigationLink
-                            targetId={anchorLink.anchorId}
-                            linkId={getPageNavigationLinkId(
-                                anchorLink.anchorId
-                            )}
+                            targetId={subLink.anchorId}
+                            linkId={getPageNavigationLinkId(subLink.anchorId)}
                             isCurrent={currentIndex === index}
                             scrollDirection={scrollDirection}
                             viewStyle={viewStyle}
+                            isSubLink={true}
                         >
-                            {anchorLink.linkText}
+                            {subLink.linkText}
                         </PageNavigationLink>
                     </li>
                 ))}

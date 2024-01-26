@@ -52,6 +52,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         leftMenuSticky,
         leftMenuHeader,
         showInternalNav,
+        showSubMenu,
         anchorLinks,
         rightMenuToggle,
         rightMenuSticky,
@@ -92,6 +93,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                                 topRegionProps={topLeftMenu}
                                 mainRegionProps={leftMenu}
                                 internalLinks={showInternalNav && anchorLinks}
+                                showSubMenu={showSubMenu}
                                 menuHeader={leftMenuHeader}
                                 sticky={leftMenuSticky}
                             />
