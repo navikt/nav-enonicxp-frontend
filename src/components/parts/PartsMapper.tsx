@@ -52,7 +52,6 @@ import { UxSignalsWidgetPart } from 'components/parts/uxsignals-widget/UxSignals
 import { FormDetailsPart } from './form-details/FormDetailsPart';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
-import { AccordionPart } from 'components/parts/accordion/AccordionPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -109,7 +108,6 @@ const partsWithOwnData: Record<
     [PartType.FrontpageContact]: FrontpageContactPart,
     [PartType.UxSignalsWidget]: UxSignalsWidgetPart,
     [PartType.UserTests]: UserTestsPart,
-    [PartType.Accordion]: AccordionPart,
 };
 
 const partsDeprecated: ReadonlySet<PartType> = new Set([

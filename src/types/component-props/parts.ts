@@ -45,7 +45,6 @@ export enum PartType {
     FrontpageShortcuts = 'no.nav.navno:frontpage-shortcuts',
     UxSignalsWidget = 'no.nav.navno:uxsignals-widget',
     UserTests = 'no.nav.navno:user-tests',
-    Accordion = 'no.nav.navno:accordion',
 }
 
 export type PartDeprecatedType =
