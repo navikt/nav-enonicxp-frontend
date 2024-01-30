@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { ChatData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
@@ -14,6 +14,14 @@ import { OpeningInfo } from './opening-info/OpeningInfo';
 
 import style from './ContactOption.module.scss';
 
+// preloadImages.js
+function preloadImages(imageUrls) {
+    return imageUrls.map((imageUrl) => {
+        const img = new Image();
+        img.src = imageUrl;
+        return img;
+    });
+}
 export const ChatOption = (props: ChatData) => {
     const {
         ingress,
@@ -29,6 +37,28 @@ export const ChatOption = (props: ChatData) => {
 
     const translations = translator('contactPoint', language)('chat');
 
+    const [isHovered, setIsHovered] = React.useState(false);
+
+    const [images, setImages] = useState([]);
+
+    useEffect(() => {
+        setImages(
+            preloadImages([
+                'https://www.nav.no/gfx/chat-filled.svg',
+                'https://www.nav.no/gfx/chat.svg',
+                // ... other images ...
+            ])
+        );
+    }, []);
+
+    // Find the preloaded images
+    const chatFilledImg = images.find(
+        (img) => img.src === 'https://www.nav.no/gfx/chat-filled.svg'
+    );
+    const chatImg = images.find(
+        (img) => img.src === 'https://www.nav.no/gfx/chat.svg'
+    );
+
     return (
         <div className={style.contactOption}>
             <LenkeBase
@@ -42,10 +72,15 @@ export const ChatOption = (props: ChatData) => {
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
             >
-                <div className={style.linkContent}>
+                <div
+                    className={style.linkContent}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                >
                     <img
                         alt=""
                         className={classNames(style.icon, style.chat)}
+                        src={isHovered ? chatFilledImg?.src : chatImg?.src}
                     />
                     <Heading level="3" size="small">
                         {title || translations.title}
