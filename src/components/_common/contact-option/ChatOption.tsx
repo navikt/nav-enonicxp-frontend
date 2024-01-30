@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { ChatData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
