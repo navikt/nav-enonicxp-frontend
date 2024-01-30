@@ -10,12 +10,12 @@ import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import TextWithIndicator from '../text-with-indicator/TextWithIndicator';
 import { OpeningInfo } from './opening-info/OpeningInfo';
-
-import style from './ContactOption.module.scss';
 import {
     iconWithTwoStates,
     useHoverAndFocus,
 } from './opening-info/helpers/iconUtils';
+
+import style from './ContactOption.module.scss';
 
 export const ChatOption = (props: ChatData) => {
     const {
@@ -34,6 +34,8 @@ export const ChatOption = (props: ChatData) => {
 
     const [isActive, bind] = useHoverAndFocus();
 
+    const appOrigin = process.env.APP_ORIGIN;
+
     return (
         <div className={style.contactOption}>
             <LenkeBase
@@ -50,8 +52,8 @@ export const ChatOption = (props: ChatData) => {
             >
                 <div className={style.linkContent}>
                     {iconWithTwoStates(
-                        'https://www.nav.no/gfx/chat.svg',
-                        'https://www.nav.no/gfx/chat-filled.svg',
+                        `${appOrigin}/gfx/chat.svg`,
+                        `${appOrigin}/gfx/chat-filled.svg`,
                         isActive
                     )}
                     <Heading level="3" size="small">
