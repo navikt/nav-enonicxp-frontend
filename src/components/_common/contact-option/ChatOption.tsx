@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
 import { ChatData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
@@ -13,54 +12,10 @@ import TextWithIndicator from '../text-with-indicator/TextWithIndicator';
 import { OpeningInfo } from './opening-info/OpeningInfo';
 
 import style from './ContactOption.module.scss';
-
-export default function useHoverAndFocus(): [
-    //TODO gjenbruk
-    boolean,
-    {
-        onMouseEnter: () => void;
-        onMouseLeave: () => void;
-        onFocus: () => void;
-        onBlur: () => void;
-    },
-] {
-    const [isHovered, setIsHovered] = useState(false);
-    const [isFocused, setIsFocused] = useState(false);
-
-    const bind = {
-        onMouseEnter: () => setIsHovered(true),
-        onMouseLeave: () => setIsHovered(false),
-        onFocus: () => setIsFocused(true),
-        onBlur: () => setIsFocused(false),
-    };
-
-    return [isHovered || isFocused, bind];
-}
-
-const iconWithTwoStates = (
-    defaultImg: string,
-    activeImg: string,
-    isActive: boolean
-) => (
-    <>
-        <img
-            alt=""
-            className={classNames(style.icon)}
-            src={defaultImg}
-            style={{
-                display: isActive ? 'none' : 'block',
-            }}
-        />
-        <img
-            alt=""
-            className={classNames(style.icon)}
-            src={activeImg}
-            style={{
-                display: isActive ? 'block' : 'none',
-            }}
-        />
-    </>
-);
+import {
+    iconWithTwoStates,
+    useHoverAndFocus,
+} from './opening-info/helpers/iconUtils';
 
 export const ChatOption = (props: ChatData) => {
     const {
