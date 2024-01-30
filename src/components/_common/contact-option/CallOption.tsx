@@ -73,8 +73,6 @@ export const CallOption = (props: CallOptionProps) => {
 
     const [isActive, bind] = useHoverAndFocus();
 
-    const appOrigin = process.env.APP_ORIGIN;
-
     return (
         <div className={style.contactOption}>
             <LenkeBase
@@ -86,7 +84,7 @@ export const CallOption = (props: CallOptionProps) => {
                 {...bind}
             >
                 <div className={style.linkContent}>
-                    {iconWithTwoStates(appOrigin, 'phone', isActive)}
+                    {iconWithTwoStates('phone', isActive)}
                     <Heading level="3" size="small" className={style.link}>
                         {title || callTranslations.title}
                     </Heading>

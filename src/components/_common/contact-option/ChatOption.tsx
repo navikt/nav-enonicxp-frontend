@@ -34,8 +34,6 @@ export const ChatOption = (props: ChatData) => {
 
     const [isActive, bind] = useHoverAndFocus();
 
-    const appOrigin = process.env.APP_ORIGIN;
-
     return (
         <div className={style.contactOption}>
             <LenkeBase
@@ -51,7 +49,7 @@ export const ChatOption = (props: ChatData) => {
                 {...bind}
             >
                 <div className={style.linkContent}>
-                    {iconWithTwoStates(appOrigin, 'chat', isActive)}
+                    {iconWithTwoStates('chat', isActive)}
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>

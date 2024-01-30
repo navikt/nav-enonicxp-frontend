@@ -23,11 +23,9 @@ export function useHoverAndFocus(): [
     return [isHovered || isFocused, bind];
 }
 
-export const iconWithTwoStates = (
-    appOrigin: string,
-    iconName: string,
-    isActive: boolean
-) => (
+const appOrigin = process.env.APP_ORIGIN;
+
+export const iconWithTwoStates = (iconName: string, isActive: boolean) => (
     <>
         <img
             alt=""
