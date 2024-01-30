@@ -14,6 +14,29 @@ import { OpeningInfo } from './opening-info/OpeningInfo';
 
 import style from './ContactOption.module.scss';
 
+export default function useHoverAndFocus(): [
+    //TODO gjenbruk
+    boolean,
+    {
+        onMouseEnter: () => void;
+        onMouseLeave: () => void;
+        onFocus: () => void;
+        onBlur: () => void;
+    },
+] {
+    const [isHovered, setIsHovered] = useState(false);
+    const [isFocused, setIsFocused] = useState(false);
+
+    const bind = {
+        onMouseEnter: () => setIsHovered(true),
+        onMouseLeave: () => setIsHovered(false),
+        onFocus: () => setIsFocused(true),
+        onBlur: () => setIsFocused(false),
+    };
+
+    return [isHovered || isFocused, bind];
+}
+
 export const ChatOption = (props: ChatData) => {
     const {
         ingress,
@@ -29,8 +52,7 @@ export const ChatOption = (props: ChatData) => {
 
     const translations = translator('contactPoint', language)('chat');
 
-    const [isHovered, setIsHovered] = useState(false);
-    const [isFocused, setIsFocused] = useState(false);
+    const [isActive, bind] = useHoverAndFocus();
 
     const defaultImg = 'https://www.nav.no/gfx/chat.svg';
     const hoveredImg = 'https://www.nav.no/gfx/chat-filled.svg';
@@ -47,10 +69,7 @@ export const ChatOption = (props: ChatData) => {
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
+                {...bind}
             >
                 <div className={style.linkContent}>
                     <img
@@ -58,7 +77,7 @@ export const ChatOption = (props: ChatData) => {
                         className={classNames(style.icon, style.chat)}
                         src={hoveredImg}
                         style={{
-                            display: isHovered || isFocused ? 'block' : 'none',
+                            display: isActive ? 'block' : 'none',
                         }}
                     />
                     <img
@@ -66,7 +85,7 @@ export const ChatOption = (props: ChatData) => {
                         className={classNames(style.icon, style.chat)}
                         src={defaultImg}
                         style={{
-                            display: isHovered || isFocused ? 'none' : 'block',
+                            display: isActive ? 'none' : 'block',
                         }}
                     />
                     <Heading level="3" size="small">
