@@ -54,8 +54,26 @@ export const ChatOption = (props: ChatData) => {
 
     const [isActive, bind] = useHoverAndFocus();
 
-    const defaultImg = 'https://www.nav.no/gfx/chat.svg';
-    const hoveredImg = 'https://www.nav.no/gfx/chat-filled.svg';
+    const iconWithTwoStates = (defaultImg: string, activeImg: string) => (
+        <>
+            <img
+                alt=""
+                className={classNames(style.icon)}
+                src={defaultImg}
+                style={{
+                    display: isActive ? 'none' : 'block',
+                }}
+            />
+            <img
+                alt=""
+                className={classNames(style.icon)}
+                src={activeImg}
+                style={{
+                    display: isActive ? 'block' : 'none',
+                }}
+            />
+        </>
+    );
 
     return (
         <div className={style.contactOption}>
@@ -72,22 +90,10 @@ export const ChatOption = (props: ChatData) => {
                 {...bind}
             >
                 <div className={style.linkContent}>
-                    <img
-                        alt=""
-                        className={classNames(style.icon, style.chat)}
-                        src={hoveredImg}
-                        style={{
-                            display: isActive ? 'block' : 'none',
-                        }}
-                    />
-                    <img
-                        alt=""
-                        className={classNames(style.icon, style.chat)}
-                        src={defaultImg}
-                        style={{
-                            display: isActive ? 'none' : 'block',
-                        }}
-                    />
+                    {iconWithTwoStates(
+                        'https://www.nav.no/gfx/chat.svg',
+                        'https://www.nav.no/gfx/chat-filled.svg'
+                    )}
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>
