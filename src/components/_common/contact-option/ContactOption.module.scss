@@ -31,16 +31,6 @@
                 &.call {
                     content: url('https://www.nav.no/gfx/phone-filled.svg');
                 }
-                &.navoffice,
-                &.aidcentral {
-                    content: url('https://www.nav.no/gfx/place-filled.svg');
-                }
-                &.facebook {
-                    content: url('https://www.nav.no/gfx/facebook-filled.svg');
-                }
-                &.linkedin {
-                    content: url('https://www.nav.no/gfx/linkedin-filled.svg');
-                }
             }
         }
     }
@@ -76,25 +66,14 @@
         &.call {
             content: url('https://www.nav.no/gfx/phone.svg');
         }
-        &.facebook {
-            content: url('https://www.nav.no/gfx/facebook.svg');
-        }
-        &.navoffice,
-        &.aidcentral {
-            content: url('https://www.nav.no/gfx/place.svg');
-        }
-        &.linkedin {
-            content: url('https://www.nav.no/gfx/linkedin.svg');
-        }
+
         &:after {
             // preload mouseover icons
             position: absolute;
             z-index: -1;
             content: url('https://www.nav.no/gfx/chat-filled.svg')
                 url('https://www.nav.no/gfx/message-filled.svg')
-                url('https://www.nav.no/gfx/phone-filled.svg')
-                url('https://www.nav.no/gfx/facebook-filled.svg')
-                url('https://www.nav.no/gfx/linkedin-filled.svg');
+                url('https://www.nav.no/gfx/phone-filled.svg');
         }
     }
 
