@@ -26,7 +26,7 @@ export const HeaderPart = ({ config }: HeaderProps) => {
             level={level}
             size={size}
             anchorId={anchorId}
-            justify="right"
+            justify="left"
             hideCopyButton={true}
             className={style.headerPart}
         >
