@@ -13,12 +13,12 @@ import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import Config from 'config';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
-
-import style from './ContactOption.module.scss';
 import {
     iconWithTwoStates,
     useHoverAndFocus,
 } from './opening-info/helpers/iconUtils';
+
+import style from './ContactOption.module.scss';
 
 type Props = DefaultContactData & {
     channel: ChannelType;
