@@ -7,7 +7,6 @@ import {
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
@@ -16,6 +15,10 @@ import Config from 'config';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 import style from './ContactOption.module.scss';
+import {
+    iconWithTwoStates,
+    useHoverAndFocus,
+} from './opening-info/helpers/iconUtils';
 
 type Props = DefaultContactData & {
     channel: ChannelType;
@@ -25,6 +28,7 @@ export const DefaultOption = (props: Props) => {
     const { ingress, channel, title, url, icon } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
+    const [isActive, bind] = useHoverAndFocus();
     const getTranslations = translator('contactPoint', language);
 
     // In order to open chatbot, onClick is needed instead of href. Therefore
@@ -98,15 +102,18 @@ export const DefaultOption = (props: Props) => {
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
+                {...bind}
             >
                 <div className={style.linkContent}>
-                    <img
+                    {iconWithTwoStates('message', isActive)}
+
+                    {/* <img TODO style icon
                         alt={''}
                         className={classNames(
                             style.icon,
                             style[icon || channel]
                         )}
-                    />
+                    /> */}
                     {titleActual ? (
                         <Heading level={'3'} size={'small'}>
                             {titleActual}
