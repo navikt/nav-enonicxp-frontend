@@ -37,6 +37,31 @@ export default function useHoverAndFocus(): [
     return [isHovered || isFocused, bind];
 }
 
+const iconWithTwoStates = (
+    defaultImg: string,
+    activeImg: string,
+    isActive: boolean
+) => (
+    <>
+        <img
+            alt=""
+            className={classNames(style.icon)}
+            src={defaultImg}
+            style={{
+                display: isActive ? 'none' : 'block',
+            }}
+        />
+        <img
+            alt=""
+            className={classNames(style.icon)}
+            src={activeImg}
+            style={{
+                display: isActive ? 'block' : 'none',
+            }}
+        />
+    </>
+);
+
 export const ChatOption = (props: ChatData) => {
     const {
         ingress,
@@ -53,27 +78,6 @@ export const ChatOption = (props: ChatData) => {
     const translations = translator('contactPoint', language)('chat');
 
     const [isActive, bind] = useHoverAndFocus();
-
-    const iconWithTwoStates = (defaultImg: string, activeImg: string) => (
-        <>
-            <img
-                alt=""
-                className={classNames(style.icon)}
-                src={defaultImg}
-                style={{
-                    display: isActive ? 'none' : 'block',
-                }}
-            />
-            <img
-                alt=""
-                className={classNames(style.icon)}
-                src={activeImg}
-                style={{
-                    display: isActive ? 'block' : 'none',
-                }}
-            />
-        </>
-    );
 
     return (
         <div className={style.contactOption}>
@@ -92,7 +96,8 @@ export const ChatOption = (props: ChatData) => {
                 <div className={style.linkContent}>
                     {iconWithTwoStates(
                         'https://www.nav.no/gfx/chat.svg',
-                        'https://www.nav.no/gfx/chat-filled.svg'
+                        'https://www.nav.no/gfx/chat-filled.svg',
+                        isActive
                     )}
                     <Heading level="3" size="small">
                         {title || translations.title}
