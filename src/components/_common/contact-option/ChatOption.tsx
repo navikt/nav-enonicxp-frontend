@@ -51,11 +51,7 @@ export const ChatOption = (props: ChatData) => {
                 {...bind}
             >
                 <div className={style.linkContent}>
-                    {iconWithTwoStates(
-                        `${appOrigin}/gfx/chat.svg`,
-                        `${appOrigin}/gfx/chat-filled.svg`,
-                        isActive
-                    )}
+                    {iconWithTwoStates(appOrigin, 'chat', isActive)}
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>

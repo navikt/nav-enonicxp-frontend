@@ -23,15 +23,15 @@ export function useHoverAndFocus(): [
 }
 
 export const iconWithTwoStates = (
-    defaultImg: string,
-    activeImg: string,
+    appOrigin: string,
+    iconName: string,
     isActive: boolean
 ) => (
     <>
         <img
             alt=""
             // className={style.icon}
-            src={defaultImg}
+            src={`${appOrigin}/gfx/${iconName}.svg`}
             style={{
                 display: isActive ? 'none' : 'block',
             }}
@@ -39,7 +39,7 @@ export const iconWithTwoStates = (
         <img
             alt=""
             // className={style.icon}
-            src={activeImg}
+            src={`${appOrigin}/gfx/${iconName}-filled.svg`}
             style={{
                 display: isActive ? 'block' : 'none',
             }}
