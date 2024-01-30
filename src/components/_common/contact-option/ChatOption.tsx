@@ -38,6 +38,7 @@ export const ChatOption = (props: ChatData) => {
     const translations = translator('contactPoint', language)('chat');
 
     const [isHovered, setIsHovered] = React.useState(false);
+    const [isFocused, setIsFocused] = React.useState(false);
 
     const [images, setImages] = useState([]);
 
@@ -71,16 +72,20 @@ export const ChatOption = (props: ChatData) => {
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
             >
-                <div
-                    className={style.linkContent}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                >
+                <div className={style.linkContent}>
                     <img
                         alt=""
                         className={classNames(style.icon, style.chat)}
-                        src={isHovered ? chatFilledImg?.src : chatImg?.src}
+                        src={
+                            isHovered || isFocused
+                                ? chatFilledImg?.src
+                                : chatImg?.src
+                        }
                     />
                     <Heading level="3" size="small">
                         {title || translations.title}
