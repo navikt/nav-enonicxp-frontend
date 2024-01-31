@@ -11,7 +11,7 @@ import { OpeningInfo } from 'components/_common/contact-option/opening-info/Open
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import {
-    iconWithTwoStates,
+    hoverFocusIcon,
     useHoverAndFocus,
 } from './opening-info/helpers/iconUtils';
 
@@ -84,7 +84,7 @@ export const CallOption = (props: CallOptionProps) => {
                 {...bind}
             >
                 <div className={style.linkContent}>
-                    {iconWithTwoStates('phone', isActive)}
+                    {hoverFocusIcon('phone', isActive)}
                     <Heading level="3" size="small" className={style.link}>
                         {title || callTranslations.title}
                     </Heading>

@@ -14,7 +14,7 @@ import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import Config from 'config';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import {
-    iconWithTwoStates,
+    hoverFocusIcon,
     useHoverAndFocus,
 } from './opening-info/helpers/iconUtils';
 
@@ -105,7 +105,7 @@ export const DefaultOption = (props: Props) => {
                 {...bind}
             >
                 <div className={style.linkContent}>
-                    {iconWithTwoStates(icon || 'place', isActive)}
+                    {hoverFocusIcon(icon || 'place', isActive)}
                     {titleActual ? (
                         <Heading level={'3'} size={'small'}>
                             {titleActual}

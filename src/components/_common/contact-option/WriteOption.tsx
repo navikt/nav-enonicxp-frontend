@@ -8,7 +8,7 @@ import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import Config from 'config';
 import {
-    iconWithTwoStates,
+    hoverFocusIcon,
     useHoverAndFocus,
 } from './opening-info/helpers/iconUtils';
 
@@ -36,7 +36,7 @@ export const WriteOption = (props: Props) => {
                 {...bind}
             >
                 <div className={style.linkContent}>
-                    {iconWithTwoStates('message', isActive)}
+                    {hoverFocusIcon('message', isActive)}
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>

@@ -11,7 +11,7 @@ import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import TextWithIndicator from '../text-with-indicator/TextWithIndicator';
 import { OpeningInfo } from './opening-info/OpeningInfo';
 import {
-    iconWithTwoStates,
+    hoverFocusIcon,
     useHoverAndFocus,
 } from './opening-info/helpers/iconUtils';
 
@@ -49,7 +49,7 @@ export const ChatOption = (props: ChatData) => {
                 {...bind}
             >
                 <div className={style.linkContent}>
-                    {iconWithTwoStates('chat', isActive)}
+                    {hoverFocusIcon('chat', isActive)}
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>

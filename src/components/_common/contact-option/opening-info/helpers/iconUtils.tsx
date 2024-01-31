@@ -25,7 +25,7 @@ export function useHoverAndFocus(): [
 
 const appOrigin = process.env.APP_ORIGIN;
 
-export const iconWithTwoStates = (iconName: string, isActive: boolean) => (
+export const hoverFocusIcon = (iconName: string, isActive: boolean) => (
     <>
         <img
             alt=""
