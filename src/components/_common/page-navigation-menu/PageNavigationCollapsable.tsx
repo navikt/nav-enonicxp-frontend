@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from '@navikt/ds-react';
 import {
     AnchorLink,
     PageNavViewStyle,
@@ -9,10 +10,12 @@ import {
     getPageNavigationLinkId,
 } from './PageNavigationMenu';
 
-import styles from './PageNavigationCollapsable.module.scss';
 import { classNames } from 'utils/classnames';
-import { Button } from '@navikt/ds-react';
 import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
+
+import styles from './PageNavigationCollapsable.module.scss';
+import { usePageConfig } from 'store/hooks/usePageConfig';
+import { translator } from 'translations';
 
 type CollapsableItemProps = {
     anchorLink: AnchorLink;
@@ -28,14 +31,17 @@ export const CollapsableItem = ({
     viewStyle,
 }: CollapsableItemProps) => {
     const [isOpen, setOpen] = useState(false);
+    const { language } = usePageConfig();
 
-    // Todo: Kun bruke ul/li hvis mer enn én sublink
+    const menuStrings = translator('productPageMenu', language);
 
     const chevron = isOpen ? (
         <ChevronUpIcon aria-hidden />
     ) : (
         <ChevronDownIcon aria-hidden />
     );
+
+    const ariaToggleLabelPrefix = isOpen ? 'clickToCollapse' : 'clickToExpand';
 
     return (
         <>
@@ -48,6 +54,9 @@ export const CollapsableItem = ({
                 )}
                 iconPosition="right"
                 icon={chevron}
+                aria-label={`${menuStrings(ariaToggleLabelPrefix)} ${
+                    anchorLink.linkText
+                }`}
             >
                 {anchorLink.linkText}
             </Button>

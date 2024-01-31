@@ -1,9 +1,9 @@
 .toggleCollapse {
-    padding: 0.75rem 1rem 0.75rem 0.5rem;
-    margin: 0 0.5rem;
-    width: calc(100% - 1rem);
-    justify-content: flex-start;
     border-radius: 0;
+    justify-content: flex-start;
+    margin: 0 0.5rem;
+    padding: 0.75rem 1rem 0.75rem 0.5rem;
+    width: calc(100% - 1rem);
 }
 
 .list {
@@ -15,13 +15,13 @@
     background-color: var(--a-surface-selected);
 
     &::before {
+        background-color: var(--a-surface-action-subtle-hover);
         content: '';
+        height: 100%;
+        left: 0;
         position: absolute;
         top: 0;
-        left: 0;
         width: 0.25rem;
-        height: 100%;
-        background-color: var(--a-surface-action-subtle-hover);
     }
 
     &.open {

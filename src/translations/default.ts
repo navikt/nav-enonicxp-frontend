@@ -346,6 +346,10 @@ export const translationsBundleNb = {
         minutes: 'min',
         error: 'Det oppsto en feil under lasting av video',
     },
+    productPageMenu: {
+        clickToExpand: 'Åpne undermeny',
+        clickToCollapse: 'Lukk undermeny',
+    },
 };
 
 export type Translations = typeof translationsBundleNb;
