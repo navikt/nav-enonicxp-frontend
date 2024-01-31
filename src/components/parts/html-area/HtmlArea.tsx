@@ -13,7 +13,6 @@ export const HtmlArea = ({ config }: HtmlAreaProps) => {
             <EditorHelp text={'Tom innholdskomponent. Klikk for å redigere.'} />
         );
     }
-
     return (
         <FilteredContent {...config}>
             <ExpandableComponentWrapper {...config}>
