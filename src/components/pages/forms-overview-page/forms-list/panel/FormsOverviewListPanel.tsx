@@ -17,6 +17,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language, translator } from 'translations';
 
 import style from './FormsOverviewListPanel.module.scss';
+import { AlertBox } from 'components/_common/alert-box/AlertBox';
 
 type OverviewType = FormsOverviewData['overviewType'];
 
@@ -72,6 +73,7 @@ export const FormsOverviewListPanel = ({
         taxonomy,
         area,
         targetLanguage,
+        alerts,
     } = formDetails;
 
     const [isLoading, setIsLoading] = useState(false);
@@ -128,6 +130,16 @@ export const FormsOverviewListPanel = ({
             {!isAddendumPage && (
                 <BodyLong className={style.ingress}>{ingress}</BodyLong>
             )}
+            {alerts?.map((alert, index) => (
+                <AlertBox
+                    variant={
+                        alert.data.type === 'information' ? 'info' : 'warning'
+                    }
+                    key={index}
+                >
+                    {alert.data.text}
+                </AlertBox>
+            ))}
             {formDetailsPages?.map((formDetail) => (
                 <FormDetails
                     formDetails={formDetail.data}

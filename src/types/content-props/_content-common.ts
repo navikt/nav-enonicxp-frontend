@@ -53,6 +53,7 @@ import { FormDetailsPageProps } from './form-details';
 import { FormIntermediateStepPageProps } from './form-intermediate-step';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import { OverviewPageProps } from 'types/content-props/overview-props';
+import { AlertInContextPageProps } from './alerts';
 
 export enum ContentType {
     Error = 'error',
@@ -100,6 +101,7 @@ export enum ContentType {
     FormsOverview = 'no.nav.navno:forms-overview',
     UserTestsConfig = 'no.nav.navno:user-tests-config',
     Video = 'no.nav.navno:video',
+    AlertInContext = 'no.nav.navno:alert-in-context',
 }
 
 export type ContentAndMediaCommonProps = {
@@ -150,6 +152,7 @@ export type ContentCommonProps<Type extends ContentType = ContentType> = {
     page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit' | 'archive';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
+    alerts?: AlertInContextPageProps[];
     isFailover?: boolean;
     languages?: LanguageProps[];
     contentLayer?: string;

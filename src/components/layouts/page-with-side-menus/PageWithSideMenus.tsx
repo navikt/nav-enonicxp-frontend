@@ -9,6 +9,7 @@ import { windowMatchMedia } from '../../../utils/match-media';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import Config from '../../../config';
 import Region from '../Region';
+import { AlertInContext } from 'components/_common/alert-in-context/AlertInContext';
 
 const mobileWidthBreakpoint = Config.vars.mobileBreakpointPx;
 
@@ -99,6 +100,7 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     </div>
                 )}
                 <div className={'main-col'}>
+                    <AlertInContext alerts={pageProps.alerts} />
                     {isMobile !== true && shouldRenderTopContentRegion && (
                         <>
                             <MainContentSection

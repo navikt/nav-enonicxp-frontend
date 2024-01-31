@@ -13,6 +13,7 @@ import {
 import { ContentType } from 'types/content-props/_content-common';
 import { getFuseSearchFunc } from 'utils/text-search-utils';
 import type Fuse from 'fuse.js';
+import { AlertInContextPageProps } from 'types/content-props/alerts';
 
 export type OverviewFilterableItem = {
     area: Area[];

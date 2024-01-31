@@ -12,6 +12,7 @@ import { FormsOverviewAudienceLinks } from 'components/pages/forms-overview-page
 import { classNames } from 'utils/classnames';
 
 import style from './FormsOverviewPage.module.scss';
+import { FormDetails } from 'components/_common/form-details/FormDetails';
 
 const getLinksIfTransportPage = (audience: FormsOverviewAudienceOptions) => {
     if (audience?._selected !== 'provider') {
@@ -45,9 +46,26 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
     }
 
     const { config, regions } = page;
-    const { audience, illustration } = data;
+    const { audience, illustration, alerts } = data;
 
     const audienceSubCategoryLinks = getLinksIfTransportPage(audience);
+
+    const overviewWitAlerts = data.formDetailsList?.map((formDetails) => {
+        const detailHasAlerts = alerts?.some((alert) =>
+            alert.data.targetContent.includes(formDetails._id)
+        );
+
+        if (detailHasAlerts) console.log(formDetails);
+        return detailHasAlerts ? { ...formDetails, alerts } : formDetails;
+    });
+
+    const mutatedProps = {
+        ...props,
+        data: {
+            ...data,
+            formDetailsList: overviewWitAlerts,
+        },
+    };
 
     return (
         <div
@@ -67,7 +85,7 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
                         links={audienceSubCategoryLinks}
                     />
                 ) : (
-                    <FormsOverviewList {...props} />
+                    <FormsOverviewList {...mutatedProps} />
                 )}
             </div>
             {config.sideColToggle && (

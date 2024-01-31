@@ -8,8 +8,10 @@ import { TwoColsPageProps } from 'types/component-props/pages/two-cols-page';
 import { Area } from 'types/areas';
 import { ProductTaxonomy } from 'types/taxonomies';
 import { ProviderAudience } from 'types/component-props/_mixins';
+import { AlertInContextPageProps } from './alerts';
 
 export type FormDetailsListItemProps = {
+    _id: string;
     title: string;
     sortTitle: string;
     ingress: string;
@@ -20,6 +22,7 @@ export type FormDetailsListItemProps = {
     anchorId: string;
     illustration: AnimatedIconsProps;
     area: Area[];
+    alerts: AlertInContextPageProps[];
     taxonomy: ProductTaxonomy[];
     formDetailsPaths: string[];
     formDetailsTitles: string[];
@@ -61,6 +64,7 @@ export type FormsOverviewData = {
     taxonomyFilterToggle: boolean;
     textFilterToggle: boolean;
     formDetailsList: FormDetailsListItemProps[];
+    alerts: AlertInContextPageProps[];
 };
 
 export type FormsOverviewProps = ContentCommonProps & {
