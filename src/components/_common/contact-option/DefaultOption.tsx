@@ -105,15 +105,7 @@ export const DefaultOption = (props: Props) => {
                 {...bind}
             >
                 <div className={style.linkContent}>
-                    {iconWithTwoStates('message', isActive)}
-
-                    {/* <img TODO style icon
-                        alt={''}
-                        className={classNames(
-                            style.icon,
-                            style[icon || channel]
-                        )}
-                    /> */}
+                    {iconWithTwoStates(icon || 'place', isActive)}
                     {titleActual ? (
                         <Heading level={'3'} size={'small'}>
                             {titleActual}
