@@ -32,7 +32,7 @@ export const ChatOption = (props: ChatData) => {
 
     const translations = translator('contactPoint', language)('chat');
 
-    const [isActive, bind] = useHoverAndFocus();
+    const [isActive, hoverAndFocusHandlers] = useHoverAndFocus();
 
     return (
         <div className={style.contactOption}>
@@ -46,7 +46,7 @@ export const ChatOption = (props: ChatData) => {
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
-                {...bind}
+                {...hoverAndFocusHandlers}
             >
                 <div className={style.linkContent}>
                     {hoverFocusIcon('chat', isActive)}

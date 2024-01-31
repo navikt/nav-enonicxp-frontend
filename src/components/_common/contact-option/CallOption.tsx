@@ -71,7 +71,7 @@ export const CallOption = (props: CallOptionProps) => {
             : audienceUrls.en;
     };
 
-    const [isActive, bind] = useHoverAndFocus();
+    const [isActive, hoverAndFocusHandlers] = useHoverAndFocus();
 
     return (
         <div className={style.contactOption}>
@@ -81,7 +81,7 @@ export const CallOption = (props: CallOptionProps) => {
                 analyticsEvent={AnalyticsEvents.CALL}
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
-                {...bind}
+                {...hoverAndFocusHandlers}
             >
                 <div className={style.linkContent}>
                     {hoverFocusIcon('phone', isActive)}

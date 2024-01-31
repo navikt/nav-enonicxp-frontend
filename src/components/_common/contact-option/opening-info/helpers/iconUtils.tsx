@@ -17,14 +17,14 @@ export function useHoverAndFocus(): UseHoverAndFocus {
     const [isHovered, setIsHovered] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
 
-    const bind = {
+    const hoverAndFocusHandlers = {
         onMouseEnter: () => setIsHovered(true),
         onMouseLeave: () => setIsHovered(false),
         onFocus: () => setIsFocused(true),
         onBlur: () => setIsFocused(false),
     };
 
-    return [isHovered || isFocused, bind];
+    return [isHovered || isFocused, hoverAndFocusHandlers];
 }
 
 export const hoverFocusIcon = (iconName: string, isActive: boolean) => (
