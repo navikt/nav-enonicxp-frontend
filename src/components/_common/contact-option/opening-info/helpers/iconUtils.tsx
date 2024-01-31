@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import style from '../../ContactOption.module.scss';
 
-export function useHoverAndFocus(): [
+const appOrigin = process.env.APP_ORIGIN;
+
+type UseHoverAndFocus = [
     boolean,
     {
         onMouseEnter: () => void;
@@ -9,7 +11,9 @@ export function useHoverAndFocus(): [
         onFocus: () => void;
         onBlur: () => void;
     },
-] {
+];
+
+export function useHoverAndFocus(): UseHoverAndFocus {
     const [isHovered, setIsHovered] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
 
@@ -22,8 +26,6 @@ export function useHoverAndFocus(): [
 
     return [isHovered || isFocused, bind];
 }
-
-const appOrigin = process.env.APP_ORIGIN;
 
 export const hoverFocusIcon = (iconName: string, isActive: boolean) => (
     <>
