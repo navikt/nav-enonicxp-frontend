@@ -27,11 +27,15 @@ export function useHoverAndFocus(): UseHoverAndFocus {
     return [isHovered || isFocused, hoverAndFocusHandlers];
 }
 
-export const hoverFocusIcon = (iconName: string, isActive: boolean) => (
+export const hoverFocusIcon = (
+    iconName: string,
+    isActive: boolean,
+    customStyle: string = ''
+) => (
     <>
         <img
             alt=""
-            className={style.icon}
+            className={`${style.icon} ${customStyle}`}
             src={`${appOrigin}/gfx/${iconName}.svg`}
             style={{
                 display: isActive ? 'none' : 'block',
@@ -39,7 +43,7 @@ export const hoverFocusIcon = (iconName: string, isActive: boolean) => (
         />
         <img
             alt=""
-            className={style.icon}
+            className={`${style.icon} ${customStyle}`}
             src={`${appOrigin}/gfx/${iconName}-filled.svg`}
             style={{
                 display: isActive ? 'block' : 'none',
