@@ -3,12 +3,12 @@ import { getInternalAbsoluteUrl } from 'utils/urls';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { SocialMedia } from 'types/content-props/main-article-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-
-import style from './SosialeMedier.module.scss';
 import {
     hoverFocusIcon,
     useHoverAndFocus,
 } from 'components/_common/contact-option/opening-info/helpers/iconUtils';
+
+import style from './SosialeMedier.module.scss';
 
 type LinkData = { type: string; text: string; href: string };
 
@@ -42,9 +42,30 @@ type Props = {
     contentPath: string;
 };
 
+const Icon = ({ type, text, href }) => {
+    const { isActive, handlers } = useHoverAndFocus();
+
+    return (
+        <li>
+            <LenkeBase
+                href={href}
+                analyticsLabel={text}
+                className={style.ikon}
+                {...handlers}
+            >
+                {hoverFocusIcon(
+                    `${type}-filled.svg`,
+                    `${type}-inverted.svg`,
+                    isActive,
+                    style[type]
+                )}
+            </LenkeBase>
+        </li>
+    );
+};
+
 export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
     const { pageConfig } = usePageConfig();
-    const { isActive, handlers } = useHoverAndFocus();
 
     if (social.length === 0) {
         return null;
@@ -72,22 +93,7 @@ export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
         <section className={style.socialMedia}>
             <ul>
                 {linksData.map((item) => (
-                    <li key={item.type}>
-                        <LenkeBase
-                            href={item.href}
-                            analyticsLabel={item.text}
-                            className={style.ikon}
-                            {...handlers}
-                        >
-                            {/* <img alt={item.text} className={style[item.type]} /> */}
-                            {hoverFocusIcon(
-                                'facebook-filled.svg',
-                                'facebook-inverted.svg',
-                                isActive,
-                                style[item.type]
-                            )}
-                        </LenkeBase>
-                    </li>
+                    <Icon key={item.type} {...item} />
                 ))}
             </ul>
         </section>
