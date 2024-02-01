@@ -5,6 +5,10 @@ import { SocialMedia } from 'types/content-props/main-article-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import style from './SosialeMedier.module.scss';
+import {
+    hoverFocusIcon,
+    useHoverAndFocus,
+} from 'components/_common/contact-option/opening-info/helpers/iconUtils';
 
 type LinkData = { type: string; text: string; href: string };
 
@@ -40,6 +44,7 @@ type Props = {
 
 export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
     const { pageConfig } = usePageConfig();
+    const { isActive, handlers } = useHoverAndFocus();
 
     if (social.length === 0) {
         return null;
@@ -72,8 +77,15 @@ export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
                             href={item.href}
                             analyticsLabel={item.text}
                             className={style.ikon}
+                            {...handlers}
                         >
-                            <img alt={item.text} className={style[item.type]} />
+                            {/* <img alt={item.text} className={style[item.type]} /> */}
+                            {hoverFocusIcon(
+                                'facebook-filled.svg',
+                                'facebook-inverted.svg',
+                                isActive,
+                                style[item.type]
+                            )}
                         </LenkeBase>
                     </li>
                 ))}

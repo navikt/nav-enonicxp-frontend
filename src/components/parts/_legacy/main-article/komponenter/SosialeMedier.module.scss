@@ -27,38 +27,38 @@
         &:hover {
             background-color: var(--a-text-action);
 
-            .twitter {
-                content: url('https://www.nav.no/gfx/twitter-inverted.svg');
-            }
-            .facebook {
-                content: url('https://www.nav.no/gfx/facebook-inverted.svg');
-            }
-            .linkedin {
-                content: url('https://www.nav.no/gfx/linkedin-inverted.svg');
-            }
+            // .twitter {
+            //     content: url('https://www.nav.no/gfx/twitter-inverted.svg');
+            // }
+            // .facebook {
+            //     content: url('https://www.nav.no/gfx/facebook-inverted.svg');
+            // }
+            // .linkedin {
+            //     content: url('https://www.nav.no/gfx/linkedin-inverted.svg');
+            // }
         }
     }
     img {
         height: 1rem;
 
-        &.twitter {
-            content: url('https://www.nav.no/gfx/twitter-filled.svg');
-        }
-        &.facebook {
-            content: url('https://www.nav.no/gfx/facebook-filled.svg');
-        }
-        &.linkedin {
-            content: url('https://www.nav.no/gfx/linkedin-filled.svg');
-        }
+        // &.twitter {
+        //     content: url('https://www.nav.no/gfx/twitter-filled.svg');
+        // }
+        // &.facebook {
+        //     content: url('https://www.nav.no/gfx/facebook-filled.svg');
+        // }
+        // &.linkedin {
+        //     content: url('https://www.nav.no/gfx/linkedin-filled.svg');
+        // }
     }
 
-    &:after {
-        // preload mouseover icons
-        position: absolute;
-        z-index: -1;
-        content:
-            url('https://www.nav.no/gfx/twitter-inverted.svg')
-            url('https://www.nav.no/gfx/facebook-inverted.svg')
-            url('https://www.nav.no/gfx/linkedin-inverted.svg');
-    }
+    // &:after {
+    //     // preload mouseover icons
+    //     position: absolute;
+    //     z-index: -1;
+    //     content:
+    //         url('https://www.nav.no/gfx/twitter-inverted.svg')
+    //         url('https://www.nav.no/gfx/facebook-inverted.svg')
+    //         url('https://www.nav.no/gfx/linkedin-inverted.svg');
+    // }
 }

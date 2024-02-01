@@ -28,23 +28,26 @@ export function useHoverAndFocus(): UseHoverAndFocus {
 }
 
 export const hoverFocusIcon = (
-    iconName: string,
+    iconDefault: string,
+    iconActive: string,
     isActive: boolean,
     customStyle: string = ''
 ) => (
     <>
         <img
             alt=""
-            className={`${style.icon} ${customStyle}`}
-            src={`${appOrigin}/gfx/${iconName}.svg`}
+            // className={`${style.icon} ${customStyle}`}
+            className={`${customStyle}`}
+            src={`${appOrigin}/gfx/${iconDefault}`}
             style={{
                 display: isActive ? 'none' : 'block',
             }}
         />
         <img
             alt=""
-            className={`${style.icon} ${customStyle}`}
-            src={`${appOrigin}/gfx/${iconName}-filled.svg`}
+            // className={`${style.icon} ${customStyle}`}
+            className={`${customStyle}`}
+            src={`${appOrigin}/gfx/${iconActive}`}
             style={{
                 display: isActive ? 'block' : 'none',
             }}
