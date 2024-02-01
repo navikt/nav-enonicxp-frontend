@@ -3,6 +3,10 @@ import { getInternalAbsoluteUrl } from 'utils/urls';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { SocialMedia } from 'types/content-props/main-article-props';
 import { usePageConfig } from 'store/hooks/usePageConfig';
+import {
+    hoverFocusIcon,
+    useHoverAndFocus,
+} from 'components/_common/contact-option/opening-info/helpers/iconUtils';
 
 import style from './SosialeMedier.module.scss';
 
@@ -38,6 +42,27 @@ type Props = {
     contentPath: string;
 };
 
+const Icon = ({ type, text, href }) => {
+    const { isActive, handlers } = useHoverAndFocus();
+
+    return (
+        <li>
+            <LenkeBase
+                href={href}
+                analyticsLabel={text}
+                className={style.ikon}
+                {...handlers}
+            >
+                {hoverFocusIcon({
+                    iconDefault: `${type}-filled.svg`,
+                    iconActive: `${type}-inverted.svg`,
+                    isActive: isActive,
+                })}
+            </LenkeBase>
+        </li>
+    );
+};
+
 export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
     const { pageConfig } = usePageConfig();
 
@@ -67,15 +92,7 @@ export const SosialeMedier = ({ social, contentPath, displayName }: Props) => {
         <section className={style.socialMedia}>
             <ul>
                 {linksData.map((item) => (
-                    <li key={item.type}>
-                        <LenkeBase
-                            href={item.href}
-                            analyticsLabel={item.text}
-                            className={style.ikon}
-                        >
-                            <img alt={item.text} className={style[item.type]} />
-                        </LenkeBase>
-                    </li>
+                    <Icon key={item.type} {...item} />
                 ))}
             </ul>
         </section>

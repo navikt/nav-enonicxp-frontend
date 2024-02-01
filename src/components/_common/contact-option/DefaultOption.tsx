@@ -7,13 +7,16 @@ import {
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import Config from 'config';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import {
+    hoverFocusIcon,
+    useHoverAndFocus,
+} from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
 
@@ -25,6 +28,7 @@ export const DefaultOption = (props: Props) => {
     const { ingress, channel, title, url, icon } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
+    const { isActive, handlers } = useHoverAndFocus();
     const getTranslations = translator('contactPoint', language);
 
     // In order to open chatbot, onClick is needed instead of href. Therefore
@@ -91,6 +95,14 @@ export const DefaultOption = (props: Props) => {
         ingress ||
         (channel !== 'custom' ? getTranslations(channel).ingress : null);
 
+    const iconName = icon || 'place';
+    const iconElement = hoverFocusIcon({
+        iconDefault: `${iconName}.svg`,
+        iconActive: `${iconName}-filled.svg`,
+        isActive: isActive,
+        style: style.icon,
+    });
+
     return (
         <div className={style.contactOption}>
             <LenkeBase
@@ -98,15 +110,10 @@ export const DefaultOption = (props: Props) => {
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
+                {...handlers}
             >
                 <div className={style.linkContent}>
-                    <img
-                        alt={''}
-                        className={classNames(
-                            style.icon,
-                            style[icon || channel]
-                        )}
-                    />
+                    {iconElement}
                     {titleActual ? (
                         <Heading level={'3'} size={'small'}>
                             {titleActual}

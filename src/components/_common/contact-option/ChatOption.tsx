@@ -4,13 +4,16 @@ import { ChatData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { classNames } from 'utils/classnames';
 import { AnalyticsEvents } from 'utils/amplitude';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { openChatbot } from '@navikt/nav-dekoratoren-moduler';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import TextWithIndicator from '../text-with-indicator/TextWithIndicator';
 import { OpeningInfo } from './opening-info/OpeningInfo';
+import {
+    hoverFocusIcon,
+    useHoverAndFocus,
+} from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
 
@@ -29,6 +32,8 @@ export const ChatOption = (props: ChatData) => {
 
     const translations = translator('contactPoint', language)('chat');
 
+    const { isActive, handlers } = useHoverAndFocus();
+
     return (
         <div className={style.contactOption}>
             <LenkeBase
@@ -41,12 +46,15 @@ export const ChatOption = (props: ChatData) => {
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
+                {...handlers}
             >
                 <div className={style.linkContent}>
-                    <img
-                        alt=""
-                        className={classNames(style.icon, style.chat)}
-                    />
+                    {hoverFocusIcon({
+                        iconDefault: 'chat.svg',
+                        iconActive: 'chat-filled.svg',
+                        isActive: isActive,
+                        style: `${style.icon} ${style.chatIcon}`,
+                    })}
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>
