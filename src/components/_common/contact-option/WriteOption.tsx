@@ -22,7 +22,7 @@ export const WriteOption = (props: Props) => {
     const { ingress, url, alertText, title } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
-    const [isActive, hoverAndFocusHandlers] = useHoverAndFocus();
+    const { isActive, handlers } = useHoverAndFocus();
 
     const translations = translator('contactPoint', language)('write');
 
@@ -33,7 +33,7 @@ export const WriteOption = (props: Props) => {
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
-                {...hoverAndFocusHandlers}
+                {...handlers}
             >
                 <div className={style.linkContent}>
                     {hoverFocusIcon('message', isActive)}

@@ -28,7 +28,7 @@ export const DefaultOption = (props: Props) => {
     const { ingress, channel, title, url, icon } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
-    const [isActive, hoverAndFocusHandlers] = useHoverAndFocus();
+    const { isActive, handlers } = useHoverAndFocus();
     const getTranslations = translator('contactPoint', language);
 
     // In order to open chatbot, onClick is needed instead of href. Therefore
@@ -102,7 +102,7 @@ export const DefaultOption = (props: Props) => {
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
-                {...hoverAndFocusHandlers}
+                {...handlers}
             >
                 <div className={style.linkContent}>
                     {hoverFocusIcon(icon || 'place', isActive)}
