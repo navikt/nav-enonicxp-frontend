@@ -26,12 +26,19 @@ export function useHoverAndFocus(): UseHoverAndFocus {
     return { isActive: isHovered || isFocused, handlers };
 }
 
-export const hoverFocusIcon = (
-    iconDefault: string,
-    iconActive: string,
-    isActive: boolean,
-    style: string = ''
-) => (
+interface HoverFocusIconProps {
+    iconDefault: string;
+    iconActive: string;
+    isActive: boolean;
+    style?: string;
+}
+
+export const hoverFocusIcon = ({
+    iconDefault,
+    iconActive,
+    isActive,
+    style = '',
+}: HoverFocusIconProps) => (
     <>
         <img
             alt=""

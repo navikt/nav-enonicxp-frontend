@@ -53,11 +53,11 @@ const Icon = ({ type, text, href }) => {
                 className={style.ikon}
                 {...handlers}
             >
-                {hoverFocusIcon(
-                    `${type}-filled.svg`,
-                    `${type}-inverted.svg`,
-                    isActive
-                )}
+                {hoverFocusIcon({
+                    iconDefault: `${type}-filled.svg`,
+                    iconActive: `${type}-inverted.svg`,
+                    isActive: isActive,
+                })}
             </LenkeBase>
         </li>
     );

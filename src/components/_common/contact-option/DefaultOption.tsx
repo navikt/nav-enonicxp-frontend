@@ -96,12 +96,12 @@ export const DefaultOption = (props: Props) => {
         (channel !== 'custom' ? getTranslations(channel).ingress : null);
 
     const iconName = icon || 'place';
-    const iconElement = hoverFocusIcon(
-        `${iconName}.svg`,
-        `${iconName}-filled.svg`,
-        isActive,
-        style.icon
-    );
+    const iconElement = hoverFocusIcon({
+        iconDefault: `${iconName}.svg`,
+        iconActive: `${iconName}-filled.svg`,
+        isActive: isActive,
+        style: style.icon,
+    });
 
     return (
         <div className={style.contactOption}>

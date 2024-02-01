@@ -36,12 +36,12 @@ export const WriteOption = (props: Props) => {
                 {...handlers}
             >
                 <div className={style.linkContent}>
-                    {hoverFocusIcon(
-                        'message.svg',
-                        'message-filled.svg',
-                        isActive,
-                        style.icon
-                    )}
+                    {hoverFocusIcon({
+                        iconDefault: 'message.svg',
+                        iconActive: 'message-filled.svg',
+                        isActive: isActive,
+                        style: style.icon,
+                    })}
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>
