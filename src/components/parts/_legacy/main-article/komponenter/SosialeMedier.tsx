@@ -56,8 +56,7 @@ const Icon = ({ type, text, href }) => {
                 {hoverFocusIcon(
                     `${type}-filled.svg`,
                     `${type}-inverted.svg`,
-                    isActive,
-                    style[type]
+                    isActive
                 )}
             </LenkeBase>
         </li>
