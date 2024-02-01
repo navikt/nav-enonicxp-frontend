@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import style from '../../ContactOption.module.scss';
 
 const appOrigin = process.env.APP_ORIGIN;
 
@@ -31,13 +30,12 @@ export const hoverFocusIcon = (
     iconDefault: string,
     iconActive: string,
     isActive: boolean,
-    customStyle: string = ''
+    style: string = ''
 ) => (
     <>
         <img
             alt=""
-            // className={`${style.icon} ${customStyle}`}
-            className={`${customStyle}`}
+            className={`${style}`}
             src={`${appOrigin}/gfx/${iconDefault}`}
             style={{
                 display: isActive ? 'none' : 'block',
@@ -45,8 +43,7 @@ export const hoverFocusIcon = (
         />
         <img
             alt=""
-            // className={`${style.icon} ${customStyle}`}
-            className={`${customStyle}`}
+            className={`${style}`}
             src={`${appOrigin}/gfx/${iconActive}`}
             style={{
                 display: isActive ? 'block' : 'none',

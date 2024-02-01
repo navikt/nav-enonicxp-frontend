@@ -84,7 +84,12 @@ export const CallOption = (props: CallOptionProps) => {
                 {...handlers}
             >
                 <div className={style.linkContent}>
-                    {hoverFocusIcon('phone', isActive)}
+                    {hoverFocusIcon(
+                        'phone.svg',
+                        'phone-filled.svg',
+                        isActive,
+                        style.icon
+                    )}
                     <Heading level="3" size="small" className={style.link}>
                         {title || callTranslations.title}
                     </Heading>

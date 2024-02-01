@@ -95,6 +95,14 @@ export const DefaultOption = (props: Props) => {
         ingress ||
         (channel !== 'custom' ? getTranslations(channel).ingress : null);
 
+    const iconName = icon || 'place';
+    const iconElement = hoverFocusIcon(
+        `${iconName}.svg`,
+        `${iconName}-filled.svg`,
+        isActive,
+        style.icon
+    );
+
     return (
         <div className={style.contactOption}>
             <LenkeBase
@@ -105,7 +113,7 @@ export const DefaultOption = (props: Props) => {
                 {...handlers}
             >
                 <div className={style.linkContent}>
-                    {hoverFocusIcon(icon || 'place', isActive)}
+                    {iconElement}
                     {titleActual ? (
                         <Heading level={'3'} size={'small'}>
                             {titleActual}

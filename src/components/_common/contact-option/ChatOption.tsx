@@ -49,7 +49,12 @@ export const ChatOption = (props: ChatData) => {
                 {...handlers}
             >
                 <div className={style.linkContent}>
-                    {hoverFocusIcon('chat', isActive, style.chatIcon)}
+                    {hoverFocusIcon(
+                        'chat.svg',
+                        'chat-filled.svg',
+                        isActive,
+                        `${style.icon} ${style.chatIcon}`
+                    )}
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>
