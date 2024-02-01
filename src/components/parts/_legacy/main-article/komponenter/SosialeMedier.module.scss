@@ -24,6 +24,7 @@
         border-radius: 50%;
         border: 1px solid var(--a-text-action);
 
+        &:focus,
         &:hover {
             background-color: var(--a-text-action);
         }
