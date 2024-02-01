@@ -13,6 +13,7 @@ import { classNames } from 'utils/classnames';
 
 import style from './FormsOverviewPage.module.scss';
 import { FormDetails } from 'components/_common/form-details/FormDetails';
+import { forceArray } from 'utils/arrays';
 
 const getLinksIfTransportPage = (audience: FormsOverviewAudienceOptions) => {
     if (audience?._selected !== 'provider') {
@@ -52,10 +53,11 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
 
     const overviewWitAlerts = data.formDetailsList?.map((formDetails) => {
         const detailHasAlerts = alerts?.some((alert) =>
-            alert.data.targetContent.includes(formDetails._id)
+            forceArray(alert.data.targetContent).some((target) =>
+                formDetails.formDetailsIds.includes(target)
+            )
         );
 
-        if (detailHasAlerts) console.log(formDetails);
         return detailHasAlerts ? { ...formDetails, alerts } : formDetails;
     });
 

@@ -114,6 +114,10 @@ export const FormsOverviewListPanel = ({
             });
     };
 
+    if (alerts && alerts.length > 0) {
+        console.log(alerts);
+    }
+
     return (
         <ProductPanelExpandable
             header={sortTitle}
@@ -130,24 +134,37 @@ export const FormsOverviewListPanel = ({
             {!isAddendumPage && (
                 <BodyLong className={style.ingress}>{ingress}</BodyLong>
             )}
-            {alerts?.map((alert, index) => (
-                <AlertBox
-                    variant={
-                        alert.data.type === 'information' ? 'info' : 'warning'
-                    }
-                    key={index}
-                >
-                    {alert.data.text}
-                </AlertBox>
-            ))}
+
             {formDetailsPages?.map((formDetail) => (
-                <FormDetails
-                    formDetails={formDetail.data}
-                    displayConfig={getFormDetailsDisplayOptions(overviewType)}
-                    className={style.formDetails}
-                    formNumberSelected={formNumberSelected}
-                    key={formDetail._id}
-                />
+                <>
+                    {alerts?.map(
+                        (alert, index) =>
+                            alert.data.targetContent.includes(
+                                formDetail._id
+                            ) && (
+                                <AlertBox
+                                    variant={
+                                        alert.data.type === 'information'
+                                            ? 'info'
+                                            : 'warning'
+                                    }
+                                    key={index}
+                                >
+                                    {alert.data.text}
+                                </AlertBox>
+                            )
+                    )}
+
+                    <FormDetails
+                        formDetails={formDetail.data}
+                        displayConfig={getFormDetailsDisplayOptions(
+                            overviewType
+                        )}
+                        className={style.formDetails}
+                        formNumberSelected={formNumberSelected}
+                        key={formDetail._id}
+                    />
+                </>
             ))}
             {!isAddendumPage && url && (
                 <OverviewMicroCards

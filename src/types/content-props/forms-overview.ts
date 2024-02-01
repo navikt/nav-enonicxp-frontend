@@ -28,6 +28,7 @@ export type FormDetailsListItemProps = {
     formDetailsTitles: string[];
     formDetailsIngresses: string[];
     formNumbers: string[];
+    formDetailsIds: string[];
 };
 
 export type FormsOverviewAudienceOptions = OptionSetSingle<{
