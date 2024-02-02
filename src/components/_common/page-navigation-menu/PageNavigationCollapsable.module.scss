@@ -6,6 +6,7 @@
     width: calc(100% - 0.5rem);
     justify-content: flex-start;
     padding-right: 0;
+    cursor: pointer;
 
     &:has(:active) {
         background-color: common.$a-blue-100;

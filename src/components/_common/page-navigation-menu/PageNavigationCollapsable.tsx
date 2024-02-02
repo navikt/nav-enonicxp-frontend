@@ -61,6 +61,7 @@ export const CollapsableItem = ({
                     scrollDirection && sidebarStyle[scrollDirection],
                     isCurrent && sidebarStyle.current
                 )}
+                onClick={() => setOpen(!isOpen)}
             >
                 {viewStyle === 'sidebar' && (
                     <span
