@@ -3,12 +3,17 @@
 .pageNavCollapsable {
     display: flex;
     color: common.$a-text-action;
-    width: calc(100% - 1rem);
+    width: calc(100% - 0.5rem);
     justify-content: flex-start;
     padding-right: 0;
 
     &:has(:active) {
         background-color: common.$a-blue-100;
+    }
+
+    &:has(:focus) {
+        outline: 0;
+        box-shadow: 0 0 0 3px common.$a-border-focus inset;
     }
 }
 
@@ -21,6 +26,11 @@
     &:active {
         color: common.$a-text-action;
         background-color: common.$a-blue-100 !important;
+    }
+
+    &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 0;
     }
 
     :global(.navds-button__icon) {
