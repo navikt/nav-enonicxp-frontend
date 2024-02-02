@@ -3,8 +3,9 @@
 .pageNavCollapsable {
     display: flex;
     color: common.$a-text-action;
-    width: 100%;
+    width: calc(100% - 1rem);
     justify-content: flex-start;
+    padding-right: 0;
 
     &:has(:active) {
         background-color: common.$a-blue-100;
@@ -20,6 +21,10 @@
     &:active {
         color: common.$a-text-action;
         background-color: common.$a-blue-100 !important;
+    }
+
+    :global(.navds-button__icon) {
+        margin-left: auto;
     }
 }
 
