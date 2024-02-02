@@ -47,6 +47,7 @@ export const PageNavigationSidebar = ({
                                     <CollapsableItem
                                         anchorLink={anchorLink}
                                         scrollDirection={scrollDirection}
+                                        isCurrent={currentIndex === index}
                                         currentIndex={currentIndex}
                                         viewStyle={'sidebar'}
                                     />

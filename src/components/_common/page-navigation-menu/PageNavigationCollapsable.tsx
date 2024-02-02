@@ -13,14 +13,19 @@ import {
 import { classNames } from 'utils/classnames';
 import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
-import styles from './PageNavigationCollapsable.module.scss';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
+
+import sidebarStyle from './views/PageNavigationSidebar.module.scss';
+import inContentStyle from './views/PageNavigationInContent.module.scss';
+
+import styles from './PageNavigationCollapsable.module.scss';
 
 type CollapsableItemProps = {
     anchorLink: AnchorLink;
     currentIndex: number;
     viewStyle: PageNavViewStyle;
+    isCurrent: boolean;
     scrollDirection: PageNavScrollDirection;
 };
 
@@ -28,6 +33,7 @@ export const CollapsableItem = ({
     anchorLink,
     currentIndex,
     scrollDirection,
+    isCurrent,
     viewStyle,
 }: CollapsableItemProps) => {
     const [isOpen, setOpen] = useState(false);
@@ -43,30 +49,48 @@ export const CollapsableItem = ({
 
     const ariaToggleLabelPrefix = isOpen ? 'clickToCollapse' : 'clickToExpand';
 
+    const currentViewStyle =
+        viewStyle === 'sidebar' ? sidebarStyle : inContentStyle;
+
     return (
         <>
-            <Button
-                onClick={() => setOpen(!isOpen)}
-                variant="tertiary"
+            <div
                 className={classNames(
-                    styles.toggleCollapse,
-                    isOpen && styles.open
+                    styles.pageNavCollapsable,
+                    currentViewStyle.pageNavLink,
+                    scrollDirection && sidebarStyle[scrollDirection],
+                    isCurrent && sidebarStyle.current
                 )}
-                iconPosition="right"
-                icon={chevron}
-                aria-label={`${menuStrings(ariaToggleLabelPrefix)} ${
-                    anchorLink.linkText
-                }`}
             >
-                {anchorLink.linkText}
-            </Button>
+                {viewStyle === 'sidebar' && (
+                    <span
+                        className={currentViewStyle.decor}
+                        aria-hidden={true}
+                    />
+                )}
+                <Button
+                    onClick={() => setOpen(!isOpen)}
+                    variant="tertiary"
+                    className={classNames(
+                        styles.toggleCollapse,
+                        isCurrent && currentViewStyle.current,
+                        isOpen && styles.open
+                    )}
+                    iconPosition="right"
+                    icon={chevron}
+                    aria-label={`${menuStrings(ariaToggleLabelPrefix)} ${
+                        anchorLink.linkText
+                    }`}
+                >
+                    {anchorLink.linkText}
+                </Button>
+            </div>
             <ul className={classNames(styles.list, isOpen && styles.open)}>
                 {anchorLink.subLinks.map((subLink, index) => (
                     <li key={subLink.anchorId}>
                         <PageNavigationLink
                             targetId={subLink.anchorId}
                             linkId={getPageNavigationLinkId(subLink.anchorId)}
-                            isCurrent={currentIndex === index}
                             scrollDirection={scrollDirection}
                             viewStyle={viewStyle}
                             isSubLink={true}

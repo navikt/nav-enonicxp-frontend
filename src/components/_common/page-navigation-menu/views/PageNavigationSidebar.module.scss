@@ -16,7 +16,7 @@
 .pageNavLink {
     $verticalPadding: 0.75rem;
     $horizontalPadding: 1rem;
-    $decorWidth: 0.5rem;
+    $decorWidth: 0.25rem;
     padding: $verticalPadding $horizontalPadding;
 
     @media #{common.$mq-screen-tablet-and-desktop} {
@@ -79,7 +79,7 @@
         .decor {
             visibility: visible;
             min-width: $decorWidth;
-            margin: (-$verticalPadding) $decorWidth (-$verticalPadding)
+            margin: (-$verticalPadding) ($decorWidth * 3) (-$verticalPadding)
                 (-$decorWidth - $horizontalPadding);
             background-color: common.$a-text-action;
 

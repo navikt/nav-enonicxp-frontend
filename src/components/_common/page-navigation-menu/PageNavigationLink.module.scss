@@ -12,10 +12,14 @@
     }
 }
 
-.subLink {
-    padding-left: 0.5rem;
-}
-
 .linkText {
     font-weight: common.$a-font-weight-bold;
+}
+
+.subLink {
+    padding-left: 0.5rem;
+
+    .linkText {
+        font-weight: normal;
+    }
 }
