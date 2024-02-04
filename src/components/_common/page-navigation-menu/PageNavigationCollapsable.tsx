@@ -47,7 +47,9 @@ export const CollapsableItem = ({
         <ChevronDownIcon aria-hidden />
     );
 
-    const ariaToggleLabelPrefix = isOpen ? 'clickToCollapse' : 'clickToExpand';
+    const ariaToggleLabelPrefixId = isOpen
+        ? 'clickToCollapse'
+        : 'clickToExpand';
 
     const currentViewStyle =
         viewStyle === 'sidebar' ? sidebarStyle : inContentStyle;
@@ -79,7 +81,7 @@ export const CollapsableItem = ({
                     )}
                     iconPosition="right"
                     icon={chevron}
-                    aria-label={`${menuStrings(ariaToggleLabelPrefix)} ${
+                    aria-label={`${menuStrings(ariaToggleLabelPrefixId)} ${
                         anchorLink.linkText
                     }`}
                 >
