@@ -17,10 +17,8 @@ export const ReadMorePart = ({ config }: ReadMorePartProps) => {
     const { title, html } = config;
 
     return (
-        <div>
-            <ReadMore header={title}>
-                <ParsedHtml htmlProps={html} />
-            </ReadMore>
-        </div>
+        <ReadMore header={title}>
+            <ParsedHtml htmlProps={html} />
+        </ReadMore>
     );
 };
