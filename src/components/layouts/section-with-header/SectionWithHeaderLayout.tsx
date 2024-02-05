@@ -7,6 +7,7 @@ import { Header } from '../../_common/headers/Header';
 import { XpImage } from '../../_common/image/XpImage';
 import { FilterBar } from '../../_common/filter-bar/FilterBar';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { SectionNavigation } from './section-navigation/SectionNavigation';
 
 const getBorderStyle = ({
     color = '#ffffff',
@@ -36,6 +37,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     const { title, anchorId, icon, border, toggleCopyButton } = config;
     const isEditorView = pageProps.editorView === 'edit';
+    const { showSubsectionNavigation } = pageProps.data;
 
     const iconImgProps = icon?.icon;
 
@@ -92,6 +94,12 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                 >
                     {title}
                 </Header>
+            )}
+            {showSubsectionNavigation && (
+                <SectionNavigation
+                    introRegion={regions.intro}
+                    contentRegion={regions.content}
+                />
             )}
             {shouldShowIntroRegion && (
                 <Region pageProps={pageProps} regionProps={regions.intro} />
