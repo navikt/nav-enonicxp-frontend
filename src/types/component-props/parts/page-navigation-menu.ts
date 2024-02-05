@@ -5,7 +5,6 @@ export type AnchorLink = {
     anchorId: string;
     linkText: string;
     isDupe?: boolean;
-    subLinks?: AnchorLink[];
 };
 
 export type PageNavViewStyle = 'sidebar' | 'inContent';

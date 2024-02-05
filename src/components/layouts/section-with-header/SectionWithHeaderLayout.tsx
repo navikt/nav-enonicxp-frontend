@@ -37,6 +37,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     const { title, anchorId, icon, border, toggleCopyButton } = config;
     const isEditorView = pageProps.editorView === 'edit';
+    const { showSubsectionNavigation } = pageProps.data;
 
     const iconImgProps = icon?.icon;
 
@@ -94,10 +95,12 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     {title}
                 </Header>
             )}
-            <SectionNavigation
-                introRegion={regions.intro}
-                contentRegion={regions.content}
-            />
+            {showSubsectionNavigation && (
+                <SectionNavigation
+                    introRegion={regions.intro}
+                    contentRegion={regions.content}
+                />
+            )}
             {shouldShowIntroRegion && (
                 <Region pageProps={pageProps} regionProps={regions.intro} />
             )}
