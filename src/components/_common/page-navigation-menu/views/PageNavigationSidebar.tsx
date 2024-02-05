@@ -7,7 +7,6 @@ import {
     PageNavScrollDirection,
 } from '../PageNavigationMenu';
 import { PageNavigationDupeLinkWarning } from '../PageNavigationDupeLinkWarning';
-
 import style from './PageNavigationSidebar.module.scss';
 
 type Props = {
@@ -35,23 +34,21 @@ export const PageNavigationSidebar = ({
             <PageNavigationDupeLinkWarning dupes={dupes} />
             <nav aria-label={'Innhold'}>
                 <ul className={style.list}>
-                    {links.map((anchorLink, index) => {
-                        return (
-                            <li key={anchorLink.anchorId}>
-                                <PageNavigationLink
-                                    targetId={anchorLink.anchorId}
-                                    linkId={getPageNavigationLinkId(
-                                        anchorLink.anchorId
-                                    )}
-                                    isCurrent={currentIndex === index}
-                                    scrollDirection={scrollDirection}
-                                    viewStyle={'sidebar'}
-                                >
-                                    {anchorLink.linkText}
-                                </PageNavigationLink>
-                            </li>
-                        );
-                    })}
+                    {links.map((anchorLink, index) => (
+                        <li key={anchorLink.anchorId}>
+                            <PageNavigationLink
+                                targetId={anchorLink.anchorId}
+                                linkId={getPageNavigationLinkId(
+                                    anchorLink.anchorId
+                                )}
+                                isCurrent={currentIndex === index}
+                                scrollDirection={scrollDirection}
+                                viewStyle={'sidebar'}
+                            >
+                                {anchorLink.linkText}
+                            </PageNavigationLink>
+                        </li>
+                    ))}
                 </ul>
             </nav>
         </div>

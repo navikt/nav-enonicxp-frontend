@@ -18,7 +18,6 @@ type Props = {
     viewStyle: PageNavViewStyle;
     linkId?: string;
     isCurrent?: boolean;
-    isSubLink?: boolean;
     scrollDirection?: PageNavScrollDirection;
     children: React.ReactNode;
 };
@@ -28,7 +27,6 @@ export const PageNavigationLink = React.memo(
         targetId,
         linkId,
         isCurrent,
-        isSubLink,
         scrollDirection,
         viewStyle,
         children,
@@ -56,14 +54,13 @@ export const PageNavigationLink = React.memo(
                 analyticsComponent={'Meny for intern-navigasjon'}
                 className={classNames(
                     style.pageNavLink,
-                    isSubLink && style.subLink,
                     currentViewStyle.pageNavLink,
                     scrollDirection && sidebarStyle[scrollDirection],
                     isCurrent && sidebarStyle.current
                 )}
                 id={linkId}
             >
-                {viewStyle === 'sidebar' && !isSubLink && (
+                {viewStyle === 'sidebar' && (
                     <span
                         className={currentViewStyle.decor}
                         aria-hidden={true}

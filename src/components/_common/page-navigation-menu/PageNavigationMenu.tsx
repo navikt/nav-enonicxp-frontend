@@ -65,48 +65,19 @@ const getValidLinks = (anchorLinks: AnchorLink[]): AnchorLink[] =>
             // On the client-side we also check if the element is in the DOM
             (typeof document === 'undefined' ||
                 !!document.getElementById(link.anchorId))
-    ) ||
-    [].map((link) => ({ ...link, subLinks: getValidLinks(link.subLinks) }));
+    ) || [];
 
 type Props = {
     anchorLinks: AnchorLink[];
     title?: string;
-    showSubMenu?: boolean;
     currentLinkCallback?: (args: PageNavCallbackArgs) => void;
     viewStyle: PageNavViewStyle;
-};
-
-const sortLinks = (links: AnchorLink[]) => {
-    return links
-        .sort((a, b) => {
-            const elementA = document.getElementById(a.anchorId);
-            const elementB = document.getElementById(b.anchorId);
-            return elementA.offsetTop - elementB.offsetTop;
-        })
-        .map((link) => {
-            return link.subLinks?.length > 0
-                ? {
-                      ...link,
-                      subLinks: sortLinks(link.subLinks),
-                  }
-                : link;
-        });
-};
-
-const flattenAnchorLinks = (links: AnchorLink[]): AnchorLink[] => {
-    return links.reduce((acc, link) => {
-        const subLinks = link.subLinks?.length
-            ? flattenAnchorLinks(link.subLinks)
-            : [];
-        return [...acc, link, ...subLinks];
-    }, []);
 };
 
 export const PageNavigationMenu = ({
     anchorLinks,
     title,
     currentLinkCallback,
-    showSubMenu,
     viewStyle,
 }: Props) => {
     const [currentIndex, setCurrentIndex] = useState(-1);
@@ -138,7 +109,11 @@ export const PageNavigationMenu = ({
             return;
         }
 
-        const sortedLinks = sortLinks(getValidLinks(anchorLinks));
+        const sortedLinks = getValidLinks(anchorLinks).sort((a, b) => {
+            const elementA = document.getElementById(a.anchorId);
+            const elementB = document.getElementById(b.anchorId);
+            return elementA.offsetTop - elementB.offsetTop;
+        });
 
         const currentScrollPositionHandler = debounce(
             () => {
@@ -173,8 +148,7 @@ export const PageNavigationMenu = ({
         title: title,
         links: links,
         scrollDirection: scrollDir.current,
-        showSubMenu: showSubMenu,
-        dupes: flattenAnchorLinks(anchorLinks).filter((link) => link.isDupe),
+        dupes: anchorLinks.filter((link) => link.isDupe),
     };
 
     return viewStyle === 'sidebar' ? (

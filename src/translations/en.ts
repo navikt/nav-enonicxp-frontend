@@ -312,10 +312,6 @@ export const translationsBundleEn: PartialTranslations = {
         minutes: 'min',
         error: 'An error occurred while loading the video',
     },
-    productPageMenu: {
-        clickToExpand: 'Expand submenu',
-        clickToCollapse: 'Collapse submenu',
-    },
     sectionNavigation: {
         navigationLabel: 'Jump to sub section',
     },

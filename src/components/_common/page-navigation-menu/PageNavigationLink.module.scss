@@ -13,13 +13,5 @@
 }
 
 .linkText {
-    font-weight: var(--a-font-weight-bold);
-}
-
-.subLink {
-    padding-left: 1rem;
-
-    .linkText {
-        font-weight: var(--a-font-weight-regular);
-    }
+    font-weight: common.$a-font-weight-bold;
 }

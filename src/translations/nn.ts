@@ -314,10 +314,6 @@ export const translationsBundleNn: PartialTranslations = {
         minutes: 'min',
         error: 'Det oppsto en feil under lasting av video',
     },
-    productPageMenu: {
-        clickToExpand: 'Opne undermeny',
-        clickToCollapse: 'Lukk undermeny',
-    },
     sectionNavigation: {
         navigationLabel: 'Hopp til underseksjonar',
     },
