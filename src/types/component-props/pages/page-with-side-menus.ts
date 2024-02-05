@@ -25,7 +25,7 @@ export interface PageWithSideMenusProps extends LayoutCommonProps {
         leftMenuToggle: boolean;
         leftMenuSticky: boolean;
         showInternalNav: boolean;
-        showSubMenu?: boolean;
+        showSubsectionNavigation?: boolean;
         anchorLinks: AnchorLink[];
         rightMenuToggle: boolean;
         rightMenuSticky: boolean;

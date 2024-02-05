@@ -7,6 +7,7 @@ import { Header } from '../../_common/headers/Header';
 import { XpImage } from '../../_common/image/XpImage';
 import { FilterBar } from '../../_common/filter-bar/FilterBar';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
+import { SectionNavigation } from './section-navigation/SectionNavigation';
 
 const getBorderStyle = ({
     color = '#ffffff',
@@ -93,6 +94,10 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     {title}
                 </Header>
             )}
+            <SectionNavigation
+                introRegion={regions.intro}
+                contentRegion={regions.content}
+            />
             {shouldShowIntroRegion && (
                 <Region pageProps={pageProps} regionProps={regions.intro} />
             )}

@@ -318,4 +318,7 @@ export const translationsBundleNn: PartialTranslations = {
         clickToExpand: 'Opne undermeny',
         clickToCollapse: 'Lukk undermeny',
     },
+    sectionNavigation: {
+        navigationLabel: 'Hopp til underseksjonar',
+    },
 };

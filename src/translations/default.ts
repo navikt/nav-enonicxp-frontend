@@ -350,6 +350,9 @@ export const translationsBundleNb = {
         clickToExpand: 'Åpne undermeny',
         clickToCollapse: 'Lukk undermeny',
     },
+    sectionNavigation: {
+        navigationLabel: 'Hopp til underseksjoner',
+    },
 };
 
 export type Translations = typeof translationsBundleNb;

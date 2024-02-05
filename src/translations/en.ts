@@ -316,4 +316,7 @@ export const translationsBundleEn: PartialTranslations = {
         clickToExpand: 'Expand submenu',
         clickToCollapse: 'Collapse submenu',
     },
+    sectionNavigation: {
+        navigationLabel: 'Jump to sub section',
+    },
 };
