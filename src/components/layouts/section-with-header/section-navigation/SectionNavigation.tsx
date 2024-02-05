@@ -23,7 +23,8 @@ const getAnchorsFromComponents = (components: RegionProps['components']) => {
         .reduce((acc, component) => {
             if (
                 component.type === ComponentType.Part &&
-                component.descriptor === PartType.Header
+                component.descriptor === PartType.Header &&
+                component.config?.titleTag === 'h3'
             ) {
                 acc.push({
                     anchorId: component.config.anchorId as string,
