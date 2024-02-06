@@ -22,6 +22,10 @@
             box-shadow: 0 0 0;
             background-color: var(--a-gray-50);
             border-top: 1px solid transparent;
+
+            :global(.navds-accordion__icon-wrapper) {
+                background-color: var(--a-white);
+            }
         }
     }
 }
