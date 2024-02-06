@@ -46,6 +46,7 @@ export enum PartType {
     UxSignalsWidget = 'no.nav.navno:uxsignals-widget',
     UserTests = 'no.nav.navno:user-tests',
     ReadMore = 'no.nav.navno:read-more',
+    Accordion = 'no.nav.navno:accordion',
 }
 
 export type PartDeprecatedType =

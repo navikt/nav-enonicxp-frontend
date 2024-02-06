@@ -62,7 +62,8 @@ export const SectionNavigation = ({
                         href={`#${anchor.anchorId}`}
                         analyticsEvent={AnalyticsEvents.NAVIGATION}
                         analyticsLinkGroup={'Innhold'}
-                        analyticsComponent={'Hopp til underkapittell'}
+                        analyticsComponent={'Hopp til underkapittel'}
+                        analyticsLabel={anchor.title}
                     >
                         {anchor.title}
                     </LenkeBase>
