@@ -47,6 +47,10 @@ export const SectionNavigation = ({
 
     const getLabels = translator('sectionNavigation', language);
 
+    if (allAnchors.length === 0) {
+        return null;
+    }
+
     return (
         <ul
             aria-label={getLabels('navigationLabel')}
