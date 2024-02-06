@@ -53,6 +53,7 @@ import { FormDetailsPart } from './form-details/FormDetailsPart';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { UserTestsPart } from 'components/parts/user-tests/UserTestsPart';
 import { ReadMorePart } from './read-more/ReadMorePart';
+import { AccordionPart } from './accordion/AccordionPart';
 
 type Props = {
     partProps: PartComponentProps;
@@ -110,6 +111,7 @@ const partsWithOwnData: Record<
     [PartType.UxSignalsWidget]: UxSignalsWidgetPart,
     [PartType.UserTests]: UserTestsPart,
     [PartType.ReadMore]: ReadMorePart,
+    [PartType.Accordion]: AccordionPart,
 };
 
 const partsDeprecated: ReadonlySet<PartType> = new Set([
