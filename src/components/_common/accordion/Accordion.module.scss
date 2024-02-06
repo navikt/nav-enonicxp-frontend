@@ -31,7 +31,7 @@
     border-top: 1px solid transparent;
     --__ac-accordion-header-shadow: 0;
 
-    margin: 0 -0.75rem;
+    margin: 0 calc(var(--a-spacing-3) * -1);
     width: calc(100% + 1.5rem);
 
     :global(.navds-accordion__icon-wrapper) {
@@ -62,5 +62,6 @@
 }
 
 .content {
-    margin: var(--a-spacing-2) 0 0 0;
+    margin: var(--a-spacing-2) calc(var(--a-spacing-3) * -1) 0
+        calc(var(--a-spacing-3) * -1);
 }
