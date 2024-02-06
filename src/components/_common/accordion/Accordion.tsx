@@ -1,8 +1,9 @@
-import { AccordionPartProps } from 'types/component-props/parts/accordion';
-import styles from './Accordion.module.scss';
 import { Accordion as DSAccordion } from '@navikt/ds-react';
+import { AccordionPartProps } from 'types/component-props/parts/accordion';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
+
+import styles from './Accordion.module.scss';
 
 type AccordionProps = AccordionPartProps['config'];
 

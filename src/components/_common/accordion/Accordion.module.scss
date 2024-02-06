@@ -1,6 +1,5 @@
 .accordion {
     margin-bottom: var(--a-spacing-7);
-    --__ac-accordion-header-shadow: 0 0 0;
 }
 
 .item {
@@ -19,7 +18,9 @@
         border-top: 1px solid transparent;
 
         .header {
-            box-shadow: 0 0 0;
+            &:not(:focus) {
+                box-shadow: 0 0 0;
+            }
             background-color: var(--a-gray-50);
             border-top: 1px solid transparent;
 
