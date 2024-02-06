@@ -18,11 +18,12 @@
         border-top: 1px solid transparent;
 
         .header {
+            background-color: var(--a-gray-50);
+            border-top: 1px solid transparent;
+
             &:not(:focus) {
                 box-shadow: 0 0 0;
             }
-            background-color: var(--a-gray-50);
-            border-top: 1px solid transparent;
 
             :global(.navds-accordion__icon-wrapper) {
                 background-color: var(--a-white);
@@ -32,18 +33,17 @@
 }
 
 .header {
+    --__ac-accordion-header-shadow: 0;
     border-radius: 4px;
     border-top: 1px solid transparent;
-    --__ac-accordion-header-shadow: 0;
-
     margin: 0 calc(var(--a-spacing-3) * -1);
     width: calc(100% + 1.5rem);
 
     :global(.navds-accordion__icon-wrapper) {
-        width: 22px;
-        height: 22px;
-        border-radius: 8px;
         background-color: var(--a-surface-action-subtle);
+        border-radius: 8px;
+        height: 22px;
+        width: 22px;
 
         // Chevron icon
         svg > path {
