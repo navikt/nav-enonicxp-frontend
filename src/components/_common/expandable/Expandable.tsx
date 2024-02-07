@@ -3,9 +3,9 @@ import { Accordion } from '@navikt/ds-react';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget } from 'utils/scroll-to';
+import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 
 import style from './Expandable.module.scss';
-import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 
 type Props = {
     title: string;
