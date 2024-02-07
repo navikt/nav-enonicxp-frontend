@@ -9,7 +9,7 @@ type UseShortcutsProps = {
     callback: () => void;
 };
 
-export const UseShortcuts = ({ shortcut, callback }: UseShortcutsProps) => {
+export const useShortcuts = ({ shortcut, callback }: UseShortcutsProps) => {
     const handleKeyDown = (e: KeyboardEvent) => {
         if (
             shortcut === Shortcuts.SEARCH &&
@@ -25,5 +25,5 @@ export const UseShortcuts = ({ shortcut, callback }: UseShortcutsProps) => {
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, []); 
+    }, []);
 };

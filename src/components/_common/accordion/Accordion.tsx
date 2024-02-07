@@ -7,7 +7,7 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './Accordion.module.scss';
-import { Shortcuts, UseShortcuts } from 'utils/useShortcuts';
+import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 import { useState } from 'react';
 
 type AccordionProps = AccordionPartProps['config'];
@@ -22,7 +22,7 @@ export const Accordion = ({ accordion }: AccordionProps) => {
         setOpenAccordions(accordion.map((_, index) => index));
     };
 
-    UseShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
+    useShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
 
     const openChangeHandler = (
         isOpen: boolean,

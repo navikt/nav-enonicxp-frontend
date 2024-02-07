@@ -5,7 +5,7 @@ import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget } from 'utils/scroll-to';
 
 import style from './Expandable.module.scss';
-import { Shortcuts, UseShortcuts } from 'utils/useShortcuts';
+import { Shortcuts, useShortcuts } from 'utils/useShortcuts';
 
 type Props = {
     title: string;
@@ -25,7 +25,7 @@ export const Expandable = ({
     const [isOpen, setIsOpen] = useState(false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
 
-    UseShortcuts({
+    useShortcuts({
         shortcut: Shortcuts.SEARCH,
         callback: () => {
             setIsOpen(true);
