@@ -7,6 +7,8 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './Accordion.module.scss';
+import { Shortcuts, UseShortcuts } from 'utils/useShortcuts';
+import { useState } from 'react';
 
 type AccordionProps = AccordionPartProps['config'];
 type PanelItem = AccordionProps['accordion'][0];
@@ -14,8 +16,24 @@ type PanelItem = AccordionProps['accordion'][0];
 export const Accordion = ({ accordion }: AccordionProps) => {
     const { pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
+    const [openAccordions, setOpenAccordions] = useState<number[]>([]);
 
-    const openChangeHandler = (isOpen: boolean, title: string) => {
+    const expandAll = () => {
+        setOpenAccordions(accordion.map((_, index) => index));
+    };
+
+    UseShortcuts({ shortcut: Shortcuts.SEARCH, callback: expandAll });
+
+    const openChangeHandler = (
+        isOpen: boolean,
+        title: string,
+        index: number
+    ) => {
+        if (isOpen) {
+            setOpenAccordions([...openAccordions, index]);
+        } else {
+            setOpenAccordions(openAccordions.filter((i) => i !== index));
+        }
         logAmplitudeEvent(
             isOpen ? AnalyticsEvents.ACC_COLLAPSE : AnalyticsEvents.ACC_EXPAND,
             {
@@ -40,8 +58,9 @@ export const Accordion = ({ accordion }: AccordionProps) => {
                     <DSAccordion.Item
                         key={index}
                         className={styles.item}
+                        open={openAccordions.includes(index)}
                         onOpenChange={(open) =>
-                            openChangeHandler(open, item.title)
+                            openChangeHandler(open, item.title, index)
                         }
                     >
                         <DSAccordion.Header className={styles.header}>

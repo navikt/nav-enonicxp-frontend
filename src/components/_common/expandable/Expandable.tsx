@@ -5,6 +5,7 @@ import { classNames } from 'utils/classnames';
 import { smoothScrollToTarget } from 'utils/scroll-to';
 
 import style from './Expandable.module.scss';
+import { Shortcuts, UseShortcuts } from 'utils/useShortcuts';
 
 type Props = {
     title: string;
@@ -23,6 +24,13 @@ export const Expandable = ({
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const accordionRef = useRef<HTMLDivElement | null>(null);
+
+    UseShortcuts({
+        shortcut: Shortcuts.SEARCH,
+        callback: () => {
+            setIsOpen(true);
+        },
+    });
 
     const toggleExpandCollapse = () => {
         logAmplitudeEvent(
@@ -62,17 +70,9 @@ export const Expandable = ({
     };
 
     useEffect(() => {
-        const openOnBrowserSearch = (e: KeyboardEvent) => {
-            if (e.ctrlKey && e.code === 'KeyF') {
-                setIsOpen(true);
-            }
-        };
-
-        window.addEventListener('keydown', openOnBrowserSearch);
         window.addEventListener('hashchange', hashChangeHandler);
 
         return () => {
-            window.removeEventListener('keydown', openOnBrowserSearch);
             window.removeEventListener('hashchange', hashChangeHandler);
         };
 
