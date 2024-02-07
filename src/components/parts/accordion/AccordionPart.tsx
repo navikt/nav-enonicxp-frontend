@@ -4,7 +4,7 @@ import { AccordionPartProps } from 'types/component-props/parts/accordion';
 
 export const AccordionPart = ({ config }: AccordionPartProps) => {
     if (!config || !config.accordion || config.accordion.length === 0) {
-        return <EditorHelp text={'Kortet mangler konfigurasjon'} />;
+        return <EditorHelp text={'Kortet mangler innhold'} />;
     }
 
     const { accordion } = config;
