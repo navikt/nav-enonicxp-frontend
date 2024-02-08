@@ -14,7 +14,7 @@ export const useShortcuts = ({ shortcut, callback }: UseShortcutsProps) => {
         if (
             shortcut === Shortcuts.SEARCH &&
             (e.ctrlKey || e.metaKey) &&
-            e.key === 'f'
+            e.key.toLowerCase() === 'f'
         ) {
             callback();
         }
