@@ -135,6 +135,7 @@ type ContentCommonData = Partial<{
     title: string;
     description: string;
     audience: AudienceProps;
+    showSubsectionNavigation?: boolean;
 }>;
 
 // These fields are returned only when using the version selector

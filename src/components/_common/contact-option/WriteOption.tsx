@@ -4,10 +4,13 @@ import { WriteData } from 'types/component-props/parts/contact-option';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
-import { classNames } from 'utils/classnames';
 import { useLayoutConfig } from '../../layouts/useLayoutConfig';
 import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import Config from 'config';
+import {
+    hoverFocusIcon,
+    useHoverAndFocus,
+} from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
 
@@ -19,6 +22,7 @@ export const WriteOption = (props: Props) => {
     const { ingress, url, alertText, title } = props;
     const { language } = usePageConfig();
     const { layoutConfig } = useLayoutConfig();
+    const { isActive, handlers } = useHoverAndFocus();
 
     const translations = translator('contactPoint', language)('write');
 
@@ -29,12 +33,15 @@ export const WriteOption = (props: Props) => {
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
                 className={style.link}
+                {...handlers}
             >
                 <div className={style.linkContent}>
-                    <img
-                        alt=""
-                        className={classNames(style.icon, style['write'])}
-                    />
+                    {hoverFocusIcon({
+                        iconDefault: 'message.svg',
+                        iconActive: 'message-filled.svg',
+                        isActive: isActive,
+                        style: style.icon,
+                    })}
                     <Heading level="3" size="small">
                         {title || translations.title}
                     </Heading>

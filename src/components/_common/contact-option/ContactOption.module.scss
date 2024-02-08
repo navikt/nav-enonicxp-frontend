@@ -20,29 +20,6 @@
         &:hover,
         &:focus {
             text-decoration-line: none;
-
-            .icon {
-                &.chat {
-                    content: url('https://www.nav.no/gfx/chat-filled.svg');
-                }
-                &.write {
-                    content: url('https://www.nav.no/gfx/message-filled.svg');
-                }
-
-                &.call {
-                    content: url('https://www.nav.no/gfx/phone-filled.svg');
-                }
-                &.navoffice,
-                &.aidcentral {
-                    content: url('https://www.nav.no/gfx/place-filled.svg');
-                }
-                &.facebook {
-                    content: url('https://www.nav.no/gfx/facebook-filled.svg');
-                }
-                &.linkedin {
-                    content: url('https://www.nav.no/gfx/linkedin-filled.svg');
-                }
-            }
         }
     }
 
@@ -66,39 +43,10 @@
         background-repeat: no-repeat;
         background-position: center left;
         margin-right: 0.5rem;
+    }
 
-        &.chat {
-            margin-right: 0.7rem;
-            content: url('https://www.nav.no/gfx/chat.svg');
-        }
-        &.write {
-            content: url('https://www.nav.no/gfx/message.svg');
-        }
-        &.call {
-            margin-right: 0.5rem;
-            content: url('https://www.nav.no/gfx/phone.svg');
-        }
-        &.facebook {
-            content: url('https://www.nav.no/gfx/facebook.svg');
-        }
-        &.navoffice,
-        &.aidcentral {
-            content: url('https://www.nav.no/gfx/place.svg');
-        }
-        &.linkedin {
-            content: url('https://www.nav.no/gfx/linkedin.svg');
-        }
-        &:after {
-            // preload mouseover icons
-            position: absolute;
-            z-index: -1;
-            content:
-                url('https://www.nav.no/gfx/chat-filled.svg')
-                url('https://www.nav.no/gfx/message-filled.svg')
-                url('https://www.nav.no/gfx/phone-filled.svg')
-                url('https://www.nav.no/gfx/facebook-filled.svg')
-                url('https://www.nav.no/gfx/linkedin-filled.svg')
-        }
+    .chatIcon {
+        margin-right: 0.7rem;
     }
 
     .text {
