@@ -20,24 +20,26 @@ type Anchor = {
 };
 
 const getAnchorsFromComponents = (region?: RegionProps) => {
-    return region
-        ? region.components.reduce<Anchor[]>((acc, component) => {
-              if (
-                  component.type === ComponentType.Part &&
-                  component.descriptor === PartType.Header &&
-                  component.config &&
-                  component.config.titleTag === 'h3' &&
-                  component.config.anchorId &&
-                  component.config.title
-              ) {
-                  acc.push({
-                      anchorId: component.config.anchorId as string,
-                      title: component.config.title as string,
-                  });
-              }
-              return acc;
-          }, [])
-        : [];
+    if (!region) {
+        return [];
+    }
+
+    return region.components.reduce<Anchor[]>((acc, component) => {
+        if (
+            component.type === ComponentType.Part &&
+            component.descriptor === PartType.Header &&
+            component.config &&
+            component.config.titleTag === 'h3' &&
+            component.config.anchorId &&
+            component.config.title
+        ) {
+            acc.push({
+                anchorId: component.config.anchorId as string,
+                title: component.config.title as string,
+            });
+        }
+        return acc;
+    }, []);
 };
 
 export const SectionNavigation = ({
