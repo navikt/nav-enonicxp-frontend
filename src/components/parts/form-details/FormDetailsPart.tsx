@@ -3,9 +3,7 @@ import { FormDetailsProps } from 'types/component-props/parts/form-details';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { FormDetails } from 'components/_common/form-details/FormDetails';
 import { FilteredContent } from '../../_common/filtered-content/FilteredContent';
-import { PageProps } from 'components/PageBase';
 import {
-    ContentCommonProps,
     ContentType,
 } from 'types/content-props/_content-common';
 
