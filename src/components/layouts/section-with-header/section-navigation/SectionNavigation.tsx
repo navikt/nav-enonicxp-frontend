@@ -1,16 +1,17 @@
+import React from 'react';
 import { ComponentType } from 'types/component-props/_component-common';
 import { RegionProps } from 'types/component-props/layouts';
 import { PartType } from 'types/component-props/parts';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-
-import styles from './SectionNavigation.module.scss';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { AnalyticsEvents } from 'utils/amplitude';
 
+import styles from './SectionNavigation.module.scss';
+
 type SectionNavigationProps = {
-    introRegion: RegionProps<'intro'>;
-    contentRegion: RegionProps<'content'>;
+    introRegion?: RegionProps<'intro'>;
+    contentRegion?: RegionProps<'content'>;
 };
 
 type Anchor = {
@@ -18,22 +19,25 @@ type Anchor = {
     title: string;
 };
 
-const getAnchorsFromComponents = (components: RegionProps['components']) => {
-    return components
-        .reduce((acc, component) => {
-            if (
-                component.type === ComponentType.Part &&
-                component.descriptor === PartType.Header &&
-                component.config?.titleTag === 'h3'
-            ) {
-                acc.push({
-                    anchorId: component.config.anchorId as string,
-                    title: component.config.title as string,
-                });
-            }
-            return acc;
-        }, [] as Anchor[])
-        .filter((anchor) => !!anchor.anchorId && !!anchor.title);
+const getAnchorsFromComponents = (region?: RegionProps) => {
+    return region
+        ? region.components.reduce<Anchor[]>((acc, component) => {
+              if (
+                  component.type === ComponentType.Part &&
+                  component.descriptor === PartType.Header &&
+                  component.config &&
+                  component.config.titleTag === 'h3' &&
+                  component.config.anchorId &&
+                  component.config.title
+              ) {
+                  acc.push({
+                      anchorId: component.config.anchorId as string,
+                      title: component.config.title as string,
+                  });
+              }
+              return acc;
+          }, [])
+        : [];
 };
 
 export const SectionNavigation = ({
@@ -41,15 +45,15 @@ export const SectionNavigation = ({
     contentRegion,
 }: SectionNavigationProps) => {
     const { language } = usePageConfig();
-    const introAnchors = getAnchorsFromComponents(introRegion.components);
-    const contentAnchors = getAnchorsFromComponents(contentRegion.components);
+    const introAnchors = getAnchorsFromComponents(introRegion);
+    const contentAnchors = getAnchorsFromComponents(contentRegion);
     const allAnchors = [...introAnchors, ...contentAnchors];
-
-    const getLabels = translator('sectionNavigation', language);
 
     if (allAnchors.length === 0) {
         return null;
     }
+
+    const getLabels = translator('sectionNavigation', language);
 
     return (
         <ul
