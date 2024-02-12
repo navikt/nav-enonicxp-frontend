@@ -6,15 +6,13 @@ import { SingleReception } from './SingleReception';
 import { translator } from 'translations';
 
 import styles from './Reception.module.scss';
-import { forceArray } from 'utils/arrays';
 
 interface LocationsProps {
-    receptions: AudienceReception[] | AudienceReception;
+    receptions: AudienceReception[];
     language: Language;
 }
 
 export const Reception = ({ receptions, language }: LocationsProps) => {
-    const receptionArray = forceArray(receptions);
     const getOfficeTranslations = translator('office', language);
 
     const getLocation = (reception: AudienceReception) => {
@@ -32,17 +30,17 @@ export const Reception = ({ receptions, language }: LocationsProps) => {
         return label.replace(/\s/g, '-').toLowerCase();
     };
 
-    const firstLocation = getLocation(receptionArray[0]);
+    const firstLocation = getLocation(receptions[0]);
     const [state, setState] = useState(getIdFromLabel(firstLocation));
 
-    if (!receptionArray || receptionArray.length === 0) {
+    if (!receptions || receptions.length === 0) {
         return null;
     }
 
-    if (receptionArray.length === 1) {
+    if (receptions.length === 1) {
         return (
             <div className={styles.singleTab}>
-                <SingleReception {...receptionArray[0]} />
+                <SingleReception {...receptions[0]} />
             </div>
         );
     }
@@ -58,7 +56,7 @@ export const Reception = ({ receptions, language }: LocationsProps) => {
                 className={styles.officeTabs}
             >
                 <Tabs.List>
-                    {receptionArray.map((loc: AudienceReception, index) => {
+                    {receptions.map((loc: AudienceReception, index) => {
                         const locationLabel = getLocation(loc);
                         return (
                             <Tabs.Tab
@@ -69,7 +67,7 @@ export const Reception = ({ receptions, language }: LocationsProps) => {
                         );
                     })}
                 </Tabs.List>
-                {receptionArray.map((loc: AudienceReception, index) => {
+                {receptions.map((loc: AudienceReception, index) => {
                     const locationLabel = getLocation(loc);
                     return (
                         <Tabs.Panel
