@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { BodyLong, Tabs } from '@navikt/ds-react';
 import { AudienceReception, Language } from './utils/types';
-
 import { SingleReception } from './SingleReception';
-import { translator } from 'translations';
+import { translator } from './utils/translations';
 
 import styles from './Reception.module.scss';
 

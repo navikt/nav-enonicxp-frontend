@@ -5,7 +5,7 @@ import {
     HouseFillIcon,
 } from '@navikt/aksel-icons';
 import { classNames } from 'utils/classnames';
-import { translator } from 'translations';
+import { translator } from './utils/translations';
 import {
     AudienceReception,
     Language,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { translator } from 'translations';
+import { translator } from './utils/translations';
 import { formatDate } from 'utils/datetime';
 import { Language, OpeningHours as OpeningHoursProps } from './utils/types';
 import { Table } from '@navikt/ds-react';
