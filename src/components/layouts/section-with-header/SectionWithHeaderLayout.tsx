@@ -37,7 +37,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
 
     const { title, anchorId, icon, border, toggleCopyButton } = config;
     const isEditorView = pageProps.editorView === 'edit';
-    const { showSubsectionNavigation } = pageProps.data;
+    const showSubsectionNavigation = pageProps.data?.showSubsectionNavigation;
 
     const iconImgProps = icon?.icon;
 
