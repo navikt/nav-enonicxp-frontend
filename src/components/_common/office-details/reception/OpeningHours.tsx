@@ -76,12 +76,8 @@ export const OpeningHours = ({ openingHours }: Props) => {
         <Table>
             <Table.Header className={styles.srOnly}>
                 <Table.Row>
-                    <Table.HeaderCell role="columnheader">
-                        {dayLabel}
-                    </Table.HeaderCell>
-                    <Table.HeaderCell role="columnheader">
-                        {timeLabel}
-                    </Table.HeaderCell>
+                    <Table.HeaderCell scope="col">{dayLabel}</Table.HeaderCell>
+                    <Table.HeaderCell scope="col">{timeLabel}</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
