@@ -39,7 +39,7 @@ export const Reception = ({ receptions, language }: LocationsProps) => {
     if (receptions.length === 1) {
         return (
             <div className={styles.singleTab}>
-                <SingleReception {...receptions[0]} />
+                <SingleReception {...receptions[0]} language={language} />
             </div>
         );
     }
@@ -74,7 +74,7 @@ export const Reception = ({ receptions, language }: LocationsProps) => {
                             value={getIdFromLabel(locationLabel)}
                             className={styles.singleTab}
                         >
-                            <SingleReception {...loc} />
+                            <SingleReception {...loc} language={language} />
                         </Tabs.Panel>
                     );
                 })}

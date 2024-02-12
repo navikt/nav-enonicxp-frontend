@@ -24,11 +24,15 @@ interface FormattedAudienceReception {
     place: string;
 }
 
-export const SingleReception = (
-    props: AudienceReception,
-    language: Language
-) => {
+interface SingleReceptionProps extends AudienceReception {
+    language: Language;
+}
+
+export const SingleReception = (props: SingleReceptionProps) => {
+    const { language } = props;
     const getLabel = translator('office', language);
+
+    console.log('language', language);
 
     const dagArr: string[] = [
         'Mandag',
