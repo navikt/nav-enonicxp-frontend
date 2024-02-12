@@ -144,7 +144,7 @@ type VersionSelectorProps = {
 
 export type ContentCommonProps<Type extends ContentType = ContentType> = {
     type: Type;
-    data: ContentCommonData;
+    data?: ContentCommonData;
     originalType?: ContentType;
     children?: ContentCommonProps[];
     parent?: ContentCommonProps;
