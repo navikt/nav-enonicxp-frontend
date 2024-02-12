@@ -3,7 +3,7 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import { formatDate } from 'utils/datetime';
 import { OpeningHours as OpeningHoursProps } from './utils/types';
-import { Table } from '../../../_common/table/Table';
+import { Table } from '@navikt/ds-react';
 
 import styles from './OpeningHours.module.scss';
 
@@ -73,27 +73,33 @@ export const OpeningHours = ({ openingHours }: Props) => {
     };
 
     return (
-        <Table zebraStripes={false} shadeOnHover={false}>
-            <thead className={styles.srOnly}>
-                <tr>
-                    <th role="columnheader">{dayLabel}</th>
-                    <th role="columnheader">{timeLabel}</th>
-                </tr>
-            </thead>
-            <tbody>
+        <Table>
+            <Table.Header className={styles.srOnly}>
+                <Table.Row>
+                    <Table.HeaderCell role="columnheader">
+                        {dayLabel}
+                    </Table.HeaderCell>
+                    <Table.HeaderCell role="columnheader">
+                        {timeLabel}
+                    </Table.HeaderCell>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
                 {openingHours.map((opening, index) => {
                     const dayInformation = buildDayLabel(opening);
 
                     return (
-                        <tr key={index}>
-                            <th className="dayInformation">{dayInformation}</th>
-                            <td className="openingInformation">
+                        <Table.Row shadeOnHover={false} key={index}>
+                            <Table.HeaderCell className="dayInformation">
+                                {dayInformation}
+                            </Table.HeaderCell>
+                            <Table.DataCell className="openingInformation">
                                 {buildOpeningInformation(opening)}
-                            </td>
-                        </tr>
+                            </Table.DataCell>
+                        </Table.Row>
                     );
                 })}
-            </tbody>
+            </Table.Body>
         </Table>
     );
 };
