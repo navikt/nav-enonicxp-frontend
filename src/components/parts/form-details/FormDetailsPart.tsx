@@ -21,11 +21,16 @@ export const FormDetailsPart = ({ config, pageProps }: FormDetailsProps) => {
     }
     const formDetails = targetFormDetails.data;
 
+    const modifiedDisplayConfig = {
+        ...displayConfig,
+        showTitleAsLevel4,
+    };
+
     return (
         <FilteredContent {...config}>
             <FormDetails
                 formDetails={formDetails}
-                displayConfig={displayConfig}
+                displayConfig={modifiedDisplayConfig}
             />
         </FilteredContent>
     );
