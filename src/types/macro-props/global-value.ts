@@ -5,6 +5,7 @@ export interface MacroGlobalValueProps extends MacroPropsCommon {
     config: {
         global_value: {
             value: string;
+            decimals?: number;
         };
     };
 }

@@ -39,18 +39,18 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
         FilterWithCategory[]
     >([]);
 
-    // Create a flat array of all ids that any
-    // underlying part that has filter ids attached.
-    // We don't care about duplicate ids in the final array at the moment.
-    const filterIds = components.reduce((acc, component) => {
-        if (component.config?.filters) {
-            return [...acc, ...component.config.filters];
-        }
-
-        return acc;
-    }, []);
-
     useEffect(() => {
+        // Create a flat array of all ids that any
+        // underlying part that has filter ids attached.
+        // We don't care about duplicate ids in the final array at the moment.
+        const filterIds = components.reduce((acc, component) => {
+            if (component.config?.filters) {
+                return [...acc, ...component.config.filters];
+            }
+
+            return acc;
+        }, []);
+
         // As the previous array is a string[], we need to create a list of the
         // actual filter objects to be able to display filterName later on.
         const _filtersToDisplay = availableFilters
@@ -65,10 +65,10 @@ export const FilterBar = ({ layoutProps }: FilterBarProps) => {
             .flat();
 
         setFiltersToDisplay(_filtersToDisplay);
-    }, [availableFilters, filterIds]);
+    }, [availableFilters]);
 
     // None of the parts are attached to filters, so don't show the FilterBar.
-    if (filterIds.length === 0) {
+    if (filtersToDisplay.length === 0) {
         return null;
     }
 

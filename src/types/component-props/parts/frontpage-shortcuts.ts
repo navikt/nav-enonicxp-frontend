@@ -21,7 +21,7 @@ export interface FrontpageShortcutsProps extends PartComponentProps {
     descriptor: PartType.FrontpageShortcuts;
     pageProps: ContentProps<ContentType.FrontPage>;
     config: {
-        title: string;
+        title?: string;
         bgColor?: string;
         itemColor?: string;
         hoverColor?: string;

@@ -31,9 +31,7 @@ export const IndexPage = ({ pageProps, layoutProps }: Props) => {
 
     const MiddleComponent = contentTypeSpecificComponent[type];
 
-    const hasNoTopGap =
-        getAudience(pageProps.data.audience) === 'employer' ||
-        getAudience(pageProps.data.audience) === 'provider';
+    const hasNoTopGap = getAudience(pageProps.data.audience) !== 'person';
 
     return (
         <LayoutContainer

@@ -17,6 +17,7 @@ export type FormDetailsComponentProps = {
         showAddendums?: boolean;
         showApplications?: boolean;
         showComplaints?: boolean;
+        showTitleAsLevel4?: boolean;
     };
     className?: string;
     formNumberSelected?: string;
@@ -35,6 +36,7 @@ export const FormDetails = ({
         showAddendums = true,
         showApplications = true,
         showComplaints = true,
+        showTitleAsLevel4 = false, // Temporary solution until all product pages have been re-organized.
     } = displayConfig;
 
     const { formNumbers, formType, languageDisclaimer, ingress, title } =
@@ -70,8 +72,8 @@ export const FormDetails = ({
         <div className={classNames(style.formDetails, className)}>
             {hasVisibleTitle && (
                 <Heading
-                    size="medium"
-                    level="3"
+                    size={showTitleAsLevel4 ? 'small' : 'medium'}
+                    level={showTitleAsLevel4 ? '4' : '3'}
                     spacing={!hasVisibleIngress && !hasVisibleFormNumbers}
                 >
                     {title}

@@ -151,17 +151,17 @@ export const translationsBundleNn: PartialTranslations = {
     products: {
         person: 'For privatpersonar',
         employer: 'For arbeidsgjevarar',
-        provider: 'For samhandlarar',
+        provider: 'For samarbeidspartnarar',
     },
     situations: {
         person: 'Dette kan du ha rett til',
         employer: 'For arbeidsgjevarar',
-        provider: 'For samhandlarar',
+        provider: 'For samarbeidspartnarar',
     },
     guides: {
         person: 'Slik gjer du det',
         employer: 'For arbeidsgjevarar',
-        provider: 'For samhandlarar',
+        provider: 'For samarbeidspartnarar',
     },
     publishingCalendar: {
         event: 'Hending',
@@ -313,5 +313,8 @@ export const translationsBundleNn: PartialTranslations = {
         duration: 'Varighet er',
         minutes: 'min',
         error: 'Det oppsto en feil under lasting av video',
+    },
+    sectionNavigation: {
+        navigationLabel: 'Hopp til underseksjonar',
     },
 };

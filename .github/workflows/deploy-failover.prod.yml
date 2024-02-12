@@ -16,7 +16,7 @@ jobs:
       ENV: prod
       ADMIN_ORIGIN: https://portal-admin.oera.no
       APP_ORIGIN: https://www.nav.no
-      REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy/revalidator-proxy
+      REVALIDATOR_PROXY_ORIGIN: http://nav-enonicxp-frontend-revalidator-proxy
       DECORATOR_URL: https://www.nav.no/dekoratoren
       XP_ORIGIN: https://www.nav.no
       TELEMETRY_URL: https://telemetry.nav.no/collect
@@ -32,11 +32,11 @@ jobs:
   deploy:
     uses: ./.github/workflows/deploy-to-nais.yml
     needs: build
+    permissions:
+      id-token: "write"
     with:
       image: ${{ needs.build.outputs.image }}
       cluster: prod-gcp
       vars_file: vars-prod-failover.yml
       config_file: config-failover.yml
       hpa_file: hpa-prod-failover.yml
-    secrets:
-      NAIS_DEPLOY_APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}

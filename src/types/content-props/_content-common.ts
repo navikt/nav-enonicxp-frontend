@@ -128,10 +128,12 @@ type ContentCommonData = Partial<{
     metaDescription: string;
     canonicalUrl: string;
     noindex: boolean;
+    nosnippet: boolean;
     ingress: string;
     title: string;
     description: string;
     audience: AudienceProps;
+    showSubsectionNavigation?: boolean;
 }>;
 
 // These fields are returned only when using the version selector
@@ -142,7 +144,7 @@ type VersionSelectorProps = {
 
 export type ContentCommonProps<Type extends ContentType = ContentType> = {
     type: Type;
-    data: ContentCommonData;
+    data?: ContentCommonData;
     originalType?: ContentType;
     children?: ContentCommonProps[];
     parent?: ContentCommonProps;

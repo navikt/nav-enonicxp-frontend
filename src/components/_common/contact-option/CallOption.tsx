@@ -1,7 +1,6 @@
 import React from 'react';
 import { translator } from 'translations';
 import { Alert, BodyLong, Heading } from '@navikt/ds-react';
-import { classNames } from 'utils/classnames';
 import { LenkeBase } from 'components/_common/lenke/LenkeBase';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { TelephoneData } from 'types/component-props/parts/contact-option';
@@ -11,6 +10,10 @@ import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { OpeningInfo } from 'components/_common/contact-option/opening-info/OpeningInfo';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
+import {
+    hoverFocusIcon,
+    useHoverAndFocus,
+} from './opening-info/helpers/iconUtils';
 
 import style from './ContactOption.module.scss';
 
@@ -68,6 +71,8 @@ export const CallOption = (props: CallOptionProps) => {
             : audienceUrls.en;
     };
 
+    const { handlers, isActive } = useHoverAndFocus();
+
     return (
         <div className={style.contactOption}>
             <LenkeBase
@@ -76,12 +81,15 @@ export const CallOption = (props: CallOptionProps) => {
                 analyticsEvent={AnalyticsEvents.CALL}
                 analyticsLinkGroup={layoutConfig.title}
                 analyticsComponent={'Kontakt-oss kanal'}
+                {...handlers}
             >
                 <div className={style.linkContent}>
-                    <img
-                        alt=""
-                        className={classNames(style.icon, style.call)}
-                    />
+                    {hoverFocusIcon({
+                        iconDefault: 'phone.svg',
+                        iconActive: 'phone-filled.svg',
+                        isActive: isActive,
+                        style: style.icon,
+                    })}
                     <Heading level="3" size="small" className={style.link}>
                         {title || callTranslations.title}
                     </Heading>

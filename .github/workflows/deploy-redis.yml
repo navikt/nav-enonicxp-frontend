@@ -15,13 +15,14 @@ jobs:
   deploy_redis:
     name: Deploy redis instance
     runs-on: ubuntu-latest
+    permissions:
+      id-token: "write"
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
       - name: Deploy to nais
-        uses: nais/deploy/actions/deploy@v1
+        uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: dev-gcp
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: .nais/redis.yml
           VARS: .nais/vars/vars-dev1.yml

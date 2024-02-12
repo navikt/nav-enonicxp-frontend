@@ -24,6 +24,13 @@
     background-color: var(--bg-color, var(--a-white));
 }
 
+.other {
+    padding-top: 2.75rem;
+    padding-bottom: 2.5rem;
+    margin-bottom: -2rem !important; // Can't find a way to override the margin-bottom from the parent
+    background-color: var(--bg-color, var(--a-gray-100));
+}
+
 @media #{common.$mq-screen-mobile} {
     .shortcuts,
     .person,

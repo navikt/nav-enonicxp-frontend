@@ -1,15 +1,23 @@
 import { Language } from 'translations';
 
-export const formatNumber = (
-    num: number,
-    maxPlaces: number = 0,
-    language: Language = 'no'
-) => {
-    const decimalsOOM = 10 ** maxPlaces;
-    const rounded = Math.floor(num * decimalsOOM + 0.5) / decimalsOOM;
+export const formatNumber = ({
+    num,
+    minDecimals,
+    maxDecimals,
+    language = 'no',
+}: {
+    num: number;
+    minDecimals?: number;
+    maxDecimals?: number;
+    language?: Language;
+}) => {
     // Not all browsers process the "nn" locale correctly. Formatting is identical
     // to "no", so we just use that
-    return rounded.toLocaleString(language === 'nn' ? 'no' : language);
+    return num.toLocaleString(language === 'nn' ? 'no' : language, {
+        // Ensure null-values are not used, as this is the equivalent of 0-values
+        minimumFractionDigits: minDecimals ?? undefined,
+        maximumFractionDigits: maxDecimals ?? 2,
+    });
 };
 
 export const isStringOnlyNumber = (numberAsString: string) => {

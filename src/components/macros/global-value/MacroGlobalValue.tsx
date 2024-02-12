@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { MacroGlobalValueProps } from '../../../types/macro-props/global-value';
-import { formatNumber, isStringOnlyNumber } from '../../../utils/math';
+import { MacroGlobalValueProps } from 'types/macro-props/global-value';
+import { formatNumber, isStringOnlyNumber } from 'utils/math';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 
 export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
@@ -15,7 +15,7 @@ export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
         );
     }
 
-    const { value } = config.global_value;
+    const { value, decimals } = config.global_value;
 
     if (value === undefined) {
         return (
@@ -32,6 +32,14 @@ export const MacroGlobalValue = ({ config }: MacroGlobalValueProps) => {
         return <>{value}</>;
     }
 
-    const number = parseFloat(value);
-    return <>{formatNumber(number, 2, language)}</>;
+    return (
+        <>
+            {formatNumber({
+                num: parseFloat(value),
+                minDecimals: decimals,
+                maxDecimals: decimals,
+                language,
+            })}
+        </>
+    );
 };

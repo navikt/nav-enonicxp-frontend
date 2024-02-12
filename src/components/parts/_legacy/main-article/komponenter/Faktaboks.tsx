@@ -24,11 +24,11 @@ export const Faktaboks = ({ label, fakta, version = '1' }: Props) => {
             {version === '1' && (
                 <StaticImage
                     imageData={icon}
-                    alt={''}
+                    alt=""
                     className={style.factIcon}
                 />
             )}
-            <Heading level={'3'} size={'xsmall'} className={style.decorated}>
+            <Heading level="2" size="medium" className={style.decorated}>
                 {label}
             </Heading>
             <ParsedHtml htmlProps={fakta} />

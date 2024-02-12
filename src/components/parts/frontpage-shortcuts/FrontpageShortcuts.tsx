@@ -40,14 +40,16 @@ export const FrontpageShortcuts = ({
                 } as React.CSSProperties
             }
         >
-            <Header
-                size="large"
-                level="2"
-                justify="left"
-                className={style.header}
-            >
-                {sectionTitle}
-            </Header>
+            {sectionTitle && (
+                <Header
+                    size="large"
+                    level="2"
+                    justify="left"
+                    className={style.header}
+                >
+                    {sectionTitle}
+                </Header>
+            )}
             <ul
                 className={classNames(style.list, threeCols && style.threeCols)}
             >
