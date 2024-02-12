@@ -1,18 +1,17 @@
 import React from 'react';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import { formatDate } from 'utils/datetime';
-import { OpeningHours as OpeningHoursProps } from './utils/types';
+import { Language, OpeningHours as OpeningHoursProps } from './utils/types';
 import { Table } from '@navikt/ds-react';
 
 import styles from './OpeningHours.module.scss';
 
 type Props = {
     openingHours: OpeningHoursProps[];
+    language: Language;
 };
 
-export const OpeningHours = ({ openingHours }: Props) => {
-    const { language } = usePageConfig();
+export const OpeningHours = ({ openingHours, language }: Props) => {
     const getOfficeTranslations = translator('office', language);
     const getDateTimeTranslations = translator('dateTime', language);
 

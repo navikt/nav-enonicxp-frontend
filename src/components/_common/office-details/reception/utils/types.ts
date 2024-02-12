@@ -25,3 +25,5 @@ export interface AudienceReception {
     besoeksadresse?: Address;
     adkomstbeskrivelse?: string;
 }
+
+export type Language = 'no' | 'nn' | 'en';

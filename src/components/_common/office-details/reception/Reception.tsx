@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { BodyLong, Tabs } from '@navikt/ds-react';
-import { AudienceReception } from './utils/types';
+import { AudienceReception, Language } from './utils/types';
 
 import { SingleReception } from './SingleReception';
 import { translator } from 'translations';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 
 import styles from './Reception.module.scss';
 import { forceArray } from 'utils/arrays';
 
 interface LocationsProps {
     receptions: AudienceReception[] | AudienceReception;
+    language: Language;
 }
 
-export const Reception = ({ receptions }: LocationsProps) => {
-    const { language } = usePageConfig();
+export const Reception = ({ receptions, language }: LocationsProps) => {
     const receptionArray = forceArray(receptions);
     const getOfficeTranslations = translator('office', language);
 

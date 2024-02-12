@@ -5,10 +5,10 @@ import {
     HouseFillIcon,
 } from '@navikt/aksel-icons';
 import { classNames } from 'utils/classnames';
-import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import {
     AudienceReception,
+    Language,
     OpeningHours as OpeningHoursProps,
 } from './utils/types';
 import { formatAddress } from '../utils';
@@ -24,9 +24,10 @@ interface FormattedAudienceReception {
     place: string;
 }
 
-export const SingleReception = (props: AudienceReception) => {
-    const { language } = usePageConfig();
-
+export const SingleReception = (
+    props: AudienceReception,
+    language: Language
+) => {
     const getLabel = translator('office', language);
 
     const dagArr: string[] = [
@@ -124,7 +125,10 @@ export const SingleReception = (props: AudienceReception) => {
                         />
                         {getLabel('openingHoursWithoutAppointment')}
                     </Heading>
-                    <OpeningHours openingHours={openingHours} />
+                    <OpeningHours
+                        openingHours={openingHours}
+                        language={language}
+                    />
                 </>
             )}
             {futureOpeningHoursExceptions.length > 0 && (
@@ -132,7 +136,10 @@ export const SingleReception = (props: AudienceReception) => {
                     <Heading level="3" size="medium" spacing>
                         {getLabel('specialOpeningHours')}
                     </Heading>
-                    <OpeningHours openingHours={futureOpeningHoursExceptions} />
+                    <OpeningHours
+                        openingHours={futureOpeningHoursExceptions}
+                        language={language}
+                    />
                 </>
             )}
             <div className={styles.appointmentBookingInfo}>
