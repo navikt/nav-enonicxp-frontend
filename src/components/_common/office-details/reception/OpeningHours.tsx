@@ -2,7 +2,7 @@ import React from 'react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import { formatDate } from 'utils/datetime';
-import { OpeningHours as OpeningHoursProps } from '../../../../types/content-props/office-details-props';
+import { OpeningHours as OpeningHoursProps } from './utils/types';
 import { Table } from '../../../_common/table/Table';
 
 import styles from './OpeningHours.module.scss';

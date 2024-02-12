@@ -10,7 +10,7 @@ import { translator } from 'translations';
 import {
     AudienceReception,
     OpeningHours as OpeningHoursProps,
-} from 'types/content-props/office-details-props';
+} from './utils/types';
 import { formatAddress } from '../utils';
 import { OpeningHours } from './OpeningHours';
 
