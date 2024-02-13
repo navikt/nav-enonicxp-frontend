@@ -8,7 +8,7 @@ import { setCacheKey } from './req-handlers/set-cache-key';
 import { handleInvalidateAllReq } from './req-handlers/invalidate-all';
 import { handleGetPendingResponses } from './req-handlers/pending-responses';
 import { serverSetupDev } from './server-setup-dev';
-import { redisClient } from './cache/redis';
+import { redisCache } from './cache/custom-cache-handler';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached
@@ -28,7 +28,7 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
     const nextServer = await getNextServer(nextApp);
     const currentBuildId = getNextBuildId(nextServer);
 
-    await redisClient.init();
+    await redisCache.init();
 
     console.log(`Current build id: ${currentBuildId}`);
 

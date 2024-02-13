@@ -5,9 +5,9 @@ type AppEnv = typeof process.env.ENV;
 
 const clientOptions: { [key in AppEnv]?: RedisClientOptions } = {
     localhost: {
-        url: process.env.REDIS_URI_PAGECACHE_DEV1,
-        username: process.env.REDIS_USERNAME_PAGECACHE_DEV1,
-        password: process.env.REDIS_PASSWORD_PAGECACHE_DEV1,
+        url: process.env.REDIS_URI_PAGECACHE,
+        username: process.env.REDIS_USERNAME_PAGECACHE,
+        password: process.env.REDIS_PASSWORD_PAGECACHE,
     },
     dev1: {
         url: process.env.REDIS_URI_PAGECACHE_DEV1,
@@ -16,10 +16,15 @@ const clientOptions: { [key in AppEnv]?: RedisClientOptions } = {
     },
 };
 
-class RedisClient {
-    private readonly client: ReturnType<typeof createClient>;
+type ConstructorProps = {
+    ttl: number;
+};
 
-    constructor() {
+export class RedisCache {
+    private readonly client: ReturnType<typeof createClient>;
+    private readonly ttl: number;
+
+    constructor({ ttl }: ConstructorProps) {
         const options = clientOptions[process.env.ENV];
 
         if (!options) {
@@ -27,6 +32,8 @@ class RedisClient {
                 `Redis client options were not defined for the current app environment ${process.env.ENV}`
             );
         }
+
+        this.ttl = ttl;
 
         this.client = createClient(options)
             .on('connect', () => {
@@ -70,12 +77,8 @@ class RedisClient {
     }
 
     public async set(key: string, data: CacheHandlerValue) {
-        console.log(`Setting data for ${key}`);
-
-        const result = await this.client.set(key, JSON.stringify(data));
-
-        console.log(`Set key ${key} result`, result);
+        return this.client.set(key, JSON.stringify(data), {
+            EX: this.ttl,
+        });
     }
 }
-
-export const redisClient = new RedisClient();

@@ -2,13 +2,15 @@ import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { nodeFs } from 'next/dist/server/lib/node-fs-methods';
-import { redisClient } from './redis';
+import { RedisCache } from './redis';
 
 type FileSystemCacheContext = ConstructorParameters<typeof FileSystemCache>[0];
 
 const CACHE_TTL_24_HOURS = 3600 * 24 * 1000;
 
-const isrMemoryCache = new LRUCache<string, CacheHandlerValue>({
+export const redisCache = new RedisCache({ ttl: CACHE_TTL_24_HOURS });
+
+const localCache = new LRUCache<string, CacheHandlerValue>({
     max: 1000,
     ttl: CACHE_TTL_24_HOURS,
     ttlResolution: 1000,
@@ -33,9 +35,7 @@ export default class CustomFileSystemCache extends FileSystemCache {
     public async get(...args: Parameters<FileSystemCache['get']>) {
         const [key] = args;
 
-        console.log(`Getting from cache: ${key}`);
-
-        const foundData = await redisClient.get(key);
+        const foundData = await redisCache.get(key);
 
         if (!foundData?.value) {
             return null;
@@ -69,26 +69,26 @@ export default class CustomFileSystemCache extends FileSystemCache {
     public async set(...args: Parameters<FileSystemCache['set']>) {
         const [key, data] = args;
 
-        console.log(`Storing in cache: ${key}`);
-
         const cacheItem: CacheHandlerValue = {
             value: data,
             lastModified: Date.now(),
         };
 
-        redisClient.set(key, cacheItem);
+        redisCache
+            .set(key, cacheItem)
+            .then((result) => console.log(`Set key ${key} result`, result));
 
         // isrMemoryCache.set(key, { value: data, lastModified: Date.now() });
         // return super.set(...args);
     }
 
     public async clearGlobalCache() {
-        isrMemoryCache.clear();
+        localCache.clear();
         return true;
     }
 
     public async deleteGlobalCacheEntry(path: string) {
         const pagePath = path === '/' ? '/index' : path;
-        return isrMemoryCache.delete(pagePath);
+        return localCache.delete(pagePath);
     }
 }

@@ -12,7 +12,6 @@ declare global {
             SERVICE_SECRET: string;
             REVALIDATOR_PROXY_ORIGIN: string;
             INNLOGGINGSSTATUS_URL: string;
-            PAGE_CACHE_DIR: string;
             IMAGE_CACHE_DIR: string;
             FAILOVER_ORIGIN: string;
             IS_FAILOVER_INSTANCE: string;
