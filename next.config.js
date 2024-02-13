@@ -121,10 +121,9 @@ console.log(
 );
 
 const config = {
-    cacheHandler: path.resolve(
-        __dirname,
-        '.serverDist/cache/custom-cache-handler.js'
-    ),
+    cacheHandler: isFailover
+        ? undefined
+        : path.resolve(__dirname, '.serverDist/cache/custom-cache-handler.js'),
     cacheMaxMemorySize: 0,
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',

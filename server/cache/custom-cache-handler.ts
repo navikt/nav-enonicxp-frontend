@@ -55,7 +55,9 @@ export default class CustomCacheHandler {
 
         redisCache
             .set(key, cacheItem)
-            .then((result) => console.log(`Set key ${key} result`, result));
+            .then((result) =>
+                console.log(`Redis set result for ${key}: ${result}`)
+            );
     }
 
     public async clear() {
