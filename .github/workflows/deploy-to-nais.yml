@@ -33,6 +33,8 @@ jobs:
       - name: Deploy Redis
         if: ${{ inputs.deploy_redis == true }}
         uses: nais/deploy/actions/deploy@v2
+        timeout-minutes: 1
+        continue-on-error: true
         env:
           CLUSTER: ${{ inputs.cluster }}
           RESOURCE: .nais/redis.yml
@@ -40,6 +42,8 @@ jobs:
       - name: Deploy HPA
         if: ${{ inputs.hpa_file }}
         uses: nais/deploy/actions/deploy@v2
+        timeout-minutes: 1
+        continue-on-error: true
         env:
           CLUSTER: ${{ inputs.cluster }}
           RESOURCE: .nais/hpa/${{inputs.hpa_file}}
