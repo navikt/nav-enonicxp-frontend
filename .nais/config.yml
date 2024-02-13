@@ -28,11 +28,9 @@ spec:
     enabled: true
     path: /internal/metrics
   leaderElection: true
-  {{#with redis}}
-    redis:
-      - instance: {{ instance }}
-        access: readwrite
-  {{/with}}
+  redis:
+    - instance: {{ redis.instance }}
+      access: readwrite
   ingresses:
     {{#each ingresses as |url|}}
     - {{url}}
