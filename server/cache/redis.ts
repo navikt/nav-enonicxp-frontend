@@ -23,18 +23,20 @@ type ConstructorProps = {
 export class RedisCache {
     private readonly client: ReturnType<typeof createClient>;
     private readonly ttl: number;
-    private readonly keyPrefix = process.env.BUILD_ID;
+    private readonly keyPrefix: string;
 
     constructor({ ttl }: ConstructorProps) {
-        const options = clientOptions[process.env.ENV];
+        const env = process.env.ENV;
+        const options = clientOptions[env];
 
         if (!options) {
             throw Error(
-                `Redis client options were not defined for the current app environment ${process.env.ENV}`
+                `Redis client options were not defined for the current app environment: ${env}`
             );
         }
 
         this.ttl = ttl;
+        this.keyPrefix = process.env.BUILD_ID;
 
         this.client = createClient(options)
             .on('connect', () => {
@@ -53,9 +55,7 @@ export class RedisCache {
                 console.error('Redis client error: ', err);
             });
 
-        console.log(
-            `Created redis client with url ${process.env.REDIS_URI_PAGECACHE_DEV1}`
-        );
+        console.log(`Created redis client with url ${options.url}`);
     }
 
     public async init() {
