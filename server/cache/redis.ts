@@ -1,11 +1,19 @@
-import { createClient } from 'redis';
+import { createClient, RedisClientOptions, RedisClientType } from 'redis';
 
-const client = createClient({
+const redisOptions = {
     url: process.env.REDIS_URI_PAGECACHE_DEV1,
     username: process.env.REDIS_USERNAME_PAGECACHE_DEV1,
     password: process.env.REDIS_PASSWORD_PAGECACHE_DEV1,
-});
+};
 
-client.on('error', (err) => console.error(`Redis client error: ${err}`));
+type ConstructorProps = {
+    clientOptions: RedisClientOptions;
+};
 
-export const initRedis = async () => {};
+export class RedisClient {
+    private readonly client: RedisClientType<any, any, any>;
+
+    constructor({ clientOptions }: ConstructorProps) {
+        this.client = createClient(clientOptions);
+    }
+}
