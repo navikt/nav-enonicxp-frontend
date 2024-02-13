@@ -23,6 +23,7 @@ type ConstructorProps = {
 export class RedisCache {
     private readonly client: ReturnType<typeof createClient>;
     private readonly ttl: number;
+    private readonly keyPrefix = process.env.BUILD_ID;
 
     constructor({ ttl }: ConstructorProps) {
         const options = clientOptions[process.env.ENV];
@@ -64,21 +65,27 @@ export class RedisCache {
     }
 
     public async get(key: string): Promise<CacheHandlerValue | null> {
-        const data = await this.client.get(key);
+        const fullKey = this.getFullKey(key);
+
+        const data = await this.client.get(this.getFullKey(fullKey));
 
         if (!data) {
-            console.log(`Not found in redis: ${key}`);
+            console.log(`Not found in redis: ${fullKey}`);
             return null;
         }
 
-        console.log(`Found in redis: ${key}`);
+        console.log(`Found in redis: ${fullKey}`);
 
         return JSON.parse(data) as CacheHandlerValue;
     }
 
     public async set(key: string, data: CacheHandlerValue) {
-        return this.client.set(key, JSON.stringify(data), {
+        return this.client.set(this.getFullKey(key), JSON.stringify(data), {
             EX: this.ttl,
         });
+    }
+
+    private getFullKey(key: string) {
+        return `${this.keyPrefix}_${key}`;
     }
 }
