@@ -5,6 +5,7 @@ import fs from 'fs';
 import fsPromises from 'fs/promises';
 import { IncrementalCacheKindHint } from 'next/dist/server/response-cache';
 import { nodeFs } from 'next/dist/server/lib/node-fs-methods';
+import { redisClient } from './redis';
 
 // The type for this method is not exported from next.js
 // Be aware it may change when updating the next.js version
@@ -50,34 +51,58 @@ export default class CustomFileSystemCache extends FileSystemCache {
     public async get(...args: Parameters<FileSystemCache['get']>) {
         const [key] = args;
 
-        const dataFromMemoryCache = isrMemoryCache.get(key);
-        if (dataFromMemoryCache) {
-            return dataFromMemoryCache;
+        console.log(`Getting from cache: ${key}`);
+
+        const foundData = await redisClient
+            .init()
+            .then(() => redisClient.get(key));
+
+        if (!foundData?.value) {
+            return null;
         }
 
-        const dataFromFileSystemCache = await super.get(...args);
-        if (dataFromFileSystemCache) {
-            const ttlRemaining = dataFromFileSystemCache.lastModified
-                ? dataFromFileSystemCache.lastModified +
-                  CACHE_TTL_24_HOURS -
-                  Date.now()
-                : CACHE_TTL_24_HOURS;
+        console.log(
+            `Found for ${key}: ${foundData ? Object.keys(foundData) : ''}`
+        );
+        return foundData;
 
-            if (ttlRemaining > 1000) {
-                isrMemoryCache.set(key, dataFromFileSystemCache, {
-                    ttl: ttlRemaining,
-                });
-            }
-        }
-
-        return dataFromFileSystemCache;
+        // const dataFromMemoryCache = isrMemoryCache.get(key);
+        // if (dataFromMemoryCache) {
+        //     return dataFromMemoryCache;
+        // }
+        //
+        // const dataFromFileSystemCache = await super.get(...args);
+        // if (dataFromFileSystemCache) {
+        //     const ttlRemaining = dataFromFileSystemCache.lastModified
+        //         ? dataFromFileSystemCache.lastModified +
+        //           CACHE_TTL_24_HOURS -
+        //           Date.now()
+        //         : CACHE_TTL_24_HOURS;
+        //
+        //     if (ttlRemaining > 1000) {
+        //         isrMemoryCache.set(key, dataFromFileSystemCache, {
+        //             ttl: ttlRemaining,
+        //         });
+        //     }
+        // }
+        //
+        // return dataFromFileSystemCache;
     }
 
     public async set(...args: Parameters<FileSystemCache['set']>) {
         const [key, data] = args;
 
-        isrMemoryCache.set(key, { value: data, lastModified: Date.now() });
-        return super.set(...args);
+        console.log(`Storing in cache: ${key}`);
+
+        const cacheItem: CacheHandlerValue = {
+            value: data,
+            lastModified: Date.now(),
+        };
+
+        redisClient.init().then(() => redisClient.set(key, cacheItem));
+
+        // isrMemoryCache.set(key, { value: data, lastModified: Date.now() });
+        // return super.set(...args);
     }
 
     public async clearGlobalCache() {
