@@ -14,6 +14,16 @@ const clientOptions: { [key in AppEnv]?: RedisClientOptions } = {
         username: process.env.REDIS_USERNAME_PAGECACHE_DEV1,
         password: process.env.REDIS_PASSWORD_PAGECACHE_DEV1,
     },
+    dev2: {
+        url: process.env.REDIS_URI_PAGECACHE_DEV2,
+        username: process.env.REDIS_USERNAME_PAGECACHE_DEV2,
+        password: process.env.REDIS_PASSWORD_PAGECACHE_DEV2,
+    },
+    prod: {
+        url: process.env.REDIS_URI_PAGECACHE,
+        username: process.env.REDIS_USERNAME_PAGECACHE,
+        password: process.env.REDIS_PASSWORD_PAGECACHE,
+    },
 };
 
 type ConstructorProps = {
@@ -62,34 +72,32 @@ export class RedisCache {
         this.keyPrefix = keyPrefix;
 
         await this.client.connect().then(() => {
-            console.log(`Initialized redis client`);
+            console.log(
+                `Initialized redis client with key prefix ${keyPrefix}`
+            );
         });
     }
 
     public async get(key: string): Promise<CacheHandlerValue | null> {
-        const fullKey = this.getFullKey(key);
+        const fullKey = this.getPrefixedKey(key);
 
         const data = await this.client.get(fullKey);
 
         if (!data) {
-            console.log(`Not found in redis: ${fullKey}`);
             return null;
         }
-
-        console.log(`Found in redis: ${fullKey}`);
 
         return JSON.parse(data) as CacheHandlerValue;
     }
 
     public async set(key: string, data: CacheHandlerValue) {
-        return this.client.set(this.getFullKey(key), JSON.stringify(data), {
-            EX: this.ttl,
+        return this.client.set(this.getPrefixedKey(key), JSON.stringify(data), {
+            PX: this.ttl,
         });
     }
 
     public async delete(key: string) {
-        console.log('Clearing redis cache!');
-        return this.client.del(this.getFullKey(key));
+        return this.client.del(this.getPrefixedKey(key));
     }
 
     public async clear() {
@@ -97,7 +105,7 @@ export class RedisCache {
         return this.client.flushDb();
     }
 
-    private getFullKey(key: string) {
+    private getPrefixedKey(key: string) {
         return `${this.keyPrefix}:${key}`;
     }
 }

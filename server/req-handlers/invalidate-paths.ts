@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import CustomFileSystemCache from '../cache/custom-cache-handler';
+import CustomCacheHandler from '../cache/custom-cache-handler';
 
 export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
     const { eventid } = req.headers;
@@ -11,7 +11,7 @@ export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
         return res.status(400).send(msg);
     }
 
-    const isrCacheHandler = new CustomFileSystemCache();
+    const isrCacheHandler = new CustomCacheHandler();
 
     paths.forEach((path) => isrCacheHandler.deleteGlobalCacheEntry(path));
 

@@ -1,69 +1,45 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
-import { nodeFs } from 'next/dist/server/lib/node-fs-methods';
 import { RedisCache } from './redis';
 
-type FileSystemCacheContext = ConstructorParameters<typeof FileSystemCache>[0];
+const CACHE_TTL_24_HOURS_IN_MS = 3600 * 24 * 1000;
 
-const CACHE_TTL_24_HOURS = 3600 * 24 * 1000;
-
-export const redisCache = new RedisCache({ ttl: CACHE_TTL_24_HOURS });
+export const redisCache = new RedisCache({ ttl: CACHE_TTL_24_HOURS_IN_MS });
 
 const localCache = new LRUCache<string, CacheHandlerValue>({
     max: 1000,
-    ttl: CACHE_TTL_24_HOURS,
+    ttl: CACHE_TTL_24_HOURS_IN_MS,
     ttlResolution: 1000,
 });
 
-const fileSystemCacheContextDefault: FileSystemCacheContext = {
-    fs: nodeFs,
-    serverDistDir: '.',
-    experimental: { ppr: false },
-    revalidatedTags: [],
-    _appDir: false,
-    _pagesDir: true,
-    _requestHeaders: {},
-} as const;
-
-export default class CustomFileSystemCache extends FileSystemCache {
-    constructor(ctx?: Partial<FileSystemCacheContext>) {
-        const context = { ...fileSystemCacheContextDefault, ...ctx };
-        super(context);
-    }
-
+export default class CustomCacheHandler {
     public async get(...args: Parameters<FileSystemCache['get']>) {
         const [key] = args;
 
-        const foundData = await redisCache.get(key);
+        const fromLocalCache = localCache.get(key);
+        if (fromLocalCache) {
+            return fromLocalCache;
+        }
 
-        if (!foundData?.value) {
+        const fromRedisCache = await redisCache.get(key);
+        if (!fromRedisCache?.value) {
             return null;
         }
 
-        return foundData;
+        const ttlRemaining = fromRedisCache.lastModified
+            ? fromRedisCache.lastModified +
+              CACHE_TTL_24_HOURS_IN_MS -
+              Date.now()
+            : CACHE_TTL_24_HOURS_IN_MS;
 
-        // const dataFromMemoryCache = isrMemoryCache.get(key);
-        // if (dataFromMemoryCache) {
-        //     return dataFromMemoryCache;
-        // }
-        //
-        // const dataFromFileSystemCache = await super.get(...args);
-        // if (dataFromFileSystemCache) {
-        //     const ttlRemaining = dataFromFileSystemCache.lastModified
-        //         ? dataFromFileSystemCache.lastModified +
-        //           CACHE_TTL_24_HOURS -
-        //           Date.now()
-        //         : CACHE_TTL_24_HOURS;
-        //
-        //     if (ttlRemaining > 1000) {
-        //         isrMemoryCache.set(key, dataFromFileSystemCache, {
-        //             ttl: ttlRemaining,
-        //         });
-        //     }
-        // }
-        //
-        // return dataFromFileSystemCache;
+        if (ttlRemaining > 1000) {
+            localCache.set(key, fromRedisCache, {
+                ttl: ttlRemaining,
+            });
+        }
+
+        return fromRedisCache;
     }
 
     public async set(...args: Parameters<FileSystemCache['set']>) {
@@ -74,24 +50,21 @@ export default class CustomFileSystemCache extends FileSystemCache {
             lastModified: Date.now(),
         };
 
+        localCache.set(key, { value: data, lastModified: Date.now() });
+
         redisCache
             .set(key, cacheItem)
             .then((result) => console.log(`Set key ${key} result`, result));
-
-        // isrMemoryCache.set(key, { value: data, lastModified: Date.now() });
-        // return super.set(...args);
     }
 
-    public async clearGlobalCache() {
+    public async clear() {
         localCache.clear();
         redisCache.clear();
-        return true;
     }
 
     public async deleteGlobalCacheEntry(path: string) {
         const pagePath = path === '/' ? '/index' : path;
         localCache.delete(pagePath);
         redisCache.delete(pagePath);
-        return true;
     }
 }
