@@ -9,6 +9,7 @@ import { InfoBox } from '../info-box/InfoBox';
 import style from './FormDetails.module.scss';
 import { AlertInContextPageProps } from 'types/content-props/alerts';
 import { AlertBox } from '../alert-box/AlertBox';
+import { AlertInContext } from '../alert-in-context/AlertInContext';
 
 export type FormDetailsComponentProps = {
     formDetails: FormDetailsData;
@@ -117,14 +118,7 @@ export const FormDetails = ({
             {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
             {alerts &&
                 alerts.map((alert) => (
-                    <AlertBox
-                        key={alert._path}
-                        variant={
-                            alert.data.type === 'critical' ? 'warning' : 'info'
-                        }
-                    >
-                        {alert.data.text}
-                    </AlertBox>
+                    <AlertInContext key={alert._id} alert={alert} />
                 ))}
             {variations.length > 0 && (
                 <div className={style.variation}>

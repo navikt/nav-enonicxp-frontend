@@ -1,6 +1,4 @@
 import { ContentCommonProps, ContentType } from './_content-common';
-import { LinkSelectable } from 'types/component-props/_mixins';
-import { BitmapImage } from 'types/media';
 import { OptionSetSingle } from 'types/util-types';
 
 export interface AlertData {
@@ -14,7 +12,7 @@ export interface AlertData {
     };
 }
 
-export type AlertInContextPageProps = {
+export type AlertInContextPageProps = ContentCommonProps & {
     type: ContentType.AlertInContext;
     data: AlertData;
 } & Omit<ContentCommonProps, 'alerts'>; // Avoid circular reference
