@@ -54,7 +54,7 @@ export default class CustomCacheHandler {
             lastModified: Date.now(),
         };
 
-        localCache.set(key, { value: data, lastModified: Date.now() });
+        localCache.set(key, cacheItem);
 
         redisCache
             .set(key, cacheItem)
