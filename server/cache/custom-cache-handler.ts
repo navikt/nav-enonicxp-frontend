@@ -27,7 +27,7 @@ export default class CustomCacheHandler {
         }
 
         const fromRedisCache = await redisCache.get(key);
-        if (!fromRedisCache?.value) {
+        if (!fromRedisCache) {
             return null;
         }
 
