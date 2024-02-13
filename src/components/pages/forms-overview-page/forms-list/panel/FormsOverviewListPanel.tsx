@@ -17,8 +17,6 @@ import { usePageConfig } from 'store/hooks/usePageConfig';
 import { Language, translator } from 'translations';
 
 import style from './FormsOverviewListPanel.module.scss';
-import { AlertBox } from 'components/_common/alert-box/AlertBox';
-import { forceArray } from 'utils/arrays';
 
 type OverviewType = FormsOverviewData['overviewType'];
 

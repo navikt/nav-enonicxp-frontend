@@ -5,11 +5,10 @@ import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { FormDetailsButton } from './FormDetailsButton';
 import { InfoBox } from '../info-box/InfoBox';
+import { AlertInContextPageProps } from 'types/content-props/alerts';
+import { AlertInContext } from '../alert-in-context/AlertInContext';
 
 import style from './FormDetails.module.scss';
-import { AlertInContextPageProps } from 'types/content-props/alerts';
-import { AlertBox } from '../alert-box/AlertBox';
-import { AlertInContext } from '../alert-in-context/AlertInContext';
 
 export type FormDetailsComponentProps = {
     formDetails: FormDetailsData;
