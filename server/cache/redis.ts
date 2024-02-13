@@ -3,8 +3,13 @@ import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 
 type AppEnv = typeof process.env.ENV;
 
-const clientOptions: { [key in AppEnv]?: RedisClientOptions } = {
+const clientOptions: { [key in AppEnv]: RedisClientOptions } = {
     localhost: {
+        url: process.env.REDIS_URI_PAGECACHE,
+        username: process.env.REDIS_USERNAME_PAGECACHE,
+        password: process.env.REDIS_PASSWORD_PAGECACHE,
+    },
+    prod: {
         url: process.env.REDIS_URI_PAGECACHE,
         username: process.env.REDIS_USERNAME_PAGECACHE,
         password: process.env.REDIS_PASSWORD_PAGECACHE,
@@ -14,10 +19,10 @@ const clientOptions: { [key in AppEnv]?: RedisClientOptions } = {
         username: process.env.REDIS_USERNAME_PAGECACHE_DEV1,
         password: process.env.REDIS_PASSWORD_PAGECACHE_DEV1,
     },
-    prod: {
-        url: process.env.REDIS_URI_PAGECACHE,
-        username: process.env.REDIS_USERNAME_PAGECACHE,
-        password: process.env.REDIS_PASSWORD_PAGECACHE,
+    dev2: {
+        url: process.env.REDIS_URI_PAGECACHE_DEV2,
+        username: process.env.REDIS_USERNAME_PAGECACHE_DEV2,
+        password: process.env.REDIS_PASSWORD_PAGECACHE_DEV2,
     },
 };
 
