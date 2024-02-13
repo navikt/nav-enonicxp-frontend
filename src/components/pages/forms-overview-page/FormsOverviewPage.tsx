@@ -52,7 +52,10 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
 
     const detailsListWithAlerts = data.formDetailsList?.map((formDetails) => {
         const alertsForDetails = alerts.filter((alert) => {
-            const targetContent =
+            if (!alert.data.target) {
+                return false;
+            }
+            const targetContent: string[] =
                 alert.data.target[alert.data.target._selected].targetContent;
 
             return forceArray(targetContent).some((target) =>
