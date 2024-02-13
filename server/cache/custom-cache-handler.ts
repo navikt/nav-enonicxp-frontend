@@ -7,7 +7,7 @@ import { isLeaderPod } from '../leader';
 const CACHE_TTL_24_HOURS_IN_MS = 3600 * 24 * 1000;
 
 export const redisCache =
-    process.env.ENV === 'localhost' && !process.env.LOCAL_REDIS
+    process.env.ENV === 'localhost' && !process.env.REDIS_URI_PAGECACHE
         ? new RedisCacheDummy()
         : new RedisCache({ ttl: CACHE_TTL_24_HOURS_IN_MS });
 
