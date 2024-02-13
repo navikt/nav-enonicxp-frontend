@@ -18,6 +18,7 @@ resources:
 replicas:
   min: 2
   max: 2
-redisPlan: startup-4
-redisProject: nav-dev
-redisInstance: pagecache-dev1
+redis:
+  plan: startup-4
+  project: nav-dev
+  instance: pagecache-dev1
