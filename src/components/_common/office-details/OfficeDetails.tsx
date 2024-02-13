@@ -19,7 +19,7 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
     const { brukerkontakt } = officeData;
     const getOfficeTranslations = translator('office', language);
 
-    const publikumsmottak = forceArray(brukerkontakt?.publikumsmottak);
+    const publikumsmottak = forceArray(brukerkontakt?.publikumsmottak); //TODO flytt forceArray inn i pakken? Må vel også gjøres i personopplysninger
 
     return (
         <div className={styles.wide}>
