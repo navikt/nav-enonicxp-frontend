@@ -69,7 +69,7 @@ export class RedisCache {
     public async get(key: string): Promise<CacheHandlerValue | null> {
         const fullKey = this.getFullKey(key);
 
-        const data = await this.client.get(this.getFullKey(fullKey));
+        const data = await this.client.get(fullKey);
 
         if (!data) {
             console.log(`Not found in redis: ${fullKey}`);
@@ -98,6 +98,6 @@ export class RedisCache {
     }
 
     private getFullKey(key: string) {
-        return `${this.keyPrefix}_${key}`;
+        return `${this.keyPrefix}:${key}`;
     }
 }
