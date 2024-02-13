@@ -29,7 +29,14 @@ jobs:
       id-token: "write"
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+      - name: Deploy Redis
+        if: ${{ inputs.deploy_redis == true }}
+        uses: nais/deploy/actions/deploy@v2
+        env:
+          CLUSTER: ${{ inputs.cluster }}
+          RESOURCE: .nais/redis.yml
+          VARS: .nais/vars/${{ inputs.vars_file }}
       - name: Set HPA resource if specified
         if: ${{ inputs.hpa_file }}
         run: |
