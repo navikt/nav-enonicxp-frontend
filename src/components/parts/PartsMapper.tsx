@@ -154,17 +154,7 @@ export const PartsMapper = ({ pageProps, partProps }: Props) => {
     const isEditView = pageProps.editorView === 'edit';
     const editorProps = isEditView ? buildEditorProps(path) : undefined;
 
-    if (!descriptor) {
-        return (
-            <EditorHelp
-                text={'Velg en part-komponent'}
-                type={'info'}
-                {...editorProps}
-            />
-        );
-    }
-
-    if (partsDeprecated.has(descriptor)) {
+    if (!descriptor || partsDeprecated.has(descriptor)) {
         return isEditView ? <div {...editorProps} /> : null;
     }
 
