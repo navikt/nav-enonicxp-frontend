@@ -18,6 +18,7 @@ import { Language, translator } from 'translations';
 
 import style from './FormsOverviewListPanel.module.scss';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { forceArray } from 'utils/arrays';
 
 type OverviewType = FormsOverviewData['overviewType'];
 
@@ -114,10 +115,6 @@ export const FormsOverviewListPanel = ({
             });
     };
 
-    if (alerts && alerts.length > 0) {
-        console.log(alerts);
-    }
-
     return (
         <ProductPanelExpandable
             header={sortTitle}
@@ -135,26 +132,14 @@ export const FormsOverviewListPanel = ({
                 <BodyLong className={style.ingress}>{ingress}</BodyLong>
             )}
 
-            {formDetailsPages?.map((formDetail) => (
-                <>
-                    {alerts?.map(
-                        (alert, index) =>
-                            alert.data.targetContent.includes(
-                                formDetail._id
-                            ) && (
-                                <AlertBox
-                                    variant={
-                                        alert.data.type === 'information'
-                                            ? 'info'
-                                            : 'warning'
-                                    }
-                                    key={index}
-                                >
-                                    {alert.data.text}
-                                </AlertBox>
-                            )
-                    )}
-
+            {formDetailsPages?.map((formDetail) => {
+                const relevantAlerts = alerts?.filter((alert) => {
+                    const targetContent =
+                        alert.data.target[alert.data.target._selected]
+                            .targetContent;
+                    return targetContent.includes(formDetail._id);
+                });
+                return (
                     <FormDetails
                         formDetails={formDetail.data}
                         displayConfig={getFormDetailsDisplayOptions(
@@ -163,9 +148,10 @@ export const FormsOverviewListPanel = ({
                         className={style.formDetails}
                         formNumberSelected={formNumberSelected}
                         key={formDetail._id}
+                        alerts={relevantAlerts}
                     />
-                </>
-            ))}
+                );
+            })}
             {!isAddendumPage && url && (
                 <OverviewMicroCards
                     productLinks={[

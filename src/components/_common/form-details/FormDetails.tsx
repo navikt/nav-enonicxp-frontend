@@ -7,6 +7,8 @@ import { FormDetailsButton } from './FormDetailsButton';
 import { InfoBox } from '../info-box/InfoBox';
 
 import style from './FormDetails.module.scss';
+import { AlertInContextPageProps } from 'types/content-props/alerts';
+import { AlertBox } from '../alert-box/AlertBox';
 
 export type FormDetailsComponentProps = {
     formDetails: FormDetailsData;
@@ -21,6 +23,7 @@ export type FormDetailsComponentProps = {
     };
     className?: string;
     formNumberSelected?: string;
+    alerts?: AlertInContextPageProps[];
 };
 
 export const FormDetails = ({
@@ -28,6 +31,7 @@ export const FormDetails = ({
     displayConfig,
     className,
     formNumberSelected,
+    alerts,
 }: FormDetailsComponentProps) => {
     const {
         showTitle,
@@ -111,6 +115,17 @@ export const FormDetails = ({
                 </div>
             )}
             {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
+            {alerts &&
+                alerts.map((alert) => (
+                    <AlertBox
+                        key={alert._path}
+                        variant={
+                            alert.data.type === 'critical' ? 'warning' : 'info'
+                        }
+                    >
+                        {alert.data.text}
+                    </AlertBox>
+                ))}
             {variations.length > 0 && (
                 <div className={style.variation}>
                     {variations.map((variation, index) => (

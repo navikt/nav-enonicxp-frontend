@@ -10,10 +10,9 @@ import { IllustrationStatic } from 'components/_common/illustration/Illustration
 import { FormsOverviewList } from 'components/pages/forms-overview-page/forms-list/FormsOverviewList';
 import { FormsOverviewAudienceLinks } from 'components/pages/forms-overview-page/audience-links/FormsOverviewAudienceLinks';
 import { classNames } from 'utils/classnames';
+import { forceArray } from 'utils/arrays';
 
 import style from './FormsOverviewPage.module.scss';
-import { FormDetails } from 'components/_common/form-details/FormDetails';
-import { forceArray } from 'utils/arrays';
 
 const getLinksIfTransportPage = (audience: FormsOverviewAudienceOptions) => {
     if (audience?._selected !== 'provider') {
@@ -47,25 +46,30 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
     }
 
     const { config, regions } = page;
-    const { audience, illustration, alerts } = data;
+    const { audience, illustration, alerts = [] } = data;
 
     const audienceSubCategoryLinks = getLinksIfTransportPage(audience);
 
-    const overviewWitAlerts = data.formDetailsList?.map((formDetails) => {
-        const detailHasAlerts = alerts?.some((alert) =>
-            forceArray(alert.data.targetContent).some((target) =>
-                formDetails.formDetailsIds.includes(target)
-            )
-        );
+    console.log(alerts);
 
-        return detailHasAlerts ? { ...formDetails, alerts } : formDetails;
+    const detailsListWithAlerts = data.formDetailsList?.map((formDetails) => {
+        const alertsForDetails = alerts.filter((alert) => {
+            const targetContent =
+                alert.data.target[alert.data.target._selected].targetContent;
+
+            return forceArray(targetContent).some((target) =>
+                formDetails.formDetailsIds.includes(target)
+            );
+        });
+
+        return { ...formDetails, alerts: alertsForDetails };
     });
 
     const mutatedProps = {
         ...props,
         data: {
             ...data,
-            formDetailsList: overviewWitAlerts,
+            formDetailsList: detailsListWithAlerts,
         },
     };
 
