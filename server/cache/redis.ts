@@ -56,7 +56,10 @@ export class RedisCache implements IRedisCache {
         this.ttl = ttl;
         this.keyPrefix = process.env.BUILD_ID;
 
-        this.client = createClient(options)
+        this.client = createClient({
+            ...options,
+            socket: { keepAlive: 5000, connectTimeout: 10000 },
+        })
             .on('connect', () => {
                 console.log('Redis client connected');
             })
