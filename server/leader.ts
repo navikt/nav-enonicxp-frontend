@@ -12,14 +12,13 @@ export const isLeaderPod = async (): Promise<boolean> => {
             if (res.ok) {
                 return res.json();
             }
+            console.error(
+                `Error fetching leader, assuming I'm leader - ${res.status} ${res.statusText}`
+            );
+            return true;
         })
         .then((json) => {
-            const hostname = os.hostname();
-            console.log(
-                `Leader election result, comparing with my hostname: ${hostname} `,
-                json
-            );
-            return json.name === hostname;
+            return json.name === os.hostname();
         })
         .catch((e) => {
             console.error(

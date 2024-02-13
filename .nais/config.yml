@@ -27,10 +27,12 @@ spec:
   prometheus:
     enabled: true
     path: /internal/metrics
-  redis:
-    - instance: {{ redisInstance }}
-      access: readwrite
   leaderElection: true
+  {{#with redis}}
+    redis:
+      - instance: {{ instance }}
+        access: readwrite
+  {{/with}}
   ingresses:
     {{#each ingresses as |url|}}
     - {{url}}
