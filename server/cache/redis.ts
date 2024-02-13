@@ -23,7 +23,7 @@ type ConstructorProps = {
 export class RedisCache {
     private readonly client: ReturnType<typeof createClient>;
     private readonly ttl: number;
-    private readonly keyPrefix: string;
+    private keyPrefix: string = '';
 
     constructor({ ttl }: ConstructorProps) {
         const env = process.env.ENV;
@@ -58,7 +58,9 @@ export class RedisCache {
         console.log(`Created redis client with url ${options.url}`);
     }
 
-    public async init() {
+    public async init(keyPrefix: string) {
+        this.keyPrefix = keyPrefix;
+
         await this.client.connect().then(() => {
             console.log(`Initialized redis client`);
         });

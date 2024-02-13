@@ -28,7 +28,7 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
     const nextServer = await getNextServer(nextApp);
     const currentBuildId = getNextBuildId(nextServer);
 
-    await redisCache.init();
+    await redisCache.init(currentBuildId);
 
     console.log(`Current build id: ${currentBuildId}`);
 
