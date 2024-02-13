@@ -4,7 +4,6 @@ import {
     InformationSquareFillIcon,
     HouseFillIcon,
 } from '@navikt/aksel-icons';
-import { classNames } from 'utils/classnames';
 import { translator } from './utils/translations';
 import {
     AudienceReception,
@@ -101,7 +100,7 @@ export const SingleReception = (props: SingleReceptionProps) => {
             <Heading level="3" size="medium" spacing className={styles.heading}>
                 <HouseFillIcon
                     aria-hidden="true"
-                    className={classNames(styles.headingIcon, styles.iconPlace)}
+                    className={`${styles.headingIcon} ${styles.iconPlace}`}
                 />
                 {getLabel('address')}
             </Heading>
@@ -122,10 +121,7 @@ export const SingleReception = (props: SingleReceptionProps) => {
                     >
                         <ClockFillIcon
                             aria-hidden="true"
-                            className={classNames(
-                                styles.headingIcon,
-                                styles.iconClock
-                            )}
+                            className={`${styles.headingIcon} ${styles.iconClock}`}
                         />
                         {getLabel('openingHoursWithoutAppointment')}
                     </Heading>
