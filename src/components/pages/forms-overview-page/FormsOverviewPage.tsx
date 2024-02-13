@@ -50,8 +50,6 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
 
     const audienceSubCategoryLinks = getLinksIfTransportPage(audience);
 
-    console.log(alerts);
-
     const detailsListWithAlerts = data.formDetailsList?.map((formDetails) => {
         const alertsForDetails = alerts.filter((alert) => {
             const targetContent =
