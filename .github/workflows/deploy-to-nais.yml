@@ -47,7 +47,6 @@ jobs:
         env:
           CLUSTER: ${{ inputs.cluster }}
           RESOURCE: .nais/hpa/${{inputs.hpa_file}}
-          VARS: .nais/vars/${{ inputs.vars_file }}
       - name: Deploy application
         uses: nais/deploy/actions/deploy@v2
         env:
