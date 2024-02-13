@@ -1,6 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 import express, { ErrorRequestHandler } from 'express';
 import next from 'next';
 import { createHttpTerminator } from 'http-terminator';

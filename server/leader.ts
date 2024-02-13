@@ -46,7 +46,7 @@ const isLeaderPodReal = async (): Promise<boolean> => {
     return isLeader;
 };
 
-const isLeaderPodDummy = () => true;
+const isLeaderPodDummy = async () => true;
 
 export const isLeaderPod =
     process.env.ENV === 'localhost' ? isLeaderPodDummy : isLeaderPodReal;

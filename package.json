@@ -4,10 +4,10 @@
     "private": true,
     "scripts": {
         "build": "tsc -p server && next build",
-        "start": "node .serverDist/server.js",
+        "start": "node -r dotenv/config .serverDist/server.js dotenv_config_path=.env",
         "dev": "cp .env.development .env && tsc -p server && npm start",
         "dev-custom": "cp .env.development.local .env && tsc -p server && npm start",
-        "dev-server": "cp .env.prod-local.local .env && concurrently \"tsc -w -p server\" \"nodemon -w .serverDist .serverDist/server.js\"",
+        "dev-server": "cp .env.prod-local.local .env && concurrently \"tsc -w -p server\" \"nodemon -r dotenv/config -w .serverDist .serverDist/server.js\" dotenv_config_path=.env",
         "build-local": "cp .env.prod-local .env && npm run build",
         "start-local": "cp .env.prod-local .env && npm run start",
         "start-clean": "rm -fr .next && npm run build-local && npm run start-local",
