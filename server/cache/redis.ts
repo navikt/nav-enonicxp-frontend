@@ -1,13 +1,8 @@
-import { createClient, RedisClientOptions } from 'redis';
+import { createClient } from 'redis';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
-
-type ConstructorProps = {
-    clientOptions: RedisClientOptions;
-};
 
 class RedisClient {
     private readonly client: ReturnType<typeof createClient>;
-    private didInit = false;
 
     constructor() {
         this.client = createClient({
@@ -22,17 +17,14 @@ class RedisClient {
     }
 
     public async init() {
-        if (this.didInit) {
-            return this.client;
-        }
-
-        this.didInit = true;
-
-        return this.client
+        await this.client
             .on('error', (err) => {
                 console.error('Redis client error: ', err);
             })
-            .connect();
+            .connect()
+            .then(() => {
+                console.log(`Initialized redis client`);
+            });
     }
 
     public async get(key: string): Promise<CacheHandlerValue | null> {
@@ -49,7 +41,7 @@ class RedisClient {
     }
 
     public async set(key: string, data: CacheHandlerValue) {
-        console.log(`Setting ${key}`);
+        console.log(`Setting data for ${key}`);
 
         const result = await this.client.set(key, JSON.stringify(data));
 

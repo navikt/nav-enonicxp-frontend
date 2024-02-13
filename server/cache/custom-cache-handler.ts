@@ -1,22 +1,10 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
-import fs from 'fs';
-import fsPromises from 'fs/promises';
-import { IncrementalCacheKindHint } from 'next/dist/server/response-cache';
 import { nodeFs } from 'next/dist/server/lib/node-fs-methods';
 import { redisClient } from './redis';
 
-// The type for this method is not exported from next.js
-// Be aware it may change when updating the next.js version
-type GetFilePathFunction = (
-    pathname: string,
-    kind: IncrementalCacheKindHint
-) => string;
-
 type FileSystemCacheContext = ConstructorParameters<typeof FileSystemCache>[0];
-
-const CACHE_FILE_EXTENSIONS = ['html', 'json', 'meta'] as const;
 
 const CACHE_TTL_24_HOURS = 3600 * 24 * 1000;
 
@@ -36,15 +24,9 @@ const fileSystemCacheContextDefault: FileSystemCacheContext = {
     _requestHeaders: {},
 } as const;
 
-const customPageCacheDir =
-    process.env.IS_FAILOVER_INSTANCE !== 'true' && process.env.PAGE_CACHE_DIR;
-
 export default class CustomFileSystemCache extends FileSystemCache {
     constructor(ctx?: Partial<FileSystemCacheContext>) {
         const context = { ...fileSystemCacheContextDefault, ...ctx };
-
-        context.serverDistDir = customPageCacheDir || context.serverDistDir;
-
         super(context);
     }
 
@@ -53,17 +35,12 @@ export default class CustomFileSystemCache extends FileSystemCache {
 
         console.log(`Getting from cache: ${key}`);
 
-        const foundData = await redisClient
-            .init()
-            .then(() => redisClient.get(key));
+        const foundData = await redisClient.get(key);
 
         if (!foundData?.value) {
             return null;
         }
 
-        console.log(
-            `Found for ${key}: ${foundData ? Object.keys(foundData) : ''}`
-        );
         return foundData;
 
         // const dataFromMemoryCache = isrMemoryCache.get(key);
@@ -99,69 +76,19 @@ export default class CustomFileSystemCache extends FileSystemCache {
             lastModified: Date.now(),
         };
 
-        redisClient.init().then(() => redisClient.set(key, cacheItem));
+        redisClient.set(key, cacheItem);
 
         // isrMemoryCache.set(key, { value: data, lastModified: Date.now() });
         // return super.set(...args);
     }
 
     public async clearGlobalCache() {
-        let didClearFs;
-
-        try {
-            const filePath = this.getFilePathPublic('', 'pages');
-
-            if (fs.existsSync(filePath)) {
-                fs.rmSync(filePath, { recursive: true });
-            }
-
-            console.log(`Wiped all cached pages from ${filePath}`);
-
-            didClearFs = true;
-        } catch (e) {
-            console.error(
-                `Error occurred while wiping page-cache from disk - ${e}`
-            );
-            didClearFs = false;
-        }
-
         isrMemoryCache.clear();
-
-        return didClearFs;
+        return true;
     }
 
     public async deleteGlobalCacheEntry(path: string) {
         const pagePath = path === '/' ? '/index' : path;
-
-        return Promise.all(
-            CACHE_FILE_EXTENSIONS.map((ext) =>
-                this.deletePageCacheFile(`${pagePath}.${ext}`)
-            )
-        )
-            .catch((e) => {
-                console.error(
-                    `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
-                );
-            })
-            .finally(() => isrMemoryCache.delete(pagePath));
-    }
-
-    private async deletePageCacheFile(pathname: string) {
-        const filePath = this.getFilePathPublic(pathname, 'pages');
-
-        return fsPromises
-            .unlink(filePath)
-            .then(() => {
-                console.log(`Removed file from page cache: ${pathname}`);
-            })
-            .catch((e: any) => {
-                console.log(
-                    `Failed to remove file from page cache: ${pathname} - ${e}`
-                );
-            });
-    }
-
-    public getFilePathPublic(pathname: string, kind: IncrementalCacheKindHint) {
-        return (this['getFilePath'] as GetFilePathFunction)(pathname, kind);
+        return isrMemoryCache.delete(pagePath);
     }
 }
