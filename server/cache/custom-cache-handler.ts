@@ -1,12 +1,15 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
-import { RedisCache } from './redis';
+import { RedisCache, RedisCacheDummy } from './redis';
 import { isLeaderPod } from '../leader';
 
 const CACHE_TTL_24_HOURS_IN_MS = 3600 * 24 * 1000;
 
-export const redisCache = new RedisCache({ ttl: CACHE_TTL_24_HOURS_IN_MS });
+export const redisCache =
+    process.env.ENV === 'localhost' && !process.env.LOCAL_REDIS
+        ? new RedisCacheDummy()
+        : new RedisCache({ ttl: CACHE_TTL_24_HOURS_IN_MS });
 
 const localCache = new LRUCache<string, CacheHandlerValue>({
     max: 1000,

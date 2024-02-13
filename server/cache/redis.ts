@@ -26,11 +26,19 @@ const clientOptions: { [key in AppEnv]: RedisClientOptions } = {
     },
 };
 
+interface IRedisCache {
+    init(keyPrefix: string): Promise<void>;
+    get(key: string): Promise<CacheHandlerValue | null>;
+    set(key: string, data: CacheHandlerValue): Promise<string | null>;
+    delete(key: string): Promise<number>;
+    clear(): Promise<string>;
+}
+
 type ConstructorProps = {
     ttl: number;
 };
 
-export class RedisCache {
+export class RedisCache implements IRedisCache {
     private readonly client: ReturnType<typeof createClient>;
     private readonly ttl: number;
     private keyPrefix: string = '';
@@ -78,7 +86,7 @@ export class RedisCache {
         });
     }
 
-    public async get(key: string): Promise<CacheHandlerValue | null> {
+    public async get(key: string) {
         const prefixedKey = this.getPrefixedKey(key);
 
         const data = await this.client.get(prefixedKey);
@@ -109,5 +117,23 @@ export class RedisCache {
 
     private getPrefixedKey(key: string) {
         return `${this.keyPrefix}:${key}`;
+    }
+}
+
+export class RedisCacheDummy implements IRedisCache {
+    public async init(keyPrefix: string) {
+        return;
+    }
+    public async get(key: string) {
+        return null;
+    }
+    public async set(key: string, data: CacheHandlerValue) {
+        return null;
+    }
+    public async delete(key: string) {
+        return 1;
+    }
+    public async clear() {
+        return 'Ok';
     }
 }
