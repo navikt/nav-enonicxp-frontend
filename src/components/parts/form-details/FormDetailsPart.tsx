@@ -20,6 +20,7 @@ export const FormDetailsPart = ({ config, pageProps }: FormDetailsProps) => {
         return <EditorHelp text={'Velg hvilken skjemadetalj som skal vises'} />;
     }
     const formDetails = targetFormDetails.data;
+    const { alerts } = targetFormDetails;
 
     const modifiedDisplayConfig = {
         ...displayConfig,
@@ -31,6 +32,7 @@ export const FormDetailsPart = ({ config, pageProps }: FormDetailsProps) => {
             <FormDetails
                 formDetails={formDetails}
                 displayConfig={modifiedDisplayConfig}
+                alerts={alerts}
             />
         </FilteredContent>
     );
