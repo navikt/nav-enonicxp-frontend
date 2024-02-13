@@ -151,12 +151,18 @@ const PartComponent = ({ partProps, pageProps }: Props) => {
 export const PartsMapper = ({ pageProps, partProps }: Props) => {
     const { path, descriptor, config } = partProps;
 
-    if (!descriptor) {
-        return null;
-    }
-
     const isEditView = pageProps.editorView === 'edit';
     const editorProps = isEditView ? buildEditorProps(path) : undefined;
+
+    if (!descriptor) {
+        return (
+            <EditorHelp
+                text={'Velg en part-komponent'}
+                type={'info'}
+                {...editorProps}
+            />
+        );
+    }
 
     if (partsDeprecated.has(descriptor)) {
         return isEditView ? <div {...editorProps} /> : null;

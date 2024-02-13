@@ -29,12 +29,13 @@ type Props = {
     text: string;
     globalWarningText?: string;
     type?: 'info' | 'error' | 'help' | 'arrowUp' | 'arrowDown';
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export const EditorHelp = ({
     text,
     globalWarningText,
     type = 'help',
+    ...rest
 }: Props) => {
     const { pageConfig } = usePageConfig();
     const { editorView } = pageConfig;
@@ -52,7 +53,7 @@ export const EditorHelp = ({
     }
 
     return (
-        <div className={style.editorHelp} id={id}>
+        <div className={style.editorHelp} id={id} {...rest}>
             <StaticImage
                 imageData={imagePath[type]}
                 alt={''}
