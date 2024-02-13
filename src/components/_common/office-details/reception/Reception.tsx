@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BodyLong, Tabs } from '@navikt/ds-react';
-import { AudienceReception, Language } from './utils/types';
+import { AudienceReception } from './utils/types';
 import { SingleReception } from './SingleReception';
 import { translator } from './utils/translations';
 
@@ -8,11 +8,19 @@ import styles from './Reception.module.scss';
 
 interface LocationsProps {
     receptions: AudienceReception[];
-    language: Language;
+    language: string;
 }
 
+const validateLanguage = (lang: string): 'no' | 'nn' | 'en' => {
+    return ['no', 'nn', 'en'].includes(lang)
+        ? (lang as 'no' | 'nn' | 'en')
+        : 'no';
+};
+
 export const Reception = ({ receptions, language }: LocationsProps) => {
-    const getOfficeTranslations = translator('office', language);
+    const languageValidated = validateLanguage(language);
+
+    const getOfficeTranslations = translator('office', languageValidated);
 
     const getLocation = (reception: AudienceReception) => {
         if (!reception) {
@@ -39,7 +47,10 @@ export const Reception = ({ receptions, language }: LocationsProps) => {
     if (receptions.length === 1) {
         return (
             <div className={styles.singleTab}>
-                <SingleReception {...receptions[0]} language={language} />
+                <SingleReception
+                    {...receptions[0]}
+                    language={languageValidated}
+                />
             </div>
         );
     }
@@ -74,7 +85,10 @@ export const Reception = ({ receptions, language }: LocationsProps) => {
                             value={getIdFromLabel(locationLabel)}
                             className={styles.singleTab}
                         >
-                            <SingleReception {...loc} language={language} />
+                            <SingleReception
+                                {...loc}
+                                language={languageValidated}
+                            />
                         </Tabs.Panel>
                     );
                 })}
