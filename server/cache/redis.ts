@@ -85,6 +85,16 @@ export class RedisCache {
         });
     }
 
+    public async delete(key: string) {
+        console.log('Clearing redis cache!');
+        return this.client.del(this.getFullKey(key));
+    }
+
+    public async clear() {
+        console.log('Clearing redis cache!');
+        return this.client.flushDb();
+    }
+
     private getFullKey(key: string) {
         return `${this.keyPrefix}_${key}`;
     }

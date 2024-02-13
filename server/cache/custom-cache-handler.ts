@@ -84,11 +84,14 @@ export default class CustomFileSystemCache extends FileSystemCache {
 
     public async clearGlobalCache() {
         localCache.clear();
+        redisCache.clear();
         return true;
     }
 
     public async deleteGlobalCacheEntry(path: string) {
         const pagePath = path === '/' ? '/index' : path;
-        return localCache.delete(pagePath);
+        localCache.delete(pagePath);
+        redisCache.delete(pagePath);
+        return true;
     }
 }
