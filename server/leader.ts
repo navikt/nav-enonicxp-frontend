@@ -7,7 +7,7 @@ export const isLeaderPod = async (): Promise<boolean> => {
         return true;
     }
 
-    return fetch(electorPath)
+    return fetch(`http://${electorPath}`)
         .then((res) => {
             if (res.ok) {
                 return res.json();

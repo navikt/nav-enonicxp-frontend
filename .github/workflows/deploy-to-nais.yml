@@ -17,6 +17,9 @@ on:
       hpa_file:
         required: false
         type: string
+      deploy_redis:
+        required: false
+        type: boolean
 
 jobs:
   deploy:
