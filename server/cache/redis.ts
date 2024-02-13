@@ -1,15 +1,49 @@
-import { createClient } from 'redis';
+import { createClient, RedisClientOptions } from 'redis';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
+
+type AppEnv = typeof process.env.ENV;
+
+const clientOptions: { [key in AppEnv]?: RedisClientOptions } = {
+    localhost: {
+        url: process.env.REDIS_URI_PAGECACHE_DEV1,
+        username: process.env.REDIS_USERNAME_PAGECACHE_DEV1,
+        password: process.env.REDIS_PASSWORD_PAGECACHE_DEV1,
+    },
+    dev1: {
+        url: process.env.REDIS_URI_PAGECACHE_DEV1,
+        username: process.env.REDIS_USERNAME_PAGECACHE_DEV1,
+        password: process.env.REDIS_PASSWORD_PAGECACHE_DEV1,
+    },
+};
 
 class RedisClient {
     private readonly client: ReturnType<typeof createClient>;
 
     constructor() {
-        this.client = createClient({
-            url: process.env.REDIS_URI_PAGECACHE_DEV1,
-            username: process.env.REDIS_USERNAME_PAGECACHE_DEV1,
-            password: process.env.REDIS_PASSWORD_PAGECACHE_DEV1,
-        });
+        const options = clientOptions[process.env.ENV];
+
+        if (!options) {
+            throw Error(
+                `Redis client options were not defined for the current app environment ${process.env.ENV}`
+            );
+        }
+
+        this.client = createClient(options)
+            .on('connect', () => {
+                console.log('Redis client connected');
+            })
+            .on('ready', () => {
+                console.log('Redis client ready');
+            })
+            .on('end', () => {
+                console.log('Redis client connection closed');
+            })
+            .on('reconnecting', () => {
+                console.log('Redis client reconnecting');
+            })
+            .on('error', (err) => {
+                console.error('Redis client error: ', err);
+            });
 
         console.log(
             `Created redis client with url ${process.env.REDIS_URI_PAGECACHE_DEV1}`
@@ -17,14 +51,9 @@ class RedisClient {
     }
 
     public async init() {
-        await this.client
-            .on('error', (err) => {
-                console.error('Redis client error: ', err);
-            })
-            .connect()
-            .then(() => {
-                console.log(`Initialized redis client`);
-            });
+        await this.client.connect().then(() => {
+            console.log(`Initialized redis client`);
+        });
     }
 
     public async get(key: string): Promise<CacheHandlerValue | null> {
