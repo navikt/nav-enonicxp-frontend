@@ -1,6 +1,6 @@
 import React from 'react';
 import { translator } from './utils/translations';
-import { formatDate } from 'utils/datetime';
+import { formatDate } from './utils/utils';
 import { Language, OpeningHours as OpeningHoursProps } from './utils/types';
 import { Table } from '@navikt/ds-react';
 
