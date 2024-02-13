@@ -3,7 +3,7 @@ import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 
 type AppEnv = typeof process.env.ENV;
 
-const clientOptions: { [key in AppEnv]: RedisClientOptions } = {
+const clientOptions: Record<AppEnv, RedisClientOptions> = {
     localhost: {
         url: process.env.REDIS_URI_PAGECACHE,
         username: process.env.REDIS_USERNAME_PAGECACHE,
@@ -24,7 +24,7 @@ const clientOptions: { [key in AppEnv]: RedisClientOptions } = {
         username: process.env.REDIS_USERNAME_PAGECACHE_DEV2,
         password: process.env.REDIS_PASSWORD_PAGECACHE_DEV2,
     },
-};
+} as const;
 
 interface IRedisCache {
     init(keyPrefix: string): Promise<void>;
