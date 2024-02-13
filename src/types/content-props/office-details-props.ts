@@ -1,3 +1,4 @@
+import { AudienceReception } from 'components/_common/office-details/reception/utils/types';
 import { ProductDataMixin } from 'types/component-props/_mixins';
 
 export interface Address {
@@ -19,13 +20,6 @@ export interface OpeningHours {
     kunTimeavtale?: string;
     kommentar?: string;
     stengt?: string;
-}
-
-export interface AudienceReception {
-    stedsbeskrivelse?: string;
-    aapningstider: OpeningHours[];
-    besoeksadresse?: Address;
-    adkomstbeskrivelse?: string;
 }
 
 export type Service = {
