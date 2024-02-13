@@ -11,7 +11,7 @@ import {
     Language,
     OpeningHours as OpeningHoursProps,
 } from './utils/types';
-import { formatAddress } from '../utils';
+import { formatAddress } from './utils/utils';
 import { OpeningHours } from './OpeningHours';
 
 import styles from './SingleReception.module.scss';
