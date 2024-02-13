@@ -6,6 +6,8 @@ import { ParsedHtml } from 'components/_common/parsed-html/ParsedHtml';
 import { AnalyticsEvents, logAmplitudeEvent } from 'utils/amplitude';
 import { useShortcuts, Shortcuts } from 'utils/useShortcuts';
 
+import styles from './ReadMore.module.scss';
+
 export const ReadMorePart = ({ config }: ReadMorePartProps) => {
     const [isOpen, setIsOpen] = useState(false);
     useShortcuts({
@@ -40,6 +42,7 @@ export const ReadMorePart = ({ config }: ReadMorePartProps) => {
             header={title}
             open={isOpen}
             onOpenChange={(isOpen) => openChangeHandler(isOpen, title)}
+            className={styles.readMore}
         >
             <ParsedHtml htmlProps={html} />
         </ReadMore>
