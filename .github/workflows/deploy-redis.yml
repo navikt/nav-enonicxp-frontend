@@ -8,7 +8,8 @@ on:
         default: 'dev'
         type: choice
         options:
-          - dev
+          - dev1
+          - dev2
           - prod
 
 jobs:

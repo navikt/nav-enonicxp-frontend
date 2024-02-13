@@ -79,9 +79,9 @@ export class RedisCache {
     }
 
     public async get(key: string): Promise<CacheHandlerValue | null> {
-        const fullKey = this.getPrefixedKey(key);
+        const prefixedKey = this.getPrefixedKey(key);
 
-        const data = await this.client.get(fullKey);
+        const data = await this.client.get(prefixedKey);
 
         if (!data) {
             return null;
@@ -97,7 +97,9 @@ export class RedisCache {
     }
 
     public async delete(key: string) {
-        return this.client.del(this.getPrefixedKey(key));
+        const prefixedKey = this.getPrefixedKey(key);
+        console.log(`Deleting redis cache entry for ${prefixedKey}`);
+        return this.client.del(prefixedKey);
     }
 
     public async clear() {

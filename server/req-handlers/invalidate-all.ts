@@ -6,7 +6,8 @@ export const handleInvalidateAllReq: RequestHandler = async (req, res) => {
 
     await new CustomCacheHandler().clear();
 
-    return res
-        .status(200)
-        .send(`Successfully wiped page cache - event id ${eventid}`);
+    const msg = `Cleared page cache - event id ${eventid}`;
+    console.log(msg);
+
+    return res.status(200).send(msg);
 };
