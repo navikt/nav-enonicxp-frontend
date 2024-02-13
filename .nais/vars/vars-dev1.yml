@@ -19,6 +19,6 @@ replicas:
   min: 2
   max: 2
 redis:
-  plan: startup-4
+  plan: hobbyist
   project: nav-dev
   instance: pagecache-dev1
