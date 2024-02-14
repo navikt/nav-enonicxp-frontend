@@ -3,7 +3,6 @@ import pino, { LoggerOptions } from 'pino';
 const options: LoggerOptions =
     process.env.ENV === 'localhost'
         ? {
-              level: 'debug',
               base: {},
               transport: {
                   target: 'pino-pretty',
@@ -12,6 +11,12 @@ const options: LoggerOptions =
                   },
               },
           }
-        : {};
+        : {
+              formatters: {
+                  level: (label) => {
+                      return { level: label };
+                  },
+              },
+          };
 
 export const logger = pino(options);
