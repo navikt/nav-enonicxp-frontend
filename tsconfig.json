@@ -28,11 +28,6 @@
         "lib": ["dom", "dom.iterable", "esnext"],
         "skipLibCheck": true
     },
-    "include": [
-        "next-env.d.ts",
-        "node-env.d.ts",
-        "src/**/*.ts",
-        "src/**/*.tsx"
-    ],
+    "include": ["next-env.d.ts", "nodeenv.d.ts", "src/**/*.ts", "src/**/*.tsx"],
     "exclude": ["node_modules"]
 }

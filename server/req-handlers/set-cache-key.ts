@@ -1,4 +1,5 @@
 import { RequestHandler } from 'express';
+import { logger } from '../logger';
 
 let currentCacheTimestamp = 0;
 
@@ -8,18 +9,18 @@ export const setCacheKey: RequestHandler = (req, res, next) => {
     if (typeof cache_key === 'string') {
         const newCacheTimestamp = Number(cache_ts);
         if (newCacheTimestamp > currentCacheTimestamp) {
-            console.log(
+            logger.info(
                 `Setting new cache key ${cache_key} with timestamp ${cache_ts}`
             );
             global.cacheKey = cache_key;
             currentCacheTimestamp = newCacheTimestamp;
         } else {
-            console.log(
+            logger.info(
                 `Rejecting cache key ${cache_key} with timestamp ${newCacheTimestamp} - current cache key ${global.cacheKey} is same or newer (${currentCacheTimestamp})`
             );
         }
     } else {
-        console.error(`No valid cache key provided - ${cache_key}`);
+        logger.error(`No valid cache key provided - ${cache_key}`);
     }
 
     next();

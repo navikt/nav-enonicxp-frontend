@@ -6,6 +6,7 @@ import { initRevalidatorProxyHeartbeat } from './revalidator-proxy-heartbeat';
 import { serverSetupFailover } from './server-setup-failover';
 import { serverSetup } from './server-setup';
 import { getNextServer, injectNextImageCacheDir } from './next-utils';
+import { logger } from './logger';
 
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
@@ -32,7 +33,7 @@ nextApp.prepare().then(async () => {
     if (process.env.IMAGE_CACHE_DIR) {
         await injectNextImageCacheDir(nextServer, process.env.IMAGE_CACHE_DIR);
     } else {
-        console.error('IMAGE_CACHE_DIR is not defined!');
+        logger.error('IMAGE_CACHE_DIR is not defined!');
     }
 
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
@@ -55,7 +56,7 @@ nextApp.prepare().then(async () => {
         const { status, stack } = err;
         const msg = stack?.split('\n')[0];
 
-        console.log(`Express error on path ${path}: ${status} ${msg}`);
+        logger.info(`Express error on path ${path}: ${status} ${msg}`);
 
         res.status(status || 500);
 
@@ -78,16 +79,16 @@ nextApp.prepare().then(async () => {
             initRevalidatorProxyHeartbeat();
         }
 
-        console.log(`Server started on port ${port}`);
+        logger.info(`Server started on port ${port}`);
     });
 
     const httpTerminator = createHttpTerminator({ server: expressServer });
 
     const shutdown = () => {
-        console.log('Server shutting down');
+        logger.info('Server shutting down');
         httpTerminator.terminate().then(() => {
             expressServer.close(() => {
-                console.log('Shutdown complete!');
+                logger.info('Shutdown complete!');
                 process.exit(0);
             });
         });
