@@ -19,4 +19,12 @@ const options: LoggerOptions =
               },
           };
 
-export const logger = pino(options);
+export const logger = pino({
+    ...options,
+    hooks: {
+        // Overrides the pino logger to behave in a similar way to console.log with multiple arguments
+        logMethod(args, method) {
+            args.forEach((arg) => method.apply(this, [arg]));
+        },
+    },
+});

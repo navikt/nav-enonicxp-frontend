@@ -7,7 +7,7 @@
         "build:next": "next build",
         "build:server": "npm run build --workspace server",
         "start": "npm run start --workspace server",
-        "dev": "cp .env.development .env && npm run start",
+        "dev": "cp .env.development .env && rm -fr .next && npm run start",
         "dev-custom": "cp .env.development.local .env && npm start",
         "dev-server": "cp .env.prod-local .env && npm run dev --workspace server",
         "build-local": "cp .env.prod-local .env && npm run build",
