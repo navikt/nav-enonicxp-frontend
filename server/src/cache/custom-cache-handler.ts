@@ -1,8 +1,8 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
-import { RedisCache, RedisCacheDummy } from './redis';
-import { isLeaderPod } from '../leader';
+import { RedisCache, RedisCacheDummy } from 'cache/redis';
+import { isLeaderPod } from 'leader';
 
 const CACHE_TTL_24_HOURS_IN_MS = 3600 * 24 * 1000;
 
