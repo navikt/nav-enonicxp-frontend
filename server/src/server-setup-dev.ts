@@ -1,7 +1,7 @@
 import cookieParser from 'cookie-parser';
 import { Express } from 'express';
 import { NextServer } from 'next/dist/server/next';
-import { logger } from './logger';
+import { logger } from 'logger';
 
 const LOGIN_COOKIE = 'dev-login';
 

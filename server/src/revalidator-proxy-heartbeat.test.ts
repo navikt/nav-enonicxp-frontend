@@ -11,7 +11,7 @@ describe('Revalidator proxy heartbeat', () => {
 
     test('Should call revalidator proxy', async () => {
         const { initRevalidatorProxyHeartbeat } = await import(
-            './revalidator-proxy-heartbeat'
+            'revalidator-proxy-heartbeat'
         );
 
         fetchMock.mockResponse('Hello!');

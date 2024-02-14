@@ -3,7 +3,7 @@ import {
     getNextBuildId,
     getNextServer,
     injectNextImageCacheDir,
-} from './next-utils';
+} from 'next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
 import next from 'next';
 import path from 'path';

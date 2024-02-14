@@ -3,9 +3,9 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "build": "tsc",
-        "start": "node -r dotenv/config ../.serverDist/server.js dotenv_config_path=../.env",
-        "nodemon-start": "nodemon -r dotenv/config -w ../.serverDist ../.serverDist/server.js dotenv_config_path=../.env",
+        "build": "esbuild src/server.ts src/custom-cache-handler.ts --bundle --platform=node --packages=external --outdir=../.serverDist --out-extension:.js=.cjs",
+        "start": "node -r dotenv/config ../.serverDist/server.cjs dotenv_config_path=../.env",
+        "nodemon-start": "nodemon -r dotenv/config -w ../.serverDist ../.serverDist/server.cjs dotenv_config_path=../.env",
         "dev": "npm run build && concurrently \"npm run build -- --watch\" \"npm run nodemon-start\""
     },
     "nodemonConfig": {
@@ -13,16 +13,17 @@
     },
     "dependencies": {
         "cookie-parser": "1.4.6",
-        "express-prom-bundle": "6.6.0",
+        "express-prom-bundle": "7.0.0",
         "http-terminator": "3.2.0",
         "on-headers": "1.0.2",
-        "prom-client": "14.2.0"
+        "prom-client": "15.1.0"
     },
     "devDependencies": {
-        "@types/cookie-parser": "1.4.4",
-        "@types/express": "4.17.19",
+        "@types/cookie-parser": "1.4.6",
+        "@types/express": "4.17.21",
         "@types/on-headers": "1.0.3",
-        "concurrently": "7.6.0",
+        "concurrently": "8.2.2",
+        "esbuild": "0.20.0",
         "express": "4.18.2",
         "nodemon": "3.0.2"
     }

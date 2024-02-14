@@ -1,18 +1,17 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
-        "target": "es2021",
+        "target": "es2022",
         "strict": true,
-        "forceConsistentCasingInFileNames": true,
         "esModuleInterop": true,
-        "module": "commonjs",
-        "moduleResolution": "Node",
-        "isolatedModules": true,
-        "incremental": true,
-        "baseUrl": "./",
-        "lib": ["dom", "esnext"],
+        "forceConsistentCasingInFileNames": true,
         "skipLibCheck": true,
-        "outDir": "../.serverDist"
+        "lib": ["es2023"],
+        "moduleResolution": "bundler",
+        "module": "esnext",
+        "baseUrl": "./src",
+        "outDir": "../.serverDist",
+        "noEmit": true
     },
-    "include": ["./**/*.ts", "../nodeenv.d.ts"]
+    "include": ["./src/**/*.ts", "../nodeenv.d.ts"]
 }

@@ -8,7 +8,7 @@ describe('Set cache key middleware', () => {
     });
 
     test('Cache key should be set', async () => {
-        const { setCacheKey } = await import('../req-handlers/set-cache-key');
+        const { setCacheKey } = await import('req-handlers/set-cache-key');
         const cacheKey = 'myCacheKey';
 
         setCacheKey(
@@ -21,7 +21,7 @@ describe('Set cache key middleware', () => {
     });
 
     test('Cache key with highest timestamp should be kept', async () => {
-        const { setCacheKey } = await import('../req-handlers/set-cache-key');
+        const { setCacheKey } = await import('req-handlers/set-cache-key');
 
         const oldCacheKey = { cache_key: 'key 1', cache_ts: '1' };
         const newCacheKey = { cache_key: 'key 2', cache_ts: '2' };
@@ -33,7 +33,7 @@ describe('Set cache key middleware', () => {
     });
 
     test('Requests without a cache key header should be ignored', async () => {
-        const { setCacheKey } = await import('../req-handlers/set-cache-key');
+        const { setCacheKey } = await import('req-handlers/set-cache-key');
 
         const cacheKey = 'myCacheKey';
 

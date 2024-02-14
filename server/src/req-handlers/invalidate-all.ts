@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import CustomFileSystemCache from '../custom-cache-handler';
+import CustomFileSystemCache from 'custom-cache-handler';
 
 export const handleInvalidateAllReq: RequestHandler = async (req, res) => {
     const { eventid } = req.headers;
