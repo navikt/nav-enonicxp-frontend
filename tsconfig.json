@@ -26,8 +26,17 @@
             }
         ],
         "lib": ["dom", "dom.iterable", "esnext"],
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "paths": {
+            "srcCommon/*": ["../srcCommon/*"]
+        }
     },
-    "include": ["next-env.d.ts", "nodeenv.d.ts", "src/**/*.ts", "src/**/*.tsx"],
+    "include": [
+        "next-env.d.ts",
+        "nodeenv.d.ts",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "srcCommon/**/*.ts"
+    ],
     "exclude": ["node_modules"]
 }

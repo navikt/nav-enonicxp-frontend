@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import { logger } from 'logger';
+import { logger } from 'srcCommon/logger';
 
 let currentCacheTimestamp = 0;
 

@@ -17,9 +17,6 @@ const options: LoggerOptions =
                   },
               },
           }
-        : {
-              ...commonOptions,
-              base: { ...commonOptions.base, pid: process.pid },
-          };
+        : {};
 
 export const logger = pino(options);

@@ -9,9 +9,12 @@
         "lib": ["es2023"],
         "moduleResolution": "bundler",
         "module": "esnext",
-        "baseUrl": "./src",
+        "baseUrl": "src",
         "outDir": "../.serverDist",
-        "noEmit": true
+        "noEmit": true,
+        "paths": {
+            "srcCommon/*": ["../../srcCommon/*"]
+        }
     },
-    "include": ["./src/**/*.ts", "../nodeenv.d.ts"]
+    "include": ["src/**/*.ts", "../srcCommon/**/*.ts", "../nodeenv.d.ts"]
 }

@@ -5,7 +5,7 @@ import fs from 'fs';
 import fsPromises from 'fs/promises';
 import { IncrementalCacheKindHint } from 'next/dist/server/response-cache';
 import { nodeFs } from 'next/dist/server/lib/node-fs-methods';
-import { logger } from 'logger';
+import { logger } from 'srcCommon/logger';
 
 // The type for this method is not exported from next.js
 // Be aware it may change when updating the next.js version

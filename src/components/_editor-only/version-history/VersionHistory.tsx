@@ -7,6 +7,7 @@ import { VersionSelector } from './selector/VersionSelector';
 import { translator } from 'translations';
 import { useRouter } from 'next/compat/router';
 import { Chevron } from '../../_common/chevron/Chevron';
+import { logger } from 'srcCommon/logger';
 
 import style from './VersionHistory.module.scss';
 
@@ -34,7 +35,7 @@ export const VersionHistory = ({ content }: Props) => {
         setSelectorIsOpen(false);
         if (versionUrlRequested) {
             router.push(versionUrlRequested).catch((err) => {
-                console.log('Error during version history navigation: ', err);
+                logger.info('Error during version history navigation: ', err);
                 setVersionUrlRequested(null);
             });
         }

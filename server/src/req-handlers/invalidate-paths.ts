@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 import CustomFileSystemCache from 'custom-cache-handler';
-import { logger } from 'logger';
+import { logger } from 'srcCommon/logger';
 
 export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
     const { eventid } = req.headers;

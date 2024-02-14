@@ -6,7 +6,7 @@ import { initRevalidatorProxyHeartbeat } from 'revalidator-proxy-heartbeat';
 import { serverSetupFailover } from 'server-setup-failover';
 import { serverSetup } from 'server-setup';
 import { getNextServer, injectNextImageCacheDir } from 'next-utils';
-import { logger } from 'logger';
+import { logger } from 'srcCommon/logger';
 
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',

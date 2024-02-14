@@ -4,7 +4,7 @@ import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
 import ResponseCache from 'next/dist/server/response-cache';
 import { propagateServerField } from 'next/dist/server/lib/render-server';
 import path from 'path';
-import { logger } from 'logger';
+import { logger } from 'srcCommon/logger';
 
 // Functions for accessing next.js internals in various hacky ways :)
 

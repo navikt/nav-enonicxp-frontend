@@ -1,6 +1,6 @@
 import NextNodeServer from 'next/dist/server/next-server';
 import { RequestHandler } from 'express';
-import { logger } from 'logger';
+import { logger } from 'srcCommon/logger';
 
 const getPendingResponses = (nextServer: NextNodeServer) => {
     try {

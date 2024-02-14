@@ -2,7 +2,7 @@
 // requests from Enonic XP to all frontend pods
 // See: https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy
 import { networkInterfaces } from 'os';
-import { logger } from 'logger';
+import { logger } from 'srcCommon/logger';
 
 const {
     ENV,

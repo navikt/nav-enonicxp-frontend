@@ -1,4 +1,5 @@
 import { fetchJson } from './fetch-utils';
+import { logger } from 'srcCommon/logger';
 
 type GetCacheKeyResponse = {
     key: string;
@@ -18,7 +19,7 @@ type GetCacheKeyResponse = {
 // used on newly spun up containers.
 export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
     if (!retries || retries < 0) {
-        console.error(
+        logger.error(
             'Failed to fetch cache key from revalidator-proxy, no more retries remaining'
         );
         return;
@@ -30,7 +31,7 @@ export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
     )
         .then((response) => {
             if (response?.key) {
-                console.log(
+                logger.info(
                     `Setting cache key to ${response.key}, timestamp: ${response.timestamp}`
                 );
                 global.cacheKey = response.key;
@@ -40,7 +41,7 @@ export const fetchAndSetCacheKey = async (retries = 5): Promise<void> => {
             }
         })
         .catch((e) => {
-            console.error(
+            logger.error(
                 `Error while fetching cache key, ${retries} retries remaining - ${e}`
             );
             return fetchAndSetCacheKey(retries - 1);
