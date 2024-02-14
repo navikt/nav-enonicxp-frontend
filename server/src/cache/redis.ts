@@ -1,5 +1,6 @@
 import { createClient, RedisClientOptions } from 'redis';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
+import { logger } from 'srcCommon/logger';
 
 type AppEnv = typeof process.env.ENV;
 
@@ -61,29 +62,29 @@ export class RedisCache implements IRedisCache {
             socket: { keepAlive: 5000, connectTimeout: 10000 },
         })
             .on('connect', () => {
-                console.log('Redis client connected');
+                logger.info('Redis client connected');
             })
             .on('ready', () => {
-                console.log('Redis client ready');
+                logger.info('Redis client ready');
             })
             .on('end', () => {
-                console.log('Redis client connection closed');
+                logger.info('Redis client connection closed');
             })
             .on('reconnecting', () => {
-                console.log('Redis client reconnecting');
+                logger.info('Redis client reconnecting');
             })
             .on('error', (err) => {
-                console.error('Redis client error: ', err);
+                logger.error('Redis client error: ', err);
             });
 
-        console.log(`Created redis client with url ${options.url}`);
+        logger.info(`Created redis client with url ${options.url}`);
     }
 
     public async init(keyPrefix: string) {
         this.keyPrefix = keyPrefix;
 
         await this.client.connect().then(() => {
-            console.log(
+            logger.info(
                 `Initialized redis client with key prefix ${keyPrefix}`
             );
         });
@@ -109,12 +110,12 @@ export class RedisCache implements IRedisCache {
 
     public async delete(key: string) {
         const prefixedKey = this.getPrefixedKey(key);
-        console.log(`Deleting redis cache entry for ${prefixedKey}`);
+        logger.info(`Deleting redis cache entry for ${prefixedKey}`);
         return this.client.del(prefixedKey);
     }
 
     public async clear() {
-        console.log('Clearing redis cache!');
+        logger.info('Clearing redis cache!');
         return this.client.flushDb();
     }
 

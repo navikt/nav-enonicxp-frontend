@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import CustomFileSystemCache from '../cache/custom-cache-handler';
+import CustomCacheHandler from '../cache/custom-cache-handler';
 import { logger } from 'srcCommon/logger';
 
 export const handleInvalidatePathsReq: RequestHandler = (req, res) => {

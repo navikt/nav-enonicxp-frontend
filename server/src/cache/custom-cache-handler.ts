@@ -3,6 +3,7 @@ import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache, RedisCacheDummy } from 'cache/redis';
 import { isLeaderPod } from 'leader';
+import { logger } from 'srcCommon/logger';
 
 const CACHE_TTL_24_HOURS_IN_MS = 3600 * 24 * 1000;
 
@@ -59,7 +60,7 @@ export default class CustomCacheHandler {
         redisCache
             .set(key, cacheItem)
             .then((result) =>
-                console.log(`Redis set result for ${key}: ${result}`)
+                logger.info(`Redis set result for ${key}: ${result}`)
             );
     }
 

@@ -1,4 +1,5 @@
 import * as os from 'os';
+import { logger } from 'srcCommon/logger';
 
 const CACHE_TTL_MS = 60 * 1000;
 
@@ -14,7 +15,7 @@ const isLeaderPodReal = async (): Promise<boolean> => {
 
     const electorPath = process.env.ELECTOR_PATH;
     if (!electorPath) {
-        console.error('ELECTOR_PATH is not defined!');
+        logger.error('ELECTOR_PATH is not defined!');
         return cache.isLeader;
     }
 
@@ -23,7 +24,7 @@ const isLeaderPodReal = async (): Promise<boolean> => {
             if (res.ok) {
                 return res.json();
             }
-            console.error(
+            logger.error(
                 `Error fetching leader - ${res.status} ${res.statusText}`
             );
             return null;
@@ -32,7 +33,7 @@ const isLeaderPodReal = async (): Promise<boolean> => {
             return json.name === os.hostname();
         })
         .catch((e) => {
-            console.error(`Error determining leader - ${e}`);
+            logger.error(`Error determining leader - ${e}`);
             return null;
         });
 
