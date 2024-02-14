@@ -21,7 +21,5 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Build application
         run: npm run build-local
-      - name: Run server tests
-        run: npm run test-server
-      - name: Run client tests
-        run: npm run test-client
+      - name: Run tests
+        run: npm run test
