@@ -56,12 +56,7 @@ export default class CustomCacheHandler {
         };
 
         localCache.set(key, cacheItem);
-
-        redisCache
-            .set(key, cacheItem)
-            .then((result) =>
-                logger.info(`Redis set result for ${key}: ${result}`)
-            );
+        redisCache.set(key, cacheItem);
     }
 
     public async clear() {

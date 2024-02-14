@@ -74,7 +74,7 @@ export class RedisCache implements IRedisCache {
                 logger.info('Redis client reconnecting');
             })
             .on('error', (err) => {
-                logger.error('Redis client error: ', err);
+                logger.error(`Redis client error: ${err}`);
             });
 
         logger.info(`Created redis client with url ${options.url}`);
@@ -103,9 +103,15 @@ export class RedisCache implements IRedisCache {
     }
 
     public async set(key: string, data: CacheHandlerValue) {
-        return this.client.set(this.getPrefixedKey(key), JSON.stringify(data), {
-            PX: this.ttl,
-        });
+        const result = this.client.set(
+            this.getPrefixedKey(key),
+            JSON.stringify(data),
+            {
+                PX: this.ttl,
+            }
+        );
+        logger.info(`Redis set result for ${key}: ${result}`);
+        return result;
     }
 
     public async delete(key: string) {
