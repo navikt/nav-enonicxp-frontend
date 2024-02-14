@@ -56,7 +56,7 @@ nextApp.prepare().then(async () => {
         const { status, stack } = err;
         const msg = stack?.split('\n')[0];
 
-        logger.info(`Express error on path ${path}: ${status} ${msg}`);
+        logger.error(`Express error on path ${path}: ${status} ${msg}`);
 
         res.status(status || 500);
 
