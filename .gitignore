@@ -32,6 +32,7 @@ yarn-error.log*
 .env
 .env.local
 .env.development.local
+.env.prod-local.local
 
 /.idea/
 /nav-enonicxp-frontend.iml
@@ -45,10 +46,9 @@ yarn-error.log*
 /image-manifest
 /benchmark.mjs
 
-/.serverDist/
+/server/.dist/
 /server/tsconfig.tsbuildinfo
 /server/__next-test-dummy/.next/
 
 # VS Code
 .vscode
-/.env.prod-local.local
