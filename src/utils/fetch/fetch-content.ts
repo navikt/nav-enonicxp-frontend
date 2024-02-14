@@ -185,7 +185,7 @@ const fetchAndHandleErrorsRuntime = async (
                 errorId,
                 `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath} - unexpected 404-response from sitecontent service: ${errorMsg}`
             );
-            return makeErrorProps(idOrPath, undefined, 503, errorId);
+            return makeErrorProps(idOrPath, errorMsg, 503, errorId);
         }
 
         // Regular 404 should not be logged as errors
@@ -197,7 +197,7 @@ const fetchAndHandleErrorsRuntime = async (
         errorId,
         `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath}: ${errorMsg}`
     );
-    return makeErrorProps(idOrPath, undefined, res.status, errorId);
+    return makeErrorProps(idOrPath, errorMsg, res.status, errorId);
 };
 
 const fetchAndHandleErrors =

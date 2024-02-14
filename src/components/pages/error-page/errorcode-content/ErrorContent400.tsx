@@ -32,7 +32,7 @@ export const ErrorContent400 = (props: ErrorProps) => {
         <>
             <BodyLong spacing={true}>
                 {
-                    'Siden kunne ikke lastes på grunn av en ugyldig forespørsel. Du kan forsøke å laste inn siden på nytt.'
+                    'Siden kunne ikke lastes på grunn av en ugyldig forespørsel i baksystemene. Du kan forsøke å laste inn siden på nytt.'
                 }
             </BodyLong>
             <ErrorFeedbackLink errorId={props.data.errorId} />
