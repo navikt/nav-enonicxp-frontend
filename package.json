@@ -17,9 +17,9 @@
         "analyze-bundle": "ANALYZE_BUNDLE=true npm run build-local",
         "typeCheck": "tsc",
         "lint": "eslint src/",
-        "test-server": "next build server/__next-test-dummy && NODE_OPTIONS=--experimental-vm-modules jest --config server/jest.config.mjs --testPathPattern=server/",
-        "test-client": "TZ=Europe/Oslo jest --testPathPattern=src/",
-        "test": "npm run test-server && npm run test-client",
+        "test": "npm-run-all test:*",
+        "test:server": "npm run test --workspace server",
+        "test:client": "TZ=Europe/Oslo jest --testPathIgnorePatterns=server/src",
         "prepare": "husky install"
     },
     "workspaces": [
@@ -91,6 +91,7 @@
         "jest-fetch-mock": "3.0.3",
         "lint-staged": "15.2.0",
         "mock-fs": "5.2.0",
+        "npm-run-all": "4.1.5",
         "pino-pretty": "10.3.1",
         "prettier": "3.1.0",
         "sass": "1.69.5",

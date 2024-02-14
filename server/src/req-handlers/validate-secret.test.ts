@@ -1,5 +1,5 @@
-import { validateSecret } from 'req-handlers/validate-secret';
 import { NextFunction } from 'express';
+import { validateSecret } from './validate-secret';
 
 const mySecret = 'mySecret';
 

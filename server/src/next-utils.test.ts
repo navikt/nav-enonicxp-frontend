@@ -3,7 +3,7 @@ import {
     getNextBuildId,
     getNextServer,
     injectNextImageCacheDir,
-} from 'next-utils';
+} from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
 import next from 'next';
 import path from 'path';
@@ -13,7 +13,7 @@ import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
 const getNextApp = () =>
     next({
         conf: {},
-        dir: path.join(__dirname, '__next-test-dummy'),
+        dir: path.join(__dirname, '..', '__next-test-dummy'),
     });
 
 describe('Next.js server private accessors', () => {

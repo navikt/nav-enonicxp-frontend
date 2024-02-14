@@ -6,7 +6,8 @@
         "build": "esbuild src/server.ts src/custom-cache-handler.ts --bundle --platform=node --packages=external --outdir=../.serverDist --out-extension:.js=.cjs",
         "start": "node -r dotenv/config ../.serverDist/server.cjs dotenv_config_path=../.env",
         "nodemon-start": "nodemon -r dotenv/config -w ../.serverDist ../.serverDist/server.cjs dotenv_config_path=../.env",
-        "dev": "npm run build && concurrently \"npm run build -- --watch\" \"npm run nodemon-start\""
+        "dev": "npm run build && concurrently \"npm run build -- --watch\" \"npm run nodemon-start\"",
+        "test": "next build __next-test-dummy && NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs"
     },
     "nodemonConfig": {
         "delay": 500
