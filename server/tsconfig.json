@@ -14,5 +14,5 @@
         "skipLibCheck": true,
         "outDir": "../.serverDist"
     },
-    "include": ["./**/*.ts", "../src/nodeenv.d.ts"]
+    "include": ["./**/*.ts", "../nodeenv.d.ts"]
 }

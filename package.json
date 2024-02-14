@@ -3,11 +3,11 @@
     "version": "1.2.1",
     "private": true,
     "scripts": {
-        "build": "tsc -p server && next build",
-        "start": "node .serverDist/server.js",
-        "dev": "cp .env.development .env && tsc -p server && npm start",
-        "dev-custom": "cp .env.development.local .env && tsc -p server && npm start",
-        "dev-server": "cp .env.prod-local .env && concurrently \"tsc -w -p server\" \"nodemon -w .serverDist .serverDist/server.js\"",
+        "build": "npm run build --workspace server && next build",
+        "start": "npm run start --workspace server",
+        "dev": "cp .env.development .env && npm start",
+        "dev-custom": "cp .env.development.local .env && npm start",
+        "dev-server": "cp .env.prod-local .env && npm run dev --workspace server",
         "build-local": "cp .env.prod-local .env && npm run build",
         "start-local": "cp .env.prod-local .env && npm run start",
         "start-clean": "rm -fr .next && npm run build-local && npm run start-local",
@@ -22,6 +22,9 @@
         "test": "npm run test-server && npm run test-client",
         "prepare": "husky install"
     },
+    "workspaces": [
+        "server"
+    ],
     "dependencies": {
         "@grafana/faro-web-sdk": "1.2.9",
         "@grafana/faro-web-tracing": "1.2.9",

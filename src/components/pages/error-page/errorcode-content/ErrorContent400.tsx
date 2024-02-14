@@ -4,7 +4,7 @@ import { ErrorProps } from 'types/content-props/error-props';
 import { ErrorFeedbackLink } from './feedback-link/ErrorFeedbackLink';
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import Config from '../../../../config';
-import { appOrigin } from 'utils/urls';
+import { appOrigin, stripXpPathPrefix } from 'utils/urls';
 import { errorMessageURIErrorPublic } from 'utils/make-error-props';
 
 export const ErrorContent400 = (props: ErrorProps) => {
@@ -13,7 +13,7 @@ export const ErrorContent400 = (props: ErrorProps) => {
             <>
                 <BodyLong>{'Den forespurte adressen er ikke gyldig:'}</BodyLong>
                 <BodyLong spacing={true} size="small">
-                    {`${appOrigin}${props._path}`}
+                    {`${appOrigin}${stripXpPathPrefix(props._path)}`}
                 </BodyLong>
                 <BodyLong spacing={true}>
                     {

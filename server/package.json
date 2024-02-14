@@ -1,0 +1,14 @@
+{
+    "name": "nav-enonicxp-frontend-server",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "build": "tsc",
+        "start": "node -r dotenv/config ../.serverDist/server.js dotenv_config_path=../.env",
+        "nodemon-start": "nodemon -r dotenv/config -w ../.serverDist ../.serverDist/server.js dotenv_config_path=../.env",
+        "dev": "npm run build && concurrently \"npm run build -- --watch\" \"npm run nodemon-start\""
+    },
+    "nodemonConfig": {
+        "delay": 500
+    }
+}
