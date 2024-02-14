@@ -1,4 +1,4 @@
-@use 'src/common' as common;
+@use 'common' as common;
 
 $topOffset: calc(var(--decorator-sticky-offset, 0px) + 1rem);
 $bottomOffset: 2rem;

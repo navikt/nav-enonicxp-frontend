@@ -1,6 +1,5 @@
-@use 'src/common' as common;
-@use 'src/components/layouts/index-page/area-page/AreaPageHeader.module' as
-    parent;
+@use 'common' as common;
+@use 'components/layouts/index-page/area-page/AreaPageHeader.module' as parent;
 
 .banner {
     display: flex;

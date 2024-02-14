@@ -7,6 +7,7 @@ import { serverSetupFailover } from 'server-setup-failover';
 import { serverSetup } from 'server-setup';
 import { getNextServer, injectNextImageCacheDir } from 'next-utils';
 import { logger } from 'srcCommon/logger';
+import path from 'path';
 
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
@@ -21,7 +22,7 @@ const nextApp = next({
         process.env.NODE_ENV === 'development' &&
         process.env.ENV === 'localhost',
     quiet: process.env.ENV === 'prod',
-    dir: '..',
+    dir: path.join(__dirname, '..', '..'),
 });
 
 nextApp.prepare().then(async () => {
