@@ -18,10 +18,7 @@
             {
                 "name": "typescript-plugin-css-modules",
                 "options": {
-                    "classnameTransform": "dashesOnly",
-                    // Can be removed once this issue with certain SCSS-syntax has been fixed:
-                    // https://github.com/mrmckeb/typescript-plugin-css-modules/issues/221
-                    "allowUnknownClassnames": true
+                    "classnameTransform": "dashesOnly"
                 }
             }
         ],
