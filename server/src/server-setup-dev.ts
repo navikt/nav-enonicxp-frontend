@@ -1,6 +1,7 @@
 import cookieParser from 'cookie-parser';
 import { Express } from 'express';
 import { NextServer } from 'next/dist/server/next';
+import { logger } from 'srcCommon/logger';
 
 const LOGIN_COOKIE = 'dev-login';
 
@@ -51,7 +52,7 @@ export const serverSetupDev = (expressApp: Express, nextApp: NextServer) => {
             return next();
         }
 
-        console.log(
+        logger.info(
             `Non-authorized client ips: ${req.ip} ${JSON.stringify(req.ips)}`
         );
 

@@ -117,14 +117,19 @@ const corsHeaders = [
 ];
 
 console.log(
-    `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Failover: ${isFailover}`
+    `Env: ${process.env.ENV} - Node env: ${process.env.NODE_ENV} - Is failover instance? ${isFailover}`
 );
 
 const config = {
-    cacheHandler: isFailover
-        ? undefined
-        : path.resolve(__dirname, '.serverDist/cache/custom-cache-handler.js'),
-    cacheMaxMemorySize: 0,
+    ...(!isFailover && {
+        cacheHandler: path.resolve(
+            __dirname,
+            'server',
+            '.dist',
+            'custom-cache-handler.cjs'
+        ),
+        cacheMaxMemorySize: 0,
+    }),
     productionBrowserSourceMaps: true,
     distDir: isFailover && isLocal ? '.next-static' : '.next',
     assetPrefix: process.env.ASSET_PREFIX,

@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { fetchJson } from 'utils/fetch/fetch-utils';
 import Cache from 'node-cache';
-import { apiErrorHandler } from '../../utils/api-error-handler';
+import { apiErrorHandler } from 'utils/api-error-handler';
+import { logger } from 'srcCommon/logger';
 
 interface SitemapLanguageVersion {
     language: string;
@@ -77,7 +78,7 @@ const fetchSitemapAndUpdateCache = async (url: string) => {
         fetchOptions
     );
     if (!jsonSitemap) {
-        console.error('Error while fetching sitemap data');
+        logger.error('Error while fetching sitemap data');
         return null;
     }
 

@@ -13,7 +13,7 @@ import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
 const getNextApp = () =>
     next({
         conf: {},
-        dir: path.join(__dirname, '__next-test-dummy'),
+        dir: path.join(__dirname, '..', '__next-test-dummy'),
     });
 
 describe('Next.js server private accessors', () => {

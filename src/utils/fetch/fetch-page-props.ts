@@ -16,6 +16,7 @@ import {
     redirectPageProps,
 } from '../redirects';
 import { errorMessageURIError, makeErrorProps } from 'utils/make-error-props';
+import { logger } from 'srcCommon/logger';
 
 type FetchPagePropsArgs = {
     routerQuery?: string | string[];
@@ -31,7 +32,7 @@ const isValidIdOrPath = (idOrPath: string) => {
     try {
         return !!decodeURI(idOrPath);
     } catch (e) {
-        console.error(`Invalid id or path - ${idOrPath}`);
+        logger.error(`Invalid id or path - ${idOrPath}`);
         return false;
     }
 };

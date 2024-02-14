@@ -7,6 +7,7 @@ import {
 } from 'components/_editor-only/editor-hacks/editor-hacks-utils';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { Branch } from 'types/branch';
+import { logger } from 'srcCommon/logger';
 
 // From lib-admin-ui
 export enum NodeServerChangeType {
@@ -92,7 +93,7 @@ export const hookDispatchEventForBatchContentServerEvent = async ({
 
         // User-triggered events should always be dispatched
         if (detail.userTriggered) {
-            console.log('User-triggered event - dispatching event');
+            logger.info('User-triggered event - dispatching event');
             return dispatchEvent(event);
         }
 
@@ -100,7 +101,7 @@ export const hookDispatchEventForBatchContentServerEvent = async ({
         // is not very useful.
         // (this probably indicates that the undocumented api used here has changed)
         if (!userId) {
-            console.error(
+            logger.error(
                 'Could not determine the current user - dispatching event'
             );
             return dispatchEvent(event);
@@ -133,7 +134,7 @@ export const hookDispatchEventForBatchContentServerEvent = async ({
                 // If another user (or service call/scheduled task/script/etc) updated the content, we want to prevent
                 // an immediate UI-refresh, as this may cause the current user to lose their changes. We show a
                 // warning message instead, and give the user an option to dispatch the update event manually
-                console.log(
+                logger.info(
                     `Content was updated by another user (${content.modifier}) - showing warning`
                 );
 

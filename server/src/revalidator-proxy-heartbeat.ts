@@ -2,6 +2,7 @@
 // requests from Enonic XP to all frontend pods
 // See: https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy
 import { networkInterfaces } from 'os';
+import { logger } from 'srcCommon/logger';
 
 const {
     ENV,
@@ -23,7 +24,7 @@ const getPodAddress = () => {
     const podAddress = nets?.eth0?.[0]?.address;
 
     if (!podAddress) {
-        console.error(
+        logger.error(
             'Error: pod IP address could not be determined' +
                 ' - Event driven cache regeneration will not be active for this instance'
         );
@@ -50,12 +51,12 @@ export const initRevalidatorProxyHeartbeat = (() => {
 
     return () => {
         if (!heartbeatInterval && url) {
-            console.log('Starting heartbeat loop');
+            logger.info('Starting heartbeat loop');
             const heartbeatFunc = () => {
                 fetch(url, {
                     headers: { secret: SERVICE_SECRET },
                 }).catch((e) =>
-                    console.error(`Failed to send heartbeat signal - ${e}`)
+                    logger.error(`Failed to send heartbeat signal - ${e}`)
                 );
             };
             heartbeatFunc();

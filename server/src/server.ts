@@ -2,10 +2,12 @@ import express, { ErrorRequestHandler } from 'express';
 import next from 'next';
 import { createHttpTerminator } from 'http-terminator';
 import promBundle from 'express-prom-bundle';
-import { initRevalidatorProxyHeartbeat } from './revalidator-proxy-heartbeat';
-import { serverSetupFailover } from './server-setup-failover';
-import { serverSetup } from './server-setup';
-import { getNextServer, injectNextImageCacheDir } from './next-utils';
+import { initRevalidatorProxyHeartbeat } from 'revalidator-proxy-heartbeat';
+import { serverSetupFailover } from 'server-setup-failover';
+import { serverSetup } from 'server-setup';
+import { getNextServer, injectNextImageCacheDir } from 'next-utils';
+import { logger } from 'srcCommon/logger';
+import path from 'path';
 
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
@@ -20,6 +22,7 @@ const nextApp = next({
         process.env.NODE_ENV === 'development' &&
         process.env.ENV === 'localhost',
     quiet: process.env.ENV === 'prod',
+    dir: path.join(__dirname, '..', '..'),
 });
 
 nextApp.prepare().then(async () => {
@@ -31,7 +34,7 @@ nextApp.prepare().then(async () => {
     if (process.env.IMAGE_CACHE_DIR) {
         await injectNextImageCacheDir(nextServer, process.env.IMAGE_CACHE_DIR);
     } else {
-        console.error('IMAGE_CACHE_DIR is not defined!');
+        logger.error('IMAGE_CACHE_DIR is not defined!');
     }
 
     const isFailover = process.env.IS_FAILOVER_INSTANCE === 'true';
@@ -54,7 +57,7 @@ nextApp.prepare().then(async () => {
         const { status, stack } = err;
         const msg = stack?.split('\n')[0];
 
-        console.log(`Express error on path ${path}: ${status} ${msg}`);
+        logger.error(`Express error on path ${path}: ${status} ${msg}`);
 
         res.status(status || 500);
 
@@ -77,16 +80,16 @@ nextApp.prepare().then(async () => {
             initRevalidatorProxyHeartbeat();
         }
 
-        console.log(`Server started on port ${port}`);
+        logger.info(`Server started on port ${port}`);
     });
 
     const httpTerminator = createHttpTerminator({ server: expressServer });
 
     const shutdown = () => {
-        console.log('Server shutting down');
+        logger.info('Server shutting down');
         httpTerminator.terminate().then(() => {
             expressServer.close(() => {
-                console.log('Shutdown complete!');
+                logger.info('Shutdown complete!');
                 process.exit(0);
             });
         });

@@ -95,6 +95,7 @@ jobs:
           NAVNO_API_URL=${{ inputs.NAVNO_API_URL }}
           ASSET_PREFIX=https://cdn.nav.no/personbruker/nav-enonicxp-frontend
           IMAGE_CACHE_DIR=/tmp/images
+          NEXT_TELEMETRY_DISABLED=1
           EOF
       - name: Nextjs cache
         uses: actions/cache@v3
@@ -105,10 +106,8 @@ jobs:
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-      - name: Run server tests
-        run: npm run test-server
-      - name: Run client tests
-        run: npm run test-client
+      - name: Run tests
+        run: npm run test
       - name: Build application
         run: npm run build
         env:
