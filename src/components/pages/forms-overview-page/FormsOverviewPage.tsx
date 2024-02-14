@@ -50,15 +50,18 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
 
     const audienceSubCategoryLinks = getLinksIfTransportPage(audience);
 
+    // Add relevant alerts to each formDetail by matching oon target id.
     const detailsListWithAlerts = data.formDetailsList?.map((formDetails) => {
         const alertsForDetails = alerts.filter((alert) => {
             if (!alert.data.target) {
                 return false;
             }
-            const targetContent: string[] =
-                alert.data.target[alert.data.target._selected].targetContent;
 
-            return forceArray(targetContent).some((target) =>
+            const targetContent: string[] = forceArray(
+                alert.data.target[alert.data.target._selected].targetContent
+            );
+
+            return targetContent.some((target) =>
                 formDetails.formDetailsIds.includes(target)
             );
         });
