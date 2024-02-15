@@ -78,8 +78,6 @@ jobs:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
           cache: 'npm'
-      - name: Run linting
-        run: npm run lint
       - name: Set app environmment
         run: |
           cat > .env <<EOF
@@ -108,6 +106,8 @@ jobs:
         run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      - name: Run linting
+        run: npm run lint
       - name: Run tests
         run: npm run test
       - name: Build application
