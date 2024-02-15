@@ -1,4 +1,6 @@
-import { build } from 'esbuild';
+import { build, context } from 'esbuild';
+
+const isWatchMode = process.env.WATCH === 'true';
 
 const commonOptions = {
     bundle: true,
@@ -6,14 +8,14 @@ const commonOptions = {
     platform: 'node',
 };
 
-// This needs to have its own bundle, at it is imported both from our custom server and the next.js server
-const buildCacheHandler = () => build({
+// The cache handler needs to have its own bundle, at it is imported both from our custom server and the next.js server
+const cacheHandlerOptions = {
     ...commonOptions,
     entryPoints: ['src/cache/custom-cache-handler.ts'],
     outfile: '.dist/custom-cache-handler.cjs',
-});
+};
 
-const buildServer = () => build({
+const serverOptions = {
     ...commonOptions,
     entryPoints: ['src/server.ts'],
     outfile: '.dist/server.cjs',
@@ -23,6 +25,23 @@ const buildServer = () => build({
     alias: {
         'cache/custom-cache-handler': './custom-cache-handler.cjs'
     },
-});
+}
 
-await Promise.all([buildCacheHandler(), buildServer()]);
+if (isWatchMode) {
+    console.log('Building in watch mode');
+
+    const cacheHandlerContext = await context(cacheHandlerOptions);
+    const serverContext = await context(serverOptions);
+
+    await Promise.all([
+        cacheHandlerContext.watch(),
+        serverContext.watch()
+    ]);
+} else {
+    console.log('Building in normal mode');
+
+    await Promise.all([
+        build(cacheHandlerOptions),
+        build(serverOptions)
+    ]);
+}

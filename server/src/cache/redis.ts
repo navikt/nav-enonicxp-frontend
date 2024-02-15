@@ -95,7 +95,6 @@ export class RedisCache implements IRedisCache {
     }
 
     public async get(key: string) {
-        logger.info(`Is open? ${this.client.isOpen}`);
         const prefixedKey = this.getPrefixedKey(key);
 
         return this.client
