@@ -1,5 +1,4 @@
 import { build } from 'esbuild';
-import { replace } from 'esbuild-plugin-replace';
 
 const commonOptions = {
     bundle: true,
@@ -21,11 +20,9 @@ const buildServer = () => build({
     // Externalize the cache-handler to ensure our server and next.js both import the same file
     external: ['./custom-cache-handler.cjs'],
     // Rewrite the import path for the cache handler
-    plugins: [
-        replace({
-            'cache/custom-cache-handler': './custom-cache-handler.cjs',
-        }),
-    ],
+    alias: {
+        'cache/custom-cache-handler': './custom-cache-handler.cjs'
+    },
 });
 
 await Promise.all([buildCacheHandler(), buildServer()]);
