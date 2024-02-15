@@ -80,10 +80,14 @@ export class RedisCache implements IRedisCache {
         logger.info(`Created redis client with url ${options.url}`);
     }
 
+    private async connect() {
+        this.client.connect();
+    }
+
     public async init(keyPrefix: string) {
         this.keyPrefix = keyPrefix;
 
-        await this.client.connect().then(() => {
+        return this.client.connect().then(() => {
             logger.info(
                 `Initialized redis client with key prefix ${keyPrefix}`
             );
@@ -91,38 +95,50 @@ export class RedisCache implements IRedisCache {
     }
 
     public async get(key: string) {
+        logger.info(`Is open? ${this.client.isOpen}`);
         const prefixedKey = this.getPrefixedKey(key);
 
-        const data = await this.client.get(prefixedKey);
-
-        if (!data) {
-            return null;
-        }
-
-        return JSON.parse(data) as CacheHandlerValue;
+        return this.client
+            .get(prefixedKey)
+            .then((result) => {
+                return result ? JSON.parse(result) : result;
+            })
+            .catch((e) => {
+                logger.error(`Error getting value for key ${key} - ${e}`);
+                return null;
+            });
     }
 
     public async set(key: string, data: CacheHandlerValue) {
-        const result = this.client.set(
-            this.getPrefixedKey(key),
-            JSON.stringify(data),
-            {
+        return this.client
+            .set(this.getPrefixedKey(key), JSON.stringify(data), {
                 PX: this.ttl,
-            }
-        );
-        logger.info(`Redis set result for ${key}: ${result}`);
-        return result;
+            })
+            .then((result) => {
+                logger.info(`Redis set result for ${key}: ${result}`);
+                return result;
+            })
+            .catch((e) => {
+                logger.error(`Error setting value for key ${key} - ${e}`);
+                return null;
+            });
     }
 
     public async delete(key: string) {
         const prefixedKey = this.getPrefixedKey(key);
         logger.info(`Deleting redis cache entry for ${prefixedKey}`);
-        return this.client.del(prefixedKey);
+        return this.client.del(prefixedKey).catch((e) => {
+            logger.error(`Error deleting value for key ${key} - ${e}`);
+            return 0;
+        });
     }
 
     public async clear() {
         logger.info('Clearing redis cache!');
-        return this.client.flushDb();
+        return this.client.flushDb().catch((e) => {
+            logger.error(`Error flushing database - ${e}`);
+            return 'error';
+        });
     }
 
     private getPrefixedKey(key: string) {
