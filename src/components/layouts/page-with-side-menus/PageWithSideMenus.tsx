@@ -121,16 +121,16 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                             />
                         </>
                     )}
-                    <MainContentSection
-                        pageProps={pageProps}
-                        regionProps={pageContent}
-                    />
                     <AlternativeAudience
                         pageTitle={
                             pageProps.data.title || pageProps.displayName
                         }
                         currentAudience={pageProps.data.audience}
                         alternativeAudience={alternativeAudience}
+                    />
+                    <MainContentSection
+                        pageProps={pageProps}
+                        regionProps={pageContent}
                     />
                 </div>
                 {rightMenuToggle && (
