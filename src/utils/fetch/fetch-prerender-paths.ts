@@ -1,5 +1,6 @@
 import { fetchJson } from './fetch-utils';
 import { xpServiceUrl } from '../urls';
+import { logger } from 'srcCommon/logger';
 
 const excludedPaths: ReadonlySet<string> = new Set([
     '/', // This is already rendered by /index.tsx
@@ -26,13 +27,13 @@ export const fetchPrerenderPaths = async (
             }
 
             if (retries > 0) {
-                console.warn(
+                logger.warn(
                     `Failed to fetch paths to prerender, ${retries} retries left`
                 );
                 return fetchPrerenderPaths(retries - 1);
             }
 
-            console.error('Failed to fetch paths to prerender');
+            logger.error('Failed to fetch paths to prerender');
             return null;
         })
         .then((paths) => {

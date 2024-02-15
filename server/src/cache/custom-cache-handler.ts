@@ -5,6 +5,7 @@ import fs from 'fs';
 import fsPromises from 'fs/promises';
 import { IncrementalCacheKindHint } from 'next/dist/server/response-cache';
 import { nodeFs } from 'next/dist/server/lib/node-fs-methods';
+import { logger } from 'srcCommon/logger';
 
 // The type for this method is not exported from next.js
 // Be aware it may change when updating the next.js version
@@ -90,11 +91,11 @@ export default class CustomFileSystemCache extends FileSystemCache {
                 fs.rmSync(filePath, { recursive: true });
             }
 
-            console.log(`Wiped all cached pages from ${filePath}`);
+            logger.info(`Wiped all cached pages from ${filePath}`);
 
             didClearFs = true;
         } catch (e) {
-            console.error(
+            logger.error(
                 `Error occurred while wiping page-cache from disk - ${e}`
             );
             didClearFs = false;
@@ -114,7 +115,7 @@ export default class CustomFileSystemCache extends FileSystemCache {
             )
         )
             .catch((e) => {
-                console.error(
+                logger.error(
                     `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
                 );
             })
@@ -127,10 +128,10 @@ export default class CustomFileSystemCache extends FileSystemCache {
         return fsPromises
             .unlink(filePath)
             .then(() => {
-                console.log(`Removed file from page cache: ${pathname}`);
+                logger.info(`Removed file from page cache: ${pathname}`);
             })
             .catch((e: any) => {
-                console.log(
+                logger.info(
                     `Failed to remove file from page cache: ${pathname} - ${e}`
                 );
             });

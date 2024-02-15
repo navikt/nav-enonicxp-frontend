@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { ContentProps } from 'types/content-props/_content-common';
+import { logger } from 'srcCommon/logger';
 
 type Props = {
     editorView: ContentProps['editorView'];
@@ -22,7 +23,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
     }
 
     componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-        console.error(`Caught error: ${error} - ${errorInfo.componentStack}`);
+        logger.error(`Caught error: ${error} - ${errorInfo.componentStack}`);
     }
 
     render() {
