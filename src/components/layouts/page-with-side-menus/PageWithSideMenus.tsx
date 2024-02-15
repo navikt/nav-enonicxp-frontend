@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import {
+    ContentProps,
+    ContentType,
+} from '../../../types/content-props/_content-common';
 import { PageWithSideMenusProps } from '../../../types/component-props/pages/page-with-side-menus';
 import { LayoutContainer } from '../LayoutContainer';
 import { MainContentSection } from './main-content-section/MainContentSection';
@@ -9,6 +12,7 @@ import { windowMatchMedia } from '../../../utils/match-media';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import Config from '../../../config';
 import Region from '../Region';
+import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 
 const mobileWidthBreakpoint = Config.vars.mobileBreakpointPx;
 
@@ -75,6 +79,11 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
         (topPageContent?.components.length > 0 ||
             pageProps.editorView === 'edit');
 
+    const alternativeAudience =
+        pageProps.type === ContentType.ProductPage
+            ? pageProps.data.alternativeAudience
+            : undefined;
+
     return (
         <LayoutContainer pageProps={pageProps} layoutProps={layoutProps}>
             <div className={'top-row'}>
@@ -115,6 +124,13 @@ export const PageWithSideMenus = ({ pageProps, layoutProps }: Props) => {
                     <MainContentSection
                         pageProps={pageProps}
                         regionProps={pageContent}
+                    />
+                    <AlternativeAudience
+                        pageTitle={
+                            pageProps.data.title || pageProps.displayName
+                        }
+                        currentAudience={pageProps.data.audience}
+                        alternativeAudience={alternativeAudience}
                     />
                 </div>
                 {rightMenuToggle && (

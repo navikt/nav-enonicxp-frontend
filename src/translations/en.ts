@@ -55,6 +55,7 @@ export const translationsBundleEn: PartialTranslations = {
     },
     stringParts: {
         conjunction: 'and',
+        for: 'for',
     },
     dates: {
         published: 'Published',
@@ -314,5 +315,19 @@ export const translationsBundleEn: PartialTranslations = {
     },
     sectionNavigation: {
         navigationLabel: 'Jump to sub section',
+    },
+    audience: {
+        person: 'individuals',
+        employer: 'employers',
+        provider: 'providers',
+    },
+    providerAudience: {
+        administrator: 'bostyrer',
+        doctor: 'lege, tannlege eller annen behandler',
+        municipality_employed: 'ansatt i kommunen eller fylkeskommunen',
+        optician: 'optiker eller øyelege',
+        measures_organizer: 'tiltaksarrangør',
+        aid_supplier: 'hjelpemiddelformidler',
+        other: 'andre samarbeidspartnere',
     },
 };

@@ -182,11 +182,7 @@ export const ThemedPageHeader = ({
                                 {'|'}
                             </span>
                         )}
-                        {modified && (
-                            <Detail>
-                                {modified}
-                            </Detail>
-                        )}
+                        {modified && <Detail>{modified}</Detail>}
                     </div>
                 )}
             </div>

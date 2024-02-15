@@ -4,9 +4,10 @@ import { HeaderTypoStyle } from '../typo-style';
 import { AnimatedIconsProps } from '../content-props/animated-icons';
 import { Taxonomy } from 'types/taxonomies';
 import { AuthStateType } from 'store/slices/authState';
-import { EmptyObject, OptionSetSingle } from '../util-types';
+import { EmptyObject, OptionSetMulti, OptionSetSingle } from '../util-types';
 import { Area } from 'types/areas';
 import { ProductDetailType } from 'types/content-props/product-details';
+import { SituationPageProps } from 'types/content-props/dynamic-page-props';
 
 export type HeaderWithAnchorMixin = {
     title: string;
@@ -42,6 +43,17 @@ export const getAudience = (audience: AudienceProps | Audience) => {
 
 export type FilterSelection = string[];
 
+export type AlternativeAudience = OptionSetMulti<{
+    person: { targetPage: ContentProps };
+    employer: { targetPage: ContentProps };
+    provider: {
+        providerList: {
+            providerAudience: ProviderAudience[];
+            targetPage: ContentProps;
+        }[];
+    };
+}>;
+
 export type ProductDataMixin = {
     title: string;
     ingress?: string;
@@ -51,6 +63,8 @@ export type ProductDataMixin = {
     illustration: AnimatedIconsProps;
     area: Area[];
     externalProductUrl?: string;
+    alternativeAudience?: AlternativeAudience;
+    relatedSituations: SituationPageProps[];
 };
 
 export type ProductDetailsDataMixin = {

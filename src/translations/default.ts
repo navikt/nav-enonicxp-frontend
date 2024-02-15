@@ -85,6 +85,7 @@ export const translationsBundleNb = {
     },
     stringParts: {
         conjunction: 'og',
+        for: 'for',
     },
     calculator: {
         calculate: 'Beregn',
@@ -348,6 +349,20 @@ export const translationsBundleNb = {
     },
     sectionNavigation: {
         navigationLabel: 'Hopp til underseksjoner',
+    },
+    audience: {
+        person: 'privatperson',
+        employer: 'arbeidsgiver',
+        provider: 'samarbeidspartner',
+    },
+    providerAudience: {
+        administrator: 'bostyrer',
+        doctor: 'lege, tannlege eller annen behandler',
+        municipality_employed: 'ansatt i kommunen eller fylkeskommunen',
+        optician: 'optiker eller øyelege',
+        measures_organizer: 'tiltaksarrangør',
+        aid_supplier: 'hjelpemiddelformidler',
+        other: 'andre samarbeidspartnere',
     },
 };
 

@@ -67,6 +67,7 @@ const areas: { [key in Area]?: string } = {
 export const translationsBundleNn: PartialTranslations = {
     stringParts: {
         conjunction: 'og',
+        for: 'for',
     },
     calculator: {
         calculate: 'Rekn ut',
@@ -316,5 +317,19 @@ export const translationsBundleNn: PartialTranslations = {
     },
     sectionNavigation: {
         navigationLabel: 'Hopp til underseksjonar',
+    },
+    audience: {
+        person: 'privatperson',
+        employer: 'arbeidsgjevar',
+        provider: 'samarbeidspartnar',
+    },
+    providerAudience: {
+        administrator: 'bostyrer',
+        doctor: 'lege, tannlege eller annen behandler',
+        municipality_employed: 'ansatt i kommunen eller fylkeskommunen',
+        optician: 'optiker eller øyelege',
+        measures_organizer: 'tiltaksarrangør',
+        aid_supplier: 'hjelpemiddelformidler',
+        other: 'andre samarbeidspartnere',
     },
 };
