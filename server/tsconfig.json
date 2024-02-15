@@ -10,7 +10,6 @@
         "moduleResolution": "bundler",
         "module": "esnext",
         "baseUrl": "src",
-        "outDir": "../.serverDist",
         "noEmit": true,
         "paths": {
             "srcCommon/*": ["../../srcCommon/*"]

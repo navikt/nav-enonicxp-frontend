@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import CustomCacheHandler from '../cache/custom-cache-handler';
+import CustomFileSystemCache from 'cache/custom-cache-handler';
 import { logger } from 'srcCommon/logger';
 
 export const handleInvalidateAllReq: RequestHandler = async (req, res) => {
