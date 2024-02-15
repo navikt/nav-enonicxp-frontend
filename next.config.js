@@ -126,7 +126,6 @@ const config = {
             __dirname,
             'server',
             '.dist',
-            'cache',
             'custom-cache-handler.cjs'
         ),
         cacheMaxMemorySize: 0,
