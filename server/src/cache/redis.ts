@@ -105,7 +105,7 @@ export class RedisCache implements IRedisCache {
             })
             .catch((e) => {
                 logger.error(`Error getting value for key ${key} - ${e}`);
-                return null;
+                return Promise.resolve(null);
             });
     }
 
@@ -120,13 +120,14 @@ export class RedisCache implements IRedisCache {
             })
             .catch((e) => {
                 logger.error(`Error setting value for key ${key} - ${e}`);
-                return null;
+                return Promise.resolve(null);
             });
     }
 
     public async delete(key: string) {
         const prefixedKey = this.getPrefixedKey(key);
         logger.info(`Deleting redis cache entry for ${prefixedKey}`);
+
         return this.client.del(prefixedKey).catch((e) => {
             logger.error(`Error deleting value for key ${key} - ${e}`);
             return 0;
@@ -135,6 +136,7 @@ export class RedisCache implements IRedisCache {
 
     public async clear() {
         logger.info('Clearing redis cache!');
+
         return this.client.flushDb().catch((e) => {
             logger.error(`Error flushing database - ${e}`);
             return 'error';
