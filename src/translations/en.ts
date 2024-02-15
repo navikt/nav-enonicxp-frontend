@@ -56,6 +56,7 @@ export const translationsBundleEn: PartialTranslations = {
     stringParts: {
         conjunction: 'and',
         for: 'for',
+        relevantFor: 'Relevant for you who are',
     },
     dates: {
         published: 'Published',

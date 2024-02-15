@@ -86,6 +86,7 @@ export const translationsBundleNb = {
     stringParts: {
         conjunction: 'og',
         for: 'for',
+        relevantFor: 'Aktuelt for deg som',
     },
     calculator: {
         calculate: 'Beregn',
