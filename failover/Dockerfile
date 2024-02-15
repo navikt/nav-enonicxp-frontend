@@ -20,6 +20,7 @@ RUN rm -f .npmrc
 
 COPY public /app/public/
 COPY src /app/src/
+COPY srcCommon /app/srcCommon/
 COPY next.config.js tsconfig.json .eslintrc.json /app/
 COPY "/failover/$ENV_FILE" /app/.env
 
