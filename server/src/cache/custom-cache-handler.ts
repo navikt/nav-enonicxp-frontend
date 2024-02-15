@@ -1,143 +1,78 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
-import fs from 'fs';
-import fsPromises from 'fs/promises';
-import { IncrementalCacheKindHint } from 'next/dist/server/response-cache';
-import { nodeFs } from 'next/dist/server/lib/node-fs-methods';
+import { RedisCache, RedisCacheDummy } from 'cache/redis';
+import { isLeaderPod } from 'leader';
 import { logger } from 'srcCommon/logger';
 
-// The type for this method is not exported from next.js
-// Be aware it may change when updating the next.js version
-type GetFilePathFunction = (
-    pathname: string,
-    kind: IncrementalCacheKindHint
-) => string;
+const CACHE_TTL_24_HOURS_IN_MS = 3600 * 24 * 1000;
 
-type FileSystemCacheContext = ConstructorParameters<typeof FileSystemCache>[0];
+export const redisCache =
+    process.env.ENV === 'localhost' && !process.env.REDIS_URI_PAGECACHE
+        ? new RedisCacheDummy()
+        : new RedisCache({ ttl: CACHE_TTL_24_HOURS_IN_MS });
 
-const CACHE_FILE_EXTENSIONS = ['html', 'json', 'meta'] as const;
-
-const CACHE_TTL_24_HOURS = 3600 * 24 * 1000;
-
-const isrMemoryCache = new LRUCache<string, CacheHandlerValue>({
+const localCache = new LRUCache<string, CacheHandlerValue>({
     max: 1000,
-    ttl: CACHE_TTL_24_HOURS,
+    ttl: CACHE_TTL_24_HOURS_IN_MS,
     ttlResolution: 1000,
 });
 
-const fileSystemCacheContextDefault: FileSystemCacheContext = {
-    fs: nodeFs,
-    serverDistDir: '.',
-    experimental: { ppr: false },
-    revalidatedTags: [],
-    _appDir: false,
-    _pagesDir: true,
-    _requestHeaders: {},
-} as const;
-
-const customPageCacheDir =
-    process.env.IS_FAILOVER_INSTANCE !== 'true' && process.env.PAGE_CACHE_DIR;
-
-export default class CustomFileSystemCache extends FileSystemCache {
-    constructor(ctx?: Partial<FileSystemCacheContext>) {
-        const context = { ...fileSystemCacheContextDefault, ...ctx };
-
-        context.serverDistDir = customPageCacheDir || context.serverDistDir;
-
-        super(context);
-    }
-
+export default class CustomCacheHandler {
     public async get(...args: Parameters<FileSystemCache['get']>) {
         const [key] = args;
 
-        const dataFromMemoryCache = isrMemoryCache.get(key);
-        if (dataFromMemoryCache) {
-            return dataFromMemoryCache;
+        const fromLocalCache = localCache.get(key);
+        if (fromLocalCache) {
+            return fromLocalCache;
         }
 
-        const dataFromFileSystemCache = await super.get(...args);
-        if (dataFromFileSystemCache) {
-            const ttlRemaining = dataFromFileSystemCache.lastModified
-                ? dataFromFileSystemCache.lastModified +
-                  CACHE_TTL_24_HOURS -
-                  Date.now()
-                : CACHE_TTL_24_HOURS;
-
-            if (ttlRemaining > 1000) {
-                isrMemoryCache.set(key, dataFromFileSystemCache, {
-                    ttl: ttlRemaining,
-                });
-            }
+        const fromRedisCache = await redisCache.get(key);
+        if (!fromRedisCache) {
+            return null;
         }
 
-        return dataFromFileSystemCache;
+        const ttlRemaining = fromRedisCache.lastModified
+            ? fromRedisCache.lastModified +
+              CACHE_TTL_24_HOURS_IN_MS -
+              Date.now()
+            : CACHE_TTL_24_HOURS_IN_MS;
+
+        if (ttlRemaining > 1000) {
+            localCache.set(key, fromRedisCache, {
+                ttl: ttlRemaining,
+            });
+        }
+
+        return fromRedisCache;
     }
 
     public async set(...args: Parameters<FileSystemCache['set']>) {
         const [key, data] = args;
 
-        isrMemoryCache.set(key, { value: data, lastModified: Date.now() });
-        return super.set(...args);
+        const cacheItem: CacheHandlerValue = {
+            value: data,
+            lastModified: Date.now(),
+        };
+
+        localCache.set(key, cacheItem);
+        redisCache.set(key, cacheItem);
     }
 
-    public async clearGlobalCache() {
-        let didClearFs;
+    public async clear() {
+        localCache.clear();
 
-        try {
-            const filePath = this.getFilePathPublic('', 'pages');
-
-            if (fs.existsSync(filePath)) {
-                fs.rmSync(filePath, { recursive: true });
-            }
-
-            logger.info(`Wiped all cached pages from ${filePath}`);
-
-            didClearFs = true;
-        } catch (e) {
-            logger.error(
-                `Error occurred while wiping page-cache from disk - ${e}`
-            );
-            didClearFs = false;
+        if (await isLeaderPod()) {
+            return redisCache.clear();
         }
-
-        isrMemoryCache.clear();
-
-        return didClearFs;
     }
 
-    public async deleteGlobalCacheEntry(path: string) {
+    public async delete(path: string) {
         const pagePath = path === '/' ? '/index' : path;
+        localCache.delete(pagePath);
 
-        return Promise.all(
-            CACHE_FILE_EXTENSIONS.map((ext) =>
-                this.deletePageCacheFile(`${pagePath}.${ext}`)
-            )
-        )
-            .catch((e) => {
-                logger.error(
-                    `Error occurred while invalidating page cache for path ${pagePath} - ${e}`
-                );
-            })
-            .finally(() => isrMemoryCache.delete(pagePath));
-    }
-
-    private async deletePageCacheFile(pathname: string) {
-        const filePath = this.getFilePathPublic(pathname, 'pages');
-
-        return fsPromises
-            .unlink(filePath)
-            .then(() => {
-                logger.info(`Removed file from page cache: ${pathname}`);
-            })
-            .catch((e: any) => {
-                logger.info(
-                    `Failed to remove file from page cache: ${pathname} - ${e}`
-                );
-            });
-    }
-
-    public getFilePathPublic(pathname: string, kind: IncrementalCacheKindHint) {
-        return (this['getFilePath'] as GetFilePathFunction)(pathname, kind);
+        if (await isLeaderPod()) {
+            return redisCache.delete(pagePath);
+        }
     }
 }

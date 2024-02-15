@@ -19,6 +19,8 @@ jobs:
         run: npm ci --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+      - name: Run linting
+        run: npm run lint
       - name: Build application
         run: npm run build-local
       - name: Run tests

@@ -16,3 +16,7 @@ resources:
 replicas:
   min: 3
   max: 3
+redis:
+  plan: startup-4
+  project: nav-prod
+  instance: pagecache

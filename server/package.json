@@ -4,10 +4,12 @@
     "private": true,
     "scripts": {
         "build": "node build.mjs",
+        "build-watch": "WATCH=true node build.mjs",
         "start": "node -r dotenv/config .dist/server.cjs dotenv_config_path=../.env",
         "nodemon-start": "nodemon -r dotenv/config -w .dist .dist/server.cjs dotenv_config_path=../.env",
-        "dev": "npm run build && concurrently \"npm run build -- --watch\" \"npm run nodemon-start\"",
-        "test": "next build __next-test-dummy && NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs"
+        "dev": "npm run build && concurrently \"npm run build-watch\" \"npm run nodemon-start\"",
+        "test": "next build __next-test-dummy && NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs",
+        "lint": "eslint && tsc"
     },
     "nodemonConfig": {
         "delay": 500

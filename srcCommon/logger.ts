@@ -12,6 +12,7 @@ const options: LoggerOptions =
               },
           }
         : {
+              base: { buildId: process.env.BUILD_ID },
               formatters: {
                   level: (label) => {
                       return { level: label };
