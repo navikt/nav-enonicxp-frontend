@@ -2,9 +2,10 @@ import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { isContentTypeImplemented } from 'components/ContentMapper';
 import { stripLineBreaks } from './string';
 import { ErrorProps } from 'types/content-props/error-props';
+import { logger } from 'srcCommon/logger';
 
 export const logPageLoadError = (errorId: string, message: string) =>
-    console.error(`[Page load error] ${errorId} - ${stripLineBreaks(message)}`);
+    logger.error(`[Page load error] ${errorId} - ${stripLineBreaks(message)}`);
 
 const isPreviewOnly: ReadonlySet<ContentType> = new Set([
     ContentType.ContactInformationPage,

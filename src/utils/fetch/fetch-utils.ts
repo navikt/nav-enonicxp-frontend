@@ -1,8 +1,10 @@
-const defaultTimeout = 15000;
+import { logger } from 'srcCommon/logger';
+
+const TIMEOUT_DEFAULT = 15000;
 
 export const fetchWithTimeout = <ResponseType = any>(
     url: string,
-    timeoutMs = defaultTimeout,
+    timeoutMs = TIMEOUT_DEFAULT,
     config?: Record<string, any>
 ): Promise<ResponseType> =>
     Promise.race<any>([
@@ -35,7 +37,7 @@ export const objectToQueryString = (params: object) =>
 
 export const fetchJson = <ResponseType = any>(
     url: string,
-    timeout = defaultTimeout,
+    timeout = TIMEOUT_DEFAULT,
     config?: Record<string, any>,
     retries = 0
 ): Promise<ResponseType | null> =>
@@ -49,10 +51,10 @@ export const fetchJson = <ResponseType = any>(
         })
         .catch((e) => {
             if (retries > 0) {
-                console.log(`Failed to fetch from ${url}, retrying`);
+                logger.info(`Failed to fetch from ${url}, retrying`);
                 return fetchJson(url, timeout, config, retries - 1);
             }
 
-            console.error(`Failed to fetch json from ${url} - ${e}`);
+            logger.error(`Failed to fetch json from ${url} - ${e}`);
             return null;
         });

@@ -15,6 +15,7 @@ import { fetchJson } from 'utils/fetch/fetch-utils';
 import Script from 'next/script';
 import { classNames } from 'utils/classnames';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';
+import { logger } from 'srcCommon/logger';
 
 import style from './MacroVideo.module.scss';
 
@@ -61,7 +62,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
 
             setVideoMeta({ ...videoMeta, poster: image, duration });
         } catch (e) {
-            console.error(e);
+            logger.error(e);
             setIsPlayerError(true);
         }
     }, [accountId, mediaId, videoMeta]);
@@ -69,7 +70,7 @@ export const MacroVideo = ({ config }: MacroVideoProps) => {
     const createAndStartPlayer = useCallback(
         (timeLeft = PLAYER_TIMEOUT_MS) => {
             if (timeLeft <= 0) {
-                console.error('Failed to load QBrick player - Timed out');
+                logger.error('Failed to load QBrick player - Timed out');
                 setIsPlayerError(true);
                 return;
             }

@@ -1,5 +1,6 @@
 import { RequestHandler } from 'express';
-import CustomFileSystemCache from '../custom-cache-handler';
+import CustomCacheHandler from 'cache/custom-cache-handler';
+import { logger } from 'srcCommon/logger';
 
 export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
     const { eventid } = req.headers;
@@ -7,16 +8,16 @@ export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
 
     if (!Array.isArray(paths)) {
         const msg = `Invalid path array for event ${eventid}`;
-        console.error(msg);
+        logger.error(msg);
         return res.status(400).send(msg);
     }
 
-    const isrCacheHandler = new CustomFileSystemCache();
+    const cacheHandler = new CustomCacheHandler();
 
-    paths.forEach((path) => isrCacheHandler.deleteGlobalCacheEntry(path));
+    paths.forEach((path) => cacheHandler.delete(path));
 
     const msg = `Received cache invalidation event for ${paths.length} paths - event id ${eventid}`;
-    console.log(msg);
+    logger.info(msg);
 
     return res.status(200).send(msg);
 };

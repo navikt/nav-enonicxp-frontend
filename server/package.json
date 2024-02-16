@@ -1,0 +1,33 @@
+{
+    "name": "nav-enonicxp-frontend-server",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "build": "node build.mjs",
+        "build-watch": "WATCH=true node build.mjs",
+        "start": "node -r dotenv/config .dist/server.cjs dotenv_config_path=../.env",
+        "nodemon-start": "nodemon -r dotenv/config -w .dist .dist/server.cjs dotenv_config_path=../.env",
+        "dev": "npm run build && concurrently \"npm run build-watch\" \"npm run nodemon-start\"",
+        "test": "next build __next-test-dummy && NODE_OPTIONS=--experimental-vm-modules jest --config jest.config.mjs",
+        "lint": "eslint && tsc"
+    },
+    "nodemonConfig": {
+        "delay": 500
+    },
+    "dependencies": {
+        "cookie-parser": "1.4.6",
+        "express-prom-bundle": "7.0.0",
+        "http-terminator": "3.2.0",
+        "on-headers": "1.0.2",
+        "prom-client": "15.1.0"
+    },
+    "devDependencies": {
+        "@types/cookie-parser": "1.4.6",
+        "@types/express": "4.17.21",
+        "@types/on-headers": "1.0.3",
+        "concurrently": "8.2.2",
+        "esbuild": "0.20.0",
+        "express": "4.18.2",
+        "nodemon": "3.0.2"
+    }
+}

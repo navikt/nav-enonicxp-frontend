@@ -75,7 +75,7 @@ export const MacroMapper = ({ macros, macroRef }: Props) => {
     const macroProps = macros?.find((macro) => macro.ref === macroRef);
 
     if (!macroProps) {
-        console.log(`Invalid macro ref: ${macroRef}`);
+        logger.info(`Invalid macro ref: ${macroRef}`);
         return <>{`Error: macro with ref ${macroRef} not found!`}</>;
     }
 

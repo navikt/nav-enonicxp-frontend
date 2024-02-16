@@ -4,8 +4,8 @@ metadata:
   labels:
     app: nav-enonicxp-frontend
     team: personbruker
-  name: redis-personbruker-{{ redisInstance }}
+  name: redis-personbruker-{{ redis.instance }}
   namespace: personbruker
 spec:
-  plan: {{ redisPlan }}
-  project: {{ redisProject }}
+  plan: {{ redis.plan }}
+  project: {{ redis.project }}

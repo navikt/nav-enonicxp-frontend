@@ -1,6 +1,7 @@
 import fs, { readFileSync } from 'fs';
 import pLimit from 'p-limit';
 import { removeDuplicates } from '../arrays';
+import { logger } from 'srcCommon/logger';
 
 // Limit concurrent fetches
 const limit = pLimit(5);
@@ -15,22 +16,22 @@ const manifestFile = `${manifestDir}/image-manifest`;
 // automatically at request-time
 export const updateImageManifest = (src: string) => {
     if (!fs.existsSync(manifestDir)) {
-        console.log(`Creating image manifest dir ${manifestDir}`);
+        logger.info(`Creating image manifest dir ${manifestDir}`);
         fs.mkdirSync(manifestDir, { recursive: true });
     }
 
     fs.appendFile(manifestFile, `${src}\n`, { encoding: 'utf-8' }, (e) => {
         if (e) {
-            console.error(`Error while appending to image manifest - ${e}`);
+            logger.error(`Error while appending to image manifest - ${e}`);
         } else {
-            console.log(`Appended ${src} to image manifest`);
+            logger.info(`Appended ${src} to image manifest`);
         }
     });
 };
 
 export const processImageManifest = async () => {
     if (!fs.existsSync(manifestFile)) {
-        console.log('No image manifest found, aborting');
+        logger.info('No image manifest found, aborting');
         return;
     }
 
@@ -38,7 +39,7 @@ export const processImageManifest = async () => {
 
     const urls = removeDuplicates(fileContent.split('\n').filter(Boolean));
 
-    console.log(`Prefetching ${urls.length} urls from image manifest`);
+    logger.info(`Prefetching ${urls.length} urls from image manifest`);
 
     return Promise.all(
         urls.map((url) =>
@@ -53,13 +54,13 @@ export const processImageManifest = async () => {
                     if (res.ok) {
                         return true;
                     }
-                    console.error(
+                    logger.error(
                         `Bad response for image ${url} - ${res.status} ${res.statusText}`
                     );
                     return false;
                 })
                 .catch((e) => {
-                    console.error(`Fetch error for image ${url} - ${e}`);
+                    logger.error(`Fetch error for image ${url} - ${e}`);
                     return false;
                 })
         )
@@ -68,9 +69,9 @@ export const processImageManifest = async () => {
 
 export const clearImageManifest = () => {
     if (fs.existsSync(manifestFile)) {
-        console.log('Removing image manifest file');
+        logger.info('Removing image manifest file');
         fs.unlinkSync(manifestFile);
     } else {
-        console.log('No image manifest file found, nothing to remove');
+        logger.info('No image manifest file found, nothing to remove');
     }
 };

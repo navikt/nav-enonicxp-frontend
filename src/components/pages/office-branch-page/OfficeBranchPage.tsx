@@ -4,6 +4,7 @@ import { OfficeBranchPageProps } from 'types/content-props/dynamic-page-props';
 import { OfficePageHeader } from '../../_common/headers/office-page-header/OfficePageHeader';
 import { OfficeDetails } from 'components/_common/office-details/OfficeDetails';
 import { classNames } from 'utils/classnames';
+import { logger } from 'srcCommon/logger';
 
 import styles from './OfficeBranchPage.module.scss';
 
@@ -11,7 +12,7 @@ export const OfficeBranchPage = (props: OfficeBranchPageProps) => {
     const editorialPage = props.editorial;
 
     if (!editorialPage) {
-        console.error(`No editorial page found for ${props.displayName}`);
+        logger.error(`No editorial page found for ${props.displayName}`);
     }
 
     return (
