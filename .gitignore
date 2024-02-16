@@ -53,3 +53,4 @@ yarn-error.log*
 # VS Code
 .vscode
 /.env.prod-local.local
+/server/.next/
