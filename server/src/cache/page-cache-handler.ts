@@ -14,7 +14,7 @@ export const redisCache =
         : new RedisCache({ ttl: CACHE_TTL_24_HOURS_IN_MS });
 
 const localCache = new LRUCache<string, CacheHandlerValue>({
-    max: 1000,
+    max: 2000,
     ttl: CACHE_TTL_24_HOURS_IN_MS,
     ttlResolution: TTL_RESOLUTION_MS,
 });
