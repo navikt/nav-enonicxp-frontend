@@ -22,3 +22,4 @@ redis:
   plan: hobbyist
   project: nav-dev
   instance: pagecache-dev2
+  endpointId: f20f5b48-18f4-4e2a-8e5f-4ab3edb19733
