@@ -3,9 +3,10 @@ import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache, RedisCacheDummy } from 'cache/redis';
 import { isLeaderPod } from 'leader-pod';
-import { logger } from 'srcCommon/logger';
 
 const CACHE_TTL_24_HOURS_IN_MS = 3600 * 24 * 1000;
+
+const TTL_RESOLUTION_MS = 60 * 1000;
 
 export const redisCache =
     process.env.ENV === 'localhost' && !process.env.REDIS_URI_PAGECACHE
@@ -15,7 +16,7 @@ export const redisCache =
 const localCache = new LRUCache<string, CacheHandlerValue>({
     max: 1000,
     ttl: CACHE_TTL_24_HOURS_IN_MS,
-    ttlResolution: 1000,
+    ttlResolution: TTL_RESOLUTION_MS,
 });
 
 export default class PageCacheHandler {
@@ -38,7 +39,7 @@ export default class PageCacheHandler {
               Date.now()
             : CACHE_TTL_24_HOURS_IN_MS;
 
-        if (ttlRemaining > 1000) {
+        if (ttlRemaining > TTL_RESOLUTION_MS) {
             localCache.set(key, fromRedisCache, {
                 ttl: ttlRemaining,
             });
