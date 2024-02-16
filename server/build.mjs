@@ -11,8 +11,8 @@ const commonOptions = {
 // The cache handler needs to have its own bundle, at it is imported both from our custom server and the next.js server
 const cacheHandlerOptions = {
     ...commonOptions,
-    entryPoints: ['src/cache/custom-cache-handler.ts'],
-    outfile: '.dist/custom-cache-handler.cjs',
+    entryPoints: ['src/cache/page-cache-handler.ts'],
+    outfile: '.dist/page-cache-handler.cjs',
 };
 
 const serverOptions = {
@@ -20,10 +20,10 @@ const serverOptions = {
     entryPoints: ['src/server.ts'],
     outfile: '.dist/server.cjs',
     // Externalize the cache-handler to ensure our server and next.js both import the same file
-    external: ['./custom-cache-handler.cjs'],
+    external: ['./page-cache-handler.cjs'],
     // Rewrite the import path for the cache handler
     alias: {
-        'cache/custom-cache-handler': './custom-cache-handler.cjs'
+        'cache/page-cache-handler': './page-cache-handler.cjs'
     },
 }
 

@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import CustomCacheHandler from 'cache/custom-cache-handler';
+import PageCacheHandler from 'cache/page-cache-handler';
 import { logger } from 'srcCommon/logger';
 
 export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
@@ -12,7 +12,7 @@ export const handleInvalidatePathsReq: RequestHandler = (req, res) => {
         return res.status(400).send(msg);
     }
 
-    const cacheHandler = new CustomCacheHandler();
+    const cacheHandler = new PageCacheHandler();
 
     paths.forEach((path) => cacheHandler.delete(path));
 

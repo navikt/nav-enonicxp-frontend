@@ -2,7 +2,7 @@ import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache, RedisCacheDummy } from 'cache/redis';
-import { isLeaderPod } from 'leader';
+import { isLeaderPod } from 'leader-pod';
 import { logger } from 'srcCommon/logger';
 
 const CACHE_TTL_24_HOURS_IN_MS = 3600 * 24 * 1000;
@@ -18,7 +18,7 @@ const localCache = new LRUCache<string, CacheHandlerValue>({
     ttlResolution: 1000,
 });
 
-export default class CustomCacheHandler {
+export default class PageCacheHandler {
     public async get(...args: Parameters<FileSystemCache['get']>) {
         const [key] = args;
 

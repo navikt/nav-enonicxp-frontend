@@ -1,7 +1,9 @@
 import pino, { LoggerOptions } from 'pino';
+import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 
 const options: LoggerOptions =
-    process.env.ENV === 'localhost'
+    process.env.ENV === 'localhost' ||
+    process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD
         ? {
               base: {},
               transport: {
