@@ -9,3 +9,17 @@ metadata:
 spec:
   plan: {{ redis.plan }}
   project: {{ redis.project }}
+
+---
+apiVersion: aiven.io/v1alpha1
+kind: ServiceIntegration
+metadata:
+  labels:
+    team: personbruker
+  name: redis-personbruker-{{ redis.instance }}
+  namespace: personbruker
+spec:
+  project: {{ redis.project }}
+  integrationType: prometheus
+  destinationEndpointId: {{ redis.endpointId }}
+  sourceServiceName: redis-personbruker-{{ redis.instance }}
