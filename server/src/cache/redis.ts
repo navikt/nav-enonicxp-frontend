@@ -55,7 +55,6 @@ export class RedisCache implements IRedisCache {
         }
 
         this.ttl = ttl;
-        this.keyPrefix = process.env.BUILD_ID;
 
         this.client = createClient({
             ...options,
@@ -80,10 +79,6 @@ export class RedisCache implements IRedisCache {
         logger.info(`Created redis client with url ${options.url}`);
     }
 
-    private async connect() {
-        this.client.connect();
-    }
-
     public async init(keyPrefix: string) {
         this.keyPrefix = keyPrefix;
 
@@ -99,9 +94,7 @@ export class RedisCache implements IRedisCache {
 
         return this.client
             .get(prefixedKey)
-            .then((result) => {
-                return result ? JSON.parse(result) : result;
-            })
+            .then((result) => (result ? JSON.parse(result) : result))
             .catch((e) => {
                 logger.error(`Error getting value for key ${key} - ${e}`);
                 return Promise.resolve(null);
