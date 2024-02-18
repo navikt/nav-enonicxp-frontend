@@ -1,65 +1,30 @@
 import { createClient, RedisClientOptions } from 'redis';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { logger } from 'srcCommon/logger';
+import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 
-type AppEnv = typeof process.env.ENV;
-
-const clientOptions: Record<AppEnv, RedisClientOptions> = {
-    localhost: {
-        url: process.env.REDIS_URI_PAGECACHE,
-        username: process.env.REDIS_USERNAME_PAGECACHE,
-        password: process.env.REDIS_PASSWORD_PAGECACHE,
-    },
-    prod: {
-        url: process.env.REDIS_URI_PAGECACHE,
-        username: process.env.REDIS_USERNAME_PAGECACHE,
-        password: process.env.REDIS_PASSWORD_PAGECACHE,
-    },
-    dev1: {
-        url: process.env.REDIS_URI_PAGECACHE_DEV1,
-        username: process.env.REDIS_USERNAME_PAGECACHE_DEV1,
-        password: process.env.REDIS_PASSWORD_PAGECACHE_DEV1,
-    },
-    dev2: {
-        url: process.env.REDIS_URI_PAGECACHE_DEV2,
-        username: process.env.REDIS_USERNAME_PAGECACHE_DEV2,
-        password: process.env.REDIS_PASSWORD_PAGECACHE_DEV2,
-    },
+const clientOptions: RedisClientOptions = {
+    url: process.env.REDIS_URI_PAGECACHE,
+    username: process.env.REDIS_USERNAME_PAGECACHE,
+    password: process.env.REDIS_PASSWORD_PAGECACHE,
+    socket: { keepAlive: 5000, connectTimeout: 10000 },
 } as const;
 
 interface IRedisCache {
-    init(keyPrefix: string): Promise<void>;
+    init(keyPrefix: string, ttl: number): Promise<IRedisCache>;
     get(key: string): Promise<CacheHandlerValue | null>;
     set(key: string, data: CacheHandlerValue): Promise<string | null>;
     delete(key: string): Promise<number>;
     clear(): Promise<string>;
 }
 
-type ConstructorProps = {
-    ttl: number;
-};
-
-export class RedisCache implements IRedisCache {
+class RedisCacheImpl implements IRedisCache {
     private readonly client: ReturnType<typeof createClient>;
-    private readonly ttl: number;
     private keyPrefix: string = '';
+    private ttl: number = 0;
 
-    constructor({ ttl }: ConstructorProps) {
-        const env = process.env.ENV;
-        const options = clientOptions[env];
-
-        if (!options) {
-            throw Error(
-                `Redis client options were not defined for the current app environment: ${env}`
-            );
-        }
-
-        this.ttl = ttl;
-
-        this.client = createClient({
-            ...options,
-            socket: { keepAlive: 5000, connectTimeout: 10000 },
-        })
+    constructor() {
+        this.client = createClient(clientOptions)
             .on('connect', () => {
                 logger.info('Redis client connected');
             })
@@ -76,16 +41,18 @@ export class RedisCache implements IRedisCache {
                 logger.error(`Redis client error: ${err}`);
             });
 
-        logger.info(`Created redis client with url ${options.url}`);
+        logger.info(`Created redis client with url ${clientOptions.url}`);
     }
 
-    public async init(keyPrefix: string) {
+    public async init(keyPrefix: string, ttl: number) {
         this.keyPrefix = keyPrefix;
+        this.ttl = ttl;
 
         return this.client.connect().then(() => {
             logger.info(
-                `Initialized redis client with key prefix ${keyPrefix}`
+                `Initialized redis client with key prefix ${keyPrefix} and ttl ${ttl}`
             );
+            return this;
         });
     }
 
@@ -116,8 +83,8 @@ export class RedisCache implements IRedisCache {
             });
     }
 
-    public async delete(key: string) {
-        const prefixedKey = this.getPrefixedKey(key);
+    public async delete(key: string, keyPrefix?: string) {
+        const prefixedKey = this.getPrefixedKey(key, keyPrefix);
         logger.info(`Deleting redis cache entry for ${prefixedKey}`);
 
         return this.client.del(prefixedKey).catch((e) => {
@@ -135,25 +102,34 @@ export class RedisCache implements IRedisCache {
         });
     }
 
-    private getPrefixedKey(key: string) {
-        return `${this.keyPrefix}:${key}`;
+    private getPrefixedKey(key: string, keyPrefix = this.keyPrefix) {
+        return `${keyPrefix}:${key}`;
     }
 }
 
-export class RedisCacheDummy implements IRedisCache {
-    public async init(keyPrefix: string) {
-        return;
+class RedisCacheDummy implements IRedisCache {
+    public async init(keyPrefix, ttl) {
+        return this;
     }
-    public async get(key: string) {
+    public async get(key) {
         return null;
     }
-    public async set(key: string, data: CacheHandlerValue) {
+    public async set(key, data) {
         return null;
     }
-    public async delete(key: string) {
+    public async delete(key) {
         return 1;
     }
     public async clear() {
         return 'Ok';
     }
 }
+
+export const RedisCache =
+    clientOptions.url &&
+    clientOptions.username &&
+    clientOptions.password &&
+    process.env.NODE_ENV !== 'development' &&
+    process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD
+        ? RedisCacheImpl
+        : RedisCacheDummy;

@@ -1,17 +1,16 @@
 import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-cache';
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
-import { RedisCache, RedisCacheDummy } from 'cache/redis';
+import { RedisCache } from 'srcCommon/redis';
 import { isLeaderPod } from 'leader-pod';
-
-const CACHE_TTL_24_HOURS_IN_MS = 3600 * 24 * 1000;
+import {
+    CACHE_TTL_24_HOURS_IN_MS,
+    RESPONSE_CACHE_KEY_PREFIX,
+} from 'srcCommon/constants';
 
 const TTL_RESOLUTION_MS = 60 * 1000;
 
-export const redisCache =
-    process.env.ENV === 'localhost' && !process.env.REDIS_URI_PAGECACHE
-        ? new RedisCacheDummy()
-        : new RedisCache({ ttl: CACHE_TTL_24_HOURS_IN_MS });
+export const redisCache = new RedisCache();
 
 const localCache = new LRUCache<string, CacheHandlerValue>({
     max: 2000,
@@ -73,7 +72,10 @@ export default class PageCacheHandler {
         localCache.delete(pagePath);
 
         if (await isLeaderPod()) {
-            return redisCache.delete(pagePath);
+            return Promise.all([
+                redisCache.delete(pagePath),
+                redisCache.delete(pagePath, RESPONSE_CACHE_KEY_PREFIX),
+            ]);
         }
     }
 }

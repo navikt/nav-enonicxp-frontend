@@ -10,6 +10,7 @@ import { handleGetPendingResponses } from 'req-handlers/pending-responses';
 import { serverSetupDev } from 'server-setup/server-setup-dev';
 import { logger } from 'srcCommon/logger';
 import { redisCache } from 'cache/page-cache-handler';
+import { CACHE_TTL_24_HOURS_IN_MS } from 'srcCommon/constants';
 
 // Set the no-cache header on json files from the incremental cache to ensure
 // data requested during client side navigation is always validated if cached
@@ -29,7 +30,7 @@ export const serverSetup = async (expressApp: Express, nextApp: NextServer) => {
     const nextServer = await getNextServer(nextApp);
     const currentBuildId = getNextBuildId(nextServer);
 
-    await redisCache.init(currentBuildId);
+    await redisCache.init(currentBuildId, CACHE_TTL_24_HOURS_IN_MS);
 
     logger.info(`Current build id: ${currentBuildId}`);
 

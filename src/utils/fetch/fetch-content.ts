@@ -8,6 +8,11 @@ import { logPageLoadError } from '../errors';
 import { stripLineBreaks } from '../string';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { logger } from 'srcCommon/logger';
+import { RedisCache } from 'srcCommon/redis';
+import {
+    CACHE_TTL_24_HOURS_IN_MS,
+    RESPONSE_CACHE_KEY_PREFIX,
+} from 'srcCommon/constants';
 
 export type XpResponseProps = ContentProps | MediaProps;
 
@@ -18,12 +23,17 @@ const NOT_FOUND_MSG_PREFIX = 'Site path not found';
 
 const FETCH_TIMEOUT_MS = 60000;
 
-const getCacheKey =
+const getXpCacheKey =
     process.env.NODE_ENV !== 'development'
         ? () => ({
               cacheKey: global.cacheKey,
           })
         : () => ({});
+
+const responseCache = await new RedisCache().init(
+    RESPONSE_CACHE_KEY_PREFIX,
+    CACHE_TTL_24_HOURS_IN_MS
+);
 
 const fetchConfig = {
     headers: {
@@ -42,13 +52,23 @@ type FetchSiteContentArgs = {
 };
 
 const fetchSiteContent = async (props: FetchSiteContentArgs) => {
-    const { isArchived, time } = props;
+    const { isArchived, time, isDraft, idOrPath } = props;
     if (isArchived) {
         return fetchSiteContentArchive(props);
     }
 
     if (time) {
         return fetchSiteContentVersion(props);
+    }
+
+    if (!isDraft) {
+        const cachedResponse = await responseCache.get(idOrPath);
+        if (cachedResponse) {
+            logger.info(
+                `Found entry in response cache for ${idOrPath}: ${cachedResponse}`
+            );
+            return cachedResponse;
+        }
     }
 
     return fetchSiteContentStandard(props);
@@ -63,7 +83,7 @@ const fetchSiteContentStandard = async ({
     const params = objectToQueryString({
         id: idOrPath,
         ...(isDraft && { branch: 'draft' }),
-        ...(!isDraft && getCacheKey()), // We don't want to use backend-cache for draft content requests
+        ...(!isDraft && getXpCacheKey()), // We don't want to use backend-cache for draft content requests
         ...(isPreview && { preview: true }),
         ...(locale && { locale }),
     });
@@ -163,7 +183,9 @@ const fetchAndHandleErrorsRuntime = async (
         ?.includes?.('application/json');
 
     if (res.ok && isJson) {
-        return res.json();
+        const json = await res.json();
+        responseCache.set(idOrPath, json);
+        return json;
     }
 
     if (res.ok) {
