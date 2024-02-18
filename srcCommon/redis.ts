@@ -12,15 +12,15 @@ const CLIENT_OPTIONS: RedisClientOptions = {
 
 const DEPLOY_ENV = process.env.ENV;
 
-interface IRedisCache {
-    init(keyPrefix: string, ttl: number): Promise<IRedisCache>;
-    get(key: string): Promise<CacheHandlerValue | null>;
-    set(key: string, data: CacheHandlerValue): Promise<string | null>;
+interface IRedisCache<DataType> {
+    init(keyPrefix: string, ttl: number): Promise<IRedisCache<DataType>>;
+    get(key: string): Promise<DataType | null>;
+    set(key: string, data: DataType): Promise<string | null>;
     delete(key: string): Promise<number>;
     clear(): Promise<string>;
 }
 
-class RedisCacheImpl implements IRedisCache {
+class RedisCacheImpl<DataType> implements IRedisCache<DataType> {
     private readonly client: ReturnType<typeof createClient>;
     private keyPrefix: string = '';
     private ttl: number = 0;
@@ -70,7 +70,7 @@ class RedisCacheImpl implements IRedisCache {
             });
     }
 
-    public async set(key: string, data: CacheHandlerValue) {
+    public async set(key: string, data: DataType) {
         return this.client
             .set(this.getPrefixedKey(key), JSON.stringify(data), {
                 PX: this.ttl,
@@ -109,17 +109,17 @@ class RedisCacheImpl implements IRedisCache {
     }
 }
 
-class RedisCacheDummy implements IRedisCache {
-    public async init(keyPrefix, ttl) {
+class RedisCacheDummy<DataType> implements IRedisCache<DataType> {
+    public async init(keyPrefix: string, ttl: number) {
         return this;
     }
-    public async get(key) {
+    public async get(key: string) {
         return null;
     }
-    public async set(key, data) {
+    public async set(key: string, data: DataType) {
         return null;
     }
-    public async delete(key) {
+    public async delete(key: string) {
         return 1;
     }
     public async clear() {

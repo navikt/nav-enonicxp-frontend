@@ -30,7 +30,7 @@ const getXpCacheKey =
           })
         : () => ({});
 
-const responseCache = await new RedisCache().init(
+const responseCache = await new RedisCache<XpResponseProps>().init(
     RESPONSE_CACHE_KEY_PREFIX,
     CACHE_TTL_24_HOURS_IN_MS
 );

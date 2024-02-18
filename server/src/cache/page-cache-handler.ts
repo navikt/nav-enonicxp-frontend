@@ -10,7 +10,7 @@ import {
 
 const TTL_RESOLUTION_MS = 60 * 1000;
 
-export const redisCache = new RedisCache();
+export const redisCache = new RedisCache<CacheHandlerValue>();
 
 const localCache = new LRUCache<string, CacheHandlerValue>({
     max: 2000,
