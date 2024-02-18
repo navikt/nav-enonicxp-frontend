@@ -3,12 +3,14 @@ import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { logger } from 'srcCommon/logger';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 
-const clientOptions: RedisClientOptions = {
+const CLIENT_OPTIONS: RedisClientOptions = {
     url: process.env.REDIS_URI_PAGECACHE,
     username: process.env.REDIS_USERNAME_PAGECACHE,
     password: process.env.REDIS_PASSWORD_PAGECACHE,
     socket: { keepAlive: 5000, connectTimeout: 10000 },
 } as const;
+
+const DEPLOY_ENV = process.env.ENV;
 
 interface IRedisCache {
     init(keyPrefix: string, ttl: number): Promise<IRedisCache>;
@@ -24,7 +26,7 @@ class RedisCacheImpl implements IRedisCache {
     private ttl: number = 0;
 
     constructor() {
-        this.client = createClient(clientOptions)
+        this.client = createClient(CLIENT_OPTIONS)
             .on('connect', () => {
                 logger.info('Redis client connected');
             })
@@ -41,7 +43,7 @@ class RedisCacheImpl implements IRedisCache {
                 logger.error(`Redis client error: ${err}`);
             });
 
-        logger.info(`Created redis client with url ${clientOptions.url}`);
+        logger.info(`Created redis client with url ${CLIENT_OPTIONS.url}`);
     }
 
     public async init(keyPrefix: string, ttl: number) {
@@ -103,7 +105,7 @@ class RedisCacheImpl implements IRedisCache {
     }
 
     private getPrefixedKey(key: string, keyPrefix = this.keyPrefix) {
-        return `${keyPrefix}:${key}`;
+        return `${keyPrefix}:${DEPLOY_ENV}:${key}`;
     }
 }
 
@@ -126,9 +128,9 @@ class RedisCacheDummy implements IRedisCache {
 }
 
 export const RedisCache =
-    clientOptions.url &&
-    clientOptions.username &&
-    clientOptions.password &&
+    CLIENT_OPTIONS.url &&
+    CLIENT_OPTIONS.username &&
+    CLIENT_OPTIONS.password &&
     process.env.NODE_ENV !== 'development' &&
     process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD
         ? RedisCacheImpl
