@@ -4,6 +4,7 @@ import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache } from 'srcCommon/redis';
 import { isLeaderPod } from 'leader-pod';
 import { CACHE_TTL_24_HOURS_IN_MS } from 'srcCommon/constants';
+import { pathToCacheKey } from 'srcCommon/cache-key';
 
 const TTL_RESOLUTION_MS = 60 * 1000;
 
@@ -17,14 +18,14 @@ const localCache = new LRUCache<string, CacheHandlerValue>({
 
 export default class PageCacheHandler {
     public async get(...args: Parameters<FileSystemCache['get']>) {
-        const [key] = args;
+        const [path] = args;
 
-        const fromLocalCache = localCache.get(key);
+        const fromLocalCache = localCache.get(path);
         if (fromLocalCache) {
             return fromLocalCache;
         }
 
-        const fromRedisCache = await redisCache.getRender(key);
+        const fromRedisCache = await redisCache.getRender(path);
         if (!fromRedisCache) {
             return null;
         }
@@ -36,7 +37,7 @@ export default class PageCacheHandler {
             : CACHE_TTL_24_HOURS_IN_MS;
 
         if (ttlRemaining > TTL_RESOLUTION_MS) {
-            localCache.set(key, fromRedisCache, {
+            localCache.set(path, fromRedisCache, {
                 ttl: ttlRemaining,
             });
         }
@@ -45,15 +46,15 @@ export default class PageCacheHandler {
     }
 
     public async set(...args: Parameters<FileSystemCache['set']>) {
-        const [key, data] = args;
+        const [path, data] = args;
 
         const cacheItem: CacheHandlerValue = {
             value: data,
             lastModified: Date.now(),
         };
 
-        localCache.set(key, cacheItem);
-        redisCache.setRender(key, cacheItem);
+        localCache.set(path, cacheItem);
+        redisCache.setRender(path, cacheItem);
     }
 
     public async clear() {
@@ -65,11 +66,10 @@ export default class PageCacheHandler {
     }
 
     public async delete(path: string) {
-        const pagePath = path === '/' ? '/index' : path;
-        localCache.delete(pagePath);
+        localCache.delete(pathToCacheKey(path));
 
         if (await isLeaderPod()) {
-            return redisCache.delete(pagePath);
+            return redisCache.delete(path);
         }
     }
 }

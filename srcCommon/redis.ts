@@ -3,6 +3,7 @@ import { logger } from 'srcCommon/logger';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { CACHE_TTL_24_HOURS_IN_MS } from 'srcCommon/constants';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
+import { pathToCacheKey } from 'srcCommon/cache-key';
 
 // TODO: share XP response props with next-app for a proper type here
 type XpResponseProps = Record<string, any>;
@@ -31,15 +32,15 @@ const validateClientOptions = () => {
 interface IRedisCache {
     init(buildId: string): Promise<IRedisCache>;
 
-    getRender(key: string): Promise<CacheHandlerValue | null>;
+    getRender(path: string): Promise<CacheHandlerValue | null>;
 
-    setRender(key: string, data: CacheHandlerValue): Promise<string | null>;
+    setRender(path: string, data: CacheHandlerValue): Promise<string | null>;
 
-    getResponse(key: string): Promise<XpResponseProps | null>;
+    getResponse(path: string): Promise<XpResponseProps | null>;
 
-    setResponse(key: string, data: XpResponseProps): Promise<string | null>;
+    setResponse(path: string, data: XpResponseProps): Promise<string | null>;
 
-    delete(key: string): Promise<number>;
+    delete(path: string): Promise<number>;
 
     clear(): Promise<string>;
 }
@@ -47,8 +48,8 @@ interface IRedisCache {
 class RedisCacheImpl implements IRedisCache {
     private readonly client: ReturnType<typeof createClient>;
     private readonly ttl: number = CACHE_TTL_24_HOURS_IN_MS;
-    private readonly responseCachePrefix = `${process.env.ENV}:xp-response`;
-    private renderCachePrefix = '';
+    private readonly responseCacheKeyPrefix = `${process.env.ENV}:xp-response`;
+    private renderCacheKeyPrefix = '';
 
     constructor() {
         this.client = createClient(clientOptions)
@@ -70,70 +71,73 @@ class RedisCacheImpl implements IRedisCache {
     }
 
     public async init(buildId: string) {
-        this.renderCachePrefix = `${process.env.ENV}:render:${buildId}`;
+        this.renderCacheKeyPrefix = `${process.env.ENV}:render:${buildId}`;
 
         return this.client.connect().then(() => {
             logger.info(
-                `Initialized redis client with url ${clientOptions.url} - TTL: ${this.ttl} - Render prefix: ${this.renderCachePrefix} - Response prefix: ${this.responseCachePrefix}`
+                `Initialized redis client with url ${clientOptions.url} - TTL: ${this.ttl} - Render prefix: ${this.renderCacheKeyPrefix} - Response prefix: ${this.responseCacheKeyPrefix}`
             );
             return this;
         });
     }
 
-    private async get(key: string) {
+    private async get(path: string) {
         return this.client
-            .get(key)
+            .get(path)
             .then((result) => (result ? JSON.parse(result) : result))
             .catch((e) => {
-                logger.error(`Error getting value for key ${key} - ${e}`);
+                logger.error(`Error getting value for path ${path} - ${e}`);
                 return Promise.resolve(null);
             });
     }
 
-    public async getRender(key: string) {
-        return this.get(this.getPrefixedKey(key, this.renderCachePrefix));
+    public async getRender(path: string) {
+        return this.get(this.getCacheKey(path, this.renderCacheKeyPrefix));
     }
 
-    public async getResponse(key: string) {
-        return this.get(this.getPrefixedKey(key, this.responseCachePrefix));
+    public async getResponse(path: string) {
+        return this.get(this.getCacheKey(path, this.responseCacheKeyPrefix));
     }
 
-    private async set<DataType>(key: string, data: DataType) {
+    private async set<DataType>(path: string, data: DataType) {
         return this.client
-            .set(key, JSON.stringify(data), {
+            .set(path, JSON.stringify(data), {
                 PX: this.ttl,
             })
             .then((result) => {
-                logger.info(`Redis set result for ${key}: ${result}`);
+                logger.info(`Redis set result for ${path}: ${result}`);
                 return result;
             })
             .catch((e) => {
-                logger.error(`Error setting value for key ${key} - ${e}`);
+                logger.error(`Error setting value for path ${path} - ${e}`);
                 return Promise.resolve(null);
             });
     }
 
-    public async setRender(key: string, data: CacheHandlerValue) {
-        return this.set(this.getPrefixedKey(key, this.renderCachePrefix), data);
-    }
-
-    public async setResponse(key: string, data: XpResponseProps) {
+    public async setRender(path: string, data: CacheHandlerValue) {
         return this.set(
-            this.getPrefixedKey(key, this.responseCachePrefix),
+            this.getCacheKey(path, this.renderCacheKeyPrefix),
             data
         );
     }
 
-    public async delete(key: string) {
-        const responseKey = this.getPrefixedKey(key, this.responseCachePrefix);
-        const renderKey = this.getPrefixedKey(key, this.renderCachePrefix);
+    public async setResponse(path: string, data: XpResponseProps) {
+        return this.set(
+            this.getCacheKey(path, this.responseCacheKeyPrefix),
+            data
+        );
+    }
+
+    public async delete(path: string) {
+        const responseKey = this.getCacheKey(path, this.responseCacheKeyPrefix);
+        const renderKey = this.getCacheKey(path, this.renderCacheKeyPrefix);
 
         logger.info(
             `Deleting redis cache entries for ${responseKey} and ${renderKey}`
         );
 
         return this.client.del([responseKey, renderKey]).catch((e) => {
-            logger.error(`Error deleting value for key ${key} - ${e}`);
+            logger.error(`Error deleting value for path ${path} - ${e}`);
             return 0;
         });
     }
@@ -147,8 +151,8 @@ class RedisCacheImpl implements IRedisCache {
         });
     }
 
-    private getPrefixedKey(key: string, keyPrefix: string) {
-        return `${keyPrefix}:${key}`;
+    private getCacheKey(path: string, keyPrefix: string) {
+        return `${keyPrefix}:${pathToCacheKey(path)}`;
     }
 }
 
@@ -157,23 +161,23 @@ class RedisCacheDummy implements IRedisCache {
         return this;
     }
 
-    public async getRender(key: string) {
+    public async getRender(path: string) {
         return null;
     }
 
-    public async getResponse(key: string) {
+    public async getResponse(path: string) {
         return null;
     }
 
-    public async setRender(key: string, data: CacheHandlerValue) {
+    public async setRender(path: string, data: CacheHandlerValue) {
         return null;
     }
 
-    public async setResponse(key: string, data: XpResponseProps) {
+    public async setResponse(path: string, data: XpResponseProps) {
         return null;
     }
 
-    public async delete(key: string) {
+    public async delete(path: string) {
         return 1;
     }
 
