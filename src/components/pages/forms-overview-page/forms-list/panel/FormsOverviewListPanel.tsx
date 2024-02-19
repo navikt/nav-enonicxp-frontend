@@ -72,7 +72,6 @@ export const FormsOverviewListPanel = ({
         taxonomy,
         area,
         targetLanguage,
-        alerts,
     } = formDetails;
 
     const [isLoading, setIsLoading] = useState(false);
@@ -131,12 +130,6 @@ export const FormsOverviewListPanel = ({
             )}
 
             {formDetailsPages?.map((formDetail) => {
-                const relevantAlerts = alerts?.filter((alert) => {
-                    const targetContent =
-                        alert.data.target[alert.data.target._selected]
-                            .targetContent;
-                    return targetContent.includes(formDetail._id);
-                });
                 return (
                     <FormDetails
                         formDetails={formDetail.data}
@@ -146,7 +139,6 @@ export const FormsOverviewListPanel = ({
                         className={style.formDetails}
                         formNumberSelected={formNumberSelected}
                         key={formDetail._id}
-                        alerts={relevantAlerts}
                     />
                 );
             })}

@@ -23,7 +23,6 @@ export type FormDetailsComponentProps = {
     };
     className?: string;
     formNumberSelected?: string;
-    alerts?: AlertInContextPageProps[];
 };
 
 export const FormDetails = ({
@@ -31,7 +30,6 @@ export const FormDetails = ({
     displayConfig,
     className,
     formNumberSelected,
-    alerts,
 }: FormDetailsComponentProps) => {
     const {
         showTitle,
@@ -43,8 +41,14 @@ export const FormDetails = ({
         showTitleAsLevel4 = false, // Temporary solution until all product pages have been re-organized.
     } = displayConfig;
 
-    const { formNumbers, formType, languageDisclaimer, ingress, title } =
-        formDetails;
+    const {
+        formNumbers,
+        formType,
+        languageDisclaimer,
+        ingress,
+        title,
+        alerts,
+    } = formDetails;
 
     const variations = formType.reduce((acc, cur) => {
         const { _selected } = cur;

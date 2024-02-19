@@ -2,6 +2,7 @@ import { OptionSetSingle } from 'types/util-types';
 import { ContentCommonProps, ContentType } from './_content-common';
 import { ProcessedHtmlProps } from 'types/processed-html-props';
 import { LinkSelectable } from 'types/component-props/_mixins';
+import { AlertInContextPageProps } from './alerts';
 
 export type FormComplaintTypes = 'complaint' | 'appeal';
 
@@ -16,6 +17,7 @@ export interface FormDetailsData {
     title?: string;
     ingress?: ProcessedHtmlProps;
     languageDisclaimer?: string;
+    alerts: AlertInContextPageProps[];
     formType: OptionSetSingle<{
         application: {
             variations: Variation[];

@@ -53,7 +53,6 @@ import { FormDetailsPageProps } from './form-details';
 import { FormIntermediateStepPageProps } from './form-intermediate-step';
 import { FormsOverviewProps } from 'types/content-props/forms-overview';
 import { OverviewPageProps } from 'types/content-props/overview-props';
-import { AlertInContextPageProps } from './alerts';
 
 export enum ContentType {
     Error = 'error',
@@ -153,7 +152,6 @@ export type ContentCommonProps<Type extends ContentType = ContentType> = {
     page?: LayoutProps;
     editorView?: 'inline' | 'preview' | 'edit' | 'archive';
     breadcrumbs?: DecoratorParams['breadcrumbs'];
-    alerts?: AlertInContextPageProps[];
     isFailover?: boolean;
     languages?: LanguageProps[];
     contentLayer?: string;

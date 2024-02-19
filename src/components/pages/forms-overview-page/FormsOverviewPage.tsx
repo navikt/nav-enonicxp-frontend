@@ -46,34 +46,15 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
     }
 
     const { config, regions } = page;
-    const { audience, illustration, alerts = [] } = data;
+    const { audience, illustration, formDetailsList } = data;
 
     const audienceSubCategoryLinks = getLinksIfTransportPage(audience);
-
-    // Add relevant alerts to each formDetail by matching oon target id.
-    const detailsListWithAlerts = data.formDetailsList?.map((formDetails) => {
-        const alertsForDetails = alerts.filter((alert) => {
-            if (!alert.data.target) {
-                return false;
-            }
-
-            const targetContent: string[] = forceArray(
-                alert.data.target[alert.data.target._selected].targetContent
-            );
-
-            return targetContent.some((target) =>
-                formDetails.formDetailsIds.includes(target)
-            );
-        });
-
-        return { ...formDetails, alerts: alertsForDetails };
-    });
 
     const mutatedProps = {
         ...props,
         data: {
             ...data,
-            formDetailsList: detailsListWithAlerts,
+            formDetailsList,
         },
     };
 
