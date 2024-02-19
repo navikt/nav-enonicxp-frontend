@@ -3,7 +3,7 @@ import { Reception } from './reception/Reception';
 import { SpecialInformation } from './SpecialInfo';
 import { buildOpeningHoursSpecification } from './utils';
 import { formatPhoneNumber } from 'components/_common/office-details/utils';
-import { formatAddress } from 'components/_common/office-details/reception/utils/utils';
+import { formatAddress } from 'nav-office-reception-info';
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/komponenter/ArtikkelDato';
