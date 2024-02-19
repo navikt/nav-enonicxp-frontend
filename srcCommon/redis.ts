@@ -3,14 +3,12 @@ import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { logger } from 'srcCommon/logger';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 
-const CLIENT_OPTIONS: RedisClientOptions = {
+const clientOptions: RedisClientOptions = {
     url: process.env.REDIS_URI_PAGECACHE,
     username: process.env.REDIS_USERNAME_PAGECACHE,
     password: process.env.REDIS_PASSWORD_PAGECACHE,
     socket: { keepAlive: 5000, connectTimeout: 10000 },
 } as const;
-
-const DEPLOY_ENV = process.env.ENV;
 
 interface IRedisCache<DataType> {
     init(keyPrefix: string, ttl: number): Promise<IRedisCache<DataType>>;
@@ -26,7 +24,7 @@ class RedisCacheImpl<DataType> implements IRedisCache<DataType> {
     private ttl: number = 0;
 
     constructor() {
-        this.client = createClient(CLIENT_OPTIONS)
+        this.client = createClient(clientOptions)
             .on('connect', () => {
                 logger.info('Redis client connected');
             })
@@ -43,11 +41,11 @@ class RedisCacheImpl<DataType> implements IRedisCache<DataType> {
                 logger.error(`Redis client error: ${err}`);
             });
 
-        logger.info(`Created redis client with url ${CLIENT_OPTIONS.url}`);
+        logger.info(`Created redis client with url ${clientOptions.url}`);
     }
 
     public async init(keyPrefix: string, ttl: number) {
-        this.keyPrefix = keyPrefix;
+        this.keyPrefix = `${process.env.ENV}:${keyPrefix}`;
         this.ttl = ttl;
 
         return this.client.connect().then(() => {
@@ -105,7 +103,7 @@ class RedisCacheImpl<DataType> implements IRedisCache<DataType> {
     }
 
     private getPrefixedKey(key: string, keyPrefix = this.keyPrefix) {
-        return `${keyPrefix}:${DEPLOY_ENV}:${key}`;
+        return `${keyPrefix}:${key}`;
     }
 }
 
@@ -128,9 +126,9 @@ class RedisCacheDummy<DataType> implements IRedisCache<DataType> {
 }
 
 export const RedisCache =
-    CLIENT_OPTIONS.url &&
-    CLIENT_OPTIONS.username &&
-    CLIENT_OPTIONS.password &&
+    clientOptions.url &&
+    clientOptions.username &&
+    clientOptions.password &&
     process.env.NODE_ENV !== 'development' &&
     process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD
         ? RedisCacheImpl
