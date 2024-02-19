@@ -1,4 +1,4 @@
-import { AudienceReception } from 'components/_common/office-details/reception/utils/types';
+import { AudienceReception } from 'nav-office-reception-info';
 import { ProductDataMixin } from 'types/component-props/_mixins';
 
 export interface Address {

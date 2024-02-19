@@ -1,5 +1,5 @@
 import { ContentType, ContentCommonProps } from './_content-common';
-import { LegacyOfficeAddress } from 'components/_common/office-details/reception/utils/types';
+import { LegacyOfficeAddress } from 'nav-office-reception-info';
 
 type Office = {
     enhetId: number;
