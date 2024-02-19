@@ -128,20 +128,15 @@ export const FormsOverviewListPanel = ({
             {!isAddendumPage && (
                 <BodyLong className={style.ingress}>{ingress}</BodyLong>
             )}
-
-            {formDetailsPages?.map((formDetail) => {
-                return (
-                    <FormDetails
-                        formDetails={formDetail.data}
-                        displayConfig={getFormDetailsDisplayOptions(
-                            overviewType
-                        )}
-                        className={style.formDetails}
-                        formNumberSelected={formNumberSelected}
-                        key={formDetail._id}
-                    />
-                );
-            })}
+            {formDetailsPages?.map((formDetail) => (
+                <FormDetails
+                    formDetails={formDetail.data}
+                    displayConfig={getFormDetailsDisplayOptions(overviewType)}
+                    className={style.formDetails}
+                    formNumberSelected={formNumberSelected}
+                    key={formDetail._id}
+                />
+            ))}
             {!isAddendumPage && url && (
                 <OverviewMicroCards
                     productLinks={[

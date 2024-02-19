@@ -10,7 +10,6 @@ import { ProductTaxonomy } from 'types/taxonomies';
 import { ProviderAudience } from 'types/component-props/_mixins';
 
 export type FormDetailsListItemProps = {
-    _id: string;
     title: string;
     sortTitle: string;
     ingress: string;
@@ -26,7 +25,6 @@ export type FormDetailsListItemProps = {
     formDetailsTitles: string[];
     formDetailsIngresses: string[];
     formNumbers: string[];
-    formDetailsIds: string[];
 };
 
 export type FormsOverviewAudienceOptions = OptionSetSingle<{

@@ -10,7 +10,6 @@ import { IllustrationStatic } from 'components/_common/illustration/Illustration
 import { FormsOverviewList } from 'components/pages/forms-overview-page/forms-list/FormsOverviewList';
 import { FormsOverviewAudienceLinks } from 'components/pages/forms-overview-page/audience-links/FormsOverviewAudienceLinks';
 import { classNames } from 'utils/classnames';
-import { forceArray } from 'utils/arrays';
 
 import style from './FormsOverviewPage.module.scss';
 
@@ -46,17 +45,9 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
     }
 
     const { config, regions } = page;
-    const { audience, illustration, formDetailsList } = data;
+    const { audience, illustration } = data;
 
     const audienceSubCategoryLinks = getLinksIfTransportPage(audience);
-
-    const mutatedProps = {
-        ...props,
-        data: {
-            ...data,
-            formDetailsList,
-        },
-    };
 
     return (
         <div
@@ -76,7 +67,7 @@ export const FormsOverviewPage = (props: FormsOverviewProps) => {
                         links={audienceSubCategoryLinks}
                     />
                 ) : (
-                    <FormsOverviewList {...mutatedProps} />
+                    <FormsOverviewList {...props} />
                 )}
             </div>
             {config.sideColToggle && (
