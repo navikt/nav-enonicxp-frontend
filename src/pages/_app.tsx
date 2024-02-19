@@ -6,6 +6,7 @@ import { store } from 'store/store';
 import { PageProps } from 'components/PageBase';
 
 import 'global.scss';
+import 'nav-office-reception-info/dist/style.css';
 
 const initFaro =
     process.env.ENV === 'localhost'
