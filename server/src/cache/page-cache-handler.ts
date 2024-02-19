@@ -8,10 +8,9 @@ const CACHE_TTL_24_HOURS_IN_MS = 3600 * 24 * 1000;
 
 const TTL_RESOLUTION_MS = 60 * 1000;
 
-export const redisCache =
-    process.env.ENV === 'localhost' && !process.env.REDIS_URI_PAGECACHE
-        ? new RedisCacheDummy()
-        : new RedisCache({ ttl: CACHE_TTL_24_HOURS_IN_MS });
+export const redisCache = !process.env.REDIS_URI_PAGECACHE
+    ? new RedisCacheDummy()
+    : new RedisCache({ ttl: CACHE_TTL_24_HOURS_IN_MS });
 
 const localCache = new LRUCache<string, CacheHandlerValue>({
     max: 2000,

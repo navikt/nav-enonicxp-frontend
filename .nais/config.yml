@@ -30,7 +30,7 @@ spec:
   leaderElection: true
   redis:
     - instance: {{ redis.instance }}
-      access: readwrite
+      access: admin
   ingresses:
     {{#each ingresses as |url|}}
     - {{url}}

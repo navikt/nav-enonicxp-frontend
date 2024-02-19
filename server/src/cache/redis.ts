@@ -2,29 +2,11 @@ import { createClient, RedisClientOptions } from 'redis';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { logger } from 'srcCommon/logger';
 
-type AppEnv = typeof process.env.ENV;
-
-const clientOptions: Record<AppEnv, RedisClientOptions> = {
-    localhost: {
-        url: process.env.REDIS_URI_PAGECACHE,
-        username: process.env.REDIS_USERNAME_PAGECACHE,
-        password: process.env.REDIS_PASSWORD_PAGECACHE,
-    },
-    prod: {
-        url: process.env.REDIS_URI_PAGECACHE,
-        username: process.env.REDIS_USERNAME_PAGECACHE,
-        password: process.env.REDIS_PASSWORD_PAGECACHE,
-    },
-    dev1: {
-        url: process.env.REDIS_URI_PAGECACHE_DEV1,
-        username: process.env.REDIS_USERNAME_PAGECACHE_DEV1,
-        password: process.env.REDIS_PASSWORD_PAGECACHE_DEV1,
-    },
-    dev2: {
-        url: process.env.REDIS_URI_PAGECACHE_DEV2,
-        username: process.env.REDIS_USERNAME_PAGECACHE_DEV2,
-        password: process.env.REDIS_PASSWORD_PAGECACHE_DEV2,
-    },
+const clientOptions: RedisClientOptions = {
+    url: process.env.REDIS_URI_PAGECACHE,
+    username: process.env.REDIS_USERNAME_PAGECACHE,
+    password: process.env.REDIS_PASSWORD_PAGECACHE,
+    socket: { keepAlive: 5000, connectTimeout: 10000 },
 } as const;
 
 interface IRedisCache {
@@ -45,21 +27,9 @@ export class RedisCache implements IRedisCache {
     private keyPrefix: string = '';
 
     constructor({ ttl }: ConstructorProps) {
-        const env = process.env.ENV;
-        const options = clientOptions[env];
-
-        if (!options) {
-            throw Error(
-                `Redis client options were not defined for the current app environment: ${env}`
-            );
-        }
-
         this.ttl = ttl;
 
-        this.client = createClient({
-            ...options,
-            socket: { keepAlive: 5000, connectTimeout: 10000 },
-        })
+        this.client = createClient(clientOptions)
             .on('connect', () => {
                 logger.info('Redis client connected');
             })
@@ -76,11 +46,11 @@ export class RedisCache implements IRedisCache {
                 logger.error(`Redis client error: ${err}`);
             });
 
-        logger.info(`Created redis client with url ${options.url}`);
+        logger.info(`Created redis client with url ${clientOptions.url}`);
     }
 
     public async init(keyPrefix: string) {
-        this.keyPrefix = keyPrefix;
+        this.keyPrefix = `${process.env.ENV}:${keyPrefix}`;
 
         return this.client.connect().then(() => {
             logger.info(
