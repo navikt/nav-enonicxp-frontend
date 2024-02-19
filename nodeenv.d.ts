@@ -18,6 +18,10 @@ declare global {
             NAVNO_API_URL: string;
             ASSET_PREFIX: string;
             TELEMETRY_URL: string;
+            NEXT_PHASE: string;
+            REDIS_URI_PAGECACHE: string;
+            REDIS_USERNAME_PAGECACHE: string;
+            REDIS_PASSWORD_PAGECACHE: string;
         }
     }
 
