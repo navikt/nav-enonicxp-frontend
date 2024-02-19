@@ -1,6 +1,6 @@
 import { ContentProps } from 'types/content-props/_content-common';
 import { makeErrorProps } from '../make-error-props';
-import { xpServiceUrl } from '../urls';
+import { stripXpPathPrefix, xpServiceUrl } from '../urls';
 import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
 import { MediaProps } from 'types/media';
 import { v4 as uuid } from 'uuid';
@@ -45,21 +45,13 @@ type FetchSiteContentArgs = {
 };
 
 const fetchSiteContent = async (props: FetchSiteContentArgs) => {
-    const { isArchived, time, isDraft, idOrPath } = props;
+    const { isArchived, time } = props;
     if (isArchived) {
         return fetchSiteContentArchive(props);
     }
 
     if (time) {
         return fetchSiteContentVersion(props);
-    }
-
-    if (!isDraft) {
-        const cachedResponse = await redisCache.getResponse(idOrPath);
-        if (cachedResponse) {
-            logger.info(`Found entry in response cache for ${idOrPath}`);
-            return cachedResponse;
-        }
     }
 
     return fetchSiteContentStandard(props);
@@ -157,12 +149,30 @@ const fetchAndHandleErrorsBuildtime = async (
     });
 };
 
+const isCachableRequest = ({
+    isDraft,
+    isArchived,
+    time,
+}: FetchSiteContentArgs) => !isDraft && !isArchived && !time;
+
 const fetchAndHandleErrorsRuntime = async (
     props: FetchSiteContentArgs
 ): Promise<XpResponseProps> => {
+    const isCachable = isCachableRequest(props);
+    const { idOrPath } = props;
+
+    if (isCachable) {
+        const cachedResponse = await redisCache.getResponse(
+            stripXpPathPrefix(idOrPath)
+        );
+        if (cachedResponse) {
+            logger.info(`Response cache hit for ${idOrPath}`);
+            return cachedResponse;
+        }
+    }
+
     const res = await fetchSiteContent(props);
 
-    const { idOrPath } = props;
     const errorId = uuid();
 
     if (!res) {
@@ -175,7 +185,9 @@ const fetchAndHandleErrorsRuntime = async (
 
     if (res.ok && isJson) {
         const json = await res.json();
-        redisCache.setResponse(idOrPath, json);
+        if (isCachable) {
+            redisCache.setResponse(stripXpPathPrefix(idOrPath), json);
+        }
         return json;
     }
 
