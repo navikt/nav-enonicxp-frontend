@@ -3,14 +3,11 @@ import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache } from 'srcCommon/redis';
 import { isLeaderPod } from 'leader-pod';
-import {
-    CACHE_TTL_24_HOURS_IN_MS,
-    RESPONSE_CACHE_KEY_PREFIX,
-} from 'srcCommon/constants';
+import { CACHE_TTL_24_HOURS_IN_MS } from 'srcCommon/constants';
 
 const TTL_RESOLUTION_MS = 60 * 1000;
 
-export const redisCache = new RedisCache<CacheHandlerValue>();
+export const redisCache = new RedisCache();
 
 const localCache = new LRUCache<string, CacheHandlerValue>({
     max: 2000,
@@ -27,7 +24,7 @@ export default class PageCacheHandler {
             return fromLocalCache;
         }
 
-        const fromRedisCache = await redisCache.get(key);
+        const fromRedisCache = await redisCache.getRender(key);
         if (!fromRedisCache) {
             return null;
         }
@@ -56,7 +53,7 @@ export default class PageCacheHandler {
         };
 
         localCache.set(key, cacheItem);
-        redisCache.set(key, cacheItem);
+        redisCache.setRender(key, cacheItem);
     }
 
     public async clear() {
@@ -72,10 +69,7 @@ export default class PageCacheHandler {
         localCache.delete(pagePath);
 
         if (await isLeaderPod()) {
-            return Promise.all([
-                redisCache.delete(pagePath),
-                redisCache.delete(pagePath, RESPONSE_CACHE_KEY_PREFIX),
-            ]);
+            return redisCache.delete(pagePath);
         }
     }
 }

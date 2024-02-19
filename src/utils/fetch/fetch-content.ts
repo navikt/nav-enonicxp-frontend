@@ -9,10 +9,6 @@ import { stripLineBreaks } from '../string';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { logger } from 'srcCommon/logger';
 import { RedisCache } from 'srcCommon/redis';
-import {
-    CACHE_TTL_24_HOURS_IN_MS,
-    RESPONSE_CACHE_KEY_PREFIX,
-} from 'srcCommon/constants';
 
 export type XpResponseProps = ContentProps | MediaProps;
 
@@ -30,10 +26,7 @@ const getXpCacheKey =
           })
         : () => ({});
 
-const responseCache = await new RedisCache<XpResponseProps>().init(
-    RESPONSE_CACHE_KEY_PREFIX,
-    CACHE_TTL_24_HOURS_IN_MS
-);
+const redisCache = await new RedisCache().init(process.env.BUILD_ID);
 
 const fetchConfig = {
     headers: {
@@ -62,11 +55,9 @@ const fetchSiteContent = async (props: FetchSiteContentArgs) => {
     }
 
     if (!isDraft) {
-        const cachedResponse = await responseCache.get(idOrPath);
+        const cachedResponse = await redisCache.getResponse(idOrPath);
         if (cachedResponse) {
-            logger.info(
-                `Found entry in response cache for ${idOrPath}: ${cachedResponse}`
-            );
+            logger.info(`Found entry in response cache for ${idOrPath}`);
             return cachedResponse;
         }
     }
@@ -184,7 +175,7 @@ const fetchAndHandleErrorsRuntime = async (
 
     if (res.ok && isJson) {
         const json = await res.json();
-        responseCache.set(idOrPath, json);
+        redisCache.setResponse(idOrPath, json);
         return json;
     }
 
