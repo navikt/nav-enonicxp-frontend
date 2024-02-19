@@ -3,7 +3,9 @@ import { logger } from 'srcCommon/logger';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
 import { CACHE_TTL_24_HOURS_IN_MS } from 'srcCommon/constants';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
-import type { XpResponseProps } from 'utils/fetch/fetch-content';
+
+// TODO: share XP response props with next-app for a proper type here
+type XpResponseProps = Record<string, any>;
 
 const clientOptions: RedisClientOptions = {
     url: process.env.REDIS_URI_PAGECACHE,
@@ -28,11 +30,17 @@ const validateClientOptions = () => {
 
 interface IRedisCache {
     init(buildId: string): Promise<IRedisCache>;
+
     getRender(key: string): Promise<CacheHandlerValue | null>;
+
     setRender(key: string, data: CacheHandlerValue): Promise<string | null>;
+
     getResponse(key: string): Promise<XpResponseProps | null>;
+
     setResponse(key: string, data: XpResponseProps): Promise<string | null>;
+
     delete(key: string): Promise<number>;
+
     clear(): Promise<string>;
 }
 
@@ -92,7 +100,7 @@ class RedisCacheImpl implements IRedisCache {
 
     private async set<DataType>(key: string, data: DataType) {
         return this.client
-            .set(this.getPrefixedKey(key), JSON.stringify(data), {
+            .set(key, JSON.stringify(data), {
                 PX: this.ttl,
             })
             .then((result) => {
@@ -164,7 +172,7 @@ class RedisCacheDummy implements IRedisCache {
         return null;
     }
 
-    public async setResponse(key: string, data: ContentProps) {
+    public async setResponse(key: string, data: XpResponseProps) {
         return null;
     }
 
