@@ -18,14 +18,14 @@ const localCache = new LRUCache<string, CacheHandlerValue>({
 
 export default class PageCacheHandler {
     public async get(...args: Parameters<FileSystemCache['get']>) {
-        const [path] = args;
+        const [key] = args;
 
-        const fromLocalCache = localCache.get(path);
+        const fromLocalCache = localCache.get(key);
         if (fromLocalCache) {
             return fromLocalCache;
         }
 
-        const fromRedisCache = await redisCache.getRender(path);
+        const fromRedisCache = await redisCache.getRender(key);
         if (!fromRedisCache) {
             return null;
         }
@@ -37,7 +37,7 @@ export default class PageCacheHandler {
             : CACHE_TTL_24_HOURS_IN_MS;
 
         if (ttlRemaining > TTL_RESOLUTION_MS) {
-            localCache.set(path, fromRedisCache, {
+            localCache.set(key, fromRedisCache, {
                 ttl: ttlRemaining,
             });
         }
@@ -46,15 +46,15 @@ export default class PageCacheHandler {
     }
 
     public async set(...args: Parameters<FileSystemCache['set']>) {
-        const [path, data] = args;
+        const [key, data] = args;
 
         const cacheItem: CacheHandlerValue = {
             value: data,
             lastModified: Date.now(),
         };
 
-        localCache.set(path, cacheItem);
-        redisCache.setRender(path, cacheItem);
+        localCache.set(key, cacheItem);
+        redisCache.setRender(key, cacheItem);
     }
 
     public async clear() {
