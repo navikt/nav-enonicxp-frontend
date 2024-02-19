@@ -153,7 +153,8 @@ const isCachableRequest = ({
     isDraft,
     isArchived,
     time,
-}: FetchSiteContentArgs) => !isDraft && !isArchived && !time;
+    isPreview,
+}: FetchSiteContentArgs) => !(isDraft || isArchived || time || isPreview);
 
 const fetchAndHandleErrorsRuntime = async (
     props: FetchSiteContentArgs
