@@ -2,12 +2,13 @@ import express, { ErrorRequestHandler } from 'express';
 import next from 'next';
 import { createHttpTerminator } from 'http-terminator';
 import promBundle from 'express-prom-bundle';
-import { initRevalidatorProxyHeartbeat } from 'revalidator-proxy-heartbeat';
-import { serverSetupFailover } from 'server-setup-failover';
-import { serverSetup } from 'server-setup';
-import { getNextServer, injectNextImageCacheDir } from 'next-utils';
+import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat';
+import { serverSetupFailover } from 'server-setup/server-setup-failover';
+import { serverSetup } from 'server-setup/server-setup';
+import { getNextServer } from 'next-utils';
 import { logger } from 'srcCommon/logger';
 import path from 'path';
+import { injectNextImageCacheDir } from 'cache/image-cache-handler';
 
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',

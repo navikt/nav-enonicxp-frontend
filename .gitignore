@@ -48,8 +48,9 @@ yarn-error.log*
 
 /server/.dist/
 /server/tsconfig.tsbuildinfo
-/server/__next-test-dummy/.next/
+/server/__test-utils/next-dummy/.next/
 
 # VS Code
 .vscode
 /.env.prod-local.local
+/server/.next/

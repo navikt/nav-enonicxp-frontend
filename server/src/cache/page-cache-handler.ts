@@ -2,23 +2,23 @@ import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache, RedisCacheDummy } from 'cache/redis';
-import { isLeaderPod } from 'leader';
-import { logger } from 'srcCommon/logger';
+import { isLeaderPod } from 'leader-pod';
 
 const CACHE_TTL_24_HOURS_IN_MS = 3600 * 24 * 1000;
 
-export const redisCache =
-    process.env.ENV === 'localhost' && !process.env.REDIS_URI_PAGECACHE
-        ? new RedisCacheDummy()
-        : new RedisCache({ ttl: CACHE_TTL_24_HOURS_IN_MS });
+const TTL_RESOLUTION_MS = 60 * 1000;
+
+export const redisCache = !process.env.REDIS_URI_PAGECACHE
+    ? new RedisCacheDummy()
+    : new RedisCache({ ttl: CACHE_TTL_24_HOURS_IN_MS });
 
 const localCache = new LRUCache<string, CacheHandlerValue>({
-    max: 1000,
+    max: 2000,
     ttl: CACHE_TTL_24_HOURS_IN_MS,
-    ttlResolution: 1000,
+    ttlResolution: TTL_RESOLUTION_MS,
 });
 
-export default class CustomCacheHandler {
+export default class PageCacheHandler {
     public async get(...args: Parameters<FileSystemCache['get']>) {
         const [key] = args;
 
@@ -38,7 +38,7 @@ export default class CustomCacheHandler {
               Date.now()
             : CACHE_TTL_24_HOURS_IN_MS;
 
-        if (ttlRemaining > 1000) {
+        if (ttlRemaining > TTL_RESOLUTION_MS) {
             localCache.set(key, fromRedisCache, {
                 ttl: ttlRemaining,
             });
