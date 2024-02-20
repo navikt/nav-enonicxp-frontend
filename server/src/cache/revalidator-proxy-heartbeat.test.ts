@@ -16,7 +16,7 @@ describe('Revalidator proxy heartbeat', () => {
 
         fetchMock.mockResponse('Hello!');
 
-        initRevalidatorProxyHeartbeat();
+        initRevalidatorProxyHeartbeat('dummy-build-id');
 
         expect(fetchMock.mock.calls.length).toEqual(1);
         expect(fetchMock.mock.calls[0][0]).toMatch(
