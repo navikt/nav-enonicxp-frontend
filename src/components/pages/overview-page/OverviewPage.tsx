@@ -70,10 +70,7 @@ export const OverviewPage = (props: OverviewPageProps) => {
                     {filteredList.map((product) => (
                         <li key={`${product.anchorId}-${language}`}>
                             {isAllProductsOverview ? (
-                                <OverviewLinkPanel
-                                    product={product.productLinks[0]}
-                                    illustration={product.illustration}
-                                />
+                                <OverviewLinkPanel product={product} />
                             ) : (
                                 <OverviewProductDetailsPanel
                                     productDetails={product}
