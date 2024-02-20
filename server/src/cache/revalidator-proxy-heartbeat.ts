@@ -3,6 +3,11 @@
 // See: https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy
 import { networkInterfaces } from 'os';
 import { logger } from 'srcCommon/logger';
+import {
+    getRenderCacheKeyPrefix,
+    getResponseCacheKeyPrefix,
+} from 'srcCommon/redis';
+import { objectToQueryString } from 'srcCommon/fetch-utils';
 
 const {
     ENV,
@@ -37,7 +42,13 @@ const getPodAddress = () => {
 const getProxyLivenessUrl = () => {
     const podAddress = getPodAddress();
     return podAddress
-        ? `${REVALIDATOR_PROXY_ORIGIN}/liveness?address=${podAddress}`
+        ? `${REVALIDATOR_PROXY_ORIGIN}/liveness${objectToQueryString({
+              address: podAddress,
+              redisPrefixes: [
+                  getRenderCacheKeyPrefix(process.env.BUILD_ID),
+                  getResponseCacheKeyPrefix(),
+              ].join(','),
+          })}`
         : null;
 };
 

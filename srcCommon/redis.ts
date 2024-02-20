@@ -48,7 +48,7 @@ interface IRedisCache {
 class RedisCacheImpl implements IRedisCache {
     private readonly client: ReturnType<typeof createClient>;
     private readonly ttl: number = CACHE_TTL_24_HOURS_IN_MS;
-    private readonly responseCacheKeyPrefix = `${process.env.ENV}:xp-response`;
+    private readonly responseCacheKeyPrefix = getResponseCacheKeyPrefix();
     private renderCacheKeyPrefix = '';
 
     constructor() {
@@ -71,7 +71,7 @@ class RedisCacheImpl implements IRedisCache {
     }
 
     public async init(buildId: string) {
-        this.renderCacheKeyPrefix = `${process.env.ENV}:render:${buildId}`;
+        this.renderCacheKeyPrefix = getRenderCacheKeyPrefix(buildId);
 
         return this.client.connect().then(() => {
             logger.info(
@@ -189,3 +189,8 @@ export const RedisCache =
     validateClientOptions()
         ? RedisCacheImpl
         : RedisCacheDummy;
+
+export const getRenderCacheKeyPrefix = (buildId: string) =>
+    `${process.env.ENV}:render:${buildId}`;
+
+export const getResponseCacheKeyPrefix = () => `${process.env.ENV}:xp-response`;

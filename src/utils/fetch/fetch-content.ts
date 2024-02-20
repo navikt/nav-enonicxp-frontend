@@ -1,7 +1,7 @@
 import { ContentProps } from 'types/content-props/_content-common';
 import { makeErrorProps } from '../make-error-props';
 import { stripXpPathPrefix, xpServiceUrl } from '../urls';
-import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
+import { fetchWithTimeout, objectToQueryString } from 'srcCommon/fetch-utils';
 import { MediaProps } from 'types/media';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from '../errors';

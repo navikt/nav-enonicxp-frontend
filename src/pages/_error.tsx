@@ -4,7 +4,7 @@ import { PageBase } from 'components/PageBase';
 import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from 'utils/errors';
-import { fetchWithTimeout } from 'utils/fetch/fetch-utils';
+import { fetchWithTimeout } from 'srcCommon/fetch-utils';
 import { NextApiResponse, NextPageContext } from 'next';
 import { logger } from 'srcCommon/logger';
 
