@@ -39,10 +39,6 @@ interface IRedisCache {
     getResponse(key: string): Promise<XpResponseProps | null>;
 
     setResponse(key: string, data: XpResponseProps): Promise<string | null>;
-
-    delete(key: string): Promise<number>;
-
-    clear(): Promise<string>;
 }
 
 class RedisCacheImpl implements IRedisCache {
@@ -125,29 +121,6 @@ class RedisCacheImpl implements IRedisCache {
         );
     }
 
-    public async delete(key: string) {
-        const responseKey = this.getFullKey(key, this.responseCacheKeyPrefix);
-        const renderKey = this.getFullKey(key, this.renderCacheKeyPrefix);
-
-        logger.info(
-            `Deleting redis cache entries for ${responseKey} and ${renderKey}`
-        );
-
-        return this.client.del([responseKey, renderKey]).catch((e) => {
-            logger.error(`Error deleting value for key ${key} - ${e}`);
-            return 0;
-        });
-    }
-
-    public async clear() {
-        logger.info('Clearing redis cache!');
-
-        return this.client.flushDb().catch((e) => {
-            logger.error(`Error flushing database - ${e}`);
-            return 'error';
-        });
-    }
-
     private getFullKey(key: string, keyPrefix: string) {
         return `${keyPrefix}:${pathToCacheKey(key)}`;
     }
@@ -172,14 +145,6 @@ class RedisCacheDummy implements IRedisCache {
 
     public async setResponse(key: string, data: XpResponseProps) {
         return null;
-    }
-
-    public async delete(key: string) {
-        return 1;
-    }
-
-    public async clear() {
-        return 'Ok';
     }
 }
 

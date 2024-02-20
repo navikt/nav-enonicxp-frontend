@@ -58,11 +58,9 @@ export default class PageCacheHandler {
 
     public async clear() {
         localCache.clear();
-        return redisCache.clear();
     }
 
     public async delete(path: string) {
         localCache.delete(pathToCacheKey(path));
-        return redisCache.delete(path);
     }
 }
