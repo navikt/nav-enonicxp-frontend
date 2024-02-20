@@ -1,4 +1,3 @@
-import { ContentCommonProps, ContentType } from './_content-common';
 import { OptionSetSingle } from 'types/util-types';
 
 export interface AlertData {
