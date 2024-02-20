@@ -1,1 +1,1 @@
-export const CACHE_TTL_24_HOURS_IN_MS = 3600 * 24 * 1000;
+export const CACHE_TTL_72_HOURS_IN_MS = 3600 * 72 * 1000;

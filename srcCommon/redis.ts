@@ -1,7 +1,7 @@
 import { createClient, RedisClientOptions } from 'redis';
 import { logger } from 'srcCommon/logger';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
-import { CACHE_TTL_24_HOURS_IN_MS } from 'srcCommon/constants';
+import { CACHE_TTL_72_HOURS_IN_MS } from 'srcCommon/constants';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { pathToCacheKey } from 'srcCommon/cache-key';
 
@@ -43,7 +43,7 @@ interface IRedisCache {
 
 class RedisCacheImpl implements IRedisCache {
     private readonly client: ReturnType<typeof createClient>;
-    private readonly ttl: number = CACHE_TTL_24_HOURS_IN_MS;
+    private readonly ttl: number = CACHE_TTL_72_HOURS_IN_MS;
     private readonly responseCacheKeyPrefix = getResponseCacheKeyPrefix();
     private renderCacheKeyPrefix = '';
 
