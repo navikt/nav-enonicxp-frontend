@@ -1,4 +1,4 @@
-import { fetchJson } from './fetch-utils';
+import { fetchJson } from 'srcCommon/fetch-utils';
 import { logger } from 'srcCommon/logger';
 
 type GetCacheKeyResponse = {

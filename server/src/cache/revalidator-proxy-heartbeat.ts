@@ -3,6 +3,11 @@
 // See: https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy
 import { networkInterfaces } from 'os';
 import { logger } from 'srcCommon/logger';
+import {
+    getRenderCacheKeyPrefix,
+    getResponseCacheKeyPrefix,
+} from 'srcCommon/redis';
+import { objectToQueryString } from 'srcCommon/fetch-utils';
 
 const {
     ENV,
@@ -11,7 +16,8 @@ const {
     REVALIDATOR_PROXY_ORIGIN,
     SERVICE_SECRET,
 } = process.env;
-const heartbeatPeriodMs = 5000;
+
+const HEARTBEAT_PERIOD_MS = 5000;
 
 const getPodAddress = () => {
     if (ENV === 'localhost') {
@@ -34,33 +40,46 @@ const getPodAddress = () => {
     return podAddress;
 };
 
-const getProxyLivenessUrl = () => {
+const getProxyLivenessUrl = (buildId: string) => {
     const podAddress = getPodAddress();
     return podAddress
-        ? `${REVALIDATOR_PROXY_ORIGIN}/liveness?address=${podAddress}`
+        ? `${REVALIDATOR_PROXY_ORIGIN}/liveness${objectToQueryString({
+              address: podAddress,
+              redisPrefixes: [
+                  getRenderCacheKeyPrefix(buildId),
+                  getResponseCacheKeyPrefix(),
+              ].join(','),
+          })}`
         : null;
 };
 
-export const initRevalidatorProxyHeartbeat = (() => {
+let didStart = false;
+
+export const initRevalidatorProxyHeartbeat = (buildId: string) => {
     if (NODE_ENV === 'development') {
-        return () => {};
+        return;
     }
 
-    let heartbeatInterval: NodeJS.Timer;
-    const url = getProxyLivenessUrl();
+    if (didStart) {
+        logger.warn('Proxy heartbeat loop already started!');
+        return;
+    }
 
-    return () => {
-        if (!heartbeatInterval && url) {
-            logger.info('Starting heartbeat loop');
-            const heartbeatFunc = () => {
-                fetch(url, {
-                    headers: { secret: SERVICE_SECRET },
-                }).catch((e) =>
-                    logger.error(`Failed to send heartbeat signal - ${e}`)
-                );
-            };
-            heartbeatFunc();
-            heartbeatInterval = setInterval(heartbeatFunc, heartbeatPeriodMs);
-        }
+    const url = getProxyLivenessUrl(buildId);
+    if (!url) {
+        return;
+    }
+
+    didStart = true;
+
+    logger.info('Starting heartbeat loop');
+
+    const heartbeatFunc = () => {
+        fetch(url, {
+            headers: { secret: SERVICE_SECRET },
+        }).catch((e) => logger.error(`Failed to send heartbeat signal - ${e}`));
     };
-})();
+
+    heartbeatFunc();
+    setInterval(heartbeatFunc, HEARTBEAT_PERIOD_MS);
+};

@@ -1,4 +1,4 @@
-import { fetchJson } from './fetch-utils';
+import { fetchJson } from 'srcCommon/fetch-utils';
 import { setAuthStateAction } from 'store/slices/authState';
 import { store } from 'store/store';
 import { logger } from 'srcCommon/logger';

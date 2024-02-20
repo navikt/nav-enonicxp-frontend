@@ -27,10 +27,9 @@ spec:
   prometheus:
     enabled: true
     path: /internal/metrics
-  leaderElection: true
   redis:
     - instance: {{ redis.instance }}
-      access: admin
+      access: readwrite
   ingresses:
     {{#each ingresses as |url|}}
     - {{url}}

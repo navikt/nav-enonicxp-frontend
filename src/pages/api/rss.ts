@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { fetchJson } from 'utils/fetch/fetch-utils';
+import { fetchJson } from 'srcCommon/fetch-utils';
 import Cache from 'node-cache';
 import RSS from 'rss';
 import { apiErrorHandler } from 'utils/api-error-handler';
