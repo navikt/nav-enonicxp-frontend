@@ -11,7 +11,7 @@ import {
 } from './videoHelpers';
 import { translator } from 'translations';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-import { fetchJson } from 'utils/fetch/fetch-utils';
+import { fetchJson } from 'srcCommon/fetch-utils';
 import Script from 'next/script';
 import { classNames } from 'utils/classnames';
 import { AlertBox } from 'components/_common/alert-box/AlertBox';

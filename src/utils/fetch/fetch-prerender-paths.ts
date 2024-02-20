@@ -1,4 +1,4 @@
-import { fetchJson } from './fetch-utils';
+import { fetchJson } from 'srcCommon/fetch-utils';
 import { xpServiceUrl } from '../urls';
 import { logger } from 'srcCommon/logger';
 

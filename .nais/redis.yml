@@ -9,6 +9,9 @@ metadata:
 spec:
   plan: {{ redis.plan }}
   project: {{ redis.project }}
+  maintenanceWindowDow: saturday
+  userConfig:
+    redis_maxmemory_policy: allkeys-lru
 
 ---
 apiVersion: aiven.io/v1alpha1

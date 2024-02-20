@@ -18,19 +18,18 @@ spec:
   port: 3000
   liveness:
     path: /api/internal/isAlive
-    initialDelay: 5
+    initialDelay: 10
     timeout: 10
   readiness:
     path: /api/internal/isReady
-    initialDelay: 20
+    initialDelay: 10
     timeout: 10
   prometheus:
     enabled: true
     path: /internal/metrics
-  leaderElection: true
   redis:
     - instance: {{ redis.instance }}
-      access: admin
+      access: readwrite
   ingresses:
     {{#each ingresses as |url|}}
     - {{url}}

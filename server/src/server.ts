@@ -5,7 +5,7 @@ import promBundle from 'express-prom-bundle';
 import { initRevalidatorProxyHeartbeat } from 'cache/revalidator-proxy-heartbeat';
 import { serverSetupFailover } from 'server-setup/server-setup-failover';
 import { serverSetup } from 'server-setup/server-setup';
-import { getNextServer } from 'next-utils';
+import { getNextBuildId, getNextServer } from 'next-utils';
 import { logger } from 'srcCommon/logger';
 import path from 'path';
 import { injectNextImageCacheDir } from 'cache/image-cache-handler';
@@ -78,7 +78,8 @@ nextApp.prepare().then(async () => {
         }
 
         if (!isFailover) {
-            initRevalidatorProxyHeartbeat();
+            const buildId = getNextBuildId(nextServer);
+            initRevalidatorProxyHeartbeat(buildId);
         }
 
         logger.info(`Server started on port ${port}`);
