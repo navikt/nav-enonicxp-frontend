@@ -1,11 +1,11 @@
 import React from 'react';
-import { AlertInContextPageProps } from 'types/content-props/alerts';
+import { AlertData } from 'types/content-props/alerts';
 import { AlertBox } from '../alert-box/AlertBox';
 
 import style from './AlertInContext.module.scss';
 
 type Props = {
-    alert: AlertInContextPageProps;
+    alert: AlertData;
 };
 
 export const AlertInContext = ({ alert }: Props) => {
@@ -16,11 +16,7 @@ export const AlertInContext = ({ alert }: Props) => {
     const variant = alert.data.type === 'critical' ? 'warning' : 'info';
 
     return (
-        <AlertBox
-            className={style.alertInContext}
-            variant={variant}
-            key={alert._id}
-        >
+        <AlertBox className={style.alertInContext} variant={variant}>
             {alert.data.text}
         </AlertBox>
     );

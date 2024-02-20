@@ -5,7 +5,6 @@ import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { FormDetailsButton } from './FormDetailsButton';
 import { InfoBox } from '../info-box/InfoBox';
-import { AlertInContextPageProps } from 'types/content-props/alerts';
 import { AlertInContext } from '../alert-in-context/AlertInContext';
 
 import style from './FormDetails.module.scss';
@@ -120,8 +119,8 @@ export const FormDetails = ({
             )}
             {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
             {alerts &&
-                alerts.map((alert) => (
-                    <AlertInContext key={alert._id} alert={alert} />
+                alerts.map((alert, index) => (
+                    <AlertInContext key={index} alert={alert} />
                 ))}
             {variations.length > 0 && (
                 <div className={style.variation}>
