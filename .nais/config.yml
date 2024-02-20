@@ -27,7 +27,6 @@ spec:
   prometheus:
     enabled: true
     path: /internal/metrics
-  leaderElection: true
   redis:
     - instance: {{ redis.instance }}
       access: readwrite

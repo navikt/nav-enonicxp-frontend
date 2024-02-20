@@ -2,7 +2,6 @@ import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache } from 'srcCommon/redis';
-import { isLeaderPod } from 'leader-pod';
 import { CACHE_TTL_24_HOURS_IN_MS } from 'srcCommon/constants';
 import { pathToCacheKey } from 'srcCommon/cache-key';
 
@@ -59,17 +58,11 @@ export default class PageCacheHandler {
 
     public async clear() {
         localCache.clear();
-
-        if (await isLeaderPod()) {
-            return redisCache.clear();
-        }
+        return redisCache.clear();
     }
 
     public async delete(path: string) {
         localCache.delete(pathToCacheKey(path));
-
-        if (await isLeaderPod()) {
-            return redisCache.delete(path);
-        }
+        return redisCache.delete(path);
     }
 }
