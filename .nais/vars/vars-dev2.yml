@@ -18,3 +18,8 @@ resources:
 replicas:
   min: 1
   max: 2
+redis:
+  plan: hobbyist
+  project: nav-dev
+  instance: pagecache
+  endpointId: f20f5b48-18f4-4e2a-8e5f-4ab3edb19733

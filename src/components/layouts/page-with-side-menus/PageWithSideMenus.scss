@@ -1,4 +1,4 @@
-@use 'src/common' as common;
+@use 'common' as common;
 
 .page__page-with-side-menus {
     $sectionMaxWidth: common.px-to-rem(600);

@@ -4,6 +4,7 @@ import Config from '../config';
 import { fetchPageProps } from 'utils/fetch/fetch-page-props';
 import { isPropsWithContent } from 'types/_type-guards';
 import { fetchPrerenderPaths } from 'utils/fetch/fetch-prerender-paths';
+import { logger } from 'srcCommon/logger';
 
 // For failover deployments we fully prerender a static version of the site
 // during build-time. For regular app deployments we generate pages on demand
@@ -28,7 +29,7 @@ const getStaticPathsFailover = async () => {
 
     if (!contentPaths) {
         const msg = 'Could not retrieve paths to prerender, aborting...';
-        console.error(msg);
+        logger.error(msg);
         throw new Error(msg);
     }
 

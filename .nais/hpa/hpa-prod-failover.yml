@@ -3,6 +3,8 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: nav-enonicxp-frontend-failover
   namespace: personbruker
+  labels:
+    team: personbruker
   ownerReferences:
     - apiVersion: nais.io/v1alpha1
       kind: Application

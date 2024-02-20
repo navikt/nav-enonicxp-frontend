@@ -1,5 +1,5 @@
-@use 'src/common' as common;
-@use 'src/components/layouts/index-page/IndexPage.module' as indexPage;
+@use 'common' as common;
+@use 'components/layouts/index-page/IndexPage.module' as indexPage;
 
 .panel {
     display: flex;

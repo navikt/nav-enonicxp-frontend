@@ -16,3 +16,8 @@ resources:
 replicas:
   min: 3
   max: 3
+redis:
+  plan: startup-4
+  project: nav-prod
+  instance: pagecache
+  endpointId: 76685598-1048-4f56-b34a-9769ef747a92
