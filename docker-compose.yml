@@ -2,11 +2,12 @@ version: '3.7'
 services:
   revalidator-proxy:
     container_name: revalidator-proxy-xpfrontend
-    image: 'ghcr.io/navikt/nav-enonicxp-frontend-revalidator-proxy/nav-enonicxp-frontend-revalidator-proxy:latest'
+    image: 'europe-north1-docker.pkg.dev/nais-management-233d/personbruker/nav-enonicxp-frontend-revalidator-proxy-prod:latest'
     ports:
       - '3002:3002'
     environment:
       SERVICE_SECRET: 'dummyToken'
+      NO_REDIS: true
 
   oidc-provider:
     container_name: oidc-provider-xpfrontend
