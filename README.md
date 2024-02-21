@@ -2,11 +2,6 @@
 
 React/[Next.js](https://nextjs.org/) frontend for åpne sider på nav.no. Benytter Enonic XP som headless CMS.
 
-![Deploy to prod](https://github.com/navikt/nav-enonicxp-frontend/actions/workflows/deploy.prod.yml/badge.svg) <br>
-![Deploy to prod (failover)](https://github.com/navikt/nav-enonicxp-frontend/actions/workflows/deploy-failover.prod.yml/badge.svg) <br>
-![Deploy to dev1](https://github.com/navikt/nav-enonicxp-frontend/actions/workflows/deploy.dev1.yml/badge.svg) <br>
-![Deploy to dev2](https://github.com/navikt/nav-enonicxp-frontend/actions/workflows/deploy.dev2.yml/badge.svg)
-
 ## Lokal utvikling
 
 Kjøres lokalt på [http://localhost:3000](http://localhost:3000).
