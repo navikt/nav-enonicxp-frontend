@@ -100,6 +100,7 @@ export enum ContentType {
     FormsOverview = 'no.nav.navno:forms-overview',
     UserTestsConfig = 'no.nav.navno:user-tests-config',
     Video = 'no.nav.navno:video',
+    AlertInContext = 'no.nav.navno:alert-in-context',
 }
 
 export type ContentAndMediaCommonProps = {
