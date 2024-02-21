@@ -10,6 +10,7 @@ spec:
   plan: {{ redis.plan }}
   project: {{ redis.project }}
   maintenanceWindowDow: saturday
+  maintenanceWindowTime: 20:00:00
   userConfig:
     redis_maxmemory_policy: allkeys-lru
 
