@@ -11,19 +11,37 @@ React/[Next.js](https://nextjs.org/) frontend for åpne sider på nav.no. Benytt
 
 Kjører lokalt på [http://localhost:3000](http://localhost:3000).
 
-Appen kjøres som default mot en lokal instans av [Enonic XP](https://github.com/navikt/nav-enonicxp). Øvrige avhengigheter kan startes ved å kjøre `docker compose up`.
+Appen kjøres som default mot en lokal instans av [Enonic XP](https://github.com/navikt/nav-enonicxp). Alternativt kan dev eller prod-instansen av XP benyttes via [nav-enonicxp-dev-proxy](https://github.com/navikt/nav-enonicxp-dev-proxy).
 
-Alternativt kan dev eller prod-instansen av XP benyttes via [nav-enonicxp-dev-proxy](https://github.com/navikt/nav-enonicxp-dev-proxy).
-
-#### Development mode:
+### Development mode:
 
 Kjør `npm run dev`
 
-#### Production mode:
+### Production mode:
 
-Kopier .env.development til .env.local, og sett `NODE_ENV=production`
+Kjør `npm run start-clean`
 
-Kjør så `npm run start-clean`
+### Docker compose
+
+[Dekoratøren](https://github.com/navikt/nav-dekoratoren), [cache-invalidator](https://github.com/navikt/nav-enonicxp-frontend-revalidator-proxy) og mocks for innlogging
+kan kjøres lokalt med `docker compose up`. Du må først autentisere til relevante image registries:
+
+#### GAR
+
+```
+gcloud auth login
+gcloud auth configure-docker europe-north1-docker.pkg.dev
+```
+
+Se også https://cloud.google.com/artifact-registry/docs/docker/authentication#gcloud-helper
+
+#### Github packages:
+
+Generer en token på Github med `read:packages` access og SSO auth for navikt. Bruk denne som passord ved login:
+
+```
+docker login ghcr.io
+```
 
 ## Deploy til test-miljø
 
