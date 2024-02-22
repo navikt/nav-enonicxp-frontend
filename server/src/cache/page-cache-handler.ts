@@ -10,7 +10,7 @@ const TTL_RESOLUTION_MS = 60 * 1000;
 export const redisCache = new RedisCache();
 
 const localCache = new LRUCache<string, CacheHandlerValue>({
-    max: 3000,
+    max: 4000,
     ttl: CACHE_TTL_72_HOURS_IN_MS,
     ttlResolution: TTL_RESOLUTION_MS,
 });
