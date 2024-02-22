@@ -17,6 +17,13 @@ spec:
     name: nav-enonicxp-frontend-dev1
   minReplicas: 2
   maxReplicas: 4
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+        - type: Pods
+          periodSeconds: 60
+      selectPolicy: Max
   metrics:
     - type: Resource
       resource:
