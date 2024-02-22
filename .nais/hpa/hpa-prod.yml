@@ -30,4 +30,4 @@ spec:
           name: http_request_duration_seconds_count
         target:
           type: AverageValue
-          averageValue: '400'
+          averageValue: '250'
