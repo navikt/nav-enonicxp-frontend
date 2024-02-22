@@ -9,10 +9,10 @@ ingresses:
   - https://www.nav.no
 resources:
   requests:
-    cpu: 1500m
-    memory: 2500Mi
+    cpu: 1000m
+    memory: 2048Mi
   limits:
-    memory: 2500Mi
+    memory: 4096Mi
 replicas:
   min: 3
   max: 3
