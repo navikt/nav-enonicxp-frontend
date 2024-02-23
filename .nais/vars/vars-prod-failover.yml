@@ -13,6 +13,3 @@ resources:
     memory: 750Mi
   limits:
     memory: 750Mi
-replicas:
-  min: 2
-  max: 2
