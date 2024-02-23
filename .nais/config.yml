@@ -39,6 +39,9 @@ spec:
   env:
     - name: NPM_CONFIG_CACHE
       value: /tmp/npm-cache
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
   replicas:
   {{#with replicas}}
     min: {{min}}

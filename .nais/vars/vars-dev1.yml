@@ -14,7 +14,7 @@ resources:
     cpu: 500m
     memory: 1000Mi
   limits:
-    memory: 1000Mi
+    memory: 2000Mi
 replicas:
   min: 2
   max: 2

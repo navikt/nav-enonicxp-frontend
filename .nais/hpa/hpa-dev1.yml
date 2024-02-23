@@ -17,13 +17,21 @@ spec:
     name: nav-enonicxp-frontend-dev1
   minReplicas: 2
   maxReplicas: 4
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+        - type: Pods
+          value: 2
+          periodSeconds: 60
+      selectPolicy: Max
   metrics:
     - type: Resource
       resource:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 60
+          averageUtilization: 75
     - type: Pods
       pods:
         metric:
