@@ -35,10 +35,7 @@ spec:
     - name: NPM_CONFIG_CACHE
       value: /tmp/npm-cache
   replicas:
-  {{#with replicas}}
-    min: {{min}}
-    max: {{max}}
-  {{/with}}
+    disableAutoScaling: true
   accessPolicy:
     outbound:
       rules:
