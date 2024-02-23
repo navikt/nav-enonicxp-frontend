@@ -2,17 +2,12 @@ import FileSystemCache from 'next/dist/server/lib/incremental-cache/file-system-
 import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache } from 'srcCommon/redis';
-import { CACHE_TTL_72_HOURS_IN_MS } from 'srcCommon/constants';
 import { pathToCacheKey } from 'srcCommon/cache-key';
-
-const TTL_RESOLUTION_MS = 60 * 1000;
 
 export const redisCache = new RedisCache();
 
 const localCache = new LRUCache<string, CacheHandlerValue>({
-    max: 4000,
-    ttl: CACHE_TTL_72_HOURS_IN_MS,
-    ttlResolution: TTL_RESOLUTION_MS,
+    max: 5000,
 });
 
 export default class PageCacheHandler {
@@ -29,17 +24,7 @@ export default class PageCacheHandler {
             return null;
         }
 
-        const ttlRemaining = fromRedisCache.lastModified
-            ? fromRedisCache.lastModified +
-              CACHE_TTL_72_HOURS_IN_MS -
-              Date.now()
-            : CACHE_TTL_72_HOURS_IN_MS;
-
-        if (ttlRemaining > TTL_RESOLUTION_MS) {
-            localCache.set(key, fromRedisCache, {
-                ttl: ttlRemaining,
-            });
-        }
+        localCache.set(key, fromRedisCache);
 
         return fromRedisCache;
     }
