@@ -31,6 +31,7 @@ interface HoverFocusIconProps {
     iconActive: string;
     isActive: boolean;
     style?: string;
+    altText?: string;
 }
 
 export const hoverFocusIcon = ({
@@ -38,10 +39,11 @@ export const hoverFocusIcon = ({
     iconActive,
     isActive,
     style = '',
+    altText = '',
 }: HoverFocusIconProps) => (
     <>
         <img
-            alt=""
+            alt={altText}
             className={`${style}`}
             src={`${appOrigin}/gfx/${iconDefault}`}
             style={{
@@ -49,7 +51,7 @@ export const hoverFocusIcon = ({
             }}
         />
         <img
-            alt=""
+            alt={altText}
             className={`${style}`}
             src={`${appOrigin}/gfx/${iconActive}`}
             style={{

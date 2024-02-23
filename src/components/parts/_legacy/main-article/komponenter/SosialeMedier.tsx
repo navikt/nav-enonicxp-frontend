@@ -57,6 +57,7 @@ const Icon = ({ type, text, href }) => {
                     iconDefault: `${type}-filled.svg`,
                     iconActive: `${type}-inverted.svg`,
                     isActive: isActive,
+                    altText: text,
                 })}
             </LenkeBase>
         </li>
