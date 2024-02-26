@@ -1,7 +1,7 @@
 import { createClient, RedisClientOptions } from 'redis';
 import { logger } from 'srcCommon/logger';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
-import { CACHE_TTL_72_HOURS_IN_MS } from 'srcCommon/constants';
+import { TIME_24_HOURS_IN_MS, TIME_72_HOURS_IN_MS } from 'srcCommon/constants';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { pathToCacheKey } from 'srcCommon/cache-key';
 
@@ -29,21 +29,12 @@ const validateClientOptions = () => {
     return isValid;
 };
 
-interface IRedisCache {
-    init(buildId: string): Promise<IRedisCache>;
-
-    getRender(key: string): Promise<CacheHandlerValue | null>;
-
-    setRender(key: string, data: CacheHandlerValue): Promise<string | null>;
-
-    getResponse(key: string): Promise<XpResponseProps | null>;
-
-    setResponse(key: string, data: XpResponseProps): Promise<string | null>;
-}
-
-class RedisCacheImpl implements IRedisCache {
+class RedisCacheImpl {
     private readonly client: ReturnType<typeof createClient>;
-    private readonly ttl: number = CACHE_TTL_72_HOURS_IN_MS;
+
+    private readonly responseCacheTTL: number = TIME_72_HOURS_IN_MS;
+    private readonly renderCacheTTL: number = TIME_24_HOURS_IN_MS;
+
     private readonly responseCacheKeyPrefix = getResponseCacheKeyPrefix();
     private renderCacheKeyPrefix = '';
 
@@ -71,15 +62,29 @@ class RedisCacheImpl implements IRedisCache {
 
         return this.client.connect().then(() => {
             logger.info(
-                `Initialized redis client with url ${clientOptions.url} - TTL: ${this.ttl} - Render prefix: ${this.renderCacheKeyPrefix} - Response prefix: ${this.responseCacheKeyPrefix}`
+                `Initialized redis client with url ${clientOptions.url} - Render key prefix: ${this.renderCacheKeyPrefix} - Response key prefix: ${this.responseCacheKeyPrefix}`
             );
             return this;
         });
     }
 
-    private async get(key: string) {
+    public async getRender(key: string) {
         return this.client
-            .get(key)
+            .getEx(this.getFullKey(key, this.renderCacheKeyPrefix), {
+                PX: this.renderCacheTTL,
+            })
+            .then((result) => (result ? JSON.parse(result) : result))
+            .catch((e) => {
+                logger.error(
+                    `Error getting render cache value for key ${key} - ${e}`
+                );
+                return Promise.resolve(null);
+            });
+    }
+
+    public async getResponse(key: string) {
+        return this.client
+            .get(this.getFullKey(key, this.responseCacheKeyPrefix))
             .then((result) => (result ? JSON.parse(result) : result))
             .catch((e) => {
                 logger.error(`Error getting value for key ${key} - ${e}`);
@@ -87,18 +92,10 @@ class RedisCacheImpl implements IRedisCache {
             });
     }
 
-    public async getRender(key: string) {
-        return this.get(this.getFullKey(key, this.renderCacheKeyPrefix));
-    }
-
-    public async getResponse(key: string) {
-        return this.get(this.getFullKey(key, this.responseCacheKeyPrefix));
-    }
-
-    private async set<DataType>(key: string, data: DataType) {
+    private async set<DataType>(key: string, ttl: number, data: DataType) {
         return this.client
             .set(key, JSON.stringify(data), {
-                PX: this.ttl,
+                PX: ttl,
             })
             .then((result) => {
                 logger.info(`Redis set result for ${key}: ${result}`);
@@ -111,12 +108,17 @@ class RedisCacheImpl implements IRedisCache {
     }
 
     public async setRender(key: string, data: CacheHandlerValue) {
-        return this.set(this.getFullKey(key, this.renderCacheKeyPrefix), data);
+        return this.set(
+            this.getFullKey(key, this.renderCacheKeyPrefix),
+            this.renderCacheTTL,
+            data
+        );
     }
 
     public async setResponse(key: string, data: XpResponseProps) {
         return this.set(
             this.getFullKey(key, this.responseCacheKeyPrefix),
+            this.responseCacheTTL,
             data
         );
     }
@@ -126,7 +128,7 @@ class RedisCacheImpl implements IRedisCache {
     }
 }
 
-class RedisCacheDummy implements IRedisCache {
+class RedisCacheDummy extends RedisCacheImpl {
     public async init() {
         return this;
     }
