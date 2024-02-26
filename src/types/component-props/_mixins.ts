@@ -47,6 +47,7 @@ export const getAudience = (
         return audience;
     }
 
+    // Always prioritize person audience if it is present
     if (Array.isArray(audience)) {
         return audience.includes(Audience.PERSON)
             ? Audience.PERSON
