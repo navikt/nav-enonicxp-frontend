@@ -13,6 +13,7 @@ import { injectNextImageCacheDir } from 'cache/image-cache-handler';
 const promMiddleware = promBundle({
     metricsPath: '/internal/metrics',
     customLabels: { hpa: 'rate' },
+    includePath: true,
     promClient: {
         collectDefaultMetrics: {},
     },
