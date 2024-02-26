@@ -36,8 +36,25 @@ export type AudienceProps = OptionSetSingle<{
     [Audience.PROVIDER]: { provider_audience?: ProviderAudience[] };
 }>;
 
-export const getAudience = (audience: AudienceProps | Audience) => {
-    return typeof audience === 'string' ? audience : audience?._selected;
+export const getAudience = (
+    audience?: AudienceProps | Audience | Audience[]
+) => {
+    if (!audience) {
+        return null;
+    }
+
+    if (typeof audience === 'string') {
+        return audience;
+    }
+
+    // Always prioritize person audience if it is present
+    if (Array.isArray(audience)) {
+        return audience.includes(Audience.PERSON)
+            ? Audience.PERSON
+            : audience[0];
+    }
+
+    return audience._selected;
 };
 
 export type FilterSelection = string[];
