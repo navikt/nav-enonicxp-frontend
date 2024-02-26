@@ -7,7 +7,7 @@ import { pathToCacheKey } from 'srcCommon/cache-key';
 export const redisCache = new RedisCache();
 
 const localCache = new LRUCache<string, CacheHandlerValue>({
-    max: 5000,
+    max: 2000,
 });
 
 export default class PageCacheHandler {
