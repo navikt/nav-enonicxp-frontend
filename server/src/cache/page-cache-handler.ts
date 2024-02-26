@@ -3,6 +3,7 @@ import { LRUCache } from 'lru-cache';
 import { CacheHandlerValue } from 'next/dist/server/lib/incremental-cache';
 import { RedisCache } from 'srcCommon/redis';
 import { pathToCacheKey } from 'srcCommon/cache-key';
+import { logger } from 'srcCommon/logger';
 
 export const redisCache = new RedisCache();
 
@@ -42,10 +43,13 @@ export default class PageCacheHandler {
     }
 
     public async clear() {
+        logger.info('Clearing local cache!');
         localCache.clear();
     }
 
     public async delete(path: string) {
-        localCache.delete(pathToCacheKey(path));
+        const key = pathToCacheKey(path);
+        logger.info(`Deleting local cache entry for ${key}`);
+        localCache.delete(key);
     }
 }
