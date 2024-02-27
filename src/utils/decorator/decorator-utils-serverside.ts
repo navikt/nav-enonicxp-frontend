@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     DecoratorEnvProps,
     fetchDecoratorReact,
@@ -30,7 +29,11 @@ const envProps =
           } as const);
 
 export const getDecoratorComponents = async (params?: DecoratorParams) => {
-    const decoratorComponents = fetchDecoratorReact({ ...envProps, params });
+    const decoratorComponents = fetchDecoratorReact({
+        ...envProps,
+        params,
+        noCache: process.env.DECORATOR_NOCACHE === 'true',
+    });
 
     return decoratorComponents;
 };
