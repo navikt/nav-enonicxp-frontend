@@ -24,7 +24,7 @@ export const Illustration = ({
     }
 
     if (!illustration && fallbackIllustration) {
-        return <FallbackChevron />;
+        return <FallbackChevron className={className} />;
     }
 
     if (!preferStaticIllustration) {

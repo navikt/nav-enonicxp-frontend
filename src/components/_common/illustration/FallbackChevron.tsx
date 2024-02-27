@@ -1,9 +1,13 @@
 import { classNames } from 'utils/classnames';
 import styles from './FallbackChevron.module.scss';
 
-export const FallbackChevron = () => {
+type FallbackChevronProps = {
+    className?: string;
+};
+
+export const FallbackChevron = ({ className }: FallbackChevronProps) => {
     return (
-        <div className={styles.fallbackChevron}>
+        <div className={classNames(styles.fallbackChevron, className)}>
             <div className={classNames(styles.back, 'back')}>
                 <svg
                     width="64"
