@@ -3,10 +3,8 @@ import { classNames } from '../../../../utils/classnames';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { joinWithConjunction } from '../../../../utils/string';
-import {
-    AudienceReception,
-    OfficeDetailsData,
-} from 'types/content-props/office-details-props';
+import { AudienceReception } from '@navikt/nav-office-reception-info';
+import { OfficeDetailsData } from 'types/content-props/office-details-props';
 
 import style from './OfficePageHeader.module.scss';
 
