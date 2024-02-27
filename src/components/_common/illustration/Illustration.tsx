@@ -2,12 +2,14 @@ import React from 'react';
 import { AnimatedIconsProps } from 'types/content-props/animated-icons';
 import { IllustrationStatic } from './IllustrationStatic';
 import { IllustrationAnimated } from './IllustrationAnimated';
+import { FallbackChevron } from './FallbackChevron';
 
 type Props = {
     illustration?: AnimatedIconsProps;
     isHovering?: boolean;
     preferStaticIllustration?: boolean;
     className?: string;
+    fallbackIllustration?: boolean;
 };
 
 export const Illustration = ({
@@ -15,9 +17,14 @@ export const Illustration = ({
     isHovering,
     preferStaticIllustration,
     className,
+    fallbackIllustration,
 }: Props) => {
-    if (!illustration) {
+    if (!illustration && !fallbackIllustration) {
         return null;
+    }
+
+    if (!illustration && fallbackIllustration) {
+        return <FallbackChevron />;
     }
 
     if (!preferStaticIllustration) {

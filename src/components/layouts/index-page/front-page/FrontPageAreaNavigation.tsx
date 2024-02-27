@@ -4,10 +4,11 @@ import { Header } from 'components/_common/headers/Header';
 import { AreaCard } from 'components/_common/area-card/AreaCard';
 import { FrontPageCard } from 'components/_common/frontpage-card/FrontPageCard';
 import { classNames } from 'utils/classnames';
-import { getAudience } from 'types/component-props/_mixins';
+import { Audience, getAudience } from 'types/component-props/_mixins';
 import { CardType } from 'types/card';
 
 import style from './FrontPageAreaNavigation.module.scss';
+import { ContentType } from 'types/content-props/_content-common';
 
 type Props = {
     content: FrontPageProps;
@@ -20,8 +21,24 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
         areasRefs = [],
         situationsRefs = [],
         frontPageNestedRefs = [],
+        otherRefs = [],
         audience,
     } = data;
+
+    const getCardType = (audience: Audience) => {
+        if (audience === Audience.EMPLOYER) {
+            return CardType.EmployerFrontpage;
+        }
+        if (audience === Audience.PROVIDER) {
+            return CardType.ProviderFrontpage;
+        }
+        if (audience === Audience.PERSON) {
+            return CardType.PersonFrontPage;
+        }
+        return null;
+    };
+
+    const cardType = getCardType(getAudience(audience));
 
     return (
         <div
@@ -55,7 +72,7 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                                 title={
                                     content.data?.title || content.displayName
                                 }
-                                type={CardType.ProviderFrontpage}
+                                type={cardType}
                             />
                         </li>
                     ))}
@@ -71,7 +88,28 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                                         situationPage.data?.title ||
                                         situationPage.displayName
                                     }
-                                    type={CardType.EmployerFrontpage}
+                                    type={cardType}
+                                />
+                            </li>
+                        );
+                    })}
+                    {otherRefs.map((page) => {
+                        let illustration = null;
+                        if (
+                            page.type === ContentType.Overview ||
+                            page.type === ContentType.FormsOverview
+                        ) {
+                            illustration = page.data?.illustration;
+                        }
+
+                        return (
+                            <li key={page._id}>
+                                <FrontPageCard
+                                    illustration={illustration}
+                                    path={page._path}
+                                    title={page.data?.title || page.displayName}
+                                    type={cardType}
+                                    fallbackIllustration={!illustration}
                                 />
                             </li>
                         );
