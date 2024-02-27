@@ -1,5 +1,6 @@
 import {
     DecoratorEnvProps,
+    DecoratorFetchProps,
     fetchDecoratorReact,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { DecoratorParams } from '@navikt/nav-dekoratoren-moduler';
@@ -18,21 +19,22 @@ const envMap: Record<AppEnv, DecoratorEnv> = {
 
 const decoratorEnv = envMap[process.env.ENV] || 'prod';
 
-const envProps =
+const envProps: DecoratorFetchProps =
     decoratorEnv === 'localhost'
         ? ({
               env: decoratorEnv,
               localUrl: DECORATOR_URL,
+              noCache: process.env.DECORATOR_NOCACHE === 'true',
           } as const)
         : ({
               env: decoratorEnv,
+              noCache: process.env.DECORATOR_NOCACHE === 'true',
           } as const);
 
 export const getDecoratorComponents = async (params?: DecoratorParams) => {
     const decoratorComponents = fetchDecoratorReact({
         ...envProps,
         params,
-        noCache: process.env.DECORATOR_NOCACHE === 'true',
     });
 
     return decoratorComponents;
