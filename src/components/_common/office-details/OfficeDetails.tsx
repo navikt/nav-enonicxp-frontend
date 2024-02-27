@@ -21,6 +21,8 @@ export const OfficeDetails = ({ officeData }: OfficeDetailsProps) => {
 
     const publikumsmottak = forceArray(brukerkontakt?.publikumsmottak); //TODO flytt forceArray inn i pakken? Må vel også gjøres i personopplysninger
 
+    console.log('publikumsmottak', publikumsmottak); //TODO fjern
+
     return (
         <div className={styles.wide}>
             <div
