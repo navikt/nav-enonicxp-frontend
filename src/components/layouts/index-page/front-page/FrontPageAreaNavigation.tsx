@@ -7,8 +7,8 @@ import { classNames } from 'utils/classnames';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { CardType } from 'types/card';
 
-import style from './FrontPageAreaNavigation.module.scss';
 import { ContentType } from 'types/content-props/_content-common';
+import style from './FrontPageAreaNavigation.module.scss';
 
 type Props = {
     content: FrontPageProps;
@@ -40,6 +40,12 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
 
     const cardType = getCardType(getAudience(audience));
 
+    const numberOfCards =
+        areasRefs.length +
+        frontPageNestedRefs.length +
+        situationsRefs.length +
+        otherRefs.length;
+
     return (
         <div
             className={classNames(style.wrapper, style[getAudience(audience)])}
@@ -56,7 +62,7 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                 <ul
                     className={classNames(
                         style.cards,
-                        areasRefs.length === 2 ? style.twocols : style.threecols
+                        numberOfCards === 2 ? style.twocols : style.threecols
                     )}
                 >
                     {areasRefs.map((areaContent) => (

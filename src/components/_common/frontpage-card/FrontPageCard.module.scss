@@ -26,24 +26,23 @@
         }
     }
 
-    :global(.employer-frontpage) {
-        background-color: var(--a-orange-200);
+    :global(.employer-frontpage),
+    :global(.person-frontpage) {
         &:not(:hover):not(:active) {
             box-shadow: 0 0 0;
         }
         &:hover {
             box-shadow: 0 0 0;
         }
+    }
+
+    :global(.employer-frontpage) {
+        background-color: var(--a-orange-200);
     }
     :global(.person-frontpage) {
         background-color: var(--a-deepblue-50);
-        &:not(:hover):not(:active) {
-            box-shadow: 0 0 0;
-        }
-        &:hover {
-            box-shadow: 0 0 0;
-        }
     }
+
     :global([class*='MiniCard'].provider-frontpage) {
         background-color: var(--a-red-50);
         box-shadow: var(--a-shadow-xsmall);

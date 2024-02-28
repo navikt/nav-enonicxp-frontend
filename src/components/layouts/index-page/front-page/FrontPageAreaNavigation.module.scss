@@ -45,10 +45,10 @@
 .cards {
     @include common.unstyled-list();
 
-    &.twcols {
+    &.twocols {
         @include common.grid-layout-mixin(2);
     }
     &.threecols {
-        @include common.grid-layout-mixin(2);
+        @include common.grid-layout-mixin(3);
     }
 }
