@@ -53,7 +53,12 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                 {areasHeader}
             </Header>
             <nav aria-label="Velg område">
-                <ul className={style.cards}>
+                <ul
+                    className={classNames(
+                        style.cards,
+                        areasRefs.length === 2 ? style.twocols : style.threecols
+                    )}
+                >
                     {areasRefs.map((areaContent) => (
                         <li key={areaContent._id}>
                             <AreaCard
