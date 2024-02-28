@@ -61,7 +61,7 @@ docker login ghcr.io
 
 [Kibana](https://logs.adeo.no/app/discover#/view/952d2110-d396-11eb-af21-ffc7c2f0592f)
 
-[Grafana](https://grafana.nais.io/d/mUGKZWtMz/personbruker-app-metrikker?orgId=1&var-datasource=prod-gcp&var-app=nav-enonicxp-frontend)
+[Grafana](https://grafana.nav.cloud.nais.io/d/acb4618a-aa49-4036-9534-c058bc1af783/nav-no-frontend-detaljert)
 
 ## Failover
 
