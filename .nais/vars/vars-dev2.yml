@@ -14,10 +14,7 @@ resources:
     cpu: 250m
     memory: 500Mi
   limits:
-    memory: 500Mi
-replicas:
-  min: 1
-  max: 2
+    memory: 1000Mi
 redis:
   plan: hobbyist
   project: nav-dev

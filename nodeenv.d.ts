@@ -22,6 +22,7 @@ declare global {
             REDIS_URI_PAGECACHE: string;
             REDIS_USERNAME_PAGECACHE: string;
             REDIS_PASSWORD_PAGECACHE: string;
+            DECORATOR_NOCACHE?: 'true' | 'false';
         }
     }
 

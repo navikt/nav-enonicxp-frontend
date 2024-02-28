@@ -21,6 +21,10 @@ $separator-attribs: 1px $color solid;
     width: calc(100% + 1rem);
     border-radius: common.$border-radius-xlarge;
 
+    &:after {
+        display: none;
+    }
+
     &:hover,
     &:focus {
         background-color: var(--a-deepblue-100);
