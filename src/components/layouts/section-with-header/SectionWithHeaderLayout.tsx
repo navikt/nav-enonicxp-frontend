@@ -1,6 +1,9 @@
 import React from 'react';
 import { SectionWithHeaderProps } from '../../../types/component-props/layouts/section-with-header';
-import { ContentProps } from '../../../types/content-props/_content-common';
+import {
+    ContentProps,
+    ContentType,
+} from '../../../types/content-props/_content-common';
 import { LayoutContainer } from '../LayoutContainer';
 import Region from '../Region';
 import { Header } from '../../_common/headers/Header';
@@ -8,6 +11,8 @@ import { XpImage } from '../../_common/image/XpImage';
 import { FilterBar } from '../../_common/filter-bar/FilterBar';
 import { EditorHelp } from '../../_editor-only/editor-help/EditorHelp';
 import { SectionNavigation } from './section-navigation/SectionNavigation';
+import { RelatedSituations } from 'components/_common/relatedSituations/RelatedSituations';
+import { AlternativeAudience } from 'components/_common/alternativeAudience/AlternativeAudience';
 
 const getBorderStyle = ({
     color = '#ffffff',
@@ -35,7 +40,15 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         );
     }
 
-    const { title, anchorId, icon, border, toggleCopyButton } = config;
+    const {
+        title,
+        anchorId,
+        icon,
+        border,
+        toggleCopyButton,
+        showRelatedSituations,
+        showAlternativeAudience,
+    } = config;
     const isEditorView = pageProps.editorView === 'edit';
     const showSubsectionNavigation = pageProps.data?.showSubsectionNavigation;
 
@@ -50,6 +63,16 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
     const shouldShowIntroRegion =
         regions.intro?.components?.length > 0 ||
         (shouldShowFilterBar && isEditorView);
+
+    const relatedSituations =
+        pageProps.type === ContentType.ProductPage
+            ? pageProps.data?.relatedSituations
+            : undefined;
+
+    const alternativeAudience =
+        pageProps.type === ContentType.ProductPage
+            ? pageProps.data?.alternativeAudience
+            : undefined;
 
     return (
         <LayoutContainer
@@ -106,6 +129,16 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             )}
             {shouldShowFilterBar && <FilterBar layoutProps={layoutProps} />}
             <Region pageProps={pageProps} regionProps={regions.content} />
+            {showRelatedSituations && relatedSituations && (
+                <RelatedSituations relatedSituations={relatedSituations} />
+            )}
+            {showAlternativeAudience && alternativeAudience && (
+                <AlternativeAudience
+                    alternativeAudience={alternativeAudience}
+                    currentAudience={pageProps.data?.audience}
+                    pageTitle={pageProps.data?.title || pageProps.displayName}
+                />
+            )}
         </LayoutContainer>
     );
 };

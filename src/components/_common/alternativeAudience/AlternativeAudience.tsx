@@ -78,8 +78,7 @@ export const AlternativeAudience = ({
         if (provider && provider.providerList) {
             provider.providerList.forEach((provider) => {
                 const providerLabels = provider.providerAudience.map(
-                    (audience) =>
-                        getProviderAudienceLabel(audience).toLowerCase()
+                    (audience) => getProviderAudienceLabel(audience)
                 );
                 links.push({
                     title: joinWithConjunction(providerLabels, language),

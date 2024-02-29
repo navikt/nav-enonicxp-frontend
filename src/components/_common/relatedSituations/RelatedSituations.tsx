@@ -10,16 +10,16 @@ import { LinkProps } from 'types/link-props';
 import styles from './RelatedSituations.module.scss';
 
 type RelatedSituationsProps = {
-    relevantSituations: ContentProps[];
+    relatedSituations: ContentProps[];
 };
 
 export const RelatedSituations = ({
-    relevantSituations,
+    relatedSituations,
 }: RelatedSituationsProps) => {
     const { language } = usePageConfig();
     const getStringPart = translator('stringParts', language);
 
-    if (!relevantSituations || relevantSituations.length === 0) {
+    if (!relatedSituations || relatedSituations.length === 0) {
         return null;
     }
 
@@ -29,7 +29,7 @@ export const RelatedSituations = ({
                 {getStringPart('relevantFor')}
             </Heading>
             <ul className={styles.situationsList}>
-                {relevantSituations.map((situation) => {
+                {relatedSituations.map((situation) => {
                     const link: LinkProps = {
                         url: stripXpPathPrefix(situation._path),
                         text: situation.data.title || situation.displayName,
