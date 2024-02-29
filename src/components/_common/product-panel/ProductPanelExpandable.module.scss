@@ -1,4 +1,4 @@
-@use 'src/common' as common;
+@use 'common' as common;
 
 $color: common.$a-deepblue-100;
 $separator-attribs: 1px $color solid;
@@ -20,6 +20,10 @@ $separator-attribs: 1px $color solid;
     margin: 0 -0.5rem -1px -0.5rem;
     width: calc(100% + 1rem);
     border-radius: common.$border-radius-xlarge;
+
+    &:after {
+        display: none;
+    }
 
     &:hover,
     &:focus {

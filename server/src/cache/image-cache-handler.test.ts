@@ -1,43 +1,13 @@
-import mockFs from 'mock-fs';
-import {
-    getNextBuildId,
-    getNextServer,
-    injectNextImageCacheDir,
-} from './next-utils';
 import NextNodeServer from 'next/dist/server/next-server';
-import next from 'next';
-import path from 'path';
+import mockFs from 'mock-fs';
 import fs from 'fs';
 import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
-
-const getNextApp = () =>
-    next({
-        conf: {},
-        dir: path.join(__dirname, '__next-test-dummy'),
-    });
-
-describe('Next.js server private accessors', () => {
-    const nextApp = getNextApp();
-    let nextServer: NextNodeServer;
-
-    beforeAll(async () => {
-        await nextApp.prepare();
-        nextServer = await getNextServer(nextApp);
-    });
-
-    test('Should get a NextNodeServer', () => {
-        expect(nextServer).toBeInstanceOf(NextNodeServer);
-    });
-
-    test('Should the specified buildId', () => {
-        const buildId = getNextBuildId(nextServer);
-
-        expect(buildId).toEqual('testId');
-    });
-});
+import { injectNextImageCacheDir } from './image-cache-handler';
+import { __getNextTestApp } from '../../__test-utils/utils';
+import { getNextServer } from '../next-utils';
 
 describe('Set next.js image cache dir', () => {
-    const nextApp = getNextApp();
+    const nextApp = __getNextTestApp();
     let nextServer: NextNodeServer;
 
     const imgCacheDir = 'myImgCacheDir';

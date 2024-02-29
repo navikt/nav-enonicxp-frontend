@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es6",
+        "target": "es2022",
         "allowJs": true,
         "strict": false,
         "forceConsistentCasingInFileNames": true,
@@ -18,16 +18,22 @@
             {
                 "name": "typescript-plugin-css-modules",
                 "options": {
-                    "classnameTransform": "dashesOnly",
-                    // Can be removed once this issue with certain SCSS-syntax has been fixed:
-                    // https://github.com/mrmckeb/typescript-plugin-css-modules/issues/221
-                    "allowUnknownClassnames": true
+                    "classnameTransform": "dashesOnly"
                 }
             }
         ],
         "lib": ["dom", "dom.iterable", "esnext"],
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "paths": {
+            "srcCommon/*": ["../srcCommon/*"]
+        }
     },
-    "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
+    "include": [
+        "next-env.d.ts",
+        "nodeenv.d.ts",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "srcCommon/**/*.ts"
+    ],
     "exclude": ["node_modules"]
 }

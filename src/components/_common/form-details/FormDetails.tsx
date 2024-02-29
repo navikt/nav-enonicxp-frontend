@@ -5,6 +5,7 @@ import { ParsedHtml } from '../parsed-html/ParsedHtml';
 import { FormDetailsData, Variation } from 'types/content-props/form-details';
 import { FormDetailsButton } from './FormDetailsButton';
 import { InfoBox } from '../info-box/InfoBox';
+import { AlertInContext } from '../alert-in-context/AlertInContext';
 
 import style from './FormDetails.module.scss';
 
@@ -17,6 +18,7 @@ export type FormDetailsComponentProps = {
         showAddendums?: boolean;
         showApplications?: boolean;
         showComplaints?: boolean;
+        showTitleAsLevel4?: boolean;
     };
     className?: string;
     formNumberSelected?: string;
@@ -35,10 +37,17 @@ export const FormDetails = ({
         showAddendums = true,
         showApplications = true,
         showComplaints = true,
+        showTitleAsLevel4 = false, // Temporary solution until all product pages have been re-organized.
     } = displayConfig;
 
-    const { formNumbers, formType, languageDisclaimer, ingress, title } =
-        formDetails;
+    const {
+        formNumbers,
+        formType,
+        languageDisclaimer,
+        ingress,
+        title,
+        alerts,
+    } = formDetails;
 
     const variations = formType.reduce((acc, cur) => {
         const { _selected } = cur;
@@ -70,8 +79,8 @@ export const FormDetails = ({
         <div className={classNames(style.formDetails, className)}>
             {hasVisibleTitle && (
                 <Heading
-                    size="medium"
-                    level="3"
+                    size={showTitleAsLevel4 ? 'small' : 'medium'}
+                    level={showTitleAsLevel4 ? '4' : '3'}
                     spacing={!hasVisibleIngress && !hasVisibleFormNumbers}
                 >
                     {title}
@@ -109,6 +118,10 @@ export const FormDetails = ({
                 </div>
             )}
             {languageDisclaimer && <InfoBox>{languageDisclaimer}</InfoBox>}
+            {alerts &&
+                alerts.map((alert, index) => (
+                    <AlertInContext key={index} alert={alert} />
+                ))}
             {variations.length > 0 && (
                 <div className={style.variation}>
                     {variations.map((variation, index) => (

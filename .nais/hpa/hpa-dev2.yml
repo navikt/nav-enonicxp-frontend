@@ -3,11 +3,8 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: nav-enonicxp-frontend-dev2
   namespace: personbruker
-  ownerReferences:
-    - apiVersion: nais.io/v1alpha1
-      kind: Application
-      name: nav-enonicxp-frontend-dev2
-      uid: d5a2e4bc-116c-4bca-adde-c16639e476b6
+  labels:
+    team: personbruker
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -22,10 +19,3 @@ spec:
         target:
           type: Utilization
           averageUtilization: 60
-    - type: Pods
-      pods:
-        metric:
-          name: http_request_duration_seconds_count
-        target:
-          type: AverageValue
-          averageValue: '250'

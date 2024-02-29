@@ -1,30 +1,15 @@
-import NextNodeServer from 'next/dist/server/next-server';
-import { NextServer } from 'next/dist/server/next';
-import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
 import ResponseCache from 'next/dist/server/response-cache';
+import { logger } from 'srcCommon/logger';
+import { ImageOptimizerCache } from 'next/dist/server/image-optimizer';
+import NextNodeServer from 'next/dist/server/next-server';
 import { propagateServerField } from 'next/dist/server/lib/render-server';
 import path from 'path';
-
-// Functions for accessing next.js internals in various hacky ways :)
-
-// Note: there are additional worker instances of the next server,
-// used for handling requests.
-// This function only returns the top level instance
-export const getNextServer = async (
-    nextApp: NextServer
-): Promise<NextNodeServer> => {
-    return nextApp['getServer']();
-};
-
-export const getNextBuildId = (nextServer: NextNodeServer) => {
-    return nextServer['getBuildId']();
-};
 
 class ImageCacheWithCustomCacheDir extends ResponseCache {
     private readonly cacheDir: string;
 
     constructor(minimalMode: boolean, cacheDir: string) {
-        console.log(`Overriding image cache dir to ${cacheDir}`);
+        logger.info(`Overriding image cache dir to ${cacheDir}`);
         super(minimalMode);
         this.cacheDir = cacheDir;
     }
@@ -35,7 +20,7 @@ class ImageCacheWithCustomCacheDir extends ResponseCache {
         try {
             context.incrementalCache['cacheDir'] = this.cacheDir;
         } catch (e) {
-            console.error(`Failed to set imageResponseCache cacheDir - ${e}`);
+            logger.error(`Failed to set imageResponseCache cacheDir - ${e}`);
         }
 
         return super.get(...args);
@@ -51,7 +36,7 @@ export const injectNextImageCacheDir = async (
     try {
         nextServer['imageResponseCache'] = responseCache;
     } catch (e) {
-        console.error(`Failed to set image cache dir on main server - ${e}`);
+        logger.error(`Failed to set image cache dir on main server - ${e}`);
     }
 
     // Also override the response cache for the request handler worker server
@@ -64,6 +49,6 @@ export const injectNextImageCacheDir = async (
             responseCache
         );
     } catch (e) {
-        console.error(`Failed to set image cache dir on worker server - ${e}`);
+        logger.error(`Failed to set image cache dir on worker server - ${e}`);
     }
 };

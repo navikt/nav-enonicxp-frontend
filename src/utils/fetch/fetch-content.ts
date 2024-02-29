@@ -1,12 +1,14 @@
 import { ContentProps } from 'types/content-props/_content-common';
 import { makeErrorProps } from '../make-error-props';
-import { xpServiceUrl } from '../urls';
-import { fetchWithTimeout, objectToQueryString } from './fetch-utils';
+import { stripXpPathPrefix, xpServiceUrl } from '../urls';
+import { fetchWithTimeout, objectToQueryString } from 'srcCommon/fetch-utils';
 import { MediaProps } from 'types/media';
 import { v4 as uuid } from 'uuid';
 import { logPageLoadError } from '../errors';
 import { stripLineBreaks } from '../string';
 import { PHASE_PRODUCTION_BUILD } from 'next/constants';
+import { logger } from 'srcCommon/logger';
+import { RedisCache } from 'srcCommon/redis';
 
 export type XpResponseProps = ContentProps | MediaProps;
 
@@ -17,12 +19,14 @@ const NOT_FOUND_MSG_PREFIX = 'Site path not found';
 
 const FETCH_TIMEOUT_MS = 60000;
 
-const getCacheKey =
+const getXpCacheKey =
     process.env.NODE_ENV !== 'development'
         ? () => ({
               cacheKey: global.cacheKey,
           })
         : () => ({});
+
+const redisCache = await new RedisCache().init(process.env.BUILD_ID);
 
 const fetchConfig = {
     headers: {
@@ -62,16 +66,16 @@ const fetchSiteContentStandard = async ({
     const params = objectToQueryString({
         id: idOrPath,
         ...(isDraft && { branch: 'draft' }),
-        ...(!isDraft && getCacheKey()), // We don't want to use backend-cache for draft content requests
+        ...(!isDraft && getXpCacheKey()), // We don't want to use backend-cache for draft content requests
         ...(isPreview && { preview: true }),
         ...(locale && { locale }),
     });
 
     const url = `${xpServiceUrl}/sitecontent${params}`;
-    console.log(`Fetching content from ${url}`);
+    logger.info(`Fetching content from ${url}`);
 
     return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
-        console.log(`Sitecontent fetch error for ${url}: ${e}`);
+        logger.info(`Sitecontent fetch error for ${url}: ${e}`);
         return null;
     });
 };
@@ -91,10 +95,10 @@ const fetchSiteContentVersion = async ({
 
     const url = `${xpServiceUrl}/sitecontentVersions${params}`;
 
-    console.log(`Fetching version history content from ${url}`);
+    logger.info(`Fetching version history content from ${url}`);
 
     return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
-        console.log(`Sitecontent version fetch error: ${e}`);
+        logger.info(`Sitecontent version fetch error: ${e}`);
         return null;
     });
 };
@@ -111,10 +115,10 @@ const fetchSiteContentArchive = async ({
     });
 
     const url = `${xpServiceUrl}/sitecontentArchive${params}`;
-    console.log(`Fetching archived content from ${url}`);
+    logger.info(`Fetching archived content from ${url}`);
 
     return fetchWithTimeout(url, FETCH_TIMEOUT_MS, fetchConfig).catch((e) => {
-        console.log(`Sitecontent archive fetch error: ${e}`);
+        logger.info(`Sitecontent archive fetch error: ${e}`);
         return null;
     });
 };
@@ -145,12 +149,31 @@ const fetchAndHandleErrorsBuildtime = async (
     });
 };
 
+const isCachableRequest = ({
+    isDraft,
+    isArchived,
+    time,
+    isPreview,
+}: FetchSiteContentArgs) => !(isDraft || isArchived || time || isPreview);
+
 const fetchAndHandleErrorsRuntime = async (
     props: FetchSiteContentArgs
 ): Promise<XpResponseProps> => {
+    const isCachable = isCachableRequest(props);
+    const { idOrPath } = props;
+
+    if (isCachable) {
+        const cachedResponse = await redisCache.getResponse(
+            stripXpPathPrefix(idOrPath)
+        );
+        if (cachedResponse) {
+            logger.info(`Response cache hit for ${idOrPath}`);
+            return cachedResponse;
+        }
+    }
+
     const res = await fetchSiteContent(props);
 
-    const { idOrPath } = props;
     const errorId = uuid();
 
     if (!res) {
@@ -162,7 +185,11 @@ const fetchAndHandleErrorsRuntime = async (
         ?.includes?.('application/json');
 
     if (res.ok && isJson) {
-        return res.json();
+        const json = await res.json();
+        if (isCachable) {
+            redisCache.setResponse(stripXpPathPrefix(idOrPath), json);
+        }
+        return json;
     }
 
     if (res.ok) {
@@ -185,11 +212,11 @@ const fetchAndHandleErrorsRuntime = async (
                 errorId,
                 `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath} - unexpected 404-response from sitecontent service: ${errorMsg}`
             );
-            return makeErrorProps(idOrPath, undefined, 503, errorId);
+            return makeErrorProps(idOrPath, errorMsg, 503, errorId);
         }
 
         // Regular 404 should not be logged as errors
-        console.log(`Content not found ${stripLineBreaks(idOrPath)}`);
+        logger.info(`Content not found ${stripLineBreaks(idOrPath)}`);
         return makeErrorProps(idOrPath, undefined, 404, errorId);
     }
 
@@ -197,7 +224,7 @@ const fetchAndHandleErrorsRuntime = async (
         errorId,
         `Fetch error: ${res.status} - Failed to fetch content from ${idOrPath}: ${errorMsg}`
     );
-    return makeErrorProps(idOrPath, undefined, res.status, errorId);
+    return makeErrorProps(idOrPath, errorMsg, res.status, errorId);
 };
 
 const fetchAndHandleErrors =

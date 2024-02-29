@@ -1,20 +1,28 @@
 import { MiniCard } from 'components/_common/card/MiniCard';
 import { CardType } from 'types/card';
 import { LinkProps } from 'types/link-props';
-import { AnimatedIconsProps } from 'types/content-props/animated-icons';
-import { OverviewPageProductLink } from 'types/content-props/overview-props';
+import { OverviewPageProductItem } from 'types/content-props/overview-props';
+import { logger } from 'srcCommon/logger';
 
 import style from './ProductLink.module.scss';
 
 type Props = {
-    product: OverviewPageProductLink;
-    illustration: AnimatedIconsProps;
+    product: OverviewPageProductItem;
 };
 
-export const OverviewLinkPanel = ({ product, illustration }: Props) => {
+export const OverviewLinkPanel = ({ product }: Props) => {
+    const { title, illustration, productLinks } = product;
+
+    const productLink = productLinks[0];
+
+    if (!productLink?.url) {
+        logger.error(`No url set for overview link panel ${title}`);
+        return null;
+    }
+
     const link: LinkProps = {
-        url: product.url,
-        text: product.title,
+        url: productLink.url,
+        text: title,
     };
 
     return (

@@ -1,8 +1,10 @@
-@use 'src/common' as common;
+@use 'common' as common;
 @use '../../layouts/index-page/IndexPage.module' as indexPage;
 
 @mixin transitionMixin {
-    transition: all 0.3s ease-out, box-shadow 0s;
+    transition:
+        all 0.3s ease-out,
+        box-shadow 0s;
 }
 
 $border-radius: common.$border-radius-xlarge;

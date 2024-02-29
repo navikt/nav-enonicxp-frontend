@@ -12,22 +12,18 @@ declare global {
             SERVICE_SECRET: string;
             REVALIDATOR_PROXY_ORIGIN: string;
             INNLOGGINGSSTATUS_URL: string;
-            PAGE_CACHE_DIR: string;
             IMAGE_CACHE_DIR: string;
             FAILOVER_ORIGIN: string;
             IS_FAILOVER_INSTANCE: string;
             NAVNO_API_URL: string;
             ASSET_PREFIX: string;
             TELEMETRY_URL: string;
+            NEXT_PHASE: string;
+            REDIS_URI_PAGECACHE: string;
+            REDIS_USERNAME_PAGECACHE: string;
+            REDIS_PASSWORD_PAGECACHE: string;
+            DECORATOR_NOCACHE?: 'true' | 'false';
         }
-    }
-
-    interface Window {
-        GoBrain?: {
-            create: (element: HTMLElement, config: Record<string, any>) => any;
-            destroy: (widgetId: string, deleteElement?: boolean) => any;
-            widgets: (widgetId: string) => any;
-        };
     }
 
     var cacheKey: string | undefined;

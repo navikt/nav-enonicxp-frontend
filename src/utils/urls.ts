@@ -1,4 +1,5 @@
 import { ContentProps } from 'types/content-props/_content-common';
+import { logger } from 'srcCommon/logger';
 
 export const appOriginProd = 'https://www.nav.no';
 export const xpContentPathPrefix = '/www.nav.no';
@@ -92,7 +93,7 @@ export const getRelativePathIfInternal = (
 
 export const getInternalAbsoluteUrl = (url: string, isEditorView: boolean) => {
     if (!isInternalUrl(url)) {
-        console.log(`Warning: ${url} is not an internal url`);
+        logger.info(`Warning: ${url} is not an internal url`);
         return url;
     }
 

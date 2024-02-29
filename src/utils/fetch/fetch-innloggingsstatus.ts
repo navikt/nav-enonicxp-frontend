@@ -1,6 +1,7 @@
-import { fetchJson } from './fetch-utils';
-import { setAuthStateAction } from '../../store/slices/authState';
-import { store } from '../../store/store';
+import { fetchJson } from 'srcCommon/fetch-utils';
+import { setAuthStateAction } from 'store/slices/authState';
+import { store } from 'store/store';
+import { logger } from 'srcCommon/logger';
 
 type InnloggingsstatusResponse =
     | {
@@ -19,7 +20,7 @@ export const fetchAndSetInnloggingsstatus = () =>
         }
     ).then((res) => {
         if (!res) {
-            console.error('Failed to fetch innloggingsstatus');
+            logger.error('Failed to fetch innloggingsstatus');
             store.dispatch(setAuthStateAction({ authState: 'loggedOut' }));
             return null;
         }

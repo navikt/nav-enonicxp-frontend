@@ -1,12 +1,13 @@
 import NextNodeServer from 'next/dist/server/next-server';
 import { RequestHandler } from 'express';
+import { logger } from 'srcCommon/logger';
 
 const getPendingResponses = (nextServer: NextNodeServer) => {
     try {
         const pendingResponses = nextServer['responseCache'].pendingResponses;
         return pendingResponses?.size > 0 ? [...pendingResponses.keys()] : [];
     } catch (e) {
-        console.error(`Error accessing pendingResponses - ${e}`);
+        logger.error(`Error accessing pendingResponses - ${e}`);
         return null;
     }
 };

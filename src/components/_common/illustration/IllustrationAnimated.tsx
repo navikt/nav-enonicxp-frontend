@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useId } from 'react';
 import { classNames } from 'utils/classnames';
-import { fetchJson } from 'utils/fetch/fetch-utils';
+import { fetchJson } from 'srcCommon/fetch-utils';
 import { useSWRImmutableOnScrollIntoView } from 'utils/fetch/useSWRImmutableOnScrollIntoView';
 
 import styleCommon from './Illustration.module.scss';

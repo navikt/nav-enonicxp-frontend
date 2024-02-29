@@ -17,6 +17,9 @@ on:
       hpa_file:
         required: false
         type: string
+      deploy_redis:
+        required: false
+        type: boolean
 
 jobs:
   deploy:
@@ -26,15 +29,28 @@ jobs:
       id-token: "write"
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
-      - name: Set HPA resource if specified
+        uses: actions/checkout@v4
+      - name: Deploy Redis
+        if: ${{ inputs.deploy_redis == true }}
+        uses: nais/deploy/actions/deploy@v2
+        timeout-minutes: 1
+        continue-on-error: true
+        env:
+          CLUSTER: ${{ inputs.cluster }}
+          RESOURCE: .nais/redis.yml
+          VARS: .nais/vars/${{ inputs.vars_file }}
+      - name: Deploy HPA
         if: ${{ inputs.hpa_file }}
-        run: |
-          echo "HPA_RESOURCE=,.nais/hpa/${{inputs.hpa_file}}" >> $GITHUB_ENV
-      - name: Deploy to nais
+        uses: nais/deploy/actions/deploy@v2
+        timeout-minutes: 1
+        continue-on-error: true
+        env:
+          CLUSTER: ${{ inputs.cluster }}
+          RESOURCE: .nais/hpa/${{inputs.hpa_file}}
+      - name: Deploy application
         uses: nais/deploy/actions/deploy@v2
         env:
           CLUSTER: ${{ inputs.cluster }}
-          RESOURCE: .nais/${{ inputs.config_file }}${{env.HPA_RESOURCE}}
+          RESOURCE: .nais/${{ inputs.config_file }}
           VAR: image=${{ inputs.image }}
           VARS: .nais/vars/${{ inputs.vars_file }}
