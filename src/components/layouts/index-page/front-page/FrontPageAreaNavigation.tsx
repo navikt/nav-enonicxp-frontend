@@ -14,13 +14,6 @@ type Props = {
     content: FrontPageProps;
 };
 
-const pagesWithIllustration = [
-    ContentType.Overview,
-    ContentType.FormsOverview,
-    ContentType.FrontPageNested,
-    ContentType.SituationPage,
-];
-
 export const FrontPageAreaNavigation = ({ content }: Props) => {
     const { data } = content;
     const {
