@@ -7,12 +7,19 @@ import { classNames } from 'utils/classnames';
 import { Audience, getAudience } from 'types/component-props/_mixins';
 import { CardType } from 'types/card';
 
-import { ContentType } from 'types/content-props/_content-common';
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import style from './FrontPageAreaNavigation.module.scss';
 
 type Props = {
     content: FrontPageProps;
 };
+
+const pagesWithIllustration = [
+    ContentType.Overview,
+    ContentType.FormsOverview,
+    ContentType.FrontPageNested,
+    ContentType.SituationPage,
+];
 
 export const FrontPageAreaNavigation = ({ content }: Props) => {
     const { data } = content;
@@ -21,7 +28,7 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
         areasRefs = [],
         situationsRefs = [],
         frontPageNestedRefs = [],
-        otherRefs = [],
+        navigationRefs = [],
         audience,
     } = data;
 
@@ -38,13 +45,25 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
         return null;
     };
 
+    const getIllustrationFromProps = (page: ContentProps) => {
+        if (
+            page.type === ContentType.Overview ||
+            page.type === ContentType.FormsOverview ||
+            page.type === ContentType.FrontPageNested ||
+            page.type === ContentType.SituationPage
+        ) {
+            return page.data?.illustration;
+        }
+        return null;
+    };
+
     const cardType = getCardType(getAudience(audience));
 
     const numberOfCards =
         areasRefs.length +
         frontPageNestedRefs.length +
         situationsRefs.length +
-        otherRefs.length;
+        navigationRefs.length;
 
     return (
         <div
@@ -104,14 +123,22 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                             </li>
                         );
                     })}
-                    {otherRefs.map((page) => {
-                        let illustration = null;
-                        if (
-                            page.type === ContentType.Overview ||
-                            page.type === ContentType.FormsOverview
-                        ) {
-                            illustration = page.data?.illustration;
+
+                    {navigationRefs.map((page) => {
+                        if (page.type === ContentType.AreaPage) {
+                            return (
+                                <li key={page._id}>
+                                    <AreaCard
+                                        path={page._path}
+                                        title={page.data.header}
+                                        area={page.data.area}
+                                        linkGroup={areasHeader}
+                                    />
+                                </li>
+                            );
                         }
+
+                        const illustration = getIllustrationFromProps(page);
 
                         return (
                             <li key={page._id}>

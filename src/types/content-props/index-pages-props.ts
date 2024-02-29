@@ -17,11 +17,17 @@ type CommonData = {
     audience: AudienceProps;
 };
 
+export type NavigationRefs =
+    | AreaPageProps
+    | FrontPageNestedProps
+    | SituationPageProps
+    | OtherRefsProps;
+
 export type FrontPageData = {
     areasRefs: AreaPageProps[];
     frontPageNestedRefs: FrontPageNestedProps[];
     situationsRefs: SituationPageProps[];
-    otherRefs: OtherRefsProps[];
+    navigationRefs: NavigationRefs[];
     areasHeader: string;
 } & CommonData;
 
