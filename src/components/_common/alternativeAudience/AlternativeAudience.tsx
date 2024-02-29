@@ -18,6 +18,10 @@ type AlternativeAudienceProps = {
     pageTitle: string;
     currentAudience: AudienceProps;
     alternativeAudience: AlternativeAudienceType;
+    config: {
+        title: string;
+        description: string;
+    };
 };
 
 export const AlternativeAudience = ({
