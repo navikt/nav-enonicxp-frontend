@@ -4,9 +4,10 @@ import { Header } from 'components/_common/headers/Header';
 import { AreaCard } from 'components/_common/area-card/AreaCard';
 import { FrontPageCard } from 'components/_common/frontpage-card/FrontPageCard';
 import { classNames } from 'utils/classnames';
-import { getAudience } from 'types/component-props/_mixins';
+import { Audience, getAudience } from 'types/component-props/_mixins';
 import { CardType } from 'types/card';
 
+import { ContentProps, ContentType } from 'types/content-props/_content-common';
 import style from './FrontPageAreaNavigation.module.scss';
 
 type Props = {
@@ -20,8 +21,42 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
         areasRefs = [],
         situationsRefs = [],
         frontPageNestedRefs = [],
+        navigationRefs = [],
         audience,
     } = data;
+
+    const getCardType = (audience: Audience) => {
+        if (audience === Audience.EMPLOYER) {
+            return CardType.EmployerFrontpage;
+        }
+        if (audience === Audience.PROVIDER) {
+            return CardType.ProviderFrontpage;
+        }
+        if (audience === Audience.PERSON) {
+            return CardType.PersonFrontPage;
+        }
+        return null;
+    };
+
+    const getIllustrationFromProps = (page: ContentProps) => {
+        if (
+            page.type === ContentType.Overview ||
+            page.type === ContentType.FormsOverview ||
+            page.type === ContentType.FrontPageNested ||
+            page.type === ContentType.SituationPage
+        ) {
+            return page.data?.illustration;
+        }
+        return null;
+    };
+
+    const cardType = getCardType(getAudience(audience));
+
+    const numberOfCards =
+        areasRefs.length +
+        frontPageNestedRefs.length +
+        situationsRefs.length +
+        navigationRefs.length;
 
     return (
         <div
@@ -36,7 +71,12 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                 {areasHeader}
             </Header>
             <nav aria-label="Velg område">
-                <ul className={style.cards}>
+                <ul
+                    className={classNames(
+                        style.cards,
+                        numberOfCards === 2 ? style.twocols : style.threecols
+                    )}
+                >
                     {areasRefs.map((areaContent) => (
                         <li key={areaContent._id}>
                             <AreaCard
@@ -55,7 +95,7 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                                 title={
                                     content.data?.title || content.displayName
                                 }
-                                type={CardType.ProviderFrontpage}
+                                type={cardType}
                             />
                         </li>
                     ))}
@@ -71,7 +111,36 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                                         situationPage.data?.title ||
                                         situationPage.displayName
                                     }
-                                    type={CardType.EmployerFrontpage}
+                                    type={cardType}
+                                />
+                            </li>
+                        );
+                    })}
+
+                    {navigationRefs.map((page) => {
+                        if (page.type === ContentType.AreaPage) {
+                            return (
+                                <li key={page._id}>
+                                    <AreaCard
+                                        path={page._path}
+                                        title={page.data.header}
+                                        area={page.data.area}
+                                        linkGroup={areasHeader}
+                                    />
+                                </li>
+                            );
+                        }
+
+                        const illustration = getIllustrationFromProps(page);
+
+                        return (
+                            <li key={page._id}>
+                                <FrontPageCard
+                                    illustration={illustration}
+                                    path={page._path}
+                                    title={page.data?.title || page.displayName}
+                                    type={cardType}
+                                    fallbackIllustration={!illustration}
                                 />
                             </li>
                         );

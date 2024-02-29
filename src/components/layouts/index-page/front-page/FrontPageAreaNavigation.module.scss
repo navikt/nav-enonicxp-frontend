@@ -43,6 +43,12 @@
 }
 
 .cards {
-    @include common.grid-layout-mixin();
     @include common.unstyled-list();
+
+    &.twocols {
+        @include common.grid-layout-mixin(2);
+    }
+    &.threecols {
+        @include common.grid-layout-mixin(3);
+    }
 }

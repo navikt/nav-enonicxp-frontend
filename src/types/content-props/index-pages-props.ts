@@ -9,15 +9,25 @@ import {
 } from '../component-props/_mixins';
 import { SituationPageProps } from './dynamic-page-props';
 import { AnimatedIconsProps } from './animated-icons';
+import { OverviewPageProps } from './overview-props';
+import { FormsOverviewProps } from './forms-overview';
+import { ExternalLinkProps } from './external-link-props';
 
 type CommonData = {
     audience: AudienceProps;
 };
 
+export type NavigationRefs =
+    | AreaPageProps
+    | FrontPageNestedProps
+    | SituationPageProps
+    | OtherRefsProps;
+
 export type FrontPageData = {
     areasRefs: AreaPageProps[];
     frontPageNestedRefs: FrontPageNestedProps[];
     situationsRefs: SituationPageProps[];
+    navigationRefs: NavigationRefs[];
     areasHeader: string;
 } & CommonData;
 
@@ -37,6 +47,11 @@ export type FrontPageNestedProps = ContentCommonProps & {
     data: FrontPageNestedData;
     page: IndexPageProps;
 };
+
+export type OtherRefsProps =
+    | OverviewPageProps
+    | FormsOverviewProps
+    | ExternalLinkProps;
 
 export type AreaPageData = {
     area: Area;

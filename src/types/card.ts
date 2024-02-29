@@ -9,6 +9,7 @@ export enum CardType {
     Generic = 'generic',
     EmployerFrontpage = 'employer-frontpage',
     ProviderFrontpage = 'provider-frontpage',
+    PersonFrontPage = 'person-frontpage',
 }
 
 export enum CardSize {
