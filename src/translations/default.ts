@@ -86,7 +86,6 @@ export const translationsBundleNb = {
     stringParts: {
         conjunction: 'og',
         for: 'for',
-        relevantFor: 'Aktuelt for deg som',
     },
     calculator: {
         calculate: 'Beregn',
@@ -364,6 +363,10 @@ export const translationsBundleNb = {
         measures_organizer: 'tiltaksarrangør',
         aid_supplier: 'hjelpemiddelformidler',
         other: 'andre samarbeidspartnere',
+    },
+    related: {
+        relatedAudience: 'Det finnes også informasjon om {name} til',
+        relatedSituations: 'Aktuelt for deg som',
     },
 };
 

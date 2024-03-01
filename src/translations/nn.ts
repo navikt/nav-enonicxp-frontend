@@ -68,7 +68,6 @@ export const translationsBundleNn: PartialTranslations = {
     stringParts: {
         conjunction: 'og',
         for: 'for',
-        relevantFor: 'Relevant for deg som',
     },
     calculator: {
         calculate: 'Rekn ut',
@@ -332,5 +331,9 @@ export const translationsBundleNn: PartialTranslations = {
         measures_organizer: 'tiltaksarrangør',
         aid_supplier: 'hjelpemiddelformidler',
         other: 'andre samarbeidspartnere',
+    },
+    related: {
+        relatedAudience: 'Det finns også informasjon om {name} til',
+        relatedSituations: 'Aktuelt for deg som',
     },
 };

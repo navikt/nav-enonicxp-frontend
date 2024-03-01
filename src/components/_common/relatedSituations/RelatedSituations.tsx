@@ -26,7 +26,7 @@ export const RelatedSituations = ({
         return null;
     }
     const { title, description } = config;
-    const getStringPart = translator('stringParts', language);
+    const getStringPart = translator('related', language);
 
     if (!relatedSituations || relatedSituations.length === 0) {
         return null;
@@ -35,7 +35,7 @@ export const RelatedSituations = ({
     return (
         <div className={styles.relatedSituations}>
             <Heading level="3" size="medium" spacing>
-                {title || getStringPart('relevantFor')}
+                {title || getStringPart('relatedSituations')}
             </Heading>
             {description && <BodyLong spacing>{description}</BodyLong>}
             <ul className={styles.situationsList}>

@@ -133,7 +133,7 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
                     alternativeAudience={alternativeAudience}
                     currentAudience={pageProps.data?.audience}
                     pageTitle={pageProps.data?.title || pageProps.displayName}
-                    config={displays.relatedSituations}
+                    config={displays.alternativeAudience}
                 />
             )}
         </LayoutContainer>

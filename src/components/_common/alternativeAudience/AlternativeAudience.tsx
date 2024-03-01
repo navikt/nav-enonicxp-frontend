@@ -13,14 +13,14 @@ import styles from './AlternativeAudience.module.scss';
 import { stripXpPathPrefix } from 'utils/urls';
 import { Fragment } from 'react';
 import { joinWithConjunction } from 'utils/string';
+import { current } from '@reduxjs/toolkit';
 
 type AlternativeAudienceProps = {
     pageTitle: string;
     currentAudience: AudienceProps;
     alternativeAudience: AlternativeAudienceType;
     config: {
-        title: string;
-        description: string;
+        name: string;
     };
 };
 
@@ -28,6 +28,7 @@ export const AlternativeAudience = ({
     pageTitle,
     currentAudience,
     alternativeAudience,
+    config,
 }: AlternativeAudienceProps) => {
     const { language } = usePageConfig();
 
@@ -35,7 +36,7 @@ export const AlternativeAudience = ({
     const getAudienceLabel = translator('audience', language);
     const getProviderAudienceLabel = translator('providerAudience', language);
     const getStringPart = translator('stringParts', language);
-    const currentAudienceLabel = getAudienceLabel(currentAudienceKey);
+    const getRelatedString = translator('related', language);
 
     if (!alternativeAudience) {
         return null;
@@ -94,16 +95,43 @@ export const AlternativeAudience = ({
         return links;
     };
 
+    const getProviderTypes = () => {
+        if (currentAudience._selected !== Audience.PROVIDER) {
+            return [];
+        }
+
+        return currentAudience[currentAudience._selected].provider_audience;
+    };
+
+    const buildAudienceAffirmation = () => {
+        if (currentAudienceKey === 'person') {
+            return '';
+        }
+
+        const currentAudienceLabel = getAudienceLabel(currentAudienceKey);
+        const providerTypes = getProviderTypes();
+        const providerTypesString = joinWithConjunction(
+            providerTypes.map((type) => getProviderAudienceLabel(type)),
+            language
+        );
+
+        const forString = `${getStringPart('for')
+            .charAt(0)
+            .toUpperCase()}${getStringPart('for').slice(1)}`;
+
+        return `${forString} ${providerTypesString || currentAudienceLabel}. `;
+    };
+
     const audienceLinks: any[] = buildLinkFromAudience(alternativeAudience);
 
     return (
         <div className={styles.alternativeAudience}>
             <BodyShort>
-                {currentAudienceKey !== 'person' &&
-                    `${getStringPart(
-                        'for'
-                    )} ${currentAudienceLabel}`.toUpperCase()}
-                Det finnes også informasjon om {pageTitle.toLowerCase()} til{' '}
+                {buildAudienceAffirmation()}
+                {getRelatedString('relatedAudience').replace(
+                    '{name}',
+                    (config.name || pageTitle).toLowerCase()
+                )}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>
                         <LenkeBase href={link.url}>{link.title}</LenkeBase>
