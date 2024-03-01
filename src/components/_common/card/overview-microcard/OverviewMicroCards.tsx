@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading } from '@navikt/ds-react';
+import { BodyShort, Heading } from '@navikt/ds-react';
 import { MicroCard } from 'components/_common/card/MicroCard';
 import { cardTypeMap } from 'components/_common/card/card-utils';
 import { Language, translator } from 'translations';
@@ -41,9 +41,7 @@ const splitByHeaderType = (
 };
 
 const CardsHeader = ({ text }: { text: string }) => (
-    <Heading level={'3'} size={'small'}>
-        {text}
-    </Heading>
+    <BodyShort weight={'semibold'}>{text}</BodyShort>
 );
 
 const CardsList = ({
