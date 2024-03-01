@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 import { MicroCard } from 'components/_common/card/MicroCard';
 import { cardTypeMap } from 'components/_common/card/card-utils';
 import { Language, translator } from 'translations';
