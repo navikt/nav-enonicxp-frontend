@@ -15,7 +15,7 @@ type Props = {
     subHeader?: string;
     illustration: AnimatedIconsProps;
     anchorId: string;
-    contentLoaderCallback: () => void;
+    contentLoaderCallback?: () => void;
     analyticsData?: Record<string, string>;
     isLoading?: boolean;
     error?: string | null;
@@ -42,7 +42,7 @@ export const ProductPanelExpandable = ({
 
     const checkHashAndExpandPanel = () => {
         if (window.location.hash === anchorIdWithHash) {
-            contentLoaderCallback();
+            contentLoaderCallback?.();
             setIsOpen(true);
         }
     };
@@ -71,7 +71,7 @@ export const ProductPanelExpandable = ({
         );
 
         setIsOpen(!isOpen);
-        contentLoaderCallback();
+        contentLoaderCallback?.();
     };
 
     return (

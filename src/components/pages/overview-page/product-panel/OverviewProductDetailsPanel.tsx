@@ -9,8 +9,9 @@ import { ProductPanelExpandable } from 'components/_common/product-panel/Product
 import { LayoutProps } from 'types/component-props/layouts';
 import { OverviewMicroCards } from 'components/_common/card/overview-microcard/OverviewMicroCards';
 import { OverviewPageProductItem } from 'types/content-props/overview-props';
+import { BodyLong } from '@navikt/ds-react';
 
-import style from './ProductDetailsPanel.module.scss';
+import style from './OverviewProductDetailsPanel.module.scss';
 
 type Props = {
     detailType: ProductDetailType;
@@ -23,8 +24,14 @@ export const OverviewProductDetailsPanel = ({
     pageProps,
     productDetails,
 }: Props) => {
-    const { productDetailsPath, anchorId, illustration, title, productLinks } =
-        productDetails;
+    const {
+        productDetailsPath,
+        anchorId,
+        illustration,
+        title,
+        productLinks,
+        ingress,
+    } = productDetails;
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -34,6 +41,8 @@ export const OverviewProductDetailsPanel = ({
     const { language } = usePageConfig();
 
     const detailTypeStrings = translator('productDetailTypes', language);
+
+    const isSimpleOverview = detailType === ProductDetailType.ALL_PRODUCTS;
 
     const handleProductDetailsFetch = () => {
         if (isLoading || productDetailsPage) {
@@ -66,14 +75,18 @@ export const OverviewProductDetailsPanel = ({
             header={title}
             illustration={illustration}
             anchorId={anchorId}
-            contentLoaderCallback={handleProductDetailsFetch}
+            contentLoaderCallback={
+                isSimpleOverview ? undefined : handleProductDetailsFetch
+            }
             error={error}
             isLoading={isLoading}
             analyticsData={{
                 opprinnelse: 'oversiktsside accordion',
             }}
         >
-            {productDetailsPage ? (
+            {isSimpleOverview ? (
+                <BodyLong>{ingress}</BodyLong>
+            ) : productDetailsPage ? (
                 <ComponentMapper
                     componentProps={productDetailsPage}
                     pageProps={pageProps}
