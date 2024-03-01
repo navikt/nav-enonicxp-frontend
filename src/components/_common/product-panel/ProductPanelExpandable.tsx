@@ -19,6 +19,7 @@ type Props = {
     analyticsData?: Record<string, string>;
     isLoading?: boolean;
     error?: string | null;
+    withCopyLink?: boolean;
     children: React.ReactNode;
 };
 
@@ -31,6 +32,7 @@ export const ProductPanelExpandable = ({
     analyticsData,
     isLoading,
     error,
+    withCopyLink = true,
     children,
 }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -99,11 +101,13 @@ export const ProductPanelExpandable = ({
                 </span>
             </ExpansionCard.Header>
             <ExpansionCard.Content className={style.expandableContent}>
-                <CopyLink
-                    anchor={anchorIdWithHash}
-                    heading={header}
-                    className={style.copyLink}
-                />
+                {withCopyLink && (
+                    <CopyLink
+                        anchor={anchorIdWithHash}
+                        heading={header}
+                        className={style.copyLink}
+                    />
+                )}
                 {error && <AlertBox variant={'error'}>{error}</AlertBox>}
                 {isLoading ? (
                     <div className={style.loader}>

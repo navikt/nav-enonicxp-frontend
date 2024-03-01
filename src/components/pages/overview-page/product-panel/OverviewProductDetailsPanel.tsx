@@ -80,6 +80,7 @@ export const OverviewProductDetailsPanel = ({
             }
             error={error}
             isLoading={isLoading}
+            withCopyLink={!isSimpleOverview}
             analyticsData={{
                 opprinnelse: 'oversiktsside accordion',
             }}
