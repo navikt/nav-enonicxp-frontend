@@ -14,6 +14,7 @@ import { stripXpPathPrefix } from 'utils/urls';
 import { Fragment } from 'react';
 import { joinWithConjunction } from 'utils/string';
 import { current } from '@reduxjs/toolkit';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 type AlternativeAudienceProps = {
     pageTitle: string;
@@ -39,7 +40,14 @@ export const AlternativeAudience = ({
     const getRelatedString = translator('related', language);
 
     if (!alternativeAudience) {
-        return null;
+        return (
+            <EditorHelp
+                type={'error'}
+                text={
+                    'Feil: Du har huket av for å vise aktuelle målgrupper i denne seksjonen, men ingen målgrupper er valgt i metadata til venstre.'
+                }
+            />
+        );
     }
 
     const getConjunction = (index: number, length: number) => {

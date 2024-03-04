@@ -8,6 +8,7 @@ import { CardType } from 'types/card';
 import { LinkProps } from 'types/link-props';
 
 import styles from './RelatedSituations.module.scss';
+import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 type RelatedSituationsProps = {
     relatedSituations: ContentProps[];
@@ -29,7 +30,14 @@ export const RelatedSituations = ({
     const getStringPart = translator('related', language);
 
     if (!relatedSituations || relatedSituations.length === 0) {
-        return null;
+        return (
+            <EditorHelp
+                type={'error'}
+                text={
+                    'Feil: Du har huket av for å vise aktuelle situasjoner i denne seksjonen, men ingen situasjoner er valgt i metadata til venstre.'
+                }
+            />
+        );
     }
 
     return (

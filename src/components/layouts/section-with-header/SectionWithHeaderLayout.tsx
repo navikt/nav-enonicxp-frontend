@@ -57,15 +57,13 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         regions.intro?.components?.length > 0 ||
         (shouldShowFilterBar && isEditorView);
 
-    const alternativeAudience =
+    const showAlternativeAudience =
         pageProps.type === ContentType.ProductPage &&
-        displays?._selected === 'alternativeAudience' &&
-        pageProps.data?.alternativeAudience;
+        displays?._selected === 'alternativeAudience';
 
-    const relatedSituations =
+    const showRelatedSituations =
         pageProps.type === ContentType.ProductPage &&
-        displays?._selected === 'relatedSituations' &&
-        pageProps.data?.relatedSituations;
+        displays?._selected === 'relatedSituations';
 
     return (
         <LayoutContainer
@@ -122,15 +120,15 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             )}
             {shouldShowFilterBar && <FilterBar layoutProps={layoutProps} />}
             <Region pageProps={pageProps} regionProps={regions.content} />
-            {relatedSituations && (
+            {showRelatedSituations && (
                 <RelatedSituations
-                    relatedSituations={relatedSituations}
+                    relatedSituations={pageProps.data?.relatedSituations}
                     config={displays.relatedSituations}
                 />
             )}
-            {alternativeAudience && (
+            {showAlternativeAudience && (
                 <AlternativeAudience
-                    alternativeAudience={alternativeAudience}
+                    alternativeAudience={pageProps.data?.alternativeAudience}
                     currentAudience={pageProps.data?.audience}
                     pageTitle={pageProps.data?.title || pageProps.displayName}
                     config={displays.alternativeAudience}
