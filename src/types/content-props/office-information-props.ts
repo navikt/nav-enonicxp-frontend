@@ -1,5 +1,4 @@
 import { ContentType, ContentCommonProps } from './_content-common';
-import { LegacyOfficeAddress } from '@navikt/nav-office-reception-info';
 
 type Office = {
     enhetId: number;
@@ -16,6 +15,17 @@ export type LegacyOfficeEMail = {
     adresse: string;
     kommentar: string;
     kunIntern: string;
+};
+
+export type LegacyOfficeAddress = {
+    gatenavn: string;
+    husbokstav?: string;
+    husnummer: string;
+    postboksanlegg?: string;
+    postboksnummer?: string;
+    postnummer: string;
+    poststed: string;
+    type: string;
 };
 
 export type LegacyOfficeOpeningHoursProps = {

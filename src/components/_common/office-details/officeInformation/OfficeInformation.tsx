@@ -2,8 +2,7 @@ import { ExpansionCard, BodyShort, Heading } from '@navikt/ds-react';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import { OfficeDetailsData } from 'types/content-props/office-details-props';
-import { formatAddress } from '@navikt/nav-office-reception-info';
-
+import { formatAddress } from '../utils';
 import styles from './OfficeInformation.module.scss';
 
 export interface OfficeInformationProps {

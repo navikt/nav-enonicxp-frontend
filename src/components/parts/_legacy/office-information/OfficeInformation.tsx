@@ -2,8 +2,10 @@ import React from 'react';
 import { Reception } from './reception/Reception';
 import { SpecialInformation } from './SpecialInfo';
 import { buildOpeningHoursSpecification } from './utils';
-import { formatPhoneNumber } from 'components/_common/office-details/utils';
-import { formatAddress } from '@navikt/nav-office-reception-info';
+import {
+    formatAddress,
+    formatPhoneNumber,
+} from 'components/_common/office-details/utils';
 import { OfficeInfoEmail } from 'components/parts/_legacy/office-information/OfficeInfoEmail';
 import { translator } from 'translations';
 import ArtikkelDato from '../main-article/komponenter/ArtikkelDato';
@@ -20,7 +22,6 @@ import {
 import { LenkeInline } from '../../../_common/lenke/LenkeInline';
 import { forceArray } from 'utils/arrays';
 import { usePageConfig } from 'store/hooks/usePageConfig';
-
 import style from './OfficeInformation.module.scss';
 
 export const OfficeInformation = (props: OfficeInformationProps) => {
