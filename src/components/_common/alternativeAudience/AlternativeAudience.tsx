@@ -13,31 +13,46 @@ import styles from './AlternativeAudience.module.scss';
 import { stripXpPathPrefix } from 'utils/urls';
 import { Fragment } from 'react';
 import { joinWithConjunction } from 'utils/string';
-import { current } from '@reduxjs/toolkit';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
+import { ContentProps } from 'types/content-props/_content-common';
+import { current } from '@reduxjs/toolkit';
 
 type AlternativeAudienceProps = {
-    pageTitle: string;
-    currentAudience: AudienceProps;
     alternativeAudience: AlternativeAudienceType;
+    pageProps: ContentProps;
     config: {
         name: string;
     };
 };
 
 export const AlternativeAudience = ({
-    pageTitle,
-    currentAudience,
     alternativeAudience,
+    pageProps,
     config,
 }: AlternativeAudienceProps) => {
     const { language } = usePageConfig();
 
+    const currentAudience = pageProps.data?.audience;
     const currentAudienceKey = getAudience(currentAudience);
+    const pageTitle = pageProps.data?.title || pageProps.displayName;
+
     const getAudienceLabel = translator('audience', language);
     const getProviderAudienceLabel = translator('providerAudience', language);
     const getStringPart = translator('stringParts', language);
     const getRelatedString = translator('related', language);
+
+    const isComponentPreviewMode = pageProps._id === '';
+
+    if (isComponentPreviewMode) {
+        return (
+            <EditorHelp
+                type={'info'}
+                text={
+                    'Aktuelle målgrupper vises her når du klikker "marker som klar"'
+                }
+            />
+        );
+    }
 
     if (!alternativeAudience) {
         return (

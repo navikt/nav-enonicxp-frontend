@@ -57,13 +57,15 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
         regions.intro?.components?.length > 0 ||
         (shouldShowFilterBar && isEditorView);
 
-    const showAlternativeAudience =
+    const alternativeAudience =
         pageProps.type === ContentType.ProductPage &&
-        displays?._selected === 'alternativeAudience';
+        displays?._selected === 'alternativeAudience' &&
+        pageProps.data?.alternativeAudience;
 
-    const showRelatedSituations =
+    const relatedSituations =
         pageProps.type === ContentType.ProductPage &&
-        displays?._selected === 'relatedSituations';
+        displays?._selected === 'relatedSituations' &&
+        pageProps.data?.relatedSituations;
 
     return (
         <LayoutContainer
@@ -120,20 +122,16 @@ export const SectionWithHeaderLayout = ({ pageProps, layoutProps }: Props) => {
             )}
             {shouldShowFilterBar && <FilterBar layoutProps={layoutProps} />}
             <Region pageProps={pageProps} regionProps={regions.content} />
-            {showRelatedSituations && (
-                <RelatedSituations
-                    relatedSituations={pageProps.data?.relatedSituations}
-                    config={displays.relatedSituations}
-                />
-            )}
-            {showAlternativeAudience && (
-                <AlternativeAudience
-                    alternativeAudience={pageProps.data?.alternativeAudience}
-                    currentAudience={pageProps.data?.audience}
-                    pageTitle={pageProps.data?.title || pageProps.displayName}
-                    config={displays.alternativeAudience}
-                />
-            )}
+            <RelatedSituations
+                relatedSituations={relatedSituations}
+                config={displays?.relatedSituations}
+                pageProps={pageProps}
+            />
+            <AlternativeAudience
+                alternativeAudience={alternativeAudience}
+                pageProps={pageProps}
+                config={displays?.alternativeAudience}
+            />
         </LayoutContainer>
     );
 };

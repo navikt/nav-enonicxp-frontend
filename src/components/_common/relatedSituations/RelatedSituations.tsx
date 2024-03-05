@@ -12,6 +12,7 @@ import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 
 type RelatedSituationsProps = {
     relatedSituations: ContentProps[];
+    pageProps: ContentProps;
     config: {
         title: string;
         description: string;
@@ -21,6 +22,7 @@ type RelatedSituationsProps = {
 export const RelatedSituations = ({
     relatedSituations,
     config,
+    pageProps,
 }: RelatedSituationsProps) => {
     const { language } = usePageConfig();
     if (!config) {
@@ -28,6 +30,19 @@ export const RelatedSituations = ({
     }
     const { title, description } = config;
     const getStringPart = translator('related', language);
+
+    const isComponentPreviewMode = pageProps._id === '';
+
+    if (isComponentPreviewMode) {
+        return (
+            <EditorHelp
+                type={'info'}
+                text={
+                    'Aktuelle situasjoner vises her når du klikker "marker som klar"'
+                }
+            />
+        );
+    }
 
     if (!relatedSituations || relatedSituations.length === 0) {
         return (
