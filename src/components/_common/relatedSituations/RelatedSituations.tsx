@@ -38,7 +38,7 @@ export const RelatedSituations = ({
             <EditorHelp
                 type={'info'}
                 text={
-                    'Aktuelle situasjoner vises her når du klikker "marker som klar"'
+                    'Aktuelle situasjoner vises her når du klikker "marker som klar".'
                 }
             />
         );

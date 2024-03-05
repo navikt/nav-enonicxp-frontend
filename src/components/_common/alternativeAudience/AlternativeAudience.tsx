@@ -48,7 +48,7 @@ export const AlternativeAudience = ({
             <EditorHelp
                 type={'info'}
                 text={
-                    'Aktuelle målgrupper vises her når du klikker "marker som klar"'
+                    'Aktuelle målgrupper vises her når du klikker "marker som klar".'
                 }
             />
         );
