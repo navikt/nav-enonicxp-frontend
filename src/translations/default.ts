@@ -351,9 +351,9 @@ export const translationsBundleNb = {
         navigationLabel: 'Hopp til underseksjoner',
     },
     audience: {
-        person: 'privatperson',
-        employer: 'arbeidsgiver',
-        provider: 'samarbeidspartner',
+        person: 'privatpersoner',
+        employer: 'arbeidsgivere',
+        provider: 'samarbeidspartnere',
     },
     providerAudience: {
         administrator: 'bostyrer',
@@ -366,7 +366,8 @@ export const translationsBundleNb = {
     },
     related: {
         relatedAudience: 'Det finnes også informasjon om {name} til',
-        relatedSituations: 'Aktuelt for deg som',
+        otherOffers: 'Andre tilbud',
+        moreInformation: 'Mer informasjon til deg som',
     },
 };
 

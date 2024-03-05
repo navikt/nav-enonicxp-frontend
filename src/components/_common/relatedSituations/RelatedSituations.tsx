@@ -43,9 +43,11 @@ export const RelatedSituations = ({
     return (
         <div className={styles.relatedSituations}>
             <Heading level="3" size="medium" spacing>
-                {title || getStringPart('relatedSituations')}
+                {title || getStringPart('otherOffers')}
             </Heading>
-            {description && <BodyLong spacing>{description}</BodyLong>}
+            <BodyLong spacing>
+                {description || getStringPart('moreInformation')}
+            </BodyLong>
             <ul className={styles.situationsList}>
                 {relatedSituations.map((situation) => {
                     const link: LinkProps = {

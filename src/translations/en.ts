@@ -331,7 +331,8 @@ export const translationsBundleEn: PartialTranslations = {
         other: 'andre samarbeidspartnere',
     },
     related: {
-        relatedAudience: 'There is also information on {name} for',
-        relatedSituations: 'Relevant for you who are',
+        relatedAudience: 'Det finnes også informasjon om {name} til',
+        otherOffers: 'Other offers',
+        moreInformation: 'More information for you who',
     },
 };

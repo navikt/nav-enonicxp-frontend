@@ -111,31 +111,11 @@ export const AlternativeAudience = ({
         return currentAudience[currentAudience._selected].provider_audience;
     };
 
-    const buildAudienceAffirmation = () => {
-        if (currentAudienceKey === 'person') {
-            return '';
-        }
-
-        const currentAudienceLabel = getAudienceLabel(currentAudienceKey);
-        const providerTypes = getProviderTypes();
-        const providerTypesString = joinWithConjunction(
-            providerTypes.map((type) => getProviderAudienceLabel(type)),
-            language
-        );
-
-        const forString = `${getStringPart('for')
-            .charAt(0)
-            .toUpperCase()}${getStringPart('for').slice(1)}`;
-
-        return `${forString} ${providerTypesString || currentAudienceLabel}. `;
-    };
-
     const audienceLinks: any[] = buildLinkFromAudience(alternativeAudience);
 
     return (
         <div className={styles.alternativeAudience}>
             <BodyShort>
-                {buildAudienceAffirmation()}
                 {getRelatedString('relatedAudience').replace(
                     '{name}',
                     (config.name || pageTitle).toLowerCase()

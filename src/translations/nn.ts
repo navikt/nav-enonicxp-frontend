@@ -319,9 +319,9 @@ export const translationsBundleNn: PartialTranslations = {
         navigationLabel: 'Hopp til underseksjonar',
     },
     audience: {
-        person: 'privatperson',
-        employer: 'arbeidsgjevar',
-        provider: 'samarbeidspartnar',
+        person: 'privatpersonar',
+        employer: 'arbeidsgjevarar',
+        provider: 'samarbeidspartnarar',
     },
     providerAudience: {
         administrator: 'bostyrer',
@@ -333,7 +333,8 @@ export const translationsBundleNn: PartialTranslations = {
         other: 'andre samarbeidspartnere',
     },
     related: {
-        relatedAudience: 'Det finns også informasjon om {name} til',
-        relatedSituations: 'Aktuelt for deg som',
+        relatedAudience: 'Det finnes også informasjon om {name} til',
+        otherOffers: 'Andre tilbod',
+        moreInformation: 'Meir informasjon til deg som',
     },
 };
