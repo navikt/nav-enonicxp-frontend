@@ -356,12 +356,12 @@ export const translationsBundleNb = {
         provider: 'samarbeidspartnere',
     },
     providerAudience: {
-        administrator: 'bostyrer',
-        doctor: 'lege, tannlege eller annen behandler',
-        municipality_employed: 'ansatt i kommunen eller fylkeskommunen',
-        optician: 'optiker eller øyelege',
-        measures_organizer: 'tiltaksarrangør',
-        aid_supplier: 'hjelpemiddelformidler',
+        administrator: 'bostyrere',
+        doctor: 'leger, tannleger eller andre behandlere',
+        municipality_employed: 'ansatte i kommunen eller fylkeskommunen',
+        optician: 'optikere eller øyeleger',
+        measures_organizer: 'tiltaksarrangører',
+        aid_supplier: 'hjelpemiddelformidlere',
         other: 'andre samarbeidspartnere',
     },
     related: {
