@@ -17,7 +17,11 @@ import {
     OfficeBranchPageProps,
 } from 'types/content-props/dynamic-page-props';
 import { OverviewPageProps } from 'types/content-props/overview-props';
-import { getAudience, Audience } from 'types/component-props/_mixins';
+import {
+    getAudience,
+    getSubAudience,
+    Audience,
+} from 'types/component-props/_mixins';
 import { getTranslatedTaxonomies, joinWithConjunction } from 'utils/string';
 import { FormIntermediateStepPageProps } from 'types/content-props/form-intermediate-step';
 
@@ -61,8 +65,20 @@ export const ThemedPageHeader = ({
         getProps();
 
     const currentAudience = getAudience(audience);
+    const subAudience = getSubAudience(audience);
 
     const getSubtitle = () => {
+        if (currentAudience === Audience.PROVIDER && subAudience?.length > 0) {
+            const getSubAudienceLabel = translator(
+                'providerAudience',
+                language
+            );
+            const subAudienceLabels = subAudience.map((audience) =>
+                (getSubAudienceLabel(audience) as string).toLowerCase()
+            );
+            return joinWithConjunction(subAudienceLabels, language);
+        }
+
         if (pageType === ContentType.SituationPage) {
             const getTaxonomyLabel = translator('situations', language);
             return getTaxonomyLabel(currentAudience);
@@ -92,11 +108,10 @@ export const ThemedPageHeader = ({
 
         if (
             pageType === ContentType.ProductPage &&
-            (currentAudience === Audience.EMPLOYER ||
-                currentAudience === Audience.PROVIDER)
+            currentAudience === Audience.EMPLOYER
         ) {
             const getTaxonomyLabel = translator('products', language);
-            return getTaxonomyLabel(currentAudience);
+            return getTaxonomyLabel(Audience.EMPLOYER);
         }
 
         const taxonomyArray = getTranslatedTaxonomies(taxonomy, language);

@@ -57,6 +57,19 @@ export const getAudience = (
 
     return audience._selected;
 };
+export const getSubAudience = (
+    audience?: AudienceProps | Audience | Audience[]
+): ProviderAudience[] | null => {
+    if (!audience || typeof audience === 'string' || Array.isArray(audience)) {
+        return null;
+    }
+
+    if (audience._selected === Audience.PROVIDER) {
+        return audience[Audience.PROVIDER].provider_audience || [];
+    }
+
+    return null;
+};
 
 export type FilterSelection = string[];
 
