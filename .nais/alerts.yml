@@ -50,7 +50,7 @@ spec:
             alert_type: custom
         - alert: "Treg 99.9th percentile responsetid"
           expr: round(histogram_quantile(0.999, sum(rate(http_request_duration_seconds_bucket{app="nav-enonicxp-frontend"}[3m])) by (le)), 0.1) > 4
-          for: 5m
+          for: 10m
           annotations:
             summary: "[nav-enonicxp-frontend] >4 sec 99.9th percentile responsetid i over 5 min ({{ $value }} sec)"
             action: "[<!here>] Undersøk hvorfor en andel av requestene er veldig trege"
