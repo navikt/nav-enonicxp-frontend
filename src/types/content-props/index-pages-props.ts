@@ -24,9 +24,6 @@ export type NavigationRefs =
     | OtherRefsProps;
 
 export type FrontPageData = {
-    areasRefs: AreaPageProps[];
-    frontPageNestedRefs: FrontPageNestedProps[];
-    situationsRefs: SituationPageProps[];
     navigationRefs: NavigationRefs[];
     areasHeader: string;
 } & CommonData;

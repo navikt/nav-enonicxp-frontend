@@ -16,14 +16,7 @@ type Props = {
 
 export const FrontPageAreaNavigation = ({ content }: Props) => {
     const { data } = content;
-    const {
-        areasHeader,
-        areasRefs = [],
-        situationsRefs = [],
-        frontPageNestedRefs = [],
-        navigationRefs = [],
-        audience,
-    } = data;
+    const { areasHeader, navigationRefs = [], audience } = data;
 
     const getCardType = (audience: Audience) => {
         if (audience === Audience.EMPLOYER) {
@@ -52,12 +45,6 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
 
     const cardType = getCardType(getAudience(audience));
 
-    const numberOfCards =
-        areasRefs.length +
-        frontPageNestedRefs.length +
-        situationsRefs.length +
-        navigationRefs.length;
-
     return (
         <div
             className={classNames(style.wrapper, style[getAudience(audience)])}
@@ -74,49 +61,11 @@ export const FrontPageAreaNavigation = ({ content }: Props) => {
                 <ul
                     className={classNames(
                         style.cards,
-                        numberOfCards === 2 ? style.twocols : style.threecols
+                        navigationRefs.length === 2
+                            ? style.twocols
+                            : style.threecols
                     )}
                 >
-                    {areasRefs.map((areaContent) => (
-                        <li key={areaContent._id}>
-                            <AreaCard
-                                path={areaContent._path}
-                                title={areaContent.data.header}
-                                area={areaContent.data.area}
-                                linkGroup={areasHeader}
-                            />
-                        </li>
-                    ))}
-                    {frontPageNestedRefs.map((content) => (
-                        <li key={content._id}>
-                            <FrontPageCard
-                                illustration={content.data?.illustration}
-                                path={content._path}
-                                title={
-                                    content.data?.title || content.displayName
-                                }
-                                type={cardType}
-                            />
-                        </li>
-                    ))}
-                    {situationsRefs.map((situationPage) => {
-                        return (
-                            <li key={situationPage._id}>
-                                <FrontPageCard
-                                    illustration={
-                                        situationPage.data?.illustration
-                                    }
-                                    path={situationPage._path}
-                                    title={
-                                        situationPage.data?.title ||
-                                        situationPage.displayName
-                                    }
-                                    type={cardType}
-                                />
-                            </li>
-                        );
-                    })}
-
                     {navigationRefs.map((page) => {
                         if (page.type === ContentType.AreaPage) {
                             return (
