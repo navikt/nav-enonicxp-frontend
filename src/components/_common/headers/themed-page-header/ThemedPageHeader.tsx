@@ -69,14 +69,18 @@ export const ThemedPageHeader = ({
 
     const getSubtitle = () => {
         if (currentAudience === Audience.PROVIDER && subAudience?.length > 0) {
+            const getStringParts = translator('stringParts', language);
             const getSubAudienceLabel = translator(
                 'providerAudience',
                 language
             );
             const subAudienceLabels = subAudience.map((audience) =>
-                (getSubAudienceLabel(audience) as string).toLowerCase()
+                getSubAudienceLabel(audience).toLowerCase()
             );
-            return joinWithConjunction(subAudienceLabels, language);
+            return `${getStringParts('for')} ${joinWithConjunction(
+                subAudienceLabels,
+                language
+            )}`;
         }
 
         if (pageType === ContentType.SituationPage) {
