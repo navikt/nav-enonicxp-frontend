@@ -322,14 +322,14 @@ export const translationsBundleEn: PartialTranslations = {
         provider: 'providers',
     },
     providerAudience: {
-        administrator: 'estate managers',
-        doctor: 'physicians, dentists or other practitioners',
+        administrator: 'bankruptcy administrators',
+        doctor: 'physicians, dentists or other healthcare professional',
         municipality_employed:
-            'employees of the municipality or county municipality',
+            'employed in the municipality or county municipality',
         optician: 'opticians or ophthalmologists',
-        measures_organizer: 'organizers of measures',
-        aid_supplier: 'aid suppliers',
-        other: 'other providers',
+        measures_organizer: 'organizers of labour market measures',
+        aid_supplier: 'assistive technology providers',
+        other: 'other partners',
     },
     related: {
         relatedAudience: 'Det finnes også informasjon om {name} til',
