@@ -1,21 +1,19 @@
+import { Fragment } from 'react';
 import {
     AlternativeAudience as AlternativeAudienceType,
     Audience,
-    AudienceProps,
-    getAudience,
 } from 'types/component-props/_mixins';
 import { usePageConfig } from 'store/hooks/usePageConfig';
 import { translator } from 'translations';
 import { BodyShort } from '@navikt/ds-react';
 import { LenkeBase } from '../lenke/LenkeBase';
 
-import styles from './AlternativeAudience.module.scss';
 import { stripXpPathPrefix } from 'utils/urls';
-import { Fragment } from 'react';
-import { joinWithConjunction } from 'utils/string';
+import { getConjunction, joinWithConjunction } from 'utils/string';
 import { EditorHelp } from 'components/_editor-only/editor-help/EditorHelp';
 import { ContentProps } from 'types/content-props/_content-common';
-import { current } from '@reduxjs/toolkit';
+
+import styles from './AlternativeAudience.module.scss';
 
 type AlternativeAudienceProps = {
     alternativeAudience: AlternativeAudienceType;
@@ -25,6 +23,11 @@ type AlternativeAudienceProps = {
     };
 };
 
+type AudienceLink = {
+    title: string;
+    url: string;
+};
+
 export const AlternativeAudience = ({
     alternativeAudience,
     pageProps,
@@ -32,15 +35,15 @@ export const AlternativeAudience = ({
 }: AlternativeAudienceProps) => {
     const { language } = usePageConfig();
 
-    const currentAudience = pageProps.data?.audience;
-    const currentAudienceKey = getAudience(currentAudience);
-    const pageTitle = pageProps.data?.title || pageProps.displayName;
+    const productName = pageProps.data?.title || pageProps.displayName;
 
     const getAudienceLabel = translator('audience', language);
     const getProviderAudienceLabel = translator('providerAudience', language);
-    const getStringPart = translator('stringParts', language);
     const getRelatedString = translator('related', language);
 
+    // If the page is in preview mode, audience from the page props will be empty,
+    // so display a note about 'mark as ready' to the editor, as we can't actually
+    // display the audience until the page has been refreshed.
     const isComponentPreviewMode = pageProps._id === '';
 
     if (isComponentPreviewMode) {
@@ -65,52 +68,38 @@ export const AlternativeAudience = ({
         );
     }
 
-    const getConjunction = (index: number, length: number) => {
-        if (index === length - 1) {
-            return '.';
-        }
-
-        if (audienceLinks.length > 2 && index < audienceLinks.length - 2) {
-            return ', ';
-        }
-
-        if (index === audienceLinks.length - 2) {
-            return ` ${getStringPart('conjunction')} `; // Todo: look up in dictionary
-        }
-    };
-
-    const buildLinkFromAudience = (
+    const buildAudienceLinks = (
         alternativeAudience: AlternativeAudienceType
-    ) => {
+    ): AudienceLink[] => {
         const { person, employer, provider } = alternativeAudience;
 
         const links = [];
 
-        const personLabel = getAudienceLabel(Audience.PERSON);
-        const employerLabel = getAudienceLabel(Audience.EMPLOYER);
-
-        if (person && person.targetPage) {
+        if (person?.targetPage) {
             links.push({
-                title: personLabel,
+                title: getAudienceLabel(Audience.PERSON),
                 url: stripXpPathPrefix(person.targetPage._path),
             });
         }
 
-        if (employer && employer.targetPage) {
+        if (employer?.targetPage) {
             links.push({
-                title: employerLabel,
+                title: getAudienceLabel(Audience.EMPLOYER),
                 url: stripXpPathPrefix(employer.targetPage._path),
             });
         }
 
-        if (provider && provider.providerList) {
-            provider.providerList.forEach((provider) => {
-                const providerLabels = provider.providerAudience.map(
+        // For providers, iterate the actual provider category
+        // rather than just showing "samarbeidspartnere" as we do
+        // with 'person' and 'arbeidsgiver'.
+        if (provider?.providerList) {
+            provider.providerList.forEach((singleProvider) => {
+                const providerLabels = singleProvider.providerAudience.map(
                     (audience) => getProviderAudienceLabel(audience)
                 );
                 links.push({
                     title: joinWithConjunction(providerLabels, language),
-                    url: stripXpPathPrefix(provider.targetPage._path),
+                    url: stripXpPathPrefix(singleProvider.targetPage._path),
                 });
             });
         }
@@ -118,27 +107,23 @@ export const AlternativeAudience = ({
         return links;
     };
 
-    const getProviderTypes = () => {
-        if (currentAudience._selected !== Audience.PROVIDER) {
-            return [];
-        }
-
-        return currentAudience[currentAudience._selected].provider_audience;
-    };
-
-    const audienceLinks: any[] = buildLinkFromAudience(alternativeAudience);
+    const audienceLinks = buildAudienceLinks(alternativeAudience);
 
     return (
         <div className={styles.alternativeAudience}>
             <BodyShort>
                 {getRelatedString('relatedAudience').replace(
                     '{name}',
-                    (config.name || pageTitle).toLowerCase()
+                    (config.name || productName).toLowerCase()
                 )}{' '}
                 {audienceLinks.map((link, index) => (
                     <Fragment key={index}>
                         <LenkeBase href={link.url}>{link.title}</LenkeBase>
-                        {getConjunction(index, audienceLinks.length)}
+                        {getConjunction({
+                            index,
+                            length: audienceLinks.length,
+                            language,
+                        })}
                     </Fragment>
                 ))}
             </BodyShort>
